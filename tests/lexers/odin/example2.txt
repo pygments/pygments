@@ -1,0 +1,384 @@
+---input---
+--
+-- Example of a fragment of an openEHR Archetype, written in the Object Data Instance Notation (ODIN)
+-- Definition available here: https://github.com/openEHR/odin
+-- Author: Thomas Beale
+--
+
+    original_author = <
+        ["name"] = <"Dr J Joyce">
+        ["organisation"] = <"NT Health Service">
+        ["date"] = <2003-08-03>
+    >
+    term_bindings = <
+        ["umls"] = <
+            ["id1"] = <http://umls.nlm.edu/id/C124305> -- apgar result
+            ["id2"] = <http://umls.nlm.edu/id/0000000> -- 1-minute event 
+        >
+    >
+    lifecycle_state =  <"initial">
+    resource_package_uri =  <"http://www.aihw.org.au/data_sets/diabetic_archetypes.html">
+
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose =  <"archetype for diabetic patient review">
+            use = <"used for all hospital or clinic-based diabetic reviews, 
+                including first time. Optional sections are removed according to the particular review"
+            >
+            misuse = <"not appropriate for pre-diagnosis use">
+            original_resource_uri = <"http://www.healthdata.org.au/data_sets/diabetic_review_data_set_1.html">
+        >
+        ["de"] = <
+            language = <[iso_639-1::de]>
+            purpose =  <"Archetyp für die Untersuchung von Patienten mit Diabetes">
+            use = <"wird benutzt für alle Diabetes-Untersuchungen im
+                    Krankenhaus, inklusive der ersten Vorstellung. Optionale
+                    Abschnitte werden in Abhängigkeit von der speziellen
+                    Vorstellung entfernt."
+            >
+            misuse = <"nicht geeignet für Benutzung vor Diagnosestellung">
+            original_resource_uri = <"http://www.healthdata.org.au/data_sets/diabetic_review_data_set_1.html">
+        >
+    >
+	
+
+---tokens---
+'--'          Comment
+'\n'          Text
+
+'-- Example of a fragment of an openEHR Archetype, written in the Object Data Instance Notation (ODIN)' Comment
+'\n'          Text
+
+'-- Definition available here: https://github.com/openEHR/odin' Comment
+'\n'          Text
+
+'-- Author: Thomas Beale' Comment
+'\n'          Text
+
+'--'          Comment
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'original_author' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'"'           Literal.String
+'name'        Literal.String
+'"'           Literal.String
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'Dr J Joyce'  Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'"'           Literal.String
+'organisation' Literal.String
+'"'           Literal.String
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'NT Health Service' Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'"'           Literal.String
+'date'        Literal.String
+'"'           Literal.String
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'2003-08-03'  Literal.Date
+'>'           Punctuation
+'\n'          Text
+
+'    '        Text
+'>'           Punctuation
+'\n'          Text
+
+'    '        Text
+'term_bindings' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'"'           Literal.String
+'umls'        Literal.String
+'"'           Literal.String
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'            ' Text
+'['           Punctuation
+'"'           Literal.String
+'id1'         Literal.String
+'"'           Literal.String
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'http:'       Literal
+'//umls.nlm.edu/id/C124305' Literal
+'>'           Punctuation
+' '           Text
+'-- apgar result' Comment
+'\n'          Text
+
+'            ' Text
+'['           Punctuation
+'"'           Literal.String
+'id2'         Literal.String
+'"'           Literal.String
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'http:'       Literal
+'//umls.nlm.edu/id/0000000' Literal
+'>'           Punctuation
+' '           Text
+'-- 1-minute event ' Comment
+'\n'          Text
+
+'        '    Text
+'>'           Punctuation
+'\n'          Text
+
+'    '        Text
+'>'           Punctuation
+'\n'          Text
+
+'    '        Text
+'lifecycle_state' Name.Class
+' '           Text
+'='           Operator
+'  '          Text
+'<'           Punctuation
+'"'           Literal.String
+'initial'     Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'    '        Text
+'resource_package_uri' Name.Class
+' '           Text
+'='           Operator
+'  '          Text
+'<'           Punctuation
+'"'           Literal.String
+'http://www.aihw.org.au/data_sets/diabetic_archetypes.html' Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'details'     Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'"'           Literal.String
+'en'          Literal.String
+'"'           Literal.String
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'            ' Text
+'language'    Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'['           Punctuation
+'iso_639-1'   Name.Decorator
+'::'          Punctuation
+'en'          Name.Decorator
+']'           Punctuation
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'purpose'     Name.Class
+' '           Text
+'='           Operator
+'  '          Text
+'<'           Punctuation
+'"'           Literal.String
+'archetype for diabetic patient review' Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'use'         Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'used for all hospital or clinic-based diabetic reviews, \n                including first time. Optional sections are removed according to the particular review' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'            ' Text
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'misuse'      Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'not appropriate for pre-diagnosis use' Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'original_resource_uri' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'http://www.healthdata.org.au/data_sets/diabetic_review_data_set_1.html' Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'        '    Text
+'>'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'"'           Literal.String
+'de'          Literal.String
+'"'           Literal.String
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'            ' Text
+'language'    Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'['           Punctuation
+'iso_639-1'   Name.Decorator
+'::'          Punctuation
+'de'          Name.Decorator
+']'           Punctuation
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'purpose'     Name.Class
+' '           Text
+'='           Operator
+'  '          Text
+'<'           Punctuation
+'"'           Literal.String
+'Archetyp für die Untersuchung von Patienten mit Diabetes' Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'use'         Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'wird benutzt für alle Diabetes-Untersuchungen im\n                    Krankenhaus, inklusive der ersten Vorstellung. Optionale\n                    Abschnitte werden in Abhängigkeit von der speziellen\n                    Vorstellung entfernt.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'            ' Text
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'misuse'      Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'nicht geeignet für Benutzung vor Diagnosestellung' Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'original_resource_uri' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'http://www.healthdata.org.au/data_sets/diabetic_review_data_set_1.html' Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'        '    Text
+'>'           Punctuation
+'\n'          Text
+
+'    '        Text
+'>'           Punctuation
+'\n'          Text
+
+'\t\n'        Text

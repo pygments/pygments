@@ -1,0 +1,5728 @@
+---input---
+/*
+ * "Copyright (c) 2008 The Regents of the University  of California.
+ * All rights reserved."
+ *
+ * Permission to use, copy, modify, and distribute this software and its
+ * documentation for any purpose, without fee, and without written agreement is
+ * hereby granted, provided that the above copyright notice, the following
+ * two paragraphs and the author appear in all copies of this software.
+ *
+ * IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY FOR
+ * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT
+ * OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF THE UNIVERSITY OF
+ * CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS FOR A PARTICULAR PURPOSE.  THE SOFTWARE PROVIDED HEREUNDER IS
+ * ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO
+ * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
+ *
+ */
+
+#include <lib6lowpan/blip-tinyos-includes.h>
+#include <lib6lowpan/6lowpan.h>
+#include <lib6lowpan/lib6lowpan.h>
+#include <lib6lowpan/ip.h>
+#include <lib6lowpan/in_cksum.h>
+#include <lib6lowpan/ip_malloc.h>
+
+#include "blip_printf.h"
+#include "IPDispatch.h"
+#include "BlipStatistics.h"
+#include "table.h"
+
+/*
+ * Provides IP layer reception to applications on motes.
+ *
+ * @author Stephen Dawson-Haggerty <stevedh@cs.berkeley.edu>
+ */
+
+module IPDispatchP {
+  provides {
+    interface SplitControl;
+    // interface for protocols not requiring special hand-holding
+    interface IPLower;
+
+    interface BlipStatistics<ip_statistics_t>;
+
+  }
+  uses {
+    interface Boot;
+
+
+    /* link-layer wiring */
+    interface SplitControl as RadioControl;
+
+    interface Packet as BarePacket;
+    interface Send as Ieee154Send;
+    interface Receive as Ieee154Receive;
+
+    /* context lookup */
+    interface NeighborDiscovery;
+
+    interface ReadLqi;
+    interface PacketLink;
+    interface LowPowerListening;
+
+    /* buffers for outgoing fragments */
+    interface Pool<message_t> as FragPool;
+    interface Pool<struct send_info> as SendInfoPool;
+    interface Pool<struct send_entry> as SendEntryPool;
+    interface Queue<struct send_entry *> as SendQueue;
+
+    /* expire reconstruction */
+    interface Timer<TMilli> as ExpireTimer;
+
+    interface Leds;
+
+  }
+  provides interface Init;
+} implementation {
+
+#define HAVE_LOWPAN_EXTERN_MATCH_CONTEXT
+int lowpan_extern_read_context(struct in6_addr *addr, int context) {
+  return call NeighborDiscovery.getContext(context, addr);
+}
+
+int lowpan_extern_match_context(struct in6_addr *addr, uint8_t *ctx_id) {
+  return call NeighborDiscovery.matchContext(addr, ctx_id);
+}
+
+  // generally including source files like this is a no-no.  I'm doing
+  // this in the hope that the optimizer will do a better job when
+  // they're part of a component.
+#include <lib6lowpan/ieee154_header.c>
+#include <lib6lowpan/lib6lowpan.c>
+#include <lib6lowpan/lib6lowpan_4944.c>
+#include <lib6lowpan/lib6lowpan_frag.c>
+
+  enum {
+    S_RUNNING,
+    S_STOPPED,
+    S_STOPPING,
+  };
+  uint8_t state = S_STOPPED;
+  bool radioBusy;
+  uint8_t current_local_label = 0;
+  ip_statistics_t stats;
+
+  // this in theory could be arbitrarily large; however, it needs to
+  // be large enough to hold all active reconstructions, and any tags
+  // which we are dropping.  It's important to keep dropped tags
+  // around for a while, or else there are pathological situations
+  // where you continually allocate buffers for packets which will
+  // never complete.
+
+  ////////////////////////////////////////
+  //
+  //
+
+  table_t recon_cache;
+
+  // table of packets we are currently receiving fragments from, that
+  // are destined to us
+  struct lowpan_reconstruct recon_data[N_RECONSTRUCTIONS];
+
+  //
+  //
+  ////////////////////////////////////////
+
+  // task void sendTask();
+
+  void reconstruct_clear(void *ent) {
+    struct lowpan_reconstruct *recon = (struct lowpan_reconstruct *)ent;
+    memclr((uint8_t *)&recon->r_meta, sizeof(struct ip6_metadata));
+    recon->r_timeout = T_UNUSED;
+    recon->r_buf = NULL;
+  }
+
+  struct send_info *getSendInfo() {
+    struct send_info *ret = call SendInfoPool.get();
+    if (ret == NULL) return ret;
+    ret->_refcount = 1;
+    ret->upper_data = NULL;
+    ret->failed = FALSE;
+    ret->link_transmissions = 0;
+    ret->link_fragments = 0;
+    ret->link_fragment_attempts = 0;
+    return ret;
+  }
+#define SENDINFO_INCR(X) ((X)->_refcount)++
+void SENDINFO_DECR(struct send_info *si) {
+  if (--(si->_refcount) == 0) {
+    call SendInfoPool.put(si);
+  }
+}
+
+  command error_t SplitControl.start() {
+    return call RadioControl.start();
+  }
+
+  command error_t SplitControl.stop() {
+    if (!radioBusy) {
+      state = S_STOPPED;
+      return call RadioControl.stop();
+    } else {
+      // if there's a packet in the radio, wait for it to exit before
+      // stopping
+      state = S_STOPPING;
+      return SUCCESS;
+    }
+  }
+
+  event void RadioControl.startDone(error_t error) {
+#ifdef LPL_SLEEP_INTERVAL
+    call LowPowerListening.setLocalWakeupInterval(LPL_SLEEP_INTERVAL);
+#endif
+
+    if (error == SUCCESS) {
+      call Leds.led2Toggle();
+      call ExpireTimer.startPeriodic(FRAG_EXPIRE_TIME);
+      state = S_RUNNING;
+      radioBusy = FALSE;
+    }
+
+    signal SplitControl.startDone(error);
+  }
+
+  event void RadioControl.stopDone(error_t error) {
+    signal SplitControl.stopDone(error);
+  }
+
+  command error_t Init.init() {
+    // ip_malloc_init needs to be in init, not booted, because
+    // context for coap is initialised in init
+    ip_malloc_init();
+    return SUCCESS;
+  }
+
+  event void Boot.booted() {
+    call BlipStatistics.clear();
+
+    /* set up our reconstruction cache */
+    table_init(&recon_cache, recon_data, sizeof(struct lowpan_reconstruct), N_RECONSTRUCTIONS);
+    table_map(&recon_cache, reconstruct_clear);
+
+    call SplitControl.start();
+  }
+
+  /*
+   *  Receive-side code.
+   */ 
+  void deliver(struct lowpan_reconstruct *recon) {
+    struct ip6_hdr *iph = (struct ip6_hdr *)recon->r_buf;
+
+    // printf("deliver [%i]: ", recon->r_bytes_rcvd);
+    // printf_buf(recon->r_buf, recon->r_bytes_rcvd);
+
+    /* the payload length field is always compressed, have to put it back here */
+    iph->ip6_plen = htons(recon->r_bytes_rcvd - sizeof(struct ip6_hdr));
+    signal IPLower.recv(iph, (void *)(iph + 1), &recon->r_meta);
+
+    // printf("ip_free(%p)\n", recon->r_buf);
+    ip_free(recon->r_buf);
+    recon->r_timeout = T_UNUSED;
+    recon->r_buf = NULL;
+  }
+
+  /*
+   * Bulletproof recovery logic is very important to make sure we
+   * don't get wedged with no free buffers.
+   * 
+   * The table is managed as follows:
+   *  - unused entries are marked T_UNUSED
+   *  - entries which 
+   *     o have a buffer allocated
+   *     o have had a fragment reception before we fired
+   *     are marked T_ACTIVE
+   *  - entries which have not had a fragment reception during the last timer period
+   *     and were active are marked T_ZOMBIE
+   *  - zombie receptions are deleted: their buffer is freed and table entry marked unused.
+   *  - when a fragment is dropped, it is entered into the table as T_FAILED1.
+   *     no buffer is allocated
+   *  - when the timer fires, T_FAILED1 entries are aged to T_FAILED2.
+   * - T_FAILED2 entries are deleted.  Incomming fragments with tags
+   *     that are marked either FAILED1 or FAILED2 are dropped; this
+   *     prevents us from allocating a buffer for a packet which we
+   *     have already dropped fragments from.
+   *
+   */ 
+  void reconstruct_age(void *elt) {
+    struct lowpan_reconstruct *recon = (struct lowpan_reconstruct *)elt;
+    if (recon->r_timeout != T_UNUSED) 
+      printf("recon src: 0x%x tag: 0x%x buf: %p recvd: %i/%i\n", 
+                 recon->r_source_key, recon->r_tag, recon->r_buf, 
+                 recon->r_bytes_rcvd, recon->r_size);
+    switch (recon->r_timeout) {
+    case T_ACTIVE:
+      recon->r_timeout = T_ZOMBIE; break; // age existing receptions
+    case T_FAILED1:
+      recon->r_timeout = T_FAILED2; break; // age existing receptions
+    case T_ZOMBIE:
+    case T_FAILED2:
+      // deallocate the space for reconstruction
+      printf("timing out buffer: src: %i tag: %i\n", recon->r_source_key, recon->r_tag);
+      if (recon->r_buf != NULL) {
+        printf("ip_free(%p)\n", recon->r_buf);
+        ip_free(recon->r_buf);
+      }
+      recon->r_timeout = T_UNUSED;
+      recon->r_buf = NULL;
+      break;
+    }
+  }
+
+  void ip_print_heap() {
+#ifdef PRINTFUART_ENABLED
+    bndrt_t *cur = (bndrt_t *)heap;
+    while (((uint8_t *)cur)  - heap < IP_MALLOC_HEAP_SIZE) {
+      printf ("heap region start: %p length: %u used: %u\n", 
+                  cur, (*cur & IP_MALLOC_LEN), (*cur & IP_MALLOC_INUSE) >> 15);
+      cur = (bndrt_t *)(((uint8_t *)cur) + ((*cur) & IP_MALLOC_LEN));
+    }
+#endif
+  }
+
+  event void ExpireTimer.fired() {
+    table_map(&recon_cache, reconstruct_age);
+
+    
+    printf("Frag pool size: %i\n", call FragPool.size());
+    printf("SendInfo pool size: %i\n", call SendInfoPool.size());
+    printf("SendEntry pool size: %i\n", call SendEntryPool.size());
+    printf("Forward queue length: %i\n", call SendQueue.size());
+    ip_print_heap();
+    printfflush();
+  }
+
+  /*
+   * allocate a structure for recording information about incomming fragments.
+   */
+
+  struct lowpan_reconstruct *get_reconstruct(uint16_t key, uint16_t tag) {
+    struct lowpan_reconstruct *ret = NULL;
+    int i;
+
+    // printf("get_reconstruct: %x %i\n", key, tag);
+
+    for (i = 0; i < N_RECONSTRUCTIONS; i++) {
+      struct lowpan_reconstruct *recon = (struct lowpan_reconstruct *)&recon_data[i];
+
+      if (recon->r_tag == tag &&
+          recon->r_source_key == key) {
+
+        if (recon->r_timeout > T_UNUSED) {          
+          recon->r_timeout = T_ACTIVE;
+          ret = recon;
+          goto done;
+
+        } else if (recon->r_timeout < T_UNUSED) {
+          // if we have already tried and failed to get a buffer, we
+          // need to drop remaining fragments.
+          ret = NULL;
+          goto done;
+        }
+      }
+      if (recon->r_timeout == T_UNUSED) 
+        ret = recon;
+    }
+  done:
+    // printf("got%p\n", ret);
+    return ret;
+  }
+
+  event message_t *Ieee154Receive.receive(message_t *msg, void *msg_payload, uint8_t len) {
+    struct packed_lowmsg lowmsg;
+    struct ieee154_frame_addr frame_address;
+    uint8_t *buf = msg_payload;
+
+    // printf(" -- RECEIVE -- len : %i\n", len);
+
+    BLIP_STATS_INCR(stats.rx_total);
+
+    /* unpack the 802.15.4 address fields */
+    buf  = unpack_ieee154_hdr(msg_payload, &frame_address);
+    len -= buf - (uint8_t *)msg_payload;
+
+    /* unpack and 6lowpan headers */
+    lowmsg.data = buf;
+    lowmsg.len  = len;
+    lowmsg.headers = getHeaderBitmap(&lowmsg);
+    if (lowmsg.headers == LOWMSG_NALP) {
+      goto fail;
+    }
+
+    if (hasFrag1Header(&lowmsg) || hasFragNHeader(&lowmsg)) {
+      // start reassembly
+      int rv;
+      struct lowpan_reconstruct *recon;
+      uint16_t tag, source_key;
+
+      source_key = ieee154_hashaddr(&frame_address.ieee_src);
+      getFragDgramTag(&lowmsg, &tag);
+      recon = get_reconstruct(source_key, tag);
+      if (!recon) {
+        goto fail;
+      }
+
+      /* fill in metadata: on fragmented packets, it applies to the
+         first fragment only  */
+      memcpy(&recon->r_meta.sender, &frame_address.ieee_src,
+             sizeof(ieee154_addr_t));
+      recon->r_meta.lqi = call ReadLqi.readLqi(msg);
+      recon->r_meta.rssi = call ReadLqi.readRssi(msg);
+
+      if (hasFrag1Header(&lowmsg)) {
+        if (recon->r_buf != NULL) goto fail;
+        rv = lowpan_recon_start(&frame_address, recon, buf, len);
+      } else {
+        rv = lowpan_recon_add(recon, buf, len);
+      }
+        
+      if (rv < 0) {
+        recon->r_timeout = T_FAILED1;
+        goto fail;
+      } else {
+        // printf("start recon buf: %p\n", recon->r_buf);
+        recon->r_timeout = T_ACTIVE;
+        recon->r_source_key = source_key;
+        recon->r_tag = tag;
+      }
+
+      if (recon->r_size == recon->r_bytes_rcvd) {
+        deliver(recon);
+      }
+
+    } else {
+      /* no fragmentation, just deliver it */
+      int rv;
+      struct lowpan_reconstruct recon;
+
+      /* fill in metadata */
+      memcpy(&recon.r_meta.sender, &frame_address.ieee_src, 
+             sizeof(ieee154_addr_t));
+      recon.r_meta.lqi = call ReadLqi.readLqi(msg);
+      recon.r_meta.rssi = call ReadLqi.readRssi(msg);
+
+      buf = getLowpanPayload(&lowmsg);
+      if ((rv = lowpan_recon_start(&frame_address, &recon, buf, len)) < 0) {
+        goto fail;
+      }
+
+      if (recon.r_size == recon.r_bytes_rcvd) {
+        deliver(&recon);
+      } else {
+        // printf("ip_free(%p)\n", recon.r_buf);
+        ip_free(recon.r_buf);
+      }
+    }
+    goto done;
+  fail:
+    BLIP_STATS_INCR(stats.rx_drop);
+  done:
+    return msg;
+  }
+
+
+  /*
+   * Send-side functionality
+   */
+  task void sendTask() {
+    struct send_entry *s_entry;
+
+    // printf("sendTask() - sending\n");
+
+    if (radioBusy || state != S_RUNNING) return;
+    if (call SendQueue.empty()) return;
+    // this does not dequeue
+    s_entry = call SendQueue.head();
+
+#ifdef LPL_SLEEP_INTERVAL
+    call LowPowerListening.setRemoteWakeupInterval(s_entry->msg,
+            call LowPowerListening.getLocalWakeupInterval());
+#endif
+
+    if (s_entry->info->failed) {
+      dbg("Drops", "drops: sendTask: dropping failed fragment\n");
+      goto fail;
+    }
+
+    if ((call Ieee154Send.send(s_entry->msg,
+                               call BarePacket.payloadLength(s_entry->msg))) != SUCCESS) {
+      dbg("Drops", "drops: sendTask: send failed\n");
+      goto fail;
+    } else {
+      radioBusy = TRUE;
+    }
+
+    return;
+  fail:
+    printf("SEND FAIL\n");
+    post sendTask();
+    BLIP_STATS_INCR(stats.tx_drop);
+
+    // deallocate the memory associated with this request.
+    // other fragments associated with this packet will get dropped.
+    s_entry->info->failed = TRUE;
+    SENDINFO_DECR(s_entry->info);
+    call FragPool.put(s_entry->msg);
+    call SendEntryPool.put(s_entry);
+    call SendQueue.dequeue();
+  }
+  
+
+  /*
+   *  it will pack the message into the fragment pool and enqueue
+   *  those fragments for sending
+   *
+   * it will set
+   *  - payload length
+   *  - version, traffic class and flow label
+   *
+   * the source and destination IP addresses must be set by higher
+   * layers.
+   */
+  command error_t IPLower.send(struct ieee154_frame_addr *frame_addr,
+                               struct ip6_packet *msg,
+                               void  *data) {
+    struct lowpan_ctx ctx;
+    struct send_info  *s_info;
+    struct send_entry *s_entry;
+    message_t *outgoing;
+
+    int frag_len = 1;
+    error_t rc = SUCCESS;
+
+    if (state != S_RUNNING) {
+      return EOFF;
+    }
+
+    /* set version to 6 in case upper layers forgot */
+    msg->ip6_hdr.ip6_vfc &= ~IPV6_VERSION_MASK;
+    msg->ip6_hdr.ip6_vfc |= IPV6_VERSION;
+
+    ctx.tag = current_local_label++;
+    ctx.offset = 0;
+
+    s_info = getSendInfo();
+    if (s_info == NULL) {
+      rc = ERETRY;
+      goto cleanup_outer;
+    }
+    s_info->upper_data = data;
+
+    while (frag_len > 0) {
+      s_entry  = call SendEntryPool.get();
+      outgoing = call FragPool.get();
+
+      if (s_entry == NULL || outgoing == NULL) {
+        if (s_entry != NULL)
+          call SendEntryPool.put(s_entry);
+        if (outgoing != NULL)
+          call FragPool.put(outgoing);
+        // this will cause any fragments we have already enqueued to
+        // be dropped by the send task.
+        s_info->failed = TRUE;
+        printf("drops: IP send: no fragments\n");
+        rc = ERETRY;
+        goto done;
+      }
+
+      call BarePacket.clear(outgoing);
+      frag_len = lowpan_frag_get(call Ieee154Send.getPayload(outgoing, 0),
+                                 call BarePacket.maxPayloadLength(),
+                                 msg,
+                                 frame_addr,
+                                 &ctx);
+      if (frag_len < 0) {
+        printf(" get frag error: %i\n", frag_len);
+      }
+
+      printf("fragment length: %i offset: %i\n", frag_len, ctx.offset);
+      call BarePacket.setPayloadLength(outgoing, frag_len);
+
+      if (frag_len <= 0) {
+        call FragPool.put(outgoing);
+        call SendEntryPool.put(s_entry);
+        goto done;
+      }
+
+      if (call SendQueue.enqueue(s_entry) != SUCCESS) {
+        BLIP_STATS_INCR(stats.encfail);
+        s_info->failed = TRUE;
+        printf("drops: IP send: enqueue failed\n");
+        goto done;
+      }
+
+      s_info->link_fragments++;
+      s_entry->msg = outgoing;
+      s_entry->info = s_info;
+
+      /* configure the L2 */
+      if (frame_addr->ieee_dst.ieee_mode == IEEE154_ADDR_SHORT &&
+          frame_addr->ieee_dst.i_saddr == IEEE154_BROADCAST_ADDR) {
+        call PacketLink.setRetries(s_entry->msg, 0);
+      } else {
+        call PacketLink.setRetries(s_entry->msg, BLIP_L2_RETRIES);
+      }
+      call PacketLink.setRetryDelay(s_entry->msg, BLIP_L2_DELAY);
+
+      SENDINFO_INCR(s_info);}
+       
+    // printf("got %i frags\n", s_info->link_fragments);
+  done:
+    BLIP_STATS_INCR(stats.sent);
+    SENDINFO_DECR(s_info);
+    post sendTask();
+  cleanup_outer:
+    return rc;
+  }
+
+  event void Ieee154Send.sendDone(message_t *msg, error_t error) {
+    struct send_entry *s_entry = call SendQueue.head();
+
+    radioBusy = FALSE;
+
+    // printf("sendDone: %p %i\n", msg, error);
+
+    if (state == S_STOPPING) {
+      call RadioControl.stop();
+      state = S_STOPPED;
+      goto done;
+    }
+    
+    s_entry->info->link_transmissions += (call PacketLink.getRetries(msg));
+    s_entry->info->link_fragment_attempts++;
+
+    if (!call PacketLink.wasDelivered(msg)) {
+      printf("sendDone: was not delivered! (%i tries)\n", 
+                 call PacketLink.getRetries(msg));
+      s_entry->info->failed = TRUE;
+      signal IPLower.sendDone(s_entry->info);
+/*       if (s_entry->info->policy.dest[0] != 0xffff) */
+/*         dbg("Drops", "drops: sendDone: frag was not delivered\n"); */
+      // need to check for broadcast frames
+      // BLIP_STATS_INCR(stats.tx_drop);
+    } else if (s_entry->info->link_fragment_attempts == 
+               s_entry->info->link_fragments) {
+      signal IPLower.sendDone(s_entry->info);
+    }
+
+  done:
+    // kill off any pending fragments
+    SENDINFO_DECR(s_entry->info);
+    call FragPool.put(s_entry->msg);
+    call SendEntryPool.put(s_entry);
+    call SendQueue.dequeue();
+
+    post sendTask();
+  }
+
+#if 0
+  command struct tlv_hdr *IPExtensions.findTlv(struct ip6_ext *ext, uint8_t tlv_val) {
+    int len = ext->len - sizeof(struct ip6_ext);
+    struct tlv_hdr *tlv = (struct tlv_hdr *)(ext + 1);
+    while (len > 0) {
+      if (tlv->type == tlv_val) return tlv;
+      if (tlv->len == 0) return NULL;
+      tlv = (struct tlv_hdr *)(((uint8_t *)tlv) + tlv->len);
+      len -= tlv->len;
+    }
+    return NULL;
+  }
+#endif
+
+
+  /*
+   * BlipStatistics interface
+   */
+  command void BlipStatistics.get(ip_statistics_t *statistics) {
+#ifdef BLIP_STATS_IP_MEM
+    stats.fragpool = call FragPool.size();
+    stats.sendinfo = call SendInfoPool.size();
+    stats.sendentry= call SendEntryPool.size();
+    stats.sndqueue = call SendQueue.size();
+    stats.heapfree = ip_malloc_freespace();
+    printf("frag: %i sendinfo: %i sendentry: %i sendqueue: %i heap: %i\n",
+               stats.fragpool,
+               stats.sendinfo,
+               stats.sendentry,
+               stats.sndqueue,
+               stats.heapfree);
+#endif
+    memcpy(statistics, &stats, sizeof(ip_statistics_t));
+
+  }
+
+  command void BlipStatistics.clear() {
+    memclr((uint8_t *)&stats, sizeof(ip_statistics_t));
+  }
+
+/*   default event void IP.recv[uint8_t nxt_hdr](struct ip6_hdr *iph, */
+/*                                               void *payload, */
+/*                                               struct ip_metadata *meta) { */
+/*   } */
+
+/*   default event void Multicast.recv[uint8_t scope](struct ip6_hdr *iph, */
+/*                                                    void *payload, */
+/*                                                    struct ip_metadata *meta) { */
+/*   } */
+}
+
+---tokens---
+'/*\n * "Copyright (c) 2008 The Regents of the University  of California.\n * All rights reserved."\n *\n * Permission to use, copy, modify, and distribute this software and its\n * documentation for any purpose, without fee, and without written agreement is\n * hereby granted, provided that the above copyright notice, the following\n * two paragraphs and the author appear in all copies of this software.\n *\n * IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY FOR\n * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT\n * OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF THE UNIVERSITY OF\n * CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n *\n * THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES,\n * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY\n * AND FITNESS FOR A PARTICULAR PURPOSE.  THE SOFTWARE PROVIDED HEREUNDER IS\n * ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO\n * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."\n *\n */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'<lib6lowpan/blip-tinyos-includes.h>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'<lib6lowpan/6lowpan.h>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'<lib6lowpan/lib6lowpan.h>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'<lib6lowpan/ip.h>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'<lib6lowpan/in_cksum.h>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'<lib6lowpan/ip_malloc.h>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'"blip_printf.h"' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'"IPDispatch.h"' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'"BlipStatistics.h"' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'"table.h"'   Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'/*\n * Provides IP layer reception to applications on motes.\n *\n * @author Stephen Dawson-Haggerty <stevedh@cs.berkeley.edu>\n */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'module'      Keyword
+' '           Text
+'IPDispatchP' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'provides'    Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'SplitControl' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'// interface for protocols not requiring special hand-holding\n' Comment.Single
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'IPLower'     Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'BlipStatistics' Name
+'<'           Operator
+'ip_statistics_t' Name
+'>'           Operator
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'  '          Text
+'uses'        Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'Boot'        Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'/* link-layer wiring */' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'SplitControl' Name
+' '           Text
+'as'          Keyword
+' '           Text
+'RadioControl' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'Packet'      Name
+' '           Text
+'as'          Keyword
+' '           Text
+'BarePacket'  Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'Send'        Name
+' '           Text
+'as'          Keyword
+' '           Text
+'Ieee154Send' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'Receive'     Name
+' '           Text
+'as'          Keyword
+' '           Text
+'Ieee154Receive' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'/* context lookup */' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'NeighborDiscovery' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'ReadLqi'     Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'PacketLink'  Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'LowPowerListening' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'/* buffers for outgoing fragments */' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'Pool'        Name
+'<'           Operator
+'message_t'   Name
+'>'           Operator
+' '           Text
+'as'          Keyword
+' '           Text
+'FragPool'    Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'Pool'        Name
+'<'           Operator
+'struct'      Keyword
+' '           Text
+'send_info'   Name.Class
+'>'           Operator
+' '           Text
+'as'          Keyword
+' '           Text
+'SendInfoPool' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'Pool'        Name
+'<'           Operator
+'struct'      Keyword
+' '           Text
+'send_entry'  Name.Class
+'>'           Operator
+' '           Text
+'as'          Keyword
+' '           Text
+'SendEntryPool' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'Queue'       Name
+'<'           Operator
+'struct'      Keyword
+' '           Text
+'send_entry'  Name.Class
+' '           Text
+'*'           Operator
+'>'           Operator
+' '           Text
+'as'          Keyword
+' '           Text
+'SendQueue'   Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'/* expire reconstruction */' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'Timer'       Name
+'<'           Operator
+'TMilli'      Name
+'>'           Operator
+' '           Text
+'as'          Keyword
+' '           Text
+'ExpireTimer' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'Leds'        Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'  '          Text
+'provides'    Keyword
+' '           Text
+'interface'   Keyword
+' '           Text
+'Init'        Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'implementation' Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'#'           Comment.Preproc
+'define HAVE_LOWPAN_EXTERN_MATCH_CONTEXT' Comment.Preproc
+'\n'          Comment.Preproc
+
+'int'         Keyword.Type
+' '           Text
+'lowpan_extern_read_context' Name.Function
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'in6_addr'    Name.Class
+' '           Text
+'*'           Operator
+'addr'        Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'context'     Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'return'      Keyword
+' '           Text
+'call'        Keyword
+' '           Text
+'NeighborDiscovery' Name
+'.'           Punctuation
+'getContext'  Name
+'('           Punctuation
+'context'     Name
+','           Punctuation
+' '           Text
+'addr'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'int'         Keyword.Type
+' '           Text
+'lowpan_extern_match_context' Name.Function
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'in6_addr'    Name.Class
+' '           Text
+'*'           Operator
+'addr'        Name
+','           Punctuation
+' '           Text
+'uint8_t'     Keyword.Type
+' '           Text
+'*'           Operator
+'ctx_id'      Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'return'      Keyword
+' '           Text
+'call'        Keyword
+' '           Text
+'NeighborDiscovery' Name
+'.'           Punctuation
+'matchContext' Name
+'('           Punctuation
+'addr'        Name
+','           Punctuation
+' '           Text
+'ctx_id'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+"// generally including source files like this is a no-no.  I'm doing\n" Comment.Single
+
+'  '          Text
+'// this in the hope that the optimizer will do a better job when\n' Comment.Single
+
+'  '          Text
+"// they're part of a component.\n" Comment.Single
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'<lib6lowpan/ieee154_header.c>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'<lib6lowpan/lib6lowpan.c>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'<lib6lowpan/lib6lowpan_4944.c>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'<lib6lowpan/lib6lowpan_frag.c>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'  '          Text
+'enum'        Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'S_RUNNING'   Name
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+'S_STOPPED'   Name
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+'S_STOPPING'  Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'uint8_t'     Keyword.Type
+' '           Text
+'state'       Name
+' '           Text
+'='           Operator
+' '           Text
+'S_STOPPED'   Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'bool'        Keyword.Type
+' '           Text
+'radioBusy'   Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'uint8_t'     Keyword.Type
+' '           Text
+'current_local_label' Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'ip_statistics_t' Name
+' '           Text
+'stats'       Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'// this in theory could be arbitrarily large; however, it needs to\n' Comment.Single
+
+'  '          Text
+'// be large enough to hold all active reconstructions, and any tags\n' Comment.Single
+
+'  '          Text
+"// which we are dropping.  It's important to keep dropped tags\n" Comment.Single
+
+'  '          Text
+'// around for a while, or else there are pathological situations\n' Comment.Single
+
+'  '          Text
+'// where you continually allocate buffers for packets which will\n' Comment.Single
+
+'  '          Text
+'// never complete.\n' Comment.Single
+
+'\n'          Text
+
+'  '          Text
+'////////////////////////////////////////\n' Comment.Single
+
+'  '          Text
+'//\n'        Comment.Single
+
+'  '          Text
+'//\n'        Comment.Single
+
+'\n'          Text
+
+'  '          Text
+'table_t'     Name
+' '           Text
+'recon_cache' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'// table of packets we are currently receiving fragments from, that\n' Comment.Single
+
+'  '          Text
+'// are destined to us\n' Comment.Single
+
+'  '          Text
+'struct'      Keyword
+' '           Text
+'lowpan_reconstruct' Name.Class
+' '           Text
+'recon_data'  Name
+'['           Punctuation
+'N_RECONSTRUCTIONS' Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'//\n'        Comment.Single
+
+'  '          Text
+'//\n'        Comment.Single
+
+'  '          Text
+'////////////////////////////////////////\n' Comment.Single
+
+'\n'          Text
+
+'  '          Text
+'// task void sendTask();\n' Comment.Single
+
+'\n'          Text
+
+'  '          Text
+'void'        Keyword.Type
+' '           Text
+'reconstruct_clear' Name.Function
+'('           Punctuation
+'void'        Keyword.Type
+' '           Text
+'*'           Operator
+'ent'         Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'struct'      Keyword
+' '           Text
+'lowpan_reconstruct' Name.Class
+' '           Text
+'*'           Operator
+'recon'       Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'lowpan_reconstruct' Name.Class
+' '           Text
+'*'           Operator
+')'           Punctuation
+'ent'         Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'memclr'      Name
+'('           Punctuation
+'('           Punctuation
+'uint8_t'     Keyword.Type
+' '           Text
+'*'           Operator
+')'           Punctuation
+'&'           Operator
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_meta'      Name
+','           Punctuation
+' '           Text
+'sizeof'      Keyword
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'ip6_metadata' Name.Class
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_timeout'   Name
+' '           Text
+'='           Operator
+' '           Text
+'T_UNUSED'    Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_buf'       Name
+' '           Text
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'struct'      Keyword
+' '           Text
+'send_info'   Name.Class
+' '           Text
+'*'           Operator
+'getSendInfo' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'struct'      Keyword
+' '           Text
+'send_info'   Name.Class
+' '           Text
+'*'           Operator
+'ret'         Name
+' '           Text
+'='           Operator
+' '           Text
+'call'        Keyword
+' '           Text
+'SendInfoPool' Name
+'.'           Punctuation
+'get'         Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'ret'         Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+')'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'ret'         Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ret'         Name
+'-'           Operator
+'>'           Operator
+'_refcount'   Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ret'         Name
+'-'           Operator
+'>'           Operator
+'upper_data'  Name
+' '           Text
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ret'         Name
+'-'           Operator
+'>'           Operator
+'failed'      Name
+' '           Text
+'='           Operator
+' '           Text
+'FALSE'       Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ret'         Name
+'-'           Operator
+'>'           Operator
+'link_transmissions' Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ret'         Name
+'-'           Operator
+'>'           Operator
+'link_fragments' Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ret'         Name
+'-'           Operator
+'>'           Operator
+'link_fragment_attempts' Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'ret'         Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'#'           Comment.Preproc
+'define SENDINFO_INCR(X) ((X)->_refcount)++' Comment.Preproc
+'\n'          Comment.Preproc
+
+'void'        Keyword.Type
+' '           Text
+'SENDINFO_DECR' Name
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'send_info'   Name.Class
+' '           Text
+'*'           Operator
+'si'          Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'-'           Operator
+'-'           Operator
+'('           Punctuation
+'si'          Name
+'-'           Operator
+'>'           Operator
+'_refcount'   Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'call'        Keyword
+' '           Text
+'SendInfoPool' Name
+'.'           Punctuation
+'put'         Name
+'('           Punctuation
+'si'          Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'command'     Keyword
+' '           Text
+'error_t'     Name
+' '           Text
+'SplitControl' Name
+'.'           Punctuation
+'start'       Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'call'        Keyword
+' '           Text
+'RadioControl' Name
+'.'           Punctuation
+'start'       Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'command'     Keyword
+' '           Text
+'error_t'     Name
+' '           Text
+'SplitControl' Name
+'.'           Punctuation
+'stop'        Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Operator
+'radioBusy'   Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'state'       Name
+' '           Text
+'='           Operator
+' '           Text
+'S_STOPPED'   Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'call'        Keyword
+' '           Text
+'RadioControl' Name
+'.'           Punctuation
+'stop'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+"// if there's a packet in the radio, wait for it to exit before\n" Comment.Single
+
+'      '      Text
+'// stopping\n' Comment.Single
+
+'      '      Text
+'state'       Name
+' '           Text
+'='           Operator
+' '           Text
+'S_STOPPING'  Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'SUCCESS'     Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'event'       Keyword
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'RadioControl' Name
+'.'           Punctuation
+'startDone'   Name
+'('           Punctuation
+'error_t'     Name
+' '           Text
+'error'       Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'#'           Comment.Preproc
+'ifdef LPL_SLEEP_INTERVAL' Comment.Preproc
+'\n'          Comment.Preproc
+
+'    '        Text
+'call'        Keyword
+' '           Text
+'LowPowerListening' Name
+'.'           Punctuation
+'setLocalWakeupInterval' Name
+'('           Punctuation
+'LPL_SLEEP_INTERVAL' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'error'       Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'SUCCESS'     Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'call'        Keyword
+' '           Text
+'Leds'        Name
+'.'           Punctuation
+'led2Toggle'  Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'call'        Keyword
+' '           Text
+'ExpireTimer' Name
+'.'           Punctuation
+'startPeriodic' Name
+'('           Punctuation
+'FRAG_EXPIRE_TIME' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'state'       Name
+' '           Text
+'='           Operator
+' '           Text
+'S_RUNNING'   Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'radioBusy'   Name
+' '           Text
+'='           Operator
+' '           Text
+'FALSE'       Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'signal'      Keyword
+' '           Text
+'SplitControl' Name
+'.'           Punctuation
+'startDone'   Name
+'('           Punctuation
+'error'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'event'       Keyword
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'RadioControl' Name
+'.'           Punctuation
+'stopDone'    Name
+'('           Punctuation
+'error_t'     Name
+' '           Text
+'error'       Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'signal'      Keyword
+' '           Text
+'SplitControl' Name
+'.'           Punctuation
+'stopDone'    Name
+'('           Punctuation
+'error'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'command'     Keyword
+' '           Text
+'error_t'     Name
+' '           Text
+'Init'        Name
+'.'           Punctuation
+'init'        Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'// ip_malloc_init needs to be in init, not booted, because\n' Comment.Single
+
+'    '        Text
+'// context for coap is initialised in init\n' Comment.Single
+
+'    '        Text
+'ip_malloc_init' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'SUCCESS'     Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'event'       Keyword
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'Boot'        Name
+'.'           Punctuation
+'booted'      Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'call'        Keyword
+' '           Text
+'BlipStatistics' Name
+'.'           Punctuation
+'clear'       Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'/* set up our reconstruction cache */' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'table_init'  Name
+'('           Punctuation
+'&'           Operator
+'recon_cache' Name
+','           Punctuation
+' '           Text
+'recon_data'  Name
+','           Punctuation
+' '           Text
+'sizeof'      Keyword
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'lowpan_reconstruct' Name.Class
+')'           Punctuation
+','           Punctuation
+' '           Text
+'N_RECONSTRUCTIONS' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'table_map'   Name
+'('           Punctuation
+'&'           Operator
+'recon_cache' Name
+','           Punctuation
+' '           Text
+'reconstruct_clear' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'call'        Keyword
+' '           Text
+'SplitControl' Name
+'.'           Punctuation
+'start'       Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'/*\n   *  Receive-side code.\n   */' Comment.Multiline
+' \n  '       Text
+'void'        Keyword.Type
+' '           Text
+'deliver'     Name
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'lowpan_reconstruct' Name.Class
+' '           Text
+'*'           Operator
+'recon'       Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'struct'      Keyword
+' '           Text
+'ip6_hdr'     Name.Class
+' '           Text
+'*'           Operator
+'iph'         Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'ip6_hdr'     Name.Class
+' '           Text
+'*'           Operator
+')'           Punctuation
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_buf'       Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'// printf("deliver [%i]: ", recon->r_bytes_rcvd);\n' Comment.Single
+
+'    '        Text
+'// printf_buf(recon->r_buf, recon->r_bytes_rcvd);\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text
+'/* the payload length field is always compressed, have to put it back here */' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'iph'         Name
+'-'           Operator
+'>'           Operator
+'ip6_plen'    Name
+' '           Text
+'='           Operator
+' '           Text
+'htons'       Name
+'('           Punctuation
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_bytes_rcvd' Name
+' '           Text
+'-'           Operator
+' '           Text
+'sizeof'      Keyword
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'ip6_hdr'     Name.Class
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'signal'      Keyword
+' '           Text
+'IPLower'     Name
+'.'           Punctuation
+'recv'        Name
+'('           Punctuation
+'iph'         Name
+','           Punctuation
+' '           Text
+'('           Punctuation
+'void'        Keyword.Type
+' '           Text
+'*'           Operator
+')'           Punctuation
+'('           Punctuation
+'iph'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'&'           Operator
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_meta'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'// printf("ip_free(%p)\\n", recon->r_buf);\n' Comment.Single
+
+'    '        Text
+'ip_free'     Name
+'('           Punctuation
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_buf'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_timeout'   Name
+' '           Text
+'='           Operator
+' '           Text
+'T_UNUSED'    Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_buf'       Name
+' '           Text
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+"/*\n   * Bulletproof recovery logic is very important to make sure we\n   * don't get wedged with no free buffers.\n   * \n   * The table is managed as follows:\n   *  - unused entries are marked T_UNUSED\n   *  - entries which \n   *     o have a buffer allocated\n   *     o have had a fragment reception before we fired\n   *     are marked T_ACTIVE\n   *  - entries which have not had a fragment reception during the last timer period\n   *     and were active are marked T_ZOMBIE\n   *  - zombie receptions are deleted: their buffer is freed and table entry marked unused.\n   *  - when a fragment is dropped, it is entered into the table as T_FAILED1.\n   *     no buffer is allocated\n   *  - when the timer fires, T_FAILED1 entries are aged to T_FAILED2.\n   * - T_FAILED2 entries are deleted.  Incomming fragments with tags\n   *     that are marked either FAILED1 or FAILED2 are dropped; this\n   *     prevents us from allocating a buffer for a packet which we\n   *     have already dropped fragments from.\n   *\n   */" Comment.Multiline
+' \n  '       Text
+'void'        Keyword.Type
+' '           Text
+'reconstruct_age' Name
+'('           Punctuation
+'void'        Keyword.Type
+' '           Text
+'*'           Operator
+'elt'         Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'struct'      Keyword
+' '           Text
+'lowpan_reconstruct' Name.Class
+' '           Text
+'*'           Operator
+'recon'       Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'lowpan_reconstruct' Name.Class
+' '           Text
+'*'           Operator
+')'           Punctuation
+'elt'         Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_timeout'   Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'T_UNUSED'    Name
+')'           Punctuation
+' \n      '   Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'recon src: 0x%x tag: 0x%x buf: %p recvd: %i/%i' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' \n                 ' Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_source_key' Name
+','           Punctuation
+' '           Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_tag'       Name
+','           Punctuation
+' '           Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_buf'       Name
+','           Punctuation
+' \n                 ' Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_bytes_rcvd' Name
+','           Punctuation
+' '           Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_size'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'switch'      Keyword
+' '           Text
+'('           Punctuation
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_timeout'   Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'case'        Keyword
+' '           Text
+'T_ACTIVE'    Name.Label
+':'           Punctuation
+'\n'          Text
+
+'      '      Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_timeout'   Name
+' '           Text
+'='           Operator
+' '           Text
+'T_ZOMBIE'    Name
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+' '           Text
+'// age existing receptions\n' Comment.Single
+
+'    '        Text
+'case'        Keyword
+' '           Text
+'T_FAILED1'   Name.Label
+':'           Punctuation
+'\n'          Text
+
+'      '      Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_timeout'   Name
+' '           Text
+'='           Operator
+' '           Text
+'T_FAILED2'   Name
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+' '           Text
+'// age existing receptions\n' Comment.Single
+
+'    '        Text
+'case'        Keyword
+' '           Text
+'T_ZOMBIE'    Name.Label
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'case'        Keyword
+' '           Text
+'T_FAILED2'   Name.Label
+':'           Punctuation
+'\n'          Text
+
+'      '      Text
+'// deallocate the space for reconstruction\n' Comment.Single
+
+'      '      Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'timing out buffer: src: %i tag: %i' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_source_key' Name
+','           Punctuation
+' '           Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_tag'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_buf'       Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'ip_free(%p)' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_buf'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'ip_free'     Name
+'('           Punctuation
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_buf'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_timeout'   Name
+' '           Text
+'='           Operator
+' '           Text
+'T_UNUSED'    Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_buf'       Name
+' '           Text
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'void'        Keyword.Type
+' '           Text
+'ip_print_heap' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'#'           Comment.Preproc
+'ifdef PRINTFUART_ENABLED' Comment.Preproc
+'\n'          Comment.Preproc
+
+'    '        Text
+'bndrt_t'     Name
+' '           Text
+'*'           Operator
+'cur'         Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'bndrt_t'     Name
+' '           Text
+'*'           Operator
+')'           Punctuation
+'heap'        Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'('           Punctuation
+'uint8_t'     Keyword.Type
+' '           Text
+'*'           Operator
+')'           Punctuation
+'cur'         Name
+')'           Punctuation
+'  '          Text
+'-'           Operator
+' '           Text
+'heap'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'IP_MALLOC_HEAP_SIZE' Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'printf'      Name
+' '           Text
+'('           Punctuation
+'"'           Literal.String
+'heap region start: %p length: %u used: %u' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' \n                  ' Text
+'cur'         Name
+','           Punctuation
+' '           Text
+'('           Punctuation
+'*'           Operator
+'cur'         Name
+' '           Text
+'&'           Operator
+' '           Text
+'IP_MALLOC_LEN' Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'('           Punctuation
+'*'           Operator
+'cur'         Name
+' '           Text
+'&'           Operator
+' '           Text
+'IP_MALLOC_INUSE' Name
+')'           Punctuation
+' '           Text
+'>'           Operator
+'>'           Operator
+' '           Text
+'15'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'cur'         Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'bndrt_t'     Name
+' '           Text
+'*'           Operator
+')'           Punctuation
+'('           Punctuation
+'('           Punctuation
+'('           Punctuation
+'uint8_t'     Keyword.Type
+' '           Text
+'*'           Operator
+')'           Punctuation
+'cur'         Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'*'           Operator
+'cur'         Name
+')'           Punctuation
+' '           Text
+'&'           Operator
+' '           Text
+'IP_MALLOC_LEN' Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'event'       Keyword
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'ExpireTimer' Name
+'.'           Punctuation
+'fired'       Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'table_map'   Name
+'('           Punctuation
+'&'           Operator
+'recon_cache' Name
+','           Punctuation
+' '           Text
+'reconstruct_age' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    \n    '  Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'Frag pool size: %i' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'call'        Keyword
+' '           Text
+'FragPool'    Name
+'.'           Punctuation
+'size'        Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'SendInfo pool size: %i' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'call'        Keyword
+' '           Text
+'SendInfoPool' Name
+'.'           Punctuation
+'size'        Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'SendEntry pool size: %i' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'call'        Keyword
+' '           Text
+'SendEntryPool' Name
+'.'           Punctuation
+'size'        Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'Forward queue length: %i' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'call'        Keyword
+' '           Text
+'SendQueue'   Name
+'.'           Punctuation
+'size'        Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ip_print_heap' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'printfflush' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'/*\n   * allocate a structure for recording information about incomming fragments.\n   */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'struct'      Keyword
+' '           Text
+'lowpan_reconstruct' Name.Class
+' '           Text
+'*'           Operator
+'get_reconstruct' Name
+'('           Punctuation
+'uint16_t'    Keyword.Type
+' '           Text
+'key'         Name
+','           Punctuation
+' '           Text
+'uint16_t'    Keyword.Type
+' '           Text
+'tag'         Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'struct'      Keyword
+' '           Text
+'lowpan_reconstruct' Name.Class
+' '           Text
+'*'           Operator
+'ret'         Name
+' '           Text
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'int'         Keyword.Type
+' '           Text
+'i'           Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'// printf("get_reconstruct: %x %i\\n", key, tag);\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'N_RECONSTRUCTIONS' Name
+';'           Punctuation
+' '           Text
+'i'           Name
+'+'           Operator
+'+'           Operator
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'struct'      Keyword
+' '           Text
+'lowpan_reconstruct' Name.Class
+' '           Text
+'*'           Operator
+'recon'       Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'lowpan_reconstruct' Name.Class
+' '           Text
+'*'           Operator
+')'           Punctuation
+'&'           Operator
+'recon_data'  Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_tag'       Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'tag'         Name
+' '           Text
+'&'           Operator
+'&'           Operator
+'\n'          Text
+
+'          '  Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_source_key' Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'key'         Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_timeout'   Name
+' '           Text
+'>'           Operator
+' '           Text
+'T_UNUSED'    Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'          \n          ' Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_timeout'   Name
+' '           Text
+'='           Operator
+' '           Text
+'T_ACTIVE'    Name
+';'           Punctuation
+'\n'          Text
+
+'          '  Text
+'ret'         Name
+' '           Text
+'='           Operator
+' '           Text
+'recon'       Name
+';'           Punctuation
+'\n'          Text
+
+'          '  Text
+'goto'        Keyword
+' '           Text
+'done'        Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_timeout'   Name
+' '           Text
+'<'           Operator
+' '           Text
+'T_UNUSED'    Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'          '  Text
+'// if we have already tried and failed to get a buffer, we\n' Comment.Single
+
+'          '  Text
+'// need to drop remaining fragments.\n' Comment.Single
+
+'          '  Text
+'ret'         Name
+' '           Text
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'          '  Text
+'goto'        Keyword
+' '           Text
+'done'        Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_timeout'   Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'T_UNUSED'    Name
+')'           Punctuation
+' \n        ' Text
+'ret'         Name
+' '           Text
+'='           Operator
+' '           Text
+'recon'       Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'  '          Text
+'done'        Name.Label
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'// printf("got%p\\n", ret);\n' Comment.Single
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'ret'         Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'event'       Keyword
+' '           Text
+'message_t'   Name
+' '           Text
+'*'           Operator
+'Ieee154Receive' Name
+'.'           Punctuation
+'receive'     Name
+'('           Punctuation
+'message_t'   Name
+' '           Text
+'*'           Operator
+'msg'         Name
+','           Punctuation
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'*'           Operator
+'msg_payload' Name
+','           Punctuation
+' '           Text
+'uint8_t'     Keyword.Type
+' '           Text
+'len'         Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'struct'      Keyword
+' '           Text
+'packed_lowmsg' Name.Class
+' '           Text
+'lowmsg'      Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'struct'      Keyword
+' '           Text
+'ieee154_frame_addr' Name.Class
+' '           Text
+'frame_address' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'uint8_t'     Keyword.Type
+' '           Text
+'*'           Operator
+'buf'         Name
+' '           Text
+'='           Operator
+' '           Text
+'msg_payload' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'// printf(" -- RECEIVE -- len : %i\\n", len);\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text
+'BLIP_STATS_INCR' Name
+'('           Punctuation
+'stats'       Name
+'.'           Punctuation
+'rx_total'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'/* unpack the 802.15.4 address fields */' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'buf'         Name
+'  '          Text
+'='           Operator
+' '           Text
+'unpack_ieee154_hdr' Name
+'('           Punctuation
+'msg_payload' Name
+','           Punctuation
+' '           Text
+'&'           Operator
+'frame_address' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'len'         Name
+' '           Text
+'-'           Operator
+'='           Operator
+' '           Text
+'buf'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'uint8_t'     Keyword.Type
+' '           Text
+'*'           Operator
+')'           Punctuation
+'msg_payload' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'/* unpack and 6lowpan headers */' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'lowmsg'      Name
+'.'           Punctuation
+'data'        Name
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'lowmsg'      Name
+'.'           Punctuation
+'len'         Name
+'  '          Text
+'='           Operator
+' '           Text
+'len'         Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'lowmsg'      Name
+'.'           Punctuation
+'headers'     Name
+' '           Text
+'='           Operator
+' '           Text
+'getHeaderBitmap' Name
+'('           Punctuation
+'&'           Operator
+'lowmsg'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'lowmsg'      Name
+'.'           Punctuation
+'headers'     Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'LOWMSG_NALP' Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'goto'        Keyword
+' '           Text
+'fail'        Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'hasFrag1Header' Name
+'('           Punctuation
+'&'           Operator
+'lowmsg'      Name
+')'           Punctuation
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'hasFragNHeader' Name
+'('           Punctuation
+'&'           Operator
+'lowmsg'      Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'// start reassembly\n' Comment.Single
+
+'      '      Text
+'int'         Keyword.Type
+' '           Text
+'rv'          Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'struct'      Keyword
+' '           Text
+'lowpan_reconstruct' Name.Class
+' '           Text
+'*'           Operator
+'recon'       Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'uint16_t'    Keyword.Type
+' '           Text
+'tag'         Name
+','           Punctuation
+' '           Text
+'source_key'  Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'source_key'  Name
+' '           Text
+'='           Operator
+' '           Text
+'ieee154_hashaddr' Name
+'('           Punctuation
+'&'           Operator
+'frame_address' Name
+'.'           Punctuation
+'ieee_src'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'getFragDgramTag' Name
+'('           Punctuation
+'&'           Operator
+'lowmsg'      Name
+','           Punctuation
+' '           Text
+'&'           Operator
+'tag'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'recon'       Name
+' '           Text
+'='           Operator
+' '           Text
+'get_reconstruct' Name
+'('           Punctuation
+'source_key'  Name
+','           Punctuation
+' '           Text
+'tag'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Operator
+'recon'       Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'goto'        Keyword
+' '           Text
+'fail'        Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'/* fill in metadata: on fragmented packets, it applies to the\n         first fragment only  */' Comment.Multiline
+'\n'          Text
+
+'      '      Text
+'memcpy'      Name
+'('           Punctuation
+'&'           Operator
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_meta'      Name
+'.'           Punctuation
+'sender'      Name
+','           Punctuation
+' '           Text
+'&'           Operator
+'frame_address' Name
+'.'           Punctuation
+'ieee_src'    Name
+','           Punctuation
+'\n'          Text
+
+'             ' Text
+'sizeof'      Keyword
+'('           Punctuation
+'ieee154_addr_t' Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_meta'      Name
+'.'           Punctuation
+'lqi'         Name
+' '           Text
+'='           Operator
+' '           Text
+'call'        Keyword
+' '           Text
+'ReadLqi'     Name
+'.'           Punctuation
+'readLqi'     Name
+'('           Punctuation
+'msg'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_meta'      Name
+'.'           Punctuation
+'rssi'        Name
+' '           Text
+'='           Operator
+' '           Text
+'call'        Keyword
+' '           Text
+'ReadLqi'     Name
+'.'           Punctuation
+'readRssi'    Name
+'('           Punctuation
+'msg'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'hasFrag1Header' Name
+'('           Punctuation
+'&'           Operator
+'lowmsg'      Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_buf'       Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+')'           Punctuation
+' '           Text
+'goto'        Keyword
+' '           Text
+'fail'        Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'rv'          Name
+' '           Text
+'='           Operator
+' '           Text
+'lowpan_recon_start' Name
+'('           Punctuation
+'&'           Operator
+'frame_address' Name
+','           Punctuation
+' '           Text
+'recon'       Name
+','           Punctuation
+' '           Text
+'buf'         Name
+','           Punctuation
+' '           Text
+'len'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'rv'          Name
+' '           Text
+'='           Operator
+' '           Text
+'lowpan_recon_add' Name
+'('           Punctuation
+'recon'       Name
+','           Punctuation
+' '           Text
+'buf'         Name
+','           Punctuation
+' '           Text
+'len'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'        \n      ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'rv'          Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_timeout'   Name
+' '           Text
+'='           Operator
+' '           Text
+'T_FAILED1'   Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'goto'        Keyword
+' '           Text
+'fail'        Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'// printf("start recon buf: %p\\n", recon->r_buf);\n' Comment.Single
+
+'        '    Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_timeout'   Name
+' '           Text
+'='           Operator
+' '           Text
+'T_ACTIVE'    Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_source_key' Name
+' '           Text
+'='           Operator
+' '           Text
+'source_key'  Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_tag'       Name
+' '           Text
+'='           Operator
+' '           Text
+'tag'         Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_size'      Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'recon'       Name
+'-'           Operator
+'>'           Operator
+'r_bytes_rcvd' Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'deliver'     Name
+'('           Punctuation
+'recon'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'/* no fragmentation, just deliver it */' Comment.Multiline
+'\n'          Text
+
+'      '      Text
+'int'         Keyword.Type
+' '           Text
+'rv'          Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'struct'      Keyword
+' '           Text
+'lowpan_reconstruct' Name.Class
+' '           Text
+'recon'       Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'/* fill in metadata */' Comment.Multiline
+'\n'          Text
+
+'      '      Text
+'memcpy'      Name
+'('           Punctuation
+'&'           Operator
+'recon'       Name
+'.'           Punctuation
+'r_meta'      Name
+'.'           Punctuation
+'sender'      Name
+','           Punctuation
+' '           Text
+'&'           Operator
+'frame_address' Name
+'.'           Punctuation
+'ieee_src'    Name
+','           Punctuation
+' \n             ' Text
+'sizeof'      Keyword
+'('           Punctuation
+'ieee154_addr_t' Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'recon'       Name
+'.'           Punctuation
+'r_meta'      Name
+'.'           Punctuation
+'lqi'         Name
+' '           Text
+'='           Operator
+' '           Text
+'call'        Keyword
+' '           Text
+'ReadLqi'     Name
+'.'           Punctuation
+'readLqi'     Name
+'('           Punctuation
+'msg'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'recon'       Name
+'.'           Punctuation
+'r_meta'      Name
+'.'           Punctuation
+'rssi'        Name
+' '           Text
+'='           Operator
+' '           Text
+'call'        Keyword
+' '           Text
+'ReadLqi'     Name
+'.'           Punctuation
+'readRssi'    Name
+'('           Punctuation
+'msg'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'buf'         Name
+' '           Text
+'='           Operator
+' '           Text
+'getLowpanPayload' Name
+'('           Punctuation
+'&'           Operator
+'lowmsg'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'rv'          Name
+' '           Text
+'='           Operator
+' '           Text
+'lowpan_recon_start' Name
+'('           Punctuation
+'&'           Operator
+'frame_address' Name
+','           Punctuation
+' '           Text
+'&'           Operator
+'recon'       Name
+','           Punctuation
+' '           Text
+'buf'         Name
+','           Punctuation
+' '           Text
+'len'         Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'goto'        Keyword
+' '           Text
+'fail'        Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'recon'       Name
+'.'           Punctuation
+'r_size'      Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'recon'       Name
+'.'           Punctuation
+'r_bytes_rcvd' Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'deliver'     Name
+'('           Punctuation
+'&'           Operator
+'recon'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'// printf("ip_free(%p)\\n", recon.r_buf);\n' Comment.Single
+
+'        '    Text
+'ip_free'     Name
+'('           Punctuation
+'recon'       Name
+'.'           Punctuation
+'r_buf'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'goto'        Keyword
+' '           Text
+'done'        Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'fail'        Name.Label
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'BLIP_STATS_INCR' Name
+'('           Punctuation
+'stats'       Name
+'.'           Punctuation
+'rx_drop'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'done'        Name.Label
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'msg'         Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'/*\n   * Send-side functionality\n   */' Comment.Multiline
+'\n'          Text
+
+'  '          Text
+'task'        Keyword
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'sendTask'    Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'struct'      Keyword
+' '           Text
+'send_entry'  Name.Class
+' '           Text
+'*'           Operator
+'s_entry'     Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'// printf("sendTask() - sending\\n");\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'radioBusy'   Name
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'state'       Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'S_RUNNING'   Name
+')'           Punctuation
+' '           Text
+'return'      Keyword
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'call'        Keyword
+' '           Text
+'SendQueue'   Name
+'.'           Punctuation
+'empty'       Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'return'      Keyword
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'// this does not dequeue\n' Comment.Single
+
+'    '        Text
+'s_entry'     Name
+' '           Text
+'='           Operator
+' '           Text
+'call'        Keyword
+' '           Text
+'SendQueue'   Name
+'.'           Punctuation
+'head'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'#'           Comment.Preproc
+'ifdef LPL_SLEEP_INTERVAL' Comment.Preproc
+'\n'          Comment.Preproc
+
+'    '        Text
+'call'        Keyword
+' '           Text
+'LowPowerListening' Name
+'.'           Punctuation
+'setRemoteWakeupInterval' Name
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'msg'         Name
+','           Punctuation
+'\n'          Text
+
+'            ' Text
+'call'        Keyword
+' '           Text
+'LowPowerListening' Name
+'.'           Punctuation
+'getLocalWakeupInterval' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'info'        Name
+'-'           Operator
+'>'           Operator
+'failed'      Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'dbg'         Name
+'('           Punctuation
+'"'           Literal.String
+'Drops'       Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'drops: sendTask: dropping failed fragment' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'goto'        Keyword
+' '           Text
+'fail'        Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'call'        Keyword
+' '           Text
+'Ieee154Send' Name
+'.'           Punctuation
+'send'        Name
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'msg'         Name
+','           Punctuation
+'\n'          Text
+
+'                               ' Text
+'call'        Keyword
+' '           Text
+'BarePacket'  Name
+'.'           Punctuation
+'payloadLength' Name
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'msg'         Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'SUCCESS'     Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'dbg'         Name
+'('           Punctuation
+'"'           Literal.String
+'Drops'       Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'drops: sendTask: send failed' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'goto'        Keyword
+' '           Text
+'fail'        Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'radioBusy'   Name
+' '           Text
+'='           Operator
+' '           Text
+'TRUE'        Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'fail'        Name.Label
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'SEND FAIL'   Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'post'        Keyword
+' '           Text
+'sendTask'    Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'BLIP_STATS_INCR' Name
+'('           Punctuation
+'stats'       Name
+'.'           Punctuation
+'tx_drop'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'// deallocate the memory associated with this request.\n' Comment.Single
+
+'    '        Text
+'// other fragments associated with this packet will get dropped.\n' Comment.Single
+
+'    '        Text
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'info'        Name
+'-'           Operator
+'>'           Operator
+'failed'      Name
+' '           Text
+'='           Operator
+' '           Text
+'TRUE'        Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'SENDINFO_DECR' Name
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'info'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'call'        Keyword
+' '           Text
+'FragPool'    Name
+'.'           Punctuation
+'put'         Name
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'msg'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'call'        Keyword
+' '           Text
+'SendEntryPool' Name
+'.'           Punctuation
+'put'         Name
+'('           Punctuation
+'s_entry'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'call'        Keyword
+' '           Text
+'SendQueue'   Name
+'.'           Punctuation
+'dequeue'     Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'  \n\n  '    Text
+'/*\n   *  it will pack the message into the fragment pool and enqueue\n   *  those fragments for sending\n   *\n   * it will set\n   *  - payload length\n   *  - version, traffic class and flow label\n   *\n   * the source and destination IP addresses must be set by higher\n   * layers.\n   */' Comment.Multiline
+'\n'          Text
+
+'  '          Text
+'command'     Keyword
+' '           Text
+'error_t'     Name
+' '           Text
+'IPLower'     Name
+'.'           Punctuation
+'send'        Name
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'ieee154_frame_addr' Name.Class
+' '           Text
+'*'           Operator
+'frame_addr'  Name
+','           Punctuation
+'\n'          Text
+
+'                               ' Text
+'struct'      Keyword
+' '           Text
+'ip6_packet'  Name.Class
+' '           Text
+'*'           Operator
+'msg'         Name
+','           Punctuation
+'\n'          Text
+
+'                               ' Text
+'void'        Keyword.Type
+'  '          Text
+'*'           Operator
+'data'        Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'struct'      Keyword
+' '           Text
+'lowpan_ctx'  Name.Class
+' '           Text
+'ctx'         Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'struct'      Keyword
+' '           Text
+'send_info'   Name.Class
+'  '          Text
+'*'           Operator
+'s_info'      Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'struct'      Keyword
+' '           Text
+'send_entry'  Name.Class
+' '           Text
+'*'           Operator
+'s_entry'     Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'message_t'   Name
+' '           Text
+'*'           Operator
+'outgoing'    Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'int'         Keyword.Type
+' '           Text
+'frag_len'    Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'error_t'     Name
+' '           Text
+'rc'          Name
+' '           Text
+'='           Operator
+' '           Text
+'SUCCESS'     Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'state'       Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'S_RUNNING'   Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'EOFF'        Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'/* set version to 6 in case upper layers forgot */' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'msg'         Name
+'-'           Operator
+'>'           Operator
+'ip6_hdr'     Name
+'.'           Punctuation
+'ip6_vfc'     Name
+' '           Text
+'&'           Operator
+'='           Operator
+' '           Text
+'~'           Operator
+'IPV6_VERSION_MASK' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'msg'         Name
+'-'           Operator
+'>'           Operator
+'ip6_hdr'     Name
+'.'           Punctuation
+'ip6_vfc'     Name
+' '           Text
+'|'           Operator
+'='           Operator
+' '           Text
+'IPV6_VERSION' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'ctx'         Name
+'.'           Punctuation
+'tag'         Name
+' '           Text
+'='           Operator
+' '           Text
+'current_local_label' Name
+'+'           Operator
+'+'           Operator
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ctx'         Name
+'.'           Punctuation
+'offset'      Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'s_info'      Name
+' '           Text
+'='           Operator
+' '           Text
+'getSendInfo' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'s_info'      Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'rc'          Name
+' '           Text
+'='           Operator
+' '           Text
+'ERETRY'      Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'goto'        Keyword
+' '           Text
+'cleanup_outer' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'s_info'      Name
+'-'           Operator
+'>'           Operator
+'upper_data'  Name
+' '           Text
+'='           Operator
+' '           Text
+'data'        Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'frag_len'    Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'s_entry'     Name
+'  '          Text
+'='           Operator
+' '           Text
+'call'        Keyword
+' '           Text
+'SendEntryPool' Name
+'.'           Punctuation
+'get'         Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'outgoing'    Name
+' '           Text
+'='           Operator
+' '           Text
+'call'        Keyword
+' '           Text
+'FragPool'    Name
+'.'           Punctuation
+'get'         Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'s_entry'     Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'outgoing'    Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'s_entry'     Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'          '  Text
+'call'        Keyword
+' '           Text
+'SendEntryPool' Name
+'.'           Punctuation
+'put'         Name
+'('           Punctuation
+'s_entry'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'outgoing'    Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'NULL'        Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'          '  Text
+'call'        Keyword
+' '           Text
+'FragPool'    Name
+'.'           Punctuation
+'put'         Name
+'('           Punctuation
+'outgoing'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'// this will cause any fragments we have already enqueued to\n' Comment.Single
+
+'        '    Text
+'// be dropped by the send task.\n' Comment.Single
+
+'        '    Text
+'s_info'      Name
+'-'           Operator
+'>'           Operator
+'failed'      Name
+' '           Text
+'='           Operator
+' '           Text
+'TRUE'        Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'drops: IP send: no fragments' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'rc'          Name
+' '           Text
+'='           Operator
+' '           Text
+'ERETRY'      Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'goto'        Keyword
+' '           Text
+'done'        Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'call'        Keyword
+' '           Text
+'BarePacket'  Name
+'.'           Punctuation
+'clear'       Name
+'('           Punctuation
+'outgoing'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'frag_len'    Name
+' '           Text
+'='           Operator
+' '           Text
+'lowpan_frag_get' Name
+'('           Punctuation
+'call'        Keyword
+' '           Text
+'Ieee154Send' Name
+'.'           Punctuation
+'getPayload'  Name
+'('           Punctuation
+'outgoing'    Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'                                 ' Text
+'call'        Keyword
+' '           Text
+'BarePacket'  Name
+'.'           Punctuation
+'maxPayloadLength' Name
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'                                 ' Text
+'msg'         Name
+','           Punctuation
+'\n'          Text
+
+'                                 ' Text
+'frame_addr'  Name
+','           Punctuation
+'\n'          Text
+
+'                                 ' Text
+'&'           Operator
+'ctx'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'frag_len'    Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+' get frag error: %i' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'frag_len'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'fragment length: %i offset: %i' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'frag_len'    Name
+','           Punctuation
+' '           Text
+'ctx'         Name
+'.'           Punctuation
+'offset'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'call'        Keyword
+' '           Text
+'BarePacket'  Name
+'.'           Punctuation
+'setPayloadLength' Name
+'('           Punctuation
+'outgoing'    Name
+','           Punctuation
+' '           Text
+'frag_len'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'frag_len'    Name
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'call'        Keyword
+' '           Text
+'FragPool'    Name
+'.'           Punctuation
+'put'         Name
+'('           Punctuation
+'outgoing'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'call'        Keyword
+' '           Text
+'SendEntryPool' Name
+'.'           Punctuation
+'put'         Name
+'('           Punctuation
+'s_entry'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'goto'        Keyword
+' '           Text
+'done'        Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'call'        Keyword
+' '           Text
+'SendQueue'   Name
+'.'           Punctuation
+'enqueue'     Name
+'('           Punctuation
+'s_entry'     Name
+')'           Punctuation
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'SUCCESS'     Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'BLIP_STATS_INCR' Name
+'('           Punctuation
+'stats'       Name
+'.'           Punctuation
+'encfail'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'s_info'      Name
+'-'           Operator
+'>'           Operator
+'failed'      Name
+' '           Text
+'='           Operator
+' '           Text
+'TRUE'        Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'drops: IP send: enqueue failed' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'goto'        Keyword
+' '           Text
+'done'        Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'s_info'      Name
+'-'           Operator
+'>'           Operator
+'link_fragments' Name
+'+'           Operator
+'+'           Operator
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'msg'         Name
+' '           Text
+'='           Operator
+' '           Text
+'outgoing'    Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'info'        Name
+' '           Text
+'='           Operator
+' '           Text
+'s_info'      Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'/* configure the L2 */' Comment.Multiline
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'frame_addr'  Name
+'-'           Operator
+'>'           Operator
+'ieee_dst'    Name
+'.'           Punctuation
+'ieee_mode'   Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'IEEE154_ADDR_SHORT' Name
+' '           Text
+'&'           Operator
+'&'           Operator
+'\n'          Text
+
+'          '  Text
+'frame_addr'  Name
+'-'           Operator
+'>'           Operator
+'ieee_dst'    Name
+'.'           Punctuation
+'i_saddr'     Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'IEEE154_BROADCAST_ADDR' Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'call'        Keyword
+' '           Text
+'PacketLink'  Name
+'.'           Punctuation
+'setRetries'  Name
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'msg'         Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'call'        Keyword
+' '           Text
+'PacketLink'  Name
+'.'           Punctuation
+'setRetries'  Name
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'msg'         Name
+','           Punctuation
+' '           Text
+'BLIP_L2_RETRIES' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'call'        Keyword
+' '           Text
+'PacketLink'  Name
+'.'           Punctuation
+'setRetryDelay' Name
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'msg'         Name
+','           Punctuation
+' '           Text
+'BLIP_L2_DELAY' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'SENDINFO_INCR' Name
+'('           Punctuation
+'s_info'      Name
+')'           Punctuation
+';'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'       \n    ' Text
+'// printf("got %i frags\\n", s_info->link_fragments);\n' Comment.Single
+
+'  '          Text
+'done'        Name.Label
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'BLIP_STATS_INCR' Name
+'('           Punctuation
+'stats'       Name
+'.'           Punctuation
+'sent'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'SENDINFO_DECR' Name
+'('           Punctuation
+'s_info'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'post'        Keyword
+' '           Text
+'sendTask'    Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'cleanup_outer' Name.Label
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'rc'          Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'event'       Keyword
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'Ieee154Send' Name
+'.'           Punctuation
+'sendDone'    Name
+'('           Punctuation
+'message_t'   Name
+' '           Text
+'*'           Operator
+'msg'         Name
+','           Punctuation
+' '           Text
+'error_t'     Name
+' '           Text
+'error'       Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'struct'      Keyword
+' '           Text
+'send_entry'  Name.Class
+' '           Text
+'*'           Operator
+'s_entry'     Name
+' '           Text
+'='           Operator
+' '           Text
+'call'        Keyword
+' '           Text
+'SendQueue'   Name
+'.'           Punctuation
+'head'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'radioBusy'   Name
+' '           Text
+'='           Operator
+' '           Text
+'FALSE'       Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'// printf("sendDone: %p %i\\n", msg, error);\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'state'       Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'S_STOPPING'  Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'call'        Keyword
+' '           Text
+'RadioControl' Name
+'.'           Punctuation
+'stop'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'state'       Name
+' '           Text
+'='           Operator
+' '           Text
+'S_STOPPED'   Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'goto'        Keyword
+' '           Text
+'done'        Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'info'        Name
+'-'           Operator
+'>'           Operator
+'link_transmissions' Name
+' '           Text
+'+'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'call'        Keyword
+' '           Text
+'PacketLink'  Name
+'.'           Punctuation
+'getRetries'  Name
+'('           Punctuation
+'msg'         Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'info'        Name
+'-'           Operator
+'>'           Operator
+'link_fragment_attempts' Name
+'+'           Operator
+'+'           Operator
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Operator
+'call'        Keyword
+' '           Text
+'PacketLink'  Name
+'.'           Punctuation
+'wasDelivered' Name
+'('           Punctuation
+'msg'         Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'sendDone: was not delivered! (%i tries)' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' \n                 ' Text
+'call'        Keyword
+' '           Text
+'PacketLink'  Name
+'.'           Punctuation
+'getRetries'  Name
+'('           Punctuation
+'msg'         Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'info'        Name
+'-'           Operator
+'>'           Operator
+'failed'      Name
+' '           Text
+'='           Operator
+' '           Text
+'TRUE'        Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'signal'      Keyword
+' '           Text
+'IPLower'     Name
+'.'           Punctuation
+'sendDone'    Name
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'info'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'/*       if (s_entry->info->policy.dest[0] != 0xffff) */' Comment.Multiline
+'\n'          Text
+
+'/*         dbg("Drops", "drops: sendDone: frag was not delivered\\n"); */' Comment.Multiline
+'\n'          Text
+
+'      '      Text
+'// need to check for broadcast frames\n' Comment.Single
+
+'      '      Text
+'// BLIP_STATS_INCR(stats.tx_drop);\n' Comment.Single
+
+'    '        Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'info'        Name
+'-'           Operator
+'>'           Operator
+'link_fragment_attempts' Name
+' '           Text
+'='           Operator
+'='           Operator
+' \n               ' Text
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'info'        Name
+'-'           Operator
+'>'           Operator
+'link_fragments' Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'signal'      Keyword
+' '           Text
+'IPLower'     Name
+'.'           Punctuation
+'sendDone'    Name
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'info'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'done'        Name.Label
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'// kill off any pending fragments\n' Comment.Single
+
+'    '        Text
+'SENDINFO_DECR' Name
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'info'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'call'        Keyword
+' '           Text
+'FragPool'    Name
+'.'           Punctuation
+'put'         Name
+'('           Punctuation
+'s_entry'     Name
+'-'           Operator
+'>'           Operator
+'msg'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'call'        Keyword
+' '           Text
+'SendEntryPool' Name
+'.'           Punctuation
+'put'         Name
+'('           Punctuation
+'s_entry'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'call'        Keyword
+' '           Text
+'SendQueue'   Name
+'.'           Punctuation
+'dequeue'     Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'post'        Keyword
+' '           Text
+'sendTask'    Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'#if 0'       Comment.Preproc
+'\n'          Comment
+
+'  command struct tlv_hdr *IPExtensions.findTlv(struct ip6_ext *ext, uint8_t tlv_val) {\n' Comment
+
+'    int len = ext->len - sizeof(struct ip6_ext);\n' Comment
+
+'    struct tlv_hdr *tlv = (struct tlv_hdr *)(ext + 1);\n' Comment
+
+'    while (len > 0) {\n' Comment
+
+'      if (tlv->type == tlv_val) return tlv;\n' Comment
+
+'      if (tlv->len == 0) return NULL;\n' Comment
+
+'      tlv = (struct tlv_hdr *)(((uint8_t *)tlv) + tlv->len);\n' Comment
+
+'      len -= tlv->len;\n' Comment
+
+'    }\n'     Comment
+
+'    return NULL;\n' Comment
+
+'  }\n'       Comment
+
+'#endif\n'    Comment.Preproc
+
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'/*\n   * BlipStatistics interface\n   */' Comment.Multiline
+'\n'          Text
+
+'  '          Text
+'command'     Keyword
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'BlipStatistics' Name
+'.'           Punctuation
+'get'         Name
+'('           Punctuation
+'ip_statistics_t' Name
+' '           Text
+'*'           Operator
+'statistics'  Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'#'           Comment.Preproc
+'ifdef BLIP_STATS_IP_MEM' Comment.Preproc
+'\n'          Comment.Preproc
+
+'    '        Text
+'stats'       Name
+'.'           Punctuation
+'fragpool'    Name
+' '           Text
+'='           Operator
+' '           Text
+'call'        Keyword
+' '           Text
+'FragPool'    Name
+'.'           Punctuation
+'size'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'stats'       Name
+'.'           Punctuation
+'sendinfo'    Name
+' '           Text
+'='           Operator
+' '           Text
+'call'        Keyword
+' '           Text
+'SendInfoPool' Name
+'.'           Punctuation
+'size'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'stats'       Name
+'.'           Punctuation
+'sendentry'   Name
+'='           Operator
+' '           Text
+'call'        Keyword
+' '           Text
+'SendEntryPool' Name
+'.'           Punctuation
+'size'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'stats'       Name
+'.'           Punctuation
+'sndqueue'    Name
+' '           Text
+'='           Operator
+' '           Text
+'call'        Keyword
+' '           Text
+'SendQueue'   Name
+'.'           Punctuation
+'size'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'stats'       Name
+'.'           Punctuation
+'heapfree'    Name
+' '           Text
+'='           Operator
+' '           Text
+'ip_malloc_freespace' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'frag: %i sendinfo: %i sendentry: %i sendqueue: %i heap: %i' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+'\n'          Text
+
+'               ' Text
+'stats'       Name
+'.'           Punctuation
+'fragpool'    Name
+','           Punctuation
+'\n'          Text
+
+'               ' Text
+'stats'       Name
+'.'           Punctuation
+'sendinfo'    Name
+','           Punctuation
+'\n'          Text
+
+'               ' Text
+'stats'       Name
+'.'           Punctuation
+'sendentry'   Name
+','           Punctuation
+'\n'          Text
+
+'               ' Text
+'stats'       Name
+'.'           Punctuation
+'sndqueue'    Name
+','           Punctuation
+'\n'          Text
+
+'               ' Text
+'stats'       Name
+'.'           Punctuation
+'heapfree'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'    '        Text
+'memcpy'      Name
+'('           Punctuation
+'statistics'  Name
+','           Punctuation
+' '           Text
+'&'           Operator
+'stats'       Name
+','           Punctuation
+' '           Text
+'sizeof'      Keyword
+'('           Punctuation
+'ip_statistics_t' Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'command'     Keyword
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'BlipStatistics' Name
+'.'           Punctuation
+'clear'       Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'memclr'      Name
+'('           Punctuation
+'('           Punctuation
+'uint8_t'     Keyword.Type
+' '           Text
+'*'           Operator
+')'           Punctuation
+'&'           Operator
+'stats'       Name
+','           Punctuation
+' '           Text
+'sizeof'      Keyword
+'('           Punctuation
+'ip_statistics_t' Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*   default event void IP.recv[uint8_t nxt_hdr](struct ip6_hdr *iph, */' Comment.Multiline
+'\n'          Text
+
+'/*                                               void *payload, */' Comment.Multiline
+'\n'          Text
+
+'/*                                               struct ip_metadata *meta) { */' Comment.Multiline
+'\n'          Text
+
+'/*   } */'   Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'/*   default event void Multicast.recv[uint8_t scope](struct ip6_hdr *iph, */' Comment.Multiline
+'\n'          Text
+
+'/*                                                    void *payload, */' Comment.Multiline
+'\n'          Text
+
+'/*                                                    struct ip_metadata *meta) { */' Comment.Multiline
+'\n'          Text
+
+'/*   } */'   Comment.Multiline
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

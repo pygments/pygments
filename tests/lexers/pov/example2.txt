@@ -1,0 +1,127 @@
+---input---
+#include "colors.inc"    
+
+background { color Cyan }
+
+camera {
+  location <0, 2, -3>
+  look_at <0, 1, 2>
+}
+
+sphere {
+  <0, 1, 2>, 2
+  texture {
+    pigment { color Yellow }
+  }
+}
+
+light_source { <2, 4, -3> color White}
+
+
+---tokens---
+'#include'    Comment.Preproc
+' '           Text
+'"colors.inc"' Literal.String.Double
+'    \n\n'    Text
+
+'background'  Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'color'       Keyword
+' '           Text
+'Cyan'        Name
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'camera'      Name.Builtin
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'location'    Keyword
+' '           Text
+'<'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'3'           Literal.Number.Integer
+'>'           Punctuation
+'\n  '        Text
+'look_at'     Keyword
+' '           Text
+'<'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+'>'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'sphere'      Name.Builtin
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+'>'           Punctuation
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+'\n  '        Text
+'texture'     Keyword
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'pigment'     Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'color'       Keyword
+' '           Text
+'Yellow'      Name
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'light_source' Name.Builtin
+' '           Text
+'{'           Punctuation
+' '           Text
+'<'           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'3'           Literal.Number.Integer
+'>'           Punctuation
+' '           Text
+'color'       Keyword
+' '           Text
+'White'       Name
+'}'           Punctuation
+'\n'          Text

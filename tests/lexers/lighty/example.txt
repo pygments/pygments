@@ -1,0 +1,99 @@
+---input---
+fastcgi.server = ( ".php" => (( 
+                     "bin-path" => "/path/to/php-cgi",
+                     "socket" => "/tmp/php.socket",
+                     "max-procs" => 2,
+                     "bin-environment" => ( 
+                       "PHP_FCGI_CHILDREN" => "16",
+                       "PHP_FCGI_MAX_REQUESTS" => "10000"
+                     ),
+                     "bin-copy-environment" => (
+                       "PATH", "SHELL", "USER"
+                     ),
+                     "broken-scriptfilename" => "enable"
+                 )))
+
+---tokens---
+'fastcgi.server' Keyword
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+' '           Text
+'".php"'      Literal.String.Double
+' '           Text
+'=>'          Operator
+' '           Text
+'('           Punctuation
+'('           Punctuation
+' \n                     ' Text
+'"bin-path"'  Literal.String.Double
+' '           Text
+'=>'          Operator
+' '           Text
+'"/path/to/php-cgi"' Literal.String.Double
+','           Punctuation
+'\n                     ' Text
+'"socket"'    Literal.String.Double
+' '           Text
+'=>'          Operator
+' '           Text
+'"/tmp/php.socket"' Literal.String.Double
+','           Punctuation
+'\n                     ' Text
+'"max-procs"' Literal.String.Double
+' '           Text
+'=>'          Operator
+' '           Text
+'2'           Literal.Number
+','           Punctuation
+'\n                     ' Text
+'"bin-environment"' Literal.String.Double
+' '           Text
+'=>'          Operator
+' '           Text
+'('           Punctuation
+' \n                       ' Text
+'"PHP_FCGI_CHILDREN"' Literal.String.Double
+' '           Text
+'=>'          Operator
+' '           Text
+'"16"'        Literal.String.Double
+','           Punctuation
+'\n                       ' Text
+'"PHP_FCGI_MAX_REQUESTS"' Literal.String.Double
+' '           Text
+'=>'          Operator
+' '           Text
+'"10000"'     Literal.String.Double
+'\n                     ' Text
+')'           Punctuation
+','           Punctuation
+'\n                     ' Text
+'"bin-copy-environment"' Literal.String.Double
+' '           Text
+'=>'          Operator
+' '           Text
+'('           Punctuation
+'\n                       ' Text
+'"PATH"'      Literal.String.Double
+','           Punctuation
+' '           Text
+'"SHELL"'     Literal.String.Double
+','           Punctuation
+' '           Text
+'"USER"'      Literal.String.Double
+'\n                     ' Text
+')'           Punctuation
+','           Punctuation
+'\n                     ' Text
+'"broken-scriptfilename"' Literal.String.Double
+' '           Text
+'=>'          Operator
+' '           Text
+'"enable"'    Literal.String.Double
+'\n                 ' Text
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text

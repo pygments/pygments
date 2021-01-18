@@ -1,0 +1,198 @@
+---input---
+import std.stdio;
+
+void main() {
+    // Nesting delimited strings
+    auto a = q"{foo " {bar} baz}";
+    auto b = q"[foo [bar] " baz]";
+    auto c = q"(foo " (bar) baz)";
+    auto d = q"<foo <bar> " baz>";
+    // Non-nesting delimited strings
+    auto e = q"/foo " bar/";
+    auto f = q"-Another " string-";
+    // "heredoc" strings
+    auto g = q"FOO
+        This is a string!
+FOO";
+    // Token strings (only the q{} should be highlighted as a string)
+    auto h = q{
+        int i;
+        void foo() { writefln("Hello, world!"); }
+    };
+}
+
+---tokens---
+'import'      Keyword
+' '           Text
+'std'         Name
+'.'           Punctuation
+'stdio'       Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'void'        Keyword.Type
+' '           Text
+'main'        Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'// Nesting delimited strings\n' Comment.Single
+
+'    '        Text
+'auto'        Keyword
+' '           Text
+'a'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'q"{'         Literal.String
+'foo " '      Literal.String
+'{'           Literal.String
+'bar'         Literal.String
+'}'           Literal.String
+' baz'        Literal.String
+'}"'          Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'auto'        Keyword
+' '           Text
+'b'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'q"['         Literal.String
+'foo '        Literal.String
+'['           Literal.String
+'bar'         Literal.String
+']'           Literal.String
+' " baz'      Literal.String
+']"'          Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'auto'        Keyword
+' '           Text
+'c'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'q"('         Literal.String
+'foo " '      Literal.String
+'('           Literal.String
+'bar'         Literal.String
+')'           Literal.String
+' baz'        Literal.String
+')"'          Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'auto'        Keyword
+' '           Text
+'d'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'q"<'         Literal.String
+'foo '        Literal.String
+'<'           Literal.String
+'bar'         Literal.String
+'>'           Literal.String
+' " baz'      Literal.String
+'>"'          Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'// Non-nesting delimited strings\n' Comment.Single
+
+'    '        Text
+'auto'        Keyword
+' '           Text
+'e'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'q"/foo " bar/"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'auto'        Keyword
+' '           Text
+'f'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'q"-Another " string-"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'// "heredoc" strings\n' Comment.Single
+
+'    '        Text
+'auto'        Keyword
+' '           Text
+'g'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'q"FOO\n        This is a string!\nFOO"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'// Token strings (only the q{} should be highlighted as a string)\n' Comment.Single
+
+'    '        Text
+'auto'        Keyword
+' '           Text
+'h'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'q{'          Literal.String
+'\n'          Text
+
+'        '    Text
+'int'         Keyword.Type
+' '           Text
+'i'           Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'void'        Keyword.Type
+' '           Text
+'foo'         Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'writefln'    Name
+'('           Punctuation
+'"Hello, world!"' Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

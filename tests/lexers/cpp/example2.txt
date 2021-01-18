@@ -1,0 +1,175 @@
+---input---
+void* operator new (std::size_t size);
+void* operator new (std::size_t size, const std::nothrow_t& nothrow_value) noexcept;
+void* operator new (std::size_t size, const std::nothrow_t& nothrow_value)noexcept;
+void* operator new (std::size_t size, const std::nothrow_t& nothrow_value);
+void* operator new (std::size_t size);
+void* operator new (std::size_t size) noexcept;
+void* operator new (std::size_t size)noexcept;
+
+
+---tokens---
+'void'        Keyword.Type
+'*'           Operator
+' '           Text
+'operator'    Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'size_t'      Keyword.Type
+' '           Text
+'size'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'void'        Keyword.Type
+'*'           Operator
+' '           Text
+'operator'    Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'size_t'      Keyword.Type
+' '           Text
+'size'        Name
+','           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'std'         Name
+':'           Operator
+':'           Operator
+'nothrow_t'   Name
+'&'           Operator
+' '           Text
+'nothrow_value' Name
+')'           Punctuation
+' '           Text
+'noexcept'    Keyword
+';'           Punctuation
+'\n'          Text
+
+'void'        Keyword.Type
+'*'           Operator
+' '           Text
+'operator'    Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'size_t'      Keyword.Type
+' '           Text
+'size'        Name
+','           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'std'         Name
+':'           Operator
+':'           Operator
+'nothrow_t'   Name
+'&'           Operator
+' '           Text
+'nothrow_value' Name
+')'           Punctuation
+'noexcept'    Keyword
+';'           Punctuation
+'\n'          Text
+
+'void'        Keyword.Type
+'*'           Operator
+' '           Text
+'operator'    Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'size_t'      Keyword.Type
+' '           Text
+'size'        Name
+','           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'std'         Name
+':'           Operator
+':'           Operator
+'nothrow_t'   Name
+'&'           Operator
+' '           Text
+'nothrow_value' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'void'        Keyword.Type
+'*'           Operator
+' '           Text
+'operator'    Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'size_t'      Keyword.Type
+' '           Text
+'size'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'void'        Keyword.Type
+'*'           Operator
+' '           Text
+'operator'    Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'size_t'      Keyword.Type
+' '           Text
+'size'        Name
+')'           Punctuation
+' '           Text
+'noexcept'    Keyword
+';'           Punctuation
+'\n'          Text
+
+'void'        Keyword.Type
+'*'           Operator
+' '           Text
+'operator'    Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'size_t'      Keyword.Type
+' '           Text
+'size'        Name
+')'           Punctuation
+'noexcept'    Keyword
+';'           Punctuation
+'\n'          Text

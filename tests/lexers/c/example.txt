@@ -1,0 +1,99 @@
+---input---
+/*
+ * Some Number Test
+ */
+
+int i = 24241424;
+float f1 = 342423423.24234;
+float f2 = 25235235.;
+float f3 = .234234;
+float f4 = 234243e+34343;
+float f5 = 24234e-234;
+int o = 0234;
+int h = 0x2342;
+
+---tokens---
+'/*\n * Some Number Test\n */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'int'         Keyword.Type
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'24241424'    Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'float'       Keyword.Type
+' '           Text
+'f1'          Name
+' '           Text
+'='           Operator
+' '           Text
+'342423423.24234' Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'float'       Keyword.Type
+' '           Text
+'f2'          Name
+' '           Text
+'='           Operator
+' '           Text
+'25235235.'   Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'float'       Keyword.Type
+' '           Text
+'f3'          Name
+' '           Text
+'='           Operator
+' '           Text
+'.234234'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'float'       Keyword.Type
+' '           Text
+'f4'          Name
+' '           Text
+'='           Operator
+' '           Text
+'234243e+34343' Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'float'       Keyword.Type
+' '           Text
+'f5'          Name
+' '           Text
+'='           Operator
+' '           Text
+'24234e-234'  Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'int'         Keyword.Type
+' '           Text
+'o'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0234'        Literal.Number.Oct
+';'           Punctuation
+'\n'          Text
+
+'int'         Keyword.Type
+' '           Text
+'h'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0x2342'      Literal.Number.Hex
+';'           Punctuation
+'\n'          Text

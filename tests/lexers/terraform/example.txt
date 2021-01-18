@@ -1,0 +1,1230 @@
+---input---
+terraform {
+  backend "consul" {
+    address = "demo.consul.io"
+    path    = "tfdocs"
+  }
+}
+
+module "consul" {
+  source  = "hashicorp/consul/aws"
+  servers = 3
+}
+
+variable "key_name" {
+  description = "Name of the SSH keypair to use in AWS."
+}
+
+variable "key_path" {
+  description = "Path to the private portion of the SSH key specified."
+}
+
+variable "aws_region" {
+  description = "AWS region to launch servers."
+  default = "us-west-2"
+  somevar = true
+}
+
+# Ubuntu Precise 12.04 LTS (x64)
+variable "aws_amis" {
+  default = {
+    eu-west-1 = "ami-b1cf19c6"
+    us-east-1 = "ami-de7ab6b6"
+    us-west-1 = "ami-3f75767a"
+    us-west-2 = "ami-21f78e11"
+  }
+}
+
+resource "aws_internet_gateway" "base_igw" {
+  vpc_id = "${aws_vpc.something.id}"
+  tags {
+    Name = "igw-${var.something}-${var.something}"
+  }
+}
+
+provider "aws" {
+  access_key = "${myvar}"
+  secret_key = "your aws secret key"
+  region = "us-east-1"
+}
+/* multiline
+
+  comment
+
+*/
+
+
+resource "aws_route53_record" "test" {
+  zone_id  = "zone"
+  name     = "name"
+  type     = "A"
+  alias {
+    name = "alias name"
+  }
+}
+
+# Single line comment
+resource "aws_instance" "example" {
+  ami           = "ami-408c7f28"
+  instance_type = "t1.micro"
+  key_name      = "your-aws-key-name"
+}
+
+# Create our Heroku application. Heroku will
+# automatically assign a name.
+resource "heroku_app" "web" {}
+
+# Create our DNSimple record to point to the
+# heroku application.
+resource "dnsimple_record" "web" {
+  domain = "${var.dnsimple_domain}"
+
+  # heroku_hostname is a computed attribute on the heroku
+  # application we can use to determine the hostname
+  value = "${heroku_app.web.heroku_hostname}"
+
+  type = "CNAME"
+  ttl  = 3600
+}
+
+# The Heroku domain, which will be created and added
+# to the heroku application after we have assigned the domain
+# in DNSimple
+resource "heroku_domain" "foobar" {
+  app      = "${heroku_app.web.name}"
+  hostname = "${dnsimple_record.web.hostname}"
+}
+
+# Specify the provider and access details
+provider "aws" {
+  region = "${var.aws_region}"
+  value  = "${file("path.txt")}"
+}
+
+# Our default security group to access
+# the instances over SSH and HTTP
+resource "aws_security_group" "default" {
+  name        = "terraform_example"
+  description = "Used in the terraform"
+
+  # SSH access from anywhere
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # HTTP access from anywhere
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_elb" "web" {
+  name = "terraform-example-elb"
+
+  # The same availability zone as our instance
+  availability_zones = ["${aws_instance.web.availability_zone}"]
+
+  listener {
+    instance_port     = 80
+    instance_protocol = "http"
+    lb_port           = 80
+    lb_protocol       = "http"
+  }
+
+  # The instance is registered automatically
+  instances = ["${aws_instance.web.id}"]
+}
+
+resource "aws_instance" "web" {
+  # The connection block tells our provisioner how to
+  # communicate with the resource (instance)
+  connection {
+    # The default username for our AMI
+    user = "ubuntu"
+
+    # The path to your keyfile
+    key_file = "${var.key_path}"
+  }
+
+  instance_type = "m1.small"
+
+  # Lookup the correct AMI based on the region
+  # we specified
+  ami = "${lookup(var.aws_amis, var.aws_region)}"
+
+  # The name of our SSH keypair you've created and downloaded
+  # from the AWS console.
+  #
+  # https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#KeyPairs:
+  #
+  key_name = "${var.key_name}"
+
+  # Our Security group to allow HTTP and SSH access
+  security_groups = ["${aws_security_group.default.name}"]
+
+  tags {
+    Name = "web-small"
+  }
+
+  # We run a remote provisioner on the instance after creating it.
+  # In this case, we just install nginx and start it. By default,
+  # this should be on port 80
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get -y update",
+      "sudo apt-get -y install nginx",
+      "sudo service nginx start"
+    ]
+  }
+}
+
+data "template_file" "iam_policy" {
+  count = 5
+
+  vars {
+    region = "us-west-1"
+  }
+
+  config {
+    name = "hashicorp/vpc-prod"
+  }
+}
+
+output "web_public_ip" {
+  value = ["${aws_instance.web.public_ip}"]
+}
+
+resource "aws_autoscaling_group" "bar" {
+  name                 = "terraform-asg-example"
+  launch_configuration = "${aws_launch_configuration.as_conf.name}"
+  min_size             = 1
+  max_size             = 2
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_db_instance" "timeout_example" {
+  allocated_storage = 10
+  engine            = "mysql"
+  engine_version    = "5.6.17"
+  instance_class    = "db.t1.micro"
+  name              = "mydb"
+
+  timeouts {
+    create = "60m"
+    delete = "2h"
+  }
+}
+
+---tokens---
+'terraform'   Keyword.Declaration
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  '          Text
+'backend'     Keyword.Reserved
+' '           Text
+'"consul"'    Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'    address' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"demo.consul.io"' Literal.String.Double
+'\n'          Text
+
+'    path'    Name.Attribute
+'    '        Text
+'='           Operator
+' '           Text
+'"tfdocs"'    Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'module'      Keyword.Reserved
+' '           Text
+'"consul"'    Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  source'    Name.Attribute
+'  '          Text
+'='           Operator
+' '           Text
+'"hashicorp/consul/aws"' Literal.String.Double
+'\n'          Text
+
+'  servers'   Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'3'           Literal.Number
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'variable'    Keyword.Reserved
+' '           Text
+'"key_name"'  Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  description' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"Name of the SSH keypair to use in AWS."' Literal.String.Double
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'variable'    Keyword.Reserved
+' '           Text
+'"key_path"'  Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  description' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"Path to the private portion of the SSH key specified."' Literal.String.Double
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'variable'    Keyword.Reserved
+' '           Text
+'"aws_region"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  description' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"AWS region to launch servers."' Literal.String.Double
+'\n'          Text
+
+'  default'   Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"us-west-2"' Literal.String.Double
+'\n'          Text
+
+'  somevar'   Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Type
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n\n# Ubuntu Precise 12.04 LTS (x64)\n' Comment.Single
+
+'variable'    Keyword.Reserved
+' '           Text
+'"aws_amis"'  Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  default'   Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'    eu-west-1' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"ami-b1cf19c6"' Literal.String.Double
+'\n'          Text
+
+'    us-east-1' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"ami-de7ab6b6"' Literal.String.Double
+'\n'          Text
+
+'    us-west-1' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"ami-3f75767a"' Literal.String.Double
+'\n'          Text
+
+'    us-west-2' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"ami-21f78e11"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'resource'    Keyword.Reserved
+' '           Text
+'"aws_internet_gateway" "base_igw"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  vpc_id'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"${aws_vpc.something.id}"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'tags'        Keyword.Declaration
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'    Name'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"igw-${var.something}-${var.something}"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'provider'    Keyword.Reserved
+' '           Text
+'"aws"'       Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  access_key' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"${myvar}"'  Literal.String.Double
+'\n'          Text
+
+'  secret_key' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"your aws secret key"' Literal.String.Double
+'\n'          Text
+
+'  region'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"us-east-1"' Literal.String.Double
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n/*'        Comment.Multiline
+' '           Comment.Multiline
+'m'           Comment.Multiline
+'u'           Comment.Multiline
+'l'           Comment.Multiline
+'t'           Comment.Multiline
+'i'           Comment.Multiline
+'l'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'e'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+'c'           Comment.Multiline
+'o'           Comment.Multiline
+'m'           Comment.Multiline
+'m'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'resource'    Keyword.Reserved
+' '           Text
+'"aws_route53_record" "test"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  zone_id'   Name.Attribute
+'  '          Text
+'='           Operator
+' '           Text
+'"zone"'      Literal.String.Double
+'\n'          Text
+
+'  name'      Name.Attribute
+'     '       Text
+'='           Operator
+' '           Text
+'"name"'      Literal.String.Double
+'\n'          Text
+
+'  type'      Name.Attribute
+'     '       Text
+'='           Operator
+' '           Text
+'"A"'         Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'alias'       Keyword.Declaration
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'    name'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"alias name"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n\n# Single line comment\n' Comment.Single
+
+'resource'    Keyword.Reserved
+' '           Text
+'"aws_instance" "example"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  ami'       Name.Attribute
+'           ' Text
+'='           Operator
+' '           Text
+'"ami-408c7f28"' Literal.String.Double
+'\n'          Text
+
+'  instance_type' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"t1.micro"'  Literal.String.Double
+'\n'          Text
+
+'  key_name'  Name.Attribute
+'      '      Text
+'='           Operator
+' '           Text
+'"your-aws-key-name"' Literal.String.Double
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n\n# Create our Heroku application. Heroku will\n' Comment.Single
+
+'# automatically assign a name.\n' Comment.Single
+
+'resource'    Keyword.Reserved
+' '           Text
+'"heroku_app" "web"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n# Create our DNSimple record to point to the\n' Comment.Single
+
+'# heroku application.\n' Comment.Single
+
+'resource'    Keyword.Reserved
+' '           Text
+'"dnsimple_record" "web"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  domain'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"${var.dnsimple_domain}"' Literal.String.Double
+'\n\n  # heroku_hostname is a computed attribute on the heroku\n' Comment.Single
+
+'  # application we can use to determine the hostname\n' Comment.Single
+
+'  value'     Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"${heroku_app.web.heroku_hostname}"' Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'  type'      Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"CNAME"'     Literal.String.Double
+'\n'          Text
+
+'  ttl'       Name.Attribute
+'  '          Text
+'='           Operator
+' '           Text
+'3600'        Literal.Number
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n\n# The Heroku domain, which will be created and added\n' Comment.Single
+
+'# to the heroku application after we have assigned the domain\n' Comment.Single
+
+'# in DNSimple\n' Comment.Single
+
+'resource'    Keyword.Reserved
+' '           Text
+'"heroku_domain" "foobar"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  app'       Name.Attribute
+'      '      Text
+'='           Operator
+' '           Text
+'"${heroku_app.web.name}"' Literal.String.Double
+'\n'          Text
+
+'  hostname'  Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"${dnsimple_record.web.hostname}"' Literal.String.Double
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n\n# Specify the provider and access details\n' Comment.Single
+
+'provider'    Keyword.Reserved
+' '           Text
+'"aws"'       Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  region'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"${var.aws_region}"' Literal.String.Double
+'\n'          Text
+
+'  value'     Name.Attribute
+'  '          Text
+'='           Operator
+' '           Text
+'"${file("path.txt")}"' Literal.String.Double
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n\n# Our default security group to access\n' Comment.Single
+
+'# the instances over SSH and HTTP\n' Comment.Single
+
+'resource'    Keyword.Reserved
+' '           Text
+'"aws_security_group" "default"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  name'      Name.Attribute
+'        '    Text
+'='           Operator
+' '           Text
+'"terraform_example"' Literal.String.Double
+'\n'          Text
+
+'  description' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"Used in the terraform"' Literal.String.Double
+'\n\n  # SSH access from anywhere\n' Comment.Single
+
+'  '          Text
+'ingress'     Keyword.Declaration
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'    from_port' Name.Attribute
+'   '         Text
+'='           Operator
+' '           Text
+'22'          Literal.Number
+'\n'          Text
+
+'    to_port' Name.Attribute
+'     '       Text
+'='           Operator
+' '           Text
+'22'          Literal.Number
+'\n'          Text
+
+'    protocol' Name.Attribute
+'    '        Text
+'='           Operator
+' '           Text
+'"tcp"'       Literal.String.Double
+'\n'          Text
+
+'    cidr_blocks' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'"0.0.0.0/0"' Literal.String.Double
+']'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n\n  # HTTP access from anywhere\n' Comment.Single
+
+'  '          Text
+'ingress'     Keyword.Declaration
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'    from_port' Name.Attribute
+'   '         Text
+'='           Operator
+' '           Text
+'80'          Literal.Number
+'\n'          Text
+
+'    to_port' Name.Attribute
+'     '       Text
+'='           Operator
+' '           Text
+'80'          Literal.Number
+'\n'          Text
+
+'    protocol' Name.Attribute
+'    '        Text
+'='           Operator
+' '           Text
+'"tcp"'       Literal.String.Double
+'\n'          Text
+
+'    cidr_blocks' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'"0.0.0.0/0"' Literal.String.Double
+']'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'resource'    Keyword.Reserved
+' '           Text
+'"aws_elb" "web"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  name'      Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"terraform-example-elb"' Literal.String.Double
+'\n\n  # The same availability zone as our instance\n' Comment.Single
+
+'  availability_zones' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'"${aws_instance.web.availability_zone}"' Literal.String.Double
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'listener'    Keyword.Declaration
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'    instance_port' Name.Attribute
+'     '       Text
+'='           Operator
+' '           Text
+'80'          Literal.Number
+'\n'          Text
+
+'    instance_protocol' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"http"'      Literal.String.Double
+'\n'          Text
+
+'    lb_port' Name.Attribute
+'           ' Text
+'='           Operator
+' '           Text
+'80'          Literal.Number
+'\n'          Text
+
+'    lb_protocol' Name.Attribute
+'       '     Text
+'='           Operator
+' '           Text
+'"http"'      Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n\n  # The instance is registered automatically\n' Comment.Single
+
+'  instances' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'"${aws_instance.web.id}"' Literal.String.Double
+']'           Punctuation
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'resource'    Keyword.Reserved
+' '           Text
+'"aws_instance" "web"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  # The connection block tells our provisioner how to\n' Comment.Single
+
+'  # communicate with the resource (instance)\n' Comment.Single
+
+'  '          Text
+'connection'  Keyword.Declaration
+' '           Text
+'{'           Text.Punctuation
+'\n    # The default username for our AMI\n' Comment.Single
+
+'    user'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"ubuntu"'    Literal.String.Double
+'\n\n    # The path to your keyfile\n' Comment.Single
+
+'    key_file' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"${var.key_path}"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  instance_type' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"m1.small"'  Literal.String.Double
+'\n\n  # Lookup the correct AMI based on the region\n' Comment.Single
+
+'  # we specified\n' Comment.Single
+
+'  ami'       Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"${lookup(var.aws_amis, var.aws_region)}"' Literal.String.Double
+"\n\n  # The name of our SSH keypair you've created and downloaded\n" Comment.Single
+
+'  # from the AWS console.\n' Comment.Single
+
+'  #\n'       Comment.Single
+
+'  # https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#KeyPairs:\n' Comment.Single
+
+'  #\n'       Comment.Single
+
+'  key_name'  Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"${var.key_name}"' Literal.String.Double
+'\n\n  # Our Security group to allow HTTP and SSH access\n' Comment.Single
+
+'  security_groups' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'"${aws_security_group.default.name}"' Literal.String.Double
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'tags'        Keyword.Declaration
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'    Name'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"web-small"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n\n  # We run a remote provisioner on the instance after creating it.\n' Comment.Single
+
+'  # In this case, we just install nginx and start it. By default,\n' Comment.Single
+
+'  # this should be on port 80\n' Comment.Single
+
+'  '          Text
+'provisioner' Keyword.Reserved
+' '           Text
+'"remote-exec"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'    inline'  Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'\n'          Text
+
+'      '      Text
+'"sudo apt-get -y update"' Literal.String.Double
+','           Punctuation
+'\n'          Text
+
+'      '      Text
+'"sudo apt-get -y install nginx"' Literal.String.Double
+','           Punctuation
+'\n'          Text
+
+'      '      Text
+'"sudo service nginx start"' Literal.String.Double
+'\n'          Text
+
+'    '        Text
+']'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'data'        Keyword.Reserved
+' '           Text
+'"template_file" "iam_policy"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  count'     Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'5'           Literal.Number
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'vars'        Keyword.Declaration
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'    region'  Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"us-west-1"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'config'      Keyword.Declaration
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'    name'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"hashicorp/vpc-prod"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'output'      Keyword.Reserved
+' '           Text
+'"web_public_ip"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  value'     Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'"${aws_instance.web.public_ip}"' Literal.String.Double
+']'           Punctuation
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'resource'    Keyword.Reserved
+' '           Text
+'"aws_autoscaling_group" "bar"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  name'      Name.Attribute
+'                 ' Text
+'='           Operator
+' '           Text
+'"terraform-asg-example"' Literal.String.Double
+'\n'          Text
+
+'  launch_configuration' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"${aws_launch_configuration.as_conf.name}"' Literal.String.Double
+'\n'          Text
+
+'  min_size'  Name.Attribute
+'             ' Text
+'='           Operator
+' '           Text
+'1'           Literal.Number
+'\n'          Text
+
+'  max_size'  Name.Attribute
+'             ' Text
+'='           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'lifecycle'   Keyword.Declaration
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'    create_before_destroy' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Type
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'resource'    Keyword.Reserved
+' '           Text
+'"aws_db_instance" "timeout_example"' Literal.String
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'  allocated_storage' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'10'          Literal.Number
+'\n'          Text
+
+'  engine'    Name.Attribute
+'            ' Text
+'='           Operator
+' '           Text
+'"mysql"'     Literal.String.Double
+'\n'          Text
+
+'  engine_version' Name.Attribute
+'    '        Text
+'='           Operator
+' '           Text
+'"5.6.17"'    Literal.String.Double
+'\n'          Text
+
+'  instance_class' Name.Attribute
+'    '        Text
+'='           Operator
+' '           Text
+'"db.t1.micro"' Literal.String.Double
+'\n'          Text
+
+'  name'      Name.Attribute
+'              ' Text
+'='           Operator
+' '           Text
+'"mydb"'      Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'timeouts'    Keyword.Declaration
+' '           Text
+'{'           Text.Punctuation
+'\n'          Text
+
+'    create'  Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"60m"'       Literal.String.Double
+'\n'          Text
+
+'    delete'  Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"2h"'        Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'}'           Text.Punctuation
+'\n'          Text
+
+'}'           Text.Punctuation
+'\n'          Text

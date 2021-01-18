@@ -1,0 +1,947 @@
+---input---
+
+;foobar!
+
+;Include "blurg/blurg.bb"
+
+Const ca = $10000000 ; Hex
+Const cb = %10101010 ; Binary
+Global ga$ = "blargh"
+Local a = 124, b$ = "abcdef"
+
+Function name_123#(zorp$, ll = False, blah#, waffles% = 100)
+	Return 235.7804 ; comment
+End Function
+Function TestString$()
+End Function
+
+Function hub(blah$, abc = Pi)
+End Function
+Function Blar%()
+	Local aa %, ab # ,ac #, ad# ,ae$,af% ; Intentional mangling
+	Local ba#, bb.TBlarf , bc%,bd#,be. TFooBar,ff = True
+End Function
+
+abc()
+
+Function abc()
+	Print "abc"	; I cannot find a way to parse these as function calls without messing something up
+	Print		; Anyhow, they're generally not used in this way
+	Goto Eww_Goto
+	.Eww_Goto
+End Function
+
+Type TBlarf
+End Type
+
+Type TFooBar
+End Type
+
+Local myinst.MyClass = New MyClass
+TestMethod(myinst)
+
+Type MyClass
+	
+	Field m_foo.MyClass
+	Field m_bar.MyClass
+	
+;	abc
+;	def
+End Type
+
+Function TestMethod(self.MyClass) ; foobar
+	self\m_foo = self
+	self\m_bar = Object.MyClass(Handle self\m_foo)
+	Yell self\m_foo\m_bar\m_foo\m_bar
+End Function
+
+Function Yell(self.MyClass)
+	Print("huzzah!")
+End Function
+
+Function Wakka$(foo$)
+	Return foo + "bar"
+End Function
+
+
+Print("blah " + "blah " + "blah.")
+
+Local i : For i = 0 To 10 Step 1
+	Print("Index: " + i)
+Next
+Local array$[5]
+array[0] = "foo": array[1] = "bar":array[2] = "11":array[3] = "22":array[4] = "33"
+For i = 0 To 4
+	Local value$ = array[i]
+	Print("Value: " + value)
+Next
+
+Local foobar = Not (1 Or (2 And (4 Shl 5 Shr 6)) Sar 7) Mod (8+2)
+Local az = 1234567890
+az = az + 1
+az = az - 2
+az  = az* 3
+az = az/ 4
+az = az And 5
+az = az Or 6
+az= ~ 7
+az  = az Shl 8
+az= az  Shr 9
+az  = az Sar 10
+az = az Mod 11
+az = ((10-5+2/4*2)>(((8^2)) < 2)) And 12 Or 2
+
+
+;~IDEal Editor Parameters:
+;~C#Blitz3D
+
+---tokens---
+';foobar!\n'  Comment.Single
+
+'\n'          Text
+
+';Include "blurg/blurg.bb"\n' Comment.Single
+
+'\n'          Text
+
+'Const'       Keyword.Declaration
+' '           Text
+'ca'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$10000000'   Literal.Number.Hex
+' '           Text
+'; Hex\n'     Comment.Single
+
+'Const'       Keyword.Declaration
+' '           Text
+'cb'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'%10101010'   Literal.Number.Bin
+' '           Text
+'; Binary\n'  Comment.Single
+
+'Global'      Keyword.Declaration
+' '           Text
+'ga'          Name.Variable
+'$'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'blargh'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'Local'       Keyword.Declaration
+' '           Text
+'a'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'124'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'b'           Name.Variable
+'$'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'abcdef'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'Function'    Keyword.Reserved
+' '           Text
+'name_123'    Name.Function
+'#'           Keyword.Type
+'('           Punctuation
+'zorp'        Name.Variable
+'$'           Keyword.Type
+','           Punctuation
+' '           Text
+'ll'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'False'       Keyword.Constant
+','           Punctuation
+' '           Text
+'blah'        Name.Variable
+'#'           Keyword.Type
+','           Punctuation
+' '           Text
+'waffles'     Name.Variable
+'%'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'100'         Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Return'      Keyword.Reserved
+' '           Text
+'235.7804'    Literal.Number.Float
+' '           Text
+'; comment\n' Comment.Single
+
+'End'         Keyword.Reserved
+' '           Text
+'Function'    Keyword.Reserved
+'\n'          Text
+
+'Function'    Keyword.Reserved
+' '           Text
+'TestString'  Name.Function
+'$'           Keyword.Type
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'End'         Keyword.Reserved
+' '           Text
+'Function'    Keyword.Reserved
+'\n'          Text
+
+'\n'          Text
+
+'Function'    Keyword.Reserved
+' '           Text
+'hub'         Name.Function
+'('           Punctuation
+'blah'        Name.Variable
+'$'           Keyword.Type
+','           Punctuation
+' '           Text
+'abc'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Pi'          Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'End'         Keyword.Reserved
+' '           Text
+'Function'    Keyword.Reserved
+'\n'          Text
+
+'Function'    Keyword.Reserved
+' '           Text
+'Blar'        Name.Function
+'%'           Keyword.Type
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Local'       Keyword.Declaration
+' '           Text
+'aa'          Name.Variable
+' '           Text
+'%'           Keyword.Type
+','           Punctuation
+' '           Text
+'ab'          Name.Variable
+' '           Text
+'#'           Keyword.Type
+' '           Text
+','           Punctuation
+'ac'          Name.Variable
+' '           Text
+'#'           Keyword.Type
+','           Punctuation
+' '           Text
+'ad'          Name.Variable
+'#'           Keyword.Type
+' '           Text
+','           Punctuation
+'ae'          Name.Variable
+'$'           Keyword.Type
+','           Punctuation
+'af'          Name.Variable
+'%'           Keyword.Type
+' '           Text
+'; Intentional mangling\n' Comment.Single
+
+'\t'          Text
+'Local'       Keyword.Declaration
+' '           Text
+'ba'          Name.Variable
+'#'           Keyword.Type
+','           Punctuation
+' '           Text
+'bb'          Name.Variable
+'.'           Punctuation
+'TBlarf'      Name.Class
+' '           Text
+','           Punctuation
+' '           Text
+'bc'          Name.Variable
+'%'           Keyword.Type
+','           Punctuation
+'bd'          Name.Variable
+'#'           Keyword.Type
+','           Punctuation
+'be'          Name.Variable
+'.'           Punctuation
+' '           Text
+'TFooBar'     Name.Class
+','           Punctuation
+'ff'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'True'        Keyword.Constant
+'\n'          Text
+
+'End'         Keyword.Reserved
+' '           Text
+'Function'    Keyword.Reserved
+'\n'          Text
+
+'\n'          Text
+
+'abc'         Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'Function'    Keyword.Reserved
+' '           Text
+'abc'         Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Print'       Name.Variable
+' '           Text
+'"'           Literal.String.Double
+'abc'         Literal.String.Double
+'"'           Literal.String.Double
+'\t'          Text
+'; I cannot find a way to parse these as function calls without messing something up\n' Comment.Single
+
+'\t'          Text
+'Print'       Name.Variable
+'\t\t'        Text
+"; Anyhow, they're generally not used in this way\n" Comment.Single
+
+'\t'          Text
+'Goto'        Keyword.Reserved
+' '           Text
+'Eww_Goto'    Name.Label
+'\n'          Text
+
+'\t'          Text
+'.Eww_Goto'   Name.Label
+'\n'          Text
+
+'End'         Keyword.Reserved
+' '           Text
+'Function'    Keyword.Reserved
+'\n'          Text
+
+'\n'          Text
+
+'Type'        Keyword.Reserved
+' '           Text
+'TBlarf'      Name.Class
+'\n'          Text
+
+'End'         Keyword.Reserved
+' '           Text
+'Type'        Keyword.Reserved
+'\n'          Text
+
+'\n'          Text
+
+'Type'        Keyword.Reserved
+' '           Text
+'TFooBar'     Name.Class
+'\n'          Text
+
+'End'         Keyword.Reserved
+' '           Text
+'Type'        Keyword.Reserved
+'\n'          Text
+
+'\n'          Text
+
+'Local'       Keyword.Declaration
+' '           Text
+'myinst'      Name.Variable
+'.'           Punctuation
+'MyClass'     Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'New'         Keyword.Reserved
+' '           Text
+'MyClass'     Name.Class
+'\n'          Text
+
+'TestMethod'  Name.Function
+'('           Punctuation
+'myinst'      Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'Type'        Keyword.Reserved
+' '           Text
+'MyClass'     Name.Class
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
+'Field'       Keyword.Declaration
+' '           Text
+'m_foo'       Name.Variable
+'.'           Punctuation
+'MyClass'     Name.Class
+'\n'          Text
+
+'\t'          Text
+'Field'       Keyword.Declaration
+' '           Text
+'m_bar'       Name.Variable
+'.'           Punctuation
+'MyClass'     Name.Class
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+';\tabc\n'    Comment.Single
+
+';\tdef\n'    Comment.Single
+
+'End'         Keyword.Reserved
+' '           Text
+'Type'        Keyword.Reserved
+'\n'          Text
+
+'\n'          Text
+
+'Function'    Keyword.Reserved
+' '           Text
+'TestMethod'  Name.Function
+'('           Punctuation
+'self'        Name.Variable
+'.'           Punctuation
+'MyClass'     Name.Class
+')'           Punctuation
+' '           Text
+'; foobar\n'  Comment.Single
+
+'\t'          Text
+'self'        Name.Variable
+'\\'          Punctuation
+'m_foo'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'self'        Name.Variable
+'\n'          Text
+
+'\t'          Text
+'self'        Name.Variable
+'\\'          Punctuation
+'m_bar'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Object'      Operator
+'.'           Punctuation
+'MyClass'     Name.Class
+'('           Punctuation
+'Handle'      Operator
+' '           Text
+'self'        Name.Variable
+'\\'          Punctuation
+'m_foo'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Yell'        Name.Variable
+' '           Text
+'self'        Name.Variable
+'\\'          Punctuation
+'m_foo'       Name.Variable
+'\\'          Punctuation
+'m_bar'       Name.Variable
+'\\'          Punctuation
+'m_foo'       Name.Variable
+'\\'          Punctuation
+'m_bar'       Name.Variable
+'\n'          Text
+
+'End'         Keyword.Reserved
+' '           Text
+'Function'    Keyword.Reserved
+'\n'          Text
+
+'\n'          Text
+
+'Function'    Keyword.Reserved
+' '           Text
+'Yell'        Name.Function
+'('           Punctuation
+'self'        Name.Variable
+'.'           Punctuation
+'MyClass'     Name.Class
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Print'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'huzzah!'     Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'End'         Keyword.Reserved
+' '           Text
+'Function'    Keyword.Reserved
+'\n'          Text
+
+'\n'          Text
+
+'Function'    Keyword.Reserved
+' '           Text
+'Wakka'       Name.Function
+'$'           Keyword.Type
+'('           Punctuation
+'foo'         Name.Variable
+'$'           Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Return'      Keyword.Reserved
+' '           Text
+'foo'         Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String.Double
+'bar'         Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'End'         Keyword.Reserved
+' '           Text
+'Function'    Keyword.Reserved
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'Print'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'blah '       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String.Double
+'blah '       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String.Double
+'blah.'       Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'Local'       Keyword.Declaration
+' '           Text
+'i'           Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'For'         Keyword.Reserved
+' '           Text
+'i'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'To'          Keyword.Reserved
+' '           Text
+'10'          Literal.Number.Integer
+' '           Text
+'Step'        Keyword.Reserved
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'\t'          Text
+'Print'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'Index: '     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'+'           Operator
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'Next'        Keyword.Reserved
+'\n'          Text
+
+'Local'       Keyword.Declaration
+' '           Text
+'array'       Name.Variable
+'$'           Keyword.Type
+'['           Punctuation
+'5'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text
+
+'array'       Name.Variable
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'foo'         Literal.String.Double
+'"'           Literal.String.Double
+':'           Punctuation
+' '           Text
+'array'       Name.Variable
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'bar'         Literal.String.Double
+'"'           Literal.String.Double
+':'           Punctuation
+'array'       Name.Variable
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'11'          Literal.String.Double
+'"'           Literal.String.Double
+':'           Punctuation
+'array'       Name.Variable
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'22'          Literal.String.Double
+'"'           Literal.String.Double
+':'           Punctuation
+'array'       Name.Variable
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'33'          Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'For'         Keyword.Reserved
+' '           Text
+'i'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'To'          Keyword.Reserved
+' '           Text
+'4'           Literal.Number.Integer
+'\n'          Text
+
+'\t'          Text
+'Local'       Keyword.Declaration
+' '           Text
+'value'       Name.Variable
+'$'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'array'       Name.Variable
+'['           Punctuation
+'i'           Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Print'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'Value: '     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'+'           Operator
+' '           Text
+'value'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'Next'        Keyword.Reserved
+'\n'          Text
+
+'\n'          Text
+
+'Local'       Keyword.Declaration
+' '           Text
+'foobar'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Not'         Operator
+' '           Text
+'('           Punctuation
+'1'           Literal.Number.Integer
+' '           Text
+'Or'          Operator
+' '           Text
+'('           Punctuation
+'2'           Literal.Number.Integer
+' '           Text
+'And'         Operator
+' '           Text
+'('           Punctuation
+'4'           Literal.Number.Integer
+' '           Text
+'Shl'         Operator
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+'Shr'         Operator
+' '           Text
+'6'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'Sar'         Operator
+' '           Text
+'7'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'Mod'         Operator
+' '           Text
+'('           Punctuation
+'8'           Literal.Number.Integer
+'+'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'Local'       Keyword.Declaration
+' '           Text
+'az'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1234567890'  Literal.Number.Integer
+'\n'          Text
+
+'az'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'az'          Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'az'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'az'          Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'az'          Name.Variable
+'  '          Text
+'='           Operator
+' '           Text
+'az'          Name.Variable
+'*'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+'\n'          Text
+
+'az'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'az'          Name.Variable
+'/'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+'\n'          Text
+
+'az'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'az'          Name.Variable
+' '           Text
+'And'         Operator
+' '           Text
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'az'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'az'          Name.Variable
+' '           Text
+'Or'          Operator
+' '           Text
+'6'           Literal.Number.Integer
+'\n'          Text
+
+'az'          Name.Variable
+'='           Operator
+' '           Text
+'~'           Operator
+' '           Text
+'7'           Literal.Number.Integer
+'\n'          Text
+
+'az'          Name.Variable
+'  '          Text
+'='           Operator
+' '           Text
+'az'          Name.Variable
+' '           Text
+'Shl'         Operator
+' '           Text
+'8'           Literal.Number.Integer
+'\n'          Text
+
+'az'          Name.Variable
+'='           Operator
+' '           Text
+'az'          Name.Variable
+'  '          Text
+'Shr'         Operator
+' '           Text
+'9'           Literal.Number.Integer
+'\n'          Text
+
+'az'          Name.Variable
+'  '          Text
+'='           Operator
+' '           Text
+'az'          Name.Variable
+' '           Text
+'Sar'         Operator
+' '           Text
+'10'          Literal.Number.Integer
+'\n'          Text
+
+'az'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'az'          Name.Variable
+' '           Text
+'Mod'         Operator
+' '           Text
+'11'          Literal.Number.Integer
+'\n'          Text
+
+'az'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'10'          Literal.Number.Integer
+'-'           Operator
+'5'           Literal.Number.Integer
+'+'           Operator
+'2'           Literal.Number.Integer
+'/'           Operator
+'4'           Literal.Number.Integer
+'*'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+'>'           Operator
+'('           Punctuation
+'('           Punctuation
+'('           Punctuation
+'8'           Literal.Number.Integer
+'^'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'And'         Operator
+' '           Text
+'12'          Literal.Number.Integer
+' '           Text
+'Or'          Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+';~IDEal Editor Parameters:\n' Comment.Single
+
+';~C#Blitz3D\n' Comment.Single

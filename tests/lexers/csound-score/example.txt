@@ -1,0 +1,182 @@
+---input---
+/*
+ * comment
+ */
+; comment
+// comment
+a B b C d e f i q s t v x y
+z
+np0 nP1 Np2 NP3
+m/**/label;
+n label
+123 0123456789
+0xabcdef0123456789 0XABCDEF
+1e2 3e+4 5e-6 7E8 9E+0 1E-2 3. 4.56 .789
+"characters$MACRO."
+{ 1 I
+  { 2 J
+    { 3 K
+      $I $J $K
+    }
+  }
+}
+#include "score.sco"
+#includestr/**/"$MACRO..sco"
+
+---tokens---
+'/*\n * comment\n */' Comment.Multiline
+'\n'          Text
+
+'; comment'   Comment.Single
+'\n'          Text
+
+'// comment'  Comment.Single
+'\n'          Text
+
+'a'           Keyword
+' '           Text
+'B'           Keyword
+' '           Text
+'b'           Keyword
+' '           Text
+'C'           Keyword
+' '           Text
+'d'           Keyword
+' '           Text
+'e'           Keyword
+' '           Text
+'f'           Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'q'           Keyword
+' '           Text
+'s'           Keyword
+' '           Text
+'t'           Keyword
+' '           Text
+'v'           Keyword
+' '           Text
+'x'           Keyword
+' '           Text
+'y'           Keyword
+'\n'          Text
+
+'z'           Keyword.Constant
+'\n'          Text
+
+'np'          Keyword
+'0'           Literal.Number.Integer
+' '           Text
+'nP'          Keyword
+'1'           Literal.Number.Integer
+' '           Text
+'Np'          Keyword
+'2'           Literal.Number.Integer
+' '           Text
+'NP'          Keyword
+'3'           Literal.Number.Integer
+'\n'          Text
+
+'m'           Keyword
+'/**/'        Comment.Multiline
+'label'       Name.Label
+';'           Comment.Single
+'\n'          Text
+
+'n'           Keyword
+' '           Text
+'label'       Name.Label
+'\n'          Text
+
+'123'         Literal.Number.Integer
+' '           Text
+'0123456789'  Literal.Number.Integer
+'\n'          Text
+
+'0x'          Keyword.Type
+'abcdef0123456789' Literal.Number.Hex
+' '           Text
+'0X'          Keyword.Type
+'ABCDEF'      Literal.Number.Hex
+'\n'          Text
+
+'1e2'         Literal.Number.Float
+' '           Text
+'3e+4'        Literal.Number.Float
+' '           Text
+'5e-6'        Literal.Number.Float
+' '           Text
+'7E8'         Literal.Number.Float
+' '           Text
+'9E+0'        Literal.Number.Float
+' '           Text
+'1E-2'        Literal.Number.Float
+' '           Text
+'3.'          Literal.Number.Float
+' '           Text
+'4.56'        Literal.Number.Float
+' '           Text
+'.789'        Literal.Number.Float
+'\n'          Text
+
+'"'           Literal.String
+'characters'  Literal.String
+'$MACRO.'     Comment.Preproc
+'"'           Literal.String
+'\n'          Text
+
+'{'           Comment.Preproc
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'I'           Comment.Preproc
+'\n'          Text
+
+'  '          Text
+'{'           Comment.Preproc
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'J'           Comment.Preproc
+'\n'          Text
+
+'    '        Text
+'{'           Comment.Preproc
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'K'           Comment.Preproc
+'\n'          Text
+
+'      '      Text
+'$I'          Comment.Preproc
+' '           Text
+'$J'          Comment.Preproc
+' '           Text
+'$K'          Comment.Preproc
+'\n'          Text
+
+'    '        Text
+'}'           Comment.Preproc
+'\n'          Text
+
+'  '          Text
+'}'           Comment.Preproc
+'\n'          Text
+
+'}'           Comment.Preproc
+'\n'          Text
+
+'#include'    Comment.Preproc
+' '           Text
+'"score.sco"' Literal.String
+'\n'          Text
+
+'#includestr' Comment.Preproc
+'/**/'        Comment.Multiline
+'"'           Literal.String
+'$MACRO.'     Comment.Preproc
+'.sco'        Literal.String
+'"'           Literal.String
+'\n'          Text

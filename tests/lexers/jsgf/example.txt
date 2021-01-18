@@ -1,0 +1,232 @@
+---input---
+#JSGF V1.0 UTF-8 en;
+
+grammar org.pygments.example;
+
+// comment /*
+/*
+  multi-line
+  comment
+  /* without nesting
+  @example doesn't mean anything here.
+*/
+/**/
+
+/**
+  * A silly @example grammar.
+  *
+  * @author David Corbett
+  * @version 1
+* @see <org.pygments.example.en>
+  * @example hello world
+    @example hello ","
+  *
+  **@blah
+  **world
+  */
+public <sentence> = (/1/<en> | / 0.8f /<fr> |/0/<VOID>""""{}{})*<NULL>;
+<org.pygments.example.fr> = bonjour {hello} [,] "le monde" {world};
+<en> = (/56/hello|/3.14e3/"\"hello\"") {hello} {{ {\\//\} } world {world} !+ ;
+
+---tokens---
+'#JSGF V1.0 UTF-8 en' Comment.Preproc
+';'           Punctuation
+'\n\n'        Text
+
+'grammar'     Keyword.Reserved
+' '           Text
+'org'         Name.Namespace
+'.'           Punctuation
+'pygments'    Name.Namespace
+'.'           Punctuation
+'example'     Name.Namespace
+';'           Punctuation
+'\n\n'        Text
+
+'// comment /*' Comment.Single
+'\n'          Text
+
+"/*\n  multi-line\n  comment\n  /* without nesting\n  @example doesn't mean anything here.\n*/" Comment.Multiline
+'\n'          Text
+
+'/**/'        Comment.Multiline
+'\n\n'        Text
+
+'/**'         Comment.Multiline
+'\n'          Comment.Multiline
+
+'  '          Comment.Multiline
+'*'           Comment.Multiline
+' A silly '   Comment.Multiline
+'@'           Comment.Multiline
+'example grammar.' Comment.Multiline
+'\n'          Comment.Multiline
+
+'  '          Comment.Multiline
+'*'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'  * '        Comment.Multiline
+'@author'     Comment.Special
+' David Corbett' Comment.Multiline
+'\n'          Comment.Multiline
+
+'  * '        Comment.Multiline
+'@version'    Comment.Special
+' 1'          Comment.Multiline
+'\n'          Comment.Multiline
+
+'* '          Comment.Multiline
+'@see '       Comment.Special
+'<'           Punctuation
+'org'         Name.Namespace
+'.'           Punctuation
+'pygments'    Name.Namespace
+'.'           Punctuation
+'example'     Name.Namespace
+'.'           Punctuation
+'en'          Name.Constant
+'>'           Punctuation
+'\n'          Text
+
+'  * '        Comment.Multiline
+'@example '   Comment.Special
+'hello'       Text
+' '           Text
+'world'       Text
+'\n'          Text
+
+'    '        Comment.Multiline
+'@example '   Comment.Special
+'hello'       Text
+' '           Text
+'"'           Literal.String.Double
+','           Literal.String.Double
+'"'           Literal.String.Double
+'\n  *'       Comment.Multiline
+'\n  *'       Comment.Multiline
+'*'           Operator
+'@'           Text
+'blah'        Text
+'\n  *'       Comment.Multiline
+'*'           Operator
+'world'       Text
+'\n  '        Text
+'*/'          Comment.Multiline
+'\n'          Text
+
+'public'      Keyword.Reserved
+' '           Text
+'<'           Punctuation
+'sentence'    Name.Constant
+'>'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'('           Operator
+'/1/'         Literal.Number.Float
+'<'           Punctuation
+'en'          Name.Constant
+'>'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'/ 0.8f /'    Literal.Number.Float
+'<'           Punctuation
+'fr'          Name.Constant
+'>'           Punctuation
+' '           Text
+'|'           Operator
+'/0/'         Literal.Number.Float
+'<'           Punctuation
+'VOID'        Name.Builtin
+'>'           Punctuation
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'{'           Literal.String.Other
+'}'           Literal.String.Other
+'{'           Literal.String.Other
+'}'           Literal.String.Other
+')'           Operator
+'*'           Operator
+'<'           Punctuation
+'NULL'        Name.Builtin
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'org'         Name.Namespace
+'.'           Punctuation
+'pygments'    Name.Namespace
+'.'           Punctuation
+'example'     Name.Namespace
+'.'           Punctuation
+'fr'          Name.Constant
+'>'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'bonjour'     Text
+' '           Text
+'{'           Literal.String.Other
+'hello'       Literal.String.Other
+'}'           Literal.String.Other
+' '           Text
+'['           Operator
+','           Text
+']'           Operator
+' '           Text
+'"'           Literal.String.Double
+'le monde'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'{'           Literal.String.Other
+'world'       Literal.String.Other
+'}'           Literal.String.Other
+';'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'en'          Name.Constant
+'>'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'('           Operator
+'/56/'        Literal.Number.Float
+'hello'       Text
+'|'           Operator
+'/3.14e3/'    Literal.Number.Float
+'"'           Literal.String.Double
+'\\"'         Literal.String.Escape
+'hello'       Literal.String.Double
+'\\"'         Literal.String.Escape
+'"'           Literal.String.Double
+')'           Operator
+' '           Text
+'{'           Literal.String.Other
+'hello'       Literal.String.Other
+'}'           Literal.String.Other
+' '           Text
+'{'           Literal.String.Other
+'{ {'         Literal.String.Other
+'\\\\'        Literal.String.Escape
+'//'          Literal.String.Other
+'\\}'         Literal.String.Escape
+' '           Literal.String.Other
+'}'           Literal.String.Other
+' '           Text
+'world'       Text
+' '           Text
+'{'           Literal.String.Other
+'world'       Literal.String.Other
+'}'           Literal.String.Other
+' '           Text
+'!'           Text
+'+'           Operator
+' '           Text
+';'           Punctuation
+'\n'          Text

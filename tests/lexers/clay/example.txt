@@ -1,0 +1,407 @@
+---input---
+
+/// @section  StringLiteralRef 
+
+record StringLiteralRef (
+    sizep : Pointer[SizeT],
+);
+
+
+/// @section  predicates 
+
+overload ContiguousSequence?(#StringLiteralRef) : Bool = true;
+[s when StringLiteral?(s)]
+overload ContiguousSequence?(#Static[s]) : Bool = true;
+
+
+
+/// @section  size, begin, end, index 
+
+forceinline overload size(a:StringLiteralRef) = a.sizep^;
+
+forceinline overload begin(a:StringLiteralRef) : Pointer[Char] = Pointer[Char](a.sizep + 1);
+forceinline overload end(a:StringLiteralRef) = begin(a) + size(a);
+
+[I when Integer?(I)]
+forceinline overload index(a:StringLiteralRef, i:I) : ByRef[Char] {
+    assert["boundsChecks"](i >= 0 and i < size(a), "StringLiteralRef index out of bounds");
+    return ref (begin(a) + i)^;
+}
+
+foo() = """
+long\tlong
+story
+"""
+
+---tokens---
+'\x0c'        Text
+'\n'          Text
+
+'/// @section  StringLiteralRef ' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'record'      Keyword
+' '           Text
+'StringLiteralRef' Name
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'sizep'       Name
+' '           Text
+':'           Operator
+' '           Text
+'Pointer'     Name
+'['           Punctuation
+'SizeT'       Name
+']'           Punctuation
+','           Punctuation
+'\n'          Text
+
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\x0c'        Text
+'\n'          Text
+
+'/// @section  predicates ' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'overload'    Keyword
+' '           Text
+'ContiguousSequence?' Name
+'('           Punctuation
+'#'           Punctuation
+'StringLiteralRef' Name
+')'           Punctuation
+' '           Text
+':'           Operator
+' '           Text
+'Bool'        Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword
+';'           Punctuation
+'\n'          Text
+
+'['           Punctuation
+'s'           Name
+' '           Text
+'when'        Keyword
+' '           Text
+'StringLiteral?' Name
+'('           Punctuation
+'s'           Name
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'overload'    Keyword
+' '           Text
+'ContiguousSequence?' Name
+'('           Punctuation
+'#'           Punctuation
+'Static'      Name
+'['           Punctuation
+'s'           Name
+']'           Punctuation
+')'           Punctuation
+' '           Text
+':'           Operator
+' '           Text
+'Bool'        Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'\x0c'        Text
+'\n'          Text
+
+'/// @section  size, begin, end, index ' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'forceinline' Keyword
+' '           Text
+'overload'    Keyword
+' '           Text
+'size'        Name
+'('           Punctuation
+'a'           Name
+':'           Operator
+'StringLiteralRef' Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'a'           Name
+'.'           Punctuation
+'sizep'       Name
+'^'           Operator
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'forceinline' Keyword
+' '           Text
+'overload'    Keyword
+' '           Text
+'begin'       Name
+'('           Punctuation
+'a'           Name
+':'           Operator
+'StringLiteralRef' Name
+')'           Punctuation
+' '           Text
+':'           Operator
+' '           Text
+'Pointer'     Name
+'['           Punctuation
+'Char'        Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'Pointer'     Name
+'['           Punctuation
+'Char'        Name
+']'           Punctuation
+'('           Punctuation
+'a'           Name
+'.'           Punctuation
+'sizep'       Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'forceinline' Keyword
+' '           Text
+'overload'    Keyword
+' '           Text
+'end'         Name
+'('           Punctuation
+'a'           Name
+':'           Operator
+'StringLiteralRef' Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'begin'       Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'size'        Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'['           Punctuation
+'I'           Name
+' '           Text
+'when'        Keyword
+' '           Text
+'Integer?'    Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'forceinline' Keyword
+' '           Text
+'overload'    Keyword
+' '           Text
+'index'       Name
+'('           Punctuation
+'a'           Name
+':'           Operator
+'StringLiteralRef' Name
+','           Punctuation
+' '           Text
+'i'           Name
+':'           Operator
+'I'           Name
+')'           Punctuation
+' '           Text
+':'           Operator
+' '           Text
+'ByRef'       Name
+'['           Punctuation
+'Char'        Name
+']'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'assert'      Name
+'['           Punctuation
+'"'           Literal.String
+'b'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+'s'           Literal.String
+'C'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'c'           Literal.String
+'k'           Literal.String
+'s'           Literal.String
+'"'           Literal.String
+']'           Punctuation
+'('           Punctuation
+'i'           Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'and'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'size'        Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'S'           Literal.String
+'t'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'L'           Literal.String
+'i'           Literal.String
+'t'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'R'           Literal.String
+'e'           Literal.String
+'f'           Literal.String
+' '           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+'e'           Literal.String
+'x'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'f'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+'s'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'return'      Keyword
+' '           Text
+'ref'         Keyword
+' '           Text
+'('           Punctuation
+'begin'       Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'i'           Name
+')'           Punctuation
+'^'           Operator
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'foo'         Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'"""'         Literal.String
+'\n'          Literal.String
+
+'l'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'\\t'         Literal.String.Escape
+'l'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'\n'          Literal.String
+
+'s'           Literal.String
+'t'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'y'           Literal.String
+'\n'          Literal.String
+
+'"""'         Literal.String
+'\n'          Text

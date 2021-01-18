@@ -1,0 +1,688 @@
+---input---
+; test source file for assembling to NetBSD/FreeBSD a.out shared library
+; build with:
+;    nasm -f aoutb aoutso.asm
+;    ld -Bshareable -o aoutso.so aoutso.o
+; test with:
+;    cc -o aoutso aouttest.c aoutso.so
+;    ./aoutso
+
+; This file should test the following:
+; [1] Define and export a global text-section symbol
+; [2] Define and export a global data-section symbol
+; [3] Define and export a global BSS-section symbol
+; [4] Define a non-global text-section symbol
+; [5] Define a non-global data-section symbol
+; [6] Define a non-global BSS-section symbol
+; [7] Define a COMMON symbol
+; [8] Define a NASM local label
+; [9] Reference a NASM local label
+; [10] Import an external symbol
+; [11] Make a PC-relative call to an external symbol
+; [12] Reference a text-section symbol in the text section
+; [13] Reference a data-section symbol in the text section
+; [14] Reference a BSS-section symbol in the text section
+; [15] Reference a text-section symbol in the data section
+; [16] Reference a data-section symbol in the data section
+; [17] Reference a BSS-section symbol in the data section
+
+	  BITS 32
+	  EXTERN __GLOBAL_OFFSET_TABLE_
+	  GLOBAL _lrotate:function ; [1]
+	  GLOBAL _greet:function ; [1]
+	  GLOBAL _asmstr:data _asmstr.end-_asmstr ; [2]
+	  GLOBAL _textptr:data 4 ; [2]
+	  GLOBAL _selfptr:data 4 ; [2]
+	  GLOBAL _integer:data 4 ; [3]
+	  EXTERN _printf	; [10]
+	  COMMON _commvar 4	; [7]
+
+	  SECTION .text
+
+; prototype: long lrotate(long x, int num);
+_lrotate:			; [1]
+	  push ebp
+	  mov ebp,esp
+	  mov eax,[ebp+8]
+	  mov ecx,[ebp+12]
+.label	  rol eax,1		; [4] [8]
+	  loop .label		; [9] [12]
+	  mov esp,ebp
+	  pop ebp
+	  ret
+
+; prototype: void greet(void);
+_greet	  push ebx		; we'll use EBX for GOT, so save it
+	  call .getgot
+.getgot:  pop ebx
+	  add ebx,__GLOBAL_OFFSET_TABLE_ + $$ - .getgot wrt ..gotpc
+	  mov eax,[ebx+_integer wrt ..got] ; [14]
+	  mov eax,[eax]
+	  inc eax
+	  mov [ebx+localint wrt ..gotoff],eax ; [14]
+	  mov eax,[ebx+_commvar wrt ..got]
+	  push dword [eax]
+	  mov eax,[ebx+localptr wrt ..gotoff] ; [13]
+	  push dword [eax]
+	  mov eax,[ebx+_integer wrt ..got] ; [1] [14]
+	  push dword [eax]
+	  lea eax,[ebx+_printfstr wrt ..gotoff]
+	  push eax		; [13]
+	  call _printf wrt ..plt ; [11]
+	  add esp,16
+	  pop ebx
+	  ret
+
+	  SECTION .data
+
+; a string
+_asmstr	  db 'hello, world', 0	; [2]
+.end
+
+; a string for Printf
+_printfstr db "integer==%d, localint==%d, commvar=%d"
+	  db 10, 0
+
+; some pointers
+localptr  dd localint		; [5] [17]
+_textptr  dd _greet wrt ..sym	; [15]
+_selfptr  dd _selfptr wrt ..sym	; [16]
+
+	  SECTION .bss
+
+; an integer
+_integer  resd 1		; [3]
+
+; a local integer
+localint  resd 1		; [6]
+
+---tokens---
+'; test source file for assembling to NetBSD/FreeBSD a.out shared library' Comment.Single
+'\n'          Text
+
+'; build with:' Comment.Single
+'\n'          Text
+
+';    nasm -f aoutb aoutso.asm' Comment.Single
+'\n'          Text
+
+';    ld -Bshareable -o aoutso.so aoutso.o' Comment.Single
+'\n'          Text
+
+'; test with:' Comment.Single
+'\n'          Text
+
+';    cc -o aoutso aouttest.c aoutso.so' Comment.Single
+'\n'          Text
+
+';    ./aoutso' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'; This file should test the following:' Comment.Single
+'\n'          Text
+
+'; [1] Define and export a global text-section symbol' Comment.Single
+'\n'          Text
+
+'; [2] Define and export a global data-section symbol' Comment.Single
+'\n'          Text
+
+'; [3] Define and export a global BSS-section symbol' Comment.Single
+'\n'          Text
+
+'; [4] Define a non-global text-section symbol' Comment.Single
+'\n'          Text
+
+'; [5] Define a non-global data-section symbol' Comment.Single
+'\n'          Text
+
+'; [6] Define a non-global BSS-section symbol' Comment.Single
+'\n'          Text
+
+'; [7] Define a COMMON symbol' Comment.Single
+'\n'          Text
+
+'; [8] Define a NASM local label' Comment.Single
+'\n'          Text
+
+'; [9] Reference a NASM local label' Comment.Single
+'\n'          Text
+
+'; [10] Import an external symbol' Comment.Single
+'\n'          Text
+
+'; [11] Make a PC-relative call to an external symbol' Comment.Single
+'\n'          Text
+
+'; [12] Reference a text-section symbol in the text section' Comment.Single
+'\n'          Text
+
+'; [13] Reference a data-section symbol in the text section' Comment.Single
+'\n'          Text
+
+'; [14] Reference a BSS-section symbol in the text section' Comment.Single
+'\n'          Text
+
+'; [15] Reference a text-section symbol in the data section' Comment.Single
+'\n'          Text
+
+'; [16] Reference a data-section symbol in the data section' Comment.Single
+'\n'          Text
+
+'; [17] Reference a BSS-section symbol in the data section' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'\t  '        Text
+'BITS '       Keyword
+'32'          Literal.Number.Integer
+'\n'          Text
+
+'\t  '        Text
+'EXTERN '     Keyword
+'__GLOBAL_OFFSET_TABLE_' Name.Variable
+'\n'          Text
+
+'\t  '        Text
+'GLOBAL '     Keyword
+'_lrotate'    Name.Variable
+':'           Punctuation
+'function'    Name.Variable
+' '           Text
+'; [1]'       Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'GLOBAL '     Keyword
+'_greet'      Name.Variable
+':'           Punctuation
+'function'    Name.Variable
+' '           Text
+'; [1]'       Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'GLOBAL '     Keyword
+'_asmstr'     Name.Variable
+':'           Punctuation
+'data'        Name.Variable
+' '           Text
+'_asmstr.end' Name.Variable
+'-'           Operator
+'_asmstr'     Name.Variable
+' '           Text
+'; [2]'       Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'GLOBAL '     Keyword
+'_textptr'    Name.Variable
+':'           Punctuation
+'data'        Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'; [2]'       Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'GLOBAL '     Keyword
+'_selfptr'    Name.Variable
+':'           Punctuation
+'data'        Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'; [2]'       Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'GLOBAL '     Keyword
+'_integer'    Name.Variable
+':'           Punctuation
+'data'        Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'; [3]'       Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'EXTERN '     Keyword
+'_printf'     Name.Variable
+'\t'          Text
+'; [10]'      Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'COMMON '     Keyword
+'_commvar'    Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+'\t'          Text
+'; [7]'       Comment.Single
+'\n\n'        Text
+
+'\t  '        Text
+'SECTION '    Keyword
+'.text'       Name.Variable
+'\n\n'        Text
+
+'; prototype: long lrotate(long x, int num);' Comment.Single
+'\n'          Text
+
+'_lrotate:'   Name.Label
+'\t\t\t'      Text
+'; [1]'       Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'push'        Name.Function
+' '           Text
+'ebp'         Name.Builtin
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'ebp'         Name.Builtin
+','           Punctuation
+'esp'         Name.Builtin
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'eax'         Name.Builtin
+',['          Punctuation
+'ebp'         Name.Builtin
+'+'           Operator
+'8'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'ecx'         Name.Builtin
+',['          Punctuation
+'ebp'         Name.Builtin
+'+'           Operator
+'12'          Literal.Number.Integer
+']'           Punctuation
+'\n'          Text
+
+'.label'      Name.Function
+'\t  '        Text
+'rol'         Name.Variable
+' '           Text
+'eax'         Name.Builtin
+','           Punctuation
+'1'           Literal.Number.Integer
+'\t\t'        Text
+'; [4] [8]'   Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'loop'        Name.Function
+' '           Text
+'.label'      Name.Variable
+'\t\t'        Text
+'; [9] [12]'  Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'esp'         Name.Builtin
+','           Punctuation
+'ebp'         Name.Builtin
+'\n'          Text
+
+'\t  '        Text
+'pop'         Name.Function
+' '           Text
+'ebp'         Name.Builtin
+'\n'          Text
+
+'\t  '        Text
+'ret'         Name.Function
+'\n\n'        Text
+
+'; prototype: void greet(void);' Comment.Single
+'\n'          Text
+
+'_greet'      Name.Function
+'\t  '        Text
+'push'        Name.Variable
+' '           Text
+'ebx'         Name.Builtin
+'\t\t'        Text
+"; we'll use EBX for GOT, so save it" Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'call'        Name.Function
+' '           Text
+'.getgot'     Name.Variable
+'\n'          Text
+
+'.getgot:'    Name.Label
+'  '          Text
+'pop'         Name.Function
+' '           Text
+'ebx'         Name.Builtin
+'\n'          Text
+
+'\t  '        Text
+'add'         Name.Function
+' '           Text
+'ebx'         Name.Builtin
+','           Punctuation
+'__GLOBAL_OFFSET_TABLE_' Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'$$'          Keyword.Constant
+' '           Text
+'-'           Operator
+' '           Text
+'.getgot'     Name.Variable
+' '           Text
+'wrt'         Operator.Word
+' '           Text
+'..gotpc'     Name.Variable
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'eax'         Name.Builtin
+',['          Punctuation
+'ebx'         Name.Builtin
+'+'           Operator
+'_integer'    Name.Variable
+' '           Text
+'wrt'         Operator.Word
+' '           Text
+'..got'       Name.Variable
+']'           Punctuation
+' '           Text
+'; [14]'      Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'eax'         Name.Builtin
+',['          Punctuation
+'eax'         Name.Builtin
+']'           Punctuation
+'\n'          Text
+
+'\t  '        Text
+'inc'         Name.Function
+' '           Text
+'eax'         Name.Builtin
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'['           Punctuation
+'ebx'         Name.Builtin
+'+'           Operator
+'localint'    Name.Variable
+' '           Text
+'wrt'         Operator.Word
+' '           Text
+'..gotoff'    Name.Variable
+'],'          Punctuation
+'eax'         Name.Builtin
+' '           Text
+'; [14]'      Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'eax'         Name.Builtin
+',['          Punctuation
+'ebx'         Name.Builtin
+'+'           Operator
+'_commvar'    Name.Variable
+' '           Text
+'wrt'         Operator.Word
+' '           Text
+'..got'       Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'\t  '        Text
+'push'        Name.Function
+' '           Text
+'dword'       Keyword.Type
+' '           Text
+'['           Punctuation
+'eax'         Name.Builtin
+']'           Punctuation
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'eax'         Name.Builtin
+',['          Punctuation
+'ebx'         Name.Builtin
+'+'           Operator
+'localptr'    Name.Variable
+' '           Text
+'wrt'         Operator.Word
+' '           Text
+'..gotoff'    Name.Variable
+']'           Punctuation
+' '           Text
+'; [13]'      Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'push'        Name.Function
+' '           Text
+'dword'       Keyword.Type
+' '           Text
+'['           Punctuation
+'eax'         Name.Builtin
+']'           Punctuation
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'eax'         Name.Builtin
+',['          Punctuation
+'ebx'         Name.Builtin
+'+'           Operator
+'_integer'    Name.Variable
+' '           Text
+'wrt'         Operator.Word
+' '           Text
+'..got'       Name.Variable
+']'           Punctuation
+' '           Text
+'; [1] [14]'  Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'push'        Name.Function
+' '           Text
+'dword'       Keyword.Type
+' '           Text
+'['           Punctuation
+'eax'         Name.Builtin
+']'           Punctuation
+'\n'          Text
+
+'\t  '        Text
+'lea'         Name.Function
+' '           Text
+'eax'         Name.Builtin
+',['          Punctuation
+'ebx'         Name.Builtin
+'+'           Operator
+'_printfstr'  Name.Variable
+' '           Text
+'wrt'         Operator.Word
+' '           Text
+'..gotoff'    Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'\t  '        Text
+'push'        Name.Function
+' '           Text
+'eax'         Name.Builtin
+'\t\t'        Text
+'; [13]'      Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'call'        Name.Function
+' '           Text
+'_printf'     Name.Variable
+' '           Text
+'wrt'         Operator.Word
+' '           Text
+'..plt'       Name.Variable
+' '           Text
+'; [11]'      Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'add'         Name.Function
+' '           Text
+'esp'         Name.Builtin
+','           Punctuation
+'16'          Literal.Number.Integer
+'\n'          Text
+
+'\t  '        Text
+'pop'         Name.Function
+' '           Text
+'ebx'         Name.Builtin
+'\n'          Text
+
+'\t  '        Text
+'ret'         Name.Function
+'\n\n'        Text
+
+'\t  '        Text
+'SECTION '    Keyword
+'.data'       Name.Variable
+'\n\n'        Text
+
+'; a string'  Comment.Single
+'\n'          Text
+
+'_asmstr'     Name.Function
+'\t  '        Text
+'db'          Name.Variable
+' '           Text
+"'hello, world'" Literal.String
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+'\t'          Text
+'; [2]'       Comment.Single
+'\n'          Text
+
+'.end'        Name.Function
+'\n\n'        Text
+
+'; a string for Printf' Comment.Single
+'\n'          Text
+
+'_printfstr'  Name.Function
+' '           Text
+'db'          Name.Variable
+' '           Text
+'"integer==%d, localint==%d, commvar=%d"' Literal.String
+'\n'          Text
+
+'\t  '        Text
+'db'          Keyword.Declaration
+' '           Text
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+'\n\n'        Text
+
+'; some pointers' Comment.Single
+'\n'          Text
+
+'localptr'    Name.Function
+'  '          Text
+'dd'          Name.Variable
+' '           Text
+'localint'    Name.Variable
+'\t\t'        Text
+'; [5] [17]'  Comment.Single
+'\n'          Text
+
+'_textptr'    Name.Function
+'  '          Text
+'dd'          Name.Variable
+' '           Text
+'_greet'      Name.Variable
+' '           Text
+'wrt'         Operator.Word
+' '           Text
+'..sym'       Name.Variable
+'\t'          Text
+'; [15]'      Comment.Single
+'\n'          Text
+
+'_selfptr'    Name.Function
+'  '          Text
+'dd'          Name.Variable
+' '           Text
+'_selfptr'    Name.Variable
+' '           Text
+'wrt'         Operator.Word
+' '           Text
+'..sym'       Name.Variable
+'\t'          Text
+'; [16]'      Comment.Single
+'\n\n'        Text
+
+'\t  '        Text
+'SECTION '    Keyword
+'.bss'        Name.Variable
+'\n\n'        Text
+
+'; an integer' Comment.Single
+'\n'          Text
+
+'_integer'    Name.Function
+'  '          Text
+'resd'        Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+'\t\t'        Text
+'; [3]'       Comment.Single
+'\n\n'        Text
+
+'; a local integer' Comment.Single
+'\n'          Text
+
+'localint'    Name.Function
+'  '          Text
+'resd'        Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+'\t\t'        Text
+'; [6]'       Comment.Single
+'\n'          Text

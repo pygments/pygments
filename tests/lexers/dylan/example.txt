@@ -1,0 +1,767 @@
+---input---
+module: nanomsg
+synopsis: generated bindings for the nanomsg library
+author: Bruce Mitchener, Jr.
+copyright: See LICENSE file in this distribution.
+
+define simple-C-mapped-subtype <C-buffer-offset> (<C-char*>)
+  export-map <machine-word>, export-function: identity;
+end;
+
+define interface
+  #include {
+      "sp/sp.h",
+      "sp/fanin.h",
+      "sp/inproc.h",
+      "sp/pair.h",
+      "sp/reqrep.h",
+      "sp/survey.h",
+      "sp/fanout.h",
+      "sp/ipc.h",
+      "sp/pubsub.h",
+      "sp/tcp.h"
+    },
+
+    exclude: {
+      "SP_HAUSNUMERO",
+      "SP_PAIR_ID",
+      "SP_PUBSUB_ID",
+      "SP_REQREP_ID",
+      "SP_FANIN_ID",
+      "SP_FANOUT_ID",
+      "SP_SURVEY_ID"
+    },
+
+    equate: {"char *" => <c-string>},
+
+    rename: {
+      "sp_recv" => %sp-recv,
+      "sp_send" => %sp-send,
+      "sp_setsockopt" => %sp-setsockopt
+    };
+
+    function "sp_version",
+      output-argument: 1,
+      output-argument: 2,
+      output-argument: 3;
+
+    function "sp_send",
+      map-argument: { 2 => <C-buffer-offset> };
+
+    function "sp_recv",
+      map-argument: { 2 => <C-buffer-offset> };
+
+end interface;
+
+// Function for adding the base address of the repeated slots of a <buffer>
+// to an offset and returning the result as a <machine-word>.  This is
+// necessary for passing <buffer> contents across the FFI.
+
+define function buffer-offset
+    (the-buffer :: <buffer>, data-offset :: <integer>)
+ => (result-offset :: <machine-word>)
+  u%+(data-offset,
+      primitive-wrap-machine-word
+        (primitive-repeated-slot-as-raw
+           (the-buffer, primitive-repeated-slot-offset(the-buffer))))
+end function;
+
+define inline function sp-send (socket :: <integer>, data :: <buffer>, flags :: <integer>) => (res :: <integer>)
+  %sp-send(socket, buffer-offset(data, 0), data.size, flags)
+end;
+
+define inline function sp-recv (socket :: <integer>, data :: <buffer>, flags :: <integer>) => (res :: <integer>)
+  %sp-recv(socket, buffer-offset(data, 0), data.size, flags);
+end;
+
+define inline method sp-setsockopt (socket :: <integer>, level :: <integer>, option :: <integer>, value :: <integer>)
+  with-stack-structure (int :: <C-int*>)
+    pointer-value(int) := value;
+    let setsockopt-result =
+      %sp-setsockopt(socket, level, option, int, size-of(<C-int*>));
+    if (setsockopt-result < 0)
+      // Check error!
+    end;
+    setsockopt-result
+  end;
+end;
+
+define inline method sp-setsockopt (socket :: <integer>, level :: <integer>, option :: <integer>, data :: <byte-string>)
+  let setsockopt-result =
+    %sp-setsockopt(socket, level, option, as(<c-string>, data), data.size);
+  if (setsockopt-result < 0)
+    // Check error!
+  end;
+  setsockopt-result
+end;
+
+---tokens---
+'module'      Name.Attribute
+':'           Operator
+' '           Text
+'nanomsg'     Literal.String
+'\n'          Text
+
+'synopsis'    Name.Attribute
+':'           Operator
+' '           Text
+'generated bindings for the nanomsg library' Literal.String
+'\n'          Text
+
+'author'      Name.Attribute
+':'           Operator
+' '           Text
+'Bruce Mitchener, Jr.' Literal.String
+'\n'          Text
+
+'copyright'   Name.Attribute
+':'           Operator
+' '           Text
+'See LICENSE file in this distribution.' Literal.String
+'\n\n'        Text
+
+'define'      Keyword
+' '           Text
+'simple-C-mapped-subtype' Name
+' '           Text
+'<C-buffer-offset>' Name.Class
+' '           Text
+'('           Punctuation
+'<C-char*>'   Name.Class
+')'           Punctuation
+'\n  '        Text
+'export-map'  Name
+' '           Text
+'<machine-word>' Name.Class
+','           Punctuation
+' '           Text
+'export-function:' Keyword
+' '           Text
+'identity'    Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'define'      Keyword
+' '           Text
+'interface'   Name.Builtin
+'\n  '        Text
+'#include'    Keyword
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'sp/sp.h'     Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'sp/fanin.h'  Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'sp/inproc.h' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'sp/pair.h'   Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'sp/reqrep.h' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'sp/survey.h' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'sp/fanout.h' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'sp/ipc.h'    Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'sp/pubsub.h' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'sp/tcp.h'    Literal.String
+'"'           Literal.String
+'\n    '      Text
+'}'           Punctuation
+','           Punctuation
+'\n\n    '    Text
+'exclude:'    Keyword
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'SP_HAUSNUMERO' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'SP_PAIR_ID'  Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'SP_PUBSUB_ID' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'SP_REQREP_ID' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'SP_FANIN_ID' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'SP_FANOUT_ID' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'SP_SURVEY_ID' Literal.String
+'"'           Literal.String
+'\n    '      Text
+'}'           Punctuation
+','           Punctuation
+'\n\n    '    Text
+'equate:'     Keyword
+' '           Text
+'{'           Punctuation
+'"'           Literal.String
+'char *'      Literal.String
+'"'           Literal.String
+' '           Text
+'=>'          Punctuation
+' '           Text
+'<c-string>'  Name.Class
+'}'           Punctuation
+','           Punctuation
+'\n\n    '    Text
+'rename:'     Keyword
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'sp_recv'     Literal.String
+'"'           Literal.String
+' '           Text
+'=>'          Punctuation
+' '           Text
+'%sp-recv'    Name
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'sp_send'     Literal.String
+'"'           Literal.String
+' '           Text
+'=>'          Punctuation
+' '           Text
+'%sp-send'    Name
+','           Punctuation
+'\n      '    Text
+'"'           Literal.String
+'sp_setsockopt' Literal.String
+'"'           Literal.String
+' '           Text
+'=>'          Punctuation
+' '           Text
+'%sp-setsockopt' Name
+'\n    '      Text
+'}'           Punctuation
+';'           Punctuation
+'\n\n    '    Text
+'function'    Name.Builtin
+' '           Text
+'"'           Literal.String
+'sp_version'  Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'output-argument:' Keyword
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+'\n      '    Text
+'output-argument:' Keyword
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+'\n      '    Text
+'output-argument:' Keyword
+' '           Text
+'3'           Literal.Number.Integer
+';'           Punctuation
+'\n\n    '    Text
+'function'    Name.Builtin
+' '           Text
+'"'           Literal.String
+'sp_send'     Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'map-argument:' Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'=>'          Punctuation
+' '           Text
+'<C-buffer-offset>' Name.Class
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n\n    '    Text
+'function'    Name.Builtin
+' '           Text
+'"'           Literal.String
+'sp_recv'     Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n      '    Text
+'map-argument:' Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'=>'          Punctuation
+' '           Text
+'<C-buffer-offset>' Name.Class
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'end'         Keyword
+' '           Text
+'interface'   Name.Builtin
+';'           Punctuation
+'\n\n'        Text
+
+'// Function for adding the base address of the repeated slots of a <buffer>\n' Comment.Single
+
+'// to an offset and returning the result as a <machine-word>.  This is\n' Comment.Single
+
+'// necessary for passing <buffer> contents across the FFI.\n' Comment.Single
+
+'\n'          Text
+
+'define'      Keyword
+' '           Text
+'function'    Name.Builtin
+' '           Text
+'buffer-offset' Name
+'\n    '      Text
+'('           Punctuation
+'the-buffer'  Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<buffer>'    Name.Class
+','           Punctuation
+' '           Text
+'data-offset' Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+')'           Punctuation
+'\n '         Text
+'=>'          Punctuation
+' '           Text
+'('           Punctuation
+'result-offset' Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<machine-word>' Name.Class
+')'           Punctuation
+'\n  '        Text
+'u%+'         Name
+'('           Punctuation
+'data-offset' Name
+','           Punctuation
+'\n      '    Text
+'primitive-wrap-machine-word' Name
+'\n        '  Text
+'('           Punctuation
+'primitive-repeated-slot-as-raw' Name
+'\n           ' Text
+'('           Punctuation
+'the-buffer'  Name
+','           Punctuation
+' '           Text
+'primitive-repeated-slot-offset' Name
+'('           Punctuation
+'the-buffer'  Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Name.Builtin
+';'           Punctuation
+'\n\n'        Text
+
+'define'      Keyword
+' '           Text
+'inline'      Name.Builtin
+' '           Text
+'function'    Name.Builtin
+' '           Text
+'sp-send'     Name
+' '           Text
+'('           Punctuation
+'socket'      Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+','           Punctuation
+' '           Text
+'data'        Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<buffer>'    Name.Class
+','           Punctuation
+' '           Text
+'flags'       Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+')'           Punctuation
+' '           Text
+'=>'          Punctuation
+' '           Text
+'('           Punctuation
+'res'         Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+')'           Punctuation
+'\n  '        Text
+'%sp-send'    Name
+'('           Punctuation
+'socket'      Name
+','           Punctuation
+' '           Text
+'buffer-offset' Name
+'('           Punctuation
+'data'        Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'data'        Name
+'.'           Punctuation
+'size'        Name.Builtin
+','           Punctuation
+' '           Text
+'flags'       Name
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'define'      Keyword
+' '           Text
+'inline'      Name.Builtin
+' '           Text
+'function'    Name.Builtin
+' '           Text
+'sp-recv'     Name
+' '           Text
+'('           Punctuation
+'socket'      Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+','           Punctuation
+' '           Text
+'data'        Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<buffer>'    Name.Class
+','           Punctuation
+' '           Text
+'flags'       Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+')'           Punctuation
+' '           Text
+'=>'          Punctuation
+' '           Text
+'('           Punctuation
+'res'         Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+')'           Punctuation
+'\n  '        Text
+'%sp-recv'    Name
+'('           Punctuation
+'socket'      Name
+','           Punctuation
+' '           Text
+'buffer-offset' Name
+'('           Punctuation
+'data'        Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'data'        Name
+'.'           Punctuation
+'size'        Name.Builtin
+','           Punctuation
+' '           Text
+'flags'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'define'      Keyword
+' '           Text
+'inline'      Name.Builtin
+' '           Text
+'method'      Name.Builtin
+' '           Text
+'sp-setsockopt' Name
+' '           Text
+'('           Punctuation
+'socket'      Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+','           Punctuation
+' '           Text
+'level'       Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+','           Punctuation
+' '           Text
+'option'      Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+','           Punctuation
+' '           Text
+'value'       Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+')'           Punctuation
+'\n  '        Text
+'with-stack-structure' Name
+' '           Text
+'('           Punctuation
+'int'         Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<C-int*>'    Name.Class
+')'           Punctuation
+'\n    '      Text
+'pointer-value' Name
+'('           Punctuation
+'int'         Name
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'value'       Name
+';'           Punctuation
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'setsockopt-result' Name
+' '           Text
+'='           Operator
+'\n      '    Text
+'%sp-setsockopt' Name
+'('           Punctuation
+'socket'      Name
+','           Punctuation
+' '           Text
+'level'       Name
+','           Punctuation
+' '           Text
+'option'      Name
+','           Punctuation
+' '           Text
+'int'         Name
+','           Punctuation
+' '           Text
+'size-of'     Name
+'('           Punctuation
+'<C-int*>'    Name.Class
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'setsockopt-result' Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n      '    Text
+'// Check error!\n' Comment.Single
+
+'    '        Text
+'end'         Keyword
+';'           Punctuation
+'\n    '      Text
+'setsockopt-result' Name
+'\n  '        Text
+'end'         Keyword
+';'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'define'      Keyword
+' '           Text
+'inline'      Name.Builtin
+' '           Text
+'method'      Name.Builtin
+' '           Text
+'sp-setsockopt' Name
+' '           Text
+'('           Punctuation
+'socket'      Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+','           Punctuation
+' '           Text
+'level'       Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+','           Punctuation
+' '           Text
+'option'      Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<integer>'   Name.Class
+','           Punctuation
+' '           Text
+'data'        Name
+' '           Text
+'::'          Punctuation
+' '           Text
+'<byte-string>' Name.Class
+')'           Punctuation
+'\n  '        Text
+'let'         Keyword
+' '           Text
+'setsockopt-result' Name
+' '           Text
+'='           Operator
+'\n    '      Text
+'%sp-setsockopt' Name
+'('           Punctuation
+'socket'      Name
+','           Punctuation
+' '           Text
+'level'       Name
+','           Punctuation
+' '           Text
+'option'      Name
+','           Punctuation
+' '           Text
+'as'          Name.Builtin
+'('           Punctuation
+'<c-string>'  Name.Class
+','           Punctuation
+' '           Text
+'data'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'data'        Name
+'.'           Punctuation
+'size'        Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'setsockopt-result' Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n    '      Text
+'// Check error!\n' Comment.Single
+
+'  '          Text
+'end'         Keyword
+';'           Punctuation
+'\n  '        Text
+'setsockopt-result' Name
+'\n'          Text
+
+'end'         Keyword
+';'           Punctuation
+'\n'          Text

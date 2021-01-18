@@ -1,0 +1,42 @@
+---input---
+2 3 + CR .
+: F ( blah ) DUP DROP 1 + ;
+1 F CR .
+
+---tokens---
+'2'           Literal.Number.Integer
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'+'           Keyword
+' '           Text
+'CR'          Keyword
+' '           Text
+'.'           Keyword
+'\n'          Text
+
+':'           Keyword.Namespace
+' '           Text
+'F'           Name.Class
+' '           Text
+'( blah )'    Comment.Single
+' '           Text
+'DUP'         Keyword
+' '           Text
+'DROP'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'+'           Keyword
+' '           Text
+';'           Keyword
+'\n'          Text
+
+'1'           Literal.Number.Integer
+' '           Text
+'F'           Name.Function
+' '           Text
+'CR'          Keyword
+' '           Text
+'.'           Keyword
+'\n'          Text

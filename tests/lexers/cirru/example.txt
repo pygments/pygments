@@ -1,0 +1,2151 @@
+---input---
+
+-- demo
+
+define a (read cd) $ if (> a cd)
+  print demo
+  print "not demo"
+
+say $ print a $ save $ b $ x $ c 8
+
+print fun
+
+-- test on folding
+
+a $
+
+b $ c
+
+d $ e $ f
+
+g $ h $ i j $ k $
+
+-- test on comma
+
+print (, a)
+  a
+    , b
+      , c (, d)
+
+-- test on HTML
+
+doctype
+
+html
+  head
+    title $ = Cirru
+    script (:defer) $ :src build/build.js
+    link (:rel stylesheet) $ :href css/page.css
+    link (:rel icon)
+      :href http://logo.cirru.org/cirru-32x32.png?v=3
+  body
+    textarea.demo.source $ :placeholder "Source Code"
+    textarea.demo.target $ :placeholder "Compiled Data"
+    @insert ../html/ga.html
+
+-- test on indentation
+
+a $ b $ c
+
+e f
+  (g)
+  h
+
+-- test on parentheses
+
+3 4 (1) 4
+
+((((1))))
+
+x
+
+-- test on quotes
+
+a b c d
+
+"a b c d"
+
+"a b \" c d"
+
+"a b" "c d"
+
+-- test on unfolding
+
+set
+  add 1 $
+  , x y
+  add 5 $
+  add 2
+
+-- test on HTML attributes
+
+div
+  div
+    :class a
+  div
+    :class a b c d
+
+  div
+    :class a (@ b) (@ c) d
+
+  div
+    :class a
+      @if (@ b)
+        div b
+        div c
+  div
+    :class a
+      @if (@ b) b c
+
+-- test on helpers
+
+@if (@call a b) (div) (span)
+
+@each members
+  div (@ name)
+
+@each a
+  div (@ b)
+    @each c
+      div (@ d)
+
+-- test on HTML structure
+
+@rich more
+  #demo-more-box
+    #demo-more
+      :data-lang-text demo-more
+    #demo-more-list
+      @each room
+        .demo-more-room
+          span.demo-name
+            @ topic
+          span.demo-join
+            :data-lang-text demo-join
+            :data-id (@ id)
+
+-- text on bool
+
+print #true
+print #false
+print #yes
+print #no
+print #t
+print #f
+
+-- test on Cirru js
+
+set a 1
+set a (= "This is a string")
+set b #t
+
+-- this is comment
+
+number 1.4
+string x
+regex ^\s$
+regex "^\\s-\"$"
+sentence this is a string
+
+array 1 2 3 (= nothing) #t (= #t)
+
+set c (array 1 (= nothing))
+
+set d $ object (a (= google))
+  b (= reader)
+  c 1
+  d $ array 1 2 (= string)
+
+1 c
+-1 c
+
+:b d
+.log console a 2
+.log console
+
+set demo $ object
+  call $ \ x (.log console x) (. this call)
+. demo (.call 1) (.call 4)
+
+=.x d 3
+
+set d null
+
+new Array 1 2 3
+
+set x (:length c)
+set str (= str)
+set c (.toUpperCase str)
+
+\ x (+ x 1)
+\ (x y) (+ x y)
+\ x (set aa 1) (+ aa x)
+
+set f (\ x (+ x 1))
+
++ a 1 2
++= a 1
+
+> 1 2 3
+
+if (> 2 1) (+ a 1)
+else 2
+
+if (> a 2)
+  .log console (= "large")
+elseif (> a 1)
+  .log console (= "still good")
+else
+  .log console (= "so so")
+
+set a $ if (> 2 1) #t #f
+
+switch a
+  1 (.log console 1)
+  2 (.log console 2)
+  else (.log console (= "something else"))
+
+set a $ array 2 +3 -4
+for (a x i) (.log console x i)
+
+set a 0
+while (< a 10) (+= a 1) (.log console a)
+
+-- WebAssembly variable names
+
+-- ":(c) 2015 Andreas Rossberg"
+
+module
+  export :even $even
+  export "odd" $odd
+
+  func $even (param $n i32) (result i32)
+    if (i32.eq (get_local $n) (i32.const 0))
+      i32.const 1
+      call $odd (i32.sub (get_local $n) (i32.const 1))
+
+  func $odd (param $n i32) (result i32)
+    store_global $scratch (get_local $n)
+    if (i32.eq (get_local $n) (i32.const 0)
+      i32.const 0
+      call $even (i32.sub (get_local $n) (i32.const 1))
+
+  global $scratch i32
+
+assert_eq (invoke :even (i32.const 13)) (i32.const 0)
+assert_eq (invoke :even (i32.const 20)) (i32.const 1)
+assert_eq (invoke :odd (i32.const 13)) (i32.const 1)
+assert_eq (invoke :odd (i32.const 20)) (i32.const 0)
+
+---tokens---
+'--'          Name.Function
+' '           Text.Whitespace
+'demo'        Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'define'      Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'read'        Name.Function
+' '           Text.Whitespace
+'cd'          Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'if'          Name.Function
+' '           Text.Whitespace
+'('           Operator
+'>'           Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'cd'          Name.Variable
+')'           Operator
+'\n'          Text
+
+'  '          Text.Whitespace
+'print'       Name.Function
+' '           Text.Whitespace
+'demo'        Name.Variable
+'\n'          Text
+
+'  '          Text.Whitespace
+'print'       Name.Function
+' '           Text.Whitespace
+'"'           Literal.String
+'n'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'d'           Literal.String
+'e'           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'say'         Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'print'       Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'save'        Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'b'           Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'x'           Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'c'           Name.Function
+' '           Text.Whitespace
+'8'           Literal.Number
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+' '           Text.Whitespace
+'fun'         Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'test'        Name.Variable
+' '           Text.Whitespace
+'on'          Name.Variable
+' '           Text.Whitespace
+'folding'     Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'a'           Name.Function
+' '           Text.Whitespace
+'$'           Operator
+''            Text
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'b'           Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'c'           Name.Function
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'d'           Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'e'           Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'f'           Name.Function
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'g'           Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'h'           Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'i'           Name.Function
+' '           Text.Whitespace
+'j'           Name.Variable
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'k'           Name.Function
+' '           Text.Whitespace
+'$'           Operator
+''            Text
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'test'        Name.Variable
+' '           Text.Whitespace
+'on'          Name.Variable
+' '           Text.Whitespace
+'comma'       Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+' '           Text.Whitespace
+'('           Operator
+','           Operator
+' '           Text.Whitespace
+'a'           Name.Variable
+')'           Operator
+'\n'          Text
+
+'  '          Text.Whitespace
+'a'           Name.Function
+'\n'          Text
+
+'    '        Text.Whitespace
+','           Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+'\n'          Text
+
+'      '      Text.Whitespace
+','           Operator
+' '           Text.Whitespace
+'c'           Name.Variable
+' '           Text.Whitespace
+'('           Operator
+','           Operator
+' '           Text.Whitespace
+'d'           Name.Variable
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'test'        Name.Variable
+' '           Text.Whitespace
+'on'          Name.Variable
+' '           Text.Whitespace
+'HTML'        Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'doctype'     Name.Function
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'html'        Name.Function
+'\n'          Text
+
+'  '          Text.Whitespace
+'head'        Name.Function
+'\n'          Text
+
+'    '        Text.Whitespace
+'title'       Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'='           Name.Function
+' '           Text.Whitespace
+'Cirru'       Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'script'      Name.Function
+' '           Text.Whitespace
+'('           Operator
+':defer'      Name.Function
+')'           Operator
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+':src'        Name.Function
+' '           Text.Whitespace
+'build/build.js' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'link'        Name.Function
+' '           Text.Whitespace
+'('           Operator
+':rel'        Name.Function
+' '           Text.Whitespace
+'stylesheet'  Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+':href'       Name.Function
+' '           Text.Whitespace
+'css/page.css' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'link'        Name.Function
+' '           Text.Whitespace
+'('           Operator
+':rel'        Name.Function
+' '           Text.Whitespace
+'icon'        Name.Variable
+')'           Operator
+'\n'          Text
+
+'      '      Text.Whitespace
+':href'       Name.Function
+' '           Text.Whitespace
+'http://logo.cirru.org/cirru-32x32.png?v=3' Name.Variable
+'\n'          Text
+
+'  '          Text.Whitespace
+'body'        Name.Function
+'\n'          Text
+
+'    '        Text.Whitespace
+'textarea.demo.source' Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+':placeholder' Name.Function
+' '           Text.Whitespace
+'"'           Literal.String
+'S'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'r'           Literal.String
+'c'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'C'           Literal.String
+'o'           Literal.String
+'d'           Literal.String
+'e'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'textarea.demo.target' Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+':placeholder' Name.Function
+' '           Text.Whitespace
+'"'           Literal.String
+'C'           Literal.String
+'o'           Literal.String
+'m'           Literal.String
+'p'           Literal.String
+'i'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'d'           Literal.String
+' '           Literal.String
+'D'           Literal.String
+'a'           Literal.String
+'t'           Literal.String
+'a'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'@insert'     Name.Function
+' '           Text.Whitespace
+'../html/ga.html' Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'test'        Name.Variable
+' '           Text.Whitespace
+'on'          Name.Variable
+' '           Text.Whitespace
+'indentation' Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'a'           Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'b'           Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'c'           Name.Function
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'e'           Name.Function
+' '           Text.Whitespace
+'f'           Name.Variable
+'\n'          Text
+
+'  '          Text.Whitespace
+'('           Operator
+'g'           Name.Function
+')'           Operator
+'\n'          Text
+
+'  '          Text.Whitespace
+'h'           Name.Function
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'test'        Name.Variable
+' '           Text.Whitespace
+'on'          Name.Variable
+' '           Text.Whitespace
+'parentheses' Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'3'           Name.Function
+' '           Text.Whitespace
+'4'           Literal.Number
+' '           Text.Whitespace
+'('           Operator
+'1'           Name.Function
+')'           Operator
+' '           Text.Whitespace
+'4'           Literal.Number
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'('           Operator
+'('           Operator
+'('           Operator
+'('           Operator
+'1'           Name.Function
+')'           Operator
+')'           Operator
+')'           Operator
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'x'           Name.Function
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'test'        Name.Variable
+' '           Text.Whitespace
+'on'          Name.Variable
+' '           Text.Whitespace
+'quotes'      Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'a'           Name.Function
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'c'           Name.Variable
+' '           Text.Whitespace
+'d'           Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'a'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+' '           Literal.String
+'c'           Literal.String
+' '           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'a'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+' '           Literal.String
+'\\'          Literal.String.Escape
+'"'           Literal.String.Escape
+' '           Literal.String
+'c'           Literal.String
+' '           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'a'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'"'           Literal.String
+'c'           Literal.String
+' '           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'test'        Name.Variable
+' '           Text.Whitespace
+'on'          Name.Variable
+' '           Text.Whitespace
+'unfolding'   Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'set'         Name.Function
+'\n'          Text
+
+'  '          Text.Whitespace
+'add'         Name.Function
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'$'           Operator
+''            Text
+'\n'          Text
+
+'  '          Text.Whitespace
+','           Operator
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'y'           Name.Variable
+'\n'          Text
+
+'  '          Text.Whitespace
+'add'         Name.Function
+' '           Text.Whitespace
+'5'           Literal.Number
+' '           Text.Whitespace
+'$'           Operator
+''            Text
+'\n'          Text
+
+'  '          Text.Whitespace
+'add'         Name.Function
+' '           Text.Whitespace
+'2'           Literal.Number
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'test'        Name.Variable
+' '           Text.Whitespace
+'on'          Name.Variable
+' '           Text.Whitespace
+'HTML'        Name.Variable
+' '           Text.Whitespace
+'attributes'  Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'div'         Name.Function
+'\n'          Text
+
+'  '          Text.Whitespace
+'div'         Name.Function
+'\n'          Text
+
+'    '        Text.Whitespace
+':class'      Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+'\n'          Text
+
+'  '          Text.Whitespace
+'div'         Name.Function
+'\n'          Text
+
+'    '        Text.Whitespace
+':class'      Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'c'           Name.Variable
+' '           Text.Whitespace
+'d'           Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'div'         Name.Function
+'\n'          Text
+
+'    '        Text.Whitespace
+':class'      Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'@'           Name.Function
+' '           Text.Whitespace
+'b'           Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'@'           Name.Function
+' '           Text.Whitespace
+'c'           Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'d'           Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'div'         Name.Function
+'\n'          Text
+
+'    '        Text.Whitespace
+':class'      Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+'\n'          Text
+
+'      '      Text.Whitespace
+'@if'         Name.Function
+' '           Text.Whitespace
+'('           Operator
+'@'           Name.Function
+' '           Text.Whitespace
+'b'           Name.Variable
+')'           Operator
+'\n'          Text
+
+'        '    Text.Whitespace
+'div'         Name.Function
+' '           Text.Whitespace
+'b'           Name.Variable
+'\n'          Text
+
+'        '    Text.Whitespace
+'div'         Name.Function
+' '           Text.Whitespace
+'c'           Name.Variable
+'\n'          Text
+
+'  '          Text.Whitespace
+'div'         Name.Function
+'\n'          Text
+
+'    '        Text.Whitespace
+':class'      Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+'\n'          Text
+
+'      '      Text.Whitespace
+'@if'         Name.Function
+' '           Text.Whitespace
+'('           Operator
+'@'           Name.Function
+' '           Text.Whitespace
+'b'           Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'c'           Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'test'        Name.Variable
+' '           Text.Whitespace
+'on'          Name.Variable
+' '           Text.Whitespace
+'helpers'     Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'@if'         Name.Function
+' '           Text.Whitespace
+'('           Operator
+'@call'       Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'b'           Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'div'         Name.Function
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'span'        Name.Function
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'@each'       Name.Function
+' '           Text.Whitespace
+'members'     Name.Variable
+'\n'          Text
+
+'  '          Text.Whitespace
+'div'         Name.Function
+' '           Text.Whitespace
+'('           Operator
+'@'           Name.Function
+' '           Text.Whitespace
+'name'        Name.Variable
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'@each'       Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+'\n'          Text
+
+'  '          Text.Whitespace
+'div'         Name.Function
+' '           Text.Whitespace
+'('           Operator
+'@'           Name.Function
+' '           Text.Whitespace
+'b'           Name.Variable
+')'           Operator
+'\n'          Text
+
+'    '        Text.Whitespace
+'@each'       Name.Function
+' '           Text.Whitespace
+'c'           Name.Variable
+'\n'          Text
+
+'      '      Text.Whitespace
+'div'         Name.Function
+' '           Text.Whitespace
+'('           Operator
+'@'           Name.Function
+' '           Text.Whitespace
+'d'           Name.Variable
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'test'        Name.Variable
+' '           Text.Whitespace
+'on'          Name.Variable
+' '           Text.Whitespace
+'HTML'        Name.Variable
+' '           Text.Whitespace
+'structure'   Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'@rich'       Name.Function
+' '           Text.Whitespace
+'more'        Name.Variable
+'\n'          Text
+
+'  '          Text.Whitespace
+'#demo-more-box' Name.Function
+'\n'          Text
+
+'    '        Text.Whitespace
+'#demo-more'  Name.Function
+'\n'          Text
+
+'      '      Text.Whitespace
+':data-lang-text' Name.Function
+' '           Text.Whitespace
+'demo-more'   Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'#demo-more-list' Name.Function
+'\n'          Text
+
+'      '      Text.Whitespace
+'@each'       Name.Function
+' '           Text.Whitespace
+'room'        Name.Variable
+'\n'          Text
+
+'        '    Text.Whitespace
+'.demo-more-room' Name.Function
+'\n'          Text
+
+'          '  Text.Whitespace
+'span.demo-name' Name.Function
+'\n'          Text
+
+'            ' Text.Whitespace
+'@'           Name.Function
+' '           Text.Whitespace
+'topic'       Name.Variable
+'\n'          Text
+
+'          '  Text.Whitespace
+'span.demo-join' Name.Function
+'\n'          Text
+
+'            ' Text.Whitespace
+':data-lang-text' Name.Function
+' '           Text.Whitespace
+'demo-join'   Name.Variable
+'\n'          Text
+
+'            ' Text.Whitespace
+':data-id'    Name.Function
+' '           Text.Whitespace
+'('           Operator
+'@'           Name.Function
+' '           Text.Whitespace
+'id'          Name.Variable
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'text'        Name.Variable
+' '           Text.Whitespace
+'on'          Name.Variable
+' '           Text.Whitespace
+'bool'        Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'print'       Name.Function
+' '           Text.Whitespace
+'#true'       Name.Variable
+'\n'          Text
+
+'print'       Name.Function
+' '           Text.Whitespace
+'#false'      Name.Variable
+'\n'          Text
+
+'print'       Name.Function
+' '           Text.Whitespace
+'#yes'        Name.Variable
+'\n'          Text
+
+'print'       Name.Function
+' '           Text.Whitespace
+'#no'         Name.Variable
+'\n'          Text
+
+'print'       Name.Function
+' '           Text.Whitespace
+'#t'          Name.Variable
+'\n'          Text
+
+'print'       Name.Function
+' '           Text.Whitespace
+'#f'          Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'test'        Name.Variable
+' '           Text.Whitespace
+'on'          Name.Variable
+' '           Text.Whitespace
+'Cirru'       Name.Variable
+' '           Text.Whitespace
+'js'          Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'set'         Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n'          Text
+
+'set'         Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'='           Name.Function
+' '           Text.Whitespace
+'"'           Literal.String
+'T'           Literal.String
+'h'           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+' '           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'"'           Literal.String
+')'           Operator
+'\n'          Text
+
+'set'         Name.Function
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'#t'          Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'this'        Name.Variable
+' '           Text.Whitespace
+'is'          Name.Variable
+' '           Text.Whitespace
+'comment'     Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'number'      Name.Function
+' '           Text.Whitespace
+'1.4'         Literal.Number
+'\n'          Text
+
+'string'      Name.Function
+' '           Text.Whitespace
+'x'           Name.Variable
+'\n'          Text
+
+'regex'       Name.Function
+' '           Text.Whitespace
+'^\\s$'       Name.Variable
+'\n'          Text
+
+'regex'       Name.Function
+' '           Text.Whitespace
+'"'           Literal.String
+'^'           Literal.String
+'\\'          Literal.String.Escape
+'\\'          Literal.String.Escape
+'s'           Literal.String
+'-'           Literal.String
+'\\'          Literal.String.Escape
+'"'           Literal.String.Escape
+'$'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'sentence'    Name.Function
+' '           Text.Whitespace
+'this'        Name.Variable
+' '           Text.Whitespace
+'is'          Name.Variable
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'string'      Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'array'       Name.Function
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'2'           Literal.Number
+' '           Text.Whitespace
+'3'           Literal.Number
+' '           Text.Whitespace
+'('           Operator
+'='           Name.Function
+' '           Text.Whitespace
+'nothing'     Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'#t'          Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'='           Name.Function
+' '           Text.Whitespace
+'#t'          Name.Variable
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'set'         Name.Function
+' '           Text.Whitespace
+'c'           Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'array'       Name.Function
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'('           Operator
+'='           Name.Function
+' '           Text.Whitespace
+'nothing'     Name.Variable
+')'           Operator
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'set'         Name.Function
+' '           Text.Whitespace
+'d'           Name.Variable
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'object'      Name.Function
+' '           Text.Whitespace
+'('           Operator
+'a'           Name.Function
+' '           Text.Whitespace
+'('           Operator
+'='           Name.Function
+' '           Text.Whitespace
+'google'      Name.Variable
+')'           Operator
+')'           Operator
+'\n'          Text
+
+'  '          Text.Whitespace
+'b'           Name.Function
+' '           Text.Whitespace
+'('           Operator
+'='           Name.Function
+' '           Text.Whitespace
+'reader'      Name.Variable
+')'           Operator
+'\n'          Text
+
+'  '          Text.Whitespace
+'c'           Name.Function
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n'          Text
+
+'  '          Text.Whitespace
+'d'           Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'array'       Name.Function
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'2'           Literal.Number
+' '           Text.Whitespace
+'('           Operator
+'='           Name.Function
+' '           Text.Whitespace
+'string'      Name.Variable
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'1'           Name.Function
+' '           Text.Whitespace
+'c'           Name.Variable
+'\n'          Text
+
+'-1'          Name.Function
+' '           Text.Whitespace
+'c'           Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+':b'          Name.Function
+' '           Text.Whitespace
+'d'           Name.Variable
+'\n'          Text
+
+'.log'        Name.Function
+' '           Text.Whitespace
+'console'     Name.Variable
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'2'           Literal.Number
+'\n'          Text
+
+'.log'        Name.Function
+' '           Text.Whitespace
+'console'     Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'set'         Name.Function
+' '           Text.Whitespace
+'demo'        Name.Variable
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'object'      Name.Function
+'\n'          Text
+
+'  '          Text.Whitespace
+'call'        Name.Function
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'\\'          Name.Function
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'.log'        Name.Function
+' '           Text.Whitespace
+'console'     Name.Variable
+' '           Text.Whitespace
+'x'           Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'.'           Name.Function
+' '           Text.Whitespace
+'this'        Name.Variable
+' '           Text.Whitespace
+'call'        Name.Variable
+')'           Operator
+'\n'          Text
+
+'.'           Name.Function
+' '           Text.Whitespace
+'demo'        Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'.call'       Name.Function
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'.call'       Name.Function
+' '           Text.Whitespace
+'4'           Literal.Number
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'=.x'         Name.Function
+' '           Text.Whitespace
+'d'           Name.Variable
+' '           Text.Whitespace
+'3'           Literal.Number
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'set'         Name.Function
+' '           Text.Whitespace
+'d'           Name.Variable
+' '           Text.Whitespace
+'null'        Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'new'         Name.Function
+' '           Text.Whitespace
+'Array'       Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'2'           Literal.Number
+' '           Text.Whitespace
+'3'           Literal.Number
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'set'         Name.Function
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'('           Operator
+':length'     Name.Function
+' '           Text.Whitespace
+'c'           Name.Variable
+')'           Operator
+'\n'          Text
+
+'set'         Name.Function
+' '           Text.Whitespace
+'str'         Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'='           Name.Function
+' '           Text.Whitespace
+'str'         Name.Variable
+')'           Operator
+'\n'          Text
+
+'set'         Name.Function
+' '           Text.Whitespace
+'c'           Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'.toUpperCase' Name.Function
+' '           Text.Whitespace
+'str'         Name.Variable
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'\\'          Name.Function
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'+'           Name.Function
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+'\n'          Text
+
+'\\'          Name.Function
+' '           Text.Whitespace
+'('           Operator
+'x'           Name.Function
+' '           Text.Whitespace
+'y'           Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'+'           Name.Function
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'y'           Name.Variable
+')'           Operator
+'\n'          Text
+
+'\\'          Name.Function
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'set'         Name.Function
+' '           Text.Whitespace
+'aa'          Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'+'           Name.Function
+' '           Text.Whitespace
+'aa'          Name.Variable
+' '           Text.Whitespace
+'x'           Name.Variable
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'set'         Name.Function
+' '           Text.Whitespace
+'f'           Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'\\'          Name.Function
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'+'           Name.Function
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'+'           Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'2'           Literal.Number
+'\n'          Text
+
+'+='          Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'>'           Name.Function
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'2'           Literal.Number
+' '           Text.Whitespace
+'3'           Literal.Number
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'if'          Name.Function
+' '           Text.Whitespace
+'('           Operator
+'>'           Name.Function
+' '           Text.Whitespace
+'2'           Literal.Number
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'+'           Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+'\n'          Text
+
+'else'        Name.Function
+' '           Text.Whitespace
+'2'           Literal.Number
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'if'          Name.Function
+' '           Text.Whitespace
+'('           Operator
+'>'           Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'2'           Literal.Number
+')'           Operator
+'\n'          Text
+
+'  '          Text.Whitespace
+'.log'        Name.Function
+' '           Text.Whitespace
+'console'     Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'='           Name.Function
+' '           Text.Whitespace
+'"'           Literal.String
+'l'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'g'           Literal.String
+'e'           Literal.String
+'"'           Literal.String
+')'           Operator
+'\n'          Text
+
+'elseif'      Name.Function
+' '           Text.Whitespace
+'('           Operator
+'>'           Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+'\n'          Text
+
+'  '          Text.Whitespace
+'.log'        Name.Function
+' '           Text.Whitespace
+'console'     Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'='           Name.Function
+' '           Text.Whitespace
+'"'           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+'i'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+' '           Literal.String
+'g'           Literal.String
+'o'           Literal.String
+'o'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+')'           Operator
+'\n'          Text
+
+'else'        Name.Function
+'\n'          Text
+
+'  '          Text.Whitespace
+'.log'        Name.Function
+' '           Text.Whitespace
+'console'     Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'='           Name.Function
+' '           Text.Whitespace
+'"'           Literal.String
+'s'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'s'           Literal.String
+'o'           Literal.String
+'"'           Literal.String
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'set'         Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'if'          Name.Function
+' '           Text.Whitespace
+'('           Operator
+'>'           Name.Function
+' '           Text.Whitespace
+'2'           Literal.Number
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+' '           Text.Whitespace
+'#t'          Name.Variable
+' '           Text.Whitespace
+'#f'          Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'switch'      Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+'\n'          Text
+
+'  '          Text.Whitespace
+'1'           Name.Function
+' '           Text.Whitespace
+'('           Operator
+'.log'        Name.Function
+' '           Text.Whitespace
+'console'     Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+'\n'          Text
+
+'  '          Text.Whitespace
+'2'           Name.Function
+' '           Text.Whitespace
+'('           Operator
+'.log'        Name.Function
+' '           Text.Whitespace
+'console'     Name.Variable
+' '           Text.Whitespace
+'2'           Literal.Number
+')'           Operator
+'\n'          Text
+
+'  '          Text.Whitespace
+'else'        Name.Function
+' '           Text.Whitespace
+'('           Operator
+'.log'        Name.Function
+' '           Text.Whitespace
+'console'     Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'='           Name.Function
+' '           Text.Whitespace
+'"'           Literal.String
+'s'           Literal.String
+'o'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+' '           Literal.String
+'e'           Literal.String
+'l'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'"'           Literal.String
+')'           Operator
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'set'         Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'array'       Name.Function
+' '           Text.Whitespace
+'2'           Literal.Number
+' '           Text.Whitespace
+'+3'          Literal.Number
+' '           Text.Whitespace
+'-4'          Literal.Number
+'\n'          Text
+
+'for'         Name.Function
+' '           Text.Whitespace
+'('           Operator
+'a'           Name.Function
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'i'           Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'.log'        Name.Function
+' '           Text.Whitespace
+'console'     Name.Variable
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'i'           Name.Variable
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'set'         Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number
+'\n'          Text
+
+'while'       Name.Function
+' '           Text.Whitespace
+'('           Operator
+'<'           Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'10'          Literal.Number
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'+='          Name.Function
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'.log'        Name.Function
+' '           Text.Whitespace
+'console'     Name.Variable
+' '           Text.Whitespace
+'a'           Name.Variable
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'WebAssembly' Name.Variable
+' '           Text.Whitespace
+'variable'    Name.Variable
+' '           Text.Whitespace
+'names'       Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'--'          Name.Function
+' '           Text.Whitespace
+'"'           Literal.String
+':'           Literal.String
+'('           Literal.String
+'c'           Literal.String
+')'           Literal.String
+' '           Literal.String
+'2'           Literal.String
+'0'           Literal.String
+'1'           Literal.String
+'5'           Literal.String
+' '           Literal.String
+'A'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'R'           Literal.String
+'o'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'b'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'g'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'module'      Name.Function
+'\n'          Text
+
+'  '          Text.Whitespace
+'export'      Name.Function
+' '           Text.Whitespace
+':even'       Name.Variable
+' '           Text.Whitespace
+'$even'       Name.Variable
+'\n'          Text
+
+'  '          Text.Whitespace
+'export'      Name.Function
+' '           Text.Whitespace
+'"'           Literal.String
+'o'           Literal.String
+'d'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'$odd'        Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'func'        Name.Function
+' '           Text.Whitespace
+'$even'       Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'param'       Name.Function
+' '           Text.Whitespace
+'$n'          Name.Variable
+' '           Text.Whitespace
+'i32'         Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'result'      Name.Function
+' '           Text.Whitespace
+'i32'         Name.Variable
+')'           Operator
+'\n'          Text
+
+'    '        Text.Whitespace
+'if'          Name.Function
+' '           Text.Whitespace
+'('           Operator
+'i32.eq'      Name.Function
+' '           Text.Whitespace
+'('           Operator
+'get_local'   Name.Function
+' '           Text.Whitespace
+'$n'          Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'0'           Literal.Number
+')'           Operator
+')'           Operator
+'\n'          Text
+
+'      '      Text.Whitespace
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n'          Text
+
+'      '      Text.Whitespace
+'call'        Name.Function
+' '           Text.Whitespace
+'$odd'        Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'i32.sub'     Name.Function
+' '           Text.Whitespace
+'('           Operator
+'get_local'   Name.Function
+' '           Text.Whitespace
+'$n'          Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'func'        Name.Function
+' '           Text.Whitespace
+'$odd'        Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'param'       Name.Function
+' '           Text.Whitespace
+'$n'          Name.Variable
+' '           Text.Whitespace
+'i32'         Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'result'      Name.Function
+' '           Text.Whitespace
+'i32'         Name.Variable
+')'           Operator
+'\n'          Text
+
+'    '        Text.Whitespace
+'store_global' Name.Function
+' '           Text.Whitespace
+'$scratch'    Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'get_local'   Name.Function
+' '           Text.Whitespace
+'$n'          Name.Variable
+')'           Operator
+'\n'          Text
+
+'    '        Text.Whitespace
+'if'          Name.Function
+' '           Text.Whitespace
+'('           Operator
+'i32.eq'      Name.Function
+' '           Text.Whitespace
+'('           Operator
+'get_local'   Name.Function
+' '           Text.Whitespace
+'$n'          Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'0'           Literal.Number
+')'           Operator
+'\n'          Text
+
+'      '      Text.Whitespace
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'0'           Literal.Number
+'\n'          Text
+
+'      '      Text.Whitespace
+'call'        Name.Function
+' '           Text.Whitespace
+'$even'       Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'i32.sub'     Name.Function
+' '           Text.Whitespace
+'('           Operator
+'get_local'   Name.Function
+' '           Text.Whitespace
+'$n'          Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+')'           Operator
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'global'      Name.Function
+' '           Text.Whitespace
+'$scratch'    Name.Variable
+' '           Text.Whitespace
+'i32'         Name.Variable
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'assert_eq'   Name.Function
+' '           Text.Whitespace
+'('           Operator
+'invoke'      Name.Function
+' '           Text.Whitespace
+':even'       Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'13'          Literal.Number
+')'           Operator
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'0'           Literal.Number
+')'           Operator
+'\n'          Text
+
+'assert_eq'   Name.Function
+' '           Text.Whitespace
+'('           Operator
+'invoke'      Name.Function
+' '           Text.Whitespace
+':even'       Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'20'          Literal.Number
+')'           Operator
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+'\n'          Text
+
+'assert_eq'   Name.Function
+' '           Text.Whitespace
+'('           Operator
+'invoke'      Name.Function
+' '           Text.Whitespace
+':odd'        Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'13'          Literal.Number
+')'           Operator
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+'\n'          Text
+
+'assert_eq'   Name.Function
+' '           Text.Whitespace
+'('           Operator
+'invoke'      Name.Function
+' '           Text.Whitespace
+':odd'        Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'20'          Literal.Number
+')'           Operator
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'i32.const'   Name.Function
+' '           Text.Whitespace
+'0'           Literal.Number
+')'           Operator
+'\n'          Text

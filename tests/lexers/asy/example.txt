@@ -1,0 +1,2236 @@
+---input---
+// example file for roundedpath() in roundedpath.asy
+// written by stefan knorr
+
+
+// import needed packages
+import roundedpath;
+
+// function definition
+picture CreateKOOS(real Scale, string legend)               // draw labeled coordinate system as picture
+{
+  picture ReturnPic;
+  real S = 1.2*Scale;
+  draw(ReturnPic, ((-S,0)--(S,0)), bar = EndArrow);         // x axis
+  draw(ReturnPic, ((0,-S)--(0,S)), bar = EndArrow);         // y axis
+  label(ReturnPic, "$\varepsilon$", (S,0), SW);             // x axis label
+  label(ReturnPic, "$\sigma$", (0,S), SW);                  // y axis label
+  label(ReturnPic, legend, (0.7S, -S), NW);                 // add label 'legend' 
+  return ReturnPic;                                         // return picture
+}
+
+
+// some global definitions
+real S = 13mm;                          // universal scale factor for the whole file
+real grad = 0.25;                       // gradient for lines
+real radius = 0.04;                     // radius for the rounded path'
+real lw = 2;                            // linewidth
+pair A = (-1, -1);                      // start point for graphs
+pair E = ( 1,  1);                      // end point for graphs
+path graph;                             // local graph
+pen ActPen;                             // actual pen for each drawing
+picture T[];                            // vector of all four diagrams
+real inc = 2.8;                         // increment-offset for combining pictures
+
+//////////////////////////////////////// 1st diagram
+T[1] = CreateKOOS(S, "$T_1$");                                        // initialise T[1] as empty diagram with label $T_1$                  
+graph = A;                                                            //  # pointwise definition of current path 'graph'                    
+graph = graph -- (A.x + grad*1.6, A.y + 1.6);                         //  #                                                                 
+graph = graph -- (E.x - grad*0.4, E.y - 0.4);                         //  #                                                                 
+graph = graph -- E;                                                   //  #
+
+graph = roundedpath(graph, radius, S);                                // round edges of 'graph' using roundedpath() in roundedpath.asy      
+ActPen =  rgb(0,0,0.6) + linewidth(lw);                               // define pen for drawing in 1st diagram                              
+draw(T[1],                   graph, ActPen);                          // draw 'graph' with 'ActPen' into 'T[1]' (1st hysteresis branch)     
+draw(T[1], rotate(180,(0,0))*graph, ActPen);                          // draw rotated 'graph' (2nd hysteresis branch)                       
+
+graph = (0,0) -- (grad*0.6, 0.6) -- ( (grad*0.6, 0.6) + (0.1, 0) );   // define branch from origin to hysteresis
+graph = roundedpath(graph, radius, S);                                // round this path                        
+draw(T[1], graph, ActPen);                                            // draw this path into 'T[1]'             
+
+
+//////////////////////////////////////// 2nd diagram
+T[2] = CreateKOOS(S, "$T_2$");                                        // initialise T[2] as empty diagram with label $T_2$              
+graph = A;                                                            //  # pointwise definition of current path 'graph'                
+graph = graph -- (A.x + grad*1.3, A.y + 1.3);                         //  #                                                             
+graph = graph -- (E.x - grad*0.7 , E.y - 0.7);                        //  #                                                             
+graph = graph -- E;                                                   //  #
+                                                                                                
+graph = roundedpath(graph, radius, S);                                // round edges of 'graph' using roundedpath() in roundedpath.asy      
+ActPen =  rgb(0.2,0,0.4) + linewidth(lw);                             // define pen for drawing in 2nd diagram                              
+draw(T[2],                   graph, ActPen);                          // draw 'graph' with 'ActPen' into 'T[2]' (1st hysteresis branch)     
+draw(T[2], rotate(180,(0,0))*graph, ActPen);                          // draw rotated 'graph' (2nd hysteresis branch)                       
+
+graph = (0,0) -- (grad*0.3, 0.3) -- ( (grad*0.3, 0.3) + (0.1, 0) );   // define branch from origin to hysteresis
+graph = roundedpath(graph, radius, S);                                // round this path                        
+draw(T[2], graph, ActPen);                                            // draw this path into 'T[2]'             
+
+
+//////////////////////////////////////// 3rd diagram
+T[3] = CreateKOOS(S, "$T_3$");                                        // initialise T[3] as empty diagram with label $T_3$              
+graph = A;                                                            //  # pointwise definition of current path 'graph'                
+graph = graph -- (A.x + grad*0.7, A.y + 0.7);                         //  #                                                             
+graph = graph -- ( - grad*0.3 , - 0.3);                               //  #                                                             
+graph = graph -- (0,0);                                               //  #                                                             
+graph = graph -- (grad*0.6, 0.6);                                     //  #                                                             
+graph = graph -- (E.x - grad*0.4, E.y - 0.4);                         //  #                                                             
+graph = graph -- E;                                                   //  #                                                             
+                                                                                                                                        
+graph = roundedpath(graph, radius, S);                                // round edges of 'graph' using roundedpath() in roundedpath.asy  
+ActPen =  rgb(0.6,0,0.2) + linewidth(lw);                             // define pen for drawing in 3rd diagram                          
+draw(T[3],                   graph, ActPen);                          // draw 'graph' with 'ActPen' into 'T[3]' (1st hysteresis branch) 
+draw(T[3], rotate(180,(0,0))*graph, ActPen);                          // draw rotated 'graph' (2nd hysteresis branch)                   
+
+
+//////////////////////////////////////// 4th diagram
+T[4] = CreateKOOS(S, "$T_4$");                                        // initialise T[4] as empty diagram with label $T_4$              
+graph = A;                                                            //  # pointwise definition of current path 'graph'                
+graph = graph -- (A.x + grad*0.4, A.y + 0.4);                         //  #                                                             
+graph = graph -- ( - grad*0.6 , - 0.6);                               //  #                                                             
+graph = graph -- (0,0);                                               //  #                                                             
+graph = graph -- (grad*0.9, 0.9);                                     //  #                                                             
+graph = graph -- (E.x - grad*0.1, E.y - 0.1);                         //  #                                                             
+graph = graph -- E;                                                   //  #                                                             
+                                                                                                                                        
+graph = roundedpath(graph, radius, S);                                // round edges of 'graph' using roundedpath() in roundedpath.asy  
+ActPen =  rgb(0.6,0,0) + linewidth(lw);                               // define pen for drawing in 4th diagram                          
+draw(T[4],                   graph, ActPen);                          // draw 'graph' with 'ActPen' into 'T[4]' (1st hysteresis branch) 
+draw(T[4], rotate(180,(0,0))*graph, ActPen);                          // draw rotated 'graph' (3nd hysteresis branch)                   
+
+
+// add some labels and black dots to the first two pictures
+pair SWW = (-0.8, -0.6);
+label(T[1], "$\sigma_f$", (0, 0.6S), NE);                             // sigma_f
+draw(T[1], (0, 0.6S), linewidth(3) + black);
+label(T[2], "$\sigma_f$", (0, 0.3S), NE);                             // sigma_f
+draw(T[2], (0, 0.3S), linewidth(3) + black);
+label(T[1], "$\varepsilon_p$", (0.7S, 0), SWW);                       // epsilon_p
+draw(T[1], (0.75S, 0), linewidth(3) + black);
+label(T[2], "$\varepsilon_p$", (0.7S, 0), SWW);                       // epsilon_p
+draw(T[2], (0.75S, 0), linewidth(3) + black);
+
+
+// add all pictures T[1...4] to the current one
+add(T[1],(0,0));
+add(T[2],(1*inc*S,0));
+add(T[3],(2*inc*S,0));
+add(T[4],(3*inc*S,0));
+
+
+// draw line of constant \sigma and all intersection points with the graphs in T[1...4]
+ActPen = linewidth(1) + dashed + gray(0.5);                           // pen definition
+draw((-S, 0.45*S)--((3*inc+1)*S, 0.45*S), ActPen);                    // draw backgoundline
+label("$\sigma_s$", (-S, 0.45S), W);                            // label 'sigma_s'
+
+path mark = scale(2)*unitcircle;                                  // define mark-symbol to be used for intersections
+ActPen = linewidth(1) + gray(0.5);                                    // define pen for intersection mark
+draw(shift(( 1 - grad*0.55 + 0*inc)*S, 0.45*S)*mark, ActPen);         //  # draw all intersections
+draw(shift((-1 + grad*1.45 + 0*inc)*S, 0.45*S)*mark, ActPen);         //  #
+draw(shift(( 1 - grad*0.55 + 1*inc)*S, 0.45*S)*mark, ActPen);         //  #
+draw(shift(( 1 - grad*0.55 + 2*inc)*S, 0.45*S)*mark, ActPen);         //  # 
+draw(shift((     grad*0.45 + 2*inc)*S, 0.45*S)*mark, ActPen);         //  # 
+draw(shift((     grad*0.45 + 3*inc)*S, 0.45*S)*mark, ActPen);         //  #
+
+---tokens---
+'// example file for roundedpath() in roundedpath.asy\n' Comment
+
+'// written by stefan knorr\n' Comment
+
+'\n'          Text
+
+'\n'          Text
+
+'// import needed packages\n' Comment
+
+'import'      Keyword
+' '           Text
+'roundedpath' Name.Function
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// function definition\n' Comment
+
+'picture'     Keyword.Type
+' '           Text
+'CreateKOOS'  Name.Function
+'('           Punctuation
+'real'        Keyword.Type
+' '           Text
+'Scale'       Name.Function
+','           Punctuation
+' '           Text
+'string'      Keyword.Type
+' '           Text
+'legend'      Name.Function
+')'           Punctuation
+'               ' Text
+'// draw labeled coordinate system as picture\n' Comment
+
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'picture'     Keyword.Type
+' '           Text
+'ReturnPic'   Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'real'        Keyword.Type
+' '           Text
+'S'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1.2'         Literal.Number.Float
+'*'           Operator
+'Scale'       Name.Function
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'draw'        Name.Function
+'('           Punctuation
+'ReturnPic'   Name
+','           Punctuation
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'-'           Operator
+'S'           Name.Variable
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+'-'           Operator
+'-'           Operator
+'('           Punctuation
+'S'           Name.Variable
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'bar'         Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'EndArrow'    Name.Function
+')'           Punctuation
+';'           Punctuation
+'         '   Text
+'// x axis\n' Comment
+
+'  '          Text
+'draw'        Name.Function
+'('           Punctuation
+'ReturnPic'   Name
+','           Punctuation
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'S'           Name.Variable
+')'           Punctuation
+'-'           Operator
+'-'           Operator
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'S'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'bar'         Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'EndArrow'    Name.Function
+')'           Punctuation
+';'           Punctuation
+'         '   Text
+'// y axis\n' Comment
+
+'  '          Text
+'label'       Name.Function
+'('           Punctuation
+'ReturnPic'   Name
+','           Punctuation
+' '           Text
+'"$\\varepsilon$"' Literal.String
+','           Punctuation
+' '           Text
+'('           Punctuation
+'S'           Name.Variable
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'SW'          Name.Variable
+')'           Punctuation
+';'           Punctuation
+'             ' Text
+'// x axis label\n' Comment
+
+'  '          Text
+'label'       Name.Function
+'('           Punctuation
+'ReturnPic'   Name
+','           Punctuation
+' '           Text
+'"$\\sigma$"' Literal.String
+','           Punctuation
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'S'           Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'SW'          Name.Variable
+')'           Punctuation
+';'           Punctuation
+'                  ' Text
+'// y axis label\n' Comment
+
+'  '          Text
+'label'       Name.Function
+'('           Punctuation
+'ReturnPic'   Name
+','           Punctuation
+' '           Text
+'legend'      Name.Function
+','           Punctuation
+' '           Text
+'('           Punctuation
+'0.7'         Literal.Number.Float
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'-'           Operator
+'S'           Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'NW'          Name.Variable
+')'           Punctuation
+';'           Punctuation
+'                 ' Text
+"// add label 'legend' \n" Comment
+
+'  '          Text
+'return'      Keyword
+' '           Text
+'ReturnPic'   Name
+';'           Punctuation
+'                                         ' Text
+'// return picture\n' Comment
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'// some global definitions\n' Comment
+
+'real'        Keyword.Type
+' '           Text
+'S'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'13'          Literal.Number.Integer
+'mm'          Name.Variable
+';'           Punctuation
+'                          ' Text
+'// universal scale factor for the whole file\n' Comment
+
+'real'        Keyword.Type
+' '           Text
+'grad'        Name
+' '           Text
+'='           Operator
+' '           Text
+'0.25'        Literal.Number.Float
+';'           Punctuation
+'                       ' Text
+'// gradient for lines\n' Comment
+
+'real'        Keyword.Type
+' '           Text
+'radius'      Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'0.04'        Literal.Number.Float
+';'           Punctuation
+'                     ' Text
+"// radius for the rounded path'\n" Comment
+
+'real'        Keyword.Type
+' '           Text
+'lw'          Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+'                            ' Text
+'// linewidth\n' Comment
+
+'pair'        Keyword.Type
+' '           Text
+'A'           Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'                      ' Text
+'// start point for graphs\n' Comment
+
+'pair'        Keyword.Type
+' '           Text
+'E'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+'  '          Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'                      ' Text
+'// end point for graphs\n' Comment
+
+'path'        Keyword.Type
+' '           Text
+'graph'       Name.Function
+';'           Punctuation
+'                             ' Text
+'// local graph\n' Comment
+
+'pen'         Keyword.Type
+' '           Text
+'ActPen'      Name
+';'           Punctuation
+'                             ' Text
+'// actual pen for each drawing\n' Comment
+
+'picture'     Keyword.Type
+' '           Text
+'T'           Name
+'['           Punctuation
+']'           Punctuation
+';'           Punctuation
+'                            ' Text
+'// vector of all four diagrams\n' Comment
+
+'real'        Keyword.Type
+' '           Text
+'inc'         Name
+' '           Text
+'='           Operator
+' '           Text
+'2.8'         Literal.Number.Float
+';'           Punctuation
+'                         ' Text
+'// increment-offset for combining pictures\n' Comment
+
+'\n'          Text
+
+'//////////////////////////////////////// 1st diagram\n' Comment
+
+'T'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'CreateKOOS'  Name
+'('           Punctuation
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'"$T_1$"'     Literal.String
+')'           Punctuation
+';'           Punctuation
+'                                        ' Text
+'// initialise T[1] as empty diagram with label $T_1$                  \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'A'           Name
+';'           Punctuation
+'                                                            ' Text
+"//  # pointwise definition of current path 'graph'                    \n" Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'A'           Name
+'.'           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'1.6'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'A'           Name
+'.'           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1.6'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                         ' Text
+'//  #                                                                 \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'E'           Name.Variable
+'.'           Punctuation
+'x'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'0.4'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'E'           Name.Variable
+'.'           Punctuation
+'y'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'0.4'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                         ' Text
+'//  #                                                                 \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'E'           Name.Variable
+';'           Punctuation
+'                                                   ' Text
+'//  #\n'     Comment
+
+'\n'          Text
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'roundedpath' Name.Function
+'('           Punctuation
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'radius'      Name.Function
+','           Punctuation
+' '           Text
+'S'           Name.Variable
+')'           Punctuation
+';'           Punctuation
+'                                ' Text
+"// round edges of 'graph' using roundedpath() in roundedpath.asy      \n" Comment
+
+'ActPen'      Name
+' '           Text
+'='           Operator
+'  '          Text
+'rgb'         Name.Function
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0.6'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'linewidth'   Name.Function
+'('           Punctuation
+'lw'          Name
+')'           Punctuation
+';'           Punctuation
+'                               ' Text
+'// define pen for drawing in 1st diagram                              \n' Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'                   ' Text
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'                          ' Text
+"// draw 'graph' with 'ActPen' into 'T[1]' (1st hysteresis branch)     \n" Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'rotate'      Name.Function
+'('           Punctuation
+'180'         Literal.Number.Integer
+','           Punctuation
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'*'           Operator
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'                          ' Text
+"// draw rotated 'graph' (2nd hysteresis branch)                       \n" Comment
+
+'\n'          Text
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'grad'        Name
+'*'           Operator
+'0.6'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'0.6'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+' '           Text
+'('           Punctuation
+'grad'        Name
+'*'           Operator
+'0.6'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'0.6'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'0.1'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'   '         Text
+'// define branch from origin to hysteresis\n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'roundedpath' Name.Function
+'('           Punctuation
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'radius'      Name.Function
+','           Punctuation
+' '           Text
+'S'           Name.Variable
+')'           Punctuation
+';'           Punctuation
+'                                ' Text
+'// round this path                        \n' Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'                                            ' Text
+"// draw this path into 'T[1]'             \n" Comment
+
+'\n'          Text
+
+'\n'          Text
+
+'//////////////////////////////////////// 2nd diagram\n' Comment
+
+'T'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'CreateKOOS'  Name
+'('           Punctuation
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'"$T_2$"'     Literal.String
+')'           Punctuation
+';'           Punctuation
+'                                        ' Text
+'// initialise T[2] as empty diagram with label $T_2$              \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'A'           Name
+';'           Punctuation
+'                                                            ' Text
+"//  # pointwise definition of current path 'graph'                \n" Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'A'           Name
+'.'           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'1.3'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'A'           Name
+'.'           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1.3'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                         ' Text
+'//  #                                                             \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'E'           Name.Variable
+'.'           Punctuation
+'x'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'0.7'         Literal.Number.Float
+' '           Text
+','           Punctuation
+' '           Text
+'E'           Name.Variable
+'.'           Punctuation
+'y'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'0.7'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                        ' Text
+'//  #                                                             \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'E'           Name.Variable
+';'           Punctuation
+'                                                   ' Text
+'//  #\n'     Comment
+
+'                                                                                                \n' Text
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'roundedpath' Name.Function
+'('           Punctuation
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'radius'      Name.Function
+','           Punctuation
+' '           Text
+'S'           Name.Variable
+')'           Punctuation
+';'           Punctuation
+'                                ' Text
+"// round edges of 'graph' using roundedpath() in roundedpath.asy      \n" Comment
+
+'ActPen'      Name
+' '           Text
+'='           Operator
+'  '          Text
+'rgb'         Name.Function
+'('           Punctuation
+'0.2'         Literal.Number.Float
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0.4'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'linewidth'   Name.Function
+'('           Punctuation
+'lw'          Name
+')'           Punctuation
+';'           Punctuation
+'                             ' Text
+'// define pen for drawing in 2nd diagram                              \n' Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'                   ' Text
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'                          ' Text
+"// draw 'graph' with 'ActPen' into 'T[2]' (1st hysteresis branch)     \n" Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'rotate'      Name.Function
+'('           Punctuation
+'180'         Literal.Number.Integer
+','           Punctuation
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'*'           Operator
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'                          ' Text
+"// draw rotated 'graph' (2nd hysteresis branch)                       \n" Comment
+
+'\n'          Text
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'grad'        Name
+'*'           Operator
+'0.3'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'0.3'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+' '           Text
+'('           Punctuation
+'grad'        Name
+'*'           Operator
+'0.3'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'0.3'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'0.1'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'   '         Text
+'// define branch from origin to hysteresis\n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'roundedpath' Name.Function
+'('           Punctuation
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'radius'      Name.Function
+','           Punctuation
+' '           Text
+'S'           Name.Variable
+')'           Punctuation
+';'           Punctuation
+'                                ' Text
+'// round this path                        \n' Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'                                            ' Text
+"// draw this path into 'T[2]'             \n" Comment
+
+'\n'          Text
+
+'\n'          Text
+
+'//////////////////////////////////////// 3rd diagram\n' Comment
+
+'T'           Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'CreateKOOS'  Name
+'('           Punctuation
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'"$T_3$"'     Literal.String
+')'           Punctuation
+';'           Punctuation
+'                                        ' Text
+'// initialise T[3] as empty diagram with label $T_3$              \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'A'           Name
+';'           Punctuation
+'                                                            ' Text
+"//  # pointwise definition of current path 'graph'                \n" Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'A'           Name
+'.'           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'0.7'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'A'           Name
+'.'           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'0.7'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                         ' Text
+'//  #                                                             \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'0.3'         Literal.Number.Float
+' '           Text
+','           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'0.3'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                               ' Text
+'//  #                                                             \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'                                               ' Text
+'//  #                                                             \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'grad'        Name
+'*'           Operator
+'0.6'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'0.6'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                                     ' Text
+'//  #                                                             \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'E'           Name.Variable
+'.'           Punctuation
+'x'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'0.4'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'E'           Name.Variable
+'.'           Punctuation
+'y'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'0.4'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                         ' Text
+'//  #                                                             \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'E'           Name.Variable
+';'           Punctuation
+'                                                   ' Text
+'//  #                                                             \n' Comment
+
+'                                                                                                                                        \n' Text
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'roundedpath' Name.Function
+'('           Punctuation
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'radius'      Name.Function
+','           Punctuation
+' '           Text
+'S'           Name.Variable
+')'           Punctuation
+';'           Punctuation
+'                                ' Text
+"// round edges of 'graph' using roundedpath() in roundedpath.asy  \n" Comment
+
+'ActPen'      Name
+' '           Text
+'='           Operator
+'  '          Text
+'rgb'         Name.Function
+'('           Punctuation
+'0.6'         Literal.Number.Float
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0.2'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'linewidth'   Name.Function
+'('           Punctuation
+'lw'          Name
+')'           Punctuation
+';'           Punctuation
+'                             ' Text
+'// define pen for drawing in 3rd diagram                          \n' Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'                   ' Text
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'                          ' Text
+"// draw 'graph' with 'ActPen' into 'T[3]' (1st hysteresis branch) \n" Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'rotate'      Name.Function
+'('           Punctuation
+'180'         Literal.Number.Integer
+','           Punctuation
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'*'           Operator
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'                          ' Text
+"// draw rotated 'graph' (2nd hysteresis branch)                   \n" Comment
+
+'\n'          Text
+
+'\n'          Text
+
+'//////////////////////////////////////// 4th diagram\n' Comment
+
+'T'           Name
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'CreateKOOS'  Name
+'('           Punctuation
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'"$T_4$"'     Literal.String
+')'           Punctuation
+';'           Punctuation
+'                                        ' Text
+'// initialise T[4] as empty diagram with label $T_4$              \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'A'           Name
+';'           Punctuation
+'                                                            ' Text
+"//  # pointwise definition of current path 'graph'                \n" Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'A'           Name
+'.'           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'0.4'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'A'           Name
+'.'           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'0.4'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                         ' Text
+'//  #                                                             \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'0.6'         Literal.Number.Float
+' '           Text
+','           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'0.6'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                               ' Text
+'//  #                                                             \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'                                               ' Text
+'//  #                                                             \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'grad'        Name
+'*'           Operator
+'0.9'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'0.9'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                                     ' Text
+'//  #                                                             \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'('           Punctuation
+'E'           Name.Variable
+'.'           Punctuation
+'x'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'0.1'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'E'           Name.Variable
+'.'           Punctuation
+'y'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'0.1'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                         ' Text
+'//  #                                                             \n' Comment
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'graph'       Name.Function
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'E'           Name.Variable
+';'           Punctuation
+'                                                   ' Text
+'//  #                                                             \n' Comment
+
+'                                                                                                                                        \n' Text
+
+'graph'       Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'roundedpath' Name.Function
+'('           Punctuation
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'radius'      Name.Function
+','           Punctuation
+' '           Text
+'S'           Name.Variable
+')'           Punctuation
+';'           Punctuation
+'                                ' Text
+"// round edges of 'graph' using roundedpath() in roundedpath.asy  \n" Comment
+
+'ActPen'      Name
+' '           Text
+'='           Operator
+'  '          Text
+'rgb'         Name.Function
+'('           Punctuation
+'0.6'         Literal.Number.Float
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'linewidth'   Name.Function
+'('           Punctuation
+'lw'          Name
+')'           Punctuation
+';'           Punctuation
+'                               ' Text
+'// define pen for drawing in 4th diagram                          \n' Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'                   ' Text
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'                          ' Text
+"// draw 'graph' with 'ActPen' into 'T[4]' (1st hysteresis branch) \n" Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'rotate'      Name.Function
+'('           Punctuation
+'180'         Literal.Number.Integer
+','           Punctuation
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'*'           Operator
+'graph'       Name.Function
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'                          ' Text
+"// draw rotated 'graph' (3nd hysteresis branch)                   \n" Comment
+
+'\n'          Text
+
+'\n'          Text
+
+'// add some labels and black dots to the first two pictures\n' Comment
+
+'pair'        Keyword.Type
+' '           Text
+'SWW'         Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'0.8'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'-'           Operator
+'0.6'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'label'       Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'"$\\sigma_f$"' Literal.String
+','           Punctuation
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0.6'         Literal.Number.Float
+'S'           Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'NE'          Name.Variable
+')'           Punctuation
+';'           Punctuation
+'                             ' Text
+'// sigma_f\n' Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0.6'         Literal.Number.Float
+'S'           Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'linewidth'   Name.Function
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'black'       Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'label'       Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'"$\\sigma_f$"' Literal.String
+','           Punctuation
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0.3'         Literal.Number.Float
+'S'           Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'NE'          Name.Variable
+')'           Punctuation
+';'           Punctuation
+'                             ' Text
+'// sigma_f\n' Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0.3'         Literal.Number.Float
+'S'           Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'linewidth'   Name.Function
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'black'       Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'label'       Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'"$\\varepsilon_p$"' Literal.String
+','           Punctuation
+' '           Text
+'('           Punctuation
+'0.7'         Literal.Number.Float
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'SWW'         Name
+')'           Punctuation
+';'           Punctuation
+'                       ' Text
+'// epsilon_p\n' Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'('           Punctuation
+'0.75'        Literal.Number.Float
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'linewidth'   Name.Function
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'black'       Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'label'       Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'"$\\varepsilon_p$"' Literal.String
+','           Punctuation
+' '           Text
+'('           Punctuation
+'0.7'         Literal.Number.Float
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'SWW'         Name
+')'           Punctuation
+';'           Punctuation
+'                       ' Text
+'// epsilon_p\n' Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'('           Punctuation
+'0.75'        Literal.Number.Float
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'linewidth'   Name.Function
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'black'       Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'// add all pictures T[1...4] to the current one\n' Comment
+
+'add'         Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'add'         Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'('           Punctuation
+'1'           Literal.Number.Integer
+'*'           Operator
+'inc'         Name
+'*'           Operator
+'S'           Name.Variable
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'add'         Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'('           Punctuation
+'2'           Literal.Number.Integer
+'*'           Operator
+'inc'         Name
+'*'           Operator
+'S'           Name.Variable
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'add'         Name.Function
+'('           Punctuation
+'T'           Name
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'('           Punctuation
+'3'           Literal.Number.Integer
+'*'           Operator
+'inc'         Name
+'*'           Operator
+'S'           Name.Variable
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'// draw line of constant \\sigma and all intersection points with the graphs in T[1...4]\n' Comment
+
+'ActPen'      Name
+' '           Text
+'='           Operator
+' '           Text
+'linewidth'   Name.Function
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'dashed'      Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'gray'        Name.Function
+'('           Punctuation
+'0.5'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                           ' Text
+'// pen definition\n' Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'('           Punctuation
+'-'           Operator
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'0.45'        Literal.Number.Float
+'*'           Operator
+'S'           Name.Variable
+')'           Punctuation
+'-'           Operator
+'-'           Operator
+'('           Punctuation
+'('           Punctuation
+'3'           Literal.Number.Integer
+'*'           Operator
+'inc'         Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'*'           Operator
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'0.45'        Literal.Number.Float
+'*'           Operator
+'S'           Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'                    ' Text
+'// draw backgoundline\n' Comment
+
+'label'       Name.Function
+'('           Punctuation
+'"$\\sigma_s$"' Literal.String
+','           Punctuation
+' '           Text
+'('           Punctuation
+'-'           Operator
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'0.45'        Literal.Number.Float
+'S'           Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'W'           Name.Variable
+')'           Punctuation
+';'           Punctuation
+'                            ' Text
+"// label 'sigma_s'\n" Comment
+
+'\n'          Text
+
+'path'        Keyword.Type
+' '           Text
+'mark'        Name
+' '           Text
+'='           Operator
+' '           Text
+'scale'       Name.Function
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+'*'           Operator
+'unitcircle'  Name.Variable
+';'           Punctuation
+'                                  ' Text
+'// define mark-symbol to be used for intersections\n' Comment
+
+'ActPen'      Name
+' '           Text
+'='           Operator
+' '           Text
+'linewidth'   Name.Function
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'gray'        Name.Function
+'('           Punctuation
+'0.5'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'                                    ' Text
+'// define pen for intersection mark\n' Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'shift'       Name.Function
+'('           Punctuation
+'('           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'-'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'0.55'        Literal.Number.Float
+' '           Text
+'+'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'*'           Operator
+'inc'         Name
+')'           Punctuation
+'*'           Operator
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'0.45'        Literal.Number.Float
+'*'           Operator
+'S'           Name.Variable
+')'           Punctuation
+'*'           Operator
+'mark'        Name
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'         '   Text
+'//  # draw all intersections\n' Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'shift'       Name.Function
+'('           Punctuation
+'('           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'1.45'        Literal.Number.Float
+' '           Text
+'+'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'*'           Operator
+'inc'         Name
+')'           Punctuation
+'*'           Operator
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'0.45'        Literal.Number.Float
+'*'           Operator
+'S'           Name.Variable
+')'           Punctuation
+'*'           Operator
+'mark'        Name
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'         '   Text
+'//  #\n'     Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'shift'       Name.Function
+'('           Punctuation
+'('           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'-'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'0.55'        Literal.Number.Float
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'*'           Operator
+'inc'         Name
+')'           Punctuation
+'*'           Operator
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'0.45'        Literal.Number.Float
+'*'           Operator
+'S'           Name.Variable
+')'           Punctuation
+'*'           Operator
+'mark'        Name
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'         '   Text
+'//  #\n'     Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'shift'       Name.Function
+'('           Punctuation
+'('           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'-'           Operator
+' '           Text
+'grad'        Name
+'*'           Operator
+'0.55'        Literal.Number.Float
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'*'           Operator
+'inc'         Name
+')'           Punctuation
+'*'           Operator
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'0.45'        Literal.Number.Float
+'*'           Operator
+'S'           Name.Variable
+')'           Punctuation
+'*'           Operator
+'mark'        Name
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'         '   Text
+'//  # \n'    Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'shift'       Name.Function
+'('           Punctuation
+'('           Punctuation
+'     '       Text
+'grad'        Name
+'*'           Operator
+'0.45'        Literal.Number.Float
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'*'           Operator
+'inc'         Name
+')'           Punctuation
+'*'           Operator
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'0.45'        Literal.Number.Float
+'*'           Operator
+'S'           Name.Variable
+')'           Punctuation
+'*'           Operator
+'mark'        Name
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'         '   Text
+'//  # \n'    Comment
+
+'draw'        Name.Function
+'('           Punctuation
+'shift'       Name.Function
+'('           Punctuation
+'('           Punctuation
+'     '       Text
+'grad'        Name
+'*'           Operator
+'0.45'        Literal.Number.Float
+' '           Text
+'+'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+'*'           Operator
+'inc'         Name
+')'           Punctuation
+'*'           Operator
+'S'           Name.Variable
+','           Punctuation
+' '           Text
+'0.45'        Literal.Number.Float
+'*'           Operator
+'S'           Name.Variable
+')'           Punctuation
+'*'           Operator
+'mark'        Name
+','           Punctuation
+' '           Text
+'ActPen'      Name
+')'           Punctuation
+';'           Punctuation
+'         '   Text
+'//  #\n'     Comment

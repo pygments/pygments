@@ -1,0 +1,1149 @@
+---input---
+# This is a TOML document comment
+
+title = "TOML example file" # This is an inline comment
+
+[examples]
+# Examples taken from https://github.com/toml-lang/toml/blob/master/README.md
+key = "value"
+bare_key = "value"
+bare-key = "value"
+1234 = "value"
+"127.0.0.1" = "value"
+"character encoding" = "value"
+"ʎǝʞ" = "value"
+'key2' = "value"
+'quoted "value"' = "value"
+name = "Orange"
+physical.color = "orange"
+physical.shape = "round"
+site."google.com" = true
+a.b.c = 1
+a.d = 2
+
+[strings]
+str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
+str1 = """
+Roses are red
+Violets are blue"""
+str2 = "Roses are red\nViolets are blue"
+str3 = "Roses are red\r\nViolets are blue"
+
+  [strings.equivalents]
+  str1 = "The quick brown fox jumps over the lazy dog."
+  str2 = """
+The quick brown \
+
+
+    fox jumps over \
+      the lazy dog."""
+  str3 = """\
+         The quick brown \
+         fox jumps over \
+         the lazy dog.\
+         """
+
+  [strings.literal]
+  winpath  = 'C:\Users\nodejs\templates'
+  winpath2 = '\\ServerX\admin$\system32\'
+  quoted   = 'Tom "Dubs" Preston-Werner'
+  regex    = '<\i\c*\s*>'
+
+  [strings.multiline]
+  regex2 = '''I [dw]on't need \d{2} apples'''
+  lines  = '''
+The first newline is
+trimmed in raw strings.
+   All other whitespace
+   is preserved.
+'''
+
+[integers]
+int1 = +99
+int2 = 42
+int3 = 0
+int4 = -17
+int5 = 1_000
+int6 = 5_349_221
+int7 = 1_2_3_4_5 # discouraged format
+# hexadecimal with prefix `0x`
+hex1 = 0xDEADBEEF
+hex2 = 0xdeadbeef
+hex3 = 0xdead_beef
+# octal with prefix `0o`
+oct1 = 0o01234567
+oct2 = 0o755 # useful for Unix file permissions
+# binary with prefix `0b`
+bin1 = 0b11010110
+
+[floats]
+# fractional
+flt1 = +1.0
+flt2 = 3.1415
+flt3 = -0.01
+# exponent
+flt4 = 5e+22
+flt5 = 1e6
+flt6 = -2E-2
+# both
+flt7 = 6.626e-34
+# with underscores, for readability
+flt8 = 224_617.445_991_228
+# infinity
+sf1 = inf  # positive infinity
+sf2 = +inf # positive infinity
+sf3 = -inf # negative infinity
+# not a number
+sf4 = nan  # actual sNaN/qNaN encoding is implementation specific
+sf5 = +nan # same as `nan`
+sf6 = -nan # valid, actual encoding is implementation specific
+# plus/minus zero
+sf0_1 = +0.0
+sf0_2 = -0.0
+
+[booleans]
+bool1 = true
+bool2 = false
+
+[datetime.offset]
+odt1 = 1979-05-27T07:32:00Z
+odt2 = 1979-05-27T00:32:00-07:00
+odt3 = 1979-05-27T00:32:00.999999-07:00
+odt4 = 1979-05-27 07:32:00Z
+
+[datetime.local]
+ldt1 = 1979-05-27T07:32:00
+ldt2 = 1979-05-27T00:32:00.999999
+
+[date.local]
+ld1 = 1979-05-27
+
+[time.local]
+lt1 = 07:32:00
+lt2 = 00:32:00.999999
+
+[arrays]
+arr1 = [ 1, 2, 3 ]
+arr2 = [ "red", "yellow", "green" ]
+arr3 = [ [ 1, 2 ], [3, 4, 5] ]
+arr4 = [ "all", 'strings', """are the same""", '''type''']
+arr5 = [ [ 1, 2 ], ["a", "b", "c"] ]
+arr6 = [ 1, 2.0 ] # INVALID
+arr7 = [
+  1, 2, 3
+]
+arr8 = [
+  1,
+  2, # this is ok
+]
+
+["inline tables"]
+name = { first = "Tom", last = "Preston-Werner" }
+point = { x = 1, y = 2 }
+animal = { type.name = "pug" }
+
+["arrays of tables"]
+points = [ { x = 1, y = 2, z = 3 },
+           { x = 7, y = 8, z = 9 },
+           { x = 2, y = 4, z = 8 } ]
+
+  [products]
+
+    [[products]]
+    name = "Hammer"
+    sku = 738594937
+
+    [[products]]
+
+    [[products]]
+    name = "Nail"
+    sku = 284758393
+    color = "gray"
+
+  [fruits]
+
+    [[fruit]]
+      name = "apple"
+
+      [fruit.physical]
+        color = "red"
+        shape = "round"
+
+      [[fruit.variety]]
+        name = "red delicious"
+
+      [[fruit.variety]]
+        name = "granny smith"
+
+    [[fruit]]
+      name = "banana"
+
+      [[fruit.variety]]
+        name = "plantain"
+
+---tokens---
+'# This is a TOML document comment' Comment.Single
+'\n\n'        Text
+
+'title'       Name
+' '           Text
+'='           Operator
+' '           Text
+'"TOML example file"' Literal.String
+' '           Text
+'# This is an inline comment' Comment.Single
+'\n\n'        Text
+
+'[examples]'  Keyword
+'\n'          Text
+
+'# Examples taken from https://github.com/toml-lang/toml/blob/master/README.md' Comment.Single
+'\n'          Text
+
+'key'         Name
+' '           Text
+'='           Operator
+' '           Text
+'"value"'     Literal.String
+'\n'          Text
+
+'bare_key'    Name
+' '           Text
+'='           Operator
+' '           Text
+'"value"'     Literal.String
+'\n'          Text
+
+'bare-key'    Name
+' '           Text
+'='           Operator
+' '           Text
+'"value"'     Literal.String
+'\n'          Text
+
+'1234'        Literal.Number.Integer
+' '           Text
+'='           Operator
+' '           Text
+'"value"'     Literal.String
+'\n'          Text
+
+'"127.0.0.1"' Literal.String
+' '           Text
+'='           Operator
+' '           Text
+'"value"'     Literal.String
+'\n'          Text
+
+'"character encoding"' Literal.String
+' '           Text
+'='           Operator
+' '           Text
+'"value"'     Literal.String
+'\n'          Text
+
+'"ʎǝʞ"'       Literal.String
+' '           Text
+'='           Operator
+' '           Text
+'"value"'     Literal.String
+'\n'          Text
+
+"'key2'"      Literal.String
+' '           Text
+'='           Operator
+' '           Text
+'"value"'     Literal.String
+'\n'          Text
+
+'\'quoted "value"\'' Literal.String
+' '           Text
+'='           Operator
+' '           Text
+'"value"'     Literal.String
+'\n'          Text
+
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"Orange"'    Literal.String
+'\n'          Text
+
+'physical'    Name
+'.'           Punctuation
+'color'       Name
+' '           Text
+'='           Operator
+' '           Text
+'"orange"'    Literal.String
+'\n'          Text
+
+'physical'    Name
+'.'           Punctuation
+'shape'       Name
+' '           Text
+'='           Operator
+' '           Text
+'"round"'     Literal.String
+'\n'          Text
+
+'site'        Name
+'.'           Punctuation
+'"google.com"' Literal.String
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'a'           Name
+'.'           Punctuation
+'b'           Name
+'.'           Punctuation
+'c'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'a'           Name
+'.'           Punctuation
+'d'           Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n\n'        Text
+
+'[strings]'   Keyword
+'\n'          Text
+
+'str'         Name
+' '           Text
+'='           Operator
+' '           Text
+'"I\'m a string. \\"You can quote me\\". Name\\tJos\\u00E9\\nLocation\\tSF."' Literal.String
+'\n'          Text
+
+'str1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String
+'"\nRoses are red\nViolets are blue"' Literal.String
+'""'          Literal.String
+'\n'          Text
+
+'str2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"Roses are red\\nViolets are blue"' Literal.String
+'\n'          Text
+
+'str3'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"Roses are red\\r\\nViolets are blue"' Literal.String
+'\n\n  '      Text
+'[strings.equivalents]' Keyword
+'\n  '        Text
+'str1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"The quick brown fox jumps over the lazy dog."' Literal.String
+'\n  '        Text
+'str2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String
+'"\nThe quick brown \\\n\n\n    fox jumps over \\\n      the lazy dog."' Literal.String
+'""'          Literal.String
+'\n  '        Text
+'str3'        Name
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String
+'"\\\n         The quick brown \\\n         fox jumps over \\\n         the lazy dog.\\\n         "' Literal.String
+'""'          Literal.String
+'\n\n  '      Text
+'[strings.literal]' Keyword
+'\n  '        Text
+'winpath'     Name
+'  '          Text
+'='           Operator
+' '           Text
+"'C:\\Users\\nodejs\\templates'" Literal.String
+'\n  '        Text
+'winpath2'    Name
+' '           Text
+'='           Operator
+' '           Text
+"'\\\\ServerX\\admin$\\system32\\'" Literal.String
+'\n  '        Text
+'quoted'      Name
+'   '         Text
+'='           Operator
+' '           Text
+'\'Tom "Dubs" Preston-Werner\'' Literal.String
+'\n  '        Text
+'regex'       Name
+'    '        Text
+'='           Operator
+' '           Text
+"'<\\i\\c*\\s*>'" Literal.String
+'\n\n  '      Text
+'[strings.multiline]' Keyword
+'\n  '        Text
+'regex2'      Name
+' '           Text
+'='           Operator
+' '           Text
+"'''I [dw]on't need \\d{2} apples'''" Literal.String
+'\n  '        Text
+'lines'       Name
+'  '          Text
+'='           Operator
+' '           Text
+"''"          Literal.String
+"'\nThe first newline is\ntrimmed in raw strings.\n   All other whitespace\n   is preserved.\n'" Literal.String
+"''"          Literal.String
+'\n\n'        Text
+
+'[integers]'  Keyword
+'\n'          Text
+
+'int1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'+99'         Literal.Number.Integer
+'\n'          Text
+
+'int2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'42'          Literal.Number.Integer
+'\n'          Text
+
+'int3'        Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'int4'        Name
+' '           Text
+'='           Operator
+' '           Text
+'-17'         Literal.Number.Integer
+'\n'          Text
+
+'int5'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'_000'        Name
+'\n'          Text
+
+'int6'        Name
+' '           Text
+'='           Operator
+' '           Text
+'5'           Literal.Number.Integer
+'_349_221'    Name
+'\n'          Text
+
+'int7'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'_2_3_4_5'    Name
+' '           Text
+'# discouraged format' Comment.Single
+'\n'          Text
+
+'# hexadecimal with prefix `0x`' Comment.Single
+'\n'          Text
+
+'hex1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'xDEADBEEF'   Name
+'\n'          Text
+
+'hex2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'xdeadbeef'   Name
+'\n'          Text
+
+'hex3'        Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'xdead_beef'  Name
+'\n'          Text
+
+'# octal with prefix `0o`' Comment.Single
+'\n'          Text
+
+'oct1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'o01234567'   Name
+'\n'          Text
+
+'oct2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'o755'        Name
+' '           Text
+'# useful for Unix file permissions' Comment.Single
+'\n'          Text
+
+'# binary with prefix `0b`' Comment.Single
+'\n'          Text
+
+'bin1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'b11010110'   Name
+'\n\n'        Text
+
+'[floats]'    Keyword
+'\n'          Text
+
+'# fractional' Comment.Single
+'\n'          Text
+
+'flt1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'+1'          Literal.Number.Integer
+'.0'          Literal.Number.Float
+'\n'          Text
+
+'flt2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'3.1415'      Literal.Number.Float
+'\n'          Text
+
+'flt3'        Name
+' '           Text
+'='           Operator
+' '           Text
+'-0'          Literal.Number.Integer
+'.01'         Literal.Number.Float
+'\n'          Text
+
+'# exponent'  Comment.Single
+'\n'          Text
+
+'flt4'        Name
+' '           Text
+'='           Operator
+' '           Text
+'5e+22'       Literal.Number.Float
+'\n'          Text
+
+'flt5'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1e6'         Literal.Number.Float
+'\n'          Text
+
+'flt6'        Name
+' '           Text
+'='           Operator
+' '           Text
+'-2'          Literal.Number.Integer
+'E-2'         Name
+'\n'          Text
+
+'# both'      Comment.Single
+'\n'          Text
+
+'flt7'        Name
+' '           Text
+'='           Operator
+' '           Text
+'6.626e-34'   Literal.Number.Float
+'\n'          Text
+
+'# with underscores, for readability' Comment.Single
+'\n'          Text
+
+'flt8'        Name
+' '           Text
+'='           Operator
+' '           Text
+'224'         Literal.Number.Integer
+'_617'        Name
+'.445'        Literal.Number.Float
+'_991_228'    Name
+'\n'          Text
+
+'# infinity'  Comment.Single
+'\n'          Text
+
+'sf1'         Name
+' '           Text
+'='           Operator
+' '           Text
+'inf'         Name
+'  '          Text
+'# positive infinity' Comment.Single
+'\n'          Text
+
+'sf2'         Name
+' '           Text
+'='           Operator
+' '           Text
+'+inf'        Literal.Number.Float
+' '           Text
+'# positive infinity' Comment.Single
+'\n'          Text
+
+'sf3'         Name
+' '           Text
+'='           Operator
+' '           Text
+'-inf'        Literal.Number.Float
+' '           Text
+'# negative infinity' Comment.Single
+'\n'          Text
+
+'# not a number' Comment.Single
+'\n'          Text
+
+'sf4'         Name
+' '           Text
+'='           Operator
+' '           Text
+'nan'         Name
+'  '          Text
+'# actual sNaN/qNaN encoding is implementation specific' Comment.Single
+'\n'          Text
+
+'sf5'         Name
+' '           Text
+'='           Operator
+' '           Text
+'+nan'        Literal.Number.Float
+' '           Text
+'# same as `nan`' Comment.Single
+'\n'          Text
+
+'sf6'         Name
+' '           Text
+'='           Operator
+' '           Text
+'-nan'        Literal.Number.Float
+' '           Text
+'# valid, actual encoding is implementation specific' Comment.Single
+'\n'          Text
+
+'# plus/minus zero' Comment.Single
+'\n'          Text
+
+'sf0_1'       Name
+' '           Text
+'='           Operator
+' '           Text
+'+0'          Literal.Number.Integer
+'.0'          Literal.Number.Float
+'\n'          Text
+
+'sf0_2'       Name
+' '           Text
+'='           Operator
+' '           Text
+'-0'          Literal.Number.Integer
+'.0'          Literal.Number.Float
+'\n\n'        Text
+
+'[booleans]'  Keyword
+'\n'          Text
+
+'bool1'       Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'bool2'       Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+'\n\n'        Text
+
+'[datetime.offset]' Keyword
+'\n'          Text
+
+'odt1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1979-05-27T07:32:00Z' Literal.Number.Integer
+'\n'          Text
+
+'odt2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1979-05-27T00:32:00-07:00' Literal.Number.Integer
+'\n'          Text
+
+'odt3'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1979'        Literal.Number.Integer
+'-05'         Literal.Number.Integer
+'-27'         Literal.Number.Integer
+'T00'         Name
+':'           Punctuation
+'32'          Literal.Number.Integer
+':'           Punctuation
+'00.999999'   Literal.Number.Float
+'-07'         Literal.Number.Integer
+':'           Punctuation
+'00'          Literal.Number.Integer
+'\n'          Text
+
+'odt4'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1979-05-27 07:32:00Z' Literal.Number.Integer
+'\n\n'        Text
+
+'[datetime.local]' Keyword
+'\n'          Text
+
+'ldt1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1979'        Literal.Number.Integer
+'-05'         Literal.Number.Integer
+'-27'         Literal.Number.Integer
+'T07'         Name
+':'           Punctuation
+'32'          Literal.Number.Integer
+':'           Punctuation
+'00'          Literal.Number.Integer
+'\n'          Text
+
+'ldt2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1979'        Literal.Number.Integer
+'-05'         Literal.Number.Integer
+'-27'         Literal.Number.Integer
+'T00'         Name
+':'           Punctuation
+'32'          Literal.Number.Integer
+':'           Punctuation
+'00.999999'   Literal.Number.Float
+'\n\n'        Text
+
+'[date.local]' Keyword
+'\n'          Text
+
+'ld1'         Name
+' '           Text
+'='           Operator
+' '           Text
+'1979'        Literal.Number.Integer
+'-05'         Literal.Number.Integer
+'-27'         Literal.Number.Integer
+'\n\n'        Text
+
+'[time.local]' Keyword
+'\n'          Text
+
+'lt1'         Name
+' '           Text
+'='           Operator
+' '           Text
+'07'          Literal.Number.Integer
+':'           Punctuation
+'32'          Literal.Number.Integer
+':'           Punctuation
+'00'          Literal.Number.Integer
+'\n'          Text
+
+'lt2'         Name
+' '           Text
+'='           Operator
+' '           Text
+'00'          Literal.Number.Integer
+':'           Punctuation
+'32'          Literal.Number.Integer
+':'           Punctuation
+'00.999999'   Literal.Number.Float
+'\n\n'        Text
+
+'[arrays]'    Keyword
+'\n'          Text
+
+'arr1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'[ 1, 2, 3 ]' Keyword
+'\n'          Text
+
+'arr2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'[ "red", "yellow", "green" ]' Keyword
+'\n'          Text
+
+'arr3'        Name
+' '           Text
+'='           Operator
+' '           Text
+'[ [ 1, 2 ], [3, 4, 5] ]' Keyword
+'\n'          Text
+
+'arr4'        Name
+' '           Text
+'='           Operator
+' '           Text
+'[ "all", \'strings\', """are the same""", \'\'\'type\'\'\']' Keyword
+'\n'          Text
+
+'arr5'        Name
+' '           Text
+'='           Operator
+' '           Text
+'[ [ 1, 2 ], ["a", "b", "c"] ]' Keyword
+'\n'          Text
+
+'arr6'        Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2.0'         Literal.Number.Float
+' '           Text
+']'           Punctuation
+' '           Text
+'# INVALID'   Comment.Single
+'\n'          Text
+
+'arr7'        Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'\n  '        Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+'\n'          Text
+
+']'           Punctuation
+'\n'          Text
+
+'arr8'        Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'\n  '        Text
+'1'           Literal.Number.Integer
+','           Punctuation
+'\n  '        Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'# this is ok' Comment.Single
+'\n'          Text
+
+']'           Punctuation
+'\n\n'        Text
+
+'["inline tables"]' Keyword
+'\n'          Text
+
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+' '           Text
+'first'       Name
+' '           Text
+'='           Operator
+' '           Text
+'"Tom"'       Literal.String
+','           Punctuation
+' '           Text
+'last'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"Preston-Werner"' Literal.String
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'point'       Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+' '           Text
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'y'           Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'animal'      Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+' '           Text
+'type'        Name
+'.'           Punctuation
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"pug"'       Literal.String
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'["arrays of tables"]' Keyword
+'\n'          Text
+
+'points'      Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'y'           Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'z'           Name
+' '           Text
+'='           Operator
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+','           Punctuation
+'\n           ' Text
+'{'           Punctuation
+' '           Text
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'7'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'y'           Name
+' '           Text
+'='           Operator
+' '           Text
+'8'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'z'           Name
+' '           Text
+'='           Operator
+' '           Text
+'9'           Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+','           Punctuation
+'\n           ' Text
+'{'           Punctuation
+' '           Text
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'y'           Name
+' '           Text
+'='           Operator
+' '           Text
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'z'           Name
+' '           Text
+'='           Operator
+' '           Text
+'8'           Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+' '           Text
+']'           Punctuation
+'\n\n  '      Text
+'[products]'  Keyword
+'\n\n    '    Text
+'[[products]]' Keyword
+'\n    '      Text
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"Hammer"'    Literal.String
+'\n    '      Text
+'sku'         Name
+' '           Text
+'='           Operator
+' '           Text
+'738594937'   Literal.Number.Integer
+'\n\n    '    Text
+'[[products]]' Keyword
+'\n\n    '    Text
+'[[products]]' Keyword
+'\n    '      Text
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"Nail"'      Literal.String
+'\n    '      Text
+'sku'         Name
+' '           Text
+'='           Operator
+' '           Text
+'284758393'   Literal.Number.Integer
+'\n    '      Text
+'color'       Name
+' '           Text
+'='           Operator
+' '           Text
+'"gray"'      Literal.String
+'\n\n  '      Text
+'[fruits]'    Keyword
+'\n\n    '    Text
+'[[fruit]]'   Keyword
+'\n      '    Text
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"apple"'     Literal.String
+'\n\n      '  Text
+'[fruit.physical]' Keyword
+'\n        '  Text
+'color'       Name
+' '           Text
+'='           Operator
+' '           Text
+'"red"'       Literal.String
+'\n        '  Text
+'shape'       Name
+' '           Text
+'='           Operator
+' '           Text
+'"round"'     Literal.String
+'\n\n      '  Text
+'[[fruit.variety]]' Keyword
+'\n        '  Text
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"red delicious"' Literal.String
+'\n\n      '  Text
+'[[fruit.variety]]' Keyword
+'\n        '  Text
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"granny smith"' Literal.String
+'\n\n    '    Text
+'[[fruit]]'   Keyword
+'\n      '    Text
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"banana"'    Literal.String
+'\n\n      '  Text
+'[[fruit.variety]]' Keyword
+'\n        '  Text
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"plantain"'  Literal.String
+'\n'          Text

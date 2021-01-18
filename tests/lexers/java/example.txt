@@ -1,0 +1,20 @@
+---input---
+// this used to take ages
+void foo() throws xxxxxxxxxxxxxxxxxxxxxx{ }
+
+---tokens---
+'// this used to take ages\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text
+'foo'         Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'throws'      Keyword.Declaration
+' '           Text
+'xxxxxxxxxxxxxxxxxxxxxx' Name
+'{'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text

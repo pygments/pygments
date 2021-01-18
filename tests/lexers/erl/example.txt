@@ -1,0 +1,79 @@
+---input---
+1> io:format("Hello\n").
+Hello
+ok
+2> fun(X) -> X + 1 end.
+#Fun<erl_eval.6.13229925>
+3> 123 + 234.
+357
+4> X = Y.
+* 1: variable 'Y' is unbound
+5> 
+
+---tokens---
+'1>'          Generic.Prompt
+' '           Text
+'io'          Name.Namespace
+':'           Punctuation
+'format'      Name.Function
+'('           Punctuation
+'"'           Literal.String
+'Hello'       Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'Hello\n'     Generic.Output
+
+'ok\n'        Generic.Output
+
+'2>'          Generic.Prompt
+' '           Text
+'fun'         Keyword
+'('           Punctuation
+'X'           Name.Variable
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'X'           Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'end'         Keyword
+'.'           Punctuation
+'\n'          Text
+
+'#Fun<erl_eval.6.13229925>\n' Generic.Output
+
+'3>'          Generic.Prompt
+' '           Text
+'123'         Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'234'         Literal.Number.Integer
+'.'           Punctuation
+'\n'          Text
+
+'357\n'       Generic.Output
+
+'4>'          Generic.Prompt
+' '           Text
+'X'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Y'           Name.Variable
+'.'           Punctuation
+'\n'          Text
+
+"* 1: variable 'Y' is unbound\n" Generic.Traceback
+
+'5>'          Generic.Prompt
+' \n'         Text

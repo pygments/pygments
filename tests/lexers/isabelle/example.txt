@@ -1,0 +1,6185 @@
+---input---
+(* from Isabelle2013-2 src/HOL/Power.thy; BSD license *)
+
+(*  Title:      HOL/Power.thy
+    Author:     Lawrence C Paulson, Cambridge University Computer Laboratory
+    Copyright   1997  University of Cambridge
+*)
+
+header {* Exponentiation *}
+
+theory Power
+imports Num
+begin
+
+subsection {* Powers for Arbitrary Monoids *}
+
+class power = one + times
+begin
+
+primrec power :: "'a \<Rightarrow> nat \<Rightarrow> 'a" (infixr "^" 80) where
+    power_0: "a ^ 0 = 1"
+  | power_Suc: "a ^ Suc n = a * a ^ n"
+
+notation (latex output)
+  power ("(_\<^bsup>_\<^esup>)" [1000] 1000)
+
+notation (HTML output)
+  power ("(_\<^bsup>_\<^esup>)" [1000] 1000)
+
+text {* Special syntax for squares. *}
+
+abbreviation (xsymbols)
+  power2 :: "'a \<Rightarrow> 'a"  ("(_\<^sup>2)" [1000] 999) where
+  "x\<^sup>2 \<equiv> x ^ 2"
+
+notation (latex output)
+  power2  ("(_\<^sup>2)" [1000] 999)
+
+notation (HTML output)
+  power2  ("(_\<^sup>2)" [1000] 999)
+
+end
+
+context monoid_mult
+begin
+
+subclass power .
+
+lemma power_one [simp]:
+  "1 ^ n = 1"
+  by (induct n) simp_all
+
+lemma power_one_right [simp]:
+  "a ^ 1 = a"
+  by simp
+
+lemma power_commutes:
+  "a ^ n * a = a * a ^ n"
+  by (induct n) (simp_all add: mult_assoc)
+
+lemma power_Suc2:
+  "a ^ Suc n = a ^ n * a"
+  by (simp add: power_commutes)
+
+lemma power_add:
+  "a ^ (m + n) = a ^ m * a ^ n"
+  by (induct m) (simp_all add: algebra_simps)
+
+lemma power_mult:
+  "a ^ (m * n) = (a ^ m) ^ n"
+  by (induct n) (simp_all add: power_add)
+
+lemma power2_eq_square: "a\<^sup>2 = a * a"
+  by (simp add: numeral_2_eq_2)
+
+lemma power3_eq_cube: "a ^ 3 = a * a * a"
+  by (simp add: numeral_3_eq_3 mult_assoc)
+
+lemma power_even_eq:
+  "a ^ (2 * n) = (a ^ n)\<^sup>2"
+  by (subst mult_commute) (simp add: power_mult)
+
+lemma power_odd_eq:
+  "a ^ Suc (2*n) = a * (a ^ n)\<^sup>2"
+  by (simp add: power_even_eq)
+
+lemma power_numeral_even:
+  "z ^ numeral (Num.Bit0 w) = (let w = z ^ (numeral w) in w * w)"
+  unfolding numeral_Bit0 power_add Let_def ..
+
+lemma power_numeral_odd:
+  "z ^ numeral (Num.Bit1 w) = (let w = z ^ (numeral w) in z * w * w)"
+  unfolding numeral_Bit1 One_nat_def add_Suc_right add_0_right
+  unfolding power_Suc power_add Let_def mult_assoc ..
+
+lemma funpow_times_power:
+  "(times x ^^ f x) = times (x ^ f x)"
+proof (induct "f x" arbitrary: f)
+  case 0 then show ?case by (simp add: fun_eq_iff)
+next
+  case (Suc n)
+  def g \<equiv> "\<lambda>x. f x - 1"
+  with Suc have "n = g x" by simp
+  with Suc have "times x ^^ g x = times (x ^ g x)" by simp
+  moreover from Suc g_def have "f x = g x + 1" by simp
+  ultimately show ?case by (simp add: power_add funpow_add fun_eq_iff mult_assoc)
+qed
+
+end
+
+context comm_monoid_mult
+begin
+
+lemma power_mult_distrib:
+  "(a * b) ^ n = (a ^ n) * (b ^ n)"
+  by (induct n) (simp_all add: mult_ac)
+
+end
+
+context semiring_numeral
+begin
+
+lemma numeral_sqr: "numeral (Num.sqr k) = numeral k * numeral k"
+  by (simp only: sqr_conv_mult numeral_mult)
+
+lemma numeral_pow: "numeral (Num.pow k l) = numeral k ^ numeral l"
+  by (induct l, simp_all only: numeral_class.numeral.simps pow.simps
+    numeral_sqr numeral_mult power_add power_one_right)
+
+lemma power_numeral [simp]: "numeral k ^ numeral l = numeral (Num.pow k l)"
+  by (rule numeral_pow [symmetric])
+
+end
+
+context semiring_1
+begin
+
+lemma of_nat_power:
+  "of_nat (m ^ n) = of_nat m ^ n"
+  by (induct n) (simp_all add: of_nat_mult)
+
+lemma power_zero_numeral [simp]: "(0::'a) ^ numeral k = 0"
+  by (simp add: numeral_eq_Suc)
+
+lemma zero_power2: "0\<^sup>2 = 0" (* delete? *)
+  by (rule power_zero_numeral)
+
+lemma one_power2: "1\<^sup>2 = 1" (* delete? *)
+  by (rule power_one)
+
+end
+
+context comm_semiring_1
+begin
+
+text {* The divides relation *}
+
+lemma le_imp_power_dvd:
+  assumes "m \<le> n" shows "a ^ m dvd a ^ n"
+proof
+  have "a ^ n = a ^ (m + (n - m))"
+    using `m \<le> n` by simp
+  also have "\<dots> = a ^ m * a ^ (n - m)"
+    by (rule power_add)
+  finally show "a ^ n = a ^ m * a ^ (n - m)" .
+qed
+
+lemma power_le_dvd:
+  "a ^ n dvd b \<Longrightarrow> m \<le> n \<Longrightarrow> a ^ m dvd b"
+  by (rule dvd_trans [OF le_imp_power_dvd])
+
+lemma dvd_power_same:
+  "x dvd y \<Longrightarrow> x ^ n dvd y ^ n"
+  by (induct n) (auto simp add: mult_dvd_mono)
+
+lemma dvd_power_le:
+  "x dvd y \<Longrightarrow> m \<ge> n \<Longrightarrow> x ^ n dvd y ^ m"
+  by (rule power_le_dvd [OF dvd_power_same])
+
+lemma dvd_power [simp]:
+  assumes "n > (0::nat) \<or> x = 1"
+  shows "x dvd (x ^ n)"
+using assms proof
+  assume "0 < n"
+  then have "x ^ n = x ^ Suc (n - 1)" by simp
+  then show "x dvd (x ^ n)" by simp
+next
+  assume "x = 1"
+  then show "x dvd (x ^ n)" by simp
+qed
+
+end
+
+context ring_1
+begin
+
+lemma power_minus:
+  "(- a) ^ n = (- 1) ^ n * a ^ n"
+proof (induct n)
+  case 0 show ?case by simp
+next
+  case (Suc n) then show ?case
+    by (simp del: power_Suc add: power_Suc2 mult_assoc)
+qed
+
+lemma power_minus_Bit0:
+  "(- x) ^ numeral (Num.Bit0 k) = x ^ numeral (Num.Bit0 k)"
+  by (induct k, simp_all only: numeral_class.numeral.simps power_add
+    power_one_right mult_minus_left mult_minus_right minus_minus)
+
+lemma power_minus_Bit1:
+  "(- x) ^ numeral (Num.Bit1 k) = - (x ^ numeral (Num.Bit1 k))"
+  by (simp only: eval_nat_numeral(3) power_Suc power_minus_Bit0 mult_minus_left)
+
+lemma power_neg_numeral_Bit0 [simp]:
+  "neg_numeral k ^ numeral (Num.Bit0 l) = numeral (Num.pow k (Num.Bit0 l))"
+  by (simp only: neg_numeral_def power_minus_Bit0 power_numeral)
+
+lemma power_neg_numeral_Bit1 [simp]:
+  "neg_numeral k ^ numeral (Num.Bit1 l) = neg_numeral (Num.pow k (Num.Bit1 l))"
+  by (simp only: neg_numeral_def power_minus_Bit1 power_numeral pow.simps)
+
+lemma power2_minus [simp]:
+  "(- a)\<^sup>2 = a\<^sup>2"
+  by (rule power_minus_Bit0)
+
+lemma power_minus1_even [simp]:
+  "-1 ^ (2*n) = 1"
+proof (induct n)
+  case 0 show ?case by simp
+next
+  case (Suc n) then show ?case by (simp add: power_add power2_eq_square)
+qed
+
+lemma power_minus1_odd:
+  "-1 ^ Suc (2*n) = -1"
+  by simp
+
+lemma power_minus_even [simp]:
+  "(-a) ^ (2*n) = a ^ (2*n)"
+  by (simp add: power_minus [of a])
+
+end
+
+context ring_1_no_zero_divisors
+begin
+
+lemma field_power_not_zero:
+  "a \<noteq> 0 \<Longrightarrow> a ^ n \<noteq> 0"
+  by (induct n) auto
+
+lemma zero_eq_power2 [simp]:
+  "a\<^sup>2 = 0 \<longleftrightarrow> a = 0"
+  unfolding power2_eq_square by simp
+
+lemma power2_eq_1_iff:
+  "a\<^sup>2 = 1 \<longleftrightarrow> a = 1 \<or> a = - 1"
+  unfolding power2_eq_square by (rule square_eq_1_iff)
+
+end
+
+context idom
+begin
+
+lemma power2_eq_iff: "x\<^sup>2 = y\<^sup>2 \<longleftrightarrow> x = y \<or> x = - y"
+  unfolding power2_eq_square by (rule square_eq_iff)
+
+end
+
+context division_ring
+begin
+
+text {* FIXME reorient or rename to @{text nonzero_inverse_power} *}
+lemma nonzero_power_inverse:
+  "a \<noteq> 0 \<Longrightarrow> inverse (a ^ n) = (inverse a) ^ n"
+  by (induct n)
+    (simp_all add: nonzero_inverse_mult_distrib power_commutes field_power_not_zero)
+
+end
+
+context field
+begin
+
+lemma nonzero_power_divide:
+  "b \<noteq> 0 \<Longrightarrow> (a / b) ^ n = a ^ n / b ^ n"
+  by (simp add: divide_inverse power_mult_distrib nonzero_power_inverse)
+
+end
+
+
+subsection {* Exponentiation on ordered types *}
+
+context linordered_ring (* TODO: move *)
+begin
+
+lemma sum_squares_ge_zero:
+  "0 \<le> x * x + y * y"
+  by (intro add_nonneg_nonneg zero_le_square)
+
+lemma not_sum_squares_lt_zero:
+  "\<not> x * x + y * y < 0"
+  by (simp add: not_less sum_squares_ge_zero)
+
+end
+
+context linordered_semidom
+begin
+
+lemma zero_less_power [simp]:
+  "0 < a \<Longrightarrow> 0 < a ^ n"
+  by (induct n) (simp_all add: mult_pos_pos)
+
+lemma zero_le_power [simp]:
+  "0 \<le> a \<Longrightarrow> 0 \<le> a ^ n"
+  by (induct n) (simp_all add: mult_nonneg_nonneg)
+
+lemma power_mono:
+  "a \<le> b \<Longrightarrow> 0 \<le> a \<Longrightarrow> a ^ n \<le> b ^ n"
+  by (induct n) (auto intro: mult_mono order_trans [of 0 a b])
+
+lemma one_le_power [simp]: "1 \<le> a \<Longrightarrow> 1 \<le> a ^ n"
+  using power_mono [of 1 a n] by simp
+
+lemma power_le_one: "\<lbrakk>0 \<le> a; a \<le> 1\<rbrakk> \<Longrightarrow> a ^ n \<le> 1"
+  using power_mono [of a 1 n] by simp
+
+lemma power_gt1_lemma:
+  assumes gt1: "1 < a"
+  shows "1 < a * a ^ n"
+proof -
+  from gt1 have "0 \<le> a"
+    by (fact order_trans [OF zero_le_one less_imp_le])
+  have "1 * 1 < a * 1" using gt1 by simp
+  also have "\<dots> \<le> a * a ^ n" using gt1
+    by (simp only: mult_mono `0 \<le> a` one_le_power order_less_imp_le
+        zero_le_one order_refl)
+  finally show ?thesis by simp
+qed
+
+lemma power_gt1:
+  "1 < a \<Longrightarrow> 1 < a ^ Suc n"
+  by (simp add: power_gt1_lemma)
+
+lemma one_less_power [simp]:
+  "1 < a \<Longrightarrow> 0 < n \<Longrightarrow> 1 < a ^ n"
+  by (cases n) (simp_all add: power_gt1_lemma)
+
+lemma power_le_imp_le_exp:
+  assumes gt1: "1 < a"
+  shows "a ^ m \<le> a ^ n \<Longrightarrow> m \<le> n"
+proof (induct m arbitrary: n)
+  case 0
+  show ?case by simp
+next
+  case (Suc m)
+  show ?case
+  proof (cases n)
+    case 0
+    with Suc.prems Suc.hyps have "a * a ^ m \<le> 1" by simp
+    with gt1 show ?thesis
+      by (force simp only: power_gt1_lemma
+          not_less [symmetric])
+  next
+    case (Suc n)
+    with Suc.prems Suc.hyps show ?thesis
+      by (force dest: mult_left_le_imp_le
+          simp add: less_trans [OF zero_less_one gt1])
+  qed
+qed
+
+text{*Surely we can strengthen this? It holds for @{text "0<a<1"} too.*}
+lemma power_inject_exp [simp]:
+  "1 < a \<Longrightarrow> a ^ m = a ^ n \<longleftrightarrow> m = n"
+  by (force simp add: order_antisym power_le_imp_le_exp)
+
+text{*Can relax the first premise to @{term "0<a"} in the case of the
+natural numbers.*}
+lemma power_less_imp_less_exp:
+  "1 < a \<Longrightarrow> a ^ m < a ^ n \<Longrightarrow> m < n"
+  by (simp add: order_less_le [of m n] less_le [of "a^m" "a^n"]
+    power_le_imp_le_exp)
+
+lemma power_strict_mono [rule_format]:
+  "a < b \<Longrightarrow> 0 \<le> a \<Longrightarrow> 0 < n \<longrightarrow> a ^ n < b ^ n"
+  by (induct n)
+   (auto simp add: mult_strict_mono le_less_trans [of 0 a b])
+
+text{*Lemma for @{text power_strict_decreasing}*}
+lemma power_Suc_less:
+  "0 < a \<Longrightarrow> a < 1 \<Longrightarrow> a * a ^ n < a ^ n"
+  by (induct n)
+    (auto simp add: mult_strict_left_mono)
+
+lemma power_strict_decreasing [rule_format]:
+  "n < N \<Longrightarrow> 0 < a \<Longrightarrow> a < 1 \<longrightarrow> a ^ N < a ^ n"
+proof (induct N)
+  case 0 then show ?case by simp
+next
+  case (Suc N) then show ?case 
+  apply (auto simp add: power_Suc_less less_Suc_eq)
+  apply (subgoal_tac "a * a^N < 1 * a^n")
+  apply simp
+  apply (rule mult_strict_mono) apply auto
+  done
+qed
+
+text{*Proof resembles that of @{text power_strict_decreasing}*}
+lemma power_decreasing [rule_format]:
+  "n \<le> N \<Longrightarrow> 0 \<le> a \<Longrightarrow> a \<le> 1 \<longrightarrow> a ^ N \<le> a ^ n"
+proof (induct N)
+  case 0 then show ?case by simp
+next
+  case (Suc N) then show ?case 
+  apply (auto simp add: le_Suc_eq)
+  apply (subgoal_tac "a * a^N \<le> 1 * a^n", simp)
+  apply (rule mult_mono) apply auto
+  done
+qed
+
+lemma power_Suc_less_one:
+  "0 < a \<Longrightarrow> a < 1 \<Longrightarrow> a ^ Suc n < 1"
+  using power_strict_decreasing [of 0 "Suc n" a] by simp
+
+text{*Proof again resembles that of @{text power_strict_decreasing}*}
+lemma power_increasing [rule_format]:
+  "n \<le> N \<Longrightarrow> 1 \<le> a \<Longrightarrow> a ^ n \<le> a ^ N"
+proof (induct N)
+  case 0 then show ?case by simp
+next
+  case (Suc N) then show ?case 
+  apply (auto simp add: le_Suc_eq)
+  apply (subgoal_tac "1 * a^n \<le> a * a^N", simp)
+  apply (rule mult_mono) apply (auto simp add: order_trans [OF zero_le_one])
+  done
+qed
+
+text{*Lemma for @{text power_strict_increasing}*}
+lemma power_less_power_Suc:
+  "1 < a \<Longrightarrow> a ^ n < a * a ^ n"
+  by (induct n) (auto simp add: mult_strict_left_mono less_trans [OF zero_less_one])
+
+lemma power_strict_increasing [rule_format]:
+  "n < N \<Longrightarrow> 1 < a \<longrightarrow> a ^ n < a ^ N"
+proof (induct N)
+  case 0 then show ?case by simp
+next
+  case (Suc N) then show ?case 
+  apply (auto simp add: power_less_power_Suc less_Suc_eq)
+  apply (subgoal_tac "1 * a^n < a * a^N", simp)
+  apply (rule mult_strict_mono) apply (auto simp add: less_trans [OF zero_less_one] less_imp_le)
+  done
+qed
+
+lemma power_increasing_iff [simp]:
+  "1 < b \<Longrightarrow> b ^ x \<le> b ^ y \<longleftrightarrow> x \<le> y"
+  by (blast intro: power_le_imp_le_exp power_increasing less_imp_le)
+
+lemma power_strict_increasing_iff [simp]:
+  "1 < b \<Longrightarrow> b ^ x < b ^ y \<longleftrightarrow> x < y"
+by (blast intro: power_less_imp_less_exp power_strict_increasing) 
+
+lemma power_le_imp_le_base:
+  assumes le: "a ^ Suc n \<le> b ^ Suc n"
+    and ynonneg: "0 \<le> b"
+  shows "a \<le> b"
+proof (rule ccontr)
+  assume "~ a \<le> b"
+  then have "b < a" by (simp only: linorder_not_le)
+  then have "b ^ Suc n < a ^ Suc n"
+    by (simp only: assms power_strict_mono)
+  from le and this show False
+    by (simp add: linorder_not_less [symmetric])
+qed
+
+lemma power_less_imp_less_base:
+  assumes less: "a ^ n < b ^ n"
+  assumes nonneg: "0 \<le> b"
+  shows "a < b"
+proof (rule contrapos_pp [OF less])
+  assume "~ a < b"
+  hence "b \<le> a" by (simp only: linorder_not_less)
+  hence "b ^ n \<le> a ^ n" using nonneg by (rule power_mono)
+  thus "\<not> a ^ n < b ^ n" by (simp only: linorder_not_less)
+qed
+
+lemma power_inject_base:
+  "a ^ Suc n = b ^ Suc n \<Longrightarrow> 0 \<le> a \<Longrightarrow> 0 \<le> b \<Longrightarrow> a = b"
+by (blast intro: power_le_imp_le_base antisym eq_refl sym)
+
+lemma power_eq_imp_eq_base:
+  "a ^ n = b ^ n \<Longrightarrow> 0 \<le> a \<Longrightarrow> 0 \<le> b \<Longrightarrow> 0 < n \<Longrightarrow> a = b"
+  by (cases n) (simp_all del: power_Suc, rule power_inject_base)
+
+lemma power2_le_imp_le:
+  "x\<^sup>2 \<le> y\<^sup>2 \<Longrightarrow> 0 \<le> y \<Longrightarrow> x \<le> y"
+  unfolding numeral_2_eq_2 by (rule power_le_imp_le_base)
+
+lemma power2_less_imp_less:
+  "x\<^sup>2 < y\<^sup>2 \<Longrightarrow> 0 \<le> y \<Longrightarrow> x < y"
+  by (rule power_less_imp_less_base)
+
+lemma power2_eq_imp_eq:
+  "x\<^sup>2 = y\<^sup>2 \<Longrightarrow> 0 \<le> x \<Longrightarrow> 0 \<le> y \<Longrightarrow> x = y"
+  unfolding numeral_2_eq_2 by (erule (2) power_eq_imp_eq_base) simp
+
+end
+
+context linordered_ring_strict
+begin
+
+lemma sum_squares_eq_zero_iff:
+  "x * x + y * y = 0 \<longleftrightarrow> x = 0 \<and> y = 0"
+  by (simp add: add_nonneg_eq_0_iff)
+
+lemma sum_squares_le_zero_iff:
+  "x * x + y * y \<le> 0 \<longleftrightarrow> x = 0 \<and> y = 0"
+  by (simp add: le_less not_sum_squares_lt_zero sum_squares_eq_zero_iff)
+
+lemma sum_squares_gt_zero_iff:
+  "0 < x * x + y * y \<longleftrightarrow> x \<noteq> 0 \<or> y \<noteq> 0"
+  by (simp add: not_le [symmetric] sum_squares_le_zero_iff)
+
+end
+
+context linordered_idom
+begin
+
+lemma power_abs:
+  "abs (a ^ n) = abs a ^ n"
+  by (induct n) (auto simp add: abs_mult)
+
+lemma abs_power_minus [simp]:
+  "abs ((-a) ^ n) = abs (a ^ n)"
+  by (simp add: power_abs)
+
+lemma zero_less_power_abs_iff [simp, no_atp]:
+  "0 < abs a ^ n \<longleftrightarrow> a \<noteq> 0 \<or> n = 0"
+proof (induct n)
+  case 0 show ?case by simp
+next
+  case (Suc n) show ?case by (auto simp add: Suc zero_less_mult_iff)
+qed
+
+lemma zero_le_power_abs [simp]:
+  "0 \<le> abs a ^ n"
+  by (rule zero_le_power [OF abs_ge_zero])
+
+lemma zero_le_power2 [simp]:
+  "0 \<le> a\<^sup>2"
+  by (simp add: power2_eq_square)
+
+lemma zero_less_power2 [simp]:
+  "0 < a\<^sup>2 \<longleftrightarrow> a \<noteq> 0"
+  by (force simp add: power2_eq_square zero_less_mult_iff linorder_neq_iff)
+
+lemma power2_less_0 [simp]:
+  "\<not> a\<^sup>2 < 0"
+  by (force simp add: power2_eq_square mult_less_0_iff)
+
+lemma abs_power2 [simp]:
+  "abs (a\<^sup>2) = a\<^sup>2"
+  by (simp add: power2_eq_square abs_mult abs_mult_self)
+
+lemma power2_abs [simp]:
+  "(abs a)\<^sup>2 = a\<^sup>2"
+  by (simp add: power2_eq_square abs_mult_self)
+
+lemma odd_power_less_zero:
+  "a < 0 \<Longrightarrow> a ^ Suc (2*n) < 0"
+proof (induct n)
+  case 0
+  then show ?case by simp
+next
+  case (Suc n)
+  have "a ^ Suc (2 * Suc n) = (a*a) * a ^ Suc(2*n)"
+    by (simp add: mult_ac power_add power2_eq_square)
+  thus ?case
+    by (simp del: power_Suc add: Suc mult_less_0_iff mult_neg_neg)
+qed
+
+lemma odd_0_le_power_imp_0_le:
+  "0 \<le> a ^ Suc (2*n) \<Longrightarrow> 0 \<le> a"
+  using odd_power_less_zero [of a n]
+    by (force simp add: linorder_not_less [symmetric]) 
+
+lemma zero_le_even_power'[simp]:
+  "0 \<le> a ^ (2*n)"
+proof (induct n)
+  case 0
+    show ?case by simp
+next
+  case (Suc n)
+    have "a ^ (2 * Suc n) = (a*a) * a ^ (2*n)" 
+      by (simp add: mult_ac power_add power2_eq_square)
+    thus ?case
+      by (simp add: Suc zero_le_mult_iff)
+qed
+
+lemma sum_power2_ge_zero:
+  "0 \<le> x\<^sup>2 + y\<^sup>2"
+  by (intro add_nonneg_nonneg zero_le_power2)
+
+lemma not_sum_power2_lt_zero:
+  "\<not> x\<^sup>2 + y\<^sup>2 < 0"
+  unfolding not_less by (rule sum_power2_ge_zero)
+
+lemma sum_power2_eq_zero_iff:
+  "x\<^sup>2 + y\<^sup>2 = 0 \<longleftrightarrow> x = 0 \<and> y = 0"
+  unfolding power2_eq_square by (simp add: add_nonneg_eq_0_iff)
+
+lemma sum_power2_le_zero_iff:
+  "x\<^sup>2 + y\<^sup>2 \<le> 0 \<longleftrightarrow> x = 0 \<and> y = 0"
+  by (simp add: le_less sum_power2_eq_zero_iff not_sum_power2_lt_zero)
+
+lemma sum_power2_gt_zero_iff:
+  "0 < x\<^sup>2 + y\<^sup>2 \<longleftrightarrow> x \<noteq> 0 \<or> y \<noteq> 0"
+  unfolding not_le [symmetric] by (simp add: sum_power2_le_zero_iff)
+
+end
+
+
+subsection {* Miscellaneous rules *}
+
+lemma power_eq_if: "p ^ m = (if m=0 then 1 else p * (p ^ (m - 1)))"
+  unfolding One_nat_def by (cases m) simp_all
+
+lemma power2_sum:
+  fixes x y :: "'a::comm_semiring_1"
+  shows "(x + y)\<^sup>2 = x\<^sup>2 + y\<^sup>2 + 2 * x * y"
+  by (simp add: algebra_simps power2_eq_square mult_2_right)
+
+lemma power2_diff:
+  fixes x y :: "'a::comm_ring_1"
+  shows "(x - y)\<^sup>2 = x\<^sup>2 + y\<^sup>2 - 2 * x * y"
+  by (simp add: ring_distribs power2_eq_square mult_2) (rule mult_commute)
+
+lemma power_0_Suc [simp]:
+  "(0::'a::{power, semiring_0}) ^ Suc n = 0"
+  by simp
+
+text{*It looks plausible as a simprule, but its effect can be strange.*}
+lemma power_0_left:
+  "0 ^ n = (if n = 0 then 1 else (0::'a::{power, semiring_0}))"
+  by (induct n) simp_all
+
+lemma power_eq_0_iff [simp]:
+  "a ^ n = 0 \<longleftrightarrow>
+     a = (0::'a::{mult_zero,zero_neq_one,no_zero_divisors,power}) \<and> n \<noteq> 0"
+  by (induct n)
+    (auto simp add: no_zero_divisors elim: contrapos_pp)
+
+lemma (in field) power_diff:
+  assumes nz: "a \<noteq> 0"
+  shows "n \<le> m \<Longrightarrow> a ^ (m - n) = a ^ m / a ^ n"
+  by (induct m n rule: diff_induct) (simp_all add: nz field_power_not_zero)
+
+text{*Perhaps these should be simprules.*}
+lemma power_inverse:
+  fixes a :: "'a::division_ring_inverse_zero"
+  shows "inverse (a ^ n) = inverse a ^ n"
+apply (cases "a = 0")
+apply (simp add: power_0_left)
+apply (simp add: nonzero_power_inverse)
+done (* TODO: reorient or rename to inverse_power *)
+
+lemma power_one_over:
+  "1 / (a::'a::{field_inverse_zero, power}) ^ n =  (1 / a) ^ n"
+  by (simp add: divide_inverse) (rule power_inverse)
+
+lemma power_divide:
+  "(a / b) ^ n = (a::'a::field_inverse_zero) ^ n / b ^ n"
+apply (cases "b = 0")
+apply (simp add: power_0_left)
+apply (rule nonzero_power_divide)
+apply assumption
+done
+
+text {* Simprules for comparisons where common factors can be cancelled. *}
+
+lemmas zero_compare_simps =
+    add_strict_increasing add_strict_increasing2 add_increasing
+    zero_le_mult_iff zero_le_divide_iff 
+    zero_less_mult_iff zero_less_divide_iff 
+    mult_le_0_iff divide_le_0_iff 
+    mult_less_0_iff divide_less_0_iff 
+    zero_le_power2 power2_less_0
+
+
+subsection {* Exponentiation for the Natural Numbers *}
+
+lemma nat_one_le_power [simp]:
+  "Suc 0 \<le> i \<Longrightarrow> Suc 0 \<le> i ^ n"
+  by (rule one_le_power [of i n, unfolded One_nat_def])
+
+lemma nat_zero_less_power_iff [simp]:
+  "x ^ n > 0 \<longleftrightarrow> x > (0::nat) \<or> n = 0"
+  by (induct n) auto
+
+lemma nat_power_eq_Suc_0_iff [simp]: 
+  "x ^ m = Suc 0 \<longleftrightarrow> m = 0 \<or> x = Suc 0"
+  by (induct m) auto
+
+lemma power_Suc_0 [simp]:
+  "Suc 0 ^ n = Suc 0"
+  by simp
+
+text{*Valid for the naturals, but what if @{text"0<i<1"}?
+Premises cannot be weakened: consider the case where @{term "i=0"},
+@{term "m=1"} and @{term "n=0"}.*}
+lemma nat_power_less_imp_less:
+  assumes nonneg: "0 < (i\<Colon>nat)"
+  assumes less: "i ^ m < i ^ n"
+  shows "m < n"
+proof (cases "i = 1")
+  case True with less power_one [where 'a = nat] show ?thesis by simp
+next
+  case False with nonneg have "1 < i" by auto
+  from power_strict_increasing_iff [OF this] less show ?thesis ..
+qed
+
+lemma power_dvd_imp_le:
+  "i ^ m dvd i ^ n \<Longrightarrow> (1::nat) < i \<Longrightarrow> m \<le> n"
+  apply (rule power_le_imp_le_exp, assumption)
+  apply (erule dvd_imp_le, simp)
+  done
+
+lemma power2_nat_le_eq_le:
+  fixes m n :: nat
+  shows "m\<^sup>2 \<le> n\<^sup>2 \<longleftrightarrow> m \<le> n"
+  by (auto intro: power2_le_imp_le power_mono)
+
+lemma power2_nat_le_imp_le:
+  fixes m n :: nat
+  assumes "m\<^sup>2 \<le> n"
+  shows "m \<le> n"
+  using assms by (cases m) (simp_all add: power2_eq_square)
+
+
+
+subsection {* Code generator tweak *}
+
+lemma power_power_power [code]:
+  "power = power.power (1::'a::{power}) (op *)"
+  unfolding power_def power.power_def ..
+
+declare power.power.simps [code]
+
+code_identifier
+  code_module Power \<rightharpoonup> (SML) Arith and (OCaml) Arith and (Haskell) Arith
+
+end
+
+
+---tokens---
+'(*'          Comment
+' from Isabelle2013-2 src/HOL/Power.thy; BSD license ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'(*'          Comment
+'  Title:      HOL/Power.thy\n    Author:     Lawrence C Paulson, Cambridge University Computer Laboratory\n    Copyright   1997  University of Cambridge\n' Comment
+
+'*)'          Comment
+'\n\n'        Text
+
+'header'      Generic.Heading
+' '           Text
+'{*'          Comment
+' Exponentiation ' Comment
+'*}'          Comment
+'\n\n'        Text
+
+'theory'      Keyword
+' '           Text
+'Power'       Name
+'\n'          Text
+
+'imports'     Keyword.Pseudo
+' '           Text
+'Num'         Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'subsection'  Generic.Subheading
+' '           Text
+'{*'          Comment
+' Powers for Arbitrary Monoids ' Comment
+'*}'          Comment
+'\n\n'        Text
+
+'class'       Keyword
+' '           Text
+'power'       Name
+' '           Text
+'='           Operator
+' '           Text
+'one'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'times'       Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'primrec'     Keyword
+' '           Text
+'power'       Name
+' '           Text
+'::'          Operator
+' '           Text
+'"'           Literal.String
+"'a "         Literal.String
+'\\<Rightarrow>' Literal.String.Symbol
+' nat '       Literal.String
+'\\<Rightarrow>' Literal.String.Symbol
+" 'a"         Literal.String
+'"'           Literal.String
+' '           Text
+'('           Operator
+'infixr'      Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'^'           Literal.String
+'"'           Literal.String
+' '           Text
+'80'          Name
+')'           Operator
+' '           Text
+'where'       Keyword.Pseudo
+'\n    '      Text
+'power_0'     Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'a ^ 0 = 1'   Literal.String
+'"'           Literal.String
+'\n  '        Text
+'|'           Operator
+' '           Text
+'power_Suc'   Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'a ^ Suc n = a * a ^ n' Literal.String
+'"'           Literal.String
+'\n\n'        Text
+
+'notation'    Keyword
+' '           Text
+'('           Operator
+'latex'       Name
+' '           Text
+'output'      Keyword.Pseudo
+')'           Operator
+'\n  '        Text
+'power'       Name
+' '           Text
+'('           Operator
+'"'           Literal.String
+'(_'          Literal.String
+'\\'          Literal.String
+'<^bsup>_'    Literal.String
+'\\'          Literal.String
+'<^esup>)'    Literal.String
+'"'           Literal.String
+' '           Text
+'['           Operator
+'1000'        Name
+']'           Operator
+' '           Text
+'1000'        Name
+')'           Operator
+'\n\n'        Text
+
+'notation'    Keyword
+' '           Text
+'('           Operator
+'HTML'        Name
+' '           Text
+'output'      Keyword.Pseudo
+')'           Operator
+'\n  '        Text
+'power'       Name
+' '           Text
+'('           Operator
+'"'           Literal.String
+'(_'          Literal.String
+'\\'          Literal.String
+'<^bsup>_'    Literal.String
+'\\'          Literal.String
+'<^esup>)'    Literal.String
+'"'           Literal.String
+' '           Text
+'['           Operator
+'1000'        Name
+']'           Operator
+' '           Text
+'1000'        Name
+')'           Operator
+'\n\n'        Text
+
+'text'        Keyword
+' '           Text
+'{*'          Comment
+' Special syntax for squares. ' Comment
+'*}'          Comment
+'\n\n'        Text
+
+'abbreviation' Keyword
+' '           Text
+'('           Operator
+'xsymbols'    Name
+')'           Operator
+'\n  '        Text
+'power2'      Name
+' '           Text
+'::'          Operator
+' '           Text
+'"'           Literal.String
+"'a "         Literal.String
+'\\<Rightarrow>' Literal.String.Symbol
+" 'a"         Literal.String
+'"'           Literal.String
+'  '          Text
+'('           Operator
+'"'           Literal.String
+'(_'          Literal.String
+'\\'          Literal.String
+'<^sup>2)'    Literal.String
+'"'           Literal.String
+' '           Text
+'['           Operator
+'1000'        Name
+']'           Operator
+' '           Text
+'999'         Name
+')'           Operator
+' '           Text
+'where'       Keyword.Pseudo
+'\n  '        Text
+'"'           Literal.String
+'x'           Literal.String
+'\\'          Literal.String
+'<^sup>2 '    Literal.String
+'\\<equiv>'   Literal.String.Symbol
+' x ^ 2'      Literal.String
+'"'           Literal.String
+'\n\n'        Text
+
+'notation'    Keyword
+' '           Text
+'('           Operator
+'latex'       Name
+' '           Text
+'output'      Keyword.Pseudo
+')'           Operator
+'\n  '        Text
+'power2'      Name
+'  '          Text
+'('           Operator
+'"'           Literal.String
+'(_'          Literal.String
+'\\'          Literal.String
+'<^sup>2)'    Literal.String
+'"'           Literal.String
+' '           Text
+'['           Operator
+'1000'        Name
+']'           Operator
+' '           Text
+'999'         Name
+')'           Operator
+'\n\n'        Text
+
+'notation'    Keyword
+' '           Text
+'('           Operator
+'HTML'        Name
+' '           Text
+'output'      Keyword.Pseudo
+')'           Operator
+'\n  '        Text
+'power2'      Name
+'  '          Text
+'('           Operator
+'"'           Literal.String
+'(_'          Literal.String
+'\\'          Literal.String
+'<^sup>2)'    Literal.String
+'"'           Literal.String
+' '           Text
+'['           Operator
+'1000'        Name
+']'           Operator
+' '           Text
+'999'         Name
+')'           Operator
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'monoid_mult' Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'subclass'    Keyword.Namespace
+' '           Text
+'power'       Name
+' '           Text
+'.'           Operator.Word
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_one'   Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'1 ^ n = 1'   Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'simp_all'    Name
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_one_right' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a ^ 1 = a'   Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_commutes' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a ^ n * a = a * a ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'simp_all'    Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'mult_assoc'  Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_Suc2'  Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a ^ Suc n = a ^ n * a' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_commutes' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_add'   Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a ^ (m + n) = a ^ m * a ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'m'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'simp_all'    Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'algebra_simps' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_mult'  Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a ^ (m * n) = (a ^ m) ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'simp_all'    Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_add'   Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power2_eq_square' Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'a'           Literal.String
+'\\'          Literal.String
+'<^sup>2 = a * a' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'numeral_2_eq_2' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power3_eq_cube' Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'a ^ 3 = a * a * a' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'numeral_3_eq_3' Name
+' '           Text
+'mult_assoc'  Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_even_eq' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a ^ (2 * n) = (a ^ n)' Literal.String
+'\\'          Literal.String
+'<^sup>2'     Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'subst'       Name
+' '           Text
+'mult_commute' Name
+')'           Operator
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_mult'  Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_odd_eq' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a ^ Suc (2*n) = a * (a ^ n)' Literal.String
+'\\'          Literal.String
+'<^sup>2'     Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_even_eq' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_numeral_even' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'z ^ numeral (Num.Bit0 w) = (let w = z ^ (numeral w) in w * w)' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'unfolding'   Keyword
+' '           Text
+'numeral_Bit0' Name
+' '           Text
+'power_add'   Name
+' '           Text
+'Let_def'     Name
+' '           Text
+'..'          Operator.Word
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_numeral_odd' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'z ^ numeral (Num.Bit1 w) = (let w = z ^ (numeral w) in z * w * w)' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'unfolding'   Keyword
+' '           Text
+'numeral_Bit1' Name
+' '           Text
+'One_nat_def' Name
+' '           Text
+'add_Suc_right' Name
+' '           Text
+'add_0_right' Name
+'\n  '        Text
+'unfolding'   Keyword
+' '           Text
+'power_Suc'   Name
+' '           Text
+'power_add'   Name
+' '           Text
+'Let_def'     Name
+' '           Text
+'mult_assoc'  Name
+' '           Text
+'..'          Operator.Word
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'funpow_times_power' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'(times x ^^ f x) = times (x ^ f x)' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'"'           Literal.String
+'f x'         Literal.String
+'"'           Literal.String
+' '           Text
+'arbitrary'   Name
+':'           Operator
+' '           Text
+'f'           Name
+')'           Operator
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'0'           Name
+' '           Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'fun_eq_iff'  Name
+')'           Operator
+'\n'          Text
+
+'next'        Keyword
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'('           Operator
+'Suc'         Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n  '        Text
+'def'         Keyword
+' '           Text
+'g'           Name
+' '           Text
+'\\<equiv>'   Text.Symbol
+' '           Text
+'"'           Literal.String
+'\\<lambda>'  Literal.String.Symbol
+'x. f x - 1'  Literal.String
+'"'           Literal.String
+'\n  '        Text
+'with'        Keyword
+' '           Text
+'Suc'         Name
+' '           Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'n = g x'     Literal.String
+'"'           Literal.String
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n  '        Text
+'with'        Keyword
+' '           Text
+'Suc'         Name
+' '           Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'times x ^^ g x = times (x ^ g x)' Literal.String
+'"'           Literal.String
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n  '        Text
+'moreover'    Keyword
+' '           Text
+'from'        Keyword
+' '           Text
+'Suc'         Name
+' '           Text
+'g_def'       Name
+' '           Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'f x = g x + 1' Literal.String
+'"'           Literal.String
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n  '        Text
+'ultimately'  Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_add'   Name
+' '           Text
+'funpow_add'  Name
+' '           Text
+'fun_eq_iff'  Name
+' '           Text
+'mult_assoc'  Name
+')'           Operator
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'comm_monoid_mult' Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_mult_distrib' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'(a * b) ^ n = (a ^ n) * (b ^ n)' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'simp_all'    Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'mult_ac'     Name
+')'           Operator
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'semiring_numeral' Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'numeral_sqr' Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'numeral (Num.sqr k) = numeral k * numeral k' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'only'        Name
+':'           Operator
+' '           Text
+'sqr_conv_mult' Name
+' '           Text
+'numeral_mult' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'numeral_pow' Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'numeral (Num.pow k l) = numeral k ^ numeral l' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'l'           Name
+','           Operator
+' '           Text
+'simp_all'    Name
+' '           Text
+'only'        Name
+':'           Operator
+' '           Text
+'numeral_class.numeral.simps' Name
+' '           Text
+'pow.simps'   Name
+'\n    '      Text
+'numeral_sqr' Name
+' '           Text
+'numeral_mult' Name
+' '           Text
+'power_add'   Name
+' '           Text
+'power_one_right' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_numeral' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+' '           Text
+'"'           Literal.String
+'numeral k ^ numeral l = numeral (Num.pow k l)' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'numeral_pow' Name
+' '           Text
+'['           Operator
+'symmetric'   Name
+']'           Operator
+')'           Operator
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'semiring_1'  Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'of_nat_power' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'of_nat (m ^ n) = of_nat m ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'simp_all'    Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'of_nat_mult' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_zero_numeral' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+' '           Text
+'"'           Literal.String
+"(0::'a) ^ numeral k = 0" Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'numeral_eq_Suc' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'zero_power2' Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'0'           Literal.String
+'\\'          Literal.String
+'<^sup>2 = 0' Literal.String
+'"'           Literal.String
+' '           Text
+'(*'          Comment
+' delete? '   Comment
+'*)'          Comment
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'power_zero_numeral' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'one_power2'  Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'1'           Literal.String
+'\\'          Literal.String
+'<^sup>2 = 1' Literal.String
+'"'           Literal.String
+' '           Text
+'(*'          Comment
+' delete? '   Comment
+'*)'          Comment
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'power_one'   Name
+')'           Operator
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'comm_semiring_1' Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'text'        Keyword
+' '           Text
+'{*'          Comment
+' The divides relation ' Comment
+'*}'          Comment
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'le_imp_power_dvd' Name
+':'           Operator
+'\n  '        Text
+'assumes'     Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'m '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' n'          Literal.String
+'"'           Literal.String
+' '           Text
+'shows'       Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'a ^ m dvd a ^ n' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+'\n  '        Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'a ^ n = a ^ (m + (n - m))' Literal.String
+'"'           Literal.String
+'\n    '      Text
+'using'       Keyword
+' '           Text
+'`'           Literal.String.Other
+'m '          Literal.String.Other
+'\\<le>'      Literal.String.Symbol
+' n'          Literal.String.Other
+'`'           Literal.String.Other
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n  '        Text
+'also'        Keyword
+' '           Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'\\<dots>'    Literal.String.Symbol
+' = a ^ m * a ^ (n - m)' Literal.String
+'"'           Literal.String
+'\n    '      Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'power_add'   Name
+')'           Operator
+'\n  '        Text
+'finally'     Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'"'           Literal.String
+'a ^ n = a ^ m * a ^ (n - m)' Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Operator.Word
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_le_dvd' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a ^ n dvd b ' Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' m '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' n '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a ^ m dvd b' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'dvd_trans'   Name
+' '           Text
+'['           Operator
+'OF'          Name
+' '           Text
+'le_imp_power_dvd' Name
+']'           Operator
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'dvd_power_same' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'x dvd y '    Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' x ^ n dvd y ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'auto'        Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'mult_dvd_mono' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'dvd_power_le' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'x dvd y '    Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' m '         Literal.String
+'\\<ge>'      Literal.String.Symbol
+' n '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' x ^ n dvd y ^ m' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'power_le_dvd' Name
+' '           Text
+'['           Operator
+'OF'          Name
+' '           Text
+'dvd_power_same' Name
+']'           Operator
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'dvd_power'   Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'assumes'     Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'n > (0::nat) ' Literal.String
+'\\<or>'      Literal.String.Symbol
+' x = 1'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'shows'       Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'x dvd (x ^ n)' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'using'       Keyword
+' '           Text
+'assms'       Name
+' '           Text
+'proof'       Keyword
+'\n  '        Text
+'assume'      Keyword
+' '           Text
+'"'           Literal.String
+'0 < n'       Literal.String
+'"'           Literal.String
+'\n  '        Text
+'then'        Keyword
+' '           Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'x ^ n = x ^ Suc (n - 1)' Literal.String
+'"'           Literal.String
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n  '        Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'"'           Literal.String
+'x dvd (x ^ n)' Literal.String
+'"'           Literal.String
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'next'        Keyword
+'\n  '        Text
+'assume'      Keyword
+' '           Text
+'"'           Literal.String
+'x = 1'       Literal.String
+'"'           Literal.String
+'\n  '        Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'"'           Literal.String
+'x dvd (x ^ n)' Literal.String
+'"'           Literal.String
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'ring_1'      Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_minus' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'(- a) ^ n = (- 1) ^ n * a ^ n' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'0'           Name
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'next'        Keyword
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'('           Operator
+'Suc'         Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+'\n    '      Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'del'         Name
+':'           Operator
+' '           Text
+'power_Suc'   Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_Suc2'  Name
+' '           Text
+'mult_assoc'  Name
+')'           Operator
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_minus_Bit0' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'(- x) ^ numeral (Num.Bit0 k) = x ^ numeral (Num.Bit0 k)' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'k'           Name
+','           Operator
+' '           Text
+'simp_all'    Name
+' '           Text
+'only'        Name
+':'           Operator
+' '           Text
+'numeral_class.numeral.simps' Name
+' '           Text
+'power_add'   Name
+'\n    '      Text
+'power_one_right' Name
+' '           Text
+'mult_minus_left' Name
+' '           Text
+'mult_minus_right' Name
+' '           Text
+'minus_minus' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_minus_Bit1' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'(- x) ^ numeral (Num.Bit1 k) = - (x ^ numeral (Num.Bit1 k))' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'only'        Name
+':'           Operator
+' '           Text
+'eval_nat_numeral' Name
+'('           Operator
+'3'           Name
+')'           Operator
+' '           Text
+'power_Suc'   Name
+' '           Text
+'power_minus_Bit0' Name
+' '           Text
+'mult_minus_left' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_neg_numeral_Bit0' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'neg_numeral k ^ numeral (Num.Bit0 l) = numeral (Num.pow k (Num.Bit0 l))' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'only'        Name
+':'           Operator
+' '           Text
+'neg_numeral_def' Name
+' '           Text
+'power_minus_Bit0' Name
+' '           Text
+'power_numeral' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_neg_numeral_Bit1' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'neg_numeral k ^ numeral (Num.Bit1 l) = neg_numeral (Num.pow k (Num.Bit1 l))' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'only'        Name
+':'           Operator
+' '           Text
+'neg_numeral_def' Name
+' '           Text
+'power_minus_Bit1' Name
+' '           Text
+'power_numeral' Name
+' '           Text
+'pow.simps'   Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power2_minus' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'(- a)'       Literal.String
+'\\'          Literal.String
+'<^sup>2 = a' Literal.String
+'\\'          Literal.String
+'<^sup>2'     Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'power_minus_Bit0' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_minus1_even' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'-1 ^ (2*n) = 1' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'0'           Name
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'next'        Keyword
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'('           Operator
+'Suc'         Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_add'   Name
+' '           Text
+'power2_eq_square' Name
+')'           Operator
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_minus1_odd' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'-1 ^ Suc (2*n) = -1' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_minus_even' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'(-a) ^ (2*n) = a ^ (2*n)' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_minus' Name
+' '           Text
+'['           Operator
+'of'          Name
+' '           Text
+'a'           Name
+']'           Operator
+')'           Operator
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'ring_1_no_zero_divisors' Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'field_power_not_zero' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a '          Literal.String
+'\\<noteq>'   Literal.String.Symbol
+' 0 '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a ^ n '     Literal.String
+'\\<noteq>'   Literal.String.Symbol
+' 0'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'auto'        Name
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'zero_eq_power2' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a'           Literal.String
+'\\'          Literal.String
+'<^sup>2 = 0 ' Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' a = 0'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'unfolding'   Keyword
+' '           Text
+'power2_eq_square' Name
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power2_eq_1_iff' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a'           Literal.String
+'\\'          Literal.String
+'<^sup>2 = 1 ' Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' a = 1 '     Literal.String
+'\\<or>'      Literal.String.Symbol
+' a = - 1'    Literal.String
+'"'           Literal.String
+'\n  '        Text
+'unfolding'   Keyword
+' '           Text
+'power2_eq_square' Name
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'square_eq_1_iff' Name
+')'           Operator
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'idom'        Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power2_eq_iff' Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'x'           Literal.String
+'\\'          Literal.String
+'<^sup>2 = y' Literal.String
+'\\'          Literal.String
+'<^sup>2 '    Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' x = y '     Literal.String
+'\\<or>'      Literal.String.Symbol
+' x = - y'    Literal.String
+'"'           Literal.String
+'\n  '        Text
+'unfolding'   Keyword
+' '           Text
+'power2_eq_square' Name
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'square_eq_iff' Name
+')'           Operator
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'division_ring' Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'text'        Keyword
+' '           Text
+'{*'          Comment
+' FIXME reorient or rename to @{text nonzero_inverse_power' Comment
+'}'           Comment
+' '           Comment
+'*}'          Comment
+'\n'          Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'nonzero_power_inverse' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a '          Literal.String
+'\\<noteq>'   Literal.String.Symbol
+' 0 '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' inverse (a ^ n) = (inverse a) ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n    '      Text
+'('           Operator
+'simp_all'    Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'nonzero_inverse_mult_distrib' Name
+' '           Text
+'power_commutes' Name
+' '           Text
+'field_power_not_zero' Name
+')'           Operator
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'field'       Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'nonzero_power_divide' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'b '          Literal.String
+'\\<noteq>'   Literal.String.Symbol
+' 0 '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' (a / b) ^ n = a ^ n / b ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'divide_inverse' Name
+' '           Text
+'power_mult_distrib' Name
+' '           Text
+'nonzero_power_inverse' Name
+')'           Operator
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n\n'      Text
+
+'subsection'  Generic.Subheading
+' '           Text
+'{*'          Comment
+' Exponentiation on ordered types ' Comment
+'*}'          Comment
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'linordered_ring' Name
+' '           Text
+'(*'          Comment
+' TODO: move ' Comment
+'*)'          Comment
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'sum_squares_ge_zero' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' x * x + y * y' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'intro'       Name
+' '           Text
+'add_nonneg_nonneg' Name
+' '           Text
+'zero_le_square' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'not_sum_squares_lt_zero' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'\\<not>'     Literal.String.Symbol
+' x * x + y * y < 0' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'not_less'    Name
+' '           Text
+'sum_squares_ge_zero' Name
+')'           Operator
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'linordered_semidom' Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'zero_less_power' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 < a '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 < a ^ n'  Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'simp_all'    Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'mult_pos_pos' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'zero_le_power' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' a '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' a ^ n'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'simp_all'    Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'mult_nonneg_nonneg' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_mono'  Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' b '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' a '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a ^ n '     Literal.String
+'\\<le>'      Literal.String.Symbol
+' b ^ n'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'auto'        Name
+' '           Text
+'intro'       Name
+':'           Operator
+' '           Text
+'mult_mono'   Name
+' '           Text
+'order_trans' Name
+' '           Text
+'['           Operator
+'of'          Name
+' '           Text
+'0'           Name
+' '           Text
+'a'           Name
+' '           Text
+'b'           Name
+']'           Operator
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'one_le_power' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+' '           Text
+'"'           Literal.String
+'1 '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' a '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 1 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' a ^ n'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'using'       Keyword
+' '           Text
+'power_mono'  Name
+' '           Text
+'['           Operator
+'of'          Name
+' '           Text
+'1'           Name
+' '           Text
+'a'           Name
+' '           Text
+'n'           Name
+']'           Operator
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_le_one' Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'\\<lbrakk>'  Literal.String.Symbol
+'0 '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' a; a '      Literal.String
+'\\<le>'      Literal.String.Symbol
+' 1'          Literal.String
+'\\<rbrakk>'  Literal.String.Symbol
+' '           Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a ^ n '     Literal.String
+'\\<le>'      Literal.String.Symbol
+' 1'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'using'       Keyword
+' '           Text
+'power_mono'  Name
+' '           Text
+'['           Operator
+'of'          Name
+' '           Text
+'a'           Name
+' '           Text
+'1'           Name
+' '           Text
+'n'           Name
+']'           Operator
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_gt1_lemma' Name
+':'           Operator
+'\n  '        Text
+'assumes'     Keyword.Pseudo
+' '           Text
+'gt1'         Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'1 < a'       Literal.String
+'"'           Literal.String
+'\n  '        Text
+'shows'       Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'1 < a * a ^ n' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'-'           Operator
+'\n  '        Text
+'from'        Keyword
+' '           Text
+'gt1'         Name
+' '           Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'0 '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' a'          Literal.String
+'"'           Literal.String
+'\n    '      Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'fact'        Name
+' '           Text
+'order_trans' Name
+' '           Text
+'['           Operator
+'OF'          Name
+' '           Text
+'zero_le_one' Name
+' '           Text
+'less_imp_le' Name
+']'           Operator
+')'           Operator
+'\n  '        Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'1 * 1 < a * 1' Literal.String
+'"'           Literal.String
+' '           Text
+'using'       Keyword
+' '           Text
+'gt1'         Name
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n  '        Text
+'also'        Keyword
+' '           Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'\\<dots>'    Literal.String.Symbol
+' '           Literal.String
+'\\<le>'      Literal.String.Symbol
+' a * a ^ n'  Literal.String
+'"'           Literal.String
+' '           Text
+'using'       Keyword
+' '           Text
+'gt1'         Name
+'\n    '      Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'only'        Name
+':'           Operator
+' '           Text
+'mult_mono'   Name
+' '           Text
+'`'           Literal.String.Other
+'0 '          Literal.String.Other
+'\\<le>'      Literal.String.Symbol
+' a'          Literal.String.Other
+'`'           Literal.String.Other
+' '           Text
+'one_le_power' Name
+' '           Text
+'order_less_imp_le' Name
+'\n        '  Text
+'zero_le_one' Name
+' '           Text
+'order_refl'  Name
+')'           Operator
+'\n  '        Text
+'finally'     Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'thesis'      Name
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_gt1'   Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'1 < a '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 1 < a ^ Suc n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_gt1_lemma' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'one_less_power' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'1 < a '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 < n '     Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 1 < a ^ n'  Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'cases'       Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'simp_all'    Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_gt1_lemma' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_le_imp_le_exp' Name
+':'           Operator
+'\n  '        Text
+'assumes'     Keyword.Pseudo
+' '           Text
+'gt1'         Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'1 < a'       Literal.String
+'"'           Literal.String
+'\n  '        Text
+'shows'       Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'a ^ m '      Literal.String
+'\\<le>'      Literal.String.Symbol
+' a ^ n '     Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' m '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' n'          Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'m'           Name
+' '           Text
+'arbitrary'   Name
+':'           Operator
+' '           Text
+'n'           Name
+')'           Operator
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'0'           Name
+'\n  '        Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'next'        Keyword
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'('           Operator
+'Suc'         Name
+' '           Text
+'m'           Name
+')'           Operator
+'\n  '        Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+'\n  '        Text
+'proof'       Keyword
+' '           Text
+'('           Operator
+'cases'       Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'0'           Name
+'\n    '      Text
+'with'        Keyword
+' '           Text
+'Suc.prems'   Name
+' '           Text
+'Suc.hyps'    Name
+' '           Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'a * a ^ m '  Literal.String
+'\\<le>'      Literal.String.Symbol
+' 1'          Literal.String
+'"'           Literal.String
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n    '      Text
+'with'        Keyword
+' '           Text
+'gt1'         Name
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'thesis'      Name
+'\n      '    Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'force'       Name
+' '           Text
+'simp'        Name
+' '           Text
+'only'        Name
+':'           Operator
+' '           Text
+'power_gt1_lemma' Name
+'\n          ' Text
+'not_less'    Name
+' '           Text
+'['           Operator
+'symmetric'   Name
+']'           Operator
+')'           Operator
+'\n  '        Text
+'next'        Keyword
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'('           Operator
+'Suc'         Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n    '      Text
+'with'        Keyword
+' '           Text
+'Suc.prems'   Name
+' '           Text
+'Suc.hyps'    Name
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'thesis'      Name
+'\n      '    Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'force'       Name
+' '           Text
+'dest'        Name
+':'           Operator
+' '           Text
+'mult_left_le_imp_le' Name
+'\n          ' Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'less_trans'  Name
+' '           Text
+'['           Operator
+'OF'          Name
+' '           Text
+'zero_less_one' Name
+' '           Text
+'gt1'         Name
+']'           Operator
+')'           Operator
+'\n  '        Text
+'qed'         Keyword
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'text'        Keyword
+'{*'          Comment
+'Surely we can strengthen this? It holds for @{text "0<a<1"' Comment
+'}'           Comment
+' too.'       Comment
+'*}'          Comment
+'\n'          Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_inject_exp' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'1 < a '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a ^ m = a ^ n ' Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' m = n'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'force'       Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'order_antisym' Name
+' '           Text
+'power_le_imp_le_exp' Name
+')'           Operator
+'\n\n'        Text
+
+'text'        Keyword
+'{*'          Comment
+'Can relax the first premise to @{term "0<a"' Comment
+'}'           Comment
+' in the case of the\nnatural numbers.' Comment
+'*}'          Comment
+'\n'          Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_less_imp_less_exp' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'1 < a '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a ^ m < a ^ n ' Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' m < n'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'order_less_le' Name
+' '           Text
+'['           Operator
+'of'          Name
+' '           Text
+'m'           Name
+' '           Text
+'n'           Name
+']'           Operator
+' '           Text
+'less_le'     Name
+' '           Text
+'['           Operator
+'of'          Name
+' '           Text
+'"'           Literal.String
+'a^m'         Literal.String
+'"'           Literal.String
+' '           Text
+'"'           Literal.String
+'a^n'         Literal.String
+'"'           Literal.String
+']'           Operator
+'\n    '      Text
+'power_le_imp_le_exp' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_strict_mono' Name
+' '           Text
+'['           Operator
+'rule_format' Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a < b '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' a '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 < n '     Literal.String
+'\\<longrightarrow>' Literal.String.Symbol
+' a ^ n < b ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n   '       Text
+'('           Operator
+'auto'        Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'mult_strict_mono' Name
+' '           Text
+'le_less_trans' Name
+' '           Text
+'['           Operator
+'of'          Name
+' '           Text
+'0'           Name
+' '           Text
+'a'           Name
+' '           Text
+'b'           Name
+']'           Operator
+')'           Operator
+'\n\n'        Text
+
+'text'        Keyword
+'{*'          Comment
+'Lemma for @{text power_strict_decreasing' Comment
+'}'           Comment
+'*}'          Comment
+'\n'          Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_Suc_less' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 < a '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a < 1 '     Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a * a ^ n < a ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n    '      Text
+'('           Operator
+'auto'        Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'mult_strict_left_mono' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_strict_decreasing' Name
+' '           Text
+'['           Operator
+'rule_format' Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'n < N '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 < a '     Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a < 1 '     Literal.String
+'\\<longrightarrow>' Literal.String.Symbol
+' a ^ N < a ^ n' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'N'           Name
+')'           Operator
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'0'           Name
+' '           Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'next'        Keyword
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'('           Operator
+'Suc'         Name
+' '           Text
+'N'           Name
+')'           Operator
+' '           Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' \n  '       Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'auto'        Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_Suc_less' Name
+' '           Text
+'less_Suc_eq' Name
+')'           Operator
+'\n  '        Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'subgoal_tac' Name
+' '           Text
+'"'           Literal.String
+'a * a^N < 1 * a^n' Literal.String
+'"'           Literal.String
+')'           Operator
+'\n  '        Text
+'apply'       Keyword.Pseudo
+' '           Text
+'simp'        Name
+'\n  '        Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'mult_strict_mono' Name
+')'           Operator
+' '           Text
+'apply'       Keyword.Pseudo
+' '           Text
+'auto'        Name
+'\n  '        Text
+'done'        Keyword
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'text'        Keyword
+'{*'          Comment
+'Proof resembles that of @{text power_strict_decreasing' Comment
+'}'           Comment
+'*}'          Comment
+'\n'          Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_decreasing' Name
+' '           Text
+'['           Operator
+'rule_format' Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'n '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' N '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' a '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' 1 '         Literal.String
+'\\<longrightarrow>' Literal.String.Symbol
+' a ^ N '     Literal.String
+'\\<le>'      Literal.String.Symbol
+' a ^ n'      Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'N'           Name
+')'           Operator
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'0'           Name
+' '           Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'next'        Keyword
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'('           Operator
+'Suc'         Name
+' '           Text
+'N'           Name
+')'           Operator
+' '           Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' \n  '       Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'auto'        Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'le_Suc_eq'   Name
+')'           Operator
+'\n  '        Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'subgoal_tac' Name
+' '           Text
+'"'           Literal.String
+'a * a^N '    Literal.String
+'\\<le>'      Literal.String.Symbol
+' 1 * a^n'    Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text
+'simp'        Name
+')'           Operator
+'\n  '        Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'mult_mono'   Name
+')'           Operator
+' '           Text
+'apply'       Keyword.Pseudo
+' '           Text
+'auto'        Name
+'\n  '        Text
+'done'        Keyword
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_Suc_less_one' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 < a '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a < 1 '     Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a ^ Suc n < 1' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'using'       Keyword
+' '           Text
+'power_strict_decreasing' Name
+' '           Text
+'['           Operator
+'of'          Name
+' '           Text
+'0'           Name
+' '           Text
+'"'           Literal.String
+'Suc n'       Literal.String
+'"'           Literal.String
+' '           Text
+'a'           Name
+']'           Operator
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n\n'        Text
+
+'text'        Keyword
+'{*'          Comment
+'Proof again resembles that of @{text power_strict_decreasing' Comment
+'}'           Comment
+'*}'          Comment
+'\n'          Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_increasing' Name
+' '           Text
+'['           Operator
+'rule_format' Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'n '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' N '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 1 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' a '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a ^ n '     Literal.String
+'\\<le>'      Literal.String.Symbol
+' a ^ N'      Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'N'           Name
+')'           Operator
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'0'           Name
+' '           Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'next'        Keyword
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'('           Operator
+'Suc'         Name
+' '           Text
+'N'           Name
+')'           Operator
+' '           Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' \n  '       Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'auto'        Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'le_Suc_eq'   Name
+')'           Operator
+'\n  '        Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'subgoal_tac' Name
+' '           Text
+'"'           Literal.String
+'1 * a^n '    Literal.String
+'\\<le>'      Literal.String.Symbol
+' a * a^N'    Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text
+'simp'        Name
+')'           Operator
+'\n  '        Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'mult_mono'   Name
+')'           Operator
+' '           Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'auto'        Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'order_trans' Name
+' '           Text
+'['           Operator
+'OF'          Name
+' '           Text
+'zero_le_one' Name
+']'           Operator
+')'           Operator
+'\n  '        Text
+'done'        Keyword
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'text'        Keyword
+'{*'          Comment
+'Lemma for @{text power_strict_increasing' Comment
+'}'           Comment
+'*}'          Comment
+'\n'          Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_less_power_Suc' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'1 < a '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a ^ n < a * a ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'auto'        Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'mult_strict_left_mono' Name
+' '           Text
+'less_trans'  Name
+' '           Text
+'['           Operator
+'OF'          Name
+' '           Text
+'zero_less_one' Name
+']'           Operator
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_strict_increasing' Name
+' '           Text
+'['           Operator
+'rule_format' Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'n < N '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 1 < a '     Literal.String
+'\\<longrightarrow>' Literal.String.Symbol
+' a ^ n < a ^ N' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'N'           Name
+')'           Operator
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'0'           Name
+' '           Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'next'        Keyword
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'('           Operator
+'Suc'         Name
+' '           Text
+'N'           Name
+')'           Operator
+' '           Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' \n  '       Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'auto'        Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_less_power_Suc' Name
+' '           Text
+'less_Suc_eq' Name
+')'           Operator
+'\n  '        Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'subgoal_tac' Name
+' '           Text
+'"'           Literal.String
+'1 * a^n < a * a^N' Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text
+'simp'        Name
+')'           Operator
+'\n  '        Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'mult_strict_mono' Name
+')'           Operator
+' '           Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'auto'        Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'less_trans'  Name
+' '           Text
+'['           Operator
+'OF'          Name
+' '           Text
+'zero_less_one' Name
+']'           Operator
+' '           Text
+'less_imp_le' Name
+')'           Operator
+'\n  '        Text
+'done'        Keyword
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_increasing_iff' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'1 < b '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' b ^ x '     Literal.String
+'\\<le>'      Literal.String.Symbol
+' b ^ y '     Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' x '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' y'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'blast'       Name
+' '           Text
+'intro'       Name
+':'           Operator
+' '           Text
+'power_le_imp_le_exp' Name
+' '           Text
+'power_increasing' Name
+' '           Text
+'less_imp_le' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_strict_increasing_iff' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'1 < b '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' b ^ x < b ^ y ' Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' x < y'      Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'by'          Keyword
+' '           Text
+'('           Operator
+'blast'       Name
+' '           Text
+'intro'       Name
+':'           Operator
+' '           Text
+'power_less_imp_less_exp' Name
+' '           Text
+'power_strict_increasing' Name
+')'           Operator
+' \n\n'       Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_le_imp_le_base' Name
+':'           Operator
+'\n  '        Text
+'assumes'     Keyword.Pseudo
+' '           Text
+'le'          Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'a ^ Suc n '  Literal.String
+'\\<le>'      Literal.String.Symbol
+' b ^ Suc n'  Literal.String
+'"'           Literal.String
+'\n    '      Text
+'and'         Keyword.Pseudo
+' '           Text
+'ynonneg'     Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'0 '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' b'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'shows'       Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'a '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' b'          Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'ccontr'      Name
+')'           Operator
+'\n  '        Text
+'assume'      Keyword
+' '           Text
+'"'           Literal.String
+'~ a '        Literal.String
+'\\<le>'      Literal.String.Symbol
+' b'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'then'        Keyword
+' '           Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'b < a'       Literal.String
+'"'           Literal.String
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'only'        Name
+':'           Operator
+' '           Text
+'linorder_not_le' Name
+')'           Operator
+'\n  '        Text
+'then'        Keyword
+' '           Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'b ^ Suc n < a ^ Suc n' Literal.String
+'"'           Literal.String
+'\n    '      Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'only'        Name
+':'           Operator
+' '           Text
+'assms'       Name
+' '           Text
+'power_strict_mono' Name
+')'           Operator
+'\n  '        Text
+'from'        Keyword
+' '           Text
+'le'          Name
+' '           Text
+'and'         Keyword.Pseudo
+' '           Text
+'this'        Name
+' '           Text
+'show'        Keyword
+' '           Text
+'False'       Name
+'\n    '      Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'linorder_not_less' Name
+' '           Text
+'['           Operator
+'symmetric'   Name
+']'           Operator
+')'           Operator
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_less_imp_less_base' Name
+':'           Operator
+'\n  '        Text
+'assumes'     Keyword.Pseudo
+' '           Text
+'less'        Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'a ^ n < b ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'assumes'     Keyword.Pseudo
+' '           Text
+'nonneg'      Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'0 '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' b'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'shows'       Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'a < b'       Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'contrapos_pp' Name
+' '           Text
+'['           Operator
+'OF'          Name
+' '           Text
+'less'        Name
+']'           Operator
+')'           Operator
+'\n  '        Text
+'assume'      Keyword
+' '           Text
+'"'           Literal.String
+'~ a < b'     Literal.String
+'"'           Literal.String
+'\n  '        Text
+'hence'       Keyword
+' '           Text
+'"'           Literal.String
+'b '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' a'          Literal.String
+'"'           Literal.String
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'only'        Name
+':'           Operator
+' '           Text
+'linorder_not_less' Name
+')'           Operator
+'\n  '        Text
+'hence'       Keyword
+' '           Text
+'"'           Literal.String
+'b ^ n '      Literal.String
+'\\<le>'      Literal.String.Symbol
+' a ^ n'      Literal.String
+'"'           Literal.String
+' '           Text
+'using'       Keyword
+' '           Text
+'nonneg'      Name
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'power_mono'  Name
+')'           Operator
+'\n  '        Text
+'thus'        Keyword
+' '           Text
+'"'           Literal.String
+'\\<not>'     Literal.String.Symbol
+' a ^ n < b ^ n' Literal.String
+'"'           Literal.String
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'only'        Name
+':'           Operator
+' '           Text
+'linorder_not_less' Name
+')'           Operator
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_inject_base' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a ^ Suc n = b ^ Suc n ' Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' a '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' b '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a = b'      Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'by'          Keyword
+' '           Text
+'('           Operator
+'blast'       Name
+' '           Text
+'intro'       Name
+':'           Operator
+' '           Text
+'power_le_imp_le_base' Name
+' '           Text
+'antisym'     Name
+' '           Text
+'eq_refl'     Name
+' '           Text
+'sym'         Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_eq_imp_eq_base' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a ^ n = b ^ n ' Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' a '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' b '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 < n '     Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a = b'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'cases'       Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'simp_all'    Name
+' '           Text
+'del'         Name
+':'           Operator
+' '           Text
+'power_Suc'   Name
+','           Operator
+' '           Text
+'rule'        Name
+' '           Text
+'power_inject_base' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power2_le_imp_le' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'x'           Literal.String
+'\\'          Literal.String
+'<^sup>2 '    Literal.String
+'\\<le>'      Literal.String.Symbol
+' y'          Literal.String
+'\\'          Literal.String
+'<^sup>2 '    Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' y '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' x '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' y'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'unfolding'   Keyword
+' '           Text
+'numeral_2_eq_2' Name
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'power_le_imp_le_base' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power2_less_imp_less' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'x'           Literal.String
+'\\'          Literal.String
+'<^sup>2 < y' Literal.String
+'\\'          Literal.String
+'<^sup>2 '    Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' y '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' x < y'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'power_less_imp_less_base' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power2_eq_imp_eq' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'x'           Literal.String
+'\\'          Literal.String
+'<^sup>2 = y' Literal.String
+'\\'          Literal.String
+'<^sup>2 '    Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' x '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' y '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' x = y'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'unfolding'   Keyword
+' '           Text
+'numeral_2_eq_2' Name
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'erule'       Name
+' '           Text
+'('           Operator
+'2'           Name
+')'           Operator
+' '           Text
+'power_eq_imp_eq_base' Name
+')'           Operator
+' '           Text
+'simp'        Name
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'linordered_ring_strict' Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'sum_squares_eq_zero_iff' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'x * x + y * y = 0 ' Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' x = 0 '     Literal.String
+'\\<and>'     Literal.String.Symbol
+' y = 0'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'add_nonneg_eq_0_iff' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'sum_squares_le_zero_iff' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'x * x + y * y ' Literal.String
+'\\<le>'      Literal.String.Symbol
+' 0 '         Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' x = 0 '     Literal.String
+'\\<and>'     Literal.String.Symbol
+' y = 0'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'le_less'     Name
+' '           Text
+'not_sum_squares_lt_zero' Name
+' '           Text
+'sum_squares_eq_zero_iff' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'sum_squares_gt_zero_iff' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 < x * x + y * y ' Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' x '         Literal.String
+'\\<noteq>'   Literal.String.Symbol
+' 0 '         Literal.String
+'\\<or>'      Literal.String.Symbol
+' y '         Literal.String
+'\\<noteq>'   Literal.String.Symbol
+' 0'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'not_le'      Name
+' '           Text
+'['           Operator
+'symmetric'   Name
+']'           Operator
+' '           Text
+'sum_squares_le_zero_iff' Name
+')'           Operator
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'context'     Keyword
+' '           Text
+'linordered_idom' Name
+'\n'          Text
+
+'begin'       Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_abs'   Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'abs (a ^ n) = abs a ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'auto'        Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'abs_mult'    Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'abs_power_minus' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'abs ((-a) ^ n) = abs (a ^ n)' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_abs'   Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'zero_less_power_abs_iff' Name
+' '           Text
+'['           Operator
+'simp'        Name
+','           Operator
+' '           Text
+'no_atp'      Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 < abs a ^ n ' Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' a '         Literal.String
+'\\<noteq>'   Literal.String.Symbol
+' 0 '         Literal.String
+'\\<or>'      Literal.String.Symbol
+' n = 0'      Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'0'           Name
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'next'        Keyword
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'('           Operator
+'Suc'         Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'auto'        Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'Suc'         Name
+' '           Text
+'zero_less_mult_iff' Name
+')'           Operator
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'zero_le_power_abs' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' abs a ^ n'  Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'zero_le_power' Name
+' '           Text
+'['           Operator
+'OF'          Name
+' '           Text
+'abs_ge_zero' Name
+']'           Operator
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'zero_le_power2' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' a'          Literal.String
+'\\'          Literal.String
+'<^sup>2'     Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power2_eq_square' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'zero_less_power2' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 < a'       Literal.String
+'\\'          Literal.String
+'<^sup>2 '    Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' a '         Literal.String
+'\\<noteq>'   Literal.String.Symbol
+' 0'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'force'       Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power2_eq_square' Name
+' '           Text
+'zero_less_mult_iff' Name
+' '           Text
+'linorder_neq_iff' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power2_less_0' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'\\<not>'     Literal.String.Symbol
+' a'          Literal.String
+'\\'          Literal.String
+'<^sup>2 < 0' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'force'       Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power2_eq_square' Name
+' '           Text
+'mult_less_0_iff' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'abs_power2'  Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'abs (a'      Literal.String
+'\\'          Literal.String
+'<^sup>2) = a' Literal.String
+'\\'          Literal.String
+'<^sup>2'     Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power2_eq_square' Name
+' '           Text
+'abs_mult'    Name
+' '           Text
+'abs_mult_self' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power2_abs'  Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'(abs a)'     Literal.String
+'\\'          Literal.String
+'<^sup>2 = a' Literal.String
+'\\'          Literal.String
+'<^sup>2'     Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power2_eq_square' Name
+' '           Text
+'abs_mult_self' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'odd_power_less_zero' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a < 0 '      Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a ^ Suc (2*n) < 0' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'0'           Name
+'\n  '        Text
+'then'        Keyword
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'next'        Keyword
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'('           Operator
+'Suc'         Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n  '        Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'a ^ Suc (2 * Suc n) = (a*a) * a ^ Suc(2*n)' Literal.String
+'"'           Literal.String
+'\n    '      Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'mult_ac'     Name
+' '           Text
+'power_add'   Name
+' '           Text
+'power2_eq_square' Name
+')'           Operator
+'\n  '        Text
+'thus'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+'\n    '      Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'del'         Name
+':'           Operator
+' '           Text
+'power_Suc'   Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'Suc'         Name
+' '           Text
+'mult_less_0_iff' Name
+' '           Text
+'mult_neg_neg' Name
+')'           Operator
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'odd_0_le_power_imp_0_le' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' a ^ Suc (2*n) ' Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' 0 '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' a'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'using'       Keyword
+' '           Text
+'odd_power_less_zero' Name
+' '           Text
+'['           Operator
+'of'          Name
+' '           Text
+'a'           Name
+' '           Text
+'n'           Name
+']'           Operator
+'\n    '      Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'force'       Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'linorder_not_less' Name
+' '           Text
+'['           Operator
+'symmetric'   Name
+']'           Operator
+')'           Operator
+' \n\n'       Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+"zero_le_even_power'" Name
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' a ^ (2*n)'  Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'0'           Name
+'\n    '      Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'next'        Keyword
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'('           Operator
+'Suc'         Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n    '      Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'a ^ (2 * Suc n) = (a*a) * a ^ (2*n)' Literal.String
+'"'           Literal.String
+' \n      '   Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'mult_ac'     Name
+' '           Text
+'power_add'   Name
+' '           Text
+'power2_eq_square' Name
+')'           Operator
+'\n    '      Text
+'thus'        Keyword
+' '           Text
+'?'           Operator
+'case'        Keyword
+'\n      '    Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'Suc'         Name
+' '           Text
+'zero_le_mult_iff' Name
+')'           Operator
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'sum_power2_ge_zero' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' x'          Literal.String
+'\\'          Literal.String
+'<^sup>2 + y' Literal.String
+'\\'          Literal.String
+'<^sup>2'     Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'intro'       Name
+' '           Text
+'add_nonneg_nonneg' Name
+' '           Text
+'zero_le_power2' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'not_sum_power2_lt_zero' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'\\<not>'     Literal.String.Symbol
+' x'          Literal.String
+'\\'          Literal.String
+'<^sup>2 + y' Literal.String
+'\\'          Literal.String
+'<^sup>2 < 0' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'unfolding'   Keyword
+' '           Text
+'not_less'    Name
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'sum_power2_ge_zero' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'sum_power2_eq_zero_iff' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'x'           Literal.String
+'\\'          Literal.String
+'<^sup>2 + y' Literal.String
+'\\'          Literal.String
+'<^sup>2 = 0 ' Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' x = 0 '     Literal.String
+'\\<and>'     Literal.String.Symbol
+' y = 0'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'unfolding'   Keyword
+' '           Text
+'power2_eq_square' Name
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'add_nonneg_eq_0_iff' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'sum_power2_le_zero_iff' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'x'           Literal.String
+'\\'          Literal.String
+'<^sup>2 + y' Literal.String
+'\\'          Literal.String
+'<^sup>2 '    Literal.String
+'\\<le>'      Literal.String.Symbol
+' 0 '         Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' x = 0 '     Literal.String
+'\\<and>'     Literal.String.Symbol
+' y = 0'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'le_less'     Name
+' '           Text
+'sum_power2_eq_zero_iff' Name
+' '           Text
+'not_sum_power2_lt_zero' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'sum_power2_gt_zero_iff' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'0 < x'       Literal.String
+'\\'          Literal.String
+'<^sup>2 + y' Literal.String
+'\\'          Literal.String
+'<^sup>2 '    Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' x '         Literal.String
+'\\<noteq>'   Literal.String.Symbol
+' 0 '         Literal.String
+'\\<or>'      Literal.String.Symbol
+' y '         Literal.String
+'\\<noteq>'   Literal.String.Symbol
+' 0'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'unfolding'   Keyword
+' '           Text
+'not_le'      Name
+' '           Text
+'['           Operator
+'symmetric'   Name
+']'           Operator
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'sum_power2_le_zero_iff' Name
+')'           Operator
+'\n\n'        Text
+
+'end'         Keyword
+'\n\n\n'      Text
+
+'subsection'  Generic.Subheading
+' '           Text
+'{*'          Comment
+' Miscellaneous rules ' Comment
+'*}'          Comment
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_eq_if' Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'p ^ m = (if m=0 then 1 else p * (p ^ (m - 1)))' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'unfolding'   Keyword
+' '           Text
+'One_nat_def' Name
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'cases'       Name
+' '           Text
+'m'           Name
+')'           Operator
+' '           Text
+'simp_all'    Name
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power2_sum'  Name
+':'           Operator
+'\n  '        Text
+'fixes'       Keyword.Pseudo
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'"'           Literal.String
+"'a::comm_semiring_1" Literal.String
+'"'           Literal.String
+'\n  '        Text
+'shows'       Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'(x + y)'     Literal.String
+'\\'          Literal.String
+'<^sup>2 = x' Literal.String
+'\\'          Literal.String
+'<^sup>2 + y' Literal.String
+'\\'          Literal.String
+'<^sup>2 + 2 * x * y' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'algebra_simps' Name
+' '           Text
+'power2_eq_square' Name
+' '           Text
+'mult_2_right' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power2_diff' Name
+':'           Operator
+'\n  '        Text
+'fixes'       Keyword.Pseudo
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'"'           Literal.String
+"'a::comm_ring_1" Literal.String
+'"'           Literal.String
+'\n  '        Text
+'shows'       Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'(x - y)'     Literal.String
+'\\'          Literal.String
+'<^sup>2 = x' Literal.String
+'\\'          Literal.String
+'<^sup>2 + y' Literal.String
+'\\'          Literal.String
+'<^sup>2 - 2 * x * y' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'ring_distribs' Name
+' '           Text
+'power2_eq_square' Name
+' '           Text
+'mult_2'      Name
+')'           Operator
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'mult_commute' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_0_Suc' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+"(0::'a::{power, semiring_0}) ^ Suc n = 0" Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n\n'        Text
+
+'text'        Keyword
+'{*'          Comment
+'It looks plausible as a simprule, but its effect can be strange.' Comment
+'*}'          Comment
+'\n'          Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_0_left' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+"0 ^ n = (if n = 0 then 1 else (0::'a::{power, semiring_0}))" Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'simp_all'    Name
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_eq_0_iff' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'a ^ n = 0 '  Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+"\n     a = (0::'a::{mult_zero,zero_neq_one,no_zero_divisors,power}) " Literal.String
+'\\<and>'     Literal.String.Symbol
+' n '         Literal.String
+'\\<noteq>'   Literal.String.Symbol
+' 0'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+'\n    '      Text
+'('           Operator
+'auto'        Name
+' '           Text
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'no_zero_divisors' Name
+' '           Text
+'elim'        Name
+':'           Operator
+' '           Text
+'contrapos_pp' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'('           Operator
+'in'          Keyword.Pseudo
+' '           Text
+'field'       Name
+')'           Operator
+' '           Text
+'power_diff'  Name
+':'           Operator
+'\n  '        Text
+'assumes'     Keyword.Pseudo
+' '           Text
+'nz'          Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'a '          Literal.String
+'\\<noteq>'   Literal.String.Symbol
+' 0'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'shows'       Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'n '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' m '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' a ^ (m - n) = a ^ m / a ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'m'           Name
+' '           Text
+'n'           Name
+' '           Text
+'rule'        Name
+':'           Operator
+' '           Text
+'diff_induct' Name
+')'           Operator
+' '           Text
+'('           Operator
+'simp_all'    Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'nz'          Name
+' '           Text
+'field_power_not_zero' Name
+')'           Operator
+'\n\n'        Text
+
+'text'        Keyword
+'{*'          Comment
+'Perhaps these should be simprules.' Comment
+'*}'          Comment
+'\n'          Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_inverse' Name
+':'           Operator
+'\n  '        Text
+'fixes'       Keyword.Pseudo
+' '           Text
+'a'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'"'           Literal.String
+"'a::division_ring_inverse_zero" Literal.String
+'"'           Literal.String
+'\n  '        Text
+'shows'       Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'inverse (a ^ n) = inverse a ^ n' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'cases'       Name
+' '           Text
+'"'           Literal.String
+'a = 0'       Literal.String
+'"'           Literal.String
+')'           Operator
+'\n'          Text
+
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_0_left' Name
+')'           Operator
+'\n'          Text
+
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'nonzero_power_inverse' Name
+')'           Operator
+'\n'          Text
+
+'done'        Keyword
+' '           Text
+'(*'          Comment
+' TODO: reorient or rename to inverse_power ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_one_over' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+"1 / (a::'a::{field_inverse_zero, power}) ^ n =  (1 / a) ^ n" Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'divide_inverse' Name
+')'           Operator
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'power_inverse' Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_divide' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+"(a / b) ^ n = (a::'a::field_inverse_zero) ^ n / b ^ n" Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'cases'       Name
+' '           Text
+'"'           Literal.String
+'b = 0'       Literal.String
+'"'           Literal.String
+')'           Operator
+'\n'          Text
+
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'simp'        Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power_0_left' Name
+')'           Operator
+'\n'          Text
+
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'nonzero_power_divide' Name
+')'           Operator
+'\n'          Text
+
+'apply'       Keyword.Pseudo
+' '           Text
+'assumption'  Name
+'\n'          Text
+
+'done'        Keyword
+'\n\n'        Text
+
+'text'        Keyword
+' '           Text
+'{*'          Comment
+' Simprules for comparisons where common factors can be cancelled. ' Comment
+'*}'          Comment
+'\n\n'        Text
+
+'lemmas'      Keyword
+' '           Text
+'zero_compare_simps' Name
+' '           Text
+'='           Operator
+'\n    '      Text
+'add_strict_increasing' Name
+' '           Text
+'add_strict_increasing2' Name
+' '           Text
+'add_increasing' Name
+'\n    '      Text
+'zero_le_mult_iff' Name
+' '           Text
+'zero_le_divide_iff' Name
+' \n    '     Text
+'zero_less_mult_iff' Name
+' '           Text
+'zero_less_divide_iff' Name
+' \n    '     Text
+'mult_le_0_iff' Name
+' '           Text
+'divide_le_0_iff' Name
+' \n    '     Text
+'mult_less_0_iff' Name
+' '           Text
+'divide_less_0_iff' Name
+' \n    '     Text
+'zero_le_power2' Name
+' '           Text
+'power2_less_0' Name
+'\n\n\n'      Text
+
+'subsection'  Generic.Subheading
+' '           Text
+'{*'          Comment
+' Exponentiation for the Natural Numbers ' Comment
+'*}'          Comment
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'nat_one_le_power' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'Suc 0 '      Literal.String
+'\\<le>'      Literal.String.Symbol
+' i '         Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' Suc 0 '     Literal.String
+'\\<le>'      Literal.String.Symbol
+' i ^ n'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'one_le_power' Name
+' '           Text
+'['           Operator
+'of'          Name
+' '           Text
+'i'           Name
+' '           Text
+'n'           Name
+','           Operator
+' '           Text
+'unfolded'    Name
+' '           Text
+'One_nat_def' Name
+']'           Operator
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'nat_zero_less_power_iff' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'x ^ n > 0 '  Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' x > (0::nat) ' Literal.String
+'\\<or>'      Literal.String.Symbol
+' n = 0'      Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'n'           Name
+')'           Operator
+' '           Text
+'auto'        Name
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'nat_power_eq_Suc_0_iff' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+' \n  '       Text
+'"'           Literal.String
+'x ^ m = Suc 0 ' Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' m = 0 '     Literal.String
+'\\<or>'      Literal.String.Symbol
+' x = Suc 0'  Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'induct'      Name
+' '           Text
+'m'           Name
+')'           Operator
+' '           Text
+'auto'        Name
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_Suc_0' Name
+' '           Text
+'['           Operator
+'simp'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'Suc 0 ^ n = Suc 0' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n\n'        Text
+
+'text'        Keyword
+'{*'          Comment
+'Valid for the naturals, but what if @{text"0<i<1"' Comment
+'}'           Comment
+'?\nPremises cannot be weakened: consider the case where @{term "i=0"' Comment
+'}'           Comment
+',\n@{term "m=1"' Comment
+'}'           Comment
+' and @{term "n=0"' Comment
+'}'           Comment
+'.'           Comment
+'*}'          Comment
+'\n'          Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'nat_power_less_imp_less' Name
+':'           Operator
+'\n  '        Text
+'assumes'     Keyword.Pseudo
+' '           Text
+'nonneg'      Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'0 < (i'      Literal.String
+'\\<Colon>'   Literal.String.Symbol
+'nat)'        Literal.String
+'"'           Literal.String
+'\n  '        Text
+'assumes'     Keyword.Pseudo
+' '           Text
+'less'        Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'i ^ m < i ^ n' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'shows'       Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'m < n'       Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'proof'       Keyword
+' '           Text
+'('           Operator
+'cases'       Name
+' '           Text
+'"'           Literal.String
+'i = 1'       Literal.String
+'"'           Literal.String
+')'           Operator
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'True'        Name
+' '           Text
+'with'        Keyword
+' '           Text
+'less'        Name
+' '           Text
+'power_one'   Name
+' '           Text
+'['           Operator
+'where'       Keyword.Pseudo
+' '           Text
+"'a"          Name.Type
+' '           Text
+'='           Operator
+' '           Text
+'nat'         Name
+']'           Operator
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'thesis'      Name
+' '           Text
+'by'          Keyword
+' '           Text
+'simp'        Name
+'\n'          Text
+
+'next'        Keyword
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'False'       Name
+' '           Text
+'with'        Keyword
+' '           Text
+'nonneg'      Name
+' '           Text
+'have'        Keyword
+' '           Text
+'"'           Literal.String
+'1 < i'       Literal.String
+'"'           Literal.String
+' '           Text
+'by'          Keyword
+' '           Text
+'auto'        Name
+'\n  '        Text
+'from'        Keyword
+' '           Text
+'power_strict_increasing_iff' Name
+' '           Text
+'['           Operator
+'OF'          Name
+' '           Text
+'this'        Name
+']'           Operator
+' '           Text
+'less'        Name
+' '           Text
+'show'        Keyword
+' '           Text
+'?'           Operator
+'thesis'      Name
+' '           Text
+'..'          Operator.Word
+'\n'          Text
+
+'qed'         Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_dvd_imp_le' Name
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+'i ^ m dvd i ^ n ' Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' (1::nat) < i ' Literal.String
+'\\<Longrightarrow>' Literal.String.Symbol
+' m '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' n'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'rule'        Name
+' '           Text
+'power_le_imp_le_exp' Name
+','           Operator
+' '           Text
+'assumption'  Name
+')'           Operator
+'\n  '        Text
+'apply'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'erule'       Name
+' '           Text
+'dvd_imp_le'  Name
+','           Operator
+' '           Text
+'simp'        Name
+')'           Operator
+'\n  '        Text
+'done'        Keyword
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power2_nat_le_eq_le' Name
+':'           Operator
+'\n  '        Text
+'fixes'       Keyword.Pseudo
+' '           Text
+'m'           Name
+' '           Text
+'n'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'nat'         Name
+'\n  '        Text
+'shows'       Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'m'           Literal.String
+'\\'          Literal.String
+'<^sup>2 '    Literal.String
+'\\<le>'      Literal.String.Symbol
+' n'          Literal.String
+'\\'          Literal.String
+'<^sup>2 '    Literal.String
+'\\<longleftrightarrow>' Literal.String.Symbol
+' m '         Literal.String
+'\\<le>'      Literal.String.Symbol
+' n'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'auto'        Name
+' '           Text
+'intro'       Name
+':'           Operator
+' '           Text
+'power2_le_imp_le' Name
+' '           Text
+'power_mono'  Name
+')'           Operator
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power2_nat_le_imp_le' Name
+':'           Operator
+'\n  '        Text
+'fixes'       Keyword.Pseudo
+' '           Text
+'m'           Name
+' '           Text
+'n'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'nat'         Name
+'\n  '        Text
+'assumes'     Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'m'           Literal.String
+'\\'          Literal.String
+'<^sup>2 '    Literal.String
+'\\<le>'      Literal.String.Symbol
+' n'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'shows'       Keyword.Pseudo
+' '           Text
+'"'           Literal.String
+'m '          Literal.String
+'\\<le>'      Literal.String.Symbol
+' n'          Literal.String
+'"'           Literal.String
+'\n  '        Text
+'using'       Keyword
+' '           Text
+'assms'       Name
+' '           Text
+'by'          Keyword
+' '           Text
+'('           Operator
+'cases'       Name
+' '           Text
+'m'           Name
+')'           Operator
+' '           Text
+'('           Operator
+'simp_all'    Name
+' '           Text
+'add'         Name
+':'           Operator
+' '           Text
+'power2_eq_square' Name
+')'           Operator
+'\n\n\n\n'    Text
+
+'subsection'  Generic.Subheading
+' '           Text
+'{*'          Comment
+' Code generator tweak ' Comment
+'*}'          Comment
+'\n\n'        Text
+
+'lemma'       Keyword.Namespace
+' '           Text
+'power_power_power' Name
+' '           Text
+'['           Operator
+'code'        Name
+']'           Operator
+':'           Operator
+'\n  '        Text
+'"'           Literal.String
+"power = power.power (1::'a::{power}) (op *)" Literal.String
+'"'           Literal.String
+'\n  '        Text
+'unfolding'   Keyword
+' '           Text
+'power_def'   Name
+' '           Text
+'power.power_def' Name
+' '           Text
+'..'          Operator.Word
+'\n\n'        Text
+
+'declare'     Keyword
+' '           Text
+'power.power.simps' Name
+' '           Text
+'['           Operator
+'code'        Name
+']'           Operator
+'\n\n'        Text
+
+'code_identifier' Keyword
+'\n  '        Text
+'code_module' Keyword.Pseudo
+' '           Text
+'Power'       Name
+' '           Text
+'\\<rightharpoonup>' Text.Symbol
+' '           Text
+'('           Operator
+'SML'         Name
+')'           Operator
+' '           Text
+'Arith'       Name
+' '           Text
+'and'         Keyword.Pseudo
+' '           Text
+'('           Operator
+'OCaml'       Name
+')'           Operator
+' '           Text
+'Arith'       Name
+' '           Text
+'and'         Keyword.Pseudo
+' '           Text
+'('           Operator
+'Haskell'     Name
+')'           Operator
+' '           Text
+'Arith'       Name
+'\n\n'        Text
+
+'end'         Keyword
+'\n'          Text

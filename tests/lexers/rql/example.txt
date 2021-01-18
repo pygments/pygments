@@ -1,0 +1,1236 @@
+---input---
+Any N, N2 where N is Note, N2 is Note, N a_faire_par P1, P1 nom 'john', N2 a_faire_par P2, P2 nom 'jane' ;
+DISTINCT Any N, D, C, T, A ORDERBY D DESC LIMIT 40 where N is Note, N diem D, W is Workcase, W concerned_by N, N cost C, N text T, N author A, N diem <= today
+Bookmark B WHERE B owned_by G, G eid 5;
+Any X WHERE E eid 22762, NOT E is_in X, X modification_date D ORDERBY D DESC LIMIT 41;
+Any A, R, SUB ORDERBY R WHERE A is "Workcase", S is Division, S concerned_by A, A subject SUB, S eid 85, A ref R;
+Any D, T, L WHERE D is Document, A concerned_by D,A eid 14533, D title T, D location L;
+Any N,A,B,C,D ORDERBY A DESC WHERE N is Note, W concerned_by N, W eid 14533, N diem A,N author B,N text C,N cost D;
+Any X ORDERBY D DESC LIMIT 41 WHERE E eid 18134, NOT E concerned_by X, X modification_date D
+DISTINCT Any N, D, C, T, A ORDERBY D ASC LIMIT 40 WHERE N is Note, N diem D, P is Person, N to_be_contacted_by G, N cost C, N text T, N author A, G login "john";
+INSERT Person X: X surname "Doe", X firstname "John";
+Workcase W where W ref "ABCD12";
+Workcase W where W ref LIKE "AB%";
+Any X WHERE X X eid 53
+Any X WHERE X Document X occurence_of F, F class C, C name 'Comics' X owned_by U, U login 'syt' X available true
+Person P WHERE P work_for P, S name 'Acme', P interested_by T, T name 'training'
+Note N WHERE N written_on D, D day> (today -10), N written_by P, P name 'joe' or P name 'jack'
+Person P WHERE (P interested_by T, T name 'training') or (P city 'Paris')
+Any N, P WHERE X is Person, X name N, X first_name P
+String N, P WHERE X is Person, X name N, X first_name P
+INSERT Person X: X name 'widget'
+INSERT Person X, Person Y: X name 'foo', Y name 'nice', X friend Y
+INSERT Person X: X name 'foo', X friend  Y WHERE name 'nice'
+SET X name 'bar', X first_name 'original' where X is Person X name 'foo'
+SET X know Y  WHERE X friend Y
+DELETE Person X WHERE X name 'foo'
+DELETE X friend Y WHERE X is Person, X name 'foo'
+Any X WHERE X name LIKE '%lt'
+Any X WHERE X name IN ( 'joe', 'jack', 'william', 'averell')
+Any X, V WHERE X concerns P, P eid 42, X corrected_in V?
+Any C, P WHERE C is Card, P? documented_by C
+Point P where P abs X, P ord Y, P value X+Y
+Document X where X class C, C name 'Cartoon', X owned_by U, U login 'joe', X available true
+(Any X WHERE X is Document) UNION (Any X WHERE X is File)
+Any A,B WHERE A creation_date B WITH A BEING (Any X WHERE X is Document) UNION (Any X WHERE X is File)
+
+---tokens---
+'Any'         Name.Builtin
+' '           Text
+'N'           Name
+','           Punctuation
+' '           Text
+'N2'          Name
+' '           Text
+'where'       Keyword
+' '           Text
+'N'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Note'        Name
+','           Punctuation
+' '           Text
+'N2'          Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Note'        Name
+','           Punctuation
+' '           Text
+'N'           Name
+' '           Text
+'a_faire_par' Name
+' '           Text
+'P1'          Name
+','           Punctuation
+' '           Text
+'P1'          Name
+' '           Text
+'nom'         Name
+' '           Text
+"'john'"      Literal.String.Single
+','           Punctuation
+' '           Text
+'N2'          Name
+' '           Text
+'a_faire_par' Name
+' '           Text
+'P2'          Name
+','           Punctuation
+' '           Text
+'P2'          Name
+' '           Text
+'nom'         Name
+' '           Text
+"'jane'"      Literal.String.Single
+' '           Text
+';'           Punctuation
+'\n'          Text
+
+'DISTINCT'    Keyword
+' '           Text
+'Any'         Name.Builtin
+' '           Text
+'N'           Name
+','           Punctuation
+' '           Text
+'D'           Name
+','           Punctuation
+' '           Text
+'C'           Name
+','           Punctuation
+' '           Text
+'T'           Name
+','           Punctuation
+' '           Text
+'A'           Name
+' '           Text
+'ORDERBY'     Keyword
+' '           Text
+'D'           Name
+' '           Text
+'DESC'        Keyword
+' '           Text
+'LIMIT'       Keyword
+' '           Text
+'40'          Literal.Number.Integer
+' '           Text
+'where'       Keyword
+' '           Text
+'N'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Note'        Name
+','           Punctuation
+' '           Text
+'N'           Name
+' '           Text
+'diem'        Name
+' '           Text
+'D'           Name
+','           Punctuation
+' '           Text
+'W'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Workcase'    Name
+','           Punctuation
+' '           Text
+'W'           Name
+' '           Text
+'concerned_by' Name
+' '           Text
+'N'           Name
+','           Punctuation
+' '           Text
+'N'           Name
+' '           Text
+'cost'        Name
+' '           Text
+'C'           Name
+','           Punctuation
+' '           Text
+'N'           Name
+' '           Text
+'text'        Name
+' '           Text
+'T'           Name
+','           Punctuation
+' '           Text
+'N'           Name
+' '           Text
+'author'      Name
+' '           Text
+'A'           Name
+','           Punctuation
+' '           Text
+'N'           Name
+' '           Text
+'diem'        Name
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'today'       Keyword
+'\n'          Text
+
+'Bookmark'    Name
+' '           Text
+'B'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'B'           Name
+' '           Text
+'owned_by'    Name
+' '           Text
+'G'           Name
+','           Punctuation
+' '           Text
+'G'           Name
+' '           Text
+'eid'         Name
+' '           Text
+'5'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'Any'         Name.Builtin
+' '           Text
+'X'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'E'           Name
+' '           Text
+'eid'         Name
+' '           Text
+'22762'       Literal.Number.Integer
+','           Punctuation
+' '           Text
+'NOT'         Keyword
+' '           Text
+'E'           Name
+' '           Text
+'is_in'       Name
+' '           Text
+'X'           Name
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'modification_date' Name
+' '           Text
+'D'           Name
+' '           Text
+'ORDERBY'     Keyword
+' '           Text
+'D'           Name
+' '           Text
+'DESC'        Keyword
+' '           Text
+'LIMIT'       Keyword
+' '           Text
+'41'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'Any'         Name.Builtin
+' '           Text
+'A'           Name
+','           Punctuation
+' '           Text
+'R'           Name
+','           Punctuation
+' '           Text
+'SUB'         Name
+' '           Text
+'ORDERBY'     Keyword
+' '           Text
+'R'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'A'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'"Workcase"'  Literal.String.Single
+','           Punctuation
+' '           Text
+'S'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Division'    Name
+','           Punctuation
+' '           Text
+'S'           Name
+' '           Text
+'concerned_by' Name
+' '           Text
+'A'           Name
+','           Punctuation
+' '           Text
+'A'           Name
+' '           Text
+'subject'     Name
+' '           Text
+'SUB'         Name
+','           Punctuation
+' '           Text
+'S'           Name
+' '           Text
+'eid'         Name
+' '           Text
+'85'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'A'           Name
+' '           Text
+'ref'         Name
+' '           Text
+'R'           Name
+';'           Punctuation
+'\n'          Text
+
+'Any'         Name.Builtin
+' '           Text
+'D'           Name
+','           Punctuation
+' '           Text
+'T'           Name
+','           Punctuation
+' '           Text
+'L'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'D'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Document'    Name
+','           Punctuation
+' '           Text
+'A'           Name
+' '           Text
+'concerned_by' Name
+' '           Text
+'D'           Name
+','           Punctuation
+'A'           Name
+' '           Text
+'eid'         Name
+' '           Text
+'14533'       Literal.Number.Integer
+','           Punctuation
+' '           Text
+'D'           Name
+' '           Text
+'title'       Name
+' '           Text
+'T'           Name
+','           Punctuation
+' '           Text
+'D'           Name
+' '           Text
+'location'    Name
+' '           Text
+'L'           Name
+';'           Punctuation
+'\n'          Text
+
+'Any'         Name.Builtin
+' '           Text
+'N'           Name
+','           Punctuation
+'A'           Name
+','           Punctuation
+'B'           Name
+','           Punctuation
+'C'           Name
+','           Punctuation
+'D'           Name
+' '           Text
+'ORDERBY'     Keyword
+' '           Text
+'A'           Name
+' '           Text
+'DESC'        Keyword
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'N'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Note'        Name
+','           Punctuation
+' '           Text
+'W'           Name
+' '           Text
+'concerned_by' Name
+' '           Text
+'N'           Name
+','           Punctuation
+' '           Text
+'W'           Name
+' '           Text
+'eid'         Name
+' '           Text
+'14533'       Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+' '           Text
+'diem'        Name
+' '           Text
+'A'           Name
+','           Punctuation
+'N'           Name
+' '           Text
+'author'      Name
+' '           Text
+'B'           Name
+','           Punctuation
+'N'           Name
+' '           Text
+'text'        Name
+' '           Text
+'C'           Name
+','           Punctuation
+'N'           Name
+' '           Text
+'cost'        Name
+' '           Text
+'D'           Name
+';'           Punctuation
+'\n'          Text
+
+'Any'         Name.Builtin
+' '           Text
+'X'           Name
+' '           Text
+'ORDERBY'     Keyword
+' '           Text
+'D'           Name
+' '           Text
+'DESC'        Keyword
+' '           Text
+'LIMIT'       Keyword
+' '           Text
+'41'          Literal.Number.Integer
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'E'           Name
+' '           Text
+'eid'         Name
+' '           Text
+'18134'       Literal.Number.Integer
+','           Punctuation
+' '           Text
+'NOT'         Keyword
+' '           Text
+'E'           Name
+' '           Text
+'concerned_by' Name
+' '           Text
+'X'           Name
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'modification_date' Name
+' '           Text
+'D'           Name
+'\n'          Text
+
+'DISTINCT'    Keyword
+' '           Text
+'Any'         Name.Builtin
+' '           Text
+'N'           Name
+','           Punctuation
+' '           Text
+'D'           Name
+','           Punctuation
+' '           Text
+'C'           Name
+','           Punctuation
+' '           Text
+'T'           Name
+','           Punctuation
+' '           Text
+'A'           Name
+' '           Text
+'ORDERBY'     Keyword
+' '           Text
+'D'           Name
+' '           Text
+'ASC'         Keyword
+' '           Text
+'LIMIT'       Keyword
+' '           Text
+'40'          Literal.Number.Integer
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'N'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Note'        Name
+','           Punctuation
+' '           Text
+'N'           Name
+' '           Text
+'diem'        Name
+' '           Text
+'D'           Name
+','           Punctuation
+' '           Text
+'P'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Person'      Name
+','           Punctuation
+' '           Text
+'N'           Name
+' '           Text
+'to_be_contacted_by' Name
+' '           Text
+'G'           Name
+','           Punctuation
+' '           Text
+'N'           Name
+' '           Text
+'cost'        Name
+' '           Text
+'C'           Name
+','           Punctuation
+' '           Text
+'N'           Name
+' '           Text
+'text'        Name
+' '           Text
+'T'           Name
+','           Punctuation
+' '           Text
+'N'           Name
+' '           Text
+'author'      Name
+' '           Text
+'A'           Name
+','           Punctuation
+' '           Text
+'G'           Name
+' '           Text
+'login'       Name
+' '           Text
+'"john"'      Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'INSERT'      Keyword
+' '           Text
+'Person'      Name
+' '           Text
+'X'           Name
+':'           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'surname'     Name
+' '           Text
+'"Doe"'       Literal.String.Single
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'firstname'   Name
+' '           Text
+'"John"'      Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'Workcase'    Name
+' '           Text
+'W'           Name
+' '           Text
+'where'       Keyword
+' '           Text
+'W'           Name
+' '           Text
+'ref'         Name
+' '           Text
+'"ABCD12"'    Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'Workcase'    Name
+' '           Text
+'W'           Name
+' '           Text
+'where'       Keyword
+' '           Text
+'W'           Name
+' '           Text
+'ref'         Name
+' '           Text
+'LIKE'        Name
+' '           Text
+'"AB%"'       Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'Any'         Name.Builtin
+' '           Text
+'X'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'X'           Name
+' '           Text
+'eid'         Name
+' '           Text
+'53'          Literal.Number.Integer
+'\n'          Text
+
+'Any'         Name.Builtin
+' '           Text
+'X'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'Document'    Name
+' '           Text
+'X'           Name
+' '           Text
+'occurence_of' Name
+' '           Text
+'F'           Name
+','           Punctuation
+' '           Text
+'F'           Name
+' '           Text
+'class'       Name
+' '           Text
+'C'           Name
+','           Punctuation
+' '           Text
+'C'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'Comics'"    Literal.String.Single
+' '           Text
+'X'           Name
+' '           Text
+'owned_by'    Name
+' '           Text
+'U'           Name
+','           Punctuation
+' '           Text
+'U'           Name
+' '           Text
+'login'       Name
+' '           Text
+"'syt'"       Literal.String.Single
+' '           Text
+'X'           Name
+' '           Text
+'available'   Name
+' '           Text
+'true'        Keyword
+'\n'          Text
+
+'Person'      Name
+' '           Text
+'P'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'P'           Name
+' '           Text
+'work_for'    Name
+' '           Text
+'P'           Name
+','           Punctuation
+' '           Text
+'S'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'Acme'"      Literal.String.Single
+','           Punctuation
+' '           Text
+'P'           Name
+' '           Text
+'interested_by' Name
+' '           Text
+'T'           Name
+','           Punctuation
+' '           Text
+'T'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'training'"  Literal.String.Single
+'\n'          Text
+
+'Note'        Name
+' '           Text
+'N'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'N'           Name
+' '           Text
+'written_on'  Name
+' '           Text
+'D'           Name
+','           Punctuation
+' '           Text
+'D'           Name
+' '           Text
+'day'         Name
+'>'           Operator
+' '           Text
+'('           Punctuation
+'today'       Keyword
+' '           Text
+'-'           Operator
+'10'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'N'           Name
+' '           Text
+'written_by'  Name
+' '           Text
+'P'           Name
+','           Punctuation
+' '           Text
+'P'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'joe'"       Literal.String.Single
+' '           Text
+'or'          Keyword
+' '           Text
+'P'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'jack'"      Literal.String.Single
+'\n'          Text
+
+'Person'      Name
+' '           Text
+'P'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'('           Punctuation
+'P'           Name
+' '           Text
+'interested_by' Name
+' '           Text
+'T'           Name
+','           Punctuation
+' '           Text
+'T'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'training'"  Literal.String.Single
+')'           Punctuation
+' '           Text
+'or'          Keyword
+' '           Text
+'('           Punctuation
+'P'           Name
+' '           Text
+'city'        Name
+' '           Text
+"'Paris'"     Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'Any'         Name.Builtin
+' '           Text
+'N'           Name
+','           Punctuation
+' '           Text
+'P'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Person'      Name
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'name'        Name
+' '           Text
+'N'           Name
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'first_name'  Name
+' '           Text
+'P'           Name
+'\n'          Text
+
+'String'      Name
+' '           Text
+'N'           Name
+','           Punctuation
+' '           Text
+'P'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Person'      Name
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'name'        Name
+' '           Text
+'N'           Name
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'first_name'  Name
+' '           Text
+'P'           Name
+'\n'          Text
+
+'INSERT'      Keyword
+' '           Text
+'Person'      Name
+' '           Text
+'X'           Name
+':'           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'widget'"    Literal.String.Single
+'\n'          Text
+
+'INSERT'      Keyword
+' '           Text
+'Person'      Name
+' '           Text
+'X'           Name
+','           Punctuation
+' '           Text
+'Person'      Name
+' '           Text
+'Y'           Name
+':'           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'foo'"       Literal.String.Single
+','           Punctuation
+' '           Text
+'Y'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'nice'"      Literal.String.Single
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'friend'      Name
+' '           Text
+'Y'           Name
+'\n'          Text
+
+'INSERT'      Keyword
+' '           Text
+'Person'      Name
+' '           Text
+'X'           Name
+':'           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'foo'"       Literal.String.Single
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'friend'      Name
+'  '          Text
+'Y'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'name'        Name
+' '           Text
+"'nice'"      Literal.String.Single
+'\n'          Text
+
+'SET'         Keyword
+' '           Text
+'X'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'bar'"       Literal.String.Single
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'first_name'  Name
+' '           Text
+"'original'"  Literal.String.Single
+' '           Text
+'where'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Person'      Name
+' '           Text
+'X'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'foo'"       Literal.String.Single
+'\n'          Text
+
+'SET'         Keyword
+' '           Text
+'X'           Name
+' '           Text
+'know'        Name
+' '           Text
+'Y'           Name
+'  '          Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'friend'      Name
+' '           Text
+'Y'           Name
+'\n'          Text
+
+'DELETE'      Keyword
+' '           Text
+'Person'      Name
+' '           Text
+'X'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'foo'"       Literal.String.Single
+'\n'          Text
+
+'DELETE'      Keyword
+' '           Text
+'X'           Name
+' '           Text
+'friend'      Name
+' '           Text
+'Y'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Person'      Name
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'foo'"       Literal.String.Single
+'\n'          Text
+
+'Any'         Name.Builtin
+' '           Text
+'X'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'name'        Name
+' '           Text
+'LIKE'        Name
+' '           Text
+"'%lt'"       Literal.String.Single
+'\n'          Text
+
+'Any'         Name.Builtin
+' '           Text
+'X'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'name'        Name
+' '           Text
+'IN'          Name
+' '           Text
+'('           Punctuation
+' '           Text
+"'joe'"       Literal.String.Single
+','           Punctuation
+' '           Text
+"'jack'"      Literal.String.Single
+','           Punctuation
+' '           Text
+"'william'"   Literal.String.Single
+','           Punctuation
+' '           Text
+"'averell'"   Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'Any'         Name.Builtin
+' '           Text
+'X'           Name
+','           Punctuation
+' '           Text
+'V'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'concerns'    Name
+' '           Text
+'P'           Name
+','           Punctuation
+' '           Text
+'P'           Name
+' '           Text
+'eid'         Name
+' '           Text
+'42'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'corrected_in' Name
+' '           Text
+'V?'          Name
+'\n'          Text
+
+'Any'         Name.Builtin
+' '           Text
+'C'           Name
+','           Punctuation
+' '           Text
+'P'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'C'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Card'        Name
+','           Punctuation
+' '           Text
+'P?'          Name
+' '           Text
+'documented_by' Name
+' '           Text
+'C'           Name
+'\n'          Text
+
+'Point'       Name
+' '           Text
+'P'           Name
+' '           Text
+'where'       Keyword
+' '           Text
+'P'           Name
+' '           Text
+'abs'         Name
+' '           Text
+'X'           Name
+','           Punctuation
+' '           Text
+'P'           Name
+' '           Text
+'ord'         Name
+' '           Text
+'Y'           Name
+','           Punctuation
+' '           Text
+'P'           Name
+' '           Text
+'value'       Name
+' '           Text
+'X'           Name
+'+'           Operator
+'Y'           Name
+'\n'          Text
+
+'Document'    Name
+' '           Text
+'X'           Name
+' '           Text
+'where'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'class'       Name
+' '           Text
+'C'           Name
+','           Punctuation
+' '           Text
+'C'           Name
+' '           Text
+'name'        Name
+' '           Text
+"'Cartoon'"   Literal.String.Single
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'owned_by'    Name
+' '           Text
+'U'           Name
+','           Punctuation
+' '           Text
+'U'           Name
+' '           Text
+'login'       Name
+' '           Text
+"'joe'"       Literal.String.Single
+','           Punctuation
+' '           Text
+'X'           Name
+' '           Text
+'available'   Name
+' '           Text
+'true'        Keyword
+'\n'          Text
+
+'('           Punctuation
+'Any'         Name.Builtin
+' '           Text
+'X'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Document'    Name
+')'           Punctuation
+' '           Text
+'UNION'       Keyword
+' '           Text
+'('           Punctuation
+'Any'         Name.Builtin
+' '           Text
+'X'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'File'        Name
+')'           Punctuation
+'\n'          Text
+
+'Any'         Name.Builtin
+' '           Text
+'A'           Name
+','           Punctuation
+'B'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'A'           Name
+' '           Text
+'creation_date' Name
+' '           Text
+'B'           Name
+' '           Text
+'WITH'        Keyword
+' '           Text
+'A'           Name
+' '           Text
+'BEING'       Keyword
+' '           Text
+'('           Punctuation
+'Any'         Name.Builtin
+' '           Text
+'X'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'Document'    Name
+')'           Punctuation
+' '           Text
+'UNION'       Keyword
+' '           Text
+'('           Punctuation
+'Any'         Name.Builtin
+' '           Text
+'X'           Name
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'X'           Name
+' '           Text
+'is'          Name.Builtin
+' '           Text
+'File'        Name
+')'           Punctuation
+'\n'          Text

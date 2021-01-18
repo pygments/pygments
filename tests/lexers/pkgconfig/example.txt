@@ -1,0 +1,130 @@
+---input---
+# This is for a fictional package `yet another portable hatchpotch generator'.
+prefix=/usr/local/opt/site/private # define variable `prefix`
+exec_prefix=${prefix} # using variable reference
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+just_for_test=$${this is not a part of variable reference} # escape with `$$`
+
+Name: YAPHatchPotchGen
+Description: Yet Another Portable HatchPotch GENerator.
+Version: 352.9.3
+URL: http://www9.yaphatchpotchgen.net  # Don't access.
+Requires: piyohogelib-9.0 = 9.5.3
+Requires.private: nyorolib-3.0 = 3.0.9
+Conflicts: apiyohoge <= 8.3
+Libs: -L${libdir} -lyaphatchpotchgen-352.9 # using variable reference
+Libs.private: -ll -ly
+Cflags: -I${includedir}/piyohogelib-9.0 -I${libdir}/yaphatchpotchgen/include
+
+
+---tokens---
+"# This is for a fictional package `yet another portable hatchpotch generator'." Comment.Single
+'\n'          Text
+
+'prefix'      Name.Attribute
+'='           Operator
+'/usr/local/opt/site/private ' Text
+'# define variable `prefix`' Comment.Single
+'\n'          Text
+
+'exec_prefix' Name.Attribute
+'='           Operator
+'${'          Literal.String.Interpol
+'prefix'      Name.Attribute
+'}'           Literal.String.Interpol
+' '           Text
+'# using variable reference' Comment.Single
+'\n'          Text
+
+'libdir'      Name.Attribute
+'='           Operator
+'${'          Literal.String.Interpol
+'exec_prefix' Name.Attribute
+'}'           Literal.String.Interpol
+'/lib'        Text
+'\n'          Text
+
+'includedir'  Name.Attribute
+'='           Operator
+'${'          Literal.String.Interpol
+'prefix'      Name.Attribute
+'}'           Literal.String.Interpol
+'/include'    Text
+'\n'          Text
+
+'just_for_test' Name.Attribute
+'='           Operator
+'$$'          Text
+'{'           Text
+'this is not a part of variable reference' Text
+'}'           Text
+' '           Text
+'# escape with `$$`' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'Name'        Name.Tag
+':'           Punctuation
+' YAPHatchPotchGen' Text
+'\n'          Text
+
+'Description' Name.Tag
+':'           Punctuation
+' Yet Another Portable HatchPotch GENerator.' Text
+'\n'          Text
+
+'Version'     Name.Tag
+':'           Punctuation
+' 352.9.3'    Text
+'\n'          Text
+
+'URL'         Name.Tag
+':'           Punctuation
+' http://www9.yaphatchpotchgen.net  ' Text
+"# Don't access." Comment.Single
+'\n'          Text
+
+'Requires'    Name.Tag
+':'           Punctuation
+' piyohogelib-9.0 = 9.5.3' Text
+'\n'          Text
+
+'Requires.private' Name.Tag
+':'           Punctuation
+' nyorolib-3.0 = 3.0.9' Text
+'\n'          Text
+
+'Conflicts'   Name.Tag
+':'           Punctuation
+' apiyohoge <= 8.3' Text
+'\n'          Text
+
+'Libs'        Name.Tag
+':'           Punctuation
+' -L'         Text
+'${'          Literal.String.Interpol
+'libdir'      Name.Attribute
+'}'           Literal.String.Interpol
+' -lyaphatchpotchgen-352.9 ' Text
+'# using variable reference' Comment.Single
+'\n'          Text
+
+'Libs.private' Name.Tag
+':'           Punctuation
+' -ll -ly'    Text
+'\n'          Text
+
+'Cflags'      Name.Tag
+':'           Punctuation
+' -I'         Text
+'${'          Literal.String.Interpol
+'includedir'  Name.Attribute
+'}'           Literal.String.Interpol
+'/piyohogelib-9.0 -I' Text
+'${'          Literal.String.Interpol
+'libdir'      Name.Attribute
+'}'           Literal.String.Interpol
+'/yaphatchpotchgen/include' Text
+'\n'          Text

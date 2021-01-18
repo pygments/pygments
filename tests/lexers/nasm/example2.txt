@@ -1,0 +1,178 @@
+---input---
+; Demonstration of how to write an entire .EXE format program as a .OBJ
+; file to be linked. Tested with the VAL free linker.
+; To build:
+;    nasm -fobj objexe.asm
+;    val objexe.obj,objexe.exe;
+; To test:
+;    objexe
+; (should print `hello, world')
+	  
+	  segment code
+
+..start:  mov ax,data
+	  mov ds,ax
+	  mov ax,stack
+	  mov ss,ax
+	  mov sp,stacktop
+
+	  mov dx,hello
+	  mov ah,9
+	  int 0x21
+
+	  mov ax,0x4c00
+	  int 0x21
+
+	  segment data
+hello:	  db 'hello, world', 13, 10, '$'
+
+	  segment stack stack
+	  resb 64
+stacktop:
+
+---tokens---
+'; Demonstration of how to write an entire .EXE format program as a .OBJ' Comment.Single
+'\n'          Text
+
+'; file to be linked. Tested with the VAL free linker.' Comment.Single
+'\n'          Text
+
+'; To build:' Comment.Single
+'\n'          Text
+
+';    nasm -fobj objexe.asm' Comment.Single
+'\n'          Text
+
+';    val objexe.obj,objexe.exe;' Comment.Single
+'\n'          Text
+
+'; To test:'  Comment.Single
+'\n'          Text
+
+';    objexe' Comment.Single
+'\n'          Text
+
+"; (should print `hello, world')" Comment.Single
+'\n'          Text
+
+'\t  '        Text
+'\n'          Text
+
+'\t  '        Text
+'segment '    Keyword
+'code'        Name.Variable
+'\n\n'        Text
+
+'..start:'    Name.Label
+'  '          Text
+'mov'         Name.Function
+' '           Text
+'ax'          Name.Builtin
+','           Punctuation
+'data'        Name.Variable
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'ds'          Name.Builtin
+','           Punctuation
+'ax'          Name.Builtin
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'ax'          Name.Builtin
+','           Punctuation
+'stack'       Name.Variable
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'ss'          Name.Builtin
+','           Punctuation
+'ax'          Name.Builtin
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'sp'          Name.Builtin
+','           Punctuation
+'stacktop'    Name.Variable
+'\n\n'        Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'dx'          Name.Builtin
+','           Punctuation
+'hello'       Name.Variable
+'\n'          Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'ah'          Name.Builtin
+','           Punctuation
+'9'           Literal.Number.Integer
+'\n'          Text
+
+'\t  '        Text
+'int'         Name.Function
+' '           Text
+'0x21'        Literal.Number.Hex
+'\n\n'        Text
+
+'\t  '        Text
+'mov'         Name.Function
+' '           Text
+'ax'          Name.Builtin
+','           Punctuation
+'0x4c00'      Literal.Number.Hex
+'\n'          Text
+
+'\t  '        Text
+'int'         Name.Function
+' '           Text
+'0x21'        Literal.Number.Hex
+'\n\n'        Text
+
+'\t  '        Text
+'segment '    Keyword
+'data'        Name.Variable
+'\n'          Text
+
+'hello:'      Name.Label
+'\t  '        Text
+'db'          Keyword.Declaration
+' '           Text
+"'hello, world'" Literal.String
+','           Punctuation
+' '           Text
+'13'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'$'"         Literal.String
+'\n\n'        Text
+
+'\t  '        Text
+'segment '    Keyword
+'stack'       Name.Variable
+' '           Text
+'stack'       Name.Variable
+'\n'          Text
+
+'\t  '        Text
+'resb'        Keyword.Declaration
+' '           Text
+'64'          Literal.Number.Integer
+'\n'          Text
+
+'stacktop:'   Name.Label
+'\n'          Text

@@ -1,0 +1,43 @@
+---input---
+%if defined(__foo__)
+.cls {
+  color: #fff;
+}
+%endif
+%literal %foo
+
+---tokens---
+'%'           Comment.Preproc
+'if'          Comment.Preproc
+' '           Text
+'defined'     Keyword
+'('           Punctuation
+'__foo__'     Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'.'           Punctuation
+'cls'         Name.Class
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'color'       Keyword
+':'           Punctuation
+' '           Text
+'#fff'        Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'%'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Text
+
+'%'           Comment.Preproc
+'literal'     Comment.Preproc
+' %foo'       Text
+'\n'          Text

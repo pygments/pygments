@@ -1,0 +1,5013 @@
+---input---
+; bigtest.nsi
+;
+; This script attempts to test most of the functionality of the NSIS exehead.
+
+;--------------------------------
+
+!ifdef HAVE_UPX
+!packhdr tmp.dat "upx\upx -9 tmp.dat"
+!endif
+
+!ifdef NOCOMPRESS
+SetCompress off
+!endif
+
+;--------------------------------
+
+Name "BigNSISTest"
+Caption "NSIS Big Test"
+Icon "${NSISDIR}\Contrib\Graphics\Icons\nsis1-install.ico"
+OutFile "bigtest.exe"
+
+SetDateSave on
+SetDatablockOptimize on
+CRCCheck on
+SilentInstall normal
+BGGradient 000000 800000 FFFFFF
+InstallColors FF8080 000030
+XPStyle on
+
+InstallDir "$PROGRAMFILES\NSISTest\BigNSISTest"
+InstallDirRegKey HKLM "Software\NSISTest\BigNSISTest" "Install_Dir"
+
+CheckBitmap "${NSISDIR}\Contrib\Graphics\Checks\classic-cross.bmp"
+
+LicenseText "A test text, make sure it's all there"
+LicenseData "bigtest.nsi"
+
+RequestExecutionLevel admin
+
+;--------------------------------
+
+Page license
+Page components
+Page directory
+Page instfiles
+
+UninstPage uninstConfirm
+UninstPage instfiles
+
+;--------------------------------
+
+!ifndef NOINSTTYPES ; only if not defined
+  InstType "Most"
+  InstType "Full"
+  InstType "More"
+  InstType "Base"
+  ;InstType /NOCUSTOM
+  ;InstType /COMPONENTSONLYONCUSTOM
+!endif
+
+AutoCloseWindow false
+ShowInstDetails show
+
+;--------------------------------
+
+Section "" ; empty string makes it hidden, so would starting with -
+
+  ; write reg info
+  StrCpy $1 "POOOOOOOOOOOP"
+  DetailPrint "I like to be able to see what is going on (debug) $1"
+  WriteRegStr HKLM SOFTWARE\NSISTest\BigNSISTest "Install_Dir" "$INSTDIR"
+
+  ; write uninstall strings
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\BigNSISTest" "DisplayName" "BigNSISTest (remove only)"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\BigNSISTest" "UninstallString" '"$INSTDIR\bt-uninst.exe"'
+
+  SetOutPath $INSTDIR
+  File /a "silent.nsi"
+  CreateDirectory "$INSTDIR\MyProjectFamily\MyProject" ; 2 recursively create a directory for fun.
+  WriteUninstaller "bt-uninst.exe"
+  
+  Nop ; for fun
+
+SectionEnd
+
+Section "TempTest"
+
+SectionIn 1 2 3
+  Start: MessageBox MB_OK "Start:"
+
+  MessageBox MB_YESNO "Goto MyLabel" IDYES MyLabel
+
+  MessageBox MB_OK "Right before MyLabel:"
+
+  MyLabel: MessageBox MB_OK "MyLabel:"
+  
+  MessageBox MB_OK "Right after MyLabel:"
+
+  MessageBox MB_YESNO "Goto Start:?" IDYES Start
+
+SectionEnd
+
+SectionGroup /e SectionGroup1
+
+Section "Test Registry/INI functions"
+
+SectionIn 1 4 3
+
+  WriteRegStr HKLM SOFTWARE\NSISTest\BigNSISTest "StrTest_INSTDIR" "$INSTDIR"
+  WriteRegDword HKLM SOFTWARE\NSISTest\BigNSISTest "DwordTest_0xDEADBEEF" 0xdeadbeef
+  WriteRegDword HKLM SOFTWARE\NSISTest\BigNSISTest "DwordTest_123456" 123456
+  WriteRegDword HKLM SOFTWARE\NSISTest\BigNSISTest "DwordTest_0123" 0123
+  WriteRegBin HKLM SOFTWARE\NSISTest\BigNSISTest "BinTest_deadbeef01f00dbeef" "DEADBEEF01F00DBEEF"
+  StrCpy $8 "$SYSDIR\IniTest"
+  WriteINIStr "$INSTDIR\test.ini"  "MySection" "Value1" $8
+  WriteINIStr "$INSTDIR\test.ini"  "MySectionIni" "Value1" $8
+  WriteINIStr "$INSTDIR\test.ini"  "MySectionIni" "Value2" $8
+  WriteINIStr "$INSTDIR\test.ini"  "IniOn" "Value1" $8
+
+  Call MyFunctionTest
+
+  DeleteINIStr "$INSTDIR\test.ini" "IniOn" "Value1"
+  DeleteINISec "$INSTDIR\test.ini" "MySectionIni"
+
+  ReadINIStr $1 "$INSTDIR\test.ini" "MySectionIni" "Value1"
+  StrCmp $1 "" INIDelSuccess
+    MessageBox MB_OK "DeleteINISec failed"
+  INIDelSuccess:
+
+  ClearErrors
+  ReadRegStr $1 HKCR "software\microsoft" xyz_cc_does_not_exist
+  IfErrors 0 NoError
+    MessageBox MB_OK "could not read from HKCR\software\microsoft\xyz_cc_does_not_exist"
+    Goto ErrorYay
+  NoError:
+    MessageBox MB_OK "read '$1' from HKCR\software\microsoft\xyz_cc_does_not_exist"
+  ErrorYay:
+  
+SectionEnd
+
+Section "Test CreateShortCut"
+
+  SectionIn 1 2 3
+
+  Call CSCTest
+
+SectionEnd
+
+SectionGroup Group2
+
+Section "Test Branching" 
+  
+  BeginTestSection:
+  SectionIn 1 2 3
+ 
+  SetOutPath $INSTDIR
+
+  IfFileExists "$INSTDIR\LogicLib.nsi" 0 BranchTest69
+    
+    MessageBox MB_YESNO|MB_ICONQUESTION "Would you like to overwrite $INSTDIR\LogicLib.nsi?" IDNO NoOverwrite ; skipped if file doesn't exist
+
+    BranchTest69:
+  
+    SetOverwrite ifnewer ; NOT AN INSTRUCTION, NOT COUNTED IN SKIPPINGS
+
+  NoOverwrite:
+
+  File "LogicLib.nsi" ; skipped if answered no
+  SetOverwrite try ; NOT AN INSTRUCTION, NOT COUNTED IN SKIPPINGS
+
+  MessageBox MB_YESNO|MB_ICONQUESTION "Would you like to skip the rest of this section?" IDYES EndTestBranch
+  MessageBox MB_YESNO|MB_ICONQUESTION "Would you like to go back to the beginning of this section?" IDYES BeginTestSection
+  MessageBox MB_YESNO|MB_ICONQUESTION "Would you like to hide the installer and wait five seconds?" IDNO NoHide
+
+    HideWindow
+    Sleep 5000
+    BringToFront
+
+  NoHide:
+
+  MessageBox MB_YESNO|MB_ICONQUESTION "Would you like to call the function 5 times?" IDNO NoRecurse
+
+    StrCpy $1 "x"
+
+  LoopTest: 
+      
+    Call myfunc
+    StrCpy $1 "x$1"
+    StrCmp $1 "xxxxxx" 0 LoopTest
+      
+  NoRecurse:
+
+  EndTestBranch:
+
+SectionEnd
+
+SectionGroupEnd
+
+Section "Test CopyFiles"
+
+  SectionIn 1 2 3
+
+  SetOutPath $INSTDIR\cpdest
+  CopyFiles "$WINDIR\*.ini" "$INSTDIR\cpdest" 0
+
+SectionEnd
+
+SectionGroupEnd
+
+Section "Test Exec functions" TESTIDX
+
+  SectionIn 1 2 3
+  
+  SearchPath $1 notepad.exe
+
+  MessageBox MB_OK "notepad.exe=$1"
+  Exec '"$1"'
+  ExecShell "open" '"$INSTDIR"'
+  Sleep 500
+  BringToFront
+
+SectionEnd
+
+Section "Test ActiveX control registration"
+
+  SectionIn 2
+
+  UnRegDLL "$SYSDIR\spin32.ocx"
+  Sleep 1000
+  RegDLL "$SYSDIR\spin32.ocx"
+  Sleep 1000
+  
+SectionEnd
+
+;--------------------------------
+
+Function "CSCTest"
+  
+  CreateDirectory "$SMPROGRAMS\Big NSIS Test"
+  SetOutPath $INSTDIR ; for working directory
+  CreateShortCut "$SMPROGRAMS\Big NSIS Test\Uninstall BIG NSIS Test.lnk" "$INSTDIR\bt-uninst.exe" ; use defaults for parameters, icon, etc.
+  ; this one will use notepad's icon, start it minimized, and give it a hotkey (of Ctrl+Shift+Q)
+  CreateShortCut "$SMPROGRAMS\Big NSIS Test\silent.nsi.lnk" "$INSTDIR\silent.nsi" "" "$WINDIR\notepad.exe" 0 SW_SHOWMINIMIZED CONTROL|SHIFT|Q
+  CreateShortCut "$SMPROGRAMS\Big NSIS Test\TheDir.lnk" "$INSTDIR\" "" "" 0 SW_SHOWMAXIMIZED CONTROL|SHIFT|Z
+
+FunctionEnd
+
+Function myfunc
+
+  StrCpy $2 "MyTestVar=$1"
+  MessageBox MB_OK "myfunc: $2"
+
+FunctionEnd
+
+Function MyFunctionTest
+
+  ReadINIStr $1 "$INSTDIR\test.ini" "MySectionIni" "Value1"
+  StrCmp $1 $8 NoFailedMsg
+    MessageBox MB_OK "WriteINIStr failed"
+  
+  NoFailedMsg:
+
+FunctionEnd
+
+Function .onSelChange
+
+  SectionGetText ${TESTIDX} $0
+  StrCmp $0 "" e
+    SectionSetText ${TESTIDX} ""
+  Goto e2
+e:
+  SectionSetText ${TESTIDX} "TextInSection"
+e2:
+
+FunctionEnd
+
+;--------------------------------
+
+; Uninstaller
+
+UninstallText "This will uninstall example2. Hit next to continue."
+UninstallIcon "${NSISDIR}\Contrib\Graphics\Icons\nsis1-uninstall.ico"
+
+Section "Uninstall"
+
+  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\BigNSISTest"
+  DeleteRegKey HKLM "SOFTWARE\NSISTest\BigNSISTest"
+  Delete "$INSTDIR\silent.nsi"
+  Delete "$INSTDIR\LogicLib.nsi"
+  Delete "$INSTDIR\bt-uninst.exe"
+  Delete "$INSTDIR\test.ini"
+  Delete "$SMPROGRAMS\Big NSIS Test\*.*"
+  RMDir "$SMPROGRAMS\BiG NSIS Test"
+  
+  MessageBox MB_YESNO|MB_ICONQUESTION "Would you like to remove the directory $INSTDIR\cpdest?" IDNO NoDelete
+    Delete "$INSTDIR\cpdest\*.*"
+    RMDir "$INSTDIR\cpdest" ; skipped if no
+  NoDelete:
+  
+  RMDir "$INSTDIR\MyProjectFamily\MyProject"
+  RMDir "$INSTDIR\MyProjectFamily"
+  RMDir "$INSTDIR"
+
+  IfFileExists "$INSTDIR" 0 NoErrorMsg
+    MessageBox MB_OK "Note: $INSTDIR could not be removed!" IDOK 0 ; skipped if file doesn't exist
+  NoErrorMsg:
+
+SectionEnd
+
+---tokens---
+'; bigtest.nsi\n' Comment
+
+';\n'         Comment
+
+'; This script attempts to test most of the functionality of the NSIS exehead.\n' Comment
+
+'\n'          Text
+
+';--------------------------------\n' Comment
+
+'\n'          Text
+
+'!ifdef'      Comment.Preproc
+' '           Text
+'H'           Text
+'A'           Text
+'V'           Text
+'E'           Text
+'_'           Text
+'U'           Text
+'P'           Text
+'X'           Text
+'\n'          Text
+
+'!packhdr'    Comment.Preproc
+' '           Text
+'t'           Text
+'m'           Text
+'p'           Text
+'.'           Text
+'d'           Text
+'a'           Text
+'t'           Text
+' '           Text
+'"'           Literal.String.Double
+'u'           Literal.String.Double
+'p'           Literal.String.Double
+'x'           Literal.String.Double
+'\\'          Literal.String.Double
+'u'           Literal.String.Double
+'p'           Literal.String.Double
+'x'           Literal.String.Double
+' '           Literal.String.Double
+'-'           Literal.String.Double
+'9'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'m'           Literal.String.Double
+'p'           Literal.String.Double
+'.'           Literal.String.Double
+'d'           Literal.String.Double
+'a'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'!endif'      Comment.Preproc
+'\n'          Text
+
+'\n'          Text
+
+'!ifdef'      Comment.Preproc
+' '           Text
+'N'           Text
+'O'           Text
+'C'           Text
+'O'           Text
+'M'           Text
+'P'           Text
+'R'           Text
+'E'           Text
+'S'           Text
+'S'           Text
+'\n'          Text
+
+'SetCompress' Keyword
+' '           Text
+'off'         Name.Constant
+'\n'          Text
+
+'!endif'      Comment.Preproc
+'\n'          Text
+
+'\n'          Text
+
+';--------------------------------\n' Comment
+
+'\n'          Text
+
+'Name'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'Caption'     Keyword
+' '           Text
+'"'           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+' '           Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+' '           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'Icon'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'${NSISDIR}'  Name.Builtin
+'\\'          Literal.String.Double
+'C'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'t'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'\\'          Literal.String.Double
+'G'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'p'           Literal.String.Double
+'h'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'s'           Literal.String.Double
+'\\'          Literal.String.Double
+'I'           Literal.String.Double
+'c'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'\\'          Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'s'           Literal.String.Double
+'1'           Literal.String.Double
+'-'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+'.'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'o'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'OutFile'     Keyword
+' '           Text
+'"'           Literal.String.Double
+'b'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'e'           Literal.String.Double
+'x'           Literal.String.Double
+'e'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'SetDateSave' Keyword
+' '           Text
+'on'          Name.Constant
+'\n'          Text
+
+'SetDatablockOptimize' Keyword
+' '           Text
+'on'          Name.Constant
+'\n'          Text
+
+'CRCCheck'    Keyword
+' '           Text
+'on'          Name.Constant
+'\n'          Text
+
+'SilentInstall' Keyword
+' '           Text
+'normal'      Name.Constant
+'\n'          Text
+
+'BGGradient'  Keyword
+' '           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+' '           Text
+'8'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+' '           Text
+'F'           Text
+'F'           Text
+'F'           Text
+'F'           Text
+'F'           Text
+'F'           Text
+'\n'          Text
+
+'InstallColors' Keyword
+' '           Text
+'F'           Text
+'F'           Text
+'8'           Text
+'0'           Text
+'8'           Text
+'0'           Text
+' '           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'3'           Text
+'0'           Text
+'\n'          Text
+
+'XPStyle'     Keyword
+' '           Text
+'on'          Name.Constant
+'\n'          Text
+
+'\n'          Text
+
+'InstallDir'  Keyword
+' '           Text
+'"'           Literal.String.Double
+'$PROGRAMFILES' Name.Variable
+'\\'          Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'\\'          Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'InstallDirRegKey' Keyword
+' '           Text
+'HKLM'        Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'S'           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'w'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'\\'          Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'\\'          Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'I'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+'_'           Literal.String.Double
+'D'           Literal.String.Double
+'i'           Literal.String.Double
+'r'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'CheckBitmap' Keyword
+' '           Text
+'"'           Literal.String.Double
+'${NSISDIR}'  Name.Builtin
+'\\'          Literal.String.Double
+'C'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'t'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'\\'          Literal.String.Double
+'G'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'p'           Literal.String.Double
+'h'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'s'           Literal.String.Double
+'\\'          Literal.String.Double
+'C'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'k'           Literal.String.Double
+'s'           Literal.String.Double
+'\\'          Literal.String.Double
+'c'           Literal.String.Double
+'l'           Literal.String.Double
+'a'           Literal.String.Double
+'s'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'-'           Literal.String.Double
+'c'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'s'           Literal.String.Double
+'s'           Literal.String.Double
+'.'           Literal.String.Double
+'b'           Literal.String.Double
+'m'           Literal.String.Double
+'p'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'LicenseText' Keyword
+' '           Text
+'"'           Literal.String.Double
+'A'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'x'           Literal.String.Double
+'t'           Literal.String.Double
+','           Literal.String.Double
+' '           Literal.String.Double
+'m'           Literal.String.Double
+'a'           Literal.String.Double
+'k'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'s'           Literal.String.Double
+'u'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'i'           Literal.String.Double
+'t'           Literal.String.Double
+"'"           Literal.String.Double
+'s'           Literal.String.Double
+' '           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'LicenseData' Keyword
+' '           Text
+'"'           Literal.String.Double
+'b'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'RequestExecutionLevel' Keyword
+' '           Text
+'admin'       Name.Constant
+'\n'          Text
+
+'\n'          Text
+
+';--------------------------------\n' Comment
+
+'\n'          Text
+
+'Page'        Keyword
+' '           Text
+'l'           Text
+'i'           Text
+'c'           Text
+'e'           Text
+'n'           Text
+'s'           Text
+'e'           Text
+'\n'          Text
+
+'Page'        Keyword
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'o'           Text
+'n'           Text
+'e'           Text
+'n'           Text
+'t'           Text
+'s'           Text
+'\n'          Text
+
+'Page'        Keyword
+' '           Text
+'d'           Text
+'i'           Text
+'r'           Text
+'e'           Text
+'c'           Text
+'t'           Text
+'o'           Text
+'r'           Text
+'y'           Text
+'\n'          Text
+
+'Page'        Keyword
+' '           Text
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'f'           Text
+'i'           Text
+'l'           Text
+'e'           Text
+'s'           Text
+'\n'          Text
+
+'\n'          Text
+
+'UninstPage'  Keyword
+' '           Text
+'u'           Text
+'n'           Text
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'C'           Text
+'o'           Text
+'n'           Text
+'f'           Text
+'i'           Text
+'r'           Text
+'m'           Text
+'\n'          Text
+
+'UninstPage'  Keyword
+' '           Text
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'f'           Text
+'i'           Text
+'l'           Text
+'e'           Text
+'s'           Text
+'\n'          Text
+
+'\n'          Text
+
+';--------------------------------\n' Comment
+
+'\n'          Text
+
+'!ifndef'     Comment.Preproc
+' '           Text
+'N'           Text
+'O'           Text
+'I'           Text
+'N'           Text
+'S'           Text
+'T'           Text
+'T'           Text
+'Y'           Text
+'P'           Text
+'E'           Text
+'S'           Text
+' '           Text
+'; only if not defined\n' Comment
+
+' '           Text
+' '           Text
+'InstType'    Keyword
+' '           Text
+'"'           Literal.String.Double
+'M'           Literal.String.Double
+'o'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'InstType'    Keyword
+' '           Text
+'"'           Literal.String.Double
+'F'           Literal.String.Double
+'u'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'InstType'    Keyword
+' '           Text
+'"'           Literal.String.Double
+'M'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'InstType'    Keyword
+' '           Text
+'"'           Literal.String.Double
+'B'           Literal.String.Double
+'a'           Literal.String.Double
+'s'           Literal.String.Double
+'e'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+';InstType /NOCUSTOM\n' Comment
+
+' '           Text
+' '           Text
+';InstType /COMPONENTSONLYONCUSTOM\n' Comment
+
+'!endif'      Comment.Preproc
+'\n'          Text
+
+'\n'          Text
+
+'AutoCloseWindow' Keyword
+' '           Text
+'false'       Name.Constant
+'\n'          Text
+
+'ShowInstDetails' Keyword
+' '           Text
+'show'        Name.Constant
+'\n'          Text
+
+'\n'          Text
+
+';--------------------------------\n' Comment
+
+'\n'          Text
+
+'Section'     Keyword
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'; empty string makes it hidden, so would starting with -\n' Comment
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'; write reg info\n' Comment
+
+' '           Text
+' '           Text
+'StrCpy'      Keyword
+' '           Text
+'$1'          Name.Builtin.Pseudo
+' '           Text
+'"'           Literal.String.Double
+'P'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'P'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'DetailPrint' Keyword
+' '           Text
+'"'           Literal.String.Double
+'I'           Literal.String.Double
+' '           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'k'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'o'           Literal.String.Double
+' '           Literal.String.Double
+'b'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'a'           Literal.String.Double
+'b'           Literal.String.Double
+'l'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'o'           Literal.String.Double
+' '           Literal.String.Double
+'s'           Literal.String.Double
+'e'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'w'           Literal.String.Double
+'h'           Literal.String.Double
+'a'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'i'           Literal.String.Double
+'s'           Literal.String.Double
+' '           Literal.String.Double
+'g'           Literal.String.Double
+'o'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'g'           Literal.String.Double
+' '           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+' '           Literal.String.Double
+'('           Literal.String.Double
+'d'           Literal.String.Double
+'e'           Literal.String.Double
+'b'           Literal.String.Double
+'u'           Literal.String.Double
+'g'           Literal.String.Double
+')'           Literal.String.Double
+' '           Literal.String.Double
+'$1'          Name.Builtin.Pseudo
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'WriteRegStr' Keyword
+' '           Text
+'HKLM'        Name.Constant
+' '           Text
+'S'           Text
+'O'           Text
+'F'           Text
+'T'           Text
+'W'           Text
+'A'           Text
+'R'           Text
+'E'           Text
+'\\'          Punctuation
+'N'           Text
+'S'           Text
+'I'           Text
+'S'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'\\'          Punctuation
+'B'           Text
+'i'           Text
+'g'           Text
+'N'           Text
+'S'           Text
+'I'           Text
+'S'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'"'           Literal.String.Double
+'I'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+'_'           Literal.String.Double
+'D'           Literal.String.Double
+'i'           Literal.String.Double
+'r'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'; write uninstall strings\n' Comment
+
+' '           Text
+' '           Text
+'WriteRegStr' Keyword
+' '           Text
+'HKLM'        Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'S'           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'w'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'\\'          Literal.String.Double
+'M'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'s'           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'\\'          Literal.String.Double
+'W'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'d'           Literal.String.Double
+'o'           Literal.String.Double
+'w'           Literal.String.Double
+'s'           Literal.String.Double
+'\\'          Literal.String.Double
+'C'           Literal.String.Double
+'u'           Literal.String.Double
+'r'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'n'           Literal.String.Double
+'t'           Literal.String.Double
+'V'           Literal.String.Double
+'e'           Literal.String.Double
+'r'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'\\'          Literal.String.Double
+'U'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+'\\'          Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'D'           Literal.String.Double
+'i'           Literal.String.Double
+'s'           Literal.String.Double
+'p'           Literal.String.Double
+'l'           Literal.String.Double
+'a'           Literal.String.Double
+'y'           Literal.String.Double
+'N'           Literal.String.Double
+'a'           Literal.String.Double
+'m'           Literal.String.Double
+'e'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'('           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'m'           Literal.String.Double
+'o'           Literal.String.Double
+'v'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'l'           Literal.String.Double
+'y'           Literal.String.Double
+')'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'WriteRegStr' Keyword
+' '           Text
+'HKLM'        Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'S'           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'w'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'\\'          Literal.String.Double
+'M'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'s'           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'\\'          Literal.String.Double
+'W'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'d'           Literal.String.Double
+'o'           Literal.String.Double
+'w'           Literal.String.Double
+'s'           Literal.String.Double
+'\\'          Literal.String.Double
+'C'           Literal.String.Double
+'u'           Literal.String.Double
+'r'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'n'           Literal.String.Double
+'t'           Literal.String.Double
+'V'           Literal.String.Double
+'e'           Literal.String.Double
+'r'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'\\'          Literal.String.Double
+'U'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+'\\'          Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'U'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+'S'           Literal.String.Double
+'t'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'g'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'\'"$INSTDIR\\bt-uninst.exe"\'' Literal.String.Single
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'SetOutPath'  Keyword
+' '           Text
+'$INSTDIR'    Name.Variable.Global
+'\n'          Text
+
+' '           Text
+' '           Text
+'File'        Keyword
+' '           Text
+'/a'          Name.Attribute
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'l'           Literal.String.Double
+'e'           Literal.String.Double
+'n'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'CreateDirectory' Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'P'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'j'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'F'           Literal.String.Double
+'a'           Literal.String.Double
+'m'           Literal.String.Double
+'i'           Literal.String.Double
+'l'           Literal.String.Double
+'y'           Literal.String.Double
+'\\'          Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'P'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'j'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'; 2 recursively create a directory for fun.\n' Comment
+
+' '           Text
+' '           Text
+'WriteUninstaller' Keyword
+' '           Text
+'"'           Literal.String.Double
+'b'           Literal.String.Double
+'t'           Literal.String.Double
+'-'           Literal.String.Double
+'u'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'e'           Literal.String.Double
+'x'           Literal.String.Double
+'e'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'Nop'         Keyword
+' '           Text
+'; for fun\n' Comment
+
+'\n'          Text
+
+'SectionEnd'  Keyword
+'\n'          Text
+
+'\n'          Text
+
+'Section'     Keyword
+' '           Text
+'"'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'m'           Literal.String.Double
+'p'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'SectionIn'   Keyword
+' '           Text
+'1'           Text
+' '           Text
+'2'           Text
+' '           Text
+'3'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'Start'       Name.Label
+':'           Punctuation
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_OK'       Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'S'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'t'           Literal.String.Double
+':'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_YESNO'    Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'G'           Literal.String.Double
+'o'           Literal.String.Double
+'t'           Literal.String.Double
+'o'           Literal.String.Double
+' '           Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'L'           Literal.String.Double
+'a'           Literal.String.Double
+'b'           Literal.String.Double
+'e'           Literal.String.Double
+'l'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'IDYES'       Name.Constant
+' '           Text
+'M'           Text
+'y'           Text
+'L'           Text
+'a'           Text
+'b'           Text
+'e'           Text
+'l'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_OK'       Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'R'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'h'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'b'           Literal.String.Double
+'e'           Literal.String.Double
+'f'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'L'           Literal.String.Double
+'a'           Literal.String.Double
+'b'           Literal.String.Double
+'e'           Literal.String.Double
+'l'           Literal.String.Double
+':'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'MyLabel'     Name.Label
+':'           Punctuation
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_OK'       Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'L'           Literal.String.Double
+'a'           Literal.String.Double
+'b'           Literal.String.Double
+'e'           Literal.String.Double
+'l'           Literal.String.Double
+':'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_OK'       Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'R'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'h'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'a'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'r'           Literal.String.Double
+' '           Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'L'           Literal.String.Double
+'a'           Literal.String.Double
+'b'           Literal.String.Double
+'e'           Literal.String.Double
+'l'           Literal.String.Double
+':'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_YESNO'    Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'G'           Literal.String.Double
+'o'           Literal.String.Double
+'t'           Literal.String.Double
+'o'           Literal.String.Double
+' '           Literal.String.Double
+'S'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'t'           Literal.String.Double
+':'           Literal.String.Double
+'?'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'IDYES'       Name.Constant
+' '           Text
+'S'           Text
+'t'           Text
+'a'           Text
+'r'           Text
+'t'           Text
+'\n'          Text
+
+'\n'          Text
+
+'SectionEnd'  Keyword
+'\n'          Text
+
+'\n'          Text
+
+'SectionGroup' Keyword
+' '           Text
+'/e'          Name.Attribute
+' '           Text
+'S'           Text
+'e'           Text
+'c'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'G'           Text
+'r'           Text
+'o'           Text
+'u'           Text
+'p'           Text
+'1'           Text
+'\n'          Text
+
+'\n'          Text
+
+'Section'     Keyword
+' '           Text
+'"'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'R'           Literal.String.Double
+'e'           Literal.String.Double
+'g'           Literal.String.Double
+'i'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'r'           Literal.String.Double
+'y'           Literal.String.Double
+'/'           Literal.String.Double
+'I'           Literal.String.Double
+'N'           Literal.String.Double
+'I'           Literal.String.Double
+' '           Literal.String.Double
+'f'           Literal.String.Double
+'u'           Literal.String.Double
+'n'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'SectionIn'   Keyword
+' '           Text
+'1'           Text
+' '           Text
+'4'           Text
+' '           Text
+'3'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'WriteRegStr' Keyword
+' '           Text
+'HKLM'        Name.Constant
+' '           Text
+'S'           Text
+'O'           Text
+'F'           Text
+'T'           Text
+'W'           Text
+'A'           Text
+'R'           Text
+'E'           Text
+'\\'          Punctuation
+'N'           Text
+'S'           Text
+'I'           Text
+'S'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'\\'          Punctuation
+'B'           Text
+'i'           Text
+'g'           Text
+'N'           Text
+'S'           Text
+'I'           Text
+'S'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'"'           Literal.String.Double
+'S'           Literal.String.Double
+'t'           Literal.String.Double
+'r'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'_'           Literal.String.Double
+'I'           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'T'           Literal.String.Double
+'D'           Literal.String.Double
+'I'           Literal.String.Double
+'R'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'WriteRegDword' Keyword
+' '           Text
+'HKLM'        Name.Constant
+' '           Text
+'S'           Text
+'O'           Text
+'F'           Text
+'T'           Text
+'W'           Text
+'A'           Text
+'R'           Text
+'E'           Text
+'\\'          Punctuation
+'N'           Text
+'S'           Text
+'I'           Text
+'S'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'\\'          Punctuation
+'B'           Text
+'i'           Text
+'g'           Text
+'N'           Text
+'S'           Text
+'I'           Text
+'S'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'"'           Literal.String.Double
+'D'           Literal.String.Double
+'w'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'d'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'_'           Literal.String.Double
+'0'           Literal.String.Double
+'x'           Literal.String.Double
+'D'           Literal.String.Double
+'E'           Literal.String.Double
+'A'           Literal.String.Double
+'D'           Literal.String.Double
+'B'           Literal.String.Double
+'E'           Literal.String.Double
+'E'           Literal.String.Double
+'F'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'0'           Text
+'x'           Text
+'d'           Text
+'e'           Text
+'a'           Text
+'d'           Text
+'b'           Text
+'e'           Text
+'e'           Text
+'f'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'WriteRegDword' Keyword
+' '           Text
+'HKLM'        Name.Constant
+' '           Text
+'S'           Text
+'O'           Text
+'F'           Text
+'T'           Text
+'W'           Text
+'A'           Text
+'R'           Text
+'E'           Text
+'\\'          Punctuation
+'N'           Text
+'S'           Text
+'I'           Text
+'S'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'\\'          Punctuation
+'B'           Text
+'i'           Text
+'g'           Text
+'N'           Text
+'S'           Text
+'I'           Text
+'S'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'"'           Literal.String.Double
+'D'           Literal.String.Double
+'w'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'d'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'_'           Literal.String.Double
+'1'           Literal.String.Double
+'2'           Literal.String.Double
+'3'           Literal.String.Double
+'4'           Literal.String.Double
+'5'           Literal.String.Double
+'6'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'1'           Text
+'2'           Text
+'3'           Text
+'4'           Text
+'5'           Text
+'6'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'WriteRegDword' Keyword
+' '           Text
+'HKLM'        Name.Constant
+' '           Text
+'S'           Text
+'O'           Text
+'F'           Text
+'T'           Text
+'W'           Text
+'A'           Text
+'R'           Text
+'E'           Text
+'\\'          Punctuation
+'N'           Text
+'S'           Text
+'I'           Text
+'S'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'\\'          Punctuation
+'B'           Text
+'i'           Text
+'g'           Text
+'N'           Text
+'S'           Text
+'I'           Text
+'S'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'"'           Literal.String.Double
+'D'           Literal.String.Double
+'w'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'d'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'_'           Literal.String.Double
+'0'           Literal.String.Double
+'1'           Literal.String.Double
+'2'           Literal.String.Double
+'3'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'0'           Text
+'1'           Text
+'2'           Text
+'3'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'WriteRegBin' Keyword
+' '           Text
+'HKLM'        Name.Constant
+' '           Text
+'S'           Text
+'O'           Text
+'F'           Text
+'T'           Text
+'W'           Text
+'A'           Text
+'R'           Text
+'E'           Text
+'\\'          Punctuation
+'N'           Text
+'S'           Text
+'I'           Text
+'S'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'\\'          Punctuation
+'B'           Text
+'i'           Text
+'g'           Text
+'N'           Text
+'S'           Text
+'I'           Text
+'S'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'"'           Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'_'           Literal.String.Double
+'d'           Literal.String.Double
+'e'           Literal.String.Double
+'a'           Literal.String.Double
+'d'           Literal.String.Double
+'b'           Literal.String.Double
+'e'           Literal.String.Double
+'e'           Literal.String.Double
+'f'           Literal.String.Double
+'0'           Literal.String.Double
+'1'           Literal.String.Double
+'f'           Literal.String.Double
+'0'           Literal.String.Double
+'0'           Literal.String.Double
+'d'           Literal.String.Double
+'b'           Literal.String.Double
+'e'           Literal.String.Double
+'e'           Literal.String.Double
+'f'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'D'           Literal.String.Double
+'E'           Literal.String.Double
+'A'           Literal.String.Double
+'D'           Literal.String.Double
+'B'           Literal.String.Double
+'E'           Literal.String.Double
+'E'           Literal.String.Double
+'F'           Literal.String.Double
+'0'           Literal.String.Double
+'1'           Literal.String.Double
+'F'           Literal.String.Double
+'0'           Literal.String.Double
+'0'           Literal.String.Double
+'D'           Literal.String.Double
+'B'           Literal.String.Double
+'E'           Literal.String.Double
+'E'           Literal.String.Double
+'F'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'StrCpy'      Keyword
+' '           Text
+'$8'          Name.Builtin.Pseudo
+' '           Text
+'"'           Literal.String.Double
+'$SYSDIR'     Name.Builtin
+'\\'          Literal.String.Double
+'I'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'WriteINIStr' Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+' '           Text
+'"'           Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'S'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'u'           Literal.String.Double
+'e'           Literal.String.Double
+'1'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'$8'          Name.Builtin.Pseudo
+'\n'          Text
+
+' '           Text
+' '           Text
+'WriteINIStr' Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+' '           Text
+'"'           Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'S'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'I'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'u'           Literal.String.Double
+'e'           Literal.String.Double
+'1'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'$8'          Name.Builtin.Pseudo
+'\n'          Text
+
+' '           Text
+' '           Text
+'WriteINIStr' Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+' '           Text
+'"'           Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'S'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'I'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'u'           Literal.String.Double
+'e'           Literal.String.Double
+'2'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'$8'          Name.Builtin.Pseudo
+'\n'          Text
+
+' '           Text
+' '           Text
+'WriteINIStr' Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+' '           Text
+'"'           Literal.String.Double
+'I'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'O'           Literal.String.Double
+'n'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'u'           Literal.String.Double
+'e'           Literal.String.Double
+'1'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'$8'          Name.Builtin.Pseudo
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'Call'        Keyword
+' '           Text
+'M'           Text
+'y'           Text
+'F'           Text
+'u'           Text
+'n'           Text
+'c'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'DeleteINIStr' Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'I'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'O'           Literal.String.Double
+'n'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'u'           Literal.String.Double
+'e'           Literal.String.Double
+'1'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'DeleteINISec' Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'S'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'I'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'ReadINIStr'  Keyword
+' '           Text
+'$1'          Name.Builtin.Pseudo
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'S'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'I'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'u'           Literal.String.Double
+'e'           Literal.String.Double
+'1'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'StrCmp'      Keyword
+' '           Text
+'$1'          Name.Builtin.Pseudo
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'I'           Text
+'N'           Text
+'I'           Text
+'D'           Text
+'e'           Text
+'l'           Text
+'S'           Text
+'u'           Text
+'c'           Text
+'c'           Text
+'e'           Text
+'s'           Text
+'s'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_OK'       Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'D'           Literal.String.Double
+'e'           Literal.String.Double
+'l'           Literal.String.Double
+'e'           Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'I'           Literal.String.Double
+'N'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+' '           Literal.String.Double
+'f'           Literal.String.Double
+'a'           Literal.String.Double
+'i'           Literal.String.Double
+'l'           Literal.String.Double
+'e'           Literal.String.Double
+'d'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'INIDelSuccess' Name.Label
+':'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'ClearErrors' Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+'ReadRegStr'  Keyword
+' '           Text
+'$1'          Name.Builtin.Pseudo
+' '           Text
+'HKCR'        Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'w'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'\\'          Literal.String.Double
+'m'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'s'           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'x'           Text
+'y'           Text
+'z'           Text
+'_'           Text
+'c'           Text
+'c'           Text
+'_'           Text
+'d'           Text
+'o'           Text
+'e'           Text
+'s'           Text
+'_'           Text
+'n'           Text
+'o'           Text
+'t'           Text
+'_'           Text
+'e'           Text
+'x'           Text
+'i'           Text
+'s'           Text
+'t'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'IfErrors'    Keyword
+' '           Text
+'0'           Text
+' '           Text
+'N'           Text
+'o'           Text
+'E'           Text
+'r'           Text
+'r'           Text
+'o'           Text
+'r'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_OK'       Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'c'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+'l'           Literal.String.Double
+'d'           Literal.String.Double
+' '           Literal.String.Double
+'n'           Literal.String.Double
+'o'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'a'           Literal.String.Double
+'d'           Literal.String.Double
+' '           Literal.String.Double
+'f'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'m'           Literal.String.Double
+' '           Literal.String.Double
+'H'           Literal.String.Double
+'K'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'\\'          Literal.String.Double
+'s'           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'w'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'\\'          Literal.String.Double
+'m'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'s'           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'\\'          Literal.String.Double
+'x'           Literal.String.Double
+'y'           Literal.String.Double
+'z'           Literal.String.Double
+'_'           Literal.String.Double
+'c'           Literal.String.Double
+'c'           Literal.String.Double
+'_'           Literal.String.Double
+'d'           Literal.String.Double
+'o'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'_'           Literal.String.Double
+'n'           Literal.String.Double
+'o'           Literal.String.Double
+'t'           Literal.String.Double
+'_'           Literal.String.Double
+'e'           Literal.String.Double
+'x'           Literal.String.Double
+'i'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Goto'        Keyword
+' '           Text
+'E'           Text
+'r'           Text
+'r'           Text
+'o'           Text
+'r'           Text
+'Y'           Text
+'a'           Text
+'y'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'NoError'     Name.Label
+':'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_OK'       Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'a'           Literal.String.Double
+'d'           Literal.String.Double
+' '           Literal.String.Double
+"'"           Literal.String.Double
+'$1'          Name.Builtin.Pseudo
+"'"           Literal.String.Double
+' '           Literal.String.Double
+'f'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'m'           Literal.String.Double
+' '           Literal.String.Double
+'H'           Literal.String.Double
+'K'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'\\'          Literal.String.Double
+'s'           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'w'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'\\'          Literal.String.Double
+'m'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'s'           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'\\'          Literal.String.Double
+'x'           Literal.String.Double
+'y'           Literal.String.Double
+'z'           Literal.String.Double
+'_'           Literal.String.Double
+'c'           Literal.String.Double
+'c'           Literal.String.Double
+'_'           Literal.String.Double
+'d'           Literal.String.Double
+'o'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'_'           Literal.String.Double
+'n'           Literal.String.Double
+'o'           Literal.String.Double
+'t'           Literal.String.Double
+'_'           Literal.String.Double
+'e'           Literal.String.Double
+'x'           Literal.String.Double
+'i'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'ErrorYay'    Name.Label
+':'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+'SectionEnd'  Keyword
+'\n'          Text
+
+'\n'          Text
+
+'Section'     Keyword
+' '           Text
+'"'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'C'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'a'           Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'S'           Literal.String.Double
+'h'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'t'           Literal.String.Double
+'C'           Literal.String.Double
+'u'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'SectionIn'   Keyword
+' '           Text
+'1'           Text
+' '           Text
+'2'           Text
+' '           Text
+'3'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'Call'        Keyword
+' '           Text
+'C'           Text
+'S'           Text
+'C'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'\n'          Text
+
+'\n'          Text
+
+'SectionEnd'  Keyword
+'\n'          Text
+
+'\n'          Text
+
+'SectionGroup' Keyword
+' '           Text
+'G'           Text
+'r'           Text
+'o'           Text
+'u'           Text
+'p'           Text
+'2'           Text
+'\n'          Text
+
+'\n'          Text
+
+'Section'     Keyword
+' '           Text
+'"'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'B'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'n'           Literal.String.Double
+'c'           Literal.String.Double
+'h'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'g'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'BeginTestSection' Name.Label
+':'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'SectionIn'   Keyword
+' '           Text
+'1'           Text
+' '           Text
+'2'           Text
+' '           Text
+'3'           Text
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'SetOutPath'  Keyword
+' '           Text
+'$INSTDIR'    Name.Variable.Global
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'IfFileExists' Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'L'           Literal.String.Double
+'o'           Literal.String.Double
+'g'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'L'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'.'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'0'           Text
+' '           Text
+'B'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'c'           Text
+'h'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'6'           Text
+'9'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_YESNO'    Name.Constant
+'|'           Operator
+'MB_ICONQUESTION' Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'W'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+'l'           Literal.String.Double
+'d'           Literal.String.Double
+' '           Literal.String.Double
+'y'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+' '           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'k'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'o'           Literal.String.Double
+' '           Literal.String.Double
+'o'           Literal.String.Double
+'v'           Literal.String.Double
+'e'           Literal.String.Double
+'r'           Literal.String.Double
+'w'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'L'           Literal.String.Double
+'o'           Literal.String.Double
+'g'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'L'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'.'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'?'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'IDNO'        Name.Constant
+' '           Text
+'N'           Text
+'o'           Text
+'O'           Text
+'v'           Text
+'e'           Text
+'r'           Text
+'w'           Text
+'r'           Text
+'i'           Text
+'t'           Text
+'e'           Text
+' '           Text
+"; skipped if file doesn't exist\n" Comment
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'BranchTest69' Name.Label
+':'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'SetOverwrite' Keyword
+' '           Text
+'ifnewer'     Name.Constant
+' '           Text
+'; NOT AN INSTRUCTION, NOT COUNTED IN SKIPPINGS\n' Comment
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'NoOverwrite' Name.Label
+':'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'File'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'L'           Literal.String.Double
+'o'           Literal.String.Double
+'g'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'L'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'.'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'; skipped if answered no\n' Comment
+
+' '           Text
+' '           Text
+'SetOverwrite' Keyword
+' '           Text
+'try'         Name.Constant
+' '           Text
+'; NOT AN INSTRUCTION, NOT COUNTED IN SKIPPINGS\n' Comment
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_YESNO'    Name.Constant
+'|'           Operator
+'MB_ICONQUESTION' Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'W'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+'l'           Literal.String.Double
+'d'           Literal.String.Double
+' '           Literal.String.Double
+'y'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+' '           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'k'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'o'           Literal.String.Double
+' '           Literal.String.Double
+'s'           Literal.String.Double
+'k'           Literal.String.Double
+'i'           Literal.String.Double
+'p'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'i'           Literal.String.Double
+'s'           Literal.String.Double
+' '           Literal.String.Double
+'s'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'?'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'IDYES'       Name.Constant
+' '           Text
+'E'           Text
+'n'           Text
+'d'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'B'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'c'           Text
+'h'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_YESNO'    Name.Constant
+'|'           Operator
+'MB_ICONQUESTION' Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'W'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+'l'           Literal.String.Double
+'d'           Literal.String.Double
+' '           Literal.String.Double
+'y'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+' '           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'k'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'o'           Literal.String.Double
+' '           Literal.String.Double
+'g'           Literal.String.Double
+'o'           Literal.String.Double
+' '           Literal.String.Double
+'b'           Literal.String.Double
+'a'           Literal.String.Double
+'c'           Literal.String.Double
+'k'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'o'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'b'           Literal.String.Double
+'e'           Literal.String.Double
+'g'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'g'           Literal.String.Double
+' '           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'i'           Literal.String.Double
+'s'           Literal.String.Double
+' '           Literal.String.Double
+'s'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'?'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'IDYES'       Name.Constant
+' '           Text
+'B'           Text
+'e'           Text
+'g'           Text
+'i'           Text
+'n'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'S'           Text
+'e'           Text
+'c'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_YESNO'    Name.Constant
+'|'           Operator
+'MB_ICONQUESTION' Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'W'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+'l'           Literal.String.Double
+'d'           Literal.String.Double
+' '           Literal.String.Double
+'y'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+' '           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'k'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'o'           Literal.String.Double
+' '           Literal.String.Double
+'h'           Literal.String.Double
+'i'           Literal.String.Double
+'d'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+'e'           Literal.String.Double
+'r'           Literal.String.Double
+' '           Literal.String.Double
+'a'           Literal.String.Double
+'n'           Literal.String.Double
+'d'           Literal.String.Double
+' '           Literal.String.Double
+'w'           Literal.String.Double
+'a'           Literal.String.Double
+'i'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'f'           Literal.String.Double
+'i'           Literal.String.Double
+'v'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'s'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'d'           Literal.String.Double
+'s'           Literal.String.Double
+'?'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'IDNO'        Name.Constant
+' '           Text
+'N'           Text
+'o'           Text
+'H'           Text
+'i'           Text
+'d'           Text
+'e'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'HideWindow'  Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Sleep'       Keyword
+' '           Text
+'5'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'BringToFront' Keyword
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'NoHide'      Name.Label
+':'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_YESNO'    Name.Constant
+'|'           Operator
+'MB_ICONQUESTION' Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'W'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+'l'           Literal.String.Double
+'d'           Literal.String.Double
+' '           Literal.String.Double
+'y'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+' '           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'k'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'o'           Literal.String.Double
+' '           Literal.String.Double
+'c'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'f'           Literal.String.Double
+'u'           Literal.String.Double
+'n'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+' '           Literal.String.Double
+'5'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'m'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'?'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'IDNO'        Name.Constant
+' '           Text
+'N'           Text
+'o'           Text
+'R'           Text
+'e'           Text
+'c'           Text
+'u'           Text
+'r'           Text
+'s'           Text
+'e'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'StrCpy'      Keyword
+' '           Text
+'$1'          Name.Builtin.Pseudo
+' '           Text
+'"'           Literal.String.Double
+'x'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'LoopTest'    Name.Label
+':'           Punctuation
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Call'        Keyword
+' '           Text
+'m'           Text
+'y'           Text
+'f'           Text
+'u'           Text
+'n'           Text
+'c'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'StrCpy'      Keyword
+' '           Text
+'$1'          Name.Builtin.Pseudo
+' '           Text
+'"'           Literal.String.Double
+'x'           Literal.String.Double
+'$1'          Name.Builtin.Pseudo
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'StrCmp'      Keyword
+' '           Text
+'$1'          Name.Builtin.Pseudo
+' '           Text
+'"'           Literal.String.Double
+'x'           Literal.String.Double
+'x'           Literal.String.Double
+'x'           Literal.String.Double
+'x'           Literal.String.Double
+'x'           Literal.String.Double
+'x'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'0'           Text
+' '           Text
+'L'           Text
+'o'           Text
+'o'           Text
+'p'           Text
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'NoRecurse'   Name.Label
+':'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'EndTestBranch' Name.Label
+':'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'SectionEnd'  Keyword
+'\n'          Text
+
+'\n'          Text
+
+'SectionGroupEnd' Keyword
+'\n'          Text
+
+'\n'          Text
+
+'Section'     Keyword
+' '           Text
+'"'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'C'           Literal.String.Double
+'o'           Literal.String.Double
+'p'           Literal.String.Double
+'y'           Literal.String.Double
+'F'           Literal.String.Double
+'i'           Literal.String.Double
+'l'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'SectionIn'   Keyword
+' '           Text
+'1'           Text
+' '           Text
+'2'           Text
+' '           Text
+'3'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'SetOutPath'  Keyword
+' '           Text
+'$INSTDIR'    Name.Variable.Global
+'\\'          Punctuation
+'c'           Text
+'p'           Text
+'d'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'CopyFiles'   Keyword
+' '           Text
+'"'           Literal.String.Double
+'$WINDIR'     Name.Builtin
+'\\'          Literal.String.Double
+'*'           Literal.String.Double
+'.'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'c'           Literal.String.Double
+'p'           Literal.String.Double
+'d'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'0'           Text
+'\n'          Text
+
+'\n'          Text
+
+'SectionEnd'  Keyword
+'\n'          Text
+
+'\n'          Text
+
+'SectionGroupEnd' Keyword
+'\n'          Text
+
+'\n'          Text
+
+'Section'     Keyword
+' '           Text
+'"'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'E'           Literal.String.Double
+'x'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+' '           Literal.String.Double
+'f'           Literal.String.Double
+'u'           Literal.String.Double
+'n'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'T'           Text
+'E'           Text
+'S'           Text
+'T'           Text
+'I'           Text
+'D'           Text
+'X'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'SectionIn'   Keyword
+' '           Text
+'1'           Text
+' '           Text
+'2'           Text
+' '           Text
+'3'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'SearchPath'  Keyword
+' '           Text
+'$1'          Name.Builtin.Pseudo
+' '           Text
+'n'           Text
+'o'           Text
+'t'           Text
+'e'           Text
+'p'           Text
+'a'           Text
+'d'           Text
+'.'           Text
+'e'           Text
+'x'           Text
+'e'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_OK'       Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'n'           Literal.String.Double
+'o'           Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'p'           Literal.String.Double
+'a'           Literal.String.Double
+'d'           Literal.String.Double
+'.'           Literal.String.Double
+'e'           Literal.String.Double
+'x'           Literal.String.Double
+'e'           Literal.String.Double
+'='           Literal.String.Double
+'$1'          Name.Builtin.Pseudo
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'Exec'        Keyword
+' '           Text
+'\'"$1"\''    Literal.String.Single
+'\n'          Text
+
+' '           Text
+' '           Text
+'ExecShell'   Keyword
+' '           Text
+'"'           Literal.String.Double
+'o'           Literal.String.Double
+'p'           Literal.String.Double
+'e'           Literal.String.Double
+'n'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'\'"$INSTDIR"\'' Literal.String.Single
+'\n'          Text
+
+' '           Text
+' '           Text
+'Sleep'       Keyword
+' '           Text
+'5'           Text
+'0'           Text
+'0'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'BringToFront' Keyword
+'\n'          Text
+
+'\n'          Text
+
+'SectionEnd'  Keyword
+'\n'          Text
+
+'\n'          Text
+
+'Section'     Keyword
+' '           Text
+'"'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'A'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'v'           Literal.String.Double
+'e'           Literal.String.Double
+'X'           Literal.String.Double
+' '           Literal.String.Double
+'c'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'t'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'l'           Literal.String.Double
+' '           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'g'           Literal.String.Double
+'i'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'SectionIn'   Keyword
+' '           Text
+'2'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'UnRegDLL'    Keyword
+' '           Text
+'"'           Literal.String.Double
+'$SYSDIR'     Name.Builtin
+'\\'          Literal.String.Double
+'s'           Literal.String.Double
+'p'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'3'           Literal.String.Double
+'2'           Literal.String.Double
+'.'           Literal.String.Double
+'o'           Literal.String.Double
+'c'           Literal.String.Double
+'x'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'Sleep'       Keyword
+' '           Text
+'1'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'RegDLL'      Keyword
+' '           Text
+'"'           Literal.String.Double
+'$SYSDIR'     Name.Builtin
+'\\'          Literal.String.Double
+'s'           Literal.String.Double
+'p'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'3'           Literal.String.Double
+'2'           Literal.String.Double
+'.'           Literal.String.Double
+'o'           Literal.String.Double
+'c'           Literal.String.Double
+'x'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'Sleep'       Keyword
+' '           Text
+'1'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+'SectionEnd'  Keyword
+'\n'          Text
+
+'\n'          Text
+
+';--------------------------------\n' Comment
+
+'\n'          Text
+
+'Function'    Keyword
+' '           Text
+'"'           Literal.String.Double
+'C'           Literal.String.Double
+'S'           Literal.String.Double
+'C'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'CreateDirectory' Keyword
+' '           Text
+'"'           Literal.String.Double
+'$SMPROGRAMS' Name.Builtin
+'\\'          Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+' '           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+' '           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'SetOutPath'  Keyword
+' '           Text
+'$INSTDIR'    Name.Variable.Global
+' '           Text
+'; for working directory\n' Comment
+
+' '           Text
+' '           Text
+'CreateShortCut' Keyword
+' '           Text
+'"'           Literal.String.Double
+'$SMPROGRAMS' Name.Builtin
+'\\'          Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+' '           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+' '           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'\\'          Literal.String.Double
+'U'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+' '           Literal.String.Double
+'B'           Literal.String.Double
+'I'           Literal.String.Double
+'G'           Literal.String.Double
+' '           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+' '           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'l'           Literal.String.Double
+'n'           Literal.String.Double
+'k'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'b'           Literal.String.Double
+'t'           Literal.String.Double
+'-'           Literal.String.Double
+'u'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'e'           Literal.String.Double
+'x'           Literal.String.Double
+'e'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'; use defaults for parameters, icon, etc.\n' Comment
+
+' '           Text
+' '           Text
+"; this one will use notepad's icon, start it minimized, and give it a hotkey (of Ctrl+Shift+Q)\n" Comment
+
+' '           Text
+' '           Text
+'CreateShortCut' Keyword
+' '           Text
+'"'           Literal.String.Double
+'$SMPROGRAMS' Name.Builtin
+'\\'          Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+' '           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+' '           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'\\'          Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'l'           Literal.String.Double
+'e'           Literal.String.Double
+'n'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'.'           Literal.String.Double
+'l'           Literal.String.Double
+'n'           Literal.String.Double
+'k'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'l'           Literal.String.Double
+'e'           Literal.String.Double
+'n'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'$WINDIR'     Name.Builtin
+'\\'          Literal.String.Double
+'n'           Literal.String.Double
+'o'           Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'p'           Literal.String.Double
+'a'           Literal.String.Double
+'d'           Literal.String.Double
+'.'           Literal.String.Double
+'e'           Literal.String.Double
+'x'           Literal.String.Double
+'e'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'0'           Text
+' '           Text
+'SW_SHOWMINIMIZED' Name.Constant
+' '           Text
+'C'           Text
+'O'           Text
+'N'           Text
+'T'           Text
+'R'           Text
+'O'           Text
+'L'           Text
+'|'           Operator
+'S'           Text
+'H'           Text
+'I'           Text
+'F'           Text
+'T'           Text
+'|'           Operator
+'Q'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'CreateShortCut' Keyword
+' '           Text
+'"'           Literal.String.Double
+'$SMPROGRAMS' Name.Builtin
+'\\'          Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+' '           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+' '           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'\\'          Literal.String.Double
+'T'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+'D'           Literal.String.Double
+'i'           Literal.String.Double
+'r'           Literal.String.Double
+'.'           Literal.String.Double
+'l'           Literal.String.Double
+'n'           Literal.String.Double
+'k'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'0'           Text
+' '           Text
+'SW_SHOWMAXIMIZED' Name.Constant
+' '           Text
+'C'           Text
+'O'           Text
+'N'           Text
+'T'           Text
+'R'           Text
+'O'           Text
+'L'           Text
+'|'           Operator
+'S'           Text
+'H'           Text
+'I'           Text
+'F'           Text
+'T'           Text
+'|'           Operator
+'Z'           Text
+'\n'          Text
+
+'\n'          Text
+
+'FunctionEnd' Keyword
+'\n'          Text
+
+'\n'          Text
+
+'Function'    Keyword
+' '           Text
+'myfunc'      Name.Function
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'StrCpy'      Keyword
+' '           Text
+'$2'          Name.Builtin.Pseudo
+' '           Text
+'"'           Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'V'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'='           Literal.String.Double
+'$1'          Name.Builtin.Pseudo
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_OK'       Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'m'           Literal.String.Double
+'y'           Literal.String.Double
+'f'           Literal.String.Double
+'u'           Literal.String.Double
+'n'           Literal.String.Double
+'c'           Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'$2'          Name.Builtin.Pseudo
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'FunctionEnd' Keyword
+'\n'          Text
+
+'\n'          Text
+
+'Function'    Keyword
+' '           Text
+'MyFunctionTest' Name.Function
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'ReadINIStr'  Keyword
+' '           Text
+'$1'          Name.Builtin.Pseudo
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'S'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'I'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'u'           Literal.String.Double
+'e'           Literal.String.Double
+'1'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'StrCmp'      Keyword
+' '           Text
+'$1'          Name.Builtin.Pseudo
+' '           Text
+'$8'          Name.Builtin.Pseudo
+' '           Text
+'N'           Text
+'o'           Text
+'F'           Text
+'a'           Text
+'i'           Text
+'l'           Text
+'e'           Text
+'d'           Text
+'M'           Text
+'s'           Text
+'g'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_OK'       Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'W'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'I'           Literal.String.Double
+'N'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+'t'           Literal.String.Double
+'r'           Literal.String.Double
+' '           Literal.String.Double
+'f'           Literal.String.Double
+'a'           Literal.String.Double
+'i'           Literal.String.Double
+'l'           Literal.String.Double
+'e'           Literal.String.Double
+'d'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'NoFailedMsg' Name.Label
+':'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'FunctionEnd' Keyword
+'\n'          Text
+
+'\n'          Text
+
+'Function'    Keyword
+' '           Text
+'.onSelChange' Name.Function
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'SectionGetText' Keyword
+' '           Text
+'${TESTIDX}'  Keyword.Pseudo
+' '           Text
+'$0'          Name.Builtin.Pseudo
+'\n'          Text
+
+' '           Text
+' '           Text
+'StrCmp'      Keyword
+' '           Text
+'$0'          Name.Builtin.Pseudo
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'e'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'SectionSetText' Keyword
+' '           Text
+'${TESTIDX}'  Keyword.Pseudo
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'Goto'        Keyword
+' '           Text
+'e'           Text
+'2'           Text
+'\n'          Text
+
+'e'           Name.Label
+':'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'SectionSetText' Keyword
+' '           Text
+'${TESTIDX}'  Keyword.Pseudo
+' '           Text
+'"'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'x'           Literal.String.Double
+'t'           Literal.String.Double
+'I'           Literal.String.Double
+'n'           Literal.String.Double
+'S'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'e2'          Name.Label
+':'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'FunctionEnd' Keyword
+'\n'          Text
+
+'\n'          Text
+
+';--------------------------------\n' Comment
+
+'\n'          Text
+
+'; Uninstaller\n' Comment
+
+'\n'          Text
+
+'UninstallText' Keyword
+' '           Text
+'"'           Literal.String.Double
+'T'           Literal.String.Double
+'h'           Literal.String.Double
+'i'           Literal.String.Double
+'s'           Literal.String.Double
+' '           Literal.String.Double
+'w'           Literal.String.Double
+'i'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+' '           Literal.String.Double
+'u'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+' '           Literal.String.Double
+'e'           Literal.String.Double
+'x'           Literal.String.Double
+'a'           Literal.String.Double
+'m'           Literal.String.Double
+'p'           Literal.String.Double
+'l'           Literal.String.Double
+'e'           Literal.String.Double
+'2'           Literal.String.Double
+'.'           Literal.String.Double
+' '           Literal.String.Double
+'H'           Literal.String.Double
+'i'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'n'           Literal.String.Double
+'e'           Literal.String.Double
+'x'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'o'           Literal.String.Double
+' '           Literal.String.Double
+'c'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'u'           Literal.String.Double
+'e'           Literal.String.Double
+'.'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'UninstallIcon' Keyword
+' '           Text
+'"'           Literal.String.Double
+'${NSISDIR}'  Name.Builtin
+'\\'          Literal.String.Double
+'C'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'t'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'\\'          Literal.String.Double
+'G'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'p'           Literal.String.Double
+'h'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'s'           Literal.String.Double
+'\\'          Literal.String.Double
+'I'           Literal.String.Double
+'c'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'\\'          Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'s'           Literal.String.Double
+'1'           Literal.String.Double
+'-'           Literal.String.Double
+'u'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+'.'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'o'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'Section'     Keyword
+' '           Text
+'"'           Literal.String.Double
+'U'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'DeleteRegKey' Keyword
+' '           Text
+'HKLM'        Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'S'           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'w'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'\\'          Literal.String.Double
+'M'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'s'           Literal.String.Double
+'o'           Literal.String.Double
+'f'           Literal.String.Double
+'t'           Literal.String.Double
+'\\'          Literal.String.Double
+'W'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'d'           Literal.String.Double
+'o'           Literal.String.Double
+'w'           Literal.String.Double
+'s'           Literal.String.Double
+'\\'          Literal.String.Double
+'C'           Literal.String.Double
+'u'           Literal.String.Double
+'r'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'n'           Literal.String.Double
+'t'           Literal.String.Double
+'V'           Literal.String.Double
+'e'           Literal.String.Double
+'r'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'\\'          Literal.String.Double
+'U'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'l'           Literal.String.Double
+'\\'          Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'DeleteRegKey' Keyword
+' '           Text
+'HKLM'        Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'S'           Literal.String.Double
+'O'           Literal.String.Double
+'F'           Literal.String.Double
+'T'           Literal.String.Double
+'W'           Literal.String.Double
+'A'           Literal.String.Double
+'R'           Literal.String.Double
+'E'           Literal.String.Double
+'\\'          Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'\\'          Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'Delete'      Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'l'           Literal.String.Double
+'e'           Literal.String.Double
+'n'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'Delete'      Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'L'           Literal.String.Double
+'o'           Literal.String.Double
+'g'           Literal.String.Double
+'i'           Literal.String.Double
+'c'           Literal.String.Double
+'L'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'.'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'Delete'      Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'b'           Literal.String.Double
+'t'           Literal.String.Double
+'-'           Literal.String.Double
+'u'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'e'           Literal.String.Double
+'x'           Literal.String.Double
+'e'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'Delete'      Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'.'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'Delete'      Keyword
+' '           Text
+'"'           Literal.String.Double
+'$SMPROGRAMS' Name.Builtin
+'\\'          Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+' '           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+' '           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'\\'          Literal.String.Double
+'*'           Literal.String.Double
+'.'           Literal.String.Double
+'*'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'RMDir'       Keyword
+' '           Text
+'"'           Literal.String.Double
+'$SMPROGRAMS' Name.Builtin
+'\\'          Literal.String.Double
+'B'           Literal.String.Double
+'i'           Literal.String.Double
+'G'           Literal.String.Double
+' '           Literal.String.Double
+'N'           Literal.String.Double
+'S'           Literal.String.Double
+'I'           Literal.String.Double
+'S'           Literal.String.Double
+' '           Literal.String.Double
+'T'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_YESNO'    Name.Constant
+'|'           Operator
+'MB_ICONQUESTION' Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'W'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+'l'           Literal.String.Double
+'d'           Literal.String.Double
+' '           Literal.String.Double
+'y'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+' '           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'k'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'o'           Literal.String.Double
+' '           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'m'           Literal.String.Double
+'o'           Literal.String.Double
+'v'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'d'           Literal.String.Double
+'i'           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'y'           Literal.String.Double
+' '           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'c'           Literal.String.Double
+'p'           Literal.String.Double
+'d'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'?'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'IDNO'        Name.Constant
+' '           Text
+'N'           Text
+'o'           Text
+'D'           Text
+'e'           Text
+'l'           Text
+'e'           Text
+'t'           Text
+'e'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Delete'      Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'c'           Literal.String.Double
+'p'           Literal.String.Double
+'d'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'\\'          Literal.String.Double
+'*'           Literal.String.Double
+'.'           Literal.String.Double
+'*'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'RMDir'       Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'c'           Literal.String.Double
+'p'           Literal.String.Double
+'d'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'; skipped if no\n' Comment
+
+' '           Text
+' '           Text
+'NoDelete'    Name.Label
+':'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'RMDir'       Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'P'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'j'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'F'           Literal.String.Double
+'a'           Literal.String.Double
+'m'           Literal.String.Double
+'i'           Literal.String.Double
+'l'           Literal.String.Double
+'y'           Literal.String.Double
+'\\'          Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'P'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'j'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'RMDir'       Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'\\'          Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'P'           Literal.String.Double
+'r'           Literal.String.Double
+'o'           Literal.String.Double
+'j'           Literal.String.Double
+'e'           Literal.String.Double
+'c'           Literal.String.Double
+'t'           Literal.String.Double
+'F'           Literal.String.Double
+'a'           Literal.String.Double
+'m'           Literal.String.Double
+'i'           Literal.String.Double
+'l'           Literal.String.Double
+'y'           Literal.String.Double
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'RMDir'       Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'IfFileExists' Keyword
+' '           Text
+'"'           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+'"'           Literal.String
+' '           Text
+'0'           Text
+' '           Text
+'N'           Text
+'o'           Text
+'E'           Text
+'r'           Text
+'r'           Text
+'o'           Text
+'r'           Text
+'M'           Text
+'s'           Text
+'g'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'MessageBox'  Keyword
+' '           Text
+'MB_OK'       Name.Constant
+' '           Text
+'"'           Literal.String.Double
+'N'           Literal.String.Double
+'o'           Literal.String.Double
+'t'           Literal.String.Double
+'e'           Literal.String.Double
+':'           Literal.String.Double
+' '           Literal.String.Double
+'$INSTDIR'    Name.Variable.Global
+' '           Literal.String.Double
+'c'           Literal.String.Double
+'o'           Literal.String.Double
+'u'           Literal.String.Double
+'l'           Literal.String.Double
+'d'           Literal.String.Double
+' '           Literal.String.Double
+'n'           Literal.String.Double
+'o'           Literal.String.Double
+'t'           Literal.String.Double
+' '           Literal.String.Double
+'b'           Literal.String.Double
+'e'           Literal.String.Double
+' '           Literal.String.Double
+'r'           Literal.String.Double
+'e'           Literal.String.Double
+'m'           Literal.String.Double
+'o'           Literal.String.Double
+'v'           Literal.String.Double
+'e'           Literal.String.Double
+'d'           Literal.String.Double
+'!'           Literal.String.Double
+'"'           Literal.String
+' '           Text
+'IDOK'        Name.Constant
+' '           Text
+'0'           Text
+' '           Text
+"; skipped if file doesn't exist\n" Comment
+
+' '           Text
+' '           Text
+'NoErrorMsg'  Name.Label
+':'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'SectionEnd'  Keyword
+'\n'          Text

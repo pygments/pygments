@@ -1,0 +1,3054 @@
+---input---
+/**
+ * Example Whiley program, taken from the Whiley benchmark suite.
+ * https://github.com/Whiley/WyBench/blob/master/src/101_interpreter/Main.whiley
+ */
+
+import whiley.lang.System
+import whiley.lang.Int
+import whiley.io.File
+import string from whiley.lang.ASCII
+import char from whiley.lang.ASCII
+
+// ====================================================
+// A simple calculator for expressions
+// ====================================================
+
+constant ADD is 0
+constant SUB is 1
+constant MUL is 2
+constant DIV is 3
+
+// binary operation
+type BOp is (int x) where ADD <= x && x <= DIV
+type BinOp is { BOp op, Expr lhs, Expr rhs } 
+
+// variables
+type Var is { string id }
+
+// list access
+type ListAccess is { 
+    Expr src, 
+    Expr index
+} 
+
+// expression tree
+type Expr is int |  // constant
+    Var |              // variable
+    BinOp |            // binary operator
+    Expr[] |           // array constructor
+    ListAccess         // list access
+
+// values
+type Value is int | Value[]
+
+// stmts
+type Print is { Expr rhs }
+type Set is { string lhs, Expr rhs }
+type Stmt is Print | Set
+
+// ====================================================
+// Expression Evaluator
+// ====================================================
+
+type RuntimeError is { string msg }
+type Environment is [{string k, Value v}]
+
+// Evaluate an expression in a given environment reducing either to a
+// value, or a runtime error.  The latter occurs if evaluation gets
+// "stuck" (e.g. expression is // not well-formed)
+function evaluate(Expr e, Environment env) -> Value | RuntimeError:
+    //
+    if e is int:
+        return e
+    else if e is Var:
+        return env[e.id]
+    else if e is BinOp:
+        Value|RuntimeError lhs = evaluate(e.lhs, env)
+        Value|RuntimeError rhs = evaluate(e.rhs, env)
+        // check if stuck
+        if !(lhs is int && rhs is int):
+            return {msg: "arithmetic attempted on non-numeric value"}
+        // switch statement would be good
+        if e.op == ADD:
+            return lhs + rhs
+        else if e.op == SUB:
+            return lhs - rhs
+        else if e.op == MUL:
+            return lhs * rhs
+        else if rhs != 0:
+            return lhs / rhs
+        return {msg: "divide-by-zero"}
+    else if e is Expr[]:
+        [Value] r = []
+        for i in e:
+            Value|RuntimeError v = evaluate(i, env)
+            if v is RuntimeError:
+                return v
+            else:
+                r = r ++ [v]
+        return r
+    else if e is ListAccess:
+        Value|RuntimeError src = evaluate(e.src, env)
+        Value|RuntimeError index = evaluate(e.index, env)
+        // santity checks
+        if src is [Value] && index is int && index >= 0 && index < |src|:
+            return src[index]
+        else:
+            return {msg: "invalid list access"}
+    else:
+        return 0 // dead-code
+
+// ====================================================
+// Expression Parser
+// ====================================================
+
+type State is { string input, int pos }
+type SyntaxError is { string msg, int start, int end }
+
+function SyntaxError(string msg, int start, int end) -> SyntaxError:
+    return { msg: msg, start: start, end: end }
+
+// Top-level parse method
+function parse(State st) -> (Stmt,State)|SyntaxError:
+    //
+    Var keyword, Var v
+    Expr e
+    int start = st.pos
+    //
+    keyword,st = parseIdentifier(st)
+    switch keyword.id:
+        case "print":
+            any r = parseAddSubExpr(st)
+            if !(r is SyntaxError):
+                e,st = r
+                return {rhs: e},st
+            else:
+                return r // error case
+        case "set":
+            st = parseWhiteSpace(st)
+            v,st = parseIdentifier(st)
+            any r = parseAddSubExpr(st)
+            if !(r is SyntaxError):
+                e,st = r
+                return {lhs: v.id, rhs: e},st
+            else:
+                return r // error case
+        default:
+            return SyntaxError("unknown statement",start,st.pos-1)
+
+function parseAddSubExpr(State st) -> (Expr, State)|SyntaxError:    
+    //
+    Expr lhs, Expr rhs      
+    // First, pass left-hand side 
+    any r  = parseMulDivExpr(st)
+    //
+    if r is SyntaxError:
+        return r
+    //    
+    lhs,st = r
+    st = parseWhiteSpace(st)
+    // Second, see if there is a right-hand side
+    if st.pos < |st.input| && st.input[st.pos] == '+':
+        // add expression
+        st.pos = st.pos + 1
+        r = parseAddSubExpr(st)        
+        if !(r is SyntaxError):
+            rhs,st = r
+            return {op: ADD, lhs: lhs, rhs: rhs},st
+        else:
+            return r
+    else if st.pos < |st.input| && st.input[st.pos] == '-':
+        // subtract expression
+        st.pos = st.pos + 1
+        r = parseAddSubExpr(st)        
+        if !(r is SyntaxError):
+            rhs,st = r
+            return {op: SUB, lhs: lhs, rhs: rhs},st
+        else:
+            return r    
+    // No right-hand side
+    return (lhs,st)
+
+function parseMulDivExpr(State st) -> (Expr, State)|SyntaxError:    
+    // First, parse left-hand side
+    Expr lhs, Expr rhs
+    any r  = parseTerm(st)
+    if r is SyntaxError:
+        return r
+    //
+    lhs,st = r
+    st = parseWhiteSpace(st)
+    // Second, see if there is a right-hand side
+    if st.pos < |st.input| && st.input[st.pos] == '*':
+        // add expression
+        st.pos = st.pos + 1
+        r = parseMulDivExpr(st)   
+        if !(r is SyntaxError):
+            rhs,st = r
+            return {op: MUL, lhs: lhs, rhs: rhs}, st
+        else:
+            return r
+    else if st.pos < |st.input| && st.input[st.pos] == '/':
+        // subtract expression
+        st.pos = st.pos + 1
+        r = parseMulDivExpr(st)        
+        if !(r is SyntaxError):
+            rhs,st = r
+            return {op: DIV, lhs: lhs, rhs: rhs}, st
+        else:
+            return r
+    // No right-hand side
+    return (lhs,st)
+
+function parseTerm(State st) -> (Expr, State)|SyntaxError:
+    //
+    st = parseWhiteSpace(st)        
+    if st.pos < |st.input|:
+        if ASCII.isLetter(st.input[st.pos]):
+            return parseIdentifier(st)
+        else if ASCII.isDigit(st.input[st.pos]):
+            return parseNumber(st)
+        else if st.input[st.pos] == '[':
+            return parseList(st)
+    //
+    return SyntaxError("expecting number or variable",st.pos,st.pos)
+
+function parseIdentifier(State st) -> (Var, State):
+    //
+    string txt = ""
+    // inch forward until end of identifier reached
+    while st.pos < |st.input| && ASCII.isLetter(st.input[st.pos]):
+        txt = txt ++ [st.input[st.pos]]
+        st.pos = st.pos + 1
+    return ({id:txt}, st)
+
+function parseNumber(State st) -> (Expr, State)|SyntaxError:    
+    // inch forward until end of identifier reached
+    int start = st.pos
+    while st.pos < |st.input| && ASCII.isDigit(st.input[st.pos]):
+        st.pos = st.pos + 1    
+    //
+    int|null iv = Int.parse(st.input[start..st.pos])
+    if iv == null:
+        return SyntaxError("Error parsing number",start,st.pos)
+    else:
+        return iv, st
+
+function parseList(State st) -> (Expr, State)|SyntaxError:    
+    //
+    st.pos = st.pos + 1 // skip '['
+    st = parseWhiteSpace(st)
+    [Expr] l = [] // initial list
+    bool firstTime = true
+    while st.pos < |st.input| && st.input[st.pos] != ']':
+        if !firstTime && st.input[st.pos] != ',':
+            return SyntaxError("expecting comma",st.pos,st.pos)
+        else if !firstTime:
+            st.pos = st.pos + 1 // skip ','
+        firstTime = false
+        any r = parseAddSubExpr(st)
+        if r is SyntaxError:
+            return r
+        else:
+            Expr e
+            e,st = r
+            // perform annoying error check    
+            l = l ++ [e]
+            st = parseWhiteSpace(st)
+    st.pos = st.pos + 1
+    return l,st
+ 
+// Parse all whitespace upto end-of-file
+function parseWhiteSpace(State st) -> State:
+    while st.pos < |st.input| && ASCII.isWhiteSpace(st.input[st.pos]):
+        st.pos = st.pos + 1
+    return st
+
+// ====================================================
+// Main Method
+// ====================================================
+
+public method main(System.Console sys):
+    if(|sys.args| == 0):
+        sys.out.println("no parameter provided!")
+    else:
+        File.Reader file = File.Reader(sys.args[0])
+        string input = ASCII.fromBytes(file.readAll())
+        
+        Environment env = Environment()
+        State st = {pos: 0, input: input}
+        while st.pos < |st.input|:
+            Stmt s
+            any r = parse(st)
+            if r is SyntaxError:
+                sys.out.println("syntax error: " ++ r.msg)  
+                return
+            s,st = r
+            Value|RuntimeError v = evaluate(s.rhs,env)
+            if v is RuntimeError:
+                sys.out.println("runtime error: " ++ v.msg) 
+                return
+            if s is Set:
+                env[s.lhs] = v
+            else:
+                sys.out.println(r)
+            st = parseWhiteSpace(st)
+            
+
+---tokens---
+'/**\n * Example Whiley program, taken from the Whiley benchmark suite.\n * https://github.com/Whiley/WyBench/blob/master/src/101_interpreter/Main.whiley\n */' Literal.String.Doc
+'\n\n'        Text
+
+'import'      Keyword.Namespace
+' '           Text
+'whiley'      Name
+'.'           Punctuation
+'lang'        Name
+'.'           Punctuation
+'System'      Name
+'\n'          Text
+
+'import'      Keyword.Namespace
+' '           Text
+'whiley'      Name
+'.'           Punctuation
+'lang'        Name
+'.'           Punctuation
+'Int'         Name
+'\n'          Text
+
+'import'      Keyword.Namespace
+' '           Text
+'whiley'      Name
+'.'           Punctuation
+'io'          Name
+'.'           Punctuation
+'File'        Name
+'\n'          Text
+
+'import'      Keyword.Namespace
+' '           Text
+'string'      Name
+' '           Text
+'from'        Keyword.Namespace
+' '           Text
+'whiley'      Name
+'.'           Punctuation
+'lang'        Name
+'.'           Punctuation
+'ASCII'       Name
+'\n'          Text
+
+'import'      Keyword.Namespace
+' '           Text
+'char'        Name
+' '           Text
+'from'        Keyword.Namespace
+' '           Text
+'whiley'      Name
+'.'           Punctuation
+'lang'        Name
+'.'           Punctuation
+'ASCII'       Name
+'\n\n'        Text
+
+'// ====================================================' Comment.Single
+'\n'          Text
+
+'// A simple calculator for expressions' Comment.Single
+'\n'          Text
+
+'// ====================================================' Comment.Single
+'\n\n'        Text
+
+'constant'    Keyword.Declaration
+' '           Text
+'ADD'         Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'constant'    Keyword.Declaration
+' '           Text
+'SUB'         Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'constant'    Keyword.Declaration
+' '           Text
+'MUL'         Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'constant'    Keyword.Declaration
+' '           Text
+'DIV'         Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'3'           Literal.Number.Integer
+'\n\n'        Text
+
+'// binary operation' Comment.Single
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'BOp'         Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'x'           Name
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+' '           Text
+'ADD'         Name
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'x'           Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'DIV'         Name
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'BinOp'       Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'{'           Punctuation
+' '           Text
+'BOp'         Name
+' '           Text
+'op'          Name
+','           Punctuation
+' '           Text
+'Expr'        Name
+' '           Text
+'lhs'         Name
+','           Punctuation
+' '           Text
+'Expr'        Name
+' '           Text
+'rhs'         Name
+' '           Text
+'}'           Punctuation
+' \n\n'       Text
+
+'// variables' Comment.Single
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'Var'         Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'{'           Punctuation
+' '           Text
+'string'      Name
+' '           Text
+'id'          Name
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'// list access' Comment.Single
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'ListAccess'  Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'{'           Punctuation
+' \n    '     Text
+'Expr'        Name
+' '           Text
+'src'         Name
+','           Punctuation
+' \n    '     Text
+'Expr'        Name
+' '           Text
+'index'       Name
+'\n'          Text
+
+'}'           Punctuation
+' \n\n'       Text
+
+'// expression tree' Comment.Single
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'Expr'        Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'|'           Operator
+'  '          Text
+'// constant' Comment.Single
+'\n    '      Text
+'Var'         Name
+' '           Text
+'|'           Operator
+'              ' Text
+'// variable' Comment.Single
+'\n    '      Text
+'BinOp'       Name
+' '           Text
+'|'           Operator
+'            ' Text
+'// binary operator' Comment.Single
+'\n    '      Text
+'Expr'        Name
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'|'           Operator
+'           ' Text
+'// array constructor' Comment.Single
+'\n    '      Text
+'ListAccess'  Name
+'         '   Text
+'// list access' Comment.Single
+'\n\n'        Text
+
+'// values'   Comment.Single
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'Value'       Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'|'           Operator
+' '           Text
+'Value'       Name
+'['           Punctuation
+']'           Punctuation
+'\n\n'        Text
+
+'// stmts'    Comment.Single
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'Print'       Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'{'           Punctuation
+' '           Text
+'Expr'        Name
+' '           Text
+'rhs'         Name
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'Set'         Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'{'           Punctuation
+' '           Text
+'string'      Name
+' '           Text
+'lhs'         Name
+','           Punctuation
+' '           Text
+'Expr'        Name
+' '           Text
+'rhs'         Name
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'Stmt'        Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'Print'       Name
+' '           Text
+'|'           Operator
+' '           Text
+'Set'         Name
+'\n\n'        Text
+
+'// ====================================================' Comment.Single
+'\n'          Text
+
+'// Expression Evaluator' Comment.Single
+'\n'          Text
+
+'// ====================================================' Comment.Single
+'\n\n'        Text
+
+'type'        Keyword.Declaration
+' '           Text
+'RuntimeError' Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'{'           Punctuation
+' '           Text
+'string'      Name
+' '           Text
+'msg'         Name
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'Environment' Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'['           Punctuation
+'{'           Punctuation
+'string'      Name
+' '           Text
+'k'           Name
+','           Punctuation
+' '           Text
+'Value'       Name
+' '           Text
+'v'           Name
+'}'           Punctuation
+']'           Punctuation
+'\n\n'        Text
+
+'// Evaluate an expression in a given environment reducing either to a' Comment.Single
+'\n'          Text
+
+'// value, or a runtime error.  The latter occurs if evaluation gets' Comment.Single
+'\n'          Text
+
+'// "stuck" (e.g. expression is // not well-formed)' Comment.Single
+'\n'          Text
+
+'function'    Keyword.Declaration
+' '           Text
+'evaluate'    Name
+'('           Punctuation
+'Expr'        Name
+' '           Text
+'e'           Name
+','           Punctuation
+' '           Text
+'Environment' Name
+' '           Text
+'env'         Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'Value'       Name
+' '           Text
+'|'           Operator
+' '           Text
+'RuntimeError' Name
+':'           Operator
+'\n    '      Text
+'//'          Comment.Single
+'\n    '      Text
+'if'          Keyword.Reserved
+' '           Text
+'e'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'int'         Keyword.Type
+':'           Operator
+'\n        '  Text
+'return'      Keyword.Reserved
+' '           Text
+'e'           Name
+'\n    '      Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'e'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'Var'         Name
+':'           Operator
+'\n        '  Text
+'return'      Keyword.Reserved
+' '           Text
+'env'         Name
+'['           Punctuation
+'e'           Name
+'.'           Punctuation
+'id'          Name
+']'           Punctuation
+'\n    '      Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'e'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'BinOp'       Name
+':'           Operator
+'\n        '  Text
+'Value'       Name
+'|'           Operator
+'RuntimeError' Name
+' '           Text
+'lhs'         Name
+' '           Text
+'='           Operator
+' '           Text
+'evaluate'    Name
+'('           Punctuation
+'e'           Name
+'.'           Punctuation
+'lhs'         Name
+','           Punctuation
+' '           Text
+'env'         Name
+')'           Punctuation
+'\n        '  Text
+'Value'       Name
+'|'           Operator
+'RuntimeError' Name
+' '           Text
+'rhs'         Name
+' '           Text
+'='           Operator
+' '           Text
+'evaluate'    Name
+'('           Punctuation
+'e'           Name
+'.'           Punctuation
+'rhs'         Name
+','           Punctuation
+' '           Text
+'env'         Name
+')'           Punctuation
+'\n        '  Text
+'// check if stuck' Comment.Single
+'\n        '  Text
+'if'          Keyword.Reserved
+' '           Text
+'!'           Operator
+'('           Punctuation
+'lhs'         Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'rhs'         Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'int'         Keyword.Type
+')'           Punctuation
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'msg'         Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'arithmetic attempted on non-numeric value' Literal.String
+'"'           Literal.String
+'}'           Punctuation
+'\n        '  Text
+'// switch statement would be good' Comment.Single
+'\n        '  Text
+'if'          Keyword.Reserved
+' '           Text
+'e'           Name
+'.'           Punctuation
+'op'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'ADD'         Name
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'lhs'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'rhs'         Name
+'\n        '  Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'e'           Name
+'.'           Punctuation
+'op'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'SUB'         Name
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'lhs'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'rhs'         Name
+'\n        '  Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'e'           Name
+'.'           Punctuation
+'op'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'MUL'         Name
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'lhs'         Name
+' '           Text
+'*'           Operator
+' '           Text
+'rhs'         Name
+'\n        '  Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'rhs'         Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'lhs'         Name
+' '           Text
+'/'           Operator
+' '           Text
+'rhs'         Name
+'\n        '  Text
+'return'      Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'msg'         Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'divide-by-zero' Literal.String
+'"'           Literal.String
+'}'           Punctuation
+'\n    '      Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'e'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'Expr'        Name
+'['           Punctuation
+']'           Punctuation
+':'           Operator
+'\n        '  Text
+'['           Punctuation
+'Value'       Name
+']'           Punctuation
+' '           Text
+'r'           Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+']'           Punctuation
+'\n        '  Text
+'for'         Keyword.Reserved
+' '           Text
+'i'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'e'           Name
+':'           Operator
+'\n            ' Text
+'Value'       Name
+'|'           Operator
+'RuntimeError' Name
+' '           Text
+'v'           Name
+' '           Text
+'='           Operator
+' '           Text
+'evaluate'    Name
+'('           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'env'         Name
+')'           Punctuation
+'\n            ' Text
+'if'          Keyword.Reserved
+' '           Text
+'v'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'RuntimeError' Name
+':'           Operator
+'\n                ' Text
+'return'      Keyword.Reserved
+' '           Text
+'v'           Name
+'\n            ' Text
+'else'        Keyword.Reserved
+':'           Operator
+'\n                ' Text
+'r'           Name
+' '           Text
+'='           Operator
+' '           Text
+'r'           Name
+' '           Text
+'+'           Operator
+'+'           Operator
+' '           Text
+'['           Punctuation
+'v'           Name
+']'           Punctuation
+'\n        '  Text
+'return'      Keyword.Reserved
+' '           Text
+'r'           Name
+'\n    '      Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'e'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'ListAccess'  Name
+':'           Operator
+'\n        '  Text
+'Value'       Name
+'|'           Operator
+'RuntimeError' Name
+' '           Text
+'src'         Name
+' '           Text
+'='           Operator
+' '           Text
+'evaluate'    Name
+'('           Punctuation
+'e'           Name
+'.'           Punctuation
+'src'         Name
+','           Punctuation
+' '           Text
+'env'         Name
+')'           Punctuation
+'\n        '  Text
+'Value'       Name
+'|'           Operator
+'RuntimeError' Name
+' '           Text
+'index'       Name
+' '           Text
+'='           Operator
+' '           Text
+'evaluate'    Name
+'('           Punctuation
+'e'           Name
+'.'           Punctuation
+'index'       Name
+','           Punctuation
+' '           Text
+'env'         Name
+')'           Punctuation
+'\n        '  Text
+'// santity checks' Comment.Single
+'\n        '  Text
+'if'          Keyword.Reserved
+' '           Text
+'src'         Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'['           Punctuation
+'Value'       Name
+']'           Punctuation
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'index'       Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'index'       Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'index'       Name
+' '           Text
+'<'           Operator
+' '           Text
+'|'           Operator
+'src'         Name
+'|'           Operator
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'src'         Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+'\n        '  Text
+'else'        Keyword.Reserved
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'msg'         Name
+':'           Operator
+' '           Text
+'"'           Literal.String
+'invalid list access' Literal.String
+'"'           Literal.String
+'}'           Punctuation
+'\n    '      Text
+'else'        Keyword.Reserved
+':'           Operator
+'\n        '  Text
+'return'      Keyword.Reserved
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'// dead-code' Comment.Single
+'\n\n'        Text
+
+'// ====================================================' Comment.Single
+'\n'          Text
+
+'// Expression Parser' Comment.Single
+'\n'          Text
+
+'// ====================================================' Comment.Single
+'\n\n'        Text
+
+'type'        Keyword.Declaration
+' '           Text
+'State'       Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'{'           Punctuation
+' '           Text
+'string'      Name
+' '           Text
+'input'       Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'pos'         Name
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'SyntaxError' Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'{'           Punctuation
+' '           Text
+'string'      Name
+' '           Text
+'msg'         Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'start'       Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'end'         Name
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'function'    Keyword.Declaration
+' '           Text
+'SyntaxError' Name
+'('           Punctuation
+'string'      Name
+' '           Text
+'msg'         Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'start'       Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'end'         Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'SyntaxError' Name
+':'           Operator
+'\n    '      Text
+'return'      Keyword.Reserved
+' '           Text
+'{'           Punctuation
+' '           Text
+'msg'         Name
+':'           Operator
+' '           Text
+'msg'         Name
+','           Punctuation
+' '           Text
+'start'       Name
+':'           Operator
+' '           Text
+'start'       Name
+','           Punctuation
+' '           Text
+'end'         Name
+':'           Operator
+' '           Text
+'end'         Name
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'// Top-level parse method' Comment.Single
+'\n'          Text
+
+'function'    Keyword.Declaration
+' '           Text
+'parse'       Name
+'('           Punctuation
+'State'       Name
+' '           Text
+'st'          Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'('           Punctuation
+'Stmt'        Name
+','           Punctuation
+'State'       Name
+')'           Punctuation
+'|'           Operator
+'SyntaxError' Name
+':'           Operator
+'\n    '      Text
+'//'          Comment.Single
+'\n    '      Text
+'Var'         Name
+' '           Text
+'keyword'     Name
+','           Punctuation
+' '           Text
+'Var'         Name
+' '           Text
+'v'           Name
+'\n    '      Text
+'Expr'        Name
+' '           Text
+'e'           Name
+'\n    '      Text
+'int'         Keyword.Type
+' '           Text
+'start'       Name
+' '           Text
+'='           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+'\n    '      Text
+'//'          Comment.Single
+'\n    '      Text
+'keyword'     Name
+','           Punctuation
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'parseIdentifier' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n    '      Text
+'switch'      Keyword.Reserved
+' '           Text
+'keyword'     Name
+'.'           Punctuation
+'id'          Name
+':'           Operator
+'\n        '  Text
+'case'        Keyword.Reserved
+' '           Text
+'"'           Literal.String
+'print'       Literal.String
+'"'           Literal.String
+':'           Operator
+'\n            ' Text
+'any'         Keyword.Type
+' '           Text
+'r'           Name
+' '           Text
+'='           Operator
+' '           Text
+'parseAddSubExpr' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n            ' Text
+'if'          Keyword.Reserved
+' '           Text
+'!'           Operator
+'('           Punctuation
+'r'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+')'           Punctuation
+':'           Operator
+'\n                ' Text
+'e'           Name
+','           Punctuation
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'r'           Name
+'\n                ' Text
+'return'      Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'rhs'         Name
+':'           Operator
+' '           Text
+'e'           Name
+'}'           Punctuation
+','           Punctuation
+'st'          Name
+'\n            ' Text
+'else'        Keyword.Reserved
+':'           Operator
+'\n                ' Text
+'return'      Keyword.Reserved
+' '           Text
+'r'           Name
+' '           Text
+'// error case' Comment.Single
+'\n        '  Text
+'case'        Keyword.Reserved
+' '           Text
+'"'           Literal.String
+'set'         Literal.String
+'"'           Literal.String
+':'           Operator
+'\n            ' Text
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'parseWhiteSpace' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n            ' Text
+'v'           Name
+','           Punctuation
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'parseIdentifier' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n            ' Text
+'any'         Keyword.Type
+' '           Text
+'r'           Name
+' '           Text
+'='           Operator
+' '           Text
+'parseAddSubExpr' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n            ' Text
+'if'          Keyword.Reserved
+' '           Text
+'!'           Operator
+'('           Punctuation
+'r'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+')'           Punctuation
+':'           Operator
+'\n                ' Text
+'e'           Name
+','           Punctuation
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'r'           Name
+'\n                ' Text
+'return'      Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'lhs'         Name
+':'           Operator
+' '           Text
+'v'           Name
+'.'           Punctuation
+'id'          Name
+','           Punctuation
+' '           Text
+'rhs'         Name
+':'           Operator
+' '           Text
+'e'           Name
+'}'           Punctuation
+','           Punctuation
+'st'          Name
+'\n            ' Text
+'else'        Keyword.Reserved
+':'           Operator
+'\n                ' Text
+'return'      Keyword.Reserved
+' '           Text
+'r'           Name
+' '           Text
+'// error case' Comment.Single
+'\n        '  Text
+'default'     Keyword.Reserved
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+'('           Punctuation
+'"'           Literal.String
+'unknown statement' Literal.String
+'"'           Literal.String
+','           Punctuation
+'start'       Name
+','           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'function'    Keyword.Declaration
+' '           Text
+'parseAddSubExpr' Name
+'('           Punctuation
+'State'       Name
+' '           Text
+'st'          Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'('           Punctuation
+'Expr'        Name
+','           Punctuation
+' '           Text
+'State'       Name
+')'           Punctuation
+'|'           Operator
+'SyntaxError' Name
+':'           Operator
+'    \n    '  Text
+'//'          Comment.Single
+'\n    '      Text
+'Expr'        Name
+' '           Text
+'lhs'         Name
+','           Punctuation
+' '           Text
+'Expr'        Name
+' '           Text
+'rhs'         Name
+'      \n    ' Text
+'// First, pass left-hand side ' Comment.Single
+'\n    '      Text
+'any'         Keyword.Type
+' '           Text
+'r'           Name
+'  '          Text
+'='           Operator
+' '           Text
+'parseMulDivExpr' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n    '      Text
+'//'          Comment.Single
+'\n    '      Text
+'if'          Keyword.Reserved
+' '           Text
+'r'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+':'           Operator
+'\n        '  Text
+'return'      Keyword.Reserved
+' '           Text
+'r'           Name
+'\n    '      Text
+'//    '      Comment.Single
+'\n    '      Text
+'lhs'         Name
+','           Punctuation
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'r'           Name
+'\n    '      Text
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'parseWhiteSpace' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n    '      Text
+'// Second, see if there is a right-hand side' Comment.Single
+'\n    '      Text
+'if'          Keyword.Reserved
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'|'           Operator
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'|'           Operator
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'+'"         Literal.String.Char
+':'           Operator
+'\n        '  Text
+'// add expression' Comment.Single
+'\n        '  Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'='           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'r'           Name
+' '           Text
+'='           Operator
+' '           Text
+'parseAddSubExpr' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'        \n        ' Text
+'if'          Keyword.Reserved
+' '           Text
+'!'           Operator
+'('           Punctuation
+'r'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+')'           Punctuation
+':'           Operator
+'\n            ' Text
+'rhs'         Name
+','           Punctuation
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'r'           Name
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'op'          Name
+':'           Operator
+' '           Text
+'ADD'         Name
+','           Punctuation
+' '           Text
+'lhs'         Name
+':'           Operator
+' '           Text
+'lhs'         Name
+','           Punctuation
+' '           Text
+'rhs'         Name
+':'           Operator
+' '           Text
+'rhs'         Name
+'}'           Punctuation
+','           Punctuation
+'st'          Name
+'\n        '  Text
+'else'        Keyword.Reserved
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'r'           Name
+'\n    '      Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'|'           Operator
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'|'           Operator
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'-'"         Literal.String.Char
+':'           Operator
+'\n        '  Text
+'// subtract expression' Comment.Single
+'\n        '  Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'='           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'r'           Name
+' '           Text
+'='           Operator
+' '           Text
+'parseAddSubExpr' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'        \n        ' Text
+'if'          Keyword.Reserved
+' '           Text
+'!'           Operator
+'('           Punctuation
+'r'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+')'           Punctuation
+':'           Operator
+'\n            ' Text
+'rhs'         Name
+','           Punctuation
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'r'           Name
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'op'          Name
+':'           Operator
+' '           Text
+'SUB'         Name
+','           Punctuation
+' '           Text
+'lhs'         Name
+':'           Operator
+' '           Text
+'lhs'         Name
+','           Punctuation
+' '           Text
+'rhs'         Name
+':'           Operator
+' '           Text
+'rhs'         Name
+'}'           Punctuation
+','           Punctuation
+'st'          Name
+'\n        '  Text
+'else'        Keyword.Reserved
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'r'           Name
+'    \n    '  Text
+'// No right-hand side' Comment.Single
+'\n    '      Text
+'return'      Keyword.Reserved
+' '           Text
+'('           Punctuation
+'lhs'         Name
+','           Punctuation
+'st'          Name
+')'           Punctuation
+'\n\n'        Text
+
+'function'    Keyword.Declaration
+' '           Text
+'parseMulDivExpr' Name
+'('           Punctuation
+'State'       Name
+' '           Text
+'st'          Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'('           Punctuation
+'Expr'        Name
+','           Punctuation
+' '           Text
+'State'       Name
+')'           Punctuation
+'|'           Operator
+'SyntaxError' Name
+':'           Operator
+'    \n    '  Text
+'// First, parse left-hand side' Comment.Single
+'\n    '      Text
+'Expr'        Name
+' '           Text
+'lhs'         Name
+','           Punctuation
+' '           Text
+'Expr'        Name
+' '           Text
+'rhs'         Name
+'\n    '      Text
+'any'         Keyword.Type
+' '           Text
+'r'           Name
+'  '          Text
+'='           Operator
+' '           Text
+'parseTerm'   Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n    '      Text
+'if'          Keyword.Reserved
+' '           Text
+'r'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+':'           Operator
+'\n        '  Text
+'return'      Keyword.Reserved
+' '           Text
+'r'           Name
+'\n    '      Text
+'//'          Comment.Single
+'\n    '      Text
+'lhs'         Name
+','           Punctuation
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'r'           Name
+'\n    '      Text
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'parseWhiteSpace' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n    '      Text
+'// Second, see if there is a right-hand side' Comment.Single
+'\n    '      Text
+'if'          Keyword.Reserved
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'|'           Operator
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'|'           Operator
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'*'"         Literal.String.Char
+':'           Operator
+'\n        '  Text
+'// add expression' Comment.Single
+'\n        '  Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'='           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'r'           Name
+' '           Text
+'='           Operator
+' '           Text
+'parseMulDivExpr' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'   \n        ' Text
+'if'          Keyword.Reserved
+' '           Text
+'!'           Operator
+'('           Punctuation
+'r'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+')'           Punctuation
+':'           Operator
+'\n            ' Text
+'rhs'         Name
+','           Punctuation
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'r'           Name
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'op'          Name
+':'           Operator
+' '           Text
+'MUL'         Name
+','           Punctuation
+' '           Text
+'lhs'         Name
+':'           Operator
+' '           Text
+'lhs'         Name
+','           Punctuation
+' '           Text
+'rhs'         Name
+':'           Operator
+' '           Text
+'rhs'         Name
+'}'           Punctuation
+','           Punctuation
+' '           Text
+'st'          Name
+'\n        '  Text
+'else'        Keyword.Reserved
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'r'           Name
+'\n    '      Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'|'           Operator
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'|'           Operator
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'/'"         Literal.String.Char
+':'           Operator
+'\n        '  Text
+'// subtract expression' Comment.Single
+'\n        '  Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'='           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'r'           Name
+' '           Text
+'='           Operator
+' '           Text
+'parseMulDivExpr' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'        \n        ' Text
+'if'          Keyword.Reserved
+' '           Text
+'!'           Operator
+'('           Punctuation
+'r'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+')'           Punctuation
+':'           Operator
+'\n            ' Text
+'rhs'         Name
+','           Punctuation
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'r'           Name
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'op'          Name
+':'           Operator
+' '           Text
+'DIV'         Name
+','           Punctuation
+' '           Text
+'lhs'         Name
+':'           Operator
+' '           Text
+'lhs'         Name
+','           Punctuation
+' '           Text
+'rhs'         Name
+':'           Operator
+' '           Text
+'rhs'         Name
+'}'           Punctuation
+','           Punctuation
+' '           Text
+'st'          Name
+'\n        '  Text
+'else'        Keyword.Reserved
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'r'           Name
+'\n    '      Text
+'// No right-hand side' Comment.Single
+'\n    '      Text
+'return'      Keyword.Reserved
+' '           Text
+'('           Punctuation
+'lhs'         Name
+','           Punctuation
+'st'          Name
+')'           Punctuation
+'\n\n'        Text
+
+'function'    Keyword.Declaration
+' '           Text
+'parseTerm'   Name
+'('           Punctuation
+'State'       Name
+' '           Text
+'st'          Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'('           Punctuation
+'Expr'        Name
+','           Punctuation
+' '           Text
+'State'       Name
+')'           Punctuation
+'|'           Operator
+'SyntaxError' Name
+':'           Operator
+'\n    '      Text
+'//'          Comment.Single
+'\n    '      Text
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'parseWhiteSpace' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'        \n    ' Text
+'if'          Keyword.Reserved
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'|'           Operator
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'|'           Operator
+':'           Operator
+'\n        '  Text
+'if'          Keyword.Reserved
+' '           Text
+'ASCII'       Name
+'.'           Punctuation
+'isLetter'    Name
+'('           Punctuation
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+')'           Punctuation
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'parseIdentifier' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n        '  Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'ASCII'       Name
+'.'           Punctuation
+'isDigit'     Name
+'('           Punctuation
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+')'           Punctuation
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'parseNumber' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n        '  Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'['"         Literal.String.Char
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'parseList'   Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n    '      Text
+'//'          Comment.Single
+'\n    '      Text
+'return'      Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+'('           Punctuation
+'"'           Literal.String
+'expecting number or variable' Literal.String
+'"'           Literal.String
+','           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+','           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+')'           Punctuation
+'\n\n'        Text
+
+'function'    Keyword.Declaration
+' '           Text
+'parseIdentifier' Name
+'('           Punctuation
+'State'       Name
+' '           Text
+'st'          Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'('           Punctuation
+'Var'         Name
+','           Punctuation
+' '           Text
+'State'       Name
+')'           Punctuation
+':'           Operator
+'\n    '      Text
+'//'          Comment.Single
+'\n    '      Text
+'string'      Name
+' '           Text
+'txt'         Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+'\n    '      Text
+'// inch forward until end of identifier reached' Comment.Single
+'\n    '      Text
+'while'       Keyword.Reserved
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'|'           Operator
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'|'           Operator
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'ASCII'       Name
+'.'           Punctuation
+'isLetter'    Name
+'('           Punctuation
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+')'           Punctuation
+':'           Operator
+'\n        '  Text
+'txt'         Name
+' '           Text
+'='           Operator
+' '           Text
+'txt'         Name
+' '           Text
+'+'           Operator
+'+'           Operator
+' '           Text
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+']'           Punctuation
+'\n        '  Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'='           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n    '      Text
+'return'      Keyword.Reserved
+' '           Text
+'('           Punctuation
+'{'           Punctuation
+'id'          Name
+':'           Operator
+'txt'         Name
+'}'           Punctuation
+','           Punctuation
+' '           Text
+'st'          Name
+')'           Punctuation
+'\n\n'        Text
+
+'function'    Keyword.Declaration
+' '           Text
+'parseNumber' Name
+'('           Punctuation
+'State'       Name
+' '           Text
+'st'          Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'('           Punctuation
+'Expr'        Name
+','           Punctuation
+' '           Text
+'State'       Name
+')'           Punctuation
+'|'           Operator
+'SyntaxError' Name
+':'           Operator
+'    \n    '  Text
+'// inch forward until end of identifier reached' Comment.Single
+'\n    '      Text
+'int'         Keyword.Type
+' '           Text
+'start'       Name
+' '           Text
+'='           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+'\n    '      Text
+'while'       Keyword.Reserved
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'|'           Operator
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'|'           Operator
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'ASCII'       Name
+'.'           Punctuation
+'isDigit'     Name
+'('           Punctuation
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+')'           Punctuation
+':'           Operator
+'\n        '  Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'='           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'    \n    '  Text
+'//'          Comment.Single
+'\n    '      Text
+'int'         Keyword.Type
+'|'           Operator
+'null'        Keyword.Constant
+' '           Text
+'iv'          Name
+' '           Text
+'='           Operator
+' '           Text
+'Int'         Name
+'.'           Punctuation
+'parse'       Name
+'('           Punctuation
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'start'       Name
+'.'           Punctuation
+'.'           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'if'          Keyword.Reserved
+' '           Text
+'iv'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'null'        Keyword.Constant
+':'           Operator
+'\n        '  Text
+'return'      Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+'('           Punctuation
+'"'           Literal.String
+'Error parsing number' Literal.String
+'"'           Literal.String
+','           Punctuation
+'start'       Name
+','           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+')'           Punctuation
+'\n    '      Text
+'else'        Keyword.Reserved
+':'           Operator
+'\n        '  Text
+'return'      Keyword.Reserved
+' '           Text
+'iv'          Name
+','           Punctuation
+' '           Text
+'st'          Name
+'\n\n'        Text
+
+'function'    Keyword.Declaration
+' '           Text
+'parseList'   Name
+'('           Punctuation
+'State'       Name
+' '           Text
+'st'          Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'('           Punctuation
+'Expr'        Name
+','           Punctuation
+' '           Text
+'State'       Name
+')'           Punctuation
+'|'           Operator
+'SyntaxError' Name
+':'           Operator
+'    \n    '  Text
+'//'          Comment.Single
+'\n    '      Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'='           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+"// skip '['" Comment.Single
+'\n    '      Text
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'parseWhiteSpace' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n    '      Text
+'['           Punctuation
+'Expr'        Name
+']'           Punctuation
+' '           Text
+'l'           Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'// initial list' Comment.Single
+'\n    '      Text
+'bool'        Keyword.Type
+' '           Text
+'firstTime'   Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+'\n    '      Text
+'while'       Keyword.Reserved
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'|'           Operator
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'|'           Operator
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+"']'"         Literal.String.Char
+':'           Operator
+'\n        '  Text
+'if'          Keyword.Reserved
+' '           Text
+'!'           Operator
+'firstTime'   Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+"','"         Literal.String.Char
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+'('           Punctuation
+'"'           Literal.String
+'expecting comma' Literal.String
+'"'           Literal.String
+','           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+','           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+')'           Punctuation
+'\n        '  Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'!'           Operator
+'firstTime'   Name
+':'           Operator
+'\n            ' Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'='           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+"// skip ','" Comment.Single
+'\n        '  Text
+'firstTime'   Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+'\n        '  Text
+'any'         Keyword.Type
+' '           Text
+'r'           Name
+' '           Text
+'='           Operator
+' '           Text
+'parseAddSubExpr' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n        '  Text
+'if'          Keyword.Reserved
+' '           Text
+'r'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+':'           Operator
+'\n            ' Text
+'return'      Keyword.Reserved
+' '           Text
+'r'           Name
+'\n        '  Text
+'else'        Keyword.Reserved
+':'           Operator
+'\n            ' Text
+'Expr'        Name
+' '           Text
+'e'           Name
+'\n            ' Text
+'e'           Name
+','           Punctuation
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'r'           Name
+'\n            ' Text
+'// perform annoying error check    ' Comment.Single
+'\n            ' Text
+'l'           Name
+' '           Text
+'='           Operator
+' '           Text
+'l'           Name
+' '           Text
+'+'           Operator
+'+'           Operator
+' '           Text
+'['           Punctuation
+'e'           Name
+']'           Punctuation
+'\n            ' Text
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'parseWhiteSpace' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n    '      Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'='           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n    '      Text
+'return'      Keyword.Reserved
+' '           Text
+'l'           Name
+','           Punctuation
+'st'          Name
+'\n \n'       Text
+
+'// Parse all whitespace upto end-of-file' Comment.Single
+'\n'          Text
+
+'function'    Keyword.Declaration
+' '           Text
+'parseWhiteSpace' Name
+'('           Punctuation
+'State'       Name
+' '           Text
+'st'          Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'State'       Name
+':'           Operator
+'\n    '      Text
+'while'       Keyword.Reserved
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'|'           Operator
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'|'           Operator
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'ASCII'       Name
+'.'           Punctuation
+'isWhiteSpace' Name
+'('           Punctuation
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'['           Punctuation
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+']'           Punctuation
+')'           Punctuation
+':'           Operator
+'\n        '  Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'='           Operator
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n    '      Text
+'return'      Keyword.Reserved
+' '           Text
+'st'          Name
+'\n\n'        Text
+
+'// ====================================================' Comment.Single
+'\n'          Text
+
+'// Main Method' Comment.Single
+'\n'          Text
+
+'// ====================================================' Comment.Single
+'\n\n'        Text
+
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'main'        Name
+'('           Punctuation
+'System'      Name
+'.'           Punctuation
+'Console'     Name
+' '           Text
+'sys'         Name
+')'           Punctuation
+':'           Operator
+'\n    '      Text
+'if'          Keyword.Reserved
+'('           Punctuation
+'|'           Operator
+'sys'         Name
+'.'           Punctuation
+'args'        Name
+'|'           Operator
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+':'           Operator
+'\n        '  Text
+'sys'         Name
+'.'           Punctuation
+'out'         Name
+'.'           Punctuation
+'println'     Name
+'('           Punctuation
+'"'           Literal.String
+'no parameter provided!' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text
+'else'        Keyword.Reserved
+':'           Operator
+'\n        '  Text
+'File'        Name
+'.'           Punctuation
+'Reader'      Name
+' '           Text
+'file'        Name
+' '           Text
+'='           Operator
+' '           Text
+'File'        Name
+'.'           Punctuation
+'Reader'      Name
+'('           Punctuation
+'sys'         Name
+'.'           Punctuation
+'args'        Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'string'      Name
+' '           Text
+'input'       Name
+' '           Text
+'='           Operator
+' '           Text
+'ASCII'       Name
+'.'           Punctuation
+'fromBytes'   Name
+'('           Punctuation
+'file'        Name
+'.'           Punctuation
+'readAll'     Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        \n        ' Text
+'Environment' Name
+' '           Text
+'env'         Name
+' '           Text
+'='           Operator
+' '           Text
+'Environment' Name
+'('           Punctuation
+')'           Punctuation
+'\n        '  Text
+'State'       Name
+' '           Text
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'pos'         Name
+':'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'input'       Name
+':'           Operator
+' '           Text
+'input'       Name
+'}'           Punctuation
+'\n        '  Text
+'while'       Keyword.Reserved
+' '           Text
+'st'          Name
+'.'           Punctuation
+'pos'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'|'           Operator
+'st'          Name
+'.'           Punctuation
+'input'       Name
+'|'           Operator
+':'           Operator
+'\n            ' Text
+'Stmt'        Name
+' '           Text
+'s'           Name
+'\n            ' Text
+'any'         Keyword.Type
+' '           Text
+'r'           Name
+' '           Text
+'='           Operator
+' '           Text
+'parse'       Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n            ' Text
+'if'          Keyword.Reserved
+' '           Text
+'r'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'SyntaxError' Name
+':'           Operator
+'\n                ' Text
+'sys'         Name
+'.'           Punctuation
+'out'         Name
+'.'           Punctuation
+'println'     Name
+'('           Punctuation
+'"'           Literal.String
+'syntax error: ' Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+'+'           Operator
+' '           Text
+'r'           Name
+'.'           Punctuation
+'msg'         Name
+')'           Punctuation
+'  \n                ' Text
+'return'      Keyword.Reserved
+'\n            ' Text
+'s'           Name
+','           Punctuation
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'r'           Name
+'\n            ' Text
+'Value'       Name
+'|'           Operator
+'RuntimeError' Name
+' '           Text
+'v'           Name
+' '           Text
+'='           Operator
+' '           Text
+'evaluate'    Name
+'('           Punctuation
+'s'           Name
+'.'           Punctuation
+'rhs'         Name
+','           Punctuation
+'env'         Name
+')'           Punctuation
+'\n            ' Text
+'if'          Keyword.Reserved
+' '           Text
+'v'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'RuntimeError' Name
+':'           Operator
+'\n                ' Text
+'sys'         Name
+'.'           Punctuation
+'out'         Name
+'.'           Punctuation
+'println'     Name
+'('           Punctuation
+'"'           Literal.String
+'runtime error: ' Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+'+'           Operator
+' '           Text
+'v'           Name
+'.'           Punctuation
+'msg'         Name
+')'           Punctuation
+' \n                ' Text
+'return'      Keyword.Reserved
+'\n            ' Text
+'if'          Keyword.Reserved
+' '           Text
+'s'           Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'Set'         Name
+':'           Operator
+'\n                ' Text
+'env'         Name
+'['           Punctuation
+'s'           Name
+'.'           Punctuation
+'lhs'         Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'v'           Name
+'\n            ' Text
+'else'        Keyword.Reserved
+':'           Operator
+'\n                ' Text
+'sys'         Name
+'.'           Punctuation
+'out'         Name
+'.'           Punctuation
+'println'     Name
+'('           Punctuation
+'r'           Name
+')'           Punctuation
+'\n            ' Text
+'st'          Name
+' '           Text
+'='           Operator
+' '           Text
+'parseWhiteSpace' Name
+'('           Punctuation
+'st'          Name
+')'           Punctuation
+'\n            \n' Text

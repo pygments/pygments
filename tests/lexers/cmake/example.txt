@@ -1,0 +1,455 @@
+---input---
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6 FATAL_ERROR)
+
+SET( SOURCES back.c io.c main.c )
+SET( PATH $ENV{PATH} )
+MESSAGE( ${SOURCES}   )      # three arguments, prints "back.cio.cmain.c"
+MESSAGE( "${SOURCES}" )      # one argument,    prints "back.c;io.c;main.c"
+MESSAGE( "" )                # one argument,    prints "" an empty line
+MESSAGE( "${EMPTY_STRING}" ) # one argument,    prints "" an empty line
+MESSAGE( ${EMPTY_STRING} )   # zero arguments,  causes CMake Error
+                             # "MESSAGE called with incorrect number of arguments"
+MESSAGE( \\\"\ \(\)\#\$\^ ) # this message contains literal characters
+
+MESSAGE( "This is practice." )  # prints "This is practice."
+MESSAGE( "This;is;practice." )  # prints "This;is;practice."
+MESSAGE( "Hi. ) MESSAGE( x )" ) # prints "Hi. ) MESSAGE( x )"
+
+MESSAGE( "Welc"ome ) # rule 1
+MESSAGE( Welc"ome" ) # rule 3
+MESSAGE( Welc"ome)" ) # rule 2
+MESSAGE( ""Thanks ) # rule 1
+MESSAGE( Thanks"" ) # rule 3
+
+SET( x y A B C )              # stores "y;A;B;C" in x (without quote)
+SET( ${x} )                   # => SET( y;A;B;C ) => SET( y A B C)
+MESSAGE( ${y} )               # prints "ABC" to stdout (without quotes)
+SET( y x )                    # stores "x" in y (without quotes)
+SET( ${y} y = x )             # => SET( x y )
+MESSAGE( "\${x} = '${x}'" )   # prints "${x} = 'y;=;x'" to stdout (without quotes)
+SET( y ${x} )                 # => SET( y y = x ) => stores "y;=;x" in y (without quotes)
+MESSAGE( ${y} )               # prints "y=x" to stdout (without quotes)
+
+SET( x a b c   ) # stores "a;b;c" in x      (without quotes)
+SET( y "a b c" ) # stores "a b c" in y      (without quotes)
+MESSAGE( a b c ) # prints "abc"   to stdout (without quotes)
+MESSAGE( ${x} )  # prints "abc"   to stdout (without quotes)
+MESSAGE("${x}")  # prints "a;b;c" to stdout (without quotes)
+MESSAGE( ${y} )  # prints "a b c" to stdout (without quotes)
+MESSAGE("${y}")  # prints "a b c" to stdout (without quotes)
+
+# This is a comment.
+COMMAND( arguments go here )
+ANOTHER_COMMAND() # this command has no arguments
+YET_ANOTHER_COMMAND( these
+  arguments are spread         # another comment
+  over several lines )
+
+---tokens---
+'CMAKE_MINIMUM_REQUIRED' Name.Builtin
+'('           Punctuation
+'VERSION'     Literal.String
+' '           Text
+'2.6'         Literal.String
+' '           Text
+'FATAL_ERROR' Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'SET'         Name.Builtin
+'('           Punctuation
+' '           Text
+'SOURCES'     Literal.String
+' '           Text
+'back.c'      Literal.String
+' '           Text
+'io.c'        Literal.String
+' '           Text
+'main.c'      Literal.String
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'SET'         Name.Builtin
+'('           Punctuation
+' '           Text
+'PATH'        Literal.String
+' '           Text
+'$ENV{'       Operator
+'PATH'        Name.Variable
+'}'           Operator
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'${'          Operator
+'SOURCES'     Name.Variable
+'}'           Operator
+'   '         Text
+')'           Punctuation
+'      '      Text
+'# three arguments, prints "back.cio.cmain.c"\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'"${SOURCES}"' Literal.String.Double
+' '           Text
+')'           Punctuation
+'      '      Text
+'# one argument,    prints "back.c;io.c;main.c"\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'""'          Literal.String.Double
+' '           Text
+')'           Punctuation
+'                ' Text
+'# one argument,    prints "" an empty line\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'"${EMPTY_STRING}"' Literal.String.Double
+' '           Text
+')'           Punctuation
+' '           Text
+'# one argument,    prints "" an empty line\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'${'          Operator
+'EMPTY_STRING' Name.Variable
+'}'           Operator
+' '           Text
+')'           Punctuation
+'   '         Text
+'# zero arguments,  causes CMake Error\n' Comment
+
+'                             ' Text
+'# "MESSAGE called with incorrect number of arguments"\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'\\\\\\"\\'   Literal.String
+' '           Text
+'\\(\\)\\#\\$\\^' Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'# this message contains literal characters\n' Comment
+
+'\n'          Text
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'"This is practice."' Literal.String.Double
+' '           Text
+')'           Punctuation
+'  '          Text
+'# prints "This is practice."\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'"This;is;practice."' Literal.String.Double
+' '           Text
+')'           Punctuation
+'  '          Text
+'# prints "This;is;practice."\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'"Hi. ) MESSAGE( x )"' Literal.String.Double
+' '           Text
+')'           Punctuation
+' '           Text
+'# prints "Hi. ) MESSAGE( x )"\n' Comment
+
+'\n'          Text
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'"Welc"'      Literal.String.Double
+'ome'         Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'# rule 1\n'  Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'Welc'        Literal.String
+'"ome"'       Literal.String.Double
+' '           Text
+')'           Punctuation
+' '           Text
+'# rule 3\n'  Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'Welc'        Literal.String
+'"ome)"'      Literal.String.Double
+' '           Text
+')'           Punctuation
+' '           Text
+'# rule 2\n'  Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'""'          Literal.String.Double
+'Thanks'      Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'# rule 1\n'  Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'Thanks'      Literal.String
+'""'          Literal.String.Double
+' '           Text
+')'           Punctuation
+' '           Text
+'# rule 3\n'  Comment
+
+'\n'          Text
+
+'SET'         Name.Builtin
+'('           Punctuation
+' '           Text
+'x'           Literal.String
+' '           Text
+'y'           Literal.String
+' '           Text
+'A'           Literal.String
+' '           Text
+'B'           Literal.String
+' '           Text
+'C'           Literal.String
+' '           Text
+')'           Punctuation
+'              ' Text
+'# stores "y;A;B;C" in x (without quote)\n' Comment
+
+'SET'         Name.Builtin
+'('           Punctuation
+' '           Text
+'${'          Operator
+'x'           Name.Variable
+'}'           Operator
+' '           Text
+')'           Punctuation
+'                   ' Text
+'# => SET( y;A;B;C ) => SET( y A B C)\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'${'          Operator
+'y'           Name.Variable
+'}'           Operator
+' '           Text
+')'           Punctuation
+'               ' Text
+'# prints "ABC" to stdout (without quotes)\n' Comment
+
+'SET'         Name.Builtin
+'('           Punctuation
+' '           Text
+'y'           Literal.String
+' '           Text
+'x'           Literal.String
+' '           Text
+')'           Punctuation
+'                    ' Text
+'# stores "x" in y (without quotes)\n' Comment
+
+'SET'         Name.Builtin
+'('           Punctuation
+' '           Text
+'${'          Operator
+'y'           Name.Variable
+'}'           Operator
+' '           Text
+'y'           Literal.String
+' '           Text
+'='           Literal.String
+' '           Text
+'x'           Literal.String
+' '           Text
+')'           Punctuation
+'             ' Text
+'# => SET( x y )\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'"\\${x} = \'${x}\'"' Literal.String.Double
+' '           Text
+')'           Punctuation
+'   '         Text
+'# prints "${x} = \'y;=;x\'" to stdout (without quotes)\n' Comment
+
+'SET'         Name.Builtin
+'('           Punctuation
+' '           Text
+'y'           Literal.String
+' '           Text
+'${'          Operator
+'x'           Name.Variable
+'}'           Operator
+' '           Text
+')'           Punctuation
+'                 ' Text
+'# => SET( y y = x ) => stores "y;=;x" in y (without quotes)\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'${'          Operator
+'y'           Name.Variable
+'}'           Operator
+' '           Text
+')'           Punctuation
+'               ' Text
+'# prints "y=x" to stdout (without quotes)\n' Comment
+
+'\n'          Text
+
+'SET'         Name.Builtin
+'('           Punctuation
+' '           Text
+'x'           Literal.String
+' '           Text
+'a'           Literal.String
+' '           Text
+'b'           Literal.String
+' '           Text
+'c'           Literal.String
+'   '         Text
+')'           Punctuation
+' '           Text
+'# stores "a;b;c" in x      (without quotes)\n' Comment
+
+'SET'         Name.Builtin
+'('           Punctuation
+' '           Text
+'y'           Literal.String
+' '           Text
+'"a b c"'     Literal.String.Double
+' '           Text
+')'           Punctuation
+' '           Text
+'# stores "a b c" in y      (without quotes)\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'a'           Literal.String
+' '           Text
+'b'           Literal.String
+' '           Text
+'c'           Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'# prints "abc"   to stdout (without quotes)\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'${'          Operator
+'x'           Name.Variable
+'}'           Operator
+' '           Text
+')'           Punctuation
+'  '          Text
+'# prints "abc"   to stdout (without quotes)\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+'"${x}"'      Literal.String.Double
+')'           Punctuation
+'  '          Text
+'# prints "a;b;c" to stdout (without quotes)\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+' '           Text
+'${'          Operator
+'y'           Name.Variable
+'}'           Operator
+' '           Text
+')'           Punctuation
+'  '          Text
+'# prints "a b c" to stdout (without quotes)\n' Comment
+
+'MESSAGE'     Name.Builtin
+'('           Punctuation
+'"${y}"'      Literal.String.Double
+')'           Punctuation
+'  '          Text
+'# prints "a b c" to stdout (without quotes)\n' Comment
+
+'\n'          Text
+
+'# This is a comment.\n' Comment
+
+'COMMAND'     Name.Builtin
+'('           Punctuation
+' '           Text
+'arguments'   Literal.String
+' '           Text
+'go'          Literal.String
+' '           Text
+'here'        Literal.String
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'ANOTHER_COMMAND' Name.Builtin
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'# this command has no arguments\n' Comment
+
+'YET_ANOTHER_COMMAND' Name.Builtin
+'('           Punctuation
+' '           Text
+'these'       Literal.String
+'\n'          Text
+
+'  '          Text
+'arguments'   Literal.String
+' '           Text
+'are'         Literal.String
+' '           Text
+'spread'      Literal.String
+'         '   Text
+'# another comment\n' Comment
+
+'  '          Text
+'over'        Literal.String
+' '           Text
+'several'     Literal.String
+' '           Text
+'lines'       Literal.String
+' '           Text
+')'           Punctuation
+'\n'          Text

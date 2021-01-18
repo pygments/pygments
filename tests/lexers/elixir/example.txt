@@ -1,0 +1,2105 @@
+---input---
+# Numbers
+0b0101011
+1234 ; 0x1A ; 0xbeef ; 0763 ; 0o123
+3.14 ; 5.0e21 ; 0.5e-12
+100_000_000
+
+# these are not valid numbers
+0b012 ; 0xboar ; 0o888
+0B01 ; 0XAF ; 0O123
+
+# Characters
+?a ; ?1 ; ?\n ; ?\s ; ?\c ; ? ; ?,
+?\x{12} ; ?\x{abcd}
+?\x34 ; ?\xF
+
+# these show that only the first digit is part of the character
+?\123 ; ?\12 ; ?\7
+
+# Atoms
+:this ; :that
+:'complex atom'
+:"with' \"\" 'quotes"
+:" multi
+ line ' \s \123 \xff
+atom"
+:... ; :<<>> ; :%{} ; :% ; :{}
+:++; :--; :*; :~~~; :::
+:% ; :. ; :<-
+
+# Strings
+"Hello world"
+"Interspersed \x{ff} codes \7 \8 \65 \016 and \t\s\\s\z\+ \\ escapes"
+"Quotes ' inside \" \123 the \"\" \xF \\xF string \\\" end"
+"Multiline
+   string"
+
+# Char lists
+'this is a list'
+'escapes \' \t \\\''
+'Multiline
+    char
+  list
+'
+
+# Binaries
+<<1, 2, 3>>
+<<"hello"::binary, c :: utf8, x::[4, unit(2)]>> = "hello™1"
+
+# Sigils
+~r/this + i\s "a" regex/
+~R'this + i\s "a" regex too'
+~w(hello #{ ["has" <> "123", '\c\d', "\123 interpol" | []] } world)s
+~W(hello #{no "123" \c\d \123 interpol} world)s
+
+~s{Escapes terminators \{ and \}, but no {balancing} # outside of sigil here }
+
+~S"No escapes \s\t\n and no #{interpolation}"
+
+:"atoms work #{"to" <> "o"}"
+
+# Operators
+x = 1 + 2.0 * 3
+y = true and false; z = false or true
+... = 144
+... == !x && y || z
+"hello" |> String.upcase |> String.downcase()
+{^z, a} = {true, x}
+
+# Free operators (added in 1.0.0)
+p  ~>> f  = bind(p, f)
+p1 ~>  p2 = pair_right(p1, p2)
+p1 <~  p2 = pair_left(p1, p2)
+p1 <~> p2 = pair_both(p1, p2)
+p  |~> f  = map(p, f)
+p1 <|> p2 = either(p1, p2)
+
+# Lists, tuples, maps, keywords
+[1, :a, 'hello'] ++ [2, 3]
+[:head | [?t, ?a, ?i, ?l]]
+
+{:one, 2.0, "three"}
+
+[...: "this", <<>>: "is", %{}: "a keyword", %: "list", {}: "too"]
+["this is an atom too": 1, "so is this": 2]
+[option: "value", key: :word]
+[++: "operator", ~~~: :&&&]
+
+map = %{shortcut: "syntax"}
+%{map | "update" => "me"}
+%{ 12 => 13, :weird => ['thing'] }
+
+# Comprehensions
+for x <- 1..10, x < 5, do: {x, x}
+pixels = "12345678"
+for << <<r::4, g::4, b::4, a::size(4)>> <- pixels >> do
+  [r, {g, %{"b" => a}}]
+end
+
+# String interpolation
+"String #{inspect "interpolation"} is quite #{1+4+7} difficult"
+
+# Identifiers
+abc_123 = 1
+_018OP = 2
+A__0 == 3
+
+# Modules
+defmodule Long.Module.Name do
+  @moduledoc "Simple module docstring"
+
+  @doc """
+  Multiline docstring
+  "with quotes"
+  and #{ inspect %{"interpolation" => "in" <> "action"} }
+  now with #{ {:a, 'tuple'} }
+  and #{ inspect {
+      :tuple,
+      %{ with: "nested #{ inspect %{ :interpolation => %{} } }" }
+  } }
+  """
+  defstruct [:a, :name, :height]
+
+  @doc ~S'''
+  No #{interpolation} of any kind.
+  \000 \x{ff}
+
+  \n #{\x{ff}}
+  '''
+  def func(a, b \\ []), do: :ok
+
+  @doc false
+  def __before_compile__(_) do
+    :ok
+  end
+end
+
+# Structs
+defmodule Second.Module do
+  s = %Long.Module.Name{name: "Silly"}
+  %Long.Module.Name{s | height: {192, :cm}}
+  ".. #{%Long.Module.Name{s | height: {192, :cm}}} .."
+end
+
+# Types, pseudo-vars, attributes
+defmodule M do
+  @custom_attr :some_constant
+
+  @before_compile Long.Module.Name
+
+  @typedoc "This is a type"
+  @type typ :: integer
+
+  @typedoc """
+  Another type
+  """
+  @opaque typtyp :: 1..10
+
+  @spec func(typ, typtyp) :: :ok | :fail
+  def func(a, b) do
+    a || b || :ok || :fail
+    Path.expand("..", __DIR__)
+    IO.inspect __ENV__
+    __NOTAPSEUDOVAR__ = 11
+    __MODULE__.func(b, a)
+  end
+
+  defmacro m() do
+    __CALLER__
+  end
+end
+
+# Functions
+anon = fn x, y, z ->
+  fn(a, b, c) ->
+    &(x + y - z * a / &1 + b + div(&2, c))
+  end
+end
+
+&Set.put(&1, &2) ; & Set.put(&1, &2) ; &( Set.put(&1, &1) )
+
+# Function calls
+anon.(1, 2, 3); self; hd([1,2,3])
+Kernel.spawn(fn -> :ok end)
+IO.ANSI.black
+
+# Control flow
+if :this do
+  :that
+else
+  :otherwise
+end
+
+pid = self
+receive do
+  {:EXIT, _} -> :done
+  {^pid, :_} -> nil
+  after 100 -> :no_luck
+end
+
+case __ENV__.line do
+  x when is_integer(x) -> x
+  x when x in 1..12 -> -x
+end
+
+cond do
+  false -> "too bad"
+  4 > 5 -> "oops"
+  true -> nil
+end
+
+# Lexical scope modifiers
+import Kernel, except: [spawn: 1, +: 2, /: 2, Unless: 2]
+alias Long.Module.Name, as: N0men123_and4
+use Bitwise
+
+4 &&& 5
+2 <<< 3
+
+# Protocols
+defprotocol Useless do
+  def func1(this)
+  def func2(that)
+end
+
+defimpl Useless, for: Atom do
+end
+
+# Exceptions
+defmodule NotAnError do
+  defexception [:message]
+end
+
+raise NotAnError, message: "This is not an error"
+
+---tokens---
+'# Numbers'   Comment.Single
+'\n'          Text
+
+'0b0101011'   Literal.Number.Bin
+'\n'          Text
+
+'1234'        Literal.Number.Integer
+' '           Text
+';'           Punctuation
+' '           Text
+'0x1A'        Literal.Number.Hex
+' '           Text
+';'           Punctuation
+' '           Text
+'0xbeef'      Literal.Number.Hex
+' '           Text
+';'           Punctuation
+' '           Text
+'0763'        Literal.Number.Integer
+' '           Text
+';'           Punctuation
+' '           Text
+'0o123'       Literal.Number.Oct
+'\n'          Text
+
+'3.14'        Literal.Number.Float
+' '           Text
+';'           Punctuation
+' '           Text
+'5.0e21'      Literal.Number.Float
+' '           Text
+';'           Punctuation
+' '           Text
+'0.5e-12'     Literal.Number.Float
+'\n'          Text
+
+'100_000_000' Literal.Number.Integer
+'\n\n'        Text
+
+'# these are not valid numbers' Comment.Single
+'\n'          Text
+
+'0b01'        Literal.Number.Bin
+'2'           Literal.Number.Integer
+' '           Text
+';'           Punctuation
+' '           Text
+'0xb'         Literal.Number.Hex
+'oar'         Name
+' '           Text
+';'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+'o888'        Name
+'\n'          Text
+
+'0'           Literal.Number.Integer
+'B01'         Name.Class
+' '           Text
+';'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+'XAF'         Name.Class
+' '           Text
+';'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+'O123'        Name.Class
+'\n\n'        Text
+
+'# Characters' Comment.Single
+'\n'          Text
+
+'?a'          Literal.String.Char
+' '           Text
+';'           Punctuation
+' '           Text
+'?1'          Literal.String.Char
+' '           Text
+';'           Punctuation
+' '           Text
+'?'           Literal.String.Char
+'\\n'         Literal.String.Escape
+' '           Text
+';'           Punctuation
+' '           Text
+'?'           Literal.String.Char
+'\\s'         Literal.String.Escape
+' '           Text
+';'           Punctuation
+' '           Text
+'?\\c'        Literal.String.Char
+' '           Text
+';'           Punctuation
+' '           Text
+'? '          Literal.String.Char
+';'           Punctuation
+' '           Text
+'?,'          Literal.String.Char
+'\n'          Text
+
+'?'           Literal.String.Char
+'\\x{'        Literal.String.Escape
+'12'          Literal.Number.Hex
+'}'           Literal.String.Escape
+' '           Text
+';'           Punctuation
+' '           Text
+'?'           Literal.String.Char
+'\\x{'        Literal.String.Escape
+'abcd'        Literal.Number.Hex
+'}'           Literal.String.Escape
+'\n'          Text
+
+'?'           Literal.String.Char
+'\\x34'       Literal.String.Escape
+' '           Text
+';'           Punctuation
+' '           Text
+'?'           Literal.String.Char
+'\\xF'        Literal.String.Escape
+'\n\n'        Text
+
+'# these show that only the first digit is part of the character' Comment.Single
+'\n'          Text
+
+'?\\1'        Literal.String.Char
+'23'          Literal.Number.Integer
+' '           Text
+';'           Punctuation
+' '           Text
+'?\\1'        Literal.String.Char
+'2'           Literal.Number.Integer
+' '           Text
+';'           Punctuation
+' '           Text
+'?\\7'        Literal.String.Char
+'\n\n'        Text
+
+'# Atoms'     Comment.Single
+'\n'          Text
+
+':this'       Literal.String.Symbol
+' '           Text
+';'           Punctuation
+' '           Text
+':that'       Literal.String.Symbol
+'\n'          Text
+
+":'"          Literal.String.Symbol
+'complex atom' Literal.String.Symbol
+"'"           Literal.String.Symbol
+'\n'          Text
+
+':"'          Literal.String.Symbol
+"with' "      Literal.String.Symbol
+'\\"'         Literal.String.Symbol
+'\\"'         Literal.String.Symbol
+" 'quotes"    Literal.String.Symbol
+'"'           Literal.String.Symbol
+'\n'          Text
+
+':"'          Literal.String.Symbol
+" multi\n line ' " Literal.String.Symbol
+'\\s'         Literal.String.Escape
+' '           Literal.String.Symbol
+'\\1'         Literal.String.Symbol
+'23 '         Literal.String.Symbol
+'\\xff'       Literal.String.Escape
+'\natom'      Literal.String.Symbol
+'"'           Literal.String.Symbol
+'\n'          Text
+
+':...'        Literal.String.Symbol
+' '           Text
+';'           Punctuation
+' '           Text
+':<<>>'       Literal.String.Symbol
+' '           Text
+';'           Punctuation
+' '           Text
+':%{}'        Literal.String.Symbol
+' '           Text
+';'           Punctuation
+' '           Text
+':%'          Literal.String.Symbol
+' '           Text
+';'           Punctuation
+' '           Text
+':{}'         Literal.String.Symbol
+'\n'          Text
+
+':++'         Literal.String.Symbol
+';'           Punctuation
+' '           Text
+':--'         Literal.String.Symbol
+';'           Punctuation
+' '           Text
+':*'          Literal.String.Symbol
+';'           Punctuation
+' '           Text
+':~~~'        Literal.String.Symbol
+';'           Punctuation
+' '           Text
+':::'         Literal.String.Symbol
+'\n'          Text
+
+':%'          Literal.String.Symbol
+' '           Text
+';'           Punctuation
+' '           Text
+':.'          Literal.String.Symbol
+' '           Text
+';'           Punctuation
+' '           Text
+':<-'         Literal.String.Symbol
+'\n\n'        Text
+
+'# Strings'   Comment.Single
+'\n'          Text
+
+'"'           Literal.String.Double
+'Hello world' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'"'           Literal.String.Double
+'Interspersed ' Literal.String.Double
+'\\x{'        Literal.String.Escape
+'ff'          Literal.Number.Hex
+'}'           Literal.String.Escape
+' codes '     Literal.String.Double
+'\\7'         Literal.String.Double
+' '           Literal.String.Double
+'\\8'         Literal.String.Double
+' '           Literal.String.Double
+'\\6'         Literal.String.Double
+'5 '          Literal.String.Double
+'\\0'         Literal.String.Double
+'16 and '     Literal.String.Double
+'\\t'         Literal.String.Escape
+'\\s'         Literal.String.Escape
+'\\\\'        Literal.String.Double
+'s'           Literal.String.Double
+'\\z'         Literal.String.Double
+'\\+'         Literal.String.Double
+' '           Literal.String.Double
+'\\\\'        Literal.String.Double
+' escapes'    Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'"'           Literal.String.Double
+"Quotes ' inside " Literal.String.Double
+'\\"'         Literal.String.Double
+' '           Literal.String.Double
+'\\1'         Literal.String.Double
+'23 the '     Literal.String.Double
+'\\"'         Literal.String.Double
+'\\"'         Literal.String.Double
+' '           Literal.String.Double
+'\\xF'        Literal.String.Escape
+' '           Literal.String.Double
+'\\\\'        Literal.String.Double
+'xF string '  Literal.String.Double
+'\\\\'        Literal.String.Double
+'\\"'         Literal.String.Double
+' end'        Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'"'           Literal.String.Double
+'Multiline\n   string' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'# Char lists' Comment.Single
+'\n'          Text
+
+"'"           Literal.String.Single
+'this is a list' Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text
+
+"'"           Literal.String.Single
+'escapes '    Literal.String.Single
+"\\'"         Literal.String.Single
+' '           Literal.String.Single
+'\\t'         Literal.String.Escape
+' '           Literal.String.Single
+'\\\\'        Literal.String.Single
+"\\'"         Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text
+
+"'"           Literal.String.Single
+'Multiline\n    char\n  list\n' Literal.String.Single
+
+"'"           Literal.String.Single
+'\n\n'        Text
+
+'# Binaries'  Comment.Single
+'\n'          Text
+
+'<<'          Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+'>>'          Punctuation
+'\n'          Text
+
+'<<'          Punctuation
+'"'           Literal.String.Double
+'hello'       Literal.String.Double
+'"'           Literal.String.Double
+'::'          Operator
+'binary'      Name
+','           Punctuation
+' '           Text
+'c'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'utf8'        Name
+','           Punctuation
+' '           Text
+'x'           Name
+'::'          Operator
+'['           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'unit'        Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+']'           Punctuation
+'>>'          Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'hello™1'     Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'# Sigils'    Comment.Single
+'\n'          Text
+
+'~r/'         Literal.String.Other
+'this + i'    Literal.String.Other
+'\\s'         Literal.String.Escape
+' "a" regex'  Literal.String.Other
+'/'           Literal.String.Other
+'\n'          Text
+
+"~R'"         Literal.String.Other
+'this + i'    Literal.String.Other
+'\\s'         Literal.String.Other
+' "a" regex too' Literal.String.Other
+"'"           Literal.String.Other
+'\n'          Text
+
+'~w('         Literal.String.Other
+'hello '      Literal.String.Other
+'#{'          Literal.String.Interpol
+' '           Text
+'['           Punctuation
+'"'           Literal.String.Double
+'has'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'<>'          Operator
+' '           Text
+'"'           Literal.String.Double
+'123'         Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'\\c'         Literal.String.Single
+'\\d'         Literal.String.Escape
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'\\1'         Literal.String.Double
+'23 interpol' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'|'           Operator
+' '           Text
+'['           Punctuation
+']'           Punctuation
+']'           Punctuation
+' '           Text
+'}'           Literal.String.Interpol
+' world'      Literal.String.Other
+')s'          Literal.String.Other
+'\n'          Text
+
+'~W('         Literal.String.Other
+'hello #{no "123" ' Literal.String.Other
+'\\c'         Literal.String.Other
+'\\d'         Literal.String.Other
+' '           Literal.String.Other
+'\\1'         Literal.String.Other
+'23 interpol} world' Literal.String.Other
+')s'          Literal.String.Other
+'\n\n'        Text
+
+'~s{'         Literal.String.Other
+'Escapes terminators ' Literal.String.Other
+'\\{'         Literal.String.Other
+' and '       Literal.String.Other
+'\\}'         Literal.String.Other
+', but no {balancing' Literal.String.Other
+'}'           Literal.String.Other
+' '           Text
+'# outside of sigil here }' Comment.Single
+'\n\n'        Text
+
+'~S"'         Literal.String.Other
+'No escapes ' Literal.String.Other
+'\\s'         Literal.String.Other
+'\\t'         Literal.String.Other
+'\\n'         Literal.String.Other
+' and no #{interpolation}' Literal.String.Other
+'"'           Literal.String.Other
+'\n\n'        Text
+
+':"'          Literal.String.Symbol
+'atoms work ' Literal.String.Symbol
+'#{'          Literal.String.Interpol
+'"'           Literal.String.Double
+'to'          Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'<>'          Operator
+' '           Text
+'"'           Literal.String.Double
+'o'           Literal.String.Double
+'"'           Literal.String.Double
+'}'           Literal.String.Interpol
+'"'           Literal.String.Symbol
+'\n\n'        Text
+
+'# Operators' Comment.Single
+'\n'          Text
+
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'2.0'         Literal.Number.Float
+' '           Text
+'*'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+'\n'          Text
+
+'y'           Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Constant
+' '           Text
+'and'         Operator.Word
+' '           Text
+'false'       Name.Constant
+';'           Punctuation
+' '           Text
+'z'           Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Constant
+' '           Text
+'or'          Operator.Word
+' '           Text
+'true'        Name.Constant
+'\n'          Text
+
+'...'         Name
+' '           Text
+'='           Operator
+' '           Text
+'144'         Literal.Number.Integer
+'\n'          Text
+
+'...'         Name
+' '           Text
+'=='          Operator
+' '           Text
+'!'           Operator
+'x'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'y'           Name
+' '           Text
+'||'          Operator
+' '           Text
+'z'           Name
+'\n'          Text
+
+'"'           Literal.String.Double
+'hello'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'|>'          Operator
+' '           Text
+'String'      Name.Class
+'.'           Operator
+'upcase'      Name
+' '           Text
+'|>'          Operator
+' '           Text
+'String'      Name.Class
+'.'           Operator
+'downcase'    Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'^'           Operator
+'z'           Name
+','           Punctuation
+' '           Text
+'a'           Name
+'}'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'true'        Name.Constant
+','           Punctuation
+' '           Text
+'x'           Name
+'}'           Punctuation
+'\n\n'        Text
+
+'# Free operators (added in 1.0.0)' Comment.Single
+'\n'          Text
+
+'p'           Name
+'  '          Text
+'~>>'         Operator
+' '           Text
+'f'           Name
+'  '          Text
+'='           Operator
+' '           Text
+'bind'        Name
+'('           Punctuation
+'p'           Name
+','           Punctuation
+' '           Text
+'f'           Name
+')'           Punctuation
+'\n'          Text
+
+'p1'          Name
+' '           Text
+'~>'          Operator
+'  '          Text
+'p2'          Name
+' '           Text
+'='           Operator
+' '           Text
+'pair_right'  Name
+'('           Punctuation
+'p1'          Name
+','           Punctuation
+' '           Text
+'p2'          Name
+')'           Punctuation
+'\n'          Text
+
+'p1'          Name
+' '           Text
+'<~'          Operator
+'  '          Text
+'p2'          Name
+' '           Text
+'='           Operator
+' '           Text
+'pair_left'   Name
+'('           Punctuation
+'p1'          Name
+','           Punctuation
+' '           Text
+'p2'          Name
+')'           Punctuation
+'\n'          Text
+
+'p1'          Name
+' '           Text
+'<~>'         Operator
+' '           Text
+'p2'          Name
+' '           Text
+'='           Operator
+' '           Text
+'pair_both'   Name
+'('           Punctuation
+'p1'          Name
+','           Punctuation
+' '           Text
+'p2'          Name
+')'           Punctuation
+'\n'          Text
+
+'p'           Name
+'  '          Text
+'|~>'         Operator
+' '           Text
+'f'           Name
+'  '          Text
+'='           Operator
+' '           Text
+'map'         Name
+'('           Punctuation
+'p'           Name
+','           Punctuation
+' '           Text
+'f'           Name
+')'           Punctuation
+'\n'          Text
+
+'p1'          Name
+' '           Text
+'<|>'         Operator
+' '           Text
+'p2'          Name
+' '           Text
+'='           Operator
+' '           Text
+'either'      Name
+'('           Punctuation
+'p1'          Name
+','           Punctuation
+' '           Text
+'p2'          Name
+')'           Punctuation
+'\n\n'        Text
+
+'# Lists, tuples, maps, keywords' Comment.Single
+'\n'          Text
+
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+':a'          Literal.String.Symbol
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'hello'       Literal.String.Single
+"'"           Literal.String.Single
+']'           Punctuation
+' '           Text
+'++'          Operator
+' '           Text
+'['           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text
+
+'['           Punctuation
+':head'       Literal.String.Symbol
+' '           Text
+'|'           Operator
+' '           Text
+'['           Punctuation
+'?t'          Literal.String.Char
+','           Punctuation
+' '           Text
+'?a'          Literal.String.Char
+','           Punctuation
+' '           Text
+'?i'          Literal.String.Char
+','           Punctuation
+' '           Text
+'?l'          Literal.String.Char
+']'           Punctuation
+']'           Punctuation
+'\n\n'        Text
+
+'{'           Punctuation
+':one'        Literal.String.Symbol
+','           Punctuation
+' '           Text
+'2.0'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'three'       Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+'\n\n'        Text
+
+'['           Punctuation
+'...'         Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'this'        Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'<<>>'        Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'is'          Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'%{}'         Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'a keyword'   Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'%'           Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'list'        Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{}'          Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'too'         Literal.String.Double
+'"'           Literal.String.Double
+']'           Punctuation
+'\n'          Text
+
+'['           Punctuation
+'"'           Literal.String.Double
+'this is an atom too' Literal.String.Double
+'"'           Literal.String.Double
+':'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'so is this'  Literal.String.Double
+'"'           Literal.String.Double
+':'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text
+
+'['           Punctuation
+'option'      Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'key'         Literal.String.Symbol
+':'           Punctuation
+' '           Text
+':word'       Literal.String.Symbol
+']'           Punctuation
+'\n'          Text
+
+'['           Punctuation
+'++'          Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'operator'    Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'~~~'         Literal.String.Symbol
+':'           Punctuation
+' '           Text
+':&&&'        Literal.String.Symbol
+']'           Punctuation
+'\n\n'        Text
+
+'map'         Name
+' '           Text
+'='           Operator
+' '           Text
+'%{'          Punctuation
+'shortcut'    Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'syntax'      Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+'\n'          Text
+
+'%{'          Punctuation
+'map'         Name
+' '           Text
+'|'           Operator
+' '           Text
+'"'           Literal.String.Double
+'update'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'"'           Literal.String.Double
+'me'          Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+'\n'          Text
+
+'%{'          Punctuation
+' '           Text
+'12'          Literal.Number.Integer
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'13'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+':weird'      Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'['           Punctuation
+"'"           Literal.String.Single
+'thing'       Literal.String.Single
+"'"           Literal.String.Single
+']'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'# Comprehensions' Comment.Single
+'\n'          Text
+
+'for'         Keyword
+' '           Text
+'x'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'.'           Operator
+'.'           Operator
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'x'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'do'          Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'{'           Punctuation
+'x'           Name
+','           Punctuation
+' '           Text
+'x'           Name
+'}'           Punctuation
+'\n'          Text
+
+'pixels'      Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'12345678'    Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'for'         Keyword
+' '           Text
+'<<'          Punctuation
+' '           Text
+'<<'          Punctuation
+'r'           Name
+'::'          Operator
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'g'           Name
+'::'          Operator
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'b'           Name
+'::'          Operator
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'a'           Name
+'::'          Operator
+'size'        Name
+'('           Punctuation
+'4'           Literal.Number.Integer
+')'           Punctuation
+'>>'          Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'pixels'      Name
+' '           Text
+'>>'          Punctuation
+' '           Text
+'do'          Keyword
+'\n  '        Text
+'['           Punctuation
+'r'           Name
+','           Punctuation
+' '           Text
+'{'           Punctuation
+'g'           Name
+','           Punctuation
+' '           Text
+'%{'          Punctuation
+'"'           Literal.String.Double
+'b'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'a'           Name
+'}'           Punctuation
+'}'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'# String interpolation' Comment.Single
+'\n'          Text
+
+'"'           Literal.String.Double
+'String '     Literal.String.Double
+'#{'          Literal.String.Interpol
+'inspect'     Name
+' '           Text
+'"'           Literal.String.Double
+'interpolation' Literal.String.Double
+'"'           Literal.String.Double
+'}'           Literal.String.Interpol
+' is quite '  Literal.String.Double
+'#{'          Literal.String.Interpol
+'1'           Literal.Number.Integer
+'+'           Operator
+'4'           Literal.Number.Integer
+'+'           Operator
+'7'           Literal.Number.Integer
+'}'           Literal.String.Interpol
+' difficult'  Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'# Identifiers' Comment.Single
+'\n'          Text
+
+'abc_123'     Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'_018OP'      Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'A__0'        Name.Class
+' '           Text
+'=='          Operator
+' '           Text
+'3'           Literal.Number.Integer
+'\n\n'        Text
+
+'# Modules'   Comment.Single
+'\n'          Text
+
+'defmodule'   Keyword.Declaration
+' '           Text
+'Long.Module.Name' Name.Class
+' '           Text
+'do'          Keyword
+'\n  '        Text
+'@moduledoc'  Name.Attribute
+' '           Text
+'"'           Literal.String.Double
+'Simple module docstring' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text
+'@doc'        Name.Attribute
+' '           Text
+'"""\n  '     Literal.String.Heredoc
+'Multiline docstring' Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+'  "with quotes"' Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+'  and '      Literal.String.Heredoc
+'#{'          Literal.String.Interpol
+' '           Text
+'inspect'     Name
+' '           Text
+'%{'          Punctuation
+'"'           Literal.String.Double
+'interpolation' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'"'           Literal.String.Double
+'in'          Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'<>'          Operator
+' '           Text
+'"'           Literal.String.Double
+'action'      Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+' '           Text
+'}'           Literal.String.Interpol
+'\n'          Literal.String.Heredoc
+
+'  now with ' Literal.String.Heredoc
+'#{'          Literal.String.Interpol
+' '           Text
+'{'           Punctuation
+':a'          Literal.String.Symbol
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'tuple'       Literal.String.Single
+"'"           Literal.String.Single
+'}'           Punctuation
+' '           Text
+'}'           Literal.String.Interpol
+'\n'          Literal.String.Heredoc
+
+'  and '      Literal.String.Heredoc
+'#{'          Literal.String.Interpol
+' '           Text
+'inspect'     Name
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+':tuple'      Literal.String.Symbol
+','           Punctuation
+'\n      '    Text
+'%{'          Punctuation
+' '           Text
+'with'        Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'nested '     Literal.String.Double
+'#{'          Literal.String.Interpol
+' '           Text
+'inspect'     Name
+' '           Text
+'%{'          Punctuation
+' '           Text
+':interpolation' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'%{'          Punctuation
+'}'           Punctuation
+' '           Text
+'}'           Punctuation
+' '           Text
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+' '           Text
+'}'           Literal.String.Interpol
+'\n'          Literal.String.Heredoc
+
+'  """'       Literal.String.Heredoc
+'\n  '        Text
+'defstruct'   Keyword.Declaration
+' '           Text
+'['           Punctuation
+':a'          Literal.String.Symbol
+','           Punctuation
+' '           Text
+':name'       Literal.String.Symbol
+','           Punctuation
+' '           Text
+':height'     Literal.String.Symbol
+']'           Punctuation
+'\n\n  '      Text
+'@doc'        Name.Attribute
+' '           Text
+'~S'          Literal.String.Other
+"'''"         Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+'  No #{interpolation} of any kind.' Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+'  '          Literal.String.Heredoc
+'\\0'         Literal.String.Heredoc
+'00 '         Literal.String.Heredoc
+'\\x'         Literal.String.Heredoc
+'{ff}'        Literal.String.Heredoc
+'\n\n'        Literal.String.Heredoc
+
+'  '          Literal.String.Heredoc
+'\\n'         Literal.String.Heredoc
+' #{'         Literal.String.Heredoc
+'\\x'         Literal.String.Heredoc
+'{ff}}'       Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+"  '''"       Literal.String.Heredoc
+'\n  '        Text
+'def'         Keyword.Declaration
+' '           Text
+'func'        Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'b'           Name
+' '           Text
+'\\\\'        Punctuation
+' '           Text
+'['           Punctuation
+']'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'do'          Literal.String.Symbol
+':'           Punctuation
+' '           Text
+':ok'         Literal.String.Symbol
+'\n\n  '      Text
+'@doc'        Name.Attribute
+' '           Text
+'false'       Name.Constant
+'\n  '        Text
+'def'         Keyword.Declaration
+' '           Text
+'__before_compile__' Name
+'('           Punctuation
+'_'           Name.Builtin.Pseudo
+')'           Punctuation
+' '           Text
+'do'          Keyword
+'\n    '      Text
+':ok'         Literal.String.Symbol
+'\n  '        Text
+'end'         Keyword
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'# Structs'   Comment.Single
+'\n'          Text
+
+'defmodule'   Keyword.Declaration
+' '           Text
+'Second.Module' Name.Class
+' '           Text
+'do'          Keyword
+'\n  '        Text
+'s'           Name
+' '           Text
+'='           Operator
+' '           Text
+'%'           Punctuation
+'Long.Module.Name' Name.Class
+'{'           Punctuation
+'name'        Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'Silly'       Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+'\n  '        Text
+'%'           Punctuation
+'Long.Module.Name' Name.Class
+'{'           Punctuation
+'s'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'height'      Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'{'           Punctuation
+'192'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+':cm'         Literal.String.Symbol
+'}'           Punctuation
+'}'           Punctuation
+'\n  '        Text
+'"'           Literal.String.Double
+'.. '         Literal.String.Double
+'#{'          Literal.String.Interpol
+'%'           Punctuation
+'Long.Module.Name' Name.Class
+'{'           Punctuation
+'s'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'height'      Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'{'           Punctuation
+'192'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+':cm'         Literal.String.Symbol
+'}'           Punctuation
+'}'           Punctuation
+'}'           Literal.String.Interpol
+' ..'         Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'# Types, pseudo-vars, attributes' Comment.Single
+'\n'          Text
+
+'defmodule'   Keyword.Declaration
+' '           Text
+'M'           Name.Class
+' '           Text
+'do'          Keyword
+'\n  '        Text
+'@custom_attr' Name.Attribute
+' '           Text
+':some_constant' Literal.String.Symbol
+'\n\n  '      Text
+'@before_compile' Name.Attribute
+' '           Text
+'Long.Module.Name' Name.Class
+'\n\n  '      Text
+'@typedoc'    Name.Attribute
+' '           Text
+'"'           Literal.String.Double
+'This is a type' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text
+'@type'       Name.Attribute
+' '           Text
+'typ'         Name
+' '           Text
+'::'          Operator
+' '           Text
+'integer'     Name
+'\n\n  '      Text
+'@typedoc'    Name.Attribute
+' '           Text
+'"""\n  '     Literal.String.Heredoc
+'Another type' Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+'  """'       Literal.String.Heredoc
+'\n  '        Text
+'@opaque'     Name.Attribute
+' '           Text
+'typtyp'      Name
+' '           Text
+'::'          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'.'           Operator
+'.'           Operator
+'10'          Literal.Number.Integer
+'\n\n  '      Text
+'@spec'       Name.Attribute
+' '           Text
+'func'        Name
+'('           Punctuation
+'typ'         Name
+','           Punctuation
+' '           Text
+'typtyp'      Name
+')'           Punctuation
+' '           Text
+'::'          Operator
+' '           Text
+':ok'         Literal.String.Symbol
+' '           Text
+'|'           Operator
+' '           Text
+':fail'       Literal.String.Symbol
+'\n  '        Text
+'def'         Keyword.Declaration
+' '           Text
+'func'        Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'do'          Keyword
+'\n    '      Text
+'a'           Name
+' '           Text
+'||'          Operator
+' '           Text
+'b'           Name
+' '           Text
+'||'          Operator
+' '           Text
+':ok'         Literal.String.Symbol
+' '           Text
+'||'          Operator
+' '           Text
+':fail'       Literal.String.Symbol
+'\n    '      Text
+'Path'        Name.Class
+'.'           Operator
+'expand'      Name
+'('           Punctuation
+'"'           Literal.String.Double
+'..'          Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'__DIR__'     Name.Builtin.Pseudo
+')'           Punctuation
+'\n    '      Text
+'IO'          Name.Class
+'.'           Operator
+'inspect'     Name
+' '           Text
+'__ENV__'     Name.Builtin.Pseudo
+'\n    '      Text
+'__NOTAPSEUDOVAR__' Name
+' '           Text
+'='           Operator
+' '           Text
+'11'          Literal.Number.Integer
+'\n    '      Text
+'__MODULE__'  Name.Builtin.Pseudo
+'.'           Operator
+'func'        Name
+'('           Punctuation
+'b'           Name
+','           Punctuation
+' '           Text
+'a'           Name
+')'           Punctuation
+'\n  '        Text
+'end'         Keyword
+'\n\n  '      Text
+'defmacro'    Keyword.Declaration
+' '           Text
+'m'           Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'do'          Keyword
+'\n    '      Text
+'__CALLER__'  Name.Builtin.Pseudo
+'\n  '        Text
+'end'         Keyword
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'# Functions' Comment.Single
+'\n'          Text
+
+'anon'        Name
+' '           Text
+'='           Operator
+' '           Text
+'fn'          Keyword
+' '           Text
+'x'           Name
+','           Punctuation
+' '           Text
+'y'           Name
+','           Punctuation
+' '           Text
+'z'           Name
+' '           Text
+'->'          Operator
+'\n  '        Text
+'fn'          Keyword
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'b'           Name
+','           Punctuation
+' '           Text
+'c'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator
+'\n    '      Text
+'&'           Operator
+'('           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'y'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'z'           Name
+' '           Text
+'*'           Operator
+' '           Text
+'a'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'&1'          Name.Entity
+' '           Text
+'+'           Operator
+' '           Text
+'b'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'div'         Name
+'('           Punctuation
+'&2'          Name.Entity
+','           Punctuation
+' '           Text
+'c'           Name
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'end'         Keyword
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'&'           Operator
+'Set'         Name.Class
+'.'           Operator
+'put'         Name
+'('           Punctuation
+'&1'          Name.Entity
+','           Punctuation
+' '           Text
+'&2'          Name.Entity
+')'           Punctuation
+' '           Text
+';'           Punctuation
+' '           Text
+'&'           Operator
+' '           Text
+'Set'         Name.Class
+'.'           Operator
+'put'         Name
+'('           Punctuation
+'&1'          Name.Entity
+','           Punctuation
+' '           Text
+'&2'          Name.Entity
+')'           Punctuation
+' '           Text
+';'           Punctuation
+' '           Text
+'&'           Operator
+'('           Punctuation
+' '           Text
+'Set'         Name.Class
+'.'           Operator
+'put'         Name
+'('           Punctuation
+'&1'          Name.Entity
+','           Punctuation
+' '           Text
+'&1'          Name.Entity
+')'           Punctuation
+' '           Text
+')'           Punctuation
+'\n\n'        Text
+
+'# Function calls' Comment.Single
+'\n'          Text
+
+'anon'        Name
+'.'           Operator
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'self'        Name
+';'           Punctuation
+' '           Text
+'hd'          Name
+'('           Punctuation
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'Kernel'      Name.Class
+'.'           Operator
+'spawn'       Name
+'('           Punctuation
+'fn'          Keyword
+' '           Text
+'->'          Operator
+' '           Text
+':ok'         Literal.String.Symbol
+' '           Text
+'end'         Keyword
+')'           Punctuation
+'\n'          Text
+
+'IO.ANSI'     Name.Class
+'.'           Operator
+'black'       Name
+'\n\n'        Text
+
+'# Control flow' Comment.Single
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+':this'       Literal.String.Symbol
+' '           Text
+'do'          Keyword
+'\n  '        Text
+':that'       Literal.String.Symbol
+'\n'          Text
+
+'else'        Keyword
+'\n  '        Text
+':otherwise'  Literal.String.Symbol
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'pid'         Name
+' '           Text
+'='           Operator
+' '           Text
+'self'        Name
+'\n'          Text
+
+'receive'     Keyword
+' '           Text
+'do'          Keyword
+'\n  '        Text
+'{'           Punctuation
+':EXIT'       Literal.String.Symbol
+','           Punctuation
+' '           Text
+'_'           Name.Builtin.Pseudo
+'}'           Punctuation
+' '           Text
+'->'          Operator
+' '           Text
+':done'       Literal.String.Symbol
+'\n  '        Text
+'{'           Punctuation
+'^'           Operator
+'pid'         Name
+','           Punctuation
+' '           Text
+':_'          Literal.String.Symbol
+'}'           Punctuation
+' '           Text
+'->'          Operator
+' '           Text
+'nil'         Name.Constant
+'\n  '        Text
+'after'       Keyword
+' '           Text
+'100'         Literal.Number.Integer
+' '           Text
+'->'          Operator
+' '           Text
+':no_luck'    Literal.String.Symbol
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'case'        Keyword
+' '           Text
+'__ENV__'     Name.Builtin.Pseudo
+'.'           Operator
+'line'        Name
+' '           Text
+'do'          Keyword
+'\n  '        Text
+'x'           Name
+' '           Text
+'when'        Operator.Word
+' '           Text
+'is_integer'  Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator
+' '           Text
+'x'           Name
+'\n  '        Text
+'x'           Name
+' '           Text
+'when'        Operator.Word
+' '           Text
+'x'           Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'1'           Literal.Number.Integer
+'.'           Operator
+'.'           Operator
+'12'          Literal.Number.Integer
+' '           Text
+'->'          Operator
+' '           Text
+'-'           Operator
+'x'           Name
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'cond'        Keyword
+' '           Text
+'do'          Keyword
+'\n  '        Text
+'false'       Name.Constant
+' '           Text
+'->'          Operator
+' '           Text
+'"'           Literal.String.Double
+'too bad'     Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text
+'4'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+'->'          Operator
+' '           Text
+'"'           Literal.String.Double
+'oops'        Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text
+'true'        Name.Constant
+' '           Text
+'->'          Operator
+' '           Text
+'nil'         Name.Constant
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'# Lexical scope modifiers' Comment.Single
+'\n'          Text
+
+'import'      Keyword.Namespace
+' '           Text
+'Kernel'      Name.Class
+','           Punctuation
+' '           Text
+'except'      Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'['           Punctuation
+'spawn'       Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'+'           Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'/'           Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'Unless'      Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text
+
+'alias'       Keyword.Namespace
+' '           Text
+'Long.Module.Name' Name.Class
+','           Punctuation
+' '           Text
+'as'          Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'N0men123_and4' Name.Class
+'\n'          Text
+
+'use'         Keyword.Namespace
+' '           Text
+'Bitwise'     Name.Class
+'\n\n'        Text
+
+'4'           Literal.Number.Integer
+' '           Text
+'&&&'         Operator
+' '           Text
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'2'           Literal.Number.Integer
+' '           Text
+'<<<'         Operator
+' '           Text
+'3'           Literal.Number.Integer
+'\n\n'        Text
+
+'# Protocols' Comment.Single
+'\n'          Text
+
+'defprotocol' Keyword.Declaration
+' '           Text
+'Useless'     Name.Class
+' '           Text
+'do'          Keyword
+'\n  '        Text
+'def'         Keyword.Declaration
+' '           Text
+'func1'       Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+'\n  '        Text
+'def'         Keyword.Declaration
+' '           Text
+'func2'       Name
+'('           Punctuation
+'that'        Name
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'defimpl'     Keyword.Declaration
+' '           Text
+'Useless'     Name.Class
+','           Punctuation
+' '           Text
+'for'         Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'Atom'        Name.Class
+' '           Text
+'do'          Keyword
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'# Exceptions' Comment.Single
+'\n'          Text
+
+'defmodule'   Keyword.Declaration
+' '           Text
+'NotAnError'  Name.Class
+' '           Text
+'do'          Keyword
+'\n  '        Text
+'defexception' Keyword.Declaration
+' '           Text
+'['           Punctuation
+':message'    Literal.String.Symbol
+']'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'raise'       Keyword
+' '           Text
+'NotAnError'  Name.Class
+','           Punctuation
+' '           Text
+'message'     Literal.String.Symbol
+':'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'This is not an error' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text

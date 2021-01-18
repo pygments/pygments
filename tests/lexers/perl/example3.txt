@@ -1,0 +1,5121 @@
+---input---
+
+=head1 NAME 
+
+perl5db.pl - the perl debugger
+
+=head1 SYNOPSIS
+
+    perl -d  your_Perl_script
+
+=head1 DESCRIPTION
+
+After this routine is over, we don't have user code executing in the debugger's
+context, so we can use C<my> freely.
+
+=cut
+
+############################################## Begin lexical danger zone
+
+# 'my' variables used here could leak into (that is, be visible in)
+# the context that the code being evaluated is executing in. This means that
+# the code could modify the debugger's variables.
+#
+# Fiddling with the debugger's context could be Bad. We insulate things as
+# much as we can.
+
+sub eval {
+
+    # 'my' would make it visible from user code
+    #    but so does local! --tchrist
+    # Remember: this localizes @DB::res, not @main::res.
+    local @res;
+    {
+
+        # Try to keep the user code from messing  with us. Save these so that
+        # even if the eval'ed code changes them, we can put them back again.
+        # Needed because the user could refer directly to the debugger's
+        # package globals (and any 'my' variables in this containing scope)
+        # inside the eval(), and we want to try to stay safe.
+        local $otrace  = $trace;
+        local $osingle = $single;
+        local $od      = $^D;
+
+        # Untaint the incoming eval() argument.
+        { ($evalarg) = $evalarg =~ /(.*)/s; }
+
+        # $usercontext built in DB::DB near the comment
+        # "set up the context for DB::eval ..."
+        # Evaluate and save any results.
+        @res = eval "$usercontext $evalarg;\n";  # '\n' for nice recursive debug
+
+        # Restore those old values.
+        $trace  = $otrace;
+        $single = $osingle;
+        $^D     = $od;
+    }
+
+    # Save the current value of $@, and preserve it in the debugger's copy
+    # of the saved precious globals.
+    my $at = $@;
+
+    # Since we're only saving $@, we only have to localize the array element
+    # that it will be stored in.
+    local $saved[0];    # Preserve the old value of $@
+    eval { &DB::save };
+
+    # Now see whether we need to report an error back to the user.
+    if ($at) {
+        local $\ = '';
+        print $OUT $at;
+    }
+
+    # Display as required by the caller. $onetimeDump and $onetimedumpDepth
+    # are package globals.
+    elsif ($onetimeDump) {
+        if ( $onetimeDump eq 'dump' ) {
+            local $option{dumpDepth} = $onetimedumpDepth
+              if defined $onetimedumpDepth;
+            dumpit( $OUT, \@res );
+        }
+        elsif ( $onetimeDump eq 'methods' ) {
+            methods( $res[0] );
+        }
+    } ## end elsif ($onetimeDump)
+    @res;
+} ## end sub eval
+
+############################################## End lexical danger zone
+
+# After this point it is safe to introduce lexicals.
+# The code being debugged will be executing in its own context, and
+# can't see the inside of the debugger.
+#
+# However, one should not overdo it: leave as much control from outside as
+# possible. If you make something a lexical, it's not going to be addressable
+# from outside the debugger even if you know its name.
+
+# This file is automatically included if you do perl -d.
+# It's probably not useful to include this yourself.
+#
+# Before venturing further into these twisty passages, it is
+# wise to read the perldebguts man page or risk the ire of dragons.
+#
+# (It should be noted that perldebguts will tell you a lot about
+# the underlying mechanics of how the debugger interfaces into the
+# Perl interpreter, but not a lot about the debugger itself. The new
+# comments in this code try to address this problem.)
+
+# Note that no subroutine call is possible until &DB::sub is defined
+# (for subroutines defined outside of the package DB). In fact the same is
+# true if $deep is not defined.
+
+# Enhanced by ilya@math.ohio-state.edu (Ilya Zakharevich)
+
+# modified Perl debugger, to be run from Emacs in perldb-mode
+# Ray Lischner (uunet!mntgfx!lisch) as of 5 Nov 1990
+# Johan Vromans -- upgrade to 4.0 pl 10
+# Ilya Zakharevich -- patches after 5.001 (and some before ;-)
+
+# (We have made efforts to  clarify the comments in the change log
+# in other places; some of them may seem somewhat obscure as they
+# were originally written, and explaining them away from the code
+# in question seems conterproductive.. -JM)
+
+=head1 DEBUGGER INITIALIZATION
+
+The debugger starts up in phases.
+
+=head2 BASIC SETUP
+
+First, it initializes the environment it wants to run in: turning off
+warnings during its own compilation, defining variables which it will need
+to avoid warnings later, setting itself up to not exit when the program
+terminates, and defaulting to printing return values for the C<r> command.
+
+=cut
+
+# Needed for the statement after exec():
+#
+# This BEGIN block is simply used to switch off warnings during debugger
+# compiliation. Probably it would be better practice to fix the warnings,
+# but this is how it's done at the moment.
+
+BEGIN {
+    $ini_warn = $^W;
+    $^W       = 0;
+}    # Switch compilation warnings off until another BEGIN.
+
+# test if assertions are supported and actived:
+BEGIN {
+    $ini_assertion = eval "sub asserting_test : assertion {1}; 1";
+
+    # $ini_assertion = undef => assertions unsupported,
+    #        "       = 1     => assertions supported
+    # print "\$ini_assertion=$ini_assertion\n";
+}
+
+local ($^W) = 0;    # Switch run-time warnings off during init.
+
+=head2 THREADS SUPPORT
+
+If we are running under a threaded Perl, we require threads and threads::shared
+if the environment variable C<PERL5DB_THREADED> is set, to enable proper
+threaded debugger control.  C<-dt> can also be used to set this.
+
+Each new thread will be announced and the debugger prompt will always inform
+you of each new thread created.  It will also indicate the thread id in which
+we are currently running within the prompt like this:
+
+	[tid] DB<$i>
+
+Where C<[tid]> is an integer thread id and C<$i> is the familiar debugger
+command prompt.  The prompt will show: C<[0]> when running under threads, but
+not actually in a thread.  C<[tid]> is consistent with C<gdb> usage.
+
+While running under threads, when you set or delete a breakpoint (etc.), this
+will apply to all threads, not just the currently running one.  When you are 
+in a currently executing thread, you will stay there until it completes.  With
+the current implementation it is not currently possible to hop from one thread
+to another.
+
+The C<e> and C<E> commands are currently fairly minimal - see C<h e> and C<h E>.
+
+Note that threading support was built into the debugger as of Perl version
+C<5.8.6> and debugger version C<1.2.8>.
+
+=cut
+
+BEGIN {
+  # ensure we can share our non-threaded variables or no-op
+  if ($ENV{PERL5DB_THREADED}) {
+	require threads;
+	require threads::shared;
+	import threads::shared qw(share);
+	$DBGR;
+	share(\$DBGR);
+	lock($DBGR);
+	print "Threads support enabled\n";
+  } else {
+	*lock  = sub(*) {};
+	*share = sub(*) {};
+  }
+}
+
+# This would probably be better done with "use vars", but that wasn't around
+# when this code was originally written. (Neither was "use strict".) And on
+# the principle of not fiddling with something that was working, this was
+# left alone.
+warn(               # Do not ;-)
+    # These variables control the execution of 'dumpvar.pl'.
+    $dumpvar::hashDepth,
+    $dumpvar::arrayDepth,
+    $dumpvar::dumpDBFiles,
+    $dumpvar::dumpPackages,
+    $dumpvar::quoteHighBit,
+    $dumpvar::printUndef,
+    $dumpvar::globPrint,
+    $dumpvar::usageOnly,
+
+    # used to save @ARGV and extract any debugger-related flags.
+    @ARGS,
+
+    # used to control die() reporting in diesignal()
+    $Carp::CarpLevel,
+
+    # used to prevent multiple entries to diesignal()
+    # (if for instance diesignal() itself dies)
+    $panic,
+
+    # used to prevent the debugger from running nonstop
+    # after a restart
+    $second_time,
+  )
+  if 0;
+
+foreach my $k (keys (%INC)) {
+	&share(\$main::{'_<'.$filename});
+};
+
+# Command-line + PERLLIB:
+# Save the contents of @INC before they are modified elsewhere.
+@ini_INC = @INC;
+
+# This was an attempt to clear out the previous values of various
+# trapped errors. Apparently it didn't help. XXX More info needed!
+# $prevwarn = $prevdie = $prevbus = $prevsegv = ''; # Does not help?!
+
+# We set these variables to safe values. We don't want to blindly turn
+# off warnings, because other packages may still want them.
+$trace = $signal = $single = 0;    # Uninitialized warning suppression
+                                   # (local $^W cannot help - other packages!).
+
+# Default to not exiting when program finishes; print the return
+# value when the 'r' command is used to return from a subroutine.
+$inhibit_exit = $option{PrintRet} = 1;
+
+=head1 OPTION PROCESSING
+
+The debugger's options are actually spread out over the debugger itself and 
+C<dumpvar.pl>; some of these are variables to be set, while others are 
+subs to be called with a value. To try to make this a little easier to
+manage, the debugger uses a few data structures to define what options
+are legal and how they are to be processed.
+
+First, the C<@options> array defines the I<names> of all the options that
+are to be accepted.
+
+=cut
+
+@options = qw(
+  CommandSet
+  hashDepth    arrayDepth    dumpDepth
+  DumpDBFiles  DumpPackages  DumpReused
+  compactDump  veryCompact   quote
+  HighBit      undefPrint    globPrint
+  PrintRet     UsageOnly     frame
+  AutoTrace    TTY           noTTY
+  ReadLine     NonStop       LineInfo
+  maxTraceLen  recallCommand ShellBang
+  pager        tkRunning     ornaments
+  signalLevel  warnLevel     dieLevel
+  inhibit_exit ImmediateStop bareStringify
+  CreateTTY    RemotePort    windowSize
+  DollarCaretP OnlyAssertions WarnAssertions
+);
+
+@RememberOnROptions = qw(DollarCaretP OnlyAssertions);
+
+=pod
+
+Second, C<optionVars> lists the variables that each option uses to save its
+state.
+
+=cut
+
+%optionVars = (
+    hashDepth     => \$dumpvar::hashDepth,
+    arrayDepth    => \$dumpvar::arrayDepth,
+    CommandSet    => \$CommandSet,
+    DumpDBFiles   => \$dumpvar::dumpDBFiles,
+    DumpPackages  => \$dumpvar::dumpPackages,
+    DumpReused    => \$dumpvar::dumpReused,
+    HighBit       => \$dumpvar::quoteHighBit,
+    undefPrint    => \$dumpvar::printUndef,
+    globPrint     => \$dumpvar::globPrint,
+    UsageOnly     => \$dumpvar::usageOnly,
+    CreateTTY     => \$CreateTTY,
+    bareStringify => \$dumpvar::bareStringify,
+    frame         => \$frame,
+    AutoTrace     => \$trace,
+    inhibit_exit  => \$inhibit_exit,
+    maxTraceLen   => \$maxtrace,
+    ImmediateStop => \$ImmediateStop,
+    RemotePort    => \$remoteport,
+    windowSize    => \$window,
+    WarnAssertions => \$warnassertions,
+);
+
+=pod
+
+Third, C<%optionAction> defines the subroutine to be called to process each
+option.
+
+=cut 
+
+%optionAction = (
+    compactDump   => \&dumpvar::compactDump,
+    veryCompact   => \&dumpvar::veryCompact,
+    quote         => \&dumpvar::quote,
+    TTY           => \&TTY,
+    noTTY         => \&noTTY,
+    ReadLine      => \&ReadLine,
+    NonStop       => \&NonStop,
+    LineInfo      => \&LineInfo,
+    recallCommand => \&recallCommand,
+    ShellBang     => \&shellBang,
+    pager         => \&pager,
+    signalLevel   => \&signalLevel,
+    warnLevel     => \&warnLevel,
+    dieLevel      => \&dieLevel,
+    tkRunning     => \&tkRunning,
+    ornaments     => \&ornaments,
+    RemotePort    => \&RemotePort,
+    DollarCaretP  => \&DollarCaretP,
+    OnlyAssertions=> \&OnlyAssertions,
+);
+
+=pod
+
+Last, the C<%optionRequire> notes modules that must be C<require>d if an
+option is used.
+
+=cut
+
+# Note that this list is not complete: several options not listed here
+# actually require that dumpvar.pl be loaded for them to work, but are
+# not in the table. A subsequent patch will correct this problem; for
+# the moment, we're just recommenting, and we are NOT going to change
+# function.
+%optionRequire = (
+    compactDump => 'dumpvar.pl',
+    veryCompact => 'dumpvar.pl',
+    quote       => 'dumpvar.pl',
+);
+
+=pod
+
+There are a number of initialization-related variables which can be set
+by putting code to set them in a BEGIN block in the C<PERL5DB> environment
+variable. These are:
+
+=over 4
+
+=item C<$rl> - readline control XXX needs more explanation
+
+=item C<$warnLevel> - whether or not debugger takes over warning handling
+
+=item C<$dieLevel> - whether or not debugger takes over die handling
+
+=item C<$signalLevel> - whether or not debugger takes over signal handling
+
+=item C<$pre> - preprompt actions (array reference)
+
+=item C<$post> - postprompt actions (array reference)
+
+=item C<$pretype>
+
+=item C<$CreateTTY> - whether or not to create a new TTY for this debugger
+
+=item C<$CommandSet> - which command set to use (defaults to new, documented set)
+
+=back
+
+=cut
+
+# These guys may be defined in $ENV{PERL5DB} :
+$rl          = 1     unless defined $rl;
+$warnLevel   = 1     unless defined $warnLevel;
+$dieLevel    = 1     unless defined $dieLevel;
+$signalLevel = 1     unless defined $signalLevel;
+$pre         = []    unless defined $pre;
+$post        = []    unless defined $post;
+$pretype     = []    unless defined $pretype;
+$CreateTTY   = 3     unless defined $CreateTTY;
+$CommandSet  = '580' unless defined $CommandSet;
+
+share($rl);
+share($warnLevel);
+share($dieLevel);
+share($signalLevel);
+share($pre);
+share($post);
+share($pretype);
+share($rl);
+share($CreateTTY);
+share($CommandSet);
+
+=pod
+
+The default C<die>, C<warn>, and C<signal> handlers are set up.
+
+=cut
+
+warnLevel($warnLevel);
+dieLevel($dieLevel);
+signalLevel($signalLevel);
+
+=pod
+
+The pager to be used is needed next. We try to get it from the
+environment first.  if it's not defined there, we try to find it in
+the Perl C<Config.pm>.  If it's not there, we default to C<more>. We
+then call the C<pager()> function to save the pager name.
+
+=cut
+
+# This routine makes sure $pager is set up so that '|' can use it.
+pager(
+
+    # If PAGER is defined in the environment, use it.
+    defined $ENV{PAGER}
+    ? $ENV{PAGER}
+
+      # If not, see if Config.pm defines it.
+    : eval { require Config }
+      && defined $Config::Config{pager}
+    ? $Config::Config{pager}
+
+      # If not, fall back to 'more'.
+    : 'more'
+  )
+  unless defined $pager;
+
+=pod
+
+We set up the command to be used to access the man pages, the command
+recall character (C<!> unless otherwise defined) and the shell escape
+character (C<!> unless otherwise defined). Yes, these do conflict, and
+neither works in the debugger at the moment.
+
+=cut
+
+setman();
+
+# Set up defaults for command recall and shell escape (note:
+# these currently don't work in linemode debugging).
+&recallCommand("!") unless defined $prc;
+&shellBang("!")     unless defined $psh;
+
+=pod
+
+We then set up the gigantic string containing the debugger help.
+We also set the limit on the number of arguments we'll display during a
+trace.
+
+=cut
+
+sethelp();
+
+# If we didn't get a default for the length of eval/stack trace args,
+# set it here.
+$maxtrace = 400 unless defined $maxtrace;
+
+=head2 SETTING UP THE DEBUGGER GREETING
+
+The debugger I<greeting> helps to inform the user how many debuggers are
+running, and whether the current debugger is the primary or a child.
+
+If we are the primary, we just hang onto our pid so we'll have it when
+or if we start a child debugger. If we are a child, we'll set things up
+so we'll have a unique greeting and so the parent will give us our own
+TTY later.
+
+We save the current contents of the C<PERLDB_PIDS> environment variable
+because we mess around with it. We'll also need to hang onto it because
+we'll need it if we restart.
+
+Child debuggers make a label out of the current PID structure recorded in
+PERLDB_PIDS plus the new PID. They also mark themselves as not having a TTY
+yet so the parent will give them one later via C<resetterm()>.
+
+=cut
+
+# Save the current contents of the environment; we're about to
+# much with it. We'll need this if we have to restart.
+$ini_pids = $ENV{PERLDB_PIDS};
+
+if ( defined $ENV{PERLDB_PIDS} ) {
+
+    # We're a child. Make us a label out of the current PID structure
+    # recorded in PERLDB_PIDS plus our (new) PID. Mark us as not having
+    # a term yet so the parent will give us one later via resetterm().
+    $pids = "[$ENV{PERLDB_PIDS}]";
+    $ENV{PERLDB_PIDS} .= "->$$";
+    $term_pid = -1;
+} ## end if (defined $ENV{PERLDB_PIDS...
+else {
+
+    # We're the parent PID. Initialize PERLDB_PID in case we end up with a
+    # child debugger, and mark us as the parent, so we'll know to set up
+    # more TTY's is we have to.
+    $ENV{PERLDB_PIDS} = "$$";
+    $pids             = "{pid=$$}";
+    $term_pid         = $$;
+}
+
+$pidprompt = '';
+
+# Sets up $emacs as a synonym for $slave_editor.
+*emacs = $slave_editor if $slave_editor;    # May be used in afterinit()...
+
+=head2 READING THE RC FILE
+
+The debugger will read a file of initialization options if supplied. If    
+running interactively, this is C<.perldb>; if not, it's C<perldb.ini>.
+
+=cut      
+
+# As noted, this test really doesn't check accurately that the debugger
+# is running at a terminal or not.
+
+if ( -e "/dev/tty" ) {                      # this is the wrong metric!
+    $rcfile = ".perldb";
+}
+else {
+    $rcfile = "perldb.ini";
+}
+
+=pod
+
+The debugger does a safety test of the file to be read. It must be owned
+either by the current user or root, and must only be writable by the owner.
+
+=cut
+
+# This wraps a safety test around "do" to read and evaluate the init file.
+#
+# This isn't really safe, because there's a race
+# between checking and opening.  The solution is to
+# open and fstat the handle, but then you have to read and
+# eval the contents.  But then the silly thing gets
+# your lexical scope, which is unfortunate at best.
+sub safe_do {
+    my $file = shift;
+
+    # Just exactly what part of the word "CORE::" don't you understand?
+    local $SIG{__WARN__};
+    local $SIG{__DIE__};
+
+    unless ( is_safe_file($file) ) {
+        CORE::warn <<EO_GRIPE;
+perldb: Must not source insecure rcfile $file.
+        You or the superuser must be the owner, and it must not 
+        be writable by anyone but its owner.
+EO_GRIPE
+        return;
+    } ## end unless (is_safe_file($file...
+
+    do $file;
+    CORE::warn("perldb: couldn't parse $file: $@") if $@;
+} ## end sub safe_do
+
+# This is the safety test itself.
+#
+# Verifies that owner is either real user or superuser and that no
+# one but owner may write to it.  This function is of limited use
+# when called on a path instead of upon a handle, because there are
+# no guarantees that filename (by dirent) whose file (by ino) is
+# eventually accessed is the same as the one tested.
+# Assumes that the file's existence is not in doubt.
+sub is_safe_file {
+    my $path = shift;
+    stat($path) || return;    # mysteriously vaporized
+    my ( $dev, $ino, $mode, $nlink, $uid, $gid ) = stat(_);
+
+    return 0 if $uid != 0 && $uid != $<;
+    return 0 if $mode & 022;
+    return 1;
+} ## end sub is_safe_file
+
+# If the rcfile (whichever one we decided was the right one to read)
+# exists, we safely do it.
+if ( -f $rcfile ) {
+    safe_do("./$rcfile");
+}
+
+# If there isn't one here, try the user's home directory.
+elsif ( defined $ENV{HOME} && -f "$ENV{HOME}/$rcfile" ) {
+    safe_do("$ENV{HOME}/$rcfile");
+}
+
+# Else try the login directory.
+elsif ( defined $ENV{LOGDIR} && -f "$ENV{LOGDIR}/$rcfile" ) {
+    safe_do("$ENV{LOGDIR}/$rcfile");
+}
+
+# If the PERLDB_OPTS variable has options in it, parse those out next.
+if ( defined $ENV{PERLDB_OPTS} ) {
+    parse_options( $ENV{PERLDB_OPTS} );
+}
+
+=pod
+
+The last thing we do during initialization is determine which subroutine is
+to be used to obtain a new terminal when a new debugger is started. Right now,
+the debugger only handles X Windows and OS/2.
+
+=cut
+
+# Set up the get_fork_TTY subroutine to be aliased to the proper routine.
+# Works if you're running an xterm or xterm-like window, or you're on
+# OS/2. This may need some expansion: for instance, this doesn't handle
+# OS X Terminal windows.
+
+if (
+    not defined &get_fork_TTY    # no routine exists,
+    and defined $ENV{TERM}       # and we know what kind
+                                 # of terminal this is,
+    and $ENV{TERM} eq 'xterm'    # and it's an xterm,
+#   and defined $ENV{WINDOWID}   # and we know what window this is, <- wrong metric
+    and defined $ENV{DISPLAY}    # and what display it's on,
+  )
+{
+    *get_fork_TTY = \&xterm_get_fork_TTY;    # use the xterm version
+} ## end if (not defined &get_fork_TTY...
+elsif ( $^O eq 'os2' ) {                     # If this is OS/2,
+    *get_fork_TTY = \&os2_get_fork_TTY;      # use the OS/2 version
+}
+
+# untaint $^O, which may have been tainted by the last statement.
+# see bug [perl #24674]
+$^O =~ m/^(.*)\z/;
+$^O = $1;
+
+# Here begin the unreadable code.  It needs fixing.
+
+=head2 RESTART PROCESSING
+
+This section handles the restart command. When the C<R> command is invoked, it
+tries to capture all of the state it can into environment variables, and
+then sets C<PERLDB_RESTART>. When we start executing again, we check to see
+if C<PERLDB_RESTART> is there; if so, we reload all the information that
+the R command stuffed into the environment variables.
+
+  PERLDB_RESTART   - flag only, contains no restart data itself.       
+  PERLDB_HIST      - command history, if it's available
+  PERLDB_ON_LOAD   - breakpoints set by the rc file
+  PERLDB_POSTPONE  - subs that have been loaded/not executed, and have actions
+  PERLDB_VISITED   - files that had breakpoints
+  PERLDB_FILE_...  - breakpoints for a file
+  PERLDB_OPT       - active options
+  PERLDB_INC       - the original @INC
+  PERLDB_PRETYPE   - preprompt debugger actions
+  PERLDB_PRE       - preprompt Perl code
+  PERLDB_POST      - post-prompt Perl code
+  PERLDB_TYPEAHEAD - typeahead captured by readline()
+
+We chug through all these variables and plug the values saved in them
+back into the appropriate spots in the debugger.
+
+=cut
+
+if ( exists $ENV{PERLDB_RESTART} ) {
+
+    # We're restarting, so we don't need the flag that says to restart anymore.
+    delete $ENV{PERLDB_RESTART};
+
+    # $restart = 1;
+    @hist          = get_list('PERLDB_HIST');
+    %break_on_load = get_list("PERLDB_ON_LOAD");
+    %postponed     = get_list("PERLDB_POSTPONE");
+
+	share(@hist);
+	share(@truehist);
+	share(%break_on_load);
+	share(%postponed);
+
+    # restore breakpoints/actions
+    my @had_breakpoints = get_list("PERLDB_VISITED");
+    for ( 0 .. $#had_breakpoints ) {
+        my %pf = get_list("PERLDB_FILE_$_");
+        $postponed_file{ $had_breakpoints[$_] } = \%pf if %pf;
+    }
+
+    # restore options
+    my %opt = get_list("PERLDB_OPT");
+    my ( $opt, $val );
+    while ( ( $opt, $val ) = each %opt ) {
+        $val =~ s/[\\\']/\\$1/g;
+        parse_options("$opt'$val'");
+    }
+
+    # restore original @INC
+    @INC     = get_list("PERLDB_INC");
+    @ini_INC = @INC;
+
+    # return pre/postprompt actions and typeahead buffer
+    $pretype   = [ get_list("PERLDB_PRETYPE") ];
+    $pre       = [ get_list("PERLDB_PRE") ];
+    $post      = [ get_list("PERLDB_POST") ];
+    @typeahead = get_list( "PERLDB_TYPEAHEAD", @typeahead );
+} ## end if (exists $ENV{PERLDB_RESTART...
+
+=head2 SETTING UP THE TERMINAL
+
+Now, we'll decide how the debugger is going to interact with the user.
+If there's no TTY, we set the debugger to run non-stop; there's not going
+to be anyone there to enter commands.
+
+=cut
+
+if ($notty) {
+    $runnonstop = 1;
+	share($runnonstop);
+}
+
+=pod
+
+If there is a TTY, we have to determine who it belongs to before we can
+proceed. If this is a slave editor or graphical debugger (denoted by
+the first command-line switch being '-emacs'), we shift this off and
+set C<$rl> to 0 (XXX ostensibly to do straight reads).
+
+=cut
+
+else {
+
+    # Is Perl being run from a slave editor or graphical debugger?
+    # If so, don't use readline, and set $slave_editor = 1.
+    $slave_editor =
+      ( ( defined $main::ARGV[0] ) and ( $main::ARGV[0] eq '-emacs' ) );
+    $rl = 0, shift(@main::ARGV) if $slave_editor;
+
+    #require Term::ReadLine;
+
+=pod
+
+We then determine what the console should be on various systems:
+
+=over 4
+
+=item * Cygwin - We use C<stdin> instead of a separate device.
+
+=cut
+
+    if ( $^O eq 'cygwin' ) {
+
+        # /dev/tty is binary. use stdin for textmode
+        undef $console;
+    }
+
+=item * Unix - use C</dev/tty>.
+
+=cut
+
+    elsif ( -e "/dev/tty" ) {
+        $console = "/dev/tty";
+    }
+
+=item * Windows or MSDOS - use C<con>.
+
+=cut
+
+    elsif ( $^O eq 'dos' or -e "con" or $^O eq 'MSWin32' ) {
+        $console = "con";
+    }
+
+=item * MacOS - use C<Dev:Console:Perl Debug> if this is the MPW version; C<Dev:
+Console> if not.
+
+Note that Mac OS X returns C<darwin>, not C<MacOS>. Also note that the debugger doesn't do anything special for C<darwin>. Maybe it should.
+
+=cut
+
+    elsif ( $^O eq 'MacOS' ) {
+        if ( $MacPerl::Version !~ /MPW/ ) {
+            $console =
+              "Dev:Console:Perl Debug";    # Separate window for application
+        }
+        else {
+            $console = "Dev:Console";
+        }
+    } ## end elsif ($^O eq 'MacOS')
+
+=item * VMS - use C<sys$command>.
+
+=cut
+
+    else {
+
+        # everything else is ...
+        $console = "sys\$command";
+    }
+
+=pod
+
+=back
+
+Several other systems don't use a specific console. We C<undef $console>
+for those (Windows using a slave editor/graphical debugger, NetWare, OS/2
+with a slave editor, Epoc).
+
+=cut
+
+    if ( ( $^O eq 'MSWin32' ) and ( $slave_editor or defined $ENV{EMACS} ) ) {
+
+        # /dev/tty is binary. use stdin for textmode
+        $console = undef;
+    }
+
+    if ( $^O eq 'NetWare' ) {
+
+        # /dev/tty is binary. use stdin for textmode
+        $console = undef;
+    }
+
+    # In OS/2, we need to use STDIN to get textmode too, even though
+    # it pretty much looks like Unix otherwise.
+    if ( defined $ENV{OS2_SHELL} and ( $slave_editor or $ENV{WINDOWID} ) )
+    {    # In OS/2
+        $console = undef;
+    }
+
+    # EPOC also falls into the 'got to use STDIN' camp.
+    if ( $^O eq 'epoc' ) {
+        $console = undef;
+    }
+
+=pod
+
+If there is a TTY hanging around from a parent, we use that as the console.
+
+=cut
+
+    $console = $tty if defined $tty;
+
+=head2 SOCKET HANDLING   
+
+The debugger is capable of opening a socket and carrying out a debugging
+session over the socket.
+
+If C<RemotePort> was defined in the options, the debugger assumes that it
+should try to start a debugging session on that port. It builds the socket
+and then tries to connect the input and output filehandles to it.
+
+=cut
+
+    # Handle socket stuff.
+
+    if ( defined $remoteport ) {
+
+        # If RemotePort was defined in the options, connect input and output
+        # to the socket.
+        require IO::Socket;
+        $OUT = new IO::Socket::INET(
+            Timeout  => '10',
+            PeerAddr => $remoteport,
+            Proto    => 'tcp',
+        );
+        if ( !$OUT ) { die "Unable to connect to remote host: $remoteport\n"; }
+        $IN = $OUT;
+    } ## end if (defined $remoteport)
+
+=pod
+
+If no C<RemotePort> was defined, and we want to create a TTY on startup,
+this is probably a situation where multiple debuggers are running (for example,
+a backticked command that starts up another debugger). We create a new IN and
+OUT filehandle, and do the necessary mojo to create a new TTY if we know how
+and if we can.
+
+=cut
+
+    # Non-socket.
+    else {
+
+        # Two debuggers running (probably a system or a backtick that invokes
+        # the debugger itself under the running one). create a new IN and OUT
+        # filehandle, and do the necessary mojo to create a new tty if we
+        # know how, and we can.
+        create_IN_OUT(4) if $CreateTTY & 4;
+        if ($console) {
+
+            # If we have a console, check to see if there are separate ins and
+            # outs to open. (They are assumed identiical if not.)
+
+            my ( $i, $o ) = split /,/, $console;
+            $o = $i unless defined $o;
+
+            # read/write on in, or just read, or read on STDIN.
+            open( IN,      "+<$i" )
+              || open( IN, "<$i" )
+              || open( IN, "<&STDIN" );
+
+            # read/write/create/clobber out, or write/create/clobber out,
+            # or merge with STDERR, or merge with STDOUT.
+                 open( OUT, "+>$o" )
+              || open( OUT, ">$o" )
+              || open( OUT, ">&STDERR" )
+              || open( OUT, ">&STDOUT" );    # so we don't dongle stdout
+
+        } ## end if ($console)
+        elsif ( not defined $console ) {
+
+            # No console. Open STDIN.
+            open( IN, "<&STDIN" );
+
+            # merge with STDERR, or with STDOUT.
+            open( OUT,      ">&STDERR" )
+              || open( OUT, ">&STDOUT" );    # so we don't dongle stdout
+            $console = 'STDIN/OUT';
+        } ## end elsif (not defined $console)
+
+        # Keep copies of the filehandles so that when the pager runs, it
+        # can close standard input without clobbering ours.
+        $IN = \*IN, $OUT = \*OUT if $console or not defined $console;
+    } ## end elsif (from if(defined $remoteport))
+
+    # Unbuffer DB::OUT. We need to see responses right away.
+    my $previous = select($OUT);
+    $| = 1;                                  # for DB::OUT
+    select($previous);
+
+    # Line info goes to debugger output unless pointed elsewhere.
+    # Pointing elsewhere makes it possible for slave editors to
+    # keep track of file and position. We have both a filehandle
+    # and a I/O description to keep track of.
+    $LINEINFO = $OUT     unless defined $LINEINFO;
+    $lineinfo = $console unless defined $lineinfo;
+	# share($LINEINFO); # <- unable to share globs
+	share($lineinfo);   # 
+
+=pod
+
+To finish initialization, we show the debugger greeting,
+and then call the C<afterinit()> subroutine if there is one.
+
+=cut
+
+    # Show the debugger greeting.
+    $header =~ s/.Header: ([^,]+),v(\s+\S+\s+\S+).*$/$1$2/;
+    unless ($runnonstop) {
+        local $\ = '';
+        local $, = '';
+        if ( $term_pid eq '-1' ) {
+            print $OUT "\nDaughter DB session started...\n";
+        }
+        else {
+            print $OUT "\nLoading DB routines from $header\n";
+            print $OUT (
+                "Editor support ",
+                $slave_editor ? "enabled" : "available", ".\n"
+            );
+            print $OUT
+"\nEnter h or `h h' for help, or `$doccmd perldebug' for more help.\n\n";
+        } ## end else [ if ($term_pid eq '-1')
+    } ## end unless ($runnonstop)
+} ## end else [ if ($notty)
+
+# XXX This looks like a bug to me.
+# Why copy to @ARGS and then futz with @args?
+@ARGS = @ARGV;
+for (@args) {
+    # Make sure backslashes before single quotes are stripped out, and
+    # keep args unless they are numeric (XXX why?)
+    # s/\'/\\\'/g;                      # removed while not justified understandably
+    # s/(.*)/'$1'/ unless /^-?[\d.]+$/; # ditto
+}
+
+# If there was an afterinit() sub defined, call it. It will get
+# executed in our scope, so it can fiddle with debugger globals.
+if ( defined &afterinit ) {    # May be defined in $rcfile
+    &afterinit();
+}
+
+# Inform us about "Stack dump during die enabled ..." in dieLevel().
+$I_m_init = 1;
+
+
+
+---tokens---
+"=head1 NAME \n\nperl5db.pl - the perl debugger\n\n=head1 SYNOPSIS\n\n    perl -d  your_Perl_script\n\n=head1 DESCRIPTION\n\nAfter this routine is over, we don't have user code executing in the debugger's\ncontext, so we can use C<my> freely.\n\n=cut" Comment.Multiline
+'\n\n'        Text
+
+'############################################## Begin lexical danger zone' Comment.Single
+'\n\n'        Text
+
+"# 'my' variables used here could leak into (that is, be visible in)" Comment.Single
+'\n'          Text
+
+'# the context that the code being evaluated is executing in. This means that' Comment.Single
+'\n'          Text
+
+"# the code could modify the debugger's variables." Comment.Single
+'\n'          Text
+
+'#'           Comment.Single
+'\n'          Text
+
+"# Fiddling with the debugger's context could be Bad. We insulate things as" Comment.Single
+'\n'          Text
+
+'# much as we can.' Comment.Single
+'\n\n'        Text
+
+'sub'         Keyword
+' '           Text
+'eval'        Name.Function
+' '           Text
+'{'           Punctuation
+'\n\n    '    Text
+"# 'my' would make it visible from user code" Comment.Single
+'\n    '      Text
+'#    but so does local! --tchrist' Comment.Single
+'\n    '      Text
+'# Remember: this localizes @DB::res, not @main::res.' Comment.Single
+'\n    '      Text
+'local'       Name.Builtin
+' '           Text
+'@'           Name.Variable
+'res'         Name.Variable
+';'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+'\n\n        ' Text
+'# Try to keep the user code from messing  with us. Save these so that' Comment.Single
+'\n        '  Text
+"# even if the eval'ed code changes them, we can put them back again." Comment.Single
+'\n        '  Text
+"# Needed because the user could refer directly to the debugger's" Comment.Single
+'\n        '  Text
+"# package globals (and any 'my' variables in this containing scope)" Comment.Single
+'\n        '  Text
+'# inside the eval(), and we want to try to stay safe.' Comment.Single
+'\n        '  Text
+'local'       Name.Builtin
+' '           Text
+'$'           Name.Variable
+'otrace'      Name.Variable
+'  '          Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'trace'       Name.Variable
+';'           Punctuation
+'\n        '  Text
+'local'       Name.Builtin
+' '           Text
+'$'           Name.Variable
+'osingle'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'single'      Name.Variable
+';'           Punctuation
+'\n        '  Text
+'local'       Name.Builtin
+' '           Text
+'$'           Name.Variable
+'od'          Name.Variable
+'      '      Text
+'='           Operator
+' '           Text
+'$^D'         Name.Variable.Global
+';'           Punctuation
+'\n\n        ' Text
+'# Untaint the incoming eval() argument.' Comment.Single
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'('           Punctuation
+'$'           Name.Variable
+'evalarg'     Name.Variable
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'evalarg'     Name.Variable
+' '           Text
+'=~'          Operator
+' /(.*)/s'    Literal.String.Regex
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n\n        ' Text
+'# $usercontext built in DB::DB near the comment' Comment.Single
+'\n        '  Text
+'# "set up the context for DB::eval ..."' Comment.Single
+'\n        '  Text
+'# Evaluate and save any results.' Comment.Single
+'\n        '  Text
+'@'           Name.Variable
+'res'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'eval'        Name.Builtin
+' '           Text
+'"$usercontext $evalarg;\\n"' Literal.String
+';'           Punctuation
+'  '          Text
+"# '\\n' for nice recursive debug" Comment.Single
+'\n\n        ' Text
+'# Restore those old values.' Comment.Single
+'\n        '  Text
+'$'           Name.Variable
+'trace'       Name.Variable
+'  '          Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'otrace'      Name.Variable
+';'           Punctuation
+'\n        '  Text
+'$'           Name.Variable
+'single'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'osingle'     Name.Variable
+';'           Punctuation
+'\n        '  Text
+'$^D'         Name.Variable.Global
+'     '       Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'od'          Name.Variable
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+"# Save the current value of $@, and preserve it in the debugger's copy" Comment.Single
+'\n    '      Text
+'# of the saved precious globals.' Comment.Single
+'\n    '      Text
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'at'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$@'          Name.Variable.Global
+';'           Punctuation
+'\n\n    '    Text
+"# Since we're only saving $@, we only have to localize the array element" Comment.Single
+'\n    '      Text
+'# that it will be stored in.' Comment.Single
+'\n    '      Text
+'local'       Name.Builtin
+' '           Text
+'$'           Name.Variable
+'saved'       Name.Variable
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'    '        Text
+'# Preserve the old value of $@' Comment.Single
+'\n    '      Text
+'eval'        Name.Builtin
+' '           Text
+'{'           Punctuation
+' '           Text
+'&'           Operator
+''            Name
+'DB::'        Name.Namespace
+''            Name
+'save'        Name
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n\n    '    Text
+'# Now see whether we need to report an error back to the user.' Comment.Single
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$'           Name.Variable
+'at'          Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'local'       Name.Builtin
+' '           Text
+'$\\'         Name.Variable.Global
+' '           Text
+'='           Operator
+' '           Text
+"''"          Literal.String
+';'           Punctuation
+'\n        '  Text
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'OUT'         Name.Variable
+' '           Text
+'$'           Name.Variable
+'at'          Name.Variable
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'# Display as required by the caller. $onetimeDump and $onetimedumpDepth' Comment.Single
+'\n    '      Text
+'# are package globals.' Comment.Single
+'\n    '      Text
+'elsif'       Keyword
+' '           Text
+'('           Punctuation
+'$'           Name.Variable
+'onetimeDump' Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'onetimeDump' Name.Variable
+' '           Text
+'eq'          Operator.Word
+' '           Text
+"'dump'"      Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n            ' Text
+'local'       Name.Builtin
+' '           Text
+'$'           Name.Variable
+'option'      Name.Variable
+'{'           Punctuation
+''            Name
+'dumpDepth'   Name
+'}'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'onetimedumpDepth' Name.Variable
+'\n              ' Text
+'if'          Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'onetimedumpDepth' Name.Variable
+';'           Punctuation
+'\n            ' Text
+''            Name
+'dumpit'      Name
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'OUT'         Name.Variable
+','           Punctuation
+' '           Text
+'\\'          Operator
+'@'           Name.Variable
+'res'         Name.Variable
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'elsif'       Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'onetimeDump' Name.Variable
+' '           Text
+'eq'          Operator.Word
+' '           Text
+"'methods'"   Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n            ' Text
+''            Name
+'methods'     Name
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'res'         Name.Variable
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n        '  Text
+'}'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+' '           Text
+'## end elsif ($onetimeDump)' Comment.Single
+'\n    '      Text
+'@'           Name.Variable
+'res'         Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'## end sub eval' Comment.Single
+'\n\n'        Text
+
+'############################################## End lexical danger zone' Comment.Single
+'\n\n'        Text
+
+'# After this point it is safe to introduce lexicals.' Comment.Single
+'\n'          Text
+
+'# The code being debugged will be executing in its own context, and' Comment.Single
+'\n'          Text
+
+"# can't see the inside of the debugger." Comment.Single
+'\n'          Text
+
+'#'           Comment.Single
+'\n'          Text
+
+'# However, one should not overdo it: leave as much control from outside as' Comment.Single
+'\n'          Text
+
+"# possible. If you make something a lexical, it's not going to be addressable" Comment.Single
+'\n'          Text
+
+'# from outside the debugger even if you know its name.' Comment.Single
+'\n\n'        Text
+
+'# This file is automatically included if you do perl -d.' Comment.Single
+'\n'          Text
+
+"# It's probably not useful to include this yourself." Comment.Single
+'\n'          Text
+
+'#'           Comment.Single
+'\n'          Text
+
+'# Before venturing further into these twisty passages, it is' Comment.Single
+'\n'          Text
+
+'# wise to read the perldebguts man page or risk the ire of dragons.' Comment.Single
+'\n'          Text
+
+'#'           Comment.Single
+'\n'          Text
+
+'# (It should be noted that perldebguts will tell you a lot about' Comment.Single
+'\n'          Text
+
+'# the underlying mechanics of how the debugger interfaces into the' Comment.Single
+'\n'          Text
+
+'# Perl interpreter, but not a lot about the debugger itself. The new' Comment.Single
+'\n'          Text
+
+'# comments in this code try to address this problem.)' Comment.Single
+'\n\n'        Text
+
+'# Note that no subroutine call is possible until &DB::sub is defined' Comment.Single
+'\n'          Text
+
+'# (for subroutines defined outside of the package DB). In fact the same is' Comment.Single
+'\n'          Text
+
+'# true if $deep is not defined.' Comment.Single
+'\n\n'        Text
+
+'# Enhanced by ilya@math.ohio-state.edu (Ilya Zakharevich)' Comment.Single
+'\n\n'        Text
+
+'# modified Perl debugger, to be run from Emacs in perldb-mode' Comment.Single
+'\n'          Text
+
+'# Ray Lischner (uunet!mntgfx!lisch) as of 5 Nov 1990' Comment.Single
+'\n'          Text
+
+'# Johan Vromans -- upgrade to 4.0 pl 10' Comment.Single
+'\n'          Text
+
+'# Ilya Zakharevich -- patches after 5.001 (and some before ;-)' Comment.Single
+'\n\n'        Text
+
+'# (We have made efforts to  clarify the comments in the change log' Comment.Single
+'\n'          Text
+
+'# in other places; some of them may seem somewhat obscure as they' Comment.Single
+'\n'          Text
+
+'# were originally written, and explaining them away from the code' Comment.Single
+'\n'          Text
+
+'# in question seems conterproductive.. -JM)' Comment.Single
+'\n\n'        Text
+
+'=head1 DEBUGGER INITIALIZATION\n\nThe debugger starts up in phases.\n\n=head2 BASIC SETUP\n\nFirst, it initializes the environment it wants to run in: turning off\nwarnings during its own compilation, defining variables which it will need\nto avoid warnings later, setting itself up to not exit when the program\nterminates, and defaulting to printing return values for the C<r> command.\n\n=cut' Comment.Multiline
+'\n\n'        Text
+
+'# Needed for the statement after exec():' Comment.Single
+'\n'          Text
+
+'#'           Comment.Single
+'\n'          Text
+
+'# This BEGIN block is simply used to switch off warnings during debugger' Comment.Single
+'\n'          Text
+
+'# compiliation. Probably it would be better practice to fix the warnings,' Comment.Single
+'\n'          Text
+
+"# but this is how it's done at the moment." Comment.Single
+'\n\n'        Text
+
+'BEGIN'       Keyword
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'ini_warn'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$^W'         Name.Variable.Global
+';'           Punctuation
+'\n    '      Text
+'$^W'         Name.Variable.Global
+'       '     Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'    '        Text
+'# Switch compilation warnings off until another BEGIN.' Comment.Single
+'\n\n'        Text
+
+'# test if assertions are supported and actived:' Comment.Single
+'\n'          Text
+
+'BEGIN'       Keyword
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'ini_assertion' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'eval'        Name.Builtin
+' '           Text
+'"sub asserting_test : assertion {1}; 1"' Literal.String
+';'           Punctuation
+'\n\n    '    Text
+'# $ini_assertion = undef => assertions unsupported,' Comment.Single
+'\n    '      Text
+'#        "       = 1     => assertions supported' Comment.Single
+'\n    '      Text
+'# print "\\$ini_assertion=$ini_assertion\\n";' Comment.Single
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'local'       Name.Builtin
+' '           Text
+'('           Punctuation
+'$^W'         Name.Variable.Global
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'    '        Text
+'# Switch run-time warnings off during init.' Comment.Single
+'\n\n'        Text
+
+'=head2 THREADS SUPPORT\n\nIf we are running under a threaded Perl, we require threads and threads::shared\nif the environment variable C<PERL5DB_THREADED> is set, to enable proper\nthreaded debugger control.  C<-dt> can also be used to set this.\n\nEach new thread will be announced and the debugger prompt will always inform\nyou of each new thread created.  It will also indicate the thread id in which\nwe are currently running within the prompt like this:\n\n\t[tid] DB<$i>\n\nWhere C<[tid]> is an integer thread id and C<$i> is the familiar debugger\ncommand prompt.  The prompt will show: C<[0]> when running under threads, but\nnot actually in a thread.  C<[tid]> is consistent with C<gdb> usage.\n\nWhile running under threads, when you set or delete a breakpoint (etc.), this\nwill apply to all threads, not just the currently running one.  When you are \nin a currently executing thread, you will stay there until it completes.  With\nthe current implementation it is not currently possible to hop from one thread\nto another.\n\nThe C<e> and C<E> commands are currently fairly minimal - see C<h e> and C<h E>.\n\nNote that threading support was built into the debugger as of Perl version\nC<5.8.6> and debugger version C<1.2.8>.\n\n=cut' Comment.Multiline
+'\n\n'        Text
+
+'BEGIN'       Keyword
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'# ensure we can share our non-threaded variables or no-op' Comment.Single
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'PERL5DB_THREADED' Name
+'}'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'require'     Keyword
+' '           Text
+'threads'     Name.Namespace
+';'           Punctuation
+'\n\t'        Text
+'require'     Keyword
+' '           Text
+'threads::shared' Name.Namespace
+';'           Punctuation
+'\n\t'        Text
+'import'      Name.Builtin
+' '           Text
+''            Name
+'threads::'   Name.Namespace
+''            Name
+'shared'      Name
+' '           Text
+'qw('         Literal.String.Other
+'share'       Literal.String.Other
+')'           Literal.String.Other
+';'           Punctuation
+'\n\t'        Text
+'$'           Name.Variable
+'DBGR'        Name.Variable
+';'           Punctuation
+'\n\t'        Text
+''            Name
+'share'       Name
+'('           Punctuation
+'\\'          Operator
+'$'           Name.Variable
+'DBGR'        Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+''            Name
+'lock'        Name
+'('           Punctuation
+'$'           Name.Variable
+'DBGR'        Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'print'       Keyword
+' '           Text
+'"Threads support enabled\\n"' Literal.String
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'*'           Operator
+''            Name
+'lock'        Name
+'  '          Text
+'='           Operator
+' '           Text
+''            Name
+'sub'         Name
+'('           Punctuation
+'*'           Operator
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'*'           Operator
+''            Name
+'share'       Name
+' '           Text
+'='           Operator
+' '           Text
+''            Name
+'sub'         Name
+'('           Punctuation
+'*'           Operator
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'# This would probably be better done with "use vars", but that wasn\'t around' Comment.Single
+'\n'          Text
+
+'# when this code was originally written. (Neither was "use strict".) And on' Comment.Single
+'\n'          Text
+
+'# the principle of not fiddling with something that was working, this was' Comment.Single
+'\n'          Text
+
+'# left alone.' Comment.Single
+'\n'          Text
+
+'warn'        Name.Builtin
+'('           Punctuation
+'               ' Text
+'# Do not ;-)' Comment.Single
+'\n    '      Text
+"# These variables control the execution of 'dumpvar.pl'." Comment.Single
+'\n    '      Text
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'hashDepth'   Name.Variable
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'arrayDepth'  Name.Variable
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'dumpDBFiles' Name.Variable
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'dumpPackages' Name.Variable
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'quoteHighBit' Name.Variable
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'printUndef'  Name.Variable
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'globPrint'   Name.Variable
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'usageOnly'   Name.Variable
+','           Punctuation
+'\n\n    '    Text
+'# used to save @ARGV and extract any debugger-related flags.' Comment.Single
+'\n    '      Text
+'@'           Name.Variable
+'ARGS'        Name.Variable
+','           Punctuation
+'\n\n    '    Text
+'# used to control die() reporting in diesignal()' Comment.Single
+'\n    '      Text
+'$'           Name.Variable
+'Carp::'      Name.Namespace
+'CarpLevel'   Name.Variable
+','           Punctuation
+'\n\n    '    Text
+'# used to prevent multiple entries to diesignal()' Comment.Single
+'\n    '      Text
+'# (if for instance diesignal() itself dies)' Comment.Single
+'\n    '      Text
+'$'           Name.Variable
+'panic'       Name.Variable
+','           Punctuation
+'\n\n    '    Text
+'# used to prevent the debugger from running nonstop' Comment.Single
+'\n    '      Text
+'# after a restart' Comment.Single
+'\n    '      Text
+'$'           Name.Variable
+'second_time' Name.Variable
+','           Punctuation
+'\n  '        Text
+')'           Punctuation
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n\n'        Text
+
+'foreach'     Keyword
+' '           Text
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'k'           Name.Variable
+' '           Text
+'('           Punctuation
+'keys'        Name.Builtin
+' '           Text
+'('           Punctuation
+'%'           Name.Variable
+'INC'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'&'           Operator
+''            Name
+'share'       Name
+'('           Punctuation
+'\\'          Operator
+'$'           Name.Variable
+'main::'      Name.Namespace
+'{'           Punctuation
+"'_<'"        Literal.String
+'.'           Operator
+'$'           Name.Variable
+'filename'    Name.Variable
+'}'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'# Command-line + PERLLIB:' Comment.Single
+'\n'          Text
+
+'# Save the contents of @INC before they are modified elsewhere.' Comment.Single
+'\n'          Text
+
+'@'           Name.Variable
+'ini_INC'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'@'           Name.Variable
+'INC'         Name.Variable
+';'           Punctuation
+'\n\n'        Text
+
+'# This was an attempt to clear out the previous values of various' Comment.Single
+'\n'          Text
+
+"# trapped errors. Apparently it didn't help. XXX More info needed!" Comment.Single
+'\n'          Text
+
+"# $prevwarn = $prevdie = $prevbus = $prevsegv = ''; # Does not help?!" Comment.Single
+'\n\n'        Text
+
+"# We set these variables to safe values. We don't want to blindly turn" Comment.Single
+'\n'          Text
+
+'# off warnings, because other packages may still want them.' Comment.Single
+'\n'          Text
+
+'$'           Name.Variable
+'trace'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'signal'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'single'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'    '        Text
+'# Uninitialized warning suppression' Comment.Single
+'\n                                   ' Text
+'# (local $^W cannot help - other packages!).' Comment.Single
+'\n\n'        Text
+
+'# Default to not exiting when program finishes; print the return' Comment.Single
+'\n'          Text
+
+"# value when the 'r' command is used to return from a subroutine." Comment.Single
+'\n'          Text
+
+'$'           Name.Variable
+'inhibit_exit' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'option'      Name.Variable
+'{'           Punctuation
+''            Name
+'PrintRet'    Name
+'}'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n\n'        Text
+
+"=head1 OPTION PROCESSING\n\nThe debugger's options are actually spread out over the debugger itself and \nC<dumpvar.pl>; some of these are variables to be set, while others are \nsubs to be called with a value. To try to make this a little easier to\nmanage, the debugger uses a few data structures to define what options\nare legal and how they are to be processed.\n\nFirst, the C<@options> array defines the I<names> of all the options that\nare to be accepted.\n\n=cut" Comment.Multiline
+'\n\n'        Text
+
+'@'           Name.Variable
+'options'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'qw('         Literal.String.Other
+'\n  CommandSet\n  hashDepth    arrayDepth    dumpDepth\n  DumpDBFiles  DumpPackages  DumpReused\n  compactDump  veryCompact   quote\n  HighBit      undefPrint    globPrint\n  PrintRet     UsageOnly     frame\n  AutoTrace    TTY           noTTY\n  ReadLine     NonStop       LineInfo\n  maxTraceLen  recallCommand ShellBang\n  pager        tkRunning     ornaments\n  signalLevel  warnLevel     dieLevel\n  inhibit_exit ImmediateStop bareStringify\n  CreateTTY    RemotePort    windowSize\n  DollarCaretP OnlyAssertions WarnAssertions\n' Literal.String.Other
+
+')'           Literal.String.Other
+';'           Punctuation
+'\n\n'        Text
+
+'@'           Name.Variable
+'RememberOnROptions' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'qw('         Literal.String.Other
+'DollarCaretP OnlyAssertions' Literal.String.Other
+')'           Literal.String.Other
+';'           Punctuation
+'\n\n'        Text
+
+'=pod\n\nSecond, C<optionVars> lists the variables that each option uses to save its\nstate.\n\n=cut' Comment.Multiline
+'\n\n'        Text
+
+'%'           Name.Variable
+'optionVars'  Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'\n    '      Text
+''            Name
+'hashDepth'   Name
+'     '       Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'hashDepth'   Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'arrayDepth'  Name
+'    '        Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'arrayDepth'  Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'CommandSet'  Name
+'    '        Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'CommandSet'  Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'DumpDBFiles' Name
+'   '         Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'dumpDBFiles' Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'DumpPackages' Name
+'  '          Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'dumpPackages' Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'DumpReused'  Name
+'    '        Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'dumpReused'  Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'HighBit'     Name
+'       '     Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'quoteHighBit' Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'undefPrint'  Name
+'    '        Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'printUndef'  Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'globPrint'   Name
+'     '       Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'globPrint'   Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'UsageOnly'   Name
+'     '       Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'usageOnly'   Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'CreateTTY'   Name
+'     '       Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'CreateTTY'   Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'bareStringify' Name
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'dumpvar::'   Name.Namespace
+'bareStringify' Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'frame'       Name
+'         '   Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'frame'       Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'AutoTrace'   Name
+'     '       Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'trace'       Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'inhibit_exit' Name
+'  '          Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'inhibit_exit' Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'maxTraceLen' Name
+'   '         Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'maxtrace'    Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'ImmediateStop' Name
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'ImmediateStop' Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'RemotePort'  Name
+'    '        Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'remoteport'  Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'windowSize'  Name
+'    '        Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'window'      Name.Variable
+','           Punctuation
+'\n    '      Text
+''            Name
+'WarnAssertions' Name
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'$'           Name.Variable
+'warnassertions' Name.Variable
+','           Punctuation
+'\n'          Text
+
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'=pod\n\nThird, C<%optionAction> defines the subroutine to be called to process each\noption.\n\n=cut' Comment.Multiline
+' \n\n'       Text
+
+'%'           Name.Variable
+'optionAction' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'\n    '      Text
+''            Name
+'compactDump' Name
+'   '         Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'dumpvar::'   Name.Namespace
+''            Name
+'compactDump' Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'veryCompact' Name
+'   '         Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'dumpvar::'   Name.Namespace
+''            Name
+'veryCompact' Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'quote'       Name
+'         '   Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'dumpvar::'   Name.Namespace
+''            Name
+'quote'       Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'TTY'         Name
+'           ' Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'TTY'         Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'noTTY'       Name
+'         '   Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'noTTY'       Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'ReadLine'    Name
+'      '      Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'ReadLine'    Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'NonStop'     Name
+'       '     Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'NonStop'     Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'LineInfo'    Name
+'      '      Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'LineInfo'    Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'recallCommand' Name
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'recallCommand' Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'ShellBang'   Name
+'     '       Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'shellBang'   Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'pager'       Name
+'         '   Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'pager'       Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'signalLevel' Name
+'   '         Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'signalLevel' Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'warnLevel'   Name
+'     '       Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'warnLevel'   Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'dieLevel'    Name
+'      '      Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'dieLevel'    Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'tkRunning'   Name
+'     '       Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'tkRunning'   Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'ornaments'   Name
+'     '       Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'ornaments'   Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'RemotePort'  Name
+'    '        Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'RemotePort'  Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'DollarCaretP' Name
+'  '          Text
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'DollarCaretP' Name
+','           Punctuation
+'\n    '      Text
+''            Name
+'OnlyAssertions' Name
+'='           Operator
+'>'           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'OnlyAssertions' Name
+','           Punctuation
+'\n'          Text
+
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'=pod\n\nLast, the C<%optionRequire> notes modules that must be C<require>d if an\noption is used.\n\n=cut' Comment.Multiline
+'\n\n'        Text
+
+'# Note that this list is not complete: several options not listed here' Comment.Single
+'\n'          Text
+
+'# actually require that dumpvar.pl be loaded for them to work, but are' Comment.Single
+'\n'          Text
+
+'# not in the table. A subsequent patch will correct this problem; for' Comment.Single
+'\n'          Text
+
+"# the moment, we're just recommenting, and we are NOT going to change" Comment.Single
+'\n'          Text
+
+'# function.' Comment.Single
+'\n'          Text
+
+'%'           Name.Variable
+'optionRequire' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'\n    '      Text
+''            Name
+'compactDump' Name
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'dumpvar.pl'" Literal.String
+','           Punctuation
+'\n    '      Text
+''            Name
+'veryCompact' Name
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'dumpvar.pl'" Literal.String
+','           Punctuation
+'\n    '      Text
+''            Name
+'quote'       Name
+'       '     Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'dumpvar.pl'" Literal.String
+','           Punctuation
+'\n'          Text
+
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'=pod\n\nThere are a number of initialization-related variables which can be set\nby putting code to set them in a BEGIN block in the C<PERL5DB> environment\nvariable. These are:\n\n=over 4\n\n=item C<$rl> - readline control XXX needs more explanation\n\n=item C<$warnLevel> - whether or not debugger takes over warning handling\n\n=item C<$dieLevel> - whether or not debugger takes over die handling\n\n=item C<$signalLevel> - whether or not debugger takes over signal handling\n\n=item C<$pre> - preprompt actions (array reference)\n\n=item C<$post> - postprompt actions (array reference)\n\n=item C<$pretype>\n\n=item C<$CreateTTY> - whether or not to create a new TTY for this debugger\n\n=item C<$CommandSet> - which command set to use (defaults to new, documented set)\n\n=back\n\n=cut' Comment.Multiline
+'\n\n'        Text
+
+'# These guys may be defined in $ENV{PERL5DB} :' Comment.Single
+'\n'          Text
+
+'$'           Name.Variable
+'rl'          Name.Variable
+'          '  Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'     '       Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'rl'          Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'warnLevel'   Name.Variable
+'   '         Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'     '       Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'warnLevel'   Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'dieLevel'    Name.Variable
+'    '        Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'     '       Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'dieLevel'    Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'signalLevel' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'     '       Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'signalLevel' Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'pre'         Name.Variable
+'         '   Text
+'='           Operator
+' '           Text
+'[]'          Operator
+'    '        Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'pre'         Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'post'        Name.Variable
+'        '    Text
+'='           Operator
+' '           Text
+'[]'          Operator
+'    '        Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'post'        Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'pretype'     Name.Variable
+'     '       Text
+'='           Operator
+' '           Text
+'[]'          Operator
+'    '        Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'pretype'     Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'CreateTTY'   Name.Variable
+'   '         Text
+'='           Operator
+' '           Text
+'3'           Literal.Number.Integer
+'     '       Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'CreateTTY'   Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'CommandSet'  Name.Variable
+'  '          Text
+'='           Operator
+' '           Text
+"'580'"       Literal.String
+' '           Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'CommandSet'  Name.Variable
+';'           Punctuation
+'\n\n'        Text
+
+''            Name
+'share'       Name
+'('           Punctuation
+'$'           Name.Variable
+'rl'          Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+''            Name
+'share'       Name
+'('           Punctuation
+'$'           Name.Variable
+'warnLevel'   Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+''            Name
+'share'       Name
+'('           Punctuation
+'$'           Name.Variable
+'dieLevel'    Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+''            Name
+'share'       Name
+'('           Punctuation
+'$'           Name.Variable
+'signalLevel' Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+''            Name
+'share'       Name
+'('           Punctuation
+'$'           Name.Variable
+'pre'         Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+''            Name
+'share'       Name
+'('           Punctuation
+'$'           Name.Variable
+'post'        Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+''            Name
+'share'       Name
+'('           Punctuation
+'$'           Name.Variable
+'pretype'     Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+''            Name
+'share'       Name
+'('           Punctuation
+'$'           Name.Variable
+'rl'          Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+''            Name
+'share'       Name
+'('           Punctuation
+'$'           Name.Variable
+'CreateTTY'   Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+''            Name
+'share'       Name
+'('           Punctuation
+'$'           Name.Variable
+'CommandSet'  Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'=pod\n\nThe default C<die>, C<warn>, and C<signal> handlers are set up.\n\n=cut' Comment.Multiline
+'\n\n'        Text
+
+''            Name
+'warnLevel'   Name
+'('           Punctuation
+'$'           Name.Variable
+'warnLevel'   Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+''            Name
+'dieLevel'    Name
+'('           Punctuation
+'$'           Name.Variable
+'dieLevel'    Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+''            Name
+'signalLevel' Name
+'('           Punctuation
+'$'           Name.Variable
+'signalLevel' Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+"=pod\n\nThe pager to be used is needed next. We try to get it from the\nenvironment first.  if it's not defined there, we try to find it in\nthe Perl C<Config.pm>.  If it's not there, we default to C<more>. We\nthen call the C<pager()> function to save the pager name.\n\n=cut" Comment.Multiline
+'\n\n'        Text
+
+"# This routine makes sure $pager is set up so that '|' can use it." Comment.Single
+'\n'          Text
+
+''            Name
+'pager'       Name
+'('           Punctuation
+'\n\n    '    Text
+'# If PAGER is defined in the environment, use it.' Comment.Single
+'\n    '      Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'PAGER'       Name
+'}'           Punctuation
+'\n    '      Text
+'?'           Punctuation
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'PAGER'       Name
+'}'           Punctuation
+'\n\n      '  Text
+'# If not, see if Config.pm defines it.' Comment.Single
+'\n    '      Text
+':'           Punctuation
+' '           Text
+'eval'        Name.Builtin
+' '           Text
+'{'           Punctuation
+' '           Text
+'require'     Keyword
+' '           Text
+'Config'      Name.Namespace
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'&&'          Operator
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'Config::'    Name.Namespace
+'Config'      Name.Variable
+'{'           Punctuation
+''            Name
+'pager'       Name
+'}'           Punctuation
+'\n    '      Text
+'?'           Punctuation
+' '           Text
+'$'           Name.Variable
+'Config::'    Name.Namespace
+'Config'      Name.Variable
+'{'           Punctuation
+''            Name
+'pager'       Name
+'}'           Punctuation
+'\n\n      '  Text
+"# If not, fall back to 'more'." Comment.Single
+'\n    '      Text
+':'           Punctuation
+' '           Text
+"'more'"      Literal.String
+'\n  '        Text
+')'           Punctuation
+'\n  '        Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'pager'       Name.Variable
+';'           Punctuation
+'\n\n'        Text
+
+'=pod\n\nWe set up the command to be used to access the man pages, the command\nrecall character (C<!> unless otherwise defined) and the shell escape\ncharacter (C<!> unless otherwise defined). Yes, these do conflict, and\nneither works in the debugger at the moment.\n\n=cut' Comment.Multiline
+'\n\n'        Text
+
+''            Name
+'setman'      Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'# Set up defaults for command recall and shell escape (note:' Comment.Single
+'\n'          Text
+
+"# these currently don't work in linemode debugging)." Comment.Single
+'\n'          Text
+
+'&'           Operator
+''            Name
+'recallCommand' Name
+'('           Punctuation
+'"!"'         Literal.String
+')'           Punctuation
+' '           Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'prc'         Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'&'           Operator
+''            Name
+'shellBang'   Name
+'('           Punctuation
+'"!"'         Literal.String
+')'           Punctuation
+'     '       Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'psh'         Name.Variable
+';'           Punctuation
+'\n\n'        Text
+
+"=pod\n\nWe then set up the gigantic string containing the debugger help.\nWe also set the limit on the number of arguments we'll display during a\ntrace.\n\n=cut" Comment.Multiline
+'\n\n'        Text
+
+''            Name
+'sethelp'     Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+"# If we didn't get a default for the length of eval/stack trace args," Comment.Single
+'\n'          Text
+
+'# set it here.' Comment.Single
+'\n'          Text
+
+'$'           Name.Variable
+'maxtrace'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'400'         Literal.Number.Integer
+' '           Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'maxtrace'    Name.Variable
+';'           Punctuation
+'\n\n'        Text
+
+"=head2 SETTING UP THE DEBUGGER GREETING\n\nThe debugger I<greeting> helps to inform the user how many debuggers are\nrunning, and whether the current debugger is the primary or a child.\n\nIf we are the primary, we just hang onto our pid so we'll have it when\nor if we start a child debugger. If we are a child, we'll set things up\nso we'll have a unique greeting and so the parent will give us our own\nTTY later.\n\nWe save the current contents of the C<PERLDB_PIDS> environment variable\nbecause we mess around with it. We'll also need to hang onto it because\nwe'll need it if we restart.\n\nChild debuggers make a label out of the current PID structure recorded in\nPERLDB_PIDS plus the new PID. They also mark themselves as not having a TTY\nyet so the parent will give them one later via C<resetterm()>.\n\n=cut" Comment.Multiline
+'\n\n'        Text
+
+"# Save the current contents of the environment; we're about to" Comment.Single
+'\n'          Text
+
+"# much with it. We'll need this if we have to restart." Comment.Single
+'\n'          Text
+
+'$'           Name.Variable
+'ini_pids'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'PERLDB_PIDS' Name
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'PERLDB_PIDS' Name
+'}'           Punctuation
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\n    '    Text
+"# We're a child. Make us a label out of the current PID structure" Comment.Single
+'\n    '      Text
+'# recorded in PERLDB_PIDS plus our (new) PID. Mark us as not having' Comment.Single
+'\n    '      Text
+'# a term yet so the parent will give us one later via resetterm().' Comment.Single
+'\n    '      Text
+'$'           Name.Variable
+'pids'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"[$ENV{PERLDB_PIDS}]"' Literal.String
+';'           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'PERLDB_PIDS' Name
+'}'           Punctuation
+' '           Text
+'.'           Operator
+'='           Operator
+' '           Text
+'"->$$"'      Literal.String
+';'           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'term_pid'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'## end if (defined $ENV{PERLDB_PIDS...' Comment.Single
+'\n'          Text
+
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n\n    '    Text
+"# We're the parent PID. Initialize PERLDB_PID in case we end up with a" Comment.Single
+'\n    '      Text
+"# child debugger, and mark us as the parent, so we'll know to set up" Comment.Single
+'\n    '      Text
+"# more TTY's is we have to." Comment.Single
+'\n    '      Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'PERLDB_PIDS' Name
+'}'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'"$$"'        Literal.String
+';'           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'pids'        Name.Variable
+'             ' Text
+'='           Operator
+' '           Text
+'"{pid=$$}"'  Literal.String
+';'           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'term_pid'    Name.Variable
+'         '   Text
+'='           Operator
+' '           Text
+'$$'          Name.Variable.Global
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'$'           Name.Variable
+'pidprompt'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"''"          Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'# Sets up $emacs as a synonym for $slave_editor.' Comment.Single
+'\n'          Text
+
+'*'           Operator
+''            Name
+'emacs'       Name
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'slave_editor' Name.Variable
+' '           Text
+'if'          Keyword
+' '           Text
+'$'           Name.Variable
+'slave_editor' Name.Variable
+';'           Punctuation
+'    '        Text
+'# May be used in afterinit()...' Comment.Single
+'\n\n'        Text
+
+"=head2 READING THE RC FILE\n\nThe debugger will read a file of initialization options if supplied. If    \nrunning interactively, this is C<.perldb>; if not, it's C<perldb.ini>.\n\n=cut" Comment.Multiline
+'      \n\n'  Text
+
+"# As noted, this test really doesn't check accurately that the debugger" Comment.Single
+'\n'          Text
+
+'# is running at a terminal or not.' Comment.Single
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'-'           Operator
+''            Name
+'e'           Name
+' '           Text
+'"/dev/tty"'  Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'                      ' Text
+'# this is the wrong metric!' Comment.Single
+'\n    '      Text
+'$'           Name.Variable
+'rcfile'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'".perldb"'   Literal.String
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'rcfile'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"perldb.ini"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'=pod\n\nThe debugger does a safety test of the file to be read. It must be owned\neither by the current user or root, and must only be writable by the owner.\n\n=cut' Comment.Multiline
+'\n\n'        Text
+
+'# This wraps a safety test around "do" to read and evaluate the init file.' Comment.Single
+'\n'          Text
+
+'#'           Comment.Single
+'\n'          Text
+
+"# This isn't really safe, because there's a race" Comment.Single
+'\n'          Text
+
+'# between checking and opening.  The solution is to' Comment.Single
+'\n'          Text
+
+'# open and fstat the handle, but then you have to read and' Comment.Single
+'\n'          Text
+
+'# eval the contents.  But then the silly thing gets' Comment.Single
+'\n'          Text
+
+'# your lexical scope, which is unfortunate at best.' Comment.Single
+'\n'          Text
+
+'sub'         Keyword
+' '           Text
+'safe_do'     Name.Function
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'file'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'shift'       Name.Builtin
+';'           Punctuation
+'\n\n    '    Text
+'# Just exactly what part of the word "CORE::" don\'t you understand?' Comment.Single
+'\n    '      Text
+'local'       Name.Builtin
+' '           Text
+'$'           Name.Variable
+'SIG'         Name.Variable
+'{'           Punctuation
+'__WARN__'    Name.Builtin.Pseudo
+'}'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'local'       Name.Builtin
+' '           Text
+'$'           Name.Variable
+'SIG'         Name.Variable
+'{'           Punctuation
+'__DIE__'     Name.Builtin.Pseudo
+'}'           Punctuation
+';'           Punctuation
+'\n\n    '    Text
+'unless'      Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+''            Name
+'is_safe_file' Name
+'('           Punctuation
+'$'           Name.Variable
+'file'        Name.Variable
+')'           Punctuation
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+''            Name
+'CORE::'      Name.Namespace
+'warn'        Name.Builtin
+' '           Text
+'<<'          Literal.String
+'EO_GRIPE'    Literal.String.Delimiter
+';\nperldb: Must not source insecure rcfile $file.\n        You or the superuser must be the owner, and it must not \n        be writable by anyone but its owner.\n' Literal.String
+
+'EO_GRIPE'    Literal.String.Delimiter
+'\n'          Text
+
+'        '    Text
+'return'      Keyword
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+' '           Text
+'## end unless (is_safe_file($file...' Comment.Single
+'\n\n    '    Text
+'do'          Keyword
+' '           Text
+'$'           Name.Variable
+'file'        Name.Variable
+';'           Punctuation
+'\n    '      Text
+''            Name
+'CORE::'      Name.Namespace
+'warn'        Name.Builtin
+'('           Punctuation
+'"perldb: couldn\'t parse $file: $@"' Literal.String
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'$@'          Name.Variable.Global
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'## end sub safe_do' Comment.Single
+'\n\n'        Text
+
+'# This is the safety test itself.' Comment.Single
+'\n'          Text
+
+'#'           Comment.Single
+'\n'          Text
+
+'# Verifies that owner is either real user or superuser and that no' Comment.Single
+'\n'          Text
+
+'# one but owner may write to it.  This function is of limited use' Comment.Single
+'\n'          Text
+
+'# when called on a path instead of upon a handle, because there are' Comment.Single
+'\n'          Text
+
+'# no guarantees that filename (by dirent) whose file (by ino) is' Comment.Single
+'\n'          Text
+
+'# eventually accessed is the same as the one tested.' Comment.Single
+'\n'          Text
+
+"# Assumes that the file's existence is not in doubt." Comment.Single
+'\n'          Text
+
+'sub'         Keyword
+' '           Text
+'is_safe_file' Name.Function
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'path'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'shift'       Name.Builtin
+';'           Punctuation
+'\n    '      Text
+'stat'        Name.Builtin
+'('           Punctuation
+'$'           Name.Variable
+'path'        Name.Variable
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'return'      Keyword
+';'           Punctuation
+'    '        Text
+'# mysteriously vaporized' Comment.Single
+'\n    '      Text
+'my'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'dev'         Name.Variable
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'ino'         Name.Variable
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'mode'        Name.Variable
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'nlink'       Name.Variable
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'uid'         Name.Variable
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'gid'         Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'stat'        Name.Builtin
+'('           Punctuation
+''            Name
+'_'           Name
+')'           Punctuation
+';'           Punctuation
+'\n\n    '    Text
+'return'      Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'if'          Keyword
+' '           Text
+'$'           Name.Variable
+'uid'         Name.Variable
+' '           Text
+'!='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'&&'          Operator
+' '           Text
+'$'           Name.Variable
+'uid'         Name.Variable
+' '           Text
+'!='          Operator
+' '           Text
+'$<'          Name.Variable.Global
+';'           Punctuation
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'if'          Keyword
+' '           Text
+'$'           Name.Variable
+'mode'        Name.Variable
+' '           Text
+'&'           Operator
+' '           Text
+'022'         Literal.Number.Oct
+';'           Punctuation
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'## end sub is_safe_file' Comment.Single
+'\n\n'        Text
+
+'# If the rcfile (whichever one we decided was the right one to read)' Comment.Single
+'\n'          Text
+
+'# exists, we safely do it.' Comment.Single
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'-'           Operator
+''            Name
+'f'           Name
+' '           Text
+'$'           Name.Variable
+'rcfile'      Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+''            Name
+'safe_do'     Name
+'('           Punctuation
+'"./$rcfile"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+"# If there isn't one here, try the user's home directory." Comment.Single
+'\n'          Text
+
+'elsif'       Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'HOME'        Name
+'}'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'-'           Operator
+''            Name
+'f'           Name
+' '           Text
+'"$ENV{HOME}/$rcfile"' Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+''            Name
+'safe_do'     Name
+'('           Punctuation
+'"$ENV{HOME}/$rcfile"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'# Else try the login directory.' Comment.Single
+'\n'          Text
+
+'elsif'       Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'LOGDIR'      Name
+'}'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'-'           Operator
+''            Name
+'f'           Name
+' '           Text
+'"$ENV{LOGDIR}/$rcfile"' Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+''            Name
+'safe_do'     Name
+'('           Punctuation
+'"$ENV{LOGDIR}/$rcfile"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'# If the PERLDB_OPTS variable has options in it, parse those out next.' Comment.Single
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'PERLDB_OPTS' Name
+'}'           Punctuation
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+''            Name
+'parse_options' Name
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'PERLDB_OPTS' Name
+'}'           Punctuation
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'=pod\n\nThe last thing we do during initialization is determine which subroutine is\nto be used to obtain a new terminal when a new debugger is started. Right now,\nthe debugger only handles X Windows and OS/2.\n\n=cut' Comment.Multiline
+'\n\n'        Text
+
+'# Set up the get_fork_TTY subroutine to be aliased to the proper routine.' Comment.Single
+'\n'          Text
+
+"# Works if you're running an xterm or xterm-like window, or you're on" Comment.Single
+'\n'          Text
+
+"# OS/2. This may need some expansion: for instance, this doesn't handle" Comment.Single
+'\n'          Text
+
+'# OS X Terminal windows.' Comment.Single
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'\n    '      Text
+'not'         Operator.Word
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'&'           Operator
+''            Name
+'get_fork_TTY' Name
+'    '        Text
+'# no routine exists,' Comment.Single
+'\n    '      Text
+'and'         Operator.Word
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'TERM'        Name
+'}'           Punctuation
+'       '     Text
+'# and we know what kind' Comment.Single
+'\n                                 ' Text
+'# of terminal this is,' Comment.Single
+'\n    '      Text
+'and'         Operator.Word
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'TERM'        Name
+'}'           Punctuation
+' '           Text
+'eq'          Operator.Word
+' '           Text
+"'xterm'"     Literal.String
+'    '        Text
+"# and it's an xterm," Comment.Single
+'\n'          Text
+
+'#   and defined $ENV{WINDOWID}   # and we know what window this is, <- wrong metric' Comment.Single
+'\n    '      Text
+'and'         Operator.Word
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'DISPLAY'     Name
+'}'           Punctuation
+'    '        Text
+"# and what display it's on," Comment.Single
+'\n  '        Text
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n    '      Text
+'*'           Operator
+''            Name
+'get_fork_TTY' Name
+' '           Text
+'='           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'xterm_get_fork_TTY' Name
+';'           Punctuation
+'    '        Text
+'# use the xterm version' Comment.Single
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'## end if (not defined &get_fork_TTY...' Comment.Single
+'\n'          Text
+
+'elsif'       Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'$^O'         Name.Variable.Global
+' '           Text
+'eq'          Operator.Word
+' '           Text
+"'os2'"       Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'                     ' Text
+'# If this is OS/2,' Comment.Single
+'\n    '      Text
+'*'           Operator
+''            Name
+'get_fork_TTY' Name
+' '           Text
+'='           Operator
+' '           Text
+'\\'          Operator
+'&'           Operator
+''            Name
+'os2_get_fork_TTY' Name
+';'           Punctuation
+'      '      Text
+'# use the OS/2 version' Comment.Single
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'# untaint $^O, which may have been tainted by the last statement.' Comment.Single
+'\n'          Text
+
+'# see bug [perl #24674]' Comment.Single
+'\n'          Text
+
+'$^O'         Name.Variable.Global
+' '           Text
+'=~'          Operator
+' '           Text
+'m/^(.*)\\z/' Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'$^O'         Name.Variable.Global
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'1'           Name.Variable
+';'           Punctuation
+'\n\n'        Text
+
+'# Here begin the unreadable code.  It needs fixing.' Comment.Single
+'\n\n'        Text
+
+"=head2 RESTART PROCESSING\n\nThis section handles the restart command. When the C<R> command is invoked, it\ntries to capture all of the state it can into environment variables, and\nthen sets C<PERLDB_RESTART>. When we start executing again, we check to see\nif C<PERLDB_RESTART> is there; if so, we reload all the information that\nthe R command stuffed into the environment variables.\n\n  PERLDB_RESTART   - flag only, contains no restart data itself.       \n  PERLDB_HIST      - command history, if it's available\n  PERLDB_ON_LOAD   - breakpoints set by the rc file\n  PERLDB_POSTPONE  - subs that have been loaded/not executed, and have actions\n  PERLDB_VISITED   - files that had breakpoints\n  PERLDB_FILE_...  - breakpoints for a file\n  PERLDB_OPT       - active options\n  PERLDB_INC       - the original @INC\n  PERLDB_PRETYPE   - preprompt debugger actions\n  PERLDB_PRE       - preprompt Perl code\n  PERLDB_POST      - post-prompt Perl code\n  PERLDB_TYPEAHEAD - typeahead captured by readline()\n\nWe chug through all these variables and plug the values saved in them\nback into the appropriate spots in the debugger.\n\n=cut" Comment.Multiline
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'exists'      Name.Builtin
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'PERLDB_RESTART' Name
+'}'           Punctuation
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\n    '    Text
+"# We're restarting, so we don't need the flag that says to restart anymore." Comment.Single
+'\n    '      Text
+'delete'      Name.Builtin
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'PERLDB_RESTART' Name
+'}'           Punctuation
+';'           Punctuation
+'\n\n    '    Text
+'# $restart = 1;' Comment.Single
+'\n    '      Text
+'@'           Name.Variable
+'hist'        Name.Variable
+'          '  Text
+'='           Operator
+' '           Text
+''            Name
+'get_list'    Name
+'('           Punctuation
+"'PERLDB_HIST'" Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'%'           Name.Variable
+'break_on_load' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+''            Name
+'get_list'    Name
+'('           Punctuation
+'"PERLDB_ON_LOAD"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'%'           Name.Variable
+'postponed'   Name.Variable
+'     '       Text
+'='           Operator
+' '           Text
+''            Name
+'get_list'    Name
+'('           Punctuation
+'"PERLDB_POSTPONE"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n\n\t'      Text
+''            Name
+'share'       Name
+'('           Punctuation
+'@'           Name.Variable
+'hist'        Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+''            Name
+'share'       Name
+'('           Punctuation
+'@'           Name.Variable
+'truehist'    Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+''            Name
+'share'       Name
+'('           Punctuation
+'%'           Name.Variable
+'break_on_load' Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+''            Name
+'share'       Name
+'('           Punctuation
+'%'           Name.Variable
+'postponed'   Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n\n    '    Text
+'# restore breakpoints/actions' Comment.Single
+'\n    '      Text
+'my'          Keyword
+' '           Text
+'@'           Name.Variable
+'had_breakpoints' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+''            Name
+'get_list'    Name
+'('           Punctuation
+'"PERLDB_VISITED"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'..'          Operator
+' '           Text
+'$#'          Name.Variable
+'had_breakpoints' Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'my'          Keyword
+' '           Text
+'%'           Name.Variable
+'pf'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+''            Name
+'get_list'    Name
+'('           Punctuation
+'"PERLDB_FILE_$_"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n        '  Text
+'$'           Name.Variable
+'postponed_file' Name.Variable
+'{'           Punctuation
+' '           Text
+'$'           Name.Variable
+'had_breakpoints' Name.Variable
+'['           Punctuation
+'$'           Name.Variable
+'_'           Name.Variable
+']'           Punctuation
+' '           Text
+'}'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'\\'          Operator
+'%'           Name.Variable
+'pf'          Name.Variable
+' '           Text
+'if'          Keyword
+' '           Text
+'%'           Name.Variable
+'pf'          Name.Variable
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'# restore options' Comment.Single
+'\n    '      Text
+'my'          Keyword
+' '           Text
+'%'           Name.Variable
+'opt'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+''            Name
+'get_list'    Name
+'('           Punctuation
+'"PERLDB_OPT"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'my'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'opt'         Name.Variable
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'val'         Name.Variable
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'opt'         Name.Variable
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'val'         Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'each'        Name.Builtin
+' '           Text
+'%'           Name.Variable
+'opt'         Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'$'           Name.Variable
+'val'         Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+"s/[\\\\\\']/\\\\$1/g" Literal.String.Regex
+';'           Punctuation
+'\n        '  Text
+''            Name
+'parse_options' Name
+'('           Punctuation
+'"$opt\'$val\'"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'# restore original @INC' Comment.Single
+'\n    '      Text
+'@'           Name.Variable
+'INC'         Name.Variable
+'     '       Text
+'='           Operator
+' '           Text
+''            Name
+'get_list'    Name
+'('           Punctuation
+'"PERLDB_INC"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'@'           Name.Variable
+'ini_INC'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'@'           Name.Variable
+'INC'         Name.Variable
+';'           Punctuation
+'\n\n    '    Text
+'# return pre/postprompt actions and typeahead buffer' Comment.Single
+'\n    '      Text
+'$'           Name.Variable
+'pretype'     Name.Variable
+'   '         Text
+'='           Operator
+' '           Text
+'['           Punctuation
+' '           Text
+''            Name
+'get_list'    Name
+'('           Punctuation
+'"PERLDB_PRETYPE"' Literal.String
+')'           Punctuation
+' '           Text
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'pre'         Name.Variable
+'       '     Text
+'='           Operator
+' '           Text
+'['           Punctuation
+' '           Text
+''            Name
+'get_list'    Name
+'('           Punctuation
+'"PERLDB_PRE"' Literal.String
+')'           Punctuation
+' '           Text
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'post'        Name.Variable
+'      '      Text
+'='           Operator
+' '           Text
+'['           Punctuation
+' '           Text
+''            Name
+'get_list'    Name
+'('           Punctuation
+'"PERLDB_POST"' Literal.String
+')'           Punctuation
+' '           Text
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'@'           Name.Variable
+'typeahead'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+''            Name
+'get_list'    Name
+'('           Punctuation
+' '           Text
+'"PERLDB_TYPEAHEAD"' Literal.String
+','           Punctuation
+' '           Text
+'@'           Name.Variable
+'typeahead'   Name.Variable
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'## end if (exists $ENV{PERLDB_RESTART...' Comment.Single
+'\n\n'        Text
+
+"=head2 SETTING UP THE TERMINAL\n\nNow, we'll decide how the debugger is going to interact with the user.\nIf there's no TTY, we set the debugger to run non-stop; there's not going\nto be anyone there to enter commands.\n\n=cut" Comment.Multiline
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$'           Name.Variable
+'notty'       Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'runnonstop'  Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text
+''            Name
+'share'       Name
+'('           Punctuation
+'$'           Name.Variable
+'runnonstop'  Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+"=pod\n\nIf there is a TTY, we have to determine who it belongs to before we can\nproceed. If this is a slave editor or graphical debugger (denoted by\nthe first command-line switch being '-emacs'), we shift this off and\nset C<$rl> to 0 (XXX ostensibly to do straight reads).\n\n=cut" Comment.Multiline
+'\n\n'        Text
+
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n\n    '    Text
+'# Is Perl being run from a slave editor or graphical debugger?' Comment.Single
+'\n    '      Text
+"# If so, don't use readline, and set $slave_editor = 1." Comment.Single
+'\n    '      Text
+'$'           Name.Variable
+'slave_editor' Name.Variable
+' '           Text
+'='           Operator
+'\n      '    Text
+'('           Punctuation
+' '           Text
+'('           Punctuation
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'main::'      Name.Namespace
+'ARGV'        Name.Variable
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+')'           Punctuation
+' '           Text
+'and'         Operator.Word
+' '           Text
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'main::'      Name.Namespace
+'ARGV'        Name.Variable
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'eq'          Operator.Word
+' '           Text
+"'-emacs'"    Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'rl'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'shift'       Name.Builtin
+'('           Punctuation
+'@'           Name.Variable
+'main::'      Name.Namespace
+'ARGV'        Name.Variable
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'$'           Name.Variable
+'slave_editor' Name.Variable
+';'           Punctuation
+'\n\n    '    Text
+'#require Term::ReadLine;' Comment.Single
+'\n\n'        Text
+
+'=pod\n\nWe then determine what the console should be on various systems:\n\n=over 4\n\n=item * Cygwin - We use C<stdin> instead of a separate device.\n\n=cut' Comment.Multiline
+'\n\n    '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'$^O'         Name.Variable.Global
+' '           Text
+'eq'          Operator.Word
+' '           Text
+"'cygwin'"    Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\n        ' Text
+'# /dev/tty is binary. use stdin for textmode' Comment.Single
+'\n        '  Text
+'undef'       Name.Builtin
+' '           Text
+'$'           Name.Variable
+'console'     Name.Variable
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n'        Text
+
+'=item * Unix - use C</dev/tty>.\n\n=cut' Comment.Multiline
+'\n\n    '    Text
+'elsif'       Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'-'           Operator
+''            Name
+'e'           Name
+' '           Text
+'"/dev/tty"'  Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"/dev/tty"'  Literal.String
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n'        Text
+
+'=item * Windows or MSDOS - use C<con>.\n\n=cut' Comment.Multiline
+'\n\n    '    Text
+'elsif'       Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'$^O'         Name.Variable.Global
+' '           Text
+'eq'          Operator.Word
+' '           Text
+"'dos'"       Literal.String
+' '           Text
+'or'          Operator.Word
+' '           Text
+'-'           Operator
+''            Name
+'e'           Name
+' '           Text
+'"con"'       Literal.String
+' '           Text
+'or'          Operator.Word
+' '           Text
+'$^O'         Name.Variable.Global
+' '           Text
+'eq'          Operator.Word
+' '           Text
+"'MSWin32'"   Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"con"'       Literal.String
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n'        Text
+
+"=item * MacOS - use C<Dev:Console:Perl Debug> if this is the MPW version; C<Dev:\nConsole> if not.\n\nNote that Mac OS X returns C<darwin>, not C<MacOS>. Also note that the debugger doesn't do anything special for C<darwin>. Maybe it should.\n\n=cut" Comment.Multiline
+'\n\n    '    Text
+'elsif'       Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'$^O'         Name.Variable.Global
+' '           Text
+'eq'          Operator.Word
+' '           Text
+"'MacOS'"     Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'MacPerl::'   Name.Namespace
+'Version'     Name.Variable
+' '           Text
+'!~'          Operator
+' '           Text
+'/MPW/'       Literal.String.Regex
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n            ' Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+'='           Operator
+'\n              ' Text
+'"Dev:Console:Perl Debug"' Literal.String
+';'           Punctuation
+'    '        Text
+'# Separate window for application' Comment.Single
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n            ' Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"Dev:Console"' Literal.String
+';'           Punctuation
+'\n        '  Text
+'}'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+' '           Text
+"## end elsif ($^O eq 'MacOS')" Comment.Single
+'\n\n'        Text
+
+'=item * VMS - use C<sys$command>.\n\n=cut' Comment.Multiline
+'\n\n    '    Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n\n        ' Text
+'# everything else is ...' Comment.Single
+'\n        '  Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"sys\\$command"' Literal.String
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n'        Text
+
+"=pod\n\n=back\n\nSeveral other systems don't use a specific console. We C<undef $console>\nfor those (Windows using a slave editor/graphical debugger, NetWare, OS/2\nwith a slave editor, Epoc).\n\n=cut" Comment.Multiline
+'\n\n    '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'('           Punctuation
+' '           Text
+'$^O'         Name.Variable.Global
+' '           Text
+'eq'          Operator.Word
+' '           Text
+"'MSWin32'"   Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'and'         Operator.Word
+' '           Text
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'slave_editor' Name.Variable
+' '           Text
+'or'          Operator.Word
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'EMACS'       Name
+'}'           Punctuation
+' '           Text
+')'           Punctuation
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\n        ' Text
+'# /dev/tty is binary. use stdin for textmode' Comment.Single
+'\n        '  Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'undef'       Name.Builtin
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'$^O'         Name.Variable.Global
+' '           Text
+'eq'          Operator.Word
+' '           Text
+"'NetWare'"   Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\n        ' Text
+'# /dev/tty is binary. use stdin for textmode' Comment.Single
+'\n        '  Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'undef'       Name.Builtin
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'# In OS/2, we need to use STDIN to get textmode too, even though' Comment.Single
+'\n    '      Text
+'# it pretty much looks like Unix otherwise.' Comment.Single
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'OS2_SHELL'   Name
+'}'           Punctuation
+' '           Text
+'and'         Operator.Word
+' '           Text
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'slave_editor' Name.Variable
+' '           Text
+'or'          Operator.Word
+' '           Text
+'$'           Name.Variable
+'ENV'         Name.Variable
+'{'           Punctuation
+''            Name
+'WINDOWID'    Name
+'}'           Punctuation
+' '           Text
+')'           Punctuation
+' '           Text
+')'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+'    '        Text
+'# In OS/2'   Comment.Single
+'\n        '  Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'undef'       Name.Builtin
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+"# EPOC also falls into the 'got to use STDIN' camp." Comment.Single
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'$^O'         Name.Variable.Global
+' '           Text
+'eq'          Operator.Word
+' '           Text
+"'epoc'"      Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'undef'       Name.Builtin
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n'        Text
+
+'=pod\n\nIf there is a TTY hanging around from a parent, we use that as the console.\n\n=cut' Comment.Multiline
+'\n\n    '    Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'tty'         Name.Variable
+' '           Text
+'if'          Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'tty'         Name.Variable
+';'           Punctuation
+'\n\n'        Text
+
+'=head2 SOCKET HANDLING   \n\nThe debugger is capable of opening a socket and carrying out a debugging\nsession over the socket.\n\nIf C<RemotePort> was defined in the options, the debugger assumes that it\nshould try to start a debugging session on that port. It builds the socket\nand then tries to connect the input and output filehandles to it.\n\n=cut' Comment.Multiline
+'\n\n    '    Text
+'# Handle socket stuff.' Comment.Single
+'\n\n    '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'remoteport'  Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\n        ' Text
+'# If RemotePort was defined in the options, connect input and output' Comment.Single
+'\n        '  Text
+'# to the socket.' Comment.Single
+'\n        '  Text
+'require'     Keyword
+' '           Text
+'IO::Socket'  Name.Namespace
+';'           Punctuation
+'\n        '  Text
+'$'           Name.Variable
+'OUT'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+''            Name
+'IO::Socket::' Name.Namespace
+''            Name
+'INET'        Name
+'('           Punctuation
+'\n            ' Text
+''            Name
+'Timeout'     Name
+'  '          Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'10'"        Literal.String
+','           Punctuation
+'\n            ' Text
+''            Name
+'PeerAddr'    Name
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'$'           Name.Variable
+'remoteport'  Name.Variable
+','           Punctuation
+'\n            ' Text
+''            Name
+'Proto'       Name
+'    '        Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'tcp'"       Literal.String
+','           Punctuation
+'\n        '  Text
+')'           Punctuation
+';'           Punctuation
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'!'           Operator
+'$'           Name.Variable
+'OUT'         Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'die'         Name.Builtin
+' '           Text
+'"Unable to connect to remote host: $remoteport\\n"' Literal.String
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'$'           Name.Variable
+'IN'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'OUT'         Name.Variable
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+' '           Text
+'## end if (defined $remoteport)' Comment.Single
+'\n\n'        Text
+
+'=pod\n\nIf no C<RemotePort> was defined, and we want to create a TTY on startup,\nthis is probably a situation where multiple debuggers are running (for example,\na backticked command that starts up another debugger). We create a new IN and\nOUT filehandle, and do the necessary mojo to create a new TTY if we know how\nand if we can.\n\n=cut' Comment.Multiline
+'\n\n    '    Text
+'# Non-socket.' Comment.Single
+'\n    '      Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n\n        ' Text
+'# Two debuggers running (probably a system or a backtick that invokes' Comment.Single
+'\n        '  Text
+'# the debugger itself under the running one). create a new IN and OUT' Comment.Single
+'\n        '  Text
+'# filehandle, and do the necessary mojo to create a new tty if we' Comment.Single
+'\n        '  Text
+'# know how, and we can.' Comment.Single
+'\n        '  Text
+''            Name
+'create_IN_OUT' Name
+'('           Punctuation
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'$'           Name.Variable
+'CreateTTY'   Name.Variable
+' '           Text
+'&'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+';'           Punctuation
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$'           Name.Variable
+'console'     Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\n            ' Text
+'# If we have a console, check to see if there are separate ins and' Comment.Single
+'\n            ' Text
+'# outs to open. (They are assumed identiical if not.)' Comment.Single
+'\n\n            ' Text
+'my'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'i'           Name.Variable
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'o'           Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'split'       Name.Builtin
+' '           Text
+'/,/'         Literal.String.Regex
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'console'     Name.Variable
+';'           Punctuation
+'\n            ' Text
+'$'           Name.Variable
+'o'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'i'           Name.Variable
+' '           Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'o'           Name.Variable
+';'           Punctuation
+'\n\n            ' Text
+'# read/write on in, or just read, or read on STDIN.' Comment.Single
+'\n            ' Text
+'open'        Name.Builtin
+'('           Punctuation
+' '           Text
+''            Name
+'IN'          Name
+','           Punctuation
+'      '      Text
+'"+<$i"'      Literal.String
+' '           Text
+')'           Punctuation
+'\n              ' Text
+'||'          Operator
+' '           Text
+'open'        Name.Builtin
+'('           Punctuation
+' '           Text
+''            Name
+'IN'          Name
+','           Punctuation
+' '           Text
+'"<$i"'       Literal.String
+' '           Text
+')'           Punctuation
+'\n              ' Text
+'||'          Operator
+' '           Text
+'open'        Name.Builtin
+'('           Punctuation
+' '           Text
+''            Name
+'IN'          Name
+','           Punctuation
+' '           Text
+'"<&STDIN"'   Literal.String
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n\n            ' Text
+'# read/write/create/clobber out, or write/create/clobber out,' Comment.Single
+'\n            ' Text
+'# or merge with STDERR, or merge with STDOUT.' Comment.Single
+'\n                 ' Text
+'open'        Name.Builtin
+'('           Punctuation
+' '           Text
+''            Name
+'OUT'         Name
+','           Punctuation
+' '           Text
+'"+>$o"'      Literal.String
+' '           Text
+')'           Punctuation
+'\n              ' Text
+'||'          Operator
+' '           Text
+'open'        Name.Builtin
+'('           Punctuation
+' '           Text
+''            Name
+'OUT'         Name
+','           Punctuation
+' '           Text
+'">$o"'       Literal.String
+' '           Text
+')'           Punctuation
+'\n              ' Text
+'||'          Operator
+' '           Text
+'open'        Name.Builtin
+'('           Punctuation
+' '           Text
+''            Name
+'OUT'         Name
+','           Punctuation
+' '           Text
+'">&STDERR"'  Literal.String
+' '           Text
+')'           Punctuation
+'\n              ' Text
+'||'          Operator
+' '           Text
+'open'        Name.Builtin
+'('           Punctuation
+' '           Text
+''            Name
+'OUT'         Name
+','           Punctuation
+' '           Text
+'">&STDOUT"'  Literal.String
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'    '        Text
+"# so we don't dongle stdout" Comment.Single
+'\n\n        ' Text
+'}'           Punctuation
+' '           Text
+'## end if ($console)' Comment.Single
+'\n        '  Text
+'elsif'       Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'not'         Operator.Word
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\n            ' Text
+'# No console. Open STDIN.' Comment.Single
+'\n            ' Text
+'open'        Name.Builtin
+'('           Punctuation
+' '           Text
+''            Name
+'IN'          Name
+','           Punctuation
+' '           Text
+'"<&STDIN"'   Literal.String
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n\n            ' Text
+'# merge with STDERR, or with STDOUT.' Comment.Single
+'\n            ' Text
+'open'        Name.Builtin
+'('           Punctuation
+' '           Text
+''            Name
+'OUT'         Name
+','           Punctuation
+'      '      Text
+'">&STDERR"'  Literal.String
+' '           Text
+')'           Punctuation
+'\n              ' Text
+'||'          Operator
+' '           Text
+'open'        Name.Builtin
+'('           Punctuation
+' '           Text
+''            Name
+'OUT'         Name
+','           Punctuation
+' '           Text
+'">&STDOUT"'  Literal.String
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'    '        Text
+"# so we don't dongle stdout" Comment.Single
+'\n            ' Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'STDIN/OUT'" Literal.String
+';'           Punctuation
+'\n        '  Text
+'}'           Punctuation
+' '           Text
+'## end elsif (not defined $console)' Comment.Single
+'\n\n        ' Text
+'# Keep copies of the filehandles so that when the pager runs, it' Comment.Single
+'\n        '  Text
+'# can close standard input without clobbering ours.' Comment.Single
+'\n        '  Text
+'$'           Name.Variable
+'IN'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'\\'          Operator
+'*'           Operator
+''            Name
+'IN'          Name
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'OUT'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'\\'          Operator
+'*'           Operator
+''            Name
+'OUT'         Name
+' '           Text
+'if'          Keyword
+' '           Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+'or'          Operator.Word
+' '           Text
+'not'         Operator.Word
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'console'     Name.Variable
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+' '           Text
+'## end elsif (from if(defined $remoteport))' Comment.Single
+'\n\n    '    Text
+'# Unbuffer DB::OUT. We need to see responses right away.' Comment.Single
+'\n    '      Text
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'previous'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'select'      Name.Builtin
+'('           Punctuation
+'$'           Name.Variable
+'OUT'         Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'$|'          Name.Variable.Global
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'                                  ' Text
+'# for DB::OUT' Comment.Single
+'\n    '      Text
+'select'      Name.Builtin
+'('           Punctuation
+'$'           Name.Variable
+'previous'    Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n\n    '    Text
+'# Line info goes to debugger output unless pointed elsewhere.' Comment.Single
+'\n    '      Text
+'# Pointing elsewhere makes it possible for slave editors to' Comment.Single
+'\n    '      Text
+'# keep track of file and position. We have both a filehandle' Comment.Single
+'\n    '      Text
+'# and a I/O description to keep track of.' Comment.Single
+'\n    '      Text
+'$'           Name.Variable
+'LINEINFO'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'OUT'         Name.Variable
+'     '       Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'LINEINFO'    Name.Variable
+';'           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'lineinfo'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$'           Name.Variable
+'console'     Name.Variable
+' '           Text
+'unless'      Keyword
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'$'           Name.Variable
+'lineinfo'    Name.Variable
+';'           Punctuation
+'\n\t'        Text
+'# share($LINEINFO); # <- unable to share globs' Comment.Single
+'\n\t'        Text
+''            Name
+'share'       Name
+'('           Punctuation
+'$'           Name.Variable
+'lineinfo'    Name.Variable
+')'           Punctuation
+';'           Punctuation
+'   '         Text
+'# '          Comment.Single
+'\n\n'        Text
+
+'=pod\n\nTo finish initialization, we show the debugger greeting,\nand then call the C<afterinit()> subroutine if there is one.\n\n=cut' Comment.Multiline
+'\n\n    '    Text
+'# Show the debugger greeting.' Comment.Single
+'\n    '      Text
+'$'           Name.Variable
+'header'      Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s/.Header: ([^,]+),v(\\s+\\S+\\s+\\S+).*$/$1$2/' Literal.String.Regex
+';'           Punctuation
+'\n    '      Text
+'unless'      Keyword
+' '           Text
+'('           Punctuation
+'$'           Name.Variable
+'runnonstop'  Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'local'       Name.Builtin
+' '           Text
+'$\\'         Name.Variable.Global
+' '           Text
+'='           Operator
+' '           Text
+"''"          Literal.String
+';'           Punctuation
+'\n        '  Text
+'local'       Name.Builtin
+' '           Text
+'$,'          Name.Variable.Global
+' '           Text
+'='           Operator
+' '           Text
+"''"          Literal.String
+';'           Punctuation
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'$'           Name.Variable
+'term_pid'    Name.Variable
+' '           Text
+'eq'          Operator.Word
+' '           Text
+"'-1'"        Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n            ' Text
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'OUT'         Name.Variable
+' '           Text
+'"\\nDaughter DB session started...\\n"' Literal.String
+';'           Punctuation
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n            ' Text
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'OUT'         Name.Variable
+' '           Text
+'"\\nLoading DB routines from $header\\n"' Literal.String
+';'           Punctuation
+'\n            ' Text
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'OUT'         Name.Variable
+' '           Text
+'('           Punctuation
+'\n                ' Text
+'"Editor support "' Literal.String
+','           Punctuation
+'\n                ' Text
+'$'           Name.Variable
+'slave_editor' Name.Variable
+' '           Text
+'?'           Punctuation
+' '           Text
+'"enabled"'   Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'"available"' Literal.String
+','           Punctuation
+' '           Text
+'".\\n"'      Literal.String
+'\n            ' Text
+')'           Punctuation
+';'           Punctuation
+'\n            ' Text
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'OUT'         Name.Variable
+'\n'          Text
+
+'"\\nEnter h or `h h\' for help, or `$doccmd perldebug\' for more help.\\n\\n"' Literal.String
+';'           Punctuation
+'\n        '  Text
+'}'           Punctuation
+' '           Text
+"## end else [ if ($term_pid eq '-1')" Comment.Single
+'\n    '      Text
+'}'           Punctuation
+' '           Text
+'## end unless ($runnonstop)' Comment.Single
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'## end else [ if ($notty)' Comment.Single
+'\n\n'        Text
+
+'# XXX This looks like a bug to me.' Comment.Single
+'\n'          Text
+
+'# Why copy to @ARGS and then futz with @args?' Comment.Single
+'\n'          Text
+
+'@'           Name.Variable
+'ARGS'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'@'           Name.Variable
+'ARGV'        Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'@'           Name.Variable
+'args'        Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'# Make sure backslashes before single quotes are stripped out, and' Comment.Single
+'\n    '      Text
+'# keep args unless they are numeric (XXX why?)' Comment.Single
+'\n    '      Text
+"# s/\\'/\\\\\\'/g;                      # removed while not justified understandably" Comment.Single
+'\n    '      Text
+"# s/(.*)/'$1'/ unless /^-?[\\d.]+$/; # ditto" Comment.Single
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'# If there was an afterinit() sub defined, call it. It will get' Comment.Single
+'\n'          Text
+
+'# executed in our scope, so it can fiddle with debugger globals.' Comment.Single
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'defined'     Name.Builtin
+' '           Text
+'&'           Operator
+''            Name
+'afterinit'   Name
+' '           Text
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'    '        Text
+'# May be defined in $rcfile' Comment.Single
+'\n    '      Text
+'&'           Operator
+''            Name
+'afterinit'   Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'# Inform us about "Stack dump during die enabled ..." in dieLevel().' Comment.Single
+'\n'          Text
+
+'$'           Name.Variable
+'I_m_init'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text

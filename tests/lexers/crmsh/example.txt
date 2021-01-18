@@ -1,0 +1,1257 @@
+---input---
+node 167906355: sle12-a
+node 167906357: sle12-c \
+	description="The second node" \
+	utilization memory=64
+node node1 \
+	attributes mem=16G
+node node2 utilization cpu=4
+primitive st stonith:ssh \
+	params hostlist="node1 node2" \
+	meta target-role="Started" \
+	op start requires=nothing timeout=60s \
+	op monitor interval=60m timeout=60s
+primitive d1 ocf:pacemaker:Dummy \
+	operations $id=d1-ops \
+	op monitor interval=60m \
+	op monitor interval=120m OCF_CHECK_LEVEL=10
+primitive fs1 Filesystem \
+	params device="/dev/nfs-vg/fs1" directory="/srv/nfs" fstype=ext3 \
+	op monitor interval=10s
+primitive nfs-server nfsserver \
+	params nfs_shared_infodir="/srv/nfs/state" nfs_ip=10.2.12.100 \
+	op monitor interval=0 trace_ra=1
+primitive nfs-vg LVM \
+	params volgrpname=nfs-vg
+primitive p_drbd_nfs ocf:linbit:drbd \
+	params drbd_resource=nfs \
+	op monitor interval=15 role=Master \
+	op monitor interval=30 role=Slave \
+	op start interval=0 timeout=300 \
+	op stop interval=0 timeout=120
+primitive s-libvirt stonith:external/libvirt \
+	params hostlist="sle12-a sle12-c" hypervisor_uri="qemu+ssh://hex-10.suse.de/system?keyfile=/root/.ssh/xen" reset_method=reboot \
+	op monitor interval=5m timeout=60s
+primitive virtual-ip IPaddr2 \
+	params ip=10.2.12.100
+primitive xen0 @vm_scheme1 xmfile=/etc/xen/vm/xen0
+primitive d7 Dummy \
+	params rule inf: #uname eq node1 fake=1 \
+	params rule inf: #uname eq node2 fake=2
+primitive very-primitive Dummy \
+  params 3: rule #uname eq node1 interface=eth1 \
+  params 2: rule #uname string:eq node2 interface=eth2 port=8888 \
+  params 1: interface=eth0 port=9999 \
+  operations $id-ref=those_other_ops
+fencing_topology poison-pill power
+fencing_topology \
+    node-a: poison-pill power \
+	node-b: ipmi serial
+role nfs_admin \
+    write meta:nfs-server:target-role \
+    write meta:nfs-server:is-managed \
+    write location:nfs-server \
+    read ref:nfs-server
+role basic-read \
+	read status \
+	read type:node attribute:uname \
+	read type:node attribute:type \
+	read property
+role basic-read-basic \
+	read cib
+role d0-admin \
+	write meta:d0:target-role \
+	write meta:d0:is-managed \
+	read xpath:"//nodes//attributes" \
+	read ref:d0
+acl_target joe \
+	nfs_admin
+tag nfs: nfs-server nfs-vg
+group nfs-disk nfs-vg fs1
+group nfs-srv virtual-ip nfs-server
+ms ms_drbd_nfs p_drbd_nfs \
+	meta notify=true clone-max=2
+location nfs-pref virtual-ip 100: sle12-a
+location l1 nfs-srv 100: node1
+location l2 d1 \
+	rule 100: #uname eq node1
+location l3 d1 \
+	rule inf: #uname eq node1 and pingd gt 0
+location l4 d1 \
+	rule -inf: not_defined pingd or pingd lte 0
+location l5 fs1 \
+	rule -inf: not_defined pingd or pingd lte 0 \
+	rule #uname eq node1 and pingd gt 0 \
+	rule date lt 2009-05-26 and date in start=2009-05-26 end=2009-07-26 and date in start=2009-05-26 years=2009 and date spec years=2009 hours=09-17
+location l6 d1 \
+	rule $id-ref=l2-rule1
+location l7 d1 \
+	rule $id-ref=l2
+colocation c-nfs inf: nfs-server fs1
+colocation vg-with-drbd inf: nfs-vg ms_drbd_nfs:Master
+# drbd device is the nfs-vg PV
+order drbd-before-vg inf: ms_drbd_nfs:promote nfs-vg:start
+# need fs1 for the NFS server
+order o-nfs inf: fs1 nfs-server
+rsc_ticket ticket-A_m6 ticket-A: d1
+rsc_ticket ticket-B_m6_m5 ticket-B: d1 d7 loss-policy=fence
+rsc_ticket ticket-C_master ticket-C: d1 ms_drbd_nfs:Master loss-policy=fence
+property cpset2: \
+	maintenance-mode=true
+property cib-bootstrap-options: \
+	dc-version=1.1.12-ad083a8 \
+	cluster-infrastructure=corosync \
+	cluster-name=sle12-test3l-public \
+	no-quorum-policy=ignore \
+	startup-fencing=false \
+	last-lrm-refresh=1415877622 \
+	maintenance-mode=false
+op_defaults op-options: \
+	timeout=120s
+rsc_defaults rsc-options: \
+	failure-timeout=10m
+op_defaults opsdef2: \
+	rule 100: #uname eq node1 \
+	record-pending=true
+tag t1: d1 d7 opsdef2
+
+---tokens---
+'node'        Keyword
+' '           Text.Whitespace
+'167906355'   Name
+':'           Punctuation
+' '           Text.Whitespace
+'sle12-a'     Name
+'\n'          Text.Whitespace
+
+'node'        Keyword
+' '           Text.Whitespace
+'167906357'   Name
+':'           Punctuation
+' '           Text.Whitespace
+'sle12-c'     Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'description' Name.Attribute
+'='           Punctuation
+'"The second node"' Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'utilization' Keyword
+' '           Text.Whitespace
+'memory'      Name.Attribute
+'='           Punctuation
+'64'          Literal.String
+'\n'          Text.Whitespace
+
+'node'        Keyword
+' '           Text.Whitespace
+'node1'       Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'attributes'  Keyword
+' '           Text.Whitespace
+'mem'         Name.Attribute
+'='           Punctuation
+'16G'         Literal.String
+'\n'          Text.Whitespace
+
+'node'        Keyword
+' '           Text.Whitespace
+'node2'       Name
+' '           Text.Whitespace
+'utilization' Keyword
+' '           Text.Whitespace
+'cpu'         Name.Attribute
+'='           Punctuation
+'4'           Literal.String
+'\n'          Text.Whitespace
+
+'primitive'   Keyword
+' '           Text.Whitespace
+'st'          Name
+' '           Text.Whitespace
+'stonith'     Name
+':'           Punctuation
+'ssh'         Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'params'      Keyword
+' '           Text.Whitespace
+'hostlist'    Name.Attribute
+'='           Punctuation
+'"node1 node2"' Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'meta'        Keyword
+' '           Text.Whitespace
+'target-role' Name.Attribute
+'='           Punctuation
+'"Started"'   Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'op'          Keyword
+' '           Text.Whitespace
+'start'       Name
+' '           Text.Whitespace
+'requires'    Name.Attribute
+'='           Punctuation
+'nothing'     Literal.String
+' '           Text.Whitespace
+'timeout'     Name.Attribute
+'='           Punctuation
+'60s'         Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'op'          Keyword
+' '           Text.Whitespace
+'monitor'     Name
+' '           Text.Whitespace
+'interval'    Name.Attribute
+'='           Punctuation
+'60m'         Literal.String
+' '           Text.Whitespace
+'timeout'     Name.Attribute
+'='           Punctuation
+'60s'         Literal.String
+'\n'          Text.Whitespace
+
+'primitive'   Keyword
+' '           Text.Whitespace
+'d1'          Name
+' '           Text.Whitespace
+'ocf'         Name
+':'           Punctuation
+'pacemaker'   Name
+':'           Punctuation
+'Dummy'       Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'operations'  Keyword
+' '           Text.Whitespace
+'$id'         Name.Attribute
+'='           Punctuation
+'d1-ops'      Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'op'          Keyword
+' '           Text.Whitespace
+'monitor'     Name
+' '           Text.Whitespace
+'interval'    Name.Attribute
+'='           Punctuation
+'60m'         Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'op'          Keyword
+' '           Text.Whitespace
+'monitor'     Name
+' '           Text.Whitespace
+'interval'    Name.Attribute
+'='           Punctuation
+'120m'        Literal.String
+' '           Text.Whitespace
+'OCF_CHECK_LEVEL' Name.Attribute
+'='           Punctuation
+'10'          Literal.String
+'\n'          Text.Whitespace
+
+'primitive'   Keyword
+' '           Text.Whitespace
+'fs1'         Name
+' '           Text.Whitespace
+'Filesystem'  Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'params'      Keyword
+' '           Text.Whitespace
+'device'      Name.Attribute
+'='           Punctuation
+'"/dev/nfs-vg/fs1"' Literal.String
+' '           Text.Whitespace
+'directory'   Name.Attribute
+'='           Punctuation
+'"/srv/nfs"'  Literal.String
+' '           Text.Whitespace
+'fstype'      Name.Attribute
+'='           Punctuation
+'ext3'        Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'op'          Keyword
+' '           Text.Whitespace
+'monitor'     Name
+' '           Text.Whitespace
+'interval'    Name.Attribute
+'='           Punctuation
+'10s'         Literal.String
+'\n'          Text.Whitespace
+
+'primitive'   Keyword
+' '           Text.Whitespace
+'nfs-server'  Name
+' '           Text.Whitespace
+'nfsserver'   Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'params'      Keyword
+' '           Text.Whitespace
+'nfs_shared_infodir' Name.Attribute
+'='           Punctuation
+'"/srv/nfs/state"' Literal.String
+' '           Text.Whitespace
+'nfs_ip'      Name.Attribute
+'='           Punctuation
+'10.2.12.100' Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'op'          Keyword
+' '           Text.Whitespace
+'monitor'     Name
+' '           Text.Whitespace
+'interval'    Name.Attribute
+'='           Punctuation
+'0'           Literal.String
+' '           Text.Whitespace
+'trace_ra'    Name.Attribute
+'='           Punctuation
+'1'           Literal.String
+'\n'          Text.Whitespace
+
+'primitive'   Keyword
+' '           Text.Whitespace
+'nfs-vg'      Name
+' '           Text.Whitespace
+'LVM'         Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'params'      Keyword
+' '           Text.Whitespace
+'volgrpname'  Name.Attribute
+'='           Punctuation
+'nfs-vg'      Literal.String
+'\n'          Text.Whitespace
+
+'primitive'   Keyword
+' '           Text.Whitespace
+'p_drbd_nfs'  Name
+' '           Text.Whitespace
+'ocf'         Name
+':'           Punctuation
+'linbit'      Name
+':'           Punctuation
+'drbd'        Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'params'      Keyword
+' '           Text.Whitespace
+'drbd_resource' Name.Attribute
+'='           Punctuation
+'nfs'         Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'op'          Keyword
+' '           Text.Whitespace
+'monitor'     Name
+' '           Text.Whitespace
+'interval'    Name.Attribute
+'='           Punctuation
+'15'          Literal.String
+' '           Text.Whitespace
+'role'        Name.Attribute
+'='           Punctuation
+'Master'      Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'op'          Keyword
+' '           Text.Whitespace
+'monitor'     Name
+' '           Text.Whitespace
+'interval'    Name.Attribute
+'='           Punctuation
+'30'          Literal.String
+' '           Text.Whitespace
+'role'        Name.Attribute
+'='           Punctuation
+'Slave'       Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'op'          Keyword
+' '           Text.Whitespace
+'start'       Name
+' '           Text.Whitespace
+'interval'    Name.Attribute
+'='           Punctuation
+'0'           Literal.String
+' '           Text.Whitespace
+'timeout'     Name.Attribute
+'='           Punctuation
+'300'         Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'op'          Keyword
+' '           Text.Whitespace
+'stop'        Name
+' '           Text.Whitespace
+'interval'    Name.Attribute
+'='           Punctuation
+'0'           Literal.String
+' '           Text.Whitespace
+'timeout'     Name.Attribute
+'='           Punctuation
+'120'         Literal.String
+'\n'          Text.Whitespace
+
+'primitive'   Keyword
+' '           Text.Whitespace
+'s-libvirt'   Name
+' '           Text.Whitespace
+'stonith'     Name
+':'           Punctuation
+'external'    Name
+'/'           Punctuation
+'libvirt'     Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'params'      Keyword
+' '           Text.Whitespace
+'hostlist'    Name.Attribute
+'='           Punctuation
+'"sle12-a sle12-c"' Literal.String
+' '           Text.Whitespace
+'hypervisor_uri' Name.Attribute
+'='           Punctuation
+'"qemu+ssh://hex-10.suse.de/system?keyfile=/root/.ssh/xen"' Literal.String
+' '           Text.Whitespace
+'reset_method' Name.Attribute
+'='           Punctuation
+'reboot'      Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'op'          Keyword
+' '           Text.Whitespace
+'monitor'     Name
+' '           Text.Whitespace
+'interval'    Name.Attribute
+'='           Punctuation
+'5m'          Literal.String
+' '           Text.Whitespace
+'timeout'     Name.Attribute
+'='           Punctuation
+'60s'         Literal.String
+'\n'          Text.Whitespace
+
+'primitive'   Keyword
+' '           Text.Whitespace
+'virtual-ip'  Name
+' '           Text.Whitespace
+'IPaddr2'     Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'params'      Keyword
+' '           Text.Whitespace
+'ip'          Name.Attribute
+'='           Punctuation
+'10.2.12.100' Literal.String
+'\n'          Text.Whitespace
+
+'primitive'   Keyword
+' '           Text.Whitespace
+'xen0'        Name
+' '           Text.Whitespace
+'@'           Punctuation
+'vm_scheme1'  Name
+' '           Text.Whitespace
+'xmfile'      Name.Attribute
+'='           Punctuation
+'/etc/xen/vm/xen0' Literal.String
+'\n'          Text.Whitespace
+
+'primitive'   Keyword
+' '           Text.Whitespace
+'d7'          Name
+' '           Text.Whitespace
+'Dummy'       Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'params'      Keyword
+' '           Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'inf:'        Literal.Number
+' '           Text.Whitespace
+'#uname'      Name.Builtin
+' '           Text.Whitespace
+'eq'          Operator.Word
+' '           Text.Whitespace
+'node1'       Name
+' '           Text.Whitespace
+'fake'        Name.Attribute
+'='           Punctuation
+'1'           Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'params'      Keyword
+' '           Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'inf:'        Literal.Number
+' '           Text.Whitespace
+'#uname'      Name.Builtin
+' '           Text.Whitespace
+'eq'          Operator.Word
+' '           Text.Whitespace
+'node2'       Name
+' '           Text.Whitespace
+'fake'        Name.Attribute
+'='           Punctuation
+'2'           Literal.String
+'\n'          Text.Whitespace
+
+'primitive'   Keyword
+' '           Text.Whitespace
+'very-primitive' Name
+' '           Text.Whitespace
+'Dummy'       Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n  '        Text.Whitespace
+'params'      Keyword
+' '           Text.Whitespace
+'3:'          Literal.Number
+' '           Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'#uname'      Name.Builtin
+' '           Text.Whitespace
+'eq'          Operator.Word
+' '           Text.Whitespace
+'node1'       Name
+' '           Text.Whitespace
+'interface'   Name.Attribute
+'='           Punctuation
+'eth1'        Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n  '        Text.Whitespace
+'params'      Keyword
+' '           Text.Whitespace
+'2:'          Literal.Number
+' '           Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'#uname'      Name.Builtin
+' '           Text.Whitespace
+'string:eq'   Operator.Word
+' '           Text.Whitespace
+'node2'       Name
+' '           Text.Whitespace
+'interface'   Name.Attribute
+'='           Punctuation
+'eth2'        Literal.String
+' '           Text.Whitespace
+'port'        Name.Attribute
+'='           Punctuation
+'8888'        Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n  '        Text.Whitespace
+'params'      Keyword
+' '           Text.Whitespace
+'1:'          Literal.Number
+' '           Text.Whitespace
+'interface'   Name.Attribute
+'='           Punctuation
+'eth0'        Literal.String
+' '           Text.Whitespace
+'port'        Name.Attribute
+'='           Punctuation
+'9999'        Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n  '        Text.Whitespace
+'operations'  Keyword
+' '           Text.Whitespace
+'$id-ref'     Name.Attribute
+'='           Punctuation
+'those_other_ops' Literal.String
+'\n'          Text.Whitespace
+
+'fencing_topology' Keyword
+' '           Text.Whitespace
+'poison-pill' Name
+' '           Text.Whitespace
+'power'       Name
+'\n'          Text.Whitespace
+
+'fencing_topology' Keyword
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n    '      Text.Whitespace
+'node-a'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'poison-pill' Name
+' '           Text.Whitespace
+'power'       Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'node-b'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'ipmi'        Name
+' '           Text.Whitespace
+'serial'      Name
+'\n'          Text.Whitespace
+
+'role'        Keyword
+' '           Text.Whitespace
+'nfs_admin'   Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n    '      Text.Whitespace
+'write'       Keyword
+' '           Text.Whitespace
+'meta'        Keyword
+':'           Punctuation
+'nfs-server'  Name
+':'           Punctuation
+'target-role' Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n    '      Text.Whitespace
+'write'       Keyword
+' '           Text.Whitespace
+'meta'        Keyword
+':'           Punctuation
+'nfs-server'  Name
+':'           Punctuation
+'is-managed'  Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n    '      Text.Whitespace
+'write'       Keyword
+' '           Text.Whitespace
+'location'    Keyword
+':'           Punctuation
+'nfs-server'  Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n    '      Text.Whitespace
+'read'        Keyword
+' '           Text.Whitespace
+'ref'         Keyword
+':'           Punctuation
+'nfs-server'  Name
+'\n'          Text.Whitespace
+
+'role'        Keyword
+' '           Text.Whitespace
+'basic-read'  Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'read'        Keyword
+' '           Text.Whitespace
+'status'      Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'read'        Keyword
+' '           Text.Whitespace
+'type'        Keyword
+':'           Punctuation
+'node'        Name
+' '           Text.Whitespace
+'attribute'   Keyword
+':'           Punctuation
+'uname'       Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'read'        Keyword
+' '           Text.Whitespace
+'type'        Keyword
+':'           Punctuation
+'node'        Name
+' '           Text.Whitespace
+'attribute'   Keyword
+':'           Punctuation
+'type'        Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'read'        Keyword
+' '           Text.Whitespace
+'property'    Keyword
+'\n'          Text.Whitespace
+
+'role'        Keyword
+' '           Text.Whitespace
+'basic-read-basic' Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'read'        Keyword
+' '           Text.Whitespace
+'cib'         Name
+'\n'          Text.Whitespace
+
+'role'        Keyword
+' '           Text.Whitespace
+'d0-admin'    Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'write'       Keyword
+' '           Text.Whitespace
+'meta'        Keyword
+':'           Punctuation
+'d0'          Name
+':'           Punctuation
+'target-role' Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'write'       Keyword
+' '           Text.Whitespace
+'meta'        Keyword
+':'           Punctuation
+'d0'          Name
+':'           Punctuation
+'is-managed'  Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'read'        Keyword
+' '           Text.Whitespace
+'xpath'       Keyword
+':'           Punctuation
+'"//nodes//attributes"' Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'read'        Keyword
+' '           Text.Whitespace
+'ref'         Keyword
+':'           Punctuation
+'d0'          Name
+'\n'          Text.Whitespace
+
+'acl_target'  Keyword
+' '           Text.Whitespace
+'joe'         Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'nfs_admin'   Name
+'\n'          Text.Whitespace
+
+'tag'         Keyword
+' '           Text.Whitespace
+'nfs'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'nfs-server'  Name
+' '           Text.Whitespace
+'nfs-vg'      Name
+'\n'          Text.Whitespace
+
+'group'       Keyword
+' '           Text.Whitespace
+'nfs-disk'    Name
+' '           Text.Whitespace
+'nfs-vg'      Name
+' '           Text.Whitespace
+'fs1'         Name
+'\n'          Text.Whitespace
+
+'group'       Keyword
+' '           Text.Whitespace
+'nfs-srv'     Name
+' '           Text.Whitespace
+'virtual-ip'  Name
+' '           Text.Whitespace
+'nfs-server'  Name
+'\n'          Text.Whitespace
+
+'ms'          Keyword
+' '           Text.Whitespace
+'ms_drbd_nfs' Name
+' '           Text.Whitespace
+'p_drbd_nfs'  Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'meta'        Keyword
+' '           Text.Whitespace
+'notify'      Name.Attribute
+'='           Punctuation
+'true'        Literal.String
+' '           Text.Whitespace
+'clone-max'   Name.Attribute
+'='           Punctuation
+'2'           Literal.String
+'\n'          Text.Whitespace
+
+'location'    Keyword
+' '           Text.Whitespace
+'nfs-pref'    Name
+' '           Text.Whitespace
+'virtual-ip'  Name
+' '           Text.Whitespace
+'100:'        Literal.Number
+' '           Text.Whitespace
+'sle12-a'     Name
+'\n'          Text.Whitespace
+
+'location'    Keyword
+' '           Text.Whitespace
+'l1'          Name
+' '           Text.Whitespace
+'nfs-srv'     Name
+' '           Text.Whitespace
+'100:'        Literal.Number
+' '           Text.Whitespace
+'node1'       Name
+'\n'          Text.Whitespace
+
+'location'    Keyword
+' '           Text.Whitespace
+'l2'          Name
+' '           Text.Whitespace
+'d1'          Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'100:'        Literal.Number
+' '           Text.Whitespace
+'#uname'      Name.Builtin
+' '           Text.Whitespace
+'eq'          Operator.Word
+' '           Text.Whitespace
+'node1'       Name
+'\n'          Text.Whitespace
+
+'location'    Keyword
+' '           Text.Whitespace
+'l3'          Name
+' '           Text.Whitespace
+'d1'          Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'inf:'        Literal.Number
+' '           Text.Whitespace
+'#uname'      Name.Builtin
+' '           Text.Whitespace
+'eq'          Operator.Word
+' '           Text.Whitespace
+'node1'       Name
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'pingd'       Name
+' '           Text.Whitespace
+'gt'          Operator.Word
+' '           Text.Whitespace
+'0'           Name
+'\n'          Text.Whitespace
+
+'location'    Keyword
+' '           Text.Whitespace
+'l4'          Name
+' '           Text.Whitespace
+'d1'          Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'-inf:'       Literal.Number
+' '           Text.Whitespace
+'not_defined' Operator.Word
+' '           Text.Whitespace
+'pingd'       Name
+' '           Text.Whitespace
+'or'          Operator.Word
+' '           Text.Whitespace
+'pingd'       Name
+' '           Text.Whitespace
+'lte'         Operator.Word
+' '           Text.Whitespace
+'0'           Name
+'\n'          Text.Whitespace
+
+'location'    Keyword
+' '           Text.Whitespace
+'l5'          Name
+' '           Text.Whitespace
+'fs1'         Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'-inf:'       Literal.Number
+' '           Text.Whitespace
+'not_defined' Operator.Word
+' '           Text.Whitespace
+'pingd'       Name
+' '           Text.Whitespace
+'or'          Operator.Word
+' '           Text.Whitespace
+'pingd'       Name
+' '           Text.Whitespace
+'lte'         Operator.Word
+' '           Text.Whitespace
+'0'           Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'#uname'      Name.Builtin
+' '           Text.Whitespace
+'eq'          Operator.Word
+' '           Text.Whitespace
+'node1'       Name
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'pingd'       Name
+' '           Text.Whitespace
+'gt'          Operator.Word
+' '           Text.Whitespace
+'0'           Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'date'        Operator.Word
+' '           Text.Whitespace
+'lt'          Operator.Word
+' '           Text.Whitespace
+'2009-05-26'  Name
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'date'        Operator.Word
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'start'       Name.Attribute
+'='           Punctuation
+'2009-05-26'  Literal.String
+' '           Text.Whitespace
+'end'         Name.Attribute
+'='           Punctuation
+'2009-07-26'  Literal.String
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'date'        Operator.Word
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'start'       Name.Attribute
+'='           Punctuation
+'2009-05-26'  Literal.String
+' '           Text.Whitespace
+'years'       Name.Attribute
+'='           Punctuation
+'2009'        Literal.String
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'date'        Operator.Word
+' '           Text.Whitespace
+'spec'        Operator.Word
+' '           Text.Whitespace
+'years'       Name.Attribute
+'='           Punctuation
+'2009'        Literal.String
+' '           Text.Whitespace
+'hours'       Name.Attribute
+'='           Punctuation
+'09-17'       Literal.String
+'\n'          Text.Whitespace
+
+'location'    Keyword
+' '           Text.Whitespace
+'l6'          Name
+' '           Text.Whitespace
+'d1'          Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'$id-ref'     Name.Attribute
+'='           Punctuation
+'l2-rule1'    Literal.String
+'\n'          Text.Whitespace
+
+'location'    Keyword
+' '           Text.Whitespace
+'l7'          Name
+' '           Text.Whitespace
+'d1'          Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'$id-ref'     Name.Attribute
+'='           Punctuation
+'l2'          Literal.String
+'\n'          Text.Whitespace
+
+'colocation'  Keyword
+' '           Text.Whitespace
+'c-nfs'       Name
+' '           Text.Whitespace
+'inf:'        Literal.Number
+' '           Text.Whitespace
+'nfs-server'  Name
+' '           Text.Whitespace
+'fs1'         Name
+'\n'          Text.Whitespace
+
+'colocation'  Keyword
+' '           Text.Whitespace
+'vg-with-drbd' Name
+' '           Text.Whitespace
+'inf:'        Literal.Number
+' '           Text.Whitespace
+'nfs-vg'      Name
+' '           Text.Whitespace
+'ms_drbd_nfs' Name
+':'           Punctuation
+'Master'      Operator.Word
+'\n'          Text.Whitespace
+
+'# drbd device is the nfs-vg PV\n' Comment
+
+'order'       Keyword
+' '           Text.Whitespace
+'drbd-before-vg' Name
+' '           Text.Whitespace
+'inf:'        Literal.Number
+' '           Text.Whitespace
+'ms_drbd_nfs' Name
+':'           Punctuation
+'promote'     Operator.Word
+' '           Text.Whitespace
+'nfs-vg'      Name
+':'           Punctuation
+'start'       Operator.Word
+'\n'          Text.Whitespace
+
+'# need fs1 for the NFS server\n' Comment
+
+'order'       Keyword
+' '           Text.Whitespace
+'o-nfs'       Name
+' '           Text.Whitespace
+'inf:'        Literal.Number
+' '           Text.Whitespace
+'fs1'         Name
+' '           Text.Whitespace
+'nfs-server'  Name
+'\n'          Text.Whitespace
+
+'rsc_ticket'  Keyword
+' '           Text.Whitespace
+'ticket-A_m6' Name
+' '           Text.Whitespace
+'ticket-A'    Name
+':'           Punctuation
+' '           Text.Whitespace
+'d1'          Name
+'\n'          Text.Whitespace
+
+'rsc_ticket'  Keyword
+' '           Text.Whitespace
+'ticket-B_m6_m5' Name
+' '           Text.Whitespace
+'ticket-B'    Name
+':'           Punctuation
+' '           Text.Whitespace
+'d1'          Name
+' '           Text.Whitespace
+'d7'          Name
+' '           Text.Whitespace
+'loss-policy' Name.Attribute
+'='           Punctuation
+'fence'       Literal.String
+'\n'          Text.Whitespace
+
+'rsc_ticket'  Keyword
+' '           Text.Whitespace
+'ticket-C_master' Name
+' '           Text.Whitespace
+'ticket-C'    Name
+':'           Punctuation
+' '           Text.Whitespace
+'d1'          Name
+' '           Text.Whitespace
+'ms_drbd_nfs' Name
+':'           Punctuation
+'Master'      Operator.Word
+' '           Text.Whitespace
+'loss-policy' Name.Attribute
+'='           Punctuation
+'fence'       Literal.String
+'\n'          Text.Whitespace
+
+'property'    Keyword
+' '           Text.Whitespace
+'cpset2'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'maintenance-mode' Name.Attribute
+'='           Punctuation
+'true'        Literal.String
+'\n'          Text.Whitespace
+
+'property'    Keyword
+' '           Text.Whitespace
+'cib-bootstrap-options' Name
+':'           Punctuation
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'dc-version'  Name.Attribute
+'='           Punctuation
+'1.1.12-ad083a8' Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'cluster-infrastructure' Name.Attribute
+'='           Punctuation
+'corosync'    Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'cluster-name' Name.Attribute
+'='           Punctuation
+'sle12-test3l-public' Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'no-quorum-policy' Name.Attribute
+'='           Punctuation
+'ignore'      Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'startup-fencing' Name.Attribute
+'='           Punctuation
+'false'       Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'last-lrm-refresh' Name.Attribute
+'='           Punctuation
+'1415877622'  Literal.String
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'maintenance-mode' Name.Attribute
+'='           Punctuation
+'false'       Literal.String
+'\n'          Text.Whitespace
+
+'op_defaults' Keyword
+' '           Text.Whitespace
+'op-options'  Name
+':'           Punctuation
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'timeout'     Name.Attribute
+'='           Punctuation
+'120s'        Literal.String
+'\n'          Text.Whitespace
+
+'rsc_defaults' Keyword
+' '           Text.Whitespace
+'rsc-options' Name
+':'           Punctuation
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'failure-timeout' Name.Attribute
+'='           Punctuation
+'10m'         Literal.String
+'\n'          Text.Whitespace
+
+'op_defaults' Keyword
+' '           Text.Whitespace
+'opsdef2'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'100:'        Literal.Number
+' '           Text.Whitespace
+'#uname'      Name.Builtin
+' '           Text.Whitespace
+'eq'          Operator.Word
+' '           Text.Whitespace
+'node1'       Name
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n\t'        Text.Whitespace
+'record-pending' Name.Attribute
+'='           Punctuation
+'true'        Literal.String
+'\n'          Text.Whitespace
+
+'tag'         Keyword
+' '           Text.Whitespace
+'t1'          Name
+':'           Punctuation
+' '           Text.Whitespace
+'d1'          Name
+' '           Text.Whitespace
+'d7'          Name
+' '           Text.Whitespace
+'opsdef2'     Name
+'\n'          Text.Whitespace

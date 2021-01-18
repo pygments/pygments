@@ -1,0 +1,104 @@
+---input---
+Windows Registry Editor Version 5.00
+; comment
+
+[HKEY_CURRENT_USER\SOFTWARE\Pygments]
+@="Hello"
+"Key With Spaces"="Something"
+"Key With ="="With Quotes"
+"Key With = 2"=dword:123
+"Key" = "Value"
+"Hex"=hex(0):1,2,3,a,b,f
+"Hex 2"=hex(5):80,00,00,ff
+
+[-HKEY_CURRENT_USER\SOFTWARE\Pygments\Subkey]
+
+[HKEY_CURRENT_USER\SOFTWARE\Pygments\Subkey2]
+; comment
+@=-
+"Foo"=-
+"Foo"="Value"
+
+---tokens---
+'Windows Registry Editor Version 5.00' Text
+'\n'          Text
+
+'; comment'   Comment.Single
+'\n\n'        Text
+
+'['           Keyword
+'HKEY_CURRENT_USER' Name.Builtin
+'\\SOFTWARE\\Pygments]' Keyword
+'\n'          Text
+
+'@'           Name.Attribute
+'='           Operator
+'"Hello"'     Literal.String
+'\n'          Text
+
+'"Key With Spaces"' Name.Attribute
+'='           Operator
+'"Something"' Literal.String
+'\n'          Text
+
+'"Key With ="' Name.Attribute
+'='           Operator
+'"With Quotes"' Literal.String
+'\n'          Text
+
+'"Key With = 2"' Name.Attribute
+'='           Operator
+'dword'       Name.Variable
+':'           Punctuation
+'123'         Literal.Number
+'\n'          Text
+
+'"Key"'       Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"Value"'     Literal.String
+'\n'          Text
+
+'"Hex"'       Name.Attribute
+'='           Operator
+'hex(0)'      Name.Variable
+':'           Punctuation
+'1,2,3,a,b,f' Literal.Number
+'\n'          Text
+
+'"Hex 2"'     Name.Attribute
+'='           Operator
+'hex(5)'      Name.Variable
+':'           Punctuation
+'80,00,00,ff' Literal.Number
+'\n\n'        Text
+
+'['           Keyword
+'-'           Operator
+'HKEY_CURRENT_USER' Name.Builtin
+'\\SOFTWARE\\Pygments\\Subkey]' Keyword
+'\n\n'        Text
+
+'['           Keyword
+'HKEY_CURRENT_USER' Name.Builtin
+'\\SOFTWARE\\Pygments\\Subkey2]' Keyword
+'\n'          Text
+
+'; comment'   Comment.Single
+'\n'          Text
+
+'@'           Name.Attribute
+'='           Operator
+'-'           Operator
+'\n'          Text
+
+'"Foo"'       Name.Attribute
+'='           Operator
+'-'           Operator
+'\n'          Text
+
+'"Foo"'       Name.Attribute
+'='           Operator
+'"Value"'     Literal.String
+'\n'          Text

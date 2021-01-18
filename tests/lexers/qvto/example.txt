@@ -1,0 +1,34 @@
+---input---
+transformation Foo(uml: SimpleUML,
+  rdbms : SimpleRDBMS) {
+}
+/* comment */
+
+---tokens---
+'transformation' Keyword.Word
+' '           Text
+'Foo'         Name.Class
+'('           Punctuation
+'uml'         Name
+':'           Punctuation
+' '           Text
+'SimpleUML'   Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'rdbms'       Name
+' '           Text
+':'           Punctuation
+' '           Text
+'SimpleRDBMS' Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'/* comment */' Comment.Multiline
+'\n'          Text

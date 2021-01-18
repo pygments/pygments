@@ -1,0 +1,276 @@
+---input---
+<!-- post.handlebars -->
+
+<div class='intro'>
+  {{intro}}
+</div>
+
+{{#if isExpanded}}
+  <div class='body'>{{body}}</div>
+  <button {{action contract}}>Contract</button>
+{{else}}
+  <button {{action expand}}>Show More...</button>
+{{/if}}
+
+{{> myPartial}}
+{{> myPartial var="value" }}
+{{> myPartial var=../value}}
+{{> (myPartial)}}
+{{> (myPartial) var="value"}}
+{{> (lookup . "myPartial")}}
+{{> ( lookup . "myPartial" ) var="value" }}
+{{> (lookup ../foo "myPartial") var="value" }}
+{{> @partial-block}}
+
+{{#>myPartial}}
+...
+{{/myPartial}}
+
+{{#*inline "myPartial"}}
+...
+{{/inline}}
+
+{{../name}}
+{{./name}}
+{{this/name}}
+
+---tokens---
+'<!--'        Comment
+' post.handlebars ' Comment
+'-->'         Comment
+'\n\n'        Text
+
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+"'intro'"     Literal.String
+'>'           Punctuation
+'\n  '        Text
+'{{'          Comment.Preproc
+'intro'       Name.Variable
+'}}'          Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'{{'          Comment.Preproc
+'#'           Literal.Number.Attribute
+'if'          Literal.Number.Attribute
+' '           Text
+'isExpanded'  Name.Variable
+'}}'          Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+"'body'"      Literal.String
+'>'           Punctuation
+'{{'          Comment.Preproc
+'body'        Name.Variable
+'}}'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'button'      Name.Tag
+' '           Text
+'{{'          Comment.Preproc
+'action'      Name.Variable
+' '           Text
+'contract'    Name.Variable
+'}}'          Comment.Preproc
+'>'           Punctuation
+'Contract'    Text
+'<'           Punctuation
+'/'           Punctuation
+'button'      Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'{{'          Comment.Preproc
+'else'        Name.Variable
+'}}'          Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'button'      Name.Tag
+' '           Text
+'{{'          Comment.Preproc
+'action'      Name.Variable
+' '           Text
+'expand'      Name.Variable
+'}}'          Comment.Preproc
+'>'           Punctuation
+'Show More...' Text
+'<'           Punctuation
+'/'           Punctuation
+'button'      Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'{{'          Comment.Preproc
+'/'           Literal.Number.Attribute
+'if'          Literal.Number.Attribute
+'}}'          Comment.Preproc
+'\n\n'        Text
+
+'{{'          Comment.Preproc
+'>'           Keyword
+' '           Text
+'myPartial'   Name.Variable
+'}}'          Comment.Preproc
+'\n'          Text
+
+'{{'          Comment.Preproc
+'>'           Keyword
+' '           Text
+'myPartial'   Name.Variable
+' '           Text
+'var'         Name.Attribute
+'='           Operator
+'"value"'     Literal.String.Double
+' '           Text
+'}}'          Comment.Preproc
+'\n'          Text
+
+'{{'          Comment.Preproc
+'>'           Keyword
+' '           Text
+'myPartial'   Name.Variable
+' '           Text
+'var'         Name.Attribute
+'='           Operator
+'../value'    Name.Variable
+'}}'          Comment.Preproc
+'\n'          Text
+
+'{{'          Comment.Preproc
+'>'           Keyword
+' '           Text
+'('           Punctuation
+'myPartial'   Name.Function
+')'           Punctuation
+'}}'          Comment.Preproc
+'\n'          Text
+
+'{{'          Comment.Preproc
+'>'           Keyword
+' '           Text
+'('           Punctuation
+'myPartial'   Name.Function
+')'           Punctuation
+' '           Text
+'var'         Name.Attribute
+'='           Operator
+'"value"'     Literal.String.Double
+'}}'          Comment.Preproc
+'\n'          Text
+
+'{{'          Comment.Preproc
+'>'           Keyword
+' '           Text
+'('           Punctuation
+'lookup'      Keyword
+' '           Text
+'.'           Name.Variable
+' '           Text
+'"myPartial"' Literal.String.Double
+')'           Punctuation
+'}}'          Comment.Preproc
+'\n'          Text
+
+'{{'          Comment.Preproc
+'>'           Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'lookup'      Keyword
+' '           Text
+'.'           Name.Variable
+' '           Text
+'"myPartial"' Literal.String.Double
+' '           Text
+')'           Punctuation
+' '           Text
+'var'         Name.Attribute
+'='           Operator
+'"value"'     Literal.String.Double
+' '           Text
+'}}'          Comment.Preproc
+'\n'          Text
+
+'{{'          Comment.Preproc
+'>'           Keyword
+' '           Text
+'('           Punctuation
+'lookup'      Keyword
+' '           Text
+'../foo'      Name.Variable
+' '           Text
+'"myPartial"' Literal.String.Double
+')'           Punctuation
+' '           Text
+'var'         Name.Attribute
+'='           Operator
+'"value"'     Literal.String.Double
+' '           Text
+'}}'          Comment.Preproc
+'\n'          Text
+
+'{{'          Comment.Preproc
+'>'           Keyword
+' '           Text
+'@partial-block' Keyword
+'}}'          Comment.Preproc
+'\n\n'        Text
+
+'{{'          Comment.Preproc
+'#'           Literal.Number.Attribute
+'>myPartial'  Literal.Number.Attribute
+'}}'          Comment.Preproc
+'\n...\n'     Text
+
+'{{'          Comment.Preproc
+'/'           Literal.Number.Attribute
+'myPartial'   Literal.Number.Attribute
+'}}'          Comment.Preproc
+'\n\n'        Text
+
+'{{'          Comment.Preproc
+'#'           Literal.Number.Attribute
+'*inline'     Literal.Number.Attribute
+' '           Text
+'"myPartial"' Literal.String.Double
+'}}'          Comment.Preproc
+'\n...\n'     Text
+
+'{{'          Comment.Preproc
+'/'           Literal.Number.Attribute
+'inline'      Literal.Number.Attribute
+'}}'          Comment.Preproc
+'\n\n'        Text
+
+'{{'          Comment.Preproc
+'../name'     Name.Variable
+'}}'          Comment.Preproc
+'\n'          Text
+
+'{{'          Comment.Preproc
+'./name'      Name.Variable
+'}}'          Comment.Preproc
+'\n'          Text
+
+'{{'          Comment.Preproc
+'this'        Name.Variable
+'/name'       Name.Variable
+'}}'          Comment.Preproc
+'\n'          Text

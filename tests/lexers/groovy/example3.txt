@@ -1,0 +1,12 @@
+---input---
+#!/usr/bin/env groovy
+println "Hello World"
+
+---tokens---
+'#!/usr/bin/env groovy' Comment.Preproc
+'\n'          Text
+
+'println'     Name
+' '           Text
+'"Hello World"' Literal.String.Double
+'\n'          Text

@@ -1,0 +1,85 @@
+---input---
+? 7 * 52;
+=> 364
+? define variable *your-variable* = $foo;
+? begin
+   let yours = "apple";
+   let mine = yours;
+   mine == yours;
+ end;
+=> #t
+
+---tokens---
+'?'           Generic.Prompt
+' '           Text
+'7'           Literal.Number.Integer
+' '           Text
+'*'           Operator
+' '           Text
+'52'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'=> 364\n'    Generic.Output
+
+'?'           Generic.Prompt
+' '           Text
+'define'      Keyword
+' '           Text
+'variable'    Name.Builtin
+' '           Text
+'*your-variable*' Name.Variable.Global
+' '           Text
+'='           Operator
+' '           Text
+'$foo'        Name.Constant
+';'           Punctuation
+'\n'          Text
+
+'?'           Generic.Prompt
+' '           Text
+'begin'       Keyword
+'\n'          Text
+
+' '           Generic.Prompt
+'  '          Text
+'let'         Keyword
+' '           Text
+'yours'       Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'apple'       Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+' '           Generic.Prompt
+'  '          Text
+'let'         Keyword
+' '           Text
+'mine'        Name
+' '           Text
+'='           Operator
+' '           Text
+'yours'       Name
+';'           Punctuation
+'\n'          Text
+
+' '           Generic.Prompt
+'  '          Text
+'mine'        Name
+' '           Text
+'=='          Operator
+' '           Text
+'yours'       Name
+';'           Punctuation
+'\n'          Text
+
+' '           Generic.Prompt
+'end'         Keyword
+';'           Punctuation
+'\n'          Text
+
+'=> #t\n'     Generic.Output

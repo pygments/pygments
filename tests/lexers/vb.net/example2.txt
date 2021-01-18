@@ -1,0 +1,2891 @@
+---input---
+' Copyright (c) 2008 Silken Web - Free BSD License
+' All rights reserved.
+'
+' Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+' * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer
+' * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+' * Neither the name of Silken Web nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+'
+' THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+' THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+' BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+' GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+' LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+' DAMAGE.
+
+Imports System.Net.Mail
+Imports SilkenWeb.Entities
+Imports System.Text.RegularExpressions
+Imports System.Reflection
+Imports SilkenWeb.Validation
+Imports System.Globalization
+Imports SilkenWeb.Reflection
+
+Namespace SilkenWeb
+
+    ''' <summary>
+    ''' Represents an Email and what you can do with it.
+    ''' </summary>
+    ''' <remarks>
+    ''' Keith Jackson
+    ''' 11/04/2008
+    '''
+    ''' This class is intended to be inherrited for providing all manner of system generated emails, each represented by it's own class.
+    ''' </remarks>
+    Public MustInherit Class EmailBase : Implements IValidatable, IDisposable
+
+#Region " Constants "
+
+        Public Const LenientRegexPattern As String = "\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+        Public Const StrictRegexPattern As String = "^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$"
+        Public Const InvalidEmailAddressError As String = "The Email address provided was invalid"
+        Public Const InvalidEmailAddressErrorWithAddress As String = "The Email address, {0}, provided was invalid"
+        Public Const NullEmailAddressError As String = "The Email address was not provided"
+
+#End Region
+
+#Region " Fields "
+
+        Private disposedValue As Boolean
+
+        Private _message As MailMessage = New MailMessage()
+        Private _mailClient As SmtpClient
+
+        Private _useStrictValidation As Boolean
+
+#End Region
+
+#Region " Construction "
+
+        ''' <summary>
+        ''' Instantiates a new Email of the derived type.
+        ''' </summary>
+        ''' <param name="sender">The email address of the sender of the message.</param>
+        ''' <param name="recipients">The email addresses of the recipients of the message.</param>
+        ''' <param name="subject">The subject of the message.</param>
+        ''' <param name="body">The body of the message.</param>
+        Protected Sub New(ByVal sender As String, ByVal subject As String, ByVal body As String, ByVal ParamArray recipients As String())
+            _message.From = New MailAddress(sender)
+            For i As Integer = 0 To recipients.Length - 1
+                _message.To.Add(recipients(i))
+            Next
+            _message.Subject = subject
+            _message.Body = body
+        End Sub
+
+#End Region
+
+#Region " Properties "
+
+        ''' <summary>
+        ''' Gets the Attachments for the message.
+        ''' </summary>
+        Protected Overridable ReadOnly Property Attachments() As AttachmentCollection
+            Get
+                Return _message.Attachments
+            End Get
+        End Property
+
+        ''' <summary>
+        ''' The email addresses of the BCC recipients of the message.
+        ''' </summary>
+        Public Property BccRecipients() As String()
+            Get
+                Return _message.Bcc.ToAddressStringArray()
+            End Get
+            Set(ByVal value As String())
+                _message.Bcc.Clear()
+                _message.Bcc.Add(value.ToDelimitedString())
+            End Set
+        End Property
+
+        ''' <summary>
+        ''' The body of the message.
+        ''' </summary>
+        Protected Overridable Property Body() As String
+            Get
+                Return _message.Body
+            End Get
+            Set(ByVal value As String)
+                _message.Body = value
+            End Set
+        End Property
+
+        ''' <summary>
+        ''' The email addresses of the CC recipients of the message.
+        ''' </summary>
+        Public Property CCRecipients() As String()
+            Get
+                Return _message.CC.ToAddressStringArray()
+            End Get
+            Set(ByVal value As String())
+                _message.CC.Clear()
+                _message.CC.Add(value.ToDelimitedString())
+            End Set
+        End Property
+
+        ''' <summary>
+        ''' Gets or Sets a flag to indicate if the body of the message is HTML.
+        ''' </summary>
+        Public Property IsBodyHtml() As Boolean
+            Get
+                Return _message.IsBodyHtml
+            End Get
+            Set(ByVal value As Boolean)
+                _message.IsBodyHtml = value
+            End Set
+        End Property
+
+        ''' <summary>
+        ''' Gets the Mail message wrapped by the EmailBase class.
+        ''' </summary>
+        Protected ReadOnly Property Message() As MailMessage
+            Get
+                Return _message
+            End Get
+        End Property
+
+        ''' <summary>
+        ''' Gets or Sets the Priority of the message.
+        ''' </summary>
+        Public Property Priority() As MailPriority
+            Get
+                Return _message.Priority
+            End Get
+            Set(ByVal value As MailPriority)
+                _message.Priority = value
+            End Set
+        End Property
+
+        ''' <summary>
+        ''' The email addresses of the recipients of the message.
+        ''' </summary>
+        Public Property Recipients() As String()
+            Get
+                Return _message.To.ToAddressStringArray()
+            End Get
+            Set(ByVal value As String())
+                _message.To.Clear()
+                _message.To.Add(value.ToDelimitedString())
+            End Set
+        End Property
+
+        ''' <summary>
+        ''' The reply email address of the sender of the message.
+        ''' </summary>
+        Public Property ReplyTo() As String
+            Get
+                If _message.ReplyTo Is Nothing Then
+                    Return String.Empty
+                Else
+                    Return _message.ReplyTo.Address
+                End If
+            End Get
+            Set(ByVal value As String)
+                If _message.ReplyTo Is Nothing Then
+                    _message.ReplyTo = New MailAddress(value)
+                Else
+                    _message.ReplyTo = New MailAddress(value, _message.ReplyTo.DisplayName)
+                End If
+            End Set
+        End Property
+
+        ''' <summary>
+        ''' The reply display name of the sender of the message.
+        ''' </summary>
+        Public Property ReplyToDisplayName() As String
+            Get
+                If _message.ReplyTo Is Nothing Then
+                    Return String.Empty
+                Else
+                    Return _message.ReplyTo.DisplayName
+                End If
+            End Get
+            Set(ByVal value As String)
+                If _message.ReplyTo Is Nothing Then
+                    _message.ReplyTo = New MailAddress(_message.From.Address, value)
+                Else
+                    _message.ReplyTo = New MailAddress(_message.ReplyTo.Address, value)
+                End If
+            End Set
+        End Property
+
+        ''' <summary>
+        ''' The email address of the sender of the message.
+        ''' </summary>
+        Public Overridable Property Sender() As String
+            Get
+                Return _message.From.Address
+            End Get
+            Protected Set(ByVal value As String)
+                _message.From = New MailAddress(value, _message.From.DisplayName)
+            End Set
+        End Property
+
+        ''' <summary>
+        ''' The display name of the sender of the message.
+        ''' </summary>
+        Public Overridable Property SenderDisplayName() As String
+            Get
+                Return _message.From.DisplayName
+            End Get
+            Protected Set(ByVal value As String)
+                _message.From = New MailAddress(_message.From.Address, value)
+            End Set
+        End Property
+
+        ''' <summary>
+        ''' The subject of the message.
+        ''' </summary>
+        Public Overridable Property Subject() As String
+            Get
+                Return _message.Subject
+            End Get
+            Protected Set(ByVal value As String)
+                _message.Subject = value
+            End Set
+        End Property
+
+#End Region
+
+#Region " Methods "
+
+#Region " Send Methods "
+
+        ''' <summary>
+        ''' Sends this email
+        ''' </summary>
+        ''' <param name="mailServer">The SMTP server to use to send the email.</param>
+        Public Sub Send(ByVal mailServer As String)
+            _mailClient = New SmtpClient(mailServer)
+            _mailClient.Send(_message)
+        End Sub
+
+        ''' <summary>
+        ''' Sends this email asynchronously.
+        ''' </summary>
+        ''' <param name="mailServer">The SMTP server to use to send the email.</param>
+        ''' <param name="userToken">A user defined token passed to the recieving method on completion of the asynchronous task.</param>
+        Public Sub SendAsync(ByVal mailServer As String, ByVal userToken As Object)
+            _mailClient = New SmtpClient(mailServer)
+            _mailClient.SendAsync(_message, userToken)
+        End Sub
+
+        ''' <summary>
+        ''' Cancels an attempt to send this email asynchronously.
+        ''' </summary>
+        Public Sub SendAsyncCancel()
+            _mailClient.SendAsyncCancel()
+        End Sub
+
+#End Region
+
+#End Region
+
+#Region " IValidatable Implementation "
+
+        ''' <summary>
+        ''' gets and Sets a flag to indicate whether to use strict validation.
+        ''' </summary>
+        Public Property UseStrictValidation() As Boolean
+            Get
+                Return _useStrictValidation
+            End Get
+            Set(ByVal value As Boolean)
+                _useStrictValidation = value
+            End Set
+        End Property
+
+        ''' <summary>
+        ''' Validates this email.
+        ''' </summary>
+        ''' <returns>A ValidationResponse, containing a flag to indicate if validation was passed and a collection of Property Names and validation errors.</returns>
+        Public Function Validate() As ValidationResponse Implements IValidatable.Validate
+
+            Dim retVal As New ValidationResponse()
+            Dim mailRegEx As String = If(_useStrictValidation, StrictRegexPattern, LenientRegexPattern)
+
+            ValidateAddress("Sender", retVal, mailRegEx, True)
+            ValidateAddresses("Recipients", retVal, mailRegEx, True)
+            ValidateAddresses("CcRecipients", retVal, mailRegEx)
+            ValidateAddresses("BccRecipients", retVal, mailRegEx)
+            ValidateAddress("ReplyTo", retVal, mailRegEx)
+
+            Return retVal
+
+        End Function
+
+        ''' <summary>
+        ''' Validates a single Email Address property.
+        ''' </summary>
+        ''' <param name="propertyName">The name of the property to validate.</param>
+        ''' <param name="retVal">The validation response object.</param>
+        ''' <param name="mailRegEx">The regular expression pattern to use for validation.</param>
+        Private Overloads Sub ValidateAddress(ByVal propertyName As String, ByRef retVal As ValidationResponse, ByVal mailRegEx As String)
+            ValidateAddress(propertyName, retVal, mailRegEx, False)
+        End Sub
+
+        ''' <summary>
+        ''' Validates a single Email Address property.
+        ''' </summary>
+        ''' <param name="propertyName">The name of the property to validate.</param>
+        ''' <param name="retVal">The validation response object.</param>
+        ''' <param name="mailRegEx">The regular expression pattern to use for validation.</param>
+        ''' <param name="required">Indicates if the address is required; False if not specified.</param>
+        Private Overloads Sub ValidateAddress(ByVal propertyName As String, ByRef retVal As ValidationResponse, ByVal mailRegEx As String, ByVal required As Boolean)
+
+            Dim emailAddress As String = ReflectionHelper.Properties.GetProperty(Of String)(Me, propertyName)
+
+            If emailAddress Is Nothing OrElse emailAddress.Length = 0 Then
+                If required Then retVal.Add(New KeyValuePair(Of String, String)(propertyName, NullEmailAddressError))
+            Else
+                If (Not Regex.IsMatch(emailAddress, mailRegEx)) Then
+                    retVal.Add(New KeyValuePair(Of String, String)(propertyName, InvalidEmailAddressError))
+                End If
+            End If
+
+        End Sub
+
+        ''' <summary>
+        ''' Validates a string array of Email Address property.
+        ''' </summary>
+        ''' <param name="propertyName">The name of the property to validate.</param>
+        ''' <param name="retVal">The validation response object.</param>
+        ''' <param name="mailRegEx">The regular expression pattern to use for validation.</param>
+        Private Overloads Sub ValidateAddresses(ByVal propertyName As String, ByRef retVal As ValidationResponse, ByVal mailRegEx As String)
+            ValidateAddresses(propertyName, retVal, mailRegEx, False)
+        End Sub
+
+        ''' <summary>
+        ''' Validates a string array of Email Address property.
+        ''' </summary>
+        ''' <param name="propertyName">The name of the property to validate.</param>
+        ''' <param name="retVal">The validation response object.</param>
+        ''' <param name="mailRegEx">The regular expression pattern to use for validation.</param>
+        ''' <param name="required">Indicates if the address is required; False if not specified.</param>
+        Private Overloads Sub ValidateAddresses(ByVal propertyName As String, ByRef retVal As ValidationResponse, ByVal mailRegEx As String, ByVal required As Boolean)
+
+            Dim emailAddresses() As String = ReflectionHelper.Properties.GetProperty(Of String())(Me, propertyName)
+
+            If emailAddresses Is Nothing OrElse emailAddresses.Length = 0 Then
+                If required Then retVal.Add(New KeyValuePair(Of String, String)(propertyName, String.Format(CultureInfo.CurrentCulture, NullEmailAddressError)))
+            Else
+                For i As Integer = 0 To emailAddresses.Length - 1
+                    If (Not Regex.IsMatch(emailAddresses(i), mailRegEx)) Then
+                        retVal.Add(New KeyValuePair(Of String, String)(propertyName, String.Format(CultureInfo.CurrentCulture, InvalidEmailAddressErrorWithAddress, emailAddresses(i))))
+                    End If
+                Next
+            End If
+
+        End Sub
+
+#End Region
+
+#Region " IDisposable Implementation "
+
+        Protected Overridable Sub Dispose(ByVal disposing As Boolean)
+            If Not Me.disposedValue Then
+                If disposing Then
+                    _message.Dispose()
+                End If
+                _mailClient = Nothing
+                _message = Nothing
+            End If
+            Me.disposedValue = True
+        End Sub
+
+        Public Sub Dispose() Implements IDisposable.Dispose
+            ' Do not change this code.  Put cleanup code in Dispose(ByVal disposing As Boolean) above.
+            Dispose(True)
+            GC.SuppressFinalize(Me)
+        End Sub
+
+#End Region
+
+    End Class
+
+End Namespace
+
+---tokens---
+"' Copyright (c) 2008 Silken Web - Free BSD License\n" Comment
+
+"' All rights reserved.\n" Comment
+
+"'\n"         Comment
+
+"' Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n" Comment
+
+"' * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer\n" Comment
+
+"' * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n" Comment
+
+"' * Neither the name of Silken Web nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n" Comment
+
+"'\n"         Comment
+
+'\' THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,\n' Comment
+
+"' THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS\n" Comment
+
+"' BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE\n" Comment
+
+"' GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\n" Comment
+
+"' LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH\n" Comment
+
+"' DAMAGE.\n" Comment
+
+'\n'          Text
+
+'Imports'     Keyword
+' '           Text
+'System'      Name.Namespace
+'.'           Name.Namespace
+'Net'         Name.Namespace
+'.'           Name.Namespace
+'Mail'        Name.Namespace
+'\n'          Text
+
+'Imports'     Keyword
+' '           Text
+'SilkenWeb'   Name.Namespace
+'.'           Name.Namespace
+'Entities'    Name.Namespace
+'\n'          Text
+
+'Imports'     Keyword
+' '           Text
+'System'      Name.Namespace
+'.'           Name.Namespace
+'Text'        Name.Namespace
+'.'           Name.Namespace
+'RegularExpressions' Name.Namespace
+'\n'          Text
+
+'Imports'     Keyword
+' '           Text
+'System'      Name.Namespace
+'.'           Name.Namespace
+'Reflection'  Name.Namespace
+'\n'          Text
+
+'Imports'     Keyword
+' '           Text
+'SilkenWeb'   Name.Namespace
+'.'           Name.Namespace
+'Validation'  Name.Namespace
+'\n'          Text
+
+'Imports'     Keyword
+' '           Text
+'System'      Name.Namespace
+'.'           Name.Namespace
+'Globalization' Name.Namespace
+'\n'          Text
+
+'Imports'     Keyword
+' '           Text
+'SilkenWeb'   Name.Namespace
+'.'           Name.Namespace
+'Reflection'  Name.Namespace
+'\n\n'        Text
+
+'Namespace'   Keyword
+' '           Text
+'SilkenWeb'   Name.Namespace
+'\n\n    '    Text
+"''' <summary>\n" Comment
+
+'    '        Text
+"''' Represents an Email and what you can do with it.\n" Comment
+
+'    '        Text
+"''' </summary>\n" Comment
+
+'    '        Text
+"''' <remarks>\n" Comment
+
+'    '        Text
+"''' Keith Jackson\n" Comment
+
+'    '        Text
+"''' 11/04/2008\n" Comment
+
+'    '        Text
+"'''\n"       Comment
+
+'    '        Text
+"''' This class is intended to be inherrited for providing all manner of system generated emails, each represented by it's own class.\n" Comment
+
+'    '        Text
+"''' </remarks>\n" Comment
+
+'    '        Text
+'Public'      Keyword
+' '           Text
+'MustInherit' Keyword
+' '           Text
+'Class'       Keyword
+' '           Text
+'EmailBase'   Name.Class
+' '           Text
+':'           Punctuation
+' '           Text
+'Implements'  Keyword
+' '           Text
+'IValidatable' Name
+','           Punctuation
+' '           Text
+'IDisposable' Name
+'\n\n'        Text
+
+'#Region " Constants "\n' Comment.Preproc
+
+'\n        '  Text
+'Public'      Keyword
+' '           Text
+'Const'       Keyword
+' '           Text
+'LenientRegexPattern' Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*' Literal.String
+'"'           Literal.String
+'\n        '  Text
+'Public'      Keyword
+' '           Text
+'Const'       Keyword
+' '           Text
+'StrictRegexPattern' Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'^(([^<>()[\\]\\\\.,;:\\s@\\' Literal.String
+'""'          Literal.String
+']+(\\.[^<>()[\\]\\\\.,;:\\s@\\' Literal.String
+'""'          Literal.String
+']+)*)|(\\'   Literal.String
+'""'          Literal.String
+'.+\\'        Literal.String
+'""'          Literal.String
+'))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$' Literal.String
+'"'           Literal.String
+'\n        '  Text
+'Public'      Keyword
+' '           Text
+'Const'       Keyword
+' '           Text
+'InvalidEmailAddressError' Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'The Email address provided was invalid' Literal.String
+'"'           Literal.String
+'\n        '  Text
+'Public'      Keyword
+' '           Text
+'Const'       Keyword
+' '           Text
+'InvalidEmailAddressErrorWithAddress' Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'The Email address, {0}, provided was invalid' Literal.String
+'"'           Literal.String
+'\n        '  Text
+'Public'      Keyword
+' '           Text
+'Const'       Keyword
+' '           Text
+'NullEmailAddressError' Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'The Email address was not provided' Literal.String
+'"'           Literal.String
+'\n\n'        Text
+
+'#End Region' Comment.Preproc
+'\n\n'        Text
+
+'#Region " Fields "\n' Comment.Preproc
+
+'\n        '  Text
+'Private'     Keyword
+' '           Text
+'disposedValue' Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'Boolean'     Keyword.Type
+'\n\n        ' Text
+'Private'     Keyword
+' '           Text
+'_message'    Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'MailMessage' Name
+' '           Text
+'='           Operator
+' '           Text
+'New'         Keyword
+' '           Text
+'MailMessage' Name
+'('           Punctuation
+')'           Punctuation
+'\n        '  Text
+'Private'     Keyword
+' '           Text
+'_mailClient' Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'SmtpClient'  Name
+'\n\n        ' Text
+'Private'     Keyword
+' '           Text
+'_useStrictValidation' Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'Boolean'     Keyword.Type
+'\n\n'        Text
+
+'#End Region' Comment.Preproc
+'\n\n'        Text
+
+'#Region " Construction "\n' Comment.Preproc
+
+'\n        '  Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' Instantiates a new Email of the derived type.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'\'\'\' <param name="sender">The email address of the sender of the message.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="recipients">The email addresses of the recipients of the message.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="subject">The subject of the message.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="body">The body of the message.</param>\n' Comment
+
+'        '    Text
+'Protected'   Keyword
+' '           Text
+'Sub'         Keyword
+' '           Text
+'New'         Name.Function
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'sender'      Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'ByVal'       Keyword
+' '           Text
+'subject'     Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'ByVal'       Keyword
+' '           Text
+'body'        Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'ByVal'       Keyword
+' '           Text
+'ParamArray'  Keyword
+' '           Text
+'recipients'  Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'_message'    Name
+'.'           Punctuation
+'From'        Name
+' '           Text
+'='           Operator
+' '           Text
+'New'         Keyword
+' '           Text
+'MailAddress' Name
+'('           Punctuation
+'sender'      Name
+')'           Punctuation
+'\n            ' Text
+'For'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'Integer'     Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'To'          Keyword
+' '           Text
+'recipients'  Name
+'.'           Punctuation
+'Length'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n                ' Text
+'_message'    Name
+'.'           Punctuation
+'To'          Name
+'.'           Punctuation
+'Add'         Name
+'('           Punctuation
+'recipients'  Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'Next'        Keyword
+'\n            ' Text
+'_message'    Name
+'.'           Punctuation
+'Subject'     Name
+' '           Text
+'='           Operator
+' '           Text
+'subject'     Name
+'\n            ' Text
+'_message'    Name
+'.'           Punctuation
+'Body'        Name
+' '           Text
+'='           Operator
+' '           Text
+'body'        Name
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Sub'         Keyword
+'\n\n'        Text
+
+'#End Region' Comment.Preproc
+'\n\n'        Text
+
+'#Region " Properties "\n' Comment.Preproc
+
+'\n        '  Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' Gets the Attachments for the message.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Protected'   Keyword
+' '           Text
+'Overridable' Keyword
+' '           Text
+'ReadOnly'    Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'Attachments' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'AttachmentCollection' Name
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'Return'      Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'Attachments' Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' The email addresses of the BCC recipients of the message.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'BccRecipients' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+'('           Punctuation
+')'           Punctuation
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'Return'      Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'Bcc'         Name
+'.'           Punctuation
+'ToAddressStringArray' Name
+'('           Punctuation
+')'           Punctuation
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n            ' Text
+'Set'         Keyword
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'value'       Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'_message'    Name
+'.'           Punctuation
+'Bcc'         Name
+'.'           Punctuation
+'Clear'       Name
+'('           Punctuation
+')'           Punctuation
+'\n                ' Text
+'_message'    Name
+'.'           Punctuation
+'Bcc'         Name
+'.'           Punctuation
+'Add'         Name
+'('           Punctuation
+'value'       Name
+'.'           Punctuation
+'ToDelimitedString' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Set'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' The body of the message.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Protected'   Keyword
+' '           Text
+'Overridable' Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'Body'        Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'Return'      Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'Body'        Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n            ' Text
+'Set'         Keyword
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'value'       Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'\n                ' Text
+'_message'    Name
+'.'           Punctuation
+'Body'        Name
+' '           Text
+'='           Operator
+' '           Text
+'value'       Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Set'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' The email addresses of the CC recipients of the message.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'CCRecipients' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+'('           Punctuation
+')'           Punctuation
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'Return'      Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'CC'          Name
+'.'           Punctuation
+'ToAddressStringArray' Name
+'('           Punctuation
+')'           Punctuation
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n            ' Text
+'Set'         Keyword
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'value'       Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'_message'    Name
+'.'           Punctuation
+'CC'          Name
+'.'           Punctuation
+'Clear'       Name
+'('           Punctuation
+')'           Punctuation
+'\n                ' Text
+'_message'    Name
+'.'           Punctuation
+'CC'          Name
+'.'           Punctuation
+'Add'         Name
+'('           Punctuation
+'value'       Name
+'.'           Punctuation
+'ToDelimitedString' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Set'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' Gets or Sets a flag to indicate if the body of the message is HTML.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'IsBodyHtml'  Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'Boolean'     Keyword.Type
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'Return'      Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'IsBodyHtml'  Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n            ' Text
+'Set'         Keyword
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'value'       Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'Boolean'     Keyword.Type
+')'           Punctuation
+'\n                ' Text
+'_message'    Name
+'.'           Punctuation
+'IsBodyHtml'  Name
+' '           Text
+'='           Operator
+' '           Text
+'value'       Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Set'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' Gets the Mail message wrapped by the EmailBase class.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Protected'   Keyword
+' '           Text
+'ReadOnly'    Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'Message'     Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'MailMessage' Name
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'Return'      Keyword
+' '           Text
+'_message'    Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' Gets or Sets the Priority of the message.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'Priority'    Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'MailPriority' Name
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'Return'      Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'Priority'    Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n            ' Text
+'Set'         Keyword
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'value'       Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'MailPriority' Name
+')'           Punctuation
+'\n                ' Text
+'_message'    Name
+'.'           Punctuation
+'Priority'    Name
+' '           Text
+'='           Operator
+' '           Text
+'value'       Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Set'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' The email addresses of the recipients of the message.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'Recipients'  Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+'('           Punctuation
+')'           Punctuation
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'Return'      Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'To'          Name
+'.'           Punctuation
+'ToAddressStringArray' Name
+'('           Punctuation
+')'           Punctuation
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n            ' Text
+'Set'         Keyword
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'value'       Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'_message'    Name
+'.'           Punctuation
+'To'          Name
+'.'           Punctuation
+'Clear'       Name
+'('           Punctuation
+')'           Punctuation
+'\n                ' Text
+'_message'    Name
+'.'           Punctuation
+'To'          Name
+'.'           Punctuation
+'Add'         Name
+'('           Punctuation
+'value'       Name
+'.'           Punctuation
+'ToDelimitedString' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Set'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' The reply email address of the sender of the message.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'ReplyTo'     Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'If'          Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'ReplyTo'     Name
+' '           Text
+'Is'          Operator.Word
+' '           Text
+'Nothing'     Keyword
+' '           Text
+'Then'        Keyword
+'\n                    ' Text
+'Return'      Keyword
+' '           Text
+'String'      Keyword.Type
+'.'           Punctuation
+'Empty'       Name
+'\n                ' Text
+'Else'        Keyword
+'\n                    ' Text
+'Return'      Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'ReplyTo'     Name
+'.'           Punctuation
+'Address'     Name
+'\n                ' Text
+'End'         Keyword
+' '           Text
+'If'          Keyword
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n            ' Text
+'Set'         Keyword
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'value'       Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'\n                ' Text
+'If'          Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'ReplyTo'     Name
+' '           Text
+'Is'          Operator.Word
+' '           Text
+'Nothing'     Keyword
+' '           Text
+'Then'        Keyword
+'\n                    ' Text
+'_message'    Name
+'.'           Punctuation
+'ReplyTo'     Name
+' '           Text
+'='           Operator
+' '           Text
+'New'         Keyword
+' '           Text
+'MailAddress' Name
+'('           Punctuation
+'value'       Name
+')'           Punctuation
+'\n                ' Text
+'Else'        Keyword
+'\n                    ' Text
+'_message'    Name
+'.'           Punctuation
+'ReplyTo'     Name
+' '           Text
+'='           Operator
+' '           Text
+'New'         Keyword
+' '           Text
+'MailAddress' Name
+'('           Punctuation
+'value'       Name
+','           Punctuation
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'ReplyTo'     Name
+'.'           Punctuation
+'DisplayName' Name
+')'           Punctuation
+'\n                ' Text
+'End'         Keyword
+' '           Text
+'If'          Keyword
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Set'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' The reply display name of the sender of the message.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'ReplyToDisplayName' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'If'          Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'ReplyTo'     Name
+' '           Text
+'Is'          Operator.Word
+' '           Text
+'Nothing'     Keyword
+' '           Text
+'Then'        Keyword
+'\n                    ' Text
+'Return'      Keyword
+' '           Text
+'String'      Keyword.Type
+'.'           Punctuation
+'Empty'       Name
+'\n                ' Text
+'Else'        Keyword
+'\n                    ' Text
+'Return'      Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'ReplyTo'     Name
+'.'           Punctuation
+'DisplayName' Name
+'\n                ' Text
+'End'         Keyword
+' '           Text
+'If'          Keyword
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n            ' Text
+'Set'         Keyword
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'value'       Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'\n                ' Text
+'If'          Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'ReplyTo'     Name
+' '           Text
+'Is'          Operator.Word
+' '           Text
+'Nothing'     Keyword
+' '           Text
+'Then'        Keyword
+'\n                    ' Text
+'_message'    Name
+'.'           Punctuation
+'ReplyTo'     Name
+' '           Text
+'='           Operator
+' '           Text
+'New'         Keyword
+' '           Text
+'MailAddress' Name
+'('           Punctuation
+'_message'    Name
+'.'           Punctuation
+'From'        Name
+'.'           Punctuation
+'Address'     Name
+','           Punctuation
+' '           Text
+'value'       Name
+')'           Punctuation
+'\n                ' Text
+'Else'        Keyword
+'\n                    ' Text
+'_message'    Name
+'.'           Punctuation
+'ReplyTo'     Name
+' '           Text
+'='           Operator
+' '           Text
+'New'         Keyword
+' '           Text
+'MailAddress' Name
+'('           Punctuation
+'_message'    Name
+'.'           Punctuation
+'ReplyTo'     Name
+'.'           Punctuation
+'Address'     Name
+','           Punctuation
+' '           Text
+'value'       Name
+')'           Punctuation
+'\n                ' Text
+'End'         Keyword
+' '           Text
+'If'          Keyword
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Set'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' The email address of the sender of the message.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Overridable' Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'Sender'      Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'Return'      Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'From'        Name
+'.'           Punctuation
+'Address'     Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n            ' Text
+'Protected'   Keyword
+' '           Text
+'Set'         Keyword
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'value'       Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'\n                ' Text
+'_message'    Name
+'.'           Punctuation
+'From'        Name
+' '           Text
+'='           Operator
+' '           Text
+'New'         Keyword
+' '           Text
+'MailAddress' Name
+'('           Punctuation
+'value'       Name
+','           Punctuation
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'From'        Name
+'.'           Punctuation
+'DisplayName' Name
+')'           Punctuation
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Set'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' The display name of the sender of the message.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Overridable' Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'SenderDisplayName' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'Return'      Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'From'        Name
+'.'           Punctuation
+'DisplayName' Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n            ' Text
+'Protected'   Keyword
+' '           Text
+'Set'         Keyword
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'value'       Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'\n                ' Text
+'_message'    Name
+'.'           Punctuation
+'From'        Name
+' '           Text
+'='           Operator
+' '           Text
+'New'         Keyword
+' '           Text
+'MailAddress' Name
+'('           Punctuation
+'_message'    Name
+'.'           Punctuation
+'From'        Name
+'.'           Punctuation
+'Address'     Name
+','           Punctuation
+' '           Text
+'value'       Name
+')'           Punctuation
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Set'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' The subject of the message.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Overridable' Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'Subject'     Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'Return'      Keyword
+' '           Text
+'_message'    Name
+'.'           Punctuation
+'Subject'     Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n            ' Text
+'Protected'   Keyword
+' '           Text
+'Set'         Keyword
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'value'       Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'\n                ' Text
+'_message'    Name
+'.'           Punctuation
+'Subject'     Name
+' '           Text
+'='           Operator
+' '           Text
+'value'       Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Set'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n'        Text
+
+'#End Region' Comment.Preproc
+'\n\n'        Text
+
+'#Region " Methods "\n' Comment.Preproc
+
+'\n'          Text
+
+'#Region " Send Methods "\n' Comment.Preproc
+
+'\n        '  Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' Sends this email\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'\'\'\' <param name="mailServer">The SMTP server to use to send the email.</param>\n' Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Sub'         Keyword
+' '           Text
+'Send'        Name.Function
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'mailServer'  Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'\n            ' Text
+'_mailClient' Name
+' '           Text
+'='           Operator
+' '           Text
+'New'         Keyword
+' '           Text
+'SmtpClient'  Name
+'('           Punctuation
+'mailServer'  Name
+')'           Punctuation
+'\n            ' Text
+'_mailClient' Name
+'.'           Punctuation
+'Send'        Name
+'('           Punctuation
+'_message'    Name
+')'           Punctuation
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Sub'         Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' Sends this email asynchronously.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'\'\'\' <param name="mailServer">The SMTP server to use to send the email.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="userToken">A user defined token passed to the recieving method on completion of the asynchronous task.</param>\n' Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Sub'         Keyword
+' '           Text
+'SendAsync'   Name.Function
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'mailServer'  Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'ByVal'       Keyword
+' '           Text
+'userToken'   Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'Object'      Keyword.Type
+')'           Punctuation
+'\n            ' Text
+'_mailClient' Name
+' '           Text
+'='           Operator
+' '           Text
+'New'         Keyword
+' '           Text
+'SmtpClient'  Name
+'('           Punctuation
+'mailServer'  Name
+')'           Punctuation
+'\n            ' Text
+'_mailClient' Name
+'.'           Punctuation
+'SendAsync'   Name
+'('           Punctuation
+'_message'    Name
+','           Punctuation
+' '           Text
+'userToken'   Name
+')'           Punctuation
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Sub'         Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' Cancels an attempt to send this email asynchronously.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Sub'         Keyword
+' '           Text
+'SendAsyncCancel' Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n            ' Text
+'_mailClient' Name
+'.'           Punctuation
+'SendAsyncCancel' Name
+'('           Punctuation
+')'           Punctuation
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Sub'         Keyword
+'\n\n'        Text
+
+'#End Region' Comment.Preproc
+'\n\n'        Text
+
+'#End Region' Comment.Preproc
+'\n\n'        Text
+
+'#Region " IValidatable Implementation "\n' Comment.Preproc
+
+'\n        '  Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' gets and Sets a flag to indicate whether to use strict validation.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Property'    Keyword
+' '           Text
+'UseStrictValidation' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'Boolean'     Keyword.Type
+'\n            ' Text
+'Get'         Keyword
+'\n                ' Text
+'Return'      Keyword
+' '           Text
+'_useStrictValidation' Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Get'         Keyword
+'\n            ' Text
+'Set'         Keyword
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'value'       Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'Boolean'     Keyword.Type
+')'           Punctuation
+'\n                ' Text
+'_useStrictValidation' Name
+' '           Text
+'='           Operator
+' '           Text
+'value'       Name
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'Set'         Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Property'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' Validates this email.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+"''' <returns>A ValidationResponse, containing a flag to indicate if validation was passed and a collection of Property Names and validation errors.</returns>\n" Comment
+
+'        '    Text
+'Public'      Keyword
+' '           Text
+'Function'    Keyword
+' '           Text
+'Validate'    Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'ValidationResponse' Name
+' '           Text
+'Implements'  Keyword
+' '           Text
+'IValidatable' Name
+'.'           Punctuation
+'Validate'    Name
+'\n\n            ' Text
+'Dim'         Keyword
+' '           Text
+'retVal'      Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'New'         Keyword
+' '           Text
+'ValidationResponse' Name
+'('           Punctuation
+')'           Punctuation
+'\n            ' Text
+'Dim'         Keyword
+' '           Text
+'mailRegEx'   Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'If'          Keyword
+'('           Punctuation
+'_useStrictValidation' Name
+','           Punctuation
+' '           Text
+'StrictRegexPattern' Name
+','           Punctuation
+' '           Text
+'LenientRegexPattern' Name
+')'           Punctuation
+'\n\n            ' Text
+'ValidateAddress' Name
+'('           Punctuation
+'"'           Literal.String
+'Sender'      Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'retVal'      Name
+','           Punctuation
+' '           Text
+'mailRegEx'   Name
+','           Punctuation
+' '           Text
+'True'        Keyword
+')'           Punctuation
+'\n            ' Text
+'ValidateAddresses' Name
+'('           Punctuation
+'"'           Literal.String
+'Recipients'  Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'retVal'      Name
+','           Punctuation
+' '           Text
+'mailRegEx'   Name
+','           Punctuation
+' '           Text
+'True'        Keyword
+')'           Punctuation
+'\n            ' Text
+'ValidateAddresses' Name
+'('           Punctuation
+'"'           Literal.String
+'CcRecipients' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'retVal'      Name
+','           Punctuation
+' '           Text
+'mailRegEx'   Name
+')'           Punctuation
+'\n            ' Text
+'ValidateAddresses' Name
+'('           Punctuation
+'"'           Literal.String
+'BccRecipients' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'retVal'      Name
+','           Punctuation
+' '           Text
+'mailRegEx'   Name
+')'           Punctuation
+'\n            ' Text
+'ValidateAddress' Name
+'('           Punctuation
+'"'           Literal.String
+'ReplyTo'     Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'retVal'      Name
+','           Punctuation
+' '           Text
+'mailRegEx'   Name
+')'           Punctuation
+'\n\n            ' Text
+'Return'      Keyword
+' '           Text
+'retVal'      Name
+'\n\n        ' Text
+'End'         Keyword
+' '           Text
+'Function'    Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' Validates a single Email Address property.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'\'\'\' <param name="propertyName">The name of the property to validate.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="retVal">The validation response object.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="mailRegEx">The regular expression pattern to use for validation.</param>\n' Comment
+
+'        '    Text
+'Private'     Keyword
+' '           Text
+'Overloads'   Keyword
+' '           Text
+'Sub'         Keyword
+' '           Text
+'ValidateAddress' Name.Function
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'propertyName' Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'ByRef'       Keyword
+' '           Text
+'retVal'      Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'ValidationResponse' Name
+','           Punctuation
+' '           Text
+'ByVal'       Keyword
+' '           Text
+'mailRegEx'   Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'\n            ' Text
+'ValidateAddress' Name
+'('           Punctuation
+'propertyName' Name
+','           Punctuation
+' '           Text
+'retVal'      Name
+','           Punctuation
+' '           Text
+'mailRegEx'   Name
+','           Punctuation
+' '           Text
+'False'       Keyword
+')'           Punctuation
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Sub'         Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' Validates a single Email Address property.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'\'\'\' <param name="propertyName">The name of the property to validate.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="retVal">The validation response object.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="mailRegEx">The regular expression pattern to use for validation.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="required">Indicates if the address is required; False if not specified.</param>\n' Comment
+
+'        '    Text
+'Private'     Keyword
+' '           Text
+'Overloads'   Keyword
+' '           Text
+'Sub'         Keyword
+' '           Text
+'ValidateAddress' Name.Function
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'propertyName' Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'ByRef'       Keyword
+' '           Text
+'retVal'      Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'ValidationResponse' Name
+','           Punctuation
+' '           Text
+'ByVal'       Keyword
+' '           Text
+'mailRegEx'   Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'ByVal'       Keyword
+' '           Text
+'required'    Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'Boolean'     Keyword.Type
+')'           Punctuation
+'\n\n            ' Text
+'Dim'         Keyword
+' '           Text
+'emailAddress' Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'ReflectionHelper' Name
+'.'           Punctuation
+'Properties'  Name
+'.'           Punctuation
+'GetProperty' Name
+'('           Punctuation
+'Of'          Keyword
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'('           Punctuation
+'Me'          Keyword
+','           Punctuation
+' '           Text
+'propertyName' Name
+')'           Punctuation
+'\n\n            ' Text
+'If'          Keyword
+' '           Text
+'emailAddress' Name
+' '           Text
+'Is'          Operator.Word
+' '           Text
+'Nothing'     Keyword
+' '           Text
+'OrElse'      Operator.Word
+' '           Text
+'emailAddress' Name
+'.'           Punctuation
+'Length'      Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'Then'        Keyword
+'\n                ' Text
+'If'          Keyword
+' '           Text
+'required'    Name
+' '           Text
+'Then'        Keyword
+' '           Text
+'retVal'      Name
+'.'           Punctuation
+'Add'         Name
+'('           Punctuation
+'New'         Keyword
+' '           Text
+'KeyValuePair' Name
+'('           Punctuation
+'Of'          Keyword
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'('           Punctuation
+'propertyName' Name
+','           Punctuation
+' '           Text
+'NullEmailAddressError' Name
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'Else'        Keyword
+'\n                ' Text
+'If'          Keyword
+' '           Text
+'('           Punctuation
+'Not'         Keyword
+' '           Text
+'Regex'       Name
+'.'           Punctuation
+'IsMatch'     Name
+'('           Punctuation
+'emailAddress' Name
+','           Punctuation
+' '           Text
+'mailRegEx'   Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'Then'        Keyword
+'\n                    ' Text
+'retVal'      Name
+'.'           Punctuation
+'Add'         Name
+'('           Punctuation
+'New'         Keyword
+' '           Text
+'KeyValuePair' Name
+'('           Punctuation
+'Of'          Keyword
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'('           Punctuation
+'propertyName' Name
+','           Punctuation
+' '           Text
+'InvalidEmailAddressError' Name
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'End'         Keyword
+' '           Text
+'If'          Keyword
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'If'          Keyword
+'\n\n        ' Text
+'End'         Keyword
+' '           Text
+'Sub'         Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' Validates a string array of Email Address property.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'\'\'\' <param name="propertyName">The name of the property to validate.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="retVal">The validation response object.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="mailRegEx">The regular expression pattern to use for validation.</param>\n' Comment
+
+'        '    Text
+'Private'     Keyword
+' '           Text
+'Overloads'   Keyword
+' '           Text
+'Sub'         Keyword
+' '           Text
+'ValidateAddresses' Name.Function
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'propertyName' Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'ByRef'       Keyword
+' '           Text
+'retVal'      Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'ValidationResponse' Name
+','           Punctuation
+' '           Text
+'ByVal'       Keyword
+' '           Text
+'mailRegEx'   Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'\n            ' Text
+'ValidateAddresses' Name
+'('           Punctuation
+'propertyName' Name
+','           Punctuation
+' '           Text
+'retVal'      Name
+','           Punctuation
+' '           Text
+'mailRegEx'   Name
+','           Punctuation
+' '           Text
+'False'       Keyword
+')'           Punctuation
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Sub'         Keyword
+'\n\n        ' Text
+"''' <summary>\n" Comment
+
+'        '    Text
+"''' Validates a string array of Email Address property.\n" Comment
+
+'        '    Text
+"''' </summary>\n" Comment
+
+'        '    Text
+'\'\'\' <param name="propertyName">The name of the property to validate.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="retVal">The validation response object.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="mailRegEx">The regular expression pattern to use for validation.</param>\n' Comment
+
+'        '    Text
+'\'\'\' <param name="required">Indicates if the address is required; False if not specified.</param>\n' Comment
+
+'        '    Text
+'Private'     Keyword
+' '           Text
+'Overloads'   Keyword
+' '           Text
+'Sub'         Keyword
+' '           Text
+'ValidateAddresses' Name.Function
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'propertyName' Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'ByRef'       Keyword
+' '           Text
+'retVal'      Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'ValidationResponse' Name
+','           Punctuation
+' '           Text
+'ByVal'       Keyword
+' '           Text
+'mailRegEx'   Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'ByVal'       Keyword
+' '           Text
+'required'    Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'Boolean'     Keyword.Type
+')'           Punctuation
+'\n\n            ' Text
+'Dim'         Keyword
+' '           Text
+'emailAddresses' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'As'          Operator.Word
+' '           Text
+'String'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'ReflectionHelper' Name
+'.'           Punctuation
+'Properties'  Name
+'.'           Punctuation
+'GetProperty' Name
+'('           Punctuation
+'Of'          Keyword
+' '           Text
+'String'      Keyword.Type
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'('           Punctuation
+'Me'          Keyword
+','           Punctuation
+' '           Text
+'propertyName' Name
+')'           Punctuation
+'\n\n            ' Text
+'If'          Keyword
+' '           Text
+'emailAddresses' Name
+' '           Text
+'Is'          Operator.Word
+' '           Text
+'Nothing'     Keyword
+' '           Text
+'OrElse'      Operator.Word
+' '           Text
+'emailAddresses' Name
+'.'           Punctuation
+'Length'      Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'Then'        Keyword
+'\n                ' Text
+'If'          Keyword
+' '           Text
+'required'    Name
+' '           Text
+'Then'        Keyword
+' '           Text
+'retVal'      Name
+'.'           Punctuation
+'Add'         Name
+'('           Punctuation
+'New'         Keyword
+' '           Text
+'KeyValuePair' Name
+'('           Punctuation
+'Of'          Keyword
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'('           Punctuation
+'propertyName' Name
+','           Punctuation
+' '           Text
+'String'      Keyword.Type
+'.'           Punctuation
+'Format'      Name
+'('           Punctuation
+'CultureInfo' Name
+'.'           Punctuation
+'CurrentCulture' Name
+','           Punctuation
+' '           Text
+'NullEmailAddressError' Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'Else'        Keyword
+'\n                ' Text
+'For'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'Integer'     Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'To'          Keyword
+' '           Text
+'emailAddresses' Name
+'.'           Punctuation
+'Length'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n                    ' Text
+'If'          Keyword
+' '           Text
+'('           Punctuation
+'Not'         Keyword
+' '           Text
+'Regex'       Name
+'.'           Punctuation
+'IsMatch'     Name
+'('           Punctuation
+'emailAddresses' Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'mailRegEx'   Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'Then'        Keyword
+'\n                        ' Text
+'retVal'      Name
+'.'           Punctuation
+'Add'         Name
+'('           Punctuation
+'New'         Keyword
+' '           Text
+'KeyValuePair' Name
+'('           Punctuation
+'Of'          Keyword
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'('           Punctuation
+'propertyName' Name
+','           Punctuation
+' '           Text
+'String'      Keyword.Type
+'.'           Punctuation
+'Format'      Name
+'('           Punctuation
+'CultureInfo' Name
+'.'           Punctuation
+'CurrentCulture' Name
+','           Punctuation
+' '           Text
+'InvalidEmailAddressErrorWithAddress' Name
+','           Punctuation
+' '           Text
+'emailAddresses' Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'End'         Keyword
+' '           Text
+'If'          Keyword
+'\n                ' Text
+'Next'        Keyword
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'If'          Keyword
+'\n\n        ' Text
+'End'         Keyword
+' '           Text
+'Sub'         Keyword
+'\n\n'        Text
+
+'#End Region' Comment.Preproc
+'\n\n'        Text
+
+'#Region " IDisposable Implementation "\n' Comment.Preproc
+
+'\n        '  Text
+'Protected'   Keyword
+' '           Text
+'Overridable' Keyword
+' '           Text
+'Sub'         Keyword
+' '           Text
+'Dispose'     Name.Function
+'('           Punctuation
+'ByVal'       Keyword
+' '           Text
+'disposing'   Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'Boolean'     Keyword.Type
+')'           Punctuation
+'\n            ' Text
+'If'          Keyword
+' '           Text
+'Not'         Keyword
+' '           Text
+'Me'          Keyword
+'.'           Punctuation
+'disposedValue' Name
+' '           Text
+'Then'        Keyword
+'\n                ' Text
+'If'          Keyword
+' '           Text
+'disposing'   Name
+' '           Text
+'Then'        Keyword
+'\n                    ' Text
+'_message'    Name
+'.'           Punctuation
+'Dispose'     Name
+'('           Punctuation
+')'           Punctuation
+'\n                ' Text
+'End'         Keyword
+' '           Text
+'If'          Keyword
+'\n                ' Text
+'_mailClient' Name
+' '           Text
+'='           Operator
+' '           Text
+'Nothing'     Keyword
+'\n                ' Text
+'_message'    Name
+' '           Text
+'='           Operator
+' '           Text
+'Nothing'     Keyword
+'\n            ' Text
+'End'         Keyword
+' '           Text
+'If'          Keyword
+'\n            ' Text
+'Me'          Keyword
+'.'           Punctuation
+'disposedValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'True'        Keyword
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Sub'         Keyword
+'\n\n        ' Text
+'Public'      Keyword
+' '           Text
+'Sub'         Keyword
+' '           Text
+'Dispose'     Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'Implements'  Keyword
+' '           Text
+'IDisposable' Name
+'.'           Punctuation
+'Dispose'     Name
+'\n            ' Text
+"' Do not change this code.  Put cleanup code in Dispose(ByVal disposing As Boolean) above.\n" Comment
+
+'            ' Text
+'Dispose'     Name
+'('           Punctuation
+'True'        Keyword
+')'           Punctuation
+'\n            ' Text
+'GC'          Name
+'.'           Punctuation
+'SuppressFinalize' Name
+'('           Punctuation
+'Me'          Keyword
+')'           Punctuation
+'\n        '  Text
+'End'         Keyword
+' '           Text
+'Sub'         Keyword
+'\n\n'        Text
+
+'#End Region' Comment.Preproc
+'\n\n    '    Text
+'End'         Keyword
+' '           Text
+'Class'       Keyword
+'\n\n'        Text
+
+'End'         Keyword
+' '           Text
+'Namespace'   Keyword
+'\n'          Text

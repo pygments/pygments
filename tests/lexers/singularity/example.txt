@@ -1,0 +1,375 @@
+---input---
+BoOtStRaP: library  # pass: headers are case-insensitive
+# pass: do not highlight '%'
+MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/os/$basearch/
+ From: ubuntu:18.04 # pass: leading whitespace allowed
+
+%setup
+    touch /file1
+touch ${SINGULARITY_ROOTFS}/file2 # pass: leading whitespace optional
+
+%files
+    /file1
+    /file1 /opt
+
+%environment
+    export LISTEN_PORT=12345
+    export LC_ALL=C
+
+%runscript
+    echo "Container was created $NOW"
+    echo "Arguments received: $*"
+    exec echo "$@"
+
+%startscript
+    nc -lp $LISTEN_PORT
+
+%test
+    grep -q NAME=\"Ubuntu\" /etc/os-release
+    if [ $? -eq 0 ]; then
+        echo "Container base is Ubuntu as expected."
+    else
+        echo "Container base is not Ubuntu."
+    fi
+
+%labels
+    Author d@sylabs.io
+    Version v0.0.1
+
+%help
+    This is a demo container used to illustrate a def file that uses all
+    supported sections.
+
+%post
+    apt-get update && apt-get install -y netcat
+    NOW=$((date % 1)) # pass: don't highlight '%'
+    echo "export NOW=\"${NOW}\"" >> $SINGULARITY_ENVIRONMENT
+
+---tokens---
+'BoOtStRaP'   Keyword
+':'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'y'           Text
+'  # pass: headers are case-insensitive\n' Comment
+
+"# pass: do not highlight '%'\n" Comment
+
+'MirrorURL'   Keyword
+':'           Text
+' '           Text
+'h'           Text
+'t'           Text
+'t'           Text
+'p'           Text
+':'           Text
+'/'           Text
+'/'           Text
+'m'           Text
+'i'           Text
+'r'           Text
+'r'           Text
+'o'           Text
+'r'           Text
+'.'           Text
+'c'           Text
+'e'           Text
+'n'           Text
+'t'           Text
+'o'           Text
+'s'           Text
+'.'           Text
+'o'           Text
+'r'           Text
+'g'           Text
+'/'           Text
+'c'           Text
+'e'           Text
+'n'           Text
+'t'           Text
+'o'           Text
+'s'           Text
+'-'           Text
+'%'           Text
+'{'           Text
+'O'           Text
+'S'           Text
+'V'           Text
+'E'           Text
+'R'           Text
+'S'           Text
+'I'           Text
+'O'           Text
+'N'           Text
+'}'           Text
+'/'           Text
+'%'           Text
+'{'           Text
+'O'           Text
+'S'           Text
+'V'           Text
+'E'           Text
+'R'           Text
+'S'           Text
+'I'           Text
+'O'           Text
+'N'           Text
+'}'           Text
+'/'           Text
+'o'           Text
+'s'           Text
+'/'           Text
+'$'           Text
+'b'           Text
+'a'           Text
+'s'           Text
+'e'           Text
+'a'           Text
+'r'           Text
+'c'           Text
+'h'           Text
+'/'           Text
+'\n'          Text
+
+' '           Text
+'From'        Keyword
+':'           Text
+' '           Text
+'u'           Text
+'b'           Text
+'u'           Text
+'n'           Text
+'t'           Text
+'u'           Text
+':'           Text
+'18.04'       Literal.Number
+' # pass: leading whitespace allowed\n' Comment
+
+'\n'          Text
+
+'%setup'      Generic.Heading
+'\n    '      Text
+'touch'       Text
+' '           Text
+'/file1'      Text
+'\n'          Text
+
+'touch'       Text
+' '           Text
+'${'          Literal.String.Interpol
+'SINGULARITY_ROOTFS' Name.Variable
+'}'           Literal.String.Interpol
+'/file2'      Text
+' '           Text
+'# pass: leading whitespace optional\n' Comment.Single
+
+'\n'          Text
+
+'%files'      Generic.Heading
+'\n    '      Text
+'/file1'      Text
+'\n    '      Text
+'/file1'      Text
+' '           Text
+'/opt'        Text
+'\n'          Text
+
+'\n'          Text
+
+'%environment' Generic.Heading
+'\n    '      Text
+'export'      Name.Builtin
+' '           Text
+'LISTEN_PORT' Name.Variable
+'='           Operator
+'12345'       Literal.Number
+'\n    '      Text
+'export'      Name.Builtin
+' '           Text
+'LC_ALL'      Name.Variable
+'='           Operator
+'C'           Text
+'\n'          Text
+
+'\n'          Text
+
+'%runscript'  Generic.Heading
+'\n    '      Text
+'echo'        Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'Container was created ' Literal.String.Double
+'$NOW'        Name.Variable
+'"'           Literal.String.Double
+'\n    '      Text
+'echo'        Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'Arguments received: ' Literal.String.Double
+'$*'          Name.Variable
+'"'           Literal.String.Double
+'\n    '      Text
+'exec'        Name.Builtin
+' '           Text
+'echo'        Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'$@'          Name.Variable
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'%startscript' Generic.Heading
+'\n    '      Text
+'nc'          Text
+' '           Text
+'-lp'         Text
+' '           Text
+'$LISTEN_PORT' Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'%test'       Generic.Heading
+'\n    '      Text
+'grep'        Text
+' '           Text
+'-q'          Text
+' '           Text
+'NAME'        Name.Variable
+'='           Operator
+'\\"'         Literal.String.Escape
+'Ubuntu'      Text
+'\\"'         Literal.String.Escape
+' '           Text
+'/etc/os-release' Text
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'['           Operator
+' '           Text
+'$?'          Name.Variable
+' '           Text
+'-eq'         Text
+' '           Text
+'0'           Literal.Number
+' '           Text
+']'           Operator
+';'           Punctuation
+' '           Text
+'then'        Keyword
+'\n        '  Text
+'echo'        Name.Builtin
+' '           Text
+'"Container base is Ubuntu as expected."' Literal.String.Double
+'\n    '      Text
+'else'        Keyword
+'\n        '  Text
+'echo'        Name.Builtin
+' '           Text
+'"Container base is not Ubuntu."' Literal.String.Double
+'\n    '      Text
+'fi'          Keyword
+'\n'          Text
+
+'\n'          Text
+
+'%labels'     Generic.Heading
+'\n    '      Text
+'Author'      Text
+' '           Text
+'d@sylabs.io' Text
+'\n    '      Text
+'Version'     Text
+' '           Text
+'v0.0.1'      Text
+'\n'          Text
+
+'\n'          Text
+
+'%help'       Generic.Heading
+'\n    '      Text
+'This'        Text
+' '           Text
+'is'          Text
+' '           Text
+'a'           Text
+' '           Text
+'demo'        Text
+' '           Text
+'container'   Text
+' '           Text
+'used'        Text
+' '           Text
+'to'          Text
+' '           Text
+'illustrate'  Text
+' '           Text
+'a'           Text
+' '           Text
+'def'         Text
+' '           Text
+'file'        Text
+' '           Text
+'that'        Text
+' '           Text
+'uses'        Text
+' '           Text
+'all'         Text
+'\n    '      Text
+'supported'   Text
+' '           Text
+'sections.'   Text
+'\n'          Text
+
+'\n'          Text
+
+'%post'       Generic.Heading
+'\n    '      Text
+'apt-get'     Text
+' '           Text
+'update'      Text
+' '           Text
+'&&'          Operator
+' '           Text
+'apt-get'     Text
+' '           Text
+'install'     Text
+' '           Text
+'-y'          Text
+' '           Text
+'netcat'      Text
+'\n    '      Text
+'NOW'         Name.Variable
+'='           Operator
+'$(('         Keyword
+'date'        Text
+' '           Text
+'%'           Operator
+' '           Text
+'1'           Literal.Number
+'))'          Keyword
+' '           Text
+"# pass: don't highlight '%'\n" Comment.Single
+
+'    '        Text
+'echo'        Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'export NOW=\\"' Literal.String.Double
+'${'          Literal.String.Interpol
+'NOW'         Name.Variable
+'}'           Literal.String.Interpol
+'\\"'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'>>'          Text
+' '           Text
+'$SINGULARITY_ENVIRONMENT' Name.Variable
+'\n'          Text

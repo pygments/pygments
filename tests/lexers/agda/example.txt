@@ -1,0 +1,1471 @@
+---input---
+-- An Agda example file
+
+module test where
+
+open import Coinduction
+open import Data.Bool
+open import {- pointless comment between import and module name -} Data.Char
+open import Data.Nat
+open import Data.Nat.Properties
+open import Data.String
+open import Data.List hiding ([_])
+open import Data.Vec hiding ([_])
+open import Relation.Nullary.Core
+open import Relation.Binary.PropositionalEquality using (_≡_; refl; cong; trans; inspect; [_])
+  renaming (setoid to setiod)
+
+open SemiringSolver
+
+{- this is a {- nested -} comment -}
+
+postulate pierce : {A B : Set} → ((A → B) → A) → A
+
+instance
+  someBool : Bool
+  someBool = true
+
+-- Factorial
+_! : ℕ → ℕ
+0 ! = 1
+(suc n) ! = (suc n) * n !
+
+-- The binomial coefficient
+_choose_ : ℕ → ℕ → ℕ
+_ choose 0 = 1
+0 choose _ = 0
+(suc n) choose (suc m) = (n choose m) + (n choose (suc m)) -- Pascal's rule
+
+choose-too-many : ∀ n m → n ≤ m → n choose (suc m) ≡ 0
+choose-too-many .0 m z≤n = refl
+choose-too-many (suc n) (suc m) (s≤s le) with n choose (suc m) | choose-too-many n m le | n choose (suc (suc m)) | choose-too-many n (suc m) (≤-step le)
+... | .0 | refl | .0 | refl = refl
+
+_++'_ : ∀ {a n m} {A : Set a} → Vec A n → Vec A m → Vec A (m + n)
+_++'_ {_} {n} {m} v₁ v₂ rewrite solve 2 (λ a b → b :+ a := a :+ b) refl n m = v₁ Data.Vec.++ v₂
+
+++'-test : (1 ∷ 2 ∷ 3 ∷ []) ++' (4 ∷ 5 ∷ []) ≡ (1 ∷ 2 ∷ 3 ∷ 4 ∷ 5 ∷ [])
+++'-test = refl
+
+data Coℕ : Set where
+  co0   : Coℕ
+  cosuc : ∞ Coℕ → Coℕ
+
+nanana : Coℕ
+nanana = let two = ♯ cosuc (♯ (cosuc (♯ co0))) in cosuc two
+
+abstract
+  data VacuumCleaner : Set where
+    Roomba : VacuumCleaner
+
+pointlessLemmaAboutBoolFunctions : (f : Bool → Bool) → f (f (f true)) ≡ f true
+pointlessLemmaAboutBoolFunctions f with f true | inspect f true
+... | true  | [ eq₁ ] = trans (cong f eq₁) eq₁
+... | false | [ eq₁ ] with f false | inspect f false
+... | true  | _       = eq₁
+... | false | [ eq₂ ] = eq₂
+
+mutual
+  isEven : ℕ → Bool
+  isEven 0       = true
+  isEven (suc n) = not (isOdd n)
+
+  isOdd : ℕ → Bool
+  isOdd 0       = false
+  isOdd (suc n) = not (isEven n)
+
+foo : String
+foo = "Hello World!"
+
+nl : Char
+nl = '\n'
+
+private
+  intersperseString : Char → List String → String
+  intersperseString c []       = ""
+  intersperseString c (x ∷ xs) = Data.List.foldl (λ a b → a Data.String.++ Data.String.fromList (c ∷ []) Data.String.++ b) x xs
+
+baz : String
+baz = intersperseString nl (Data.List.replicate 5 foo)
+
+postulate
+  Float : Set
+
+{-# BUILTIN FLOAT Float  #-}
+
+pi : Float
+pi = 3.141593
+
+-- Astronomical unit
+au : Float
+au = 1.496e11 -- m
+
+plusFloat : Float → Float → Float
+plusFloat a b = {! !}
+
+record Subset (A : Set) (P : A → Set) : Set where
+  constructor _#_
+  field
+    elem   : A
+    .proof : P elem
+
+---tokens---
+'-- An Agda example file' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'module'      Keyword.Reserved
+' '           Text
+'test'        Name
+' '           Text
+'where'       Keyword.Reserved
+'\n'          Text
+
+'\n'          Text
+
+'open'        Keyword.Reserved
+' '           Text
+'import'      Keyword.Reserved
+' '           Text
+'Coinduction' Name
+'\n'          Text
+
+'open'        Keyword.Reserved
+' '           Text
+'import'      Keyword.Reserved
+' '           Text
+'Data.Bool'   Name
+'\n'          Text
+
+'open'        Keyword.Reserved
+' '           Text
+'import'      Keyword.Reserved
+' '           Text
+'{-'          Comment.Multiline
+' pointless comment between import and module name ' Comment.Multiline
+'-}'          Comment.Multiline
+' '           Text
+'Data.Char'   Name
+'\n'          Text
+
+'open'        Keyword.Reserved
+' '           Text
+'import'      Keyword.Reserved
+' '           Text
+'Data.Nat'    Name
+'\n'          Text
+
+'open'        Keyword.Reserved
+' '           Text
+'import'      Keyword.Reserved
+' '           Text
+'Data.Nat.Properties' Name
+'\n'          Text
+
+'open'        Keyword.Reserved
+' '           Text
+'import'      Keyword.Reserved
+' '           Text
+'Data.String' Name
+'\n'          Text
+
+'open'        Keyword.Reserved
+' '           Text
+'import'      Keyword.Reserved
+' '           Text
+'Data.List'   Name
+' '           Text
+'hiding'      Keyword.Reserved
+' '           Text
+'('           Operator
+'[_]'         Text
+')'           Operator
+'\n'          Text
+
+'open'        Keyword.Reserved
+' '           Text
+'import'      Keyword.Reserved
+' '           Text
+'Data.Vec'    Name
+' '           Text
+'hiding'      Keyword.Reserved
+' '           Text
+'('           Operator
+'[_]'         Text
+')'           Operator
+'\n'          Text
+
+'open'        Keyword.Reserved
+' '           Text
+'import'      Keyword.Reserved
+' '           Text
+'Relation.Nullary.Core' Name
+'\n'          Text
+
+'open'        Keyword.Reserved
+' '           Text
+'import'      Keyword.Reserved
+' '           Text
+'Relation.Binary.PropositionalEquality' Name
+' '           Text
+'using'       Keyword.Reserved
+' '           Text
+'('           Operator
+'_≡_;'        Text
+' '           Text
+'refl;'       Text
+' '           Text
+'cong;'       Text
+' '           Text
+'trans;'      Text
+' '           Text
+'inspect;'    Text
+' '           Text
+'[_]'         Text
+')'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+'renaming'    Keyword.Reserved
+' '           Text
+'('           Operator
+'setoid'      Text
+' '           Text
+'to'          Text
+' '           Text
+'setiod'      Text
+')'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'open'        Keyword.Reserved
+' '           Text
+'SemiringSolver' Text
+'\n'          Text
+
+'\n'          Text
+
+'{-'          Comment.Multiline
+' this is a ' Comment.Multiline
+'{-'          Comment.Multiline
+' nested '    Comment.Multiline
+'-}'          Comment.Multiline
+' comment '   Comment.Multiline
+'-}'          Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'postulate'   Keyword.Reserved
+' '           Text
+'pierce'      Text
+' '           Text
+':'           Operator.Word
+' '           Text
+'{'           Operator
+'A'           Text
+' '           Text
+'B'           Text
+' '           Text
+':'           Operator.Word
+' '           Text
+'Set'         Keyword.Type
+'}'           Operator
+' '           Text
+'→'           Operator.Word
+' '           Text
+'('           Operator
+'('           Operator
+'A'           Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'B'           Text
+')'           Operator
+' '           Text
+'→'           Operator.Word
+' '           Text
+'A'           Text
+')'           Operator
+' '           Text
+'→'           Operator.Word
+' '           Text
+'A'           Text
+'\n'          Text
+
+'\n'          Text
+
+'instance'    Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'someBool'    Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'Bool'        Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'someBool'    Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'true'        Text
+'\n'          Text
+
+'\n'          Text
+
+'-- Factorial' Comment.Single
+'\n'          Text
+
+'_!'          Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'ℕ'           Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'ℕ'           Text
+'\n'          Text
+
+'0'           Literal.Number.Integer
+' '           Text
+'!'           Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'('           Operator
+'suc'         Text
+' '           Text
+'n'           Text
+')'           Operator
+' '           Text
+'!'           Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Operator
+'suc'         Text
+' '           Text
+'n'           Text
+')'           Operator
+' '           Text
+'*'           Text
+' '           Text
+'n'           Text
+' '           Text
+'!'           Text
+'\n'          Text
+
+'\n'          Text
+
+'-- The binomial coefficient' Comment.Single
+'\n'          Text
+
+'_choose_'    Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'ℕ'           Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'ℕ'           Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'ℕ'           Text
+'\n'          Text
+
+'_'           Text
+' '           Text
+'choose'      Text
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'='           Operator.Word
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'0'           Literal.Number.Integer
+' '           Text
+'choose'      Text
+' '           Text
+'_'           Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'('           Operator
+'suc'         Text
+' '           Text
+'n'           Text
+')'           Operator
+' '           Text
+'choose'      Text
+' '           Text
+'('           Operator
+'suc'         Text
+' '           Text
+'m'           Text
+')'           Operator
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Operator
+'n'           Text
+' '           Text
+'choose'      Text
+' '           Text
+'m'           Text
+')'           Operator
+' '           Text
+'+'           Text
+' '           Text
+'('           Operator
+'n'           Text
+' '           Text
+'choose'      Text
+' '           Text
+'('           Operator
+'suc'         Text
+' '           Text
+'m'           Text
+')'           Operator
+')'           Operator
+' '           Text
+"-- Pascal's rule" Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'choose-too-many' Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'∀'           Operator.Word
+' '           Text
+'n'           Text
+' '           Text
+'m'           Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'n'           Text
+' '           Text
+'≤'           Text
+' '           Text
+'m'           Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'n'           Text
+' '           Text
+'choose'      Text
+' '           Text
+'('           Operator
+'suc'         Text
+' '           Text
+'m'           Text
+')'           Operator
+' '           Text
+'≡'           Text
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'choose-too-many' Text
+' '           Text
+'.'           Operator.Word
+'0'           Literal.Number.Integer
+' '           Text
+'m'           Text
+' '           Text
+'z≤n'         Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'refl'        Text
+'\n'          Text
+
+'choose-too-many' Text
+' '           Text
+'('           Operator
+'suc'         Text
+' '           Text
+'n'           Text
+')'           Operator
+' '           Text
+'('           Operator
+'suc'         Text
+' '           Text
+'m'           Text
+')'           Operator
+' '           Text
+'('           Operator
+'s≤s'         Text
+' '           Text
+'le'          Text
+')'           Operator
+' '           Text
+'with'        Keyword.Reserved
+' '           Text
+'n'           Text
+' '           Text
+'choose'      Text
+' '           Text
+'('           Operator
+'suc'         Text
+' '           Text
+'m'           Text
+')'           Operator
+' '           Text
+'|'           Operator.Word
+' '           Text
+'choose-too-many' Text
+' '           Text
+'n'           Text
+' '           Text
+'m'           Text
+' '           Text
+'le'          Text
+' '           Text
+'|'           Operator.Word
+' '           Text
+'n'           Text
+' '           Text
+'choose'      Text
+' '           Text
+'('           Operator
+'suc'         Text
+' '           Text
+'('           Operator
+'suc'         Text
+' '           Text
+'m'           Text
+')'           Operator
+')'           Operator
+' '           Text
+'|'           Operator.Word
+' '           Text
+'choose-too-many' Text
+' '           Text
+'n'           Text
+' '           Text
+'('           Operator
+'suc'         Text
+' '           Text
+'m'           Text
+')'           Operator
+' '           Text
+'('           Operator
+'≤-step'      Text
+' '           Text
+'le'          Text
+')'           Operator
+'\n'          Text
+
+'...'         Operator.Word
+' '           Text
+'|'           Operator.Word
+' '           Text
+'.'           Operator.Word
+'0'           Literal.Number.Integer
+' '           Text
+'|'           Operator.Word
+' '           Text
+'refl'        Text
+' '           Text
+'|'           Operator.Word
+' '           Text
+'.'           Operator.Word
+'0'           Literal.Number.Integer
+' '           Text
+'|'           Operator.Word
+' '           Text
+'refl'        Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'refl'        Text
+'\n'          Text
+
+'\n'          Text
+
+"_++'_"       Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'∀'           Operator.Word
+' '           Text
+'{'           Operator
+'a'           Text
+' '           Text
+'n'           Text
+' '           Text
+'m'           Text
+'}'           Operator
+' '           Text
+'{'           Operator
+'A'           Text
+' '           Text
+':'           Operator.Word
+' '           Text
+'Set'         Keyword.Type
+' '           Text
+'a'           Text
+'}'           Operator
+' '           Text
+'→'           Operator.Word
+' '           Text
+'Vec'         Text
+' '           Text
+'A'           Text
+' '           Text
+'n'           Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'Vec'         Text
+' '           Text
+'A'           Text
+' '           Text
+'m'           Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'Vec'         Text
+' '           Text
+'A'           Text
+' '           Text
+'('           Operator
+'m'           Text
+' '           Text
+'+'           Text
+' '           Text
+'n'           Text
+')'           Operator
+'\n'          Text
+
+"_++'_"       Text
+' '           Text
+'{'           Operator
+'_'           Text
+'}'           Operator
+' '           Text
+'{'           Operator
+'n'           Text
+'}'           Operator
+' '           Text
+'{'           Operator
+'m'           Text
+'}'           Operator
+' '           Text
+'v₁'          Text
+' '           Text
+'v₂'          Text
+' '           Text
+'rewrite'     Keyword.Reserved
+' '           Text
+'solve'       Text
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'λ'           Operator.Word
+' '           Text
+'a'           Text
+' '           Text
+'b'           Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'b'           Text
+' '           Text
+':'           Operator.Word
+'+'           Text
+' '           Text
+'a'           Text
+' '           Text
+':'           Operator.Word
+'='           Operator.Word
+' '           Text
+'a'           Text
+' '           Text
+':'           Operator.Word
+'+'           Text
+' '           Text
+'b'           Text
+')'           Operator
+' '           Text
+'refl'        Text
+' '           Text
+'n'           Text
+' '           Text
+'m'           Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'v₁'          Text
+' '           Text
+'Data.Vec.++' Text
+' '           Text
+'v₂'          Text
+'\n'          Text
+
+'\n'          Text
+
+"++'-test"    Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'('           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'∷'           Text
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'∷'           Text
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'∷'           Text
+' '           Text
+'[]'          Text
+')'           Operator
+' '           Text
+"++'"         Text
+' '           Text
+'('           Operator
+'4'           Literal.Number.Integer
+' '           Text
+'∷'           Text
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+'∷'           Text
+' '           Text
+'[]'          Text
+')'           Operator
+' '           Text
+'≡'           Text
+' '           Text
+'('           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'∷'           Text
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'∷'           Text
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'∷'           Text
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'∷'           Text
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+'∷'           Text
+' '           Text
+'[]'          Text
+')'           Operator
+'\n'          Text
+
+"++'-test"    Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'refl'        Text
+'\n'          Text
+
+'\n'          Text
+
+'data'        Keyword.Reserved
+' '           Text
+'Coℕ'         Text
+' '           Text
+':'           Operator.Word
+' '           Text
+'Set'         Keyword.Type
+' '           Text
+'where'       Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'co0'         Name.Function
+'   '         Text
+':'           Operator.Word
+' '           Text
+'Coℕ'         Text
+'\n'          Text
+
+'  '          Text
+'cosuc'       Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'∞'           Text
+' '           Text
+'Coℕ'         Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'Coℕ'         Text
+'\n'          Text
+
+'\n'          Text
+
+'nanana'      Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'Coℕ'         Text
+'\n'          Text
+
+'nanana'      Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'let'         Keyword.Reserved
+' '           Text
+'two'         Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'♯'           Text
+' '           Text
+'cosuc'       Text
+' '           Text
+'('           Operator
+'♯'           Text
+' '           Text
+'('           Operator
+'cosuc'       Text
+' '           Text
+'('           Operator
+'♯'           Text
+' '           Text
+'co0'         Text
+')'           Operator
+')'           Operator
+')'           Operator
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'cosuc'       Text
+' '           Text
+'two'         Text
+'\n'          Text
+
+'\n'          Text
+
+'abstract'    Keyword.Reserved
+'\n'          Text
+
+' '           Text
+' '           Text
+'data'        Keyword.Reserved
+' '           Text
+'VacuumCleaner' Text
+' '           Text
+':'           Operator.Word
+' '           Text
+'Set'         Keyword.Type
+' '           Text
+'where'       Keyword.Reserved
+'\n'          Text
+
+'    '        Text
+'Roomba'      Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'VacuumCleaner' Text
+'\n'          Text
+
+'\n'          Text
+
+'pointlessLemmaAboutBoolFunctions' Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'('           Operator
+'f'           Text
+' '           Text
+':'           Operator.Word
+' '           Text
+'Bool'        Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'Bool'        Text
+')'           Operator
+' '           Text
+'→'           Operator.Word
+' '           Text
+'f'           Text
+' '           Text
+'('           Operator
+'f'           Text
+' '           Text
+'('           Operator
+'f'           Text
+' '           Text
+'true'        Text
+')'           Operator
+')'           Operator
+' '           Text
+'≡'           Text
+' '           Text
+'f'           Text
+' '           Text
+'true'        Text
+'\n'          Text
+
+'pointlessLemmaAboutBoolFunctions' Text
+' '           Text
+'f'           Text
+' '           Text
+'with'        Keyword.Reserved
+' '           Text
+'f'           Text
+' '           Text
+'true'        Text
+' '           Text
+'|'           Operator.Word
+' '           Text
+'inspect'     Text
+' '           Text
+'f'           Text
+' '           Text
+'true'        Text
+'\n'          Text
+
+'...'         Operator.Word
+' '           Text
+'|'           Operator.Word
+' '           Text
+'true'        Text
+' '           Text
+' '           Text
+'|'           Operator.Word
+' '           Text
+'['           Text
+' '           Text
+'eq₁'         Text
+' '           Text
+']'           Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'trans'       Text
+' '           Text
+'('           Operator
+'cong'        Text
+' '           Text
+'f'           Text
+' '           Text
+'eq₁'         Text
+')'           Operator
+' '           Text
+'eq₁'         Text
+'\n'          Text
+
+'...'         Operator.Word
+' '           Text
+'|'           Operator.Word
+' '           Text
+'false'       Text
+' '           Text
+'|'           Operator.Word
+' '           Text
+'['           Text
+' '           Text
+'eq₁'         Text
+' '           Text
+']'           Text
+' '           Text
+'with'        Keyword.Reserved
+' '           Text
+'f'           Text
+' '           Text
+'false'       Text
+' '           Text
+'|'           Operator.Word
+' '           Text
+'inspect'     Text
+' '           Text
+'f'           Text
+' '           Text
+'false'       Text
+'\n'          Text
+
+'...'         Operator.Word
+' '           Text
+'|'           Operator.Word
+' '           Text
+'true'        Text
+' '           Text
+' '           Text
+'|'           Operator.Word
+' '           Text
+'_'           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'eq₁'         Text
+'\n'          Text
+
+'...'         Operator.Word
+' '           Text
+'|'           Operator.Word
+' '           Text
+'false'       Text
+' '           Text
+'|'           Operator.Word
+' '           Text
+'['           Text
+' '           Text
+'eq₂'         Text
+' '           Text
+']'           Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'eq₂'         Text
+'\n'          Text
+
+'\n'          Text
+
+'mutual'      Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'isEven'      Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'ℕ'           Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'Bool'        Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'isEven'      Text
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'true'        Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'isEven'      Text
+' '           Text
+'('           Operator
+'suc'         Text
+' '           Text
+'n'           Text
+')'           Operator
+' '           Text
+'='           Operator.Word
+' '           Text
+'not'         Text
+' '           Text
+'('           Operator
+'isOdd'       Text
+' '           Text
+'n'           Text
+')'           Operator
+'\n'          Text
+
+'\n  '        Text
+'isOdd'       Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'ℕ'           Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'Bool'        Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'isOdd'       Text
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'false'       Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'isOdd'       Text
+' '           Text
+'('           Operator
+'suc'         Text
+' '           Text
+'n'           Text
+')'           Operator
+' '           Text
+'='           Operator.Word
+' '           Text
+'not'         Text
+' '           Text
+'('           Operator
+'isEven'      Text
+' '           Text
+'n'           Text
+')'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'foo'         Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'String'      Text
+'\n'          Text
+
+'foo'         Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'"'           Literal.String
+'Hello World!' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'nl'          Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'Char'        Text
+'\n'          Text
+
+'nl'          Text
+' '           Text
+'='           Operator.Word
+' '           Text
+"'"           Literal.String.Char
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+"'"           Literal.String.Char
+'\n'          Text
+
+'\n'          Text
+
+'private'     Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'intersperseString' Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'Char'        Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'List'        Text
+' '           Text
+'String'      Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'String'      Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'intersperseString' Text
+' '           Text
+'c'           Text
+' '           Text
+'[]'          Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+' '           Text
+'intersperseString' Text
+' '           Text
+'c'           Text
+' '           Text
+'('           Operator
+'x'           Text
+' '           Text
+'∷'           Text
+' '           Text
+'xs'          Text
+')'           Operator
+' '           Text
+'='           Operator.Word
+' '           Text
+'Data.List.foldl' Text
+' '           Text
+'('           Operator
+'λ'           Operator.Word
+' '           Text
+'a'           Text
+' '           Text
+'b'           Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'a'           Text
+' '           Text
+'Data.String.++' Text
+' '           Text
+'Data.String.fromList' Text
+' '           Text
+'('           Operator
+'c'           Text
+' '           Text
+'∷'           Text
+' '           Text
+'[]'          Text
+')'           Operator
+' '           Text
+'Data.String.++' Text
+' '           Text
+'b'           Text
+')'           Operator
+' '           Text
+'x'           Text
+' '           Text
+'xs'          Text
+'\n'          Text
+
+'\n'          Text
+
+'baz'         Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'String'      Text
+'\n'          Text
+
+'baz'         Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'intersperseString' Text
+' '           Text
+'nl'          Text
+' '           Text
+'('           Operator
+'Data.List.replicate' Text
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+'foo'         Text
+')'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'postulate'   Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'Float'       Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'Set'         Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'{-'          Comment.Multiline
+'# BUILTIN FLOAT Float  #' Comment.Multiline
+'-}'          Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'pi'          Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'Float'       Text
+'\n'          Text
+
+'pi'          Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'3.141593'    Literal.Number.Float
+'\n'          Text
+
+'\n'          Text
+
+'-- Astronomical unit' Comment.Single
+'\n'          Text
+
+'au'          Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'Float'       Text
+'\n'          Text
+
+'au'          Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'1.496e11'    Literal.Number.Float
+' '           Text
+'-- m'        Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'plusFloat'   Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'Float'       Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'Float'       Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'Float'       Text
+'\n'          Text
+
+'plusFloat'   Text
+' '           Text
+'a'           Text
+' '           Text
+'b'           Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'{!'          Comment.Directive
+' '           Comment.Directive
+'!}'          Comment.Directive
+'\n'          Text
+
+'\n'          Text
+
+'record'      Keyword.Reserved
+' '           Text
+'Subset'      Text
+' '           Text
+'('           Operator
+'A'           Text
+' '           Text
+':'           Operator.Word
+' '           Text
+'Set'         Keyword.Type
+')'           Operator
+' '           Text
+'('           Operator
+'P'           Text
+' '           Text
+':'           Operator.Word
+' '           Text
+'A'           Text
+' '           Text
+'→'           Operator.Word
+' '           Text
+'Set'         Keyword.Type
+')'           Operator
+' '           Text
+':'           Operator.Word
+' '           Text
+'Set'         Keyword.Type
+' '           Text
+'where'       Keyword.Reserved
+'\n'          Text
+
+' '           Text
+' '           Text
+'constructor' Keyword.Reserved
+' '           Text
+'_#_'         Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'field'       Keyword.Reserved
+'\n'          Text
+
+'    '        Text
+'elem'        Name.Function
+'   '         Text
+':'           Operator.Word
+' '           Text
+'A'           Text
+'\n'          Text
+
+'    '        Text
+'.proof'      Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'P'           Text
+' '           Text
+'elem'        Text
+'\n'          Text

@@ -1,0 +1,341 @@
+---input---
+package ru.dfls.events {
+	import flash.events.Event;	
+	import flash.events.ErrorEvent;
+	
+	/**
+	 * This event is usually dispatched if some error was thrown from an asynchronous code, i.e. there
+	 * is no relevant user stack part to process the error. There is only one type of such event: 
+	 * <code>ErrorEvent.ERROR</code> which is same as <code>flash.events.ErrorEvent.ERROR</code>.
+	 * The only difference between <code>flash.events.ErrorEvent</code> and 
+	 * <code>ru.dfls.events.ErrorEvent</code> is the capability of the latter to store the underlying cause
+	 * (the <code>Error</code>).
+	 * 
+	 * @see flash.events.ErrorEvent
+	 * @see Error
+	 * @author dragonfly
+	 */
+	public class ErrorEvent extends flash.events.ErrorEvent {
+		
+		public static var ERROR : String = flash.events.ErrorEvent.ERROR;
+
+		private var _error : Error;
+		
+		public function ErrorEvent(type : String, bubbles : Boolean = false, cancelable : Boolean = false, 
+									text : String = "", error : Error = null) {
+			super(type, bubbles, cancelable, text);
+			_error = error;
+		}
+		
+		public function get error() : Error {
+			return _error;
+		}
+		
+		public function set error(value : Error) : void {
+			_error = value;
+		}
+		
+		public override function toString() : String {
+			return formatToString("ErrorEvent", "type", "bubbles", "cancelable", "eventPhase", "text", "error");
+		}
+		
+		public override function clone() : Event {
+			return new ru.dfls.events.ErrorEvent(type, bubbles, cancelable, text, error);
+		}
+		
+	}
+}
+
+---tokens---
+'package'     Keyword
+' '           Text
+'ru.dfls.events' Name.Namespace
+' '           Text
+'{'           Operator
+'\n\t'        Text
+'import'      Keyword
+' '           Text
+'flash.events.Event' Name.Namespace
+';'           Operator
+'\t\n\t'      Text
+'import'      Keyword
+' '           Text
+'flash.events.ErrorEvent' Name.Namespace
+';'           Operator
+'\n\t\n\t'    Text
+'/**\n\t * This event is usually dispatched if some error was thrown from an asynchronous code, i.e. there\n\t * is no relevant user stack part to process the error. There is only one type of such event: \n\t * <code>ErrorEvent.ERROR</code> which is same as <code>flash.events.ErrorEvent.ERROR</code>.\n\t * The only difference between <code>flash.events.ErrorEvent</code> and \n\t * <code>ru.dfls.events.ErrorEvent</code> is the capability of the latter to store the underlying cause\n\t * (the <code>Error</code>).\n\t * \n\t * @see flash.events.ErrorEvent\n\t * @see Error\n\t * @author dragonfly\n\t */' Comment.Multiline
+'\n\t'        Text
+'public'      Keyword.Declaration
+' '           Text
+'class'       Keyword.Declaration
+' '           Text
+'ErrorEvent'  Name
+' '           Text
+'extends'     Keyword.Declaration
+' '           Text
+'flash'       Name
+'.'           Operator
+'events'      Name.Attribute
+'.'           Operator
+'ErrorEvent'  Name.Attribute
+' '           Text
+'{'           Operator
+'\n\t\t\n\t\t' Text
+'public'      Keyword.Declaration
+' '           Text
+'static'      Keyword.Declaration
+' '           Text
+'var'         Keyword.Declaration
+' '           Text
+'ERROR'       Name
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'flash'       Name
+'.'           Operator
+'events'      Name.Attribute
+'.'           Operator
+'ErrorEvent'  Name.Attribute
+'.'           Operator
+'ERROR'       Name.Attribute
+';'           Operator
+'\n\n\t\t'    Text
+'private'     Keyword.Declaration
+' '           Text
+'var'         Keyword.Declaration
+' '           Text
+'_error'      Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Error'       Keyword.Type
+';'           Operator
+'\n\t\t\n\t\t' Text
+'public'      Keyword.Declaration
+' '           Text
+'function '   Keyword.Declaration
+'ErrorEvent'  Name.Function
+'('           Operator
+'type'        Name
+' '           Text
+':'           Operator
+' '           Text
+'String'      Keyword.Type
+','           Operator
+' '           Text
+'bubbles'     Name
+' '           Text
+':'           Operator
+' '           Text
+'Boolean'     Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+','           Operator
+' '           Text
+'cancelable'  Name
+' '           Text
+':'           Operator
+' '           Text
+'Boolean'     Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+','           Operator
+' \n\t\t\t\t\t\t\t\t\t' Text
+'text'        Name
+' '           Text
+':'           Operator
+' '           Text
+'String'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String.Double
+','           Operator
+' '           Text
+'error'       Name
+' '           Text
+':'           Operator
+' '           Text
+'Error'       Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword.Constant
+')'           Operator
+' '           Text
+'{'           Operator
+'\n\t\t\t'    Text
+'super'       Keyword.Declaration
+'('           Operator
+'type'        Name
+','           Operator
+' '           Text
+'bubbles'     Name
+','           Operator
+' '           Text
+'cancelable'  Name
+','           Operator
+' '           Text
+'text'        Name
+');'          Operator
+'\n\t\t\t'    Text
+'_error'      Name
+' '           Text
+'='           Operator
+' '           Text
+'error'       Name
+';'           Operator
+'\n\t\t'      Text
+'}'           Operator
+'\n\t\t\n\t\t' Text
+'public'      Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'get'         Keyword.Declaration
+' '           Text
+'error'       Name
+'()'          Operator
+' '           Text
+':'           Operator
+' '           Text
+'Error'       Name
+' '           Text
+'{'           Operator
+'\n\t\t\t'    Text
+'return'      Keyword
+' '           Text
+'_error'      Name
+';'           Operator
+'\n\t\t'      Text
+'}'           Operator
+'\n\t\t\n\t\t' Text
+'public'      Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'set'         Keyword.Declaration
+' '           Text
+'error'       Name
+'('           Operator
+'value'       Name
+' '           Text
+':'           Operator
+' '           Text
+'Error'       Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'void'        Keyword.Constant
+' '           Text
+'{'           Operator
+'\n\t\t\t'    Text
+'_error'      Name
+' '           Text
+'='           Operator
+' '           Text
+'value'       Name
+';'           Operator
+'\n\t\t'      Text
+'}'           Operator
+'\n\t\t\n\t\t' Text
+'public'      Keyword.Declaration
+' '           Text
+'override'    Keyword.Declaration
+' '           Text
+'function '   Keyword.Declaration
+'toString'    Name.Function
+'('           Operator
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'String'      Keyword.Type
+' '           Text
+'{'           Operator
+'\n\t\t\t'    Text
+'return'      Keyword
+' '           Text
+'formatToString' Name
+'('           Operator
+'"ErrorEvent"' Literal.String.Double
+','           Operator
+' '           Text
+'"type"'      Literal.String.Double
+','           Operator
+' '           Text
+'"bubbles"'   Literal.String.Double
+','           Operator
+' '           Text
+'"cancelable"' Literal.String.Double
+','           Operator
+' '           Text
+'"eventPhase"' Literal.String.Double
+','           Operator
+' '           Text
+'"text"'      Literal.String.Double
+','           Operator
+' '           Text
+'"error"'     Literal.String.Double
+');'          Operator
+'\n\t\t'      Text
+'}'           Operator
+'\n\t\t\n\t\t' Text
+'public'      Keyword.Declaration
+' '           Text
+'override'    Keyword.Declaration
+' '           Text
+'function '   Keyword.Declaration
+'clone'       Name.Function
+'('           Operator
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Event'       Keyword.Type
+' '           Text
+'{'           Operator
+'\n\t\t\t'    Text
+'return'      Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'ru'          Name
+'.'           Operator
+'dfls'        Name.Attribute
+'.'           Operator
+'events'      Name.Attribute
+'.'           Operator
+'ErrorEvent'  Name.Attribute
+'('           Operator
+'type'        Name
+','           Operator
+' '           Text
+'bubbles'     Name
+','           Operator
+' '           Text
+'cancelable'  Name
+','           Operator
+' '           Text
+'text'        Name
+','           Operator
+' '           Text
+'error'       Name
+');'          Operator
+'\n\t\t'      Text
+'}'           Operator
+'\n\t\t\n\t'  Text
+'}'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text

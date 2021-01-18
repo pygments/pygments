@@ -1,0 +1,34 @@
+---input---
+declare xyz true
+declare s "some string"
+i = 2
+f = 0.2
+
+---tokens---
+'declare'     Keyword.Constant
+' '           Text
+'xyz'         Name
+' '           Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'declare'     Keyword.Constant
+' '           Text
+'s'           Name
+' '           Text
+'"some string"' Literal.String
+'\n'          Text
+
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'f'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0.2'         Literal.Number
+'\n'          Text

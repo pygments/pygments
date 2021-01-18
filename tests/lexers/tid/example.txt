@@ -1,0 +1,558 @@
+---input---
+caption: Formatting
+created: 20131205155959399
+modified: 20200201075357846
+tags: TiddlyWiki WikiText
+title: TiddlyWiki5
+type: text/vnd.tiddlywiki
+
+\define pos() <div class="cell positive">+</div>
+\define neg() <div class="cell negative">-</div>
+
+\define say-hi-using-variables()
+Hi, I'm $(name)$ and I live in $(address)$.
+\end
+
+<style>
+/* compensating the cell padding */
+.cell { margin:-1px -7px; padding:1px 7px; }
+.positive { background-color:#afa; }
+.negative { background-color:#faa; }
+</style>
+
+!Main Header
+
+Available character formatting includes:
+
+* <code>&#96;backticks&#96;</code> for `code`
+** Alternatively, <code>&#96;&#96;double backticks allows &#96;embedded&#96; backticks&#96;&#96;</code>
+ * `''bold''` for ''bold text''
+*`//italic//` for //italic text// ({{$:/core/images/italic}})
+*# `__underscore__` for __underscored text__
+
+Ordered list:
+
+# `^^superscript^^` for ^^superscripted^^ text ({{$:/core/images/superscript}})
+# `,,subscript,,` for ,,subscripted,, text ({{$:/core/images/subscript}})
+#* `~~strikethrough~~` for ~~strikethrough~~ text ({{$:/core/images/strikethrough}})
+
+<span style="font-style: italic;">''bold'' &#96;&amp;</span>
+
+!!Links
+
+Internal link: [[Code Blocks in WikiText]]
+
+External link: [[TiddlyWiki Homepage|https://tiddlywiki.com]]
+
+Image via transclusion: {{$:/core/images/underline}}
+
+Just a link: ftp://ftp.halifax.rwth-aachen.de/
+
+!!!Code
+
+```bash
+cd "$HOME/workspace"
+```
+
+!!!Table
+
+|myclass anotherClass|k
+|This is a caption |c
+|Header|Header|h
+|''Cell1'' |<<neg>> |
+|//Cell2// |<<pos>> |
+|Footer|Footer|f
+
+!Block quote
+
+<<<
+Computers are like a bicycle for our minds
+<<< Steve Jobs
+
+; Term being defined
+: Definition of that term
+
+---tokens---
+'caption'     Keyword
+':'           Text
+' '           Text
+'Formatting'  Text
+'\n'          Text
+
+'created'     Keyword
+':'           Text
+' '           Text
+'20131205155959399' Literal.Number.Integer
+'\n'          Text
+
+'modified'    Keyword
+':'           Text
+' '           Text
+'20200201075357846' Literal.Number.Integer
+'\n'          Text
+
+'tags'        Keyword
+':'           Text
+' '           Text
+'TiddlyWiki'  Text
+' '           Text
+'WikiText'    Text
+'\n'          Text
+
+'title'       Keyword
+': '          Text
+'TiddlyWiki5\n' Generic.Heading
+
+'type'        Keyword
+':'           Text
+' '           Text
+'text'        Text
+'/'           Text
+'vnd'         Text
+'.'           Text
+'tiddlywiki'  Text
+'\n'          Text
+
+'\n'          Text
+
+'\\define'    Keyword
+' '           Text
+'pos'         Text
+'('           Text
+')'           Text
+' '           Text
+'<div class="cell positive">' Name.Tag
+'+'           Text
+'</div>'      Name.Tag
+'\n'          Text
+
+'\\define'    Keyword
+' '           Text
+'neg'         Text
+'('           Text
+')'           Text
+' '           Text
+'<div class="cell negative">' Name.Tag
+'-'           Text
+'</div>'      Name.Tag
+'\n'          Text
+
+'\n'          Text
+
+'\\define'    Keyword
+' '           Text
+'say'         Text
+'-'           Text
+'hi'          Text
+'-'           Text
+'using'       Text
+'-'           Text
+'variables'   Text
+'('           Text
+')'           Text
+'\n'          Text
+
+'Hi'          Text
+','           Text
+' '           Text
+'I'           Text
+"'"           Text
+'m'           Text
+' '           Text
+'$(name)$'    Name.Tag
+' '           Text
+'and'         Text
+' '           Text
+'I'           Text
+' '           Text
+'live'        Text
+' '           Text
+'in'          Text
+' '           Text
+'$(address)$' Name.Tag
+'.'           Text
+'\n'          Text
+
+'\\end'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'<style>'     Literal.String
+'\n'          Literal.String
+
+'/* compensating the cell padding */' Comment
+'\n'          Text
+
+'.'           Punctuation
+'cell'        Name.Class
+' '           Text
+'{'           Punctuation
+' '           Text
+'margin'      Keyword
+':'           Punctuation
+'-1'          Literal.Number.Integer
+'px'          Keyword.Type
+' '           Text
+'-7'          Literal.Number.Integer
+'px'          Keyword.Type
+';'           Punctuation
+' '           Text
+'padding'     Keyword
+':'           Punctuation
+'1'           Literal.Number.Integer
+'px'          Keyword.Type
+' '           Text
+'7'           Literal.Number.Integer
+'px'          Keyword.Type
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'.'           Punctuation
+'positive'    Name.Class
+' '           Text
+'{'           Punctuation
+' '           Text
+'background-color' Keyword
+':'           Punctuation
+'#afa'        Literal.Number.Hex
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'.'           Punctuation
+'negative'    Name.Class
+' '           Text
+'{'           Punctuation
+' '           Text
+'background-color' Keyword
+':'           Punctuation
+'#faa'        Literal.Number.Hex
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'</style>'    Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'!'           Generic.Heading
+'Main Header\n' Text
+
+'\n'          Text
+
+'Available'   Text
+' '           Text
+'character'   Text
+' '           Text
+'formatting'  Text
+' '           Text
+'includes'    Text
+':'           Text
+'\n'          Text
+
+'\n'          Text
+
+'*'           Keyword
+' '           Text
+'<code>'      Name.Tag
+'&#96;'       Literal.String.Regex
+'backticks'   Text
+'&#96;'       Literal.String.Regex
+'</code>'     Name.Tag
+' '           Text
+'for'         Text
+' '           Text
+'`code`'      Literal.String.Backtick
+'\n'          Text
+
+'**'          Keyword
+' '           Text
+'Alternatively' Text
+','           Text
+' '           Text
+'<code>'      Name.Tag
+'&#96;'       Literal.String.Regex
+'&#96;'       Literal.String.Regex
+'double'      Text
+' '           Text
+'backticks'   Text
+' '           Text
+'allows'      Text
+' '           Text
+'&#96;'       Literal.String.Regex
+'embedded'    Text
+'&#96;'       Literal.String.Regex
+' '           Text
+'backticks'   Text
+'&#96;'       Literal.String.Regex
+'&#96;'       Literal.String.Regex
+'</code>'     Name.Tag
+'\n'          Text
+
+' '           Text
+'*'           Keyword
+' '           Text
+"`''bold''`"  Literal.String.Backtick
+' '           Text
+'for'         Text
+' '           Text
+"''bold text''" Generic.Strong
+'\n'          Text
+
+'*'           Keyword
+'`//italic//`' Literal.String.Backtick
+' '           Text
+'for'         Text
+' '           Text
+'//italic text//' Generic.Emph
+' '           Text
+'('           Text
+'{{'          Text
+'$:/core/images/italic' Name.Tag
+'}}'          Text
+')'           Text
+'\n'          Text
+
+'*#'          Keyword
+' '           Text
+'`__underscore__`' Literal.String.Backtick
+' '           Text
+'for'         Text
+' '           Text
+'__underscored text__' Generic.Strong
+'\n'          Text
+
+'\n'          Text
+
+'Ordered'     Text
+' '           Text
+'list'        Text
+':'           Text
+'\n'          Text
+
+'\n'          Text
+
+'#'           Keyword
+' '           Text
+'`^^superscript^^`' Literal.String.Backtick
+' '           Text
+'for'         Text
+' '           Text
+'^^superscripted^^' Generic.Emph
+' '           Text
+'text'        Text
+' '           Text
+'('           Text
+'{{'          Text
+'$:/core/images/superscript' Name.Tag
+'}}'          Text
+')'           Text
+'\n'          Text
+
+'#'           Keyword
+' '           Text
+'`,,subscript,,`' Literal.String.Backtick
+' '           Text
+'for'         Text
+' '           Text
+',,subscripted,,' Generic.Emph
+' '           Text
+'text'        Text
+' '           Text
+'('           Text
+'{{'          Text
+'$:/core/images/subscript' Name.Tag
+'}}'          Text
+')'           Text
+'\n'          Text
+
+'#*'          Keyword
+' '           Text
+'`~~strikethrough~~`' Literal.String.Backtick
+' '           Text
+'for'         Text
+' '           Text
+'~~strikethrough~~' Generic.Deleted
+' '           Text
+'text'        Text
+' '           Text
+'('           Text
+'{{'          Text
+'$:/core/images/strikethrough' Name.Tag
+'}}'          Text
+')'           Text
+'\n'          Text
+
+'\n'          Text
+
+'<span style="font-style: italic;">' Name.Tag
+"'"           Text
+"'"           Text
+'bold'        Text
+"'"           Text
+"'"           Text
+' '           Text
+'&#96;'       Literal.String.Regex
+'&amp;'       Literal.String.Regex
+'</span>'     Name.Tag
+'\n'          Text
+
+'\n'          Text
+
+'!!'          Generic.Subheading
+'Links\n'     Text
+
+'\n'          Text
+
+'Internal'    Text
+' '           Text
+'link'        Text
+':'           Text
+' '           Text
+'[['          Text
+'Code Blocks in WikiText' Name.Tag
+']]'          Text
+'\n'          Text
+
+'\n'          Text
+
+'External'    Text
+' '           Text
+'link'        Text
+':'           Text
+' '           Text
+'[['          Text
+'TiddlyWiki Homepage' Name.Tag
+'|'           Text
+'https://tiddlywiki.com' Name.Attribute
+']]'          Text
+'\n'          Text
+
+'\n'          Text
+
+'Image'       Text
+' '           Text
+'via'         Text
+' '           Text
+'transclusion' Text
+':'           Text
+' '           Text
+'{{'          Text
+'$:/core/images/underline' Name.Tag
+'}}'          Text
+'\n'          Text
+
+'\n'          Text
+
+'Just'        Text
+' '           Text
+'a'           Text
+' '           Text
+'link'        Text
+':'           Text
+' '           Text
+'ftp://ftp.halifax.rwth-aachen.de/' Name.Attribute
+'\n'          Text
+
+'\n'          Text
+
+'!!!'         Generic.Subheading
+'Code\n'      Text
+
+'\n'          Text
+
+'```'         Literal.String
+'bash'        Literal.String
+'\n'          Text
+
+'cd'          Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'$HOME'       Name.Variable
+'/workspace'  Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'```'         Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'!!!'         Generic.Subheading
+'Table\n'     Text
+
+'\n'          Text
+
+'|myclass anotherClass|k' Name.Tag
+'\n'          Text
+
+'|This is a caption |c' Generic.Emph
+'\n'          Text
+
+'|Header|Header|h' Generic.Strong
+'\n'          Text
+
+'|'           Text
+"'"           Text
+"'"           Text
+'Cell1'       Text
+"'"           Text
+"'"           Text
+' '           Text
+'|'           Text
+'<<neg>>'     Name.Tag
+' '           Text
+'|'           Text
+'\n'          Text
+
+'|'           Text
+'/'           Text
+'/'           Text
+'Cell2'       Text
+'/'           Text
+'/'           Text
+' '           Text
+'|'           Text
+'<<pos>>'     Name.Tag
+' '           Text
+'|'           Text
+'\n'          Text
+
+'|Footer|Footer|f' Generic.Emph
+'\n'          Text
+
+'\n'          Text
+
+'!'           Generic.Heading
+'Block quote\n' Text
+
+'\n'          Text
+
+'<<<\n'       Literal.String
+
+'Computers are like a bicycle for our minds\n' Text
+
+'<<< Steve Jobs' Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'; Term being defined' Generic.Strong
+'\n'          Text
+
+':'           Text
+' '           Text
+'Definition'  Text
+' '           Text
+'of'          Text
+' '           Text
+'that'        Text
+' '           Text
+'term'        Text
+'\n'          Text

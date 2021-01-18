@@ -1,0 +1,6876 @@
+---input---
+-- transform.moon
+-- Leaf Corcoran (leafot@gmail.com) 2011
+--
+-- This is part of the MoonScript compiler. See <http://moonscript.org>
+-- MoonScript is licensed under the MIT License
+--
+
+module "moonscript.transform", package.seeall
+
+types = require "moonscript.types"
+util = require "moonscript.util"
+data = require "moonscript.data"
+
+import reversed from util
+import ntype, build, smart_node, is_slice from types
+import insert from table
+
+export Statement, Value, NameProxy, LocalName, Run
+
+-- always declares as local
+class LocalName
+  new: (@name) => self[1] = "temp_name"
+  get_name: => @name
+
+class NameProxy
+  new: (@prefix) =>
+    self[1] = "temp_name"
+
+  get_name: (scope) =>
+    if not @name
+      @name = scope\free_name @prefix, true
+    @name
+
+  chain: (...) =>
+    items = {...} -- todo: fix ... propagation
+    items = for i in *items
+      if type(i) == "string"
+        {"dot", i}
+      else
+        i
+
+    build.chain {
+      base: self
+      unpack items
+    }
+
+  index: (key) =>
+    build.chain {
+      base: self, {"index", key}
+    }
+
+  __tostring: =>
+    if @name
+      ("name<%s>")\format @name
+    else
+      ("name<prefix(%s)>")\format @prefix
+
+class Run
+  new: (@fn) =>
+    self[1] = "run"
+
+  call: (state) =>
+    self.fn state
+
+-- transform the last stm is a list of stms
+-- will puke on group
+apply_to_last = (stms, fn) ->
+  -- find last (real) exp
+  last_exp_id = 0
+  for i = #stms, 1, -1
+    stm = stms[i]
+    if stm and util.moon.type(stm) != Run
+      last_exp_id = i
+      break
+
+  return for i, stm in ipairs stms
+    if i == last_exp_id
+      fn stm
+    else
+      stm
+
+-- is a body a sindle expression/statement
+is_singular = (body) ->
+  return false if #body != 1
+  if "group" == ntype body
+    is_singular body[2]
+  else
+    true
+
+constructor_name = "new"
+
+class Transformer
+  new: (@transformers, @scope) =>
+    @seen_nodes = {}
+
+  transform: (scope, node, ...) =>
+    -- print scope, node, ...
+    return node if @seen_nodes[node]
+    @seen_nodes[node] = true
+    while true
+      transformer = @transformers[ntype node]
+      res = if transformer
+        transformer(scope, node, ...) or node
+      else
+        node
+      return node if res == node
+      node = res
+
+  __call: (node, ...) =>
+    @transform @scope, node, ...
+
+  instance: (scope) =>
+    Transformer @transformers, scope
+
+  can_transform: (node) =>
+    @transformers[ntype node] != nil
+
+construct_comprehension = (inner, clauses) ->
+  current_stms = inner
+  for _, clause in reversed clauses
+    t = clause[1]
+    current_stms = if t == "for"
+      _, names, iter = unpack clause
+      {"foreach", names, iter, current_stms}
+    elseif t == "when"
+      _, cond = unpack clause
+      {"if", cond, current_stms}
+    else
+      error "Unknown comprehension clause: "..t
+    current_stms = {current_stms}
+
+  current_stms[1]
+
+Statement = Transformer {
+  assign: (node) =>
+    _, names, values = unpack node
+    -- bubble cascading assigns
+    if #values == 1 and types.cascading[ntype values[1]]
+      values[1] = @transform.statement values[1], (stm) ->
+        t = ntype stm
+        if types.is_value stm
+          {"assign", names, {stm}}
+        else
+          stm
+
+      build.group {
+        {"declare", names}
+        values[1]
+      }
+    else
+      node
+
+  export: (node) =>
+    -- assign values if they are included
+    if #node > 2
+      if node[2] == "class"
+        cls = smart_node node[3]
+        build.group {
+          {"export", {cls.name}}
+          cls
+        }
+      else
+        build.group {
+          node
+          build.assign {
+            names: node[2]
+            values: node[3]
+          }
+        }
+    else
+      nil
+
+  update: (node) =>
+    _, name, op, exp = unpack node
+    op_final = op\match "^(.+)=$"
+    error "Unknown op: "..op if not op_final
+    build.assign_one name, {"exp", name, op_final, exp}
+
+  import: (node) =>
+    _, names, source = unpack node
+
+    stubs = for name in *names
+      if type(name) == "table"
+        name
+      else
+        {"dot", name}
+
+    real_names = for name in *names
+      type(name) == "table" and name[2] or name
+
+    if type(source) == "string"
+      build.assign {
+        names: real_names
+        values: [build.chain { base: source, stub} for stub in *stubs]
+      }
+    else
+      source_name = NameProxy "table"
+      build.group {
+        {"declare", real_names}
+        build["do"] {
+          build.assign_one source_name, source
+          build.assign {
+            names: real_names
+            values: [build.chain { base: source_name, stub} for stub in *stubs]
+          }
+        }
+      }
+
+  comprehension: (node, action) =>
+    _, exp, clauses = unpack node
+
+    action = action or (exp) -> {exp}
+    construct_comprehension action(exp), clauses
+
+  -- handle cascading return decorator
+  if: (node, ret) =>
+    if ret
+      smart_node node
+      -- mutate all the bodies
+      node['then'] = apply_to_last node['then'], ret
+      for i = 4, #node
+        case = node[i]
+        body_idx = #node[i]
+        case[body_idx] = apply_to_last case[body_idx], ret
+    node
+
+  with: (node, ret) =>
+    _, exp, block = unpack node
+    scope_name = NameProxy "with"
+    build["do"] {
+      build.assign_one scope_name, exp
+      Run => @set "scope_var", scope_name
+      build.group block
+      if ret
+        ret scope_name
+    }
+
+  foreach: (node) =>
+    smart_node node
+    if ntype(node.iter) == "unpack"
+      list = node.iter[2]
+
+      index_name = NameProxy "index"
+      list_name = NameProxy "list"
+
+      slice_var = nil
+      bounds = if is_slice list
+        slice = list[#list]
+        table.remove list
+        table.remove slice, 1
+
+        slice[2] = if slice[2] and slice[2] != ""
+          max_tmp_name = NameProxy "max"
+          slice_var = build.assign_one max_tmp_name, slice[2]
+          {"exp", max_tmp_name, "<", 0
+            "and", {"length", list_name}, "+", max_tmp_name
+            "or", max_tmp_name }
+        else
+          {"length", list_name}
+
+        slice
+      else
+        {1, {"length", list_name}}
+
+      build.group {
+        build.assign_one list_name, list
+        slice_var
+        build["for"] {
+          name: index_name
+          bounds: bounds
+          body: {
+            {"assign", node.names, {list_name\index index_name}}
+            build.group node.body
+          }
+        }
+      }
+
+  switch: (node, ret) =>
+    _, exp, conds = unpack node
+    exp_name = NameProxy "exp"
+
+    -- convert switch conds into if statment conds
+    convert_cond = (cond) ->
+      t, case_exp, body = unpack cond
+      out = {}
+      insert out, t == "case" and "elseif" or "else"
+      if  t != "else"
+        insert out, {"exp", case_exp, "==", exp_name} if t != "else"
+      else
+        body = case_exp
+
+      if ret
+        body = apply_to_last body, ret
+
+      insert out, body
+
+      out
+
+    first = true
+    if_stm = {"if"}
+    for cond in *conds
+      if_cond = convert_cond cond
+      if first
+        first = false
+        insert if_stm, if_cond[2]
+        insert if_stm, if_cond[3]
+      else
+        insert if_stm, if_cond
+
+    build.group {
+      build.assign_one exp_name, exp
+      if_stm
+    }
+
+  class: (node) =>
+    _, name, parent_val, body = unpack node
+
+    -- split apart properties and statements
+    statements = {}
+    properties = {}
+    for item in *body
+      switch item[1]
+        when "stm"
+          insert statements, item[2]
+        when "props"
+          for tuple in *item[2,]
+            insert properties, tuple
+
+    -- find constructor
+    constructor = nil
+    properties = for tuple in *properties
+      if tuple[1] == constructor_name
+        constructor = tuple[2]
+        nil
+      else
+        tuple
+
+    parent_cls_name = NameProxy "parent"
+    base_name = NameProxy "base"
+    self_name = NameProxy "self"
+    cls_name = NameProxy "class"
+
+    if not constructor
+      constructor = build.fndef {
+        args: {{"..."}}
+        arrow: "fat"
+        body: {
+          build["if"] {
+            cond: parent_cls_name
+            then: {
+              build.chain { base: "super", {"call", {"..."}} }
+            }
+          }
+        }
+      }
+    else
+      smart_node constructor
+      constructor.arrow = "fat"
+
+    cls = build.table {
+      {"__init", constructor}
+      {"__base", base_name}
+      {"__name", {"string", '"', name}} -- "quote the string"
+      {"__parent", parent_cls_name}
+    }
+
+    -- look up a name in the class object
+    class_lookup = build["if"] {
+      cond: {"exp", "val", "==", "nil", "and", parent_cls_name}
+      then: {
+        parent_cls_name\index"name"
+      }
+    }
+    insert class_lookup, {"else", {"val"}}
+
+    cls_mt = build.table {
+      {"__index", build.fndef {
+        args: {{"cls"}, {"name"}}
+        body: {
+          build.assign_one LocalName"val", build.chain {
+            base: "rawget", {"call", {base_name, "name"}}
+          }
+          class_lookup
+        }
+      }}
+      {"__call", build.fndef {
+        args: {{"cls"}, {"..."}}
+        body: {
+          build.assign_one self_name, build.chain {
+            base: "setmetatable"
+            {"call", {"{}", base_name}}
+          }
+          build.chain {
+            base: "cls.__init"
+            {"call", {self_name, "..."}}
+          }
+          self_name
+        }
+      }}
+    }
+
+    cls = build.chain {
+      base: "setmetatable"
+      {"call", {cls, cls_mt}}
+    }
+
+    value = nil
+    with build
+      value = .block_exp {
+        Run =>
+          @set "super", (block, chain) ->
+            if chain
+              slice = [item for item in *chain[3,]]
+              new_chain = {"chain", parent_cls_name}
+
+              head = slice[1]
+
+              if head == nil
+                return parent_cls_name
+
+              switch head[1]
+                -- calling super, inject calling name and self into chain
+                when "call"
+                  calling_name = block\get"current_block"
+                  slice[1] = {"call", {"self", unpack head[2]}}
+                  act = if ntype(calling_name) != "value" then "index" else "dot"
+                  insert new_chain, {act, calling_name}
+
+                -- colon call on super, replace class with self as first arg
+                when "colon"
+                  call = head[3]
+                  insert new_chain, {"dot", head[2]}
+                  slice[1] = { "call", { "self", unpack call[2] } }
+
+              insert new_chain, item for item in *slice
+
+              new_chain
+            else
+              parent_cls_name
+
+        .assign_one parent_cls_name, parent_val == "" and "nil" or parent_val
+        .assign_one base_name, {"table", properties}
+        .assign_one base_name\chain"__index", base_name
+
+        build["if"] {
+          cond: parent_cls_name
+          then: {
+            .chain {
+              base: "setmetatable"
+              {"call", {
+                base_name,
+                .chain { base: parent_cls_name,  {"dot", "__base"}}
+              }}
+            }
+          }
+        }
+
+        .assign_one cls_name, cls
+        .assign_one base_name\chain"__class", cls_name
+
+        .group if #statements > 0 {
+          .assign_one LocalName"self", cls_name
+          .group statements
+        } else {}
+
+        cls_name
+      }
+
+      value = .group {
+        .declare names: {name}
+        .assign {
+          names: {name}
+          values: {value}
+        }
+      }
+
+    value
+}
+
+class Accumulator
+  body_idx: { for: 4, while: 3, foreach: 4 }
+
+  new: =>
+    @accum_name = NameProxy "accum"
+    @value_name = NameProxy "value"
+    @len_name = NameProxy "len"
+
+  -- wraps node and mutates body
+  convert: (node) =>
+    index = @body_idx[ntype node]
+    node[index] = @mutate_body node[index]
+    @wrap node
+
+  -- wrap the node into a block_exp
+  wrap: (node) =>
+    build.block_exp {
+      build.assign_one @accum_name, build.table!
+      build.assign_one @len_name, 0
+      node
+      @accum_name
+    }
+
+  -- mutates the body of a loop construct to save last value into accumulator
+  -- can optionally skip nil results
+  mutate_body: (body, skip_nil=true) =>
+    val = if not skip_nil and is_singular body
+      with body[1]
+        body = {}
+    else
+      body = apply_to_last body, (n) ->
+        build.assign_one @value_name, n
+      @value_name
+
+    update = {
+      {"update", @len_name, "+=", 1}
+      build.assign_one @accum_name\index(@len_name), val
+    }
+
+    if skip_nil
+      table.insert body, build["if"] {
+        cond: {"exp", @value_name, "!=", "nil"}
+        then: update
+      }
+    else
+      table.insert body, build.group update
+
+    body
+
+default_accumulator = (node) =>
+  Accumulator!\convert node
+
+
+implicitly_return = (scope) ->
+  fn = (stm) ->
+    t = ntype stm
+    if types.manual_return[t] or not types.is_value stm
+      stm
+    elseif types.cascading[t]
+      scope.transform.statement stm, fn
+    else
+      if t == "comprehension" and not types.comprehension_has_value stm
+        stm
+      else
+        {"return", stm}
+
+  fn
+
+Value = Transformer {
+  for: default_accumulator
+  while: default_accumulator
+  foreach: default_accumulator
+
+  comprehension: (node) =>
+    a = Accumulator!
+    node = @transform.statement node, (exp) ->
+      a\mutate_body {exp}, false
+    a\wrap node
+
+  tblcomprehension: (node) =>
+    _, key_exp, value_exp, clauses = unpack node
+
+    accum = NameProxy "tbl"
+    dest = build.chain { base: accum, {"index", key_exp} }
+    inner = build.assign_one dest, value_exp
+
+    build.block_exp {
+      build.assign_one accum, build.table!
+      construct_comprehension {inner}, clauses
+      accum
+    }
+
+  fndef: (node) =>
+    smart_node node
+    node.body = apply_to_last node.body, implicitly_return self
+    node
+
+  if: (node) => build.block_exp { node }
+  with: (node) => build.block_exp { node }
+  switch: (node) =>
+    build.block_exp { node }
+
+  -- pull out colon chain
+  chain: (node) =>
+    stub = node[#node]
+    if type(stub) == "table" and stub[1] == "colon_stub"
+      table.remove node, #node
+
+      base_name = NameProxy "base"
+      fn_name = NameProxy "fn"
+
+      is_super = node[2] == "super"
+      @transform.value build.block_exp {
+        build.assign {
+          names: {base_name}
+          values: {node}
+        }
+
+        build.assign {
+          names: {fn_name}
+          values: {
+            build.chain { base: base_name, {"dot", stub[2]} }
+          }
+        }
+
+        build.fndef {
+          args: {{"..."}}
+          body: {
+            build.chain {
+              base: fn_name, {"call", {is_super and "self" or base_name, "..."}}
+            }
+          }
+        }
+      }
+
+  block_exp: (node) =>
+    _, body = unpack node
+
+    fn = nil
+    arg_list = {}
+
+    insert body, Run =>
+      if @has_varargs
+        insert arg_list, "..."
+        insert fn.args, {"..."}
+
+    fn = smart_node build.fndef body: body
+    build.chain { base: {"parens", fn}, {"call", arg_list} }
+}
+
+
+---tokens---
+'-- transform.moon' Comment.Single
+'\n'          Text
+
+'-- Leaf Corcoran (leafot@gmail.com) 2011' Comment.Single
+'\n'          Text
+
+'--'          Comment.Single
+'\n'          Text
+
+'-- This is part of the MoonScript compiler. See <http://moonscript.org>' Comment.Single
+'\n'          Text
+
+'-- MoonScript is licensed under the MIT License' Comment.Single
+'\n'          Text
+
+'--'          Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'module'      Name
+' '           Text
+'"'           Literal.String.Double
+'m'           Literal.String
+'o'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'s'           Literal.String
+'c'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'p'           Literal.String
+'t'           Literal.String
+'.'           Literal.String
+'t'           Literal.String
+'r'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'s'           Literal.String
+'f'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'m'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'package'     Name
+'.'           Operator
+'seeall'      Name
+'\n'          Text
+
+'\n'          Text
+
+'types'       Name
+' '           Text
+'='           Operator
+' '           Text
+'require'     Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'m'           Literal.String
+'o'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'s'           Literal.String
+'c'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'p'           Literal.String
+'t'           Literal.String
+'.'           Literal.String
+'t'           Literal.String
+'y'           Literal.String
+'p'           Literal.String
+'e'           Literal.String
+'s'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'util'        Name
+' '           Text
+'='           Operator
+' '           Text
+'require'     Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'m'           Literal.String
+'o'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'s'           Literal.String
+'c'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'p'           Literal.String
+'t'           Literal.String
+'.'           Literal.String
+'u'           Literal.String
+'t'           Literal.String
+'i'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'data'        Name
+' '           Text
+'='           Operator
+' '           Text
+'require'     Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'m'           Literal.String
+'o'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'s'           Literal.String
+'c'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'p'           Literal.String
+'t'           Literal.String
+'.'           Literal.String
+'d'           Literal.String
+'a'           Literal.String
+'t'           Literal.String
+'a'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'import'      Keyword
+' '           Text
+'reversed'    Name
+' '           Text
+'from'        Keyword
+' '           Text
+'util'        Name
+'\n'          Text
+
+'import'      Keyword
+' '           Text
+'ntype'       Name
+','           Punctuation
+' '           Text
+'build'       Name
+','           Punctuation
+' '           Text
+'smart_node'  Name
+','           Punctuation
+' '           Text
+'is_slice'    Name
+' '           Text
+'from'        Keyword
+' '           Text
+'types'       Name
+'\n'          Text
+
+'import'      Keyword
+' '           Text
+'insert'      Name
+' '           Text
+'from'        Keyword
+' '           Text
+'table'       Name
+'\n'          Text
+
+'\n'          Text
+
+'export'      Keyword
+' '           Text
+'Statement'   Name.Class
+','           Punctuation
+' '           Text
+'Value'       Name.Class
+','           Punctuation
+' '           Text
+'NameProxy'   Name.Class
+','           Punctuation
+' '           Text
+'LocalName'   Name.Class
+','           Punctuation
+' '           Text
+'Run'         Name.Class
+'\n'          Text
+
+'\n'          Text
+
+'-- always declares as local' Comment.Single
+'\n'          Text
+
+'class'       Keyword
+' '           Text
+'LocalName'   Name.Class
+'\n'          Text
+
+'  '          Text
+'new:'        Name.Variable
+' '           Text
+'('           Keyword.Type
+'@name'       Name.Variable.Class
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+' '           Text
+'self'        Name.Builtin.Pseudo
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'t'           Literal.String
+'e'           Literal.String
+'m'           Literal.String
+'p'           Literal.String
+'_'           Literal.String
+'n'           Literal.String
+'a'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'get_name:'   Name.Variable
+' '           Text
+'=>'          Name.Function
+' '           Text
+'@name'       Name.Variable.Class
+'\n'          Text
+
+'\n'          Text
+
+'class'       Keyword
+' '           Text
+'NameProxy'   Name.Class
+'\n'          Text
+
+'  '          Text
+'new:'        Name.Variable
+' '           Text
+'('           Keyword.Type
+'@prefix'     Name.Variable.Class
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'self'        Name.Builtin.Pseudo
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'t'           Literal.String
+'e'           Literal.String
+'m'           Literal.String
+'p'           Literal.String
+'_'           Literal.String
+'n'           Literal.String
+'a'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'get_name:'   Name.Variable
+' '           Text
+'('           Keyword.Type
+'scope'       Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'@name'       Name.Variable.Class
+'\n'          Text
+
+'      '      Text
+'@name'       Name.Variable.Class
+' '           Text
+'='           Operator
+' '           Text
+'scope'       Name
+'\\'          Operator
+'free_name'   Name
+' '           Text
+'@prefix'     Name.Variable.Class
+','           Punctuation
+' '           Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'    '        Text
+'@name'       Name.Variable.Class
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'chain:'      Name.Variable
+' '           Text
+'('           Keyword.Type
+'...'         Operator
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'items'       Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Keyword.Type
+'...'         Operator
+'}'           Keyword.Type
+' '           Text
+'-- todo: fix ... propagation' Comment.Single
+'\n'          Text
+
+'    '        Text
+'items'       Name
+' '           Text
+'='           Operator
+' '           Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'items'       Name
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'type'        Name.Builtin
+'('           Keyword.Type
+'i'           Name
+')'           Keyword.Type
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String
+'t'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'        '    Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'d'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'i'           Name
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'        '    Text
+'i'           Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'build'       Name
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'base:'       Name.Variable
+' '           Text
+'self'        Name.Builtin.Pseudo
+'\n'          Text
+
+'      '      Text
+'unpack'      Name
+' '           Text
+'items'       Name
+'\n'          Text
+
+'    '        Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'index:'      Name.Variable
+' '           Text
+'('           Keyword.Type
+'key'         Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'build'       Name
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'base:'       Name.Variable
+' '           Text
+'self'        Name.Builtin.Pseudo
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'i'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+'e'           Literal.String
+'x'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'key'         Name
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'__tostring:' Name.Variable
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'@name'       Name.Variable.Class
+'\n'          Text
+
+'      '      Text
+'('           Keyword.Type
+'"'           Literal.String.Double
+'n'           Literal.String
+'a'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'<'           Literal.String
+'%'           Literal.String
+'s'           Literal.String
+'>'           Literal.String
+'"'           Literal.String.Double
+')'           Keyword.Type
+'\\'          Operator
+'format'      Name
+' '           Text
+'@name'       Name.Variable.Class
+'\n'          Text
+
+'    '        Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'('           Keyword.Type
+'"'           Literal.String.Double
+'n'           Literal.String
+'a'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'<'           Literal.String
+'p'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'f'           Literal.String
+'i'           Literal.String
+'x'           Literal.String
+'('           Literal.String
+'%'           Literal.String
+'s'           Literal.String
+')'           Literal.String
+'>'           Literal.String
+'"'           Literal.String.Double
+')'           Keyword.Type
+'\\'          Operator
+'format'      Name
+' '           Text
+'@prefix'     Name.Variable.Class
+'\n'          Text
+
+'\n'          Text
+
+'class'       Keyword
+' '           Text
+'Run'         Name.Class
+'\n'          Text
+
+'  '          Text
+'new:'        Name.Variable
+' '           Text
+'('           Keyword.Type
+'@fn'         Name.Variable.Class
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'self'        Name.Builtin.Pseudo
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'r'           Literal.String
+'u'           Literal.String
+'n'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'call:'       Name.Variable
+' '           Text
+'('           Keyword.Type
+'state'       Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'fn'          Name
+' '           Text
+'state'       Name
+'\n'          Text
+
+'\n'          Text
+
+'-- transform the last stm is a list of stms' Comment.Single
+'\n'          Text
+
+'-- will puke on group' Comment.Single
+'\n'          Text
+
+'apply_to_last' Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Keyword.Type
+'stms'        Name
+','           Punctuation
+' '           Text
+'fn'          Name
+')'           Keyword.Type
+' '           Text
+'->'          Name.Function
+'\n'          Text
+
+'  '          Text
+'-- find last (real) exp' Comment.Single
+'\n'          Text
+
+'  '          Text
+'last_exp_id' Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'  '          Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'#'           Operator
+'stms'        Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'stm'         Name
+' '           Text
+'='           Operator
+' '           Text
+'stms'        Name
+'['           Keyword.Type
+'i'           Name
+']'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'stm'         Name
+' '           Text
+'and'         Keyword
+' '           Text
+'util'        Name
+'.'           Operator
+'moon'        Name
+'.'           Operator
+'type'        Name.Builtin
+'('           Keyword.Type
+'stm'         Name
+')'           Keyword.Type
+' '           Text
+'!='          Operator
+' '           Text
+'Run'         Name.Class
+'\n'          Text
+
+'      '      Text
+'last_exp_id' Name
+' '           Text
+'='           Operator
+' '           Text
+'i'           Name
+'\n'          Text
+
+'      '      Text
+'break'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'return'      Keyword
+' '           Text
+'for'         Keyword
+' '           Text
+'i'           Name
+','           Punctuation
+' '           Text
+'stm'         Name
+' '           Text
+'in'          Keyword
+' '           Text
+'ipairs'      Name.Builtin
+' '           Text
+'stms'        Name
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'i'           Name
+' '           Text
+'=='          Operator
+' '           Text
+'last_exp_id' Name
+'\n'          Text
+
+'      '      Text
+'fn'          Name
+' '           Text
+'stm'         Name
+'\n'          Text
+
+'    '        Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'stm'         Name
+'\n'          Text
+
+'\n'          Text
+
+'-- is a body a sindle expression/statement' Comment.Single
+'\n'          Text
+
+'is_singular' Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Keyword.Type
+'body'        Name
+')'           Keyword.Type
+' '           Text
+'->'          Name.Function
+'\n'          Text
+
+'  '          Text
+'return'      Keyword
+' '           Text
+'false'       Keyword.Constant
+' '           Text
+'if'          Keyword
+' '           Text
+'#'           Operator
+'body'        Name
+' '           Text
+'!='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'  '          Text
+'if'          Keyword
+' '           Text
+'"'           Literal.String.Double
+'g'           Literal.String
+'r'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'p'           Literal.String
+'"'           Literal.String.Double
+' '           Text
+'=='          Operator
+' '           Text
+'ntype'       Name
+' '           Text
+'body'        Name
+'\n'          Text
+
+'    '        Text
+'is_singular' Name
+' '           Text
+'body'        Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'  '          Text
+'else'        Keyword
+'\n'          Text
+
+'    '        Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'\n'          Text
+
+'constructor_name' Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'n'           Literal.String
+'e'           Literal.String
+'w'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'class'       Keyword
+' '           Text
+'Transformer' Name.Class
+'\n'          Text
+
+'  '          Text
+'new:'        Name.Variable
+' '           Text
+'('           Keyword.Type
+'@transformers' Name.Variable.Class
+','           Punctuation
+' '           Text
+'@scope'      Name.Variable.Class
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'@seen_nodes' Name.Variable.Class
+' '           Text
+'='           Operator
+' '           Text
+'{'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'transform:'  Name.Variable
+' '           Text
+'('           Keyword.Type
+'scope'       Name
+','           Punctuation
+' '           Text
+'node'        Name
+','           Punctuation
+' '           Text
+'...'         Operator
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'-- print scope, node, ...' Comment.Single
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'node'        Name
+' '           Text
+'if'          Keyword
+' '           Text
+'@seen_nodes' Name.Variable.Class
+'['           Keyword.Type
+'node'        Name
+']'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'@seen_nodes' Name.Variable.Class
+'['           Keyword.Type
+'node'        Name
+']'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'    '        Text
+'while'       Keyword
+' '           Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'      '      Text
+'transformer' Name
+' '           Text
+'='           Operator
+' '           Text
+'@transformers' Name.Variable.Class
+'['           Keyword.Type
+'ntype'       Name
+' '           Text
+'node'        Name
+']'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'res'         Name
+' '           Text
+'='           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'transformer' Name
+'\n'          Text
+
+'        '    Text
+'transformer' Name
+'('           Keyword.Type
+'scope'       Name
+','           Punctuation
+' '           Text
+'node'        Name
+','           Punctuation
+' '           Text
+'...'         Operator
+')'           Keyword.Type
+' '           Text
+'or'          Keyword
+' '           Text
+'node'        Name
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'        '    Text
+'node'        Name
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'node'        Name
+' '           Text
+'if'          Keyword
+' '           Text
+'res'         Name
+' '           Text
+'=='          Operator
+' '           Text
+'node'        Name
+'\n'          Text
+
+'      '      Text
+'node'        Name
+' '           Text
+'='           Operator
+' '           Text
+'res'         Name
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'__call:'     Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+','           Punctuation
+' '           Text
+'...'         Operator
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'@transform'  Name.Variable.Class
+' '           Text
+'@scope'      Name.Variable.Class
+','           Punctuation
+' '           Text
+'node'        Name
+','           Punctuation
+' '           Text
+'...'         Operator
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'instance:'   Name.Variable
+' '           Text
+'('           Keyword.Type
+'scope'       Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'Transformer' Name.Class
+' '           Text
+'@transformers' Name.Variable.Class
+','           Punctuation
+' '           Text
+'scope'       Name
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'can_transform:' Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'@transformers' Name.Variable.Class
+'['           Keyword.Type
+'ntype'       Name
+' '           Text
+'node'        Name
+']'           Keyword.Type
+' '           Text
+'!='          Operator
+' '           Text
+'nil'         Keyword.Constant
+'\n'          Text
+
+'\n'          Text
+
+'construct_comprehension' Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Keyword.Type
+'inner'       Name
+','           Punctuation
+' '           Text
+'clauses'     Name
+')'           Keyword.Type
+' '           Text
+'->'          Name.Function
+'\n'          Text
+
+'  '          Text
+'current_stms' Name
+' '           Text
+'='           Operator
+' '           Text
+'inner'       Name
+'\n'          Text
+
+'  '          Text
+'for'         Keyword
+' '           Text
+'_'           Name
+','           Punctuation
+' '           Text
+'clause'      Name
+' '           Text
+'in'          Keyword
+' '           Text
+'reversed'    Name
+' '           Text
+'clauses'     Name
+'\n'          Text
+
+'    '        Text
+'t'           Name
+' '           Text
+'='           Operator
+' '           Text
+'clause'      Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'current_stms' Name
+' '           Text
+'='           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'t'           Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'f'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'_'           Name
+','           Punctuation
+' '           Text
+'names'       Name
+','           Punctuation
+' '           Text
+'iter'        Name
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name
+' '           Text
+'clause'      Name
+'\n'          Text
+
+'      '      Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'f'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'a'           Literal.String
+'c'           Literal.String
+'h'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'names'       Name
+','           Punctuation
+' '           Text
+'iter'        Name
+','           Punctuation
+' '           Text
+'current_stms' Name
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'elseif'      Keyword
+' '           Text
+'t'           Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'w'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'_'           Name
+','           Punctuation
+' '           Text
+'cond'        Name
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name
+' '           Text
+'clause'      Name
+'\n'          Text
+
+'      '      Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'i'           Literal.String
+'f'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'cond'        Name
+','           Punctuation
+' '           Text
+'current_stms' Name
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'error'       Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'U'           Literal.String
+'n'           Literal.String
+'k'           Literal.String
+'n'           Literal.String
+'o'           Literal.String
+'w'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'c'           Literal.String
+'o'           Literal.String
+'m'           Literal.String
+'p'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'s'           Literal.String
+'i'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'c'           Literal.String
+'l'           Literal.String
+'a'           Literal.String
+'u'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+':'           Literal.String
+' '           Literal.String
+'"'           Literal.String.Double
+'..'          Operator
+'t'           Name
+'\n'          Text
+
+'    '        Text
+'current_stms' Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Keyword.Type
+'current_stms' Name
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'current_stms' Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'Statement'   Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'Transformer' Name.Class
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'  '          Text
+'assign:'     Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'_'           Name
+','           Punctuation
+' '           Text
+'names'       Name
+','           Punctuation
+' '           Text
+'values'      Name
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'    '        Text
+'-- bubble cascading assigns' Comment.Single
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'#'           Operator
+'values'      Name
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'and'         Keyword
+' '           Text
+'types'       Name
+'.'           Operator
+'cascading'   Name
+'['           Keyword.Type
+'ntype'       Name
+' '           Text
+'values'      Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+']'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'values'      Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'@transform'  Name.Variable.Class
+'.'           Operator
+'statement'   Name
+' '           Text
+'values'      Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+','           Punctuation
+' '           Text
+'('           Keyword.Type
+'stm'         Name
+')'           Keyword.Type
+' '           Text
+'->'          Name.Function
+'\n'          Text
+
+'        '    Text
+'t'           Name
+' '           Text
+'='           Operator
+' '           Text
+'ntype'       Name
+' '           Text
+'stm'         Name
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'types'       Name
+'.'           Operator
+'is_value'    Name
+' '           Text
+'stm'         Name
+'\n'          Text
+
+'          '  Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'i'           Literal.String
+'g'           Literal.String
+'n'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'names'       Name
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'stm'         Name
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'else'        Keyword
+'\n'          Text
+
+'          '  Text
+'stm'         Name
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'build'       Name
+'.'           Operator
+'group'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'d'           Literal.String
+'e'           Literal.String
+'c'           Literal.String
+'l'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'names'       Name
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'values'      Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'node'        Name
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'export:'     Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'-- assign values if they are included' Comment.Single
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'#'           Operator
+'node'        Name
+' '           Text
+'>'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'node'        Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'c'           Literal.String
+'l'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'        '    Text
+'cls'         Name
+' '           Text
+'='           Operator
+' '           Text
+'smart_node'  Name
+' '           Text
+'node'        Name
+'['           Keyword.Type
+'3'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'build'       Name
+'.'           Operator
+'group'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'e'           Literal.String
+'x'           Literal.String
+'p'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'cls'         Name
+'.'           Operator
+'name'        Name
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'cls'         Name
+'\n'          Text
+
+'        '    Text
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'        '    Text
+'build'       Name
+'.'           Operator
+'group'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'node'        Name
+'\n'          Text
+
+'          '  Text
+'build'       Name
+'.'           Operator
+'assign'      Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'names:'      Name.Variable
+' '           Text
+'node'        Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'values:'     Name.Variable
+' '           Text
+'node'        Name
+'['           Keyword.Type
+'3'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'nil'         Keyword.Constant
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'update:'     Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'_'           Name
+','           Punctuation
+' '           Text
+'name'        Name
+','           Punctuation
+' '           Text
+'op'          Name
+','           Punctuation
+' '           Text
+'exp'         Name
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'    '        Text
+'op_final'    Name
+' '           Text
+'='           Operator
+' '           Text
+'op'          Name
+'\\'          Operator
+'match'       Name
+' '           Text
+'"'           Literal.String.Double
+'^'           Literal.String
+'('           Literal.String
+'.'           Literal.String
+'+'           Literal.String
+')'           Literal.String
+'='           Literal.String
+'$'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'error'       Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'U'           Literal.String
+'n'           Literal.String
+'k'           Literal.String
+'n'           Literal.String
+'o'           Literal.String
+'w'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'p'           Literal.String
+':'           Literal.String
+' '           Literal.String
+'"'           Literal.String.Double
+'..'          Operator
+'op'          Name
+' '           Text
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'op_final'    Name
+'\n'          Text
+
+'    '        Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'name'        Name
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'e'           Literal.String
+'x'           Literal.String
+'p'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'name'        Name
+','           Punctuation
+' '           Text
+'op_final'    Name
+','           Punctuation
+' '           Text
+'exp'         Name
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'import:'     Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'_'           Name
+','           Punctuation
+' '           Text
+'names'       Name
+','           Punctuation
+' '           Text
+'source'      Name
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'stubs'       Name
+' '           Text
+'='           Operator
+' '           Text
+'for'         Keyword
+' '           Text
+'name'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'names'       Name
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'type'        Name.Builtin
+'('           Keyword.Type
+'name'        Name
+')'           Keyword.Type
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'t'           Literal.String
+'a'           Literal.String
+'b'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'        '    Text
+'name'        Name
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'        '    Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'d'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'name'        Name
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'real_names'  Name
+' '           Text
+'='           Operator
+' '           Text
+'for'         Keyword
+' '           Text
+'name'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'names'       Name
+'\n'          Text
+
+'      '      Text
+'type'        Name.Builtin
+'('           Keyword.Type
+'name'        Name
+')'           Keyword.Type
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'t'           Literal.String
+'a'           Literal.String
+'b'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+' '           Text
+'and'         Keyword
+' '           Text
+'name'        Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'or'          Keyword
+' '           Text
+'name'        Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'type'        Name.Builtin
+'('           Keyword.Type
+'source'      Name
+')'           Keyword.Type
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String
+'t'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'build'       Name
+'.'           Operator
+'assign'      Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'names:'      Name.Variable
+' '           Text
+'real_names'  Name
+'\n'          Text
+
+'        '    Text
+'values:'     Name.Variable
+' '           Text
+'['           Keyword.Type
+'build'       Name
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+' '           Text
+'base:'       Name.Variable
+' '           Text
+'source'      Name
+','           Punctuation
+' '           Text
+'stub'        Name
+'}'           Keyword.Type
+' '           Text
+'for'         Keyword
+' '           Text
+'stub'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'stubs'       Name
+']'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'source_name' Name
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'t'           Literal.String
+'a'           Literal.String
+'b'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'build'       Name
+'.'           Operator
+'group'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'d'           Literal.String
+'e'           Literal.String
+'c'           Literal.String
+'l'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'real_names'  Name
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'build'       Name
+'['           Keyword.Type
+'"'           Literal.String.Double
+'d'           Literal.String
+'o'           Literal.String
+'"'           Literal.String.Double
+']'           Keyword.Type
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'source_name' Name
+','           Punctuation
+' '           Text
+'source'      Name
+'\n'          Text
+
+'          '  Text
+'build'       Name
+'.'           Operator
+'assign'      Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'names:'      Name.Variable
+' '           Text
+'real_names'  Name
+'\n'          Text
+
+'            ' Text
+'values:'     Name.Variable
+' '           Text
+'['           Keyword.Type
+'build'       Name
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+' '           Text
+'base:'       Name.Variable
+' '           Text
+'source_name' Name
+','           Punctuation
+' '           Text
+'stub'        Name
+'}'           Keyword.Type
+' '           Text
+'for'         Keyword
+' '           Text
+'stub'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'stubs'       Name
+']'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'comprehension:' Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+','           Punctuation
+' '           Text
+'action'      Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'_'           Name
+','           Punctuation
+' '           Text
+'exp'         Name
+','           Punctuation
+' '           Text
+'clauses'     Name
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'action'      Name
+' '           Text
+'='           Operator
+' '           Text
+'action'      Name
+' '           Text
+'or'          Keyword
+' '           Text
+'('           Keyword.Type
+'exp'         Name
+')'           Keyword.Type
+' '           Text
+'->'          Name.Function
+' '           Text
+'{'           Keyword.Type
+'exp'         Name
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'construct_comprehension' Name
+' '           Text
+'action'      Name
+'('           Keyword.Type
+'exp'         Name
+')'           Keyword.Type
+','           Punctuation
+' '           Text
+'clauses'     Name
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'-- handle cascading return decorator' Comment.Single
+'\n'          Text
+
+'  '          Text
+'if:'         Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+','           Punctuation
+' '           Text
+'ret'         Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'ret'         Name
+'\n'          Text
+
+'      '      Text
+'smart_node'  Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'      '      Text
+'-- mutate all the bodies' Comment.Single
+'\n'          Text
+
+'      '      Text
+'node'        Name
+'['           Keyword.Type
+"'"           Literal.String.Single
+'t'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+"'"           Literal.String.Single
+']'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'apply_to_last' Name
+' '           Text
+'node'        Name
+'['           Keyword.Type
+"'"           Literal.String.Single
+'t'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+"'"           Literal.String.Single
+']'           Keyword.Type
+','           Punctuation
+' '           Text
+'ret'         Name
+'\n'          Text
+
+'      '      Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'#'           Operator
+'node'        Name
+'\n'          Text
+
+'        '    Text
+'case'        Name
+' '           Text
+'='           Operator
+' '           Text
+'node'        Name
+'['           Keyword.Type
+'i'           Name
+']'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'body_idx'    Name
+' '           Text
+'='           Operator
+' '           Text
+'#'           Operator
+'node'        Name
+'['           Keyword.Type
+'i'           Name
+']'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'case'        Name
+'['           Keyword.Type
+'body_idx'    Name
+']'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'apply_to_last' Name
+' '           Text
+'case'        Name
+'['           Keyword.Type
+'body_idx'    Name
+']'           Keyword.Type
+','           Punctuation
+' '           Text
+'ret'         Name
+'\n'          Text
+
+'    '        Text
+'node'        Name
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'with:'       Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+','           Punctuation
+' '           Text
+'ret'         Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'_'           Name
+','           Punctuation
+' '           Text
+'exp'         Name
+','           Punctuation
+' '           Text
+'block'       Name
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'    '        Text
+'scope_name'  Name
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'w'           Literal.String
+'i'           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'build'       Name
+'['           Keyword.Type
+'"'           Literal.String.Double
+'d'           Literal.String
+'o'           Literal.String
+'"'           Literal.String.Double
+']'           Keyword.Type
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'scope_name'  Name
+','           Punctuation
+' '           Text
+'exp'         Name
+'\n'          Text
+
+'      '      Text
+'Run'         Name.Class
+' '           Text
+'=>'          Name.Function
+' '           Text
+'@set'        Name.Variable.Class
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String
+'c'           Literal.String
+'o'           Literal.String
+'p'           Literal.String
+'e'           Literal.String
+'_'           Literal.String
+'v'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'scope_name'  Name
+'\n'          Text
+
+'      '      Text
+'build'       Name
+'.'           Operator
+'group'       Name
+' '           Text
+'block'       Name
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'ret'         Name
+'\n'          Text
+
+'        '    Text
+'ret'         Name
+' '           Text
+'scope_name'  Name
+'\n'          Text
+
+'    '        Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'foreach:'    Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'smart_node'  Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'ntype'       Name
+'('           Keyword.Type
+'node'        Name
+'.'           Operator
+'iter'        Name
+')'           Keyword.Type
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'u'           Literal.String
+'n'           Literal.String
+'p'           Literal.String
+'a'           Literal.String
+'c'           Literal.String
+'k'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'list'        Name
+' '           Text
+'='           Operator
+' '           Text
+'node'        Name
+'.'           Operator
+'iter'        Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'index_name'  Name
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'i'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+'e'           Literal.String
+'x'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'list_name'   Name
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'l'           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'slice_var'   Name
+' '           Text
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+'\n'          Text
+
+'      '      Text
+'bounds'      Name
+' '           Text
+'='           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'is_slice'    Name
+' '           Text
+'list'        Name
+'\n'          Text
+
+'        '    Text
+'slice'       Name
+' '           Text
+'='           Operator
+' '           Text
+'list'        Name
+'['           Keyword.Type
+'#'           Operator
+'list'        Name
+']'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'table.remove' Name.Builtin
+' '           Text
+'list'        Name
+'\n'          Text
+
+'        '    Text
+'table.remove' Name.Builtin
+' '           Text
+'slice'       Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'slice'       Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'slice'       Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'and'         Keyword
+' '           Text
+'slice'       Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'!='          Operator
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'          '  Text
+'max_tmp_name' Name
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'m'           Literal.String
+'a'           Literal.String
+'x'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'          '  Text
+'slice_var'   Name
+' '           Text
+'='           Operator
+' '           Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'max_tmp_name' Name
+','           Punctuation
+' '           Text
+'slice'       Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'e'           Literal.String
+'x'           Literal.String
+'p'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'max_tmp_name' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'<'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'            ' Text
+'"'           Literal.String.Double
+'a'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'l'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'list_name'   Name
+'}'           Keyword.Type
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'+'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'max_tmp_name' Name
+'\n'          Text
+
+'            ' Text
+'"'           Literal.String.Double
+'o'           Literal.String
+'r'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'max_tmp_name' Name
+' '           Text
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'else'        Keyword
+'\n'          Text
+
+'          '  Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'l'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'list_name'   Name
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'slice'       Name
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'        '    Text
+'{'           Keyword.Type
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'l'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'list_name'   Name
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'build'       Name
+'.'           Operator
+'group'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'list_name'   Name
+','           Punctuation
+' '           Text
+'list'        Name
+'\n'          Text
+
+'        '    Text
+'slice_var'   Name
+'\n'          Text
+
+'        '    Text
+'build'       Name
+'['           Keyword.Type
+'"'           Literal.String.Double
+'f'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'"'           Literal.String.Double
+']'           Keyword.Type
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'name:'       Name.Variable
+' '           Text
+'index_name'  Name
+'\n'          Text
+
+'          '  Text
+'bounds:'     Name.Variable
+' '           Text
+'bounds'      Name
+'\n'          Text
+
+'          '  Text
+'body:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'i'           Literal.String
+'g'           Literal.String
+'n'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'node'        Name
+'.'           Operator
+'names'       Name
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'list_name'   Name
+'\\'          Operator
+'index'       Name
+' '           Text
+'index_name'  Name
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'build'       Name
+'.'           Operator
+'group'       Name
+' '           Text
+'node'        Name
+'.'           Operator
+'body'        Name
+'\n'          Text
+
+'          '  Text
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'switch:'     Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+','           Punctuation
+' '           Text
+'ret'         Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'_'           Name
+','           Punctuation
+' '           Text
+'exp'         Name
+','           Punctuation
+' '           Text
+'conds'       Name
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'    '        Text
+'exp_name'    Name
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'e'           Literal.String
+'x'           Literal.String
+'p'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'-- convert switch conds into if statment conds' Comment.Single
+'\n'          Text
+
+'    '        Text
+'convert_cond' Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Keyword.Type
+'cond'        Name
+')'           Keyword.Type
+' '           Text
+'->'          Name.Function
+'\n'          Text
+
+'      '      Text
+'t'           Name
+','           Punctuation
+' '           Text
+'case_exp'    Name
+','           Punctuation
+' '           Text
+'body'        Name
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name
+' '           Text
+'cond'        Name
+'\n'          Text
+
+'      '      Text
+'out'         Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'insert'      Name
+' '           Text
+'out'         Name
+','           Punctuation
+' '           Text
+'t'           Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'c'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+' '           Text
+'and'         Keyword
+' '           Text
+'"'           Literal.String.Double
+'e'           Literal.String
+'l'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'i'           Literal.String
+'f'           Literal.String
+'"'           Literal.String.Double
+' '           Text
+'or'          Keyword
+' '           Text
+'"'           Literal.String.Double
+'e'           Literal.String
+'l'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'  '          Text
+'t'           Name
+' '           Text
+'!='          Operator
+' '           Text
+'"'           Literal.String.Double
+'e'           Literal.String
+'l'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'        '    Text
+'insert'      Name
+' '           Text
+'out'         Name
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'e'           Literal.String
+'x'           Literal.String
+'p'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'case_exp'    Name
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'='           Literal.String
+'='           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'exp_name'    Name
+'}'           Keyword.Type
+' '           Text
+'if'          Keyword
+' '           Text
+'t'           Name
+' '           Text
+'!='          Operator
+' '           Text
+'"'           Literal.String.Double
+'e'           Literal.String
+'l'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'        '    Text
+'body'        Name
+' '           Text
+'='           Operator
+' '           Text
+'case_exp'    Name
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'ret'         Name
+'\n'          Text
+
+'        '    Text
+'body'        Name
+' '           Text
+'='           Operator
+' '           Text
+'apply_to_last' Name
+' '           Text
+'body'        Name
+','           Punctuation
+' '           Text
+'ret'         Name
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'insert'      Name
+' '           Text
+'out'         Name
+','           Punctuation
+' '           Text
+'body'        Name
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'out'         Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'first'       Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'    '        Text
+'if_stm'      Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'i'           Literal.String
+'f'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'for'         Keyword
+' '           Text
+'cond'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'conds'       Name
+'\n'          Text
+
+'      '      Text
+'if_cond'     Name
+' '           Text
+'='           Operator
+' '           Text
+'convert_cond' Name
+' '           Text
+'cond'        Name
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'first'       Name
+'\n'          Text
+
+'        '    Text
+'first'       Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+'\n'          Text
+
+'        '    Text
+'insert'      Name
+' '           Text
+'if_stm'      Name
+','           Punctuation
+' '           Text
+'if_cond'     Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'insert'      Name
+' '           Text
+'if_stm'      Name
+','           Punctuation
+' '           Text
+'if_cond'     Name
+'['           Keyword.Type
+'3'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'        '    Text
+'insert'      Name
+' '           Text
+'if_stm'      Name
+','           Punctuation
+' '           Text
+'if_cond'     Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'build'       Name
+'.'           Operator
+'group'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'exp_name'    Name
+','           Punctuation
+' '           Text
+'exp'         Name
+'\n'          Text
+
+'      '      Text
+'if_stm'      Name
+'\n'          Text
+
+'    '        Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'class:'      Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'_'           Name
+','           Punctuation
+' '           Text
+'name'        Name
+','           Punctuation
+' '           Text
+'parent_val'  Name
+','           Punctuation
+' '           Text
+'body'        Name
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'-- split apart properties and statements' Comment.Single
+'\n'          Text
+
+'    '        Text
+'statements'  Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'properties'  Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'for'         Keyword
+' '           Text
+'item'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'body'        Name
+'\n'          Text
+
+'      '      Text
+'switch'      Keyword
+' '           Text
+'item'        Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'when'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String
+'t'           Literal.String
+'m'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'          '  Text
+'insert'      Name
+' '           Text
+'statements'  Name
+','           Punctuation
+' '           Text
+'item'        Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'when'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'p'           Literal.String
+'r'           Literal.String
+'o'           Literal.String
+'p'           Literal.String
+'s'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'          '  Text
+'for'         Keyword
+' '           Text
+'tuple'       Name
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'item'        Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+','           Punctuation
+']'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'insert'      Name
+' '           Text
+'properties'  Name
+','           Punctuation
+' '           Text
+'tuple'       Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'-- find constructor' Comment.Single
+'\n'          Text
+
+'    '        Text
+'constructor' Name
+' '           Text
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+'\n'          Text
+
+'    '        Text
+'properties'  Name
+' '           Text
+'='           Operator
+' '           Text
+'for'         Keyword
+' '           Text
+'tuple'       Name
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'properties'  Name
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'tuple'       Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'=='          Operator
+' '           Text
+'constructor_name' Name
+'\n'          Text
+
+'        '    Text
+'constructor' Name
+' '           Text
+'='           Operator
+' '           Text
+'tuple'       Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'nil'         Keyword.Constant
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'        '    Text
+'tuple'       Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'parent_cls_name' Name
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'p'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'base_name'   Name
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'b'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'self_name'   Name
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String
+'e'           Literal.String
+'l'           Literal.String
+'f'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'cls_name'    Name
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'c'           Literal.String
+'l'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'constructor' Name
+'\n'          Text
+
+'      '      Text
+'constructor' Name
+' '           Text
+'='           Operator
+' '           Text
+'build'       Name
+'.'           Operator
+'fndef'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'args:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'.'           Literal.String
+'.'           Literal.String
+'.'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'arrow:'      Name.Variable
+' '           Text
+'"'           Literal.String.Double
+'f'           Literal.String
+'a'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'        '    Text
+'body:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'build'       Name
+'['           Keyword.Type
+'"'           Literal.String.Double
+'i'           Literal.String
+'f'           Literal.String
+'"'           Literal.String.Double
+']'           Keyword.Type
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'cond:'       Name.Variable
+' '           Text
+'parent_cls_name' Name
+'\n'          Text
+
+'            ' Text
+'then:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'              ' Text
+'build'       Name
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+' '           Text
+'base:'       Name.Variable
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String
+'u'           Literal.String
+'p'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'c'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'.'           Literal.String
+'.'           Literal.String
+'.'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+'}'           Keyword.Type
+' '           Text
+'}'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'smart_node'  Name
+' '           Text
+'constructor' Name
+'\n'          Text
+
+'      '      Text
+'constructor' Name
+'.'           Operator
+'arrow'       Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'f'           Literal.String
+'a'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'cls'         Name
+' '           Text
+'='           Operator
+' '           Text
+'build'       Name
+'.'           Operator
+'table'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'_'           Literal.String
+'_'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'i'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'constructor' Name
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'_'           Literal.String
+'_'           Literal.String
+'b'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'base_name'   Name
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'_'           Literal.String
+'_'           Literal.String
+'n'           Literal.String
+'a'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'s'           Literal.String
+'t'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'"'           Literal.String
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'name'        Name
+'}'           Keyword.Type
+'}'           Keyword.Type
+' '           Text
+'-- "quote the string"' Comment.Single
+'\n'          Text
+
+'      '      Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'_'           Literal.String
+'_'           Literal.String
+'p'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'parent_cls_name' Name
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'-- look up a name in the class object' Comment.Single
+'\n'          Text
+
+'    '        Text
+'class_lookup' Name
+' '           Text
+'='           Operator
+' '           Text
+'build'       Name
+'['           Keyword.Type
+'"'           Literal.String.Double
+'i'           Literal.String
+'f'           Literal.String
+'"'           Literal.String.Double
+']'           Keyword.Type
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'cond:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'e'           Literal.String
+'x'           Literal.String
+'p'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'v'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'='           Literal.String
+'='           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'n'           Literal.String
+'i'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'a'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'parent_cls_name' Name
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'then:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'parent_cls_name' Name
+'\\'          Operator
+'index'       Name
+'"'           Literal.String.Double
+'n'           Literal.String
+'a'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'insert'      Name
+' '           Text
+'class_lookup' Name
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'e'           Literal.String
+'l'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'v'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'cls_mt'      Name
+' '           Text
+'='           Operator
+' '           Text
+'build'       Name
+'.'           Operator
+'table'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'_'           Literal.String
+'_'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+'e'           Literal.String
+'x'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'build'       Name
+'.'           Operator
+'fndef'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'args:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'c'           Literal.String
+'l'           Literal.String
+'s'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'n'           Literal.String
+'a'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'body:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'LocalName'   Name.Class
+'"'           Literal.String.Double
+'v'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'build'       Name
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'base:'       Name.Variable
+' '           Text
+'"'           Literal.String.Double
+'r'           Literal.String
+'a'           Literal.String
+'w'           Literal.String
+'g'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'c'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'base_name'   Name
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'n'           Literal.String
+'a'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'class_lookup' Name
+'\n'          Text
+
+'        '    Text
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'_'           Literal.String
+'_'           Literal.String
+'c'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'build'       Name
+'.'           Operator
+'fndef'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'args:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'c'           Literal.String
+'l'           Literal.String
+'s'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'.'           Literal.String
+'.'           Literal.String
+'.'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'body:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'self_name'   Name
+','           Punctuation
+' '           Text
+'build'       Name
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'base:'       Name.Variable
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'a'           Literal.String
+'t'           Literal.String
+'a'           Literal.String
+'b'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'            ' Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'c'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'{'           Literal.String
+'}'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'base_name'   Name
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'build'       Name
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'base:'       Name.Variable
+' '           Text
+'"'           Literal.String.Double
+'c'           Literal.String
+'l'           Literal.String
+'s'           Literal.String
+'.'           Literal.String
+'_'           Literal.String
+'_'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'i'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'            ' Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'c'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'self_name'   Name
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'.'           Literal.String
+'.'           Literal.String
+'.'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'self_name'   Name
+'\n'          Text
+
+'        '    Text
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'cls'         Name
+' '           Text
+'='           Operator
+' '           Text
+'build'       Name
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'base:'       Name.Variable
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'a'           Literal.String
+'t'           Literal.String
+'a'           Literal.String
+'b'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'c'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'cls'         Name
+','           Punctuation
+' '           Text
+'cls_mt'      Name
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'value'       Name
+' '           Text
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+'\n'          Text
+
+'    '        Text
+'with'        Keyword
+' '           Text
+'build'       Name
+'\n'          Text
+
+'      '      Text
+'value'       Name
+' '           Text
+'='           Operator
+' '           Text
+'.'           Operator
+'block_exp'   Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'Run'         Name.Class
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'          '  Text
+'@set'        Name.Variable.Class
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String
+'u'           Literal.String
+'p'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'('           Keyword.Type
+'block'       Name
+','           Punctuation
+' '           Text
+'chain'       Name
+')'           Keyword.Type
+' '           Text
+'->'          Name.Function
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+' '           Text
+'chain'       Name
+'\n'          Text
+
+'              ' Text
+'slice'       Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Keyword.Type
+'item'        Name
+' '           Text
+'for'         Keyword
+' '           Text
+'item'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'chain'       Name
+'['           Keyword.Type
+'3'           Literal.Number.Integer
+','           Punctuation
+']'           Keyword.Type
+']'           Keyword.Type
+'\n'          Text
+
+'              ' Text
+'new_chain'   Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'c'           Literal.String
+'h'           Literal.String
+'a'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'parent_cls_name' Name
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'              ' Text
+'head'        Name
+' '           Text
+'='           Operator
+' '           Text
+'slice'       Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'              ' Text
+'if'          Keyword
+' '           Text
+'head'        Name
+' '           Text
+'=='          Operator
+' '           Text
+'nil'         Keyword.Constant
+'\n'          Text
+
+'                ' Text
+'return'      Keyword
+' '           Text
+'parent_cls_name' Name
+'\n'          Text
+
+'\n'          Text
+
+'              ' Text
+'switch'      Keyword
+' '           Text
+'head'        Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'                ' Text
+'-- calling super, inject calling name and self into chain' Comment.Single
+'\n'          Text
+
+'                ' Text
+'when'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'c'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'                  ' Text
+'calling_name' Name
+' '           Text
+'='           Operator
+' '           Text
+'block'       Name
+'\\'          Operator
+'get'         Name
+'"'           Literal.String.Double
+'c'           Literal.String
+'u'           Literal.String
+'r'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'_'           Literal.String
+'b'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'c'           Literal.String
+'k'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'                  ' Text
+'slice'       Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'c'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'s'           Literal.String
+'e'           Literal.String
+'l'           Literal.String
+'f'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'unpack'      Name
+' '           Text
+'head'        Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'                  ' Text
+'act'         Name
+' '           Text
+'='           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'ntype'       Name
+'('           Keyword.Type
+'calling_name' Name
+')'           Keyword.Type
+' '           Text
+'!='          Operator
+' '           Text
+'"'           Literal.String.Double
+'v'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'u'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+' '           Text
+'then'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'i'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+'e'           Literal.String
+'x'           Literal.String
+'"'           Literal.String.Double
+' '           Text
+'else'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'d'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'                  ' Text
+'insert'      Name
+' '           Text
+'new_chain'   Name
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'act'         Name
+','           Punctuation
+' '           Text
+'calling_name' Name
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'                ' Text
+'-- colon call on super, replace class with self as first arg' Comment.Single
+'\n'          Text
+
+'                ' Text
+'when'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'c'           Literal.String
+'o'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'                  ' Text
+'call'        Name
+' '           Text
+'='           Operator
+' '           Text
+'head'        Name
+'['           Keyword.Type
+'3'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'                  ' Text
+'insert'      Name
+' '           Text
+'new_chain'   Name
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'d'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'head'        Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'                  ' Text
+'slice'       Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'{'           Keyword.Type
+' '           Text
+'"'           Literal.String.Double
+'c'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String
+'e'           Literal.String
+'l'           Literal.String
+'f'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'unpack'      Name
+' '           Text
+'call'        Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'}'           Keyword.Type
+' '           Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'              ' Text
+'insert'      Name
+' '           Text
+'new_chain'   Name
+','           Punctuation
+' '           Text
+'item'        Name
+' '           Text
+'for'         Keyword
+' '           Text
+'item'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'slice'       Name
+'\n'          Text
+
+'\n'          Text
+
+'              ' Text
+'new_chain'   Name
+'\n'          Text
+
+'            ' Text
+'else'        Keyword
+'\n'          Text
+
+'              ' Text
+'parent_cls_name' Name
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'parent_cls_name' Name
+','           Punctuation
+' '           Text
+'parent_val'  Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'and'         Keyword
+' '           Text
+'"'           Literal.String.Double
+'n'           Literal.String
+'i'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+' '           Text
+'or'          Keyword
+' '           Text
+'parent_val'  Name
+'\n'          Text
+
+'        '    Text
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'base_name'   Name
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'t'           Literal.String
+'a'           Literal.String
+'b'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'properties'  Name
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'base_name'   Name
+'\\'          Operator
+'chain'       Name
+'"'           Literal.String.Double
+'_'           Literal.String
+'_'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+'e'           Literal.String
+'x'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'base_name'   Name
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'build'       Name
+'['           Keyword.Type
+'"'           Literal.String.Double
+'i'           Literal.String
+'f'           Literal.String
+'"'           Literal.String.Double
+']'           Keyword.Type
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'cond:'       Name.Variable
+' '           Text
+'parent_cls_name' Name
+'\n'          Text
+
+'          '  Text
+'then:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'              ' Text
+'base:'       Name.Variable
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'a'           Literal.String
+'t'           Literal.String
+'a'           Literal.String
+'b'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'              ' Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'c'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'                ' Text
+'base_name'   Name
+','           Punctuation
+'\n'          Text
+
+'                ' Text
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+' '           Text
+'base:'       Name.Variable
+' '           Text
+'parent_cls_name' Name
+','           Punctuation
+'  '          Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'d'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'_'           Literal.String
+'_'           Literal.String
+'b'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'              ' Text
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'cls_name'    Name
+','           Punctuation
+' '           Text
+'cls'         Name
+'\n'          Text
+
+'        '    Text
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'base_name'   Name
+'\\'          Operator
+'chain'       Name
+'"'           Literal.String.Double
+'_'           Literal.String
+'_'           Literal.String
+'c'           Literal.String
+'l'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'cls_name'    Name
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'.'           Operator
+'group'       Name
+' '           Text
+'if'          Keyword
+' '           Text
+'#'           Operator
+'statements'  Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'LocalName'   Name.Class
+'"'           Literal.String.Double
+'s'           Literal.String
+'e'           Literal.String
+'l'           Literal.String
+'f'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'cls_name'    Name
+'\n'          Text
+
+'          '  Text
+'.'           Operator
+'group'       Name
+' '           Text
+'statements'  Name
+'\n'          Text
+
+'        '    Text
+'}'           Keyword.Type
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'cls_name'    Name
+'\n'          Text
+
+'      '      Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'value'       Name
+' '           Text
+'='           Operator
+' '           Text
+'.'           Operator
+'group'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'.'           Operator
+'declare'     Name
+' '           Text
+'names:'      Name.Variable
+' '           Text
+'{'           Keyword.Type
+'name'        Name
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'.'           Operator
+'assign'      Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'names:'      Name.Variable
+' '           Text
+'{'           Keyword.Type
+'name'        Name
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'values:'     Name.Variable
+' '           Text
+'{'           Keyword.Type
+'value'       Name
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'value'       Name
+'\n'          Text
+
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'class'       Keyword
+' '           Text
+'Accumulator' Name.Class
+'\n'          Text
+
+'  '          Text
+'body_idx:'   Name.Variable
+' '           Text
+'{'           Keyword.Type
+' '           Text
+'for:'        Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'while:'      Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'foreach:'    Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'new:'        Name.Variable
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'@accum_name' Name.Variable.Class
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'a'           Literal.String
+'c'           Literal.String
+'c'           Literal.String
+'u'           Literal.String
+'m'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'@value_name' Name.Variable.Class
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'v'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'u'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'@len_name'   Name.Variable.Class
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'l'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'-- wraps node and mutates body' Comment.Single
+'\n'          Text
+
+'  '          Text
+'convert:'    Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'index'       Name
+' '           Text
+'='           Operator
+' '           Text
+'@body_idx'   Name.Variable.Class
+'['           Keyword.Type
+'ntype'       Name
+' '           Text
+'node'        Name
+']'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'node'        Name
+'['           Keyword.Type
+'index'       Name
+']'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'@mutate_body' Name.Variable.Class
+' '           Text
+'node'        Name
+'['           Keyword.Type
+'index'       Name
+']'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'@wrap'       Name.Variable.Class
+' '           Text
+'node'        Name
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'-- wrap the node into a block_exp' Comment.Single
+'\n'          Text
+
+'  '          Text
+'wrap:'       Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'build'       Name
+'.'           Operator
+'block_exp'   Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'@accum_name' Name.Variable.Class
+','           Punctuation
+' '           Text
+'build'       Name
+'.'           Operator
+'table'       Name
+'!'           Operator
+'\n'          Text
+
+'      '      Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'@len_name'   Name.Variable.Class
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'      '      Text
+'node'        Name
+'\n'          Text
+
+'      '      Text
+'@accum_name' Name.Variable.Class
+'\n'          Text
+
+'    '        Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'-- mutates the body of a loop construct to save last value into accumulator' Comment.Single
+'\n'          Text
+
+'  '          Text
+'-- can optionally skip nil results' Comment.Single
+'\n'          Text
+
+'  '          Text
+'mutate_body:' Name.Variable
+' '           Text
+'('           Keyword.Type
+'body'        Name
+','           Punctuation
+' '           Text
+'skip_nil'    Name
+'='           Operator
+'true'        Keyword.Constant
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'val'         Name
+' '           Text
+'='           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'skip_nil'    Name
+' '           Text
+'and'         Keyword
+' '           Text
+'is_singular' Name
+' '           Text
+'body'        Name
+'\n'          Text
+
+'      '      Text
+'with'        Keyword
+' '           Text
+'body'        Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'body'        Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'body'        Name
+' '           Text
+'='           Operator
+' '           Text
+'apply_to_last' Name
+' '           Text
+'body'        Name
+','           Punctuation
+' '           Text
+'('           Keyword.Type
+'n'           Name
+')'           Keyword.Type
+' '           Text
+'->'          Name.Function
+'\n'          Text
+
+'        '    Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'@value_name' Name.Variable.Class
+','           Punctuation
+' '           Text
+'n'           Name
+'\n'          Text
+
+'      '      Text
+'@value_name' Name.Variable.Class
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'update'      Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'u'           Literal.String
+'p'           Literal.String
+'d'           Literal.String
+'a'           Literal.String
+'t'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'@len_name'   Name.Variable.Class
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'+'           Literal.String
+'='           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'@accum_name' Name.Variable.Class
+'\\'          Operator
+'index'       Name
+'('           Keyword.Type
+'@len_name'   Name.Variable.Class
+')'           Keyword.Type
+','           Punctuation
+' '           Text
+'val'         Name
+'\n'          Text
+
+'    '        Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'skip_nil'    Name
+'\n'          Text
+
+'      '      Text
+'table.insert' Name.Builtin
+' '           Text
+'body'        Name
+','           Punctuation
+' '           Text
+'build'       Name
+'['           Keyword.Type
+'"'           Literal.String.Double
+'i'           Literal.String
+'f'           Literal.String
+'"'           Literal.String.Double
+']'           Keyword.Type
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'cond:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'e'           Literal.String
+'x'           Literal.String
+'p'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'@value_name' Name.Variable.Class
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'!'           Literal.String
+'='           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'n'           Literal.String
+'i'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'then:'       Name.Variable
+' '           Text
+'update'      Name
+'\n'          Text
+
+'      '      Text
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'table.insert' Name.Builtin
+' '           Text
+'body'        Name
+','           Punctuation
+' '           Text
+'build'       Name
+'.'           Operator
+'group'       Name
+' '           Text
+'update'      Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'body'        Name
+'\n'          Text
+
+'\n'          Text
+
+'default_accumulator' Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'  '          Text
+'Accumulator' Name.Class
+'!'           Operator
+'\\'          Operator
+'convert'     Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'implicitly_return' Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Keyword.Type
+'scope'       Name
+')'           Keyword.Type
+' '           Text
+'->'          Name.Function
+'\n'          Text
+
+'  '          Text
+'fn'          Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Keyword.Type
+'stm'         Name
+')'           Keyword.Type
+' '           Text
+'->'          Name.Function
+'\n'          Text
+
+'    '        Text
+'t'           Name
+' '           Text
+'='           Operator
+' '           Text
+'ntype'       Name
+' '           Text
+'stm'         Name
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'types'       Name
+'.'           Operator
+'manual_return' Name
+'['           Keyword.Type
+'t'           Name
+']'           Keyword.Type
+' '           Text
+'or'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'types'       Name
+'.'           Operator
+'is_value'    Name
+' '           Text
+'stm'         Name
+'\n'          Text
+
+'      '      Text
+'stm'         Name
+'\n'          Text
+
+'    '        Text
+'elseif'      Keyword
+' '           Text
+'types'       Name
+'.'           Operator
+'cascading'   Name
+'['           Keyword.Type
+'t'           Name
+']'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'scope'       Name
+'.'           Operator
+'transform'   Name
+'.'           Operator
+'statement'   Name
+' '           Text
+'stm'         Name
+','           Punctuation
+' '           Text
+'fn'          Name
+'\n'          Text
+
+'    '        Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'t'           Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'c'           Literal.String
+'o'           Literal.String
+'m'           Literal.String
+'p'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'s'           Literal.String
+'i'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'"'           Literal.String.Double
+' '           Text
+'and'         Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'types'       Name
+'.'           Operator
+'comprehension_has_value' Name
+' '           Text
+'stm'         Name
+'\n'          Text
+
+'        '    Text
+'stm'         Name
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'        '    Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'r'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'u'           Literal.String
+'r'           Literal.String
+'n'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'stm'         Name
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'fn'          Name
+'\n'          Text
+
+'\n'          Text
+
+'Value'       Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'Transformer' Name.Class
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'  '          Text
+'for:'        Name.Variable
+' '           Text
+'default_accumulator' Name
+'\n'          Text
+
+'  '          Text
+'while:'      Name.Variable
+' '           Text
+'default_accumulator' Name
+'\n'          Text
+
+'  '          Text
+'foreach:'    Name.Variable
+' '           Text
+'default_accumulator' Name
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'comprehension:' Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'a'           Name
+' '           Text
+'='           Operator
+' '           Text
+'Accumulator' Name.Class
+'!'           Operator
+'\n'          Text
+
+'    '        Text
+'node'        Name
+' '           Text
+'='           Operator
+' '           Text
+'@transform'  Name.Variable.Class
+'.'           Operator
+'statement'   Name
+' '           Text
+'node'        Name
+','           Punctuation
+' '           Text
+'('           Keyword.Type
+'exp'         Name
+')'           Keyword.Type
+' '           Text
+'->'          Name.Function
+'\n'          Text
+
+'      '      Text
+'a'           Name
+'\\'          Operator
+'mutate_body' Name
+' '           Text
+'{'           Keyword.Type
+'exp'         Name
+'}'           Keyword.Type
+','           Punctuation
+' '           Text
+'false'       Keyword.Constant
+'\n'          Text
+
+'    '        Text
+'a'           Name
+'\\'          Operator
+'wrap'        Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'tblcomprehension:' Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'_'           Name
+','           Punctuation
+' '           Text
+'key_exp'     Name
+','           Punctuation
+' '           Text
+'value_exp'   Name
+','           Punctuation
+' '           Text
+'clauses'     Name
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'accum'       Name
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'t'           Literal.String
+'b'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'dest'        Name
+' '           Text
+'='           Operator
+' '           Text
+'build'       Name
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+' '           Text
+'base:'       Name.Variable
+' '           Text
+'accum'       Name
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'i'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+'e'           Literal.String
+'x'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'key_exp'     Name
+'}'           Keyword.Type
+' '           Text
+'}'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'inner'       Name
+' '           Text
+'='           Operator
+' '           Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'dest'        Name
+','           Punctuation
+' '           Text
+'value_exp'   Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'build'       Name
+'.'           Operator
+'block_exp'   Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'build'       Name
+'.'           Operator
+'assign_one'  Name
+' '           Text
+'accum'       Name
+','           Punctuation
+' '           Text
+'build'       Name
+'.'           Operator
+'table'       Name
+'!'           Operator
+'\n'          Text
+
+'      '      Text
+'construct_comprehension' Name
+' '           Text
+'{'           Keyword.Type
+'inner'       Name
+'}'           Keyword.Type
+','           Punctuation
+' '           Text
+'clauses'     Name
+'\n'          Text
+
+'      '      Text
+'accum'       Name
+'\n'          Text
+
+'    '        Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'fndef:'      Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'smart_node'  Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'    '        Text
+'node'        Name
+'.'           Operator
+'body'        Name
+' '           Text
+'='           Operator
+' '           Text
+'apply_to_last' Name
+' '           Text
+'node'        Name
+'.'           Operator
+'body'        Name
+','           Punctuation
+' '           Text
+'implicitly_return' Name
+' '           Text
+'self'        Name.Builtin.Pseudo
+'\n'          Text
+
+'    '        Text
+'node'        Name
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'if:'         Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+' '           Text
+'build'       Name
+'.'           Operator
+'block_exp'   Name
+' '           Text
+'{'           Keyword.Type
+' '           Text
+'node'        Name
+' '           Text
+'}'           Keyword.Type
+'\n'          Text
+
+'  '          Text
+'with:'       Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+' '           Text
+'build'       Name
+'.'           Operator
+'block_exp'   Name
+' '           Text
+'{'           Keyword.Type
+' '           Text
+'node'        Name
+' '           Text
+'}'           Keyword.Type
+'\n'          Text
+
+'  '          Text
+'switch:'     Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'build'       Name
+'.'           Operator
+'block_exp'   Name
+' '           Text
+'{'           Keyword.Type
+' '           Text
+'node'        Name
+' '           Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'-- pull out colon chain' Comment.Single
+'\n'          Text
+
+'  '          Text
+'chain:'      Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'stub'        Name
+' '           Text
+'='           Operator
+' '           Text
+'node'        Name
+'['           Keyword.Type
+'#'           Operator
+'node'        Name
+']'           Keyword.Type
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'type'        Name.Builtin
+'('           Keyword.Type
+'stub'        Name
+')'           Keyword.Type
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'t'           Literal.String
+'a'           Literal.String
+'b'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+' '           Text
+'and'         Keyword
+' '           Text
+'stub'        Name
+'['           Keyword.Type
+'1'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'c'           Literal.String
+'o'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'_'           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+'u'           Literal.String
+'b'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'table.remove' Name.Builtin
+' '           Text
+'node'        Name
+','           Punctuation
+' '           Text
+'#'           Operator
+'node'        Name
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'base_name'   Name
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'b'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'fn_name'     Name
+' '           Text
+'='           Operator
+' '           Text
+'NameProxy'   Name.Class
+' '           Text
+'"'           Literal.String.Double
+'f'           Literal.String
+'n'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'is_super'    Name
+' '           Text
+'='           Operator
+' '           Text
+'node'        Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String
+'u'           Literal.String
+'p'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'@transform'  Name.Variable.Class
+'.'           Operator
+'value'       Name
+' '           Text
+'build'       Name
+'.'           Operator
+'block_exp'   Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'build'       Name
+'.'           Operator
+'assign'      Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'names:'      Name.Variable
+' '           Text
+'{'           Keyword.Type
+'base_name'   Name
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'values:'     Name.Variable
+' '           Text
+'{'           Keyword.Type
+'node'        Name
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'build'       Name
+'.'           Operator
+'assign'      Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'names:'      Name.Variable
+' '           Text
+'{'           Keyword.Type
+'fn_name'     Name
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'values:'     Name.Variable
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'build'       Name
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+' '           Text
+'base:'       Name.Variable
+' '           Text
+'base_name'   Name
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'d'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'stub'        Name
+'['           Keyword.Type
+'2'           Literal.Number.Integer
+']'           Keyword.Type
+'}'           Keyword.Type
+' '           Text
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'build'       Name
+'.'           Operator
+'fndef'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'args:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'.'           Literal.String
+'.'           Literal.String
+'.'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'body:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'build'       Name
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+'\n'          Text
+
+'              ' Text
+'base:'       Name.Variable
+' '           Text
+'fn_name'     Name
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'c'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'is_super'    Name
+' '           Text
+'and'         Keyword
+' '           Text
+'"'           Literal.String.Double
+'s'           Literal.String
+'e'           Literal.String
+'l'           Literal.String
+'f'           Literal.String
+'"'           Literal.String.Double
+' '           Text
+'or'          Keyword
+' '           Text
+'base_name'   Name
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'.'           Literal.String
+'.'           Literal.String
+'.'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'            ' Text
+'}'           Keyword.Type
+'\n'          Text
+
+'          '  Text
+'}'           Keyword.Type
+'\n'          Text
+
+'        '    Text
+'}'           Keyword.Type
+'\n'          Text
+
+'      '      Text
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'block_exp:'  Name.Variable
+' '           Text
+'('           Keyword.Type
+'node'        Name
+')'           Keyword.Type
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'    '        Text
+'_'           Name
+','           Punctuation
+' '           Text
+'body'        Name
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name
+' '           Text
+'node'        Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'fn'          Name
+' '           Text
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+'\n'          Text
+
+'    '        Text
+'arg_list'    Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Keyword.Type
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'insert'      Name
+' '           Text
+'body'        Name
+','           Punctuation
+' '           Text
+'Run'         Name.Class
+' '           Text
+'=>'          Name.Function
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+' '           Text
+'@has_varargs' Name.Variable.Class
+'\n'          Text
+
+'        '    Text
+'insert'      Name
+' '           Text
+'arg_list'    Name
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'.'           Literal.String
+'.'           Literal.String
+'.'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'        '    Text
+'insert'      Name
+' '           Text
+'fn'          Name
+'.'           Operator
+'args'        Name
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'.'           Literal.String
+'.'           Literal.String
+'.'           Literal.String
+'"'           Literal.String.Double
+'}'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'fn'          Name
+' '           Text
+'='           Operator
+' '           Text
+'smart_node'  Name
+' '           Text
+'build'       Name
+'.'           Operator
+'fndef'       Name
+' '           Text
+'body:'       Name.Variable
+' '           Text
+'body'        Name
+'\n'          Text
+
+'    '        Text
+'build'       Name
+'.'           Operator
+'chain'       Name
+' '           Text
+'{'           Keyword.Type
+' '           Text
+'base:'       Name.Variable
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'p'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'s'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'fn'          Name
+'}'           Keyword.Type
+','           Punctuation
+' '           Text
+'{'           Keyword.Type
+'"'           Literal.String.Double
+'c'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'arg_list'    Name
+'}'           Keyword.Type
+' '           Text
+'}'           Keyword.Type
+'\n'          Text
+
+'}'           Keyword.Type
+'\n'          Text

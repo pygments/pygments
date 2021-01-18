@@ -1,0 +1,129 @@
+---input---
+SQLite version 3.4.2
+Enter ".help" for instructions
+sqlite> .schema
+CREATE TABLE paste (paste_id integer, code text, parsed_code text, pub_date
+varchar(24), language varchar(64), parent_id integer, url varchar(128));
+CREATE TABLE vars (key varchar(24), value varchar(128));
+sqlite> a '
+   ...> '
+   ...> ;
+SQL error: near "a": syntax error
+sqlite> %;
+SQL error: near "%": syntax error
+sqlite> select count(language), language from paste group by language order
+   ...> by count(language) desc;
+144|python
+76|text
+22|pycon
+9|ruby
+7|c
+7|js
+6|html+django
+4|html
+4|tex
+2|html+php
+1|cpp
+1|scheme
+sqlite> 
+
+---tokens---
+'SQLite version 3.4.2\n' Generic.Output
+
+'Enter ".help" for instructions\n' Generic.Output
+
+'sqlite> '    Generic.Prompt
+'.'           Punctuation
+'schema'      Keyword
+'\n'          Text
+
+'CREATE TABLE paste (paste_id integer, code text, parsed_code text, pub_date\n' Generic.Output
+
+'varchar(24), language varchar(64), parent_id integer, url varchar(128));\n' Generic.Output
+
+'CREATE TABLE vars (key varchar(24), value varchar(128));\n' Generic.Output
+
+'sqlite> '    Generic.Prompt
+'a'           Name
+' '           Text
+"'\n"         Literal.String.Single
+
+'   ...> '    Generic.Prompt
+"'"           Literal.String.Single
+'\n'          Text
+
+'   ...> '    Generic.Prompt
+';'           Punctuation
+'\n'          Text
+
+'SQL error: near "a": syntax error\n' Generic.Traceback
+
+'sqlite> '    Generic.Prompt
+'%'           Operator
+';'           Punctuation
+'\n'          Text
+
+'SQL error: near "%": syntax error\n' Generic.Traceback
+
+'sqlite> '    Generic.Prompt
+'select'      Keyword
+' '           Text
+'count'       Keyword
+'('           Punctuation
+'language'    Keyword
+')'           Punctuation
+','           Punctuation
+' '           Text
+'language'    Keyword
+' '           Text
+'from'        Keyword
+' '           Text
+'paste'       Name
+' '           Text
+'group'       Keyword
+' '           Text
+'by'          Keyword
+' '           Text
+'language'    Keyword
+' '           Text
+'order'       Keyword
+'\n'          Text
+
+'   ...> '    Generic.Prompt
+'by'          Keyword
+' '           Text
+'count'       Keyword
+'('           Punctuation
+'language'    Keyword
+')'           Punctuation
+' '           Text
+'desc'        Keyword
+';'           Punctuation
+'\n'          Text
+
+'144|python\n' Generic.Output
+
+'76|text\n'   Generic.Output
+
+'22|pycon\n'  Generic.Output
+
+'9|ruby\n'    Generic.Output
+
+'7|c\n'       Generic.Output
+
+'7|js\n'      Generic.Output
+
+'6|html+django\n' Generic.Output
+
+'4|html\n'    Generic.Output
+
+'4|tex\n'     Generic.Output
+
+'2|html+php\n' Generic.Output
+
+'1|cpp\n'     Generic.Output
+
+'1|scheme\n'  Generic.Output
+
+'sqlite> '    Generic.Prompt
+'\n'          Text

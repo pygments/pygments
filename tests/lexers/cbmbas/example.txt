@@ -1,0 +1,89 @@
+---input---
+10 rem cbm basic v2 example
+20 rem comment with keywords: for, data
+30 dim a$(20)
+35 rem the typical space efficient form of leaving spaces out:
+40 fort=0to15:poke646,t:print"{revers on}     ";:next
+50 geta$:ifa$=chr$(0):goto40
+55 rem it is legal to omit the closing " on line end
+60 print"{white}":print"bye...
+70 end
+
+---tokens---
+'10'          Literal.Number.Float
+' '           Text
+'rem cbm basic v2 example\n' Comment.Single
+
+'20'          Literal.Number.Float
+' '           Text
+'rem comment with keywords: for, data\n' Comment.Single
+
+'30'          Literal.Number.Float
+' '           Text
+'dim'         Keyword.Declaration
+' '           Text
+'a$'          Name
+'('           Punctuation
+'20'          Literal.Number.Float
+')'           Punctuation
+'\n'          Text
+
+'35'          Literal.Number.Float
+' '           Text
+'rem the typical space efficient form of leaving spaces out:\n' Comment.Single
+
+'40'          Literal.Number.Float
+' '           Text
+'for'         Keyword.Reserved
+'t'           Name
+'='           Operator
+'0'           Literal.Number.Float
+'to'          Keyword.Reserved
+'15'          Literal.Number.Float
+':'           Punctuation
+'poke'        Keyword.Reserved
+'646'         Literal.Number.Float
+','           Punctuation
+'t'           Name
+':'           Punctuation
+'print'       Keyword.Reserved
+'"{revers on}     "' Literal.String
+';'           Punctuation
+':'           Punctuation
+'next'        Keyword.Reserved
+'\n'          Text
+
+'50'          Literal.Number.Float
+' '           Text
+'get'         Keyword.Reserved
+'a$'          Name
+':'           Punctuation
+'if'          Keyword.Reserved
+'a$'          Name
+'='           Operator
+'chr$'        Name.Builtin
+'('           Punctuation
+'0'           Literal.Number.Float
+')'           Punctuation
+':'           Punctuation
+'goto'        Keyword.Reserved
+'40'          Literal.Number.Float
+'\n'          Text
+
+'55'          Literal.Number.Float
+' '           Text
+'rem it is legal to omit the closing " on line end\n' Comment.Single
+
+'60'          Literal.Number.Float
+' '           Text
+'print'       Keyword.Reserved
+'"{white}"'   Literal.String
+':'           Punctuation
+'print'       Keyword.Reserved
+'"bye...'     Literal.String
+'\n'          Text
+
+'70'          Literal.Number.Float
+' '           Text
+'end'         Keyword.Reserved
+'\n'          Text

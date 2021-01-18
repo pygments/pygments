@@ -1,0 +1,105 @@
+---input---
+#declare Index1 = 0;
+#while(Index1 <= 9)
+
+   #declare Index2 = 0;
+   #while(Index2 <= 19)
+
+      sphere { <Index1, Index2, 0>, .5 }
+
+      #declare Index2 = Index2 + 1;
+   #end
+
+   #declare Index1 = Index1 + 1;
+#end
+
+---tokens---
+'#declare'    Comment.Preproc
+' '           Text
+'Index1'      Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'#while'      Comment.Preproc
+'('           Punctuation
+'Index1'      Name
+' '           Text
+'<'           Punctuation
+'='           Operator
+' '           Text
+'9'           Literal.Number.Integer
+')'           Punctuation
+'\n\n   '     Text
+'#declare'    Comment.Preproc
+' '           Text
+'Index2'      Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n   '       Text
+'#while'      Comment.Preproc
+'('           Punctuation
+'Index2'      Name
+' '           Text
+'<'           Punctuation
+'='           Operator
+' '           Text
+'19'          Literal.Number.Integer
+')'           Punctuation
+'\n\n      '  Text
+'sphere'      Name.Builtin
+' '           Text
+'{'           Punctuation
+' '           Text
+'<'           Punctuation
+'Index1'      Name
+','           Punctuation
+' '           Text
+'Index2'      Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+'>'           Punctuation
+','           Punctuation
+' '           Text
+'.5'          Literal.Number.Float
+' '           Text
+'}'           Punctuation
+'\n\n      '  Text
+'#declare'    Comment.Preproc
+' '           Text
+'Index2'      Name
+' '           Text
+'='           Operator
+' '           Text
+'Index2'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n   '       Text
+'#end'        Comment.Preproc
+'\n\n   '     Text
+'#declare'    Comment.Preproc
+' '           Text
+'Index1'      Name
+' '           Text
+'='           Operator
+' '           Text
+'Index1'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'#end'        Comment.Preproc
+'\n'          Text

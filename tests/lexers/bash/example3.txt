@@ -1,0 +1,10 @@
+---input---
+cat <<-EOF
+  Hello world $PATH
+  EOF
+
+---tokens---
+'cat'         Text
+' '           Text
+'<<-EOF\n  Hello world $PATH\n  EOF' Literal.String
+'\n'          Text

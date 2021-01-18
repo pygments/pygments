@@ -1,0 +1,1234 @@
+---input---
+	--
+	-- Example fragment of an openEHR Archetype, written in cADL, a subsyntax of the Archetype Definition Language (ADL)
+	-- definition available here: http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf
+	--	Author: Thomas Beale
+	--
+
+	EVALUATION[id1] matches {	-- Adverse Reaction
+		data matches {
+			ITEM_TREE[id2] matches {
+				items cardinality matches {1..*; unordered} matches {
+					ELEMENT[id3] matches {	-- Substance/Agent
+						value matches {
+							DV_TEXT[id51] 
+						}
+					}
+					ELEMENT[id5] occurrences matches {0..1} matches {	-- Absolute Contraindication?
+						value matches {
+							DV_BOOLEAN[id52] matches {
+								value matches {True}
+							}
+						}
+					}
+					ELEMENT[id50] occurrences matches {0..1} matches {	-- Future Use
+						value matches {
+							DV_TEXT[id53] 
+						}
+					}
+					ELEMENT[id7] occurrences matches {0..1} matches {	-- Overall Comment
+						value matches {
+							DV_TEXT[id54] 
+						}
+					}
+					CLUSTER[id10] matches {	-- Reaction Event
+						items matches {
+							ELEMENT[id11] occurrences matches {0..1} matches {	-- Specific Substance/Agent
+								value matches {
+									DV_TEXT[id55] 
+								}
+							}
+							ELEMENT[id12] matches {	-- Manifestation
+								value matches {
+									DV_TEXT[id56] 
+								}
+							}
+							ELEMENT[id17] occurrences matches {0..1} matches {	-- Reaction Type
+								value matches {
+									DV_TEXT[id57] 
+								}
+							}
+							ELEMENT[id22] occurrences matches {0..1} matches {	-- Certainty
+								value matches {
+									DV_CODED_TEXT[id58] matches {
+										defining_code matches {[ac1]}		-- Certainty (synthesised)
+									}
+								}
+							}
+							ELEMENT[id13] occurrences matches {0..1} matches {	-- Reaction Description
+								value matches {
+									DV_TEXT[id59] 
+								}
+							}
+							ELEMENT[id28] occurrences matches {0..1} matches {	-- Onset of Reaction
+								value matches {
+									DV_DATE_TIME[id60] 
+								}
+							}
+							ELEMENT[id29] occurrences matches {0..1} matches {	-- Duration of Reaction
+								value matches {
+									DV_DURATION[id61] 
+								}
+							}
+							allow_archetype CLUSTER[id30] matches {	-- Additional Reaction Detail
+								include
+									archetype_id/value matches {/openEHR-EHR-CLUSTER\.anatomical_location(-a-zA-Z0-9_]+)*\.v1/}
+							}
+							ELEMENT[id19] occurrences matches {0..1} matches {	-- Exposure Description
+								value matches {
+									DV_TEXT[id62] 
+								}
+							}
+							ELEMENT[id21] occurrences matches {0..1} matches {	-- Earliest Exposure
+								value matches {
+									DV_DATE_TIME[id63] 
+								}
+							}
+							ELEMENT[id26] occurrences matches {0..1} matches {	-- Duration of Exposure
+								value matches {
+									DV_DURATION[id64] 
+								}
+							}
+							allow_archetype CLUSTER[id20] matches {	-- Additional Exposure Detail
+								include
+									archetype_id/value matches {/openEHR-EHR-CLUSTER\.amount(-a-zA-Z0-9_]+)*\.v1|openEHR-EHR-CLUSTER\.medication_admin(-a-zA-Z0-9_]+)*\.v1|openEHR-EHR-CLUSTER\.timing(-a-zA-Z0-9_]+)*\.v1/}
+							}
+							ELEMENT[id41] occurrences matches {0..1} matches {	-- Clinical Management Description
+								value matches {
+									DV_TEXT[id65] 
+								}
+							}
+							ELEMENT[id32] matches {	-- Multimedia
+								value matches {
+									DV_MULTIMEDIA[id66] matches {
+										media_type 
+									}
+								}
+							}
+							allow_archetype CLUSTER[id42] matches {	-- Reporting Details
+								include
+									archetype_id/value matches {/.*/}
+							}
+							ELEMENT[id33] occurrences matches {0..1} matches {	-- Reaction Comment
+								value matches {
+									DV_TEXT[id67] 
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[id43] matches {
+				items matches {
+					ELEMENT[id45] occurrences matches {0..1} matches {	-- Reaction Reported?
+						value matches {
+							DV_BOOLEAN[id68] matches {
+								value matches {True, False}
+							}
+						}
+					}
+					ELEMENT[id49] occurrences matches {0..1} matches {	-- Report Comment
+						value matches {
+							DV_TEXT[id69] 
+						}
+					}
+					ELEMENT[id46] matches {	-- Adverse Reaction Report
+						value matches {
+							DV_URI[id70] 
+						}
+					}
+					ELEMENT[id48] occurrences matches {0..1} matches {	-- Supporting Clinical Record Information
+						value matches {
+							DV_EHR_URI[id71] 
+						}
+					}
+				}
+			}
+		}
+	}
+
+---tokens---
+'\t'          Text
+'--'          Comment
+'\n'          Text
+
+'\t'          Text
+'-- Example fragment of an openEHR Archetype, written in cADL, a subsyntax of the Archetype Definition Language (ADL)' Comment
+'\n'          Text
+
+'\t'          Text
+'-- definition available here: http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf' Comment
+'\n'          Text
+
+'\t'          Text
+'--\tAuthor: Thomas Beale' Comment
+'\n'          Text
+
+'\t'          Text
+'--'          Comment
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'EVALUATION'  Name.Class
+'['           Punctuation
+'id1'         Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Adverse Reaction' Comment
+'\n'          Text
+
+'\t\t'        Text
+'data'        Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'ITEM_TREE'   Name.Class
+'['           Punctuation
+'id2'         Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'items'       Name.Class
+' '           Text
+'cardinality ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'1..*'        Literal.Number
+'; unordered' Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id3'         Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Substance/Agent' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'DV_TEXT'     Name.Class
+'['           Punctuation
+'id51'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id5'         Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Absolute Contraindication?' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'DV_BOOLEAN'  Name.Class
+'['           Punctuation
+'id52'        Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'True'        Literal
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id50'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Future Use' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'DV_TEXT'     Name.Class
+'['           Punctuation
+'id53'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id7'         Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Overall Comment' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'DV_TEXT'     Name.Class
+'['           Punctuation
+'id54'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'CLUSTER'     Name.Class
+'['           Punctuation
+'id10'        Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Reaction Event' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'items'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id11'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Specific Substance/Agent' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'DV_TEXT'     Name.Class
+'['           Punctuation
+'id55'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id12'        Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Manifestation' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'DV_TEXT'     Name.Class
+'['           Punctuation
+'id56'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id17'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Reaction Type' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'DV_TEXT'     Name.Class
+'['           Punctuation
+'id57'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id22'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Certainty' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'DV_CODED_TEXT' Name.Class
+'['           Punctuation
+'id58'        Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t\t' Text
+'defining_code' Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'['           Punctuation
+'ac1'         Name.Decorator
+']'           Punctuation
+'}'           Punctuation
+'\t\t'        Text
+'-- Certainty (synthesised)' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id13'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Reaction Description' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'DV_TEXT'     Name.Class
+'['           Punctuation
+'id59'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id28'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Onset of Reaction' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'DV_DATE_TIME' Name.Class
+'['           Punctuation
+'id60'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id29'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Duration of Reaction' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'DV_DURATION' Name.Class
+'['           Punctuation
+'id61'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'allow_archetype ' Keyword.Type
+'CLUSTER'     Name.Class
+'['           Punctuation
+'id30'        Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Additional Reaction Detail' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'include\n'   Keyword.Type
+
+'\t\t\t\t\t\t\t\t\t' Text
+'archetype_id' Name.Class
+'/'           Punctuation
+'value'       Name.Class
+' '           Punctuation
+'matches '    Operator
+'{'           Punctuation
+'/openEHR-EHR-CLUSTER\\.anatomical_location(-a-zA-Z0-9_]+)*\\.v1/' Literal.String.Regex
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id19'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Exposure Description' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'DV_TEXT'     Name.Class
+'['           Punctuation
+'id62'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id21'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Earliest Exposure' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'DV_DATE_TIME' Name.Class
+'['           Punctuation
+'id63'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id26'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Duration of Exposure' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'DV_DURATION' Name.Class
+'['           Punctuation
+'id64'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'allow_archetype ' Keyword.Type
+'CLUSTER'     Name.Class
+'['           Punctuation
+'id20'        Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Additional Exposure Detail' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'include\n'   Keyword.Type
+
+'\t\t\t\t\t\t\t\t\t' Text
+'archetype_id' Name.Class
+'/'           Punctuation
+'value'       Name.Class
+' '           Punctuation
+'matches '    Operator
+'{'           Punctuation
+'/openEHR-EHR-CLUSTER\\.amount(-a-zA-Z0-9_]+)*\\.v1|openEHR-EHR-CLUSTER\\.medication_admin(-a-zA-Z0-9_]+)*\\.v1|openEHR-EHR-CLUSTER\\.timing(-a-zA-Z0-9_]+)*\\.v1/' Literal.String.Regex
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id41'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Clinical Management Description' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'DV_TEXT'     Name.Class
+'['           Punctuation
+'id65'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id32'        Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Multimedia' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'DV_MULTIMEDIA' Name.Class
+'['           Punctuation
+'id66'        Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t\t' Text
+'media_type'  Name.Class
+' \n\t\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'allow_archetype ' Keyword.Type
+'CLUSTER'     Name.Class
+'['           Punctuation
+'id42'        Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Reporting Details' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'include\n'   Keyword.Type
+
+'\t\t\t\t\t\t\t\t\t' Text
+'archetype_id' Name.Class
+'/'           Punctuation
+'value'       Name.Class
+' '           Punctuation
+'matches '    Operator
+'{'           Punctuation
+'/.*/'        Literal.String.Regex
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id33'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Reaction Comment' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t\t' Text
+'DV_TEXT'     Name.Class
+'['           Punctuation
+'id67'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'protocol'    Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'ITEM_TREE'   Name.Class
+'['           Punctuation
+'id43'        Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'items'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id45'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Reaction Reported?' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'DV_BOOLEAN'  Name.Class
+'['           Punctuation
+'id68'        Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'True'        Literal
+','           Punctuation
+' '           Text
+'False'       Literal
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id49'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Report Comment' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'DV_TEXT'     Name.Class
+'['           Punctuation
+'id69'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id46'        Name.Decorator
+']'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Adverse Reaction Report' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'DV_URI'      Name.Class
+'['           Punctuation
+'id70'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'ELEMENT'     Name.Class
+'['           Punctuation
+'id48'        Name.Decorator
+']'           Punctuation
+' '           Text
+'occurrences ' Keyword.Type
+'matches '    Operator
+'{'           Punctuation
+'0..1'        Literal.Number
+'}'           Punctuation
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\t'          Text
+'-- Supporting Clinical Record Information' Comment
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'value'       Name.Class
+' '           Text
+'matches '    Operator
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'DV_EHR_URI'  Name.Class
+'['           Punctuation
+'id71'        Name.Decorator
+']'           Punctuation
+' \n\t\t\t\t\t\t' Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text

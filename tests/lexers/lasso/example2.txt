@@ -1,0 +1,4479 @@
+---input---
+<?LassoScript
+
+	//
+	// JSON Encoding and Decoding
+	//
+	// Copyright 2007-2012 LassoSoft Inc.
+	//
+	// <http://json.org/>
+	// <http://json-rpc.org/>
+	// <http://www.ietf.org/rfc/rfc4627.txt?number=4627>
+	//
+	
+If: (Lasso_TagExists: 'Encode_JSON') == False;
+
+	Define_Tag: 'JSON', -Namespace='Encode_', -Required='value', -Optional='options';
+	
+		Local: 'escapes' = Map('\\' = '\\', '"'  = '"', '\r' = 'r', '\n' = 'n', '\t' = 't', '\f' = 'f', '\b' = 'b');
+		Local: 'output' = '';
+		Local: 'newoptions' = (Array: -Internal);
+		If: !(Local_Defined: 'options') || (#options->(IsA: 'array') == False);
+			Local: 'options' = (Array);
+		/If;
+		If: (#options >> -UseNative) || (Params >> -UseNative);
+			#newoptions->(Insert: -UseNative);
+		/If;
+		If: (#options >> -NoNative) || (Params >> -NoNative);
+			#newoptions->(Insert: -NoNative);
+		/If;
+		If: (#options !>> -UseNative) && ((#value->(IsA: 'set')) || (#value->(IsA: 'list')) || (#value->(IsA: 'queue')) || (#value->(IsA: 'priorityqueue')) || (#value->(IsA: 'stack')));
+			#output += (Encode_JSON: Array->(insertfrom: #value->iterator) &, -Options=#newoptions);
+		Else: (#options !>> -UseNative) && (#value->(IsA: 'pair'));
+			#output += (Encode_JSON: (Array: #value->First, #value->Second));
+		Else: (#options !>> -Internal) && (#value->(Isa: 'array') == False) && (#value->(IsA: 'map') == False);
+			#output += '[' + (Encode_JSON: #value, -Options=#newoptions) + ']';
+		Else: (#value->(IsA: 'literal'));
+			#output += #value;
+		Else: (#value->(IsA: 'string'));
+			#output += '"';
+			Loop: (#value->Length);
+				Local('character' = #value->(Get: Loop_Count));
+				#output->(Append:
+					(Match_RegExp('[\\x{0020}-\\x{21}\\x{23}-\\x{5b}\\x{5d}-\\x{10fff}]') == #character) ? #character |
+						'\\' + (#escapes->(Contains: #character) ? #escapes->(Find: #character) | 'u' + String(Encode_Hex(#character))->PadLeading(4, '0')&)
+				);
+			/Loop;
+			#output += '"';
+		Else: (#value->(IsA: 'integer')) || (#value->(IsA: 'decimal')) || (#value->(IsA: 'boolean'));
+			#output += (String: #value);
+		Else: (#value->(IsA: 'null'));
+			#output += 'null';
+		Else: (#value->(IsA: 'date'));
+			If: #value->gmt;
+				#output += '"' + #value->(format: '%QT%TZ') + '"';
+			Else;
+				#output += '"' + #value->(format: '%QT%T') + '"';
+			/If;
+		Else: (#value->(IsA: 'array'));
+			#output += '[';
+			Iterate: #value, (Local: 'temp');
+				#output += (Encode_JSON: #temp, -Options=#newoptions);
+				If: #value->Size != Loop_Count;
+					#output += ', ';
+				/If;
+			/Iterate;
+			#output += ']';
+		Else: (#value->(IsA: 'object'));
+			#output += '{';
+			Iterate: #value, (Local: 'temp');
+				#output += #temp->First + ': ' + (Encode_JSON: #temp->Second, -Options=#newoptions);
+				If: (#value->Size != Loop_Count);
+					#output += ', ';
+				/If;
+			/Iterate;
+			#output += '}';
+		Else: (#value->(IsA: 'map'));
+			#output += '{';
+			Iterate: #value, (Local: 'temp');
+				#output += (Encode_JSON: #temp->First, -Options=#newoptions) + ': ' + (Encode_JSON: #temp->Second, -Options=#newoptions);
+				If: (#value->Size != Loop_Count);
+					#output += ', ';
+				/If;
+			/Iterate;
+			#output += '}';
+		Else: (#value->(IsA: 'client_ip')) || (#value->(IsA: 'client_address'));
+			#output += (Encode_JSON: (String: #value), -Options=#newoptions);
+		Else: (#options !>> -UseNative) && (#value->(IsA: 'set')) || (#value->(IsA: 'list')) || (#value->(IsA: 'queue')) || (#value->(IsA: 'priorityqueue')) || (#value->(IsA: 'stack'));
+			#output += (Encode_JSON: Array->(insertfrom: #value->iterator) &, -Options=#newoptions);
+		Else: (#options !>> -NoNative);
+			#output += (Encode_JSON: (Map: '__jsonclass__'=(Array:'deserialize',(Array:'<LassoNativeType>' + #value->Serialize + '</LassoNativeType>'))));
+		/If;
+		Return: @#output;
+		
+	/Define_Tag;
+
+/If;
+
+If: (Lasso_TagExists: 'Decode_JSON') == False;
+
+	Define_Tag: 'JSON', -Namespace='Decode_', -Required='value';
+
+		(#value == '') ? Return: Null;
+		
+		Define_Tag: 'consume_string', -Required='ibytes';
+			Local: 'unescapes' = (map: 34 = '"', 92 = '\\', 98 = '\b', 102 = '\f', 110 = '\n', 114 = '\r', 116 = '\t');
+			Local: 'temp' = 0, 'obytes' = Bytes;
+			While: ((#temp := #ibytes->export8bits) != 34); // '"'
+				If: (#temp === 92); // '\'
+					#temp = #ibytes->export8bits;
+					If: (#temp === 117); // 'u'
+						#obytes->(ImportString: (Decode_Hex: (String: #ibytes->(GetRange: #ibytes->Position + 1, 4)))->(ExportString: 'UTF-16'), 'UTF-8');
+						#ibytes->(SetPosition: #ibytes->Position + 4);
+					Else;
+						If: (#unescapes->(Contains: #temp));
+							#obytes->(ImportString: #unescapes->(Find: #temp), 'UTF-8');
+						Else;
+							#obytes->(Import8Bits: #temp);
+						/If;
+					/If;
+				Else;
+					#obytes->(Import8Bits: #temp);
+				/If;
+			/While;
+			Local('output' = #obytes->(ExportString: 'UTF-8'));
+			If: #output->(BeginsWith: '<LassoNativeType>') && #output->(EndsWith: '</LassoNativeType>');
+				Local: 'temp' = #output - '<LassoNativeType>' - '</LassoNativeType>';
+				Local: 'output' = null;
+				Protect;
+					#output->(Deserialize: #temp);
+				/Protect;
+			Else: (Valid_Date: #output, -Format='%QT%TZ');
+				Local: 'output' = (Date: #output, -Format='%QT%TZ');
+			Else: (Valid_Date: #output, -Format='%QT%T');
+				Local: 'output' = (Date: #output, -Format='%QT%T');
+			/If;			
+			Return: @#output;
+		/Define_Tag;
+
+		Define_Tag: 'consume_token', -Required='ibytes', -required='temp';
+			Local: 'obytes' = bytes->(import8bits: #temp) &;
+			local: 'delimit' = (array: 9, 10, 13, 32, 44, 58, 93, 125); // \t\r\n ,:]}
+			While: (#delimit !>> (#temp := #ibytes->export8bits));
+				#obytes->(import8bits: #temp);
+			/While;
+			Local: 'output' = (String: #obytes);
+			If: (#output == 'true') || (#output == 'false');
+				Return: (Boolean: #output);
+			Else: (#output == 'null');
+				Return: Null;
+			Else: (String_IsNumeric: #output);
+				Return: (#output >> '.') ? (Decimal: #output) | (Integer: #output);
+			/If;
+			Return: @#output;
+		/Define_Tag;
+
+		Define_Tag: 'consume_array', -Required='ibytes';
+			Local: 'output' = array;
+			local: 'delimit' = (array:  9, 10, 13, 32, 44); // \t\r\n ,
+			local: 'temp' = 0;
+			While: ((#temp := #ibytes->export8bits) != 93); // ]
+				If: (#delimit >> #temp);
+					// Discard whitespace 
+				Else: (#temp == 34); // "
+					#output->(insert: (consume_string: @#ibytes));
+				Else: (#temp == 91); // [
+					#output->(insert: (consume_array: @#ibytes));
+				Else: (#temp == 123); // {
+					#output->(insert: (consume_object: @#ibytes));
+				Else;
+					#output->(insert: (consume_token: @#ibytes, @#temp));
+					(#temp == 93) ? Loop_Abort;
+				/If;
+			/While;
+			Return: @#output;
+		/Define_Tag;
+
+		Define_Tag: 'consume_object', -Required='ibytes';
+			Local: 'output' = map;
+			local: 'delimit' = (array:  9, 10, 13, 32, 44); // \t\r\n ,
+			local: 'temp' = 0;
+			local: 'key' = null;
+			local: 'val' = null;
+			While: ((#temp := #ibytes->export8bits) != 125); // }
+				If: (#delimit >> #temp);
+					// Discard whitespace 
+				Else: (#key !== null) && (#temp == 34); // "
+					#output->(insert: #key = (consume_string: @#ibytes));
+					#key = null;
+				Else: (#key !== null) && (#temp == 91); // [
+					#output->(insert: #key = (consume_array: @#ibytes));
+					#key = null;
+				Else: (#key !== null) && (#temp == 123); // {
+					#output->(insert: #key = (consume_object: @#ibytes));
+					#key = null;
+				Else: (#key !== null);
+					#output->(insert: #key = (consume_token: @#ibytes, @#temp));
+					(#temp == 125) ? Loop_abort;
+					#key = null;
+				Else;
+					#key = (consume_string: @#ibytes);
+ 				    while(#delimit >> (#temp := #ibytes->export8bits));
+					/while;
+  					#temp != 58 ? Loop_Abort;
+				/If;
+			/While;
+			If: (#output >> '__jsonclass__') && (#output->(Find: '__jsonclass__')->(isa: 'array')) && (#output->(Find: '__jsonclass__')->size >= 2) && (#output->(Find: '__jsonclass__')->First == 'deserialize');
+				Return: #output->(find: '__jsonclass__')->Second->First;
+			Else: (#output >> 'native') && (#output >> 'comment') && (#output->(find: 'comment') == 'http://www.lassosoft.com/json');
+				Return: #output->(find: 'native');
+			/If;
+			Return: @#output;
+		/Define_Tag;
+		
+		Local: 'ibytes' = (bytes: #value);
+		Local: 'start' = 1;
+ 	  	#ibytes->removeLeading(BOM_UTF8);
+		Local: 'temp' = #ibytes->export8bits;
+		If: (#temp == 91); // [
+			Local: 'output' = (consume_array: @#ibytes);
+			Return: @#output;
+		Else: (#temp == 123); // {
+			Local: 'output' = (consume_object: @#ibytes);
+			Return: @#output;
+		/If;
+		
+	/Define_Tag;
+
+/If;
+	
+If: (Lasso_TagExists: 'Literal') == False;
+
+	Define_Type: 'Literal', 'String';
+	/Define_Type;
+
+/If;
+	
+If: (Lasso_TagExists: 'Object') == False;
+	
+	Define_Type: 'Object', 'Map';
+	/Define_Type;
+	
+/If;
+
+If: (Lasso_TagExists: 'JSON_RPCCall') == False;
+	
+	Define_Tag: 'RPCCall', -Namespace='JSON_',
+			-Required='method',
+			-Optional='params',
+			-Optional='id',
+			-Optional='host';
+
+		!(Local_Defined: 'host') ? Local: 'host' = 'http://localhost/lassoapps.8/rpc/rpc.lasso';
+		!(Local_Defined: 'id') ? Local: 'id' = Lasso_UniqueID;
+		Local: 'request' = (Map: 'method' = #method, 'params' = #params, 'id' = #id);
+		Local: 'request' = (Encode_JSON: #request);
+		Local: 'result' = (Include_URL: #host, -PostParams=#request);
+		Local: 'result' = (Decode_JSON: #result);
+		Return: @#result;
+
+	/Define_Tag;
+	
+/If;
+
+If: (Lasso_TagExists: 'JSON_Records') == False;
+
+	Define_Tag: 'JSON_Records',
+			-Optional='KeyField',
+			-Optional='ReturnField',
+			-Optional='ExcludeField',
+			-Optional='Fields';
+
+		Local: '_fields' = (Local_Defined: 'fields') && #fields->(IsA: 'array') ? #fields | Field_Names;
+		Fail_If: #_fields->size == 0, -1, 'No fields found for [JSON_Records]';
+		Local: '_keyfield' = (Local: 'keyfield');
+		If: #_fields !>> #_keyfield;
+			Local: '_keyfield' = (KeyField_Name);
+			If: #_fields !>> #_keyfield;
+				Local: '_keyfield' = 'ID';
+				If: #_fields !>> #_keyfield;
+					Local: '_keyfield' = #_fields->First;
+				/If;
+			/If;
+		/If;
+		Local: '_index' = #_fields->(FindPosition: #_keyfield)->First;
+		Local: '_return' = (Local_Defined: 'returnfield') ? (Params->(Find: -ReturnField)->(ForEach: {Params->First = Params->First->Second; Return: True}) &) | @#_fields;
+		Local: '_exclude' = (Local_Defined: 'excludefield') ? (Params->(Find: -ExcludeField)->(ForEach: {Params->First = Params->First->Second; Return: True}) &) | Array;
+		Local: '_records' =  Array;
+		Iterate: Records_Array, (Local: '_record');
+			Local: '_temp' = Map;
+			Iterate: #_fields, (Local: '_field');
+				((#_return >> #_field) && (#_exclude !>> #_field)) ? #_temp->Insert(#_field = #_record->(Get: Loop_Count));
+			/Iterate;
+			#_records->Insert(#_temp);
+		/Iterate;
+		Local: '_output' = (Encode_JSON: (Object: 'error_msg'=Error_Msg, 'error_code'=Error_Code, 'found_count'=Found_Count, 'keyfield'=#_keyfield, 'rows'=#_records));
+		Return: @#_output;
+
+	/Define_Tag;
+
+/If;
+
+?>
+
+---tokens---
+''            Other
+'<?LassoScript' Comment.Preproc
+'\n\n\t'      Text
+'//\n'        Comment.Single
+
+'\t'          Text
+'// JSON Encoding and Decoding\n' Comment.Single
+
+'\t'          Text
+'//\n'        Comment.Single
+
+'\t'          Text
+'// Copyright 2007-2012 LassoSoft Inc.\n' Comment.Single
+
+'\t'          Text
+'//\n'        Comment.Single
+
+'\t'          Text
+'// <http://json.org/>\n' Comment.Single
+
+'\t'          Text
+'// <http://json-rpc.org/>\n' Comment.Single
+
+'\t'          Text
+'// <http://www.ietf.org/rfc/rfc4627.txt?number=4627>\n' Comment.Single
+
+'\t'          Text
+'//\n'        Comment.Single
+
+'\t\n'        Text
+
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'Lasso_TagExists' Name.Builtin
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'Encode_JSON' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'False'       Keyword.Constant
+';'           Punctuation
+'\n\n\t'      Text
+'Define_Tag'  Keyword
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'JSON'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'-Namespace'  Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'Encode_'     Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'-Required'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'value'       Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'-Optional'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'options'     Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\n\t\t'  Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'escapes'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'Map'         Keyword.Type
+'('           Punctuation
+"'"           Literal.String.Single
+'\\\\'        Literal.String.Escape
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'\\\\'        Literal.String.Escape
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'"'           Literal.String.Single
+"'"           Literal.String.Single
+'  '          Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'"'           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'\\r'         Literal.String.Escape
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'r'           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'\\n'         Literal.String.Escape
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'n'           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'\\t'         Literal.String.Escape
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'t'           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'\\f'         Literal.String.Escape
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'f'           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'\\b'         Literal.String.Escape
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'b'           Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'output'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'newoptions'  Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'Array'       Keyword.Type
+':'           Punctuation
+' '           Text
+'-Internal'   Name.Attribute
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'!'           Operator
+'('           Punctuation
+'Local_Defined' Name.Builtin
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'options'     Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'#options'    Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'array'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'False'       Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'options'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'Array'       Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t'      Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#options'    Name.Variable.Instance
+' '           Text
+'>>'          Operator
+' '           Text
+'-UseNative'  Name.Attribute
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'Params'      Keyword
+' '           Text
+'>>'          Operator
+' '           Text
+'-UseNative'  Name.Attribute
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#newoptions' Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Insert'      Name.Other
+':'           Punctuation
+' '           Text
+'-UseNative'  Name.Attribute
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t'      Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#options'    Name.Variable.Instance
+' '           Text
+'>>'          Operator
+' '           Text
+'-NoNative'   Name.Attribute
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'Params'      Keyword
+' '           Text
+'>>'          Operator
+' '           Text
+'-NoNative'   Name.Attribute
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#newoptions' Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Insert'      Name.Other
+':'           Punctuation
+' '           Text
+'-NoNative'   Name.Attribute
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t'      Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#options'    Name.Variable.Instance
+' '           Text
+'!>>'         Operator
+' '           Text
+'-UseNative'  Name.Attribute
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'set'         Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'list'        Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'queue'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'priorityqueue' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'stack'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+'('           Punctuation
+'Encode_JSON' Name.Builtin
+':'           Punctuation
+' '           Text
+'Array'       Keyword.Type
+'->'          Operator
+'('           Punctuation
+'insertfrom'  Name.Other
+':'           Punctuation
+' '           Text
+'#value'      Name.Variable.Instance
+'->'          Operator
+'iterator'    Name.Builtin
+')'           Punctuation
+' '           Text
+'&'           Operator
+','           Punctuation
+' '           Text
+'-Options'    Name.Attribute
+'='           Operator
+'#newoptions' Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#options'    Name.Variable.Instance
+' '           Text
+'!>>'         Operator
+' '           Text
+'-UseNative'  Name.Attribute
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'pair'        Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+'('           Punctuation
+'Encode_JSON' Name.Builtin
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'Array'       Keyword.Type
+':'           Punctuation
+' '           Text
+'#value'      Name.Variable.Instance
+'->'          Operator
+'First'       Name.Builtin
+','           Punctuation
+' '           Text
+'#value'      Name.Variable.Instance
+'->'          Operator
+'Second'      Name.Builtin
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#options'    Name.Variable.Instance
+' '           Text
+'!>>'         Operator
+' '           Text
+'-Internal'   Name.Attribute
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Isa'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'array'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'False'       Keyword.Constant
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'map'         Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'False'       Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+'['           Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'Encode_JSON' Name.Builtin
+':'           Punctuation
+' '           Text
+'#value'      Name.Variable.Instance
+','           Punctuation
+' '           Text
+'-Options'    Name.Attribute
+'='           Operator
+'#newoptions' Name.Variable.Instance
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String.Single
+']'           Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'literal'     Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+'#value'      Name.Variable.Instance
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'string'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+'"'           Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t'    Text
+'Loop'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'Length'      Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Local'       Keyword.Declaration
+'('           Punctuation
+"'"           Literal.String.Single
+'character'   Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Get'         Name.Other
+':'           Punctuation
+' '           Text
+'Loop_Count'  Keyword
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Append'      Name.Other
+':'           Punctuation
+'\n\t\t\t\t\t' Text
+'('           Punctuation
+'Match_RegExp' Name.Builtin
+'('           Punctuation
+"'"           Literal.String.Single
+'['           Literal.String.Single
+'\\\\'        Literal.String.Escape
+'x{0020}-'    Literal.String.Single
+'\\\\'        Literal.String.Escape
+'x{21}'       Literal.String.Single
+'\\\\'        Literal.String.Escape
+'x{23}-'      Literal.String.Single
+'\\\\'        Literal.String.Escape
+'x{5b}'       Literal.String.Single
+'\\\\'        Literal.String.Escape
+'x{5d}-'      Literal.String.Single
+'\\\\'        Literal.String.Escape
+'x{10fff}]'   Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'#character'  Name.Variable.Instance
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'#character'  Name.Variable.Instance
+' '           Text
+'|'           Operator
+'\n\t\t\t\t\t\t' Text
+"'"           Literal.String.Single
+'\\\\'        Literal.String.Escape
+"'"           Literal.String.Single
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'#escapes'    Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Contains'    Name.Other
+':'           Punctuation
+' '           Text
+'#character'  Name.Variable.Instance
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'#escapes'    Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Find'        Name.Other
+':'           Punctuation
+' '           Text
+'#character'  Name.Variable.Instance
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+"'"           Literal.String.Single
+'u'           Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'+'           Operator
+' '           Text
+'String'      Keyword.Type
+'('           Punctuation
+'Encode_Hex'  Name.Builtin
+'('           Punctuation
+'#character'  Name.Variable.Instance
+')'           Punctuation
+')'           Punctuation
+'->'          Operator
+'PadLeading'  Name.Builtin
+'('           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'0'           Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'&'           Operator
+')'           Punctuation
+'\n\t\t\t\t'  Text
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'Loop'        Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+'"'           Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'integer'     Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'decimal'     Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'boolean'     Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+'('           Punctuation
+'String'      Keyword.Type
+':'           Punctuation
+' '           Text
+'#value'      Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'null'        Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+'null'        Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'date'        Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'#value'      Name.Variable.Instance
+'->'          Operator
+'gmt'         Name.Builtin
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+'"'           Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'+'           Operator
+' '           Text
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'format'      Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'%QT%TZ'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String.Single
+'"'           Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t'    Text
+'Else'        Keyword
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+'"'           Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'+'           Operator
+' '           Text
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'format'      Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'%QT%T'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String.Single
+'"'           Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'array'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+'['           Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t'    Text
+'Iterate'     Keyword
+':'           Punctuation
+' '           Text
+'#value'      Name.Variable.Instance
+','           Punctuation
+' '           Text
+'('           Punctuation
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'temp'        Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+'('           Punctuation
+'Encode_JSON' Name.Builtin
+':'           Punctuation
+' '           Text
+'#temp'       Name.Variable.Instance
+','           Punctuation
+' '           Text
+'-Options'    Name.Attribute
+'='           Operator
+'#newoptions' Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'#value'      Name.Variable.Instance
+'->'          Operator
+'Size'        Name.Builtin
+' '           Text
+'!='          Operator
+' '           Text
+'Loop_Count'  Keyword
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+', '          Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'Iterate'     Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+']'           Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'object'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+'{'           Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t'    Text
+'Iterate'     Keyword
+':'           Punctuation
+' '           Text
+'#value'      Name.Variable.Instance
+','           Punctuation
+' '           Text
+'('           Punctuation
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'temp'        Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+'#temp'       Name.Variable.Instance
+'->'          Operator
+'First'       Name.Builtin
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String.Single
+': '          Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'Encode_JSON' Name.Builtin
+':'           Punctuation
+' '           Text
+'#temp'       Name.Variable.Instance
+'->'          Operator
+'Second'      Name.Builtin
+','           Punctuation
+' '           Text
+'-Options'    Name.Attribute
+'='           Operator
+'#newoptions' Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'Size'        Name.Builtin
+' '           Text
+'!='          Operator
+' '           Text
+'Loop_Count'  Keyword
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+', '          Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'Iterate'     Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+'}'           Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'map'         Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+'{'           Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t'    Text
+'Iterate'     Keyword
+':'           Punctuation
+' '           Text
+'#value'      Name.Variable.Instance
+','           Punctuation
+' '           Text
+'('           Punctuation
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'temp'        Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+'('           Punctuation
+'Encode_JSON' Name.Builtin
+':'           Punctuation
+' '           Text
+'#temp'       Name.Variable.Instance
+'->'          Operator
+'First'       Name.Builtin
+','           Punctuation
+' '           Text
+'-Options'    Name.Attribute
+'='           Operator
+'#newoptions' Name.Variable.Instance
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String.Single
+': '          Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'Encode_JSON' Name.Builtin
+':'           Punctuation
+' '           Text
+'#temp'       Name.Variable.Instance
+'->'          Operator
+'Second'      Name.Builtin
+','           Punctuation
+' '           Text
+'-Options'    Name.Attribute
+'='           Operator
+'#newoptions' Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'Size'        Name.Builtin
+' '           Text
+'!='          Operator
+' '           Text
+'Loop_Count'  Keyword
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+', '          Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'Iterate'     Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+"'"           Literal.String.Single
+'}'           Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'client_ip'   Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'client_address' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+'('           Punctuation
+'Encode_JSON' Name.Builtin
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'String'      Keyword.Type
+':'           Punctuation
+' '           Text
+'#value'      Name.Variable.Instance
+')'           Punctuation
+','           Punctuation
+' '           Text
+'-Options'    Name.Attribute
+'='           Operator
+'#newoptions' Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#options'    Name.Variable.Instance
+' '           Text
+'!>>'         Operator
+' '           Text
+'-UseNative'  Name.Attribute
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'set'         Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'list'        Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'queue'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'priorityqueue' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'stack'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+'('           Punctuation
+'Encode_JSON' Name.Builtin
+':'           Punctuation
+' '           Text
+'Array'       Keyword.Type
+'->'          Operator
+'('           Punctuation
+'insertfrom'  Name.Other
+':'           Punctuation
+' '           Text
+'#value'      Name.Variable.Instance
+'->'          Operator
+'iterator'    Name.Builtin
+')'           Punctuation
+' '           Text
+'&'           Operator
+','           Punctuation
+' '           Text
+'-Options'    Name.Attribute
+'='           Operator
+'#newoptions' Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#options'    Name.Variable.Instance
+' '           Text
+'!>>'         Operator
+' '           Text
+'-NoNative'   Name.Attribute
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'#output'     Name.Variable.Instance
+' '           Text
+'+='          Operator
+' '           Text
+'('           Punctuation
+'Encode_JSON' Name.Builtin
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'Map'         Keyword.Type
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'__jsonclass__' Literal.String.Single
+"'"           Literal.String.Single
+'='           Operator
+'('           Punctuation
+'Array'       Keyword.Type
+':'           Punctuation
+"'"           Literal.String.Single
+'deserialize' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+'('           Punctuation
+'Array'       Keyword.Type
+':'           Punctuation
+"'"           Literal.String.Single
+'<LassoNativeType>' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'+'           Operator
+' '           Text
+'#value'      Name.Variable.Instance
+'->'          Operator
+'Serialize'   Name.Builtin
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String.Single
+'</LassoNativeType>' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t'      Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#output'     Name.Variable.Instance
+';'           Punctuation
+'\n\t\t\n\t'  Text
+'/'           Punctuation
+'Define_Tag'  Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'Lasso_TagExists' Name.Builtin
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'Decode_JSON' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'False'       Keyword.Constant
+';'           Punctuation
+'\n\n\t'      Text
+'Define_Tag'  Keyword
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'JSON'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'-Namespace'  Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'Decode_'     Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'-Required'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'value'       Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\n\t\t'    Text
+'('           Punctuation
+'#value'      Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+"'"           Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'Null'        Keyword.Type
+';'           Punctuation
+'\n\t\t\n\t\t' Text
+'Define_Tag'  Keyword
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'consume_string' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'-Required'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'ibytes'      Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t'    Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'unescapes'   Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'map'         Keyword.Type
+':'           Punctuation
+' '           Text
+'34'          Literal.Number.Integer
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'"'           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'92'          Literal.Number.Integer
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'\\\\'        Literal.String.Escape
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'98'          Literal.Number.Integer
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'\\b'         Literal.String.Escape
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'102'         Literal.Number.Integer
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'\\f'         Literal.String.Escape
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'110'         Literal.Number.Integer
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'\\n'         Literal.String.Escape
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'114'         Literal.Number.Integer
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'\\r'         Literal.String.Escape
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'116'         Literal.Number.Integer
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'\\t'         Literal.String.Escape
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'temp'        Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'obytes'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'Bytes'       Keyword.Type
+';'           Punctuation
+'\n\t\t\t'    Text
+'While'       Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+':='          Operator
+' '           Text
+'#ibytes'     Name.Variable.Instance
+'->'          Operator
+'export8bits' Name.Builtin
+')'           Punctuation
+' '           Text
+'!='          Operator
+' '           Text
+'34'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// \'"\'\n'  Comment.Single
+
+'\t\t\t\t'    Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+'==='         Operator
+' '           Text
+'92'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+"// '\\'\n"   Comment.Single
+
+'\t\t\t\t\t'  Text
+'#temp'       Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'#ibytes'     Name.Variable.Instance
+'->'          Operator
+'export8bits' Name.Builtin
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+'==='         Operator
+' '           Text
+'117'         Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+"// 'u'\n"    Comment.Single
+
+'\t\t\t\t\t\t' Text
+'#obytes'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'ImportString' Name.Other
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'Decode_Hex'  Name.Builtin
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'String'      Keyword.Type
+':'           Punctuation
+' '           Text
+'#ibytes'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'GetRange'    Name.Other
+':'           Punctuation
+' '           Text
+'#ibytes'     Name.Variable.Instance
+'->'          Operator
+'Position'    Name.Builtin
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'->'          Operator
+'('           Punctuation
+'ExportString' Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'UTF-16'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'UTF-8'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t\t' Text
+'#ibytes'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'SetPosition' Name.Other
+':'           Punctuation
+' '           Text
+'#ibytes'     Name.Variable.Instance
+'->'          Operator
+'Position'    Name.Builtin
+' '           Text
+'+'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'Else'        Keyword
+';'           Punctuation
+'\n\t\t\t\t\t\t' Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#unescapes'  Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Contains'    Name.Other
+':'           Punctuation
+' '           Text
+'#temp'       Name.Variable.Instance
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t\t\t' Text
+'#obytes'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'ImportString' Name.Other
+':'           Punctuation
+' '           Text
+'#unescapes'  Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Find'        Name.Other
+':'           Punctuation
+' '           Text
+'#temp'       Name.Variable.Instance
+')'           Punctuation
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'UTF-8'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t\t' Text
+'Else'        Keyword
+';'           Punctuation
+'\n\t\t\t\t\t\t\t' Text
+'#obytes'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Import8Bits' Name.Other
+':'           Punctuation
+' '           Text
+'#temp'       Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t\t' Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Else'        Keyword
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'#obytes'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Import8Bits' Name.Other
+':'           Punctuation
+' '           Text
+'#temp'       Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'While'       Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'Local'       Keyword.Declaration
+'('           Punctuation
+"'"           Literal.String.Single
+'output'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'#obytes'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'ExportString' Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'UTF-8'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'BeginsWith'  Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'<LassoNativeType>' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'EndsWith'    Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'</LassoNativeType>' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'temp'        Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'#output'     Name.Variable.Instance
+' '           Text
+'-'           Operator
+' '           Text
+"'"           Literal.String.Single
+'<LassoNativeType>' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'-'           Operator
+' '           Text
+"'"           Literal.String.Single
+'</LassoNativeType>' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'output'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword.Type
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Protect'     Keyword
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Deserialize' Name.Builtin
+':'           Punctuation
+' '           Text
+'#temp'       Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'/'           Punctuation
+'Protect'     Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'Valid_Date'  Name.Builtin
+':'           Punctuation
+' '           Text
+'#output'     Name.Variable.Instance
+','           Punctuation
+' '           Text
+'-Format'     Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'%QT%TZ'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'output'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'Date'        Keyword.Type
+':'           Punctuation
+' '           Text
+'#output'     Name.Variable.Instance
+','           Punctuation
+' '           Text
+'-Format'     Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'%QT%TZ'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'Valid_Date'  Name.Builtin
+':'           Punctuation
+' '           Text
+'#output'     Name.Variable.Instance
+','           Punctuation
+' '           Text
+'-Format'     Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'%QT%T'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'output'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'Date'        Keyword.Type
+':'           Punctuation
+' '           Text
+'#output'     Name.Variable.Instance
+','           Punctuation
+' '           Text
+'-Format'     Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'%QT%T'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\t\t\t\n\t\t\t' Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#output'     Name.Variable.Instance
+';'           Punctuation
+'\n\t\t'      Text
+'/'           Punctuation
+'Define_Tag'  Keyword
+';'           Punctuation
+'\n\n\t\t'    Text
+'Define_Tag'  Keyword
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'consume_token' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'-Required'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'ibytes'      Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'-required'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'temp'        Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t'    Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'obytes'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'bytes'       Keyword.Type
+'->'          Operator
+'('           Punctuation
+'import8bits' Name.Other
+':'           Punctuation
+' '           Text
+'#temp'       Name.Variable.Instance
+')'           Punctuation
+' '           Text
+'&'           Operator
+';'           Punctuation
+'\n\t\t\t'    Text
+'local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'delimit'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'array'       Keyword.Type
+':'           Punctuation
+' '           Text
+'9'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'13'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'32'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'44'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'58'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'93'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'125'         Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// \\t\\r\\n ,:]}\n' Comment.Single
+
+'\t\t\t'      Text
+'While'       Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#delimit'    Name.Variable.Instance
+' '           Text
+'!>>'         Operator
+' '           Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+':='          Operator
+' '           Text
+'#ibytes'     Name.Variable.Instance
+'->'          Operator
+'export8bits' Name.Builtin
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'#obytes'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'import8bits' Name.Other
+':'           Punctuation
+' '           Text
+'#temp'       Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'While'       Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'output'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'String'      Keyword.Type
+':'           Punctuation
+' '           Text
+'#obytes'     Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#output'     Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+"'"           Literal.String.Single
+'true'        Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'#output'     Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+"'"           Literal.String.Single
+'false'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'Boolean'     Keyword.Type
+':'           Punctuation
+' '           Text
+'#output'     Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#output'     Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+"'"           Literal.String.Single
+'null'        Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'Null'        Keyword.Type
+';'           Punctuation
+'\n\t\t\t'    Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'String_IsNumeric' Name.Builtin
+':'           Punctuation
+' '           Text
+'#output'     Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#output'     Name.Variable.Instance
+' '           Text
+'>>'          Operator
+' '           Text
+"'"           Literal.String.Single
+'.'           Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'('           Punctuation
+'Decimal'     Keyword.Type
+':'           Punctuation
+' '           Text
+'#output'     Name.Variable.Instance
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'Integer'     Keyword.Type
+':'           Punctuation
+' '           Text
+'#output'     Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#output'     Name.Variable.Instance
+';'           Punctuation
+'\n\t\t'      Text
+'/'           Punctuation
+'Define_Tag'  Keyword
+';'           Punctuation
+'\n\n\t\t'    Text
+'Define_Tag'  Keyword
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'consume_array' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'-Required'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'ibytes'      Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t'    Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'output'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'array'       Keyword.Type
+';'           Punctuation
+'\n\t\t\t'    Text
+'local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'delimit'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'array'       Keyword.Type
+':'           Punctuation
+'  '          Text
+'9'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'13'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'32'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'44'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// \\t\\r\\n ,\n' Comment.Single
+
+'\t\t\t'      Text
+'local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'temp'        Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n\t\t\t'    Text
+'While'       Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+':='          Operator
+' '           Text
+'#ibytes'     Name.Variable.Instance
+'->'          Operator
+'export8bits' Name.Builtin
+')'           Punctuation
+' '           Text
+'!='          Operator
+' '           Text
+'93'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// ]\n'      Comment.Single
+
+'\t\t\t\t'    Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#delimit'    Name.Variable.Instance
+' '           Text
+'>>'          Operator
+' '           Text
+'#temp'       Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'// Discard whitespace \n' Comment.Single
+
+'\t\t\t\t'    Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+'34'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// "\n'      Comment.Single
+
+'\t\t\t\t\t'  Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'insert'      Name.Other
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'consume_string' Name.Other
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#ibytes'     Name.Variable.Instance
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+'91'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// [\n'      Comment.Single
+
+'\t\t\t\t\t'  Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'insert'      Name.Other
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'consume_array' Name.Other
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#ibytes'     Name.Variable.Instance
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+'123'         Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// {\n'      Comment.Single
+
+'\t\t\t\t\t'  Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'insert'      Name.Other
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'consume_object' Name.Other
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#ibytes'     Name.Variable.Instance
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Else'        Keyword
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'insert'      Name.Other
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'consume_token' Name.Other
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#ibytes'     Name.Variable.Instance
+','           Punctuation
+' '           Text
+'@'           Punctuation
+'#temp'       Name.Variable.Instance
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+'93'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'Loop_Abort'  Keyword
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'While'       Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#output'     Name.Variable.Instance
+';'           Punctuation
+'\n\t\t'      Text
+'/'           Punctuation
+'Define_Tag'  Keyword
+';'           Punctuation
+'\n\n\t\t'    Text
+'Define_Tag'  Keyword
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'consume_object' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'-Required'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'ibytes'      Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t'    Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'output'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'map'         Keyword.Type
+';'           Punctuation
+'\n\t\t\t'    Text
+'local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'delimit'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'array'       Keyword.Type
+':'           Punctuation
+'  '          Text
+'9'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'13'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'32'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'44'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// \\t\\r\\n ,\n' Comment.Single
+
+'\t\t\t'      Text
+'local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'temp'        Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n\t\t\t'    Text
+'local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'key'         Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword.Type
+';'           Punctuation
+'\n\t\t\t'    Text
+'local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'val'         Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword.Type
+';'           Punctuation
+'\n\t\t\t'    Text
+'While'       Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+':='          Operator
+' '           Text
+'#ibytes'     Name.Variable.Instance
+'->'          Operator
+'export8bits' Name.Builtin
+')'           Punctuation
+' '           Text
+'!='          Operator
+' '           Text
+'125'         Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// }\n'      Comment.Single
+
+'\t\t\t\t'    Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#delimit'    Name.Variable.Instance
+' '           Text
+'>>'          Operator
+' '           Text
+'#temp'       Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'// Discard whitespace \n' Comment.Single
+
+'\t\t\t\t'    Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#key'        Name.Variable.Instance
+' '           Text
+'!=='         Operator
+' '           Text
+'null'        Keyword.Type
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+'34'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// "\n'      Comment.Single
+
+'\t\t\t\t\t'  Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'insert'      Name.Other
+':'           Punctuation
+' '           Text
+'#key'        Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'consume_string' Name.Other
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#ibytes'     Name.Variable.Instance
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'#key'        Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword.Type
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#key'        Name.Variable.Instance
+' '           Text
+'!=='         Operator
+' '           Text
+'null'        Keyword.Type
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+'91'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// [\n'      Comment.Single
+
+'\t\t\t\t\t'  Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'insert'      Name.Other
+':'           Punctuation
+' '           Text
+'#key'        Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'consume_array' Name.Other
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#ibytes'     Name.Variable.Instance
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'#key'        Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword.Type
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#key'        Name.Variable.Instance
+' '           Text
+'!=='         Operator
+' '           Text
+'null'        Keyword.Type
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+'123'         Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// {\n'      Comment.Single
+
+'\t\t\t\t\t'  Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'insert'      Name.Other
+':'           Punctuation
+' '           Text
+'#key'        Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'consume_object' Name.Other
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#ibytes'     Name.Variable.Instance
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'#key'        Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword.Type
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#key'        Name.Variable.Instance
+' '           Text
+'!=='         Operator
+' '           Text
+'null'        Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'insert'      Name.Other
+':'           Punctuation
+' '           Text
+'#key'        Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'consume_token' Name.Other
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#ibytes'     Name.Variable.Instance
+','           Punctuation
+' '           Text
+'@'           Punctuation
+'#temp'       Name.Variable.Instance
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+'125'         Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'Loop_abort'  Keyword
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'#key'        Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword.Type
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Else'        Keyword
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'#key'        Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'consume_string' Name.Other
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#ibytes'     Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n \t\t\t\t    ' Text
+'while'       Keyword
+'('           Punctuation
+'#delimit'    Name.Variable.Instance
+' '           Text
+'>>'          Operator
+' '           Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+':='          Operator
+' '           Text
+'#ibytes'     Name.Variable.Instance
+'->'          Operator
+'export8bits' Name.Builtin
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'/'           Punctuation
+'while'       Keyword
+';'           Punctuation
+'\n  \t\t\t\t\t' Text
+'#temp'       Name.Variable.Instance
+' '           Text
+'!='          Operator
+' '           Text
+'58'          Literal.Number.Integer
+' '           Text
+'?'           Operator
+' '           Text
+'Loop_Abort'  Keyword
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'While'       Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#output'     Name.Variable.Instance
+' '           Text
+'>>'          Operator
+' '           Text
+"'"           Literal.String.Single
+'__jsonclass__' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Find'        Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'__jsonclass__' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'->'          Operator
+'('           Punctuation
+'isa'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'array'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Find'        Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'__jsonclass__' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'->'          Operator
+'size'        Name.Builtin
+' '           Text
+'>='          Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Find'        Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'__jsonclass__' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'->'          Operator
+'First'       Name.Builtin
+' '           Text
+'=='          Operator
+' '           Text
+"'"           Literal.String.Single
+'deserialize' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'find'        Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'__jsonclass__' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'->'          Operator
+'Second'      Name.Builtin
+'->'          Operator
+'First'       Name.Builtin
+';'           Punctuation
+'\n\t\t\t'    Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#output'     Name.Variable.Instance
+' '           Text
+'>>'          Operator
+' '           Text
+"'"           Literal.String.Single
+'native'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'#output'     Name.Variable.Instance
+' '           Text
+'>>'          Operator
+' '           Text
+"'"           Literal.String.Single
+'comment'     Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'find'        Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'comment'     Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+"'"           Literal.String.Single
+'http://www.lassosoft.com/json' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'#output'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'find'        Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'native'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#output'     Name.Variable.Instance
+';'           Punctuation
+'\n\t\t'      Text
+'/'           Punctuation
+'Define_Tag'  Keyword
+';'           Punctuation
+'\n\t\t\n\t\t' Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'ibytes'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'bytes'       Keyword.Type
+':'           Punctuation
+' '           Text
+'#value'      Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'start'       Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n \t  \t'   Text
+'#ibytes'     Name.Variable.Instance
+'->'          Operator
+'removeLeading' Name.Builtin
+'('           Punctuation
+'BOM_UTF8'    Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'temp'        Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'#ibytes'     Name.Variable.Instance
+'->'          Operator
+'export8bits' Name.Builtin
+';'           Punctuation
+'\n\t\t'      Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+'91'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// [\n'      Comment.Single
+
+'\t\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'output'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'consume_array' Name.Other
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#ibytes'     Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#output'     Name.Variable.Instance
+';'           Punctuation
+'\n\t\t'      Text
+'Else'        Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'#temp'       Name.Variable.Instance
+' '           Text
+'=='          Operator
+' '           Text
+'123'         Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// {\n'      Comment.Single
+
+'\t\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'output'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'consume_object' Name.Other
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#ibytes'     Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#output'     Name.Variable.Instance
+';'           Punctuation
+'\n\t\t'      Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t\n\t'  Text
+'/'           Punctuation
+'Define_Tag'  Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\n'      Text
+
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'Lasso_TagExists' Name.Builtin
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'Literal'     Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'False'       Keyword.Constant
+';'           Punctuation
+'\n\n\t'      Text
+'Define_Type' Keyword
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'Literal'     Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'String'      Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t'        Text
+'/'           Punctuation
+'Define_Type' Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\n'      Text
+
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'Lasso_TagExists' Name.Builtin
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'Object'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'False'       Keyword.Constant
+';'           Punctuation
+'\n\t\n\t'    Text
+'Define_Type' Keyword
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'Object'      Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'Map'         Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t'        Text
+'/'           Punctuation
+'Define_Type' Keyword
+';'           Punctuation
+'\n\t\n'      Text
+
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'Lasso_TagExists' Name.Builtin
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'JSON_RPCCall' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'False'       Keyword.Constant
+';'           Punctuation
+'\n\t\n\t'    Text
+'Define_Tag'  Keyword
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'RPCCall'     Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'-Namespace'  Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'JSON_'       Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+'\n\t\t\t'    Text
+'-Required'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'method'      Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+'\n\t\t\t'    Text
+'-Optional'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'params'      Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+'\n\t\t\t'    Text
+'-Optional'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'id'          Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+'\n\t\t\t'    Text
+'-Optional'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'host'        Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\n\t\t'    Text
+'!'           Operator
+'('           Punctuation
+'Local_Defined' Name.Builtin
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'host'        Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'host'        Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'http://localhost/lassoapps.8/rpc/rpc.lasso' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t'      Text
+'!'           Operator
+'('           Punctuation
+'Local_Defined' Name.Builtin
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'id'          Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'id'          Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'Lasso_UniqueID' Name.Builtin
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'request'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'Map'         Keyword.Type
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'method'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'#method'     Name.Variable.Instance
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'params'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'#params'     Name.Variable.Instance
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'id'          Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'#id'         Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'request'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'Encode_JSON' Name.Builtin
+':'           Punctuation
+' '           Text
+'#request'    Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'result'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'Include_URL' Name.Builtin
+':'           Punctuation
+' '           Text
+'#host'       Name.Variable.Instance
+','           Punctuation
+' '           Text
+'-PostParams' Name.Attribute
+'='           Operator
+'#request'    Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'result'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'Decode_JSON' Name.Builtin
+':'           Punctuation
+' '           Text
+'#result'     Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#result'     Name.Variable.Instance
+';'           Punctuation
+'\n\n\t'      Text
+'/'           Punctuation
+'Define_Tag'  Keyword
+';'           Punctuation
+'\n\t\n'      Text
+
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'Lasso_TagExists' Name.Builtin
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'JSON_Records' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'False'       Keyword.Constant
+';'           Punctuation
+'\n\n\t'      Text
+'Define_Tag'  Keyword
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'JSON_Records' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+'\n\t\t\t'    Text
+'-Optional'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'KeyField'    Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+'\n\t\t\t'    Text
+'-Optional'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'ReturnField' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+'\n\t\t\t'    Text
+'-Optional'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'ExcludeField' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+'\n\t\t\t'    Text
+'-Optional'   Name.Attribute
+'='           Operator
+"'"           Literal.String.Single
+'Fields'      Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\n\t\t'    Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_fields'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'Local_Defined' Name.Builtin
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'fields'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'#fields'     Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'IsA'         Name.Other
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'array'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'#fields'     Name.Variable.Instance
+' '           Text
+'|'           Operator
+' '           Text
+'Field_Names' Name.Builtin
+';'           Punctuation
+'\n\t\t'      Text
+'Fail_If'     Keyword
+':'           Punctuation
+' '           Text
+'#_fields'    Name.Variable.Instance
+'->'          Operator
+'size'        Name.Builtin
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'No fields found for [JSON_Records]' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_keyfield'   Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'keyfield'    Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'#_fields'    Name.Variable.Instance
+' '           Text
+'!>>'         Operator
+' '           Text
+'#_keyfield'  Name.Variable.Instance
+';'           Punctuation
+'\n\t\t\t'    Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_keyfield'   Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'KeyField_Name' Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'#_fields'    Name.Variable.Instance
+' '           Text
+'!>>'         Operator
+' '           Text
+'#_keyfield'  Name.Variable.Instance
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_keyfield'   Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'ID'          Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'If'          Keyword
+':'           Punctuation
+' '           Text
+'#_fields'    Name.Variable.Instance
+' '           Text
+'!>>'         Operator
+' '           Text
+'#_keyfield'  Name.Variable.Instance
+';'           Punctuation
+'\n\t\t\t\t\t' Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_keyfield'   Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'#_fields'    Name.Variable.Instance
+'->'          Operator
+'First'       Name.Builtin
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t'      Text
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_index'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'#_fields'    Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'FindPosition' Name.Other
+':'           Punctuation
+' '           Text
+'#_keyfield'  Name.Variable.Instance
+')'           Punctuation
+'->'          Operator
+'First'       Name.Builtin
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_return'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'Local_Defined' Name.Builtin
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'returnfield' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'('           Punctuation
+'Params'      Keyword
+'->'          Operator
+'('           Punctuation
+'Find'        Name.Other
+':'           Punctuation
+' '           Text
+'-ReturnField' Name.Attribute
+')'           Punctuation
+'->'          Operator
+'('           Punctuation
+'ForEach'     Name.Other
+':'           Punctuation
+' '           Text
+'{'           Punctuation
+'Params'      Keyword
+'->'          Operator
+'First'       Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'Params'      Keyword
+'->'          Operator
+'First'       Name.Builtin
+'->'          Operator
+'Second'      Name.Builtin
+';'           Punctuation
+' '           Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'True'        Keyword.Constant
+'}'           Punctuation
+')'           Punctuation
+' '           Text
+'&'           Operator
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'@'           Punctuation
+'#_fields'    Name.Variable.Instance
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_exclude'    Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'Local_Defined' Name.Builtin
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'excludefield' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'('           Punctuation
+'Params'      Keyword
+'->'          Operator
+'('           Punctuation
+'Find'        Name.Other
+':'           Punctuation
+' '           Text
+'-ExcludeField' Name.Attribute
+')'           Punctuation
+'->'          Operator
+'('           Punctuation
+'ForEach'     Name.Other
+':'           Punctuation
+' '           Text
+'{'           Punctuation
+'Params'      Keyword
+'->'          Operator
+'First'       Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'Params'      Keyword
+'->'          Operator
+'First'       Name.Builtin
+'->'          Operator
+'Second'      Name.Builtin
+';'           Punctuation
+' '           Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'True'        Keyword.Constant
+'}'           Punctuation
+')'           Punctuation
+' '           Text
+'&'           Operator
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'Array'       Keyword.Type
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_records'    Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+'  '          Text
+'Array'       Keyword.Type
+';'           Punctuation
+'\n\t\t'      Text
+'Iterate'     Keyword
+':'           Punctuation
+' '           Text
+'Records_Array' Name.Builtin
+','           Punctuation
+' '           Text
+'('           Punctuation
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_record'     Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_temp'       Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'Map'         Keyword.Type
+';'           Punctuation
+'\n\t\t\t'    Text
+'Iterate'     Keyword
+':'           Punctuation
+' '           Text
+'#_fields'    Name.Variable.Instance
+','           Punctuation
+' '           Text
+'('           Punctuation
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_field'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'('           Punctuation
+'('           Punctuation
+'#_return'    Name.Variable.Instance
+' '           Text
+'>>'          Operator
+' '           Text
+'#_field'     Name.Variable.Instance
+')'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Punctuation
+'#_exclude'   Name.Variable.Instance
+' '           Text
+'!>>'         Operator
+' '           Text
+'#_field'     Name.Variable.Instance
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'#_temp'      Name.Variable.Instance
+'->'          Operator
+'Insert'      Name.Builtin
+'('           Punctuation
+'#_field'     Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'#_record'    Name.Variable.Instance
+'->'          Operator
+'('           Punctuation
+'Get'         Name.Other
+':'           Punctuation
+' '           Text
+'Loop_Count'  Keyword
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'/'           Punctuation
+'Iterate'     Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'#_records'   Name.Variable.Instance
+'->'          Operator
+'Insert'      Name.Builtin
+'('           Punctuation
+'#_temp'      Name.Variable.Instance
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'/'           Punctuation
+'Iterate'     Keyword
+';'           Punctuation
+'\n\t\t'      Text
+'Local'       Keyword.Declaration
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_output'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'Encode_JSON' Name.Builtin
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'Object'      Name.Builtin
+':'           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'error_msg'   Literal.String.Single
+"'"           Literal.String.Single
+'='           Operator
+'Error_Msg'   Name.Builtin
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'error_code'  Literal.String.Single
+"'"           Literal.String.Single
+'='           Operator
+'Error_Code'  Name.Builtin
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'found_count' Literal.String.Single
+"'"           Literal.String.Single
+'='           Operator
+'Found_Count' Name.Builtin
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'keyfield'    Literal.String.Single
+"'"           Literal.String.Single
+'='           Operator
+'#_keyfield'  Name.Variable.Instance
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'rows'        Literal.String.Single
+"'"           Literal.String.Single
+'='           Operator
+'#_records'   Name.Variable.Instance
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'Return'      Keyword
+':'           Punctuation
+' '           Text
+'@'           Punctuation
+'#_output'    Name.Variable.Instance
+';'           Punctuation
+'\n\n\t'      Text
+'/'           Punctuation
+'Define_Tag'  Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'/'           Punctuation
+'If'          Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'?>'          Comment.Preproc
+'\n'          Other

@@ -1,0 +1,850 @@
+---input---
+xquery version "3.0";
+
+declare function local:add-log-message($message as xs:string) as empty-sequence()?
+{
+	let $logfile-collection := "/db/apps/exist101/log"
+	let $logfile-name := "exist101-log.xml"
+	let $logfile-full := concat($logfile-collection, '/', $logfile-name)
+	let $logfile-created :=
+	if(doc-available($logfile-full))then
+		$logfile-full
+	else
+		xmldb:store($logfile-collection, $logfile-name, <eXist101-Log/>)
+	return
+		update insert
+			<LogEntry timestamp="{current-dateTime()}">{$message}</LogEntry>
+		into doc($logfile-full)/*
+};
+
+declare function local:insert-attributes() {
+	let $elm as element() := doc('/db/Path/To/Some/Document.xml')/*
+	return (
+		update insert <NEW/> into $elm,
+		update insert attribute x { 'y' } into $elm/*[last()],
+		update insert attribute a { 'b' } into $elm/*[last()]
+	)
+};
+
+declare function local:insert-elem() {
+	let $elm as element() := doc('/db/Path/To/Some/Document.xml')/*
+	return
+		update insert <NEW x="y" a="b"/> into $elm
+};
+
+declare function local:insert-elem2() {
+	let $elm as element() := doc('/db/Path/To/Some/Document.xml')/*
+	let $new-element as element() := <NEW x="y" a="b"/>
+	return
+		update insert $new-element into $elm	
+};
+
+declare function local:insert-single() {
+	update insert <LogEntry>Something happened...</LogEntry> into doc('/db/logs/mainlog.xml')/*
+};
+
+
+declare function local:trim-insert() {
+	let $document := doc('/db/logs/mainlog.xml')
+	let $newentry := <LogEntry>Something happened...</LogEntry>
+	return
+		update delete $document/*/LogEntry[position() ge 10],
+		if(exists($document/*/LogEntry[1]))then
+			update insert $newentry preceding $document/*/LogEntry[1]
+		else
+			update insert $newentry into $document/*
+};
+
+
+declare function local:attempt-document-node-insert() {
+	
+	(: This is invalid: :)
+	let $document as document-node() := <Root><a/></Root>
+	return
+		update insert <b/> into $document/*
+};
+
+declare function local:attempt-attr-update-with-node() {
+	update replace doc('/db/test/test.xml')/*/@name with
+		<a>aaa<b>bbb</b></a>
+};
+
+
+(# exist:batch-transaction #) {
+	update delete $document/*/LogEntry[position() ge 10],
+	update insert $newentry preceding $document/*/LogEntry[1]
+}
+
+---tokens---
+'xquery'      Keyword.Pseudo
+' '           Text
+'version'     Keyword.Pseudo
+' '           Text
+'"3.0"'       Literal.String.Double
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:add-log-message' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'message'     Name
+' '           Text
+'as'          Keyword
+' '           Text
+'xs:string'   Keyword.Type
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'empty-sequence' Name.Tag
+''            Text
+'('           Punctuation
+')'           Punctuation
+'?'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'logfile-collection' Name
+' '           Text
+':='          Operator
+' '           Text
+'"/db/apps/exist101/log"' Literal.String.Double
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'logfile-name' Name
+' '           Text
+':='          Operator
+' '           Text
+'"exist101-log.xml"' Literal.String.Double
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'logfile-full' Name
+' '           Text
+':='          Operator
+' '           Text
+'concat'      Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'logfile-collection' Name
+','           Punctuation
+' '           Text
+"'/'"         Literal.String.Single
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'logfile-name' Name
+')'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'logfile-created' Name
+' '           Text
+':='          Operator
+'\n\t'        Text
+'if'          Keyword
+'('           Punctuation
+'doc-available' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'logfile-full' Name
+')'           Punctuation
+')'           Punctuation
+'then'        Keyword
+'\n\t\t'      Text
+'$'           Name.Variable
+'logfile-full' Name
+'\n\t'        Text
+'else'        Keyword
+'\n\t\t'      Text
+'xmldb:store' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'logfile-collection' Name
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'logfile-name' Name
+','           Punctuation
+' '           Text
+'<'           Name.Tag
+'eXist101-Log' Name.Tag
+'/>'          Name.Tag
+')'           Punctuation
+'\n\t'        Text
+'return'      Keyword
+'\n\t\t'      Text
+'update'      Keyword
+' '           Text
+'insert'      Keyword
+'\n\t\t\t'    Text
+'<'           Name.Tag
+'LogEntry'    Name.Tag
+' '           Text
+'timestamp'   Name.Tag
+'='           Operator
+'"'           Punctuation
+'{'           Punctuation
+'current-dateTime' Name.Function
+'('           Punctuation
+')'           Punctuation
+'}'           Punctuation
+'"'           Punctuation
+'>'           Name.Tag
+'{'           Punctuation
+'$'           Name.Variable
+'message'     Name
+'}'           Punctuation
+'</'          Name.Tag
+'LogEntry'    Name.Tag
+'>'           Name.Tag
+'\n\t\t'      Text
+'into'        Keyword
+' '           Text
+'doc'         Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'logfile-full' Name
+')'           Punctuation
+'/'           Punctuation
+'*'           Name.Tag
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:insert-attributes' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'elm'         Name
+' '           Text
+'as'          Keyword
+' '           Text
+'element'     Name.Tag
+''            Text
+'('           Punctuation
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'doc'         Name.Function
+'('           Punctuation
+"'/db/Path/To/Some/Document.xml'" Literal.String.Single
+')'           Punctuation
+'/'           Punctuation
+'*'           Name.Tag
+'\n\t'        Text
+'return'      Keyword
+' '           Text
+'('           Punctuation
+'\n\t\t'      Text
+'update'      Keyword
+' '           Text
+'insert'      Keyword
+' '           Text
+'<'           Name.Tag
+'NEW'         Name.Tag
+'/>'          Name.Tag
+' '           Text
+'into'        Keyword
+' '           Text
+'$'           Name.Variable
+'elm'         Name
+','           Punctuation
+'\n\t\t'      Text
+'update'      Keyword
+' '           Text
+'insert'      Keyword
+' '           Text
+'attribute'   Keyword
+' '           Text
+'x'           Name.Variable
+' '           Text
+'{'           Punctuation
+' '           Text
+"'y'"         Literal.String.Single
+' '           Text
+'}'           Punctuation
+' '           Text
+'into'        Keyword
+' '           Text
+'$'           Name.Variable
+'elm'         Name
+'/'           Punctuation
+'*'           Name.Tag
+'['           Punctuation
+'last'        Name.Function
+'('           Punctuation
+')'           Punctuation
+']'           Punctuation
+','           Punctuation
+'\n\t\t'      Text
+'update'      Keyword
+' '           Text
+'insert'      Keyword
+' '           Text
+'attribute'   Keyword
+' '           Text
+'a'           Name.Variable
+' '           Text
+'{'           Punctuation
+' '           Text
+"'b'"         Literal.String.Single
+' '           Text
+'}'           Punctuation
+' '           Text
+'into'        Keyword
+' '           Text
+'$'           Name.Variable
+'elm'         Name
+'/'           Punctuation
+'*'           Name.Tag
+'['           Punctuation
+'last'        Name.Function
+'('           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n\t'        Text
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:insert-elem' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'elm'         Name
+' '           Text
+'as'          Keyword
+' '           Text
+'element'     Name.Tag
+''            Text
+'('           Punctuation
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'doc'         Name.Function
+'('           Punctuation
+"'/db/Path/To/Some/Document.xml'" Literal.String.Single
+')'           Punctuation
+'/'           Punctuation
+'*'           Name.Tag
+'\n\t'        Text
+'return'      Keyword
+'\n\t\t'      Text
+'update'      Keyword
+' '           Text
+'insert'      Keyword
+' '           Text
+'<'           Name.Tag
+'NEW'         Name.Tag
+' '           Text
+'x'           Name.Tag
+'='           Operator
+'"'           Punctuation
+'y'           Name.Attribute
+'"'           Punctuation
+' '           Text
+'a'           Name.Tag
+'='           Operator
+'"'           Punctuation
+'b'           Name.Attribute
+'"'           Punctuation
+'/>'          Name.Tag
+' '           Text
+'into'        Keyword
+' '           Text
+'$'           Name.Variable
+'elm'         Name
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:insert-elem2' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'elm'         Name
+' '           Text
+'as'          Keyword
+' '           Text
+'element'     Name.Tag
+''            Text
+'('           Punctuation
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'doc'         Name.Function
+'('           Punctuation
+"'/db/Path/To/Some/Document.xml'" Literal.String.Single
+')'           Punctuation
+'/'           Punctuation
+'*'           Name.Tag
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'new-element' Name
+' '           Text
+'as'          Keyword
+' '           Text
+'element'     Name.Tag
+''            Text
+'('           Punctuation
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'<'           Name.Tag
+'NEW'         Name.Tag
+' '           Text
+'x'           Name.Tag
+'='           Operator
+'"'           Punctuation
+'y'           Name.Attribute
+'"'           Punctuation
+' '           Text
+'a'           Name.Tag
+'='           Operator
+'"'           Punctuation
+'b'           Name.Attribute
+'"'           Punctuation
+'/>'          Name.Tag
+'\n\t'        Text
+'return'      Keyword
+'\n\t\t'      Text
+'update'      Keyword
+' '           Text
+'insert'      Keyword
+' '           Text
+'$'           Name.Variable
+'new-element' Name
+' '           Text
+'into'        Keyword
+' '           Text
+'$'           Name.Variable
+'elm'         Name
+'\t\n'        Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:insert-single' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'update'      Keyword
+' '           Text
+'insert'      Keyword
+' '           Text
+'<'           Name.Tag
+'LogEntry'    Name.Tag
+'>'           Name.Tag
+'S'           Literal
+'o'           Literal
+'m'           Literal
+'e'           Literal
+'t'           Literal
+'h'           Literal
+'i'           Literal
+'n'           Literal
+'g'           Literal
+' '           Literal
+'h'           Literal
+'a'           Literal
+'p'           Literal
+'p'           Literal
+'e'           Literal
+'n'           Literal
+'e'           Literal
+'d'           Literal
+'.'           Literal
+'.'           Literal
+'.'           Literal
+'</'          Name.Tag
+'LogEntry'    Name.Tag
+'>'           Name.Tag
+' '           Text
+'into'        Keyword
+' '           Text
+'doc'         Name.Function
+'('           Punctuation
+"'/db/logs/mainlog.xml'" Literal.String.Single
+')'           Punctuation
+'/'           Punctuation
+'*'           Name.Tag
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n\n'      Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:trim-insert' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'document'    Name
+' '           Text
+':='          Operator
+' '           Text
+'doc'         Name.Function
+'('           Punctuation
+"'/db/logs/mainlog.xml'" Literal.String.Single
+')'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'newentry'    Name
+' '           Text
+':='          Operator
+' '           Text
+'<'           Name.Tag
+'LogEntry'    Name.Tag
+'>'           Name.Tag
+'S'           Literal
+'o'           Literal
+'m'           Literal
+'e'           Literal
+'t'           Literal
+'h'           Literal
+'i'           Literal
+'n'           Literal
+'g'           Literal
+' '           Literal
+'h'           Literal
+'a'           Literal
+'p'           Literal
+'p'           Literal
+'e'           Literal
+'n'           Literal
+'e'           Literal
+'d'           Literal
+'.'           Literal
+'.'           Literal
+'.'           Literal
+'</'          Name.Tag
+'LogEntry'    Name.Tag
+'>'           Name.Tag
+'\n\t'        Text
+'return'      Keyword
+'\n\t\t'      Text
+'update'      Keyword
+' '           Text
+'delete'      Keyword
+' '           Text
+'$'           Name.Variable
+'document'    Name
+'/'           Punctuation
+'*'           Name.Tag
+'/'           Punctuation
+'LogEntry'    Name.Tag
+'['           Punctuation
+'position'    Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'ge'          Operator.Word
+' '           Text
+'10'          Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'exists'      Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'document'    Name
+'/'           Punctuation
+'*'           Name.Tag
+'/'           Punctuation
+'LogEntry'    Name.Tag
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'then'        Keyword
+'\n\t\t\t'    Text
+'update'      Keyword
+' '           Text
+'insert'      Keyword
+' '           Text
+'$'           Name.Variable
+'newentry'    Name
+' '           Text
+'preceding'   Keyword
+' '           Text
+'$'           Name.Variable
+'document'    Name
+'/'           Punctuation
+'*'           Name.Tag
+'/'           Punctuation
+'LogEntry'    Name.Tag
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'\n\t\t'      Text
+'else'        Keyword
+'\n\t\t\t'    Text
+'update'      Keyword
+' '           Text
+'insert'      Keyword
+' '           Text
+'$'           Name.Variable
+'newentry'    Name
+' '           Text
+'into'        Keyword
+' '           Text
+'$'           Name.Variable
+'document'    Name
+'/'           Punctuation
+'*'           Name.Tag
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n\n'      Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:attempt-document-node-insert' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t\n\t'    Text
+'(:'          Comment
+' '           Comment
+'T'           Comment
+'h'           Comment
+'i'           Comment
+'s'           Comment
+' '           Comment
+'i'           Comment
+'s'           Comment
+' '           Comment
+'i'           Comment
+'n'           Comment
+'v'           Comment
+'a'           Comment
+'l'           Comment
+'i'           Comment
+'d'           Comment
+':'           Comment
+' '           Comment
+':)'          Comment
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'document'    Name
+' '           Text
+'as'          Keyword
+' '           Text
+'document-node' Name.Tag
+''            Text
+'('           Punctuation
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'<'           Name.Tag
+'Root'        Name.Tag
+'>'           Name.Tag
+'<'           Name.Tag
+'a'           Name.Tag
+'/>'          Name.Tag
+'</'          Name.Tag
+'Root'        Name.Tag
+'>'           Name.Tag
+'\n\t'        Text
+'return'      Keyword
+'\n\t\t'      Text
+'update'      Keyword
+' '           Text
+'insert'      Keyword
+' '           Text
+'<'           Name.Tag
+'b'           Name.Tag
+'/>'          Name.Tag
+' '           Text
+'into'        Keyword
+' '           Text
+'$'           Name.Variable
+'document'    Name
+'/'           Punctuation
+'*'           Name.Tag
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:attempt-attr-update-with-node' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'update'      Keyword
+' '           Text
+'replace'     Keyword
+' '           Text
+'doc'         Name.Function
+'('           Punctuation
+"'/db/test/test.xml'" Literal.String.Single
+')'           Punctuation
+'/'           Punctuation
+'*'           Name.Tag
+'/'           Punctuation
+'@name'       Name.Attribute
+' '           Text
+'with'        Keyword
+'\n\t\t'      Text
+'<'           Name.Tag
+'a'           Name.Tag
+'>'           Name.Tag
+'a'           Literal
+'a'           Literal
+'a'           Literal
+'<'           Name.Tag
+'b'           Name.Tag
+'>'           Name.Tag
+'b'           Literal
+'b'           Literal
+'b'           Literal
+'</'          Name.Tag
+'b'           Name.Tag
+'>'           Name.Tag
+'</'          Name.Tag
+'a'           Name.Tag
+'>'           Name.Tag
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n\n'      Text
+
+'(#'          Punctuation
+' '           Text
+'exist:batch-transaction' Name.Variable
+' '           Literal
+'#)'          Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'update'      Keyword
+' '           Text
+'delete'      Keyword
+' '           Text
+'$'           Name.Variable
+'document'    Name
+'/'           Punctuation
+'*'           Name.Tag
+'/'           Punctuation
+'LogEntry'    Name.Tag
+'['           Punctuation
+'position'    Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'ge'          Operator.Word
+' '           Text
+'10'          Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n\t'        Text
+'update'      Keyword
+' '           Text
+'insert'      Keyword
+' '           Text
+'$'           Name.Variable
+'newentry'    Name
+' '           Text
+'preceding'   Keyword
+' '           Text
+'$'           Name.Variable
+'document'    Name
+'/'           Punctuation
+'*'           Name.Tag
+'/'           Punctuation
+'LogEntry'    Name.Tag
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

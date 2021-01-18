@@ -1,0 +1,321 @@
+---input---
+import System
+import Boo.Lang.Interpreter from Boo.Lang.Interpreter
+
+class ObjectInterpreter(AbstractInterpreter):
+
+        _context as object
+
+        [getter(Value)]
+        _value as object
+
+        def constructor(context):
+            _context = context
+            self.RememberLastValue = true
+
+        override def Lookup(name as string):
+            property = _context.GetType().GetProperty(name)
+            return property.PropertyType if property is not null
+
+        override def GetValue(name as string):
+            return _context.GetType().GetProperty(name).GetValue(
+                                          _context, null)
+
+        override def SetLastValue(value):
+            _value = value
+
+        override def SetValue(name as string, value):
+            raise InvalidOperationException()
+
+        override def Declare(name as string, type as Type):
+            raise InvalidOperationException()
+
+class Person:
+        [property(FirstName)]
+        _fname as string = ""
+
+p = Person(FirstName: "Homer")
+i = ObjectInterpreter(p)
+i.Eval('"Hello, ${FirstName.ToUpper()}!"')
+print i.Value
+
+---tokens---
+'import'      Keyword
+' '           Text
+'System'      Name
+'\n'          Text
+
+'import'      Keyword
+' '           Text
+'Boo'         Name
+'.'           Punctuation
+'Lang'        Name
+'.'           Punctuation
+'Interpreter' Name
+' '           Text
+'from'        Keyword
+' '           Text
+'Boo'         Name
+'.'           Punctuation
+'Lang'        Name
+'.'           Punctuation
+'Interpreter' Name
+'\n\n'        Text
+
+'class'       Keyword
+' '           Text
+'ObjectInterpreter' Name.Class
+'('           Punctuation
+'AbstractInterpreter' Name
+')'           Punctuation
+':'           Punctuation
+'\n\n        ' Text
+'_context'    Name
+' '           Text
+'as'          Keyword
+' '           Text
+'object'      Name
+'\n\n        ' Text
+'['           Punctuation
+'getter'      Name.Builtin
+'('           Punctuation
+'Value'       Name
+')'           Punctuation
+']'           Punctuation
+'\n        '  Text
+'_value'      Name
+' '           Text
+'as'          Keyword
+' '           Text
+'object'      Name
+'\n\n        ' Text
+'def'         Keyword
+' '           Text
+'constructor' Name.Function
+'('           Punctuation
+'context'     Name
+')'           Punctuation
+':'           Punctuation
+'\n            ' Text
+'_context'    Name
+' '           Text
+'='           Operator
+' '           Text
+'context'     Name
+'\n            ' Text
+'self'        Name.Builtin
+'.'           Punctuation
+'RememberLastValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+'\n\n        ' Text
+'override'    Keyword
+' '           Text
+'def'         Keyword
+' '           Text
+'Lookup'      Name.Function
+'('           Punctuation
+'name'        Name
+' '           Text
+'as'          Keyword
+' '           Text
+'string'      Name
+')'           Punctuation
+':'           Punctuation
+'\n            ' Text
+'property'    Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'_context'    Name
+'.'           Punctuation
+'GetType'     Name
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'GetProperty' Name
+'('           Punctuation
+'name'        Name
+')'           Punctuation
+'\n            ' Text
+'return'      Keyword
+' '           Text
+'property'    Name.Builtin
+'.'           Punctuation
+'PropertyType' Name
+' '           Text
+'if'          Keyword
+' '           Text
+'property'    Name.Builtin
+' '           Text
+'is'          Operator.Word
+' '           Text
+'not'         Operator.Word
+' '           Text
+'null'        Name.Builtin
+'\n\n        ' Text
+'override'    Keyword
+' '           Text
+'def'         Keyword
+' '           Text
+'GetValue'    Name.Function
+'('           Punctuation
+'name'        Name
+' '           Text
+'as'          Keyword
+' '           Text
+'string'      Name
+')'           Punctuation
+':'           Punctuation
+'\n            ' Text
+'return'      Keyword
+' '           Text
+'_context'    Name
+'.'           Punctuation
+'GetType'     Name
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'GetProperty' Name
+'('           Punctuation
+'name'        Name
+')'           Punctuation
+'.'           Punctuation
+'GetValue'    Name
+'('           Punctuation
+'\n                                          ' Text
+'_context'    Name
+','           Punctuation
+' '           Text
+'null'        Name.Builtin
+')'           Punctuation
+'\n\n        ' Text
+'override'    Keyword
+' '           Text
+'def'         Keyword
+' '           Text
+'SetLastValue' Name.Function
+'('           Punctuation
+'value'       Name
+')'           Punctuation
+':'           Punctuation
+'\n            ' Text
+'_value'      Name
+' '           Text
+'='           Operator
+' '           Text
+'value'       Name
+'\n\n        ' Text
+'override'    Keyword
+' '           Text
+'def'         Keyword
+' '           Text
+'SetValue'    Name.Function
+'('           Punctuation
+'name'        Name
+' '           Text
+'as'          Keyword
+' '           Text
+'string'      Name
+','           Punctuation
+' '           Text
+'value'       Name
+')'           Punctuation
+':'           Punctuation
+'\n            ' Text
+'raise'       Keyword
+' '           Text
+'InvalidOperationException' Name
+'('           Punctuation
+')'           Punctuation
+'\n\n        ' Text
+'override'    Keyword
+' '           Text
+'def'         Keyword
+' '           Text
+'Declare'     Name.Function
+'('           Punctuation
+'name'        Name
+' '           Text
+'as'          Keyword
+' '           Text
+'string'      Name
+','           Punctuation
+' '           Text
+'type'        Name
+' '           Text
+'as'          Keyword
+' '           Text
+'Type'        Name
+')'           Punctuation
+':'           Punctuation
+'\n            ' Text
+'raise'       Keyword
+' '           Text
+'InvalidOperationException' Name
+'('           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword
+' '           Text
+'Person'      Name.Class
+':'           Punctuation
+'\n        '  Text
+'['           Punctuation
+'property'    Name.Builtin
+'('           Punctuation
+'FirstName'   Name
+')'           Punctuation
+']'           Punctuation
+'\n        '  Text
+'_fname'      Name
+' '           Text
+'as'          Keyword
+' '           Text
+'string'      Name
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String.Double
+'\n\n'        Text
+
+'p'           Name
+' '           Text
+'='           Operator
+' '           Text
+'Person'      Name
+'('           Punctuation
+'FirstName'   Name
+':'           Punctuation
+' '           Text
+'"Homer"'     Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'ObjectInterpreter' Name
+'('           Punctuation
+'p'           Name
+')'           Punctuation
+'\n'          Text
+
+'i'           Name
+'.'           Punctuation
+'Eval'        Name
+'('           Punctuation
+'\'"Hello, ${FirstName.ToUpper()}!"\'' Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'print'       Name.Builtin
+' '           Text
+'i'           Name
+'.'           Punctuation
+'Value'       Name
+'\n'          Text

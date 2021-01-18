@@ -1,0 +1,23 @@
+---input---
+#!/usr/bin/env escript
+
+main(_Args) ->
+    ok.
+
+---tokens---
+'#!/usr/bin/env escript\n' Comment.Hashbang
+
+'\n'          Text
+
+'main'        Name.Function
+'('           Punctuation
+'_'           Punctuation
+'Args'        Name.Variable
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+'\n    '      Text
+'ok'          Name
+'.'           Punctuation
+'\n'          Text

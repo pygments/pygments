@@ -1,0 +1,183 @@
+---input---
+%hook ABC
+- (id)a:(B)b {
+	%log;
+	return %orig(nil);
+}
+%end
+
+%subclass DEF: NSObject
+- (id)init {
+	[%c(RuntimeAccessibleClass) alloc];
+	return nil;
+}
+%end
+
+%group OptionalHooks
+%hook ABC
+- (void)release {
+	[self retain];
+	%orig;
+}
+%end
+%end
+
+%ctor {
+	%init;
+	if(OptionalCondition)
+		%init(OptionalHooks);
+}
+
+---tokens---
+'%hook'       Keyword
+' '           Text
+'ABC'         Name.Class
+'\n'          Text
+
+'-'           Punctuation
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'a:'          Name.Function
+'('           Punctuation
+'B'           Name
+')'           Punctuation
+'b'           Name.Variable
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'%log'        Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'%orig'       Keyword
+'('           Punctuation
+'nil'         Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'%end'        Keyword
+'\n\n'        Text
+
+'%subclass'   Keyword
+' '           Text
+'DEF'         Name.Class
+': '          Text
+'NSObject'    Name.Builtin.Pseudo
+'\n'          Text
+
+'-'           Punctuation
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'init'        Name.Function
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'['           Punctuation
+'%c'          Keyword
+'('           Punctuation
+'RuntimeAccessibleClass' Name.Class
+')'           Punctuation
+' '           Text
+'alloc'       Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'nil'         Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'%end'        Keyword
+'\n\n'        Text
+
+'%group'      Keyword
+' '           Text
+'OptionalHooks' Name.Class
+'\n'          Text
+
+'%hook'       Keyword
+' '           Text
+'ABC'         Name.Class
+'\n'          Text
+
+'-'           Punctuation
+' '           Text
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+'release'     Name.Function
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'['           Punctuation
+'self'        Name.Builtin
+' '           Text
+'retain'      Keyword
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'%orig'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'%end'        Keyword
+'\n'          Text
+
+'%end'        Keyword
+'\n\n'        Text
+
+'%ctor'       Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'%init'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'OptionalCondition' Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'%init'       Keyword
+'('           Punctuation
+'OptionalHooks' Name.Class
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

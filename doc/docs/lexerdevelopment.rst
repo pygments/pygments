@@ -168,15 +168,18 @@ Finally the lexer can be made publicly known by rebuilding the lexer mapping:
     $ make mapfiles
 
 To test the new lexer, store an example file with the proper extension in
-``tests/examplefiles``.  For example, to test your ``DiffLexer``, add a
-``tests/examplefiles/example.diff`` containing a sample diff output.
+``tests/lexers/<alias>/example.txt``.  For example, to test your ``DiffLexer``,
+add a ``tests/lexers/diff/example.txt`` containing a sample diff output.  To
+(re)generate the lexer output which the file is checked against, also stored in
+the file, use the command ``pytest tests/lexers/<alias>/example.txt
+--update-goldens``.
 
 Now you can use ``python -m pygments`` from the current root of the checkout to
 render your example to HTML:
 
 .. code-block:: console
 
-    $ python -m pygments -O full -f html -o /tmp/example.html tests/examplefiles/example.diff
+    $ python -m pygments -O full -l diff -f html -o /tmp/example.html tests/lexers/diff/example.txt
 
 Note that this explicitly calls the ``pygments`` module in the current
 directory. This ensures your modifications are used. Otherwise a possibly

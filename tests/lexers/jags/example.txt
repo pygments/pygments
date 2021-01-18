@@ -1,0 +1,629 @@
+---input---
+# lsat.jags example from classic-bugs examples in JAGS
+# See http://sourceforge.net/projects/mcmc-jags/files/Examples/2.x/
+var
+   response[R,T], m[R], culm[R], alpha[T], a[T], theta[N], r[N,T],
+   p[N,T], beta, theta.new, p.theta[T], p.item[R,T], P.theta[R];
+data {
+   for (j in 1:culm[1]) {
+      r[j, ] <- response[1, ];
+   }
+   for (i in 2:R) {
+      for (j in (culm[i - 1] + 1):culm[i]) {
+         r[j, ] <- response[i, ];
+      }
+   }
+}
+model {
+  # 2-parameter Rasch model
+  for (j in 1:N) {
+     for (k in 1:T) {
+        probit(p[j,k]) <- delta[k]*theta[j] - eta[k];
+        r[j,k] ~ dbern(p[j,k]);
+     }
+     theta[j] ~ dnorm(0,1);
+  }
+
+  # Priors
+  for (k in 1:T) {
+     eta[k] ~ dnorm(0,0.0001);       
+     e[k] <- eta[k] - mean(eta[]);  # sum-to-zero constraint
+
+     delta[k] ~ dnorm(0,1) T(0,);   # constrain variance to 1, slope +ve
+     d[k] <- delta[k]/pow(prod(delta), 1/T); # PRODUCT_k (d_k) = 1
+ 
+     g[k] <- e[k]/d[k];   # equivalent to B&A's threshold parameters
+  }
+
+  # Compute probability of response pattern i, for later use in computing G^2
+  theta.new ~ dnorm(0,1);          # ability parameter for random student 
+  for(k in 1:T) {
+       probit(p.theta[k]) <- delta[k]*theta.new - eta[k];
+       for(i in 1:R) {
+          p.item[i,k] <- p.theta[k]^response[i,k] * (1-p.theta[k])^(1-response[i,k]);
+       }
+  } 
+  for(i in 1:R) {    
+     P.theta[i] <- prod(p.item[i,])
+  }
+}
+
+---tokens---
+'# lsat.jags example from classic-bugs examples in JAGS' Comment.Single
+'\n'          Text
+
+'# See http://sourceforge.net/projects/mcmc-jags/files/Examples/2.x/' Comment.Single
+'\n'          Text
+
+'var'         Keyword.Declaration
+'\n   '       Text
+'response'    Name
+'['           Punctuation
+'R'           Name
+','           Punctuation
+'T'           Name
+']'           Punctuation
+','           Punctuation
+' '           Text
+'m'           Name
+'['           Punctuation
+'R'           Name
+']'           Punctuation
+','           Punctuation
+' '           Text
+'culm'        Name
+'['           Punctuation
+'R'           Name
+']'           Punctuation
+','           Punctuation
+' '           Text
+'alpha'       Name
+'['           Punctuation
+'T'           Name
+']'           Punctuation
+','           Punctuation
+' '           Text
+'a'           Name
+'['           Punctuation
+'T'           Name
+']'           Punctuation
+','           Punctuation
+' '           Text
+'theta'       Name
+'['           Punctuation
+'N'           Name
+']'           Punctuation
+','           Punctuation
+' '           Text
+'r'           Name
+'['           Punctuation
+'N'           Name
+','           Punctuation
+'T'           Name
+']'           Punctuation
+','           Punctuation
+'\n   '       Text
+'p'           Name
+'['           Punctuation
+'N'           Name
+','           Punctuation
+'T'           Name
+']'           Punctuation
+','           Punctuation
+' '           Text
+'beta'        Name
+','           Punctuation
+' '           Text
+'theta.new'   Name
+','           Punctuation
+' '           Text
+'p.theta'     Name
+'['           Punctuation
+'T'           Name
+']'           Punctuation
+','           Punctuation
+' '           Text
+'p.item'      Name
+'['           Punctuation
+'R'           Name
+','           Punctuation
+'T'           Name
+']'           Punctuation
+','           Punctuation
+' '           Text
+'P.theta'     Name
+'['           Punctuation
+'R'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'data'        Keyword.Namespace
+' '           Text
+'{'           Punctuation
+'\n   '       Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'j'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+':'           Punctuation
+'culm'        Name
+'['           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'r'           Name
+'['           Punctuation
+'j'           Name
+','           Punctuation
+' '           Text
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'response'    Name
+'['           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text
+']'           Punctuation
+';'           Punctuation
+'\n   '       Text
+'}'           Punctuation
+'\n   '       Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'i'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'2'           Literal.Number
+':'           Punctuation
+'R'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'j'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'culm'        Name
+'['           Punctuation
+'i'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number
+']'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number
+')'           Punctuation
+':'           Punctuation
+'culm'        Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n         ' Text
+'r'           Name
+'['           Punctuation
+'j'           Name
+','           Punctuation
+' '           Text
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'response'    Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+']'           Punctuation
+';'           Punctuation
+'\n      '    Text
+'}'           Punctuation
+'\n   '       Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'model'       Keyword.Namespace
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'# 2-parameter Rasch model' Comment.Single
+'\n  '        Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'j'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+':'           Punctuation
+'N'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n     '     Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+':'           Punctuation
+'T'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'probit'      Name.Builtin
+'('           Punctuation
+'p'           Name
+'['           Punctuation
+'j'           Name
+','           Punctuation
+'k'           Name
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'delta'       Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+'*'           Operator
+'theta'       Name
+'['           Punctuation
+'j'           Name
+']'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'eta'         Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+';'           Punctuation
+'\n        '  Text
+'r'           Name
+'['           Punctuation
+'j'           Name
+','           Punctuation
+'k'           Name
+']'           Punctuation
+' '           Text
+'~'           Operator
+' '           Text
+'dbern'       Name.Builtin
+'('           Punctuation
+'p'           Name
+'['           Punctuation
+'j'           Name
+','           Punctuation
+'k'           Name
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n     '     Text
+'}'           Punctuation
+'\n     '     Text
+'theta'       Name
+'['           Punctuation
+'j'           Name
+']'           Punctuation
+' '           Text
+'~'           Operator
+' '           Text
+'dnorm'       Name.Builtin
+'('           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'1'           Literal.Number
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n\n  '      Text
+'# Priors'    Comment.Single
+'\n  '        Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+':'           Punctuation
+'T'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n     '     Text
+'eta'         Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+' '           Text
+'~'           Operator
+' '           Text
+'dnorm'       Name.Builtin
+'('           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'0.0001'      Literal.Number
+')'           Punctuation
+';'           Punctuation
+'       \n     ' Text
+'e'           Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'eta'         Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'mean'        Name.Builtin
+'('           Punctuation
+'eta'         Name
+'['           Punctuation
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'  '          Text
+'# sum-to-zero constraint' Comment.Single
+'\n\n     '   Text
+'delta'       Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+' '           Text
+'~'           Operator
+' '           Text
+'dnorm'       Name.Builtin
+'('           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'1'           Literal.Number
+')'           Punctuation
+' '           Text
+'T'           Name.Builtin
+'('           Punctuation
+'0'           Literal.Number
+','           Punctuation
+')'           Punctuation
+';'           Punctuation
+'   '         Text
+'# constrain variance to 1, slope +ve' Comment.Single
+'\n     '     Text
+'d'           Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'delta'       Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+'/'           Operator
+'pow'         Name.Builtin
+'('           Punctuation
+'prod'        Name.Builtin
+'('           Punctuation
+'delta'       Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'1'           Literal.Number
+'/'           Operator
+'T'           Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'# PRODUCT_k (d_k) = 1' Comment.Single
+'\n \n     '  Text
+'g'           Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'e'           Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+'/'           Operator
+'d'           Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+';'           Punctuation
+'   '         Text
+"# equivalent to B&A's threshold parameters" Comment.Single
+'\n  '        Text
+'}'           Punctuation
+'\n\n  '      Text
+'# Compute probability of response pattern i, for later use in computing G^2' Comment.Single
+'\n  '        Text
+'theta.new'   Name
+' '           Text
+'~'           Operator
+' '           Text
+'dnorm'       Name.Builtin
+'('           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'1'           Literal.Number
+')'           Punctuation
+';'           Punctuation
+'          '  Text
+'# ability parameter for random student ' Comment.Single
+'\n  '        Text
+'for'         Keyword.Reserved
+'('           Punctuation
+'k'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+':'           Punctuation
+'T'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n       '   Text
+'probit'      Name.Builtin
+'('           Punctuation
+'p.theta'     Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'delta'       Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+'*'           Operator
+'theta.new'   Name
+' '           Text
+'-'           Operator
+' '           Text
+'eta'         Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+';'           Punctuation
+'\n       '   Text
+'for'         Keyword.Reserved
+'('           Punctuation
+'i'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+':'           Punctuation
+'R'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n          ' Text
+'p.item'      Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+'k'           Name
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'p.theta'     Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+'^'           Operator
+'response'    Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+'k'           Name
+']'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'('           Punctuation
+'1'           Literal.Number
+'-'           Operator
+'p.theta'     Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+')'           Punctuation
+'^'           Operator
+'('           Punctuation
+'1'           Literal.Number
+'-'           Operator
+'response'    Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+'k'           Name
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n       '   Text
+'}'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+' \n  '       Text
+'for'         Keyword.Reserved
+'('           Punctuation
+'i'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+':'           Punctuation
+'R'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'    \n     ' Text
+'P.theta'     Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'prod'        Name.Builtin
+'('           Punctuation
+'p.item'      Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+']'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

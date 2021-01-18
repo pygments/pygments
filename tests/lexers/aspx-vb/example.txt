@@ -1,0 +1,169 @@
+---input---
+<%@ Register TagPrefix="Acme" TagName="Message" Src="userctrl2_vb.ascx" %>
+
+<html>
+
+  <script language="VB" runat="server">
+
+      Sub SubmitBtn_Click(Sender As Object, E As EventArgs)
+          MyMessage.MessageText = "Message text changed!"
+          MyMessage.Color = "red"
+      End Sub
+
+  </script>
+
+<body style="font: 10pt verdana">
+
+  <h3>A Simple User Control w/ Properties</h3>
+
+  <form runat="server">
+
+    <Acme:Message id="MyMessage" MessageText="This is a custom message!" Color="blue" runat="server"/>
+
+    <p>
+
+    <asp:button text="Change Properties" OnClick="SubmitBtn_Click" runat=server/>
+
+  </form>
+
+</body>
+</html>
+
+---tokens---
+'<%@'         Name.Tag
+' '           Text
+'Register'    Name
+' '           Text
+'TagPrefix'   Name
+'='           Operator
+'"'           Literal.String
+'Acme'        Literal.String
+'"'           Literal.String
+' '           Text
+'TagName'     Name
+'='           Operator
+'"'           Literal.String
+'Message'     Literal.String
+'"'           Literal.String
+' '           Text
+'Src'         Name
+'='           Operator
+'"'           Literal.String
+'userctrl2_vb.ascx' Literal.String
+'"'           Literal.String
+' '           Text
+'%>'          Name.Tag
+'\n\n'        Text
+
+'<html'       Name.Tag
+'>'           Name.Tag
+'\n\n  '      Text
+'<script'     Name.Tag
+' '           Text
+'language='   Name.Attribute
+'"VB"'        Literal.String
+' '           Text
+'runat='      Name.Attribute
+'"server"'    Literal.String
+'>'           Name.Tag
+'\n\n      '  Text
+'Sub'         Keyword
+' '           Text
+'SubmitBtn_Click' Name.Function
+'('           Punctuation
+'Sender'      Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'Object'      Keyword.Type
+','           Punctuation
+' '           Text
+'E'           Name
+' '           Text
+'As'          Operator.Word
+' '           Text
+'EventArgs'   Name
+')'           Punctuation
+'\n          ' Text
+'MyMessage'   Name
+'.'           Punctuation
+'MessageText' Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'Message text changed!' Literal.String
+'"'           Literal.String
+'\n          ' Text
+'MyMessage'   Name
+'.'           Punctuation
+'Color'       Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'red'         Literal.String
+'"'           Literal.String
+'\n      '    Text
+'End'         Keyword
+' '           Text
+'Sub'         Keyword
+'\n\n  '      Text
+'</script>'   Name.Tag
+'\n\n'        Text
+
+'<body'       Name.Tag
+' '           Text
+'style='      Name.Attribute
+'"font: 10pt verdana"' Literal.String
+'>'           Name.Tag
+'\n\n  '      Text
+'<h3'         Name.Tag
+'>'           Name.Tag
+'A Simple User Control w/ Properties' Text
+'</h3>'       Name.Tag
+'\n\n  '      Text
+'<form'       Name.Tag
+' '           Text
+'runat='      Name.Attribute
+'"server"'    Literal.String
+'>'           Name.Tag
+'\n\n    '    Text
+'<Acme:Message' Name.Tag
+' '           Text
+'id='         Name.Attribute
+'"MyMessage"' Literal.String
+' '           Text
+'MessageText=' Name.Attribute
+'"This is a custom message!"' Literal.String
+' '           Text
+'Color='      Name.Attribute
+'"blue"'      Literal.String
+' '           Text
+'runat='      Name.Attribute
+'"server"'    Literal.String
+'/>'          Name.Tag
+'\n\n    '    Text
+'<p'          Name.Tag
+'>'           Name.Tag
+'\n\n    '    Text
+'<asp:button' Name.Tag
+' '           Text
+'text='       Name.Attribute
+'"Change Properties"' Literal.String
+' '           Text
+'OnClick='    Name.Attribute
+'"SubmitBtn_Click"' Literal.String
+' '           Text
+'runat='      Name.Attribute
+'server/'     Literal.String
+'>'           Name.Tag
+'\n\n  '      Text
+'</form>'     Name.Tag
+'\n\n'        Text
+
+'</body>'     Name.Tag
+'\n'          Text
+
+'</html>'     Name.Tag
+'\n'          Text

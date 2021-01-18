@@ -1,0 +1,713 @@
+---input---
+regression=# select foo;
+ERROR:  column "foo" does not exist
+CONTEXT:  PL/pgSQL function "test1" while casting return value to function's return type
+LINE 1: select foo;
+               ^
+regression=# \q
+
+peter@localhost testdb=> \a \t \x
+Output format is aligned.
+Tuples only is off.
+Expanded display is on.
+
+regression=# select '\x';
+WARNING:  nonstandard use of escape in a string literal
+LINE 1: select '\x';
+               ^
+HINT:  Use the escape string syntax for escapes, e.g., E'\r\n'.
+ ?column? 
+----------
+ x
+(1 row)
+
+regression=# select E'\x';
+
+piro=> \set foo 30;
+piro=> select * from test where foo <= :foo;
+ foo | bar 
+-----+-----
+  10 | 
+  20 | 
+(2 rows)
+
+testdb=> \set foo 'my_table'
+testdb=> SELECT * FROM :"foo";
+
+testdb=> \set content `cat my_file.txt`
+testdb=> INSERT INTO my_table VALUES (:'content');
+
+regression=# select (
+regression(# 1);
+ ?column? 
+----------
+        1
+(1 row)
+
+piro=> select (
+piro(> '
+piro'> ' || $$
+piro$> $$)
+piro-> from "
+piro"> foo";
+ERROR:  relation "
+foo" does not exist
+LINE 5: from "
+             ^
+
+testdb=> CREATE TABLE my_table (
+first integer not null default 0,
+second text) ; -- end of command
+CREATE TABLE
+
+-- Table output
+=# SELECT '0x10'::mpz AS "hex", '10'::mpz AS "dec",
+-#        '010'::mpz AS oct, '0b10'::mpz AS bin;
+ hex | dec | oct | bin
+-----+-----+-----+-----
+ 16  | 10  | 8   | 2
+(1 row)
+
+-- One field output
+regression=# select schemaname from  pg_tables limit 3;
+ schemaname 
+------------
+ pg_catalog
+ pg_catalog
+ pg_catalog
+(3 rows)
+
+-- TODO: prompt in multiline comments still not handled correctly
+test=> select 1 /* multiline
+test*> and 2 /* and 3 */
+test*> end comment */, 2;
+ ?column? | ?column? 
+----------+----------
+        1 |        2
+
+=# select 10.0, 1e-6, 1E+6;
+ ?column? | ?column? | ?column? 
+----------+----------+----------
+     10.0 | 0.000001 |  1000000
+(1 row)
+
+regression=# begin;
+BEGIN
+regression=# create table asdf (foo serial primary key);
+NOTICE:  CREATE TABLE will create implicit sequence "asdf_foo_seq" for serial column "asdf.foo"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "asdf_pkey" for table "asdf"
+CREATE TABLE
+regression=# insert into asdf values (10) returning foo;
+ foo 
+-----
+  10
+(1 row)
+
+INSERT 0 1
+regression=# ROLLBACK ;
+ROLLBACK
+
+=> EXPLAIN SELECT * FROM tenk1
+-> WHERE unique1 < 100;   -- Don't take -> in the plan as a prompt
+
+                                  QUERY PLAN
+------------------------------------------------------------------------------
+ Bitmap Heap Scan on tenk1  (cost=2.37..232.35 rows=106 width=244)
+   Recheck Cond: (unique1 < 100)
+   ->  Bitmap Index Scan on tenk1_unique1  (cost=0.00..2.37 rows=106 width=0)
+         Index Cond: (unique1 < 100)
+
+
+-- don't swallow the end of a malformed line
+test=> select 1,
+'this line must be emitted'
+
+---tokens---
+'regression=#' Generic.Prompt
+' '           Text
+'select'      Keyword
+' '           Text
+'foo'         Name
+';'           Punctuation
+'\n'          Text
+
+'ERROR:'      Generic.Strong
+'  column "foo" does not exist\n' Generic.Error
+
+'CONTEXT:'    Generic.Strong
+'  PL/pgSQL function "test1" while casting return value to function\'s return type\n' Generic.Error
+
+'LINE 1:'     Generic.Strong
+' select foo;\n' Generic.Error
+
+'               ^\n' Generic.Error
+
+'regression=#' Generic.Prompt
+' '           Text
+'\\q'         Keyword.Pseudo
+'\n'          Text
+
+'\n'          Generic.Output
+
+'peter@localhost testdb=>' Generic.Prompt
+' '           Text
+'\\a'         Keyword.Pseudo
+' '           Text
+'\\t'         Keyword.Pseudo
+' '           Text
+'\\x'         Keyword.Pseudo
+'\n'          Text
+
+'Output format is aligned.\n' Generic.Output
+
+'Tuples only is off.\n' Generic.Output
+
+'Expanded display is on.\n' Generic.Output
+
+'\n'          Generic.Output
+
+'regression=#' Generic.Prompt
+' '           Text
+'select'      Keyword
+' '           Text
+"'"           Literal.String.Single
+'\\x'         Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'WARNING:'    Generic.Strong
+'  nonstandard use of escape in a string literal\n' Generic.Output
+
+'LINE 1:'     Generic.Strong
+" select '\\x';\n" Generic.Output
+
+'               ^\n' Generic.Output
+
+'HINT:'       Generic.Strong
+"  Use the escape string syntax for escapes, e.g., E'\\r\\n'.\n" Generic.Output
+
+' ?column? \n' Generic.Output
+
+'----------\n' Generic.Output
+
+' x\n'        Generic.Output
+
+'(1 row)\n'   Generic.Output
+
+'\n'          Generic.Output
+
+'regression=#' Generic.Prompt
+' '           Text
+'select'      Keyword
+' '           Text
+'E'           Literal.String.Affix
+"'"           Literal.String.Single
+'\\x'         Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'\n'          Generic.Output
+
+'piro=>'      Generic.Prompt
+' '           Text
+'\\set'       Keyword.Pseudo
+' '           Text
+'foo'         Literal.String.Symbol
+' '           Text
+'30;'         Literal.String.Symbol
+'\n'          Text
+
+'piro=>'      Generic.Prompt
+' '           Text
+'select'      Keyword
+' '           Text
+'*'           Operator
+' '           Text
+'from'        Keyword
+' '           Text
+'test'        Name
+' '           Text
+'where'       Keyword
+' '           Text
+'foo'         Name
+' '           Text
+'<='          Operator
+' '           Text
+':foo'        Name.Variable
+';'           Punctuation
+'\n'          Text
+
+' foo | bar \n' Generic.Output
+
+'-----+-----\n' Generic.Output
+
+'  10 | \n'   Generic.Output
+
+'  20 | \n'   Generic.Output
+
+'(2 rows)\n'  Generic.Output
+
+'\n'          Generic.Output
+
+'testdb=>'    Generic.Prompt
+' '           Text
+'\\set'       Keyword.Pseudo
+' '           Text
+'foo'         Literal.String.Symbol
+' '           Text
+"'my_table'"  Literal.String.Single
+'\n'          Text
+
+'testdb=>'    Generic.Prompt
+' '           Text
+'SELECT'      Keyword
+' '           Text
+'*'           Operator
+' '           Text
+'FROM'        Keyword
+' '           Text
+':"foo"'      Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'\n'          Generic.Output
+
+'testdb=>'    Generic.Prompt
+' '           Text
+'\\set'       Keyword.Pseudo
+' '           Text
+'content'     Literal.String.Symbol
+' '           Text
+'`cat my_file.txt`' Literal.String.Backtick
+'\n'          Text
+
+'testdb=>'    Generic.Prompt
+' '           Text
+'INSERT'      Keyword
+' '           Text
+'INTO'        Keyword
+' '           Text
+'my_table'    Name
+' '           Text
+'VALUES'      Keyword
+' '           Text
+'('           Punctuation
+":'content'"  Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Generic.Output
+
+'regression=#' Generic.Prompt
+' '           Text
+'select'      Keyword
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+'regression(#' Generic.Prompt
+' '           Text
+'1'           Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+' ?column? \n' Generic.Output
+
+'----------\n' Generic.Output
+
+'        1\n' Generic.Output
+
+'(1 row)\n'   Generic.Output
+
+'\n'          Generic.Output
+
+'piro=>'      Generic.Prompt
+' '           Text
+'select'      Keyword
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+'piro(>'      Generic.Prompt
+' '           Text
+"'"           Literal.String.Single
+'\n'          Literal.String.Single
+
+"piro'>"      Generic.Prompt
+' '           Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'||'          Operator
+' '           Text
+'$'           Literal.String
+'$'           Literal.String
+'\n'          Literal.String
+
+'piro$>'      Generic.Prompt
+' '           Literal.String
+'$'           Literal.String
+'$'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'piro->'      Generic.Prompt
+' '           Text
+'from'        Keyword
+' '           Text
+'"'           Literal.String.Name
+'\n'          Literal.String.Name
+
+'piro">'      Generic.Prompt
+' foo'        Literal.String.Name
+'"'           Literal.String.Name
+';'           Punctuation
+'\n'          Text
+
+'ERROR:'      Generic.Strong
+'  relation "\n' Generic.Error
+
+'foo" does not exist\n' Generic.Error
+
+'LINE 5:'     Generic.Strong
+' from "\n'   Generic.Error
+
+'             ^\n' Generic.Error
+
+'\n'          Generic.Error
+
+'testdb=>'    Generic.Prompt
+' '           Text
+'CREATE'      Keyword
+' '           Text
+'TABLE'       Keyword
+' '           Text
+'my_table'    Name
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+'first'       Keyword
+' '           Text
+'integer'     Name.Builtin
+' '           Text
+'not'         Keyword
+' '           Text
+'null'        Keyword
+' '           Text
+'default'     Keyword
+' '           Text
+'0'           Literal.Number.Float
+','           Punctuation
+'\n'          Text
+
+'second'      Keyword
+' '           Text
+'text'        Name.Builtin
+')'           Punctuation
+' '           Text
+';'           Punctuation
+' '           Text
+'-- end of command\n' Comment.Single
+
+'CREATE TABLE\n' Generic.Output
+
+'\n'          Generic.Output
+
+'-- Table output\n' Generic.Output
+
+'=#'          Generic.Prompt
+' '           Text
+'SELECT'      Keyword
+' '           Text
+"'"           Literal.String.Single
+'0x10'        Literal.String.Single
+"'"           Literal.String.Single
+'::'          Operator
+'mpz'         Name
+' '           Text
+'AS'          Keyword
+' '           Text
+'"'           Literal.String.Name
+'hex'         Literal.String.Name
+'"'           Literal.String.Name
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'10'          Literal.String.Single
+"'"           Literal.String.Single
+'::'          Operator
+'mpz'         Name
+' '           Text
+'AS'          Keyword
+' '           Text
+'"'           Literal.String.Name
+'dec'         Literal.String.Name
+'"'           Literal.String.Name
+','           Punctuation
+'\n'          Text
+
+'-#'          Generic.Prompt
+'        '    Text
+"'"           Literal.String.Single
+'010'         Literal.String.Single
+"'"           Literal.String.Single
+'::'          Operator
+'mpz'         Name
+' '           Text
+'AS'          Keyword
+' '           Text
+'oct'         Name
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'0b10'        Literal.String.Single
+"'"           Literal.String.Single
+'::'          Operator
+'mpz'         Name
+' '           Text
+'AS'          Keyword
+' '           Text
+'bin'         Name
+';'           Punctuation
+'\n'          Text
+
+' hex | dec | oct | bin\n' Generic.Output
+
+'-----+-----+-----+-----\n' Generic.Output
+
+' 16  | 10  | 8   | 2\n' Generic.Output
+
+'(1 row)\n'   Generic.Output
+
+'\n'          Generic.Output
+
+'-- One field output\n' Generic.Output
+
+'regression=#' Generic.Prompt
+' '           Text
+'select'      Keyword
+' '           Text
+'schemaname'  Name
+' '           Text
+'from'        Keyword
+'  '          Text
+'pg_tables'   Name
+' '           Text
+'limit'       Keyword
+' '           Text
+'3'           Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+' schemaname \n' Generic.Output
+
+'------------\n' Generic.Output
+
+' pg_catalog\n' Generic.Output
+
+' pg_catalog\n' Generic.Output
+
+' pg_catalog\n' Generic.Output
+
+'(3 rows)\n'  Generic.Output
+
+'\n'          Generic.Output
+
+'-- TODO: prompt in multiline comments still not handled correctly\n' Generic.Output
+
+'test=>'      Generic.Prompt
+' '           Text
+'select'      Keyword
+' '           Text
+'1'           Literal.Number.Float
+' '           Text
+'/*'          Comment.Multiline
+' multiline\ntest' Comment.Multiline
+'*'           Comment.Multiline
+'> and 2 '    Comment.Multiline
+'/*'          Comment.Multiline
+' and 3 '     Comment.Multiline
+'*/'          Comment.Multiline
+'\ntest'      Comment.Multiline
+'*'           Comment.Multiline
+'> end comment ' Comment.Multiline
+'*/'          Comment.Multiline
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+' ?column? | ?column? \n' Generic.Output
+
+'----------+----------\n' Generic.Output
+
+'        1 |        2\n' Generic.Output
+
+'\n'          Generic.Output
+
+'=#'          Generic.Prompt
+' '           Text
+'select'      Keyword
+' '           Text
+'10.0'        Literal.Number.Float
+','           Punctuation
+' '           Text
+'1e-6'        Literal.Number.Float
+','           Punctuation
+' '           Text
+'1E+6'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+' ?column? | ?column? | ?column? \n' Generic.Output
+
+'----------+----------+----------\n' Generic.Output
+
+'     10.0 | 0.000001 |  1000000\n' Generic.Output
+
+'(1 row)\n'   Generic.Output
+
+'\n'          Generic.Output
+
+'regression=#' Generic.Prompt
+' '           Text
+'begin'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'BEGIN\n'     Generic.Output
+
+'regression=#' Generic.Prompt
+' '           Text
+'create'      Keyword
+' '           Text
+'table'       Keyword
+' '           Text
+'asdf'        Name
+' '           Text
+'('           Punctuation
+'foo'         Name
+' '           Text
+'serial'      Name.Builtin
+' '           Text
+'primary'     Keyword
+' '           Text
+'key'         Keyword
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'NOTICE:'     Generic.Strong
+'  CREATE TABLE will create implicit sequence "asdf_foo_seq" for serial column "asdf.foo"\n' Generic.Output
+
+'NOTICE:'     Generic.Strong
+'  CREATE TABLE / PRIMARY KEY will create implicit index "asdf_pkey" for table "asdf"\n' Generic.Output
+
+'CREATE TABLE\n' Generic.Output
+
+'regression=#' Generic.Prompt
+' '           Text
+'insert'      Keyword
+' '           Text
+'into'        Keyword
+' '           Text
+'asdf'        Name
+' '           Text
+'values'      Keyword
+' '           Text
+'('           Punctuation
+'10'          Literal.Number.Float
+')'           Punctuation
+' '           Text
+'returning'   Keyword
+' '           Text
+'foo'         Name
+';'           Punctuation
+'\n'          Text
+
+' foo \n'     Generic.Output
+
+'-----\n'     Generic.Output
+
+'  10\n'      Generic.Output
+
+'(1 row)\n'   Generic.Output
+
+'\n'          Generic.Output
+
+'INSERT 0 1\n' Generic.Output
+
+'regression=#' Generic.Prompt
+' '           Text
+'ROLLBACK'    Keyword
+' '           Text
+';'           Punctuation
+'\n'          Text
+
+'ROLLBACK\n'  Generic.Output
+
+'\n'          Generic.Output
+
+'=>'          Generic.Prompt
+' '           Text
+'EXPLAIN'     Keyword
+' '           Text
+'SELECT'      Keyword
+' '           Text
+'*'           Operator
+' '           Text
+'FROM'        Keyword
+' '           Text
+'tenk1'       Name
+'\n'          Text
+
+'->'          Generic.Prompt
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'unique1'     Name
+' '           Text
+'<'           Operator
+' '           Text
+'100'         Literal.Number.Float
+';'           Punctuation
+'   '         Text
+"-- Don't take -> in the plan as a prompt\n" Comment.Single
+
+'\n'          Generic.Output
+
+'                                  QUERY PLAN\n' Generic.Output
+
+'------------------------------------------------------------------------------\n' Generic.Output
+
+' Bitmap Heap Scan on tenk1  (cost=2.37..232.35 rows=106 width=244)\n' Generic.Output
+
+'   Recheck Cond: (unique1 < 100)\n' Generic.Output
+
+'   ->  Bitmap Index Scan on tenk1_unique1  (cost=0.00..2.37 rows=106 width=0)\n' Generic.Output
+
+'         Index Cond: (unique1 < 100)\n' Generic.Output
+
+'\n'          Generic.Output
+
+'\n'          Generic.Output
+
+"-- don't swallow the end of a malformed line\n" Generic.Output
+
+'test=>'      Generic.Prompt
+' '           Text
+'select'      Keyword
+' '           Text
+'1'           Literal.Number.Float
+','           Punctuation
+'\n'          Text
+
+"'"           Literal.String.Single
+'this line must be emitted' Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text

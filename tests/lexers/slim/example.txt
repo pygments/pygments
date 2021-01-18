@@ -1,0 +1,210 @@
+---input---
+doctype html
+html
+  head
+    title Slim Examples
+    meta name="keywords" content="template language"
+    meta name="author" content=author
+    javascript:
+      alert('Slim supports embedded javascript!')
+
+  body
+    h1 Markup examples
+
+    #content
+      p This example shows you how a basic Slim file looks like.
+
+      == yield
+
+      - unless items.empty?
+        table
+          - for item in items do
+            tr
+              td.name = item.name
+              td.price = item.price
+      - else
+        p
+          | No items found. Please add some inventory.
+            Thank you!
+
+    div id="footer"
+      = render 'footer'
+      | Copyright (C) #{year} #{author}
+
+---tokens---
+''            Text
+'doctype'     Name.Tag
+' html'       Text
+'\n'          Text
+
+''            Text
+'html'        Name.Tag
+'\n'          Text
+
+'  '          Text
+'head'        Name.Tag
+'\n'          Text
+
+'    '        Text
+'title'       Name.Tag
+' Slim Examples' Text
+'\n'          Text
+
+'    '        Text
+'meta'        Name.Tag
+' name'       Name.Attribute
+'='           Punctuation
+'"'           Literal.String.Double
+'keywords'    Literal.String.Double
+'"'           Literal.String.Double
+' content'    Name.Attribute
+'='           Punctuation
+'"'           Literal.String.Double
+'template language' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'meta'        Name.Tag
+' name'       Name.Attribute
+'='           Punctuation
+'"'           Literal.String.Double
+'author'      Literal.String.Double
+'"'           Literal.String.Double
+' content'    Name.Attribute
+'='           Punctuation
+'author'      Text
+'\n'          Text
+
+'    '        Text
+'javascript:\n' Text
+
+"      alert('Slim supports embedded javascript!')" Text
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'body'        Name.Tag
+'\n'          Text
+
+'    '        Text
+'h1'          Name.Tag
+' Markup examples' Text
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'#content'    Name.Function
+'\n'          Text
+
+'      '      Text
+'p'           Name.Tag
+' This example shows you how a basic Slim file looks like.' Text
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'=='          Punctuation
+' '           Text
+'yield'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'-'           Punctuation
+' '           Text
+'unless'      Keyword
+' '           Text
+'items'       Name
+'.'           Operator
+'empty?'      Name
+'\n'          Text
+
+'        '    Text
+'table'       Name.Tag
+'\n'          Text
+
+'          '  Text
+'-'           Punctuation
+' '           Text
+'for'         Keyword
+' '           Text
+'item'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'items'       Name
+' '           Text
+'do'          Keyword
+'\n'          Text
+
+'            ' Text
+'tr'          Name.Tag
+'\n'          Text
+
+'              ' Text
+'td'          Name.Tag
+'.name'       Name.Class
+' ='          Punctuation
+' '           Text
+'item'        Name
+'.'           Operator
+'name'        Name
+'\n'          Text
+
+'              ' Text
+'td'          Name.Tag
+'.price'      Name.Class
+' ='          Punctuation
+' '           Text
+'item'        Name
+'.'           Operator
+'price'       Name
+'\n'          Text
+
+'      '      Text
+'-'           Punctuation
+' '           Text
+'else'        Keyword
+'\n'          Text
+
+'        '    Text
+'p'           Name.Tag
+'\n'          Text
+
+'          '  Text
+'| No items found. Please add some inventory.\n' Text
+
+'            ' Text
+'Thank you!'  Text
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'div'         Name.Tag
+' id'         Name.Attribute
+'='           Punctuation
+'"'           Literal.String.Double
+'footer'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'      '      Text
+'='           Punctuation
+' '           Text
+'render'      Name
+' '           Text
+"'"           Literal.String.Single
+'footer'      Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text
+
+'      '      Text
+'| Copyright (C) #{year} #{author}\n' Text
+
+''            Text

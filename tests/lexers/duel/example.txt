@@ -1,0 +1,230 @@
+---input---
+<%@ Control Name="MyApp.MyJbstControl" Language="JavaScript" %>
+
+<script type="text/javascript">
+
+	/* initialization code block, executed only once as control is loaded */
+	this.generateValue = function() {
+		return new Date().toString();
+	};
+
+</script>
+
+<%!
+	/* initialization code block, executed only once as control is loaded */
+	/* alternate syntax to script block above */
+	this.myInitTime = this.generateValue();
+%>
+
+<%
+	/* data binding code block, executed each time as control is data bound */
+	this.myBindTime = this.generateValue();
+%>
+
+<%-- JBST Comment --%>
+<span style="color:red"><%= this.myBindTime /* data binding expression */ %></span>
+<span style="color:green"><%= this.myInitTime /* data binding expression */ %></span>
+
+<!-- HTML Comment -->
+<span style="color:blue"><%$ Resources: localizationKey %><%-- JBST globalization--%></span>
+
+---tokens---
+'<%@'         Name.Tag
+''            Text
+' '           Text
+'Control'     Name.Other
+' '           Text
+'Name'        Name.Other
+'='           Operator
+'"MyApp.MyJbstControl"' Literal.String.Double
+' '           Text
+'Language'    Name.Other
+'='           Operator
+'"JavaScript"' Literal.String.Double
+' '           Text
+'%>'          Name.Tag
+'\n\n'        Text
+
+'<'           Punctuation
+'script'      Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"text/javascript"' Literal.String
+'>'           Punctuation
+''            Text
+'\n\n\t'      Text
+'/* initialization code block, executed only once as control is loaded */' Comment.Multiline
+'\n\t'        Text
+'this'        Keyword
+'.'           Punctuation
+'generateValue' Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword.Declaration
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t\t'      Text
+'return'      Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'Date'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'toString'    Name.Other
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'/'           Punctuation
+'script'      Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<%!'         Name.Tag
+''            Text
+'\n\t'        Text
+'/* initialization code block, executed only once as control is loaded */' Comment.Multiline
+'\n\t'        Text
+'/* alternate syntax to script block above */' Comment.Multiline
+'\n\t'        Text
+'this'        Keyword
+'.'           Punctuation
+'myInitTime'  Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'generateValue' Name.Other
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'%>'          Name.Tag
+'\n\n'        Text
+
+'<%'          Name.Tag
+''            Text
+'\n\t'        Text
+'/* data binding code block, executed each time as control is data bound */' Comment.Multiline
+'\n\t'        Text
+'this'        Keyword
+'.'           Punctuation
+'myBindTime'  Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'generateValue' Name.Other
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'%>'          Name.Tag
+'\n\n'        Text
+
+'<%'          Name.Tag
+'--'          Operator
+' '           Text
+'JBST'        Name.Other
+' '           Text
+'Comment'     Name.Other
+' '           Text
+'--'          Operator
+'%>'          Name.Tag
+'\n'          Text
+
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"color:red"' Literal.String
+'>'           Punctuation
+'<%='         Name.Tag
+''            Text
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'myBindTime'  Name.Other
+' '           Text
+'/* data binding expression */' Comment.Multiline
+' '           Text
+'%>'          Name.Tag
+'<'           Punctuation
+'/'           Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"color:green"' Literal.String
+'>'           Punctuation
+'<%='         Name.Tag
+''            Text
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'myInitTime'  Name.Other
+' '           Text
+'/* data binding expression */' Comment.Multiline
+' '           Text
+'%>'          Name.Tag
+'<'           Punctuation
+'/'           Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<!--'        Comment
+' HTML Comment ' Comment
+'-->'         Comment
+'\n'          Text
+
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"color:blue"' Literal.String
+'>'           Punctuation
+'<%'          Name.Tag
+'$'           Name.Other
+' '           Text
+'Resources'   Name.Other
+':'           Operator
+' '           Text
+'localizationKey' Name.Other
+' '           Text
+'%>'          Name.Tag
+'<%'          Name.Tag
+'--'          Operator
+' '           Text
+'JBST'        Name.Other
+' '           Text
+'globalization' Name.Other
+'--'          Operator
+'%>'          Name.Tag
+'<'           Punctuation
+'/'           Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n'          Text

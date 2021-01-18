@@ -1,0 +1,149 @@
+---input---
+module toplevel(clock,reset);
+ input clock;
+ input reset;
+ 
+ reg flop1;
+ reg flop2;
+ 
+ always @ (posedge reset or posedge clock)
+ if (reset)
+   begin
+     flop1 <= 0;
+     flop2 <= 1;
+   end
+ else
+   begin
+     flop1 <= flop2;
+     flop2 <= flop1;
+   end
+endmodule
+
+---tokens---
+'module'      Keyword
+' '           Text
+'toplevel'    Name
+'('           Punctuation
+'clock'       Name
+','           Punctuation
+'reset'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+' '           Text
+'input'       Keyword
+' '           Text
+'clock'       Name
+';'           Punctuation
+'\n'          Text
+
+' '           Text
+'input'       Keyword
+' '           Text
+'reset'       Name
+';'           Punctuation
+'\n'          Text
+
+' \n '        Text
+'reg'         Keyword.Type
+' '           Text
+'flop1'       Name
+';'           Punctuation
+'\n'          Text
+
+' '           Text
+'reg'         Keyword.Type
+' '           Text
+'flop2'       Name
+';'           Punctuation
+'\n'          Text
+
+' \n '        Text
+'always'      Keyword
+' '           Text
+'@'           Punctuation
+' '           Text
+'('           Punctuation
+'posedge'     Keyword
+' '           Text
+'reset'       Name
+' '           Text
+'or'          Keyword
+' '           Text
+'posedge'     Keyword
+' '           Text
+'clock'       Name
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'reset'       Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'begin'       Keyword
+'\n'          Text
+
+'     '       Text
+'flop1'       Name
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'     '       Text
+'flop2'       Name
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword
+'\n'          Text
+
+' '           Text
+'else'        Keyword
+'\n'          Text
+
+'   '         Text
+'begin'       Keyword
+'\n'          Text
+
+'     '       Text
+'flop1'       Name
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'flop2'       Name
+';'           Punctuation
+'\n'          Text
+
+'     '       Text
+'flop2'       Name
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'flop1'       Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword
+'\n'          Text
+
+'endmodule'   Keyword
+'\n'          Text

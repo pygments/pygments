@@ -1,0 +1,44 @@
+---input---
+[section]
+
+foo = bar
+continued = foo
+  baz
+conttwo =
+  foo
+; comment
+# comment
+
+
+---tokens---
+'[section]'   Keyword
+'\n\n'        Text
+
+'foo'         Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'bar'         Literal.String
+'\n'          Text
+
+'continued'   Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'foo'         Literal.String
+'\n  '        Text
+'baz'         Name.Attribute
+'\n'          Text
+
+'conttwo'     Name.Attribute
+' '           Text
+'='           Operator
+'\n  '        Text
+'foo'         Name.Attribute
+'\n'          Text
+
+'; comment'   Comment.Single
+'\n'          Text
+
+'# comment'   Comment.Single
+'\n'          Text

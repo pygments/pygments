@@ -1,0 +1,69 @@
+---input---
+/* Fragment shader */
+void main()
+{
+    gl_FragColor[0] = gl_FragCoord[0] / 400.0;
+    gl_FragColor[1] = gl_FragCoord[1] / 400.0;
+    gl_FragColor[2] = 1.0;
+}
+
+---tokens---
+'/* Fragment shader */' Comment.Multiline
+'\n'          Text
+
+'void'        Keyword.Type
+' '           Text
+'main'        Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n    '      Text
+'gl_FragColor' Name.Builtin
+'['           Punctuation
+'0'           Literal.Number.Oct
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'gl_FragCoord' Name.Builtin
+'['           Punctuation
+'0'           Literal.Number.Oct
+']'           Punctuation
+' '           Text
+'/'           Operator
+' '           Text
+'400.0'       Literal.Number.Float
+';'           Punctuation
+'\n    '      Text
+'gl_FragColor' Name.Builtin
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'gl_FragCoord' Name.Builtin
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'/'           Operator
+' '           Text
+'400.0'       Literal.Number.Float
+';'           Punctuation
+'\n    '      Text
+'gl_FragColor' Name.Builtin
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'1.0'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

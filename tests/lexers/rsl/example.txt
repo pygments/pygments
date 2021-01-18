@@ -1,0 +1,2665 @@
+---input---
+scheme COMPILER = 
+class
+  type
+    Prog == mk_Prog(stmt : Stmt),  
+
+    Stmt ==  
+      mk_Asgn(ide : Identifier,  expr : Expr) |   
+      mk_If(cond : Expr,  s1 : Stmt, s2 : Stmt) |   
+      mk_Seq(head : Stmt,  last : Stmt),  
+
+    Expr == 
+      mk_Const(const : Int) |  
+      mk_Plus(fst : Expr,  snd : Expr) |
+      mk_Id(ide : Identifier),
+    Identifier = Text
+
+type /* storage for program variables */
+  `Sigma = Identifier -m-> Int 
+
+value     
+  m : Prog -> `Sigma -> `Sigma
+  m(p)(`sigma)  is  m(stmt(p))(`sigma),  
+
+  m : Stmt -> `Sigma -> `Sigma
+  m(s)(`sigma)  is  
+    case s of 
+      mk_Asgn(i, e) -> `sigma !! [i +> m(e)(`sigma)], 
+      mk_Seq(s1, s2) -> m(s2)(m(s1)(`sigma)), 
+      mk_If(c, s1, s2) -> 
+        if m(c)(`sigma) ~= 0 then m(s1)(`sigma) else m(s2)(`sigma) end      
+    end,
+  
+  m : Expr -> `Sigma -> Int
+  m(e)(`sigma)  is  
+    case e of 
+      mk_Const(n) -> n, 
+      mk_Plus(e1, e2) -> m(e1)(`sigma) + m(e2)(`sigma), 
+      mk_Id(id) -> if id isin  dom `sigma then `sigma(id) else 0 end 
+    end 
+
+type
+  MProg = Inst-list,
+  Inst == 
+     mk_Push(ide1 : Identifier) | 
+     mk_Pop(Unit) | 
+     mk_Add(Unit) | 
+     mk_Cnst(val : Int) | 
+     mk_Store(ide2 : Identifier) | 
+     mk_Jumpfalse(off1 : Int) | 
+     mk_Jump(off2 : Int) 
+
+
+/* An interpreter for SMALL instructions */
+
+type  Stack = Int-list
+value 
+  I : MProg >< Int >< Stack -> (`Sigma ->`Sigma)
+  I(mp, pc, s)(`sigma) is 
+    if pc <= 0 \/ pc > len mp then `sigma else
+      case  mp(pc) of
+        mk_Push(x) -> if x isin dom `sigma 
+          then I(mp, pc + 1, <.`sigma(x).> ^ s)(`sigma)
+          else  I(mp, pc + 1, <.0.> ^ s)(`sigma) end,
+        mk_Pop(()) -> if len s = 0 then `sigma
+          else I(mp, pc + 1, tl s)(`sigma) end,
+        mk_Cnst(n)  -> I(mp, pc + 1, <.n.> ^  s)(`sigma),
+        mk_Add(()) -> if len s < 2 then `sigma 
+          else  I(mp, pc + 1,<.s(1) + s(2).> ^ tl tl s)(`sigma) end,
+        mk_Store(x) -> if len s = 0 then `sigma
+          else I(mp, pc + 1, s)(`sigma !! [x +> s(1)]) end,
+        mk_Jumpfalse(n) -> if len s = 0 then `sigma
+          elsif  hd s ~= 0  then I(mp, pc + 1, s)(`sigma) 
+          else I(mp, pc + n, s)(`sigma) end,
+        mk_Jump(n) -> I(mp, pc + n, s)(`sigma) 
+      end
+    end  
+
+value
+  comp_Prog : Prog -> MProg
+  comp_Prog(p) is comp_Stmt(stmt(p)),
+
+  comp_Stmt : Stmt -> MProg
+  comp_Stmt(s) is
+    case s of
+      mk_Asgn(id, e) -> comp_Expr(e) ^ <. mk_Store(id), mk_Pop() .>,
+      mk_Seq(s1, s2) -> comp_Stmt(s1) ^ comp_Stmt(s2),
+      mk_If(e, s1, s2) -> 
+       let 
+         ce = comp_Expr(e), 
+         cs1 = comp_Stmt(s1), cs2 = comp_Stmt(s2) 
+       in
+           ce ^ 
+           <. mk_Jumpfalse(len cs1 + 3) .> ^
+           <. mk_Pop() .> ^
+           cs1 ^
+           <. mk_Jump(len cs2 + 2) .> ^
+           <. mk_Pop() .> ^
+           cs2
+       end
+    end,
+
+  comp_Expr : Expr -> MProg
+  comp_Expr(e) is 
+    case e of
+      mk_Const(n) -> <. mk_Cnst(n) .>,
+      mk_Plus(e1, e2) -> 
+        comp_Expr(e1) ^ comp_Expr(e2) ^ <. mk_Add() .>,
+      mk_Id(id) -> <. mk_Push(id) .>
+    end
+
+end
+
+---tokens---
+'scheme'      Keyword
+' '           Text
+'COMPILER'    Keyword.Type
+' '           Text
+'='           Text
+' '           Text
+'\n'          Text
+
+'class'       Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+'type'        Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Prog'        Keyword.Type
+' '           Text
+'='           Text
+'='           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'P'           Text
+'r'           Text
+'o'           Text
+'g'           Text
+'('           Text
+'s'           Text
+'t'           Text
+'m'           Text
+'t'           Text
+' '           Text
+':'           Text
+' '           Text
+'Stmt'        Keyword.Type
+')'           Text
+','           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Stmt'        Keyword.Type
+' '           Text
+'='           Text
+'='           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'A'           Text
+'s'           Text
+'g'           Text
+'n'           Text
+'('           Text
+'i'           Text
+'d'           Text
+'e'           Text
+' '           Text
+':'           Text
+' '           Text
+'Identifier'  Keyword.Type
+','           Text
+' '           Text
+' '           Text
+'e'           Text
+'x'           Text
+'p'           Text
+'r'           Text
+' '           Text
+':'           Text
+' '           Text
+'Expr'        Keyword.Type
+')'           Text
+' '           Text
+'|'           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'I'           Text
+'f'           Text
+'('           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'d'           Text
+' '           Text
+':'           Text
+' '           Text
+'Expr'        Keyword.Type
+','           Text
+' '           Text
+' '           Text
+'s'           Text
+'1'           Literal.Number.Integer
+' '           Text
+':'           Text
+' '           Text
+'Stmt'        Keyword.Type
+','           Text
+' '           Text
+'s'           Text
+'2'           Literal.Number.Integer
+' '           Text
+':'           Text
+' '           Text
+'Stmt'        Keyword.Type
+')'           Text
+' '           Text
+'|'           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'S'           Text
+'e'           Text
+'q'           Text
+'('           Text
+'h'           Text
+'e'           Text
+'a'           Text
+'d'           Text
+' '           Text
+':'           Text
+' '           Text
+'Stmt'        Keyword.Type
+','           Text
+' '           Text
+' '           Text
+'l'           Text
+'a'           Text
+'s'           Text
+'t'           Text
+' '           Text
+':'           Text
+' '           Text
+'Stmt'        Keyword.Type
+')'           Text
+','           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Expr'        Keyword.Type
+' '           Text
+'='           Text
+'='           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'C'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'('           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+' '           Text
+':'           Text
+' '           Text
+'Int'         Keyword
+')'           Text
+' '           Text
+'|'           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'P'           Text
+'l'           Text
+'u'           Text
+'s'           Text
+'('           Text
+'f'           Text
+'s'           Text
+'t'           Text
+' '           Text
+':'           Text
+' '           Text
+'Expr'        Keyword.Type
+','           Text
+' '           Text
+' '           Text
+'s'           Text
+'n'           Text
+'d'           Text
+' '           Text
+':'           Text
+' '           Text
+'Expr'        Keyword.Type
+')'           Text
+' '           Text
+'|'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'I'           Text
+'d'           Text
+'('           Text
+'i'           Text
+'d'           Text
+'e'           Text
+' '           Text
+':'           Text
+' '           Text
+'Identifier'  Keyword.Type
+')'           Text
+','           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Identifier'  Keyword.Type
+' '           Text
+'='           Text
+' '           Text
+'Text'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'type'        Keyword
+' '           Text
+'/* storage for program variables */' Comment
+'\n'          Text
+
+' '           Text
+' '           Text
+'`'           Text
+'Sigma'       Keyword.Type
+' '           Text
+'='           Text
+' '           Text
+'Identifier'  Keyword.Type
+' '           Text
+'-m->'        Operator
+' '           Text
+'Int'         Keyword
+' '           Text
+'\n'          Text
+
+'\n'          Text
+
+'value'       Keyword
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+'  m : '      Name.Function
+'Prog'        Keyword.Type
+' '           Text
+'->'          Operator
+' '           Text
+'`'           Text
+'Sigma'       Keyword.Type
+' '           Text
+'->'          Operator
+' '           Text
+'`'           Text
+'Sigma'       Keyword.Type
+'\n'          Text
+
+' '           Text
+' '           Text
+'m'           Text
+'('           Text
+'p'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+' '           Text
+'is'          Keyword
+' '           Text
+' '           Text
+'m'           Text
+'('           Text
+'s'           Text
+'t'           Text
+'m'           Text
+'t'           Text
+'('           Text
+'p'           Text
+')'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+','           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+'\n'          Text
+
+'  m : '      Name.Function
+'Stmt'        Keyword.Type
+' '           Text
+'->'          Operator
+' '           Text
+'`'           Text
+'Sigma'       Keyword.Type
+' '           Text
+'->'          Operator
+' '           Text
+'`'           Text
+'Sigma'       Keyword.Type
+'\n'          Text
+
+' '           Text
+' '           Text
+'m'           Text
+'('           Text
+'s'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+' '           Text
+'is'          Keyword
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'case'        Keyword
+' '           Text
+'s'           Text
+' '           Text
+'of'          Keyword
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'A'           Text
+'s'           Text
+'g'           Text
+'n'           Text
+'('           Text
+'i'           Text
+','           Text
+' '           Text
+'e'           Text
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+' '           Text
+'!!'          Operator
+' '           Text
+'['           Text
+'i'           Text
+' '           Text
+'+>'          Operator
+' '           Text
+'m'           Text
+'('           Text
+'e'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+']'           Text
+','           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'S'           Text
+'e'           Text
+'q'           Text
+'('           Text
+'s'           Text
+'1'           Literal.Number.Integer
+','           Text
+' '           Text
+'s'           Text
+'2'           Literal.Number.Integer
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'m'           Text
+'('           Text
+'s'           Text
+'2'           Literal.Number.Integer
+')'           Text
+'('           Text
+'m'           Text
+'('           Text
+'s'           Text
+'1'           Literal.Number.Integer
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+')'           Text
+','           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'I'           Text
+'f'           Text
+'('           Text
+'c'           Text
+','           Text
+' '           Text
+'s'           Text
+'1'           Literal.Number.Integer
+','           Text
+' '           Text
+'s'           Text
+'2'           Literal.Number.Integer
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'m'           Text
+'('           Text
+'c'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+'~='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'m'           Text
+'('           Text
+'s'           Text
+'1'           Literal.Number.Integer
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+'else'        Keyword
+' '           Text
+'m'           Text
+'('           Text
+'s'           Text
+'2'           Literal.Number.Integer
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+'end'         Keyword
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end'         Keyword
+','           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+'  m : '      Name.Function
+'Expr'        Keyword.Type
+' '           Text
+'->'          Operator
+' '           Text
+'`'           Text
+'Sigma'       Keyword.Type
+' '           Text
+'->'          Operator
+' '           Text
+'Int'         Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+'m'           Text
+'('           Text
+'e'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+' '           Text
+'is'          Keyword
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'case'        Keyword
+' '           Text
+'e'           Text
+' '           Text
+'of'          Keyword
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'C'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'('           Text
+'n'           Text
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'n'           Text
+','           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'P'           Text
+'l'           Text
+'u'           Text
+'s'           Text
+'('           Text
+'e'           Text
+'1'           Literal.Number.Integer
+','           Text
+' '           Text
+'e'           Text
+'2'           Literal.Number.Integer
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'m'           Text
+'('           Text
+'e'           Text
+'1'           Literal.Number.Integer
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+'+'           Text
+' '           Text
+'m'           Text
+'('           Text
+'e'           Text
+'2'           Literal.Number.Integer
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+','           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'I'           Text
+'d'           Text
+'('           Text
+'i'           Text
+'d'           Text
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'i'           Text
+'d'           Text
+' '           Text
+'isin'        Keyword
+' '           Text
+' '           Text
+'dom'         Keyword
+' '           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+' '           Text
+'then'        Keyword
+' '           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+'('           Text
+'i'           Text
+'d'           Text
+')'           Text
+' '           Text
+'else'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'end'         Keyword
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end'         Keyword
+' '           Text
+'\n'          Text
+
+'\n'          Text
+
+'type'        Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+'MProg'       Keyword.Type
+' '           Text
+'='           Text
+' '           Text
+'Inst'        Keyword.Type
+'-list'       Keyword
+','           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'Inst'        Keyword.Type
+' '           Text
+'='           Text
+'='           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'P'           Text
+'u'           Text
+'s'           Text
+'h'           Text
+'('           Text
+'i'           Text
+'d'           Text
+'e'           Text
+'1'           Literal.Number.Integer
+' '           Text
+':'           Text
+' '           Text
+'Identifier'  Keyword.Type
+')'           Text
+' '           Text
+'|'           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'P'           Text
+'o'           Text
+'p'           Text
+'('           Text
+'Unit'        Keyword
+')'           Text
+' '           Text
+'|'           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'A'           Text
+'d'           Text
+'d'           Text
+'('           Text
+'Unit'        Keyword
+')'           Text
+' '           Text
+'|'           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'C'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'('           Text
+'v'           Text
+'a'           Text
+'l'           Text
+' '           Text
+':'           Text
+' '           Text
+'Int'         Keyword
+')'           Text
+' '           Text
+'|'           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'S'           Text
+'t'           Text
+'o'           Text
+'r'           Text
+'e'           Text
+'('           Text
+'i'           Text
+'d'           Text
+'e'           Text
+'2'           Literal.Number.Integer
+' '           Text
+':'           Text
+' '           Text
+'Identifier'  Keyword.Type
+')'           Text
+' '           Text
+'|'           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'J'           Text
+'u'           Text
+'m'           Text
+'p'           Text
+'false'       Keyword.Constant
+'('           Text
+'o'           Text
+'f'           Text
+'f'           Text
+'1'           Literal.Number.Integer
+' '           Text
+':'           Text
+' '           Text
+'Int'         Keyword
+')'           Text
+' '           Text
+'|'           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'J'           Text
+'u'           Text
+'m'           Text
+'p'           Text
+'('           Text
+'o'           Text
+'f'           Text
+'f'           Text
+'2'           Literal.Number.Integer
+' '           Text
+':'           Text
+' '           Text
+'Int'         Keyword
+')'           Text
+' '           Text
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'/* An interpreter for SMALL instructions */' Comment
+'\n'          Text
+
+'\n'          Text
+
+'type'        Keyword
+' '           Text
+' '           Text
+'Stack'       Keyword.Type
+' '           Text
+'='           Text
+' '           Text
+'Int'         Keyword
+'-list'       Keyword
+'\n'          Text
+
+'value'       Keyword
+' '           Text
+'\n'          Text
+
+'  I : '      Name.Function
+'MProg'       Keyword.Type
+' '           Text
+'><'          Operator
+' '           Text
+'Int'         Keyword
+' '           Text
+'><'          Operator
+' '           Text
+'Stack'       Keyword.Type
+' '           Text
+'->'          Operator
+' '           Text
+'('           Text
+'`'           Text
+'Sigma'       Keyword.Type
+' '           Text
+'->'          Operator
+'`'           Text
+'Sigma'       Keyword.Type
+')'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'I'           Keyword.Type
+'('           Text
+'m'           Text
+'p'           Text
+','           Text
+' '           Text
+'p'           Text
+'c'           Text
+','           Text
+' '           Text
+'s'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+'is'          Keyword
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'p'           Text
+'c'           Text
+' '           Text
+'<='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'\\/'         Operator
+' '           Text
+'p'           Text
+'c'           Text
+' '           Text
+'>'           Text
+' '           Text
+'len'         Keyword
+' '           Text
+'m'           Text
+'p'           Text
+' '           Text
+'then'        Keyword
+' '           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+' '           Text
+'else'        Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'case'        Keyword
+' '           Text
+' '           Text
+'m'           Text
+'p'           Text
+'('           Text
+'p'           Text
+'c'           Text
+')'           Text
+' '           Text
+'of'          Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'P'           Text
+'u'           Text
+'s'           Text
+'h'           Text
+'('           Text
+'x'           Text
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'x'           Text
+' '           Text
+'isin'        Keyword
+' '           Text
+'dom'         Keyword
+' '           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'then'        Keyword
+' '           Text
+'I'           Keyword.Type
+'('           Text
+'m'           Text
+'p'           Text
+','           Text
+' '           Text
+'p'           Text
+'c'           Text
+' '           Text
+'+'           Text
+' '           Text
+'1'           Literal.Number.Integer
+','           Text
+' '           Text
+'<.'          Operator
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+'('           Text
+'x'           Text
+')'           Text
+'.>'          Operator
+' '           Text
+'^'           Text
+' '           Text
+'s'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'else'        Keyword
+' '           Text
+' '           Text
+'I'           Keyword.Type
+'('           Text
+'m'           Text
+'p'           Text
+','           Text
+' '           Text
+'p'           Text
+'c'           Text
+' '           Text
+'+'           Text
+' '           Text
+'1'           Literal.Number.Integer
+','           Text
+' '           Text
+'<.'          Operator
+'0'           Literal.Number.Integer
+'.>'          Operator
+' '           Text
+'^'           Text
+' '           Text
+'s'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+'end'         Keyword
+','           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'P'           Text
+'o'           Text
+'p'           Text
+'('           Text
+'('           Text
+')'           Text
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'len'         Keyword
+' '           Text
+'s'           Text
+' '           Text
+'='           Text
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'else'        Keyword
+' '           Text
+'I'           Keyword.Type
+'('           Text
+'m'           Text
+'p'           Text
+','           Text
+' '           Text
+'p'           Text
+'c'           Text
+' '           Text
+'+'           Text
+' '           Text
+'1'           Literal.Number.Integer
+','           Text
+' '           Text
+'tl'          Keyword
+' '           Text
+'s'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+'end'         Keyword
+','           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'C'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'('           Text
+'n'           Text
+')'           Text
+' '           Text
+' '           Text
+'->'          Operator
+' '           Text
+'I'           Keyword.Type
+'('           Text
+'m'           Text
+'p'           Text
+','           Text
+' '           Text
+'p'           Text
+'c'           Text
+' '           Text
+'+'           Text
+' '           Text
+'1'           Literal.Number.Integer
+','           Text
+' '           Text
+'<.'          Operator
+'n'           Text
+'.>'          Operator
+' '           Text
+'^'           Text
+' '           Text
+' '           Text
+'s'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+','           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'A'           Text
+'d'           Text
+'d'           Text
+'('           Text
+'('           Text
+')'           Text
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'len'         Keyword
+' '           Text
+'s'           Text
+' '           Text
+'<'           Text
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'else'        Keyword
+' '           Text
+' '           Text
+'I'           Keyword.Type
+'('           Text
+'m'           Text
+'p'           Text
+','           Text
+' '           Text
+'p'           Text
+'c'           Text
+' '           Text
+'+'           Text
+' '           Text
+'1'           Literal.Number.Integer
+','           Text
+'<.'          Operator
+'s'           Text
+'('           Text
+'1'           Literal.Number.Integer
+')'           Text
+' '           Text
+'+'           Text
+' '           Text
+'s'           Text
+'('           Text
+'2'           Literal.Number.Integer
+')'           Text
+'.>'          Operator
+' '           Text
+'^'           Text
+' '           Text
+'tl'          Keyword
+' '           Text
+'tl'          Keyword
+' '           Text
+'s'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+'end'         Keyword
+','           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'S'           Text
+'t'           Text
+'o'           Text
+'r'           Text
+'e'           Text
+'('           Text
+'x'           Text
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'len'         Keyword
+' '           Text
+'s'           Text
+' '           Text
+'='           Text
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'else'        Keyword
+' '           Text
+'I'           Keyword.Type
+'('           Text
+'m'           Text
+'p'           Text
+','           Text
+' '           Text
+'p'           Text
+'c'           Text
+' '           Text
+'+'           Text
+' '           Text
+'1'           Literal.Number.Integer
+','           Text
+' '           Text
+'s'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+' '           Text
+'!!'          Operator
+' '           Text
+'['           Text
+'x'           Text
+' '           Text
+'+>'          Operator
+' '           Text
+'s'           Text
+'('           Text
+'1'           Literal.Number.Integer
+')'           Text
+']'           Text
+')'           Text
+' '           Text
+'end'         Keyword
+','           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'J'           Text
+'u'           Text
+'m'           Text
+'p'           Text
+'false'       Keyword.Constant
+'('           Text
+'n'           Text
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'len'         Keyword
+' '           Text
+'s'           Text
+' '           Text
+'='           Text
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'e'           Text
+'l'           Text
+'s'           Text
+'i'           Text
+'f'           Text
+' '           Text
+' '           Text
+'hd'          Keyword
+' '           Text
+'s'           Text
+' '           Text
+'~='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+' '           Text
+'then'        Keyword
+' '           Text
+'I'           Keyword.Type
+'('           Text
+'m'           Text
+'p'           Text
+','           Text
+' '           Text
+'p'           Text
+'c'           Text
+' '           Text
+'+'           Text
+' '           Text
+'1'           Literal.Number.Integer
+','           Text
+' '           Text
+'s'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'else'        Keyword
+' '           Text
+'I'           Keyword.Type
+'('           Text
+'m'           Text
+'p'           Text
+','           Text
+' '           Text
+'p'           Text
+'c'           Text
+' '           Text
+'+'           Text
+' '           Text
+'n'           Text
+','           Text
+' '           Text
+'s'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+'end'         Keyword
+','           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'J'           Text
+'u'           Text
+'m'           Text
+'p'           Text
+'('           Text
+'n'           Text
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'I'           Keyword.Type
+'('           Text
+'m'           Text
+'p'           Text
+','           Text
+' '           Text
+'p'           Text
+'c'           Text
+' '           Text
+'+'           Text
+' '           Text
+'n'           Text
+','           Text
+' '           Text
+'s'           Text
+')'           Text
+'('           Text
+'`'           Text
+'s'           Text
+'i'           Text
+'g'           Text
+'m'           Text
+'a'           Text
+')'           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end'         Keyword
+' '           Text
+' '           Text
+'\n'          Text
+
+'\n'          Text
+
+'value'       Keyword
+'\n'          Text
+
+'  comp_Prog : ' Name.Function
+'Prog'        Keyword.Type
+' '           Text
+'->'          Operator
+' '           Text
+'MProg'       Keyword.Type
+'\n'          Text
+
+'  '          Text
+'comp_Prog'   Name.Function
+'(p) '        Text
+'is'          Keyword
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'S'           Text
+'t'           Text
+'m'           Text
+'t'           Text
+'('           Text
+'s'           Text
+'t'           Text
+'m'           Text
+'t'           Text
+'('           Text
+'p'           Text
+')'           Text
+')'           Text
+','           Text
+'\n'          Text
+
+'\n'          Text
+
+'  comp_Stmt : ' Name.Function
+'Stmt'        Keyword.Type
+' '           Text
+'->'          Operator
+' '           Text
+'MProg'       Keyword.Type
+'\n'          Text
+
+'  '          Text
+'comp_Stmt'   Name.Function
+'(s) '        Text
+'is'          Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'case'        Keyword
+' '           Text
+'s'           Text
+' '           Text
+'of'          Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'A'           Text
+'s'           Text
+'g'           Text
+'n'           Text
+'('           Text
+'i'           Text
+'d'           Text
+','           Text
+' '           Text
+'e'           Text
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'E'           Text
+'x'           Text
+'p'           Text
+'r'           Text
+'('           Text
+'e'           Text
+')'           Text
+' '           Text
+'^'           Text
+' '           Text
+'<.'          Operator
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'S'           Text
+'t'           Text
+'o'           Text
+'r'           Text
+'e'           Text
+'('           Text
+'i'           Text
+'d'           Text
+')'           Text
+','           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'P'           Text
+'o'           Text
+'p'           Text
+'('           Text
+')'           Text
+' '           Text
+'.>'          Operator
+','           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'S'           Text
+'e'           Text
+'q'           Text
+'('           Text
+'s'           Text
+'1'           Literal.Number.Integer
+','           Text
+' '           Text
+'s'           Text
+'2'           Literal.Number.Integer
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'S'           Text
+'t'           Text
+'m'           Text
+'t'           Text
+'('           Text
+'s'           Text
+'1'           Literal.Number.Integer
+')'           Text
+' '           Text
+'^'           Text
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'S'           Text
+'t'           Text
+'m'           Text
+'t'           Text
+'('           Text
+'s'           Text
+'2'           Literal.Number.Integer
+')'           Text
+','           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'I'           Text
+'f'           Text
+'('           Text
+'e'           Text
+','           Text
+' '           Text
+'s'           Text
+'1'           Literal.Number.Integer
+','           Text
+' '           Text
+'s'           Text
+'2'           Literal.Number.Integer
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'let'         Keyword
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'c'           Text
+'e'           Text
+' '           Text
+'='           Text
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'E'           Text
+'x'           Text
+'p'           Text
+'r'           Text
+'('           Text
+'e'           Text
+')'           Text
+','           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'c'           Text
+'s'           Text
+'1'           Literal.Number.Integer
+' '           Text
+'='           Text
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'S'           Text
+'t'           Text
+'m'           Text
+'t'           Text
+'('           Text
+'s'           Text
+'1'           Literal.Number.Integer
+')'           Text
+','           Text
+' '           Text
+'c'           Text
+'s'           Text
+'2'           Literal.Number.Integer
+' '           Text
+'='           Text
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'S'           Text
+'t'           Text
+'m'           Text
+'t'           Text
+'('           Text
+'s'           Text
+'2'           Literal.Number.Integer
+')'           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'in'          Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'c'           Text
+'e'           Text
+' '           Text
+'^'           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'<.'          Operator
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'J'           Text
+'u'           Text
+'m'           Text
+'p'           Text
+'false'       Keyword.Constant
+'('           Text
+'len'         Keyword
+' '           Text
+'c'           Text
+'s'           Text
+'1'           Literal.Number.Integer
+' '           Text
+'+'           Text
+' '           Text
+'3'           Literal.Number.Integer
+')'           Text
+' '           Text
+'.>'          Operator
+' '           Text
+'^'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'<.'          Operator
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'P'           Text
+'o'           Text
+'p'           Text
+'('           Text
+')'           Text
+' '           Text
+'.>'          Operator
+' '           Text
+'^'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'c'           Text
+'s'           Text
+'1'           Literal.Number.Integer
+' '           Text
+'^'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'<.'          Operator
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'J'           Text
+'u'           Text
+'m'           Text
+'p'           Text
+'('           Text
+'len'         Keyword
+' '           Text
+'c'           Text
+'s'           Text
+'2'           Literal.Number.Integer
+' '           Text
+'+'           Text
+' '           Text
+'2'           Literal.Number.Integer
+')'           Text
+' '           Text
+'.>'          Operator
+' '           Text
+'^'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'<.'          Operator
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'P'           Text
+'o'           Text
+'p'           Text
+'('           Text
+')'           Text
+' '           Text
+'.>'          Operator
+' '           Text
+'^'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'c'           Text
+'s'           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end'         Keyword
+','           Text
+'\n'          Text
+
+'\n'          Text
+
+'  comp_Expr : ' Name.Function
+'Expr'        Keyword.Type
+' '           Text
+'->'          Operator
+' '           Text
+'MProg'       Keyword.Type
+'\n'          Text
+
+'  '          Text
+'comp_Expr'   Name.Function
+'(e) '        Text
+'is'          Keyword
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'case'        Keyword
+' '           Text
+'e'           Text
+' '           Text
+'of'          Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'C'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'('           Text
+'n'           Text
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'<.'          Operator
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'C'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'('           Text
+'n'           Text
+')'           Text
+' '           Text
+'.>'          Operator
+','           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'P'           Text
+'l'           Text
+'u'           Text
+'s'           Text
+'('           Text
+'e'           Text
+'1'           Literal.Number.Integer
+','           Text
+' '           Text
+'e'           Text
+'2'           Literal.Number.Integer
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'E'           Text
+'x'           Text
+'p'           Text
+'r'           Text
+'('           Text
+'e'           Text
+'1'           Literal.Number.Integer
+')'           Text
+' '           Text
+'^'           Text
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'_'           Text
+'E'           Text
+'x'           Text
+'p'           Text
+'r'           Text
+'('           Text
+'e'           Text
+'2'           Literal.Number.Integer
+')'           Text
+' '           Text
+'^'           Text
+' '           Text
+'<.'          Operator
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'A'           Text
+'d'           Text
+'d'           Text
+'('           Text
+')'           Text
+' '           Text
+'.>'          Operator
+','           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'I'           Text
+'d'           Text
+'('           Text
+'i'           Text
+'d'           Text
+')'           Text
+' '           Text
+'->'          Operator
+' '           Text
+'<.'          Operator
+' '           Text
+'m'           Text
+'k'           Text
+'_'           Text
+'P'           Text
+'u'           Text
+'s'           Text
+'h'           Text
+'('           Text
+'i'           Text
+'d'           Text
+')'           Text
+' '           Text
+'.>'          Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+'\n'          Text
+
+'end'         Keyword
+'\n'          Text

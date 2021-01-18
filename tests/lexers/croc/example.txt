@@ -1,0 +1,5582 @@
+---input---
+module simple;
+
+// Importing stuff.
+{
+	function loadMod(name, ns)
+	{
+		assert(name == "mod");
+		
+		ns.x = "I'm x";
+	
+		ns.foo = function foo()
+		{
+			writefln("foo");
+		};
+	
+		ns.bar = function bar(x)
+		{
+			return x[0];
+		};
+	
+		ns.baz = function baz()
+		{
+			writefln(x);
+		};
+		
+		foreach(k, v; ns)
+			if(isFunction(v))
+				v.environment(ns);
+	}
+	
+	setModuleLoader("mod", loadMod);
+	
+	import mod : foo, bar;
+	foo();
+	writefln(bar([5]));
+	mod.baz();
+
+	writefln();
+}
+
+// Super calls.
+{
+	class Base
+	{
+		function fork()
+		{
+			writefln("Base fork.");
+		}
+	}
+
+	class Derived : Base
+	{
+		function fork()
+		{
+			writefln("Derived fork!");
+			super.fork();
+		}
+	}
+	
+	local d = Derived();
+	d.fork();
+	
+	writefln();
+}
+
+// Coroutines and coroutine iteration.
+{
+	local countDown = coroutine function countDown(x)
+	{
+		yield();
+		
+		while(x > 0)
+		{
+			yield(x);
+			x--;
+		}
+	};
+	
+	foreach(v; countDown, 5)
+		writefln(v);
+		
+	writefln();
+	
+	local forEach = coroutine function forEach(t)
+	{
+		yield();
+	
+		foreach(k, v; t)
+			yield(k, v);
+	};
+	
+	foreach(_, k, v; forEach, {hi = 1, bye = 2})
+		writefln("key: ", k, ", value: ", v);
+	
+	writefln();
+}
+
+// Testing tailcalls.
+{
+	function recurse(x)
+	{
+		writefln("recurse: ", x);
+	
+		if(x == 0)
+			return toString(x);
+		else
+			return recurse(x - 1);
+	}
+	
+	writefln(recurse(5));
+	writefln();
+	
+	class A
+	{
+		function f(x)
+		{
+			writefln("A.f: ", x);
+
+			if(x == 0)
+				return toString(x);
+			else
+				return this.f(x - 1); // call it as this.f to force a 'method' instruction to be generated
+		}
+	}
+	
+	local a = A();
+	writefln(a.f(5));
+	writefln();
+}
+
+{
+	// A function which lets us define properties for a class.
+	// The varargs should be a bunch of tables, each with a 'name' field, and 'getter' and/or 'setter' fields.
+	function mixinProperties(classType, vararg)
+	{
+		classType.mProps = { };
+	
+		classType.opIndex = function opIndex(key)
+		{
+			local prop = mProps[key];
+	
+			if(prop is null)
+				throw format(classType, ".opIndex() - Property '%s' does not exist", key);
+	
+			local getter = prop.getter;
+	
+			if(getter is null)
+				throw format(classType, ".opIndex() - Property '%s' has no getter", key);
+	
+			return getter(with this);
+		};
+	
+		classType.opIndexAssign = function opIndexAssign(key, value)
+		{
+			local prop = mProps[key];
+	
+			if(prop is null)
+				throw format(classType, ".opIndexAssign() - Property '%s' does not exist", key);
+	
+			local setter = prop.setter;
+	
+			if(setter is null)
+				throw format(classType, ".opIndexAssign() - Property '%s' has no setter", key);
+	
+			setter(with this, value);
+		};
+	
+		foreach(i, prop; [vararg])
+		{
+			if(!isTable(prop))
+				throw format("mixinProperties() - property ", i, " is not a table");
+	
+			if(prop.name is null)
+				throw format("mixinProperties() - property ", i, " has no name");
+	
+			if(prop.setter is null && prop.getter is null)
+				throw format("mixinProperties() - property '%s' has no getter or setter", prop.name);
+	
+			classType.mProps[prop.name] = prop;
+		}
+	}
+	
+	// Create a class to test out.
+	class PropTest
+	{
+		mX = 0;
+		mY = 0;
+		mName = "";
+		
+		function constructor(name)
+		{
+			mName = name;
+		}
+	
+		function toString()
+		{
+			return format("name = '", mName, "' x = ", mX, " y = ", mY);
+		}
+	}
+	
+	// Mix in the properties.
+	mixinProperties
+	(
+		PropTest,
+	
+		{
+			name = "x",
+			
+			function setter(value)
+			{
+				mX = value;
+			}
+	
+			function getter()
+			{
+				return mX;
+			}
+		},
+	
+		{
+			name = "y",
+	
+			function setter(value)
+			{
+				mY = value;
+			}
+	
+			function getter()
+			{
+				return mY;
+			}
+		},
+	
+		{
+			name = "name",
+	
+			function getter()
+			{
+				return mName;
+			}
+		}
+	);
+	
+	// Create an instance and try it out.
+	local p = PropTest("hello");
+	
+	writefln(p);
+	p.x = 46;
+	p.y = 123;
+	p.x = p.x + p.y;
+	writefln(p);
+	
+	// Try to access a nonexistent property.
+	try
+		p.name = "crap";
+	catch(e)
+	{
+		writefln("caught: ", e);
+		writefln(getTraceback());
+	}
+	
+	writefln();
+}
+
+// Some container classes.
+{
+	class PQ
+	{
+		mData;
+		mLength = 0;
+	
+		function constructor()
+		{
+			mData = array.new(15);
+		}
+	
+		function insert(data)
+		{
+			resizeArray();
+			mData[mLength] = data;
+	
+			local index = mLength;
+			local parentIndex = (index - 1) / 2;
+	
+			while(index > 0 && mData[parentIndex] > mData[index])
+			{
+				local temp = mData[parentIndex];
+				mData[parentIndex] = mData[index];
+				mData[index] = temp;
+	
+				index = parentIndex;
+				parentIndex = (index - 1) / 2;
+			}
+			
+			mLength += 1;
+		}
+	
+		function remove()
+		{
+			if(mLength == 0)
+				throw "PQ.remove() - No items to remove";
+	
+			local data = mData[0];
+			mLength -= 1;
+			mData[0] = mData[mLength];
+			
+			local index = 0;
+			local left = 1;
+			local right = 2;
+	
+			while(index < mLength)
+			{
+				local smaller;
+				
+				if(left >= mLength)
+				{
+					if(right >= mLength)
+						break;
+					else
+						smaller = right;
+				}
+				else
+				{
+					if(right >= mLength)
+						smaller = left;
+					else
+					{
+						if(mData[left] < mData[right])
+							smaller = left;
+						else
+							smaller = right;
+					}
+				}
+	
+				if(mData[index] > mData[smaller])
+				{
+					local temp = mData[index];
+					mData[index] = mData[smaller];
+					mData[smaller] = temp;
+					
+					index = smaller;
+					left = (index * 2) + 1;
+					right = left + 1;
+				}
+				else
+					break;
+			}
+			
+			return data;
+		}
+		
+		function resizeArray()
+		{
+			if(mLength >= #mData)
+				mData.length((#mData + 1) * 2 - 1);
+		}
+		
+		function hasData()
+		{
+			return mLength != 0;
+		}
+	}
+	
+	class Stack
+	{
+		mHead = null;
+	
+		function push(data)
+		{
+			local t = { data = data, next = mHead };
+			mHead = t;
+		}
+		
+		function pop()
+		{
+			if(mHead is null)
+				throw "Stack.pop() - No items to pop";
+	
+			local item = mHead;
+			mHead = mHead.next;
+			
+			return item.data;
+		}
+	
+		function hasData()
+		{
+			return mHead !is null;
+		}
+	}
+	
+	class Queue
+	{
+		mHead = null;
+		mTail = null;
+	
+		function push(data)
+		{
+			local t = { data = data, next = null };
+	
+			if(mTail is null)
+			{
+				mHead = t;
+				mTail = t;
+			}
+			else
+			{
+				mTail.next = t;
+				mTail = t;
+			}
+		}
+		
+		function pop()
+		{
+			if(mTail is null)
+				throw "Queue.pop() - No items to pop";
+				
+			local item = mHead;
+			mHead = mHead.next;
+			
+			if(mHead is null)
+				mTail = null;
+				
+			return item.data;
+		}
+		
+		function hasData()
+		{
+			return mHead !is null;
+		}
+	}
+	
+	writefln("Priority queue (heap)");
+	
+	local prioQ = PQ();
+	
+	for(i : 0 .. 10)
+		prioQ.insert(math.rand(0, 20));
+	
+	while(prioQ.hasData())
+		writefln(prioQ.remove());
+		
+	writefln();
+	writefln("Stack");
+	
+	local stack = Stack();
+	
+	for(i : 0 .. 5)
+		stack.push(i + 1);
+	
+	while(stack.hasData())
+		writefln(stack.pop());
+	
+	writefln();
+	writefln("Queue");
+	
+	local queue = Queue();
+	
+	for(i : 0 .. 5)
+		queue.push(i + 1);
+	
+	while(queue.hasData())
+		writefln(queue.pop());
+	
+	writefln();
+}
+
+// opApply tests.
+{
+	class Test
+	{
+		mData = [4, 5, 6];
+	
+		function opApply(extra)
+		{
+			if(isString(extra) && extra == "reverse")
+			{
+				local function iterator_reverse(index)
+				{
+					index--;
+					
+					if(index < 0)
+						return;
+						
+					return index, mData[index];
+				}
+	
+				return iterator_reverse, this, #mData;
+			}
+			else
+			{
+				local function iterator(index)
+				{
+					index++;
+	
+					if(index >= #mData)
+						return;
+		
+					return index, mData[index];
+				}
+	
+				return iterator, this, -1;
+			}
+		}
+	}
+	
+	local test = Test();
+	
+	foreach(k, v; test)
+		writefln("test[", k, "] = ", v);
+	
+	writefln();
+	
+	foreach(k, v; test, "reverse")
+		writefln("test[", k, "] = ", v);
+		
+	writefln();
+	
+	test =
+	{
+		fork = 5,
+		knife = 10,
+		spoon = "hi"
+	};
+	
+	foreach(k, v; test)
+		writefln("test[", k, "] = ", v);
+	
+	test = [5, 10, "hi"];
+	
+	writefln();
+	
+	foreach(k, v; test)
+		writefln("test[", k, "] = ", v);
+	
+	writefln();
+	
+	foreach(k, v; test, "reverse")
+		writefln("test[", k, "] = ", v);
+	
+	writefln();
+	
+	foreach(k, v; "hello")
+		writefln("str[", k, "] = ", v);
+	
+	writefln();
+	
+	foreach(k, v; "hello", "reverse")
+		writefln("str[", k, "] = ", v);
+	
+	writefln();
+}
+
+// Testing upvalues in for loops.
+{
+	local arr = array.new(10);
+	
+	for(i : 0 .. 10)
+		arr[i] = function() { return i; };
+	
+	writefln("This should be the values 0 through 9:");
+	
+	foreach(func; arr)
+		writefln(func());
+	
+	writefln();
+}
+
+// Testing nested functions.
+{
+	function outer()
+	{
+		local x = 3;
+	
+		function inner()
+		{
+			x++;
+			writefln("inner x: ", x);
+		}
+	
+		writefln("outer x: ", x);
+		inner();
+		writefln("outer x: ", x);
+	
+		return inner;
+	}
+	
+	local func = outer();
+	func();
+	
+	writefln();
+}
+
+// Testing Exceptions.
+{
+	function thrower(x)
+	{
+		if(x >= 3)
+			throw "Sorry, x is too big for me!";
+	}
+	
+	function tryCatch(iterations)
+	{
+		try
+		{
+			for(i : 0 .. iterations)
+			{
+				writefln("tryCatch: ", i);
+				thrower(i);
+			}
+		}
+		catch(e)
+		{
+			writefln("tryCatch caught: ", e);
+			throw e;
+		}
+		finally
+			writefln("tryCatch finally");
+	}
+	
+	try
+	{
+		tryCatch(2);
+		tryCatch(5);
+	}
+	catch(e)
+		writefln("caught: ", e);
+	
+	writefln();
+}
+
+// Testing arrays.
+{
+	local array = [7, 9, 2, 3, 6];
+	
+	array.sort();
+	
+	foreach(i, v; array)
+		writefln("arr[", i, "] = ", v);
+	
+	array ~= ["foo", "far"];
+	
+	writefln();
+	
+	foreach(i, v; array)
+		writefln("arr[", i, "] = ", v);
+	
+	writefln();
+}
+
+// Testing vararg functions.
+{
+	function vargs(vararg)
+	{
+		local args = [vararg];
+	
+		writefln("num varargs: ", #args);
+	
+		foreach(i, v; args)
+			writefln("args[", i, "] = ", v);
+	}
+	
+	vargs();
+	
+	writefln();
+	
+	vargs(2, 3, 5, "foo", "bar");
+	
+	writefln();
+}
+
+// Testing switches.
+{
+	foreach(v; ["hi", "bye", "foo"])
+	{
+		switch(v)
+		{
+			case "hi":
+				writefln("switched to hi");
+				break;
+				
+			case "bye":
+				writefln("switched to bye");
+				break;
+				
+			default:
+				writefln("switched to something else");
+				break;
+		}
+	}
+	
+	writefln();
+	
+	foreach(v; [null, false, 1, 2.3, 'x', "hi"])
+	{
+		switch(v)
+		{
+			case null: writefln("null"); break;
+			case false: writefln("false"); break;
+			case 1: writefln("1"); break;
+			case 2.3: writefln("2.3"); break;
+			case 'x': writefln("x"); break;
+			case "hi": writefln("hi"); break;
+		}
+	}
+	
+	writefln();
+	
+	class A
+	{
+		mValue;
+		
+		this(value)
+		{
+			mValue = value;
+		}
+	
+		function opCmp(other)
+		{
+			assert(other as A);
+			return mValue <=> other.mValue;
+		}
+	}
+	
+	local a1 = A(1);
+	local a2 = A(2);
+	local a3 = A(3);
+	
+	for(s : 1 .. 4)
+	{
+		local ss = A(s);
+	
+		switch(ss)
+		{
+			case a1:
+				writefln(1);
+				break;
+	
+			case a2:
+				writefln(2);
+				break;
+	
+			case a3:
+				writefln(3);
+				break;
+		}
+	}
+}
+
+---tokens---
+'module'      Keyword
+' '           Text
+'simple'      Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Importing stuff.\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'function'    Keyword
+' '           Text
+'loadMod'     Name
+'('           Punctuation
+'name'        Name
+','           Punctuation
+' '           Text
+'ns'          Name
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'assert'      Keyword
+'('           Punctuation
+'name'        Name
+' '           Text
+'=='          Punctuation
+' '           Text
+'"mod"'       Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\n\t\t'  Text
+'ns'          Name
+'.'           Punctuation
+'x'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'"I\'m x"'    Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'ns'          Name
+'.'           Punctuation
+'foo'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'function'    Keyword
+' '           Text
+'foo'         Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'writefln'    Name
+'('           Punctuation
+'"foo"'       Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'ns'          Name
+'.'           Punctuation
+'bar'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'function'    Keyword
+' '           Text
+'bar'         Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'x'           Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'ns'          Name
+'.'           Punctuation
+'baz'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'function'    Keyword
+' '           Text
+'baz'         Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'writefln'    Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\n\t\t'  Text
+'foreach'     Keyword
+'('           Punctuation
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'ns'          Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'isFunction'  Name
+'('           Punctuation
+'v'           Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'v'           Name
+'.'           Punctuation
+'environment' Name
+'('           Punctuation
+'ns'          Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'setModuleLoader' Name
+'('           Punctuation
+'"mod"'       Literal.String
+','           Punctuation
+' '           Text
+'loadMod'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'import'      Keyword
+' '           Text
+'mod'         Name
+' '           Text
+':'           Punctuation
+' '           Text
+'foo'         Name
+','           Punctuation
+' '           Text
+'bar'         Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'foo'         Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'writefln'    Name
+'('           Punctuation
+'bar'         Name
+'('           Punctuation
+'['           Punctuation
+'5'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'mod'         Name
+'.'           Punctuation
+'baz'         Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Super calls.\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'class'       Keyword
+' '           Text
+'Base'        Name
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'function'    Keyword
+' '           Text
+'fork'        Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'writefln'    Name
+'('           Punctuation
+'"Base fork."' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'class'       Keyword
+' '           Text
+'Derived'     Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Base'        Name
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'function'    Keyword
+' '           Text
+'fork'        Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'writefln'    Name
+'('           Punctuation
+'"Derived fork!"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'super'       Keyword
+'.'           Punctuation
+'fork'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'local'       Keyword
+' '           Text
+'d'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'Derived'     Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'d'           Name
+'.'           Punctuation
+'fork'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Coroutines and coroutine iteration.\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'local'       Keyword
+' '           Text
+'countDown'   Name
+' '           Text
+'='           Punctuation
+' '           Text
+'coroutine'   Name
+' '           Text
+'function'    Keyword
+' '           Text
+'countDown'   Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'yield'       Keyword
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\n\t\t'  Text
+'while'       Keyword
+'('           Punctuation
+'x'           Name
+' '           Text
+'>'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'yield'       Keyword
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'x'           Name
+'--'          Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'foreach'     Keyword
+'('           Punctuation
+'v'           Name
+';'           Punctuation
+' '           Text
+'countDown'   Name
+','           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'v'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\n\t'    Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'local'       Keyword
+' '           Text
+'forEach'     Name
+' '           Text
+'='           Punctuation
+' '           Text
+'coroutine'   Name
+' '           Text
+'function'    Keyword
+' '           Text
+'forEach'     Name
+'('           Punctuation
+'t'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'yield'       Keyword
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'foreach'     Keyword
+'('           Punctuation
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'t'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'yield'       Keyword
+'('           Punctuation
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'foreach'     Keyword
+'('           Punctuation
+'_'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'forEach'     Name
+','           Punctuation
+' '           Text
+'{'           Punctuation
+'hi'          Name
+' '           Text
+'='           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'bye'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"key: "'     Literal.String
+','           Punctuation
+' '           Text
+'k'           Name
+','           Punctuation
+' '           Text
+'", value: "' Literal.String
+','           Punctuation
+' '           Text
+'v'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Testing tailcalls.\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'function'    Keyword
+' '           Text
+'recurse'     Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"recurse: "' Literal.String
+','           Punctuation
+' '           Text
+'x'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'if'          Keyword
+'('           Punctuation
+'x'           Name
+' '           Text
+'=='          Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'toString'    Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'recurse'     Name
+'('           Punctuation
+'x'           Name
+' '           Text
+'-'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+'recurse'     Name
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'class'       Keyword
+' '           Text
+'A'           Name
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'function'    Keyword
+' '           Text
+'f'           Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'writefln'    Name
+'('           Punctuation
+'"A.f: "'     Literal.String
+','           Punctuation
+' '           Text
+'x'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'x'           Name
+' '           Text
+'=='          Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'return'      Keyword
+' '           Text
+'toString'    Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'return'      Keyword
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'f'           Name
+'('           Punctuation
+'x'           Name
+' '           Text
+'-'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+"// call it as this.f to force a 'method' instruction to be generated\n" Comment.Single
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'local'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'A'           Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'writefln'    Name
+'('           Punctuation
+'a'           Name
+'.'           Punctuation
+'f'           Name
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'// A function which lets us define properties for a class.\n' Comment.Single
+
+'\t'          Text
+"// The varargs should be a bunch of tables, each with a 'name' field, and 'getter' and/or 'setter' fields.\n" Comment.Single
+
+'\t'          Text
+'function'    Keyword
+' '           Text
+'mixinProperties' Name
+'('           Punctuation
+'classType'   Name
+','           Punctuation
+' '           Text
+'vararg'      Keyword
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'classType'   Name
+'.'           Punctuation
+'mProps'      Name
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'classType'   Name
+'.'           Punctuation
+'opIndex'     Name
+' '           Text
+'='           Punctuation
+' '           Text
+'function'    Keyword
+' '           Text
+'opIndex'     Name
+'('           Punctuation
+'key'         Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'local'       Keyword
+' '           Text
+'prop'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'mProps'      Name
+'['           Punctuation
+'key'         Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'if'          Keyword
+'('           Punctuation
+'prop'        Name
+' '           Text
+'is'          Keyword
+' '           Text
+'null'        Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'throw'       Keyword
+' '           Text
+'format'      Name
+'('           Punctuation
+'classType'   Name
+','           Punctuation
+' '           Text
+'".opIndex() - Property \'%s\' does not exist"' Literal.String
+','           Punctuation
+' '           Text
+'key'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'local'       Keyword
+' '           Text
+'getter'      Name
+' '           Text
+'='           Punctuation
+' '           Text
+'prop'        Name
+'.'           Punctuation
+'getter'      Name
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'if'          Keyword
+'('           Punctuation
+'getter'      Name
+' '           Text
+'is'          Keyword
+' '           Text
+'null'        Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'throw'       Keyword
+' '           Text
+'format'      Name
+'('           Punctuation
+'classType'   Name
+','           Punctuation
+' '           Text
+'".opIndex() - Property \'%s\' has no getter"' Literal.String
+','           Punctuation
+' '           Text
+'key'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'return'      Keyword
+' '           Text
+'getter'      Name
+'('           Punctuation
+'with'        Keyword
+' '           Text
+'this'        Keyword
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'classType'   Name
+'.'           Punctuation
+'opIndexAssign' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'function'    Keyword
+' '           Text
+'opIndexAssign' Name
+'('           Punctuation
+'key'         Name
+','           Punctuation
+' '           Text
+'value'       Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'local'       Keyword
+' '           Text
+'prop'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'mProps'      Name
+'['           Punctuation
+'key'         Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'if'          Keyword
+'('           Punctuation
+'prop'        Name
+' '           Text
+'is'          Keyword
+' '           Text
+'null'        Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'throw'       Keyword
+' '           Text
+'format'      Name
+'('           Punctuation
+'classType'   Name
+','           Punctuation
+' '           Text
+'".opIndexAssign() - Property \'%s\' does not exist"' Literal.String
+','           Punctuation
+' '           Text
+'key'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'local'       Keyword
+' '           Text
+'setter'      Name
+' '           Text
+'='           Punctuation
+' '           Text
+'prop'        Name
+'.'           Punctuation
+'setter'      Name
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'if'          Keyword
+'('           Punctuation
+'setter'      Name
+' '           Text
+'is'          Keyword
+' '           Text
+'null'        Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'throw'       Keyword
+' '           Text
+'format'      Name
+'('           Punctuation
+'classType'   Name
+','           Punctuation
+' '           Text
+'".opIndexAssign() - Property \'%s\' has no setter"' Literal.String
+','           Punctuation
+' '           Text
+'key'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'setter'      Name
+'('           Punctuation
+'with'        Keyword
+' '           Text
+'this'        Keyword
+','           Punctuation
+' '           Text
+'value'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'foreach'     Keyword
+'('           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'prop'        Name
+';'           Punctuation
+' '           Text
+'['           Punctuation
+'vararg'      Keyword
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'!'           Punctuation
+'isTable'     Name
+'('           Punctuation
+'prop'        Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'throw'       Keyword
+' '           Text
+'format'      Name
+'('           Punctuation
+'"mixinProperties() - property "' Literal.String
+','           Punctuation
+' '           Text
+'i'           Name
+','           Punctuation
+' '           Text
+'" is not a table"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'if'          Keyword
+'('           Punctuation
+'prop'        Name
+'.'           Punctuation
+'name'        Name
+' '           Text
+'is'          Keyword
+' '           Text
+'null'        Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'throw'       Keyword
+' '           Text
+'format'      Name
+'('           Punctuation
+'"mixinProperties() - property "' Literal.String
+','           Punctuation
+' '           Text
+'i'           Name
+','           Punctuation
+' '           Text
+'" has no name"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'if'          Keyword
+'('           Punctuation
+'prop'        Name
+'.'           Punctuation
+'setter'      Name
+' '           Text
+'is'          Keyword
+' '           Text
+'null'        Keyword.Constant
+' '           Text
+'&&'          Punctuation
+' '           Text
+'prop'        Name
+'.'           Punctuation
+'getter'      Name
+' '           Text
+'is'          Keyword
+' '           Text
+'null'        Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'throw'       Keyword
+' '           Text
+'format'      Name
+'('           Punctuation
+'"mixinProperties() - property \'%s\' has no getter or setter"' Literal.String
+','           Punctuation
+' '           Text
+'prop'        Name
+'.'           Punctuation
+'name'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'classType'   Name
+'.'           Punctuation
+'mProps'      Name
+'['           Punctuation
+'prop'        Name
+'.'           Punctuation
+'name'        Name
+']'           Punctuation
+' '           Text
+'='           Punctuation
+' '           Text
+'prop'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'// Create a class to test out.\n' Comment.Single
+
+'\t'          Text
+'class'       Keyword
+' '           Text
+'PropTest'    Name
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'mX'          Name
+' '           Text
+'='           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'mY'          Name
+' '           Text
+'='           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'mName'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'""'          Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t\t\n\t\t'  Text
+'function'    Keyword
+' '           Text
+'constructor' Name
+'('           Punctuation
+'name'        Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'mName'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'name'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'function'    Keyword
+' '           Text
+'toString'    Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'format'      Name
+'('           Punctuation
+'"name = \'"' Literal.String
+','           Punctuation
+' '           Text
+'mName'       Name
+','           Punctuation
+' '           Text
+'"\' x = "'   Literal.String
+','           Punctuation
+' '           Text
+'mX'          Name
+','           Punctuation
+' '           Text
+'" y = "'     Literal.String
+','           Punctuation
+' '           Text
+'mY'          Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'// Mix in the properties.\n' Comment.Single
+
+'\t'          Text
+'mixinProperties' Name
+'\n'          Text
+
+'\t'          Text
+'('           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'PropTest'    Name
+','           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'name'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'"x"'         Literal.String
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\n\t\t\t' Text
+'function'    Keyword
+' '           Text
+'setter'      Name
+'('           Punctuation
+'value'       Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'mX'          Name
+' '           Text
+'='           Punctuation
+' '           Text
+'value'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'function'    Keyword
+' '           Text
+'getter'      Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'return'      Keyword
+' '           Text
+'mX'          Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'name'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'"y"'         Literal.String
+','           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'function'    Keyword
+' '           Text
+'setter'      Name
+'('           Punctuation
+'value'       Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'mY'          Name
+' '           Text
+'='           Punctuation
+' '           Text
+'value'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'function'    Keyword
+' '           Text
+'getter'      Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'return'      Keyword
+' '           Text
+'mY'          Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'name'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'"name"'      Literal.String
+','           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'function'    Keyword
+' '           Text
+'getter'      Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'return'      Keyword
+' '           Text
+'mName'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'// Create an instance and try it out.\n' Comment.Single
+
+'\t'          Text
+'local'       Keyword
+' '           Text
+'p'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'PropTest'    Name
+'('           Punctuation
+'"hello"'     Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+'p'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'p'           Name
+'.'           Punctuation
+'x'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'46'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'p'           Name
+'.'           Punctuation
+'y'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'123'         Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'p'           Name
+'.'           Punctuation
+'x'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'p'           Name
+'.'           Punctuation
+'x'           Name
+' '           Text
+'+'           Punctuation
+' '           Text
+'p'           Name
+'.'           Punctuation
+'y'           Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'writefln'    Name
+'('           Punctuation
+'p'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'// Try to access a nonexistent property.\n' Comment.Single
+
+'\t'          Text
+'try'         Keyword
+'\n'          Text
+
+'\t\t'        Text
+'p'           Name
+'.'           Punctuation
+'name'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'"crap"'      Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'catch'       Keyword
+'('           Punctuation
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"caught: "'  Literal.String
+','           Punctuation
+' '           Text
+'e'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'getTraceback' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Some container classes.\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'class'       Keyword
+' '           Text
+'PQ'          Name
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'mData'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'mLength'     Name
+' '           Text
+'='           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'function'    Keyword
+' '           Text
+'constructor' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'mData'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'array'       Name
+'.'           Punctuation
+'new'         Name
+'('           Punctuation
+'15'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'function'    Keyword
+' '           Text
+'insert'      Name
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'resizeArray' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'mData'       Name
+'['           Punctuation
+'mLength'     Name
+']'           Punctuation
+' '           Text
+'='           Punctuation
+' '           Text
+'data'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'local'       Keyword
+' '           Text
+'index'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'mLength'     Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'local'       Keyword
+' '           Text
+'parentIndex' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'index'       Name
+' '           Text
+'-'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'/'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'while'       Keyword
+'('           Punctuation
+'index'       Name
+' '           Text
+'>'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'&&'          Punctuation
+' '           Text
+'mData'       Name
+'['           Punctuation
+'parentIndex' Name
+']'           Punctuation
+' '           Text
+'>'           Punctuation
+' '           Text
+'mData'       Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'local'       Keyword
+' '           Text
+'temp'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'mData'       Name
+'['           Punctuation
+'parentIndex' Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'mData'       Name
+'['           Punctuation
+'parentIndex' Name
+']'           Punctuation
+' '           Text
+'='           Punctuation
+' '           Text
+'mData'       Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'mData'       Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+' '           Text
+'='           Punctuation
+' '           Text
+'temp'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t\t' Text
+'index'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'parentIndex' Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'parentIndex' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'index'       Name
+' '           Text
+'-'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'/'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\n\t\t\t' Text
+'mLength'     Name
+' '           Text
+'+='          Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'function'    Keyword
+' '           Text
+'remove'      Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'mLength'     Name
+' '           Text
+'=='          Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'throw'       Keyword
+' '           Text
+'"PQ.remove() - No items to remove"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'local'       Keyword
+' '           Text
+'data'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'mData'       Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'mLength'     Name
+' '           Text
+'-='          Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'mData'       Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Punctuation
+' '           Text
+'mData'       Name
+'['           Punctuation
+'mLength'     Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\n\t\t\t' Text
+'local'       Keyword
+' '           Text
+'index'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'local'       Keyword
+' '           Text
+'left'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'local'       Keyword
+' '           Text
+'right'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'while'       Keyword
+'('           Punctuation
+'index'       Name
+' '           Text
+'<'           Punctuation
+' '           Text
+'mLength'     Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'local'       Keyword
+' '           Text
+'smaller'     Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\n\t\t\t\t' Text
+'if'          Keyword
+'('           Punctuation
+'left'        Name
+' '           Text
+'>='          Punctuation
+' '           Text
+'mLength'     Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'if'          Keyword
+'('           Punctuation
+'right'       Name
+' '           Text
+'>='          Punctuation
+' '           Text
+'mLength'     Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'smaller'     Name
+' '           Text
+'='           Punctuation
+' '           Text
+'right'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'if'          Keyword
+'('           Punctuation
+'right'       Name
+' '           Text
+'>='          Punctuation
+' '           Text
+'mLength'     Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'smaller'     Name
+' '           Text
+'='           Punctuation
+' '           Text
+'left'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'if'          Keyword
+'('           Punctuation
+'mData'       Name
+'['           Punctuation
+'left'        Name
+']'           Punctuation
+' '           Text
+'<'           Punctuation
+' '           Text
+'mData'       Name
+'['           Punctuation
+'right'       Name
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'smaller'     Name
+' '           Text
+'='           Punctuation
+' '           Text
+'left'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'smaller'     Name
+' '           Text
+'='           Punctuation
+' '           Text
+'right'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t\t' Text
+'if'          Keyword
+'('           Punctuation
+'mData'       Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+' '           Text
+'>'           Punctuation
+' '           Text
+'mData'       Name
+'['           Punctuation
+'smaller'     Name
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'local'       Keyword
+' '           Text
+'temp'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'mData'       Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'mData'       Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+' '           Text
+'='           Punctuation
+' '           Text
+'mData'       Name
+'['           Punctuation
+'smaller'     Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'mData'       Name
+'['           Punctuation
+'smaller'     Name
+']'           Punctuation
+' '           Text
+'='           Punctuation
+' '           Text
+'temp'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\n\t\t\t\t\t' Text
+'index'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'smaller'     Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'left'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'index'       Name
+' '           Text
+'*'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'right'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'left'        Name
+' '           Text
+'+'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t\n\t\t\t' Text
+'return'      Keyword
+' '           Text
+'data'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\n\t\t'  Text
+'function'    Keyword
+' '           Text
+'resizeArray' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'mLength'     Name
+' '           Text
+'>='          Punctuation
+' '           Text
+'#'           Punctuation
+'mData'       Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'mData'       Name
+'.'           Punctuation
+'length'      Name
+'('           Punctuation
+'('           Punctuation
+'#'           Punctuation
+'mData'       Name
+' '           Text
+'+'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'*'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'-'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\n\t\t'  Text
+'function'    Keyword
+' '           Text
+'hasData'     Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'mLength'     Name
+' '           Text
+'!='          Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'class'       Keyword
+' '           Text
+'Stack'       Name
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'mHead'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'null'        Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'function'    Keyword
+' '           Text
+'push'        Name
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'local'       Keyword
+' '           Text
+'t'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'data'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'data'        Name
+','           Punctuation
+' '           Text
+'next'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'mHead'       Name
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'mHead'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'t'           Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\n\t\t'  Text
+'function'    Keyword
+' '           Text
+'pop'         Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'mHead'       Name
+' '           Text
+'is'          Keyword
+' '           Text
+'null'        Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'throw'       Keyword
+' '           Text
+'"Stack.pop() - No items to pop"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'local'       Keyword
+' '           Text
+'item'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'mHead'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'mHead'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'mHead'       Name
+'.'           Punctuation
+'next'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\n\t\t\t' Text
+'return'      Keyword
+' '           Text
+'item'        Name
+'.'           Punctuation
+'data'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'function'    Keyword
+' '           Text
+'hasData'     Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'mHead'       Name
+' '           Text
+'!'           Punctuation
+'is'          Keyword
+' '           Text
+'null'        Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'class'       Keyword
+' '           Text
+'Queue'       Name
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'mHead'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'null'        Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'mTail'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'null'        Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'function'    Keyword
+' '           Text
+'push'        Name
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'local'       Keyword
+' '           Text
+'t'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'data'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'data'        Name
+','           Punctuation
+' '           Text
+'next'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'null'        Keyword.Constant
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'if'          Keyword
+'('           Punctuation
+'mTail'       Name
+' '           Text
+'is'          Keyword
+' '           Text
+'null'        Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'mHead'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'t'           Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'mTail'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'t'           Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'mTail'       Name
+'.'           Punctuation
+'next'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'t'           Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'mTail'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'t'           Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\n\t\t'  Text
+'function'    Keyword
+' '           Text
+'pop'         Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'mTail'       Name
+' '           Text
+'is'          Keyword
+' '           Text
+'null'        Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'throw'       Keyword
+' '           Text
+'"Queue.pop() - No items to pop"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\n\t\t\t' Text
+'local'       Keyword
+' '           Text
+'item'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'mHead'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'mHead'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'mHead'       Name
+'.'           Punctuation
+'next'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\n\t\t\t' Text
+'if'          Keyword
+'('           Punctuation
+'mHead'       Name
+' '           Text
+'is'          Keyword
+' '           Text
+'null'        Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'mTail'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'null'        Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\n\t\t\t' Text
+'return'      Keyword
+' '           Text
+'item'        Name
+'.'           Punctuation
+'data'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\n\t\t'  Text
+'function'    Keyword
+' '           Text
+'hasData'     Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'mHead'       Name
+' '           Text
+'!'           Punctuation
+'is'          Keyword
+' '           Text
+'null'        Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+'"Priority queue (heap)"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'local'       Keyword
+' '           Text
+'prioQ'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'PQ'          Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'for'         Keyword
+'('           Punctuation
+'i'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'..'          Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'prioQ'       Name
+'.'           Punctuation
+'insert'      Name
+'('           Punctuation
+'math'        Name
+'.'           Punctuation
+'rand'        Name
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'20'          Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'while'       Keyword
+'('           Punctuation
+'prioQ'       Name
+'.'           Punctuation
+'hasData'     Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'prioQ'       Name
+'.'           Punctuation
+'remove'      Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\n\t'    Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'writefln'    Name
+'('           Punctuation
+'"Stack"'     Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'local'       Keyword
+' '           Text
+'stack'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'Stack'       Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'for'         Keyword
+'('           Punctuation
+'i'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'..'          Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'stack'       Name
+'.'           Punctuation
+'push'        Name
+'('           Punctuation
+'i'           Name
+' '           Text
+'+'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'while'       Keyword
+'('           Punctuation
+'stack'       Name
+'.'           Punctuation
+'hasData'     Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'stack'       Name
+'.'           Punctuation
+'pop'         Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'writefln'    Name
+'('           Punctuation
+'"Queue"'     Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'local'       Keyword
+' '           Text
+'queue'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'Queue'       Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'for'         Keyword
+'('           Punctuation
+'i'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'..'          Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'queue'       Name
+'.'           Punctuation
+'push'        Name
+'('           Punctuation
+'i'           Name
+' '           Text
+'+'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'while'       Keyword
+'('           Punctuation
+'queue'       Name
+'.'           Punctuation
+'hasData'     Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'queue'       Name
+'.'           Punctuation
+'pop'         Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// opApply tests.\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'class'       Keyword
+' '           Text
+'Test'        Name
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'mData'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'['           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'6'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'function'    Keyword
+' '           Text
+'opApply'     Name
+'('           Punctuation
+'extra'       Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'isString'    Name
+'('           Punctuation
+'extra'       Name
+')'           Punctuation
+' '           Text
+'&&'          Punctuation
+' '           Text
+'extra'       Name
+' '           Text
+'=='          Punctuation
+' '           Text
+'"reverse"'   Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'local'       Keyword
+' '           Text
+'function'    Keyword
+' '           Text
+'iterator_reverse' Name
+'('           Punctuation
+'index'       Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'index'       Name
+'--'          Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\n\t\t\t\t\t' Text
+'if'          Keyword
+'('           Punctuation
+'index'       Name
+' '           Text
+'<'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'return'      Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\n\t\t\t\t\t' Text
+'return'      Keyword
+' '           Text
+'index'       Name
+','           Punctuation
+' '           Text
+'mData'       Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t\t' Text
+'return'      Keyword
+' '           Text
+'iterator_reverse' Name
+','           Punctuation
+' '           Text
+'this'        Keyword
+','           Punctuation
+' '           Text
+'#'           Punctuation
+'mData'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'local'       Keyword
+' '           Text
+'function'    Keyword
+' '           Text
+'iterator'    Name
+'('           Punctuation
+'index'       Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'index'       Name
+'++'          Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t\t\t' Text
+'if'          Keyword
+'('           Punctuation
+'index'       Name
+' '           Text
+'>='          Punctuation
+' '           Text
+'#'           Punctuation
+'mData'       Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'return'      Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t\n\t\t\t\t\t' Text
+'return'      Keyword
+' '           Text
+'index'       Name
+','           Punctuation
+' '           Text
+'mData'       Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t\t' Text
+'return'      Keyword
+' '           Text
+'iterator'    Name
+','           Punctuation
+' '           Text
+'this'        Keyword
+','           Punctuation
+' '           Text
+'-'           Punctuation
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'local'       Keyword
+' '           Text
+'test'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'Test'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'foreach'     Keyword
+'('           Punctuation
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'test'        Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"test["'     Literal.String
+','           Punctuation
+' '           Text
+'k'           Name
+','           Punctuation
+' '           Text
+'"] = "'      Literal.String
+','           Punctuation
+' '           Text
+'v'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'foreach'     Keyword
+'('           Punctuation
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'test'        Name
+','           Punctuation
+' '           Text
+'"reverse"'   Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"test["'     Literal.String
+','           Punctuation
+' '           Text
+'k'           Name
+','           Punctuation
+' '           Text
+'"] = "'      Literal.String
+','           Punctuation
+' '           Text
+'v'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\n\t'    Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'test'        Name
+' '           Text
+'='           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'fork'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+','           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'knife'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+','           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'spoon'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'"hi"'        Literal.String
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'foreach'     Keyword
+'('           Punctuation
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'test'        Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"test["'     Literal.String
+','           Punctuation
+' '           Text
+'k'           Name
+','           Punctuation
+' '           Text
+'"] = "'      Literal.String
+','           Punctuation
+' '           Text
+'v'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'test'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'['           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'"hi"'        Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'foreach'     Keyword
+'('           Punctuation
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'test'        Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"test["'     Literal.String
+','           Punctuation
+' '           Text
+'k'           Name
+','           Punctuation
+' '           Text
+'"] = "'      Literal.String
+','           Punctuation
+' '           Text
+'v'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'foreach'     Keyword
+'('           Punctuation
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'test'        Name
+','           Punctuation
+' '           Text
+'"reverse"'   Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"test["'     Literal.String
+','           Punctuation
+' '           Text
+'k'           Name
+','           Punctuation
+' '           Text
+'"] = "'      Literal.String
+','           Punctuation
+' '           Text
+'v'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'foreach'     Keyword
+'('           Punctuation
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'"hello"'     Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"str["'      Literal.String
+','           Punctuation
+' '           Text
+'k'           Name
+','           Punctuation
+' '           Text
+'"] = "'      Literal.String
+','           Punctuation
+' '           Text
+'v'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'foreach'     Keyword
+'('           Punctuation
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'"hello"'     Literal.String
+','           Punctuation
+' '           Text
+'"reverse"'   Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"str["'      Literal.String
+','           Punctuation
+' '           Text
+'k'           Name
+','           Punctuation
+' '           Text
+'"] = "'      Literal.String
+','           Punctuation
+' '           Text
+'v'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Testing upvalues in for loops.\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'local'       Keyword
+' '           Text
+'arr'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'array'       Name
+'.'           Punctuation
+'new'         Name
+'('           Punctuation
+'10'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'for'         Keyword
+'('           Punctuation
+'i'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'..'          Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'arr'         Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+' '           Text
+'='           Punctuation
+' '           Text
+'function'    Keyword
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'i'           Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+'"This should be the values 0 through 9:"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'foreach'     Keyword
+'('           Punctuation
+'func'        Name
+';'           Punctuation
+' '           Text
+'arr'         Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'func'        Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Testing nested functions.\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'function'    Keyword
+' '           Text
+'outer'       Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'local'       Keyword
+' '           Text
+'x'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'function'    Keyword
+' '           Text
+'inner'       Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'x'           Name
+'++'          Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'writefln'    Name
+'('           Punctuation
+'"inner x: "' Literal.String
+','           Punctuation
+' '           Text
+'x'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'writefln'    Name
+'('           Punctuation
+'"outer x: "' Literal.String
+','           Punctuation
+' '           Text
+'x'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'inner'       Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"outer x: "' Literal.String
+','           Punctuation
+' '           Text
+'x'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'return'      Keyword
+' '           Text
+'inner'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'local'       Keyword
+' '           Text
+'func'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'outer'       Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'func'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Testing Exceptions.\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'function'    Keyword
+' '           Text
+'thrower'     Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'x'           Name
+' '           Text
+'>='          Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'throw'       Keyword
+' '           Text
+'"Sorry, x is too big for me!"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'function'    Keyword
+' '           Text
+'tryCatch'    Name
+'('           Punctuation
+'iterations'  Name
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'try'         Keyword
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'for'         Keyword
+'('           Punctuation
+'i'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'..'          Punctuation
+' '           Text
+'iterations'  Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'writefln'    Name
+'('           Punctuation
+'"tryCatch: "' Literal.String
+','           Punctuation
+' '           Text
+'i'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'thrower'     Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'catch'       Keyword
+'('           Punctuation
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'writefln'    Name
+'('           Punctuation
+'"tryCatch caught: "' Literal.String
+','           Punctuation
+' '           Text
+'e'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'throw'       Keyword
+' '           Text
+'e'           Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'finally'     Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'writefln'    Name
+'('           Punctuation
+'"tryCatch finally"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'try'         Keyword
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'tryCatch'    Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'tryCatch'    Name
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'catch'       Keyword
+'('           Punctuation
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"caught: "'  Literal.String
+','           Punctuation
+' '           Text
+'e'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Testing arrays.\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'local'       Keyword
+' '           Text
+'array'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'['           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'9'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'6'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'array'       Name
+'.'           Punctuation
+'sort'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'foreach'     Keyword
+'('           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'array'       Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"arr["'      Literal.String
+','           Punctuation
+' '           Text
+'i'           Name
+','           Punctuation
+' '           Text
+'"] = "'      Literal.String
+','           Punctuation
+' '           Text
+'v'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'array'       Name
+' '           Text
+'~='          Punctuation
+' '           Text
+'['           Punctuation
+'"foo"'       Literal.String
+','           Punctuation
+' '           Text
+'"far"'       Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'foreach'     Keyword
+'('           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'array'       Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'writefln'    Name
+'('           Punctuation
+'"arr["'      Literal.String
+','           Punctuation
+' '           Text
+'i'           Name
+','           Punctuation
+' '           Text
+'"] = "'      Literal.String
+','           Punctuation
+' '           Text
+'v'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Testing vararg functions.\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'function'    Keyword
+' '           Text
+'vargs'       Name
+'('           Punctuation
+'vararg'      Keyword
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'local'       Keyword
+' '           Text
+'args'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'['           Punctuation
+'vararg'      Keyword
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'writefln'    Name
+'('           Punctuation
+'"num varargs: "' Literal.String
+','           Punctuation
+' '           Text
+'#'           Punctuation
+'args'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'foreach'     Keyword
+'('           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'args'        Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'writefln'    Name
+'('           Punctuation
+'"args["'     Literal.String
+','           Punctuation
+' '           Text
+'i'           Name
+','           Punctuation
+' '           Text
+'"] = "'      Literal.String
+','           Punctuation
+' '           Text
+'v'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'vargs'       Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'vargs'       Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'"foo"'       Literal.String
+','           Punctuation
+' '           Text
+'"bar"'       Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Testing switches.\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'foreach'     Keyword
+'('           Punctuation
+'v'           Name
+';'           Punctuation
+' '           Text
+'['           Punctuation
+'"hi"'        Literal.String
+','           Punctuation
+' '           Text
+'"bye"'       Literal.String
+','           Punctuation
+' '           Text
+'"foo"'       Literal.String
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'switch'      Keyword
+'('           Punctuation
+'v'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'case'        Keyword
+' '           Text
+'"hi"'        Literal.String
+':'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'writefln'    Name
+'('           Punctuation
+'"switched to hi"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\n\t\t\t' Text
+'case'        Keyword
+' '           Text
+'"bye"'       Literal.String
+':'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'writefln'    Name
+'('           Punctuation
+'"switched to bye"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\n\t\t\t' Text
+'default'     Keyword
+':'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'writefln'    Name
+'('           Punctuation
+'"switched to something else"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'foreach'     Keyword
+'('           Punctuation
+'v'           Name
+';'           Punctuation
+' '           Text
+'['           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+' '           Text
+'false'       Keyword.Constant
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2.3'         Literal.Number.Float
+','           Punctuation
+' '           Text
+"'x'"         Literal.String.Char
+','           Punctuation
+' '           Text
+'"hi"'        Literal.String
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'switch'      Keyword
+'('           Punctuation
+'v'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'case'        Keyword
+' '           Text
+'null'        Keyword.Constant
+':'           Punctuation
+' '           Text
+'writefln'    Name
+'('           Punctuation
+'"null"'      Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'case'        Keyword
+' '           Text
+'false'       Keyword.Constant
+':'           Punctuation
+' '           Text
+'writefln'    Name
+'('           Punctuation
+'"false"'     Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'case'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+':'           Punctuation
+' '           Text
+'writefln'    Name
+'('           Punctuation
+'"1"'         Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'case'        Keyword
+' '           Text
+'2.3'         Literal.Number.Float
+':'           Punctuation
+' '           Text
+'writefln'    Name
+'('           Punctuation
+'"2.3"'       Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'case'        Keyword
+' '           Text
+"'x'"         Literal.String.Char
+':'           Punctuation
+' '           Text
+'writefln'    Name
+'('           Punctuation
+'"x"'         Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'case'        Keyword
+' '           Text
+'"hi"'        Literal.String
+':'           Punctuation
+' '           Text
+'writefln'    Name
+'('           Punctuation
+'"hi"'        Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'writefln'    Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'class'       Keyword
+' '           Text
+'A'           Name
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'mValue'      Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\n\t\t'  Text
+'this'        Keyword
+'('           Punctuation
+'value'       Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'mValue'      Name
+' '           Text
+'='           Punctuation
+' '           Text
+'value'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'function'    Keyword
+' '           Text
+'opCmp'       Name
+'('           Punctuation
+'other'       Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'assert'      Keyword
+'('           Punctuation
+'other'       Name
+' '           Text
+'as'          Keyword
+' '           Text
+'A'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'mValue'      Name
+' '           Text
+'<=>'         Punctuation
+' '           Text
+'other'       Name
+'.'           Punctuation
+'mValue'      Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'local'       Keyword
+' '           Text
+'a1'          Name
+' '           Text
+'='           Punctuation
+' '           Text
+'A'           Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'local'       Keyword
+' '           Text
+'a2'          Name
+' '           Text
+'='           Punctuation
+' '           Text
+'A'           Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'local'       Keyword
+' '           Text
+'a3'          Name
+' '           Text
+'='           Punctuation
+' '           Text
+'A'           Name
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'for'         Keyword
+'('           Punctuation
+'s'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'..'          Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'local'       Keyword
+' '           Text
+'ss'          Name
+' '           Text
+'='           Punctuation
+' '           Text
+'A'           Name
+'('           Punctuation
+'s'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t'    Text
+'switch'      Keyword
+'('           Punctuation
+'ss'          Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'case'        Keyword
+' '           Text
+'a1'          Name
+':'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'writefln'    Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'case'        Keyword
+' '           Text
+'a2'          Name
+':'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'writefln'    Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t\t\t'  Text
+'case'        Keyword
+' '           Text
+'a3'          Name
+':'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'writefln'    Name
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

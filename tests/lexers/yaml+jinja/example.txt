@@ -1,0 +1,455 @@
+---input---
+include:
+  - moosefs
+
+{% for mnt in salt['cmd.run']('ls /dev/data/moose*').split() %}
+/mnt/moose{{ mnt[-1] }}:
+  mount.mounted:
+    - device: {{ mnt }}
+    - fstype: xfs
+    - mkmnt: True
+  file.directory:
+    - user: mfs
+    - group: mfs
+    - require:
+      - user: mfs
+      - group: mfs
+{% endfor %}
+
+/etc/mfshdd.cfg:
+  file.managed:
+    - source: salt://moosefs/mfshdd.cfg
+    - user: root
+    - group: root
+    - mode: 644
+    - template: jinja
+    - require:
+      - pkg: mfs-chunkserver
+
+/etc/mfschunkserver.cfg:
+  file.managed:
+    - source: salt://moosefs/mfschunkserver.cfg
+    - user: root
+    - group: root
+    - mode: 644
+    - template: jinja
+    - require:
+      - pkg: mfs-chunkserver
+
+mfs-chunkserver:
+  pkg:
+    - installed
+mfschunkserver:
+  service:
+    - running
+    - require:
+{% for mnt in salt['cmd.run']('ls /dev/data/moose*') %}
+      - mount: /mnt/moose{{ mnt[-1] }}
+      - file: /mnt/moose{{ mnt[-1] }}
+{% endfor %}
+      - file: /etc/mfschunkserver.cfg
+      - file: /etc/mfshdd.cfg
+      - file: /var/lib/mfs
+
+---tokens---
+'include'     Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'  '          Text
+'-'           Punctuation.Indicator
+' '           Text
+'moosefs'     Literal.Scalar.Plain
+'\n\n'        Text
+
+'{%'          Comment.Preproc
+' '           Text
+'for'         Keyword
+' '           Text
+'mnt'         Name.Variable
+' '           Text
+'in'          Keyword
+' '           Text
+'salt'        Name.Variable
+'['           Operator
+"'cmd.run'"   Literal.String.Single
+']'           Operator
+'('           Operator
+"'ls /dev/data/moose*'" Literal.String.Single
+')'           Operator
+'.split'      Name.Variable
+'('           Operator
+')'           Operator
+' '           Text
+'%}'          Comment.Preproc
+'\n'          Text
+
+'/mnt/moose'  Name.Tag
+'{{'          Comment.Preproc
+' '           Text
+'mnt'         Name.Variable
+'['           Operator
+'-'           Operator
+'1'           Literal.Number
+']'           Operator
+' '           Text
+'}}'          Comment.Preproc
+':'           Punctuation
+'\n'          Text
+
+'  '          Text
+'mount.mounted' Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'device'      Name.Tag
+':'           Punctuation
+' '           Text
+'{{'          Comment.Preproc
+' '           Text
+'mnt'         Name.Variable
+' '           Text
+'}}'          Comment.Preproc
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'fstype'      Name.Tag
+':'           Punctuation
+' '           Text
+'xfs'         Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'mkmnt'       Name.Tag
+':'           Punctuation
+' '           Text
+'True'        Literal.Scalar.Plain
+'\n'          Text
+
+'  '          Text
+'file.directory' Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'user'        Name.Tag
+':'           Punctuation
+' '           Text
+'mfs'         Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'group'       Name.Tag
+':'           Punctuation
+' '           Text
+'mfs'         Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'require'     Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'      '      Text
+'-'           Punctuation.Indicator
+' '           Text
+'user'        Name.Tag
+':'           Punctuation
+' '           Text
+'mfs'         Literal.Scalar.Plain
+'\n'          Text
+
+'      '      Text
+'-'           Punctuation.Indicator
+' '           Text
+'group'       Name.Tag
+':'           Punctuation
+' '           Text
+'mfs'         Literal.Scalar.Plain
+'\n'          Text
+
+'{%'          Comment.Preproc
+' '           Text
+'endfor'      Keyword
+' '           Text
+'%}'          Comment.Preproc
+'\n\n'        Text
+
+'/etc/mfshdd.cfg' Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'  '          Text
+'file.managed' Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'source'      Name.Tag
+':'           Punctuation
+' '           Text
+'salt://moosefs/mfshdd.cfg' Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'user'        Name.Tag
+':'           Punctuation
+' '           Text
+'root'        Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'group'       Name.Tag
+':'           Punctuation
+' '           Text
+'root'        Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'mode'        Name.Tag
+':'           Punctuation
+' '           Text
+'644'         Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'template'    Name.Tag
+':'           Punctuation
+' '           Text
+'jinja'       Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'require'     Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'      '      Text
+'-'           Punctuation.Indicator
+' '           Text
+'pkg'         Name.Tag
+':'           Punctuation
+' '           Text
+'mfs-chunkserver' Literal.Scalar.Plain
+'\n\n'        Text
+
+'/etc/mfschunkserver.cfg' Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'  '          Text
+'file.managed' Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'source'      Name.Tag
+':'           Punctuation
+' '           Text
+'salt://moosefs/mfschunkserver.cfg' Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'user'        Name.Tag
+':'           Punctuation
+' '           Text
+'root'        Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'group'       Name.Tag
+':'           Punctuation
+' '           Text
+'root'        Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'mode'        Name.Tag
+':'           Punctuation
+' '           Text
+'644'         Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'template'    Name.Tag
+':'           Punctuation
+' '           Text
+'jinja'       Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'require'     Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'      '      Text
+'-'           Punctuation.Indicator
+' '           Text
+'pkg'         Name.Tag
+':'           Punctuation
+' '           Text
+'mfs-chunkserver' Literal.Scalar.Plain
+'\n\n'        Text
+
+'mfs-chunkserver' Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'  '          Text
+'pkg'         Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'installed'   Literal.Scalar.Plain
+'\n'          Text
+
+'mfschunkserver' Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'  '          Text
+'service'     Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'running'     Literal.Scalar.Plain
+'\n'          Text
+
+'    '        Text
+'-'           Punctuation.Indicator
+' '           Text
+'require'     Name.Tag
+':'           Punctuation
+'\n'          Text
+
+'{%'          Comment.Preproc
+' '           Text
+'for'         Keyword
+' '           Text
+'mnt'         Name.Variable
+' '           Text
+'in'          Keyword
+' '           Text
+'salt'        Name.Variable
+'['           Operator
+"'cmd.run'"   Literal.String.Single
+']'           Operator
+'('           Operator
+"'ls /dev/data/moose*'" Literal.String.Single
+')'           Operator
+' '           Text
+'%}'          Comment.Preproc
+'\n'          Text
+
+'      '      Text
+'-'           Punctuation.Indicator
+' '           Text
+'mount'       Name.Tag
+':'           Punctuation
+' '           Text
+'/mnt/moose'  Literal.Scalar.Plain
+'{{'          Comment.Preproc
+' '           Text
+'mnt'         Name.Variable
+'['           Operator
+'-'           Operator
+'1'           Literal.Number
+']'           Operator
+' '           Text
+'}}'          Comment.Preproc
+'\n'          Text
+
+'      '      Text
+'-'           Punctuation.Indicator
+' '           Text
+'file'        Name.Tag
+':'           Punctuation
+' '           Text
+'/mnt/moose'  Literal.Scalar.Plain
+'{{'          Comment.Preproc
+' '           Text
+'mnt'         Name.Variable
+'['           Operator
+'-'           Operator
+'1'           Literal.Number
+']'           Operator
+' '           Text
+'}}'          Comment.Preproc
+'\n'          Text
+
+'{%'          Comment.Preproc
+' '           Text
+'endfor'      Keyword
+' '           Text
+'%}'          Comment.Preproc
+'\n'          Text
+
+'      '      Text
+'-'           Punctuation.Indicator
+' '           Text
+'file'        Name.Tag
+':'           Punctuation
+' '           Text
+'/etc/mfschunkserver.cfg' Literal.Scalar.Plain
+'\n'          Text
+
+'      '      Text
+'-'           Punctuation.Indicator
+' '           Text
+'file'        Name.Tag
+':'           Punctuation
+' '           Text
+'/etc/mfshdd.cfg' Literal.Scalar.Plain
+'\n'          Text
+
+'      '      Text
+'-'           Punctuation.Indicator
+' '           Text
+'file'        Name.Tag
+':'           Punctuation
+' '           Text
+'/var/lib/mfs' Literal.Scalar.Plain
+'\n'          Text

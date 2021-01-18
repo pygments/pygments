@@ -1,0 +1,1802 @@
+---input---
+/*++ $Id: AlternatingGroup.mu,v 1.4 2003/09/08 15:00:47 nthiery Exp $
+
+Dom::AlternatingGroup(n) -- the Alternating Group of {1..n}
+
+n	   - integer >= 1
+
+Elements are represented as in Dom::PermutationGroup(n)
+
+Author:	     Nicolas M. Thiéry <nthiery@users.sourceforge.net>
+License:     LGPL
+Created:     August 8th, 1999
+Last update: $Date: 2003/09/08 15:00:47 $
+++*/
+
+domain Dom::AlternatingGroup(n: Type::PosInt)
+    inherits Dom::PermutationGroup(n,toBeDefined);
+    category Cat::PermutationGroup;
+    axiom Ax::canonicalRep;
+
+/*--
+    size
+
+    Size of the group.
+--*/
+
+    size := fact(n)/2;
+
+/*--
+    generators
+
+    A list of generators of the group
+
+    The first 3-cycle (1,2,3), and a maximal even cycle (1,...,n) or
+    (2,...,n) depending on the parity of n
+
+--*/
+
+    generators :=
+    if	 n<=2	     then generators:=[dom([[1]])];
+    elif n=3	     then generators:=[dom([[1,2,3]])];
+    elif n mod 2=0   then generators:=[dom([[1,2,3]]), dom([[$2..n]])];
+    else		  generators:=[dom([[1,2,3]]), dom([[$1..n]])];
+    end_if;
+    
+/*--
+    allElements
+
+    List of all the elements of the group
+--*/
+
+    allElements :=
+    proc()
+	option remember;
+	local p;
+    begin
+	[new(dom,p) $ p in select(combinat::permutations(n),
+				  p->bool(combinat::permutations::sign(p)=1))];
+    end_proc;
+
+/*--
+    cycleTypes:
+
+    Count the elements of the group by cycle type.
+    (Cf Cat::PermutationGroupModule).
+
+    Same algorithm as for Dom::SymmetricGroup, but only even permutations
+    are considered. This is done by disregarding partitions p such
+    that n-length(p) is odd.
+--*/
+
+    cycleTypes :=
+    proc()
+	option remember;
+	local t, p, gen;
+    begin
+	userinfo(3, "cycleTypes: starting computation");
+	t:=table();
+
+	gen := combinat::partitions::generator(n);
+	while (p:=gen()) <> FAIL do
+	    userinfo(5, "working on partition", p);
+	    if(n-nops(p) mod 2=0) then
+		// Compute the size of the conjugacy class of Sn indexed by p
+		// and the cycle type of a permutation in this conjugacy class
+                t[combinat::partitions::toExp(p,n)]
+                  := combinat::partitions::conjugacyClassSize(p);
+	    end_if;
+        end_while;
+	t;
+    end_proc;
+
+begin
+    if testargs() then
+	if args(0) <> 1 then error("wrong no of args"); end_if;
+	if not testtype(n,DOM_INT) then
+	    error("argument must be integer")
+	end_if;
+	if n < 1 then
+	    error("argument must be positive")
+	end_if;
+    end_if;
+end_domain:
+
+---tokens---
+'/*'          Comment.Multiline
+'+'           Comment.Multiline
+'+'           Comment.Multiline
+' '           Comment.Multiline
+'$'           Comment.Multiline
+'I'           Comment.Multiline
+'d'           Comment.Multiline
+':'           Comment.Multiline
+' '           Comment.Multiline
+'A'           Comment.Multiline
+'l'           Comment.Multiline
+'t'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'n'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'g'           Comment.Multiline
+'G'           Comment.Multiline
+'r'           Comment.Multiline
+'o'           Comment.Multiline
+'u'           Comment.Multiline
+'p'           Comment.Multiline
+'.'           Comment.Multiline
+'m'           Comment.Multiline
+'u'           Comment.Multiline
+','           Comment.Multiline
+'v'           Comment.Multiline
+' '           Comment.Multiline
+'1'           Comment.Multiline
+'.'           Comment.Multiline
+'4'           Comment.Multiline
+' '           Comment.Multiline
+'2'           Comment.Multiline
+'0'           Comment.Multiline
+'0'           Comment.Multiline
+'3'           Comment.Multiline
+'/'           Comment.Multiline
+'0'           Comment.Multiline
+'9'           Comment.Multiline
+'/'           Comment.Multiline
+'0'           Comment.Multiline
+'8'           Comment.Multiline
+' '           Comment.Multiline
+'1'           Comment.Multiline
+'5'           Comment.Multiline
+':'           Comment.Multiline
+'0'           Comment.Multiline
+'0'           Comment.Multiline
+':'           Comment.Multiline
+'4'           Comment.Multiline
+'7'           Comment.Multiline
+' '           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'i'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'y'           Comment.Multiline
+' '           Comment.Multiline
+'E'           Comment.Multiline
+'x'           Comment.Multiline
+'p'           Comment.Multiline
+' '           Comment.Multiline
+'$'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+'D'           Comment.Multiline
+'o'           Comment.Multiline
+'m'           Comment.Multiline
+':'           Comment.Multiline
+':'           Comment.Multiline
+'A'           Comment.Multiline
+'l'           Comment.Multiline
+'t'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'n'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'g'           Comment.Multiline
+'G'           Comment.Multiline
+'r'           Comment.Multiline
+'o'           Comment.Multiline
+'u'           Comment.Multiline
+'p'           Comment.Multiline
+'('           Comment.Multiline
+'n'           Comment.Multiline
+')'           Comment.Multiline
+' '           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+' '           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'A'           Comment.Multiline
+'l'           Comment.Multiline
+'t'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'n'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'g'           Comment.Multiline
+' '           Comment.Multiline
+'G'           Comment.Multiline
+'r'           Comment.Multiline
+'o'           Comment.Multiline
+'u'           Comment.Multiline
+'p'           Comment.Multiline
+' '           Comment.Multiline
+'o'           Comment.Multiline
+'f'           Comment.Multiline
+' '           Comment.Multiline
+'{'           Comment.Multiline
+'1'           Comment.Multiline
+'.'           Comment.Multiline
+'.'           Comment.Multiline
+'n'           Comment.Multiline
+'}'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+'n'           Comment.Multiline
+'\t'          Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'-'           Comment.Multiline
+' '           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'e'           Comment.Multiline
+'g'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+' '           Comment.Multiline
+'>'           Comment.Multiline
+'='           Comment.Multiline
+' '           Comment.Multiline
+'1'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+'E'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+'m'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'a'           Comment.Multiline
+'r'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'r'           Comment.Multiline
+'e'           Comment.Multiline
+'p'           Comment.Multiline
+'r'           Comment.Multiline
+'e'           Comment.Multiline
+'s'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'e'           Comment.Multiline
+'d'           Comment.Multiline
+' '           Comment.Multiline
+'a'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+' '           Comment.Multiline
+'D'           Comment.Multiline
+'o'           Comment.Multiline
+'m'           Comment.Multiline
+':'           Comment.Multiline
+':'           Comment.Multiline
+'P'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'m'           Comment.Multiline
+'u'           Comment.Multiline
+'t'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+'i'           Comment.Multiline
+'o'           Comment.Multiline
+'n'           Comment.Multiline
+'G'           Comment.Multiline
+'r'           Comment.Multiline
+'o'           Comment.Multiline
+'u'           Comment.Multiline
+'p'           Comment.Multiline
+'('           Comment.Multiline
+'n'           Comment.Multiline
+')'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+'A'           Comment.Multiline
+'u'           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'o'           Comment.Multiline
+'r'           Comment.Multiline
+':'           Comment.Multiline
+'\t'          Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'N'           Comment.Multiline
+'i'           Comment.Multiline
+'c'           Comment.Multiline
+'o'           Comment.Multiline
+'l'           Comment.Multiline
+'a'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'M'           Comment.Multiline
+'.'           Comment.Multiline
+' '           Comment.Multiline
+'T'           Comment.Multiline
+'h'           Comment.Multiline
+'i'           Comment.Multiline
+'é'           Comment.Multiline
+'r'           Comment.Multiline
+'y'           Comment.Multiline
+' '           Comment.Multiline
+'<'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'i'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'y'           Comment.Multiline
+'@'           Comment.Multiline
+'u'           Comment.Multiline
+'s'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'s'           Comment.Multiline
+'.'           Comment.Multiline
+'s'           Comment.Multiline
+'o'           Comment.Multiline
+'u'           Comment.Multiline
+'r'           Comment.Multiline
+'c'           Comment.Multiline
+'e'           Comment.Multiline
+'f'           Comment.Multiline
+'o'           Comment.Multiline
+'r'           Comment.Multiline
+'g'           Comment.Multiline
+'e'           Comment.Multiline
+'.'           Comment.Multiline
+'n'           Comment.Multiline
+'e'           Comment.Multiline
+'t'           Comment.Multiline
+'>'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'L'           Comment.Multiline
+'i'           Comment.Multiline
+'c'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'s'           Comment.Multiline
+'e'           Comment.Multiline
+':'           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'L'           Comment.Multiline
+'G'           Comment.Multiline
+'P'           Comment.Multiline
+'L'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'C'           Comment.Multiline
+'r'           Comment.Multiline
+'e'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+'e'           Comment.Multiline
+'d'           Comment.Multiline
+':'           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'A'           Comment.Multiline
+'u'           Comment.Multiline
+'g'           Comment.Multiline
+'u'           Comment.Multiline
+'s'           Comment.Multiline
+'t'           Comment.Multiline
+' '           Comment.Multiline
+'8'           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+','           Comment.Multiline
+' '           Comment.Multiline
+'1'           Comment.Multiline
+'9'           Comment.Multiline
+'9'           Comment.Multiline
+'9'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'L'           Comment.Multiline
+'a'           Comment.Multiline
+'s'           Comment.Multiline
+'t'           Comment.Multiline
+' '           Comment.Multiline
+'u'           Comment.Multiline
+'p'           Comment.Multiline
+'d'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+'e'           Comment.Multiline
+':'           Comment.Multiline
+' '           Comment.Multiline
+'$'           Comment.Multiline
+'D'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+'e'           Comment.Multiline
+':'           Comment.Multiline
+' '           Comment.Multiline
+'2'           Comment.Multiline
+'0'           Comment.Multiline
+'0'           Comment.Multiline
+'3'           Comment.Multiline
+'/'           Comment.Multiline
+'0'           Comment.Multiline
+'9'           Comment.Multiline
+'/'           Comment.Multiline
+'0'           Comment.Multiline
+'8'           Comment.Multiline
+' '           Comment.Multiline
+'1'           Comment.Multiline
+'5'           Comment.Multiline
+':'           Comment.Multiline
+'0'           Comment.Multiline
+'0'           Comment.Multiline
+':'           Comment.Multiline
+'4'           Comment.Multiline
+'7'           Comment.Multiline
+' '           Comment.Multiline
+'$'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'+'           Comment.Multiline
+'+'           Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'domain'      Keyword
+' '           Text
+'Dom::AlternatingGroup' Name.Function
+'('           Punctuation
+'n'           Name.Variable
+':'           Operator
+' '           Text
+'Type::PosInt' Name.Variable
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'inherits'    Keyword
+' '           Text
+'Dom::PermutationGroup' Name.Function
+'('           Punctuation
+'n'           Name.Variable
+','           Operator
+'toBeDefined' Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'category'    Keyword
+' '           Text
+'Cat::PermutationGroup' Name.Variable
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'axiom'       Keyword
+' '           Text
+'Ax::canonicalRep' Name.Variable
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'/*'          Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'s'           Comment.Multiline
+'i'           Comment.Multiline
+'z'           Comment.Multiline
+'e'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'S'           Comment.Multiline
+'i'           Comment.Multiline
+'z'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'o'           Comment.Multiline
+'f'           Comment.Multiline
+' '           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'g'           Comment.Multiline
+'r'           Comment.Multiline
+'o'           Comment.Multiline
+'u'           Comment.Multiline
+'p'           Comment.Multiline
+'.'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'size'        Name.Variable
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'fact'        Name.Function
+'('           Punctuation
+'n'           Name.Variable
+')'           Punctuation
+'/'           Operator
+'2'           Literal.Number
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'/*'          Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'g'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+'o'           Comment.Multiline
+'r'           Comment.Multiline
+'s'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'A'           Comment.Multiline
+' '           Comment.Multiline
+'l'           Comment.Multiline
+'i'           Comment.Multiline
+'s'           Comment.Multiline
+'t'           Comment.Multiline
+' '           Comment.Multiline
+'o'           Comment.Multiline
+'f'           Comment.Multiline
+' '           Comment.Multiline
+'g'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+'o'           Comment.Multiline
+'r'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'o'           Comment.Multiline
+'f'           Comment.Multiline
+' '           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'g'           Comment.Multiline
+'r'           Comment.Multiline
+'o'           Comment.Multiline
+'u'           Comment.Multiline
+'p'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'T'           Comment.Multiline
+'h'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'f'           Comment.Multiline
+'i'           Comment.Multiline
+'r'           Comment.Multiline
+'s'           Comment.Multiline
+'t'           Comment.Multiline
+' '           Comment.Multiline
+'3'           Comment.Multiline
+'-'           Comment.Multiline
+'c'           Comment.Multiline
+'y'           Comment.Multiline
+'c'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'('           Comment.Multiline
+'1'           Comment.Multiline
+','           Comment.Multiline
+'2'           Comment.Multiline
+','           Comment.Multiline
+'3'           Comment.Multiline
+')'           Comment.Multiline
+','           Comment.Multiline
+' '           Comment.Multiline
+'a'           Comment.Multiline
+'n'           Comment.Multiline
+'d'           Comment.Multiline
+' '           Comment.Multiline
+'a'           Comment.Multiline
+' '           Comment.Multiline
+'m'           Comment.Multiline
+'a'           Comment.Multiline
+'x'           Comment.Multiline
+'i'           Comment.Multiline
+'m'           Comment.Multiline
+'a'           Comment.Multiline
+'l'           Comment.Multiline
+' '           Comment.Multiline
+'e'           Comment.Multiline
+'v'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+' '           Comment.Multiline
+'c'           Comment.Multiline
+'y'           Comment.Multiline
+'c'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'('           Comment.Multiline
+'1'           Comment.Multiline
+','           Comment.Multiline
+'.'           Comment.Multiline
+'.'           Comment.Multiline
+'.'           Comment.Multiline
+','           Comment.Multiline
+'n'           Comment.Multiline
+')'           Comment.Multiline
+' '           Comment.Multiline
+'o'           Comment.Multiline
+'r'           Comment.Multiline
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'('           Comment.Multiline
+'2'           Comment.Multiline
+','           Comment.Multiline
+'.'           Comment.Multiline
+'.'           Comment.Multiline
+'.'           Comment.Multiline
+','           Comment.Multiline
+'n'           Comment.Multiline
+')'           Comment.Multiline
+' '           Comment.Multiline
+'d'           Comment.Multiline
+'e'           Comment.Multiline
+'p'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'d'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'g'           Comment.Multiline
+' '           Comment.Multiline
+'o'           Comment.Multiline
+'n'           Comment.Multiline
+' '           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'p'           Comment.Multiline
+'a'           Comment.Multiline
+'r'           Comment.Multiline
+'i'           Comment.Multiline
+'t'           Comment.Multiline
+'y'           Comment.Multiline
+' '           Comment.Multiline
+'o'           Comment.Multiline
+'f'           Comment.Multiline
+' '           Comment.Multiline
+'n'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'generators'  Name.Variable
+' '           Text
+':'           Operator
+'='           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+'\t'          Text
+' '           Text
+'n'           Name.Variable
+'<'           Operator
+'='           Operator
+'2'           Literal.Number
+'\t'          Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'then'        Keyword
+' '           Text
+'generators'  Name.Variable
+':'           Operator
+'='           Operator
+'['           Punctuation
+'dom'         Name.Builtin.Pseudo
+'('           Punctuation
+'['           Punctuation
+'['           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+']'           Punctuation
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'elif'        Keyword
+' '           Text
+'n'           Name.Variable
+'='           Operator
+'3'           Literal.Number
+'\t'          Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'then'        Keyword
+' '           Text
+'generators'  Name.Variable
+':'           Operator
+'='           Operator
+'['           Punctuation
+'dom'         Name.Builtin.Pseudo
+'('           Punctuation
+'['           Punctuation
+'['           Punctuation
+'1'           Literal.Number
+','           Operator
+'2'           Literal.Number
+','           Operator
+'3'           Literal.Number
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+']'           Punctuation
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'elif'        Keyword
+' '           Text
+'n'           Name.Variable
+' '           Text
+'mod'         Operator.Word
+' '           Text
+'2'           Literal.Number
+'='           Operator
+'0'           Literal.Number
+' '           Text
+' '           Text
+' '           Text
+'then'        Keyword
+' '           Text
+'generators'  Name.Variable
+':'           Operator
+'='           Operator
+'['           Punctuation
+'dom'         Name.Builtin.Pseudo
+'('           Punctuation
+'['           Punctuation
+'['           Punctuation
+'1'           Literal.Number
+','           Operator
+'2'           Literal.Number
+','           Operator
+'3'           Literal.Number
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+','           Operator
+' '           Text
+'dom'         Name.Builtin.Pseudo
+'('           Punctuation
+'['           Punctuation
+'['           Punctuation
+'$'           Operator
+'2.'          Literal.Number
+'.'           Operator
+'n'           Name.Variable
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+']'           Punctuation
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'else'        Keyword
+'\t'          Text
+'\t'          Text
+' '           Text
+' '           Text
+'generators'  Name.Variable
+':'           Operator
+'='           Operator
+'['           Punctuation
+'dom'         Name.Builtin.Pseudo
+'('           Punctuation
+'['           Punctuation
+'['           Punctuation
+'1'           Literal.Number
+','           Operator
+'2'           Literal.Number
+','           Operator
+'3'           Literal.Number
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+','           Operator
+' '           Text
+'dom'         Name.Builtin.Pseudo
+'('           Punctuation
+'['           Punctuation
+'['           Punctuation
+'$'           Operator
+'1.'          Literal.Number
+'.'           Operator
+'n'           Name.Variable
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+']'           Punctuation
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end_if'      Keyword
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+'/*'          Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'a'           Comment.Multiline
+'l'           Comment.Multiline
+'l'           Comment.Multiline
+'E'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+'m'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'s'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'L'           Comment.Multiline
+'i'           Comment.Multiline
+'s'           Comment.Multiline
+'t'           Comment.Multiline
+' '           Comment.Multiline
+'o'           Comment.Multiline
+'f'           Comment.Multiline
+' '           Comment.Multiline
+'a'           Comment.Multiline
+'l'           Comment.Multiline
+'l'           Comment.Multiline
+' '           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'e'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+'m'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'o'           Comment.Multiline
+'f'           Comment.Multiline
+' '           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'g'           Comment.Multiline
+'r'           Comment.Multiline
+'o'           Comment.Multiline
+'u'           Comment.Multiline
+'p'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'allElements' Name.Variable
+' '           Text
+':'           Operator
+'='           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'proc'        Keyword
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'option'      Keyword
+' '           Text
+'remember'    Name.Variable
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+'local'       Keyword
+' '           Text
+'p'           Name.Variable
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'begin'       Keyword
+'\n'          Text
+
+'\t'          Text
+'['           Punctuation
+'new'         Name.Function
+'('           Punctuation
+'dom'         Name.Builtin.Pseudo
+','           Operator
+'p'           Name.Variable
+')'           Punctuation
+' '           Text
+'$'           Operator
+' '           Text
+'p'           Name.Variable
+' '           Text
+'in'          Operator.Word
+' '           Text
+'select'      Name.Function
+'('           Punctuation
+'combinat::permutations' Name.Function
+'('           Punctuation
+'n'           Name.Variable
+')'           Punctuation
+','           Operator
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+' '           Text
+' '           Text
+'p'           Name.Variable
+'-'           Operator
+'>'           Operator
+'bool'        Name.Function
+'('           Punctuation
+'combinat::permutations::sign' Name.Function
+'('           Punctuation
+'p'           Name.Variable
+')'           Punctuation
+'='           Operator
+'1'           Literal.Number
+')'           Punctuation
+')'           Punctuation
+']'           Punctuation
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end_proc'    Keyword
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'/*'          Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'c'           Comment.Multiline
+'y'           Comment.Multiline
+'c'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+'T'           Comment.Multiline
+'y'           Comment.Multiline
+'p'           Comment.Multiline
+'e'           Comment.Multiline
+'s'           Comment.Multiline
+':'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'C'           Comment.Multiline
+'o'           Comment.Multiline
+'u'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+' '           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'e'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+'m'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'o'           Comment.Multiline
+'f'           Comment.Multiline
+' '           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'g'           Comment.Multiline
+'r'           Comment.Multiline
+'o'           Comment.Multiline
+'u'           Comment.Multiline
+'p'           Comment.Multiline
+' '           Comment.Multiline
+'b'           Comment.Multiline
+'y'           Comment.Multiline
+' '           Comment.Multiline
+'c'           Comment.Multiline
+'y'           Comment.Multiline
+'c'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'t'           Comment.Multiline
+'y'           Comment.Multiline
+'p'           Comment.Multiline
+'e'           Comment.Multiline
+'.'           Comment.Multiline
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'('           Comment.Multiline
+'C'           Comment.Multiline
+'f'           Comment.Multiline
+' '           Comment.Multiline
+'C'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+':'           Comment.Multiline
+':'           Comment.Multiline
+'P'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'m'           Comment.Multiline
+'u'           Comment.Multiline
+'t'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+'i'           Comment.Multiline
+'o'           Comment.Multiline
+'n'           Comment.Multiline
+'G'           Comment.Multiline
+'r'           Comment.Multiline
+'o'           Comment.Multiline
+'u'           Comment.Multiline
+'p'           Comment.Multiline
+'M'           Comment.Multiline
+'o'           Comment.Multiline
+'d'           Comment.Multiline
+'u'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+')'           Comment.Multiline
+'.'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'S'           Comment.Multiline
+'a'           Comment.Multiline
+'m'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'a'           Comment.Multiline
+'l'           Comment.Multiline
+'g'           Comment.Multiline
+'o'           Comment.Multiline
+'r'           Comment.Multiline
+'i'           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'m'           Comment.Multiline
+' '           Comment.Multiline
+'a'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'f'           Comment.Multiline
+'o'           Comment.Multiline
+'r'           Comment.Multiline
+' '           Comment.Multiline
+'D'           Comment.Multiline
+'o'           Comment.Multiline
+'m'           Comment.Multiline
+':'           Comment.Multiline
+':'           Comment.Multiline
+'S'           Comment.Multiline
+'y'           Comment.Multiline
+'m'           Comment.Multiline
+'m'           Comment.Multiline
+'e'           Comment.Multiline
+'t'           Comment.Multiline
+'r'           Comment.Multiline
+'i'           Comment.Multiline
+'c'           Comment.Multiline
+'G'           Comment.Multiline
+'r'           Comment.Multiline
+'o'           Comment.Multiline
+'u'           Comment.Multiline
+'p'           Comment.Multiline
+','           Comment.Multiline
+' '           Comment.Multiline
+'b'           Comment.Multiline
+'u'           Comment.Multiline
+'t'           Comment.Multiline
+' '           Comment.Multiline
+'o'           Comment.Multiline
+'n'           Comment.Multiline
+'l'           Comment.Multiline
+'y'           Comment.Multiline
+' '           Comment.Multiline
+'e'           Comment.Multiline
+'v'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+' '           Comment.Multiline
+'p'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'m'           Comment.Multiline
+'u'           Comment.Multiline
+'t'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+'i'           Comment.Multiline
+'o'           Comment.Multiline
+'n'           Comment.Multiline
+'s'           Comment.Multiline
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'a'           Comment.Multiline
+'r'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'c'           Comment.Multiline
+'o'           Comment.Multiline
+'n'           Comment.Multiline
+'s'           Comment.Multiline
+'i'           Comment.Multiline
+'d'           Comment.Multiline
+'e'           Comment.Multiline
+'r'           Comment.Multiline
+'e'           Comment.Multiline
+'d'           Comment.Multiline
+'.'           Comment.Multiline
+' '           Comment.Multiline
+'T'           Comment.Multiline
+'h'           Comment.Multiline
+'i'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'i'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'d'           Comment.Multiline
+'o'           Comment.Multiline
+'n'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'b'           Comment.Multiline
+'y'           Comment.Multiline
+' '           Comment.Multiline
+'d'           Comment.Multiline
+'i'           Comment.Multiline
+'s'           Comment.Multiline
+'r'           Comment.Multiline
+'e'           Comment.Multiline
+'g'           Comment.Multiline
+'a'           Comment.Multiline
+'r'           Comment.Multiline
+'d'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'g'           Comment.Multiline
+' '           Comment.Multiline
+'p'           Comment.Multiline
+'a'           Comment.Multiline
+'r'           Comment.Multiline
+'t'           Comment.Multiline
+'i'           Comment.Multiline
+'t'           Comment.Multiline
+'i'           Comment.Multiline
+'o'           Comment.Multiline
+'n'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'p'           Comment.Multiline
+' '           Comment.Multiline
+'s'           Comment.Multiline
+'u'           Comment.Multiline
+'c'           Comment.Multiline
+'h'           Comment.Multiline
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+' '           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'a'           Comment.Multiline
+'t'           Comment.Multiline
+' '           Comment.Multiline
+'n'           Comment.Multiline
+'-'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'g'           Comment.Multiline
+'t'           Comment.Multiline
+'h'           Comment.Multiline
+'('           Comment.Multiline
+'p'           Comment.Multiline
+')'           Comment.Multiline
+' '           Comment.Multiline
+'i'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'o'           Comment.Multiline
+'d'           Comment.Multiline
+'d'           Comment.Multiline
+'.'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'cycleTypes'  Name.Variable
+' '           Text
+':'           Operator
+'='           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'proc'        Keyword
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'option'      Keyword
+' '           Text
+'remember'    Name.Variable
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+'local'       Keyword
+' '           Text
+'t'           Name.Variable
+','           Operator
+' '           Text
+'p'           Name.Variable
+','           Operator
+' '           Text
+'gen'         Name.Variable
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'begin'       Keyword
+'\n'          Text
+
+'\t'          Text
+'userinfo'    Name.Function
+'('           Punctuation
+'3'           Literal.Number
+','           Operator
+' '           Text
+'"cycleTypes: starting computation"' Literal.String
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+'t'           Name.Variable
+':'           Operator
+'='           Operator
+'table'       Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'gen'         Name.Variable
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'combinat::partitions::generator' Name.Function
+'('           Punctuation
+'n'           Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'p'           Name.Variable
+':'           Operator
+'='           Operator
+'gen'         Name.Function
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'FAIL'        Name.Constant
+' '           Text
+'do'          Keyword
+'\n'          Text
+
+'\t'          Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'userinfo'    Name.Function
+'('           Punctuation
+'5'           Literal.Number
+','           Operator
+' '           Text
+'"working on partition"' Literal.String
+','           Operator
+' '           Text
+'p'           Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'n'           Name.Variable
+'-'           Operator
+'nops'        Name.Function
+'('           Punctuation
+'p'           Name.Variable
+')'           Punctuation
+' '           Text
+'mod'         Operator.Word
+' '           Text
+'2'           Literal.Number
+'='           Operator
+'0'           Literal.Number
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'// Compute the size of the conjugacy class of Sn indexed by p' Comment.Single
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'// and the cycle type of a permutation in this conjugacy class' Comment.Single
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'t'           Name.Variable
+'['           Punctuation
+'combinat::partitions::toExp' Name.Function
+'('           Punctuation
+'p'           Name.Variable
+','           Operator
+'n'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'combinat::partitions::conjugacyClassSize' Name.Function
+'('           Punctuation
+'p'           Name.Variable
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end_if'      Keyword
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end_while'   Keyword
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+'t'           Name.Variable
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end_proc'    Keyword
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'begin'       Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'testargs'    Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'args'        Name.Function
+'('           Punctuation
+'0'           Literal.Number
+')'           Punctuation
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'1'           Literal.Number
+' '           Text
+'then'        Keyword
+' '           Text
+'error'       Name.Function
+'('           Punctuation
+'"wrong no of args"' Literal.String
+')'           Punctuation
+';'           Operator
+' '           Text
+'end_if'      Keyword
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'not'         Operator.Word
+' '           Text
+'testtype'    Name.Function
+'('           Punctuation
+'n'           Name.Variable
+','           Operator
+'DOM_INT'     Name.Class
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t'          Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'error'       Name.Function
+'('           Punctuation
+'"argument must be integer"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'end_if'      Keyword
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'n'           Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'1'           Literal.Number
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t'          Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'error'       Name.Function
+'('           Punctuation
+'"argument must be positive"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'end_if'      Keyword
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end_if'      Keyword
+';'           Operator
+'\n'          Text
+
+'end_domain'  Keyword
+':'           Operator
+'\n'          Text

@@ -1,0 +1,114 @@
+---input---
+;redcode
+;name          Dwarf
+;author        A. K. Dewdney
+;version       94.1
+;date          April 29, 1993
+;strategy      Bombs every fourth instruction.
+        ORG     start              ; Indicates the instruction with
+                                   ; the label "start" should be the
+                                   ; first to execute.
+step    EQU      4                 ; Replaces all occurrences of "step"
+                                   ; with the character "4".
+target  DAT.F   #0,     #0         ; Pointer to target instruction.
+start   ADD.AB  #step,   target    ; Increments pointer by step.
+        MOV.AB  #0,     @target    ; Bombs target instruction.
+        JMP.A    start             ; Same as JMP.A -2.  Loops back to
+                                   ; the instruction labelled "start".
+        END
+
+---tokens---
+';redcode'    Comment.Single
+'\n'          Text
+
+';name          Dwarf' Comment.Single
+'\n'          Text
+
+';author        A. K. Dewdney' Comment.Single
+'\n'          Text
+
+';version       94.1' Comment.Single
+'\n'          Text
+
+';date          April 29, 1993' Comment.Single
+'\n'          Text
+
+';strategy      Bombs every fourth instruction.' Comment.Single
+'\n        '  Text
+'ORG'         Name.Function
+'     '       Text
+'start'       Name
+'              ' Text
+'; Indicates the instruction with' Comment.Single
+'\n                                   ' Text
+'; the label "start" should be the' Comment.Single
+'\n                                   ' Text
+'; first to execute.' Comment.Single
+'\n'          Text
+
+'step'        Name
+'    '        Text
+'EQU'         Name.Function
+'      '      Text
+'4'           Literal.Number.Integer
+'                 ' Text
+'; Replaces all occurrences of "step"' Comment.Single
+'\n                                   ' Text
+'; with the character "4".' Comment.Single
+'\n'          Text
+
+'target'      Name
+'  '          Text
+'DAT'         Name.Function
+'.'           Punctuation
+'F'           Name.Decorator
+'   '         Text
+'#'           Operator
+'0'           Literal.Number.Integer
+','           Punctuation
+'     '       Text
+'#'           Operator
+'0'           Literal.Number.Integer
+'         '   Text
+'; Pointer to target instruction.' Comment.Single
+'\n'          Text
+
+'start'       Name
+'   '         Text
+'ADD'         Name.Function
+'.'           Punctuation
+'AB'          Name.Decorator
+'  '          Text
+'#'           Operator
+'step'        Name
+','           Punctuation
+'   '         Text
+'target'      Name
+'    '        Text
+'; Increments pointer by step.' Comment.Single
+'\n        '  Text
+'MOV'         Name.Function
+'.'           Punctuation
+'AB'          Name.Decorator
+'  '          Text
+'#'           Operator
+'0'           Literal.Number.Integer
+','           Punctuation
+'     '       Text
+'@'           Operator
+'target'      Name
+'    '        Text
+'; Bombs target instruction.' Comment.Single
+'\n        '  Text
+'JMP'         Name.Function
+'.'           Punctuation
+'A'           Name.Decorator
+'    '        Text
+'start'       Name
+'             ' Text
+'; Same as JMP.A -2.  Loops back to' Comment.Single
+'\n                                   ' Text
+'; the instruction labelled "start".' Comment.Single
+'\n        '  Text
+'END'         Name.Function
+'\n'          Text

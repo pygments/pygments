@@ -1,0 +1,255 @@
+---input---
+if (this.running)
+  player:tell("[Train] Error: already a jump in progress");
+  return;
+endif
+this.running = 1;
+this.aborted = 0;
+this:announce_all("[Train] departure in 20 seconds");
+dest = this.targets[random(length(this.targets))];
+this:announce_all("[Train] Next stop is '", dest:title(), "'");
+this:announce_all("You hear the engines starting up");
+this.location:announce("The MOOTrain starts up his engines");
+suspend(20);
+if (this.aborted)
+  this.running = 0;
+  this.aborted = 0;
+  return;
+endif
+this:announce_all("[Train] Departure!");
+this.location:announce_all("The MOOTrain leaves into the 42th dimension!");
+this:announce_all("Outside you see the lights of the 42th dimension");
+this:moveto(dest);
+suspend(4);
+this:announce_all("The glowing gets less, until you can see the clear shape of the room, the MOOTrain has landed in");
+this.location:announce_all("The MOOTrain arrives out of the 42th dimension!");
+this:announce_all("[Train] arrived in '", dest:title(), "'");
+this.running = 0;
+
+---tokens---
+'if'          Keyword
+' '           Text
+'('           Operator
+'this'        Name.Variable.Instance
+'.'           Operator
+'running'     Text
+')'           Operator
+'\n  '        Text
+'player'      Name.Variable.Instance
+':'           Operator
+'tell'        Name.Function
+'('           Operator
+'"[Train] Error: already a jump in progress"' Literal.String
+');'          Operator
+'\n  '        Text
+'return'      Keyword
+';'           Operator
+'\n'          Text
+
+'endif'       Keyword
+'\n'          Text
+
+'this'        Name.Variable.Instance
+'.'           Operator
+'running'     Text
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'this'        Name.Variable.Instance
+'.'           Operator
+'aborted'     Text
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'this'        Name.Variable.Instance
+':'           Operator
+'announce_all' Name.Function
+'('           Operator
+'"[Train] departure in 20 seconds"' Literal.String
+');'          Operator
+'\n'          Text
+
+'dest'        Text
+' '           Text
+'='           Operator
+' '           Text
+'this'        Name.Variable.Instance
+'.'           Operator
+'targets'     Text
+'['           Operator
+'random'      Name.Builtin
+'('           Operator
+'length'      Name.Builtin
+'('           Operator
+'this'        Name.Variable.Instance
+'.'           Operator
+'targets'     Text
+'))];'        Operator
+'\n'          Text
+
+'this'        Name.Variable.Instance
+':'           Operator
+'announce_all' Name.Function
+'('           Operator
+'"[Train] Next stop is \'"' Literal.String
+','           Operator
+' '           Text
+'dest'        Text
+':'           Operator
+'title'       Name.Function
+'('           Operator
+'),'          Operator
+' '           Text
+'"\'"'        Literal.String
+');'          Operator
+'\n'          Text
+
+'this'        Name.Variable.Instance
+':'           Operator
+'announce_all' Name.Function
+'('           Operator
+'"You hear the engines starting up"' Literal.String
+');'          Operator
+'\n'          Text
+
+'this'        Name.Variable.Instance
+'.'           Operator
+'location'    Text
+':'           Operator
+'announce'    Name.Function
+'('           Operator
+'"The MOOTrain starts up his engines"' Literal.String
+');'          Operator
+'\n'          Text
+
+'suspend'     Name.Function
+'('           Operator
+'20'          Literal.Number.Integer
+');'          Operator
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'this'        Name.Variable.Instance
+'.'           Operator
+'aborted'     Text
+')'           Operator
+'\n  '        Text
+'this'        Name.Variable.Instance
+'.'           Operator
+'running'     Text
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'this'        Name.Variable.Instance
+'.'           Operator
+'aborted'     Text
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'return'      Keyword
+';'           Operator
+'\n'          Text
+
+'endif'       Keyword
+'\n'          Text
+
+'this'        Name.Variable.Instance
+':'           Operator
+'announce_all' Name.Function
+'('           Operator
+'"[Train] Departure!"' Literal.String
+');'          Operator
+'\n'          Text
+
+'this'        Name.Variable.Instance
+'.'           Operator
+'location'    Text
+':'           Operator
+'announce_all' Name.Function
+'('           Operator
+'"The MOOTrain leaves into the 42th dimension!"' Literal.String
+');'          Operator
+'\n'          Text
+
+'this'        Name.Variable.Instance
+':'           Operator
+'announce_all' Name.Function
+'('           Operator
+'"Outside you see the lights of the 42th dimension"' Literal.String
+');'          Operator
+'\n'          Text
+
+'this'        Name.Variable.Instance
+':'           Operator
+'moveto'      Name.Function
+'('           Operator
+'dest'        Text
+');'          Operator
+'\n'          Text
+
+'suspend'     Name.Function
+'('           Operator
+'4'           Literal.Number.Integer
+');'          Operator
+'\n'          Text
+
+'this'        Name.Variable.Instance
+':'           Operator
+'announce_all' Name.Function
+'('           Operator
+'"The glowing gets less, until you can see the clear shape of the room, the MOOTrain has landed in"' Literal.String
+');'          Operator
+'\n'          Text
+
+'this'        Name.Variable.Instance
+'.'           Operator
+'location'    Text
+':'           Operator
+'announce_all' Name.Function
+'('           Operator
+'"The MOOTrain arrives out of the 42th dimension!"' Literal.String
+');'          Operator
+'\n'          Text
+
+'this'        Name.Variable.Instance
+':'           Operator
+'announce_all' Name.Function
+'('           Operator
+'"[Train] arrived in \'"' Literal.String
+','           Operator
+' '           Text
+'dest'        Text
+':'           Operator
+'title'       Name.Function
+'('           Operator
+'),'          Operator
+' '           Text
+'"\'"'        Literal.String
+');'          Operator
+'\n'          Text
+
+'this'        Name.Variable.Instance
+'.'           Operator
+'running'     Text
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n'          Text

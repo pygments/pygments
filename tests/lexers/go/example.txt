@@ -1,0 +1,72 @@
+---input---
+package main
+
+import "fmt"
+
+func main() {
+    世界 := "Hello, world!"
+    さようなら := "Goodbye, world!"
+    fmt.Println(世界)
+    fmt.Println(さようなら)
+}
+
+---tokens---
+'package'     Keyword.Namespace
+' '           Text
+'main'        Name.Other
+'\n'          Text
+
+'\n'          Text
+
+'import'      Keyword.Namespace
+' '           Text
+'"fmt"'       Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'func'        Keyword.Declaration
+' '           Text
+'main'        Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'世界'          Name.Other
+' '           Text
+':='          Operator
+' '           Text
+'"Hello, world!"' Literal.String
+'\n'          Text
+
+'    '        Text
+'さようなら'       Name.Other
+' '           Text
+':='          Operator
+' '           Text
+'"Goodbye, world!"' Literal.String
+'\n'          Text
+
+'    '        Text
+'fmt'         Name.Other
+'.'           Punctuation
+'Println'     Name.Other
+'('           Punctuation
+'世界'          Name.Other
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'fmt'         Name.Other
+'.'           Punctuation
+'Println'     Name.Other
+'('           Punctuation
+'さようなら'       Name.Other
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

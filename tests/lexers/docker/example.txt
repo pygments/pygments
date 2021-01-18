@@ -1,0 +1,223 @@
+---input---
+FROM alpine:3.5
+MAINTAINER First O'Last
+
+# comment
+run echo \
+  123 $bar
+RUN apk --update add rsync dumb-init
+
+# Test env with both syntax
+ENV FOO = "BAR"
+ENV FOO \
+	"BAR"
+
+COPY foo "bar"
+COPY foo \
+	"bar"
+
+HEALTHCHECK \
+    --interval=5m --timeout=3s \
+    CMD curl -f http://localhost/ || exit 1
+
+# ONBUILD keyword, then with linebreak
+ONBUILD ADD . /app/src
+ONBUILD \
+	RUN echo 123 $bar
+
+# Potential JSON array parsing, mixed with linebreaks
+VOLUME \
+    /foo
+VOLUME \
+    ["/bar"]
+VOLUME ["/bar"]
+VOLUME /foo
+CMD ["foo", "bar"]
+
+---tokens---
+'FROM'        Keyword
+' '           Text
+'alpine:3.5'  Literal.String
+'\n'          Text
+
+'MAINTAINER'  Keyword
+" First O'Last" Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'# comment'   Comment
+'\n'          Text
+
+'run'         Keyword
+' '           Text
+'echo'        Name.Builtin
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'  '          Text
+'123'         Literal.Number
+' '           Text
+'$bar'        Name.Variable
+'\n'          Text
+
+'RUN'         Keyword
+' '           Text
+'apk'         Text
+' '           Text
+'--update'    Text
+' '           Text
+'add'         Text
+' '           Text
+'rsync'       Text
+' '           Text
+'dumb-init'   Text
+'\n'          Text
+
+'\n'          Text
+
+'# Test env with both syntax' Comment
+'\n'          Text
+
+'ENV'         Keyword
+' '           Text
+'FOO'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"BAR"'       Literal.String.Double
+'\n'          Text
+
+'ENV'         Keyword
+' '           Text
+'FOO'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'"BAR"'       Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'COPY'        Keyword
+' '           Text
+'foo'         Text
+' '           Text
+'"bar"'       Literal.String.Double
+'\n'          Text
+
+'COPY'        Keyword
+' '           Text
+'foo'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'"bar"'       Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'HEALTHCHECK' Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'    '        Text
+'--interval'  Text
+'='           Operator
+'5m'          Text
+' '           Text
+'--timeout'   Text
+'='           Operator
+'3s'          Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'    '        Text
+'CMD'         Keyword
+' '           Text
+'curl'        Text
+' '           Text
+'-f'          Text
+' '           Text
+'http://localhost/' Text
+' '           Text
+'||'          Operator
+' '           Text
+'exit'        Name.Builtin
+' '           Text
+'1'           Literal.Number
+'\n'          Text
+
+'\n'          Text
+
+'# ONBUILD keyword, then with linebreak' Comment
+'\n'          Text
+
+'ONBUILD'     Keyword
+' '           Text
+'ADD'         Keyword
+' '           Text
+'.'           Text
+' '           Text
+'/app/src'    Text
+'\n'          Text
+
+'ONBUILD'     Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'RUN'         Keyword
+' '           Text
+'echo'        Name.Builtin
+' '           Text
+'123'         Literal.Number
+' '           Text
+'$bar'        Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'# Potential JSON array parsing, mixed with linebreaks' Comment
+'\n'          Text
+
+'VOLUME'      Keyword
+' \\'         Literal.String
+'\n'          Text
+
+'    '        Text
+'/foo'        Text
+'\n'          Text
+
+'VOLUME'      Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'    '        Text
+'['           Punctuation
+'"/bar"'      Literal.String.Double
+']'           Punctuation
+'\n'          Text
+
+'VOLUME'      Keyword
+' '           Text
+'['           Punctuation
+'"/bar"'      Literal.String.Double
+']'           Punctuation
+'\n'          Text
+
+'VOLUME'      Keyword
+' /foo'       Literal.String
+'\n'          Text
+
+'CMD'         Keyword
+' '           Text
+'['           Punctuation
+'"foo"'       Literal.String.Double
+','           Punctuation
+' '           Text
+'"bar"'       Literal.String.Double
+']'           Punctuation
+'\n'          Text

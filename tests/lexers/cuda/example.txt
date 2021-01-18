@@ -1,0 +1,348 @@
+---input---
+#include <stdio.h>
+
+// __device__ function
+__device__ void func()
+{
+    short* array0 = (short*)array;
+    float* array1 = (float*)&array0[127];
+}
+
+/* __global__ function */
+__global__ static void reduction(const float* __restrict__ input, float *output, clock_t *timer)
+{
+    // __shared__ float shared[2 * blockDim.x];
+    extern __shared__ float shared[];
+
+    const int tid = threadIdx.x;
+    const int bid = blockIdx.x;
+    
+    if (threadIdx.x == 0) {
+        __threadfence();
+    }
+
+    // Perform reduction to find minimum.
+    for (int d = blockDim.x; d > 0; d /= 2)
+    {
+        __syncthreads();
+    }
+}
+
+int main(int argc, char **argv)
+{
+    dim3 dimBlock(8, 8, 1);
+
+    timedReduction<<<dimBlock, 256, 256, 0>>>(dinput, doutput, dtimer);
+    cudaDeviceReset();
+}
+
+---tokens---
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'<stdio.h>'   Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'// __device__ function\n' Comment.Single
+
+'__device__'  Keyword.Type
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'func'        Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'short'       Keyword.Type
+'*'           Operator
+' '           Text
+'array0'      Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'short'       Keyword.Type
+'*'           Operator
+')'           Punctuation
+'array'       Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'float'       Keyword.Type
+'*'           Operator
+' '           Text
+'array1'      Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+'*'           Operator
+')'           Punctuation
+'&'           Operator
+'array0'      Name
+'['           Punctuation
+'127'         Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/* __global__ function */' Comment.Multiline
+'\n'          Text
+
+'__global__'  Keyword.Reserved
+' '           Text
+'static'      Keyword
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'reduction'   Name
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'float'       Keyword.Type
+'*'           Operator
+' '           Text
+'__restrict__' Keyword.Type
+' '           Text
+'input'       Name
+','           Punctuation
+' '           Text
+'float'       Keyword.Type
+' '           Text
+'*'           Operator
+'output'      Name
+','           Punctuation
+' '           Text
+'clock_t'     Keyword.Type
+' '           Text
+'*'           Operator
+'timer'       Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'// __shared__ float shared[2 * blockDim.x];\n' Comment.Single
+
+'    '        Text
+'extern'      Keyword
+' '           Text
+'__shared__'  Keyword.Type
+' '           Text
+'float'       Keyword.Type
+' '           Text
+'shared'      Name
+'['           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'const'       Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'tid'         Name
+' '           Text
+'='           Operator
+' '           Text
+'threadIdx'   Name.Builtin
+'.'           Punctuation
+'x'           Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'const'       Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'bid'         Name
+' '           Text
+'='           Operator
+' '           Text
+'blockIdx'    Name.Builtin
+'.'           Punctuation
+'x'           Name
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'threadIdx'   Name.Builtin
+'.'           Punctuation
+'x'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'__threadfence' Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'// Perform reduction to find minimum.\n' Comment.Single
+
+'    '        Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator
+' '           Text
+'blockDim'    Name.Builtin
+'.'           Punctuation
+'x'           Name
+';'           Punctuation
+' '           Text
+'d'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'d'           Name
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'__syncthreads' Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'int'         Keyword.Type
+' '           Text
+'main'        Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'argc'        Name
+','           Punctuation
+' '           Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+'*'           Operator
+'argv'        Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'dim3'        Keyword.Type
+' '           Text
+'dimBlock'    Name.Function
+'('           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'8'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'timedReduction' Name
+'<'           Operator
+'<'           Operator
+'<'           Operator
+'dimBlock'    Name
+','           Punctuation
+' '           Text
+'256'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'256'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+'>'           Operator
+'>'           Operator
+'>'           Operator
+'('           Punctuation
+'dinput'      Name
+','           Punctuation
+' '           Text
+'doutput'     Name
+','           Punctuation
+' '           Text
+'dtimer'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'cudaDeviceReset' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

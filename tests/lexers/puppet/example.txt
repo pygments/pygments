@@ -1,0 +1,61 @@
+---input---
+exec { 'grep':
+    command => 'grep "\'" -rI *',
+    path    => '/bin:/usr/bin',
+}
+
+node default {
+    notify {"Hello World":;}
+}
+
+---tokens---
+'exec'        Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+"'grep'"      Literal.String
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'command'     Name.Attribute
+' '           Text
+'=>'          Operator
+' '           Text
+'\'grep "\\\'" -rI *\'' Literal.String
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+'path'        Name.Attribute
+'    '        Text
+'=>'          Operator
+' '           Text
+"'/bin:/usr/bin'" Literal.String
+','           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'node'        Keyword
+' '           Text
+'default'     Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'notify'      Keyword
+' '           Text
+'{'           Punctuation
+'"Hello World"' Literal.String
+':'           Punctuation
+';'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

@@ -1,0 +1,2399 @@
+---input---
+module examples/systems/views
+
+/*
+ * Model of views in object-oriented programming.
+ *
+ * Two object references, called the view and the backing,
+ * are related by a view mechanism when changes to the
+ * backing are automatically propagated to the view. Note
+ * that the state of a view need not be a projection of the
+ * state of the backing; the keySet method of Map, for
+ * example, produces two view relationships, and for the
+ * one in which the map is modified by changes to the key
+ * set, the value of the new map cannot be determined from
+ * the key set. Note that in the iterator view mechanism,
+ * the iterator is by this definition the backing object,
+ * since changes are propagated from iterator to collection
+ * and not vice versa. Oddly, a reference may be a view of
+ * more than one backing: there can be two iterators on the
+ * same collection, eg. A reference cannot be a view under
+ * more than one view type.
+ *
+ * A reference is made dirty when it is a backing for a view
+ * with which it is no longer related by the view invariant.
+ * This usually happens when a view is modified, either
+ * directly or via another backing. For example, changing a
+ * collection directly when it has an iterator invalidates
+ * it, as does changing the collection through one iterator
+ * when there are others.
+ *
+ * More work is needed if we want to model more closely the
+ * failure of an iterator when its collection is invalidated.
+ *
+ * As a terminological convention, when there are two
+ * complementary view relationships, we will give them types
+ * t and t'. For example, KeySetView propagates from map to
+ * set, and KeySetView' propagates from set to map.
+ *
+ * author: Daniel Jackson
+ */
+
+open util/ordering[State] as so
+open util/relation as rel
+
+sig Ref {}
+sig Object {}
+
+-- t->b->v in views when v is view of type t of backing b
+-- dirty contains refs that have been invalidated
+sig State {
+  refs: set Ref,
+  obj: refs -> one Object,
+  views: ViewType -> refs -> refs,
+  dirty: set refs
+--  , anyviews: Ref -> Ref -- for visualization
+  }
+-- {anyviews = ViewType.views}
+
+sig Map extends Object {
+  keys: set Ref,
+  map: keys -> one Ref
+  }{all s: State |  keys + Ref.map in s.refs}
+sig MapRef extends Ref {}
+fact {State.obj[MapRef] in Map}
+
+sig Iterator extends Object {
+  left, done: set Ref,
+  lastRef: lone done
+  }{all s: State | done + left + lastRef in s.refs}
+sig IteratorRef extends Ref {}
+fact {State.obj[IteratorRef] in Iterator}
+
+sig Set extends Object {
+  elts: set Ref
+  }{all s: State | elts in s.refs}
+sig SetRef extends Ref {}
+fact {State.obj[SetRef] in Set}
+
+abstract sig ViewType {}
+one sig KeySetView, KeySetView', IteratorView extends ViewType {}
+fact ViewTypes {
+  State.views[KeySetView] in MapRef -> SetRef
+  State.views[KeySetView'] in SetRef -> MapRef
+  State.views[IteratorView] in IteratorRef -> SetRef
+  all s: State | s.views[KeySetView] = ~(s.views[KeySetView'])
+  }
+
+/**
+ * mods is refs modified directly or by view mechanism
+ * doesn't handle possibility of modifying an object and its view at once?
+ * should we limit frame conds to non-dirty refs?
+ */
+pred modifies [pre, post: State, rs: set Ref] {
+  let vr = pre.views[ViewType], mods = rs.*vr {
+    all r: pre.refs - mods | pre.obj[r] = post.obj[r]
+    all b: mods, v: pre.refs, t: ViewType |
+      b->v in pre.views[t] => viewFrame [t, pre.obj[v], post.obj[v], post.obj[b]]
+    post.dirty = pre.dirty +
+      {b: pre.refs | some v: Ref, t: ViewType |
+          b->v in pre.views[t] && !viewFrame [t, pre.obj[v], post.obj[v], post.obj[b]]
+      }
+    }
+  }
+
+pred allocates [pre, post: State, rs: set Ref] {
+  no rs & pre.refs
+  post.refs = pre.refs + rs
+  }
+
+/** 
+ * models frame condition that limits change to view object from v to v' when backing object changes to b'
+ */
+pred viewFrame [t: ViewType, v, v', b': Object] {
+  t in KeySetView => v'.elts = dom [b'.map]
+  t in KeySetView' => b'.elts = dom [v'.map]
+  t in KeySetView' => (b'.elts) <: (v.map) = (b'.elts) <: (v'.map)
+  t in IteratorView => v'.elts = b'.left + b'.done
+  }
+
+pred MapRef.keySet [pre, post: State, setRefs: SetRef] {
+  post.obj[setRefs].elts = dom [pre.obj[this].map]
+  modifies [pre, post, none]
+  allocates [pre, post, setRefs]
+  post.views = pre.views + KeySetView->this->setRefs + KeySetView'->setRefs->this
+  }
+
+pred MapRef.put [pre, post: State, k, v: Ref] {
+  post.obj[this].map = pre.obj[this].map ++ k->v
+  modifies [pre, post, this]
+  allocates [pre, post, none]
+  post.views = pre.views
+  }
+
+pred SetRef.iterator [pre, post: State, iterRef: IteratorRef] {
+  let i = post.obj[iterRef] {
+    i.left = pre.obj[this].elts
+    no i.done + i.lastRef
+    }
+  modifies [pre,post,none]
+  allocates [pre, post, iterRef]
+  post.views = pre.views + IteratorView->iterRef->this
+  }
+
+pred IteratorRef.remove [pre, post: State] {
+  let i = pre.obj[this], i' = post.obj[this] {
+    i'.left = i.left
+    i'.done = i.done - i.lastRef
+    no i'.lastRef
+    }
+  modifies [pre,post,this]
+  allocates [pre, post, none]
+  pre.views = post.views
+  }
+
+pred IteratorRef.next [pre, post: State, ref: Ref] {
+  let i = pre.obj[this], i' = post.obj[this] {
+    ref in i.left
+    i'.left = i.left - ref
+    i'.done = i.done + ref
+    i'.lastRef = ref
+    }
+  modifies [pre, post, this]
+  allocates [pre, post, none]
+  pre.views = post.views
+  }
+
+pred IteratorRef.hasNext [s: State] {
+  some s.obj[this].left
+  }
+
+assert zippishOK {
+  all
+    ks, vs: SetRef,
+    m: MapRef,
+    ki, vi: IteratorRef,
+    k, v: Ref |
+    let s0=so/first,
+    s1=so/next[s0],
+    s2=so/next[s1],
+    s3=so/next[s2],
+    s4=so/next[s3],
+    s5=so/next[s4],
+    s6=so/next[s5],
+    s7=so/next[s6] |
+  ({
+    precondition [s0, ks, vs, m]
+    no s0.dirty
+    ks.iterator [s0, s1, ki]
+    vs.iterator [s1, s2, vi]
+    ki.hasNext [s2]
+    vi.hasNext [s2]
+    ki.this/next [s2, s3, k]
+    vi.this/next [s3, s4, v]
+    m.put [s4, s5, k, v]
+    ki.remove [s5, s6]
+    vi.remove [s6, s7]
+  } => no State.dirty)
+  }
+
+pred precondition [pre: State, ks, vs, m: Ref] {
+  // all these conditions and other errors discovered in scope of 6 but 8,3
+  // in initial state, must have view invariants hold
+  (all t: ViewType, b, v: pre.refs |
+    b->v in pre.views[t] => viewFrame [t, pre.obj[v], pre.obj[v], pre.obj[b]])
+  // sets are not aliases
+--  ks != vs
+  // sets are not views of map
+--  no (ks+vs)->m & ViewType.pre.views
+  // no iterator currently on either set
+--  no Ref->(ks+vs) & ViewType.pre.views
+  }
+
+check zippishOK for 6 but 8 State, 3 ViewType expect 1
+
+/** 
+ * experiment with controlling heap size
+ */
+fact {all s: State | #s.obj < 5}
+
+---tokens---
+'module'      Keyword.Namespace
+' '           Text
+'examples'    Name
+'/'           Operator
+'systems'     Name
+'/'           Operator
+'views'       Name
+'\n'          Text
+
+'\n'          Text
+
+"/*\n * Model of views in object-oriented programming.\n *\n * Two object references, called the view and the backing,\n * are related by a view mechanism when changes to the\n * backing are automatically propagated to the view. Note\n * that the state of a view need not be a projection of the\n * state of the backing; the keySet method of Map, for\n * example, produces two view relationships, and for the\n * one in which the map is modified by changes to the key\n * set, the value of the new map cannot be determined from\n * the key set. Note that in the iterator view mechanism,\n * the iterator is by this definition the backing object,\n * since changes are propagated from iterator to collection\n * and not vice versa. Oddly, a reference may be a view of\n * more than one backing: there can be two iterators on the\n * same collection, eg. A reference cannot be a view under\n * more than one view type.\n *\n * A reference is made dirty when it is a backing for a view\n * with which it is no longer related by the view invariant.\n * This usually happens when a view is modified, either\n * directly or via another backing. For example, changing a\n * collection directly when it has an iterator invalidates\n * it, as does changing the collection through one iterator\n * when there are others.\n *\n * More work is needed if we want to model more closely the\n * failure of an iterator when its collection is invalidated.\n *\n * As a terminological convention, when there are two\n * complementary view relationships, we will give them types\n * t and t'. For example, KeySetView propagates from map to\n * set, and KeySetView' propagates from set to map.\n *\n * author: Daniel Jackson\n */" Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'open'        Keyword.Namespace
+' '           Text
+'util'        Name
+'/'           Operator
+'ordering'    Name
+'['           Operator
+'State'       Name
+']'           Operator
+' '           Text
+'as'          Keyword
+' '           Text
+'so'          Name
+'\n'          Text
+
+'open'        Keyword.Namespace
+' '           Text
+'util'        Name
+'/'           Operator
+'relation'    Name
+' '           Text
+'as'          Keyword
+' '           Text
+'rel'         Name
+'\n'          Text
+
+'\n'          Text
+
+'sig'         Keyword.Declaration
+' '           Text
+'Ref'         Name
+' '           Text
+'{'           Operator
+'}'           Operator
+'\n'          Text
+
+'sig'         Keyword.Declaration
+' '           Text
+'Object'      Name
+' '           Text
+'{'           Operator
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'-- t->b->v in views when v is view of type t of backing b' Comment.Single
+'\n'          Text
+
+'-- dirty contains refs that have been invalidated' Comment.Single
+'\n'          Text
+
+'sig'         Keyword.Declaration
+' '           Text
+'State'       Name
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'refs'        Name
+':'           Punctuation
+' '           Text
+'set'         Keyword
+' '           Text
+'Ref'         Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'obj'         Name
+':'           Punctuation
+' '           Text
+'refs'        Name
+' '           Text
+'->'          Operator
+' '           Text
+'one'         Keyword
+' '           Text
+'Object'      Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'views'       Name
+':'           Punctuation
+' '           Text
+'ViewType'    Name
+' '           Text
+'->'          Operator
+' '           Text
+'refs'        Name
+' '           Text
+'->'          Operator
+' '           Text
+'refs'        Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'dirty'       Name
+':'           Punctuation
+' '           Text
+'set'         Keyword
+' '           Text
+'refs'        Name
+'\n'          Text
+
+'--  , anyviews: Ref -> Ref -- for visualization' Comment.Single
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'-- {anyviews = ViewType.views}' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'sig'         Keyword.Declaration
+' '           Text
+'Map'         Name
+' '           Text
+'extends'     Keyword
+' '           Text
+'Object'      Name
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'keys'        Name
+':'           Punctuation
+' '           Text
+'set'         Keyword
+' '           Text
+'Ref'         Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'map'         Name
+':'           Punctuation
+' '           Text
+'keys'        Name
+' '           Text
+'->'          Operator
+' '           Text
+'one'         Keyword
+' '           Text
+'Ref'         Name
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'{'           Operator
+'all'         Keyword
+' '           Text
+'s'           Name
+':'           Punctuation
+' '           Text
+'State'       Name
+' '           Text
+'|'           Operator
+'  '          Text
+'keys'        Name
+' '           Text
+'+'           Operator
+' '           Text
+'Ref'         Name
+'.'           Operator
+'map'         Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'s'           Name
+'.'           Operator
+'refs'        Name
+'}'           Operator
+'\n'          Text
+
+'sig'         Keyword.Declaration
+' '           Text
+'MapRef'      Name
+' '           Text
+'extends'     Keyword
+' '           Text
+'Ref'         Name
+' '           Text
+'{'           Operator
+'}'           Operator
+'\n'          Text
+
+'fact'        Keyword
+' '           Text
+'{'           Operator
+'State'       Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'MapRef'      Name
+']'           Operator
+' '           Text
+'in'          Operator.Word
+' '           Text
+'Map'         Name
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'sig'         Keyword.Declaration
+' '           Text
+'Iterator'    Name
+' '           Text
+'extends'     Keyword
+' '           Text
+'Object'      Name
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'left'        Name
+','           Punctuation
+' '           Text
+'done'        Name
+':'           Punctuation
+' '           Text
+'set'         Keyword
+' '           Text
+'Ref'         Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'lastRef'     Name
+':'           Punctuation
+' '           Text
+'lone'        Keyword
+' '           Text
+'done'        Name
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'{'           Operator
+'all'         Keyword
+' '           Text
+'s'           Name
+':'           Punctuation
+' '           Text
+'State'       Name
+' '           Text
+'|'           Operator
+' '           Text
+'done'        Name
+' '           Text
+'+'           Operator
+' '           Text
+'left'        Name
+' '           Text
+'+'           Operator
+' '           Text
+'lastRef'     Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'s'           Name
+'.'           Operator
+'refs'        Name
+'}'           Operator
+'\n'          Text
+
+'sig'         Keyword.Declaration
+' '           Text
+'IteratorRef' Name
+' '           Text
+'extends'     Keyword
+' '           Text
+'Ref'         Name
+' '           Text
+'{'           Operator
+'}'           Operator
+'\n'          Text
+
+'fact'        Keyword
+' '           Text
+'{'           Operator
+'State'       Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'IteratorRef' Name
+']'           Operator
+' '           Text
+'in'          Operator.Word
+' '           Text
+'Iterator'    Name
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'sig'         Keyword.Declaration
+' '           Text
+'Set'         Name
+' '           Text
+'extends'     Keyword
+' '           Text
+'Object'      Name
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'elts'        Name
+':'           Punctuation
+' '           Text
+'set'         Keyword
+' '           Text
+'Ref'         Name
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'{'           Operator
+'all'         Keyword
+' '           Text
+'s'           Name
+':'           Punctuation
+' '           Text
+'State'       Name
+' '           Text
+'|'           Operator
+' '           Text
+'elts'        Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'s'           Name
+'.'           Operator
+'refs'        Name
+'}'           Operator
+'\n'          Text
+
+'sig'         Keyword.Declaration
+' '           Text
+'SetRef'      Name
+' '           Text
+'extends'     Keyword
+' '           Text
+'Ref'         Name
+' '           Text
+'{'           Operator
+'}'           Operator
+'\n'          Text
+
+'fact'        Keyword
+' '           Text
+'{'           Operator
+'State'       Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'SetRef'      Name
+']'           Operator
+' '           Text
+'in'          Operator.Word
+' '           Text
+'Set'         Name
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'abstract'    Keyword
+' '           Text
+'sig'         Keyword.Declaration
+' '           Text
+'ViewType'    Name
+' '           Text
+'{'           Operator
+'}'           Operator
+'\n'          Text
+
+'one'         Keyword
+' '           Text
+'sig'         Keyword.Declaration
+' '           Text
+'KeySetView'  Name
+','           Punctuation
+' '           Text
+"KeySetView'" Name
+','           Punctuation
+' '           Text
+'IteratorView' Name
+' '           Text
+'extends'     Keyword
+' '           Text
+'ViewType'    Name
+' '           Text
+'{'           Operator
+'}'           Operator
+'\n'          Text
+
+'fact'        Keyword
+' '           Text
+'ViewTypes'   Name
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'State'       Name
+'.'           Operator
+'views'       Name
+'['           Operator
+'KeySetView'  Name
+']'           Operator
+' '           Text
+'in'          Operator.Word
+' '           Text
+'MapRef'      Name
+' '           Text
+'->'          Operator
+' '           Text
+'SetRef'      Name
+'\n'          Text
+
+'  '          Text
+'State'       Name
+'.'           Operator
+'views'       Name
+'['           Operator
+"KeySetView'" Name
+']'           Operator
+' '           Text
+'in'          Operator.Word
+' '           Text
+'SetRef'      Name
+' '           Text
+'->'          Operator
+' '           Text
+'MapRef'      Name
+'\n'          Text
+
+'  '          Text
+'State'       Name
+'.'           Operator
+'views'       Name
+'['           Operator
+'IteratorView' Name
+']'           Operator
+' '           Text
+'in'          Operator.Word
+' '           Text
+'IteratorRef' Name
+' '           Text
+'->'          Operator
+' '           Text
+'SetRef'      Name
+'\n'          Text
+
+'  '          Text
+'all'         Keyword
+' '           Text
+'s'           Name
+':'           Punctuation
+' '           Text
+'State'       Name
+' '           Text
+'|'           Operator
+' '           Text
+'s'           Name
+'.'           Operator
+'views'       Name
+'['           Operator
+'KeySetView'  Name
+']'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'~'           Operator
+'('           Operator
+'s'           Name
+'.'           Operator
+'views'       Name
+'['           Operator
+"KeySetView'" Name
+']'           Operator
+')'           Operator
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+"/**\n * mods is refs modified directly or by view mechanism\n * doesn't handle possibility of modifying an object and its view at once?\n * should we limit frame conds to non-dirty refs?\n */" Comment.Multiline
+'\n'          Text
+
+'pred'        Keyword
+' '           Text
+'modifies'    Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+':'           Punctuation
+' '           Text
+'State'       Name
+','           Punctuation
+' '           Text
+'rs'          Name
+':'           Punctuation
+' '           Text
+'set'         Keyword
+' '           Text
+'Ref'         Name
+']'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'let'         Keyword
+' '           Text
+'vr'          Name
+' '           Text
+'='           Operator
+' '           Text
+'pre'         Name
+'.'           Operator
+'views'       Name
+'['           Operator
+'ViewType'    Name
+']'           Operator
+','           Punctuation
+' '           Text
+'mods'        Name
+' '           Text
+'='           Operator
+' '           Text
+'rs'          Name
+'.'           Operator
+'*'           Operator
+'vr'          Name
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'all'         Keyword
+' '           Text
+'r'           Name
+':'           Punctuation
+' '           Text
+'pre'         Name
+'.'           Operator
+'refs'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'mods'        Name
+' '           Text
+'|'           Operator
+' '           Text
+'pre'         Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'r'           Name
+']'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'post'        Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'r'           Name
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'all'         Keyword
+' '           Text
+'b'           Name
+':'           Punctuation
+' '           Text
+'mods'        Name
+','           Punctuation
+' '           Text
+'v'           Name
+':'           Punctuation
+' '           Text
+'pre'         Name
+'.'           Operator
+'refs'        Name
+','           Punctuation
+' '           Text
+'t'           Name
+':'           Punctuation
+' '           Text
+'ViewType'    Name
+' '           Text
+'|'           Operator
+'\n'          Text
+
+'      '      Text
+'b'           Name
+'->'          Operator
+'v'           Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'pre'         Name
+'.'           Operator
+'views'       Name
+'['           Operator
+'t'           Name
+']'           Operator
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'viewFrame'   Name
+' '           Text
+'['           Operator
+'t'           Name
+','           Punctuation
+' '           Text
+'pre'         Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'v'           Name
+']'           Operator
+','           Punctuation
+' '           Text
+'post'        Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'v'           Name
+']'           Operator
+','           Punctuation
+' '           Text
+'post'        Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'b'           Name
+']'           Operator
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'post'        Name
+'.'           Operator
+'dirty'       Name
+' '           Text
+'='           Operator
+' '           Text
+'pre'         Name
+'.'           Operator
+'dirty'       Name
+' '           Text
+'+'           Operator
+'\n'          Text
+
+'      '      Text
+'{'           Operator
+'b'           Name
+':'           Punctuation
+' '           Text
+'pre'         Name
+'.'           Operator
+'refs'        Name
+' '           Text
+'|'           Operator
+' '           Text
+'some'        Keyword
+' '           Text
+'v'           Name
+':'           Punctuation
+' '           Text
+'Ref'         Name
+','           Punctuation
+' '           Text
+'t'           Name
+':'           Punctuation
+' '           Text
+'ViewType'    Name
+' '           Text
+'|'           Operator
+'\n'          Text
+
+'          '  Text
+'b'           Name
+'->'          Operator
+'v'           Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'pre'         Name
+'.'           Operator
+'views'       Name
+'['           Operator
+'t'           Name
+']'           Operator
+' '           Text
+'&&'          Operator
+' '           Text
+'!'           Operator
+'viewFrame'   Name
+' '           Text
+'['           Operator
+'t'           Name
+','           Punctuation
+' '           Text
+'pre'         Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'v'           Name
+']'           Operator
+','           Punctuation
+' '           Text
+'post'        Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'v'           Name
+']'           Operator
+','           Punctuation
+' '           Text
+'post'        Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'b'           Name
+']'           Operator
+']'           Operator
+'\n'          Text
+
+'      '      Text
+'}'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'pred'        Keyword
+' '           Text
+'allocates'   Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+':'           Punctuation
+' '           Text
+'State'       Name
+','           Punctuation
+' '           Text
+'rs'          Name
+':'           Punctuation
+' '           Text
+'set'         Keyword
+' '           Text
+'Ref'         Name
+']'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'no'          Keyword
+' '           Text
+'rs'          Name
+' '           Text
+'&'           Operator
+' '           Text
+'pre'         Name
+'.'           Operator
+'refs'        Name
+'\n'          Text
+
+'  '          Text
+'post'        Name
+'.'           Operator
+'refs'        Name
+' '           Text
+'='           Operator
+' '           Text
+'pre'         Name
+'.'           Operator
+'refs'        Name
+' '           Text
+'+'           Operator
+' '           Text
+'rs'          Name
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+"/** \n * models frame condition that limits change to view object from v to v' when backing object changes to b'\n */" Comment.Multiline
+'\n'          Text
+
+'pred'        Keyword
+' '           Text
+'viewFrame'   Name
+' '           Text
+'['           Operator
+'t'           Name
+':'           Punctuation
+' '           Text
+'ViewType'    Name
+','           Punctuation
+' '           Text
+'v'           Name
+','           Punctuation
+' '           Text
+"v'"          Name
+','           Punctuation
+' '           Text
+"b'"          Name
+':'           Punctuation
+' '           Text
+'Object'      Name
+']'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'t'           Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'KeySetView'  Name
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"v'"          Name
+'.'           Operator
+'elts'        Name
+' '           Text
+'='           Operator
+' '           Text
+'dom'         Name
+' '           Text
+'['           Operator
+"b'"          Name
+'.'           Operator
+'map'         Name
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'t'           Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+"KeySetView'" Name
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"b'"          Name
+'.'           Operator
+'elts'        Name
+' '           Text
+'='           Operator
+' '           Text
+'dom'         Name
+' '           Text
+'['           Operator
+"v'"          Name
+'.'           Operator
+'map'         Name
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'t'           Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+"KeySetView'" Name
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'('           Operator
+"b'"          Name
+'.'           Operator
+'elts'        Name
+')'           Operator
+' '           Text
+'<'           Operator
+':'           Punctuation
+' '           Text
+'('           Operator
+'v'           Name
+'.'           Operator
+'map'         Name
+')'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'('           Operator
+"b'"          Name
+'.'           Operator
+'elts'        Name
+')'           Operator
+' '           Text
+'<'           Operator
+':'           Punctuation
+' '           Text
+'('           Operator
+"v'"          Name
+'.'           Operator
+'map'         Name
+')'           Operator
+'\n'          Text
+
+'  '          Text
+'t'           Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'IteratorView' Name
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"v'"          Name
+'.'           Operator
+'elts'        Name
+' '           Text
+'='           Operator
+' '           Text
+"b'"          Name
+'.'           Operator
+'left'        Name
+' '           Text
+'+'           Operator
+' '           Text
+"b'"          Name
+'.'           Operator
+'done'        Name
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'pred'        Keyword
+' '           Text
+'MapRef'      Name
+'.'           Operator
+'keySet'      Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+':'           Punctuation
+' '           Text
+'State'       Name
+','           Punctuation
+' '           Text
+'setRefs'     Name
+':'           Punctuation
+' '           Text
+'SetRef'      Name
+']'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'post'        Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'setRefs'     Name
+']'           Operator
+'.'           Operator
+'elts'        Name
+' '           Text
+'='           Operator
+' '           Text
+'dom'         Name
+' '           Text
+'['           Operator
+'pre'         Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'this'        Keyword
+']'           Operator
+'.'           Operator
+'map'         Name
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'modifies'    Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+','           Punctuation
+' '           Text
+'none'        Keyword.Constant
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'allocates'   Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+','           Punctuation
+' '           Text
+'setRefs'     Name
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'post'        Name
+'.'           Operator
+'views'       Name
+' '           Text
+'='           Operator
+' '           Text
+'pre'         Name
+'.'           Operator
+'views'       Name
+' '           Text
+'+'           Operator
+' '           Text
+'KeySetView'  Name
+'->'          Operator
+'this'        Keyword
+'->'          Operator
+'setRefs'     Name
+' '           Text
+'+'           Operator
+' '           Text
+"KeySetView'" Name
+'->'          Operator
+'setRefs'     Name
+'->'          Operator
+'this'        Keyword
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'pred'        Keyword
+' '           Text
+'MapRef'      Name
+'.'           Operator
+'put'         Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+':'           Punctuation
+' '           Text
+'State'       Name
+','           Punctuation
+' '           Text
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+':'           Punctuation
+' '           Text
+'Ref'         Name
+']'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'post'        Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'this'        Keyword
+']'           Operator
+'.'           Operator
+'map'         Name
+' '           Text
+'='           Operator
+' '           Text
+'pre'         Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'this'        Keyword
+']'           Operator
+'.'           Operator
+'map'         Name
+' '           Text
+'++'          Operator
+' '           Text
+'k'           Name
+'->'          Operator
+'v'           Name
+'\n'          Text
+
+'  '          Text
+'modifies'    Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+','           Punctuation
+' '           Text
+'this'        Keyword
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'allocates'   Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+','           Punctuation
+' '           Text
+'none'        Keyword.Constant
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'post'        Name
+'.'           Operator
+'views'       Name
+' '           Text
+'='           Operator
+' '           Text
+'pre'         Name
+'.'           Operator
+'views'       Name
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'pred'        Keyword
+' '           Text
+'SetRef'      Name
+'.'           Operator
+'iterator'    Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+':'           Punctuation
+' '           Text
+'State'       Name
+','           Punctuation
+' '           Text
+'iterRef'     Name
+':'           Punctuation
+' '           Text
+'IteratorRef' Name
+']'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'let'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'post'        Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'iterRef'     Name
+']'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'i'           Name
+'.'           Operator
+'left'        Name
+' '           Text
+'='           Operator
+' '           Text
+'pre'         Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'this'        Keyword
+']'           Operator
+'.'           Operator
+'elts'        Name
+'\n'          Text
+
+'    '        Text
+'no'          Keyword
+' '           Text
+'i'           Name
+'.'           Operator
+'done'        Name
+' '           Text
+'+'           Operator
+' '           Text
+'i'           Name
+'.'           Operator
+'lastRef'     Name
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'  '          Text
+'modifies'    Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+'post'        Name
+','           Punctuation
+'none'        Keyword.Constant
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'allocates'   Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+','           Punctuation
+' '           Text
+'iterRef'     Name
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'post'        Name
+'.'           Operator
+'views'       Name
+' '           Text
+'='           Operator
+' '           Text
+'pre'         Name
+'.'           Operator
+'views'       Name
+' '           Text
+'+'           Operator
+' '           Text
+'IteratorView' Name
+'->'          Operator
+'iterRef'     Name
+'->'          Operator
+'this'        Keyword
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'pred'        Keyword
+' '           Text
+'IteratorRef' Name
+'.'           Operator
+'remove'      Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+':'           Punctuation
+' '           Text
+'State'       Name
+']'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'let'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'pre'         Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'this'        Keyword
+']'           Operator
+','           Punctuation
+' '           Text
+"i'"          Name
+' '           Text
+'='           Operator
+' '           Text
+'post'        Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'this'        Keyword
+']'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+"i'"          Name
+'.'           Operator
+'left'        Name
+' '           Text
+'='           Operator
+' '           Text
+'i'           Name
+'.'           Operator
+'left'        Name
+'\n'          Text
+
+'    '        Text
+"i'"          Name
+'.'           Operator
+'done'        Name
+' '           Text
+'='           Operator
+' '           Text
+'i'           Name
+'.'           Operator
+'done'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'i'           Name
+'.'           Operator
+'lastRef'     Name
+'\n'          Text
+
+'    '        Text
+'no'          Keyword
+' '           Text
+"i'"          Name
+'.'           Operator
+'lastRef'     Name
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'  '          Text
+'modifies'    Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+'post'        Name
+','           Punctuation
+'this'        Keyword
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'allocates'   Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+','           Punctuation
+' '           Text
+'none'        Keyword.Constant
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'pre'         Name
+'.'           Operator
+'views'       Name
+' '           Text
+'='           Operator
+' '           Text
+'post'        Name
+'.'           Operator
+'views'       Name
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'pred'        Keyword
+' '           Text
+'IteratorRef' Name
+'.'           Operator
+'next'        Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+':'           Punctuation
+' '           Text
+'State'       Name
+','           Punctuation
+' '           Text
+'ref'         Name
+':'           Punctuation
+' '           Text
+'Ref'         Name
+']'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'let'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'pre'         Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'this'        Keyword
+']'           Operator
+','           Punctuation
+' '           Text
+"i'"          Name
+' '           Text
+'='           Operator
+' '           Text
+'post'        Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'this'        Keyword
+']'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'ref'         Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'i'           Name
+'.'           Operator
+'left'        Name
+'\n'          Text
+
+'    '        Text
+"i'"          Name
+'.'           Operator
+'left'        Name
+' '           Text
+'='           Operator
+' '           Text
+'i'           Name
+'.'           Operator
+'left'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'ref'         Name
+'\n'          Text
+
+'    '        Text
+"i'"          Name
+'.'           Operator
+'done'        Name
+' '           Text
+'='           Operator
+' '           Text
+'i'           Name
+'.'           Operator
+'done'        Name
+' '           Text
+'+'           Operator
+' '           Text
+'ref'         Name
+'\n'          Text
+
+'    '        Text
+"i'"          Name
+'.'           Operator
+'lastRef'     Name
+' '           Text
+'='           Operator
+' '           Text
+'ref'         Name
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'  '          Text
+'modifies'    Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+','           Punctuation
+' '           Text
+'this'        Keyword
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'allocates'   Name
+' '           Text
+'['           Operator
+'pre'         Name
+','           Punctuation
+' '           Text
+'post'        Name
+','           Punctuation
+' '           Text
+'none'        Keyword.Constant
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'pre'         Name
+'.'           Operator
+'views'       Name
+' '           Text
+'='           Operator
+' '           Text
+'post'        Name
+'.'           Operator
+'views'       Name
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'pred'        Keyword
+' '           Text
+'IteratorRef' Name
+'.'           Operator
+'hasNext'     Name
+' '           Text
+'['           Operator
+'s'           Name
+':'           Punctuation
+' '           Text
+'State'       Name
+']'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'some'        Keyword
+' '           Text
+'s'           Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'this'        Keyword
+']'           Operator
+'.'           Operator
+'left'        Name
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'assert'      Keyword
+' '           Text
+'zippishOK'   Name
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'all'         Keyword
+'\n'          Text
+
+'    '        Text
+'ks'          Name
+','           Punctuation
+' '           Text
+'vs'          Name
+':'           Punctuation
+' '           Text
+'SetRef'      Name
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+'m'           Name
+':'           Punctuation
+' '           Text
+'MapRef'      Name
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+'ki'          Name
+','           Punctuation
+' '           Text
+'vi'          Name
+':'           Punctuation
+' '           Text
+'IteratorRef' Name
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+':'           Punctuation
+' '           Text
+'Ref'         Name
+' '           Text
+'|'           Operator
+'\n'          Text
+
+'    '        Text
+'let'         Keyword
+' '           Text
+'s0'          Name
+'='           Operator
+'so'          Name
+'/'           Operator
+'first'       Name
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+'s1'          Name
+'='           Operator
+'so'          Name
+'/'           Operator
+'next'        Name
+'['           Operator
+'s0'          Name
+']'           Operator
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+'s2'          Name
+'='           Operator
+'so'          Name
+'/'           Operator
+'next'        Name
+'['           Operator
+'s1'          Name
+']'           Operator
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+'s3'          Name
+'='           Operator
+'so'          Name
+'/'           Operator
+'next'        Name
+'['           Operator
+'s2'          Name
+']'           Operator
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+'s4'          Name
+'='           Operator
+'so'          Name
+'/'           Operator
+'next'        Name
+'['           Operator
+'s3'          Name
+']'           Operator
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+'s5'          Name
+'='           Operator
+'so'          Name
+'/'           Operator
+'next'        Name
+'['           Operator
+'s4'          Name
+']'           Operator
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+'s6'          Name
+'='           Operator
+'so'          Name
+'/'           Operator
+'next'        Name
+'['           Operator
+'s5'          Name
+']'           Operator
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+'s7'          Name
+'='           Operator
+'so'          Name
+'/'           Operator
+'next'        Name
+'['           Operator
+'s6'          Name
+']'           Operator
+' '           Text
+'|'           Operator
+'\n'          Text
+
+'  '          Text
+'('           Operator
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'precondition' Name
+' '           Text
+'['           Operator
+'s0'          Name
+','           Punctuation
+' '           Text
+'ks'          Name
+','           Punctuation
+' '           Text
+'vs'          Name
+','           Punctuation
+' '           Text
+'m'           Name
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'no'          Keyword
+' '           Text
+'s0'          Name
+'.'           Operator
+'dirty'       Name
+'\n'          Text
+
+'    '        Text
+'ks'          Name
+'.'           Operator
+'iterator'    Name
+' '           Text
+'['           Operator
+'s0'          Name
+','           Punctuation
+' '           Text
+'s1'          Name
+','           Punctuation
+' '           Text
+'ki'          Name
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'vs'          Name
+'.'           Operator
+'iterator'    Name
+' '           Text
+'['           Operator
+'s1'          Name
+','           Punctuation
+' '           Text
+'s2'          Name
+','           Punctuation
+' '           Text
+'vi'          Name
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'ki'          Name
+'.'           Operator
+'hasNext'     Name
+' '           Text
+'['           Operator
+'s2'          Name
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'vi'          Name
+'.'           Operator
+'hasNext'     Name
+' '           Text
+'['           Operator
+'s2'          Name
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'ki'          Name
+'.'           Operator
+'this'        Keyword
+'/'           Operator
+'next'        Name
+' '           Text
+'['           Operator
+'s2'          Name
+','           Punctuation
+' '           Text
+'s3'          Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'vi'          Name
+'.'           Operator
+'this'        Keyword
+'/'           Operator
+'next'        Name
+' '           Text
+'['           Operator
+'s3'          Name
+','           Punctuation
+' '           Text
+'s4'          Name
+','           Punctuation
+' '           Text
+'v'           Name
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'m'           Name
+'.'           Operator
+'put'         Name
+' '           Text
+'['           Operator
+'s4'          Name
+','           Punctuation
+' '           Text
+'s5'          Name
+','           Punctuation
+' '           Text
+'k'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'ki'          Name
+'.'           Operator
+'remove'      Name
+' '           Text
+'['           Operator
+'s5'          Name
+','           Punctuation
+' '           Text
+'s6'          Name
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'vi'          Name
+'.'           Operator
+'remove'      Name
+' '           Text
+'['           Operator
+'s6'          Name
+','           Punctuation
+' '           Text
+'s7'          Name
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'no'          Keyword
+' '           Text
+'State'       Name
+'.'           Operator
+'dirty'       Name
+')'           Operator
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'pred'        Keyword
+' '           Text
+'precondition' Name
+' '           Text
+'['           Operator
+'pre'         Name
+':'           Punctuation
+' '           Text
+'State'       Name
+','           Punctuation
+' '           Text
+'ks'          Name
+','           Punctuation
+' '           Text
+'vs'          Name
+','           Punctuation
+' '           Text
+'m'           Name
+':'           Punctuation
+' '           Text
+'Ref'         Name
+']'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'// all these conditions and other errors discovered in scope of 6 but 8,3' Comment.Single
+'\n'          Text
+
+'  '          Text
+'// in initial state, must have view invariants hold' Comment.Single
+'\n'          Text
+
+'  '          Text
+'('           Operator
+'all'         Keyword
+' '           Text
+'t'           Name
+':'           Punctuation
+' '           Text
+'ViewType'    Name
+','           Punctuation
+' '           Text
+'b'           Name
+','           Punctuation
+' '           Text
+'v'           Name
+':'           Punctuation
+' '           Text
+'pre'         Name
+'.'           Operator
+'refs'        Name
+' '           Text
+'|'           Operator
+'\n'          Text
+
+'    '        Text
+'b'           Name
+'->'          Operator
+'v'           Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'pre'         Name
+'.'           Operator
+'views'       Name
+'['           Operator
+'t'           Name
+']'           Operator
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'viewFrame'   Name
+' '           Text
+'['           Operator
+'t'           Name
+','           Punctuation
+' '           Text
+'pre'         Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'v'           Name
+']'           Operator
+','           Punctuation
+' '           Text
+'pre'         Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'v'           Name
+']'           Operator
+','           Punctuation
+' '           Text
+'pre'         Name
+'.'           Operator
+'obj'         Name
+'['           Operator
+'b'           Name
+']'           Operator
+']'           Operator
+')'           Operator
+'\n'          Text
+
+'  '          Text
+'// sets are not aliases' Comment.Single
+'\n'          Text
+
+'--  ks != vs' Comment.Single
+'\n'          Text
+
+'  '          Text
+'// sets are not views of map' Comment.Single
+'\n'          Text
+
+'--  no (ks+vs)->m & ViewType.pre.views' Comment.Single
+'\n'          Text
+
+'  '          Text
+'// no iterator currently on either set' Comment.Single
+'\n'          Text
+
+'--  no Ref->(ks+vs) & ViewType.pre.views' Comment.Single
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'check'       Keyword
+' '           Text
+'zippishOK'   Name
+' '           Text
+'for'         Keyword
+' '           Text
+'6'           Literal.Number.Integer
+' '           Text
+'but'         Keyword
+' '           Text
+'8'           Literal.Number.Integer
+' '           Text
+'State'       Name
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'ViewType'    Name
+' '           Text
+'expect'      Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'/** \n * experiment with controlling heap size\n */' Comment.Multiline
+'\n'          Text
+
+'fact'        Keyword
+' '           Text
+'{'           Operator
+'all'         Keyword
+' '           Text
+'s'           Name
+':'           Punctuation
+' '           Text
+'State'       Name
+' '           Text
+'|'           Operator
+' '           Text
+'#'           Operator
+'s'           Name
+'.'           Operator
+'obj'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'5'           Literal.Number.Integer
+'}'           Operator
+'\n'          Text

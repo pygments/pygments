@@ -1,0 +1,456 @@
+---input---
+// Most examples from https://github.com/rse/es6-features under MIT license
+const PI = 3.141593;
+
+let callbacks = [];
+
+odds  = evens.map(v => v + 1);
+
+nums.forEach(v => {
+   if (v % 5 === 0)
+       fives.push(v);
+})
+
+function f (x, y, ...a) {
+    return (x + y) * a.length;
+}
+
+var params = [ "hello", true, 7 ];
+var other = [ 1, 2, ...params ]; // [ 1, 2, "hello", true, 7 ]
+f(1, 2, ...params) === 9;
+
+var str = "foo";
+var chars = [ ...str ]; // [ "f", "o", "o" ]
+
+var customer = { name: "Foo" };
+var card = { amount: 7, product: "Bar", unitprice: 42 };
+message = `Hello ${customer.name},
+want to buy ${card.amount} ${card.product} for
+a total of ${card.amount * card.unitprice} bucks?`;
+
+0b111110111 === 503;
+0o767 === 503;
+
+for (let codepoint of "𠮷") console.log(codepoint);
+
+function* ();
+*function();
+yield;
+
+export class Node {
+}
+
+isFinite();
+isNaN();
+isSafeInteger();
+x = new Promise(...a);
+x = new Proxy(...a);
+
+---tokens---
+''            Text
+'// Most examples from https://github.com/rse/es6-features under MIT license\n' Comment.Single
+
+'const'       Keyword.Declaration
+' '           Text
+'PI'          Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'3.141593'    Literal.Number.Float
+';'           Punctuation
+'\n\n'        Text
+
+'let'         Keyword.Declaration
+' '           Text
+'callbacks'   Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'odds'        Name.Other
+'  '          Text
+'='           Operator
+' '           Text
+'evens'       Name.Other
+'.'           Punctuation
+'map'         Name.Other
+'('           Punctuation
+'v'           Name.Other
+' '           Text
+'=>'          Punctuation
+' '           Text
+'v'           Name.Other
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'nums'        Name.Other
+'.'           Punctuation
+'forEach'     Name.Other
+'('           Punctuation
+'v'           Name.Other
+' '           Text
+'=>'          Punctuation
+' '           Text
+'{'           Punctuation
+'\n   '       Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'v'           Name.Other
+' '           Text
+'%'           Operator
+' '           Text
+'5'           Literal.Number.Float
+' '           Text
+'==='         Operator
+' '           Text
+'0'           Literal.Number.Float
+')'           Punctuation
+'\n       '   Text
+'fives'       Name.Other
+'.'           Punctuation
+'push'        Name.Other
+'('           Punctuation
+'v'           Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'function'    Keyword.Declaration
+' '           Text
+'f'           Name.Other
+' '           Text
+'('           Punctuation
+'x'           Name.Other
+','           Punctuation
+' '           Text
+'y'           Name.Other
+','           Punctuation
+' '           Text
+'...'         Punctuation
+'a'           Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Other
+' '           Text
+'+'           Operator
+' '           Text
+'y'           Name.Other
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'a'           Name.Other
+'.'           Punctuation
+'length'      Name.Other
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'var'         Keyword.Declaration
+' '           Text
+'params'      Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+' '           Text
+'"hello"'     Literal.String.Double
+','           Punctuation
+' '           Text
+'true'        Keyword.Constant
+','           Punctuation
+' '           Text
+'7'           Literal.Number.Float
+' '           Text
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text
+'other'       Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+' '           Text
+'1'           Literal.Number.Float
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Float
+','           Punctuation
+' '           Text
+'...'         Punctuation
+'params'      Name.Other
+' '           Text
+']'           Punctuation
+';'           Punctuation
+' '           Text
+'// [ 1, 2, "hello", true, 7 ]\n' Comment.Single
+
+'f'           Name.Other
+'('           Punctuation
+'1'           Literal.Number.Float
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Float
+','           Punctuation
+' '           Text
+'...'         Punctuation
+'params'      Name.Other
+')'           Punctuation
+' '           Text
+'==='         Operator
+' '           Text
+'9'           Literal.Number.Float
+';'           Punctuation
+'\n\n'        Text
+
+'var'         Keyword.Declaration
+' '           Text
+'str'         Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String.Double
+';'           Punctuation
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text
+'chars'       Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+' '           Text
+'...'         Punctuation
+'str'         Name.Other
+' '           Text
+']'           Punctuation
+';'           Punctuation
+' '           Text
+'// [ "f", "o", "o" ]\n' Comment.Single
+
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text
+'customer'    Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+' '           Text
+'name'        Name.Other
+':'           Operator
+' '           Text
+'"Foo"'       Literal.String.Double
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text
+'card'        Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+' '           Text
+'amount'      Name.Other
+':'           Operator
+' '           Text
+'7'           Literal.Number.Float
+','           Punctuation
+' '           Text
+'product'     Name.Other
+':'           Operator
+' '           Text
+'"Bar"'       Literal.String.Double
+','           Punctuation
+' '           Text
+'unitprice'   Name.Other
+':'           Operator
+' '           Text
+'42'          Literal.Number.Float
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'message'     Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'`'           Literal.String.Backtick
+'Hello '      Literal.String.Backtick
+'${'          Literal.String.Interpol
+'customer'    Name.Other
+'.'           Punctuation
+'name'        Name.Other
+'}'           Literal.String.Interpol
+',\nwant to buy ' Literal.String.Backtick
+'${'          Literal.String.Interpol
+'card'        Name.Other
+'.'           Punctuation
+'amount'      Name.Other
+'}'           Literal.String.Interpol
+' '           Literal.String.Backtick
+'${'          Literal.String.Interpol
+'card'        Name.Other
+'.'           Punctuation
+'product'     Name.Other
+'}'           Literal.String.Interpol
+' for\na total of ' Literal.String.Backtick
+'${'          Literal.String.Interpol
+'card'        Name.Other
+'.'           Punctuation
+'amount'      Name.Other
+' '           Text
+'*'           Operator
+' '           Text
+'card'        Name.Other
+'.'           Punctuation
+'unitprice'   Name.Other
+'}'           Literal.String.Interpol
+' bucks?'     Literal.String.Backtick
+'`'           Literal.String.Backtick
+';'           Punctuation
+'\n\n'        Text
+
+'0b111110111' Literal.Number.Bin
+' '           Text
+'==='         Operator
+' '           Text
+'503'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'0o767'       Literal.Number.Oct
+' '           Text
+'==='         Operator
+' '           Text
+'503'         Literal.Number.Float
+';'           Punctuation
+'\n\n'        Text
+
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'let'         Keyword.Declaration
+' '           Text
+'codepoint'   Name.Other
+' '           Text
+'of'          Keyword
+' '           Text
+'"𠮷"'         Literal.String.Double
+')'           Punctuation
+' '           Text
+'console'     Name.Other
+'.'           Punctuation
+'log'         Name.Other
+'('           Punctuation
+'codepoint'   Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'function'    Keyword.Declaration
+'*'           Operator
+' '           Text
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'*'           Operator
+'function'    Keyword.Declaration
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'yield'       Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'export'      Keyword
+' '           Text
+'class'       Keyword.Declaration
+' '           Text
+'Node'        Name.Other
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'isFinite'    Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'isNaN'       Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'isSafeInteger' Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'x'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'Promise'     Name.Builtin
+'('           Punctuation
+'...'         Punctuation
+'a'           Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'x'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'Proxy'       Name.Builtin
+'('           Punctuation
+'...'         Punctuation
+'a'           Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text

@@ -30,7 +30,7 @@
         - highlights errors in the output and notification levels;
         - handles psql backslash commands.
 
-    The ``tests/examplefiles`` contains a few test files with data to be
+    The ``tests/lexers`` directory contains a few test files with data to be
     parsed by these lexers.
 
     :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.

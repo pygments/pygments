@@ -1,0 +1,28 @@
+---input---
+  File "<stdin>", line 1
+    1+
+     ^
+SyntaxError: invalid syntax
+
+---tokens---
+''            Generic.Traceback
+'  File '     Text
+'"<stdin>"'   Name.Builtin
+', line '     Text
+'1'           Literal.Number
+'\n'          Text
+
+'    '        Text
+'1'           Literal.Number.Integer
+'+'           Operator
+'\n'          Text
+
+'    '        Text
+' '           Text
+'^'           Operator
+'\n'          Text
+
+'SyntaxError' Generic.Error
+': '          Text
+'invalid syntax' Name
+'\n'          Text
