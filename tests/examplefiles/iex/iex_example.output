@@ -1,0 +1,118 @@
+'iex> '       Generic.Prompt
+':"'          Literal.String.Symbol
+' multi\n'    Literal.String.Symbol
+
+'...> '       Generic.Prompt
+" line ' "    Literal.String.Symbol
+'\\s'         Literal.String.Escape
+' '           Literal.String.Symbol
+'\\1'         Literal.String.Symbol
+'23 '         Literal.String.Symbol
+'\\x20'       Literal.String.Escape
+'\n'          Literal.String.Symbol
+
+'...> '       Generic.Prompt
+'atom'        Literal.String.Symbol
+'"'           Literal.String.Symbol
+'\n'          Text
+
+':" multi\\n line \'   S  \\natom"\n' Generic.Output
+
+'\n'          Generic.Output
+
+'iex(1)> '    Generic.Prompt
+'<<'          Punctuation
+'"'           Literal.String.Double
+'hello'       Literal.String.Double
+'"'           Literal.String.Double
+'::'          Operator
+'binary'      Name
+','           Punctuation
+' '           Text
+'c'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'utf8'        Name
+','           Punctuation
+' '           Text
+'x'           Name
+'::'          Operator
+'['           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'unit'        Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+']'           Punctuation
+'>>'          Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'hello™1'     Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'"hello™1"\n' Generic.Output
+
+'\n'          Generic.Output
+
+'iex(2)> '    Generic.Prompt
+'c'           Name
+'\n'          Text
+
+'8482\n'      Generic.Output
+
+'\n'          Generic.Output
+
+'iex> '       Generic.Prompt
+'1'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+':atom'       Literal.String.Symbol
+'\n'          Text
+
+'** (ArithmeticError) bad argument in arithmetic expression' Generic.Error
+'\n'          Text
+
+'    :erlang.+(1, :atom)\n' Generic.Error
+
+'\n'          Generic.Error
+
+'iex(3)> '    Generic.Prompt
+'1'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+'\n'          Text
+
+'...(3)> '    Generic.Prompt
+'2'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+'\n'          Text
+
+'...(3)> '    Generic.Prompt
+'3'           Literal.Number.Integer
+'\n'          Text
+
+'6\n'         Generic.Output
+
+'\n'          Generic.Output
+
+'iex> '       Generic.Prompt
+'IO'          Name.Class
+'.'           Operator
+'puts'        Name
+' '           Text
+'"'           Literal.String.Double
+'Hello world' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'Hello world\n' Generic.Output
+
+':ok\n'       Generic.Output

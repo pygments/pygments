@@ -1,0 +1,2080 @@
+'(* Test Cases for Modula-2 Lexer *)' Comment.Multiline
+'\n\n'        Text
+
+'(* Notes:\n   (1) Without dialect option nor embedded dialect tag, the lexer operates in\n       fallback mode, recognising the *combined* literals, punctuation symbols\n       and operators of all supported dialects, and the *combined* reserved\n       words and builtins of PIM Modula-2, ISO Modula-2 and Modula-2 R10.\n   (1) If multiple embedded dialect tags are present, the lexer will use the\n       first valid tag and ignore any subsequent dialect tags in the file.\n   (2) An embedded dialect tag overrides any command line dialect option. *)' Comment.Multiline
+'\n\n\n'      Text
+
+'(* Testing command line dialect option *)' Comment.Multiline
+'\n\n'        Text
+
+'(* for PIM Modula-2 : pygmentize -O full,dialect=m2pim ...\n   for ISO Modula-2 : pygmentize -O full,dialect=m2iso ...\n   for Modula-2 R10 : pygmentize -O full,dialect=m2r10 ...\n   for Objective Modula-2 : pygmentize -O full,dialect=objm2 ... *)' Comment.Multiline
+'\n\n'        Text
+
+'(* for Aglet extensions : pygmentize -O full,dialect=m2iso+aglet ...\n   for GNU extensions : pygmentize -O full,dialect=m2pim+gm2 ...\n   for p1 extensions : pygmentize -O full,dialect=m2iso+p1 ...\n   for XDS extensions : pygmentize -O full,dialect=m2iso+xds ...\n\n\n(* Testing embedded dialect tags *)' Comment.Multiline
+'\n\n'        Text
+
+'(* !m2pim*)' Comment.Multiline
+' '           Text
+'(* <-- remove whitespace before ! for PIM Modula-2 *)' Comment.Multiline
+'\n'          Text
+
+'(* !m2iso*)' Comment.Multiline
+' '           Text
+'(* <-- remove whitespace before ! for ISO Modula-2 *)' Comment.Multiline
+'\n'          Text
+
+'(* !m2r10*)' Comment.Multiline
+' '           Text
+'(* <-- remove whitespace before ! for Modula-2 R10 *)' Comment.Multiline
+'\n'          Text
+
+'(* !objm2*)' Comment.Multiline
+' '           Text
+'(* <-- remove whitespace before ! for Objective Modula-2 *)' Comment.Multiline
+'\n\n'        Text
+
+'(* !m2iso+aglet*)' Comment.Multiline
+' '           Text
+'(* <-- remove whitespace before ! for Aglet extensions *)' Comment.Multiline
+'\n'          Text
+
+'(* !m2pim+gm2*)' Comment.Multiline
+'   '         Text
+'(* <-- remove whitespace before ! for GNU extensions *)' Comment.Multiline
+'\n'          Text
+
+'(* !m2iso+p1*)' Comment.Multiline
+'    '        Text
+'(* <-- remove whitespace before ! for p1 extensions *)' Comment.Multiline
+'\n'          Text
+
+'(* !m2iso+xds*)' Comment.Multiline
+'   '         Text
+'(* <-- remove whitespace before ! for XDS extensions *)' Comment.Multiline
+'\n\n\n'      Text
+
+'(* Dialect Indicating Names *)' Comment.Multiline
+'\n\n'        Text
+
+'(* recognised names should be highlighted *)' Comment.Multiline
+'\n\n'        Text
+
+'QUALIFIED'   Keyword.Reserved
+' '           Text
+'(* PIM and ISO *)' Comment.Multiline
+'\n\n'        Text
+
+'PACKEDSET'   Keyword.Reserved
+' '           Text
+'(* ISO only *)' Comment.Multiline
+'\n\n'        Text
+
+'ARGLIST'     Keyword.Reserved
+' '           Text
+'(* M2 R10 and ObjM2 *)' Comment.Multiline
+'\n\n'        Text
+
+'BYCOPY'      Name
+' '           Text
+'(* ObjM2 only *)' Comment.Multiline
+'\n\n'        Text
+
+'BITSET8'     Name
+' '           Text
+'(* Aglet, GNU and M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'__FILE__'    Name
+' '           Text
+'(* GNU only *)' Comment.Multiline
+'\n\n'        Text
+
+'BCD'         Name
+' '           Text
+'(* p1 and M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'SEQ'         Name
+' '           Text
+'(* XDS only *)' Comment.Multiline
+'\n\n\n'      Text
+
+'(* Literal Tests *)' Comment.Multiline
+'\n\n'        Text
+
+'(* recognised literals should be rendered as one unit\n   unrecognised literals should be rendered as error *)' Comment.Multiline
+'\n\n'        Text
+
+'ch'          Name
+' '           Text
+':='          Operator
+' '           Text
+"'a'"         Literal.String.Single
+';'           Punctuation
+' '           Text
+'ch'          Name
+' '           Text
+':='          Operator
+' '           Text
+'"a"'         Literal.String.Double
+';'           Punctuation
+' '           Text
+'(* all dialects *)' Comment.Multiline
+'\n'          Text
+
+'ch'          Name
+' '           Text
+':='          Operator
+' '           Text
+'0u20'        Literal.Number.Hex
+';'           Punctuation
+' '           Text
+'unich'       Name
+' '           Text
+':='          Operator
+' '           Text
+'0u2038'      Literal.Number.Hex
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'s'           Name
+' '           Text
+':='          Operator
+' '           Text
+'\'The cat said "meow!".\'' Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'s'           Name
+' '           Text
+':='          Operator
+' '           Text
+'"It is eight O\'clock."' Literal.String.Double
+';'           Punctuation
+'\n\n\n'      Text
+
+'n'           Name
+' '           Text
+':='          Operator
+' '           Text
+'123'         Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'n'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1000000'     Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'(* all dialects *)' Comment.Multiline
+'\n'          Text
+
+'n'           Name
+' '           Text
+':='          Operator
+' '           Text
+'123'         Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'n'           Name
+' '           Text
+'='           Operator
+' '           Text
+"1'000'000"   Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'n'           Name
+' '           Text
+':='          Operator
+' '           Text
+'0b0110'      Literal.Number.Bin
+';'           Punctuation
+' '           Text
+'n'           Name
+':='          Operator
+' '           Text
+"0b0110'1100'0111" Literal.Number.Bin
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n'          Text
+
+'n'           Name
+' '           Text
+':='          Operator
+' '           Text
+'0xFF00'      Literal.Number.Hex
+';'           Punctuation
+' '           Text
+'n'           Name
+':='          Operator
+' '           Text
+"0xDEAD'BEEF'0F00" Literal.Number.Hex
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'r'           Name
+' '           Text
+':='          Operator
+' '           Text
+'1.23'        Literal.Number.Float
+';'           Punctuation
+' '           Text
+'r'           Name
+' '           Text
+':='          Operator
+' '           Text
+'1000000.000001' Literal.Number.Float
+';'           Punctuation
+' '           Text
+'(* all dialects *)' Comment.Multiline
+'\n'          Text
+
+'r'           Name
+' '           Text
+':='          Operator
+' '           Text
+'1.23'        Literal.Number.Float
+';'           Punctuation
+' '           Text
+'r'           Name
+' '           Text
+':='          Operator
+' '           Text
+"1'000'000.000'001" Literal.Number.Float
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'r'           Name
+' '           Text
+':='          Operator
+' '           Text
+'1.234E6'     Literal.Number.Float
+';'           Punctuation
+' '           Text
+'r'           Name
+':='          Operator
+' '           Text
+'1.234E-6'    Literal.Number.Float
+';'           Punctuation
+' '           Text
+'r'           Name
+' '           Text
+':='          Operator
+' '           Text
+'1.234567E1000' Literal.Number.Float
+';'           Punctuation
+' '           Text
+'(* PIM + ISO *)' Comment.Multiline
+'\n'          Text
+
+'r'           Name
+' '           Text
+':='          Operator
+' '           Text
+'1.234e6'     Literal.Number.Float
+';'           Punctuation
+' '           Text
+'r'           Name
+':='          Operator
+' '           Text
+'1.234e-6'    Literal.Number.Float
+';'           Punctuation
+' '           Text
+'r'           Name
+' '           Text
+':='          Operator
+' '           Text
+"1.234'567e1'000" Literal.Number.Float
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'ch'          Name
+' '           Text
+':='          Operator
+' '           Text
+'0377C'       Literal.Number.Oct
+';'           Punctuation
+' '           Text
+'n'           Name
+' '           Text
+':='          Operator
+' '           Text
+'0377B'       Literal.Number.Oct
+';'           Punctuation
+' '           Text
+'n'           Name
+' '           Text
+':='          Operator
+' '           Text
+'07FF0H'      Literal.Number.Hex
+';'           Punctuation
+' '           Text
+'(* ISO + PIM *)' Comment.Multiline
+'\n\n\n'      Text
+
+'(* Non-Alphabetic Operator Tests *)' Comment.Multiline
+'\n\n'        Text
+
+'(* supported operators should be rendered as one unit\n   unsupported operators should be rendered as errors *)' Comment.Multiline
+'\n\n'        Text
+
+'a'           Name
+' '           Text
+':='          Operator
+' '           Text
+'b'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'c'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'d'           Name
+' '           Text
+'*'           Operator
+' '           Text
+'e'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'f'           Name
+';'           Punctuation
+' '           Text
+'(* all dialects *)' Comment.Multiline
+'\n\n'        Text
+
+'SetDiff'     Name
+' '           Text
+':='          Operator
+' '           Text
+'A'           Name
+' '           Text
+'\\'          Operator
+' '           Text
+'B'           Name
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'dotProduct'  Name
+' '           Text
+':='          Operator
+' '           Text
+'v1'          Name
+' '           Text
+'*.'          Operator
+' '           Text
+'v2'          Name
+';'           Punctuation
+' '           Text
+'catArray'    Name
+' '           Text
+':='          Operator
+' '           Text
+'array1'      Name
+' '           Text
+'+>'          Operator
+' '           Text
+'array2'      Name
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'bool'        Name
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+' '           Text
+'='           Operator
+' '           Text
+'b'           Name
+';'           Punctuation
+' '           Text
+'bool'        Name
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'b'           Name
+';'           Punctuation
+' '           Text
+'bool'        Name
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'b'           Name
+';'           Punctuation
+'\n'          Text
+
+'bool'        Name
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+' '           Text
+'#'           Operator
+' '           Text
+'b'           Name
+';'           Punctuation
+' '           Text
+'bool'        Name
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'b'           Name
+';'           Punctuation
+' '           Text
+'bool'        Name
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'b'           Name
+';'           Punctuation
+'\n\n'        Text
+
+'bool'        Name
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+' '           Text
+'<>'          Operator
+' '           Text
+'b'           Name
+';'           Punctuation
+' '           Text
+'(* PIM + ISO *)' Comment.Multiline
+'\n\n'        Text
+
+'bool'        Name
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+' '           Text
+'=='          Operator
+' '           Text
+'b'           Name
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'(*&*)'       Comment.Multiline
+' '           Text
+'IF'          Keyword.Reserved
+' '           Text
+'a'           Name
+' '           Text
+'&'           Operator
+' '           Text
+'b'           Name
+' '           Text
+'THEN'        Keyword.Reserved
+' '           Text
+'..'          Punctuation
+'.'           Punctuation
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* PIM + ISO *)' Comment.Multiline
+'\n\n'        Text
+
+'(*~*)'       Comment.Multiline
+' '           Text
+'IF'          Keyword.Reserved
+' '           Text
+'~'           Operator
+' '           Text
+'b'           Name
+' '           Text
+'THEN'        Keyword.Reserved
+' '           Text
+'..'          Punctuation
+'.'           Punctuation
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* PIM + ISO *)' Comment.Multiline
+'\n\n'        Text
+
+'(*::*)'      Comment.Multiline
+' '           Text
+'int'         Name
+' '           Text
+':='          Operator
+' '           Text
+'real'        Name
+' '           Text
+'::'          Operator
+' '           Text
+'INTEGER'     Name.Builtin
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'(*++*)'      Comment.Multiline
+' '           Text
+'FOR'         Keyword.Reserved
+' '           Text
+'i'           Name
+'++'          Operator
+' '           Text
+'IN'          Keyword.Reserved
+' '           Text
+'range'       Name
+' '           Text
+'DO'          Keyword.Reserved
+' '           Text
+'..'          Punctuation
+'.'           Punctuation
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n'          Text
+
+'(*--*)'      Comment.Multiline
+' '           Text
+'FOR'         Keyword.Reserved
+' '           Text
+'i'           Name
+'--'          Operator
+' '           Text
+'IN'          Keyword.Reserved
+' '           Text
+'range'       Name
+' '           Text
+'DO'          Keyword.Reserved
+' '           Text
+'..'          Punctuation
+'.'           Punctuation
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'(*^*)'       Comment.Multiline
+' '           Text
+'next'        Name
+' '           Text
+':='          Operator
+' '           Text
+'this'        Name
+'^'           Operator
+'.'           Punctuation
+'next'        Name
+';'           Punctuation
+' '           Text
+'(* all dialects *)' Comment.Multiline
+'\n'          Text
+
+'(*@*)'       Comment.Multiline
+' '           Text
+'next'        Name
+' '           Text
+':='          Operator
+' '           Text
+'this'        Name
+'@'           Operator
+'.'           Punctuation
+'next'        Name
+';'           Punctuation
+' '           Text
+'(* ISO *)'   Comment.Multiline
+'\n\n'        Text
+
+'(*`*)'       Comment.Multiline
+' '           Text
+'str'         Name
+' '           Text
+':='          Operator
+' '           Text
+'`'           Operator
+'NSString'    Name
+' '           Text
+'alloc'       Name
+' '           Text
+'init'        Name
+';'           Punctuation
+' '           Text
+'(* ObjM2 *)' Comment.Multiline
+'\n\n\n'      Text
+
+'(* Punctuation Tests *)' Comment.Multiline
+'\n\n'        Text
+
+'(* supported punctuation should be rendered as one unit\n   unsupported punctuation should be rendered as an error *)' Comment.Multiline
+'\n\n'        Text
+
+'(*.*)'       Comment.Multiline
+' '           Text
+'Foo'         Name
+'.'           Punctuation
+'Bar'         Name
+'.'           Punctuation
+'Baz'         Name
+';'           Punctuation
+' '           Text
+'(*..*)'      Comment.Multiline
+' '           Text
+'TYPE'        Keyword.Reserved
+' '           Text
+'Sign'        Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+'..'          Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'OF'          Keyword.Reserved
+' '           Text
+'INTEGER'     Name.Builtin
+';'           Punctuation
+'\n\n'        Text
+
+'(*|:*)'      Comment.Multiline
+' '           Text
+'CASE'        Keyword.Reserved
+' '           Text
+'foo'         Name
+' '           Text
+'OF'          Keyword.Reserved
+' '           Text
+'|'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+':'           Punctuation
+' '           Text
+'bar'         Name
+' '           Text
+'|'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+':'           Punctuation
+' '           Text
+'bam'         Name
+' '           Text
+'|'           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+':'           Punctuation
+' '           Text
+'boo'         Name
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'(*!:*)'      Comment.Multiline
+' '           Text
+'CASE'        Keyword.Reserved
+' '           Text
+'foo'         Name
+' '           Text
+'OF'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+':'           Punctuation
+' '           Text
+'bar'         Name
+' '           Text
+'!'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+':'           Punctuation
+' '           Text
+'bam'         Name
+' '           Text
+'!'           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+':'           Punctuation
+' '           Text
+'boo'         Name
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* ISO *)'   Comment.Multiline
+'\n\n'        Text
+
+'(*[]()*)'    Comment.Multiline
+' '           Text
+'array'       Name
+'['           Punctuation
+'n'           Name
+']'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'foo'         Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'(*{}*)'      Comment.Multiline
+' '           Text
+'CONST'       Keyword.Reserved
+' '           Text
+'Bar'         Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'(*?*)'       Comment.Multiline
+' '           Text
+'TPROPERTIES' Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+' '           Text
+'isCollection' Name
+','           Punctuation
+' '           Text
+'isIndexed'   Name
+' '           Text
+'|'           Punctuation
+' '           Text
+'isRigid'     Name
+'?'           Punctuation
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'(*~*)'       Comment.Multiline
+' '           Text
+'CONST'       Keyword.Reserved
+' '           Text
+'~'           Operator
+' '           Text
+'isFoobar'    Name
+' '           Text
+'='           Operator
+' '           Text
+'Foo'         Name
+' '           Text
+'AND'         Keyword.Reserved
+' '           Text
+'Bar'         Name
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n'          Text
+
+'(*->*)'      Comment.Multiline
+' '           Text
+'isFoobar'    Name
+' '           Text
+'->'          Punctuation
+' '           Text
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'['           Punctuation
+'ABS'         Name.Builtin
+']'           Punctuation
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'(*<<>>*)'    Comment.Multiline
+' '           Text
+'GENLIB'      Keyword.Reserved
+' '           Text
+'Foo'         Name
+' '           Text
+'FROM'        Keyword.Reserved
+' '           Text
+'Template'    Name
+' '           Text
+'FOR'         Keyword.Reserved
+' '           Text
+'Bar'         Name
+' '           Text
+'='           Operator
+' '           Text
+'<<'          Punctuation
+'ARRAY'       Keyword.Reserved
+' '           Text
+'OF'          Keyword.Reserved
+' '           Text
+'CHAR'        Name.Builtin
+'>>'          Punctuation
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* M2 R10 *)' Comment.Multiline
+'\n\n\n'      Text
+
+'(* Single Line Comment Test *)' Comment.Multiline
+'\n\n'        Text
+
+'(* should be rendered as comment if supported, as error if unsupported *)' Comment.Multiline
+'\n\n'        Text
+
+'// This is a single line comment (M2 R10 + ObjM2)\n' Comment.Single
+
+'\n\n'        Text
+
+'(* Pragma Delimiter Tests *)' Comment.Multiline
+'\n\n'        Text
+
+'(* PIM style pragma should be rendered as pragma in PIM dialects,\n   as multiline comment in all other dialects. *)' Comment.Multiline
+'\n'          Text
+
+'   \n'       Text
+
+'(*$INLINE*)' Comment.Preproc
+' '           Text
+'(* PIM *)'   Comment.Multiline
+'\n\n'        Text
+
+'(* ISO style pragma should be rendered as error in PIM dialects,\n   as pragma in all other dialects. *)' Comment.Multiline
+'\n\n'        Text
+
+'<*INLINE*>'  Comment.Preproc
+'  '          Text
+'(* all other dialects *)' Comment.Multiline
+'\n\n\n'      Text
+
+'(* Operator Substitution Test When in Algol mode *)' Comment.Multiline
+'\n\n'        Text
+
+'IF'          Keyword.Reserved
+' '           Text
+'foo'         Name
+' '           Text
+'#'           Operator
+' '           Text
+'bar'         Name
+' '           Text
+'THEN'        Keyword.Reserved
+' '           Text
+'..'          Punctuation
+'.'           Punctuation
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* # should be rendered as not equal symbol *)' Comment.Multiline
+'\n\n'        Text
+
+'IF'          Keyword.Reserved
+' '           Text
+'foo'         Name
+' '           Text
+'>='          Operator
+' '           Text
+'bar'         Name
+' '           Text
+'THEN'        Keyword.Reserved
+' '           Text
+'..'          Punctuation
+'.'           Punctuation
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* >= should be rendered as not less symbol *)' Comment.Multiline
+'\n\n'        Text
+
+'IF'          Keyword.Reserved
+' '           Text
+'foo'         Name
+' '           Text
+'<='          Operator
+' '           Text
+'bar'         Name
+' '           Text
+'THEN'        Keyword.Reserved
+' '           Text
+'..'          Punctuation
+'.'           Punctuation
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* <= should be rendered as not greater symbol *)' Comment.Multiline
+'\n\n'        Text
+
+'IF'          Keyword.Reserved
+' '           Text
+'foo'         Name
+' '           Text
+'=='          Operator
+' '           Text
+'bar'         Name
+' '           Text
+'THEN'        Keyword.Reserved
+' '           Text
+'..'          Punctuation
+'.'           Punctuation
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* == should be rendered as identity symbol *)' Comment.Multiline
+'\n\n'        Text
+
+'dotProduct'  Name
+' '           Text
+':='          Operator
+' '           Text
+'v1'          Name
+' '           Text
+'*.'          Operator
+' '           Text
+'v2'          Name
+';'           Punctuation
+' '           Text
+'(* *. should be rendered as dot product symbol *)' Comment.Multiline
+'\n\n\n'      Text
+
+'(* Reserved Words and Builtins Test *)' Comment.Multiline
+'\n\n'        Text
+
+'(* supported reserved words and builtins should be highlighted *)' Comment.Multiline
+'\n\n'        Text
+
+'(* reserved words common to all dialects *)' Comment.Multiline
+'\n\n'        Text
+
+'AND'         Keyword.Reserved
+' '           Text
+'ARRAY'       Keyword.Reserved
+' '           Text
+'BEGIN'       Keyword.Reserved
+' '           Text
+'BY'          Keyword.Reserved
+' '           Text
+'CASE'        Keyword.Reserved
+' '           Text
+'CONST'       Keyword.Reserved
+' '           Text
+'DEFINITION'  Keyword.Reserved
+' '           Text
+'DIV'         Keyword.Reserved
+' '           Text
+'DO'          Keyword.Reserved
+' '           Text
+'ELSE'        Keyword.Reserved
+' '           Text
+'ELSIF'       Keyword.Reserved
+' '           Text
+'END'         Keyword.Reserved
+' '           Text
+'EXIT'        Keyword.Reserved
+' '           Text
+'FOR'         Keyword.Reserved
+' '           Text
+'FROM'        Keyword.Reserved
+'\n'          Text
+
+'IF'          Keyword.Reserved
+' '           Text
+'IMPLEMENTATION' Keyword.Reserved
+' '           Text
+'IMPORT'      Keyword.Reserved
+' '           Text
+'IN'          Keyword.Reserved
+' '           Text
+'LOOP'        Keyword.Reserved
+' '           Text
+'MOD'         Keyword.Reserved
+' '           Text
+'MODULE'      Keyword.Reserved
+' '           Text
+'NOT'         Keyword.Reserved
+' '           Text
+'OF'          Keyword.Reserved
+' '           Text
+'OR'          Keyword.Reserved
+' '           Text
+'POINTER'     Keyword.Reserved
+' '           Text
+'PROCEDURE'   Keyword.Reserved
+'\n'          Text
+
+'RECORD'      Keyword.Reserved
+' '           Text
+'REPEAT'      Keyword.Reserved
+' '           Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'SET'         Keyword.Reserved
+' '           Text
+'THEN'        Keyword.Reserved
+' '           Text
+'TO'          Keyword.Reserved
+' '           Text
+'TYPE'        Keyword.Reserved
+' '           Text
+'UNTIL'       Keyword.Reserved
+' '           Text
+'VAR'         Keyword.Reserved
+' '           Text
+'WHILE'       Keyword.Reserved
+'\n\n'        Text
+
+'(* builtins common to all dialects *)' Comment.Multiline
+'\n\n'        Text
+
+'ABS'         Name.Builtin
+' '           Text
+'BOOLEAN'     Name.Builtin
+' '           Text
+'CARDINAL'    Name.Builtin
+' '           Text
+'CHAR'        Name.Builtin
+' '           Text
+'CHR'         Name.Builtin
+' '           Text
+'FALSE'       Name.Builtin
+' '           Text
+'INTEGER'     Name.Builtin
+' '           Text
+'LONGINT'     Name.Builtin
+' '           Text
+'LONGREAL'    Name.Builtin
+'\n'          Text
+
+'MAX'         Name.Builtin
+' '           Text
+'MIN'         Name.Builtin
+' '           Text
+'NIL'         Name.Builtin
+' '           Text
+'ODD'         Name.Builtin
+' '           Text
+'ORD'         Name.Builtin
+' '           Text
+'REAL'        Name.Builtin
+' '           Text
+'TRUE'        Name.Builtin
+'\n\n'        Text
+
+'(* pseudo builtins common to all dialects *)' Comment.Multiline
+'\n\n'        Text
+
+'ADDRESS'     Name.Builtin.Pseudo
+' '           Text
+'BYTE'        Name.Builtin.Pseudo
+' '           Text
+'WORD'        Name.Builtin.Pseudo
+' '           Text
+'ADR'         Name.Builtin.Pseudo
+'\n\n\n'      Text
+
+'(* additional reserved words for PIM *)' Comment.Multiline
+'\n\n'        Text
+
+'EXPORT'      Keyword.Reserved
+' '           Text
+'QUALIFIED'   Keyword.Reserved
+' '           Text
+'WITH'        Keyword.Reserved
+'\n\n'        Text
+
+'(* additional builtins for PIM *)' Comment.Multiline
+'\n\n'        Text
+
+'BITSET'      Name.Builtin
+' '           Text
+'CAP'         Name.Builtin
+' '           Text
+'DEC'         Name.Builtin
+' '           Text
+'DISPOSE'     Name.Builtin
+' '           Text
+'EXCL'        Name.Builtin
+' '           Text
+'FLOAT'       Name.Builtin
+' '           Text
+'HALT'        Name.Builtin
+' '           Text
+'HIGH'        Name.Builtin
+' '           Text
+'INC'         Name.Builtin
+' '           Text
+'INCL'        Name.Builtin
+' '           Text
+'NEW'         Keyword.Reserved
+' '           Text
+'NIL'         Name.Builtin
+' '           Text
+'PROC'        Name.Builtin
+' '           Text
+'SIZE'        Name.Builtin
+' '           Text
+'TRUNC'       Name.Builtin
+' '           Text
+'VAL'         Name.Builtin
+'\n\n'        Text
+
+'(* additional pseudo-builtins for PIM *)' Comment.Multiline
+'\n\n'        Text
+
+'SYSTEM'      Name.Builtin.Pseudo
+' '           Text
+'PROCESS'     Name.Builtin.Pseudo
+' '           Text
+'TSIZE'       Name.Builtin
+' '           Text
+'NEWPROCESS'  Name.Builtin.Pseudo
+' '           Text
+'TRANSFER'    Name.Builtin.Pseudo
+'\n\n\n'      Text
+
+'(* additional reserved words for ISO 10514-1 *)' Comment.Multiline
+'\n\n'        Text
+
+'EXCEPT'      Keyword.Reserved
+' '           Text
+'EXPORT'      Keyword.Reserved
+' '           Text
+'FINALLY'     Keyword.Reserved
+' '           Text
+'FORWARD'     Keyword.Reserved
+' '           Text
+'PACKEDSET'   Keyword.Reserved
+' '           Text
+'QUALIFIED'   Keyword.Reserved
+' '           Text
+'REM'         Keyword.Reserved
+' '           Text
+'RETRY'       Keyword.Reserved
+' '           Text
+'WITH'        Keyword.Reserved
+'\n\n'        Text
+
+'(* additional reserved words for ISO 10514-2 & ISO 10514-3 *)' Comment.Multiline
+'\n\n'        Text
+
+'ABSTRACT'    Keyword.Reserved
+' '           Text
+'AS'          Keyword.Reserved
+' '           Text
+'CLASS'       Keyword.Reserved
+' '           Text
+'GUARD'       Keyword.Reserved
+' '           Text
+'INHERIT'     Keyword.Reserved
+' '           Text
+'OVERRIDE'    Keyword.Reserved
+' '           Text
+'READONLY'    Keyword.Reserved
+' '           Text
+'REVEAL'      Keyword.Reserved
+' '           Text
+'TRACED'      Keyword.Reserved
+' '           Text
+'UNSAFEGUARDED' Keyword.Reserved
+'\n\n'        Text
+
+'(* additional builtins for ISO 10514-1 *)' Comment.Multiline
+'\n\n'        Text
+
+'BITSET'      Name.Builtin
+' '           Text
+'CAP'         Name.Builtin
+' '           Text
+'CMPLX'       Name.Builtin
+' '           Text
+'COMPLEX'     Name.Builtin
+' '           Text
+'DEC'         Name.Builtin
+' '           Text
+'DISPOSE'     Name.Builtin
+' '           Text
+'EXCL'        Name.Builtin
+' '           Text
+'FLOAT'       Name.Builtin
+' '           Text
+'HALT'        Name.Builtin
+' '           Text
+'HIGH'        Name.Builtin
+' '           Text
+'IM'          Name.Builtin
+' '           Text
+'INC'         Name.Builtin
+' '           Text
+'INCL'        Name.Builtin
+' '           Text
+'INT'         Name.Builtin
+'\n'          Text
+
+'INTERRUPTIBLE' Name.Builtin
+' '           Text
+'LENGTH'      Name.Builtin
+' '           Text
+'LFLOAT'      Name.Builtin
+' '           Text
+'LONGCOMPLEX' Name.Builtin
+' '           Text
+'NEW'         Keyword.Reserved
+' '           Text
+'PROC'        Name.Builtin
+' '           Text
+'PROTECTION'  Name.Builtin
+' '           Text
+'RE'          Name.Builtin
+' '           Text
+'SIZE'        Name.Builtin
+' '           Text
+'TRUNC'       Name.Builtin
+'\n'          Text
+
+'UNINTERRUBTIBLE' Name.Builtin
+' '           Text
+'VAL'         Name.Builtin
+'\n\n'        Text
+
+'(* additional builtins for ISO 10514-2 & ISO 10514-3 *)' Comment.Multiline
+'\n\n'        Text
+
+'CREATE'      Name.Builtin
+' '           Text
+'DESTROY'     Name.Builtin
+' '           Text
+'EMPTY'       Name.Builtin
+' '           Text
+'ISMEMBER'    Name.Builtin
+' '           Text
+'SELF'        Name.Builtin
+'\n\n\n'      Text
+
+'(* additional pseudo-builtins for ISO *)' Comment.Multiline
+'\n\n'        Text
+
+'(* SYSTEM *)' Comment.Multiline
+'\n'          Text
+
+'SYSTEM'      Name.Builtin.Pseudo
+' '           Text
+'BITSPERLOC'  Name.Builtin.Pseudo
+' '           Text
+'LOCSPERBYTE' Name.Builtin.Pseudo
+' '           Text
+'LOCSPERWORD' Name.Builtin.Pseudo
+' '           Text
+'LOC'         Name.Builtin.Pseudo
+' '           Text
+'ADDADR'      Name.Builtin.Pseudo
+' '           Text
+'SUBADR'      Name.Builtin.Pseudo
+' '           Text
+'DIFADR'      Name.Builtin.Pseudo
+' '           Text
+'MAKEADR'     Name.Builtin.Pseudo
+'\n'          Text
+
+'ADR'         Name.Builtin.Pseudo
+' '           Text
+'ROTATE'      Name.Builtin.Pseudo
+' '           Text
+'SHIFT'       Name.Builtin.Pseudo
+' '           Text
+'CAST'        Name.Builtin.Pseudo
+' '           Text
+'TSIZE'       Name.Builtin
+'\n\n'        Text
+
+'(* COROUTINES *)' Comment.Multiline
+'\n'          Text
+
+'COROUTINES'  Name.Builtin.Pseudo
+' '           Text
+'ATTACH'      Name.Builtin.Pseudo
+' '           Text
+'COROUTINE'   Name.Builtin.Pseudo
+' '           Text
+'CURRENT'     Name.Builtin.Pseudo
+' '           Text
+'DETACH'      Name.Builtin.Pseudo
+' '           Text
+'HANDLER'     Name.Builtin.Pseudo
+' '           Text
+'INTERRUPTSOURCE' Name.Builtin.Pseudo
+' '           Text
+'IOTRANSFER'  Name.Builtin.Pseudo
+'\n'          Text
+
+'IsATTACHED'  Name.Builtin.Pseudo
+' '           Text
+'LISTEN'      Name.Builtin.Pseudo
+' '           Text
+'NEWCOROUTINE' Name.Builtin.Pseudo
+' '           Text
+'PROT'        Name.Builtin.Pseudo
+' '           Text
+'TRANSFER'    Name.Builtin.Pseudo
+'\n'          Text
+
+' \n'         Text
+
+'(* EXCEPTIONS *)' Comment.Multiline
+'\n'          Text
+
+'EXCEPTIONS'  Name.Builtin.Pseudo
+' '           Text
+'AllocateSource' Name.Builtin.Pseudo
+' '           Text
+'CurrentNumber' Name.Builtin.Pseudo
+' '           Text
+'ExceptionNumber' Name.Builtin.Pseudo
+' '           Text
+'ExceptionSource' Name.Builtin.Pseudo
+'\n'          Text
+
+'GetMessage'  Name.Builtin.Pseudo
+' '           Text
+'IsCurrentSource' Name.Builtin.Pseudo
+' '           Text
+'IsExceptionalExecution' Name.Builtin.Pseudo
+' '           Text
+'RAISE'       Name.Builtin.Pseudo
+'\n\n'        Text
+
+'(* TERMINATION *)' Comment.Multiline
+'\n'          Text
+
+'TERMINATION' Name.Builtin.Pseudo
+' '           Text
+'IsTerminating' Name.Builtin.Pseudo
+' '           Text
+'HasHalted'   Name.Builtin.Pseudo
+'\n\n'        Text
+
+'(* M2EXCEPTION *)' Comment.Multiline
+'\n'          Text
+
+'M2EXCEPTION' Name.Builtin.Pseudo
+' '           Text
+'M2Exceptions' Name.Builtin.Pseudo
+' '           Text
+'M2Exception' Name.Builtin.Pseudo
+' '           Text
+'IsM2Exception' Name.Builtin.Pseudo
+' '           Text
+'indexException' Name.Builtin.Pseudo
+' '           Text
+'rangeException' Name.Builtin.Pseudo
+'\n'          Text
+
+'caseSelectException' Name.Builtin.Pseudo
+' '           Text
+'invalidLocation' Name.Builtin.Pseudo
+' '           Text
+'functionException' Name.Builtin.Pseudo
+' '           Text
+'wholeValueException' Name.Builtin.Pseudo
+'\n'          Text
+
+'wholeDivException' Name.Builtin.Pseudo
+' '           Text
+'realValueException' Name.Builtin.Pseudo
+' '           Text
+'realDivException' Name.Builtin.Pseudo
+' '           Text
+'complexValueException' Name.Builtin.Pseudo
+'\n'          Text
+
+'complexDivException' Name.Builtin.Pseudo
+' '           Text
+'protException' Name.Builtin.Pseudo
+' '           Text
+'sysException' Name.Builtin.Pseudo
+' '           Text
+'coException' Name.Builtin.Pseudo
+' '           Text
+'exException' Name.Builtin.Pseudo
+'\n\n\n'      Text
+
+'(* additional reserved words for M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'ALIAS'       Keyword.Reserved
+' '           Text
+'ARGLIST'     Keyword.Reserved
+' '           Text
+'BLUEPRINT'   Keyword.Reserved
+' '           Text
+'COPY'        Keyword.Reserved
+' '           Text
+'GENLIB'      Keyword.Reserved
+' '           Text
+'INDETERMINATE' Keyword.Reserved
+' '           Text
+'NEW'         Keyword.Reserved
+' '           Text
+'NONE'        Keyword.Reserved
+' '           Text
+'OPAQUE'      Keyword.Reserved
+' '           Text
+'REFERENTIAL' Keyword.Reserved
+'\n'          Text
+
+'RELEASE'     Keyword.Reserved
+' '           Text
+'RETAIN'      Keyword.Reserved
+'\n\n'        Text
+
+'(* with symbolic assembler language extension *)' Comment.Multiline
+'\n'          Text
+
+'ASM'         Keyword.Reserved
+' '           Text
+'REG'         Keyword.Reserved
+'\n\n'        Text
+
+'(* additional builtins for M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'CARDINAL'    Name.Builtin
+' '           Text
+'COUNT'       Name.Builtin
+' '           Text
+'EMPTY'       Name.Builtin
+' '           Text
+'EXISTS'      Name.Builtin
+' '           Text
+'INSERT'      Name.Builtin
+' '           Text
+'LENGTH'      Name.Builtin
+' '           Text
+'LONGCARD'    Name.Builtin
+' '           Text
+'OCTET'       Name.Builtin
+' '           Text
+'PTR'         Name.Builtin
+' '           Text
+'PRED'        Name.Builtin
+' '           Text
+'READ'        Name.Builtin
+' '           Text
+'READNEW'     Name.Builtin
+'\n'          Text
+
+'REMOVE'      Name.Builtin
+' '           Text
+'RETRIEVE'    Name.Builtin
+' '           Text
+'SORT'        Name.Builtin
+' '           Text
+'STORE'       Name.Builtin
+' '           Text
+'SUBSET'      Name.Builtin
+' '           Text
+'SUCC'        Name.Builtin
+' '           Text
+'TLIMIT'      Name.Builtin
+' '           Text
+'TMAX'        Name.Builtin
+' '           Text
+'TMIN'        Name.Builtin
+' '           Text
+'TRUE'        Name.Builtin
+' '           Text
+'TSIZE'       Name.Builtin
+' '           Text
+'UNICHAR'     Name.Builtin
+'\n'          Text
+
+'WRITE'       Name.Builtin
+' '           Text
+'WRITEF'      Name.Builtin
+'\n\n'        Text
+
+'(* additional pseudo-builtins for M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'(* TPROPERTIES *)' Comment.Multiline
+'\n'          Text
+
+'TPROPERTIES' Name.Builtin.Pseudo
+' '           Text
+'PROPERTY'    Name.Builtin.Pseudo
+' '           Text
+'LITERAL'     Name.Builtin.Pseudo
+' '           Text
+'TPROPERTY'   Name.Builtin.Pseudo
+' '           Text
+'TLITERAL'    Name.Builtin.Pseudo
+' '           Text
+'TBUILTIN'    Name.Builtin.Pseudo
+' '           Text
+'TDYN'        Name.Builtin.Pseudo
+' '           Text
+'TREFC'       Name.Builtin.Pseudo
+' '           Text
+'TNIL'        Name.Builtin.Pseudo
+'\n'          Text
+
+'TBASE'       Name.Builtin.Pseudo
+' '           Text
+'TPRECISION'  Name.Builtin.Pseudo
+' '           Text
+'TMAXEXP'     Name.Builtin.Pseudo
+' '           Text
+'TMINEXP'     Name.Builtin.Pseudo
+' \n\n'       Text
+
+'(* CONVERSION *)' Comment.Multiline
+'\n'          Text
+
+'CONVERSION'  Name.Builtin.Pseudo
+' '           Text
+'TSXFSIZE'    Name.Builtin.Pseudo
+' '           Text
+'SXF'         Name.Builtin.Pseudo
+' '           Text
+'VAL'         Name.Builtin
+'\n\n'        Text
+
+'(* UNSAFE *)' Comment.Multiline
+'\n'          Text
+
+'UNSAFE'      Name.Builtin.Pseudo
+' '           Text
+'CAST'        Name.Builtin.Pseudo
+' '           Text
+'INTRINSIC'   Name.Builtin.Pseudo
+' '           Text
+'AVAIL'       Name.Builtin.Pseudo
+' '           Text
+'ADD'         Name.Builtin.Pseudo
+' '           Text
+'SUB'         Name.Builtin.Pseudo
+' '           Text
+'ADDC'        Name.Builtin.Pseudo
+' '           Text
+'SUBC'        Name.Builtin.Pseudo
+' '           Text
+'FETCHADD'    Name.Builtin.Pseudo
+' '           Text
+'FETCHSUB'    Name.Builtin.Pseudo
+' '           Text
+'SHL'         Name.Builtin.Pseudo
+' '           Text
+'SHR'         Name.Builtin.Pseudo
+' '           Text
+'ASHR'        Name.Builtin.Pseudo
+'\n'          Text
+
+'ROTL'        Name.Builtin.Pseudo
+' '           Text
+'ROTR'        Name.Builtin.Pseudo
+' '           Text
+'ROTLC'       Name.Builtin.Pseudo
+' '           Text
+'ROTRC'       Name.Builtin.Pseudo
+' '           Text
+'BWNOT'       Name.Builtin.Pseudo
+' '           Text
+'BWAND'       Name.Builtin.Pseudo
+' '           Text
+'BWOR'        Name.Builtin.Pseudo
+' '           Text
+'BWXOR'       Name.Builtin.Pseudo
+' '           Text
+'BWNAND'      Name.Builtin.Pseudo
+' '           Text
+'BWNOR'       Name.Builtin.Pseudo
+' '           Text
+'SETBIT'      Name.Builtin.Pseudo
+' '           Text
+'TESTBIT'     Name.Builtin.Pseudo
+'\n'          Text
+
+'LSBIT'       Name.Builtin.Pseudo
+' '           Text
+'MSBIT'       Name.Builtin.Pseudo
+' '           Text
+'CSBITS'      Name.Builtin.Pseudo
+' '           Text
+'BAIL'        Name.Builtin.Pseudo
+' '           Text
+'HALT'        Name.Builtin
+' '           Text
+'TODO'        Name.Builtin.Pseudo
+' '           Text
+'FFI'         Name.Builtin.Pseudo
+' '           Text
+'ADDR'        Name.Builtin.Pseudo
+' '           Text
+'VARGLIST'    Name.Builtin.Pseudo
+' '           Text
+'VARGC'       Name.Builtin.Pseudo
+'\n\n'        Text
+
+'(* ATOMIC *)' Comment.Multiline
+'\n'          Text
+
+'ATOMIC'      Name.Builtin.Pseudo
+' '           Text
+'INTRINSIC'   Name.Builtin.Pseudo
+' '           Text
+'AVAIL'       Name.Builtin.Pseudo
+' '           Text
+'SWAP'        Name.Builtin.Pseudo
+' '           Text
+'CAS'         Name.Builtin.Pseudo
+' '           Text
+'INC'         Name.Builtin
+' '           Text
+'DEC'         Name.Builtin
+' '           Text
+'BWAND'       Name.Builtin.Pseudo
+' '           Text
+'BWNAND'      Name.Builtin.Pseudo
+' '           Text
+'BWOR'        Name.Builtin.Pseudo
+' '           Text
+'BWXOR'       Name.Builtin.Pseudo
+'\n\n'        Text
+
+'(* COMPILER *)' Comment.Multiline
+'\n'          Text
+
+'COMPILER'    Name.Builtin.Pseudo
+' '           Text
+'DEBUG'       Name.Builtin.Pseudo
+' '           Text
+'MODNAME'     Name.Builtin.Pseudo
+' '           Text
+'PROCNAME'    Name.Builtin.Pseudo
+' '           Text
+'LINENUM'     Name.Builtin.Pseudo
+' '           Text
+'DEFAULT'     Name.Builtin.Pseudo
+' '           Text
+'HASH'        Name.Builtin.Pseudo
+'\n\n'        Text
+
+'(* ASSEMBLER *)' Comment.Multiline
+'\n'          Text
+
+'ASSEMBLER'   Name.Builtin.Pseudo
+' '           Text
+'REGISTER'    Name.Builtin.Pseudo
+' '           Text
+'SETREG'      Name.Builtin.Pseudo
+' '           Text
+'GETREG'      Name.Builtin.Pseudo
+' '           Text
+'CODE'        Name.Builtin.Pseudo
+'\n\n\n'      Text
+
+'(* standard library ADT identifiers for M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'(* rendered as builtins when dialect is set to Modula-2 R10,\n   this can be turned off by option treat_stdlib_adts_as_builtins=off *)' Comment.Multiline
+'\n'          Text
+
+'BCD'         Name
+' '           Text
+'LONGBCD'     Name
+' '           Text
+'BITSET'      Name.Builtin
+' '           Text
+'SHORTBITSET' Name
+' '           Text
+'LONGBITSET'  Name
+' '           Text
+'LONGLONGBITSET' Name
+' '           Text
+'COMPLEX'     Name.Builtin
+' '           Text
+'LONGCOMPLEX' Name.Builtin
+'\n'          Text
+
+'SHORTCARD'   Name
+' '           Text
+'LONGLONGCARD' Name
+' '           Text
+'SHORTINT'    Name
+' '           Text
+'LONGLONGINT' Name
+' '           Text
+'POSINT'      Name
+' '           Text
+'SHORTPOSINT' Name
+' '           Text
+'LONGPOSINT'  Name
+'\n'          Text
+
+'LONGLONGPOSINT' Name
+' '           Text
+'BITSET8'     Name
+' '           Text
+'BITSET16'    Name
+' '           Text
+'BITSET32'    Name
+' '           Text
+'BITSET64'    Name
+' '           Text
+'BITSET128'   Name
+' '           Text
+'BS8'         Name
+' '           Text
+'BS16'        Name
+' '           Text
+'BS32'        Name
+'\n'          Text
+
+'BS64'        Name
+' '           Text
+'BS128'       Name
+' '           Text
+'CARDINAL8'   Name
+' '           Text
+'CARDINAL16'  Name
+' '           Text
+'CARDINAL32'  Name
+' '           Text
+'CARDINAL64'  Name
+' '           Text
+'CARDINAL128' Name
+' '           Text
+'CARD8'       Name
+'\n'          Text
+
+'CARD16'      Name
+' '           Text
+'CARD32'      Name
+' '           Text
+'CARD64'      Name
+' '           Text
+'CARD128'     Name
+' '           Text
+'INTEGER8'    Name
+' '           Text
+'INTEGER16'   Name
+' '           Text
+'INTEGER32'   Name
+' '           Text
+'INTEGER64'   Name
+'\n'          Text
+
+'INTEGER128'  Name
+' '           Text
+'INT8'        Name
+' '           Text
+'INT16'       Name
+' '           Text
+'INT32'       Name
+' '           Text
+'INT64'       Name
+' '           Text
+'INT128'      Name
+' '           Text
+'STRING'      Name
+' '           Text
+'UNISTRING'   Name
+'\n\n\n'      Text
+
+'(* additional reserved words for ObjM2 *)' Comment.Multiline
+'\n\n'        Text
+
+'(* Note: ObjM2 is a superset of M2 R10 *)' Comment.Multiline
+'\n\n'        Text
+
+'BYCOPY'      Name
+' '           Text
+'BYREF'       Name
+' '           Text
+'CLASS'       Keyword.Reserved
+' '           Text
+'CONTINUE'    Name
+' '           Text
+'CRITICAL'    Name
+' '           Text
+'INOUT'       Name
+' '           Text
+'METHOD'      Name
+' '           Text
+'ON'          Name
+' '           Text
+'OPTIONAL'    Name
+' '           Text
+'OUT'         Name
+' '           Text
+'PRIVATE'     Name
+'\n'          Text
+
+'PROTECTED'   Name
+' '           Text
+'PROTOCOL'    Name
+' '           Text
+'PUBLIC'      Name
+' '           Text
+'SUPER'       Name
+' '           Text
+'TRY'         Name
+'\n\n'        Text
+
+'(* additional builtins for ObjM2 *)' Comment.Multiline
+'\n\n'        Text
+
+'OBJECT'      Name
+' '           Text
+'NO'          Name
+' '           Text
+'YES'         Name
+'\n\n\n'      Text
+
+'(* additional builtins for Aglet Extensions to ISO *)' Comment.Multiline
+'\n\n'        Text
+
+'BITSET8'     Name
+' '           Text
+'BITSET16'    Name
+' '           Text
+'BITSET32'    Name
+' '           Text
+'CARDINAL8'   Name
+' '           Text
+'CARDINAL16'  Name
+' '           Text
+'CARDINAL32'  Name
+' '           Text
+'INTEGER8'    Name
+' '           Text
+'INTEGER16'   Name
+'\n'          Text
+
+'INTEGER32'   Name
+'\n\n\n'      Text
+
+'(* additional reserved words for GNU Extensions to PIM *)' Comment.Multiline
+'\n\n'        Text
+
+'ASM'         Keyword.Reserved
+' '           Text
+'__ATTRIBUTE__' Name
+' '           Text
+'__BUILTIN__' Name
+' '           Text
+'__COLUMN__'  Name
+' '           Text
+'__DATE__'    Name
+' '           Text
+'__FILE__'    Name
+' '           Text
+'__FUNCTION__' Name
+'\n'          Text
+
+'__LINE__'    Name
+' '           Text
+'__MODULE__'  Name
+' '           Text
+'VOLATILE'    Name
+'\n\n'        Text
+
+'(* additional builtins for GNU Extensions to PIM *)' Comment.Multiline
+'\n\n'        Text
+
+'BITSET8'     Name
+' '           Text
+'BITSET16'    Name
+' '           Text
+'BITSET32'    Name
+' '           Text
+'CARDINAL8'   Name
+' '           Text
+'CARDINAL16'  Name
+' '           Text
+'CARDINAL32'  Name
+' '           Text
+'CARDINAL64'  Name
+' '           Text
+'COMPLEX32'   Name
+'\n'          Text
+
+'COMPLEX64'   Name
+' '           Text
+'COMPLEX96'   Name
+' '           Text
+'COMPLEX128'  Name
+' '           Text
+'INTEGER8'    Name
+' '           Text
+'INTEGER16'   Name
+' '           Text
+'INTEGER32'   Name
+' '           Text
+'INTEGER64'   Name
+' '           Text
+'REAL8'       Name
+'\n'          Text
+
+'REAL16'      Name
+' '           Text
+'REAL32'      Name
+' '           Text
+'REAL96'      Name
+' '           Text
+'REAL128'     Name
+' '           Text
+'THROW'       Name
+'\n\n\n'      Text
+
+'(* additional pseudo-builtins for p1 Extensions to ISO *)' Comment.Multiline
+'\n\n'        Text
+
+'BCD'         Name
+'\n\n\n'      Text
+
+'(* additional reserved words for XDS Extensions to ISO *)' Comment.Multiline
+'\n\n'        Text
+
+'SEQ'         Name
+'\n\n'        Text
+
+'(* additional builtins for XDS Extensions to ISO *)' Comment.Multiline
+'\n\n'        Text
+
+'ASH'         Name
+' '           Text
+'ASSERT'      Name
+' '           Text
+'DIFFADR_TYPE' Name
+' '           Text
+'ENTIER'      Name
+' '           Text
+'INDEX'       Name
+' '           Text
+'LEN'         Name
+' '           Text
+'LONGCARD'    Name.Builtin
+' '           Text
+'SHORTCARD'   Name
+' '           Text
+'SHORTINT'    Name
+'\n\n'        Text
+
+'(* additional pseudo-builtins for XDS Extensions to ISO *)' Comment.Multiline
+'\n\n'        Text
+
+'(* SYSTEM *)' Comment.Multiline
+'\n'          Text
+
+'PROCESS'     Name.Builtin.Pseudo
+' '           Text
+'NEWPROCESS'  Name.Builtin.Pseudo
+' '           Text
+'BOOL8'       Name
+' '           Text
+'BOOL16'      Name
+' '           Text
+'BOOL32'      Name
+' '           Text
+'CARD8'       Name
+' '           Text
+'CARD16'      Name
+' '           Text
+'CARD32'      Name
+' '           Text
+'INT8'        Name
+' '           Text
+'INT16'       Name
+' '           Text
+'INT32'       Name
+'\n'          Text
+
+'REF'         Name
+' '           Text
+'MOVE'        Name
+' '           Text
+'FILL'        Name
+' '           Text
+'GET'         Name
+' '           Text
+'PUT'         Name
+' '           Text
+'CC'          Name
+' '           Text
+'int'         Name
+' '           Text
+'unsigned'    Name
+' '           Text
+'size_t'      Name
+' '           Text
+'void'        Name
+'\n\n'        Text
+
+'(* COMPILER *)' Comment.Multiline
+'\n'          Text
+
+'COMPILER'    Name.Builtin.Pseudo
+' '           Text
+'OPTION'      Name
+' '           Text
+'EQUATION'    Name
+'\n\n\n'      Text
+
+'(* end of file *)' Comment.Multiline
+'\n'          Text

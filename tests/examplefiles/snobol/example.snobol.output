@@ -1,0 +1,139 @@
+'-SOME RANDOM DIRECTIVE WOULD GO HERE\n' Comment
+
+'*\n'         Comment
+
+'* SNOBOL4 example file for lexer\n' Comment
+
+'*\n'         Comment
+
+' '           Text
+'SOME.THING_OR_OTHER32' Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'1.0'         Literal.Number.Float
+' '           Text
+'-'           Operator
+' '           Text
+'1E3'         Literal.Number.Float
+' '           Text
+'*'           Operator
+' '           Text
+'1E-3'        Literal.Number.Float
+' '           Text
+'**'          Operator
+' '           Text
+'2.718284590E0' Literal.Number.Float
+'\n'          Text
+
+'+ '          Punctuation
+':'           Punctuation
+'F'           Keyword
+'('           Punctuation
+'END'         Name.Label
+')'           Punctuation
+'S'           Keyword
+'('           Punctuation
+'IN_LOOP'     Name.Label
+')'           Punctuation
+' \n'         Text
+
+' '           Text
+'PATTERN'     Name
+' '           Text
+'='           Operator
+' '           Text
+'LEN'         Name.Builtin
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'"GAR"'       Literal.String
+' '           Text
+'|'           Operator
+' '           Text
+'"BAR"'       Literal.String
+')'           Punctuation
+'\n'          Text
+
+'IN_LOOP'     Name.Label
+' '           Text
+'THING'       Name
+' '           Text
+'='           Operator
+' '           Text
+'INPUT'       Name.Builtin
+' '           Text
+':'           Punctuation
+'F'           Keyword
+'('           Punctuation
+'END'         Name.Label
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+'THING'       Name
+' '           Text
+'LEN'         Name.Builtin
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'"GAR"'       Literal.String
+' '           Text
+'|'           Operator
+' '           Text
+'"BAR"'       Literal.String
+')'           Punctuation
+' '           Text
+':'           Punctuation
+'S'           Keyword
+'('           Punctuation
+'OK'          Name.Label
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+'OUTPUT'      Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'THING'       Name
+' '           Text
+'" : Failure!"' Literal.String
+' '           Text
+':'           Punctuation
+'('           Punctuation
+'IN_LOOP'     Name.Label
+')'           Punctuation
+'\n'          Text
+
+'OK'          Name.Label
+' '           Text
+'OUTPUT'      Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'THING'       Name
+' '           Text
+'\' : "Success"!\'' Literal.String
+' '           Text
+':'           Punctuation
+'('           Punctuation
+'IN_LOOP'     Name.Label
+')'           Punctuation
+'\n'          Text
+
+'END\n'       Name.Label
+
+'FOOBAR\n'    Literal.String.Heredoc
+
+'FOOGAR\n'    Literal.String.Heredoc
+
+'THiNIg\n'    Literal.String.Heredoc

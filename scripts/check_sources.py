@@ -159,8 +159,6 @@ def main(argv):
     for root, dirs, files in os.walk(path):
         if '.hg' in dirs:
             dirs.remove('.hg')
-        if 'examplefiles' in dirs:
-            dirs.remove('examplefiles')
         if '-i' in opts and abspath(root) in opts['-i']:
             del dirs[:]
             continue

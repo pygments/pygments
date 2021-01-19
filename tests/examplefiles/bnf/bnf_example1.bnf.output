@@ -1,0 +1,131 @@
+'; This examples from WikiPedia ' Text
+'<'           Punctuation
+'https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_Form' Name.Class
+'>'           Punctuation
+'.\n\n   '    Text
+'<'           Punctuation
+'postal-address' Name.Class
+'>'           Punctuation
+' '           Text
+'::='         Operator
+' '           Text
+'<'           Punctuation
+'name-part'   Name.Class
+'>'           Punctuation
+' '           Text
+'<'           Punctuation
+'street-address' Name.Class
+'>'           Punctuation
+' '           Text
+'<'           Punctuation
+'zip-part'    Name.Class
+'>'           Punctuation
+'\n\n        ' Text
+'<'           Punctuation
+'name-part'   Name.Class
+'>'           Punctuation
+' '           Text
+'::='         Operator
+' '           Text
+'<'           Punctuation
+'personal-part' Name.Class
+'>'           Punctuation
+' '           Text
+'<'           Punctuation
+'last-name'   Name.Class
+'>'           Punctuation
+' '           Text
+'<'           Punctuation
+'opt-suffix-part' Name.Class
+'>'           Punctuation
+' '           Text
+'<'           Punctuation
+'EOL'         Name.Class
+'>'           Punctuation
+'\n                      | ' Text
+'<'           Punctuation
+'personal-part' Name.Class
+'>'           Punctuation
+' '           Text
+'<'           Punctuation
+'name-part'   Name.Class
+'>'           Punctuation
+'\n\n    '    Text
+'<'           Punctuation
+'personal-part' Name.Class
+'>'           Punctuation
+' '           Text
+'::='         Operator
+' '           Text
+'<'           Punctuation
+'initial'     Name.Class
+'>'           Punctuation
+' "." | '     Text
+'<'           Punctuation
+'first-name'  Name.Class
+'>'           Punctuation
+'\n\n   '     Text
+'<'           Punctuation
+'street-address' Name.Class
+'>'           Punctuation
+' '           Text
+'::='         Operator
+' '           Text
+'<'           Punctuation
+'house-num'   Name.Class
+'>'           Punctuation
+' '           Text
+'<'           Punctuation
+'street-name' Name.Class
+'>'           Punctuation
+' '           Text
+'<'           Punctuation
+'opt-apt-num' Name.Class
+'>'           Punctuation
+' '           Text
+'<'           Punctuation
+'EOL'         Name.Class
+'>'           Punctuation
+'\n\n         ' Text
+'<'           Punctuation
+'zip-part'    Name.Class
+'>'           Punctuation
+' '           Text
+'::='         Operator
+' '           Text
+'<'           Punctuation
+'town-name'   Name.Class
+'>'           Punctuation
+' "," '       Text
+'<'           Punctuation
+'state-code'  Name.Class
+'>'           Punctuation
+' '           Text
+'<'           Punctuation
+'ZIP-code'    Name.Class
+'>'           Punctuation
+' '           Text
+'<'           Punctuation
+'EOL'         Name.Class
+'>'           Punctuation
+'\n\n  '      Text
+'<'           Punctuation
+'opt-suffix-part' Name.Class
+'>'           Punctuation
+' '           Text
+'::='         Operator
+' "Sr." | "Jr." | ' Text
+'<'           Punctuation
+'roman-numeral' Name.Class
+'>'           Punctuation
+' | ""\n      ' Text
+'<'           Punctuation
+'opt-apt-num' Name.Class
+'>'           Punctuation
+' '           Text
+'::='         Operator
+' '           Text
+'<'           Punctuation
+'apt-num'     Name.Class
+'>'           Punctuation
+' | ""\n'     Text

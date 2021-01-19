@@ -1,0 +1,389 @@
+'# this is a header' Generic.Heading
+'\n'          Text
+
+'\n'          Text
+
+'## this is a 2nd level header' Generic.Subheading
+'\n'          Text
+
+'\n'          Text
+
+'*'           Keyword
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'  '          Text
+'*'           Keyword
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
+'1.1'         Text
+'\n'          Text
+
+'*'           Keyword
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
+'2'           Text
+'\n'          Text
+
+'-'           Keyword
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
+'3'           Text
+'\n'          Text
+
+'\n'          Text
+
+'1.'          Keyword
+' '           Text
+'numbered'    Text
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'1.'          Keyword
+' '           Text
+'numbered'    Text
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
+'2'           Text
+'\n'          Text
+
+'\n'          Text
+
+'- '          Keyword
+'[ ]'         Keyword
+' '           Text
+'todo'        Text
+'\n'          Text
+
+'- '          Keyword
+'[x]'         Keyword
+' '           Text
+'done'        Text
+'\n'          Text
+
+'- '          Keyword
+'[X]'         Keyword
+' '           Text
+'done'        Text
+'\n'          Text
+
+'\n'          Text
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'italic:'     Text
+' '           Text
+'*italic*'    Generic.Emph
+'\n'          Text
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'italic:'     Text
+' '           Text
+'_italic_'    Generic.Emph
+'\n'          Text
+
+'\n'          Text
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'not'         Text
+' '           Text
+'italic:'     Text
+' '           Text
+'\\*'         Text
+'italic'      Text
+'\\*'         Text
+'\n'          Text
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'not'         Text
+' '           Text
+'italic:'     Text
+' '           Text
+'\\_'         Text
+'italic'      Text
+'\\_'         Text
+'\n'          Text
+
+'\n'          Text
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'not'         Text
+' '           Text
+'italic:'     Text
+' '           Text
+'snake*case*word' Text
+'\n'          Text
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'not'         Text
+' '           Text
+'italic:'     Text
+' '           Text
+'snake_case_word' Text
+'\n'          Text
+
+'\n'          Text
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'bold:'       Text
+' '           Text
+'**bold**'    Generic.Strong
+' '           Text
+'**two or more words**' Generic.Strong
+'\n'          Text
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'bold:'       Text
+' '           Text
+'__bold__'    Generic.Strong
+' '           Text
+'__two or more words__' Generic.Strong
+'\n'          Text
+
+'\n'          Text
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'not'         Text
+' '           Text
+'bold:'       Text
+' '           Text
+'snake**case**word' Text
+'\n'          Text
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'not'         Text
+' '           Text
+'bold:'       Text
+' '           Text
+'snake__case__word' Text
+'\n'          Text
+
+'\n'          Text
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'strikethrough:' Text
+' '           Text
+'~~bold~~'    Generic.Deleted
+'\n'          Text
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'not'         Text
+' '           Text
+'strikethrough:' Text
+' '           Text
+'snake~~case~~word' Text
+'\n'          Text
+
+'\n'          Text
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'bold'        Text
+' '           Text
+'with'        Text
+' '           Text
+'italics'     Text
+' '           Text
+'inside:'     Text
+' '           Text
+'**the next _word_ should have been italics**' Generic.Strong
+'\n'          Text
+
+'\n> '        Keyword
+'this is a quote\n' Generic.Emph
+
+'\n> '        Keyword
+'this is a multiline\n' Generic.Emph
+
+'> '          Keyword
+'quote string thing\n' Generic.Emph
+
+'\n'          Text
+
+'this'        Text
+' '           Text
+'sentence'    Text
+' '           Text
+'`has monospace`' Literal.String.Backtick
+' '           Text
+'in'          Text
+' '           Text
+'it'          Text
+'\n'          Text
+
+'\n'          Text
+
+'this'        Text
+' '           Text
+'sentence'    Text
+' '           Text
+'@tweets'     Name.Entity
+' '           Text
+'a'           Text
+' '           Text
+'person'      Text
+' '           Text
+'about'       Text
+' '           Text
+'a'           Text
+' '           Text
+'#topic'      Name.Entity
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'['           Text
+'google'      Name.Tag
+']'           Text
+'('           Text
+'https://google.com/some/path.html' Name.Attribute
+')'           Text
+'\n'          Text
+
+'!['          Text
+'Image of Yaktocat' Name.Tag
+']'           Text
+'('           Text
+'https://octodex.github.com/images/yaktocat.png' Name.Attribute
+')'           Text
+'\n'          Text
+
+'\n'          Text
+
+'['           Text
+'reference link' Name.Tag
+']'           Text
+'['           Text
+'id'          Name.Label
+']'           Text
+'\n'          Text
+
+'['           Text
+'id'          Name.Label
+']: '         Text
+'http://example.com/' Name.Attribute
+'\n'          Text
+
+'\n```\n  * this is just unformated\n      __text__\n```\n' Literal.String.Backtick
+
+'\n'          Text
+
+'some'        Text
+' '           Text
+'other'       Text
+' '           Text
+'text'        Text
+'\n'          Text
+
+'\n```'       Literal.String.Backtick
+'python'      Literal.String.Backtick
+'\n'          Text
+
+'from'        Keyword.Namespace
+' '           Text
+'pygments'    Name.Namespace
+' '           Text
+'import'      Keyword.Namespace
+' '           Text
+'token'       Name
+'\n'          Text
+
+'# comment'   Comment.Single
+'\n'          Text
+
+'```\n'       Literal.String.Backtick
+
+'\n'          Text
+
+'some'        Text
+' '           Text
+'more'        Text
+' '           Text
+'text'        Text
+'\n'          Text

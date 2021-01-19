@@ -1,0 +1,840 @@
+'\t\t\t'      Text
+'import'      Keyword
+' '           Text
+'flash.events.MouseEvent' Name.Namespace
+';'           Operator
+'\n\t\t\t'    Text
+'import'      Keyword
+' '           Text
+'com.example.programmingas3.playlist.PlayList' Name.Namespace
+';'           Operator
+'\n\t\t\t'    Text
+'import'      Keyword
+' '           Text
+'com.example.programmingas3.playlist.Song' Name.Namespace
+';'           Operator
+'\n\t\t\t'    Text
+'import'      Keyword
+' '           Text
+'com.example.programmingas3.playlist.SortProperty' Name.Namespace
+';'           Operator
+'\n\n\t\t\t'  Text
+'// constants for the different "states" of the song form\n' Comment.Single
+
+'\t\t\t'      Text
+'private'     Keyword.Declaration
+' '           Text
+'static'      Keyword.Declaration
+' '           Text
+'const'       Keyword.Declaration
+' '           Text
+'ADD_SONG'    Name
+':'           Punctuation
+'uint'        Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Operator
+'\n\t\t\t'    Text
+'private'     Keyword.Declaration
+' '           Text
+'static'      Keyword.Declaration
+' '           Text
+'const'       Keyword.Declaration
+' '           Text
+'SONG_DETAIL' Name
+':'           Punctuation
+'uint'        Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Operator
+'\n\t\t\t\n\t\t\t' Text
+'private'     Keyword.Declaration
+' '           Text
+'var'         Keyword.Declaration
+' '           Text
+'playList'    Name
+':'           Punctuation
+'PlayList'    Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'PlayList.<T>' Keyword.Type
+'('           Operator
+');'          Operator
+'\n\n\t\t\t'  Text
+'private'     Keyword.Declaration
+' '           Text
+'function '   Keyword.Declaration
+'initApp'     Name.Function
+'('           Operator
+')'           Operator
+':'           Operator
+'void'        Keyword.Type
+'\n\t\t\t'    Text
+'{'           Operator
+'\n\t\t\t\t'  Text
+'// set the initial state of the song form, for adding a new song\n' Comment.Single
+
+'\t\t\t\t'    Text
+'setFormState' Name
+'('           Operator
+'ADD_SONG'    Name
+');'          Operator
+'\n\t\t\t\t\n\t\t\t\t' Text
+'// prepopulate the list with a few songs\n' Comment.Single
+
+'\t\t\t\t'    Text
+'playList'    Name
+'.'           Operator
+'addSong'     Name.Attribute
+'('           Operator
+'new'         Keyword
+' '           Text
+'Song'        Keyword.Type
+'('           Operator
+'"Nessun Dorma"' Literal.String.Double
+','           Operator
+' '           Text
+'"Luciano Pavarotti"' Literal.String.Double
+','           Operator
+' '           Text
+'1990'        Literal.Number.Integer
+','           Operator
+' '           Text
+'"nessundorma.mp3"' Literal.String.Double
+','           Operator
+' '           Text
+'['           Operator
+'"90\'s"'     Literal.String.Double
+','           Operator
+' '           Text
+'"Opera"'     Literal.String.Double
+']));'        Operator
+'\n\t\t\t\t'  Text
+'playList'    Name
+'.'           Operator
+'addSong'     Name.Attribute
+'('           Operator
+'new'         Keyword
+' '           Text
+'Song'        Keyword.Type
+'('           Operator
+'"Come Undone"' Literal.String.Double
+','           Operator
+' '           Text
+'"Duran Duran"' Literal.String.Double
+','           Operator
+' '           Text
+'1993'        Literal.Number.Integer
+','           Operator
+' '           Text
+'"comeundone.mp3"' Literal.String.Double
+','           Operator
+' '           Text
+'['           Operator
+'"90\'s"'     Literal.String.Double
+','           Operator
+' '           Text
+'"Pop"'       Literal.String.Double
+']));'        Operator
+'\n\t\t\t\t'  Text
+'playList'    Name
+'.'           Operator
+'addSong'     Name.Attribute
+'('           Operator
+'new'         Keyword
+' '           Text
+'Song'        Keyword.Type
+'('           Operator
+'"Think of Me"' Literal.String.Double
+','           Operator
+' '           Text
+'"Sarah Brightman"' Literal.String.Double
+','           Operator
+' '           Text
+'1987'        Literal.Number.Integer
+','           Operator
+' '           Text
+'"thinkofme.mp3"' Literal.String.Double
+','           Operator
+' '           Text
+'['           Operator
+'"Showtunes"' Literal.String.Double
+']));'        Operator
+'\n\t\t\t\t'  Text
+'playList'    Name
+'.'           Operator
+'addSong'     Name.Attribute
+'('           Operator
+'new'         Keyword
+' '           Text
+'Song'        Keyword.Type
+'('           Operator
+'"Unbelievable"' Literal.String.Double
+','           Operator
+' '           Text
+'"EMF"'       Literal.String.Double
+','           Operator
+' '           Text
+'1991'        Literal.Number.Integer
+','           Operator
+' '           Text
+'"unbelievable.mp3"' Literal.String.Double
+','           Operator
+' '           Text
+'['           Operator
+'"90\'s"'     Literal.String.Double
+','           Operator
+' '           Text
+'"Pop"'       Literal.String.Double
+']));'        Operator
+'\n\n\t\t\t\t' Text
+'songList'    Name
+'.'           Operator
+'dataProvider' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'playList'    Name
+'.'           Operator
+'songList'    Name.Attribute
+';'           Operator
+'\n\t\t\t'    Text
+'}'           Operator
+'\n\n\n\t\t\t' Text
+'private'     Keyword.Declaration
+' '           Text
+'function '   Keyword.Declaration
+'sortList'    Name.Function
+'('           Operator
+'sortField'   Name
+':'           Operator
+'SortProperty.<T>' Keyword.Type
+')'           Operator
+':'           Operator
+'void'        Keyword.Type
+'\n\t\t\t'    Text
+'{'           Operator
+'\n\t\t\t\t'  Text
+'// Make all the sort type buttons enabled.\n' Comment.Single
+
+'\t\t\t\t'    Text
+'// The active one will be grayed-out below\n' Comment.Single
+
+'\t\t\t\t'    Text
+'sortByTitle' Name
+'.'           Operator
+'selected'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+';'           Operator
+'\n\t\t\t\t'  Text
+'sortByArtist' Name
+'.'           Operator
+'selected'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+';'           Operator
+'\n\t\t\t\t'  Text
+'sortByYear'  Name
+'.'           Operator
+'selected'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+';'           Operator
+'\n\n\t\t\t\t' Text
+'switch'      Keyword
+' '           Text
+'('           Operator
+'sortField'   Name
+')'           Operator
+'\n\t\t\t\t'  Text
+'{'           Operator
+'\n\t\t\t\t\t' Text
+'case'        Keyword
+' '           Text
+'SortProperty' Name
+'.'           Operator
+'TITLE'       Name.Attribute
+':'           Operator
+'\n\t\t\t\t\t\t' Text
+'sortByTitle' Name
+'.'           Operator
+'selected'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'break'       Keyword
+';'           Operator
+'\n\t\t\t\t\t' Text
+'case'        Keyword
+' '           Text
+'SortProperty' Name
+'.'           Operator
+'ARTIST'      Name.Attribute
+':'           Operator
+'\n\t\t\t\t\t\t' Text
+'sortByArtist' Name
+'.'           Operator
+'selected'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'break'       Keyword
+';'           Operator
+'\n\t\t\t\t\t' Text
+'case'        Keyword
+' '           Text
+'SortProperty' Name
+'.'           Operator
+'YEAR'        Name.Attribute
+':'           Operator
+'\n\t\t\t\t\t\t' Text
+'sortByYear'  Name
+'.'           Operator
+'selected'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'break'       Keyword
+';'           Operator
+'\n\t\t\t\t'  Text
+'}'           Operator
+'\n\n\t\t\t\t' Text
+'playList'    Name
+'.'           Operator
+'sortList'    Name.Attribute
+'('           Operator
+'sortField'   Name
+');'          Operator
+'\n\t\t\t\t\n\t\t\t\t' Text
+'refreshList' Name
+'();'         Operator
+'\n\t\t\t'    Text
+'}'           Operator
+'\n\n\n\t\t\t' Text
+'private'     Keyword.Declaration
+' '           Text
+'function '   Keyword.Declaration
+'refreshList' Name.Function
+'('           Operator
+')'           Operator
+':'           Operator
+'void'        Keyword.Type
+'\n\t\t\t'    Text
+'{'           Operator
+'\n\t\t\t\t'  Text
+'// remember which song was selected\n' Comment.Single
+
+'\t\t\t\t'    Text
+'var'         Keyword.Declaration
+' '           Text
+'selectedSong' Name
+':'           Punctuation
+'Song'        Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'Song'        Name
+'('           Operator
+'songList'    Name
+'.'           Operator
+'selectedItem' Name.Attribute
+');'          Operator
+'\n\t\t\t\t\n\t\t\t\t' Text
+'// re-assign the song list as the dataprovider to get the newly sorted list\n' Comment.Single
+
+'\t\t\t\t'    Text
+'// and force the List control to refresh itself\n' Comment.Single
+
+'\t\t\t\t'    Text
+'songList'    Name
+'.'           Operator
+'dataProvider' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'playList'    Name
+'.'           Operator
+'songList'    Name.Attribute
+';'           Operator
+'\n\t\t\t\t\n\t\t\t\t' Text
+'// reset the song selection\n' Comment.Single
+
+'\t\t\t\t'    Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'selectedSong' Name
+' '           Text
+'!='          Operator
+' '           Text
+'null'        Keyword.Constant
+')'           Operator
+'\n\t\t\t\t'  Text
+'{'           Operator
+'\n\t\t\t\t\t' Text
+'songList'    Name
+'.'           Operator
+'selectedItem' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'selectedSong' Name
+';'           Operator
+'\n\t\t\t\t'  Text
+'}'           Operator
+'\n\t\t\t'    Text
+'}'           Operator
+'\n\n\n\t\t\t' Text
+'private'     Keyword.Declaration
+' '           Text
+'function '   Keyword.Declaration
+'songSelectionChange' Name.Function
+'('           Operator
+')'           Operator
+':'           Operator
+'void'        Keyword.Type
+'\n\t\t\t'    Text
+'{'           Operator
+'\n\t\t\t\t'  Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'songList'    Name
+'.'           Operator
+'selectedIndex' Name.Attribute
+' '           Text
+'!='          Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Operator
+'\n\t\t\t\t'  Text
+'{'           Operator
+'\n\t\t\t\t\t' Text
+'setFormState' Name
+'('           Operator
+'SONG_DETAIL' Name
+');'          Operator
+'\n\t\t\t\t'  Text
+'}'           Operator
+'\n\t\t\t\t'  Text
+'else'        Keyword
+'\n\t\t\t\t'  Text
+'{'           Operator
+'\n\t\t\t\t\t' Text
+'setFormState' Name
+'('           Operator
+'ADD_SONG'    Name
+');'          Operator
+'\n\t\t\t\t'  Text
+'}'           Operator
+'\n\t\t\t'    Text
+'}'           Operator
+'\n\n\n\t\t\t' Text
+'private'     Keyword.Declaration
+' '           Text
+'function '   Keyword.Declaration
+'addNewSong'  Name.Function
+'('           Operator
+')'           Operator
+':'           Operator
+'void'        Keyword.Type
+'\n\t\t\t'    Text
+'{'           Operator
+'\n\t\t\t\t'  Text
+'// gather the values from the form and add the new song\n' Comment.Single
+
+'\t\t\t\t'    Text
+'var'         Keyword.Declaration
+' '           Text
+'title'       Name
+':'           Punctuation
+'String'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'newSongTitle' Name
+'.'           Operator
+'text'        Name.Attribute
+';'           Operator
+'\n\t\t\t\t'  Text
+'var'         Keyword.Declaration
+' '           Text
+'artist'      Name
+':'           Punctuation
+'String'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'newSongArtist' Name
+'.'           Operator
+'text'        Name.Attribute
+';'           Operator
+'\n\t\t\t\t'  Text
+'var'         Keyword.Declaration
+' '           Text
+'year'        Name
+':'           Punctuation
+'uint'        Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'newSongYear' Name
+'.'           Operator
+'value'       Name.Attribute
+';'           Operator
+'\n\t\t\t\t'  Text
+'var'         Keyword.Declaration
+' '           Text
+'filename'    Name
+':'           Punctuation
+'String'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'newSongFilename' Name
+'.'           Operator
+'text'        Name.Attribute
+';'           Operator
+'\n\t\t\t\t'  Text
+'var'         Keyword.Declaration
+' '           Text
+'genres'      Name
+':'           Punctuation
+'Array'       Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'newSongGenres' Name
+'.'           Operator
+'selectedItems' Name.Attribute
+';'           Operator
+'\n\n\t\t\t\t' Text
+'playList'    Name
+'.'           Operator
+'addSong'     Name.Attribute
+'('           Operator
+'new'         Keyword
+' '           Text
+'Song'        Keyword.Type
+'('           Operator
+'title'       Name
+','           Operator
+' '           Text
+'artist'      Name
+','           Operator
+' '           Text
+'year'        Name
+','           Operator
+' '           Text
+'filename'    Name
+','           Operator
+' '           Text
+'genres'      Name
+'));'         Operator
+'\n\n\t\t\t\t' Text
+'refreshList' Name
+'();'         Operator
+'\n\t\n\t\t\t\t' Text
+'// clear out the "add song" form fields\n' Comment.Single
+
+'\t\t\t\t'    Text
+'setFormState' Name
+'('           Operator
+'ADD_SONG'    Name
+');'          Operator
+'\n\t\t\t'    Text
+'}'           Operator
+'\n\n\n\t\t\t' Text
+'private'     Keyword.Declaration
+' '           Text
+'function '   Keyword.Declaration
+'songListLabel' Name.Function
+'('           Operator
+'item'        Name
+':'           Operator
+'Object'      Keyword.Type
+')'           Operator
+':'           Operator
+'String'      Keyword.Type
+'\n\t\t\t'    Text
+'{'           Operator
+'\n\t\t\t\t'  Text
+'return'      Keyword
+' '           Text
+'item'        Name
+'.'           Operator
+'toString'    Name.Attribute
+'();'         Operator
+'\n\t\t\t'    Text
+'}'           Operator
+'\n\n\n\t\t\t' Text
+'private'     Keyword.Declaration
+' '           Text
+'function '   Keyword.Declaration
+'setFormState' Name.Function
+'('           Operator
+'state'       Name
+':'           Operator
+'uint'        Keyword.Type
+')'           Operator
+':'           Operator
+'void'        Keyword.Type
+'\n\t\t\t'    Text
+'{'           Operator
+'\n\t\t\t\t'  Text
+'// set the form title and control state\n' Comment.Single
+
+'\t\t\t\t'    Text
+'switch'      Keyword
+' '           Text
+'('           Operator
+'state'       Name
+')'           Operator
+'\n\t\t\t\t'  Text
+'{'           Operator
+'\n\t\t\t\t\t' Text
+'case'        Keyword
+' '           Text
+'ADD_SONG'    Name
+':'           Operator
+'\n\t\t\t\t\t\t' Text
+'formTitle'   Name
+'.'           Operator
+'text'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"Add New Song"' Literal.String.Double
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'// show the submit button\n' Comment.Single
+
+'\t\t\t\t\t\t' Text
+'submitSongData' Name
+'.'           Operator
+'visible'     Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'showAddControlsBtn' Name
+'.'           Operator
+'visible'     Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'// clear the form fields\n' Comment.Single
+
+'\t\t\t\t\t\t' Text
+'newSongTitle' Name
+'.'           Operator
+'text'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String.Double
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'newSongArtist' Name
+'.'           Operator
+'text'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String.Double
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'newSongYear' Name
+'.'           Operator
+'value'       Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'('           Operator
+'new'         Keyword
+' '           Text
+'Date'        Keyword.Type
+'('           Operator
+')).'         Operator
+'fullYear'    Name
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'newSongFilename' Name
+'.'           Operator
+'text'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String.Double
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'newSongGenres' Name
+'.'           Operator
+'selectedIndex' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'// deselect the currently selected song (if any)\n' Comment.Single
+
+'\t\t\t\t\t\t' Text
+'songList'    Name
+'.'           Operator
+'selectedIndex' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'break'       Keyword
+';'           Operator
+'\n\t\t\t\t\t\t\n\t\t\t\t\t' Text
+'case'        Keyword
+' '           Text
+'SONG_DETAIL' Name
+':'           Operator
+'\n\t\t\t\t\t\t' Text
+'formTitle'   Name
+'.'           Operator
+'text'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"Song Details"' Literal.String.Double
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+"// populate the form with the selected item's data\n" Comment.Single
+
+'\t\t\t\t\t\t' Text
+'var'         Keyword.Declaration
+' '           Text
+'selectedSong' Name
+':'           Punctuation
+'Song'        Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'Song'        Name
+'('           Operator
+'songList'    Name
+'.'           Operator
+'selectedItem' Name.Attribute
+');'          Operator
+'\n\t\t\t\t\t\t' Text
+'newSongTitle' Name
+'.'           Operator
+'text'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'selectedSong' Name
+'.'           Operator
+'title'       Name.Attribute
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'newSongArtist' Name
+'.'           Operator
+'text'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'selectedSong' Name
+'.'           Operator
+'artist'      Name.Attribute
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'newSongYear' Name
+'.'           Operator
+'value'       Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'selectedSong' Name
+'.'           Operator
+'year'        Name.Attribute
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'newSongFilename' Name
+'.'           Operator
+'text'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'selectedSong' Name
+'.'           Operator
+'filename'    Name.Attribute
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'newSongGenres' Name
+'.'           Operator
+'selectedItems' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'selectedSong' Name
+'.'           Operator
+'genres'      Name.Attribute
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'// hide the submit button\n' Comment.Single
+
+'\t\t\t\t\t\t' Text
+'submitSongData' Name
+'.'           Operator
+'visible'     Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'showAddControlsBtn' Name
+'.'           Operator
+'visible'     Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+';'           Operator
+'\n\t\t\t\t\t\t' Text
+'break'       Keyword
+';'           Operator
+'\n\t\t\t\t'  Text
+'}'           Operator
+'\n\t\t\t'    Text
+'}'           Operator
+'\n'          Text

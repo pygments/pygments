@@ -1,0 +1,314 @@
+'# Based on examples included the RFC files.' Comment.Single
+'\n'          Text
+
+"# It doesn't show cases for every token parsed by the lexer." Comment.Single
+'\n\n'        Text
+
+'require'     Keyword.Namespace
+' '           Text
+'['           Punctuation
+'"fileinto"'  Literal.String
+','           Punctuation
+' '           Text
+'"envelope"'  Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'if'          Name.Builtin
+' '           Text
+'address'     Name.Builtin
+' '           Text
+':'           Name.Tag
+'is'          Name.Tag
+' '           Text
+'"to"'        Literal.String
+' '           Text
+'"demo@example.org"' Literal.String
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'fileinto'    Name.Builtin
+' '           Text
+'"demo-list"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'elsif'       Name.Builtin
+' '           Text
+'envelope'    Name.Builtin
+' '           Text
+':'           Name.Tag
+'is'          Name.Tag
+' '           Text
+'"from"'      Literal.String
+' '           Text
+'"owner@example.org"' Literal.String
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'fileinto'    Name.Builtin
+' '           Text
+'"lists.cipe"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'elsif'       Name.Builtin
+' '           Text
+'('           Punctuation
+'exists'      Name.Builtin
+' '           Text
+'"X-Cron-Env"' Literal.String
+','           Punctuation
+'\n          ' Text
+'header'      Name.Builtin
+' '           Text
+':'           Name.Tag
+'regex'       Name.Tag
+'    '        Text
+'['           Punctuation
+'"subject"'   Literal.String
+']'           Punctuation
+' '           Text
+'['           Punctuation
+'".* A"'      Literal.String
+','           Punctuation
+'\n                                        ' Text
+'".* B"'      Literal.String
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'addflag'     Name.Builtin
+' '           Text
+'"Cron"'      Literal.String
+';'           Punctuation
+'\n  '        Text
+'stop'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'else'        Name.Builtin
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'keep'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'if'          Name.Builtin
+' '           Text
+'body'        Name.Builtin
+' '           Text
+':'           Name.Tag
+'text'        Name.Tag
+' '           Text
+':'           Name.Tag
+'contains'    Name.Tag
+' '           Text
+'"project schedule"' Literal.String
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'fileinto'    Name.Builtin
+' '           Text
+'"project/schedule"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'require'     Keyword.Namespace
+' '           Text
+'"vacation"'  Literal.String
+';'           Punctuation
+'\n'          Text
+
+'if'          Name.Builtin
+' '           Text
+'header'      Name.Builtin
+' '           Text
+':'           Name.Tag
+'contains'    Name.Tag
+' '           Text
+'"subject"'   Literal.String
+' '           Text
+'"lunch"'     Literal.String
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'vacation'    Name.Builtin
+' '           Text
+':'           Name.Tag
+'handle'      Name.Tag
+' '           Text
+'"ran-away"'  Literal.String
+' '           Text
+'"I\'m out and can\'t meet for lunch"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'else'        Name.Builtin
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'vacation'    Name.Builtin
+' '           Text
+':'           Name.Tag
+'handle'      Name.Tag
+' '           Text
+'"ran-away"'  Literal.String
+' '           Text
+'"I\'m out"'  Literal.String
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n\n'      Text
+
+'if'          Name.Builtin
+' '           Text
+'virustest'   Name.Builtin
+' '           Text
+':'           Name.Tag
+'value'       Name.Tag
+' '           Text
+'"eq"'        Literal.String
+' '           Text
+':'           Name.Tag
+'comparator'  Name.Tag
+' '           Text
+'"i;ascii-numeric"' Literal.String
+' '           Text
+'"0"'         Literal.String
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'fileinto'    Name.Builtin
+' '           Text
+'"Unscanned"' Literal.String
+';'           Punctuation
+'\n  '        Text
+'/* Infected with high probability (value range in 1-5) */' Comment.Multiline
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'if'          Name.Builtin
+' '           Text
+'envelope'    Name.Builtin
+' '           Text
+':'           Name.Tag
+'detail'      Name.Tag
+' '           Text
+'"to"'        Literal.String
+' '           Text
+'"spam"'      Literal.String
+'{'           Punctuation
+'\n  '        Text
+'fileinto'    Name.Builtin
+' '           Text
+'"Spam"'      Literal.String
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'if'          Name.Builtin
+' '           Text
+'size'        Name.Builtin
+' '           Text
+':'           Name.Tag
+'over'        Name.Tag
+' '           Text
+'100'         Literal.Number
+'k'           Literal.Number
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'discard'     Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'elsif'       Name.Builtin
+' '           Text
+'address'     Name.Builtin
+' '           Text
+':'           Name.Tag
+'DOMAIN'      Name.Tag
+' '           Text
+':'           Name.Tag
+'is'          Name.Tag
+' '           Text
+'['           Punctuation
+'"From"'      Literal.String
+','           Punctuation
+' '           Text
+'"To"'        Literal.String
+']'           Punctuation
+' '           Text
+'"example.com"' Literal.String
+'\n'          Text
+
+'{'           Punctuation
+'\n  '        Text
+'keep'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'require'     Keyword.Namespace
+' '           Text
+'['           Punctuation
+'"reject"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'if'          Name.Builtin
+' '           Text
+'size'        Name.Builtin
+' '           Text
+':'           Name.Tag
+'over'        Name.Tag
+' '           Text
+'1'           Literal.Number
+'M'           Literal.Number
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'reject'      Name.Builtin
+' '           Text
+'text:'       Name.Tag
+'\nYour message is too big.  If you want to send me a big attachment,\n' Literal.String
+
+'put it on a public web site and send me a URL.\n' Literal.String
+
+'.'           Punctuation
+'\n'          Text
+
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

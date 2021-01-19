@@ -1,0 +1,137 @@
+'Section'     Literal.String.Escape
+' '           Text
+'"Files"'     Literal.String.Escape
+'\n\t'        Text
+'ModulePath'  Name.Builtin
+' '           Text
+'"/usr/lib64/opengl/nvidia/extensions"' Name.Constant
+'\n\t'        Text
+'ModulePath'  Name.Builtin
+' '           Text
+'"/usr/lib64/xorg/modules"' Name.Constant
+'\n'          Text
+
+'EndSection'  Literal.String.Escape
+'\n\n'        Text
+
+'Section'     Literal.String.Escape
+' '           Text
+'"ServerLayout"' Literal.String.Escape
+'\n\t'        Text
+'Identifier'  Name.Builtin
+'     '       Text
+'"XFree86 Configured"' Name.Constant
+'\n\t'        Text
+'Screen'      Name.Builtin
+' '           Text
+'"Screen"'    Name.Constant
+'\n'          Text
+
+'EndSection'  Literal.String.Escape
+'\n\n'        Text
+
+'Section'     Literal.String.Escape
+' '           Text
+'"ServerFlags"' Literal.String.Escape
+'\n\t'        Text
+'Option'      Name.Builtin
+' '           Text
+'"AutoAddDevices" "false"' Name.Constant
+'\n'          Text
+
+'EndSection'  Literal.String.Escape
+'\n\n'        Text
+
+'Section'     Literal.String.Escape
+' '           Text
+'"Screen"'    Literal.String.Escape
+'\n        '  Text
+'Identifier'  Name.Builtin
+' '           Text
+'"Screen"'    Name.Constant
+'\n\t'        Text
+'Device'      Name.Builtin
+' '           Text
+'"Card0"'     Name.Constant
+'\n\t'        Text
+'DefaultDepth' Name.Builtin
+'    '        Text
+'24'          Name.Constant
+'\n\t'        Text
+'SubSection'  Literal.String.Escape
+'     '       Text
+'"Display"'   Literal.String.Escape
+'\n\t\t'      Text
+'Depth'       Name.Builtin
+'       '     Text
+'24'          Name.Constant
+'\n\t'        Text
+'EndSubSection' Literal.String.Escape
+'\n        '  Text
+'Option'      Name.Builtin
+' '           Text
+'"UseEDIDDpi" "False"' Name.Constant
+'\n        '  Text
+'Option'      Name.Builtin
+' '           Text
+'"DPI" "96 x 96"' Name.Constant
+'\n'          Text
+
+'EndSection'  Literal.String.Escape
+'\n\n'        Text
+
+'Section'     Literal.String.Escape
+' '           Text
+'"Device"'    Literal.String.Escape
+'\n    '      Text
+'Identifier'  Name.Builtin
+'  '          Text
+'"Card0"'     Name.Constant
+'\n    '      Text
+'Driver'      Name.Builtin
+'      '      Text
+'"nvidia"'    Name.Constant
+'\n    '      Text
+'VendorName'  Name.Builtin
+'  '          Text
+'"NVIDIA Corporation" ' Name.Constant
+'# inline comment' Comment
+'\n    '      Text
+'#Option      "RenderAccel" "true"' Comment
+'\n    \n    ' Text
+'#Option      "NvAgp" "3"' Comment
+'\n    '      Text
+'#Option      "AllowGLXWithComposite" "true"' Comment
+'\n    '      Text
+'#Option      "AddARGBGLXVisuals" "true"' Comment
+'\n    '      Text
+'#Option      "XAANoOffscreenPixmaps" "true"' Comment
+'\n    '      Text
+'#Option      "DRI" "true"' Comment
+'\n    \n    ' Text
+'#Option      "UseEvents" "false"' Comment
+'\n    '      Text
+'#Option      "TripleBuffer" "1"' Comment
+'\n    '      Text
+'#Option      "DamageEvents" "1"' Comment
+'\n    '      Text
+'##Option      "BackingStore" "1"' Comment
+'\n    '      Text
+'#Option      "PixmapCacheSize" "70000"' Comment
+'\n    '      Text
+'#Option      "OnDemandVBlankInterrupts" "true"' Comment
+'\n'          Text
+
+'EndSection'  Literal.String.Escape
+'\n\n'        Text
+
+'Section'     Literal.String.Escape
+' '           Text
+'"Extensions"' Literal.String.Escape
+'\n'          Text
+
+'#    Option "Composite" "Disabled"' Comment
+'\n'          Text
+
+'EndSection'  Literal.String.Escape
+'\n'          Text

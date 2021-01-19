@@ -1,0 +1,855 @@
+'Red/System [' Generic.Strong
+'\n    '      Text
+'Title:'      Generic.Subheading
+'      '      Text
+'"'           Literal.String
+'Red/System example file' Literal.String
+'"'           Literal.String
+'\n    '      Text
+'Purpose:'    Generic.Subheading
+'    '        Text
+'"'           Literal.String
+'Just some code for testing Pygments colorizer' Literal.String
+'"'           Literal.String
+'\n    '      Text
+'Language:'   Generic.Subheading
+'   '         Text
+'http://www.red-lang.org/' Name.Decorator
+'\n'          Text
+
+']'           Generic.Strong
+'\n\n'        Text
+
+'#include'    Keyword.Namespace
+' '           Text
+'%../common/FPU-configuration.reds' Name.Decorator
+'\n\n'        Text
+
+'; C types\n' Comment
+
+'\n'          Text
+
+'#define'     Keyword.Namespace
+' '           Text
+'time!'       Keyword.Type
+'                   ' Text
+'long!'       Keyword.Type
+'\n'          Text
+
+'#define'     Keyword.Namespace
+' '           Text
+'clock!'      Keyword.Type
+'                  ' Text
+'long!'       Keyword.Type
+'\n\n'        Text
+
+'date!:'      Generic.Subheading
+' '           Text
+'alias'       Name.Exception
+' '           Text
+'struct!'     Keyword.Type
+' '           Text
+'['           Generic.Strong
+'\n    '      Text
+'second'      Name.Variable
+'                      ' Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'  '          Text
+'; 0-61 (60?)\n' Comment
+
+'    '        Text
+'minute'      Name.Variable
+'                      ' Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'  '          Text
+'; 0-59\n'    Comment
+
+'    '        Text
+'hour'        Name.Variable
+'                        ' Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'  '          Text
+'; 0-23\n'    Comment
+
+'\n    '      Text
+'day'         Name.Variable
+'                         ' Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'  '          Text
+'; 1-31\n'    Comment
+
+'    '        Text
+'month'       Name.Variable
+'                       ' Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'  '          Text
+'; 0-11\n'    Comment
+
+'    '        Text
+'year'        Name.Variable
+'                        ' Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'  '          Text
+'; Since 1900\n' Comment
+
+'\n    '      Text
+'weekday'     Name.Variable
+'                     ' Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'  '          Text
+'; 0-6 since Sunday\n' Comment
+
+'    '        Text
+'yearday'     Name.Variable
+'                     ' Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'  '          Text
+'; 0-365\n'   Comment
+
+'    '        Text
+'daylight-saving-time?' Name.Variable
+'       '     Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'  '          Text
+'; Negative: unknown\n' Comment
+
+']'           Generic.Strong
+'\n\n'        Text
+
+'#either'     Keyword.Namespace
+' '           Text
+'OS'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'Windows"    Name.Variable.Instance
+' '           Text
+'['           Generic.Strong
+'\n    '      Text
+'#define'     Keyword.Namespace
+' '           Text
+'clocks-per-second' Name.Variable
+'   '         Text
+'1000'        Literal.Number
+'\n'          Text
+
+']'           Generic.Strong
+'['           Generic.Strong
+'\n    '      Text
+'; CLOCKS_PER_SEC value for Syllable, Linux (XSI-conformant systems)\n' Comment
+
+'    '        Text
+'; TODO: check for other systems\n' Comment
+
+'    '        Text
+'#define'     Keyword.Namespace
+' '           Text
+'clocks-per-second' Name.Variable
+'   '         Text
+"1000'000"    Literal.Number
+'\n'          Text
+
+']'           Generic.Strong
+' \n\n'       Text
+
+'#import'     Keyword.Namespace
+' '           Text
+'['           Generic.Strong
+'LIBC-file'   Name.Variable
+' '           Text
+'cdecl'       Keyword.Namespace
+' '           Text
+'['           Generic.Strong
+'\n\n    '    Text
+'; Error handling\n' Comment
+
+'\n    '      Text
+'form-error:' Generic.Subheading
+' '           Text
+'"'           Literal.String
+'strerror'    Literal.String
+'"'           Literal.String
+' '           Text
+'['           Generic.Strong
+'  '          Text
+'; Return error description.\n' Comment
+
+'        '    Text
+'code'        Name.Variable
+'            ' Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n        '  Text
+'return:'     Generic.Subheading
+'         '   Text
+'['           Generic.Strong
+'c-string!'   Keyword.Type
+']'           Generic.Strong
+'\n    '      Text
+']'           Generic.Strong
+'\n    '      Text
+'print-error:' Generic.Subheading
+' '           Text
+'"'           Literal.String
+'perror'      Literal.String
+'"'           Literal.String
+' '           Text
+'['           Generic.Strong
+'  '          Text
+'; Print error to standard error output.\n' Comment
+
+'        '    Text
+'string'      Name.Variable
+'          '  Text
+'['           Generic.Strong
+'c-string!'   Keyword.Type
+']'           Generic.Strong
+'\n    '      Text
+']'           Generic.Strong
+'\n\n\n    '  Text
+'; Memory management\n' Comment
+
+'\n    '      Text
+'make:'       Generic.Subheading
+' '           Text
+'"'           Literal.String
+'calloc'      Literal.String
+'"'           Literal.String
+' '           Text
+'['           Generic.Strong
+'  '          Text
+'; Allocate zero-filled memory.\n' Comment
+
+'        '    Text
+'chunks'      Name.Variable
+'          '  Text
+'['           Generic.Strong
+'size!'       Keyword.Type
+']'           Generic.Strong
+'\n        '  Text
+'size'        Name.Variable
+'            ' Text
+'['           Generic.Strong
+'size!'       Keyword.Type
+']'           Generic.Strong
+'\n        '  Text
+'return:'     Generic.Subheading
+'         '   Text
+'['           Generic.Strong
+'binary!'     Keyword.Type
+']'           Generic.Strong
+'\n    '      Text
+']'           Generic.Strong
+'\n    '      Text
+'resize:'     Generic.Subheading
+' '           Text
+'"'           Literal.String
+'realloc'     Literal.String
+'"'           Literal.String
+' '           Text
+'['           Generic.Strong
+'  '          Text
+'; Resize memory allocation.\n' Comment
+
+'        '    Text
+'memory'      Name.Variable
+'          '  Text
+'['           Generic.Strong
+'binary!'     Keyword.Type
+']'           Generic.Strong
+'\n        '  Text
+'size'        Name.Variable
+'            ' Text
+'['           Generic.Strong
+'size!'       Keyword.Type
+']'           Generic.Strong
+'\n        '  Text
+'return:'     Generic.Subheading
+'         '   Text
+'['           Generic.Strong
+'binary!'     Keyword.Type
+']'           Generic.Strong
+'\n    '      Text
+']'           Generic.Strong
+'\n '         Text
+']'           Generic.Strong
+'\n \n '      Text
+'JVM!:'       Generic.Subheading
+' '           Text
+'alias'       Name.Exception
+' '           Text
+'struct!'     Keyword.Type
+' '           Text
+'['           Generic.Strong
+'\n    '      Text
+'reserved0'   Name.Variable
+'                   ' Text
+'['           Generic.Strong
+'int-ptr!'    Keyword.Type
+']'           Generic.Strong
+'\n    '      Text
+'reserved1'   Name.Variable
+'                   ' Text
+'['           Generic.Strong
+'int-ptr!'    Keyword.Type
+']'           Generic.Strong
+'\n    '      Text
+'reserved2'   Name.Variable
+'                   ' Text
+'['           Generic.Strong
+'int-ptr!'    Keyword.Type
+']'           Generic.Strong
+'\n    \n    ' Text
+'DestroyJavaVM' Name.Variable
+'               ' Text
+'['           Generic.Strong
+'function!'   Keyword.Type
+' '           Text
+'['           Generic.Strong
+'['           Generic.Strong
+'JNICALL'     Keyword.Namespace
+']'           Generic.Strong
+' '           Text
+'vm'          Name.Variable
+' '           Text
+'['           Generic.Strong
+'JVM-ptr!'    Keyword.Type
+']'           Generic.Strong
+' '           Text
+'return:'     Generic.Subheading
+' '           Text
+'['           Generic.Strong
+'jint!'       Keyword.Type
+']'           Generic.Strong
+']'           Generic.Strong
+']'           Generic.Strong
+'\n    '      Text
+'AttachCurrentThread' Name.Variable
+'         '   Text
+'['           Generic.Strong
+'function!'   Keyword.Type
+' '           Text
+'['           Generic.Strong
+'['           Generic.Strong
+'JNICALL'     Keyword.Namespace
+']'           Generic.Strong
+' '           Text
+'vm'          Name.Variable
+' '           Text
+'['           Generic.Strong
+'JVM-ptr!'    Keyword.Type
+']'           Generic.Strong
+' '           Text
+'penv'        Name.Variable
+' '           Text
+'['           Generic.Strong
+'struct!'     Keyword.Type
+' '           Text
+'['           Generic.Strong
+'p'           Name.Variable
+' '           Text
+'['           Generic.Strong
+'int-ptr!'    Keyword.Type
+']'           Generic.Strong
+']'           Generic.Strong
+']'           Generic.Strong
+' '           Text
+'args'        Name.Variable
+' '           Text
+'['           Generic.Strong
+'byte-ptr!'   Keyword.Type
+']'           Generic.Strong
+' '           Text
+'return:'     Generic.Subheading
+' '           Text
+'['           Generic.Strong
+'jint!'       Keyword.Type
+']'           Generic.Strong
+']'           Generic.Strong
+']'           Generic.Strong
+'\n    '      Text
+'DetachCurrentThread' Name.Variable
+'         '   Text
+'['           Generic.Strong
+'function!'   Keyword.Type
+' '           Text
+'['           Generic.Strong
+'['           Generic.Strong
+'JNICALL'     Keyword.Namespace
+']'           Generic.Strong
+' '           Text
+'vm'          Name.Variable
+' '           Text
+'['           Generic.Strong
+'JVM-ptr!'    Keyword.Type
+']'           Generic.Strong
+' '           Text
+'return:'     Generic.Subheading
+' '           Text
+'['           Generic.Strong
+'jint!'       Keyword.Type
+']'           Generic.Strong
+']'           Generic.Strong
+']'           Generic.Strong
+'\n    '      Text
+'GetEnv'      Name.Variable
+'                      ' Text
+'['           Generic.Strong
+'function!'   Keyword.Type
+' '           Text
+'['           Generic.Strong
+'['           Generic.Strong
+'JNICALL'     Keyword.Namespace
+']'           Generic.Strong
+' '           Text
+'vm'          Name.Variable
+' '           Text
+'['           Generic.Strong
+'JVM-ptr!'    Keyword.Type
+']'           Generic.Strong
+' '           Text
+'penv'        Name.Variable
+' '           Text
+'['           Generic.Strong
+'struct!'     Keyword.Type
+' '           Text
+'['           Generic.Strong
+'p'           Name.Variable
+' '           Text
+'['           Generic.Strong
+'int-ptr!'    Keyword.Type
+']'           Generic.Strong
+']'           Generic.Strong
+']'           Generic.Strong
+' '           Text
+'version'     Name.Variable
+' '           Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+' '           Text
+'return:'     Generic.Subheading
+' '           Text
+'['           Generic.Strong
+'jint!'       Keyword.Type
+']'           Generic.Strong
+']'           Generic.Strong
+']'           Generic.Strong
+'\n    '      Text
+'AttachCurrentThreadAsDaemon' Name.Variable
+' '           Text
+'['           Generic.Strong
+'function!'   Keyword.Type
+' '           Text
+'['           Generic.Strong
+'['           Generic.Strong
+'JNICALL'     Keyword.Namespace
+']'           Generic.Strong
+' '           Text
+'vm'          Name.Variable
+' '           Text
+'['           Generic.Strong
+'JVM-ptr!'    Keyword.Type
+']'           Generic.Strong
+' '           Text
+'penv'        Name.Variable
+' '           Text
+'['           Generic.Strong
+'struct!'     Keyword.Type
+' '           Text
+'['           Generic.Strong
+'p'           Name.Variable
+' '           Text
+'['           Generic.Strong
+'int-ptr!'    Keyword.Type
+']'           Generic.Strong
+']'           Generic.Strong
+']'           Generic.Strong
+' '           Text
+'args'        Name.Variable
+' '           Text
+'['           Generic.Strong
+'byte-ptr!'   Keyword.Type
+']'           Generic.Strong
+' '           Text
+'return:'     Generic.Subheading
+' '           Text
+'['           Generic.Strong
+'jint!'       Keyword.Type
+']'           Generic.Strong
+']'           Generic.Strong
+']'           Generic.Strong
+'\n'          Text
+
+']'           Generic.Strong
+'\n\n '       Text
+';just some datatypes for testing:\n' Comment
+
+' \n '        Text
+'#some-hash'  Name.Label
+'\n '         Text
+'10-1-2013'   Literal.String.Other
+'\n '         Text
+'quit'        Name.Exception
+'\n \n '      Text
+';binary:\n'  Comment
+
+' '           Text
+'#{00FF0000}' Literal.Number.Hex
+'\n '         Text
+'#{00FF0000 FF000000}' Literal.Number.Hex
+'\n '         Text
+'#{00FF0000\tFF000000}' Literal.Number.Hex
+' '           Text
+';with tab instead of space\n' Comment
+
+' '           Text
+'2#{'         Literal.Number.Hex
+'00001111'    Literal.Number.Hex
+'}'           Literal.Number.Hex
+'\n '         Text
+'64#{/wAAAA==}' Literal.Number.Hex
+'\n '         Text
+'64#{/wAAA A==}' Literal.Number.Hex
+' '           Text
+';with space\t inside\n' Comment
+
+' '           Text
+'64#{/wAAA\tA==}' Literal.Number.Hex
+' '           Text
+';with tab inside\n' Comment
+
+' \n \n '     Text
+';string with char\n' Comment
+
+' '           Text
+'{'           Literal.String
+'bla '        Literal.String
+'^(ff)'       Literal.String.Escape
+' foo'        Literal.String
+'}'           Literal.String
+'\n '         Text
+'{'           Literal.String
+'bla '        Literal.String
+'^('          Literal.String.Escape
+'('           Literal.String
+' foo'        Literal.String
+'}'           Literal.String
+'\n '         Text
+';some numbers:\n' Comment
+
+' '           Text
+'12'          Literal.Number
+'\n '         Text
+"1'000"       Literal.Number
+'\n '         Text
+'1.2'         Literal.Number.Float
+'\n '         Text
+'FF00FF00'    Literal.Number.Hex
+'h'           Name.Variable
+'\n'          Text.Whitespace
+
+' \n '        Text
+';some tests of hexa number notation with not common ending\n' Comment
+
+' '           Text
+'['           Generic.Strong
+'ff00'        Literal.Number.Hex
+'h'           Name.Variable
+' '           Text.Whitespace
+'ff00'        Literal.Number.Hex
+'h'           Name.Variable
+']'           Generic.Strong
+' '           Text
+'ff00'        Literal.Number.Hex
+'h'           Name.Variable
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+'FF'          Literal.Number.Hex
+'h'           Name.Variable
+'"'           Literal.String
+'foo'         Literal.String
+'"'           Literal.String
+' '           Text
+'00'          Literal.Number.Hex
+'h'           Name.Variable
+'('           Generic.Strong
+'1'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+')'           Generic.Strong
+' '           Text
+'('           Generic.Strong
+'AE'          Literal.Number.Hex
+'h'           Name.Variable
+')'           Generic.Strong
+'\n\n'        Text
+
+';normal words:\n' Comment
+
+'foo'         Name.Variable
+' '           Text
+'char'        Name.Variable
+'\n\n'        Text
+
+';get-word\n' Comment
+
+':foo'        Generic.Subheading
+'\n \n'       Text
+
+';lit-word:\n' Comment
+
+"'foo"        Name.Variable.Instance
+' '           Text
+"'foo"        Name.Variable.Instance
+'\n\n'        Text
+
+';multiple comment tests...\n' Comment
+
+'1'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number
+'\n'          Text
+
+'comment "'   Comment
+'aa'          Comment
+'"'           Comment
+'\t\t\t\t\t\t\t\t\n' Text
+
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'comment {'   Comment
+'aa'          Comment
+'}'           Comment
+'\n'          Text
+
+'3'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'3'           Literal.Number
+'\n'          Text
+
+'comment {'   Comment
+'a'           Comment
+'^{'          Comment
+'}'           Comment
+'\n'          Text
+
+'4'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'4'           Literal.Number
+'\n'          Text
+
+'comment {'   Comment
+'{'           Comment
+'}'           Comment
+'}'           Comment
+'\n'          Text
+
+'5'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'5'           Literal.Number
+'\n'          Text
+
+'comment {'   Comment
+'\n\tfoo: 6\n' Comment
+
+'}'           Comment
+'\n'          Text
+
+'6'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'6'           Literal.Number
+'\n'          Text
+
+'comment ['   Comment
+'foo: 6'      Comment
+']'           Comment
+'\n'          Text
+
+'7'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'7'           Literal.Number
+'\n'          Text
+
+'comment ['   Comment
+'foo: '       Comment
+'"'           Comment
+'['           Comment
+'"'           Comment
+' '           Comment
+']'           Comment
+'\n'          Text
+
+'8'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'8'           Literal.Number
+'\n'          Text
+
+'comment ['   Comment
+'foo: '       Comment
+'{'           Comment
+'^{'          Comment
+'}'           Comment
+' '           Comment
+']'           Comment
+'\n'          Text
+
+'9'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'9'           Literal.Number
+'\n'          Text
+
+'comment ['   Comment
+'foo: '       Comment
+'{'           Comment
+'boo'         Comment
+'}'           Comment
+' '           Comment
+']'           Comment
+'\n'          Text
+
+'10'          Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'10'          Literal.Number
+'\n'          Text
+
+'comment 5-May-2014/11:17:34+2:00' Comment
+'\n'          Text
+
+'11'          Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'11'          Literal.Number
+'\n\n\n'      Text
+
+'to-integer'  Keyword
+' '           Text
+'foo'         Name.Variable
+'\n'          Text
+
+'foo'         Name.Variable
+'/'           Name.Attribute
+'('           Generic.Strong
+'a'           Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number
+')'           Generic.Strong
+'/b'          Name.Attribute
+'\n\n'        Text
+
+'call'        Name.Exception
+'/output'     Name.Attribute
+' '           Text
+'reform'      Name.Variable
+' '           Text
+'['           Generic.Strong
+"'which"      Name.Variable.Instance
+' '           Text
+'interpreter' Name.Variable
+']'           Generic.Strong
+' '           Text
+'path:'       Generic.Subheading
+' '           Text
+'copy'        Name.Function
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+'\n\n '       Text
+'version-1.1:' Generic.Subheading
+'   '         Text
+'00010001'    Literal.Number.Hex
+'h'           Name.Variable
+'\n'          Text.Whitespace
+
+' \n '        Text
+'#if'         Keyword.Namespace
+' '           Text
+'type'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'exe"        Name.Variable.Instance
+' '           Text
+'['           Generic.Strong
+'\n    '      Text
+'push'        Name.Exception
+' '           Text
+'system'      Name.Exception
+'/stack'      Name.Attribute
+'/frame'      Name.Attribute
+'                 ' Text
+';-- save previous frame pointer\n' Comment
+
+'    '        Text
+'system'      Name.Exception
+'/stack'      Name.Attribute
+'/frame:'     Name.Attribute
+' '           Text
+'system'      Name.Exception
+'/stack'      Name.Attribute
+'/top'        Name.Attribute
+'    '        Text
+';-- @@ reposition frame pointer just after the catch flag\n' Comment
+
+']'           Generic.Strong
+'\n'          Text
+
+'push'        Name.Exception
+' '           Text
+'CATCH_ALL'   Name.Variable
+'                              ' Text
+';-- exceptions root barrier\n' Comment
+
+'push'        Name.Exception
+' '           Text
+'0'           Literal.Number
+'                                      ' Text
+';-- keep stack aligned on 64-bit\n' Comment

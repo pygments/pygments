@@ -1,0 +1,2968 @@
+'############################################################################\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       File:     kaleid.icn\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       Subject:  Program to produce kaleidoscope\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       Author:   Stephen B. Wampler\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       Date:     May 2, 2001\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'############################################################################\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#   This file is in the public domain.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'############################################################################\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#    Lots of options, most easily set by with the interface after\n' Comment.Single
+
+"#    startup.  The only one that isn't set that way is -wn where 'n' is\n" Comment.Single
+
+'#    the size of the kaleidoscope window (default is 600 square).\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#    Terminology (and options):\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       Window_size (-wN): How big of a display window to use.\n' Comment.Single
+
+'#           At the current time, this can only be set via a\n' Comment.Single
+
+'#           command line argument.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       Density (-dN): How many circles per octant to keep on display\n' Comment.Single
+
+'#           at any one time.  There is NO LIMIT to the density.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       Duration (-lN): How long to keep drawing circles (measured in\n' Comment.Single
+
+'#           in circles) once the density is reached.  There is NO LIMIT\n' Comment.Single
+
+'#           to the duration.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       MaxRadius (-MN): Maximum radius of any circle.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       MinRadius (-mN): Preferred minimum radius.  Circles with centers\n' Comment.Single
+
+'#           near the edge have their radii forced down to fit entirely\n' Comment.Single
+
+'#           on the display\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       MaxOffset (-XN): Maximum offset from center of display (may wrap).\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       MinOffset (-xN): Minimum offset\n' Comment.Single
+
+'#\n'         Comment.Single
+
+"#       Skew (-sN): Shift probability of placing a circle at a 'typical'\n" Comment.Single
+
+'#           offset.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       Fill (-F): Turns off filling the circles.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       Clear (-C): After the duration, reduces density back to 0 before\n' Comment.Single
+
+'#           quitting.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#       Random Seed: (-rN): Sets the random number seed.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'# Thanks to Jon Lipp for help on using vidgets, and to Mary Camaron\n' Comment.Single
+
+'#   for her Interface Builder.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'############################################################################\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#  Requires:  Version 9 graphics\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'############################################################################\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#  Links:  vidgets, vslider, vtext, vbuttons, vradio, wopen, xcompat\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'############################################################################\n' Comment.Single
+
+'\n'          Text
+
+'link'        Keyword.Declaration
+' '           Text
+'vidgets'     Name
+'\n'          Text
+
+'link'        Keyword.Declaration
+' '           Text
+'vslider'     Name
+'\n'          Text
+
+'link'        Keyword.Declaration
+' '           Text
+'vtext'       Name
+'\n'          Text
+
+'link'        Keyword.Declaration
+' '           Text
+'vbuttons'    Name
+'\n'          Text
+
+'link'        Keyword.Declaration
+' '           Text
+'vradio'      Name
+'\n'          Text
+
+'link'        Keyword.Declaration
+' '           Text
+'wopen'       Name
+'\n'          Text
+
+'link'        Keyword.Declaration
+' '           Text
+'xcompat'     Name
+'\n\n'        Text
+
+'global'      Keyword.Reserved
+' '           Text
+'Clear'       Name
+','           Punctuation
+' '           Text
+'fill'        Name
+','           Punctuation
+' '           Text
+'duration'    Name
+','           Punctuation
+' '           Text
+'density'     Name
+','           Punctuation
+' '           Text
+'maxoff'      Name
+','           Punctuation
+' '           Text
+'minoff'      Name
+'\n'          Text
+
+'global'      Keyword.Reserved
+' '           Text
+'maxradius'   Name
+','           Punctuation
+' '           Text
+'minradius'   Name
+','           Punctuation
+' '           Text
+'r_seed'      Name
+','           Punctuation
+' '           Text
+'skew'        Name
+','           Punctuation
+' '           Text
+'win_size'    Name
+','           Punctuation
+' '           Text
+'mid_win'     Name
+'\n'          Text
+
+'global'      Keyword.Reserved
+' '           Text
+'root'        Name
+','           Punctuation
+' '           Text
+'check1'      Name
+','           Punctuation
+' '           Text
+'mainwin'     Name
+','           Punctuation
+' '           Text
+'use_dialog'  Name
+'\n'          Text
+
+'global'      Keyword.Reserved
+' '           Text
+'draw_circle' Name
+'\n\n'        Text
+
+'global'      Keyword.Reserved
+' '           Text
+'du_v'        Name
+','           Punctuation
+' '           Text
+'de_v'        Name
+','           Punctuation
+' '           Text
+'rs_v'        Name
+','           Punctuation
+' '           Text
+'sk_v'        Name
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'main'        Name.Function
+' '           Text
+'('           Punctuation
+'args'        Name.Variable
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'draw_circle' Name
+' '           Text
+':='          Operator
+' '           Text
+'DrawCircle'  Name.Function
+'\n\n'        Text
+
+'   '         Text
+'init_globs'  Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'process_args' Name
+'('           Punctuation
+'args'        Name.Function
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'if'          Keyword.Reserved
+' '           Text
+'\\'          Operator
+'use_dialog'  Name
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'        '    Text
+'# have vidgets, so use them for args.\n' Comment.Single
+
+'      '      Text
+'mainwin'     Name
+' '           Text
+':='          Operator
+' '           Text
+'WOpen'       Name
+'('           Punctuation
+'"label=Kaleidoscope"' Literal.String
+','           Punctuation
+' '           Text
+'"width=404"' Literal.String
+','           Punctuation
+' '           Text
+'"height=313"' Literal.String
+','           Punctuation
+' '           Text
+'\n'          Text
+
+'                       ' Text
+'"font=6x12"' Literal.String
+')'           Punctuation
+' '           Text
+'|'           Operator
+'\n'          Text
+
+'                 ' Text
+'stop'        Name.Function
+' '           Text
+'('           Punctuation
+'"bad mainwin"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'root'        Name
+' '           Text
+':='          Operator
+' '           Text
+'ui'          Name
+' '           Text
+'('           Punctuation
+'mainwin'     Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'GetEvents'   Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'quit'        Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'else'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'                       ' Text
+'# just rely on command line arguments\n' Comment.Single
+
+'      '      Text
+'kaleidoscope' Name
+'('           Punctuation
+'r_seed'      Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n\n'        Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'init_globs'  Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'duration'    Name
+' '           Text
+':='          Operator
+' '           Text
+'500'         Literal.Number.Integer
+'                    ' Text
+'# set default characteristics\n' Comment.Single
+
+'   '         Text
+'density'     Name
+' '           Text
+':='          Operator
+' '           Text
+'30'          Literal.Number.Integer
+'\n'          Text
+
+'   '         Text
+'win_size'    Name
+' '           Text
+':='          Operator
+' '           Text
+'600'         Literal.Number.Integer
+'\n'          Text
+
+'   '         Text
+'minoff'      Name
+' '           Text
+':='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'   '         Text
+'maxradius'   Name
+' '           Text
+':='          Operator
+' '           Text
+'150'         Literal.Number.Integer
+'\n'          Text
+
+'   '         Text
+'minradius'   Name
+' '           Text
+':='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'   '         Text
+'skew'        Name
+' '           Text
+':='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'   '         Text
+'fill'        Name
+' '           Text
+':='          Operator
+' '           Text
+'"On"'        Literal.String
+'\n'          Text
+
+'   '         Text
+'draw_circle' Name
+' '           Text
+':='          Operator
+' '           Text
+'FillCircle'  Name.Function
+'\n'          Text
+
+'   '         Text
+'Clear'       Name
+' '           Text
+':='          Operator
+' '           Text
+'"Off"'       Literal.String
+'\n'          Text
+
+'   '         Text
+'r_seed'      Name
+' '           Text
+':='          Operator
+' '           Text
+'map'         Name.Function
+'('           Punctuation
+'"HhMmYy"'    Literal.String
+','           Punctuation
+' '           Text
+'"Hh:Mm:Yy"'  Literal.String
+','           Punctuation
+' '           Text
+'&clock'      Keyword.Reserved
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'# See if the Vidget library is available or not\n' Comment.Single
+
+'   '         Text
+'if'          Keyword.Reserved
+' '           Text
+'\\'          Operator
+'VSet'        Name
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'use_dialog'  Name
+' '           Text
+':='          Operator
+' '           Text
+'"yes"'       Literal.String
+'\n'          Text
+
+'            ' Text
+'else'        Keyword.Reserved
+' '           Text
+'use_dialog'  Name
+' '           Text
+':='          Operator
+' '           Text
+'&null'       Keyword.Constant
+'\n\n'        Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'process_args' Name.Function
+'('           Punctuation
+'args'        Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'local'       Keyword.Reserved
+' '           Text
+'arg'         Name
+'\n\n'        Text
+
+'   '         Text
+"# really only needed if you don't use the dialog box\n" Comment.Single
+
+'   '         Text
+'every'       Keyword.Reserved
+' '           Text
+'arg'         Name
+' '           Text
+':='          Operator
+' '           Text
+'!'           Operator
+'args'        Name.Function
+' '           Text
+'do'          Keyword.Reserved
+' '           Text
+'case'        Keyword.Reserved
+' '           Text
+'arg'         Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+'+'           Operator
+':'           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'of'          Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'"-w"'        Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'win_size'    Name
+' '           Text
+':='          Operator
+' '           Text
+'integer'     Name.Function
+'('           Punctuation
+'arg'         Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+':'           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'       '     Text
+'# window size\n' Comment.Single
+
+'      '      Text
+'"-d"'        Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'density'     Name
+' '           Text
+':='          Operator
+' '           Text
+'integer'     Name.Function
+'('           Punctuation
+'arg'         Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+':'           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'        '    Text
+'# density of circles\n' Comment.Single
+
+'      '      Text
+'"-l"'        Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'duration'    Name
+' '           Text
+':='          Operator
+' '           Text
+'integer'     Name.Function
+'('           Punctuation
+'arg'         Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+':'           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'       '     Text
+'# duration\n' Comment.Single
+
+'      '      Text
+'"-M"'        Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'maxradius'   Name
+' '           Text
+':='          Operator
+' '           Text
+'integer'     Name.Function
+'('           Punctuation
+'arg'         Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+':'           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'      '      Text
+'# maximum radius\n' Comment.Single
+
+'      '      Text
+'"-m"'        Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'minradius'   Name
+' '           Text
+':='          Operator
+' '           Text
+'integer'     Name.Function
+'('           Punctuation
+'arg'         Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+':'           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'      '      Text
+'# minimum radius\n' Comment.Single
+
+'      '      Text
+'"-X"'        Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'maxoff'      Name
+' '           Text
+':='          Operator
+' '           Text
+'integer'     Name.Function
+'('           Punctuation
+'arg'         Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+':'           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'         '   Text
+'# maximum offset\n' Comment.Single
+
+'      '      Text
+'"-x"'        Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'minoff'      Name
+' '           Text
+':='          Operator
+' '           Text
+'integer'     Name.Function
+'('           Punctuation
+'arg'         Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+':'           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'         '   Text
+'# minimum offset\n' Comment.Single
+
+'      '      Text
+'"-s"'        Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'skew'        Name
+' '           Text
+':='          Operator
+' '           Text
+'numeric'     Name.Function
+'('           Punctuation
+'arg'         Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+':'           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'           ' Text
+'# set skewedness\n' Comment.Single
+
+'      '      Text
+'"-F"'        Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'fill'        Name
+' '           Text
+':='          Operator
+' '           Text
+'&null'       Keyword.Constant
+'                       ' Text
+'# turn off fill\n' Comment.Single
+
+'      '      Text
+'"-C"'        Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'Clear'       Name
+' '           Text
+':='          Operator
+' '           Text
+'"yes"'       Literal.String
+'                      ' Text
+'# turn on clear mode\n' Comment.Single
+
+'      '      Text
+'"-r"'        Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'r_seed'      Name
+' '           Text
+':='          Operator
+' '           Text
+'integer'     Name.Function
+'('           Punctuation
+'arg'         Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+':'           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'         '   Text
+'# random seed\n' Comment.Single
+
+'      '      Text
+'"-h"'        Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'stop'        Name.Function
+'('           Punctuation
+'"usage: kal [-wn] [-dn] [-ln] [-Mn] [-mn] [-Xn] [-xn] _\n                     [-sn] [-F] [-C] [-rn]"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'# adjust parameters that depend on the window size...\n' Comment.Single
+
+'   '         Text
+'mid_win'     Name
+' '           Text
+':='          Operator
+' '           Text
+'win_size'    Name
+'/'           Operator
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'   '         Text
+'maxoff'      Name
+' '           Text
+':='          Operator
+' '           Text
+'win_size'    Name
+'-1'          Literal.Number.Integer
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+"# Lorraine Callahan's kaleidoscope program, translated into icon.\n" Comment.Single
+
+'#  (some of the things she did were too sophisticated for me\n' Comment.Single
+
+'#   to spend time to figure out, so the output is square instead of\n' Comment.Single
+
+"#   round), and I use 'xor' to draw instead of writing to separate\n" Comment.Single
+
+'#   bit planes.\n' Comment.Single
+
+'\n'          Text
+
+'global'      Keyword.Reserved
+' '           Text
+'putcircle'   Name
+','           Punctuation
+' '           Text
+'clrcircle'   Name
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'kaleidoscope' Name.Function
+'('           Punctuation
+'r'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'local'       Keyword.Reserved
+' '           Text
+'colors'      Name
+'\n\n'        Text
+
+'   '         Text
+'# What colors to use?  This can be changed to whatever!\n' Comment.Single
+
+'   '         Text
+'colors'      Name
+' '           Text
+':='          Operator
+' '           Text
+'['           Punctuation
+'"red"'       Literal.String
+','           Punctuation
+'"green"'     Literal.String
+','           Punctuation
+'"blue"'      Literal.String
+','           Punctuation
+'"cyan"'      Literal.String
+','           Punctuation
+'"magenta"'   Literal.String
+','           Punctuation
+'"yellow"'    Literal.String
+']'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'&window'     Keyword.Reserved
+' '           Text
+':='          Operator
+' '           Text
+'WOpen'       Name
+'('           Punctuation
+'"label=Kaleidoscope: \'q\' quits"' Literal.String
+','           Punctuation
+' '           Text
+'"width="'    Literal.String
+'||'          Operator
+'win_size'    Name
+','           Punctuation
+'\n'          Text
+
+'                                  ' Text
+'"height="'   Literal.String
+'||'          Operator
+'win_size'    Name
+','           Punctuation
+' '           Text
+'"bg=black"'  Literal.String
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'WAttrib'     Name.Function
+'('           Punctuation
+'"drawop=xor"' Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'# Create two *indentical* sequences of circles, one to use when\n' Comment.Single
+
+'   '         Text
+"#   when drawing, one for erasing.  (Since 'xor' is used to\n" Comment.Single
+
+'   '         Text
+'#   place them, these both just draw the circles!)\n' Comment.Single
+
+'\n'          Text
+
+'   '         Text
+'putcircle'   Name
+' '           Text
+':='          Operator
+' '           Text
+'create'      Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'                ' Text
+'# draws sequence of circles\n' Comment.Single
+
+'      '      Text
+'&random'     Keyword.Reserved
+' '           Text
+':=:'         Operator
+' '           Text
+'r'           Name
+'\n'          Text
+
+'      '      Text
+'|'           Operator
+'{'           Punctuation
+'\n'          Text
+
+'       '     Text
+'Fg'          Name.Function
+'('           Punctuation
+'?'           Operator
+'colors'      Name
+')'           Punctuation
+'\n'          Text
+
+'       '     Text
+'outcircle'   Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'       '     Text
+'&random'     Keyword.Reserved
+' '           Text
+'<->'         Operator
+' '           Text
+'r'           Name
+'\n'          Text
+
+'       '     Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'clrcircle'   Name
+' '           Text
+':='          Operator
+' '           Text
+'create'      Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'                ' Text
+'# erases sequence of circles\n' Comment.Single
+
+'      '      Text
+'&random'     Keyword.Reserved
+' '           Text
+':=:'         Operator
+' '           Text
+'r'           Name
+'\n'          Text
+
+'      '      Text
+'|'           Operator
+'{'           Punctuation
+'\n'          Text
+
+'       '     Text
+'Fg'          Name.Function
+'('           Punctuation
+'?'           Operator
+'colors'      Name
+')'           Punctuation
+'\n'          Text
+
+'       '     Text
+'outcircle'   Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'       '     Text
+'&random'     Keyword.Reserved
+' '           Text
+'<->'         Operator
+' '           Text
+'r'           Name
+'\n'          Text
+
+'       '     Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'every'       Keyword.Reserved
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'to'          Keyword.Reserved
+' '           Text
+'density'     Name
+' '           Text
+'do'          Keyword.Reserved
+' '           Text
+'@'           Operator
+'putcircle'   Name
+'     '       Text
+'# fill screen to density\n' Comment.Single
+
+'\n'          Text
+
+'   '         Text
+'every'       Keyword.Reserved
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'to'          Keyword.Reserved
+' '           Text
+'duration'    Name
+' '           Text
+'do'          Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'             ' Text
+'# maintain steady state\n' Comment.Single
+
+'      '      Text
+'@'           Operator
+'putcircle'   Name
+'\n'          Text
+
+'      '      Text
+'@'           Operator
+'clrcircle'   Name
+'\n'          Text
+
+'      '      Text
+'if'          Keyword.Reserved
+' '           Text
+'*'           Operator
+'Pending'     Name.Function
+'('           Punctuation
+'&window'     Keyword.Reserved
+')'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'break'       Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'every'       Keyword.Reserved
+' '           Text
+'('           Punctuation
+'Clear'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'"On"'        Literal.String
+')'           Punctuation
+' '           Text
+'&'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'to'          Keyword.Reserved
+' '           Text
+'density'     Name
+' '           Text
+'do'          Keyword.Reserved
+' '           Text
+'@'           Operator
+'clrcircle'   Name
+'\n\n'        Text
+
+'   '         Text
+'close'       Name.Function
+'('           Punctuation
+'&window'     Keyword.Reserved
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n\n'      Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'outcircle'   Name.Function
+'('           Punctuation
+')'           Punctuation
+'                   ' Text
+'# select a circle at random,\n' Comment.Single
+
+'local'       Keyword.Reserved
+' '           Text
+'radius'      Name
+','           Punctuation
+' '           Text
+'xoff'        Name
+','           Punctuation
+' '           Text
+'yoff'        Name
+'                ' Text
+'#  draw it in kaleidoscopic form\n' Comment.Single
+
+'\n'          Text
+
+'        '    Text
+'# get a random center point and radius\n' Comment.Single
+
+'   '         Text
+'xoff'        Name
+' '           Text
+':='          Operator
+' '           Text
+'('           Punctuation
+'?'           Operator
+'('           Punctuation
+'maxoff'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'minoff'      Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'minoff'      Name
+')'           Punctuation
+' '           Text
+'%'           Punctuation
+' '           Text
+'mid_win'     Name
+'\n'          Text
+
+'   '         Text
+'yoff'        Name
+' '           Text
+':='          Operator
+' '           Text
+'('           Punctuation
+'?'           Operator
+'('           Punctuation
+'maxoff'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'minoff'      Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'minoff'      Name
+')'           Punctuation
+' '           Text
+'%'           Punctuation
+' '           Text
+'mid_win'     Name
+'\n'          Text
+
+'   '         Text
+'radius'      Name
+' '           Text
+':='          Operator
+' '           Text
+'?'           Operator
+'0'           Literal.Number.Integer
+' '           Text
+'^'           Punctuation
+' '           Text
+'skew'        Name
+'\n'          Text
+
+'        '    Text
+"# force radius to 'fit'\n" Comment.Single
+
+'   '         Text
+'radius'      Name
+' '           Text
+':='          Operator
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'maxradius'   Name
+'-'           Operator
+'minradius'   Name
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'radius'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'minradius'   Name
+')'           Punctuation
+' '           Text
+'%'           Punctuation
+'\n'          Text
+
+'             ' Text
+'('           Punctuation
+'mid_win'     Name
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'xoff'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'yoff'        Name
+')'           Punctuation
+'|'           Operator
+'xoff'        Name
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'        '    Text
+'# put into all 8 octants\n' Comment.Single
+
+'   '         Text
+'draw_circle' Name
+'('           Punctuation
+'mid_win'     Name
+'+'           Operator
+'xoff'        Name
+','           Punctuation
+' '           Text
+'mid_win'     Name
+'+'           Operator
+'yoff'        Name
+','           Punctuation
+' '           Text
+'radius'      Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'draw_circle' Name
+'('           Punctuation
+'mid_win'     Name
+'+'           Operator
+'xoff'        Name
+','           Punctuation
+' '           Text
+'mid_win'     Name
+'-'           Operator
+'yoff'        Name
+','           Punctuation
+' '           Text
+'radius'      Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'draw_circle' Name
+'('           Punctuation
+'mid_win'     Name
+'-'           Operator
+'xoff'        Name
+','           Punctuation
+' '           Text
+'mid_win'     Name
+'+'           Operator
+'yoff'        Name
+','           Punctuation
+' '           Text
+'radius'      Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'draw_circle' Name
+'('           Punctuation
+'mid_win'     Name
+'-'           Operator
+'xoff'        Name
+','           Punctuation
+' '           Text
+'mid_win'     Name
+'-'           Operator
+'yoff'        Name
+','           Punctuation
+' '           Text
+'radius'      Name
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'draw_circle' Name
+'('           Punctuation
+'mid_win'     Name
+'+'           Operator
+'yoff'        Name
+','           Punctuation
+' '           Text
+'mid_win'     Name
+'+'           Operator
+'xoff'        Name
+','           Punctuation
+' '           Text
+'radius'      Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'draw_circle' Name
+'('           Punctuation
+'mid_win'     Name
+'+'           Operator
+'yoff'        Name
+','           Punctuation
+' '           Text
+'mid_win'     Name
+'-'           Operator
+'xoff'        Name
+','           Punctuation
+' '           Text
+'radius'      Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'draw_circle' Name
+'('           Punctuation
+'mid_win'     Name
+'-'           Operator
+'yoff'        Name
+','           Punctuation
+' '           Text
+'mid_win'     Name
+'+'           Operator
+'xoff'        Name
+','           Punctuation
+' '           Text
+'radius'      Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'draw_circle' Name
+'('           Punctuation
+'mid_win'     Name
+'-'           Operator
+'yoff'        Name
+','           Punctuation
+' '           Text
+'mid_win'     Name
+'-'           Operator
+'xoff'        Name
+','           Punctuation
+' '           Text
+'radius'      Name
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'return'      Keyword.Reserved
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n\n'      Text
+
+'############################################################################\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'#   Vidget-based user interface -- developed originally using Mary\n' Comment.Single
+
+"#       Camaron's XIB program.  Don't expect this to be very readable -\n" Comment.Single
+
+'#       you should have to play with it!\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'############################################################################\n' Comment.Single
+
+'procedure'   Keyword.Declaration
+' '           Text
+'ui'          Name.Function
+' '           Text
+'('           Punctuation
+'win'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'local'       Keyword.Reserved
+' '           Text
+'cv1'         Name
+','           Punctuation
+' '           Text
+'cv2'         Name
+','           Punctuation
+' '           Text
+'cv3'         Name
+','           Punctuation
+' '           Text
+'cv4'         Name
+'\n'          Text
+
+'   '         Text
+'local'       Keyword.Reserved
+' '           Text
+'\n'          Text
+
+'         '   Text
+'radio_button2' Name
+','           Punctuation
+' '           Text
+'\n'          Text
+
+'         '   Text
+'radio_button1' Name
+','           Punctuation
+' '           Text
+'\n'          Text
+
+'         '   Text
+'text_input6' Name
+','           Punctuation
+' '           Text
+'\n'          Text
+
+'         '   Text
+'text_input5' Name
+','           Punctuation
+' '           Text
+'\n'          Text
+
+'         '   Text
+'slider4'     Name
+','           Punctuation
+' '           Text
+'\n'          Text
+
+'         '   Text
+'slider3'     Name
+','           Punctuation
+' '           Text
+'\n'          Text
+
+'         '   Text
+'text_input4' Name
+','           Punctuation
+' '           Text
+'\n'          Text
+
+'         '   Text
+'text_input3' Name
+','           Punctuation
+' '           Text
+'\n'          Text
+
+'         '   Text
+'slider2'     Name
+','           Punctuation
+' '           Text
+'\n'          Text
+
+'         '   Text
+'slider1'     Name
+' '           Text
+'\n\n'        Text
+
+'   '         Text
+'/'           Operator
+'win'         Name
+' '           Text
+':='          Operator
+' '           Text
+'WOpen'       Name
+'('           Punctuation
+'"label=ui"'  Literal.String
+','           Punctuation
+' '           Text
+'"width=404"' Literal.String
+','           Punctuation
+' '           Text
+'"height=313"' Literal.String
+','           Punctuation
+' '           Text
+'"font=6x12"' Literal.String
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'\n'          Text
+
+'           ' Text
+'stop'        Name.Function
+' '           Text
+'('           Punctuation
+'"bad win"'   Literal.String
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'root'        Name
+' '           Text
+':='          Operator
+' '           Text
+'Vroot_frame' Name
+' '           Text
+'('           Punctuation
+'win'         Name
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'Vmessage'    Name
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'win_size'    Name
+'/'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'168'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'98'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'Vmessage'    Name
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'"1"'         Literal.String
+')'           Punctuation
+','           Punctuation
+' '           Text
+'108'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'97'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'sk_v'        Name
+' '           Text
+':='          Operator
+' '           Text
+'Vtext'       Name
+'('           Punctuation
+'win'         Name
+','           Punctuation
+'"Skew:\\\\=1"' Literal.String
+','           Punctuation
+'get_skew'    Name
+','           Punctuation
+','           Punctuation
+'6'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'280'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'39'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'du_v'        Name
+' '           Text
+':='          Operator
+' '           Text
+'Vtext'       Name
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'"Duration:\\\\="' Literal.String
+'||'          Operator
+'duration'    Name
+','           Punctuation
+' '           Text
+'get_duration' Name
+','           Punctuation
+','           Punctuation
+'9'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'                ' Text
+'237'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'15'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'Vmessage'    Name
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'"Clear at end?"' Literal.String
+')'           Punctuation
+','           Punctuation
+' '           Text
+'232'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'145'         Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'Vmessage'    Name
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'"Fill?"'     Literal.String
+')'           Punctuation
+','           Punctuation
+' '           Text
+'105'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'142'         Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'Vmessage'    Name
+'('           Punctuation
+'win'         Name
+','           Punctuation
+'"Quit?"'     Literal.String
+')'           Punctuation
+','           Punctuation
+' '           Text
+'267'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'259'         Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'Vmessage'    Name
+'('           Punctuation
+'win'         Name
+','           Punctuation
+'"Display it?"' Literal.String
+')'           Punctuation
+','           Punctuation
+' '           Text
+'26'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'260'         Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'Vcheckbox'   Name
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'do_quit'     Name
+','           Punctuation
+' '           Text
+'"check2"'    Literal.String
+','           Punctuation
+'20'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'305'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'255'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'20'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'20'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'check1'      Name
+':='          Operator
+'Vcheckbox'   Name
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'do_display'  Name
+','           Punctuation
+' '           Text
+'"check1"'    Literal.String
+','           Punctuation
+'20'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'                ' Text
+'106'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'258'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'20'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'20'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'radio_button2' Name
+' '           Text
+':='          Operator
+' '           Text
+'Vradio_buttons' Name
+' '           Text
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'['           Punctuation
+'"On"'        Literal.String
+','           Punctuation
+' '           Text
+'"Off"'       Literal.String
+']'           Punctuation
+','           Punctuation
+' '           Text
+'get_clear'   Name
+','           Punctuation
+' '           Text
+','           Punctuation
+' '           Text
+'V_CIRCLE'    Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VSet'        Name
+'('           Punctuation
+'radio_button2' Name
+','           Punctuation
+'Clear'       Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'radio_button2' Name
+','           Punctuation
+' '           Text
+'253'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'165'         Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'radio_button1' Name
+' '           Text
+':='          Operator
+' '           Text
+'Vradio_buttons' Name
+' '           Text
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'['           Punctuation
+'"On"'        Literal.String
+','           Punctuation
+' '           Text
+'"Off"'       Literal.String
+']'           Punctuation
+','           Punctuation
+' '           Text
+'get_fill'    Name
+','           Punctuation
+' '           Text
+','           Punctuation
+' '           Text
+'V_CIRCLE'    Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VSet'        Name
+'('           Punctuation
+'radio_button1' Name
+','           Punctuation
+'fill'        Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'radio_button1' Name
+','           Punctuation
+' '           Text
+'99'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'165'         Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'cv1'         Name
+' '           Text
+':='          Operator
+' '           Text
+'Vcoupler'    Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VAddClient'  Name
+'('           Punctuation
+'cv1'         Name
+','           Punctuation
+' '           Text
+'get_max_offset' Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'text_input6' Name
+' '           Text
+':='          Operator
+' '           Text
+'Vtext'       Name
+' '           Text
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'"Max Offset:\\\\="' Literal.String
+'||'          Operator
+'('           Punctuation
+'win_size'    Name
+'-1'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'cv1'         Name
+','           Punctuation
+' '           Text
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VAddClient'  Name
+'('           Punctuation
+'cv1'         Name
+','           Punctuation
+' '           Text
+'text_input6' Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'slider4'     Name
+' '           Text
+':='          Operator
+' '           Text
+'Vhoriz_slider' Name
+' '           Text
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'cv1'         Name
+','           Punctuation
+' '           Text
+'"slider4"'   Literal.String
+','           Punctuation
+' '           Text
+'70'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'12'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+'\n'          Text
+
+'                         ' Text
+'win_size'    Name
+'-1'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'win_size'    Name
+'-1'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VAddClient'  Name
+'('           Punctuation
+'cv1'         Name
+','           Punctuation
+' '           Text
+'slider4'     Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'text_input6' Name
+','           Punctuation
+' '           Text
+'196'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'103'         Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'slider4'     Name
+','           Punctuation
+' '           Text
+'306'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'106'         Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'cv2'         Name
+' '           Text
+':='          Operator
+' '           Text
+'Vcoupler'    Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VAddClient'  Name
+'('           Punctuation
+'cv2'         Name
+','           Punctuation
+' '           Text
+'get_min_offset' Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'text_input5' Name
+' '           Text
+':='          Operator
+' '           Text
+'Vtext'       Name
+' '           Text
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'"Min Offset\\\\=1"' Literal.String
+','           Punctuation
+' '           Text
+'cv2'         Name
+','           Punctuation
+' '           Text
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VAddClient'  Name
+'('           Punctuation
+'cv2'         Name
+','           Punctuation
+' '           Text
+'text_input5' Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'slider3'     Name
+' '           Text
+':='          Operator
+' '           Text
+'Vhoriz_slider' Name
+' '           Text
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'cv2'         Name
+','           Punctuation
+' '           Text
+'"slider3"'   Literal.String
+','           Punctuation
+' '           Text
+'70'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'12'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'win_size'    Name
+'-1'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VAddClient'  Name
+'('           Punctuation
+'cv2'         Name
+','           Punctuation
+' '           Text
+'slider3'     Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'text_input5' Name
+','           Punctuation
+' '           Text
+'201'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'80'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'slider3'     Name
+','           Punctuation
+' '           Text
+'307'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'82'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'cv3'         Name
+' '           Text
+':='          Operator
+' '           Text
+'Vcoupler'    Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VAddClient'  Name
+'('           Punctuation
+'cv3'         Name
+','           Punctuation
+' '           Text
+'get_max_radius' Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'text_input4' Name
+' '           Text
+':='          Operator
+' '           Text
+'Vtext'       Name
+' '           Text
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'"Max Radius\\\\="' Literal.String
+'||'          Operator
+'('           Punctuation
+'win_size'    Name
+'/'           Operator
+'4'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'cv3'         Name
+','           Punctuation
+' '           Text
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VAddClient'  Name
+'('           Punctuation
+'cv3'         Name
+','           Punctuation
+' '           Text
+'text_input4' Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'slider2'     Name
+' '           Text
+':='          Operator
+' '           Text
+'Vhoriz_slider' Name
+' '           Text
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'cv3'         Name
+','           Punctuation
+' '           Text
+'"slider2"'   Literal.String
+','           Punctuation
+' '           Text
+'70'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'12'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'win_size'    Name
+'/'           Operator
+'2'           Literal.Number.Integer
+','           Punctuation
+'\n'          Text
+
+'         '   Text
+'win_size'    Name
+'/'           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VAddClient'  Name
+'('           Punctuation
+'cv3'         Name
+','           Punctuation
+' '           Text
+'slider2'     Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'text_input4' Name
+','           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'104'         Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'slider2'     Name
+','           Punctuation
+' '           Text
+'110'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'108'         Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'cv4'         Name
+' '           Text
+':='          Operator
+' '           Text
+'Vcoupler'    Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VAddClient'  Name
+'('           Punctuation
+'cv4'         Name
+','           Punctuation
+' '           Text
+'get_min_radius' Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'text_input3' Name
+' '           Text
+':='          Operator
+' '           Text
+'Vtext'       Name
+' '           Text
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'"Min Radius\\\\=1"' Literal.String
+','           Punctuation
+' '           Text
+'cv4'         Name
+','           Punctuation
+' '           Text
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VAddClient'  Name
+'('           Punctuation
+'cv4'         Name
+','           Punctuation
+' '           Text
+'text_input3' Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'slider1'     Name
+' '           Text
+':='          Operator
+' '           Text
+'Vhoriz_slider' Name
+' '           Text
+'('           Punctuation
+'win'         Name
+','           Punctuation
+' '           Text
+'cv4'         Name
+','           Punctuation
+' '           Text
+'"slider1"'   Literal.String
+','           Punctuation
+' '           Text
+'70'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'12'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'win_size'    Name
+'/'           Operator
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VAddClient'  Name
+'('           Punctuation
+'cv4'         Name
+','           Punctuation
+' '           Text
+'slider1'     Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'text_input3' Name
+','           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'81'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'slider1'     Name
+','           Punctuation
+' '           Text
+'110'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'84'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'rs_v'        Name
+' '           Text
+':='          Operator
+' '           Text
+'Vtext'       Name
+'('           Punctuation
+'win'         Name
+','           Punctuation
+'"Random Seed:\\\\="' Literal.String
+'||'          Operator
+'r_seed'      Name
+','           Punctuation
+' '           Text
+'get_random'  Name
+','           Punctuation
+','           Punctuation
+' '           Text
+'11'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'              ' Text
+'30'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'41'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'VInsert'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+','           Punctuation
+' '           Text
+'de_v'        Name
+' '           Text
+':='          Operator
+' '           Text
+'Vtext'       Name
+'('           Punctuation
+'win'         Name
+','           Punctuation
+'"Density:\\\\="' Literal.String
+'||'          Operator
+'density'     Name
+','           Punctuation
+' '           Text
+'get_density' Name
+','           Punctuation
+','           Punctuation
+'8'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'              ' Text
+'71'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'16'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'VResize'     Name
+' '           Text
+'('           Punctuation
+'root'        Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'return'      Keyword.Reserved
+' '           Text
+'root'        Name
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'get_skew'    Name.Function
+' '           Text
+'('           Punctuation
+'wit'         Name.Variable
+','           Punctuation
+' '           Text
+'value'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'skew'        Name
+' '           Text
+':='          Operator
+' '           Text
+'value'       Name
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'get_duration' Name.Function
+' '           Text
+'('           Punctuation
+'wit'         Name.Variable
+','           Punctuation
+' '           Text
+'value'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'duration'    Name
+' '           Text
+':='          Operator
+' '           Text
+'value'       Name
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'do_quit'     Name.Function
+' '           Text
+'('           Punctuation
+'wit'         Name.Variable
+','           Punctuation
+' '           Text
+'value'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'stop'        Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'do_display'  Name.Function
+' '           Text
+'('           Punctuation
+'wit'         Name.Variable
+','           Punctuation
+' '           Text
+'value'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'r_seed'      Name
+'   '         Text
+':='          Operator
+' '           Text
+'numeric'     Name.Function
+'('           Punctuation
+'rs_v'        Name
+'.'           Literal.Number.Float
+'data'        Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'duration'    Name
+' '           Text
+':='          Operator
+' '           Text
+'integer'     Name.Function
+'('           Punctuation
+'du_v'        Name
+'.'           Literal.Number.Float
+'data'        Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'density'     Name
+'  '          Text
+':='          Operator
+' '           Text
+'integer'     Name.Function
+'('           Punctuation
+'de_v'        Name
+'.'           Literal.Number.Float
+'data'        Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'skew'        Name
+'     '       Text
+':='          Operator
+' '           Text
+'integer'     Name.Function
+'('           Punctuation
+'sk_v'        Name
+'.'           Literal.Number.Float
+'data'        Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'kaleidoscope' Name
+'('           Punctuation
+'r_seed'      Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'wit'         Name
+'.'           Literal.Number.Float
+'callback'    Name
+'.'           Literal.Number.Float
+'value'       Name
+' '           Text
+':='          Operator
+' '           Text
+'&null'       Keyword.Constant
+'\n'          Text
+
+'   '         Text
+'VDraw'       Name
+'('           Punctuation
+'check1'      Name
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'get_clear'   Name.Function
+' '           Text
+'('           Punctuation
+'wit'         Name.Variable
+','           Punctuation
+' '           Text
+'value'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'Clear'       Name
+' '           Text
+':='          Operator
+' '           Text
+'value'       Name
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'get_fill'    Name.Function
+' '           Text
+'('           Punctuation
+'wit'         Name.Variable
+','           Punctuation
+' '           Text
+'value'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'fill'        Name
+' '           Text
+':='          Operator
+' '           Text
+'value'       Name
+'\n'          Text
+
+'   '         Text
+'if'          Keyword.Reserved
+' '           Text
+'fill'        Name
+' '           Text
+'=='          Operator
+' '           Text
+'"Off"'       Literal.String
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'draw_circle' Name
+' '           Text
+':='          Operator
+' '           Text
+'DrawCircle'  Name.Function
+'\n'          Text
+
+'   '         Text
+'else'        Keyword.Reserved
+' '           Text
+'draw_circle' Name
+' '           Text
+':='          Operator
+' '           Text
+'FillCircle'  Name.Function
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'get_max_offset' Name.Function
+' '           Text
+'('           Punctuation
+'wit'         Name.Variable
+','           Punctuation
+' '           Text
+'value'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'maxoff'      Name
+' '           Text
+':='          Operator
+' '           Text
+'value'       Name
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'get_min_offset' Name.Function
+' '           Text
+'('           Punctuation
+'wit'         Name.Variable
+','           Punctuation
+' '           Text
+'value'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'minoff'      Name
+' '           Text
+':='          Operator
+' '           Text
+'value'       Name
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'get_max_radius' Name.Function
+' '           Text
+'('           Punctuation
+'wit'         Name.Variable
+','           Punctuation
+' '           Text
+'value'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'maxradius'   Name
+' '           Text
+':='          Operator
+' '           Text
+'value'       Name
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'get_min_radius' Name.Function
+' '           Text
+'('           Punctuation
+'wit'         Name.Variable
+','           Punctuation
+' '           Text
+'value'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'minradius'   Name
+' '           Text
+':='          Operator
+' '           Text
+'value'       Name
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'get_random'  Name.Function
+' '           Text
+'('           Punctuation
+'wit'         Name.Variable
+','           Punctuation
+' '           Text
+'value'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'r_seed'      Name
+' '           Text
+':='          Operator
+' '           Text
+'integer'     Name.Function
+'('           Punctuation
+'value'       Name
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'get_density' Name.Function
+' '           Text
+'('           Punctuation
+'wit'         Name.Variable
+','           Punctuation
+' '           Text
+'value'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'density'     Name
+' '           Text
+':='          Operator
+' '           Text
+'integer'     Name.Function
+'('           Punctuation
+'value'       Name
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'procedure'   Keyword.Declaration
+' '           Text
+'quit'        Name.Function
+'('           Punctuation
+'e'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'if'          Keyword.Reserved
+' '           Text
+'e'           Name
+' '           Text
+'==='         Operator
+' '           Text
+'"q"'         Literal.String
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'stop'        Name.Function
+' '           Text
+'('           Punctuation
+'"Exiting Kaleidoscope"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n'          Text

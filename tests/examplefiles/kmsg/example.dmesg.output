@@ -1,0 +1,150 @@
+''            Text
+'[    0.000000] ' Literal.Number
+'Linux version 5.0.9-arch1-1-ARCH (builduser@heftig-18307) (gcc version 8.3.0 (GCC)) #1 SMP PREEMPT Sat Apr 20 15:' Keyword
+'00:46 UTC 2019\n' Text
+
+'[    0.000000] ' Literal.Number
+'Command line:' Keyword
+' initrd=\\initramfs-linux.img root=/dev/nvme0n1p1 nouveau.noaccel=1 rw\n' Text
+
+'[    0.000000] ' Literal.Number
+'KERNEL supported cpus:' Keyword
+'\n'          Text
+
+'[    0.000000] ' Literal.Number
+'  Intel GenuineIntel\n' Text
+
+'[    0.000000] ' Literal.Number
+'  AMD AuthenticAMD\n' Text
+
+'[    0.000000] ' Literal.Number
+'  Hygon HygonGenuine\n' Text
+
+'[    0.000000] ' Literal.Number
+'  Centaur CentaurHauls\n' Text
+
+'[    0.000000] ' Literal.Number
+'x86/fpu:'    Keyword
+" Supporting XSAVE feature 0x001: 'x87 floating point registers'\n" Text
+
+'[    0.000000] ' Literal.Number
+'x86/fpu:'    Keyword
+" Supporting XSAVE feature 0x002: 'SSE registers'\n" Text
+
+'[    0.000000] ' Literal.Number
+'x86/fpu:'    Keyword
+" Supporting XSAVE feature 0x004: 'AVX registers'\n" Text
+
+'[    0.000000] ' Literal.Number
+'x86/fpu:'    Keyword
+" Supporting XSAVE feature 0x008: 'MPX bounds registers'\n" Text
+
+'[    0.000000] ' Literal.Number
+'x86/fpu:'    Keyword
+" Supporting XSAVE feature 0x010: 'MPX CSR'\n" Text
+
+'[    0.000000] ' Literal.Number
+'x86/fpu:'    Keyword
+' xstate_offset[2]:  576, xstate_sizes[2]:  256\n' Text
+
+'[    0.000000] ' Literal.Number
+'x86/fpu:'    Keyword
+' xstate_offset[3]:  832, xstate_sizes[3]:   64\n' Text
+
+'[    0.000000] ' Literal.Number
+'x86/fpu:'    Keyword
+' xstate_offset[4]:  896, xstate_sizes[4]:   64\n' Text
+
+'[    0.000000] ' Literal.Number
+'x86/fpu:'    Keyword
+" Enabled xstate features 0x1f, context size is 960 bytes, using 'compacted' format.\n" Text
+
+''            Text
+'[    2.663456] ' Literal.Number
+'tpm_crb MSFT0101:' Keyword
+'00: [Firmware Bug]: ACPI region does not cover the entire command/response buffer. [mem 0xfed40000-0xfed4087f flags 0x200] vs fed40080 f80\n' Generic.Error
+
+''            Text
+'[    2.663514] ' Literal.Number
+'tpm_crb MSFT0101:' Keyword
+'00: [Firmware Bug]: ACPI region does not cover the entire command/response buffer. [mem 0xfed40000-0xfed4087f flags 0x200] vs fed40080 f80\n' Generic.Error
+
+'[    2.664809] ' Literal.Number
+'Bluetooth:'  Keyword
+' Core ver 2.22\n' Text
+
+'[    2.664820] ' Literal.Number
+'NET:'        Keyword
+' Registered protocol family 31\n' Text
+
+'[ 3134.452501] ' Literal.Number
+'usb 2-2:'    Keyword
+' new SuperSpeed Gen 1 USB device number 2 using xhci_hcd\n' Text
+
+'[ 3134.471506] ' Literal.Number
+'usb 2-2:'    Keyword
+' New USB device found, idVendor=0781, idProduct=cfd2, bcdDevice= 0.02\n' Text
+
+'[ 3134.471508] ' Literal.Number
+'usb 2-2:'    Keyword
+' New USB device strings: Mfr=3, Product=4, SerialNumber=2\n' Text
+
+'\n'          Text
+
+''            Text
+'kern  :notice: [    0.000000] Linux version 5.0.9-arch1-1-ARCH (builduser@heftig-18307) (gcc version 8.3.0 (GCC)) #1 SMP PREEMPT Sat Apr 20 15:00:46 UTC 2019\n' Generic.Strong
+
+'kern  :info  : [    0.000000] Command line: initrd=\\initramfs-linux.img root=/dev/nvme0n1p1 nouveau.noaccel=1 rw\n' Text
+
+'kern  :info  : [    0.000000] KERNEL supported cpus:\n' Text
+
+'kern  :info  : [    0.000000]   Intel GenuineIntel\n' Text
+
+'kern  :info  : [    0.000000]   AMD AuthenticAMD\n' Text
+
+'kern  :info  : [    0.000000]   Hygon HygonGenuine\n' Text
+
+'kern  :info  : [    0.000000]   Centaur CentaurHauls\n' Text
+
+"kern  :info  : [    0.000000] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'\n" Text
+
+"kern  :info  : [    0.000000] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'\n" Text
+
+"kern  :info  : [    0.000000] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'\n" Text
+
+"kern  :info  : [    0.000000] x86/fpu: Supporting XSAVE feature 0x008: 'MPX bounds registers'\n" Text
+
+"kern  :info  : [    0.000000] x86/fpu: Supporting XSAVE feature 0x010: 'MPX CSR'\n" Text
+
+'kern  :info  : [    0.000000] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256\n' Text
+
+'kern  :info  : [    0.000000] x86/fpu: xstate_offset[3]:  832, xstate_sizes[3]:   64\n' Text
+
+'kern  :info  : [    0.000000] x86/fpu: xstate_offset[4]:  896, xstate_sizes[4]:   64\n' Text
+
+"kern  :info  : [    0.000000] x86/fpu: Enabled xstate features 0x1f, context size is 960 bytes, using 'compacted' format.\n" Text
+
+'kern  :info  : [    0.000000] BIOS-provided physical RAM map:\n' Text
+
+'kern  :info  : [    0.000000] BIOS-e820: [mem 0x0000000000000000-0x0000000000057fff] usable\n' Text
+
+'kern  :info  : [    2.382262] EXT4-fs (nvme0n1p1): re-mounted. Opts: (null)\n' Text
+
+''            Text
+'kern  :notice: [    2.389774] random: systemd-random-: uninitialized urandom read (512 bytes read)\n' Generic.Strong
+
+'kern  :info  : [    2.397148] usb 1-10: New USB device found, idVendor=8087, idProduct=0aa7, bcdDevice= 0.01\n' Text
+
+'kern  :info  : [    2.397150] usb 1-10: New USB device strings: Mfr=0, Product=0, SerialNumber=0\n' Text
+
+'kern  :info  : [    2.519599] usb 1-12: new high-speed USB device number 4 using xhci_hcd\n' Text
+
+'kern  :crit  : [18706.135478] mce: CPU6: Package temperature above threshold, cpu clock throttled (total events = 79)\n' Text
+
+'kern  :crit  : [18706.135479] mce: CPU3: Package temperature above threshold, cpu clock throttled (total events = 79)\n' Text
+
+'kern  :crit  : [18706.135484] mce: CPU4: Package temperature above threshold, cpu clock throttled (total events = 79)\n' Text
+
+'kern  :info  : [18706.136450] mce: CPU4: Core temperature/speed normal\n' Text
+
+'kern  :info  : [18706.136451] mce: CPU1: Package temperature/speed normal\n' Text

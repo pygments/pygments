@@ -1,0 +1,279 @@
+'(!*******************************************************\n    Multiline comment\n*******************************************************!)' Comment.Multiline
+'\n'          Text
+
+'model'       Keyword.Builtin
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'pygments test' Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text
+
+'    '        Text.Whitespace
+'uses'        Keyword.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'mmxprs'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'forward'     Keyword.Builtin
+' '           Text.Whitespace
+'public'      Keyword.Builtin
+' '           Text.Whitespace
+'procedure'   Keyword.Builtin
+' '           Text.Whitespace
+'main'        Text
+'    '        Text.Whitespace
+'! Test forward declaration\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'public'      Keyword.Builtin
+' '           Text.Whitespace
+'procedure'   Keyword.Builtin
+' '           Text.Whitespace
+'main'        Text
+'\n'          Text
+
+'        '    Text.Whitespace
+'declarations' Keyword.Builtin
+'\n'          Text
+
+'            ' Text.Whitespace
+'MySet'       Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text
+
+'            ' Text.Whitespace
+'I'           Text
+':'           Operator
+' '           Text.Whitespace
+'range'       Keyword.Type
+'\n'          Text
+
+'            ' Text.Whitespace
+'Coefficients' Text
+':'           Operator
+' '           Text.Whitespace
+'array'       Keyword.Type
+'('           Punctuation
+'I'           Text
+')'           Punctuation
+' '           Text.Whitespace
+'of'          Keyword.Builtin
+' '           Text.Whitespace
+'real'        Keyword.Type
+'\n'          Text
+
+'            ' Text.Whitespace
+'Vars'        Text
+':'           Operator
+' '           Text.Whitespace
+'array'       Keyword.Type
+'('           Punctuation
+'I'           Text
+')'           Punctuation
+' '           Text.Whitespace
+'of'          Keyword.Builtin
+' '           Text.Whitespace
+'mpvar'       Keyword.Type
+'\n'          Text
+
+'        '    Text.Whitespace
+'end-'        Keyword.Builtin
+'declarations' Keyword.Builtin
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text.Whitespace
+'Coefficients' Text
+' '           Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'['           Punctuation
+'2.2'         Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'3.3'         Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'4.4'         Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'5.5'         Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'1.1'         Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'3.3'         Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'7.7'         Literal.Number.Float
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text.Whitespace
+'! Single line comment\n' Comment.Single
+
+'        '    Text.Whitespace
+'forall'      Keyword.Builtin
+' '           Text.Whitespace
+'('           Punctuation
+'i'           Text
+' '           Text.Whitespace
+'in'          Operator
+' '           Text.Whitespace
+'I'           Text
+')'           Punctuation
+' '           Text.Whitespace
+'Vars'        Text
+'('           Punctuation
+'i'           Text
+')'           Punctuation
+' '           Text.Whitespace
+'is_binary'   Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text.Whitespace
+'! Constraint\n' Comment.Single
+
+'        '    Text.Whitespace
+'sum'         Keyword.Builtin
+' '           Text.Whitespace
+'('           Punctuation
+'i'           Text
+' '           Text.Whitespace
+'in'          Operator
+' '           Text.Whitespace
+'I'           Text
+')'           Punctuation
+' '           Text.Whitespace
+'Vars'        Text
+'('           Punctuation
+'i'           Text
+')'           Punctuation
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text.Whitespace
+'maximize'    Name.Function
+'('           Punctuation
+'sum'         Keyword.Builtin
+'('           Punctuation
+'i'           Text
+' '           Text.Whitespace
+'in'          Operator
+' '           Text.Whitespace
+'I'           Text
+')'           Punctuation
+' '           Text.Whitespace
+'Coefficients' Text
+'('           Punctuation
+'i'           Text
+')'           Punctuation
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'Vars'        Text
+'('           Punctuation
+'i'           Text
+'))'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text.Whitespace
+'forall'      Keyword.Builtin
+' '           Text.Whitespace
+'('           Punctuation
+'i'           Text
+' '           Text.Whitespace
+'in'          Operator
+' '           Text.Whitespace
+'I'           Text
+'|'           Operator
+' '           Text.Whitespace
+'Vars'        Text
+'('           Punctuation
+'i'           Text
+')'           Punctuation
+'.'           Operator
+'sol'         Text
+' '           Text.Whitespace
+'<'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'do'          Keyword.Builtin
+'\n'          Text
+
+'            ' Text.Whitespace
+'writeln'     Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'Vars('       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'i'           Text
+','           Punctuation
+'"'           Literal.String.Double
+') = '        Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'Vars'        Text
+'('           Punctuation
+'i'           Text
+')'           Punctuation
+'.'           Operator
+'sol'         Text
+')'           Punctuation
+'\n'          Text
+
+'        '    Text.Whitespace
+'end-'        Keyword.Builtin
+'do'          Keyword.Builtin
+'\n'          Text
+
+'    '        Text.Whitespace
+'end-'        Keyword.Builtin
+'procedure'   Keyword.Builtin
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'main'        Text
+'\n'          Text
+
+'end-'        Keyword.Builtin
+'model'       Keyword.Builtin
+'\n'          Text

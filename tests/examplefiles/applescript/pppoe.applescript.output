@@ -1,0 +1,71 @@
+'tell'        Keyword
+' '           Text
+'application' Name.Builtin
+' '           Text
+'"System Events"' Literal.String.Double
+'\n    '      Text
+'tell'        Keyword
+' '           Text
+'network'     Name.Variable
+' '           Text
+'preferences' Name.Variable
+'\n        '  Text
+'tell'        Keyword
+' '           Text
+'current'     Name.Variable
+' '           Text
+'location'    Name.Attribute
+'\n            ' Text
+'set'         Keyword
+' '           Text
+'aPPPoEService' Name.Variable
+' '           Text
+'to'          Keyword
+' '           Text
+'a'           Name.Variable
+' '           Text
+'reference to' Operator.Word
+' '           Text
+'('           Punctuation
+'first'       Name.Builtin
+' '           Text
+'service'     Name.Variable
+' '           Text
+'whose'       Name.Builtin
+' '           Text
+'kind'        Name.Variable
+' '           Text
+'is'          Operator.Word
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'exists'      Name.Builtin
+' '           Text
+'aPPPoEService' Name.Variable
+' '           Text
+'then'        Keyword
+'\n                ' Text
+'connect'     Name.Variable
+' '           Text
+'aPPPoEService' Name.Variable
+'\n            ' Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n        '  Text
+'end'         Keyword
+' '           Text
+'tell'        Keyword
+'\n    '      Text
+'end'         Keyword
+' '           Text
+'tell'        Keyword
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'tell'        Keyword
+'\n'          Text

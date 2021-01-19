@@ -1,0 +1,249 @@
+'#!/usr/bin/execlineb\n' Comment.Hashbang
+
+'\n'          Text
+
+'importas'    Name.Builtin
+' '           Text
+'-iu'         Text
+' '           Text
+'SPEC'        Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'shift'       Name.Builtin
+'\n'          Text
+
+'elgetpositionals' Name.Builtin
+'\n\n'        Text
+
+'ifelse'      Name.Builtin
+' '           Text
+'-nX'         Text
+' '           Text
+'{'           Operator
+'\n    '      Text
+'heredoc'     Name.Builtin
+' '           Text
+'-d'          Text
+' '           Text
+'0'           Text
+' '           Text
+'${'          Literal.String.Interpol
+'SPEC'        Name.Variable
+'}'           Literal.String.Interpol
+'\n    '      Text
+'s6-grep'     Text
+' '           Text
+'-qE'         Text
+' '           Text
+'"'           Literal.String.Double
+'^([[:alpha:]]+(_[[:digit:]]+)?/)*([[:alpha:]]+(_[[:digit:]]+)?):[[:digit:]]+' Literal.String.Double
+'$'           Text
+'"'           Literal.String.Double
+'\n'          Text
+
+'}'           Operator
+' '           Text
+'{'           Operator
+'\n    '      Text
+'foreground'  Name.Builtin
+' '           Text
+'{'           Operator
+'\n        '  Text
+'fdmove'      Name.Builtin
+' '           Text
+'1'           Text
+' '           Text
+'2'           Text
+'\n        '  Text
+'echo'        Text
+' '           Text
+'"Bad argument"' Literal.String.Double
+'\n    '      Text
+'}'           Operator
+'\n    '      Text
+'exit'        Name.Builtin
+' '           Text
+'1'           Text
+'\n'          Text
+
+'}'           Operator
+'\n\n'        Text
+
+'multidefine' Name.Builtin
+' '           Text
+'-0d:'        Text
+' '           Text
+'${'          Literal.String.Interpol
+'SPEC'        Name.Variable
+'}'           Literal.String.Interpol
+' '           Text
+'{'           Operator
+' '           Text
+'QUEUESPEC'   Text
+' '           Text
+'THREADSPEC'  Text
+' '           Text
+'}'           Operator
+'\n\n'        Text
+
+'define'      Name.Builtin
+' '           Text
+'-s'          Text
+' '           Text
+'-d/'         Text
+' '           Text
+'QUEUELIST'   Text
+' '           Text
+'${'          Literal.String.Interpol
+'QUEUESPEC'   Name.Variable
+'}'           Literal.String.Interpol
+'\n'          Text
+
+'backtick'    Name.Builtin
+' '           Text
+'-ni'         Text
+' '           Text
+'CMDLINE'     Text
+' '           Text
+'{'           Operator
+'\n    '      Text
+'forx'        Name.Builtin
+' '           Text
+'-o0'         Text
+' '           Text
+'QUEUEPAT'    Text
+' '           Text
+'{'           Operator
+' '           Text
+'${'          Literal.String.Interpol
+'QUEUELIST'   Name.Variable
+'}'           Literal.String.Interpol
+' '           Text
+'}'           Operator
+'\n    '      Text
+'importas'    Name.Builtin
+' '           Text
+'-i'          Text
+' '           Text
+'Q'           Text
+' '           Text
+'QUEUEPAT'    Text
+'\n    '      Text
+'ifelse'      Name.Builtin
+' '           Text
+'-X'          Text
+' '           Text
+'{'           Operator
+'\n        '  Text
+'heredoc'     Name.Builtin
+' '           Text
+'-d'          Text
+' '           Text
+'0'           Text
+' '           Text
+'${'          Literal.String.Interpol
+'Q'           Name.Variable
+'}'           Literal.String.Interpol
+'\n        '  Text
+'s6-grep'     Text
+' '           Text
+'-qE'         Text
+' '           Text
+'"'           Literal.String.Double
+'^[[:alpha:]]+_[[:digit:]]+' Literal.String.Double
+'$'           Text
+'"'           Literal.String.Double
+'\n    '      Text
+'}'           Operator
+' '           Text
+'{'           Operator
+'\n        '  Text
+'multidefine' Name.Builtin
+' '           Text
+'-0d_'        Text
+' '           Text
+'${'          Literal.String.Interpol
+'Q'           Name.Variable
+'}'           Literal.String.Interpol
+' '           Text
+'{'           Operator
+' '           Text
+'QNAM'        Text
+' '           Text
+'QPRIO'       Text
+' '           Text
+'}'           Operator
+'\n        '  Text
+'echo'        Text
+' '           Text
+'-n'          Text
+' '           Text
+'"'           Literal.String.Double
+'-q '         Literal.String.Double
+'${'          Literal.String.Interpol
+'QNAM'        Name.Variable
+'}'           Literal.String.Interpol
+','           Literal.String.Double
+'${'          Literal.String.Interpol
+'QPRIO'       Name.Variable
+'}'           Literal.String.Interpol
+' '           Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text
+'}'           Operator
+'\n    '      Text
+'echo'        Text
+' '           Text
+'-n'          Text
+' '           Text
+'"'           Literal.String.Double
+'-q '         Literal.String.Double
+'${'          Literal.String.Interpol
+'Q'           Name.Variable
+'}'           Literal.String.Interpol
+' '           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'}'           Operator
+'\n\n'        Text
+
+'importas'    Name.Builtin
+' '           Text
+'-ui'         Text
+' '           Text
+'CMDLINE'     Text
+' '           Text
+'CMDLINE'     Text
+'\n'          Text
+
+'define'      Name.Builtin
+' '           Text
+'-s'          Text
+' '           Text
+'-d'          Text
+'" "'         Literal.String.Double
+' '           Text
+'ARGS'        Text
+' '           Text
+'${'          Literal.String.Interpol
+'CMDLINE'     Name.Variable
+'}'           Literal.String.Interpol
+'\n'          Text
+
+'${'          Literal.String.Interpol
+'@'           Name.Variable
+'}'           Literal.String.Interpol
+' '           Text
+'${'          Literal.String.Interpol
+'ARGS'        Name.Variable
+'}'           Literal.String.Interpol
+' '           Text
+'-c'          Text
+' '           Text
+'${'          Literal.String.Interpol
+'THREADSPEC'  Name.Variable
+'}'           Literal.String.Interpol
+'\n'          Text

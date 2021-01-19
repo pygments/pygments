@@ -1,0 +1,497 @@
+'HTTP'        Keyword.Reserved
+'/'           Operator
+'1.1'         Literal.Number
+' '           Text
+'200'         Literal.Number
+' '           Text
+'OK'          Name.Exception
+'\n'          Text
+
+'Date'        Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'Tue, 13 Dec 2011 00:11:44 GMT' Literal
+'\n'          Text
+
+'Status'      Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'200 OK'      Literal
+'\n'          Text
+
+'X-Transaction' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'50b85fff78dab4a3' Literal
+'\n'          Text
+
+'X-RateLimit-Limit' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'150'         Literal
+'\n'          Text
+
+'ETag'        Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'"b31143be48ebfe7512b65fe64fe092f3"' Literal
+'\n'          Text
+
+'X-Frame-Options' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'SAMEORIGIN'  Literal
+'\n'          Text
+
+'Last-Modified' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'Tue, 13 Dec 2011 00:11:44 GMT' Literal
+'\n'          Text
+
+'X-RateLimit-Remaining' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'145'         Literal
+'\n'          Text
+
+'X-Runtime'   Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'0.01190'     Literal
+'\n'          Text
+
+'X-Transaction-Mask' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'a6183ffa5f8ca943ff1b53b5644ef1145f6f285d' Literal
+'\n'          Text
+
+'Content-Type' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'application/json; charset=utf-8' Literal
+'\n'          Text
+
+'Content-Length' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'2389'        Literal
+'\n'          Text
+
+'Pragma'      Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'no-cache'    Literal
+'\n'          Text
+
+'X-RateLimit-Class' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'api'         Literal
+'\n'          Text
+
+'X-Revision'  Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'DEV'         Literal
+'\n'          Text
+
+'Expires'     Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'Tue, 31 Mar 1981 05:00:00 GMT' Literal
+'\n'          Text
+
+'Cache-Control' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'no-cache, no-store, must-revalidate, pre-check=0, post-check=0' Literal
+'\n'          Text
+
+'X-MID'       Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'a55f21733bc52bb11d1fc58f9b51b4974fbb8f83' Literal
+'\n'          Text
+
+'X-RateLimit-Reset' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'1323738416'  Literal
+'\n'          Text
+
+'Set-Cookie'  Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'k=10.34.234.116.1323735104238974; path=/;' Literal
+'\n'          Text
+
+'\t'          Text
+'expires=Tue, 20-Dec-11 00:11:44 GMT; domain=.twitter.com' Literal
+'\n'          Text
+
+'Set-Cookie'  Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'guest_id=v1%3A13237351042425496; domain=.twitter.com; path=/;' Literal
+'\n'          Text
+
+'\t'          Text
+'expires=Thu, 12-Dec-2013 12:11:44 GMT' Literal
+'\n'          Text
+
+'Set-Cookie'  Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'_twitter_sess=BAh7CDoPY3JlYXRlZF9hdGwrCPS6wjQ0AToHaWQiJTFiMTlhY2E1ZjczYThk%250ANDUwMWQxNjMwZGU2YTQ1ODBhIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVy%250AOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--6b502f30a083e8a41a64f10930e142ea362b1561; domain=.twitter.com; path=/; HttpOnly' Literal
+'\n'          Text
+
+'Vary'        Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'Accept-Encoding' Literal
+'\n'          Text
+
+'Server'      Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'tfe'         Literal
+'\n'          Text
+
+'\n'          Text
+
+'[{'          Punctuation
+'"contributors_enabled"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"profile_background_tile"' Name.Tag
+':'           Punctuation
+'true'        Keyword.Constant
+','           Punctuation
+'"followers_count"' Name.Tag
+':'           Punctuation
+'644'         Literal.Number.Integer
+','           Punctuation
+'"protected"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"profile_image_url"' Name.Tag
+':'           Punctuation
+'"http:\\/\\/a0.twimg.com\\/profile_images\\/69064242\\/gb_normal.jpg"' Literal.String.Double
+','           Punctuation
+'"screen_name"' Name.Tag
+':'           Punctuation
+'"birkenfeld"' Literal.String.Double
+','           Punctuation
+'"default_profile_image"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"following"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"friends_count"' Name.Tag
+':'           Punctuation
+'88'          Literal.Number.Integer
+','           Punctuation
+'"profile_sidebar_fill_color"' Name.Tag
+':'           Punctuation
+'"7AC3EE"'    Literal.String.Double
+','           Punctuation
+'"url"'       Name.Tag
+':'           Punctuation
+'"http:\\/\\/pythonic.pocoo.org\\/"' Literal.String.Double
+','           Punctuation
+'"name"'      Name.Tag
+':'           Punctuation
+'"Georg Brandl"' Literal.String.Double
+','           Punctuation
+'"default_profile"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"is_translator"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"utc_offset"' Name.Tag
+':'           Punctuation
+'3600'        Literal.Number.Integer
+','           Punctuation
+'"profile_sidebar_border_color"' Name.Tag
+':'           Punctuation
+'"65B0DA"'    Literal.String.Double
+','           Punctuation
+'"description"' Name.Tag
+':'           Punctuation
+'""'          Literal.String.Double
+','           Punctuation
+'"profile_background_image_url_https"' Name.Tag
+':'           Punctuation
+'"https:\\/\\/si0.twimg.com\\/images\\/themes\\/theme10\\/bg.gif"' Literal.String.Double
+','           Punctuation
+'"favourites_count"' Name.Tag
+':'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'"profile_use_background_image"' Name.Tag
+':'           Punctuation
+'true'        Keyword.Constant
+','           Punctuation
+'"created_at"' Name.Tag
+':'           Punctuation
+'"Tue Dec 30 22:25:11 +0000 2008"' Literal.String.Double
+','           Punctuation
+'"status"'    Name.Tag
+':{'          Punctuation
+'"retweet_count"' Name.Tag
+':'           Punctuation
+'10'          Literal.Number.Integer
+','           Punctuation
+'"favorited"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"geo"'       Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"possibly_sensitive"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"coordinates"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"in_reply_to_screen_name"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"in_reply_to_status_id_str"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"retweeted"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"in_reply_to_status_id"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"in_reply_to_user_id_str"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"created_at"' Name.Tag
+':'           Punctuation
+'"Sat Jul 09 13:42:35 +0000 2011"' Literal.String.Double
+','           Punctuation
+'"truncated"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"id_str"'    Name.Tag
+':'           Punctuation
+'"89690914515206144"' Literal.String.Double
+','           Punctuation
+'"contributors"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"place"'     Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"source"'    Name.Tag
+':'           Punctuation
+'"web"'       Literal.String.Double
+','           Punctuation
+'"in_reply_to_user_id"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"id"'        Name.Tag
+':'           Punctuation
+'89690914515206144' Literal.Number.Integer
+','           Punctuation
+'"retweeted_status"' Name.Tag
+':{'          Punctuation
+'"retweet_count"' Name.Tag
+':'           Punctuation
+'10'          Literal.Number.Integer
+','           Punctuation
+'"favorited"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"geo"'       Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"possibly_sensitive"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"coordinates"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"in_reply_to_screen_name"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"in_reply_to_status_id_str"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"retweeted"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"in_reply_to_status_id"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"in_reply_to_user_id_str"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"created_at"' Name.Tag
+':'           Punctuation
+'"Sat Jul 09 13:07:04 +0000 2011"' Literal.String.Double
+','           Punctuation
+'"truncated"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"id_str"'    Name.Tag
+':'           Punctuation
+'"89681976755372032"' Literal.String.Double
+','           Punctuation
+'"contributors"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"place"'     Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"source"'    Name.Tag
+':'           Punctuation
+'"web"'       Literal.String.Double
+','           Punctuation
+'"in_reply_to_user_id"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"id"'        Name.Tag
+':'           Punctuation
+'89681976755372032' Literal.Number.Integer
+','           Punctuation
+'"text"'      Name.Tag
+':'           Punctuation
+'"Excellent Python posts from @mitsuhiko - http:\\/\\/t.co\\/k1wt6e4 and @ncoghlan_dev - http:\\/\\/t.co\\/eTxacgZ (links fixed)"' Literal.String.Double
+'},'          Punctuation
+'"text"'      Name.Tag
+':'           Punctuation
+'"RT @jessenoller: Excellent Python posts from @mitsuhiko - http:\\/\\/t.co\\/k1wt6e4 and @ncoghlan_dev - http:\\/\\/t.co\\/eTxacgZ (links fixed)"' Literal.String.Double
+'},'          Punctuation
+'"follow_request_sent"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"statuses_count"' Name.Tag
+':'           Punctuation
+'553'         Literal.Number.Integer
+','           Punctuation
+'"geo_enabled"' Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"notifications"' Name.Tag
+':'           Punctuation
+'null'        Keyword.Constant
+','           Punctuation
+'"profile_text_color"' Name.Tag
+':'           Punctuation
+'"3D1957"'    Literal.String.Double
+','           Punctuation
+'"id_str"'    Name.Tag
+':'           Punctuation
+'"18490730"'  Literal.String.Double
+','           Punctuation
+'"lang"'      Name.Tag
+':'           Punctuation
+'"en"'        Literal.String.Double
+','           Punctuation
+'"profile_background_image_url"' Name.Tag
+':'           Punctuation
+'"http:\\/\\/a1.twimg.com\\/images\\/themes\\/theme10\\/bg.gif"' Literal.String.Double
+','           Punctuation
+'"profile_image_url_https"' Name.Tag
+':'           Punctuation
+'"https:\\/\\/si0.twimg.com\\/profile_images\\/69064242\\/gb_normal.jpg"' Literal.String.Double
+','           Punctuation
+'"show_all_inline_media"' Name.Tag
+':'           Punctuation
+'true'        Keyword.Constant
+','           Punctuation
+'"listed_count"' Name.Tag
+':'           Punctuation
+'65'          Literal.Number.Integer
+','           Punctuation
+'"profile_link_color"' Name.Tag
+':'           Punctuation
+'"FF0000"'    Literal.String.Double
+','           Punctuation
+'"verified"'  Name.Tag
+':'           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+'"id"'        Name.Tag
+':'           Punctuation
+'18490730'    Literal.Number.Integer
+','           Punctuation
+'"time_zone"' Name.Tag
+':'           Punctuation
+'"Berlin"'    Literal.String.Double
+','           Punctuation
+'"profile_background_color"' Name.Tag
+':'           Punctuation
+'"642D8B"'    Literal.String.Double
+','           Punctuation
+'"location"'  Name.Tag
+':'           Punctuation
+'"Bavaria, Germany"' Literal.String.Double
+'}]'          Punctuation
+'\n'          Text

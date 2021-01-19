@@ -1,0 +1,1426 @@
+'#!/usr/bin/env perl6' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'use'         Keyword
+' '           Text
+'v6'          Name
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$string'     Name.Variable
+' '           Text
+'='           Text
+' '           Text
+"'I look like a # comment!'" Literal.String
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'$string'     Name.Variable
+' '           Text
+'eq'          Operator
+' '           Text
+"'foo'"       Literal.String
+' '           Text
+'{'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+"'hello'"     Literal.String
+';'           Text
+'\n'          Text
+
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+'regex'       Keyword
+' http-verb'  Name
+' '           Text
+'{'           Text
+'\n'          Literal.String.Regex
+
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+"'GET'"       Literal.String.Regex
+'\n'          Literal.String.Regex
+
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+'|'           Literal.String.Regex
+' '           Literal.String.Regex
+"'POST'"      Literal.String.Regex
+'\n'          Literal.String.Regex
+
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+'|'           Literal.String.Regex
+' '           Literal.String.Regex
+"'PUT'"       Literal.String.Regex
+'\n'          Literal.String.Regex
+
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+'|'           Literal.String.Regex
+' '           Literal.String.Regex
+"'DELETE'"    Literal.String.Regex
+'\n'          Literal.String.Regex
+
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+'|'           Literal.String.Regex
+' '           Literal.String.Regex
+"'TRACE'"     Literal.String.Regex
+'\n'          Literal.String.Regex
+
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+'|'           Literal.String.Regex
+' '           Literal.String.Regex
+"'OPTIONS'"   Literal.String.Regex
+'\n'          Literal.String.Regex
+
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+' '           Literal.String.Regex
+'|'           Literal.String.Regex
+' '           Literal.String.Regex
+"'HEAD'"      Literal.String.Regex
+'\n'          Literal.String.Regex
+
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+'# a sample comment' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+"'Hello from Perl 6!'" Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'#`{\nmulti-line comment!\n}' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+"'here'"      Literal.String
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'#`(\nmulti-line comment!\n)' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+"'here'"      Literal.String
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+"#`{{{\nI'm a special comment!\n}}}" Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+"'there'"     Literal.String
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+"#`{{\nI'm { even } specialer!\n}}" Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+"'there'"     Literal.String
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'#`{{\ndoes {{nesting}} work?\n}}' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'#`«<\ntrying mixed delimiters\n»' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$string'     Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'qq<Hooray, arbitrary delimiter!>' Literal.String
+';'           Text
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$string'     Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'qq«Hooray, arbitrary delimiter!»' Literal.String
+';'           Text
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$string'     Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'q <now with whitespace!>' Literal.String
+';'           Text
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$string'     Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'qq<<more strings>>' Literal.String
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'%hash'       Name.Variable
+' '           Text
+':'           Text
+'='           Text
+' '           Text
+'Hash'        Name.Builtin
+'.'           Text
+'new'         Name.Builtin
+';'           Text
+'\n'          Text
+
+"\n=begin pod\n\nHere's some POD!  Wooo\n\n=end pod" Comment.Multiline
+'\n'          Text
+
+"\n=for Testing\n    This is POD (see? role isn't highlighted)\n\n" Comment.Multiline
+
+'say'         Name.Builtin
+'('           Text
+"'this is not!'" Literal.String
+')'           Text
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'=table\n    Of role things\n\n' Comment.Multiline
+
+'say'         Name.Builtin
+'('           Text
+"'not in your table'" Literal.String
+')'           Text
+';'           Text
+'\n'          Text
+
+'#= A single line declarator "block" (with a keyword like role)' Comment.Single
+'\n'          Text
+
+'#| Another single line declarator "block" (with a keyword like role)' Comment.Single
+'\n'          Text
+
+'#={\n    A declarator block (with a keyword like role)\n  }' Comment.Multiline
+'\n'          Text
+
+'#|{\n    Another declarator block (with a keyword like role)\n  }' Comment.Multiline
+'\n'          Text
+
+'#= { A single line declarator "block" with a brace (with a keyword like role)' Comment.Single
+'\n'          Text
+
+'#=«\n    More declarator blocks! (with a keyword like role)\n  »' Comment.Multiline
+'\n'          Text
+
+'#|«\n    More declarator blocks! (with a keyword like role)\n  »' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+"'Moar code!'" Literal.String
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+"$don't"      Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'16'          Literal.Number.Integer
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'sub'         Keyword
+' '           Text
+"don't"       Name
+'('           Text
+'$x'          Name.Variable
+')'           Text
+' '           Text
+'{'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'!'           Text
+'$x'          Name.Variable
+'\n'          Text
+
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+"don't"       Name
+' '           Text
+"'foo'"       Literal.String
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'%hash'       Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'('           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+':'           Text
+'foo'         Name
+'('           Text
+'1'           Literal.Number.Integer
+')'           Text
+','           Text
+'\n'          Text
+
+')'           Text
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+'%hash<foo>'  Name.Variable
+';'           Text
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+'%hash<<foo>>' Name.Variable
+';'           Text
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+'%hash«foo»'  Name.Variable
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+'%*hash<foo>' Name.Variable.Global
+';'           Text
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+'%*hash<<foo>>' Name.Variable.Global
+';'           Text
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+'%*hash«foo»' Name.Variable.Global
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+'$<todo>'     Name.Variable
+';'           Text
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+'$<todo>'     Name.Variable
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'for'         Keyword
+' '           Text
+'('           Text
+'@A'          Name.Variable
+' '           Text
+'Z'           Operator
+' '           Text
+'@B'          Name.Variable
+')'           Text
+' '           Text
+'-'           Text
+'>'           Text
+' '           Text
+'$a'          Name.Variable
+','           Text
+' '           Text
+'$b'          Name.Variable
+' '           Text
+'{'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$a'          Name.Variable
+' '           Text
+'+'           Text
+' '           Text
+'$b'          Name.Variable
+';'           Text
+'\n'          Text
+
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+'Q:PIR {\n    .loadlib "somelib"\n}' Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$longstring' Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'q/\n    lots\n    of\n    text\n/' Literal.String
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$heredoc'    Name.Variable
+' '           Text
+'='           Text
+' '           Text
+"q:to/END_SQL/;\nSELECT * FROM Users\nWHERE first_name = 'Rob'\nEND_SQL\n" Literal.String
+
+'my'          Keyword
+' '           Text
+'$hello'      Name.Variable
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'# Fun with regexen' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+"'food'"      Literal.String
+' '           Text
+'~'           Text
+'~'           Text
+' /foo/'      Literal.String.Regex
+' '           Text
+'{'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+"'match!'"    Literal.String
+'\n'          Text
+
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$re'         Name.Variable
+' '           Text
+' '           Text
+'='           Text
+' /foo/'      Literal.String.Regex
+';'           Text
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$re2'        Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'m/ foo /'    Literal.String.Regex
+';'           Text
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$re3'        Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'m:i/ FOO /'  Literal.String.Regex
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'call-a-sub'  Name
+'('           Text
+'/ foo /'     Literal.String.Regex
+')'           Text
+';'           Text
+'\n'          Text
+
+'call-a-sub'  Name
+'('           Text
+'/ foo \\/ bar /' Literal.String.Regex
+')'           Text
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$re4'        Name.Variable
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'='           Text
+' '           Text
+'rx/something | something-else/' Literal.String.Regex
+';'           Text
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$result'     Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'ms/regexy stuff/' Literal.String.Regex
+';'           Text
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$sub0'       Name.Variable
+' '           Text
+' '           Text
+' '           Text
+'='           Text
+' '           Text
+'s'           Name.Builtin
+'/'           Operator
+'regexy'      Name
+' '           Text
+'stuff'       Name
+'/'           Operator
+'more'        Name
+' '           Text
+'stuff'       Name
+'/'           Text
+';'           Text
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$sub'        Name.Variable
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'='           Text
+' '           Text
+'ss/regexy stuff/more stuff/' Literal.String.Regex
+';'           Text
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$trans'      Name.Variable
+' '           Text
+' '           Text
+'='           Text
+' '           Text
+'tr/regexy stuff/more stuff/' Literal.String.Regex
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'@values'     Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'<a b c d>'   Literal.String
+';'           Text
+'\n'          Text
+
+'call-sub'    Name
+'('           Text
+'<a b c d>'   Literal.String
+')'           Text
+';'           Text
+'\n'          Text
+
+'call-sub'    Name
+' '           Text
+'<a b c d>'   Literal.String
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$result'     Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'$a'          Name.Variable
+' '           Text
+'<'           Text
+' '           Text
+'$b'          Name.Variable
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'for'         Keyword
+' '           Text
+'<a b c d>'   Literal.String
+' '           Text
+'-'           Text
+'>'           Text
+' '           Text
+'$letter'     Name.Variable
+' '           Text
+'{'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$letter'     Name.Variable
+';'           Text
+'\n'          Text
+
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+'sub'         Keyword
+' '           Text
+'test-sub'    Name
+' '           Text
+'{'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'@_'          Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$!'          Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$/'          Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$0'          Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$1'          Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'@*ARGS'      Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*ARGFILES'  Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'&?BLOCK'     Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'::?CLASS'    Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?CLASS'     Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'@=COMMENT'   Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'%?CONFIG'    Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*CWD'       Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$=data'      Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'%?DEEPMAGIC' Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?DISTRO'    Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*DISTRO'    Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*EGID'      Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'%*ENV'       Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*ERR'       Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*EUID'      Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*EXECUTABLE_NAME' Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?FILE'      Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?GRAMMAR'   Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*GID'       Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*IN'        Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'@*INC'       Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'%?LANG'      Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*LANG'      Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?LINE'      Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'%*META-ARGS' Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?MODULE'    Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'%*OPTS'      Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'%*OPT'       Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?KERNEL'    Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*KERNEL'    Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*OUT'       Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?PACKAGE'   Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?PERL'      Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*PERL'      Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*PID'       Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'%=pod'       Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*PROGRAM_NAME' Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'%*PROTOCOLS' Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'::?ROLE'     Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?ROLE'      Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'&?ROUTINE'   Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?SCOPE'     Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*TZ'        Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$*UID'       Name.Variable.Global
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?USAGE'     Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?VM'        Name.Variable
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'say'         Name.Builtin
+' '           Text
+'$?XVM'       Name.Variable
+';'           Text
+'\n'          Text
+
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+'<a b c>'     Literal.String
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$perl5_re'   Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'m:P5/ fo{2} /' Literal.String.Regex
+';'           Text
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$re5'        Name.Variable
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'='           Text
+' '           Text
+'rx«something | something-else»' Literal.String.Regex
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$M'          Name.Variable
+' '           Text
+':'           Text
+'='           Text
+' '           Text
+'%*COMPILING<%?OPTIONS><M>' Name.Variable.Global
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+'$M'          Name.Variable
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'sub'         Keyword
+' '           Text
+'regex-name'  Name
+' '           Text
+'{'           Text
+' '           Text
+'.'           Text
+'.'           Text
+'.'           Text
+' '           Text
+'}'           Text
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$pair'       Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'role-name'   Name
+' '           Text
+'='           Text
+'>'           Text
+' '           Text
+"'foo'"       Literal.String
+';'           Text
+'\n'          Text
+
+'$pair'       Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'rolesque'    Name
+' '           Text
+'='           Text
+'>'           Text
+' '           Text
+"'foo'"       Literal.String
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'sub'         Keyword
+' '           Text
+'something'   Name
+'('           Text
+'Str:D'       Name.Builtin
+' '           Text
+'$value'      Name.Variable
+')'           Text
+' '           Text
+'{'           Text
+' '           Text
+'.'           Text
+'.'           Text
+'.'           Text
+' '           Text
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$s'          Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'q«<\nsome\nstring\nstuff\n»' Literal.String
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$regex'      Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'m«< some chars »' Literal.String.Regex
+';'           Text
+'\n'          Text
+
+'# after'     Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'say'         Name.Builtin
+' '           Text
+'$/<foo><bar>' Name.Variable.Global
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'roleq'       Name
+';'           Text
+'\n'          Text

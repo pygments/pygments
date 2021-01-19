@@ -1,0 +1,235 @@
+'// Scilab ( http://www.scilab.org/ )' Comment.Single
+'\n'          Text
+
+'// Copyright (C) INRIA - Serge STEER' Comment.Single
+'\n'          Text
+
+'// '         Comment.Single
+'\n'          Text
+
+'\nfunction'  Keyword
+' '           Text.Whitespace
+'I'           Text
+'='           Punctuation
+'sub2ind'     Name.Function
+'('           Punctuation
+'dims,varargin' Text
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'//sub2ind is used to determine the equivalent single index' Comment.Single
+'\n'          Text
+
+'//corresponding to a given set of subscript values.' Comment.Single
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'//I = sub2ind(dims,i1,i2,..) returns the linear index equivalent to the' Comment.Single
+'\n'          Text
+
+'//row,  column, ... subscripts in the arrays i1,i2,..  for an matrix of' Comment.Single
+'\n'          Text
+
+'//size dims.' Comment.Single
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'//I = sub2ind(dims,Mi) returns the linear index' Comment.Single
+'\n'          Text
+
+'//equivalent to the n subscripts in the columns of the matrix Mi for a matrix' Comment.Single
+'\n'          Text
+
+'//of size dims.' Comment.Single
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'d'           Name
+'='           Punctuation
+'['           Punctuation
+'1'           Literal.Number.Integer
+';'           Punctuation
+'cumprod'     Name.Builtin
+'('           Punctuation
+'matrix'      Name.Builtin
+'('           Punctuation
+'dims'        Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+':'           Punctuation
+'$'           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'for'         Keyword
+' '           Text
+'i'           Name
+'='           Punctuation
+'1'           Literal.Number.Integer
+':'           Punctuation
+'size'        Name.Builtin
+'('           Punctuation
+'varargin'    Name
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'varargin'    Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'=='          Operator
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'then'        Name.Builtin
+' '           Text
+'I'           Name
+'='           Punctuation
+'['           Punctuation
+']'           Punctuation
+','           Punctuation
+'return'      Keyword
+','           Punctuation
+'end'         Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'size'        Name.Builtin
+'('           Punctuation
+'varargin'    Name
+')'           Punctuation
+'=='          Operator
+'1'           Literal.Number.Integer
+' '           Text
+'then'        Name.Builtin
+' '           Text
+'//subindices are the columns of the argument' Comment.Single
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'I'           Name
+'='           Punctuation
+'('           Punctuation
+'varargin'    Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'*'           Operator
+'d'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+'\n'          Text
+
+' '           Text
+' '           Text
+'else'        Keyword
+' '           Text
+'//subindices are given as separated arguments' Comment.Single
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'I'           Name
+'='           Punctuation
+'1'           Literal.Number.Integer
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'for'         Keyword
+' '           Text
+'i'           Name
+'='           Punctuation
+'1'           Literal.Number.Integer
+':'           Punctuation
+'size'        Name.Builtin
+'('           Punctuation
+'varargin'    Name
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'I'           Name
+'='           Punctuation
+'I'           Name
+'+'           Operator
+'('           Punctuation
+'varargin'    Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'*'           Operator
+'d'           Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+'endfunction' Keyword
+'\n'          Text

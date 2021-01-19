@@ -1,0 +1,1892 @@
+"--[[\n\tAuctioneer Advanced\n\tVersion: <%version%> (<%codename%>)\n\tRevision: $Id: CoreMain.lua 2233 2007-09-25 03:57:33Z norganna $\n\tURL: http://auctioneeraddon.com/\n\n\tThis is an addon for World of Warcraft that adds statistical history to the auction data that is collected\n\twhen the auction is scanned, so that you can easily determine what price\n\tyou will be able to sell an item for at auction or at a vendor whenever you\n\tmouse-over an item in the game\n\n\tLicense:\n\t\tThis program is free software; you can redistribute it and/or\n\t\tmodify it under the terms of the GNU General Public License\n\t\tas published by the Free Software Foundation; either version 2\n\t\tof the License, or (at your option) any later version.\n\n\t\tThis program is distributed in the hope that it will be useful,\n\t\tbut WITHOUT ANY WARRANTY; without even the implied warranty of\n\t\tMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n\t\tGNU General Public License for more details.\n\n\t\tYou should have received a copy of the GNU General Public License\n\t\talong with this program(see GPL.txt); if not, write to the Free Software\n\t\tFoundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.\n\n\tNote:\n\t\tThis AddOn's source code is specifically designed to work with\n\t\tWorld of Warcraft's interpreted AddOn system.\n\t\tYou have an implicit licence to use this AddOn with these facilities\n\t\tsince that is its designated purpose as per:\n\t\thttp://www.fsf.org/licensing/licenses/gpl-faq.html#InterpreterIncompat\n]]" Comment.Multiline
+'\n\n\n'      Text
+
+'--[[\n\tSee CoreAPI.lua for a description of the modules API\n]]' Comment.Multiline
+'\n\n'        Text
+
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'not'         Operator.Word
+' '           Text
+'AucAdvanced' Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'AucAdvanced' Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+' '           Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'not'         Operator.Word
+' '           Text
+'AucAdvancedData' Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'AucAdvancedData' Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+' '           Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'not'         Operator.Word
+' '           Text
+'AucAdvancedLocal' Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'AucAdvancedLocal' Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+' '           Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'not'         Operator.Word
+' '           Text
+'AucAdvancedConfig' Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'AucAdvancedConfig' Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+' '           Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'AucAdvanced' Name
+'.'           Punctuation
+'Version'     Name
+'='           Operator
+'"'           Literal.String.Double
+'<%version%>' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text
+
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'AucAdvanced' Name
+'.'           Punctuation
+'Version'     Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'<'           Literal.String.Double
+'"'           Literal.String.Double
+'..'          Operator
+'"'           Literal.String.Double
+'%version%>'  Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t'        Text
+'AucAdvanced' Name
+'.'           Punctuation
+'Version'     Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'5.0.DEV'     Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'local'       Keyword.Declaration
+' '           Text
+'private'     Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n\n'        Text
+
+'-- For our modular stats system, each stats engine should add their' Comment.Single
+'\n'          Text
+
+'-- subclass to AucAdvanced.Modules.<type>.<name> and store their data into their own' Comment.Single
+'\n'          Text
+
+'-- data table in AucAdvancedData.Stats.<type><name>' Comment.Single
+'\n'          Text
+
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'not'         Operator.Word
+' '           Text
+'AucAdvanced' Name
+'.'           Punctuation
+'Modules'     Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'AucAdvanced' Name
+'.'           Punctuation
+'Modules'     Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'Stat'        Name
+'='           Operator
+'{'           Punctuation
+'}'           Punctuation
+','           Punctuation
+'Util'        Name
+'='           Operator
+'{'           Punctuation
+'}'           Punctuation
+','           Punctuation
+'Filter'      Name
+'='           Operator
+'{'           Punctuation
+'}'           Punctuation
+'}'           Punctuation
+' '           Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'not'         Operator.Word
+' '           Text
+'AucAdvancedData' Name
+'.'           Punctuation
+'Stats'       Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'AucAdvancedData' Name
+'.'           Punctuation
+'Stats'       Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+' '           Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'not'         Operator.Word
+' '           Text
+'AucAdvancedLocal' Name
+'.'           Punctuation
+'Stats'       Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'AucAdvancedLocal' Name
+'.'           Punctuation
+'Stats'       Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+' '           Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'function'    Keyword.Reserved
+' '           Text
+'private'     Name.Class
+'.'           Punctuation
+'TooltipHook' Name.Function
+'('           Punctuation
+'vars'        Name
+','           Punctuation
+' '           Text
+'ret'         Name
+','           Punctuation
+' '           Text
+'frame'       Name
+','           Punctuation
+' '           Text
+'name'        Name
+','           Punctuation
+' '           Text
+'hyperlink'   Name
+','           Punctuation
+' '           Text
+'quality'     Name
+','           Punctuation
+' '           Text
+'quantity'    Name
+','           Punctuation
+' '           Text
+'cost'        Name
+','           Punctuation
+' '           Text
+'additional'  Name
+')'           Punctuation
+'\n\t'        Text
+'if'          Keyword.Reserved
+' '           Text
+'EnhTooltip'  Name
+'.'           Punctuation
+'LinkType'    Name
+'('           Punctuation
+'hyperlink'   Name
+')'           Punctuation
+' '           Text
+'~='          Operator
+' '           Text
+'"'           Literal.String.Double
+'item'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t'      Text
+'return'      Keyword.Reserved
+' '           Text
+'-- Auctioneer hooks into item tooltips only' Comment.Single
+'\n\t'        Text
+'end'         Keyword.Reserved
+'\n\n\t'      Text
+'-- Check to see if we need to force load scandata' Comment.Single
+'\n\t'        Text
+'local'       Keyword.Declaration
+' '           Text
+'getter'      Name
+' '           Text
+'='           Operator
+' '           Text
+'AucAdvanced' Name
+'.'           Punctuation
+'Settings'    Name
+'.'           Punctuation
+'GetSetting'  Name
+'\n\t'        Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'getter'      Name
+'('           Punctuation
+'"'           Literal.String.Double
+'scandata.tooltip.display' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'and'         Operator.Word
+' '           Text
+'getter'      Name
+'('           Punctuation
+'"'           Literal.String.Double
+'scandata.force' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t'      Text
+'AucAdvanced' Name
+'.'           Punctuation
+'Scan'        Name
+'.'           Punctuation
+'GetImage'    Name
+'('           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'end'         Keyword.Reserved
+'\n\n\t'      Text
+'for'         Keyword.Reserved
+' '           Text
+'system'      Name
+','           Punctuation
+' '           Text
+'systemMods'  Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'pairs'       Name.Builtin
+'('           Punctuation
+'AucAdvanced' Name
+'.'           Punctuation
+'Modules'     Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t'      Text
+'for'         Keyword.Reserved
+' '           Text
+'engine'      Name
+','           Punctuation
+' '           Text
+'engineLib'   Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'pairs'       Name.Builtin
+'('           Punctuation
+'systemMods'  Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t\t'    Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'engineLib'   Name
+'.'           Punctuation
+'Processor'   Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'engineLib'   Name
+'.'           Punctuation
+'Processor'   Name
+'('           Punctuation
+'"'           Literal.String.Double
+'tooltip'     Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'frame'       Name
+','           Punctuation
+' '           Text
+'name'        Name
+','           Punctuation
+' '           Text
+'hyperlink'   Name
+','           Punctuation
+' '           Text
+'quality'     Name
+','           Punctuation
+' '           Text
+'quantity'    Name
+','           Punctuation
+' '           Text
+'cost'        Name
+','           Punctuation
+' '           Text
+'additional'  Name
+')'           Punctuation
+' '           Text
+'end'         Keyword.Reserved
+'\n\t\t'      Text
+'end'         Keyword.Reserved
+'\n\t'        Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'function'    Keyword.Reserved
+' '           Text
+'private'     Name.Class
+'.'           Punctuation
+'HookAH'      Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'hooksecurefunc' Name
+'('           Punctuation
+'"'           Literal.String.Double
+'AuctionFrameBrowse_Update' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'AucAdvanced' Name
+'.'           Punctuation
+'API'         Name
+'.'           Punctuation
+'ListUpdate'  Name
+')'           Punctuation
+'\n\t'        Text
+'for'         Keyword.Reserved
+' '           Text
+'system'      Name
+','           Punctuation
+' '           Text
+'systemMods'  Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'pairs'       Name.Builtin
+'('           Punctuation
+'AucAdvanced' Name
+'.'           Punctuation
+'Modules'     Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t'      Text
+'for'         Keyword.Reserved
+' '           Text
+'engine'      Name
+','           Punctuation
+' '           Text
+'engineLib'   Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'pairs'       Name.Builtin
+'('           Punctuation
+'systemMods'  Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t\t'    Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'engineLib'   Name
+'.'           Punctuation
+'Processor'   Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t\t\t'  Text
+'engineLib'   Name
+'.'           Punctuation
+'Processor'   Name
+'('           Punctuation
+'"'           Literal.String.Double
+'auctionui'   Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n\t\t\t'    Text
+'end'         Keyword.Reserved
+'\n\t\t'      Text
+'end'         Keyword.Reserved
+'\n\t'        Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'function'    Keyword.Reserved
+' '           Text
+'private'     Name.Class
+'.'           Punctuation
+'OnLoad'      Name.Function
+'('           Punctuation
+'addon'       Name
+')'           Punctuation
+'\n\t'        Text
+'addon'       Name
+' '           Text
+'='           Operator
+' '           Text
+'addon'       Name
+':'           Punctuation
+'lower'       Name
+'('           Punctuation
+')'           Punctuation
+'\n\n\t'      Text
+'-- Check if the actual addon itself is loading' Comment.Single
+'\n\t'        Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'addon'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'auc-advanced' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t'      Text
+'Stubby'      Name
+'.'           Punctuation
+'RegisterAddOnHook' Name
+'('           Punctuation
+'"'           Literal.String.Double
+'Blizzard_AuctionUi' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'Auc-Advanced' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'private'     Name
+'.'           Punctuation
+'HookAH'      Name
+')'           Punctuation
+'\n\t\t'      Text
+'Stubby'      Name
+'.'           Punctuation
+'RegisterFunctionHook' Name
+'('           Punctuation
+'"'           Literal.String.Double
+'EnhTooltip.AddTooltip' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'600'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'private'     Name
+'.'           Punctuation
+'TooltipHook' Name
+')'           Punctuation
+'\n\t\t'      Text
+'for'         Keyword.Reserved
+' '           Text
+'pos'         Name
+','           Punctuation
+' '           Text
+'module'      Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'ipairs'      Name.Builtin
+'('           Punctuation
+'AucAdvanced' Name
+'.'           Punctuation
+'EmbeddedModules' Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t\t'    Text
+'-- These embedded modules have also just been loaded' Comment.Single
+'\n\t\t\t'    Text
+'private'     Name
+'.'           Punctuation
+'OnLoad'      Name
+'('           Punctuation
+'module'      Name
+')'           Punctuation
+'\n\t\t'      Text
+'end'         Keyword.Reserved
+'\n\t'        Text
+'end'         Keyword.Reserved
+'\n\n\t'      Text
+'-- Notify the actual module if it exists' Comment.Single
+'\n\t'        Text
+'local'       Keyword.Declaration
+' '           Text
+'auc'         Name
+','           Punctuation
+' '           Text
+'sys'         Name
+','           Punctuation
+' '           Text
+'eng'         Name
+' '           Text
+'='           Operator
+' '           Text
+'strsplit'    Name
+'('           Punctuation
+'"'           Literal.String.Double
+'-'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'addon'       Name
+')'           Punctuation
+'\n\t'        Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'auc'         Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'auc'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'and'         Operator.Word
+' '           Text
+'sys'         Name
+' '           Text
+'and'         Operator.Word
+' '           Text
+'eng'         Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t'      Text
+'for'         Keyword.Reserved
+' '           Text
+'system'      Name
+','           Punctuation
+' '           Text
+'systemMods'  Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'pairs'       Name.Builtin
+'('           Punctuation
+'AucAdvanced' Name
+'.'           Punctuation
+'Modules'     Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t\t'    Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'sys'         Name
+' '           Text
+'=='          Operator
+' '           Text
+'system'      Name
+':'           Punctuation
+'lower'       Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t\t\t'  Text
+'for'         Keyword.Reserved
+' '           Text
+'engine'      Name
+','           Punctuation
+' '           Text
+'engineLib'   Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'pairs'       Name.Builtin
+'('           Punctuation
+'systemMods'  Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t\t\t\t' Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'eng'         Name
+' '           Text
+'=='          Operator
+' '           Text
+'engine'      Name
+':'           Punctuation
+'lower'       Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'and'         Operator.Word
+' '           Text
+'engineLib'   Name
+'.'           Punctuation
+'OnLoad'      Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t\t\t\t\t' Text
+'engineLib'   Name
+'.'           Punctuation
+'OnLoad'      Name
+'('           Punctuation
+'addon'       Name
+')'           Punctuation
+'\n\t\t\t\t\t' Text
+'end'         Keyword.Reserved
+'\n\t\t\t\t'  Text
+'end'         Keyword.Reserved
+'\n\t\t\t'    Text
+'end'         Keyword.Reserved
+'\n\t\t'      Text
+'end'         Keyword.Reserved
+'\n\t'        Text
+'end'         Keyword.Reserved
+'\n\n\t'      Text
+"-- Check all modules' load triggers and pass event to processors" Comment.Single
+'\n\t'        Text
+'for'         Keyword.Reserved
+' '           Text
+'system'      Name
+','           Punctuation
+' '           Text
+'systemMods'  Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'pairs'       Name.Builtin
+'('           Punctuation
+'AucAdvanced' Name
+'.'           Punctuation
+'Modules'     Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t'      Text
+'for'         Keyword.Reserved
+' '           Text
+'engine'      Name
+','           Punctuation
+' '           Text
+'engineLib'   Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'pairs'       Name.Builtin
+'('           Punctuation
+'systemMods'  Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t\t'    Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'engineLib'   Name
+'.'           Punctuation
+'LoadTriggers' Name
+' '           Text
+'and'         Operator.Word
+' '           Text
+'engineLib'   Name
+'.'           Punctuation
+'LoadTriggers' Name
+'['           Punctuation
+'addon'       Name
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t\t\t'  Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'engineLib'   Name
+'.'           Punctuation
+'OnLoad'      Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t\t\t\t' Text
+'engineLib'   Name
+'.'           Punctuation
+'OnLoad'      Name
+'('           Punctuation
+'addon'       Name
+')'           Punctuation
+'\n\t\t\t\t'  Text
+'end'         Keyword.Reserved
+'\n\t\t\t'    Text
+'end'         Keyword.Reserved
+'\n\t\t\t'    Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'engineLib'   Name
+'.'           Punctuation
+'Processor'   Name
+' '           Text
+'and'         Operator.Word
+' '           Text
+'auc'         Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'auc'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'and'         Operator.Word
+' '           Text
+'sys'         Name
+' '           Text
+'and'         Operator.Word
+' '           Text
+'eng'         Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t\t\t'  Text
+'engineLib'   Name
+'.'           Punctuation
+'Processor'   Name
+'('           Punctuation
+'"'           Literal.String.Double
+'load'        Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'addon'       Name
+')'           Punctuation
+'\n\t\t\t'    Text
+'end'         Keyword.Reserved
+'\n\t\t'      Text
+'end'         Keyword.Reserved
+'\n\t'        Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'function'    Keyword.Reserved
+' '           Text
+'private'     Name.Class
+'.'           Punctuation
+'OnUnload'    Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'for'         Keyword.Reserved
+' '           Text
+'system'      Name
+','           Punctuation
+' '           Text
+'systemMods'  Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'pairs'       Name.Builtin
+'('           Punctuation
+'AucAdvanced' Name
+'.'           Punctuation
+'Modules'     Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t'      Text
+'for'         Keyword.Reserved
+' '           Text
+'engine'      Name
+','           Punctuation
+' '           Text
+'engineLib'   Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'pairs'       Name.Builtin
+'('           Punctuation
+'systemMods'  Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t\t'    Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'engineLib'   Name
+'.'           Punctuation
+'OnUnload'    Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t\t\t'  Text
+'engineLib'   Name
+'.'           Punctuation
+'OnUnload'    Name
+'('           Punctuation
+')'           Punctuation
+'\n\t\t\t'    Text
+'end'         Keyword.Reserved
+'\n\t\t'      Text
+'end'         Keyword.Reserved
+'\n\t'        Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'private'     Name
+'.'           Punctuation
+'Schedule'    Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'function'    Keyword.Reserved
+' '           Text
+'private'     Name.Class
+'.'           Punctuation
+'OnEvent'     Name.Function
+'('           Punctuation
+'...'         Punctuation
+')'           Punctuation
+'\n\t'        Text
+'local'       Keyword.Declaration
+' '           Text
+'event'       Name
+','           Punctuation
+' '           Text
+'arg'         Name
+' '           Text
+'='           Operator
+' '           Text
+'select'      Name.Builtin
+'('           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'...'         Punctuation
+')'           Punctuation
+'\n\t'        Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'event'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'ADDON_LOADED' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t'      Text
+'local'       Keyword.Declaration
+' '           Text
+'addon'       Name
+' '           Text
+'='           Operator
+' '           Text
+'string.lower' Name.Builtin
+'('           Punctuation
+'arg'         Name
+')'           Punctuation
+'\n\t\t'      Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'addon'       Name
+':'           Punctuation
+'sub'         Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'auc-'        Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t\t'    Text
+'private'     Name
+'.'           Punctuation
+'OnLoad'      Name
+'('           Punctuation
+'addon'       Name
+')'           Punctuation
+'\n\t\t'      Text
+'end'         Keyword.Reserved
+'\n\t'        Text
+'elseif'      Keyword.Reserved
+' '           Text
+'('           Punctuation
+'event'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'AUCTION_HOUSE_SHOW' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t'      Text
+'-- Do Nothing for now' Comment.Single
+'\n\t'        Text
+'elseif'      Keyword.Reserved
+' '           Text
+'('           Punctuation
+'event'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'AUCTION_HOUSE_CLOSED' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t'      Text
+'AucAdvanced' Name
+'.'           Punctuation
+'Scan'        Name
+'.'           Punctuation
+'Interrupt'   Name
+'('           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'elseif'      Keyword.Reserved
+' '           Text
+'('           Punctuation
+'event'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'PLAYER_LOGOUT' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t'      Text
+'AucAdvanced' Name
+'.'           Punctuation
+'Scan'        Name
+'.'           Punctuation
+'Commit'      Name
+'('           Punctuation
+'true'        Keyword.Constant
+')'           Punctuation
+'\n\t\t'      Text
+'private'     Name
+'.'           Punctuation
+'OnUnload'    Name
+'('           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'elseif'      Keyword.Reserved
+' '           Text
+'event'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'UNIT_INVENTORY_CHANGED' Literal.String.Double
+'"'           Literal.String.Double
+'\n\t'        Text
+'or'          Operator.Word
+' '           Text
+'event'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'ITEM_LOCK_CHANGED' Literal.String.Double
+'"'           Literal.String.Double
+'\n\t'        Text
+'or'          Operator.Word
+' '           Text
+'event'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'CURSOR_UPDATE' Literal.String.Double
+'"'           Literal.String.Double
+'\n\t'        Text
+'or'          Operator.Word
+' '           Text
+'event'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'BAG_UPDATE'  Literal.String.Double
+'"'           Literal.String.Double
+'\n\t'        Text
+'then'        Keyword.Reserved
+'\n\t\t'      Text
+'private'     Name
+'.'           Punctuation
+'Schedule'    Name
+'['           Punctuation
+'"'           Literal.String.Double
+'inventory'   Literal.String.Double
+'"'           Literal.String.Double
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'GetTime'     Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'0.15'        Literal.Number.Float
+'\n\t'        Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'function'    Keyword.Reserved
+' '           Text
+'private'     Name.Class
+'.'           Punctuation
+'OnUpdate'    Name.Function
+'('           Punctuation
+'...'         Punctuation
+')'           Punctuation
+'\n\t'        Text
+'if'          Keyword.Reserved
+' '           Text
+'event'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'inventory'   Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t'      Text
+'AucAdvanced' Name
+'.'           Punctuation
+'Post'        Name
+'.'           Punctuation
+'AlertBagsChanged' Name
+'('           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'end'         Keyword.Reserved
+'\n\n\t'      Text
+'local'       Keyword.Declaration
+' '           Text
+'now'         Name
+' '           Text
+'='           Operator
+' '           Text
+'GetTime'     Name
+'('           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'for'         Keyword.Reserved
+' '           Text
+'event'       Name
+','           Punctuation
+' '           Text
+'time'        Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'pairs'       Name.Builtin
+'('           Punctuation
+'private'     Name
+'.'           Punctuation
+'Schedule'    Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t'      Text
+'if'          Keyword.Reserved
+' '           Text
+'time'        Name
+' '           Text
+'>'           Operator
+' '           Text
+'now'         Name
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t\t'    Text
+'for'         Keyword.Reserved
+' '           Text
+'system'      Name
+','           Punctuation
+' '           Text
+'systemMods'  Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'pairs'       Name.Builtin
+'('           Punctuation
+'AucAdvanced' Name
+'.'           Punctuation
+'Modules'     Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t\t\t'  Text
+'for'         Keyword.Reserved
+' '           Text
+'engine'      Name
+','           Punctuation
+' '           Text
+'engineLib'   Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'pairs'       Name.Builtin
+'('           Punctuation
+'systemMods'  Name
+')'           Punctuation
+' '           Text
+'do'          Keyword.Reserved
+'\n\t\t\t\t\t' Text
+'if'          Keyword.Reserved
+' '           Text
+'engineLib'   Name
+'.'           Punctuation
+'Processor'   Name
+' '           Text
+'then'        Keyword.Reserved
+'\n\t\t\t\t\t\t' Text
+'engineLib'   Name
+'.'           Punctuation
+'Processor'   Name
+'('           Punctuation
+'event'       Name
+','           Punctuation
+' '           Text
+'time'        Name
+')'           Punctuation
+'\n\t\t\t\t\t' Text
+'end'         Keyword.Reserved
+'\n\t\t\t\t'  Text
+'end'         Keyword.Reserved
+'\n\t\t\t'    Text
+'end'         Keyword.Reserved
+'\n\t\t'      Text
+'end'         Keyword.Reserved
+'\n\t\t'      Text
+'private'     Name
+'.'           Punctuation
+'Schedule'    Name
+'['           Punctuation
+'event'       Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+'\n\t'        Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'private'     Name
+'.'           Punctuation
+'Frame'       Name
+' '           Text
+'='           Operator
+' '           Text
+'CreateFrame' Name
+'('           Punctuation
+'"'           Literal.String.Double
+'Frame'       Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'private'     Name
+'.'           Punctuation
+'Frame'       Name
+':'           Punctuation
+'RegisterEvent' Name
+'('           Punctuation
+'"'           Literal.String.Double
+'ADDON_LOADED' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'private'     Name
+'.'           Punctuation
+'Frame'       Name
+':'           Punctuation
+'RegisterEvent' Name
+'('           Punctuation
+'"'           Literal.String.Double
+'AUCTION_HOUSE_SHOW' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'private'     Name
+'.'           Punctuation
+'Frame'       Name
+':'           Punctuation
+'RegisterEvent' Name
+'('           Punctuation
+'"'           Literal.String.Double
+'AUCTION_HOUSE_CLOSED' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'private'     Name
+'.'           Punctuation
+'Frame'       Name
+':'           Punctuation
+'RegisterEvent' Name
+'('           Punctuation
+'"'           Literal.String.Double
+'UNIT_INVENTORY_CHANGED' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'private'     Name
+'.'           Punctuation
+'Frame'       Name
+':'           Punctuation
+'RegisterEvent' Name
+'('           Punctuation
+'"'           Literal.String.Double
+'ITEM_LOCK_CHANGED' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'private'     Name
+'.'           Punctuation
+'Frame'       Name
+':'           Punctuation
+'RegisterEvent' Name
+'('           Punctuation
+'"'           Literal.String.Double
+'CURSOR_UPDATE' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'private'     Name
+'.'           Punctuation
+'Frame'       Name
+':'           Punctuation
+'RegisterEvent' Name
+'('           Punctuation
+'"'           Literal.String.Double
+'BAG_UPDATE'  Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'private'     Name
+'.'           Punctuation
+'Frame'       Name
+':'           Punctuation
+'RegisterEvent' Name
+'('           Punctuation
+'"'           Literal.String.Double
+'PLAYER_LOGOUT' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'private'     Name
+'.'           Punctuation
+'Frame'       Name
+':'           Punctuation
+'SetScript'   Name
+'('           Punctuation
+'"'           Literal.String.Double
+'OnEvent'     Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'private'     Name
+'.'           Punctuation
+'OnEvent'     Name
+')'           Punctuation
+'\n'          Text
+
+'private'     Name
+'.'           Punctuation
+'Frame'       Name
+':'           Punctuation
+'SetScript'   Name
+'('           Punctuation
+'"'           Literal.String.Double
+'OnUpdate'    Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'private'     Name
+'.'           Punctuation
+'OnUpdate'    Name
+')'           Punctuation
+'\n\n'        Text
+
+"-- Auctioneer's debug functions" Comment.Single
+'\n'          Text
+
+'AucAdvanced' Name
+'.'           Punctuation
+'Debug'       Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'local'       Keyword.Declaration
+' '           Text
+'addonName'   Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'Auctioneer'  Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+"-- the addon's name as it will be displayed in" Comment.Single
+'\n                               ' Text
+'-- the debug messages' Comment.Single
+'\n'          Text
+
+'-------------------------------------------------------------------------------' Comment.Single
+'\n'          Text
+
+'-- Prints the specified message to nLog.' Comment.Single
+'\n'          Text
+
+'--'          Comment.Single
+'\n'          Text
+
+'-- syntax:'  Comment.Single
+'\n'          Text
+
+'--    errorCode, message = debugPrint([message][, category][, title][, errorCode][, level])' Comment.Single
+'\n'          Text
+
+'--'          Comment.Single
+'\n'          Text
+
+'-- parameters:' Comment.Single
+'\n'          Text
+
+'--    message   - (string) the error message' Comment.Single
+'\n'          Text
+
+'--                nil, no error message specified' Comment.Single
+'\n'          Text
+
+'--    category  - (string) the category of the debug message' Comment.Single
+'\n'          Text
+
+'--                nil, no category specified' Comment.Single
+'\n'          Text
+
+'--    title     - (string) the title for the debug message' Comment.Single
+'\n'          Text
+
+'--                nil, no title specified' Comment.Single
+'\n'          Text
+
+'--    errorCode - (number) the error code' Comment.Single
+'\n'          Text
+
+'--                nil, no error code specified' Comment.Single
+'\n'          Text
+
+'--    level     - (string) nLog message level' Comment.Single
+'\n'          Text
+
+'--                         Any nLog.levels string is valid.' Comment.Single
+'\n'          Text
+
+'--                nil, no level specified' Comment.Single
+'\n'          Text
+
+'--'          Comment.Single
+'\n'          Text
+
+'-- returns:' Comment.Single
+'\n'          Text
+
+'--    errorCode - (number) errorCode, if one is specified' Comment.Single
+'\n'          Text
+
+'--                nil, otherwise' Comment.Single
+'\n'          Text
+
+'--    message   - (string) message, if one is specified' Comment.Single
+'\n'          Text
+
+'--                nil, otherwise' Comment.Single
+'\n'          Text
+
+'-------------------------------------------------------------------------------' Comment.Single
+'\n'          Text
+
+'function'    Keyword.Reserved
+' '           Text
+'AucAdvanced' Name.Class
+'.'           Punctuation
+'Debug'       Name.Class
+'.'           Punctuation
+'DebugPrint'  Name.Function
+'('           Punctuation
+'message'     Name
+','           Punctuation
+' '           Text
+'category'    Name
+','           Punctuation
+' '           Text
+'title'       Name
+','           Punctuation
+' '           Text
+'errorCode'   Name
+','           Punctuation
+' '           Text
+'level'       Name
+')'           Punctuation
+'\n\t'        Text
+'return'      Keyword.Reserved
+' '           Text
+'DebugLib'    Name
+'.'           Punctuation
+'DebugPrint'  Name
+'('           Punctuation
+'addonName'   Name
+','           Punctuation
+' '           Text
+'message'     Name
+','           Punctuation
+' '           Text
+'category'    Name
+','           Punctuation
+' '           Text
+'title'       Name
+','           Punctuation
+' '           Text
+'errorCode'   Name
+','           Punctuation
+' '           Text
+'level'       Name
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'-------------------------------------------------------------------------------' Comment.Single
+'\n'          Text
+
+'-- Used to make sure that conditions are met within functions.' Comment.Single
+'\n'          Text
+
+"-- If test is false, the error message will be written to nLog and the user's" Comment.Single
+'\n'          Text
+
+'-- default chat channel.' Comment.Single
+'\n'          Text
+
+'--'          Comment.Single
+'\n'          Text
+
+'-- syntax:'  Comment.Single
+'\n'          Text
+
+'--    assertion = assert(test, message)' Comment.Single
+'\n'          Text
+
+'--'          Comment.Single
+'\n'          Text
+
+'-- parameters:' Comment.Single
+'\n'          Text
+
+'--    test    - (any)     false/nil, if the assertion failed' Comment.Single
+'\n'          Text
+
+'--                        anything else, otherwise' Comment.Single
+'\n'          Text
+
+'--    message - (string)  the message which will be output to the user' Comment.Single
+'\n'          Text
+
+'--'          Comment.Single
+'\n'          Text
+
+'-- returns:' Comment.Single
+'\n'          Text
+
+'--    assertion - (boolean) true, if the test passed' Comment.Single
+'\n'          Text
+
+'--                          false, otherwise' Comment.Single
+'\n'          Text
+
+'-------------------------------------------------------------------------------' Comment.Single
+'\n'          Text
+
+'function'    Keyword.Reserved
+' '           Text
+'AucAdvanced' Name.Class
+'.'           Punctuation
+'Debug'       Name.Class
+'.'           Punctuation
+'Assert'      Name.Function
+'('           Punctuation
+'test'        Name
+','           Punctuation
+' '           Text
+'message'     Name
+')'           Punctuation
+'\n\t'        Text
+'return'      Keyword.Reserved
+' '           Text
+'DebugLib'    Name
+'.'           Punctuation
+'Assert'      Name
+'('           Punctuation
+'addonName'   Name
+','           Punctuation
+' '           Text
+'test'        Name
+','           Punctuation
+' '           Text
+'message'     Name
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'--[==[\nHere follow further tests of Lua syntax.\n]]==]' Comment.Multiline
+'\n'          Text
+
+'---[['       Comment.Single
+'\n'          Text
+
+'local'       Keyword.Declaration
+' '           Text
+'t'           Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'['           Punctuation
+' '           Text
+'[[\nx\n]==] \\]]' Literal.String
+']'           Punctuation
+'='           Operator
+'1'           Literal.Number.Integer
+'|'           Operator
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'a'           Name
+'='           Operator
+'{'           Punctuation
+'b'           Name
+'='           Operator
+'{'           Punctuation
+'c'           Name
+'='           Operator
+'{'           Punctuation
+'}'           Punctuation
+'}'           Punctuation
+'}'           Punctuation
+','           Punctuation
+'\n        '  Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1.'          Literal.Number.Float
+','           Punctuation
+' '           Text
+'1.2'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'.2'          Literal.Number.Float
+','           Punctuation
+' '           Text
+'1e3'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'1.e3'        Literal.Number.Float
+','           Punctuation
+' '           Text
+'1.2e3'       Literal.Number.Float
+','           Punctuation
+' '           Text
+'.2e3'        Literal.Number.Float
+','           Punctuation
+' '           Text
+'1.2e+3'      Literal.Number.Float
+','           Punctuation
+' '           Text
+'1.2E-3'      Literal.Number.Float
+';'           Punctuation
+'\n        '  Text
+'0xA'         Literal.Number.Hex
+','           Punctuation
+' '           Text
+'0Xa'         Literal.Number.Hex
+','           Punctuation
+' '           Text
+'0xA.'        Literal.Number.Hex
+','           Punctuation
+' '           Text
+'0x.F'        Literal.Number.Hex
+','           Punctuation
+' '           Text
+'0xA.F'       Literal.Number.Hex
+','           Punctuation
+' '           Text
+'0xA.Fp1'     Literal.Number.Hex
+','           Punctuation
+' '           Text
+'0xA.FP+1'    Literal.Number.Hex
+','           Punctuation
+' '           Text
+'0Xa.fp-1'    Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'function'    Keyword.Reserved
+' '           Text
+'t'           Name.Class
+'.'           Punctuation
+'f'           Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n        '  Text
+'goto'        Keyword.Reserved
+' '           Text
+'eof'         Name.Label
+'\n        '  Text
+'os.exit'     Name.Builtin
+'('           Punctuation
+')'           Punctuation
+'\n        '  Text
+'::'          Punctuation
+' '           Text
+'eof'         Name.Label
+' '           Text
+'::'          Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'function'    Keyword.Reserved
+' '           Text
+'t'           Name.Class
+' '           Text
+'.'           Punctuation
+' '           Text
+'a'           Name.Class
+' '           Text
+'--[==[x]==]' Comment.Multiline
+' '           Text
+'.'           Punctuation
+'b'           Name.Class
+' '           Text
+'--[==[y]==]' Comment.Multiline
+' '           Text
+'--'          Comment.Single
+'\n'          Text
+
+'-- () end'   Comment.Single
+'\n           ' Text
+'.'           Punctuation
+' '           Text
+'c'           Name.Class
+' '           Text
+':'           Punctuation
+' '           Text
+'d'           Name.Function
+' '           Text
+'('           Punctuation
+'file'        Name
+')'           Punctuation
+'\n        '  Text
+'return'      Keyword.Reserved
+' '           Text
+"'"           Literal.String.Single
+'.'           Literal.String.Single
+'\\a'         Literal.String.Escape
+'.'           Literal.String.Single
+'\\b'         Literal.String.Escape
+'.'           Literal.String.Single
+'\\f'         Literal.String.Escape
+'.'           Literal.String.Single
+'\\n'         Literal.String.Escape
+'.'           Literal.String.Single
+'\\r'         Literal.String.Escape
+'.'           Literal.String.Single
+'\\t'         Literal.String.Escape
+'.'           Literal.String.Single
+'\\v'         Literal.String.Escape
+'.'           Literal.String.Single
+'\\\\'        Literal.String.Escape
+'.'           Literal.String.Single
+'\\"'         Literal.String.Escape
+'.'           Literal.String.Single
+"\\'"         Literal.String.Escape
+'.'           Literal.String.Single
+'\\\n'        Literal.String.Escape
+
+'.'           Literal.String.Single
+'\\z    \n  \t ' Literal.String.Escape
+'.'           Literal.String.Single
+'\\0'         Literal.String.Escape
+'.'           Literal.String.Single
+'\\00'        Literal.String.Escape
+'.'           Literal.String.Single
+'\\000'       Literal.String.Escape
+'.'           Literal.String.Single
+'\\000'       Literal.String.Escape
+'0.'          Literal.String.Single
+'\\xFa'       Literal.String.Escape
+'.'           Literal.String.Single
+'\\u{1}'      Literal.String.Escape
+'.'           Literal.String.Single
+'\\u{1234}'   Literal.String.Escape
+"'"           Literal.String.Single
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n'          Text

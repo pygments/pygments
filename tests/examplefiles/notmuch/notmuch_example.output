@@ -1,0 +1,52 @@
+'\x0cmessage{ ' Keyword
+'id:'         Name.Attribute
+'5d0693e2.1c69fb81.d5fc9.1f6e@mx.google.com' Literal.String
+' depth:'     Name.Attribute
+'0'           Literal.Number.Integer
+' match:'     Name.Attribute
+'1'           Literal.Number.Integer
+' excluded:'  Name.Attribute
+'0'           Literal.Number.Integer
+' filename:'  Name.Attribute
+'/home/user/mail/INBOX/new/1560712171_0.11014.blue,U=20254,FMD5=7e33429f656f1e6e9d79b29c3f82c57e:2,\n' Literal.String
+
+'\x0cheader{\n' Keyword
+
+'John Doe <john.doe@example.com> ' Generic.Strong
+'(1 mins. ago)' Literal
+' (inbox unread)\n' Name.Tag
+
+'Subject: '   Name.Attribute
+'Hello world!\n' Literal.String
+
+'From: '      Name.Attribute
+'john.doe@example.com\n' Literal.String
+
+'Date: '      Name.Attribute
+'Sun, 16 Jun 2019 16:00:00 -0300\n' Literal.String
+
+'\x0cheader}\n' Keyword
+
+'\x0cbody{\n' Keyword
+
+'\x0cpart{ '  Keyword
+'ID: '        Name.Attribute
+'1'           Literal.Number.Integer
+', '          Punctuation
+'Content-type: ' Name.Attribute
+'text/plain\n' Literal.String
+
+'#!/bin/sh\n' Comment.Hashbang
+
+'\n'          Text
+
+'echo'        Name.Builtin
+' '           Text
+"'Hello world!'" Literal.String.Single
+'\n'          Text
+
+'\x0cpart}\n' Keyword
+
+'\x0cbody}\n' Keyword
+
+'\x0cmessage}\n' Keyword

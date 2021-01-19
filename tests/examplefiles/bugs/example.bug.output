@@ -1,0 +1,598 @@
+'# Alligators: multinomial - logistic regression ' Comment.Single
+'\n'          Text
+
+'#  http://www.openbugs.info/Examples/Aligators.html' Comment.Single
+'\n'          Text
+
+'model'       Keyword.Namespace
+' '           Text
+'{'           Punctuation
+'\n   '       Text
+'# PRIORS    ' Comment.Single
+'\n   '       Text
+'alpha'       Name
+'['           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'0'           Literal.Number
+';'           Punctuation
+' '           Text
+'# zero contrast for baseline food' Comment.Single
+'\n   '       Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'2'           Literal.Number
+' '           Text
+':'           Punctuation
+' '           Text
+'K'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' \n     '    Text
+'alpha'       Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+' '           Text
+'~'           Operator
+' '           Text
+'dnorm'       Name.Builtin
+'('           Punctuation
+'0'           Literal.Number
+','           Punctuation
+' '           Text
+'0.00001'     Literal.Number
+')'           Punctuation
+' '           Text
+'# vague priors' Comment.Single
+'\n   '       Text
+'}'           Punctuation
+' \n   '      Text
+'# Loop around lakes:' Comment.Single
+'\n   '       Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+' '           Text
+':'           Punctuation
+' '           Text
+'K'           Name
+')'           Punctuation
+'{'           Punctuation
+' \n      '   Text
+'beta'        Name
+'['           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'0'           Literal.Number
+' \n   '      Text
+'}'           Punctuation
+' '           Text
+'# corner-point contrast with first lake ' Comment.Single
+'\n   '       Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'i'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'2'           Literal.Number
+' '           Text
+':'           Punctuation
+' '           Text
+'I'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' \n     '    Text
+'beta'        Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+';'           Punctuation
+' '           Text
+'# zero contrast for baseline food' Comment.Single
+'\n     '     Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'2'           Literal.Number
+' '           Text
+':'           Punctuation
+' '           Text
+'K'           Name
+')'           Punctuation
+'{'           Punctuation
+' \n       '  Text
+'beta'        Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+' '           Text
+'~'           Operator
+' '           Text
+'dnorm'       Name.Builtin
+'('           Punctuation
+'0'           Literal.Number
+','           Punctuation
+' '           Text
+'0.00001'     Literal.Number
+')'           Punctuation
+' '           Text
+'# vague priors' Comment.Single
+'\n     '     Text
+'}'           Punctuation
+' \n   '      Text
+'}'           Punctuation
+'\n   '       Text
+'# Loop around sizes:' Comment.Single
+'\n   '       Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+' '           Text
+':'           Punctuation
+' '           Text
+'K'           Name
+')'           Punctuation
+'{'           Punctuation
+' \n     '    Text
+'gamma'       Name
+'['           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+'# corner-point contrast with first size ' Comment.Single
+'\n   '       Text
+'}'           Punctuation
+' \n   '      Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'j'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'2'           Literal.Number
+' '           Text
+':'           Punctuation
+' '           Text
+'J'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' \n     '    Text
+'gamma'       Name
+'['           Punctuation
+'j'           Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+';'           Punctuation
+' '           Text
+'# zero contrast for baseline food' Comment.Single
+'\n     '     Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+' '           Text
+'k'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'2'           Literal.Number
+' '           Text
+':'           Punctuation
+' '           Text
+'K'           Name
+')'           Punctuation
+'{'           Punctuation
+' \n       '  Text
+'gamma'       Name
+'['           Punctuation
+'j'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+' '           Text
+'~'           Operator
+' '           Text
+'dnorm'       Name.Builtin
+'('           Punctuation
+'0'           Literal.Number
+','           Punctuation
+' '           Text
+'0.00001'     Literal.Number
+')'           Punctuation
+' '           Text
+'# vague priors' Comment.Single
+'\n     '     Text
+'}'           Punctuation
+' \n   '      Text
+'}'           Punctuation
+'\n\n   '     Text
+'# LIKELIHOOD   ' Comment.Single
+'\n   '       Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'i'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+' '           Text
+':'           Punctuation
+' '           Text
+'I'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'# loop around lakes' Comment.Single
+'\n     '     Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'j'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+' '           Text
+':'           Punctuation
+' '           Text
+'J'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'# loop around sizes' Comment.Single
+'\n\n       ' Text
+'# Fit standard Poisson regressions relative to baseline' Comment.Single
+'\n       '   Text
+'lambda'      Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'j'           Name
+']'           Punctuation
+' '           Text
+'~'           Operator
+' '           Text
+'dflat'       Name.Builtin
+'('           Punctuation
+')'           Punctuation
+'   '         Text
+'# vague priors ' Comment.Single
+'\n       '   Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+' '           Text
+':'           Punctuation
+' '           Text
+'K'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'# loop around foods' Comment.Single
+'\n           ' Text
+'X'           Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'j'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+' '           Text
+'~'           Operator
+' '           Text
+'dpois'       Name.Builtin
+'('           Punctuation
+'mu'          Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'j'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+')'           Punctuation
+'\n           ' Text
+'log'         Name.Builtin
+'('           Punctuation
+'mu'          Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'j'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'lambda'      Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'j'           Name
+']'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'alpha'       Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'beta'        Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'gamma'       Name
+'['           Punctuation
+'j'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+'\n           ' Text
+'culmative.X' Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'j'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'culmative'   Name
+'('           Punctuation
+'X'           Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'j'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+','           Punctuation
+' '           Text
+'X'           Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'j'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+')'           Punctuation
+'\n       '   Text
+'}'           Punctuation
+'\n     '     Text
+'}'           Punctuation
+'\n   '       Text
+'}'           Punctuation
+'\n\n   '     Text
+'# TRANSFORM OUTPUT TO ENABLE COMPARISON ' Comment.Single
+'\n   '       Text
+"# WITH AGRESTI'S RESULTS" Comment.Single
+'\n   '       Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+' '           Text
+':'           Punctuation
+' '           Text
+'K'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'# loop around foods' Comment.Single
+'\n       '   Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'i'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+' '           Text
+':'           Punctuation
+' '           Text
+'I'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'# loop around lakes' Comment.Single
+'\n         ' Text
+'b'           Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'beta'        Name
+'['           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'mean'        Name.Builtin
+'('           Punctuation
+'beta'        Name
+'['           Punctuation
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'# sum to zero constraint' Comment.Single
+'\n       '   Text
+'}'           Punctuation
+'\n       '   Text
+'for'         Keyword.Reserved
+' '           Text
+'('           Punctuation
+'j'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number
+' '           Text
+':'           Punctuation
+' '           Text
+'J'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'# loop around sizes' Comment.Single
+'\n         ' Text
+'g'           Name
+'['           Punctuation
+'j'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+' '           Text
+'<-'          Operator
+' '           Text
+'gamma'       Name
+'['           Punctuation
+'j'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'mean'        Name.Builtin
+'('           Punctuation
+'gamma'       Name
+'['           Punctuation
+','           Punctuation
+' '           Text
+'k'           Name
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'# sum to zero constraint' Comment.Single
+'\n       '   Text
+'}'           Punctuation
+'\n   '       Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' \n'         Text

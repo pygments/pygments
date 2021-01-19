@@ -1,0 +1,150 @@
+''            Text
+'// regex\n'  Comment.Single
+
+'\n'          Text
+
+'blah'        Name.Other
+'('           Punctuation
+'/abc/'       Literal.String.Regex
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'x'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'/abc/'       Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'x'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'/abc/'       Literal.String.Regex
+'.'           Punctuation
+'match'       Name.Other
+';'           Punctuation
+'\n\n'        Text
+
+'// math\n'   Comment.Single
+
+'\n'          Text
+
+'blah'        Name.Other
+'('           Punctuation
+'1'           Literal.Number.Float
+'/'           Operator
+'2'           Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'//comment\n' Comment.Single
+
+'x'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Float
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Float
+' '           Text
+'/'           Operator
+' '           Text
+'3'           Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'x'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Float
+'/'           Operator
+'1'           Literal.Number.Float
+'/'           Operator
+'.1'          Literal.Number.Float
+';'           Punctuation
+'\n\n'        Text
+
+'// broken\n' Comment.Single
+
+'\n'          Text
+
+'x'           Name.Other
+'='           Operator
+'/1/'         Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'x'           Name.Other
+'='           Operator
+'1'           Literal.Number.Float
+'/'           Operator
+'a'           Name.Other
+'/'           Operator
+'g'           Name.Other
+';'           Punctuation
+'\n'          Text
+
+'x'           Name.Other
+'='           Operator
+'a'           Name.Other
+'/'           Operator
+'a'           Name.Other
+'/'           Operator
+'g'           Name.Other
+';'           Punctuation
+'\n\n'        Text
+
+'// real-world\n' Comment.Single
+
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text
+'x'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Float
+'/'           Operator
+'('           Punctuation
+'1'           Literal.Number.Float
+'+'           Operator
+'Math'        Name.Builtin
+'.'           Punctuation
+'sqrt'        Name.Other
+'('           Punctuation
+'sum'         Name.Other
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'// convert to number between 1-0\n' Comment.Single
+
+'return'      Keyword
+' '           Text
+'Math'        Name.Builtin
+'.'           Punctuation
+'round'       Name.Other
+'('           Punctuation
+'('           Punctuation
+'num'         Name.Other
+' '           Text
+'/'           Operator
+' '           Text
+'den'         Name.Other
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'100'         Literal.Number.Float
+')'           Punctuation
+'/'           Operator
+'100'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text
