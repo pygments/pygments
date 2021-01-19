@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.AMDGCNLexer
+    pygments.lexers.AMDGPULexer
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the AMD GCN ISA assembly.
@@ -14,11 +14,11 @@ from pygments.token import *
 
 import re
 
-__all__ = ['AMDGCNLexer']
+__all__ = ['AMDGPULexer']
 
-class AMDGCNLexer(RegexLexer):
-    name = 'AMDGCN'
-    aliases = ['amdgcn']
+class AMDGPULexer(RegexLexer):
+    name = 'AMDGPU'
+    aliases = ['amdgpu']
     filenames = ['*.isa']
     
     flags = re.IGNORECASE
