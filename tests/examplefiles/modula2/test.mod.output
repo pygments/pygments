@@ -1,0 +1,1536 @@
+'(* LIFO Storage Library\n *\n *  @file LIFO.mod\n *  LIFO implementation\n *\n *  Universal Dynamic Stack\n *\n *  Author: Benjamin Kowarsch\n *\n *  Copyright (C) 2009 Benjamin Kowarsch. All rights reserved.\n *\n *  License:\n *\n *  Redistribution  and  use  in source  and  binary forms,  with  or  without\n *  modification, are permitted provided that the following conditions are met\n *\n *  1) NO FEES may be charged for the provision of the software.  The software\n *     may  NOT  be published  on websites  that contain  advertising,  unless\n *     specific  prior  written  permission has been obtained.\n *\n *  2) Redistributions  of source code must retain the above copyright notice,\n *     this list of conditions and the following disclaimer.\n *\n *  3) Redistributions  in binary form  must  reproduce  the  above  copyright\n *     notice,  this list of conditions  and  the following disclaimer  in the\n *     documentation and other materials provided with the distribution.\n *\n *  4) Neither the author\'s name nor the names of any contributors may be used\n *     to endorse  or  promote  products  derived  from this software  without\n *     specific prior written permission.\n *\n *  5) Where this list of conditions  or  the following disclaimer, in part or\n *     as a whole is overruled  or  nullified by applicable law, no permission\n *     is granted to use the software.\n *\n * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"\n * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO,  THE\n * IMPLIED WARRANTIES OF MERCHANTABILITY  AND FITNESS FOR A PARTICULAR PURPOSE\n * ARE DISCLAIMED.  IN NO EVENT  SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE\n * LIABLE  FOR  ANY  DIRECT,  INDIRECT,  INCIDENTAL,  SPECIAL,  EXEMPLARY,  OR\n * CONSEQUENTIAL  DAMAGES  (INCLUDING,  BUT  NOT  LIMITED  TO,  PROCUREMENT OF\n * SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS; OR BUSINESS\n * INTERRUPTION)  HOWEVER  CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN\n * CONTRACT,  STRICT LIABILITY,  OR TORT  (INCLUDING NEGLIGENCE  OR OTHERWISE)\n * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,  EVEN IF ADVISED OF THE\n * POSSIBILITY OF SUCH DAMAGE.\n *  \n *)' Comment.Multiline
+'\n\n\n'      Text
+
+'IMPLEMENTATION' Keyword.Reserved
+' '           Text
+'(* OF *)'    Comment.Multiline
+' '           Text
+'MODULE'      Keyword.Reserved
+' '           Text
+'LIFO'        Name
+';'           Punctuation
+'\n\n'        Text
+
+'FROM'        Keyword.Reserved
+' '           Text
+'SYSTEM'      Name.Builtin.Pseudo
+' '           Text
+'IMPORT'      Keyword.Reserved
+' '           Text
+'ADDRESS'     Name.Builtin.Pseudo
+','           Punctuation
+' '           Text
+'ADR'         Name.Builtin.Pseudo
+','           Punctuation
+' '           Text
+'TSIZE'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'FROM'        Keyword.Reserved
+' '           Text
+'Storage'     Name
+' '           Text
+'IMPORT'      Keyword.Reserved
+' '           Text
+'ALLOCATE'    Name
+','           Punctuation
+' '           Text
+'DEALLOCATE'  Name
+';'           Punctuation
+'\n\n\n'      Text
+
+'(* ---------------------------------------------------------------------------\n// Private type : ListEntry\n// ---------------------------------------------------------------------------\n*)' Comment.Multiline
+'\n'          Text
+
+'TYPE'        Keyword.Reserved
+' '           Text
+'ListPtr'     Name
+' '           Text
+'='           Operator
+' '           Text
+'POINTER'     Keyword.Reserved
+' '           Text
+'TO'          Keyword.Reserved
+' '           Text
+'ListEntry'   Name
+';'           Punctuation
+'\n\n'        Text
+
+'TYPE'        Keyword.Reserved
+' '           Text
+'ListEntry'   Name
+' '           Text
+'='           Operator
+' '           Text
+'RECORD'      Keyword.Reserved
+'\n'          Text
+
+'    '        Text
+'value'       Name
+' '           Text
+':'           Punctuation
+' '           Text
+'DataPtr'     Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'next'        Name
+'  '          Text
+':'           Punctuation
+' '           Text
+'ListPtr'     Name
+'\n'          Text
+
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* ListEntry *)' Comment.Multiline
+'\n\n\n'      Text
+
+'(* ---------------------------------------------------------------------------\n// Opaque type : LIFO.Stack\n// ---------------------------------------------------------------------------\n// CAUTION:  Modula-2 does not support the use of variable length array fields\n// in records.  VLAs can  only  be implemented  using pointer arithmetic which\n// means  there is  no type checking  and  no boundary checking  on the array.\n// It also means that  array notation cannot be used on the array  which makes\n// the code  difficult to read  and maintain.  As a result,  Modula-2  is less\n// safe and less readable than C when it comes to using VLAs.  Great care must\n// be taken to make sure that the code accessing VLA fields is safe.  Boundary\n// checks must be inserted manually.  Size checks must be inserted manually to\n// compensate for the absence of type checks. *)' Comment.Multiline
+'\n\n'        Text
+
+'TYPE'        Keyword.Reserved
+' '           Text
+'Stack'       Name
+' '           Text
+'='           Operator
+' '           Text
+'POINTER'     Keyword.Reserved
+' '           Text
+'TO'          Keyword.Reserved
+' '           Text
+'StackDescriptor' Name
+';'           Punctuation
+'\n\n'        Text
+
+'TYPE'        Keyword.Reserved
+' '           Text
+'StackDescriptor' Name
+' '           Text
+'='           Operator
+' '           Text
+'RECORD'      Keyword.Reserved
+'\n'          Text
+
+'    '        Text
+'overflow'    Name
+'   '         Text
+':'           Punctuation
+' '           Text
+'ListPtr'     Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'entryCount'  Name
+' '           Text
+':'           Punctuation
+' '           Text
+'StackSize'   Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'arraySize'   Name
+'  '          Text
+':'           Punctuation
+' '           Text
+'StackSize'   Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'array'       Name
+'      '      Text
+':'           Punctuation
+' '           Text
+'ADDRESS'     Name.Builtin.Pseudo
+' '           Text
+'(* ARRAY OF DataPtr *)' Comment.Multiline
+'\n'          Text
+
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* StackDescriptor *)' Comment.Multiline
+'\n\n\n'      Text
+
+'(* ---------------------------------------------------------------------------\n// function:  LIFO.new( initial_size, status )\n// ---------------------------------------------------------------------------\n//\n// Creates  and  returns  a new LIFO stack object  with an initial capacity of\n// <initialSize>.  If  zero  is passed in  for <initialSize>,  then  the stack\n// will be created  with an  initial capacity  of  LIFO.defaultStackSize.  The\n// function fails  if a value greater than   LIFO.maximumStackSize  is  passed\n// in  for <initialSize> or if memory could not be allocated.\n//\n// The initial capacity of a stack is the number of entries that can be stored\n// in the stack without enlargement.\n//\n// The status of the operation  is passed back in <status>. *)' Comment.Multiline
+'\n\n'        Text
+
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'new'         Name
+' '           Text
+'('           Punctuation
+' '           Text
+'initialSize' Name
+' '           Text
+':'           Punctuation
+' '           Text
+'StackSize'   Name
+';'           Punctuation
+' '           Text
+'VAR'         Keyword.Reserved
+' '           Text
+'status'      Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Status'      Name
+' '           Text
+')'           Punctuation
+' '           Text
+':'           Punctuation
+' '           Text
+'Stack'       Name
+';'           Punctuation
+'\n\n'        Text
+
+'VAR'         Keyword.Reserved
+'\n'          Text
+
+'    '        Text
+'newStack'    Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Stack'       Name
+';'           Punctuation
+'\n'          Text
+
+'    \n'      Text
+
+'BEGIN'       Keyword.Reserved
+'\n\n'        Text
+
+'    '        Text
+'(* zero size means default *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'initialSize' Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'        '    Text
+'initialSize' Name
+' '           Text
+':='          Operator
+' '           Text
+'defaultStackSize' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n'          Text
+
+'    \n    '  Text
+'(* bail out if initial size is too high *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'initialSize' Name
+' '           Text
+'>'           Operator
+' '           Text
+'maximumStackSize' Name
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'        '    Text
+'status'      Name
+' '           Text
+':='          Operator
+' '           Text
+'invalidSize' Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'NIL'         Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n'          Text
+
+'    \n    '  Text
+'(* allocate new stack object *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'ALLOCATE'    Name
+'('           Punctuation
+'newStack'    Name
+','           Punctuation
+' '           Text
+'TSIZE'       Name.Builtin
+'('           Punctuation
+'Stack'       Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'TSIZE'       Name.Builtin
+'('           Punctuation
+'DataPtr'     Name
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'('           Punctuation
+'initialSize' Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'(* bail out if allocation failed *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'newStack'    Name
+' '           Text
+'='           Operator
+' '           Text
+'NIL'         Name.Builtin
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'        '    Text
+'status'      Name
+' '           Text
+':='          Operator
+' '           Text
+'allocationFailed' Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'NIL'         Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n'          Text
+
+'        \n    ' Text
+'(* initialise meta data *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'newStack'    Name
+'^'           Operator
+'.'           Punctuation
+'arraySize'   Name
+' '           Text
+':='          Operator
+' '           Text
+'initialSize' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'newStack'    Name
+'^'           Operator
+'.'           Punctuation
+'entryCount'  Name
+' '           Text
+':='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'newStack'    Name
+'^'           Operator
+'.'           Punctuation
+'overflow'    Name
+' '           Text
+':='          Operator
+' '           Text
+'NIL'         Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'(* pass status and new stack to caller *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'status'      Name
+' '           Text
+':='          Operator
+' '           Text
+'success'     Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'newStack'    Name
+'\n'          Text
+
+'    \n'      Text
+
+'END'         Keyword.Reserved
+' '           Text
+'new'         Name
+';'           Punctuation
+'\n\n\n'      Text
+
+'(* ---------------------------------------------------------------------------\n// function:  LIFO.push( stack, value, status )\n// ---------------------------------------------------------------------------\n//\n// Adds a  new entry <value>  to the top of stack <stack>.  The  new entry  is\n// added by reference,  no data is copied.  However,  no entry is added if the\n// the stack is full,  that is  when the number of entries stored in the stack\n// has reached LIFO.maximumStackSize.  The function fails  if NIL is passed in\n// for <stack> or <value>,  or if memory could not be allocated.\n//\n// New entries are allocated dynamically  if the number of entries exceeds the\n// initial capacity of the stack.\n//\n// The status of the operation is passed back in <status>. *)' Comment.Multiline
+'\n\n'        Text
+
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'push'        Name
+' '           Text
+'('           Punctuation
+' '           Text
+'VAR'         Keyword.Reserved
+' '           Text
+'stack'       Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Stack'       Name
+';'           Punctuation
+' '           Text
+'value'       Name
+' '           Text
+':'           Punctuation
+' '           Text
+'DataPtr'     Name
+';'           Punctuation
+' '           Text
+'VAR'         Keyword.Reserved
+' '           Text
+'status'      Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Status'      Name
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'VAR'         Keyword.Reserved
+'\n'          Text
+
+'    '        Text
+'newEntry'    Name
+' '           Text
+':'           Punctuation
+' '           Text
+'ListPtr'     Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'valuePtr'    Name
+' '           Text
+':'           Punctuation
+' '           Text
+'POINTER'     Keyword.Reserved
+' '           Text
+'TO'          Keyword.Reserved
+' '           Text
+'DataPtr'     Name
+';'           Punctuation
+'\n\n'        Text
+
+'BEGIN'       Keyword.Reserved
+'\n\n'        Text
+
+'    '        Text
+'(* bail out if stack is NIL *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'stack'       Name
+' '           Text
+'='           Operator
+' '           Text
+'NIL'         Name.Builtin
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'        '    Text
+'status'      Name
+' '           Text
+':='          Operator
+' '           Text
+'invalidStack' Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'RETURN'      Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n'          Text
+
+'    \n    '  Text
+'(* bail out if value is NIL *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'value'       Name
+' '           Text
+'='           Operator
+' '           Text
+'NIL'         Name.Builtin
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'        '    Text
+'status'      Name
+' '           Text
+':='          Operator
+' '           Text
+'invalidData' Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'RETURN'      Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n\n'        Text
+
+'    '        Text
+'(* bail out if stack is full *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'entryCount'  Name
+' '           Text
+'>='          Operator
+' '           Text
+'maximumStackSize' Name
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'        '    Text
+'status'      Name
+' '           Text
+':='          Operator
+' '           Text
+'stackFull'   Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'RETURN'      Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n\n'        Text
+
+'    '        Text
+'(* check if index falls within array segment *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'entryCount'  Name
+' '           Text
+'<'           Operator
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'arraySize'   Name
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'    \n        ' Text
+'(* store value in array segment *)' Comment.Multiline
+'\n'          Text
+
+'        \n        ' Text
+'(* stack^.array^[stack^.entryCount] := value; *)' Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'valuePtr'    Name
+' '           Text
+':='          Operator
+' '           Text
+'ADR'         Name.Builtin.Pseudo
+'('           Punctuation
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'array'       Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'TSIZE'       Name.Builtin
+'('           Punctuation
+'DataPtr'     Name
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'entryCount'  Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'valuePtr'    Name
+'^'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'value'       Name
+';'           Punctuation
+'\n'          Text
+
+'        \n    ' Text
+'ELSE'        Keyword.Reserved
+' '           Text
+'(* index falls within overflow segment *)' Comment.Multiline
+'\n'          Text
+
+'    \n        ' Text
+'(* allocate new entry slot *)' Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'NEW'         Keyword.Reserved
+'('           Punctuation
+'newEntry'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        \n        ' Text
+'(* bail out if allocation failed *)' Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'IF'          Keyword.Reserved
+' '           Text
+'newEntry'    Name
+' '           Text
+'='           Operator
+' '           Text
+'NIL'         Name.Builtin
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'            ' Text
+'status'      Name
+' '           Text
+':='          Operator
+' '           Text
+'allocationFailed' Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'RETURN'      Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n'          Text
+
+'        \n        ' Text
+'(* initialise new entry *)' Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'newEntry'    Name
+'^'           Operator
+'.'           Punctuation
+'value'       Name
+' '           Text
+':='          Operator
+' '           Text
+'value'       Name
+';'           Punctuation
+'\n'          Text
+
+'        \n        ' Text
+'(* link new entry into overflow list *)' Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'newEntry'    Name
+'^'           Operator
+'.'           Punctuation
+'next'        Name
+' '           Text
+':='          Operator
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'overflow'    Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'overflow'    Name
+' '           Text
+':='          Operator
+' '           Text
+'newEntry'    Name
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n'          Text
+
+'    \n    '  Text
+'(* update entry counter *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'INC'         Name.Builtin
+'('           Punctuation
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'entryCount'  Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'(* pass status to caller *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'status'      Name
+' '           Text
+':='          Operator
+' '           Text
+'success'     Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'RETURN'      Keyword.Reserved
+'\n\n'        Text
+
+'END'         Keyword.Reserved
+' '           Text
+'push'        Name
+';'           Punctuation
+'\n\n\n'      Text
+
+'(* ---------------------------------------------------------------------------\n// function:  LIFO.pop( stack, status )\n// ---------------------------------------------------------------------------\n//\n// Removes the top most value from stack <stack> and returns it.  If the stack\n// is empty,  that  is  when the  number  of  entries  stored in the stack has\n// reached zero,  then NIL is returned.\n//\n// Entries which were allocated dynamically (above the initial capacity) are\n// deallocated when their values are popped.\n//\n// The status of the operation is passed back in <status>. *)' Comment.Multiline
+'\n\n'        Text
+
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'pop'         Name
+' '           Text
+'('           Punctuation
+' '           Text
+'VAR'         Keyword.Reserved
+' '           Text
+'stack'       Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Stack'       Name
+';'           Punctuation
+' '           Text
+'VAR'         Keyword.Reserved
+' '           Text
+'status'      Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Status'      Name
+' '           Text
+')'           Punctuation
+' '           Text
+':'           Punctuation
+' '           Text
+'DataPtr'     Name
+';'           Punctuation
+'\n\n'        Text
+
+'VAR'         Keyword.Reserved
+'\n'          Text
+
+'    '        Text
+'thisValue'   Name
+' '           Text
+':'           Punctuation
+' '           Text
+'DataPtr'     Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'thisEntry'   Name
+' '           Text
+':'           Punctuation
+' '           Text
+'ListPtr'     Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'valuePtr'    Name
+' '           Text
+':'           Punctuation
+' '           Text
+'POINTER'     Keyword.Reserved
+' '           Text
+'TO'          Keyword.Reserved
+' '           Text
+'DataPtr'     Name
+';'           Punctuation
+'\n\n'        Text
+
+'BEGIN'       Keyword.Reserved
+'\n\n'        Text
+
+'    '        Text
+'(* bail out if stack is NIL *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'stack'       Name
+' '           Text
+'='           Operator
+' '           Text
+'NIL'         Name.Builtin
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'        '    Text
+'status'      Name
+' '           Text
+':='          Operator
+' '           Text
+'invalidStack' Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'NIL'         Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n'          Text
+
+'    \n    '  Text
+'(* bail out if stack is empty *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'entryCount'  Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'        '    Text
+'status'      Name
+' '           Text
+':='          Operator
+' '           Text
+'stackEmpty'  Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'NIL'         Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n\n'        Text
+
+'    '        Text
+'DEC'         Name.Builtin
+'('           Punctuation
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'entryCount'  Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'(* check if index falls within array segment *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'entryCount'  Name
+' '           Text
+'<'           Operator
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'arraySize'   Name
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'        \n        ' Text
+'(* obtain value at index entryCount in array segment *)' Comment.Multiline
+'\n'          Text
+
+'        \n        ' Text
+'(* thisValue := stack^.array^[stack^.entryCount]; *)' Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'valuePtr'    Name
+' '           Text
+':='          Operator
+' '           Text
+'ADR'         Name.Builtin.Pseudo
+'('           Punctuation
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'array'       Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'TSIZE'       Name.Builtin
+'('           Punctuation
+'DataPtr'     Name
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'entryCount'  Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'thisValue'   Name
+' '           Text
+':='          Operator
+' '           Text
+'valuePtr'    Name
+'^'           Operator
+';'           Punctuation
+'\n'          Text
+
+'        \n    ' Text
+'ELSE'        Keyword.Reserved
+' '           Text
+'(* index falls within overflow segment *)' Comment.Multiline
+'\n'          Text
+
+'        \n        ' Text
+'(* obtain value of first entry in overflow list *)' Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'thisValue'   Name
+' '           Text
+':='          Operator
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'overflow'    Name
+'^'           Operator
+'.'           Punctuation
+'value'       Name
+';'           Punctuation
+'\n'          Text
+
+'        \n        ' Text
+'(* isolate first entry in overflow list *)' Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'thisEntry'   Name
+' '           Text
+':='          Operator
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'overflow'    Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'overflow'    Name
+' '           Text
+':='          Operator
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'overflow'    Name
+'^'           Operator
+'.'           Punctuation
+'next'        Name
+';'           Punctuation
+'\n'          Text
+
+'        \n        ' Text
+'(* remove the entry from overflow list *)' Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'DISPOSE'     Name.Builtin
+'('           Punctuation
+'thisEntry'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                \n    ' Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n\n'        Text
+
+'    '        Text
+'(* return value and status to caller *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'status'      Name
+' '           Text
+':='          Operator
+' '           Text
+'success'     Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'thisValue'   Name
+'\n\n'        Text
+
+'END'         Keyword.Reserved
+' '           Text
+'pop'         Name
+';'           Punctuation
+'\n\n\n'      Text
+
+'(* ---------------------------------------------------------------------------\n// function:  LIFO.stackSize( stack )\n// ---------------------------------------------------------------------------\n//\n// Returns the current capacity of <stack>.  The current capacity is the total\n// number of allocated entries. Returns zero if NIL is passed in for <stack>.\n*)' Comment.Multiline
+'\n'          Text
+
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'stackSize'   Name
+'('           Punctuation
+' '           Text
+'VAR'         Keyword.Reserved
+' '           Text
+'stack'       Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Stack'       Name
+' '           Text
+')'           Punctuation
+' '           Text
+':'           Punctuation
+' '           Text
+'StackSize'   Name
+';'           Punctuation
+'\n\n'        Text
+
+'BEGIN'       Keyword.Reserved
+'\n\n'        Text
+
+'    '        Text
+'(* bail out if stack is NIL *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'stack'       Name
+' '           Text
+'='           Operator
+' '           Text
+'NIL'         Name.Builtin
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'        '    Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n\n'        Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'entryCount'  Name
+' '           Text
+'<'           Operator
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'arraySize'   Name
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'        '    Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'arraySize'   Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ELSE'        Keyword.Reserved
+'\n'          Text
+
+'        '    Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'entryCount'  Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n'          Text
+
+'    \n'      Text
+
+'END'         Keyword.Reserved
+' '           Text
+'stackSize'   Name
+';'           Punctuation
+'\n\n\n'      Text
+
+'(* ---------------------------------------------------------------------------\n// function:  LIFO.stackEntries( stack )\n// ---------------------------------------------------------------------------\n//\n// Returns  the  number of entries  stored in stack <stack>,  returns  zero if\n// NIL is passed in for <stack>. *)' Comment.Multiline
+'\n\n'        Text
+
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'stackEntries' Name
+'('           Punctuation
+' '           Text
+'VAR'         Keyword.Reserved
+' '           Text
+'stack'       Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Stack'       Name
+' '           Text
+')'           Punctuation
+' '           Text
+':'           Punctuation
+' '           Text
+'StackSize'   Name
+';'           Punctuation
+'\n\n'        Text
+
+'BEGIN'       Keyword.Reserved
+'\n\n'        Text
+
+'    '        Text
+'(* bail out if stack is NIL *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'stack'       Name
+' '           Text
+'='           Operator
+' '           Text
+'NIL'         Name.Builtin
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'        '    Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n\n'        Text
+
+'    '        Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'entryCount'  Name
+'\n'          Text
+
+'    \n'      Text
+
+'END'         Keyword.Reserved
+' '           Text
+'stackEntries' Name
+';'           Punctuation
+'\n\n\n'      Text
+
+'(* ---------------------------------------------------------------------------\n// function:  LIFO.dispose( stack )\n// ---------------------------------------------------------------------------\n//\n// Disposes of LIFO stack object <stack>.  Returns NIL. *)' Comment.Multiline
+'\n\n'        Text
+
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'dispose'     Name
+' '           Text
+'('           Punctuation
+' '           Text
+'VAR'         Keyword.Reserved
+' '           Text
+'stack'       Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Stack'       Name
+' '           Text
+')'           Punctuation
+' '           Text
+':'           Punctuation
+' '           Text
+'Stack'       Name
+';'           Punctuation
+'\n\n'        Text
+
+'VAR'         Keyword.Reserved
+'\n'          Text
+
+'    '        Text
+'thisEntry'   Name
+' '           Text
+':'           Punctuation
+' '           Text
+'ListPtr'     Name
+';'           Punctuation
+'\n\n'        Text
+
+'BEGIN'       Keyword.Reserved
+'\n\n'        Text
+
+'    '        Text
+'(* bail out if stack is NIL *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'stack'       Name
+' '           Text
+'='           Operator
+' '           Text
+'NIL'         Name.Builtin
+' '           Text
+'THEN'        Keyword.Reserved
+'\n'          Text
+
+'        '    Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'NIL'         Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* IF *)'    Comment.Multiline
+'\n'          Text
+
+'    \n    '  Text
+"(* deallocate any entries in stack's overflow list *)" Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'WHILE'       Keyword.Reserved
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'overflow'    Name
+' '           Text
+'#'           Operator
+' '           Text
+'NIL'         Name.Builtin
+' '           Text
+'DO'          Keyword.Reserved
+'\n'          Text
+
+'        \n        ' Text
+'(* isolate first entry in overflow list *)' Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'thisEntry'   Name
+' '           Text
+':='          Operator
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'overflow'    Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'overflow'    Name
+' '           Text
+':='          Operator
+' '           Text
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'overflow'    Name
+'^'           Operator
+'.'           Punctuation
+'next'        Name
+';'           Punctuation
+'\n'          Text
+
+'        \n        ' Text
+'(* deallocate the entry *)' Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'DISPOSE'     Name.Builtin
+'('           Punctuation
+'thisEntry'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        \n    ' Text
+'END'         Keyword.Reserved
+';'           Punctuation
+' '           Text
+'(* WHILE *)' Comment.Multiline
+'\n'          Text
+
+'    \n    '  Text
+'(* deallocate stack object and pass NIL to caller *)' Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'DEALLOCATE'  Name
+'('           Punctuation
+'stack'       Name
+','           Punctuation
+' '           Text
+'TSIZE'       Name.Builtin
+'('           Punctuation
+'Stack'       Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'TSIZE'       Name.Builtin
+'('           Punctuation
+'DataPtr'     Name
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'('           Punctuation
+'stack'       Name
+'^'           Operator
+'.'           Punctuation
+'arraySize'   Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'NIL'         Name.Builtin
+'\n\n'        Text
+
+'END'         Keyword.Reserved
+' '           Text
+'dispose'     Name
+';'           Punctuation
+'\n\n\n'      Text
+
+'END'         Keyword.Reserved
+' '           Text
+'LIFO'        Name
+'.'           Punctuation
+'\n'          Text

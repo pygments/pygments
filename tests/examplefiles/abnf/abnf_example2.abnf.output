@@ -1,0 +1,57 @@
+'crlf'        Name.Class
+'        '    Text
+'='           Operator
+'  '          Text
+'%d13.10'     Literal
+'\n\n'        Text
+
+'command'     Name.Class
+'     '       Text
+'='           Operator
+'  '          Text
+'"command string"' Literal
+'\n\n'        Text
+
+'char-line'   Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'%x0D.0A'     Literal
+' '           Text
+'*'           Operator
+'('           Punctuation
+'%x20-7E'     Literal
+')'           Punctuation
+' '           Text
+'%x0D.0A'     Literal
+'\n\n'        Text
+
+'without-ws-and-ctl' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'%d1-8'       Literal
+' '           Text
+'/'           Operator
+' '           Text
+'%d11'        Literal
+' '           Text
+'/'           Operator
+' '           Text
+'%d12'        Literal
+' '           Text
+'/'           Operator
+' '           Text
+'%d14-31'     Literal
+' '           Text
+'/'           Operator
+' '           Text
+'%d127'       Literal
+'\n\n'        Text
+
+'three-blank-lines' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'%x0D.0A.0D.0A.0D.0A' Literal
+'\n'          Text

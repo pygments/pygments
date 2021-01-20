@@ -1,0 +1,148 @@
+'/*\n * A Test file for the different string literals.\n */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'<iostream>'  Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'int'         Keyword.Type
+' '           Text
+'main'        Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+'_str'        Name
+'      '      Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'a normal string' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'wchar_t'     Keyword.Type
+' '           Text
+'*'           Operator
+'L_str'       Name
+'  '          Text
+'='           Operator
+' '           Text
+'L'           Literal.String.Affix
+'"'           Literal.String
+'a wide string' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+'u8_str'      Name
+'    '        Text
+'='           Operator
+' '           Text
+'u8'          Literal.String.Affix
+'"'           Literal.String
+'utf-8 string' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'char16_t'    Keyword.Type
+' '           Text
+'*'           Operator
+'u_str'       Name
+' '           Text
+'='           Operator
+' '           Text
+'u'           Literal.String.Affix
+'"'           Literal.String
+'utf-16 string' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'char32_t'    Keyword.Type
+' '           Text
+'*'           Operator
+'U_str'       Name
+' '           Text
+'='           Operator
+' '           Text
+'U'           Literal.String.Affix
+'"'           Literal.String
+'utf-32 string' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+'R_str'       Name
+'     '       Text
+'='           Operator
+' '           Text
+'R'           Literal.String.Affix
+'"'           Literal.String
+'"""'         Literal.String.Delimiter
+'('           Literal.String.Delimiter
+'raw string with\n"""\nas a delimiter' Literal.String
+')"""'        Literal.String.Delimiter
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'std'         Name
+':'           Operator
+':'           Operator
+'cout'        Name
+' '           Text
+'<'           Operator
+'<'           Operator
+' '           Text
+'R_str'       Name
+' '           Text
+'<'           Operator
+'<'           Operator
+' '           Text
+'std'         Name
+':'           Operator
+':'           Operator
+'endl'        Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

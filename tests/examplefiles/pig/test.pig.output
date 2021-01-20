@@ -1,0 +1,702 @@
+"/**\n *  This script is an example recommender (using made up data) showing how you might modify item-item links\n *  by defining similar relations between items in a dataset and customizing the change in weighting.\n *  This example creates metadata by using the genre field as the metadata_field.  The items with\n *  the same genre have it's weight cut in half in order to boost the signals of movies that do not have the same genre.\n *  This technique requires a customization of the standard GetItemItemRecommendations macro\n */" Comment.Multiline
+'\n'          Text
+
+'import'      Keyword
+' '           Text
+"'recommenders.pig'" Literal.String
+';'           Punctuation
+'\n\n\n\n'    Text
+
+'%default'    Keyword
+' '           Text
+'INPUT_PATH_PURCHASES' Text
+' '           Text
+"'../data/retail/purchases.json'" Literal.String
+'\n'          Text
+
+'%default'    Keyword
+' '           Text
+'INPUT_PATH_WISHLIST' Text
+' '           Text
+"'../data/retail/wishlists.json'" Literal.String
+'\n'          Text
+
+'%default'    Keyword
+' '           Text
+'INPUT_PATH_INVENTORY' Text
+' '           Text
+"'../data/retail/inventory.json'" Literal.String
+'\n'          Text
+
+'%default'    Keyword
+' '           Text
+'OUTPUT_PATH' Text
+' '           Text
+"'../data/retail/out/modify_item_item'" Literal.String
+'\n\n\n'      Text
+
+'/******** Custom GetItemItemRecommnedations *********/' Comment.Multiline
+'\n'          Text
+
+'define'      Keyword
+' '           Text
+'recsys__GetItemItemRecommendations_ModifyCustom' Name.Function
+'('           Punctuation
+'user_item_signals,' Text
+' '           Text
+'metadata'    Text
+')'           Punctuation
+' '           Text
+'returns'     Keyword
+' '           Text
+'item_item_recs' Text
+' '           Text
+'{'           Punctuation
+'\n\n    '    Text
+'-- Convert user_item_signals to an item_item_graph' Comment
+'\n    '      Text
+'ii_links_raw,' Text
+' '           Text
+'item_weights' Text
+'   '         Text
+'='           Operator
+'   '         Text
+'recsys__BuildItemItemGraph' Name.Function
+'('           Punctuation
+'\n                                       ' Text
+'$user_item_signals,' Text
+'\n                                       ' Text
+'$LOGISTIC_PARAM,' Text
+'\n                                       ' Text
+'$MIN_LINK_WEIGHT,' Text
+'\n                                       ' Text
+'$MAX_LINKS_PER_USER' Text
+'\n                                     ' Text
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'-- NOTE this function is added in order to combine metadata with item-item links' Comment
+'\n        '  Text
+'-- See macro for more detailed explination' Comment
+'\n    '      Text
+'ii_links_metadata' Text
+'           ' Text
+'='           Operator
+'   '         Text
+'recsys__AddMetadataToItemItemLinks' Name.Function
+'('           Punctuation
+'\n                                        ' Text
+'ii_links_raw,' Text
+'\n                                        ' Text
+'$metadata'   Text
+'\n                                    ' Text
+')'           Punctuation
+';'           Punctuation
+'\n\n    '    Text
+'/********* Custom Code starts here ********/' Comment.Multiline
+'\n\n    '    Text
+'--The code here should adjust the weights based on an item-item link and the equality of metadata.' Comment
+'\n    '      Text
+'-- In this case, if the metadata is the same, the weight is reduced.  Otherwise the weight is left alone.' Comment
+'\n    '      Text
+'ii_links_adjusted' Text
+'           ' Text
+'='           Operator
+'  '          Text
+'foreach'     Keyword
+' '           Text
+'ii_links_metadata' Text
+' '           Text
+'generate'    Keyword
+' '           Text
+'item_A,'     Text
+' '           Text
+'item_B,'     Text
+'\n                                        ' Text
+'-- the amount of weight adjusted is dependant on the domain of data and what is expected' Comment
+'\n                                        ' Text
+'-- It is always best to adjust the weight by multiplying it by a factor rather than addition with a constant' Comment
+'\n                                        ' Text
+'('           Punctuation
+'metadata_B'  Text
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'metadata_A'  Text
+' '           Text
+'?'           Operator
+' '           Text
+'('           Punctuation
+'weight'      Text
+' '           Text
+'*'           Text
+' '           Text
+'0.5'         Literal.Number.Float
+')'           Punctuation
+':'           Text
+' '           Text
+'weight'      Text
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'weight;'     Text
+'\n\n\n    '  Text
+'/******** Custom Code stops here *********/' Comment.Multiline
+'\n\n    '    Text
+'-- remove negative numbers just incase' Comment
+'\n    '      Text
+'ii_links_adjusted_filt' Text
+' '           Text
+'='           Operator
+' '           Text
+'foreach'     Keyword
+' '           Text
+'ii_links_adjusted' Text
+' '           Text
+'generate'    Keyword
+' '           Text
+'item_A,'     Text
+' '           Text
+'item_B,'     Text
+'\n                                      ' Text
+'('           Punctuation
+'weight'      Text
+' '           Text
+'<='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'?'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+':'           Text
+' '           Text
+'weight'      Text
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'weight;'     Text
+'\n    '      Text
+'-- Adjust the weights of the graph to improve recommendations.' Comment
+'\n    '      Text
+'ii_links'    Text
+'                    ' Text
+'='           Operator
+'   '         Text
+'recsys__AdjustItemItemGraphWeight' Name.Function
+'('           Punctuation
+'\n                                        ' Text
+'ii_links_adjusted_filt,' Text
+'\n                                        ' Text
+'item_weights,' Text
+'\n                                        ' Text
+'$BAYESIAN_PRIOR' Text
+'\n                                    ' Text
+')'           Punctuation
+';'           Punctuation
+'\n\n    '    Text
+'-- Use the item-item graph to create item-item recommendations.' Comment
+'\n    '      Text
+'$item_item_recs' Text
+' '           Text
+'='           Operator
+'  '          Text
+'recsys__BuildItemItemRecommendationsFromGraph' Name.Function
+'('           Punctuation
+'\n                           ' Text
+'ii_links,'   Text
+'\n                           ' Text
+'$NUM_RECS_PER_ITEM,' Text
+'\n                           ' Text
+'$NUM_RECS_PER_ITEM' Text
+'\n                       ' Text
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n\n'      Text
+
+'/******* Load Data **********/' Comment.Multiline
+'\n\n'        Text
+
+'--Get purchase signals' Comment
+'\n'          Text
+
+'purchase_input' Text
+' '           Text
+'='           Operator
+' '           Text
+'load'        Keyword
+' '           Text
+"'$INPUT_PATH_PURCHASES'" Literal.String
+' '           Text
+'using'       Keyword
+' '           Text
+'org.apache.pig.piggybank.storage.JsonLoader' Text
+'('           Punctuation
+'\n                    ' Text
+"'row_id: "   Text
+'int'         Keyword.Type
+','           Operator
+'\n                     ' Text
+'movie_id'    Text
+':'           Text
+' '           Text
+'chararray'   Keyword.Type
+','           Operator
+'\n                     ' Text
+'movie_name'  Text
+':'           Text
+' '           Text
+'chararray'   Keyword.Type
+','           Operator
+'\n                     ' Text
+'user_id'     Text
+':'           Text
+' '           Text
+'chararray'   Keyword.Type
+','           Operator
+'\n                     ' Text
+'purchase_price' Text
+':'           Text
+' '           Text
+'int'         Keyword.Type
+"');\n\n"     Text
+
+'--Get wishlist signals' Comment
+'\n'          Text
+
+'wishlist_input' Text
+' '           Text
+'='           Operator
+'  '          Text
+'load'        Keyword
+' '           Text
+"'$INPUT_PATH_WISHLIST'" Literal.String
+' '           Text
+'using'       Keyword
+' '           Text
+'org.apache.pig.piggybank.storage.JsonLoader' Text
+'('           Punctuation
+'\n                     ' Text
+"'row_id: "   Text
+'int'         Keyword.Type
+','           Operator
+'\n                      ' Text
+'movie_id'    Text
+':'           Text
+' '           Text
+'chararray'   Keyword.Type
+','           Operator
+'\n                      ' Text
+'movie_name'  Text
+':'           Text
+' '           Text
+'chararray'   Keyword.Type
+','           Operator
+'\n                      ' Text
+'user_id'     Text
+':'           Text
+' '           Text
+'chararray'   Keyword.Type
+"');\n\n\n"   Text
+
+'/******* Convert Data to Signals **********/' Comment.Multiline
+'\n\n'        Text
+
+'-- Start with choosing 1 as max weight for a signal.' Comment
+'\n'          Text
+
+'purchase_signals' Text
+' '           Text
+'='           Operator
+' '           Text
+'foreach'     Keyword
+' '           Text
+'purchase_input' Text
+' '           Text
+'generate'    Keyword
+'\n                        ' Text
+'user_id'     Text
+'    '        Text
+'as'          Keyword
+' '           Text
+'user,'       Text
+'\n                        ' Text
+'movie_name'  Text
+' '           Text
+'as'          Keyword
+' '           Text
+'item,'       Text
+'\n                        ' Text
+'1.0'         Literal.Number.Float
+'        '    Text
+'as'          Keyword
+' '           Text
+'weight;'     Text
+'\n\n\n'      Text
+
+'-- Start with choosing 0.5 as weight for wishlist items because that is a weaker signal than' Comment
+'\n'          Text
+
+'-- purchasing an item.' Comment
+'\n'          Text
+
+'wishlist_signals' Text
+' '           Text
+'='           Operator
+' '           Text
+'foreach'     Keyword
+' '           Text
+'wishlist_input' Text
+' '           Text
+'generate'    Keyword
+'\n                        ' Text
+'user_id'     Text
+'    '        Text
+'as'          Keyword
+' '           Text
+'user,'       Text
+'\n                        ' Text
+'movie_name'  Text
+' '           Text
+'as'          Keyword
+' '           Text
+'item,'       Text
+'\n                        ' Text
+'0.5'         Literal.Number.Float
+'        '    Text
+'as'          Keyword
+' '           Text
+'weight;'     Text
+'\n\n'        Text
+
+'user_signals' Text
+' '           Text
+'='           Operator
+' '           Text
+'union'       Keyword
+' '           Text
+'purchase_signals,' Text
+' '           Text
+'wishlist_signals;' Text
+'\n\n\n'      Text
+
+'/******** Changes for Modifying item-item links ******/' Comment.Multiline
+'\n'          Text
+
+'inventory_input' Text
+' '           Text
+'='           Operator
+' '           Text
+'load'        Keyword
+' '           Text
+"'$INPUT_PATH_INVENTORY'" Literal.String
+' '           Text
+'using'       Keyword
+' '           Text
+'org.apache.pig.piggybank.storage.JsonLoader' Text
+'('           Punctuation
+'\n                     ' Text
+"'movie_title: " Text
+'chararray'   Keyword.Type
+','           Operator
+'\n                      ' Text
+'genres'      Text
+':'           Text
+' '           Text
+'bag'         Keyword
+'{'           Punctuation
+'tuple'       Keyword.Type
+'('           Punctuation
+'content'     Text
+':'           Text
+'chararray'   Keyword.Type
+')'           Punctuation
+'}'           Punctuation
+"');\n\n\n"   Text
+
+'metadata'    Text
+' '           Text
+'='           Operator
+' '           Text
+'foreach'     Keyword
+' '           Text
+'inventory_input' Text
+' '           Text
+'generate'    Keyword
+'\n              ' Text
+'FLATTEN'     Keyword
+'('           Punctuation
+'genres'      Text
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'metadata_field,' Text
+'\n              ' Text
+'movie_title' Text
+' '           Text
+'as'          Keyword
+' '           Text
+'item;'       Text
+'\n'          Text
+
+'-- requires the macro to be written seperately' Comment
+'\n  '        Text
+'--NOTE this macro is defined within this file for clarity' Comment
+'\n'          Text
+
+'item_item_recs' Text
+' '           Text
+'='           Operator
+' '           Text
+'recsys__GetItemItemRecommendations_ModifyCustom' Name.Function
+'('           Punctuation
+'user_signals,' Text
+' '           Text
+'metadata'    Text
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'/******* No more changes ********/' Comment.Multiline
+'\n\n\n'      Text
+
+'user_item_recs' Text
+' '           Text
+'='           Operator
+' '           Text
+'recsys__GetUserItemRecommendations' Name.Function
+'('           Punctuation
+'user_signals,' Text
+' '           Text
+'item_item_recs' Text
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'--Completely unrelated code stuck in the middle' Comment
+'\n'          Text
+
+'data'        Text
+'        '    Text
+'='           Operator
+'    '        Text
+'LOAD'        Keyword
+' '           Text
+"'s3n://my-s3-bucket/path/to/responses'" Literal.String
+'\n                 ' Text
+'USING'       Keyword
+' '           Text
+'org.apache.pig.piggybank.storage.JsonLoader' Text
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'responses'   Text
+'   '         Text
+'='           Operator
+'    '        Text
+'FOREACH'     Keyword
+' '           Text
+'data'        Text
+' '           Text
+'GENERATE'    Keyword
+' '           Text
+'object'      Text
+'#'           Operator
+"'response'"  Literal.String
+' '           Text
+'AS'          Keyword
+' '           Text
+'response'    Text
+':'           Text
+' '           Text
+'map'         Keyword
+'['           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'out'         Text
+'         '   Text
+'='           Operator
+'    '        Text
+'FOREACH'     Keyword
+' '           Text
+'responses'   Text
+'\n                 ' Text
+'GENERATE'    Keyword
+' '           Text
+'response'    Text
+'#'           Operator
+"'id'"        Literal.String
+' '           Text
+'AS'          Keyword
+' '           Text
+'id'          Text
+':'           Text
+' '           Text
+'int'         Keyword.Type
+','           Operator
+' '           Text
+'response'    Text
+'#'           Operator
+"'thread'"    Literal.String
+' '           Text
+'AS'          Keyword
+' '           Text
+'thread'      Text
+':'           Text
+' '           Text
+'chararray'   Keyword.Type
+','           Operator
+'\n                          ' Text
+'response'    Text
+'#'           Operator
+"'comments'"  Literal.String
+' '           Text
+'AS'          Keyword
+' '           Text
+'comments'    Text
+':'           Text
+' '           Text
+'{'           Punctuation
+'t'           Text
+':'           Text
+' '           Text
+'('           Punctuation
+'comment'     Text
+':'           Text
+' '           Text
+'chararray'   Keyword.Type
+')'           Punctuation
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'STORE'       Keyword
+' '           Text
+'out'         Text
+' '           Text
+'INTO'        Keyword
+' '           Text
+"'s3n://path/to/output'" Literal.String
+' '           Text
+'USING'       Keyword
+' '           Text
+'PigStorage'  Name.Builtin
+'('           Punctuation
+"'|'"         Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n\n\n'      Text
+
+'/******* Store recommendations **********/' Comment.Multiline
+'\n\n'        Text
+
+'--  If your output folder exists already, hadoop will refuse to write data to it.' Comment
+'\n\n'        Text
+
+'rmf'         Keyword
+' '           Text
+'$OUTPUT_PATH/item_item_recs;' Text
+'\n'          Text
+
+'rmf'         Keyword
+' '           Text
+'$OUTPUT_PATH/user_item_recs;' Text
+'\n\n'        Text
+
+'store'       Keyword
+' '           Text
+'item_item_recs' Text
+' '           Text
+'into'        Keyword
+' '           Text
+"'$OUTPUT_PATH/item_item_recs'" Literal.String
+' '           Text
+'using'       Keyword
+' '           Text
+'PigStorage'  Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'store'       Keyword
+' '           Text
+'user_item_recs' Text
+' '           Text
+'into'        Keyword
+' '           Text
+"'$OUTPUT_PATH/user_item_recs'" Literal.String
+' '           Text
+'using'       Keyword
+' '           Text
+'PigStorage'  Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'-- STORE the item_item_recs into dynamo' Comment
+'\n'          Text
+
+'STORE'       Keyword
+' '           Text
+'item_item_recs' Text
+'\n '         Text
+'INTO'        Keyword
+' '           Text
+"'$OUTPUT_PATH/unused-ii-table-data'" Literal.String
+'\n'          Text
+
+'USING'       Keyword
+' '           Text
+'com.mortardata.pig.storage.DynamoDBStorage' Text
+'('           Punctuation
+"'$II_TABLE'" Literal.String
+','           Operator
+' '           Text
+"'$AWS_ACCESS_KEY_ID'" Literal.String
+','           Operator
+' '           Text
+"'$AWS_SECRET_ACCESS_KEY'" Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'-- STORE the user_item_recs into dynamo' Comment
+'\n'          Text
+
+'STORE'       Keyword
+' '           Text
+'user_item_recs' Text
+'\n '         Text
+'INTO'        Keyword
+' '           Text
+"'$OUTPUT_PATH/unused-ui-table-data'" Literal.String
+'\n'          Text
+
+'USING'       Keyword
+' '           Text
+'com.mortardata.pig.storage.DynamoDBStorage' Text
+'('           Punctuation
+"'$UI_TABLE'" Literal.String
+','           Operator
+' '           Text
+"'$AWS_ACCESS_KEY_ID'" Literal.String
+','           Operator
+' '           Text
+"'$AWS_SECRET_ACCESS_KEY'" Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text

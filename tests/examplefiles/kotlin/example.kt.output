@@ -1,0 +1,361 @@
+'package'     Keyword
+' '           Text
+'addressbook' Name.Namespace
+'\n\n'        Text
+
+'class'       Keyword
+' '           Text
+'Contact'     Name.Class
+'('           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'name'        Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Name
+','           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'emails'      Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'List'        Name
+'<'           Punctuation
+'EmailAddress' Name
+'>'           Punctuation
+','           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'addresses'   Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'List'        Name
+'<'           Punctuation
+'PostalAddress' Name
+'>'           Punctuation
+','           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'phonenums'   Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'List'        Name
+'<'           Punctuation
+'PhoneNumber' Name
+'>'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword
+' '           Text
+'EmailAddress' Name.Class
+'('           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'user'        Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Name
+','           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'host'        Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Name
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword
+' '           Text
+'PostalAddress' Name.Class
+'('           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'streetAddress' Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Name
+','           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'city'        Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Name
+','           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'zip'         Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Name
+','           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'state'       Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'USState'     Name
+'?'           Punctuation
+','           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'country'     Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'Country'     Name
+'\n'          Text
+
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n   '       Text
+'assert'      Name
+' '           Text
+'{'           Punctuation
+'('           Punctuation
+'state'       Name
+' '           Text
+'='           Punctuation
+'='           Punctuation
+' '           Text
+'null'        Keyword
+')'           Punctuation
+' '           Text
+'xor'         Name
+' '           Text
+'('           Punctuation
+'country'     Name
+' '           Text
+'='           Punctuation
+'='           Punctuation
+' '           Text
+'Countries'   Name
+'['           Punctuation
+'"US"'        Literal.String
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword
+' '           Text
+'PhoneNumber' Name.Class
+'('           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'country'     Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'Country'     Name
+','           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'areaCode'    Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'Int'         Name
+','           Punctuation
+'\n  '        Text
+'val'         Keyword
+' '           Text
+'number'      Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'Long'        Name
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'object'      Keyword
+' '           Text
+'Countries'   Name.Class
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'fun'         Keyword
+' '           Text
+'get'         Name.Function
+'('           Punctuation
+'id'          Name
+' '           Text
+':'           Punctuation
+' '           Text
+'CountryID'   Name
+')'           Punctuation
+' '           Text
+':'           Punctuation
+' '           Text
+'Country'     Name
+' '           Text
+'='           Punctuation
+' '           Text
+'countryTable' Name
+'['           Punctuation
+'id'          Name
+']'           Punctuation
+'\n  \n  '    Text
+'private'     Keyword
+' '           Text
+'var'         Keyword
+' '           Text
+'table'       Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'Map'         Name
+'<'           Punctuation
+'String'      Name
+','           Punctuation
+' '           Text
+'Country'     Name
+'>'           Punctuation
+'?'           Punctuation
+' '           Text
+'='           Punctuation
+' '           Text
+'null'        Keyword
+'\n  '        Text
+'private'     Keyword
+' '           Text
+'val'         Keyword
+' '           Text
+'countryTable' Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'Map'         Name
+'<'           Punctuation
+'String'      Name
+','           Punctuation
+' '           Text
+'Country'     Name
+'>'           Punctuation
+'\n    '      Text
+'get'         Keyword
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'table'       Name
+' '           Text
+'='           Punctuation
+'='           Punctuation
+' '           Text
+'null'        Keyword
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'table'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'HashMap'     Name
+'('           Punctuation
+')'           Punctuation
+'\n        '  Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'line'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'TextFile'    Name
+'('           Punctuation
+'"countries.txt"' Literal.String
+')'           Punctuation
+'.'           Punctuation
+'lines'       Name
+'('           Punctuation
+'stripWhiteSpace' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'true'        Keyword
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n          ' Text
+'table'       Name
+'['           Punctuation
+'line'        Name
+']'           Punctuation
+' '           Text
+'='           Punctuation
+' '           Text
+'Country'     Name
+'('           Punctuation
+'line'        Name
+')'           Punctuation
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text
+'}'           Punctuation
+'\n      '    Text
+'return'      Keyword
+' '           Text
+'table'       Name
+'\n    '      Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword
+' '           Text
+'Country'     Name.Class
+'('           Punctuation
+'val'         Keyword
+' '           Text
+'name'        Name.Property
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Name
+')'           Punctuation
+'\n'          Text

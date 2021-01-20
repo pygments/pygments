@@ -1,0 +1,94 @@
+'B/examt: Example Template.' Comment.Preproc
+'\n\n'        Comment.Preproc
+
+'@Purpose:'   Comment.Preproc
+' To show the syntax of I6T, specifically the parts relating to the\ninclusion of I7 and at signs in the first column.\n\n' Comment.Preproc
+
+'@-'          Comment.Preproc
+'------------------------------------------------------------------------------\n\n' Comment.Preproc
+
+'@p Lines.\n' Generic.Heading
+
+'\n'          Comment.Preproc
+
+'@c\n'        Comment.Preproc
+
+'{-'          Punctuation
+'lines'       Keyword
+':'           Punctuation
+'type'        Text
+'}'           Punctuation
+'\n'          Text
+
+'! This is a comment.' Comment.Single
+'\n'          Text
+
+'{'           Punctuation
+'-endlines'   Keyword
+'}'           Punctuation
+'\n\n'        Text
+
+'@-This line begins with @-, so it is ignored.' Comment.Preproc
+'\n\n'        Text
+
+'@p Paragraph.\n' Generic.Heading
+
+'This is a paragraph.\n' Comment.Preproc
+
+'@p Another paragraph.\n' Generic.Heading
+
+'So\n\nis\n\nthis.\n\n' Comment.Preproc
+
+'@Purpose:'   Comment.Preproc
+' This purpose line is ignored.\n\n' Comment.Preproc
+
+'@c At signs and (+ +).\n' Comment.Preproc
+
+'['           Punctuation
+' '           Text
+'Foo'         Name.Function
+' '           Text
+'i'           Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'(+'          Punctuation
+'score '      Text
+'['           Comment.Multiline
+'an I7 value' Comment.Multiline
+']'           Comment.Multiline
+'+)'          Punctuation
+','           Punctuation
+' '           Text
+''            Text
+'"'           Literal.String.Double
+'^'           Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text
+
+'@'           Keyword
+'add'         Keyword
+' '           Text
+''            Text
+'sp'          Keyword.Pseudo
+' '           Text
+''            Text
+'1'           Literal.Number.Integer
+' '           Text
+'->'          Punctuation
+' '           Text
+''            Text
+'i'           Name
+';'           Punctuation
+' '           Text
+'! Assembly works even in the first column.' Comment.Single
+'\n'          Text
+
+']'           Punctuation
+''            Punctuation
+';'           Punctuation
+''            Comment.Preproc
+'\n'          Comment.Preproc

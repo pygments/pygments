@@ -1,0 +1,6744 @@
+'// public domain\n' Comment.Single
+
+'\n'          Text
+
+'module'      Keyword
+' '           Text
+'Deflate'     Name.Namespace
+'\n\n'        Text
+
+'open'        Keyword
+' '           Text
+'System'      Name.Namespace
+'\n'          Text
+
+'open'        Keyword
+' '           Text
+'System.Collections.Generic' Name.Namespace
+'\n'          Text
+
+'open'        Keyword
+' '           Text
+'System.IO'   Name.Namespace
+'\n'          Text
+
+'open'        Keyword
+' '           Text
+'System.Linq' Name.Namespace
+'\n'          Text
+
+'open'        Keyword
+' '           Text
+'Crc'         Name.Namespace
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'maxbuf'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'32768'       Literal.Number.Integer
+'\n'          Text
+
+'let'         Keyword
+' '           Text
+'maxlen'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'258'         Literal.Number.Integer
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'getBit'      Name.Variable
+' '           Text
+'('           Operator
+'b'           Name
+':'           Operator
+'byte'        Keyword.Type
+')'           Operator
+' '           Text
+'('           Operator
+'bit'         Name
+':'           Operator
+'int'         Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'b'           Name
+' '           Text
+'&&'          Operator
+'&'           Operator
+' '           Text
+'('           Operator
+'1uy'         Literal.Number.Integer
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'bit'         Name
+')'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'0uy'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'BitReader'   Name.Class
+'('           Operator
+'sin'         Name
+':'           Operator
+'Stream'      Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'bit'         Name
+' '           Text
+'='           Operator
+' '           Text
+'8'           Literal.Number.Integer
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'cur'         Name
+' '           Text
+'='           Operator
+' '           Text
+'0uy'         Literal.Number.Integer
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Skip'        Name.Function
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+'\n        '  Text
+'bit'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'8'           Literal.Number.Integer
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'ReadBit'     Name.Function
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'bit'         Name
+' '           Text
+'='           Operator
+' '           Text
+'8'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'bit'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'b'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'sin'         Name
+'.'           Operator
+'ReadByte'    Name
+'()'          Name.Builtin.Pseudo
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'b'           Name
+' '           Text
+'='           Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n                ' Text
+'failwith'    Name
+' '           Text
+'"'           Literal.String
+'バッファを超過しました' Literal.String
+'"'           Literal.String
+'\n            ' Text
+'cur'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'byte'        Keyword.Type
+' '           Text
+'b'           Name
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'ret'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'cur'         Name
+' '           Text
+'&&'          Operator
+'&'           Operator
+' '           Text
+'('           Operator
+'1uy'         Literal.Number.Integer
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'bit'         Name
+')'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'0uy'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'bit'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'bit'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'ret'         Name
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'ReadLE'      Name.Function
+' '           Text
+'n'           Name
+' '           Text
+'='           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'ret'         Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n        '  Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'n'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'x'           Name
+'.'           Operator
+'ReadBit'     Name
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'ret'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'ret'         Name
+' '           Text
+'|'           Operator
+'|'           Operator
+'|'           Operator
+' '           Text
+'('           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'i'           Name
+')'           Operator
+'\n        '  Text
+'ret'         Name
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'ReadBE'      Name.Function
+' '           Text
+'n'           Name
+' '           Text
+'='           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'ret'         Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n        '  Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'n'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n            ' Text
+'ret'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'('           Operator
+'ret'         Name
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'|'           Operator
+'|'           Operator
+'|'           Operator
+' '           Text
+'x'           Name
+'.'           Operator
+'ReadBit'     Name
+'()'          Name.Builtin.Pseudo
+'\n        '  Text
+'ret'         Name
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'ReadBytes'   Name.Function
+' '           Text
+'len'         Name
+' '           Text
+'='           Operator
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'bit'         Name
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'8'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'bit'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'8'           Literal.Number.Integer
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'buf'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'byte'        Keyword.Type
+'>'           Operator
+' '           Text
+'len'         Name
+'\n        '  Text
+'ignore'      Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'sin'         Name
+'.'           Operator
+'Read'        Name
+'('           Operator
+'buf'         Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'len'         Name
+')'           Operator
+'\n        '  Text
+'buf'         Name
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'WriteBuffer' Name.Class
+'('           Operator
+'sout'        Name
+':'           Operator
+'Stream'      Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'prev'        Name
+':'           Operator
+'byte'        Keyword.Type
+'[]'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'buf'         Name
+' '           Text
+'='           Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'byte'        Keyword.Type
+'>'           Operator
+' '           Text
+'maxbuf'      Name
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'p'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n    \n    ' Text
+'let'         Keyword
+' '           Text
+'next'        Name.Variable
+' '           Text
+'newbuf'      Name
+' '           Text
+'='           Operator
+'\n        '  Text
+'prev'        Name
+' '           Text
+'<-'          Operator
+' '           Text
+'buf'         Name
+'\n        '  Text
+'buf'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'newbuf'      Name
+' '           Text
+'then'        Keyword
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'byte'        Keyword.Type
+'>'           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'else'        Keyword
+' '           Text
+'null'        Keyword
+'\n        '  Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Close'       Name.Function
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+'\n        '  Text
+'next'        Name
+' '           Text
+'false'       Keyword
+'\n        '  Text
+'next'        Name
+' '           Text
+'false'       Keyword
+'\n    \n    ' Text
+'interface'   Keyword
+' '           Text
+'IDisposable' Name
+' '           Text
+'with'        Keyword
+'\n        '  Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Dispose'     Name.Function
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+' '           Text
+'x'           Name
+'.'           Operator
+'Close'       Name
+'()'          Name.Builtin.Pseudo
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'WriteByte'   Name.Function
+' '           Text
+'('           Operator
+'b'           Name
+':'           Operator
+'byte'        Keyword.Type
+')'           Operator
+' '           Text
+'='           Operator
+'\n        '  Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'b'           Name
+'\n        '  Text
+'sout'        Name
+'.'           Operator
+'WriteByte'   Name
+' '           Text
+'b'           Name
+'\n        '  Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'='           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'then'        Keyword
+' '           Text
+'next'        Name
+' '           Text
+'true'        Keyword
+'\n\n    '    Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Write'       Name.Function
+' '           Text
+'('           Operator
+'src'         Name
+':'           Operator
+'byte'        Keyword.Type
+'[]'          Name.Builtin.Pseudo
+')'           Operator
+' '           Text
+'start'       Name
+' '           Text
+'len'         Name
+' '           Text
+'='           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'maxlen'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'p'           Name
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'len'         Name
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'maxlen'      Name
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'Copy'        Name
+'('           Operator
+'src'         Name
+','           Operator
+' '           Text
+'start'       Name
+','           Operator
+' '           Text
+'buf'         Name
+','           Operator
+' '           Text
+'p'           Name
+','           Operator
+' '           Text
+'len'         Name
+')'           Operator
+'\n            ' Text
+'sout'        Name
+'.'           Operator
+'Write'       Name
+'('           Operator
+'src'         Name
+','           Operator
+' '           Text
+'start'       Name
+','           Operator
+' '           Text
+'len'         Name
+')'           Operator
+'\n            ' Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'len'         Name
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'='           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'then'        Keyword
+' '           Text
+'next'        Name
+' '           Text
+'true'        Keyword
+'\n        '  Text
+'else'        Keyword
+'\n            ' Text
+'x'           Name
+'.'           Operator
+'Write'       Name
+' '           Text
+'src'         Name
+' '           Text
+'start'       Name
+' '           Text
+'maxlen'      Name
+'\n            ' Text
+'x'           Name
+'.'           Operator
+'Write'       Name
+' '           Text
+'src'         Name
+' '           Text
+'('           Operator
+'start'       Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxlen'      Name
+')'           Operator
+' '           Text
+'('           Operator
+'len'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'maxlen'      Name
+')'           Operator
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Copy'        Name.Function
+' '           Text
+'len'         Name
+' '           Text
+'dist'        Name
+' '           Text
+'='           Operator
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'dist'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'failwith'    Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'sprintf'     Name
+' '           Text
+'"'           Literal.String
+'dist too small: %d < 1' Literal.String
+'"'           Literal.String
+' '           Text
+'dist'        Name
+'\n        '  Text
+'elif'        Keyword
+' '           Text
+'dist'        Name
+' '           Text
+'>'           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'failwith'    Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'sprintf'     Name
+' '           Text
+'"'           Literal.String
+'dist too big: %d > %d' Literal.String
+'"'           Literal.String
+' '           Text
+'dist'        Name
+' '           Text
+'maxbuf'      Name
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'pp'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'p'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'dist'        Name
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'pp'          Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'prev'        Name
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword
+' '           Text
+'then'        Keyword
+'\n                ' Text
+'failwith'    Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'sprintf'     Name
+' '           Text
+'"'           Literal.String
+'dist too big: %d > %d' Literal.String
+'"'           Literal.String
+' '           Text
+'dist'        Name
+' '           Text
+'p'           Name
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'pp'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'pp'          Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxbuf'      Name
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'maxlen'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'pp'          Name
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'len'         Name
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'maxlen'      Name
+' '           Text
+'then'        Keyword
+'\n                ' Text
+'x'           Name
+'.'           Operator
+'Write'       Name
+' '           Text
+'prev'        Name
+' '           Text
+'pp'          Name
+' '           Text
+'len'         Name
+'\n            ' Text
+'else'        Keyword
+'\n                ' Text
+'x'           Name
+'.'           Operator
+'Write'       Name
+' '           Text
+'prev'        Name
+' '           Text
+'pp'          Name
+' '           Text
+'maxlen'      Name
+'\n                ' Text
+'x'           Name
+'.'           Operator
+'Copy'        Name
+' '           Text
+'('           Operator
+'len'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'maxlen'      Name
+')'           Operator
+' '           Text
+'dist'        Name
+'\n        '  Text
+'else'        Keyword
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'maxlen'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'p'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'pp'          Name
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'len'         Name
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'maxlen'      Name
+' '           Text
+'then'        Keyword
+'\n                ' Text
+'x'           Name
+'.'           Operator
+'Write'       Name
+' '           Text
+'buf'         Name
+' '           Text
+'pp'          Name
+' '           Text
+'len'         Name
+'\n            ' Text
+'else'        Keyword
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'dist'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n                    ' Text
+'let'         Keyword
+' '           Text
+'b'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'pp'          Name
+']'           Operator
+'\n                    ' Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'len'         Name
+' '           Text
+'do'          Keyword
+'\n                        ' Text
+'x'           Name
+'.'           Operator
+'WriteByte'   Name
+' '           Text
+'b'           Name
+'\n                ' Text
+'else'        Keyword
+'\n                    ' Text
+'let'         Keyword
+' '           Text
+'buf'         Name.Variable
+"'"           Keyword
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'\n                    ' Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+"len'"        Name
+' '           Text
+'='           Operator
+' '           Text
+'len'         Name
+'\n                    ' Text
+'while'       Keyword
+' '           Text
+"len'"        Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n                        ' Text
+'let'         Keyword
+' '           Text
+'len'         Name.Variable
+"'"           Keyword
+"'"           Keyword
+' '           Text
+'='           Operator
+' '           Text
+'Math'        Name.Namespace
+'.'           Punctuation
+'Min'         Name
+'('           Operator
+"len'"        Name
+','           Operator
+' '           Text
+'maxlen'      Name
+')'           Operator
+'\n                        ' Text
+'x'           Name
+'.'           Operator
+'Write'       Name
+' '           Text
+"buf'"        Name
+' '           Text
+'pp'          Name
+' '           Text
+"len''"       Name
+'\n                        ' Text
+"len'"        Name
+' '           Text
+'<-'          Operator
+' '           Text
+"len'"        Name
+' '           Text
+'-'           Operator
+' '           Text
+"len''"       Name
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'Huffman'     Name.Class
+'('           Operator
+'lens'        Name
+':'           Operator
+'int'         Name
+'[]'          Name.Builtin.Pseudo
+')'           Operator
+' '           Text
+'='           Operator
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'vals'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'int'         Name
+'>'           Operator
+' '           Text
+'lens'        Name
+'.'           Operator
+'Length'      Name
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'min'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'lens'        Name
+'.'           Operator
+'Where'       Name
+'('           Operator
+'fun'         Keyword
+' '           Text
+'x'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'x'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Operator
+'.'           Operator
+'Min'         Name
+'()'          Name.Builtin.Pseudo
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'max'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'lens'        Name
+'.'           Operator
+'Max'         Name
+'()'          Name.Builtin.Pseudo
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'counts'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'int'         Name
+'>'           Operator
+'  '          Text
+'('           Operator
+'max'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'firsts'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'int'         Name
+'>'           Operator
+'  '          Text
+'('           Operator
+'max'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'nexts'       Name.Variable
+'  '          Text
+'='           Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'int'         Name
+'>'           Operator
+'  '          Text
+'('           Operator
+'max'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'tables'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'int'         Name
+'[]'          Name.Builtin.Pseudo
+'>'           Operator
+'('           Operator
+'max'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+'\n    \n    ' Text
+'do'          Keyword
+'\n        '  Text
+'for'         Keyword
+' '           Text
+'len'         Name
+' '           Text
+'in'          Keyword
+' '           Text
+'lens'        Name
+' '           Text
+'do'          Keyword
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'len'         Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'counts'      Name
+'.'           Operator
+'['           Operator
+'len'         Name
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'counts'      Name
+'.'           Operator
+'['           Operator
+'len'         Name
+']'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'max'         Name
+' '           Text
+'do'          Keyword
+'\n            ' Text
+'firsts'      Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'('           Operator
+'firsts'      Name
+'.'           Operator
+'['           Operator
+'i'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'counts'      Name
+'.'           Operator
+'['           Operator
+'i'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Operator
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'Copy'        Name
+'('           Operator
+'firsts'      Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'nexts'       Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'max'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+'\n        '  Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'vals'        Name
+'.'           Operator
+'Length'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'len'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'lens'        Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'len'         Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n                ' Text
+'vals'        Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'nexts'       Name
+'.'           Operator
+'['           Operator
+'len'         Name
+']'           Operator
+'\n                ' Text
+'nexts'       Name
+'.'           Operator
+'['           Operator
+'len'         Name
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'nexts'       Name
+'.'           Operator
+'['           Operator
+'len'         Name
+']'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        \n        ' Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'vals'        Name
+'.'           Operator
+'Length'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'len'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'lens'        Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'len'         Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n                ' Text
+'let'         Keyword
+' '           Text
+'start'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'firsts'      Name
+'.'           Operator
+'['           Operator
+'len'         Name
+']'           Operator
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'tables'      Name
+'.'           Operator
+'['           Operator
+'len'         Name
+']'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword
+' '           Text
+'then'        Keyword
+'\n                    ' Text
+'let'         Keyword
+' '           Text
+'count'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'nexts'       Name
+'.'           Operator
+'['           Operator
+'len'         Name
+']'           Operator
+' '           Text
+'-'           Operator
+' '           Text
+'start'       Name
+'\n                    ' Text
+'tables'      Name
+'.'           Operator
+'['           Operator
+'len'         Name
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'int'         Name
+'>'           Operator
+' '           Text
+'count'       Name
+'\n                ' Text
+'tables'      Name
+'.'           Operator
+'['           Operator
+'len'         Name
+']'           Operator
+'.'           Operator
+'['           Operator
+'vals'        Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+'-'           Operator
+' '           Text
+'start'       Name
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'i'           Name
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'GetValue'    Name.Function
+' '           Text
+'h'           Name
+' '           Text
+'='           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'rec'         Name.Variable
+' '           Text
+'getv'        Name
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'i'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'max'         Name
+' '           Text
+'then'        Keyword
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'h'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'nexts'       Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+'then'        Keyword
+'\n                    ' Text
+'tables'      Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+'.'           Operator
+'['           Operator
+'h'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'firsts'      Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+']'           Operator
+'\n                ' Text
+'else'        Keyword
+'\n                    ' Text
+'getv'        Name
+' '           Text
+'('           Operator
+'i'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+'\n        '  Text
+'getv'        Name
+' '           Text
+'min'         Name
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Read'        Name.Function
+'('           Operator
+'br'          Name
+':'           Operator
+'BitReader'   Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'rec'         Name.Variable
+' '           Text
+'read'        Name
+' '           Text
+'h'           Name
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'h'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'nexts'       Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+'then'        Keyword
+'\n                ' Text
+'tables'      Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+'.'           Operator
+'['           Operator
+'h'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'firsts'      Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+']'           Operator
+'\n            ' Text
+'else'        Keyword
+'\n                ' Text
+'read'        Name
+' '           Text
+'('           Operator
+'('           Operator
+'h'           Name
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'|'           Operator
+'|'           Operator
+'|'           Operator
+' '           Text
+'br'          Name
+'.'           Operator
+'ReadBit'     Name
+'()'          Name.Builtin.Pseudo
+')'           Operator
+' '           Text
+'('           Operator
+'i'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+'\n        '  Text
+'read'        Name
+' '           Text
+'('           Operator
+'br'          Name
+'.'           Operator
+'ReadBE'      Name
+' '           Text
+'min'         Name
+')'           Operator
+' '           Text
+'min'         Name
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'[<'          Operator
+'AbstractClass' Name
+'>]'          Operator
+' '           Text
+'HuffmanDecoder' Name
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+'\n    '      Text
+'abstract'    Keyword
+' '           Text
+'GetValue'    Name
+':'           Operator
+' '           Text
+'unit'        Keyword.Type
+'->'          Operator
+'int'         Name
+'\n    '      Text
+'abstract'    Keyword
+' '           Text
+'GetDistance' Name
+':'           Operator
+' '           Text
+'unit'        Keyword.Type
+'->'          Operator
+'int'         Name
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'FixedHuffman' Name.Class
+'('           Operator
+'br'          Name
+':'           Operator
+'BitReader'   Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n    '      Text
+'inherit'     Keyword
+' '           Text
+'HuffmanDecoder' Name
+'()'          Name.Builtin.Pseudo
+'\n    \n    ' Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'GetValue'    Name.Function
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'v'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'br'          Name
+'.'           Operator
+'ReadBE'      Name
+' '           Text
+'7'           Literal.Number.Integer
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'v'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'24'          Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'v'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'256'         Literal.Number.Integer
+' '           Text
+'else'        Keyword
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'v'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Operator
+'v'           Name
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'|'           Operator
+'|'           Operator
+'|'           Operator
+' '           Text
+'br'          Name
+'.'           Operator
+'ReadBit'     Name
+'()'          Name.Builtin.Pseudo
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'v'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'192'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'v'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'48'          Literal.Number.Integer
+'\n            ' Text
+'elif'        Keyword
+' '           Text
+'v'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'200'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'v'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'88'          Literal.Number.Integer
+'\n            ' Text
+'else'        Keyword
+' '           Text
+'('           Operator
+'('           Operator
+'v'           Name
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'|'           Operator
+'|'           Operator
+'|'           Operator
+' '           Text
+'br'          Name
+'.'           Operator
+'ReadBit'     Name
+'()'          Name.Builtin.Pseudo
+')'           Operator
+' '           Text
+'-'           Operator
+' '           Text
+'256'         Literal.Number.Integer
+'\n    \n    ' Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'GetDistance' Name.Function
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+' '           Text
+'br'          Name
+'.'           Operator
+'ReadBE'      Name
+' '           Text
+'5'           Literal.Number.Integer
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'DynamicHuffman' Name.Class
+'('           Operator
+'br'          Name
+':'           Operator
+'BitReader'   Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n    '      Text
+'inherit'     Keyword
+' '           Text
+'HuffmanDecoder' Name
+'()'          Name.Builtin.Pseudo
+'\n    \n    ' Text
+'let'         Keyword
+' '           Text
+'lit'         Name.Variable
+','           Operator
+' '           Text
+'dist'        Name
+' '           Text
+'='           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'hlit'        Name.Variable
+' '           Text
+'='           Operator
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'hlit'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Operator
+'br'          Name
+'.'           Operator
+'ReadLE'      Name
+' '           Text
+'5'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'257'         Literal.Number.Integer
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'hlit'        Name
+' '           Text
+'>'           Operator
+' '           Text
+'286'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'failwith'    Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'sprintf'     Name
+' '           Text
+'"'           Literal.String
+'hlit: %d > 286' Literal.String
+'"'           Literal.String
+' '           Text
+'hlit'        Name
+'\n            ' Text
+'hlit'        Name
+'\n        \n        ' Text
+'let'         Keyword
+' '           Text
+'hdist'       Name.Variable
+' '           Text
+'='           Operator
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'hdist'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Operator
+'br'          Name
+'.'           Operator
+'ReadLE'      Name
+' '           Text
+'5'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'hdist'       Name
+' '           Text
+'>'           Operator
+' '           Text
+'32'          Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'failwith'    Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'sprintf'     Name
+' '           Text
+'"'           Literal.String
+'hdist: %d > 32' Literal.String
+'"'           Literal.String
+' '           Text
+'hdist'       Name
+'\n            ' Text
+'hdist'       Name
+'\n        \n        ' Text
+'let'         Keyword
+' '           Text
+'hclen'       Name.Variable
+' '           Text
+'='           Operator
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'hclen'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Operator
+'br'          Name
+'.'           Operator
+'ReadLE'      Name
+' '           Text
+'4'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'hclen'       Name
+' '           Text
+'>'           Operator
+' '           Text
+'19'          Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'failwith'    Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'sprintf'     Name
+' '           Text
+'"'           Literal.String
+'hclen: %d > 19' Literal.String
+'"'           Literal.String
+' '           Text
+'hclen'       Name
+'\n            ' Text
+'hclen'       Name
+'\n        \n        ' Text
+'let'         Keyword
+' '           Text
+'clen'        Name.Variable
+' '           Text
+'='           Operator
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'hclens'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'int'         Name
+'>'           Operator
+' '           Text
+'19'          Literal.Number.Integer
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'order'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'[|'          Operator
+' '           Text
+'16'          Literal.Number.Integer
+';'           Operator
+' '           Text
+'17'          Literal.Number.Integer
+';'           Operator
+' '           Text
+'18'          Literal.Number.Integer
+';'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+' '           Text
+'8'           Literal.Number.Integer
+';'           Operator
+' '           Text
+'7'           Literal.Number.Integer
+';'           Operator
+' '           Text
+'9'           Literal.Number.Integer
+';'           Operator
+' '           Text
+'6'           Literal.Number.Integer
+';'           Operator
+' '           Text
+'10'          Literal.Number.Integer
+';'           Operator
+' '           Text
+'5'           Literal.Number.Integer
+';'           Operator
+'\n                           ' Text
+'11'          Literal.Number.Integer
+';'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+';'           Operator
+' '           Text
+'12'          Literal.Number.Integer
+';'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+';'           Operator
+' '           Text
+'13'          Literal.Number.Integer
+';'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Operator
+' '           Text
+'14'          Literal.Number.Integer
+';'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Operator
+' '           Text
+'15'          Literal.Number.Integer
+' '           Text
+'|]'          Operator
+'\n            ' Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'hclen'       Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n                ' Text
+'hclens'      Name
+'.'           Operator
+'['           Operator
+'order'       Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'br'          Name
+'.'           Operator
+'ReadLE'      Name
+' '           Text
+'3'           Literal.Number.Integer
+'\n            ' Text
+'new'         Keyword
+' '           Text
+'Huffman'     Name
+'('           Operator
+'hclens'      Name
+')'           Operator
+'\n        \n        ' Text
+'let'         Keyword
+' '           Text
+'ld'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'int'         Name
+'>'           Operator
+'('           Operator
+'hlit'        Name
+' '           Text
+'+'           Operator
+' '           Text
+'hdist'       Name
+')'           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n        '  Text
+'while'       Keyword
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'ld'          Name
+'.'           Operator
+'Length'      Name
+' '           Text
+'do'          Keyword
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'v'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'clen'        Name
+'.'           Operator
+'Read'        Name
+'('           Operator
+'br'          Name
+')'           Operator
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'v'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'16'          Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n                ' Text
+'ld'          Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'v'           Name
+'\n                ' Text
+'i'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'i'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n            ' Text
+'else'        Keyword
+'\n                ' Text
+'let'         Keyword
+' '           Text
+'r'           Name.Variable
+','           Operator
+' '           Text
+'v'           Name
+' '           Text
+'='           Operator
+'\n                    ' Text
+'match'       Keyword
+' '           Text
+'v'           Name
+' '           Text
+'with'        Keyword
+'\n                    ' Text
+'|'           Operator
+' '           Text
+'16'          Literal.Number.Integer
+' '           Text
+'->'          Operator
+' '           Text
+'('           Operator
+'br'          Name
+'.'           Operator
+'ReadLE'      Name
+' '           Text
+'2'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+','           Operator
+' '           Text
+'ld'          Name
+'.'           Operator
+'['           Operator
+'i'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Operator
+'\n                    ' Text
+'|'           Operator
+' '           Text
+'17'          Literal.Number.Integer
+' '           Text
+'->'          Operator
+' '           Text
+'('           Operator
+'br'          Name
+'.'           Operator
+'ReadLE'      Name
+' '           Text
+'3'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n                    ' Text
+'|'           Operator
+' '           Text
+'18'          Literal.Number.Integer
+' '           Text
+'->'          Operator
+' '           Text
+'('           Operator
+'br'          Name
+'.'           Operator
+'ReadLE'      Name
+' '           Text
+'7'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'11'          Literal.Number.Integer
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n                    ' Text
+'|'           Operator
+' '           Text
+'_'           Operator
+'  '          Text
+'->'          Operator
+' '           Text
+'failwith'    Name
+' '           Text
+'"'           Literal.String
+'不正な値です。'     Literal.String
+'"'           Literal.String
+'\n                ' Text
+'for'         Keyword
+' '           Text
+'j'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'r'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n                    ' Text
+'ld'          Name
+'.'           Operator
+'['           Operator
+'i'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'j'           Name
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'v'           Name
+'\n                ' Text
+'i'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'i'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'r'           Name
+'\n        \n        ' Text
+'new'         Keyword
+' '           Text
+'Huffman'     Name
+'('           Operator
+'ld'          Name
+'.'           Operator
+'['           Operator
+'0'           Literal.Number.Integer
+' '           Text
+'..'          Operator
+' '           Text
+'hlit'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Operator
+','           Operator
+'\n        '  Text
+'new'         Keyword
+' '           Text
+'Huffman'     Name
+'('           Operator
+'ld'          Name
+'.'           Operator
+'['           Operator
+'hlit'        Name
+' '           Text
+'..'          Operator
+' '           Text
+'hlit'        Name
+' '           Text
+'+'           Operator
+' '           Text
+'hdist'       Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Operator
+'\n    \n    ' Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'GetValue'    Name.Function
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+' '           Text
+'lit'         Name
+'.'           Operator
+'Read'        Name
+' '           Text
+'br'          Name
+'\n    '      Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'GetDistance' Name.Function
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+' '           Text
+'dist'        Name
+'.'           Operator
+'Read'        Name
+' '           Text
+'br'          Name
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'getLitExLen' Name.Variable
+' '           Text
+'v'           Name
+' '           Text
+'='           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'v'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'265'         Literal.Number.Integer
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'v'           Name
+' '           Text
+'='           Operator
+' '           Text
+'285'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+' '           Text
+'('           Operator
+'v'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'261'         Literal.Number.Integer
+')'           Operator
+' '           Text
+'>'           Operator
+'>'           Operator
+'>'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'let'         Keyword
+' '           Text
+'getDistExLen' Name.Variable
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'d'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+' '           Text
+'('           Operator
+'d'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'>'           Operator
+'>'           Operator
+'>'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'litlens'     Name.Variable
+' '           Text
+'='           Operator
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'litlens'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'int'         Name
+'>'           Operator
+' '           Text
+'286'         Literal.Number.Integer
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'v'           Name
+' '           Text
+'='           Operator
+' '           Text
+'3'           Literal.Number.Integer
+'\n    '      Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'257'         Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'284'         Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n        '  Text
+'litlens'     Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'v'           Name
+'\n        '  Text
+'v'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'v'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'('           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'('           Operator
+'getLitExLen' Name
+' '           Text
+'i'           Name
+')'           Operator
+')'           Operator
+'\n    '      Text
+'litlens'     Name
+'.'           Operator
+'['           Operator
+'285'         Literal.Number.Integer
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'maxlen'      Name
+'\n    '      Text
+'litlens'     Name
+'.'           Operator
+'['           Operator
+'257'         Literal.Number.Integer
+'..'          Operator
+'285'         Literal.Number.Integer
+']'           Operator
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'distlens'    Name.Variable
+' '           Text
+'='           Operator
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'distlens'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'int'         Name
+'>'           Operator
+' '           Text
+'30'          Literal.Number.Integer
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'v'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n    '      Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'29'          Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n        '  Text
+'distlens'    Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'v'           Name
+'\n        '  Text
+'v'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'v'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'('           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'('           Operator
+'getDistExLen' Name
+' '           Text
+'i'           Name
+')'           Operator
+')'           Operator
+'\n    '      Text
+'distlens'    Name
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'Reader'      Name.Class
+'('           Operator
+'sin'         Name
+':'           Operator
+'Stream'      Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n    '      Text
+'inherit'     Keyword
+' '           Text
+'Stream'      Name
+'()'          Name.Builtin.Pseudo
+'\n    \n    ' Text
+'let'         Keyword
+' '           Text
+'br'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'BitReader'   Name
+'('           Operator
+'sin'         Name
+')'           Operator
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'fh'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'FixedHuffman' Name
+'('           Operator
+'br'          Name
+')'           Operator
+'\n    \n    ' Text
+'let'         Keyword
+' '           Text
+'sout'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'MemoryStream' Name
+'()'          Name.Builtin.Pseudo
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'dbuf'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'WriteBuffer' Name
+'('           Operator
+'sout'        Name
+')'           Operator
+'\n    \n    ' Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'cache'       Name
+':'           Operator
+'byte'        Keyword.Type
+'[]'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'canRead'     Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword
+'\n\n    '    Text
+'let'         Keyword
+' '           Text
+'rec'         Name.Variable
+' '           Text
+'read'        Name
+' '           Text
+'('           Operator
+'h'           Name
+':'           Operator
+'HuffmanDecoder' Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'v'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'h'           Name
+'.'           Operator
+'GetValue'    Name
+'()'          Name.Builtin.Pseudo
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'v'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'285'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'failwith'    Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'sprintf'     Name
+' '           Text
+'"'           Literal.String
+'不正な値: %d'    Literal.String
+'"'           Literal.String
+' '           Text
+'v'           Name
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'v'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'256'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'dbuf'        Name
+'.'           Operator
+'WriteByte'   Name
+'('           Operator
+'byte'        Keyword.Type
+' '           Text
+'v'           Name
+')'           Operator
+'\n        '  Text
+'elif'        Keyword
+' '           Text
+'v'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'256'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'len'         Name.Variable
+' '           Text
+'='           Operator
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'v'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'265'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'v'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'254'         Literal.Number.Integer
+' '           Text
+'else'        Keyword
+'\n                    ' Text
+'litlens'     Name
+'.'           Operator
+'['           Operator
+'v'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'257'         Literal.Number.Integer
+']'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'('           Operator
+'br'          Name
+'.'           Operator
+'ReadLE'      Name
+' '           Text
+'('           Operator
+'getLitExLen' Name
+' '           Text
+'v'           Name
+')'           Operator
+')'           Operator
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'dist'        Name.Variable
+' '           Text
+'='           Operator
+'\n                ' Text
+'let'         Keyword
+' '           Text
+'d'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'h'           Name
+'.'           Operator
+'GetDistance' Name
+'()'          Name.Builtin.Pseudo
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'d'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'29'          Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'failwith'    Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'sprintf'     Name
+' '           Text
+'"'           Literal.String
+'不正な距離: %d'   Literal.String
+'"'           Literal.String
+' '           Text
+'d'           Name
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'d'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'d'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+'\n                    ' Text
+'distlens'    Name
+'.'           Operator
+'['           Operator
+'d'           Name
+']'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'('           Operator
+'br'          Name
+'.'           Operator
+'ReadLE'      Name
+' '           Text
+'('           Operator
+'getDistExLen' Name
+' '           Text
+'d'           Name
+')'           Operator
+')'           Operator
+'\n            ' Text
+'dbuf'        Name
+'.'           Operator
+'Copy'        Name
+' '           Text
+'len'         Name
+' '           Text
+'dist'        Name
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'v'           Name
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'256'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'read'        Name
+' '           Text
+'h'           Name
+'\n    \n    ' Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'CanRead'     Name.Function
+'  '          Text
+'='           Operator
+' '           Text
+'canRead'     Name
+'\n    '      Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'CanWrite'    Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword
+'\n    '      Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'CanSeek'     Name.Function
+'  '          Text
+'='           Operator
+' '           Text
+'false'       Keyword
+'\n    '      Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Flush'       Name.Function
+'()'          Name.Builtin.Pseudo
+'  '          Text
+'='           Operator
+' '           Text
+'()'          Name.Builtin.Pseudo
+'\n    \n    ' Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Close'       Name.Function
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+'\n        '  Text
+'dbuf'        Name
+'.'           Operator
+'Close'       Name
+'()'          Name.Builtin.Pseudo
+'\n        '  Text
+'canRead'     Name
+' '           Text
+'<-'          Operator
+' '           Text
+'false'       Keyword
+'\n    \n    ' Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Read'        Name.Function
+'('           Operator
+'buffer'      Name
+','           Operator
+' '           Text
+'offset'      Name
+','           Operator
+' '           Text
+'count'       Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'offset'      Name.Variable
+' '           Text
+'='           Operator
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'cache'       Name
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword
+' '           Text
+'then'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+'\n                ' Text
+'let'         Keyword
+' '           Text
+'clen'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'cache'       Name
+'.'           Operator
+'Length'      Name
+'\n                ' Text
+'let'         Keyword
+' '           Text
+'len'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Math'        Name.Namespace
+'.'           Punctuation
+'Min'         Name
+'('           Operator
+'clen'        Name
+','           Operator
+' '           Text
+'count'       Name
+')'           Operator
+'\n                ' Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'Copy'        Name
+'('           Operator
+'cache'       Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'buffer'      Name
+','           Operator
+' '           Text
+'offset'      Name
+','           Operator
+' '           Text
+'len'         Name
+')'           Operator
+'\n                ' Text
+'cache'       Name
+' '           Text
+'<-'          Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'len'         Name
+' '           Text
+'='           Operator
+' '           Text
+'clen'        Name
+' '           Text
+'then'        Keyword
+' '           Text
+'null'        Keyword
+'\n                         ' Text
+'else'        Keyword
+' '           Text
+'cache'       Name
+'.'           Operator
+'['           Operator
+'len'         Name
+' '           Text
+'..'          Operator
+' '           Text
+'clen'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Operator
+'\n                ' Text
+'len'         Name
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'req'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'int64'       Keyword.Type
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'count'       Name
+' '           Text
+'-'           Operator
+' '           Text
+'offset'      Name
+'\n        '  Text
+'while'       Keyword
+' '           Text
+'canRead'     Name
+' '           Text
+'&&'          Operator
+' '           Text
+'sout'        Name
+'.'           Operator
+'Length'      Name
+' '           Text
+'<'           Operator
+' '           Text
+'req'         Name
+' '           Text
+'do'          Keyword
+'\n            ' Text
+'x'           Name
+'.'           Operator
+'readBlock'   Name
+'()'          Name.Builtin.Pseudo
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'len'         Name.Variable
+' '           Text
+'='           Operator
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'sout'        Name
+'.'           Operator
+'Length'      Name
+' '           Text
+'='           Operator
+' '           Text
+'0L'          Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+'\n                ' Text
+'let'         Keyword
+' '           Text
+'data'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'sout'        Name
+'.'           Operator
+'ToArray'     Name
+'()'          Name.Builtin.Pseudo
+'\n                ' Text
+'sout'        Name
+'.'           Operator
+'SetLength'   Name
+'('           Operator
+'0L'          Literal.Number.Integer
+')'           Operator
+'\n                ' Text
+'let'         Keyword
+' '           Text
+'dlen'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'data'        Name
+'.'           Operator
+'Length'      Name
+'\n                ' Text
+'let'         Keyword
+' '           Text
+'len'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Math'        Name.Namespace
+'.'           Punctuation
+'Min'         Name
+'('           Operator
+'int'         Name
+' '           Text
+'req'         Name
+','           Operator
+' '           Text
+'dlen'        Name
+')'           Operator
+'\n                ' Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'Copy'        Name
+'('           Operator
+'data'        Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'buffer'      Name
+','           Operator
+' '           Text
+'offset'      Name
+','           Operator
+' '           Text
+'len'         Name
+')'           Operator
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'dlen'        Name
+' '           Text
+'>'           Operator
+' '           Text
+'len'         Name
+' '           Text
+'then'        Keyword
+'\n                    ' Text
+'cache'       Name
+' '           Text
+'<-'          Operator
+' '           Text
+'data'        Name
+'.'           Operator
+'['           Operator
+'len'         Name
+'..'          Operator
+']'           Operator
+'\n                ' Text
+'len'         Name
+'\n        '  Text
+'offset'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'len'         Name
+'\n    \n    ' Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Position'    Name.Function
+'\n        '  Text
+'with'        Keyword
+' '           Text
+'get'         Name
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+' '           Text
+'raise'       Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'NotImplementedException' Name
+'()'          Name.Builtin.Pseudo
+'\n        '  Text
+'and'         Operator.Word
+' '           Text
+'set'         Name
+'('           Operator
+'v'           Name
+')'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'raise'       Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'NotImplementedException' Name
+'()'          Name.Builtin.Pseudo
+'\n    \n    ' Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Length'      Name.Function
+'         '   Text
+'='           Operator
+' '           Text
+'raise'       Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'NotImplementedException' Name
+'()'          Name.Builtin.Pseudo
+'\n    '      Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Seek'        Name.Function
+'('           Operator
+'_'           Operator
+','           Operator
+' '           Text
+'_'           Operator
+')'           Operator
+'     '       Text
+'='           Operator
+' '           Text
+'raise'       Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'NotImplementedException' Name
+'()'          Name.Builtin.Pseudo
+'\n    '      Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Write'       Name.Function
+'('           Operator
+'_'           Operator
+','           Operator
+' '           Text
+'_'           Operator
+','           Operator
+' '           Text
+'_'           Operator
+')'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'raise'       Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'NotImplementedException' Name
+'()'          Name.Builtin.Pseudo
+'\n    '      Text
+'override'    Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'SetLength'   Name.Function
+'('           Operator
+'_'           Operator
+')'           Operator
+'   '         Text
+'='           Operator
+' '           Text
+'raise'       Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'NotImplementedException' Name
+'()'          Name.Builtin.Pseudo
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'private'     Keyword
+' '           Text
+'x'           Name
+'.'           Operator
+'readBlock'   Name
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'bfinal'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'br'          Name
+'.'           Operator
+'ReadBit'     Name
+'()'          Name.Builtin.Pseudo
+'\n        '  Text
+'match'       Keyword
+' '           Text
+'br'          Name
+'.'           Operator
+'ReadLE'      Name
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'with'        Keyword
+'\n        '  Text
+'|'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'->'          Operator
+' '           Text
+'br'          Name
+'.'           Operator
+'Skip'        Name
+'()'          Name.Builtin.Pseudo
+'\n               ' Text
+'let'         Keyword
+' '           Text
+'len'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'br'          Name
+'.'           Operator
+'ReadLE'      Name
+' '           Text
+'16'          Literal.Number.Integer
+'\n               ' Text
+'let'         Keyword
+' '           Text
+'nlen'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'br'          Name
+'.'           Operator
+'ReadLE'      Name
+' '           Text
+'16'          Literal.Number.Integer
+'\n               ' Text
+'if'          Keyword
+' '           Text
+'len'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'nlen'        Name
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'x10000'      Name
+' '           Text
+'then'        Keyword
+'\n                   ' Text
+'failwith'    Name
+' '           Text
+'"'           Literal.String
+'不正な非圧縮長'     Literal.String
+'"'           Literal.String
+'\n               ' Text
+'dbuf'        Name
+'.'           Operator
+'Write'       Name
+' '           Text
+'('           Operator
+'br'          Name
+'.'           Operator
+'ReadBytes'   Name
+' '           Text
+'len'         Name
+')'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'len'         Name
+'\n        '  Text
+'|'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'->'          Operator
+' '           Text
+'read'        Name
+' '           Text
+'fh'          Name
+'\n        '  Text
+'|'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'->'          Operator
+' '           Text
+'read'        Name
+' '           Text
+'('           Operator
+'new'         Keyword
+' '           Text
+'DynamicHuffman' Name
+'('           Operator
+'br'          Name
+')'           Operator
+')'           Operator
+'\n        '  Text
+'|'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'->'          Operator
+' '           Text
+'failwith'    Name
+' '           Text
+'"'           Literal.String
+'不正なブロックタイプ'  Literal.String
+'"'           Literal.String
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'bfinal'      Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'canRead'     Name
+' '           Text
+'<-'          Operator
+' '           Text
+'false'       Keyword
+'\n            ' Text
+'x'           Name
+'.'           Operator
+'Close'       Name
+'()'          Name.Builtin.Pseudo
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'BitWriter'   Name.Class
+'('           Operator
+'sout'        Name
+':'           Operator
+'Stream'      Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'bit'         Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'cur'         Name
+' '           Text
+'='           Operator
+' '           Text
+'0uy'         Literal.Number.Integer
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Skip'        Name.Function
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'bit'         Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'sout'        Name
+'.'           Operator
+'WriteByte'   Name
+'('           Operator
+'cur'         Name
+')'           Operator
+'\n            ' Text
+'bit'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n            ' Text
+'cur'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'0uy'         Literal.Number.Integer
+'\n    \n    ' Text
+'interface'   Keyword
+' '           Text
+'IDisposable' Name
+' '           Text
+'with'        Keyword
+'\n        '  Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Dispose'     Name.Function
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator
+'\n            ' Text
+'x'           Name
+'.'           Operator
+'Skip'        Name
+'()'          Name.Builtin.Pseudo
+'\n            ' Text
+'sout'        Name
+'.'           Operator
+'Flush'       Name
+'()'          Name.Builtin.Pseudo
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'WriteBit'    Name.Function
+'('           Operator
+'b'           Name
+':'           Operator
+'int'         Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n        '  Text
+'cur'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'cur'         Name
+' '           Text
+'|'           Operator
+'|'           Operator
+'|'           Operator
+' '           Text
+'('           Operator
+'('           Operator
+'byte'        Keyword.Type
+' '           Text
+'b'           Name
+')'           Operator
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'bit'         Name
+')'           Operator
+'\n        '  Text
+'bit'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'bit'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'bit'         Name
+' '           Text
+'='           Operator
+' '           Text
+'8'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'sout'        Name
+'.'           Operator
+'WriteByte'   Name
+'('           Operator
+'cur'         Name
+')'           Operator
+'\n            ' Text
+'bit'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n            ' Text
+'cur'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'0uy'         Literal.Number.Integer
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'WriteLE'     Name.Function
+' '           Text
+'('           Operator
+'len'         Name
+':'           Operator
+'int'         Name
+')'           Operator
+' '           Text
+'('           Operator
+'b'           Name
+':'           Operator
+'int'         Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n        '  Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'len'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n            ' Text
+'x'           Name
+'.'           Operator
+'WriteBit'    Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'b'           Name
+' '           Text
+'&&'          Operator
+'&'           Operator
+' '           Text
+'('           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'i'           Name
+')'           Operator
+')'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'WriteBE'     Name.Function
+' '           Text
+'('           Operator
+'len'         Name
+':'           Operator
+'int'         Name
+')'           Operator
+' '           Text
+'('           Operator
+'b'           Name
+':'           Operator
+'int'         Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n        '  Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'len'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'downto'      Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n            ' Text
+'x'           Name
+'.'           Operator
+'WriteBit'    Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'b'           Name
+' '           Text
+'&&'          Operator
+'&'           Operator
+' '           Text
+'('           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'i'           Name
+')'           Operator
+')'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'WriteBytes'  Name.Function
+'('           Operator
+'data'        Name
+':'           Operator
+'byte'        Keyword.Type
+'[]'          Name.Builtin.Pseudo
+')'           Operator
+' '           Text
+'='           Operator
+'\n        '  Text
+'x'           Name
+'.'           Operator
+'Skip'        Name
+'()'          Name.Builtin.Pseudo
+'\n        '  Text
+'sout'        Name
+'.'           Operator
+'Write'       Name
+'('           Operator
+'data'        Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'data'        Name
+'.'           Operator
+'Length'      Name
+')'           Operator
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'FixedHuffmanWriter' Name.Class
+'('           Operator
+'bw'          Name
+':'           Operator
+'BitWriter'   Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n    '      Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Write'       Name.Function
+' '           Text
+'('           Operator
+'b'           Name
+':'           Operator
+'int'         Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'b'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'144'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'bw'          Name
+'.'           Operator
+'WriteBE'     Name
+' '           Text
+'8'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'b'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'b110000'     Name
+')'           Operator
+'\n        '  Text
+'elif'        Keyword
+' '           Text
+'b'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'256'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'bw'          Name
+'.'           Operator
+'WriteBE'     Name
+' '           Text
+'9'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'b'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'144'         Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'b110010000'  Name
+')'           Operator
+'\n        '  Text
+'elif'        Keyword
+' '           Text
+'b'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'280'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'bw'          Name
+'.'           Operator
+'WriteBE'     Name
+' '           Text
+'7'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'b'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'256'         Literal.Number.Integer
+')'           Operator
+'\n        '  Text
+'elif'        Keyword
+' '           Text
+'b'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'288'         Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'bw'          Name
+'.'           Operator
+'WriteBE'     Name
+' '           Text
+'8'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'b'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'280'         Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'b11000000'   Name
+')'           Operator
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'WriteLen'    Name.Function
+' '           Text
+'('           Operator
+'len'         Name
+':'           Operator
+'int'         Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'len'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'len'         Name
+' '           Text
+'>'           Operator
+' '           Text
+'maxlen'      Name
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'failwith'    Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'sprintf'     Name
+' '           Text
+'"'           Literal.String
+'不正な長さ: %d'   Literal.String
+'"'           Literal.String
+' '           Text
+'len'         Name
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'ll'          Name
+' '           Text
+'='           Operator
+' '           Text
+'285'         Literal.Number.Integer
+'\n        '  Text
+'while'       Keyword
+' '           Text
+'len'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'litlens'     Name
+'.'           Operator
+'['           Operator
+'ll'          Name
+' '           Text
+'-'           Operator
+' '           Text
+'257'         Literal.Number.Integer
+']'           Operator
+' '           Text
+'do'          Keyword
+'\n            ' Text
+'ll'          Name
+' '           Text
+'<-'          Operator
+' '           Text
+'ll'          Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'x'           Name
+'.'           Operator
+'Write'       Name
+' '           Text
+'ll'          Name
+'\n        '  Text
+'bw'          Name
+'.'           Operator
+'WriteLE'     Name
+' '           Text
+'('           Operator
+'getLitExLen' Name
+' '           Text
+'ll'          Name
+')'           Operator
+' '           Text
+'('           Operator
+'len'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'litlens'     Name
+'.'           Operator
+'['           Operator
+'ll'          Name
+' '           Text
+'-'           Operator
+' '           Text
+'257'         Literal.Number.Integer
+']'           Operator
+')'           Operator
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'WriteDist'   Name.Function
+' '           Text
+'('           Operator
+'d'           Name
+':'           Operator
+'int'         Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'d'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'d'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'failwith'    Name
+' '           Text
+'<'           Operator
+'|'           Operator
+' '           Text
+'sprintf'     Name
+' '           Text
+'"'           Literal.String
+'不正な距離: %d'   Literal.String
+'"'           Literal.String
+' '           Text
+'d'           Name
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'dl'          Name
+' '           Text
+'='           Operator
+' '           Text
+'29'          Literal.Number.Integer
+'\n        '  Text
+'while'       Keyword
+' '           Text
+'d'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'distlens'    Name
+'.'           Operator
+'['           Operator
+'dl'          Name
+']'           Operator
+' '           Text
+'do'          Keyword
+'\n            ' Text
+'dl'          Name
+' '           Text
+'<-'          Operator
+' '           Text
+'dl'          Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'bw'          Name
+'.'           Operator
+'WriteBE'     Name
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+'dl'          Name
+'\n        '  Text
+'bw'          Name
+'.'           Operator
+'WriteLE'     Name
+' '           Text
+'('           Operator
+'getDistExLen' Name
+' '           Text
+'dl'          Name
+')'           Operator
+' '           Text
+'('           Operator
+'d'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'distlens'    Name
+'.'           Operator
+'['           Operator
+'dl'          Name
+']'           Operator
+')'           Operator
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'maxbuf2'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'*'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'let'         Keyword
+' '           Text
+'buflen'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'maxbuf2'     Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxlen'      Name
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'inline'      Name.Variable
+' '           Text
+'getHash'     Name
+' '           Text
+'('           Operator
+'buf'         Name
+':'           Operator
+'byte'        Keyword.Type
+'[]'          Name.Builtin.Pseudo
+')'           Operator
+' '           Text
+'pos'         Name
+' '           Text
+'='           Operator
+'\n    '      Text
+'('           Operator
+'('           Operator
+'int'         Name
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'pos'         Name
+']'           Operator
+')'           Operator
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'^^'          Operator
+'^'           Operator
+' '           Text
+'('           Operator
+'('           Operator
+'int'         Name
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Operator
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'^^'          Operator
+'^'           Operator
+' '           Text
+'('           Operator
+'int'         Name
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+']'           Operator
+')'           Operator
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'inline'      Name.Variable
+' '           Text
+'addHash'     Name
+' '           Text
+'('           Operator
+'hash'        Name
+':'           Operator
+'List'        Name
+'<'           Operator
+'int'         Name
+'>'           Operator
+'[]'          Name.Builtin.Pseudo
+')'           Operator
+' '           Text
+'('           Operator
+'buf'         Name
+':'           Operator
+'byte'        Keyword.Type
+'[]'          Name.Builtin.Pseudo
+')'           Operator
+' '           Text
+'pos'         Name
+' '           Text
+'='           Operator
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'pos'         Name
+']'           Operator
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Operator
+' '           Text
+'then'        Keyword
+'\n        '  Text
+'hash'        Name
+'.'           Operator
+'['           Operator
+'getHash'     Name
+' '           Text
+'buf'         Name
+' '           Text
+'pos'         Name
+']'           Operator
+'.'           Operator
+'Add'         Name
+' '           Text
+'pos'         Name
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'inline'      Name.Variable
+' '           Text
+'addHash2'    Name
+' '           Text
+'('           Operator
+'tables'      Name
+':'           Operator
+'int'         Name
+'['           Operator
+','           Operator
+']'           Operator
+')'           Operator
+' '           Text
+'('           Operator
+'counts'      Name
+':'           Operator
+'int'         Name
+'[]'          Name.Builtin.Pseudo
+')'           Operator
+' '           Text
+'('           Operator
+'buf'         Name
+':'           Operator
+'byte'        Keyword.Type
+'[]'          Name.Builtin.Pseudo
+')'           Operator
+' '           Text
+'pos'         Name
+' '           Text
+'='           Operator
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'pos'         Name
+']'           Operator
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Operator
+' '           Text
+'then'        Keyword
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'h'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'getHash'     Name
+' '           Text
+'buf'         Name
+' '           Text
+'pos'         Name
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'c'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'counts'      Name
+'.'           Operator
+'['           Operator
+'h'           Name
+']'           Operator
+'\n        '  Text
+'tables'      Name
+'.'           Operator
+'['           Operator
+'h'           Name
+','           Operator
+' '           Text
+'c'           Name
+' '           Text
+'&&'          Operator
+'&'           Operator
+' '           Text
+'15'          Literal.Number.Integer
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'pos'         Name
+'\n        '  Text
+'counts'      Name
+'.'           Operator
+'['           Operator
+'h'           Name
+']'           Operator
+' '           Text
+'<-'          Operator
+' '           Text
+'c'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'Writer'      Name.Class
+'('           Operator
+'t'           Name
+':'           Operator
+'int'         Name
+','           Operator
+' '           Text
+'sin'         Name
+':'           Operator
+'Stream'      Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'length'      Name
+' '           Text
+'='           Operator
+' '           Text
+'buflen'      Name
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'buf'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'byte'        Keyword.Type
+'>'           Operator
+' '           Text
+'buflen'      Name
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'tables'      Name.Variable
+','           Operator
+' '           Text
+'counts'      Name
+' '           Text
+'='           Operator
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'t'           Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'Array2D'     Name.Namespace
+'.'           Punctuation
+'zeroCreate'  Name
+'<'           Operator
+'int'         Name
+'>'           Operator
+' '           Text
+'4096'        Literal.Number.Integer
+' '           Text
+'16'          Literal.Number.Integer
+','           Operator
+' '           Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'create'      Name
+' '           Text
+'4096'        Literal.Number.Integer
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+' '           Text
+'null'        Keyword
+','           Operator
+' '           Text
+'null'        Keyword
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'hash'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'tables'      Name
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword
+' '           Text
+'then'        Keyword
+' '           Text
+'[|'          Operator
+' '           Text
+'for'         Keyword
+' '           Text
+'_'           Operator
+' '           Text
+'in'          Keyword
+' '           Text
+'0'           Literal.Number.Integer
+'..'          Operator
+'4095'        Literal.Number.Integer
+' '           Text
+'->'          Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'List'        Name
+'<'           Operator
+'int'         Name
+'>'           Operator
+'()'          Name.Builtin.Pseudo
+' '           Text
+'|]'          Operator
+' '           Text
+'else'        Keyword
+' '           Text
+'null'        Keyword
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'crc'         Name
+' '           Text
+'='           Operator
+' '           Text
+'~'           Operator
+'~'           Operator
+'~'           Operator
+'0u'          Literal.Number.Integer
+'\n    \n    ' Text
+'let'         Keyword
+' '           Text
+'read'        Name.Variable
+' '           Text
+'pos'         Name
+' '           Text
+'len'         Name
+' '           Text
+'='           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'rlen'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'sin'         Name
+'.'           Operator
+'Read'        Name
+'('           Operator
+'buf'         Name
+','           Operator
+' '           Text
+'pos'         Name
+','           Operator
+' '           Text
+'len'         Name
+')'           Operator
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'rlen'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'len'         Name
+' '           Text
+'then'        Keyword
+' '           Text
+'length'      Name
+' '           Text
+'<-'          Operator
+' '           Text
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'rlen'        Name
+'\n        '  Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'pos'         Name
+' '           Text
+'to'          Keyword
+' '           Text
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'rlen'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'b'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'int'         Name
+'('           Operator
+'crc'         Name
+' '           Text
+'^^'          Operator
+'^'           Operator
+' '           Text
+'('           Operator
+'uint32'      Keyword.Type
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+')'           Operator
+')'           Operator
+' '           Text
+'&&'          Operator
+'&'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'xff'         Name
+'\n            ' Text
+'crc'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'('           Operator
+'crc'         Name
+' '           Text
+'>'           Operator
+'>'           Operator
+'>'           Operator
+' '           Text
+'8'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'^^'          Operator
+'^'           Operator
+' '           Text
+'crc32_table' Name
+'.'           Operator
+'['           Operator
+'b'           Name
+']'           Operator
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'hash'        Name
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'null'        Keyword
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'for'         Keyword
+' '           Text
+'list'        Keyword.Type
+' '           Text
+'in'          Keyword
+' '           Text
+'hash'        Name
+' '           Text
+'do'          Keyword
+' '           Text
+'list'        Keyword.Type
+'.'           Operator
+'Clear'       Name
+'()'          Name.Builtin.Pseudo
+'\n        '  Text
+'else'        Keyword
+'\n            ' Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'fill'        Name
+' '           Text
+'counts'      Name
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'counts'      Name
+'.'           Operator
+'Length'      Name
+' '           Text
+'0'           Literal.Number.Integer
+'\n    \n    ' Text
+'do'          Keyword
+'\n        '  Text
+'read'        Name
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'buflen'      Name
+'\n    \n    ' Text
+'let'         Keyword
+' '           Text
+'search'      Name.Variable
+' '           Text
+'('           Operator
+'pos'         Name
+':'           Operator
+'int'         Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'maxp'        Name
+' '           Text
+'='           Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'maxl'        Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'mlen'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Math'        Name.Namespace
+'.'           Punctuation
+'Min'         Name
+'('           Operator
+'maxlen'      Name
+','           Operator
+' '           Text
+'length'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'pos'         Name
+')'           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'last'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Math'        Name.Namespace
+'.'           Punctuation
+'Max'         Name
+'('           Operator
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'pos'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'maxbuf'      Name
+')'           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'h'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'getHash'     Name
+' '           Text
+'buf'         Name
+' '           Text
+'pos'         Name
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'hash'        Name
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'null'        Keyword
+' '           Text
+'then'        Keyword
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'list'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'hash'        Name
+'.'           Operator
+'['           Operator
+'h'           Name
+']'           Operator
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'list'        Keyword.Type
+'.'           Operator
+'Count'       Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n            ' Text
+'while'       Keyword
+' '           Text
+'i'           Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n                ' Text
+'let'         Keyword
+' '           Text
+'p'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'list'        Keyword.Type
+'.'           Operator
+'['           Operator
+'i'           Name
+']'           Operator
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'last'        Name
+' '           Text
+'then'        Keyword
+' '           Text
+'i'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+'\n                    ' Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'len'         Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n                    ' Text
+'while'       Keyword
+' '           Text
+'len'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'mlen'        Name
+' '           Text
+'&&'          Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'len'         Name
+']'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'len'         Name
+']'           Operator
+' '           Text
+'do'          Keyword
+'\n                        ' Text
+'len'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'len'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n                    ' Text
+'if'          Keyword
+' '           Text
+'len'         Name
+' '           Text
+'>'           Operator
+' '           Text
+'maxl'        Name
+' '           Text
+'then'        Keyword
+'\n                        ' Text
+'maxp'        Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+'\n                        ' Text
+'maxl'        Name
+' '           Text
+'<-'          Operator
+' '           Text
+'len'         Name
+'\n                ' Text
+'i'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'i'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'else'        Keyword
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'c'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'counts'      Name
+'.'           Operator
+'['           Operator
+'h'           Name
+']'           Operator
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'p1'          Name.Variable
+','           Operator
+' '           Text
+'p2'          Name
+' '           Text
+'='           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'c'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'16'          Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'c'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+' '           Text
+'c'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Operator
+' '           Text
+'c'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'16'          Literal.Number.Integer
+'\n            ' Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'p2'          Name
+'\n            ' Text
+'while'       Keyword
+' '           Text
+'i'           Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'p1'          Name
+' '           Text
+'do'          Keyword
+'\n                ' Text
+'let'         Keyword
+' '           Text
+'p'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'tables'      Name
+'.'           Operator
+'['           Operator
+'h'           Name
+','           Operator
+' '           Text
+'i'           Name
+' '           Text
+'&&'          Operator
+'&'           Operator
+' '           Text
+'15'          Literal.Number.Integer
+']'           Operator
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'last'        Name
+' '           Text
+'then'        Keyword
+' '           Text
+'i'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+'\n                    ' Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'len'         Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n                    ' Text
+'while'       Keyword
+' '           Text
+'len'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'mlen'        Name
+' '           Text
+'&&'          Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'len'         Name
+']'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'len'         Name
+']'           Operator
+' '           Text
+'do'          Keyword
+'\n                        ' Text
+'len'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'len'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n                    ' Text
+'if'          Keyword
+' '           Text
+'len'         Name
+' '           Text
+'>'           Operator
+' '           Text
+'maxl'        Name
+' '           Text
+'then'        Keyword
+'\n                        ' Text
+'maxp'        Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+'\n                        ' Text
+'maxl'        Name
+' '           Text
+'<-'          Operator
+' '           Text
+'len'         Name
+'\n                ' Text
+'i'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'i'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'maxp'        Name
+','           Operator
+' '           Text
+'maxl'        Name
+'\n    \n    ' Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Crc'         Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'~'           Operator
+'~'           Operator
+'~'           Operator
+'crc'         Name
+'\n\n    '    Text
+'member'      Keyword
+' '           Text
+'x'           Name
+'.'           Punctuation
+'Compress'    Name.Function
+' '           Text
+'('           Operator
+'sout'        Name
+':'           Operator
+'Stream'      Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n        '  Text
+'use'         Keyword
+' '           Text
+'bw'          Name
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'BitWriter'   Name
+'('           Operator
+'sout'        Name
+')'           Operator
+'\n        '  Text
+'bw'          Name
+'.'           Operator
+'WriteBit'    Name
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'bw'          Name
+'.'           Operator
+'WriteLE'     Name
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'hw'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'FixedHuffmanWriter' Name
+'('           Operator
+'bw'          Name
+')'           Operator
+'\n        '  Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'p'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n        '  Text
+'match'       Keyword
+' '           Text
+'t'           Name
+' '           Text
+'with'        Keyword
+'\n        '  Text
+'|'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'->'          Operator
+'\n            ' Text
+'while'       Keyword
+' '           Text
+'p'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'length'      Name
+' '           Text
+'do'          Keyword
+'\n                ' Text
+'let'         Keyword
+' '           Text
+'b'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+']'           Operator
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'length'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'&&'          Operator
+' '           Text
+'b'           Name
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Operator
+' '           Text
+'&&'          Operator
+' '           Text
+'b'           Name
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+']'           Operator
+' '           Text
+'&&'          Operator
+' '           Text
+'b'           Name
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+']'           Operator
+' '           Text
+'then'        Keyword
+'\n                    ' Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'len'         Name
+' '           Text
+'='           Operator
+' '           Text
+'4'           Literal.Number.Integer
+'\n                    ' Text
+'let'         Keyword
+' '           Text
+'mlen'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Math'        Name.Namespace
+'.'           Punctuation
+'Min'         Name
+'('           Operator
+'maxlen'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Operator
+' '           Text
+'length'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'p'           Name
+')'           Operator
+'\n                    ' Text
+'while'       Keyword
+' '           Text
+'len'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'mlen'        Name
+' '           Text
+'&&'          Operator
+' '           Text
+'b'           Name
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'len'         Name
+']'           Operator
+' '           Text
+'do'          Keyword
+'\n                        ' Text
+'len'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'len'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n                    ' Text
+'hw'          Name
+'.'           Operator
+'Write'       Name
+'('           Operator
+'int'         Name
+' '           Text
+'b'           Name
+')'           Operator
+'\n                    ' Text
+'hw'          Name
+'.'           Operator
+'WriteLen'    Name
+'('           Operator
+'len'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+'\n                    ' Text
+'hw'          Name
+'.'           Operator
+'WriteDist'   Name
+' '           Text
+'1'           Literal.Number.Integer
+'\n                    ' Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'len'         Name
+'\n                ' Text
+'else'        Keyword
+'\n                    ' Text
+'let'         Keyword
+' '           Text
+'maxp'        Name.Variable
+','           Operator
+' '           Text
+'maxl'        Name
+' '           Text
+'='           Operator
+' '           Text
+'search'      Name
+' '           Text
+'p'           Name
+'\n                    ' Text
+'if'          Keyword
+' '           Text
+'maxp'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n                        ' Text
+'hw'          Name
+'.'           Operator
+'Write'       Name
+'('           Operator
+'int'         Name
+' '           Text
+'b'           Name
+')'           Operator
+'\n                        ' Text
+'addHash2'    Name
+' '           Text
+'tables'      Name
+' '           Text
+'counts'      Name
+' '           Text
+'buf'         Name
+' '           Text
+'p'           Name
+'\n                        ' Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n                    ' Text
+'else'        Keyword
+'\n                        ' Text
+'hw'          Name
+'.'           Operator
+'WriteLen'    Name
+' '           Text
+'maxl'        Name
+'\n                        ' Text
+'hw'          Name
+'.'           Operator
+'WriteDist'   Name
+' '           Text
+'('           Operator
+'p'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'maxp'        Name
+')'           Operator
+'\n                        ' Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'p'           Name
+' '           Text
+'to'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxl'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n                            ' Text
+'addHash2'    Name
+' '           Text
+'tables'      Name
+' '           Text
+'counts'      Name
+' '           Text
+'buf'         Name
+' '           Text
+'i'           Name
+'\n                        ' Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxl'        Name
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'maxbuf2'     Name
+' '           Text
+'then'        Keyword
+'\n                    ' Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'Copy'        Name
+'('           Operator
+'buf'         Name
+','           Operator
+' '           Text
+'maxbuf'      Name
+','           Operator
+' '           Text
+'buf'         Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxlen'      Name
+')'           Operator
+'\n                    ' Text
+'if'          Keyword
+' '           Text
+'length'      Name
+' '           Text
+'<'           Operator
+' '           Text
+'buflen'      Name
+' '           Text
+'then'        Keyword
+' '           Text
+'length'      Name
+' '           Text
+'<-'          Operator
+' '           Text
+'length'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'else'        Keyword
+'\n                        ' Text
+'read'        Name
+' '           Text
+'('           Operator
+'maxbuf'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxlen'      Name
+')'           Operator
+' '           Text
+'maxbuf'      Name
+'\n                    ' Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'maxbuf'      Name
+'\n                    ' Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n                        ' Text
+'addHash2'    Name
+' '           Text
+'tables'      Name
+' '           Text
+'counts'      Name
+' '           Text
+'buf'         Name
+' '           Text
+'i'           Name
+'\n        '  Text
+'|'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'->'          Operator
+'\n            ' Text
+'while'       Keyword
+' '           Text
+'p'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'length'      Name
+' '           Text
+'do'          Keyword
+'\n                ' Text
+'let'         Keyword
+' '           Text
+'b'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+']'           Operator
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'length'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'&&'          Operator
+' '           Text
+'b'           Name
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Operator
+' '           Text
+'&&'          Operator
+' '           Text
+'b'           Name
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+']'           Operator
+' '           Text
+'&&'          Operator
+' '           Text
+'b'           Name
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+']'           Operator
+' '           Text
+'then'        Keyword
+'\n                    ' Text
+'let'         Keyword
+' '           Text
+'mutable'     Name.Variable
+' '           Text
+'len'         Name
+' '           Text
+'='           Operator
+' '           Text
+'4'           Literal.Number.Integer
+'\n                    ' Text
+'let'         Keyword
+' '           Text
+'mlen'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Math'        Name.Namespace
+'.'           Punctuation
+'Min'         Name
+'('           Operator
+'maxlen'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Operator
+' '           Text
+'length'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'p'           Name
+')'           Operator
+'\n                    ' Text
+'while'       Keyword
+' '           Text
+'len'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'mlen'        Name
+' '           Text
+'&&'          Operator
+' '           Text
+'b'           Name
+' '           Text
+'='           Operator
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'len'         Name
+']'           Operator
+' '           Text
+'do'          Keyword
+'\n                        ' Text
+'len'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'len'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n                    ' Text
+'hw'          Name
+'.'           Operator
+'Write'       Name
+'('           Operator
+'int'         Name
+' '           Text
+'b'           Name
+')'           Operator
+'\n                    ' Text
+'hw'          Name
+'.'           Operator
+'WriteLen'    Name
+'('           Operator
+'len'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+'\n                    ' Text
+'hw'          Name
+'.'           Operator
+'WriteDist'   Name
+' '           Text
+'1'           Literal.Number.Integer
+'\n                    ' Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'len'         Name
+'\n                ' Text
+'else'        Keyword
+'\n                    ' Text
+'let'         Keyword
+' '           Text
+'maxp'        Name.Variable
+','           Operator
+' '           Text
+'maxl'        Name
+' '           Text
+'='           Operator
+' '           Text
+'search'      Name
+' '           Text
+'p'           Name
+'\n                    ' Text
+'if'          Keyword
+' '           Text
+'maxp'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n                        ' Text
+'hw'          Name
+'.'           Operator
+'Write'       Name
+'('           Operator
+'int'         Name
+' '           Text
+'b'           Name
+')'           Operator
+'\n                        ' Text
+'addHash'     Name
+' '           Text
+'hash'        Name
+' '           Text
+'buf'         Name
+' '           Text
+'p'           Name
+'\n                        ' Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n                    ' Text
+'else'        Keyword
+'\n                        ' Text
+'hw'          Name
+'.'           Operator
+'WriteLen'    Name
+' '           Text
+'maxl'        Name
+'\n                        ' Text
+'hw'          Name
+'.'           Operator
+'WriteDist'   Name
+' '           Text
+'('           Operator
+'p'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'maxp'        Name
+')'           Operator
+'\n                        ' Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'p'           Name
+' '           Text
+'to'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxl'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n                            ' Text
+'addHash'     Name
+' '           Text
+'hash'        Name
+' '           Text
+'buf'         Name
+' '           Text
+'i'           Name
+'\n                        ' Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxl'        Name
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'maxbuf2'     Name
+' '           Text
+'then'        Keyword
+'\n                    ' Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'Copy'        Name
+'('           Operator
+'buf'         Name
+','           Operator
+' '           Text
+'maxbuf'      Name
+','           Operator
+' '           Text
+'buf'         Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxlen'      Name
+')'           Operator
+'\n                    ' Text
+'if'          Keyword
+' '           Text
+'length'      Name
+' '           Text
+'<'           Operator
+' '           Text
+'buflen'      Name
+' '           Text
+'then'        Keyword
+' '           Text
+'length'      Name
+' '           Text
+'<-'          Operator
+' '           Text
+'length'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'else'        Keyword
+'\n                        ' Text
+'read'        Name
+' '           Text
+'('           Operator
+'maxbuf'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxlen'      Name
+')'           Operator
+' '           Text
+'maxbuf'      Name
+'\n                    ' Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'maxbuf'      Name
+'\n                    ' Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n                        ' Text
+'addHash'     Name
+' '           Text
+'hash'        Name
+' '           Text
+'buf'         Name
+' '           Text
+'i'           Name
+'\n        '  Text
+'|'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'->'          Operator
+'\n            ' Text
+'while'       Keyword
+' '           Text
+'p'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'length'      Name
+' '           Text
+'do'          Keyword
+'\n                ' Text
+'let'         Keyword
+' '           Text
+'maxp'        Name.Variable
+','           Operator
+' '           Text
+'maxl'        Name
+' '           Text
+'='           Operator
+' '           Text
+'search'      Name
+' '           Text
+'p'           Name
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'maxp'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n                    ' Text
+'hw'          Name
+'.'           Operator
+'Write'       Name
+'('           Operator
+'int'         Name
+' '           Text
+'buf'         Name
+'.'           Operator
+'['           Operator
+'p'           Name
+']'           Operator
+')'           Operator
+'\n                    ' Text
+'hash'        Name
+'.'           Operator
+'['           Operator
+'getHash'     Name
+' '           Text
+'buf'         Name
+' '           Text
+'p'           Name
+']'           Operator
+'.'           Operator
+'Add'         Name
+' '           Text
+'p'           Name
+'\n                    ' Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n                ' Text
+'else'        Keyword
+'\n                    ' Text
+'hw'          Name
+'.'           Operator
+'WriteLen'    Name
+' '           Text
+'maxl'        Name
+'\n                    ' Text
+'hw'          Name
+'.'           Operator
+'WriteDist'   Name
+' '           Text
+'('           Operator
+'p'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'maxp'        Name
+')'           Operator
+'\n                    ' Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'p'           Name
+' '           Text
+'to'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxl'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n                        ' Text
+'hash'        Name
+'.'           Operator
+'['           Operator
+'getHash'     Name
+' '           Text
+'buf'         Name
+' '           Text
+'i'           Name
+']'           Operator
+'.'           Operator
+'Add'         Name
+' '           Text
+'i'           Name
+'\n                    ' Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxl'        Name
+'\n                ' Text
+'if'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'maxbuf2'     Name
+' '           Text
+'then'        Keyword
+'\n                    ' Text
+'Array'       Name.Namespace
+'.'           Punctuation
+'Copy'        Name
+'('           Operator
+'buf'         Name
+','           Operator
+' '           Text
+'maxbuf'      Name
+','           Operator
+' '           Text
+'buf'         Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxlen'      Name
+')'           Operator
+'\n                    ' Text
+'if'          Keyword
+' '           Text
+'length'      Name
+' '           Text
+'<'           Operator
+' '           Text
+'buflen'      Name
+' '           Text
+'then'        Keyword
+' '           Text
+'length'      Name
+' '           Text
+'<-'          Operator
+' '           Text
+'length'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'maxbuf'      Name
+' '           Text
+'else'        Keyword
+'\n                        ' Text
+'read'        Name
+' '           Text
+'('           Operator
+'maxbuf'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'maxlen'      Name
+')'           Operator
+' '           Text
+'maxbuf'      Name
+'\n                    ' Text
+'p'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'maxbuf'      Name
+'\n                    ' Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'p'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n                        ' Text
+'hash'        Name
+'.'           Operator
+'['           Operator
+'getHash'     Name
+' '           Text
+'buf'         Name
+' '           Text
+'i'           Name
+']'           Operator
+'.'           Operator
+'Add'         Name
+' '           Text
+'i'           Name
+'\n        '  Text
+'hw'          Name
+'.'           Operator
+'Write'       Name
+' '           Text
+'256'         Literal.Number.Integer
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'GetCompressBytes' Name.Variable
+' '           Text
+'('           Operator
+'sin'         Name
+':'           Operator
+'Stream'      Name
+')'           Operator
+' '           Text
+'='           Operator
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'now'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'DateTime'    Name.Namespace
+'.'           Punctuation
+'Now'         Name
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'ms'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'MemoryStream' Name
+'()'          Name.Builtin.Pseudo
+'\n    '      Text
+'let'         Keyword
+' '           Text
+'w'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'Writer'      Name
+'('           Operator
+'1'           Literal.Number.Integer
+','           Operator
+' '           Text
+'sin'         Name
+')'           Operator
+'\n    '      Text
+'w'           Name
+'.'           Operator
+'Compress'    Name
+' '           Text
+'ms'          Name
+'\n    '      Text
+'ms'          Name
+'.'           Operator
+'ToArray'     Name
+'()'          Name.Builtin.Pseudo
+','           Operator
+' '           Text
+'w'           Name
+'.'           Operator
+'Crc'         Name
+'\n'          Text

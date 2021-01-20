@@ -1,0 +1,2773 @@
+'////////////////////////////////////////////////////////////////////////////////\n' Comment.Single
+
+'//                                                                            //\n' Comment.Single
+
+'// MIT X11 license, Copyright (c) 2005-2006 by:                               //\n' Comment.Single
+
+'//                                                                            //\n' Comment.Single
+
+'// Authors:                                                                   //\n' Comment.Single
+
+'//      Michael Dominic K. <michaldominik@gmail.com>                          //\n' Comment.Single
+
+'//                                                                            //\n' Comment.Single
+
+'// Permission is hereby granted, free of charge, to any person obtaining a    //\n' Comment.Single
+
+'// copy of this software and associated documentation files (the "Software"), //\n' Comment.Single
+
+'// to deal in the Software without restriction, including without limitation  //\n' Comment.Single
+
+'// the rights to use, copy, modify, merge, publish, distribute, sublicense,   //\n' Comment.Single
+
+'// and/or sell copies of the Software, and to permit persons to whom the      //\n' Comment.Single
+
+'// Software is furnished to do so, subject to the following conditions:       //\n' Comment.Single
+
+'//                                                                            //\n' Comment.Single
+
+'// The above copyright notice and this permission notice shall be included    //\n' Comment.Single
+
+'// in all copies or substantial portions of the Software.                     //\n' Comment.Single
+
+'//                                                                            //\n' Comment.Single
+
+'// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS    //\n' Comment.Single
+
+'// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF                 //\n' Comment.Single
+
+'// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN  //\n' Comment.Single
+
+'// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,   //\n' Comment.Single
+
+'// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR      //\n' Comment.Single
+
+'// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE  //\n' Comment.Single
+
+'// USE OR OTHER DEALINGS IN THE SOFTWARE.                                     //\n' Comment.Single
+
+'//                                                                            //\n' Comment.Single
+
+'////////////////////////////////////////////////////////////////////////////////\n' Comment.Single
+
+'\n'          Text
+
+'namespace'   Keyword
+' '           Text
+'Diva.Core'   Name.Namespace
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'\n'          Text
+
+'        '    Text
+'using'       Keyword
+' '           Text
+'System'      Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'using'       Keyword
+' '           Text
+'Widgets'     Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'using'       Keyword
+' '           Text
+'System.Xml'  Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'using'       Keyword
+' '           Text
+'Util'        Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'using'       Keyword
+' '           Text
+'System.Collections.Generic' Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'using'       Keyword
+' '           Text
+'System.Collections' Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'using'       Keyword
+' '           Text
+'Basics'      Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'public'      Keyword
+' '           Text
+'class'       Keyword
+' '           Text
+'OpenerTask'  Name.Class
+' '           Text
+':'           Punctuation
+' '           Text
+'Task'        Name
+','           Punctuation
+' '           Text
+'IBoilProvider' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                ' Text
+'// Private structs ////////////////////////////////////////////\n' Comment.Single
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'struct'      Keyword
+' '           Text
+'ObjectInfo'  Name.Class
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                        ' Text
+'public'      Keyword
+' '           Text
+'ObjectContainer' Name
+' '           Text
+'Container'   Name
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'public'      Keyword
+' '           Text
+'int'         Keyword.Type
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'Depends'     Name
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'public'      Keyword
+' '           Text
+'string'      Keyword.Type
+' '           Text
+'SystemType'  Name
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'public'      Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'RefId'       Name
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'\n'          Text
+
+'                        ' Text
+'/* CONSTRUCTOR */' Comment.Multiline
+'\n'          Text
+
+'                        ' Text
+'public'      Keyword
+' '           Text
+'ObjectInfo'  Name.Function
+' '           Text
+'('           Punctuation
+'ObjectContainer' Name
+' '           Text
+'container'   Name
+')'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'Container'   Name
+' '           Text
+'='           Punctuation
+' '           Text
+'container'   Name
+';'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'Depends'     Name
+' '           Text
+'='           Punctuation
+' '           Text
+'container'   Name
+'.'           Punctuation
+'Depends'     Name
+'.'           Punctuation
+'ToArray'     Name
+' '           Text
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'SystemType'  Name
+' '           Text
+'='           Punctuation
+' '           Text
+'container'   Name
+'.'           Punctuation
+'SystemType'  Name
+';'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'RefId'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'container'   Name
+'.'           Punctuation
+'RefId'       Name
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'\n'          Text
+
+'                        ' Text
+'public'      Keyword
+' '           Text
+'override'    Keyword
+' '           Text
+'string'      Keyword.Type
+' '           Text
+'ToString'    Name.Function
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'return'      Keyword
+' '           Text
+'String'      Name
+'.'           Punctuation
+'Format'      Name
+' '           Text
+'('           Punctuation
+'"Type: {0} Deps count: {1} Id: {2}"' Literal.String
+','           Punctuation
+'\n'          Text
+
+'                                                      ' Text
+'SystemType'  Name
+','           Punctuation
+' '           Text
+'Depends'     Name
+'.'           Punctuation
+'Length'      Name
+','           Punctuation
+' '           Text
+'RefId'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'\n'          Text
+
+'                        ' Text
+'public'      Keyword
+' '           Text
+'bool'        Keyword.Type
+' '           Text
+'IsUnBoilable' Name.Function
+' '           Text
+'('           Punctuation
+'IBoilProvider' Name
+' '           Text
+'provider'    Name
+')'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'Depends'     Name
+'.'           Punctuation
+'Length'      Name
+' '           Text
+'='           Punctuation
+'='           Punctuation
+' '           Text
+'0'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'return'      Keyword
+' '           Text
+'true'        Keyword
+';'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'\n'          Text
+
+'                                ' Text
+'foreach'     Keyword
+' '           Text
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'id'          Name
+' '           Text
+'in'          Keyword
+' '           Text
+'Depends'     Name
+')'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Punctuation
+' '           Text
+'('           Punctuation
+'provider'    Name
+'.'           Punctuation
+'Contains'    Name
+' '           Text
+'('           Punctuation
+'id'          Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'                                                ' Text
+'return'      Keyword
+' '           Text
+'false'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'\n'          Text
+
+'                                ' Text
+'return'      Keyword
+' '           Text
+'true'        Keyword
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                                 ' Text
+'\n'          Text
+
+'                ' Text
+'// Enums //////////////////////////////////////////////////////\n' Comment.Single
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'enum'        Keyword
+' '           Text
+'OpenerTaskStep' Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'Init'        Name
+','           Punctuation
+' '           Text
+'Header'      Name
+','           Punctuation
+' '           Text
+'ProjectInfoRead' Name
+','           Punctuation
+' '           Text
+'ObjectListRead' Name
+','           Punctuation
+'\n'          Text
+
+'                                      ' Text
+'ObjectListParse' Name
+','           Punctuation
+' '           Text
+'ObjectListUnBoil' Name
+','           Punctuation
+' '           Text
+'FindRoots'   Name
+','           Punctuation
+'\n'          Text
+
+'                                      ' Text
+'Finished'    Name
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'// Fields /////////////////////////////////////////////////////\n' Comment.Single
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'string'      Keyword.Type
+' '           Text
+'fileName'    Name
+';'           Punctuation
+'                         ' Text
+"// Filename we're reading\n" Comment.Single
+
+'                ' Text
+'XmlDocument' Name
+' '           Text
+'xmlDocument' Name
+';'           Punctuation
+'                 ' Text
+'// Our document\n' Comment.Single
+
+'                ' Text
+'//XmlNode projectInfoNode;               // <projectinfo> node\n' Comment.Single
+
+'                ' Text
+'IEnumerator' Name
+' '           Text
+'objectsEnumerator' Name
+';'           Punctuation
+'           ' Text
+'// Enumerator\n' Comment.Single
+
+'                ' Text
+'List'        Name
+' '           Text
+'<'           Punctuation
+'ObjectInfo'  Name
+'>'           Punctuation
+' '           Text
+'objectsList' Name
+';'           Punctuation
+'           ' Text
+'// Objects list\n' Comment.Single
+
+'                ' Text
+'ObjectListContainer' Name
+' '           Text
+'objectListContainer' Name
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'OpenerTaskStep' Name
+' '           Text
+'currentStep' Name
+';'           Punctuation
+'              ' Text
+'// Our current step\n' Comment.Single
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'Dictionary'  Name
+' '           Text
+'<'           Punctuation
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'object'      Keyword.Type
+'>'           Punctuation
+' '           Text
+'idToObject'  Name
+';'           Punctuation
+'     '       Text
+'// Id -> object\n' Comment.Single
+
+'                ' Text
+'Dictionary'  Name
+' '           Text
+'<'           Punctuation
+'object'      Keyword.Type
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+'>'           Punctuation
+' '           Text
+'objectToId'  Name
+';'           Punctuation
+'     '       Text
+'// Object -> Id\n' Comment.Single
+
+'\n'          Text
+
+'                ' Text
+'string'      Keyword.Type
+' '           Text
+'projectName' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'String'      Name
+'.'           Punctuation
+'Empty'       Name
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'string'      Keyword.Type
+' '           Text
+'projectDirectory' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'String'      Name
+'.'           Punctuation
+'Empty'       Name
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'TagList'     Name
+' '           Text
+'projectTagList' Name
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'StuffList'   Name
+' '           Text
+'projectStuffList' Name
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'TrackList'   Name
+' '           Text
+'projectTrackList' Name
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'ClipList'    Name
+' '           Text
+'projectClipList' Name
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'MediaItemList' Name
+' '           Text
+'projectMediaItemList' Name
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'Commander'   Name
+' '           Text
+'projectCommander' Name
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'Gdv'         Name
+'.'           Punctuation
+'Pipeline'    Name
+' '           Text
+'projectPipeline' Name
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'Gdv'         Name
+'.'           Punctuation
+'ProjectFormat' Name
+' '           Text
+'projectFormat' Name
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'// Properties /////////////////////////////////////////////////\n' Comment.Single
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'string'      Keyword.Type
+' '           Text
+'ProjectName' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'projectName' Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'string'      Keyword.Type
+' '           Text
+'ProjectDirectory' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'projectDirectory' Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'TagList'     Name
+' '           Text
+'ProjectTagList' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'projectTagList' Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'StuffList'   Name
+' '           Text
+'ProjectStuffList' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'projectStuffList' Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'TrackList'   Name
+' '           Text
+'ProjectTrackList' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'projectTrackList' Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'ClipList'    Name
+' '           Text
+'ProjectClipList' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'projectClipList' Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'MediaItemList' Name
+' '           Text
+'ProjectMediaItemList' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'projectMediaItemList' Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'Commander'   Name
+' '           Text
+'ProjectCommander' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'projectCommander' Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'Gdv'         Name
+'.'           Punctuation
+'Pipeline'    Name
+' '           Text
+'ProjectPipeline' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'projectPipeline' Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'Gdv'         Name
+'.'           Punctuation
+'ProjectFormat' Name
+' '           Text
+'ProjectFormat' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'projectFormat' Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                ' Text
+'// Public methods /////////////////////////////////////////////\n' Comment.Single
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'/* CONSTRUCTOR */' Comment.Multiline
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'OpenerTask'  Name.Function
+' '           Text
+'('           Punctuation
+'string'      Keyword.Type
+' '           Text
+'fileName'    Name
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'this'        Keyword
+'.'           Punctuation
+'fileName'    Name
+' '           Text
+'='           Punctuation
+' '           Text
+'fileName'    Name
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'var'         Keyword.Type
+' '           Text
+'verbatimString' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'@"c:\\test\\"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                        ' Text
+'var'         Keyword.Type
+' '           Text
+'verbatimStringWithNewline' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'@"test \\\\ \\n \\t \\r\na\nb\nc"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'var'         Keyword.Type
+' '           Text
+'verbatimStringWithEscapedQuotes' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'@"He said\n""she says \\"" is not an escaped character in verbatimstrings""\n"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                        ' Text
+'int'         Keyword.Type
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'numbers'     Name
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'5'           Literal.Number
+','           Punctuation
+'6'           Literal.Number
+','           Punctuation
+'4'           Literal.Number
+','           Punctuation
+'2'           Literal.Number
+','           Punctuation
+'4'           Literal.Number
+','           Punctuation
+'6'           Literal.Number
+','           Punctuation
+'8'           Literal.Number
+','           Punctuation
+'9'           Literal.Number
+','           Punctuation
+'7'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'var'         Keyword.Type
+' '           Text
+'linqExample' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'from'        Keyword
+' '           Text
+'n'           Name
+' '           Text
+'in'          Keyword
+' '           Text
+'numbers'     Name
+'\n'          Text
+
+'                                          ' Text
+'where'       Keyword
+' '           Text
+'n'           Name
+' '           Text
+'>'           Punctuation
+' '           Text
+'5'           Literal.Number
+'\n'          Text
+
+'                                          ' Text
+'select'      Keyword
+' '           Text
+'n'           Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                        ' Text
+'var'         Keyword.Type
+' '           Text
+'anotherlinqExample' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'from'        Keyword
+' '           Text
+'n'           Name
+' '           Text
+'in'          Keyword
+' '           Text
+'numbers'     Name
+'\n'          Text
+
+'                                                 ' Text
+'orderby'     Keyword
+' '           Text
+'n'           Name
+' '           Text
+'descending'  Keyword
+'\n'          Text
+
+'                                                 ' Text
+'select'      Keyword
+' '           Text
+'n'           Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                        ' Text
+'int'         Keyword.Type
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'someMoreNumbers' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'8'           Literal.Number
+','           Punctuation
+'2'           Literal.Number
+','           Punctuation
+'1'           Literal.Number
+'7'           Literal.Number
+','           Punctuation
+'3'           Literal.Number
+'4'           Literal.Number
+','           Punctuation
+'8'           Literal.Number
+','           Punctuation
+'9'           Literal.Number
+','           Punctuation
+'9'           Literal.Number
+','           Punctuation
+'5'           Literal.Number
+','           Punctuation
+'3'           Literal.Number
+','           Punctuation
+'4'           Literal.Number
+','           Punctuation
+'2'           Literal.Number
+','           Punctuation
+'1'           Literal.Number
+','           Punctuation
+'5'           Literal.Number
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'var'         Keyword.Type
+' '           Text
+'moreLinq'    Name
+' '           Text
+'='           Punctuation
+' '           Text
+'from'        Keyword
+' '           Text
+'n'           Name
+' '           Text
+'in'          Keyword
+' '           Text
+'numbers'     Name
+'\n'          Text
+
+'                                       ' Text
+'join'        Keyword
+' '           Text
+'mn'          Name
+' '           Text
+'in'          Keyword
+' '           Text
+'moreNumbers' Name
+' '           Text
+'on'          Keyword
+' '           Text
+'n'           Name
+' '           Text
+'equals'      Keyword
+' '           Text
+'mn'          Name
+' '           Text
+'+'           Punctuation
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'                                       ' Text
+'select'      Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'{'           Punctuation
+'n'           Name
+','           Punctuation
+' '           Text
+'mn'          Name
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'override'    Keyword
+' '           Text
+'void'        Keyword
+' '           Text
+'Reset'       Name.Function
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'objectToId'  Name
+' '           Text
+'='           Punctuation
+' '           Text
+'new'         Keyword
+' '           Text
+'Dictionary'  Name
+' '           Text
+'<'           Punctuation
+'object'      Keyword.Type
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+'>'           Punctuation
+' '           Text
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'idToObject'  Name
+' '           Text
+'='           Punctuation
+' '           Text
+'new'         Keyword
+' '           Text
+'Dictionary'  Name
+' '           Text
+'<'           Punctuation
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'object'      Keyword.Type
+'>'           Punctuation
+' '           Text
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'\n'          Text
+
+'                        ' Text
+'xmlDocument' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'null'        Keyword
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'//projectInfoNode = null;\n' Comment.Single
+
+'                        ' Text
+'\n'          Text
+
+'                        ' Text
+'currentStep' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'Init'        Name
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'\n'          Text
+
+'                        ' Text
+'base'        Keyword
+'.'           Punctuation
+'Reset'       Name
+' '           Text
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'GetIdForObject' Name.Function
+' '           Text
+'('           Punctuation
+'object'      Keyword.Type
+' '           Text
+'o'           Name
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'return'      Keyword
+' '           Text
+'objectToId'  Name
+' '           Text
+'['           Punctuation
+'o'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'object'      Keyword.Type
+' '           Text
+'GetObjectForId' Name.Function
+' '           Text
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'id'          Name
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'return'      Keyword
+' '           Text
+'idToObject'  Name
+' '           Text
+'['           Punctuation
+'id'          Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'public'      Keyword
+' '           Text
+'bool'        Keyword.Type
+' '           Text
+'Contains'    Name.Function
+' '           Text
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'id'          Name
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'return'      Keyword
+' '           Text
+'idToObject'  Name
+'.'           Punctuation
+'ContainsKey' Name
+' '           Text
+'('           Punctuation
+'id'          Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'// Private methods ////////////////////////////////////////////\n' Comment.Single
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'protected'   Keyword
+' '           Text
+'override'    Keyword
+' '           Text
+'TaskStatus'  Name
+' '           Text
+'ExecuteStep' Name.Function
+' '           Text
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'s'           Name
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'bool'        Keyword.Type
+' '           Text
+'cont'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'true'        Keyword
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'\n'          Text
+
+'                        ' Text
+'// Main\n'   Comment.Single
+
+'                        ' Text
+'switch'      Keyword
+' '           Text
+'('           Punctuation
+'currentStep' Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'\n'          Text
+
+'                                ' Text
+'case'        Keyword
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'Init'        Name
+':'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'objectsList' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'new'         Keyword
+' '           Text
+'List'        Name
+' '           Text
+'<'           Punctuation
+'ObjectInfo'  Name
+'>'           Punctuation
+' '           Text
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'xmlDocument' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'new'         Keyword
+' '           Text
+'XmlDocument' Name
+' '           Text
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'xmlDocument' Name
+'.'           Punctuation
+'Load'        Name
+' '           Text
+'('           Punctuation
+'fileName'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'currentStep' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'Header'      Name
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'\n'          Text
+
+'                                ' Text
+'case'        Keyword
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'Header'      Name
+':'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'//ReadHeader ();\n' Comment.Single
+
+'                                        ' Text
+'currentStep' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'ProjectInfoRead' Name
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                                ' Text
+'case'        Keyword
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'ProjectInfoRead' Name
+':'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'foreach'     Keyword
+' '           Text
+'('           Punctuation
+'XmlNode'     Name
+' '           Text
+'node'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'xmlDocument' Name
+'.'           Punctuation
+'DocumentElement' Name
+'.'           Punctuation
+'ChildNodes'  Name
+')'           Punctuation
+'\n'          Text
+
+'                                                ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'node'        Name
+'.'           Punctuation
+'Name'        Name
+' '           Text
+'='           Punctuation
+'='           Punctuation
+' '           Text
+'"projectinfo"' Literal.String
+')'           Punctuation
+' '           Text
+'\n'          Text
+
+'                                                        ' Text
+'ResolveProjectInfoNode' Name
+' '           Text
+'('           Punctuation
+'node'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                                        ' Text
+'// FIXME: Fail if not found/not resolved\n' Comment.Single
+
+'                                        ' Text
+'currentStep' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'ObjectListRead' Name
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'\n'          Text
+
+'                                ' Text
+'case'        Keyword
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'ObjectListRead' Name
+':'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'foreach'     Keyword
+' '           Text
+'('           Punctuation
+'XmlNode'     Name
+' '           Text
+'node'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'xmlDocument' Name
+'.'           Punctuation
+'DocumentElement' Name
+'.'           Punctuation
+'ChildNodes'  Name
+')'           Punctuation
+'\n'          Text
+
+'                                                ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'node'        Name
+'.'           Punctuation
+'Name'        Name
+' '           Text
+'='           Punctuation
+'='           Punctuation
+' '           Text
+'"objectlist"' Literal.String
+')'           Punctuation
+' '           Text
+'\n'          Text
+
+'                                                        ' Text
+'objectListContainer' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'ObjectListContainer' Name
+')'           Punctuation
+'\n'          Text
+
+'                                                                ' Text
+'DataFactory' Name
+'.'           Punctuation
+'MakeDataElement' Name
+'  '          Text
+'('           Punctuation
+'node'        Name
+' '           Text
+'as'          Keyword
+' '           Text
+'XmlElement'  Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                                        ' Text
+'\n'          Text
+
+'                                        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'objectListContainer' Name
+' '           Text
+'='           Punctuation
+'='           Punctuation
+' '           Text
+'null'        Keyword
+')'           Punctuation
+'\n'          Text
+
+'                                                ' Text
+'throw'       Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'Exception'   Name.Function
+' '           Text
+'('           Punctuation
+'"ObjectListContainer not found!"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                                        ' Text
+'currentStep' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'ObjectListParse' Name
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                                ' Text
+'case'        Keyword
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'ObjectListParse' Name
+':'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'bool'        Keyword.Type
+' '           Text
+'flush'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'EnumerateSomeObjects' Name
+' '           Text
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'flush'       Name
+')'           Punctuation
+'\n'          Text
+
+'                                                ' Text
+'currentStep' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'ObjectListUnBoil' Name
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                                ' Text
+'case'        Keyword
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'ObjectListUnBoil' Name
+':'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'bool'        Keyword.Type
+' '           Text
+'done'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'UnBoilSomeObjects' Name
+' '           Text
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'done'        Name
+')'           Punctuation
+'\n'          Text
+
+'                                                ' Text
+'currentStep' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'FindRoots'   Name
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'\n'          Text
+
+'                                        ' Text
+'\n'          Text
+
+'                                ' Text
+'case'        Keyword
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'FindRoots'   Name
+':'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'projectTrackList' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'TrackList'   Name
+')'           Punctuation
+' '           Text
+'FindRoot'    Name
+' '           Text
+'('           Punctuation
+'"tracklist"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'projectTagList' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'TagList'     Name
+')'           Punctuation
+' '           Text
+'FindRoot'    Name
+' '           Text
+'('           Punctuation
+'"taglist"'   Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'projectStuffList' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'StuffList'   Name
+')'           Punctuation
+' '           Text
+'FindRoot'    Name
+' '           Text
+'('           Punctuation
+'"stufflist"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'projectClipList' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'ClipList'    Name
+')'           Punctuation
+' '           Text
+'FindRoot'    Name
+' '           Text
+'('           Punctuation
+'"cliplist"'  Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'projectMediaItemList' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'MediaItemList' Name
+')'           Punctuation
+' '           Text
+'FindRoot'    Name
+' '           Text
+'('           Punctuation
+'"mediaitemlist"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'projectPipeline' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'Gdv'         Name
+'.'           Punctuation
+'Pipeline'    Name
+')'           Punctuation
+' '           Text
+'FindRoot'    Name
+' '           Text
+'('           Punctuation
+'"pipeline"'  Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'projectCommander' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'Commander'   Name
+')'           Punctuation
+' '           Text
+'FindRoot'    Name
+' '           Text
+'('           Punctuation
+'"commander"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'projectFormat' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'Gdv'         Name
+'.'           Punctuation
+'ProjectFormat' Name
+')'           Punctuation
+' '           Text
+'FindRoot'    Name
+' '           Text
+'('           Punctuation
+'"projectformat"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'\n'          Text
+
+'                                        ' Text
+'currentStep' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'Finished'    Name
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'\n'          Text
+
+'                                ' Text
+'case'        Keyword
+' '           Text
+'OpenerTaskStep' Name
+'.'           Punctuation
+'Finished'    Name
+':'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'cont'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'false'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'\n'          Text
+
+'                                ' Text
+'default'     Keyword
+':'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                                                ' Text
+'\n'          Text
+
+'                        ' Text
+'// Post \n'  Comment.Single
+
+'                        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'cont'        Name
+')'           Punctuation
+' '           Text
+'\n'          Text
+
+'                                ' Text
+'return'      Keyword
+' '           Text
+'TaskStatus'  Name
+'.'           Punctuation
+'Running'     Name
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'else'        Keyword
+'\n'          Text
+
+'                                ' Text
+'return'      Keyword
+' '           Text
+'TaskStatus'  Name
+'.'           Punctuation
+'Done'        Name
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                ' Text
+'/*\n                void ReadHeader ()\n                {\n                        // FIXME: Read all the attributes from the <divaproject> element\n                        }*/' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'                ' Text
+'void'        Keyword
+' '           Text
+'ResolveProjectInfoNode' Name.Function
+' '           Text
+'('           Punctuation
+'XmlNode'     Name
+' '           Text
+'node'        Name
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'foreach'     Keyword
+' '           Text
+'('           Punctuation
+'XmlNode'     Name
+' '           Text
+'childNode'   Name
+' '           Text
+'in'          Keyword
+' '           Text
+'node'        Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'\n'          Text
+
+'                                ' Text
+'switch'      Keyword
+' '           Text
+'('           Punctuation
+'childNode'   Name
+'.'           Punctuation
+'Name'        Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'\n'          Text
+
+'                                        ' Text
+'case'        Keyword
+' '           Text
+'"name"'      Literal.String
+':'           Punctuation
+'\n'          Text
+
+'                                                ' Text
+'projectName' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'childNode'   Name
+'.'           Punctuation
+'FirstChild'  Name
+'.'           Punctuation
+'Value'       Name
+';'           Punctuation
+'\n'          Text
+
+'                                                ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'\n'          Text
+
+'                                        ' Text
+'case'        Keyword
+' '           Text
+'"directory"' Literal.String
+':'           Punctuation
+'\n'          Text
+
+'                                                ' Text
+'projectDirectory' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'childNode'   Name
+'.'           Punctuation
+'FirstChild'  Name
+'.'           Punctuation
+'Value'       Name
+';'           Punctuation
+'\n'          Text
+
+'                                                ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                                                ' Text
+'// FIXME: Duration etc.\n' Comment.Single
+
+'                                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'bool'        Keyword.Type
+' '           Text
+'EnumerateSomeObjects' Name.Function
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'objectsEnumerator' Name
+' '           Text
+'='           Punctuation
+'='           Punctuation
+' '           Text
+'null'        Keyword
+')'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'objectsEnumerator' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'objectListContainer' Name
+'.'           Punctuation
+'FindAllObjects' Name
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'GetEnumerator' Name
+' '           Text
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'\n'          Text
+
+'                        ' Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'i'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'0'           Literal.Number
+';'           Punctuation
+' '           Text
+'i'           Name
+' '           Text
+'<'           Punctuation
+' '           Text
+'1'           Literal.Number
+'0'           Literal.Number
+';'           Punctuation
+' '           Text
+'i'           Name
+'+'           Punctuation
+'+'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'objectsEnumerator' Name
+'.'           Punctuation
+'MoveNext'    Name
+' '           Text
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'='           Punctuation
+'='           Punctuation
+' '           Text
+'false'       Keyword
+')'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'return'      Keyword
+' '           Text
+'true'        Keyword
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                                ' Text
+'ObjectContainer' Name
+' '           Text
+'container'   Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'ObjectContainer' Name
+')'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'objectsEnumerator' Name
+'.'           Punctuation
+'Current'     Name
+';'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'\n'          Text
+
+'                                ' Text
+'ObjectInfo'  Name
+' '           Text
+'newInfo'     Name
+' '           Text
+'='           Punctuation
+' '           Text
+'new'         Keyword
+' '           Text
+'ObjectInfo'  Name
+' '           Text
+'('           Punctuation
+'container'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'objectsList' Name
+'.'           Punctuation
+'Add'         Name
+' '           Text
+'('           Punctuation
+'newInfo'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'\n'          Text
+
+'                        ' Text
+'return'      Keyword
+' '           Text
+'false'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                ' Text
+'ObjectInfo'  Name
+' '           Text
+'GetNextCandidate' Name.Function
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'foreach'     Keyword
+' '           Text
+'('           Punctuation
+'ObjectInfo'  Name
+' '           Text
+'objInfo'     Name
+' '           Text
+'in'          Keyword
+' '           Text
+'objectsList' Name
+')'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'objInfo'     Name
+'.'           Punctuation
+'IsUnBoilable' Name
+' '           Text
+'('           Punctuation
+'this'        Keyword
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'return'      Keyword
+' '           Text
+'objInfo'     Name
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'\n'          Text
+
+'                        ' Text
+'throw'       Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'Exception'   Name.Function
+' '           Text
+'('           Punctuation
+'"FIXME: No more unboilable objects found. Recursive?"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'                ' Text
+'bool'        Keyword.Type
+' '           Text
+'UnBoilSomeObjects' Name.Function
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'i'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'0'           Literal.Number
+';'           Punctuation
+' '           Text
+'i'           Name
+' '           Text
+'<'           Punctuation
+' '           Text
+'5'           Literal.Number
+';'           Punctuation
+' '           Text
+'i'           Name
+'+'           Punctuation
+'+'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'// All unboiled\n' Comment.Single
+
+'                                ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'objectsList' Name
+'.'           Punctuation
+'Count'       Name
+' '           Text
+'='           Punctuation
+'='           Punctuation
+' '           Text
+'0'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'                                        ' Text
+'return'      Keyword
+' '           Text
+'true'        Keyword
+';'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'\n'          Text
+
+'                                ' Text
+'ObjectInfo'  Name
+' '           Text
+'objInfo'     Name
+' '           Text
+'='           Punctuation
+' '           Text
+'GetNextCandidate' Name
+' '           Text
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                                ' Text
+'object'      Keyword.Type
+' '           Text
+'o'           Name
+' '           Text
+'='           Punctuation
+' '           Text
+'BoilFactory' Name
+'.'           Punctuation
+'UnBoil'      Name
+' '           Text
+'('           Punctuation
+'objInfo'     Name
+'.'           Punctuation
+'Container'   Name
+','           Punctuation
+' '           Text
+'this'        Keyword
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'objectsList' Name
+'.'           Punctuation
+'Remove'      Name
+' '           Text
+'('           Punctuation
+'objInfo'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                                ' Text
+'// Add\n'    Comment.Single
+
+'                                ' Text
+'idToObject'  Name
+' '           Text
+'['           Punctuation
+'objInfo'     Name
+'.'           Punctuation
+'RefId'       Name
+']'           Punctuation
+' '           Text
+'='           Punctuation
+' '           Text
+'o'           Name
+';'           Punctuation
+'\n'          Text
+
+'                                ' Text
+'objectToId'  Name
+' '           Text
+'['           Punctuation
+'o'           Name
+']'           Punctuation
+' '           Text
+'='           Punctuation
+' '           Text
+'objInfo'     Name
+'.'           Punctuation
+'RefId'       Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                        ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'\n'          Text
+
+'                        ' Text
+'return'      Keyword
+' '           Text
+'false'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'                ' Text
+'object'      Keyword.Type
+' '           Text
+'FindRoot'    Name.Function
+' '           Text
+'('           Punctuation
+'string'      Keyword.Type
+' '           Text
+'rootString'  Name
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'ObjectContainer' Name
+' '           Text
+'container'   Name
+' '           Text
+'='           Punctuation
+' '           Text
+'objectListContainer' Name
+'.'           Punctuation
+'FindObjectContainer' Name
+' '           Text
+'('           Punctuation
+'rootString'  Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                        ' Text
+'return'      Keyword
+' '           Text
+'idToObject'  Name
+' '           Text
+'['           Punctuation
+'container'   Name
+'.'           Punctuation
+'RefId'       Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'}'           Punctuation
+'\n'          Text
+
+'                ' Text
+'\n'          Text
+
+'        '    Text
+'}'           Punctuation
+'\n'          Text
+
+'        '    Text
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

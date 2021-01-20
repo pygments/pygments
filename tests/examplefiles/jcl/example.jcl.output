@@ -1,0 +1,391 @@
+'//'          Keyword.Pseudo
+'IS198CPY'    Name.Label
+' '           Text.Whitespace
+'JOB'         Keyword.Reserved
+' '           Text.Whitespace
+'('           Punctuation
+'PYGM'        Name
+'-'           Operator
+'TEST'        Name
+'-'           Operator
+'001'         Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+"'"           Literal.String
+'P'           Literal.String
+'Y'           Literal.String
+'G'           Literal.String
+'M'           Literal.String
+'E'           Literal.String
+'N'           Literal.String
+'T'           Literal.String
+'S'           Literal.String
+' '           Literal.String
+'T'           Literal.String
+'E'           Literal.String
+'S'           Literal.String
+'T'           Literal.String
+' '           Literal.String
+'J'           Literal.String
+'O'           Literal.String
+'B'           Literal.String
+"'"           Literal.String
+','           Punctuation
+'\n'          Text
+
+'//'          Keyword.Pseudo
+'  '          Text.Whitespace
+'CLASS'       Name
+'='           Operator
+'L'           Name
+','           Punctuation
+'MSGCLASS'    Name
+'='           Operator
+'X'           Name
+','           Punctuation
+'TIME'        Name
+'='           Operator
+'('           Punctuation
+'00'          Literal.Number.Integer
+','           Punctuation
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+"//* Copy 'OLDFILE' to 'NEWFILE'.\n" Comment.Single
+
+'//'          Keyword.Pseudo
+'COPY01'      Name.Label
+'   '         Text.Whitespace
+'EXEC'        Keyword.Reserved
+' '           Text.Whitespace
+'PGM'         Name
+'='           Operator
+'IEBGENER'    Name
+'\n'          Text
+
+'//'          Keyword.Pseudo
+'SYSPRINT'    Name.Variable
+' DD '        Keyword.Reserved
+'SYSOUT'      Name
+'='           Operator
+'*'           Name.Builtin
+'\n'          Text
+
+'//'          Keyword.Pseudo
+'SYSUT1'      Name.Variable
+'   DD '      Keyword.Reserved
+'DSN'         Name
+'='           Operator
+'OLDFILE'     Name
+','           Punctuation
+'DISP'        Name
+'='           Operator
+'SHR'         Name
+'\n'          Text
+
+'//'          Keyword.Pseudo
+'SYSUT2'      Name.Variable
+'   DD '      Keyword.Reserved
+'DSN'         Name
+'='           Operator
+'NEWFILE'     Name
+','           Punctuation
+'\n'          Text
+
+'//'          Keyword.Pseudo
+'            ' Text.Whitespace
+'DISP'        Name
+'='           Operator
+'('           Punctuation
+'NEW'         Name
+','           Punctuation
+'CATLG'       Name
+','           Punctuation
+'DELETE'      Name
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'//'          Keyword.Pseudo
+'            ' Text.Whitespace
+'SPACE'       Name
+'='           Operator
+'('           Punctuation
+'CYL'         Name
+','           Punctuation
+'('           Punctuation
+'40'          Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'RLSE'        Name
+')'           Punctuation
+','           Punctuation
+'      '      Text.Whitespace
+'Some comment' Comment.Single
+'\n'          Text
+
+'//'          Keyword.Pseudo
+'            ' Text.Whitespace
+'DCB'         Name
+'='           Operator
+'('           Punctuation
+'LRECL'       Name
+'='           Operator
+'115'         Literal.Number.Integer
+','           Punctuation
+'BLKSIZE'     Name
+'='           Operator
+'1150'        Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'//'          Keyword.Pseudo
+'SYSIN'       Name.Variable
+'    DD '     Keyword.Reserved
+'DUMMY'       Name
+'\n'          Text
+
+'/*'          Keyword.Pseudo
+'\n'          Text.Whitespace
+
+'//* Test line continuation in strings.\n' Comment.Single
+
+'//'          Keyword.Pseudo
+'CONT01'      Name.Label
+'   '         Text.Whitespace
+'EXEC'        Keyword.Reserved
+' '           Text.Whitespace
+'PGM'         Name
+'='           Operator
+'IEFBR14'     Name
+','           Punctuation
+'PARM'        Name
+'='           Operator
+"'"           Literal.String
+'T'           Literal.String
+'H'           Literal.String
+'I'           Literal.String
+'S'           Literal.String
+' '           Literal.String
+'I'           Literal.String
+'S'           Literal.String
+' '           Literal.String
+'A'           Literal.String
+' '           Literal.String
+'L'           Literal.String
+'O'           Literal.String
+'N'           Literal.String
+'G'           Literal.String
+' '           Literal.String
+'P'           Literal.String
+'A'           Literal.String
+'R'           Literal.String
+'A'           Literal.String
+'M'           Literal.String
+'E'           Literal.String
+'T'           Literal.String
+'E'           Literal.String
+'R'           Literal.String
+' '           Literal.String
+'W'           Literal.String
+'I'           Literal.String
+'T'           Literal.String
+'H'           Literal.String
+'I'           Literal.String
+'N'           Literal.String
+' '           Literal.String
+'A'           Literal.String
+'P'           Literal.String
+'O'           Literal.String
+'S'           Literal.String
+'T'           Literal.String
+'\n'          Text
+
+'//'          Keyword.Pseudo
+' '           Literal.String
+' '           Literal.String
+' '           Literal.String
+' '           Literal.String
+' '           Literal.String
+' '           Literal.String
+' '           Literal.String
+' '           Literal.String
+' '           Literal.String
+' '           Literal.String
+' '           Literal.String
+'R'           Literal.String
+'O'           Literal.String
+'P'           Literal.String
+'H'           Literal.String
+'E'           Literal.String
+'S'           Literal.String
+','           Literal.String
+' '           Literal.String
+'C'           Literal.String
+'O'           Literal.String
+'N'           Literal.String
+'T'           Literal.String
+'I'           Literal.String
+'N'           Literal.String
+'U'           Literal.String
+'E'           Literal.String
+'D'           Literal.String
+' '           Literal.String
+'I'           Literal.String
+'N'           Literal.String
+' '           Literal.String
+'C'           Literal.String
+'O'           Literal.String
+'L'           Literal.String
+'U'           Literal.String
+'M'           Literal.String
+'N'           Literal.String
+' '           Literal.String
+'1'           Literal.String
+'5'           Literal.String
+' '           Literal.String
+'O'           Literal.String
+'F'           Literal.String
+' '           Literal.String
+'T'           Literal.String
+'H'           Literal.String
+'E'           Literal.String
+' '           Literal.String
+'N'           Literal.String
+'E'           Literal.String
+'X'           Literal.String
+'T'           Literal.String
+' '           Literal.String
+'R'           Literal.String
+'E'           Literal.String
+'C'           Literal.String
+'O'           Literal.String
+'R'           Literal.String
+'D'           Literal.String
+"'"           Literal.String
+'\n'          Text
+
+'//* Sort a couple of lines and show the result in the job log.\n' Comment.Single
+
+'//'          Keyword.Pseudo
+'SORT01'      Name.Label
+'   '         Text.Whitespace
+'EXEC'        Keyword.Reserved
+' '           Text.Whitespace
+'PGM'         Name
+'='           Operator
+'IEFBR14'     Name
+'\n'          Text
+
+'//'          Keyword.Pseudo
+'SORTIN'      Name.Variable
+'   DD '      Keyword.Reserved
+'*'           Name.Builtin
+'\n'          Text
+
+'spam\n'      Other
+
+'eggs\n'      Other
+
+'ham\n'       Other
+
+'/*'          Keyword.Pseudo
+'\n'          Text.Whitespace
+
+'//'          Keyword.Pseudo
+'SORTOUT'     Name.Variable
+'  DD '       Keyword.Reserved
+'SYSOUT'      Name
+'='           Operator
+'*'           Name.Builtin
+'\n'          Text
+
+'/*'          Keyword.Pseudo
+'\n'          Text.Whitespace
+
+'//* Test line continuation with comment at end of line continued by a\n' Comment.Single
+
+"//* character at column 72 (in this case 'X').\n" Comment.Single
+
+'//'          Keyword.Pseudo
+'STP4'        Name.Label
+'     '       Text.Whitespace
+'EXEC'        Keyword.Reserved
+' '           Text.Whitespace
+'PROC'        Name
+'='           Operator
+'BILLING'     Name
+','           Punctuation
+'COND'        Name
+'.'           Punctuation
+'PAID'        Name
+'='           Operator
+'('           Punctuation
+'('           Punctuation
+'20'          Literal.Number.Integer
+','           Punctuation
+'LT'          Name
+')'           Punctuation
+','           Punctuation
+'EVEN'        Name
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'//'          Keyword.Pseudo
+'         '   Text.Whitespace
+'COND'        Name
+'.'           Punctuation
+'LATE'        Name
+'='           Operator
+'('           Punctuation
+'60'          Literal.Number.Integer
+','           Punctuation
+'GT'          Name
+','           Punctuation
+'FIND'        Name
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'//'          Keyword.Pseudo
+'         '   Text.Whitespace
+'COND'        Name
+'.'           Punctuation
+'BILL'        Name
+'='           Operator
+'('           Punctuation
+'('           Punctuation
+'20'          Literal.Number.Integer
+','           Punctuation
+'GE'          Name
+')'           Punctuation
+','           Punctuation
+'('           Punctuation
+'30'          Literal.Number.Integer
+','           Punctuation
+'LT'          Name
+','           Punctuation
+'CHGE'        Name
+')'           Punctuation
+')'           Punctuation
+'  '          Text.Whitespace
+'THIS STATEMENT CALLS THE X' Comment.Single
+'\n'          Text
+
+'//'          Keyword.Pseudo
+'         '   Text.Whitespace
+'BILLING'     Name
+' '           Text.Whitespace
+'PROCEDURE AND SPECIFIES RETURN CODE TESTS FOR THREEX' Comment.Single
+'\n'          Text
+
+'//'          Keyword.Pseudo
+'         '   Text.Whitespace
+'PROCEDURE'   Name
+' '           Text.Whitespace
+'STEPS.'      Comment.Single
+'\n'          Text

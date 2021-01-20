@@ -1,0 +1,688 @@
+'function'    Keyword
+' '           Text
+'Get-CommandDefinitionHtml' Name.Builtin
+' '           Text
+'{'           Punctuation
+'\n\n    '    Text
+'# this tells powershell to allow advanced features,' Comment
+'\n    '      Text
+'# like the [validatenotnullorempty()] attribute below.' Comment
+'\n    '      Text
+'['           Punctuation
+'CmdletBinding' Keyword
+'('           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'param'       Keyword
+'('           Punctuation
+'\n        '  Text
+'['           Punctuation
+'ValidateNotNullOrEmpty' Name
+'('           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n        '  Text
+'[string]'    Name.Constant
+'$name'       Name.Variable
+'\n    '      Text
+')'           Punctuation
+'\n\n    '    Text
+'$command'    Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'get-command' Name.Builtin
+' '           Text
+'$name'       Name.Variable
+'\n\n    '    Text
+"# Look mom! I'm a cmdlet!" Comment
+'\n    '      Text
+'$PSCmdlet'   Name.Variable
+'.'           Punctuation
+'WriteVerbose' Name
+'('           Punctuation
+'"'           Literal.String.Double
+'Dumping HTML for ' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'+'           Punctuation
+' '           Text
+'$command'    Name.Variable
+')'           Punctuation
+'\n\n'        Text
+
+'@"\n'        Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'h'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'m'           Literal.String.Heredoc
+'l'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'h'           Literal.String.Heredoc
+'e'           Literal.String.Heredoc
+'a'           Literal.String.Heredoc
+'d'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'i'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'l'           Literal.String.Heredoc
+'e'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'$('          Punctuation
+'$command'    Name.Variable
+'.'           Punctuation
+'name'        Name
+')'           Punctuation
+'<'           Literal.String.Heredoc
+'/'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'i'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'l'           Literal.String.Heredoc
+'e'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'/'           Literal.String.Heredoc
+'h'           Literal.String.Heredoc
+'e'           Literal.String.Heredoc
+'a'           Literal.String.Heredoc
+'d'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'b'           Literal.String.Heredoc
+'o'           Literal.String.Heredoc
+'d'           Literal.String.Heredoc
+'y'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'a'           Literal.String.Heredoc
+'b'           Literal.String.Heredoc
+'l'           Literal.String.Heredoc
+'e'           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'b'           Literal.String.Heredoc
+'o'           Literal.String.Heredoc
+'r'           Literal.String.Heredoc
+'d'           Literal.String.Heredoc
+'e'           Literal.String.Heredoc
+'r'           Literal.String.Heredoc
+'='           Literal.String.Heredoc
+'"'           Literal.String.Heredoc
+'1'           Literal.String.Heredoc
+'"'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+'$('          Punctuation
+'\n    '      Text
+'$command'    Name.Variable
+'.'           Punctuation
+'parametersets' Name
+' '           Text
+'|'           Punctuation
+' '           Text
+'%'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'@"\n'        Literal.String.Heredoc
+
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'r'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'d'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'$('          Punctuation
+'$_'          Name.Variable
+'.'           Punctuation
+'name'        Name
+')'           Punctuation
+'<'           Literal.String.Heredoc
+'/'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'d'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'d'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'a'           Literal.String.Heredoc
+'b'           Literal.String.Heredoc
+'l'           Literal.String.Heredoc
+'e'           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'b'           Literal.String.Heredoc
+'o'           Literal.String.Heredoc
+'r'           Literal.String.Heredoc
+'d'           Literal.String.Heredoc
+'e'           Literal.String.Heredoc
+'r'           Literal.String.Heredoc
+'='           Literal.String.Heredoc
+'"'           Literal.String.Heredoc
+'1'           Literal.String.Heredoc
+'"'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'r'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'h'           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'c'           Literal.String.Heredoc
+'o'           Literal.String.Heredoc
+'l'           Literal.String.Heredoc
+'s'           Literal.String.Heredoc
+'p'           Literal.String.Heredoc
+'a'           Literal.String.Heredoc
+'n'           Literal.String.Heredoc
+'='           Literal.String.Heredoc
+'"'           Literal.String.Heredoc
+'8'           Literal.String.Heredoc
+'"'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'P'           Literal.String.Heredoc
+'a'           Literal.String.Heredoc
+'r'           Literal.String.Heredoc
+'a'           Literal.String.Heredoc
+'m'           Literal.String.Heredoc
+'e'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'e'           Literal.String.Heredoc
+'r'           Literal.String.Heredoc
+'s'           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'/'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'h'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+'\n'          Literal.String.Heredoc
+
+'$('          Punctuation
+'\n        '  Text
+'$count'      Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'0'           Name
+'\n        '  Text
+'$_'          Name.Variable
+'.'           Punctuation
+'parameters'  Name
+' '           Text
+'|'           Punctuation
+' '           Text
+'%'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'0'           Name
+' '           Text
+'-eq'         Operator
+' '           Text
+'('           Punctuation
+'$count'      Name.Variable
+' '           Text
+'%'           Punctuation
+' '           Text
+'8'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+"@'\n                        </tr>\n                        <tr>\n'@" Literal.String.Heredoc
+'\n            ' Text
+'}'           Punctuation
+'\n'          Text
+
+'@"\n'        Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'d'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'$('          Punctuation
+'$_'          Name.Variable
+'.'           Punctuation
+'name'        Name
+')'           Punctuation
+'<'           Literal.String.Heredoc
+'/'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'d'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n"@'        Literal.String.Heredoc
+'\n            ' Text
+'$count'      Name.Variable
+'+'           Punctuation
+'+'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'/'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'r'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'/'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'a'           Literal.String.Heredoc
+'b'           Literal.String.Heredoc
+'l'           Literal.String.Heredoc
+'e'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'/'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'d'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'/'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'r'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n"@'        Literal.String.Heredoc
+'\n    '      Text
+'}'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'/'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'a'           Literal.String.Heredoc
+'b'           Literal.String.Heredoc
+'l'           Literal.String.Heredoc
+'e'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'/'           Literal.String.Heredoc
+'b'           Literal.String.Heredoc
+'o'           Literal.String.Heredoc
+'d'           Literal.String.Heredoc
+'y'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+' '           Literal.String.Heredoc
+'<'           Literal.String.Heredoc
+'/'           Literal.String.Heredoc
+'h'           Literal.String.Heredoc
+'t'           Literal.String.Heredoc
+'m'           Literal.String.Heredoc
+'l'           Literal.String.Heredoc
+'>'           Literal.String.Heredoc
+'\n"@'        Literal.String.Heredoc
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'Get-CommandDefinitionHtml' Name.Builtin
+' '           Text
+'get-item'    Name.Builtin
+' '           Text
+'>'           Punctuation
+' '           Text
+'out'         Name
+'.'           Punctuation
+'html'        Name
+'\n\n'        Text
+
+'# show in browser' Comment
+'\n'          Text
+
+'invoke-item' Name.Builtin
+' '           Text
+'out'         Name
+'.'           Punctuation
+'html'        Name
+'\n'          Text

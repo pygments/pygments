@@ -1,0 +1,2882 @@
+'% this is a single-line comment\n' Comment
+
+'\n'          Text
+
+'/*\nthis is\na block\ncomment\n*/' Comment
+'\n'          Text
+
+'\n\n:- '     Punctuation
+'encoding'    Keyword
+'('           Text
+'some_encoding' Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+':- '         Punctuation
+'op'          Keyword
+'('           Text
+'Precedence'  Name.Variable
+','           Text
+' '           Text
+'Associativity' Name.Variable
+','           Text
+' '           Text
+'Operator'    Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n\n:- '     Punctuation
+'object'      Keyword
+'('           Text
+'prototype'   Text
+','           Text
+'\n'          Text
+
+'\t'          Text
+'implements'  Keyword
+'('           Text
+'protocol'    Text
+')'           Text
+','           Text
+'\n'          Text
+
+'\t'          Text
+'imports'     Keyword
+'('           Text
+'category'    Text
+')'           Text
+','           Text
+'\n'          Text
+
+'\t'          Text
+'extends'     Keyword
+'('           Text
+'parent'      Text
+')'           Text
+').'          Text
+'\n'          Text
+
+'\n\t:- '     Punctuation
+'info'        Keyword
+'('           Text
+'['           Text
+'\n'          Text
+
+'\t\t'        Text
+'version'     Text
+' '           Text
+'is'          Keyword
+' '           Text
+'1.0'         Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'author'      Text
+' '           Text
+'is'          Keyword
+' '           Text
+"'"           Literal.String
+'Paulo Moura' Literal.String
+"'"           Literal.String
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'date'        Text
+' '           Text
+'is'          Keyword
+' '           Text
+'2008'        Literal.Number
+'/'           Operator
+'5'           Literal.Number
+'/'           Operator
+'1'           Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'comment'     Text
+' '           Text
+'is'          Keyword
+' '           Text
+"'"           Literal.String
+'Sample prototype for testing syntax coloring.' Literal.String
+"'"           Literal.String
+']'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'threaded'    Keyword
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'synchronized' Keyword
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'dynamic'     Keyword
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'initialization' Keyword
+'('           Text
+'some_goal'   Text
+'('           Text
+'X'           Name.Variable
+','           Text
+' '           Text
+'Y'           Name.Variable
+')'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'calls'       Keyword
+'('           Text
+'some_other_protocol' Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'uses'        Keyword
+'('           Text
+'another_object' Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n\t:- '     Punctuation
+'alias'       Keyword
+'('           Text
+'set'         Text
+','           Text
+' '           Text
+'member'      Text
+'/'           Operator
+'2'           Literal.Number
+','           Text
+' '           Text
+'set_member'  Text
+'/'           Operator
+'2'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'alias'       Keyword
+'('           Text
+'words'       Text
+','           Text
+' '           Text
+'singular'    Text
+'//'          Operator
+'0'           Literal.Number
+','           Text
+' '           Text
+'peculiar'    Text
+'//'          Operator
+'0'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n\t:- '     Punctuation
+'uses'        Keyword
+'('           Text
+'list'        Text
+','           Text
+' '           Text
+'['           Text
+'append'      Text
+'/'           Operator
+'3'           Literal.Number
+','           Text
+' '           Text
+'member'      Text
+'/'           Operator
+'2'           Literal.Number
+']'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'uses'        Keyword
+'('           Text
+'queues'      Text
+','           Text
+' '           Text
+'['           Text
+'new'         Text
+'/'           Operator
+'1'           Literal.Number
+'::'          Operator
+'new_queue'   Text
+'/'           Operator
+'1'           Literal.Number
+']'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n\t:- '     Punctuation
+'public'      Keyword
+'('           Text
+'aaa'         Text
+'/'           Operator
+'2'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'meta_predicate' Keyword
+'('           Text
+'aaa'         Text
+'('           Text
+'::'          Operator
+','           Text
+' '           Text
+'*'           Operator
+')'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'discontiguous' Keyword
+'('           Text
+'aaa'         Text
+'/'           Operator
+'2'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'mode'        Keyword
+'('           Text
+'aaa'         Text
+'('           Text
+'+'           Operator
+'callable'    Text
+','           Text
+' '           Text
+'?'           Operator
+'integer'     Text
+')'           Text
+','           Text
+' '           Text
+'zero_or_one' Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'info'        Keyword
+'('           Text
+'position'    Text
+'/'           Operator
+'2'           Literal.Number
+','           Text
+' '           Text
+'['           Text
+'\n'          Text
+
+'\t\t'        Text
+'comment'     Text
+' '           Text
+'is'          Keyword
+' '           Text
+"'"           Literal.String
+'Predicate brief description.' Literal.String
+"'"           Literal.String
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'arguments'   Text
+' '           Text
+'is'          Keyword
+' '           Text
+'['           Text
+"'"           Literal.String
+'Arg1'        Literal.String
+"'"           Literal.String
+'-'           Operator
+"'"           Literal.String
+'Arg1 description' Literal.String
+"'"           Literal.String
+','           Text
+' '           Text
+"'"           Literal.String
+'Arg2'        Literal.String
+"'"           Literal.String
+'-'           Operator
+"'"           Literal.String
+'Arg2 description' Literal.String
+"'"           Literal.String
+']'           Text
+']'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n\t:- '     Punctuation
+'protected'   Keyword
+'('           Text
+'bbb'         Text
+'/'           Operator
+'2'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'synchronized' Keyword
+'('           Text
+'bbb'         Text
+'/'           Operator
+'2'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'mode'        Keyword
+'('           Text
+'bbb'         Text
+'('           Text
+'+'           Operator
+'integer'     Text
+','           Text
+' '           Text
+'-'           Operator
+'float'       Text
+')'           Text
+','           Text
+' '           Text
+'one'         Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'info'        Keyword
+'('           Text
+'bbb'         Text
+'/'           Operator
+'2'           Literal.Number
+','           Text
+' '           Text
+'['           Text
+'\n'          Text
+
+'\t\t'        Text
+'comment'     Text
+' '           Text
+'is'          Keyword
+' '           Text
+"'"           Literal.String
+'Predicate brief description.' Literal.String
+"'"           Literal.String
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'argnames'    Text
+' '           Text
+'is'          Keyword
+' '           Text
+'['           Text
+"'"           Literal.String
+'Arg1'        Literal.String
+"'"           Literal.String
+','           Text
+' '           Text
+"'"           Literal.String
+'Arg2'        Literal.String
+"'"           Literal.String
+']'           Text
+']'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n\t:- '     Punctuation
+'private'     Keyword
+'('           Text
+'ccc'         Text
+'/'           Operator
+'2'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'dynamic'     Keyword
+'('           Text
+'ccc'         Text
+'/'           Operator
+'2'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'mode'        Keyword
+'('           Text
+'ccc'         Text
+'('           Text
+'@'           Operator
+'atom'        Text
+','           Text
+' '           Text
+'?'           Operator
+'atom'        Text
+')'           Text
+','           Text
+' '           Text
+'one_or_more' Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'info'        Keyword
+'('           Text
+'ccc'         Text
+'/'           Operator
+'2'           Literal.Number
+','           Text
+' '           Text
+'['           Text
+'\n'          Text
+
+'\t\t'        Text
+'comment'     Text
+' '           Text
+'is'          Keyword
+' '           Text
+"'"           Literal.String
+'Predicate brief description.' Literal.String
+"'"           Literal.String
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'argnames'    Text
+' '           Text
+'is'          Keyword
+' '           Text
+'['           Text
+"'"           Literal.String
+'Arg1'        Literal.String
+"'"           Literal.String
+','           Text
+' '           Text
+"'"           Literal.String
+'Arg2'        Literal.String
+"'"           Literal.String
+']'           Text
+']'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'enumerating_entities' Text
+'('           Text
+'Object'      Name.Variable
+','           Text
+' '           Text
+'Protocol'    Name.Variable
+','           Text
+' '           Text
+'Category'    Name.Variable
+')'           Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'current_category' Keyword
+'('           Text
+'Category'    Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'current_object' Keyword
+'('           Text
+'Object'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'current_protocol' Keyword
+'('           Text
+'Protocol'    Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'enumerating_properties' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'category_property' Keyword
+'('           Text
+'Category'    Name.Variable
+','           Text
+' '           Text
+'Property'    Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'object_property' Keyword
+'('           Text
+'Object'      Name.Variable
+','           Text
+' '           Text
+'Property'    Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'protocol_property' Keyword
+'('           Text
+'Protocol'    Name.Variable
+','           Text
+' '           Text
+'Property'    Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'creating_entities' Text
+'('           Text
+'Object'      Name.Variable
+','           Text
+' '           Text
+'Protocol'    Name.Variable
+','           Text
+' '           Text
+'Category'    Name.Variable
+')'           Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'create_category' Keyword
+'('           Text
+'Category'    Name.Variable
+','           Text
+' '           Text
+'Relations'   Name.Variable
+','           Text
+' '           Text
+'Directives'  Name.Variable
+','           Text
+' '           Text
+'Clauses'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'create_object' Keyword
+'('           Text
+'Object'      Name.Variable
+','           Text
+' '           Text
+'Relations'   Name.Variable
+','           Text
+' '           Text
+'Directives'  Name.Variable
+','           Text
+' '           Text
+'Clauses'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'create_protocol' Keyword
+'('           Text
+'Protocol'    Name.Variable
+','           Text
+' '           Text
+'Relations'   Name.Variable
+','           Text
+' '           Text
+'Directives'  Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'abolishing_entities' Text
+'('           Text
+'Object'      Name.Variable
+','           Text
+' '           Text
+'Protocol'    Name.Variable
+','           Text
+' '           Text
+'Category'    Name.Variable
+')'           Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'abolish_category' Keyword
+'('           Text
+'Category'    Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'abolish_object' Keyword
+'('           Text
+'Object'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'abolish_protocol' Keyword
+'('           Text
+'Protocol'    Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'entity_relations' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'extends_object' Keyword
+'('           Text
+'Prototype'   Name.Variable
+','           Text
+' '           Text
+'Parent'      Name.Variable
+','           Text
+' '           Text
+'Scope'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'extends_protocol' Keyword
+'('           Text
+'Protocol1'   Name.Variable
+','           Text
+' '           Text
+'Protocol2'   Name.Variable
+','           Text
+' '           Text
+'Scope'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'extends_category' Keyword
+'('           Text
+'Category1'   Name.Variable
+','           Text
+' '           Text
+'Category2'   Name.Variable
+','           Text
+' '           Text
+'Scope'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'implements_protocol' Keyword
+'('           Text
+'Object'      Name.Variable
+','           Text
+' '           Text
+'Protocol'    Name.Variable
+','           Text
+' '           Text
+'Scope'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'imports_category' Keyword
+'('           Text
+'Object'      Name.Variable
+','           Text
+' '           Text
+'Category'    Name.Variable
+','           Text
+' '           Text
+'Scope'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'instantiates_class' Keyword
+'('           Text
+'Instance'    Name.Variable
+','           Text
+' '           Text
+'Class'       Name.Variable
+','           Text
+' '           Text
+'Scope'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'specializes_class' Keyword
+'('           Text
+'Class'       Name.Variable
+','           Text
+' '           Text
+'Superclass'  Name.Variable
+','           Text
+' '           Text
+'Scope'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'complements_object' Keyword
+'('           Text
+'Category'    Name.Variable
+','           Text
+' '           Text
+'Object'      Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'event_handling' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'abolish_events' Keyword
+'('           Text
+'Event'       Name.Variable
+','           Text
+' '           Text
+'Object'      Name.Variable
+','           Text
+' '           Text
+'Message'     Name.Variable
+','           Text
+' '           Text
+'Sender'      Name.Variable
+','           Text
+' '           Text
+'Monitor'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'current_event' Keyword
+'('           Text
+'Event'       Name.Variable
+','           Text
+' '           Text
+'Object'      Name.Variable
+','           Text
+' '           Text
+'Message'     Name.Variable
+','           Text
+' '           Text
+'Sender'      Name.Variable
+','           Text
+' '           Text
+'Monitor'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'define_events' Keyword
+'('           Text
+'Event'       Name.Variable
+','           Text
+' '           Text
+'Object'      Name.Variable
+','           Text
+' '           Text
+'Message'     Name.Variable
+','           Text
+' '           Text
+'Sender'      Name.Variable
+','           Text
+' '           Text
+'Monitor'     Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'multi_threading' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'threaded'    Keyword
+'('           Text
+'Goals'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_call' Keyword
+'('           Text
+'Goal'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_once' Keyword
+'('           Text
+'Goal'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_ignore' Keyword
+'('           Text
+'Goal'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_exit' Keyword
+'('           Text
+'Goal'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_peek' Keyword
+'('           Text
+'Goal'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_wait' Keyword
+'('           Text
+'Goal'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_notify' Keyword
+'('           Text
+'Notification' Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'compiling_and_loading' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'logtalk_compile' Keyword
+'('           Text
+'File'        Name.Variable
+','           Text
+' '           Text
+'Options'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'logtalk_load' Keyword
+'('           Text
+'File'        Name.Variable
+','           Text
+' '           Text
+'Options'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'logtalk_library_path' Keyword
+'('           Text
+'Library'     Name.Variable
+','           Text
+' '           Text
+'Path'        Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'flags'       Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'current_logtalk_flag' Keyword
+'('           Text
+'Flag'        Name.Variable
+','           Text
+' '           Text
+'Value'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'set_logtalk_flag' Keyword
+'('           Text
+'Flag'        Name.Variable
+','           Text
+' '           Text
+'Value'       Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'execution_context_methods' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'parameter'   Keyword
+'('           Text
+'N'           Name.Variable
+','           Text
+' '           Text
+'Parameter'   Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'self'        Keyword
+'('           Text
+'Self'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'sender'      Keyword
+'('           Text
+'Sender'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'this'        Keyword
+'('           Text
+'This'        Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'reflection_methods' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'current_predicate' Keyword
+'('           Text
+'Predicate'   Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'predicate_property' Keyword
+'('           Text
+'Predicate'   Name.Variable
+','           Text
+' '           Text
+'Property'    Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'database_methods' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'abolish'     Keyword
+'('           Text
+'Functor'     Name.Variable
+'/'           Operator
+'Arity'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'asserta'     Keyword
+'('           Text
+'Clause'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'assertz'     Keyword
+'('           Text
+'Clause'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'clause'      Keyword
+'('           Text
+'Head'        Name.Variable
+','           Text
+' '           Text
+'Body'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'retract'     Keyword
+'('           Text
+'Clause'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'retractall'  Keyword
+'('           Text
+'Head'        Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'meta_call_methods' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+'('           Text
+'Goal'        Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'all_solutions_methods' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'bagof'       Keyword
+'('           Text
+'Term'        Name.Variable
+','           Text
+' '           Text
+'Goal'        Name.Variable
+','           Text
+' '           Text
+'List'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'findall'     Keyword
+'('           Text
+'Term'        Name.Variable
+','           Text
+' '           Text
+'Goal'        Name.Variable
+','           Text
+' '           Text
+'List'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'forall'      Keyword
+'('           Text
+'Generate'    Name.Variable
+','           Text
+' '           Text
+'Test'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'setof'       Keyword
+'('           Text
+'Term'        Name.Variable
+','           Text
+' '           Text
+'Goal'        Name.Variable
+','           Text
+' '           Text
+'List'        Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'event_handler_methods' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'before'      Keyword
+'('           Text
+'Object'      Name.Variable
+','           Text
+' '           Text
+'Message'     Name.Variable
+','           Text
+' '           Text
+'Sender'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'after'       Keyword
+'('           Text
+'Object'      Name.Variable
+','           Text
+' '           Text
+'Message'     Name.Variable
+','           Text
+' '           Text
+'Sender'      Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'dcg_rules_parsing_methods' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'phrase'      Keyword
+'('           Text
+'NonTerminal' Name.Variable
+','           Text
+' '           Text
+'Input'       Name.Variable
+','           Text
+' '           Text
+'Rest'        Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'term_expansion_methods' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'expand_term' Keyword
+'('           Text
+'Term'        Name.Variable
+','           Text
+' '           Text
+'Expanded'    Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'term_expansion' Keyword
+'('           Text
+'Term'        Name.Variable
+','           Text
+' '           Text
+'Expanded'    Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'goal_expansion' Keyword
+'('           Text
+'Goal'        Name.Variable
+','           Text
+' '           Text
+'Expanded'    Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'message_sending' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'Object'      Name.Variable
+'::'          Operator
+'Message'     Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'::'          Operator
+'Message'     Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'^^'          Operator
+'Message'     Name.Variable
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'calling_external_code' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'{'           Keyword
+'goal1'       Text
+','           Text
+' '           Text
+'goal2'       Text
+','           Text
+' '           Text
+'goal3'       Text
+'}'           Keyword
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'context_switching_calls' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'Object'      Name.Variable
+'<<'          Operator
+'Goal'        Name.Variable
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'direct_calls_of_category_predicates' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+':'           Operator
+'Goal'        Name.Variable
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'if_then_else' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'('           Text
+'\t'          Text
+'If'          Name.Variable
+' '           Text
+'-'           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'Then'        Name.Variable
+'\n'          Text
+
+'\t\t'        Text
+';'           Operator
+'\t'          Text
+'Else'        Name.Variable
+'\n'          Text
+
+'\t\t'        Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'numbers'     Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'X'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'13'          Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Y'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'13.13'       Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Z'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'13.13e-23'   Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'C1'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+"0'A"         Literal.Number
+','           Text
+' '           Text
+'C2'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+"0''"         Literal.Number
+','           Text
+' '           Text
+'C3'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'0\'"'        Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'B'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'0b1011101'   Literal.Number.Bin
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'O'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'0o1234560'   Literal.Number.Oct
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'H'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'0x1234567890abcDEF' Literal.Number.Hex
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'functions'   Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'A'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'atan'        Keyword
+'('           Text
+'3.14'        Literal.Number
+')'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'sin'         Keyword
+'('           Text
+'0.77'        Literal.Number
+')'           Text
+' '           Text
+'-'           Operator
+' '           Text
+'cos'         Keyword
+'('           Text
+'123.23'      Literal.Number
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'B'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'sign'        Keyword
+'('           Text
+'-'           Operator
+'12'          Literal.Number
+')'           Text
+' '           Text
+'*'           Operator
+' '           Text
+'abs'         Keyword
+'('           Text
+'35'          Literal.Number
+'/'           Operator
+'78'          Literal.Number
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'C'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'truncate'    Keyword
+'('           Text
+'3.14'        Literal.Number
+')'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'round'       Keyword
+'('           Text
+'-'           Operator
+'7.8'         Literal.Number
+')'           Text
+' '           Text
+'-'           Operator
+' '           Text
+'ceiling'     Keyword
+'('           Text
+'111.88'      Literal.Number
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'D'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'exp'         Keyword
+'('           Text
+'3.8'         Literal.Number
+')'           Text
+' '           Text
+'-'           Operator
+' '           Text
+'log'         Keyword
+'('           Text
+'123.98'      Literal.Number
+')'           Text
+' '           Text
+'/'           Operator
+' '           Text
+'sqrt'        Keyword
+'('           Text
+'33'          Literal.Number
+')'           Text
+' '           Text
+'*'           Operator
+' '           Text
+'23'          Literal.Number
+' '           Text
+'*'           Operator
+'*'           Operator
+' '           Text
+'4'           Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'E'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'rem'         Keyword
+'('           Text
+'3'           Literal.Number
+','           Text
+' '           Text
+'2'           Literal.Number
+')'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'mod'         Keyword
+'('           Text
+'5'           Literal.Number
+','           Text
+' '           Text
+'3'           Literal.Number
+')'           Text
+' '           Text
+'*'           Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'rem'         Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'//'          Operator
+' '           Text
+'5'           Literal.Number
+' '           Text
+'mod'         Operator
+' '           Text
+'3'           Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'F'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'float_fractional_part' Keyword
+'('           Text
+'3.14'        Literal.Number
+')'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'float_integer_part' Keyword
+'('           Text
+'3.14'        Literal.Number
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'G'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'float'       Keyword
+'('           Text
+'33'          Literal.Number
+')'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'floor'       Keyword
+'('           Text
+'99.99'       Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'bitwise'     Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'A'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'16'          Literal.Number
+' '           Text
+'>>'          Operator
+' '           Text
+'2'           Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'B'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'16'          Literal.Number
+' '           Text
+'<<'          Operator
+' '           Text
+'2'           Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'C'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'10'          Literal.Number
+' '           Text
+'/\\'         Operator
+' '           Text
+'12'          Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'D'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'10'          Literal.Number
+' '           Text
+'\\'          Operator
+'/'           Operator
+' '           Text
+'12'          Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'E'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'\\'          Operator
+' '           Text
+'10.'         Literal.Number
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'term_unification' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'Term1'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Term2'       Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Term1'       Name.Variable
+' '           Text
+'\\'          Operator
+'='           Operator
+' '           Text
+'Term2'       Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'unify_with_occurs_check' Keyword
+'('           Text
+'Term1'       Name.Variable
+','           Text
+' '           Text
+'Term2'       Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'term_testing' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'atom'        Keyword
+'('           Text
+'Atom'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'atomic'      Keyword
+'('           Text
+'Atomic'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'integer'     Keyword
+'('           Text
+'Integer'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'float'       Keyword
+'('           Text
+'Float'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'compound'    Keyword
+'('           Text
+'Term'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'nonvar'      Keyword
+'('           Text
+'Term'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'var'         Keyword
+'('           Text
+'Term'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'number'      Keyword
+'('           Text
+'Number'      Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'term_comparison' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'Term1'       Name.Variable
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Term2'       Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Term1'       Name.Variable
+' '           Text
+'\\'          Operator
+'='           Operator
+'='           Operator
+' '           Text
+'Term2'       Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Term1'       Name.Variable
+' '           Text
+'@<'          Operator
+' '           Text
+'Term2'       Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Term1'       Name.Variable
+' '           Text
+'@=<'         Operator
+' '           Text
+'Term2'       Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Term1'       Name.Variable
+' '           Text
+'@>='         Operator
+' '           Text
+'Term2'       Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Term1'       Name.Variable
+' '           Text
+'@>'          Operator
+' '           Text
+'Term2'       Name.Variable
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'term_creation_and_decomposition' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'functor'     Keyword
+'('           Text
+'Term'        Name.Variable
+','           Text
+' '           Text
+'Functor'     Name.Variable
+','           Text
+' '           Text
+'Arity'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'arg'         Keyword
+'('           Text
+'N'           Name.Variable
+','           Text
+' '           Text
+'Term'        Name.Variable
+','           Text
+' '           Text
+'Arg'         Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Term'        Name.Variable
+' '           Text
+'=..'         Operator
+' '           Text
+'['           Text
+'Functor'     Name.Variable
+'|'           Text
+' '           Text
+'Args'        Name.Variable
+']'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'copy_term'   Keyword
+'('           Text
+'Term'        Name.Variable
+','           Text
+' '           Text
+'Copy'        Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'arithemtic_evaluation' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'X'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'Expression'  Name.Variable
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'arithemtic_comparison' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'Exp1'        Name.Variable
+' '           Text
+'=:='         Operator
+' '           Text
+'Exp2'        Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Exp1'        Name.Variable
+' '           Text
+'=\\='        Operator
+' '           Text
+'Exp2'        Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Exp1'        Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'Exp2'        Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Exp1'        Name.Variable
+' '           Text
+'=<'          Operator
+' '           Text
+'Exp2'        Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Exp1'        Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'Exp2'        Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Exp1'        Name.Variable
+' '           Text
+'>='          Operator
+' '           Text
+'Exp2'        Name.Variable
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'stream_selection_and_control' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'current_input' Keyword
+'('           Text
+'Stream'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'current_output' Keyword
+'('           Text
+'Stream'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'set_input'   Keyword
+'('           Text
+'Stream'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'set_output'  Keyword
+'('           Text
+'Stream'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'open'        Keyword
+'('           Text
+'Source'      Name.Variable
+','           Text
+' '           Text
+'Mode'        Name.Variable
+','           Text
+' '           Text
+'Stream'      Name.Variable
+','           Text
+' '           Text
+'Options'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'close'       Keyword
+'('           Text
+'Stream'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'flush_output' Keyword
+'('           Text
+'Stream'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'stream_property' Keyword
+'('           Text
+'Stream'      Name.Variable
+','           Text
+' '           Text
+'Property'    Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'at_end_of_stream' Keyword
+'('           Text
+'Stream'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'set_stream_position' Keyword
+'('           Text
+'Stream'      Name.Variable
+','           Text
+' '           Text
+'Position'    Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'flush_output' Keyword
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'at_end_of_stream' Keyword
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'character_input_output' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'get_char'    Keyword
+'('           Text
+'Char'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'get_code'    Keyword
+'('           Text
+'Code'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'peek_char'   Keyword
+'('           Text
+'Char'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'peek_code'   Keyword
+'('           Text
+'Code'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'put_char'    Keyword
+'('           Text
+'Char'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'put_code'    Keyword
+'('           Text
+'Code'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'nl'          Keyword
+'('           Text
+'Stream'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'nl'          Keyword
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'byte_input_output' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'get_byte'    Keyword
+'('           Text
+'Byte'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'peek_byte'   Keyword
+'('           Text
+'Byte'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'put_byte'    Keyword
+'('           Text
+'Byte'        Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'term_input_output' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'read'        Keyword
+'('           Text
+'Term'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'read_term'   Keyword
+'('           Text
+'Term'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+'Term'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+'Term'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write_canonical' Keyword
+'('           Text
+'Term'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write_term'  Keyword
+'('           Text
+'Stream'      Name.Variable
+','           Text
+' '           Text
+'Term'        Name.Variable
+','           Text
+' '           Text
+'Options'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'current_op'  Keyword
+'('           Text
+'Precedence'  Name.Variable
+','           Text
+' '           Text
+'Associativity' Name.Variable
+','           Text
+' '           Text
+'Operator'    Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'op'          Keyword
+'('           Text
+'Precedence'  Name.Variable
+','           Text
+' '           Text
+'Associativity' Name.Variable
+','           Text
+' '           Text
+'Operator'    Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'current_char_conversion' Keyword
+'('           Text
+'InChar'      Name.Variable
+','           Text
+' '           Text
+'OutChar'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'char_conversion' Keyword
+'('           Text
+'InChar'      Name.Variable
+','           Text
+' '           Text
+'OutChar'     Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'logic_and_control' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'\\'          Operator
+'+'           Operator
+' '           Text
+'Goal'        Name.Variable
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'once'        Keyword
+'('           Text
+'Goal'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'repeat'      Keyword
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'!'           Operator
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'atomic_term_processing' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'atom_length' Keyword
+'('           Text
+'Atom'        Name.Variable
+','           Text
+' '           Text
+'Length'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'atom_chars'  Keyword
+'('           Text
+'Atom'        Name.Variable
+','           Text
+' '           Text
+'Chars'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'atom_codes'  Keyword
+'('           Text
+'Atom'        Name.Variable
+','           Text
+' '           Text
+'Codes'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'atom_concat' Keyword
+'('           Text
+'Atom1'       Name.Variable
+','           Text
+' '           Text
+'Atom2'       Name.Variable
+','           Text
+' '           Text
+'Atom'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'sub_atom'    Keyword
+'('           Text
+'Atom'        Name.Variable
+','           Text
+' '           Text
+'Before'      Name.Variable
+','           Text
+' '           Text
+'Length'      Name.Variable
+','           Text
+' '           Text
+'After'       Name.Variable
+','           Text
+' '           Text
+'SubAtom'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'char_code'   Keyword
+'('           Text
+'Char'        Name.Variable
+','           Text
+' '           Text
+'Code'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'number_chars' Keyword
+'('           Text
+'Number'      Name.Variable
+','           Text
+' '           Text
+'Chars'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'number_codes' Keyword
+'('           Text
+'Number'      Name.Variable
+','           Text
+' '           Text
+'Codes'       Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'implementation_defined_hooks' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'current_prolog_flag' Keyword
+'('           Text
+'Flag'        Name.Variable
+','           Text
+' '           Text
+'Value'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'set_prolog_flag' Keyword
+'('           Text
+'Flag'        Name.Variable
+','           Text
+' '           Text
+'Value'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'halt'        Keyword
+'('           Text
+'ExitCode'    Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'halt'        Keyword
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'number'      Keyword
+'('           Text
+'C'           Name.Variable
+')'           Text
+' '           Text
+'-'           Operator
+'-'           Operator
+'>'           Operator
+' '           Text
+'"+"'         Literal.String
+','           Text
+' '           Text
+'number'      Keyword
+'('           Text
+'C'           Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t'          Text
+'number'      Keyword
+'('           Text
+'C'           Name.Variable
+')'           Text
+' '           Text
+'-'           Operator
+'-'           Operator
+'>'           Operator
+' '           Text
+'"-"'         Literal.String
+','           Text
+' '           Text
+'number'      Keyword
+'('           Text
+'X'           Name.Variable
+')'           Text
+','           Text
+' '           Text
+'{'           Keyword
+'C'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'-'           Operator
+'X'           Name.Variable
+'}'           Keyword
+'.'           Text
+'\n'          Text
+
+'\t'          Text
+'number'      Keyword
+'('           Text
+'X'           Name.Variable
+')'           Text
+' '           Text
+'-'           Operator
+'-'           Operator
+'>'           Operator
+' '           Text
+'['           Text
+'C'           Name.Variable
+']'           Text
+','           Text
+' '           Text
+'{'           Keyword
+"0'0"         Literal.Number
+' '           Text
+'=<'          Operator
+' '           Text
+'C'           Name.Variable
+','           Text
+' '           Text
+'C'           Name.Variable
+' '           Text
+'=<'          Operator
+' '           Text
+"0'9"         Literal.Number
+','           Text
+' '           Text
+'X'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'C'           Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+"0'0"         Literal.Number
+'}'           Keyword
+'.'           Text
+'\n'          Text
+
+'\n:- '       Punctuation
+'end_object'  Keyword
+'.'           Text
+'\n'          Text
+
+'\n\n\n:- '   Punctuation
+'object'      Keyword
+'('           Text
+'class'       Text
+','           Text
+'\n'          Text
+
+'\t'          Text
+'implements'  Keyword
+'('           Text
+'protocol'    Text
+')'           Text
+','           Text
+'\n'          Text
+
+'\t'          Text
+'imports'     Keyword
+'('           Text
+'category'    Text
+')'           Text
+','           Text
+'\n'          Text
+
+'\t'          Text
+'instantiates' Keyword
+'('           Text
+'metaclass'   Text
+')'           Text
+','           Text
+'\n'          Text
+
+'\t'          Text
+'specializes' Keyword
+'('           Text
+'superclass'  Text
+')'           Text
+').'          Text
+'\n'          Text
+
+'\n\n:- '     Punctuation
+'end_object'  Keyword
+'.'           Text
+'\n'          Text
+
+'\n\n\n:- '   Punctuation
+'object'      Keyword
+'('           Text
+'parametric'  Text
+'('           Text
+'_Par1'       Name.Variable
+','           Text
+' '           Text
+'_Par2'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t'          Text
+'implements'  Keyword
+'('           Text
+'protocol'    Text
+')'           Text
+','           Text
+'\n'          Text
+
+'\t'          Text
+'imports'     Keyword
+'('           Text
+'category'    Text
+')'           Text
+','           Text
+'\n'          Text
+
+'\t'          Text
+'extends'     Keyword
+'('           Text
+'parent'      Text
+'('           Text
+'_Par'        Name.Variable
+')'           Text
+')'           Text
+').'          Text
+'\n'          Text
+
+'\n\n:- '     Punctuation
+'end_object'  Keyword
+'.'           Text
+'\n'          Text
+
+'\n\n\n:- '   Punctuation
+'category'    Keyword
+'('           Text
+'category'    Text
+','           Text
+'\n'          Text
+
+'\t'          Text
+'implements'  Keyword
+'('           Text
+'protocol'    Text
+')'           Text
+','           Text
+'\n'          Text
+
+'\t'          Text
+'extends'     Keyword
+'('           Text
+'other_category' Text
+')'           Text
+').'          Text
+'\n'          Text
+
+'\n\n:- '     Punctuation
+'end_category' Keyword
+'.'           Text
+'\n'          Text
+
+'\n\n\n:- '   Punctuation
+'protocol'    Keyword
+'('           Text
+'extended'    Text
+','           Text
+'\n'          Text
+
+'\t'          Text
+'extends'     Keyword
+'('           Text
+'minimal'     Text
+')'           Text
+').'          Text
+'\n'          Text
+
+'\n\n:- '     Punctuation
+'end_protocol' Keyword
+'.'           Text
+'\n'          Text

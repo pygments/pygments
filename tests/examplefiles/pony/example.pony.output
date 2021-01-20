@@ -1,0 +1,121 @@
+'use'         Keyword
+' '           Text
+'"'           Literal.String
+'somepkg'     Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'/*'          Comment.Multiline
+'\n '         Comment.Multiline
+'/*'          Comment.Multiline
+' Nested '    Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'class'       Keyword
+' '           Text
+'trn'         Keyword
+' '           Text
+'Foo'         Name.Class
+'['           Punctuation
+'A'           Name.Type
+':'           Punctuation
+' '           Text
+'Stringable'  Name.Type
+' '           Text
+'ref'         Keyword
+']'           Punctuation
+' '           Text
+'is'          Operator.Word
+' '           Text
+'Stringable'  Name.Type
+'\n'          Text
+
+'  '          Text
+'let'         Keyword
+' '           Text
+'_'           Name
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'\\"'         Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'  '          Text
+'\n'          Text
+
+'  '          Text
+'fun'         Keyword
+' '           Text
+'val'         Keyword
+' '           Text
+'dofoo'       Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'=>'          Punctuation
+'\n'          Text
+
+'    '        Text
+'"""\n    DocString\n    """' Literal.String.Doc
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'U64'         Name.Builtin.Type
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'foo'         Literal.String
+'"'           Literal.String
+')'           Punctuation
+'.'           Punctuation
+'_2'          Name
+'\n'          Text
+
+'\n'          Text
+
+'actor'       Keyword
+' '           Text
+'Main'        Name.Class
+'\n'          Text
+
+'  '          Text
+'new'         Keyword
+' '           Text
+'create'      Name.Function
+'('           Punctuation
+'env'         Name
+':'           Punctuation
+' '           Text
+'Env'         Name.Type
+')'           Punctuation
+' '           Text
+'=>'          Punctuation
+'\n'          Text
+
+'    '        Text
+'env'         Name
+'.'           Punctuation
+'out'         Name
+'.'           Punctuation
+'print'       Name
+'('           Punctuation
+'"'           Literal.String
+'Hello world' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text

@@ -1,0 +1,1624 @@
+'<%'          Name.Tag
+'doc'         Name
+'>'           Operator
+'formatting'  Name
+'.'           Operator
+'myt'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'Provides'    Name
+' '           Text
+'section'     Name
+' '           Text
+'formatting'  Name
+' '           Text
+'elements'    Name
+','           Punctuation
+' '           Text
+'syntax'      Name
+'-'           Operator
+'highlighted' Name
+' '           Text
+'code'        Name
+' '           Text
+'blocks'      Name
+','           Punctuation
+' '           Text
+'and'         Operator.Word
+' '           Text
+'other'       Name
+' '           Text
+'special'     Name
+' '           Text
+'filters'     Name
+'.'           Operator
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'doc'         Name
+'>'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'<'           Operator
+'%'           Operator
+'global'      Keyword
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'import'      Keyword.Namespace
+' '           Text
+'string'      Name.Namespace
+','           Operator
+' '           Text
+'re'          Name.Namespace
+'\n'          Text
+
+'    '        Text
+'import'      Keyword.Namespace
+' '           Text
+'highlight'   Name.Namespace
+'\n'          Text
+
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'global'      Keyword
+'>'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'<'           Operator
+'%'           Operator
+'method'      Name
+' '           Text
+'section'     Name
+'>'           Operator
+'\n'          Text
+
+'<'           Operator
+'%'           Operator
+'doc'         Name
+'>'           Operator
+'Main'        Name
+' '           Text
+'section'     Name
+' '           Text
+'formatting'  Name
+' '           Text
+'element'     Name
+'.'           Operator
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'doc'         Name
+'>'           Operator
+'\n'          Text
+
+'<'           Operator
+'%'           Operator
+'args'        Name
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'toc'         Name
+'\n'          Text
+
+'    '        Text
+'path'        Name
+'\n'          Text
+
+'    '        Text
+'description' Name
+'='           Operator
+'None'        Keyword.Constant
+'\n'          Text
+
+'    '        Text
+'onepage'     Name
+'='           Operator
+'False'       Keyword.Constant
+'\n'          Text
+
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'args'        Name
+'>'           Operator
+'\n'          Text
+
+'<'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'item'        Name
+' '           Text
+'='           Operator
+' '           Text
+'toc'         Name
+'.'           Operator
+'get_by_path' Name
+'('           Punctuation
+'path'        Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'item'        Name
+' '           Text
+'is'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+':'           Punctuation
+'\n'          Text
+
+'        '    Text
+'raise'       Keyword
+' '           Text
+'"'           Literal.String.Double
+'path: '      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'+'           Operator
+' '           Text
+'path'        Name
+'\n'          Text
+
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'<'           Operator
+'A'           Name
+' '           Text
+'name'        Name
+'='           Operator
+'"'           Literal.String.Double
+'<'           Literal.String.Double
+'% i'         Literal.String.Interpol
+'tem.path '   Literal.String.Double
+'%>'          Name.Tag
+'"></a>\n\n<div class="subsection" style="margin-left:' Other
+'<%'          Name.Tag
+' '           Text
+'repr'        Name.Builtin
+'('           Punctuation
+'item'        Name
+'.'           Operator
+'depth'       Name
+' '           Text
+'*'           Operator
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'%>'          Name.Tag
+'px;">\n\n'   Other
+
+'<%'          Name.Tag
+'python'      Name
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'content'     Name
+' '           Text
+'='           Operator
+' '           Text
+'m'           Name
+'.'           Operator
+'content'     Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'re2'         Name
+' '           Text
+'='           Operator
+' '           Text
+'re'          Name
+'.'           Operator
+'compile'     Name
+'('           Punctuation
+'r'           Literal.String.Affix
+'"'           Literal.String.Double
+"'"           Literal.String.Double
+"'"           Literal.String.Double
+"'"           Literal.String.Double
+'PYESC(.+?)PYESC' Literal.String.Double
+"'"           Literal.String.Double
+"'"           Literal.String.Double
+"'"           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'re'          Name
+'.'           Operator
+'S'           Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'content'     Name
+' '           Text
+'='           Operator
+' '           Text
+'re2'         Name
+'.'           Operator
+'sub'         Name
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'m'           Name
+':'           Punctuation
+' '           Text
+'m'           Name
+'.'           Operator
+'group'       Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'content'     Name
+')'           Punctuation
+'\n'          Text
+
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'python'      Name
+'>'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'%'           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'item'        Name
+'.'           Operator
+'depth'       Name
+' '           Text
+'>'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+':'           Punctuation
+'\n'          Text
+
+'<'           Operator
+'h3'          Name
+'>'           Operator
+'<'           Operator
+'%'           Operator
+' '           Text
+'description' Name
+' '           Text
+'or'          Operator.Word
+' '           Text
+'item'        Name
+'.'           Operator
+'description' Name
+' '           Text
+'%>'          Name.Tag
+'</h3>\n'     Other
+
+'%'           Name.Tag
+'\n'          Other
+
+'\n    '      Text
+'<div class="sectiontext">\n    ' Other
+'<%'          Name.Tag
+' '           Text
+'content'     Name
+' '           Text
+'%>'          Name.Tag
+'\n    '      Text
+'</div>\n\n'  Other
+
+'%'           Name.Tag
+' '           Text
+'if'          Keyword
+' '           Text
+'onepage'     Name
+' '           Text
+'or'          Operator.Word
+' '           Text
+'item'        Name
+'.'           Operator
+'depth'       Name
+' '           Text
+'>'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+':'           Punctuation
+'\n'          Other
+
+'%'           Name.Tag
+'   '         Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'item'        Name
+'.'           Operator
+'next'        Name
+' '           Text
+'and'         Operator.Word
+' '           Text
+'item'        Name
+'.'           Operator
+'next'        Name
+'.'           Operator
+'depth'       Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'item'        Name
+'.'           Operator
+'depth'       Name
+')'           Punctuation
+':'           Punctuation
+'\n'          Other
+
+'    '        Text
+'<a href="#'  Other
+'<%'          Name.Tag
+' '           Text
+'item'        Name
+'.'           Operator
+'get_page_root' Name
+'('           Punctuation
+')'           Punctuation
+'.'           Operator
+'path'        Name
+' '           Text
+'%>'          Name.Tag
+'" class="toclink">back to section top</a>\n' Other
+
+'%'           Name.Tag
+'\n'          Other
+
+'%'           Name.Tag
+' '           Text
+'else'        Keyword
+':'           Punctuation
+'\n'          Other
+
+'    '        Text
+'<a href="#'  Other
+'<%'          Name.Tag
+' '           Text
+'item'        Name
+'.'           Operator
+'get_page_root' Name
+'('           Punctuation
+')'           Punctuation
+'.'           Operator
+'path'        Name
+' '           Text
+'%>'          Name.Tag
+'" class="toclink">back to section top</a>\n    ' Other
+'<& '         Name.Tag
+'nav.myt:pagenav' Name.Function
+','           Punctuation
+' '           Text
+'item'        Name
+'='           Operator
+'item'        Name
+','           Punctuation
+' '           Text
+'onepage'     Name
+'='           Operator
+'onepage'     Name
+' '           Text
+'&>'          Name.Tag
+'\n'          Text
+
+'%'           Name.Tag
+' '           Text
+'\n'          Other
+
+'</div>\n\n'  Other
+
+'</%method>\n\n\n' Other
+
+'<%'          Name.Tag
+'method'      Name
+' '           Text
+'formatplain' Name
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'<'           Operator
+'%'           Operator
+'filter'      Name.Builtin
+'>'           Operator
+'\n'          Text
+
+'        '    Text
+'import'      Keyword.Namespace
+' '           Text
+'re'          Name.Namespace
+'\n'          Text
+
+'        '    Text
+'f'           Name
+' '           Text
+'='           Operator
+' '           Text
+'re'          Name
+'.'           Operator
+'sub'         Name
+'('           Punctuation
+'r'           Literal.String.Affix
+"'"           Literal.String.Single
+'\\'          Literal.String.Single
+'n['          Literal.String.Single
+'\\'          Literal.String.Single
+'s'           Literal.String.Single
+'\\'          Literal.String.Single
+'t]*'         Literal.String.Single
+'\\'          Literal.String.Single
+'n['          Literal.String.Single
+'\\'          Literal.String.Single
+'s'           Literal.String.Single
+'\\'          Literal.String.Single
+'t]*'         Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'</p>'        Literal.String.Single
+'\\n'         Literal.String.Escape
+'<p>'         Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'f'           Name
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'f'           Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'<p>'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'+'           Operator
+' '           Text
+'f'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String.Double
+'</p>'        Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'f'           Name
+'\n'          Text
+
+'    '        Text
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'filter'      Name.Builtin
+'>'           Operator
+'\n'          Text
+
+'<'           Operator
+'%'           Operator
+' '           Text
+'m'           Name
+'.'           Operator
+'content'     Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'h'           Name
+'%>'          Name.Tag
+'\n'          Text
+
+'</%method>\n\n\n\n\n' Other
+
+'<%'          Name.Tag
+'method'      Name
+' '           Text
+'codeline'    Name
+' '           Text
+'trim'        Name
+'='           Operator
+'"'           Literal.String.Double
+'both'        Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+'\n'          Text
+
+'<'           Operator
+'span'        Name
+' '           Text
+'class'       Name
+'='           Operator
+'"'           Literal.String.Double
+'codeline'    Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+'<'           Operator
+'%'           Operator
+' '           Text
+'m'           Name
+'.'           Operator
+'content'     Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'%>'          Name.Tag
+'</span>\n'   Other
+
+'</%method>\n\n' Other
+
+'<%'          Name.Tag
+'method'      Name
+' '           Text
+'code'        Name
+' '           Text
+'autoflush'   Name
+'='           Operator
+'False'       Keyword.Constant
+'>'           Operator
+'\n'          Text
+
+'<'           Operator
+'%'           Operator
+'args'        Name
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'title'       Name
+' '           Text
+'='           Operator
+' '           Text
+'None'        Keyword.Constant
+'\n'          Text
+
+'    '        Text
+'syntaxtype'  Name
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'python'      Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text
+
+'    '        Text
+'html_escape' Name
+' '           Text
+'='           Operator
+' '           Text
+'False'       Keyword.Constant
+'\n'          Text
+
+'    '        Text
+'use_sliders' Name
+' '           Text
+'='           Operator
+' '           Text
+'False'       Keyword.Constant
+'\n'          Text
+
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'args'        Name
+'>'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'<'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'def'         Keyword
+' '           Text
+'fix_indent'  Name.Function
+'('           Punctuation
+'f'           Name
+')'           Punctuation
+':'           Punctuation
+'\n'          Text
+
+'        '    Text
+'f'           Name
+' '           Text
+'='           Operator
+'string'      Name
+'.'           Operator
+'expandtabs'  Name
+'('           Punctuation
+'f'           Name
+','           Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'g'           Name
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text
+
+'        '    Text
+'lines'       Name
+' '           Text
+'='           Operator
+' '           Text
+'string'      Name
+'.'           Operator
+'split'       Name
+'('           Punctuation
+'f'           Name
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'\\n'         Literal.String.Escape
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'whitespace'  Name
+' '           Text
+'='           Operator
+' '           Text
+'None'        Keyword.Constant
+'\n'          Text
+
+'        '    Text
+'for'         Keyword
+' '           Text
+'line'        Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'lines'       Name
+':'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+' '           Text
+'whitespace'  Name
+' '           Text
+'is'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+':'           Punctuation
+'\n'          Text
+
+'                ' Text
+'match'       Name
+' '           Text
+'='           Operator
+' '           Text
+'re'          Name
+'.'           Operator
+'match'       Name
+'('           Punctuation
+'r'           Literal.String.Affix
+'"'           Literal.String.Double
+'^([ ]*).+'   Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'line'        Name
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'if'          Keyword
+' '           Text
+'match'       Name
+' '           Text
+'is'          Operator.Word
+' '           Text
+'not'         Operator.Word
+' '           Text
+'None'        Keyword.Constant
+':'           Punctuation
+'\n'          Text
+
+'                    ' Text
+'whitespace'  Name
+' '           Text
+'='           Operator
+' '           Text
+'match'       Name
+'.'           Operator
+'group'       Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+' '           Text
+'whitespace'  Name
+' '           Text
+'is'          Operator.Word
+' '           Text
+'not'         Operator.Word
+' '           Text
+'None'        Keyword.Constant
+':'           Punctuation
+'\n'          Text
+
+'                ' Text
+'line'        Name
+' '           Text
+'='           Operator
+' '           Text
+'re'          Name
+'.'           Operator
+'sub'         Name
+'('           Punctuation
+'r'           Literal.String.Affix
+'"'           Literal.String.Double
+'^'           Literal.String.Double
+'%s'          Literal.String.Interpol
+'"'           Literal.String.Double
+' '           Text
+'%'           Operator
+' '           Text
+'whitespace'  Name
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'line'        Name
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+' '           Text
+'whitespace'  Name
+' '           Text
+'is'          Operator.Word
+' '           Text
+'not'         Operator.Word
+' '           Text
+'None'        Keyword.Constant
+' '           Text
+'or'          Operator.Word
+' '           Text
+'re'          Name
+'.'           Operator
+'search'      Name
+'('           Punctuation
+'r'           Literal.String.Affix
+'"'           Literal.String.Double
+'\\'          Literal.String.Double
+'w'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'line'        Name
+')'           Punctuation
+' '           Text
+'is'          Operator.Word
+' '           Text
+'not'         Operator.Word
+' '           Text
+'None'        Keyword.Constant
+':'           Punctuation
+'\n'          Text
+
+'                ' Text
+'g'           Name
+' '           Text
+'+'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'line'        Name
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String.Double
+'\\n'         Literal.String.Escape
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'g'           Name
+'.'           Operator
+'rstrip'      Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'p'           Name
+' '           Text
+'='           Operator
+' '           Text
+'re'          Name
+'.'           Operator
+'compile'     Name
+'('           Punctuation
+'r'           Literal.String.Affix
+"'"           Literal.String.Single
+'<pre>(.*?)</pre>' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'re'          Name
+'.'           Operator
+'S'           Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'def'         Keyword
+' '           Text
+'hlight'      Name.Function
+'('           Punctuation
+'match'       Name
+')'           Punctuation
+':'           Punctuation
+'\n'          Text
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'"'           Literal.String.Double
+'<pre>'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'+'           Operator
+' '           Text
+'highlight'   Name
+'.'           Operator
+'highlight'   Name
+'('           Punctuation
+'fix_indent'  Name
+'('           Punctuation
+'match'       Name
+'.'           Operator
+'group'       Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'html_escape' Name
+' '           Text
+'='           Operator
+' '           Text
+'html_escape' Name
+','           Punctuation
+' '           Text
+'syntaxtype'  Name
+' '           Text
+'='           Operator
+' '           Text
+'syntaxtype'  Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String.Double
+'</pre>'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'content'     Name
+' '           Text
+'='           Operator
+' '           Text
+'p'           Name
+'.'           Operator
+'sub'         Name
+'('           Punctuation
+'hlight'      Name
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'<pre>'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'+'           Operator
+' '           Text
+'m'           Name
+'.'           Operator
+'content'     Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String.Double
+'</pre>'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'<'           Operator
+'div'         Name
+' '           Text
+'class'       Name
+'='           Operator
+'"'           Literal.String.Double
+'<'           Literal.String.Double
+'% u'         Literal.String.Interpol
+'se_sliders and ' Literal.String.Double
+'"'           Literal.String.Double
+'sliding_code' Name
+'"'           Literal.String.Double
+' or '        Literal.String.Double
+'"'           Literal.String.Double
+'code'        Name
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'%>'          Name.Tag
+'">\n'        Other
+
+'%'           Name.Tag
+' '           Text
+'if'          Keyword
+' '           Text
+'title'       Name
+' '           Text
+'is'          Operator.Word
+' '           Text
+'not'         Operator.Word
+' '           Text
+'None'        Keyword.Constant
+':'           Punctuation
+'\n'          Other
+
+'    '        Text
+'<div class="codetitle">' Other
+'<%'          Name.Tag
+' '           Text
+'title'       Name
+' '           Text
+'%>'          Name.Tag
+'</div>\n'    Other
+
+'%'           Name.Tag
+'\n'          Other
+
+'<%'          Name.Tag
+' '           Text
+'content'     Name
+' '           Text
+'%>'          Name.Tag
+'</div>\n'    Other
+
+'</%method>\n\n\n\n\n' Other
+
+'<%'          Name.Tag
+'method'      Name
+' '           Text
+'popboxlink'  Name
+' '           Text
+'trim'        Name
+'='           Operator
+'"'           Literal.String.Double
+'both'        Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text
+'\n'          Text
+
+'    '        Text
+'<'           Operator
+'%'           Operator
+'args'        Name
+'>'           Operator
+'\n'          Text
+
+'        '    Text
+'name'        Name
+'='           Operator
+'None'        Keyword.Constant
+'\n'          Text
+
+'        '    Text
+'show'        Name
+'='           Operator
+"'"           Literal.String.Single
+'show'        Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text
+
+'        '    Text
+'hide'        Name
+'='           Operator
+"'"           Literal.String.Single
+'hide'        Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text
+
+'    '        Text
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'args'        Name
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'<'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'name'        Name
+' '           Text
+'is'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+':'           Punctuation
+'\n'          Text
+
+'            ' Text
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'m'           Name
+'.'           Operator
+'attributes'  Name
+'.'           Operator
+'setdefault'  Name
+'('           Punctuation
+"'"           Literal.String.Single
+'popbox_name' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'name'        Name
+' '           Text
+'+'           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'        '    Text
+'m'           Name
+'.'           Operator
+'attributes'  Name
+'['           Punctuation
+"'"           Literal.String.Single
+'popbox_name' Literal.String.Single
+"'"           Literal.String.Single
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'name'        Name
+'\n'          Text
+
+'        '    Text
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'popbox_'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'+'           Operator
+' '           Text
+'repr'        Name.Builtin
+'('           Punctuation
+'name'        Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'javascript'  Name
+':'           Punctuation
+'togglePopbox' Name
+'('           Punctuation
+"'"           Literal.String.Single
+'<'           Literal.String.Single
+'%'           Literal.String.Single
+' name '      Literal.String.Single
+'%>'          Name.Tag
+"', '"        Other
+'<%'          Name.Tag
+' '           Text
+'show'        Name
+' '           Text
+'%>'          Name.Tag
+"', '"        Other
+'<%'          Name.Tag
+' '           Text
+'hide'        Name
+' '           Text
+'%>'          Name.Tag
+"')\n"        Other
+
+'</%method>\n\n' Other
+
+'<%'          Name.Tag
+'method'      Name
+' '           Text
+'popbox'      Name
+' '           Text
+'trim'        Name
+'='           Operator
+'"'           Literal.String.Double
+'both'        Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+'\n'          Text
+
+'<'           Operator
+'%'           Operator
+'args'        Name
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'None'        Keyword.Constant
+'\n'          Text
+
+'    '        Text
+'class_'      Name
+' '           Text
+'='           Operator
+' '           Text
+'None'        Keyword.Constant
+'\n'          Text
+
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'args'        Name
+'>'           Operator
+'\n'          Text
+
+'<'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'name'        Name
+' '           Text
+'is'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+':'           Punctuation
+'\n'          Text
+
+'        '    Text
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'popbox_'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'+'           Operator
+' '           Text
+'repr'        Name.Builtin
+'('           Punctuation
+'m'           Name
+'.'           Operator
+'attributes'  Name
+'['           Punctuation
+"'"           Literal.String.Single
+'popbox_name' Literal.String.Single
+"'"           Literal.String.Single
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'<'           Operator
+'div'         Name
+' '           Text
+'id'          Name.Builtin
+'='           Operator
+'"'           Literal.String.Double
+'<'           Literal.String.Double
+'%'           Literal.String.Double
+' name '      Literal.String.Double
+'%>'          Name.Tag
+'_div" class="' Other
+'<%'          Name.Tag
+' '           Text
+'class_'      Name
+' '           Text
+'%>'          Name.Tag
+'" style="display:none;">' Other
+'<%'          Name.Tag
+' '           Text
+'m'           Name
+'.'           Operator
+'content'     Name
+'('           Punctuation
+')'           Punctuation
+'.'           Operator
+'strip'       Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'%>'          Name.Tag
+'</div>\n'    Other
+
+'</%method>\n\n' Other
+
+'<%'          Name.Tag
+'method'      Name
+' '           Text
+'poplink'     Name
+' '           Text
+'trim'        Name
+'='           Operator
+'"'           Literal.String.Double
+'both'        Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'<'           Operator
+'%'           Operator
+'args'        Name
+'>'           Operator
+'\n'          Text
+
+'        '    Text
+'link'        Name
+'='           Operator
+"'"           Literal.String.Single
+'sql'         Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text
+
+'    '        Text
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'args'        Name
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'<'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'        '    Text
+'href'        Name
+' '           Text
+'='           Operator
+' '           Text
+'m'           Name
+'.'           Operator
+'scomp'       Name
+'('           Punctuation
+"'"           Literal.String.Single
+'SELF:popboxlink' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'\'\'\'PYESC<& nav.myt:link, href=href, text=link, class_="codepoplink" &>PYESC\'\'\'' Literal.String.Doc
+'\n'          Text
+
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'method'      Name
+'>'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'<'           Operator
+'%'           Operator
+'method'      Name
+' '           Text
+'codepopper'  Name
+' '           Text
+'trim'        Name
+'='           Operator
+'"'           Literal.String.Double
+'both'        Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+'\n'          Text
+
+'\t'          Text
+'<'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'c'           Name
+' '           Text
+'='           Operator
+' '           Text
+'m'           Name
+'.'           Operator
+'content'     Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'c'           Name
+' '           Text
+'='           Operator
+' '           Text
+'re'          Name
+'.'           Operator
+'sub'         Name
+'('           Punctuation
+'r'           Literal.String.Affix
+"'"           Literal.String.Single
+'\\'          Literal.String.Single
+'n'           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'<br/>'       Literal.String.Single
+'\\n'         Literal.String.Escape
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'c'           Name
+'.'           Operator
+'strip'       Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'<'           Operator
+'/'           Operator
+'pre'         Name
+'>'           Operator
+'<'           Operator
+'&'           Operator
+'|'           Operator
+'SELF'        Name
+':'           Punctuation
+'popbox'      Name
+','           Punctuation
+' '           Text
+'class_'      Name
+'='           Operator
+'"'           Literal.String.Double
+'codepop'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'&'           Operator
+'>'           Operator
+'<'           Operator
+'%'           Operator
+' '           Text
+'c'           Name
+' '           Text
+'%>'          Name.Tag
+'</&>'        Name.Tag
+'<pre>\n'     Other
+
+'</%method>\n\n' Other
+
+'<%'          Name.Tag
+'method'      Name
+' '           Text
+'poppedcode'  Name
+' '           Text
+'trim'        Name
+'='           Operator
+'"'           Literal.String.Double
+'both'        Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+'\n'          Text
+
+'\t'          Text
+'<'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'c'           Name
+' '           Text
+'='           Operator
+' '           Text
+'m'           Name
+'.'           Operator
+'content'     Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'c'           Name
+' '           Text
+'='           Operator
+' '           Text
+'re'          Name
+'.'           Operator
+'sub'         Name
+'('           Punctuation
+'r'           Literal.String.Affix
+"'"           Literal.String.Single
+'\\'          Literal.String.Single
+'n'           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'<br/>'       Literal.String.Single
+'\\n'         Literal.String.Escape
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'c'           Name
+'.'           Operator
+'strip'       Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'<'           Operator
+'/'           Operator
+'%'           Operator
+'init'        Name
+'>'           Operator
+'\n'          Text
+
+'    '        Text
+'<'           Operator
+'/'           Operator
+'pre'         Name
+'>'           Operator
+'<'           Operator
+'div'         Name
+' '           Text
+'class'       Name
+'='           Operator
+'"'           Literal.String.Double
+'codepop'     Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+'<'           Operator
+'%'           Operator
+' '           Text
+'c'           Name
+' '           Text
+'%>'          Name.Tag
+'</div><pre>\n' Other
+
+'</%method>\n' Other

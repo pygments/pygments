@@ -1,0 +1,405 @@
+''            Text
+' '           Text
+'/****************************************************************************\n **\n ** Copyright (C) 2011 Nokia Corporation and/or its subsidiary(-ies).\n ** All rights reserved.\n ** Contact: Nokia Corporation (qt-info@nokia.com)\n **\n ** This file is part of the QtDeclarative module of the Qt Toolkit.\n **\n ** $QT_BEGIN_LICENSE:LGPL$\n ** GNU Lesser General Public License Usage\n ** This file may be used under the terms of the GNU Lesser General Public\n ** License version 2.1 as published by the Free Software Foundation and\n ** appearing in the file LICENSE.LGPL included in the packaging of this\n ** file. Please review the following information to ensure the GNU Lesser\n ** General Public License version 2.1 requirements will be met:\n ** http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.\n **\n ** In addition, as a special exception, Nokia gives you certain additional\n ** rights. These rights are described in the Nokia Qt LGPL Exception\n ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.\n **\n ** GNU General Public License Usage\n ** Alternatively, this file may be used under the terms of the GNU General\n ** Public License version 3.0 as published by the Free Software Foundation\n ** and appearing in the file LICENSE.GPL included in the packaging of this\n ** file. Please review the following information to ensure the GNU General\n ** Public License version 3.0 requirements will be met:\n ** http://www.gnu.org/copyleft/gpl.html.\n **\n ** Other Usage\n ** Alternatively, this file may be used in accordance with the terms and\n ** conditions contained in a signed written agreement between you and Nokia.\n **\n **\n **\n **\n **\n ** $QT_END_LICENSE$\n **\n ****************************************************************************/' Comment.Multiline
+'\n\n '       Text
+'import'      Keyword.Reserved
+' '           Text
+'QtQuick'     Name.Other
+' '           Text
+'1.0'         Literal.Number.Float
+'\n '         Text
+'import'      Keyword.Reserved
+' '           Text
+'"MinehuntCore"' Literal.String.Double
+' '           Text
+'1.0'         Literal.Number.Float
+'\n\n '       Text
+'Item'        Name.Other
+' '           Text
+'{'           Punctuation
+'\n     '     Text
+'id: field'   Keyword.Declaration
+'\n     '     Text
+'property'    Name.Other
+' '           Text
+'int'         Keyword.Reserved
+' '           Text
+'clickx:'     Keyword
+' '           Text
+'0'           Literal.Number.Integer
+'\n     '     Text
+'property'    Name.Other
+' '           Text
+'int'         Keyword.Reserved
+' '           Text
+'clicky:'     Keyword
+' '           Text
+'0'           Literal.Number.Integer
+'\n\n     '   Text
+'width:'      Keyword
+' '           Text
+'450'         Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'height:'     Keyword
+' '           Text
+'450'         Literal.Number.Integer
+'\n\n     '   Text
+'Image'       Name.Other
+' '           Text
+'{'           Punctuation
+' '           Text
+'source:'     Keyword
+' '           Text
+'"MinehuntCore/pics/background.png"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'anchors.fill:' Keyword
+' '           Text
+'parent'      Name.Other
+';'           Punctuation
+' '           Text
+'fillMode:'   Keyword
+' '           Text
+'Image'       Name.Other
+'.'           Punctuation
+'Tile'        Name.Other
+' '           Text
+'}'           Punctuation
+'\n\n     '   Text
+'Grid'        Name.Other
+' '           Text
+'{'           Punctuation
+'\n         ' Text
+'anchors.horizontalCenter:' Keyword
+' '           Text
+'parent'      Name.Other
+'.'           Punctuation
+'horizontalCenter' Name.Other
+'\n         ' Text
+'columns:'    Keyword
+' '           Text
+'9'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'spacing:'    Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'\n\n         ' Text
+'Repeater'    Name.Other
+' '           Text
+'{'           Punctuation
+'\n             ' Text
+'id: repeater' Keyword.Declaration
+'\n             ' Text
+'model:'      Keyword
+' '           Text
+'tiles'       Name.Other
+'\n             ' Text
+'delegate:'   Keyword
+' '           Text
+'Tile'        Name.Other
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n         ' Text
+'}'           Punctuation
+'\n     '     Text
+'}'           Punctuation
+'\n\n     '   Text
+'Row'         Name.Other
+' '           Text
+'{'           Punctuation
+'\n         ' Text
+'id: gamedata' Keyword.Declaration
+'\n         ' Text
+'x:'          Keyword
+' '           Text
+'20'          Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'spacing:'    Keyword
+' '           Text
+'20'          Literal.Number.Integer
+'\n         ' Text
+'anchors.bottom:' Keyword
+' '           Text
+'field'       Name.Other
+'.'           Punctuation
+'bottom'      Name.Other
+';'           Punctuation
+' '           Text
+'anchors.bottomMargin:' Keyword
+' '           Text
+'15'          Literal.Number.Integer
+'\n\n         ' Text
+'Image'       Name.Other
+' '           Text
+'{'           Punctuation
+'\n             ' Text
+'source:'     Keyword
+' '           Text
+'"MinehuntCore/pics/quit.png"' Literal.String.Double
+'\n             ' Text
+'scale:'      Keyword
+' '           Text
+'quitMouse'   Name.Other
+'.'           Punctuation
+'pressed'     Name.Other
+' '           Text
+'?'           Operator
+' '           Text
+'0.8'         Literal.Number.Float
+' '           Text
+':'           Operator
+' '           Text
+'1.0'         Literal.Number.Float
+'\n             ' Text
+'smooth:'     Keyword
+' '           Text
+'quitMouse'   Name.Other
+'.'           Punctuation
+'pressed'     Name.Other
+'\n             ' Text
+'y:'          Keyword
+' '           Text
+'10'          Literal.Number.Integer
+'\n             ' Text
+'MouseArea'   Name.Other
+' '           Text
+'{'           Punctuation
+'\n                 ' Text
+'id: quitMouse' Keyword.Declaration
+'\n                 ' Text
+'anchors.fill:' Keyword
+' '           Text
+'parent'      Name.Other
+'\n                 ' Text
+'anchors.margins:' Keyword
+' '           Text
+'-'           Operator
+'20'          Literal.Number.Integer
+'\n                 ' Text
+'onClicked:'  Keyword
+' '           Text
+'Qt'          Name.Other
+'.'           Punctuation
+'quit'        Name.Other
+'('           Punctuation
+')'           Punctuation
+'\n             ' Text
+'}'           Punctuation
+'\n         ' Text
+'}'           Punctuation
+'\n         ' Text
+'Column'      Name.Other
+' '           Text
+'{'           Punctuation
+'\n             ' Text
+'spacing:'    Keyword
+' '           Text
+'2'           Literal.Number.Integer
+'\n             ' Text
+'Image'       Name.Other
+' '           Text
+'{'           Punctuation
+' '           Text
+'source:'     Keyword
+' '           Text
+'"MinehuntCore/pics/bomb-color.png"' Literal.String.Double
+' '           Text
+'}'           Punctuation
+'\n             ' Text
+'Text'        Name.Other
+' '           Text
+'{'           Punctuation
+' '           Text
+'anchors.horizontalCenter:' Keyword
+' '           Text
+'parent'      Name.Other
+'.'           Punctuation
+'horizontalCenter' Name.Other
+';'           Punctuation
+' '           Text
+'color:'      Keyword
+' '           Text
+'"white"'     Literal.String.Double
+';'           Punctuation
+' '           Text
+'text:'       Keyword
+' '           Text
+'numMines'    Name.Other
+' '           Text
+'}'           Punctuation
+'\n         ' Text
+'}'           Punctuation
+'\n\n         ' Text
+'Column'      Name.Other
+' '           Text
+'{'           Punctuation
+'\n             ' Text
+'spacing:'    Keyword
+' '           Text
+'2'           Literal.Number.Integer
+'\n             ' Text
+'Image'       Name.Other
+' '           Text
+'{'           Punctuation
+' '           Text
+'source:'     Keyword
+' '           Text
+'"MinehuntCore/pics/flag-color.png"' Literal.String.Double
+' '           Text
+'}'           Punctuation
+'\n             ' Text
+'Text'        Name.Other
+' '           Text
+'{'           Punctuation
+' '           Text
+'anchors.horizontalCenter:' Keyword
+' '           Text
+'parent'      Name.Other
+'.'           Punctuation
+'horizontalCenter' Name.Other
+';'           Punctuation
+' '           Text
+'color:'      Keyword
+' '           Text
+'"white"'     Literal.String.Double
+';'           Punctuation
+' '           Text
+'text:'       Keyword
+' '           Text
+'numFlags'    Name.Other
+' '           Text
+'}'           Punctuation
+'\n         ' Text
+'}'           Punctuation
+'\n     '     Text
+'}'           Punctuation
+'\n\n     '   Text
+'Image'       Name.Other
+' '           Text
+'{'           Punctuation
+'\n         ' Text
+'anchors.bottom:' Keyword
+' '           Text
+'field'       Name.Other
+'.'           Punctuation
+'bottom'      Name.Other
+';'           Punctuation
+' '           Text
+'anchors.bottomMargin:' Keyword
+' '           Text
+'15'          Literal.Number.Integer
+'\n         ' Text
+'anchors.right:' Keyword
+' '           Text
+'field'       Name.Other
+'.'           Punctuation
+'right'       Name.Other
+';'           Punctuation
+' '           Text
+'anchors.rightMargin:' Keyword
+' '           Text
+'20'          Literal.Number.Integer
+'\n         ' Text
+'source:'     Keyword
+' '           Text
+'isPlaying'   Name.Other
+' '           Text
+'?'           Operator
+' '           Text
+"'MinehuntCore/pics/face-smile.png'" Literal.String.Single
+' '           Text
+':'           Operator
+'\n         ' Text
+'hasWon'      Name.Other
+' '           Text
+'?'           Operator
+' '           Text
+"'MinehuntCore/pics/face-smile-big.png'" Literal.String.Single
+':'           Operator
+' '           Text
+"'MinehuntCore/pics/face-sad.png'" Literal.String.Single
+'\n\n         ' Text
+'MouseArea'   Name.Other
+' '           Text
+'{'           Punctuation
+' '           Text
+'anchors.fill:' Keyword
+' '           Text
+'parent'      Name.Other
+';'           Punctuation
+' '           Text
+'onPressed:'  Keyword
+' '           Text
+'reset'       Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n     '     Text
+'}'           Punctuation
+'\n     '     Text
+'Text'        Name.Other
+' '           Text
+'{'           Punctuation
+'\n         ' Text
+'anchors.centerIn:' Keyword
+' '           Text
+'parent'      Name.Other
+';'           Punctuation
+' '           Text
+'width:'      Keyword
+' '           Text
+'parent'      Name.Other
+'.'           Punctuation
+'width'       Name.Other
+' '           Text
+'-'           Operator
+' '           Text
+'20'          Literal.Number.Integer
+'\n         ' Text
+'horizontalAlignment:' Keyword
+' '           Text
+'Text'        Name.Other
+'.'           Punctuation
+'AlignHCenter' Name.Other
+'\n         ' Text
+'wrapMode:'   Keyword
+' '           Text
+'Text'        Name.Other
+'.'           Punctuation
+'WordWrap'    Name.Other
+'\n         ' Text
+'text:'       Keyword
+' '           Text
+'"Minehunt demo has to be compiled to run.\\n\\nPlease see README."' Literal.String.Double
+'\n         ' Text
+'color:'      Keyword
+' '           Text
+'"white"'     Literal.String.Double
+';'           Punctuation
+' '           Text
+'font.bold:'  Keyword
+' '           Text
+'true'        Keyword.Constant
+';'           Punctuation
+' '           Text
+'font.pixelSize:' Keyword
+' '           Text
+'14'          Literal.Number.Integer
+'\n         ' Text
+'visible:'    Keyword
+' '           Text
+'tiles'       Name.Other
+' '           Text
+'=='          Operator
+' '           Text
+'undefined'   Keyword.Constant
+'\n     '     Text
+'}'           Punctuation
+'\n\n '       Text
+'}'           Punctuation
+'\n'          Text

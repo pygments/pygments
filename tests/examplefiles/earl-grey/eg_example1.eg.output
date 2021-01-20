@@ -1,0 +1,1397 @@
+';; filepath tests\n' Comment
+
+'require'     Keyword.Pseudo
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'library'     Name.Symbol
+'\n'          Text
+
+'   '         Text
+'./'          Text.Whitespace
+'awesome'     Text
+'\n'          Text
+
+'   '         Text
+'./variable/greatness/' Text.Whitespace
+'file'        Text
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+';; Strings\n' Comment
+
+'"'           Literal.String
+'H'           Literal.String
+'e'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'W'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'l'           Literal.String
+'d'           Literal.String
+'!'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'"'           Literal.String
+'H'           Literal.String
+'e'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'!'           Literal.String
+'\\n'         Literal.String.Escape
+'W'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'l'           Literal.String
+'d'           Literal.String
+'!'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+"'"           Literal.String
+'s'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'a'           Literal.String
+'d'           Literal.String
+'a'           Literal.String
+'d'           Literal.String
+'s'           Literal.String
+'\\'          Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'d'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'d'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'d'           Literal.String
+'{'           Literal.String.Interpol
+' '           Text
+'@method'     Name.Variable.Instance
+' '           Text
+'variable'    Name.Symbol
+' '           Text
+'}'           Literal.String.Interpol
+"'"           Literal.String
+'\n'          Text
+
+'var '        Keyword.Control
+'dstring'     Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'.dotted-string' Literal.String.Symbol
+'\n'          Text
+
+'\n'          Text
+
+'key-dash'    Name.Symbol
+'\n'          Text
+
+'but-can-it-do-ops' Name.Symbol
+' '           Text
+'+'           Operator
+'\n'          Text
+
+'   '         Text
+'yes-it-can'  Keyword.Control
+':'           Punctuation
+'\n'          Text
+
+'      '      Text
+'100'         Literal.Number.Integer
+' '           Text
+'+'           Operator
+'\n'          Text
+
+'         '   Text
+'print '      Keyword.Control
+'"'           Literal.String
+'S'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'c'           Literal.String
+'o'           Literal.String
+'o'           Literal.String
+'l'           Literal.String
+'!'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'         '   Text
+'100'         Literal.Number.Integer
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'that'        Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'"'           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+'w'           Literal.String
+'e'           Literal.String
+'s'           Literal.String
+'o'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'you'         Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'"'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'h'           Literal.String
+'i'           Literal.String
+'l'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'s'           Literal.String
+'"'           Literal.String
+'}'           Punctuation
+' '           Text
+'+'           Operator
+'\n'          Text
+
+'         '   Text
+'jiminy-crickets' Keyword.Control
+':'           Punctuation
+'\n'          Text
+
+'            ' Text
+'oliver-twist' Name.Symbol
+' '           Text
+'each '       Keyword.Control
+'mr-bojangles' Name.Symbol
+' '           Text
+'+'           Operator
+'\n'          Text
+
+'               ' Text
+'kittens'     Name.Variable
+' '           Text
+'='           Operator.Word
+'\n'          Text
+
+'                  ' Text
+'12'          Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'check-it'    Name.Symbol
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'still-works' Keyword.Control
+':'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+'}'           Punctuation
+'.'           Punctuation
+'reversed'    Name.Field
+'.'           Punctuation
+'reversed'    Name.Field
+'.'           Punctuation
+'awesome'     Name.Function
+'{'           Punctuation
+'}'           Punctuation
+'.'           Punctuation
+'that'        Name.Field
+'.'           Punctuation
+'sort'        Name.Function
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'what'        Name.Field
+'.'           Punctuation
+'map'         Name.Function
+' '           Text
+'with'        Operator.Word
+'\n'          Text
+
+'         '   Text
+'x'           Name.Symbol
+' '           Text
+'->'          Name.Function
+' '           Text
+'x'           Name.Symbol
+' '           Text
+'*'           Operator
+' '           Text
+'x'           Name.Symbol
+'\n'          Text
+
+'      '      Text
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'this'        Keyword.Constant
+'\n'          Text
+
+'\n'          Text
+
+'if '         Keyword.Control
+'total '      Keyword.Control
+'awesomeness' Name.Symbol
+' '           Text
+'>'           Operator
+' '           Text
+'great '      Keyword.Control
+'stupidity'   Name.Symbol
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'print '      Keyword.Control
+'"'           Literal.String
+'Y'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+"'"           Literal.String
+'v'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'w'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'!'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'   '         Text
+'not-sure-what-this-does' Name.Symbol
+' '           Text
+'@@'          Operator
+' '           Text
+'but-it-wont-capture' Name.Symbol
+'\n'          Text
+
+'else'        Keyword.Pseudo
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'print '      Keyword.Control
+'"'           Literal.String
+'K'           Literal.String
+'e'           Literal.String
+'e'           Literal.String
+'p'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'r'           Literal.String
+'y'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'!'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'   '         Text
+'needs-work'  Name.Symbol
+' '           Text
+'++'          Operator
+' '           Text
+'you'         Name.Symbol
+'\n'          Text
+
+'\n'          Text
+
+';; with tests\n' Comment
+
+'needs-obj'   Name.Symbol
+'('           Punctuation
+"'"           Literal.String
+'a'           Literal.String
+'w'           Literal.String
+'e'           Literal.String
+'s'           Literal.String
+'o'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+"'"           Literal.String
+')'           Punctuation
+' '           Text
+'with '       Keyword.Control
+'{'           Punctuation
+'"'           Literal.String
+'g'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'a'           Literal.String
+'t'           Literal.String
+'n'           Literal.String
+'e'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'v'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'u'           Literal.String
+'e'           Literal.String
+'s'           Literal.String
+'"'           Literal.String
+'}'           Punctuation
+'\n'          Text
+
+'object'      Name.Symbol
+'.'           Punctuation
+'field'       Name.Field
+'.'           Punctuation
+'method'      Name.Function
+' '           Text
+'with '       Keyword.Control
+'{'           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+';; object assignment\n' Comment
+
+'obj'         Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'   '         Text
+'key'         Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'"'           Literal.String
+'o'           Literal.String
+'h'           Literal.String
+' '           Literal.String
+'y'           Literal.String
+'e'           Literal.String
+'a'           Literal.String
+'h'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'   '         Text
+'tree'        Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'"'           Literal.String
+'s'           Literal.String
+'c'           Literal.String
+'h'           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'h'           Literal.String
+' '           Literal.String
+'c'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'a'           Literal.String
+'h'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'obj'         Name.Symbol
+'.'           Punctuation
+'field'       Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'   '         Text
+'that'        Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'super '      Keyword.Control
+'cool'        Name.Symbol
+':'           Punctuation
+' '           Text
+'"'           Literal.String
+'w'           Literal.String
+'o'           Literal.String
+'w'           Literal.String
+'z'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'s'           Literal.String
+'!'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'   '         Text
+'thatFunc'    Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'{'           Punctuation
+'x'           Name.Symbol
+'}'           Punctuation
+' '           Text
+'->'          Name.Function
+' '           Text
+'x'           Name.Symbol
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+';; match statements\n' Comment
+
+'match '      Keyword.Control
+'@awesome'    Name.Variable.Instance
+'.'           Punctuation
+'great'       Name.Field
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'head'        Name.Symbol
+','           Punctuation
+' '           Text
+'*'           Operator
+'tail'        Name.Symbol
+'}'           Punctuation
+' '           Text
+'->'          Name.Function
+' '           Text
+'['           Punctuation
+'print '      Keyword.Control
+'head'        Name.Symbol
+';'           Punctuation
+' '           Text
+'tail'        Name.Symbol
+']'           Punctuation
+'\n'          Text
+
+'   '         Text
+'Array'       Keyword.Type
+'['           Punctuation
+']'           Punctuation
+'       '     Text
+'->'          Name.Function
+' '           Text
+'convert'     Name.Symbol
+'('           Punctuation
+'.arr'        Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'String'      Keyword.Type
+'?'           Operator
+'       '     Text
+'->'          Name.Function
+' '           Text
+'convert'     Name.Symbol
+'('           Punctuation
+'.str'        Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'else'        Keyword.Pseudo
+'          '  Text
+'->'          Name.Function
+' '           Text
+'throw '      Keyword.Control
+'E.error'     Name.Exception
+'('           Punctuation
+'"'           Literal.String
+'T'           Literal.String
+'h'           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'r'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'!'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'unimpl-func' Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'->'          Name.Function
+' '           Text
+'pass'        Keyword.Pseudo
+'\n'          Text
+
+'\n'          Text
+
+';; if / elif / else test\n' Comment
+
+'if '         Keyword.Control
+'coolness'    Name.Symbol
+' '           Text
+'>'           Operator
+' '           Text
+'11'          Literal.Number.Integer
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'add '        Keyword.Control
+'something'   Name.Symbol
+':'           Punctuation
+' '           Text
+'something-else' Name.Symbol
+'\n'          Text
+
+'elif '       Keyword.Control
+'true'        Name.Constant
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'add '        Keyword.Control
+'nothing'     Name.Symbol
+':'           Punctuation
+' '           Text
+'something-else' Name.Symbol
+'\n'          Text
+
+'else'        Keyword.Pseudo
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'add '        Keyword.Control
+'everything'  Name.Symbol
+':'           Punctuation
+' '           Text
+'the-castle'  Name.Symbol
+'\n'          Text
+
+'\n'          Text
+
+';; nested if / elif / else test\n' Comment
+
+'mad-function' Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'bananas'     Name.Symbol
+' '           Text
+'->'          Name.Function
+'\n'          Text
+
+'   '         Text
+'if '         Keyword.Control
+'bananas'     Name.Symbol
+' '           Text
+'>'           Operator
+' '           Text
+'5'           Literal.Number.Integer
+':'           Punctuation
+'\n'          Text
+
+'      '      Text
+'print '      Keyword.Control
+'"'           Literal.String
+'Y'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+"'"           Literal.String
+'v'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'g'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+' '           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'f'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'!'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'   '         Text
+'elif '       Keyword.Control
+'bananas'     Name.Symbol
+' '           Text
+'='           Operator.Word
+'='           Operator.Word
+' '           Text
+'5'           Literal.Number.Integer
+':'           Punctuation
+'\n'          Text
+
+'      '      Text
+'print '      Keyword.Control
+'"'           Literal.String
+'Y'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+' '           Literal.String
+'m'           Literal.String
+'i'           Literal.String
+'g'           Literal.String
+'h'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'w'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'c'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'s'           Literal.String
+'i'           Literal.String
+'d'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+' '           Literal.String
+'g'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'t'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+' '           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'   '         Text
+'else'        Keyword.Control
+':'           Punctuation
+'\n'          Text
+
+'      '      Text
+'print '      Keyword.Control
+'"'           Literal.String
+'G'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'g'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'n'           Literal.String
+'o'           Literal.String
+'w'           Literal.String
+'!'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+';; class test\n' Comment
+
+'class '      Keyword.Control
+'Dog'         Name.Symbol
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'constructor' Name.Builtin
+'('           Punctuation
+'@name'       Name.Variable.Instance
+','           Punctuation
+' '           Text
+'@breed'      Name.Variable.Instance
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+'\n'          Text
+
+'      '      Text
+'this'        Keyword.Constant
+'.'           Punctuation
+'awesomesauce' Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'100'         Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'unimpl-meth' Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'->'          Name.Function
+' '           Text
+'pass'        Keyword.Pseudo
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'bark'        Name.Symbol
+'('           Punctuation
+'@'           Keyword.Constant
+','           Punctuation
+' '           Text
+'sd'          Name.Symbol
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+';; error test\n' Comment
+
+'try'         Name.Symbol
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'throw '      Keyword.Control
+'E.test.my-error' Name.Exception
+'('           Punctuation
+'"'           Literal.String
+'T'           Literal.String
+'h'           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'m'           Literal.String
+'y'           Literal.String
+' '           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'r'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'catch '      Keyword.Control
+'TypeError'   Name.Exception
+'?'           Operator
+' '           Text
+'e'           Name.Symbol
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'print '      Keyword.Control
+'"'           Literal.String
+'T'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'w'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'y'           Literal.String
+'p'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'r'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'catch '      Keyword.Control
+'E.my-error'  Name.Exception
+'?'           Operator
+' '           Text
+'e'           Name.Symbol
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'print '      Keyword.Control
+'"'           Literal.String
+'M'           Literal.String
+'y'           Literal.String
+' '           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'r'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'!'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'catch '      Keyword.Control
+'e'           Name.Symbol
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'print '      Keyword.Control
+'"'           Literal.String
+'S'           Literal.String
+'o'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+' '           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'r'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'finally'     Name.Symbol
+':'           Punctuation
+'\n'          Text
+
+'   '         Text
+'print '      Keyword.Control
+'"'           Literal.String
+'W'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'d'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'e'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+';; method shorthand operator\n' Comment
+
+'stream-of-twos' Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'*->'         Name.Function
+'\n'          Text
+
+'   '         Text
+'while '      Keyword.Control
+'['           Punctuation
+'true'        Name.Constant
+']'           Punctuation
+':'           Punctuation
+' '           Text
+'yield '      Keyword.Control
+'2'           Literal.Number.Integer
+' '           Text
+';; need to fix literals with colons after them.\n' Comment
+
+'\n'          Text
+
+';; gen shorthand operator\n' Comment
+
+'full-name'   Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'@->'         Name.Function
+'\n'          Text
+
+'   '         Text
+"'"           Literal.String
+'{'           Literal.String.Interpol
+'@first-name' Name.Variable.Instance
+'}'           Literal.String.Interpol
+' '           Literal.String
+'{'           Literal.String.Interpol
+'@last-name'  Name.Variable.Instance
+'}'           Literal.String.Interpol
+"'"           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'name-method' Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'@->'         Name.Function
+'\n'          Text
+
+'   '         Text
+'@name'       Name.Variable.Instance
+'.'           Punctuation
+'parents'     Name.Field
+'.'           Punctuation
+'full-name'   Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+';; Keyword highlight test\n' Comment
+
+'key '        Keyword.Control
+'x'           Name.Symbol
+'\n'          Text
+
+'key '        Keyword.Control
+'+'           Operator
+'x'           Name.Symbol
+';'           Punctuation
+' '           Text
+'key '        Keyword.Control
+'@x'          Name.Variable.Instance
+';'           Punctuation
+' '           Text
+'key '        Keyword.Control
+'.x'          Literal.String.Symbol
+' '           Text
+';'           Punctuation
+' '           Text
+'key '        Keyword.Control
+'"'           Literal.String
+'x'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+' '           Text
+'key '        Keyword.Control
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'.asdasd'     Literal.String.Symbol
+'\n'          Text
+
+'key '        Keyword.Control
+'('           Punctuation
+'x'           Name.Symbol
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'key '        Keyword.Control
+'['           Punctuation
+'x'           Name.Symbol
+']'           Punctuation
+';'           Punctuation
+' '           Text
+'key '        Keyword.Control
+'{'           Punctuation
+'x'           Name.Symbol
+'}'           Punctuation
+'\n'          Text
+
+'nokey'       Name.Symbol
+'.'           Punctuation
+'x'           Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'nokey'       Name.Symbol
+'{'           Punctuation
+'x'           Name.Symbol
+'}'           Punctuation
+'\n'          Text
+
+'key '        Keyword.Control
+'x'           Name.Symbol
+' '           Text
+'+'           Operator
+' '           Text
+'y'           Name.Symbol
+'\n'          Text
+
+'key '        Keyword.Control
+'key '        Keyword.Control
+'x'           Name.Symbol
+'\n'          Text
+
+'x'           Name.Symbol
+' '           Text
+'+'           Operator
+' '           Text
+'key '        Keyword.Control
+'y'           Name.Symbol
+'\n'          Text
+
+'x'           Name.Symbol
+' '           Text
+'-'           Operator
+' '           Text
+'key '        Keyword.Control
+'y'           Name.Symbol
+'\n'          Text
+
+'nokey'       Name.Symbol
+' '           Text
+'+'           Operator
+' '           Text
+'x'           Name.Symbol
+'\n'          Text
+
+'nokey'       Name.Symbol
+'\n'          Text
+
+'key'         Name.Symbol
+':'           Punctuation
+' '           Text
+'x'           Name.Symbol
+'\n'          Text
+
+'key '        Keyword.Control
+'nokey'       Name.Symbol
+':'           Punctuation
+' '           Text
+'y'           Name.Symbol
+'\n'          Text
+
+'key '        Keyword.Control
+'x'           Name.Symbol
+' '           Text
+'>'           Operator
+' '           Text
+'nokey'       Name.Symbol
+':'           Punctuation
+' '           Text
+'z'           Name.Symbol
+'\n'          Text
+
+'x'           Name.Symbol
+' '           Text
+'+'           Operator
+' '           Text
+'key '        Keyword.Control
+'nokey'       Name.Symbol
+':'           Punctuation
+' '           Text
+'z'           Name.Symbol
+'\n'          Text
+
+'x'           Name.Symbol
+' '           Text
+'and '        Keyword.Control
+'{'           Punctuation
+'y'           Name.Symbol
+','           Punctuation
+' '           Text
+'z'           Name.Symbol
+'}'           Punctuation
+'\n'          Text
+
+'x'           Name.Symbol
+' '           Text
+'+'           Operator
+' '           Text
+'nokey'       Name.Symbol
+':'           Punctuation
+' '           Text
+'y'           Name.Symbol
+'\n'          Text
+
+'x'           Name.Symbol
+' '           Text
+'mod '        Keyword.Control
+'nokey'       Name.Symbol
+':'           Punctuation
+' '           Text
+'y'           Name.Symbol
+'\n'          Text
+
+'x'           Name.Variable
+' '           Text
+'='           Operator.Word
+' '           Text
+'key'         Keyword.Control
+':'           Punctuation
+' '           Text
+'y'           Name.Symbol
+' '           Text
+';; comments work after keywords!\n' Comment
+
+'x'           Name.Symbol
+' '           Text
+'each '       Keyword.Control
+'key'         Name.Symbol
+':'           Punctuation
+' '           Text
+'y'           Name.Symbol
+'\n'          Text
+
+'x'           Name.Symbol
+' '           Text
+'each*'       Keyword.Pseudo
+' '           Text
+'k'           Name.Symbol
+' '           Text
+';;\n'        Comment
+
+'a'           Name.Symbol
+'.'           Punctuation
+'b'           Name.Function
+'{'           Punctuation
+'c'           Name.Symbol
+'.'           Punctuation
+'d'           Name.Field
+','           Punctuation
+' '           Text
+'e'           Name.Symbol
+'.'           Punctuation
+'f'           Name.Field
+'}'           Punctuation
+'\n'          Text
+
+'a'           Name.Symbol
+'.'           Punctuation
+'bad-method'  Name.Function
+'('           Punctuation
+'c'           Name.Symbol
+'.'           Punctuation
+'d'           Name.Field
+','           Punctuation
+' '           Text
+'e'           Name.Symbol
+'.'           Punctuation
+'f'           Name.Field
+')'           Punctuation
+'\n'          Text
+
+'#a'          Name.Namespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'nokey'       Name.Symbol
+' '           Text
+'mod'         Keyword.Control
+':'           Punctuation
+' '           Text
+'y'           Name.Symbol
+' '           Text
+';; do not highlight nokey\n' Comment
+
+';; because mod is an operator\n' Comment
+
+'\n'          Text
+
+';; Highlight all of these:\n' Comment
+
+'await'       Keyword.Pseudo
+';'           Punctuation
+' '           Text
+'break'       Keyword.Pseudo
+';'           Punctuation
+' '           Text
+'chain'       Keyword.Pseudo
+';'           Punctuation
+' '           Text
+'continue'    Keyword.Pseudo
+';'           Punctuation
+' '           Text
+'else'        Keyword.Control
+':'           Punctuation
+';'           Punctuation
+' '           Text
+'expr-value'  Keyword.Pseudo
+'\n'          Text
+
+'match'       Keyword.Pseudo
+';'           Punctuation
+' '           Text
+'return'      Keyword.Pseudo
+';'           Punctuation
+' '           Text
+'yield'       Keyword.Pseudo
+'\n'          Text
+
+'\n'          Text
+
+';; Edge-case highlighting test\n' Comment
+
+'key-word'    Name.Symbol
+':'           Punctuation
+' '           Text
+'xyz'         Name.Symbol
+'\n'          Text
+
+'nokey'       Name.Symbol
+' '           Text
+'-'           Operator
+' '           Text
+'x'           Name.Symbol
+':'           Punctuation
+' '           Text
+'yz'          Name.Symbol
+'\n'          Text
+
+'\n'          Text
+
+';; Some keywords may contain operators as a subpart. If your regexp\n' Comment
+
+';; uses \\b to single out operators like each, is or in, you may\n' Comment
+
+';; fail to highlight these properly:\n' Comment
+
+'beaches'     Name.Symbol
+'           ' Text
+';; Do not highlight each inside the word beaches\n' Comment
+
+'each-thing'  Name.Symbol
+'        '    Text
+';; Do not highlight each\n' Comment
+
+'sleep-in'    Name.Symbol
+'          '  Text
+';; Do not highlight in\n' Comment
+
+'before-each' Name.Symbol
+':'           Punctuation
+' '           Text
+'xyz'         Name.Symbol
+'  '          Text
+';; Highlight before-each as a keyword\n' Comment
+
+'is-great'    Name.Symbol
+':'           Punctuation
+' '           Text
+'xyz'         Name.Symbol
+'     '       Text
+';; Highlight is-great as a keyword\n' Comment
+
+'\n'          Text
+
+'send'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+'\n'          Text

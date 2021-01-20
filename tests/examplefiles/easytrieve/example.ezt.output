@@ -1,0 +1,189 @@
+'* Easytrieve Plus example programm.\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'* Environtment section.\n' Comment.Single
+
+'PARM'        Keyword.Declaration
+' '           Operator
+'DEBUG'       Name
+'('           Operator
+'FLOW'        Name
+' '           Text.Whitespace
+'FLDCHK'      Name
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'* Library Section.\n' Comment.Single
+
+'FILE'        Keyword.Declaration
+' '           Text.Whitespace
+'PERSNL'      Name.Function
+' '           Text.Whitespace
+'FB'          Name
+'('           Operator
+'150'         Literal.Number.Integer
+' '           Text.Whitespace
+'1800'        Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'NAME'        Name
+'  '          Text.Whitespace
+'17'          Literal.Number.Integer
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+' '           Text.Whitespace
+'A'           Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'EMP#'        Name
+'   '         Text.Whitespace
+'9'           Literal.Number.Integer
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'N'           Name
+' '           Text.Whitespace
+"* Note: '#' is a valid character for names.\n" Comment.Single
+
+'  '          Text.Whitespace
+'DEPT'        Name
+'  '          Text.Whitespace
+'98'          Literal.Number.Integer
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'N'           Name
+'.'           Operator
+' '           Text.Whitespace
+'GROSS'       Name
+' '           Text.Whitespace
+'94'          Literal.Number.Integer
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'P'           Name
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'*           ^ 2 field definitions in 1 line.\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'* Call macro in example.mac.\n' Comment.Single
+
+'FILE'        Keyword.Declaration
+' '           Text.Whitespace
+'EXAMPLE'     Name.Function
+' '           Text.Whitespace
+'FB'          Name
+'('           Operator
+'80'          Literal.Number.Integer
+' '           Text.Whitespace
+'200'         Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'%EXAMPLE'    Name.Variable
+' '           Text.Whitespace
+'SOMEFILE'    Name
+' '           Text.Whitespace
+'SOME'        Name
+'\n\n'        Text.Whitespace
+
+'* Activity Section.\n' Comment.Single
+
+'JOB'         Keyword.Declaration
+' '           Operator
+'INPUT'       Name
+' '           Text.Whitespace
+'PERSNL'      Name
+' '           Text.Whitespace
+'NAME'        Name
+' '           Text.Whitespace
+'FIRST-PROGRAM' Name
+' '           Text.Whitespace
+'START'       Name
+' '           Text.Whitespace
+'AT-START'    Name
+' '           Text.Whitespace
+'FINISH'      Name
+' '           Text.Whitespace
+'AT_FINISH'   Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'PRINT'       Keyword.Reserved
+' '           Operator
+'PAY-RPT'     Name
+'\n'          Text.Whitespace
+
+'REPORT'      Keyword.Declaration
+' '           Text.Whitespace
+'PAY-RPT'     Name.Function
+' '           Text.Whitespace
+'LINESIZE'    Name
+' '           Text.Whitespace
+'80'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'TITLE'       Keyword.Reserved
+' '           Operator
+'01'          Literal.Number.Integer
+' '           Text.Whitespace
+"'PERSONNEL REPORT EXAMPLE-1'" Literal.String
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'LINE'        Keyword.Reserved
+' '           Operator
+'01'          Literal.Number.Integer
+' '           Text.Whitespace
+'DEPT'        Name
+' '           Text.Whitespace
+'NAME'        Name
+' '           Text.Whitespace
+'EMP#'        Name
+' '           Text.Whitespace
+'GROSS'       Name
+'\n\n'        Text.Whitespace
+
+'* Procedure declarations.\n' Comment.Single
+
+'AT-START'    Name.Function
+'.'           Operator
+' '           Text.Whitespace
+'PROC'        Keyword.Declaration
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'DISPLAY'     Keyword.Reserved
+' '           Operator
+"'PROCESSING...'" Literal.String
+'\n'          Text.Whitespace
+
+'END-PROC'    Keyword.Reserved
+'\n'          Operator
+
+'\n'          Text.Whitespace
+
+'AT-FINISH'   Name.Function
+'\n'          Text.Whitespace
+
+'PROC'        Keyword.Declaration
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'DISPLAY'     Keyword.Reserved
+' '           Operator
+"'DONE.'"     Literal.String
+'\n'          Text.Whitespace
+
+'END-PROC'    Keyword.Reserved
+'\n'          Operator

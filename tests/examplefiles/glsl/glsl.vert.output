@@ -1,0 +1,106 @@
+'/* Vertex shader */' Comment.Multiline
+'\n'          Text
+
+'uniform'     Keyword
+' '           Text
+'float'       Keyword.Type
+' '           Text
+'waveTime'    Name
+';'           Punctuation
+'\n'          Text
+
+'uniform'     Keyword
+' '           Text
+'float'       Keyword.Type
+' '           Text
+'waveWidth'   Name
+';'           Punctuation
+'\n'          Text
+
+'uniform'     Keyword
+' '           Text
+'float'       Keyword.Type
+' '           Text
+'waveHeight'  Name
+';'           Punctuation
+'\n \n'       Text
+
+'void'        Keyword.Type
+' '           Text
+'main'        Name
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n    '      Text
+'vec4'        Keyword.Type
+' '           Text
+'v'           Name
+' '           Text
+'='           Operator
+' '           Text
+'vec4'        Keyword.Type
+'('           Punctuation
+'gl_Vertex'   Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n\n    '    Text
+'v'           Name
+'.'           Punctuation
+'z'           Name
+' '           Text
+'='           Operator
+' '           Text
+'sin'         Name
+'('           Punctuation
+'waveWidth'   Name
+' '           Text
+'*'           Operator
+' '           Text
+'v'           Name
+'.'           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'waveTime'    Name
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'cos'         Name
+'('           Punctuation
+'waveWidth'   Name
+' '           Text
+'*'           Operator
+' '           Text
+'v'           Name
+'.'           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'waveTime'    Name
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'waveHeight'  Name
+';'           Punctuation
+'\n\n    '    Text
+'gl_Position' Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'gl_ModelViewProjectionMatrix' Name.Builtin
+' '           Text
+'*'           Operator
+' '           Text
+'v'           Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

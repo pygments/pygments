@@ -1,0 +1,1904 @@
+'# Based upon the NCSA server configuration files originally by Rob McCool.' Comment
+'\n'          Text
+
+'# Changed extensively for the Debian package by Daniel Stone <daniel@sfarc.net>' Comment
+'\n'          Text
+
+'# and also by Thom May <thom@debian.org>.' Comment
+'\n\n'        Text
+
+"# ServerRoot: The top of the directory tree under which the server's" Comment
+'\n'          Text
+
+'# configuration, error, and log files are kept.' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'# NOTE!  If you intend to place this on an NFS (or otherwise network)' Comment
+'\n'          Text
+
+'# mounted filesystem then please read the LockFile documentation' Comment
+'\n'          Text
+
+'# (available at <URL:http://www.apache.org/docs/mod/core.html#lockfile>);' Comment
+'\n'          Text
+
+'# you will save yourself a lot of trouble.' Comment
+'\n\n'        Text
+
+'ServerRoot'  Name.Builtin
+' '           Text
+'"/etc/apache2"' Literal.String.Double
+''            Text
+'\n\n'        Text
+
+'# The LockFile directive sets the path to the lockfile used when Apache' Comment
+'\n'          Text
+
+'# is compiled with either USE_FCNTL_SERIALIZED_ACCEPT or' Comment
+'\n'          Text
+
+'# USE_FLOCK_SERIALIZED_ACCEPT. This directive should normally be left at' Comment
+'\n'          Text
+
+'# its default value. The main reason for changing it is if the logs' Comment
+'\n'          Text
+
+'# directory is NFS mounted, since the lockfile MUST BE STORED ON A LOCAL' Comment
+'\n'          Text
+
+'# DISK. The PID of the main server process is automatically appended to' Comment
+'\n'          Text
+
+'# the filename. ' Comment
+'\n\n'        Text
+
+'LockFile'    Name.Builtin
+' '           Text
+'/var/lock/apache2/accept.lock' Literal.String.Other
+''            Text
+'\n\n'        Text
+
+'# PidFile: The file in which the server should record its process' Comment
+'\n'          Text
+
+'# identification number when it starts.' Comment
+'\n\n'        Text
+
+'PidFile'     Name.Builtin
+' '           Text
+'/var/run/apache2.pid' Literal.String.Other
+''            Text
+'\n\n'        Text
+
+'# Timeout: The number of seconds before receives and sends time out.' Comment
+'\n\n'        Text
+
+'Timeout'     Name.Builtin
+' '           Text
+'300'         Literal.Number
+''            Text
+'\n\n'        Text
+
+'# KeepAlive: Whether or not to allow persistent connections (more than' Comment
+'\n'          Text
+
+'# one request per connection). Set to "Off" to deactivate.' Comment
+'\n\n'        Text
+
+'KeepAlive'   Name.Builtin
+' '           Text
+'On'          Keyword
+''            Text
+'\n\n'        Text
+
+'# MaxKeepAliveRequests: The maximum number of requests to allow' Comment
+'\n'          Text
+
+'# during a persistent connection. Set to 0 to allow an unlimited amount.' Comment
+'\n'          Text
+
+'# We recommend you leave this number high, for maximum performance.' Comment
+'\n\n'        Text
+
+'MaxKeepAliveRequests' Name.Builtin
+' '           Text
+'100'         Literal.Number
+''            Text
+'\n\n'        Text
+
+'# KeepAliveTimeout: Number of seconds to wait for the next request from the' Comment
+'\n'          Text
+
+'# same client on the same connection.' Comment
+'\n\n'        Text
+
+'KeepAliveTimeout' Name.Builtin
+' '           Text
+'15'          Literal.Number
+''            Text
+'\n\n'        Text
+
+'##'          Comment
+'\n'          Text
+
+'## Server-Pool Size Regulation (MPM specific)' Comment
+'\n'          Text
+
+'## '         Comment
+'\n\n'        Text
+
+'# prefork MPM' Comment
+'\n'          Text
+
+'# StartServers ......... number of server processes to start' Comment
+'\n'          Text
+
+'# MinSpareServers ...... minimum number of server processes which are kept spare' Comment
+'\n'          Text
+
+'# MaxSpareServers ...... maximum number of server processes which are kept spare' Comment
+'\n'          Text
+
+'# MaxClients ........... maximum number of server processes allowed to start' Comment
+'\n'          Text
+
+'# MaxRequestsPerChild .. maximum number of requests a server process serves' Comment
+'\n'          Text
+
+'<IfModule'   Name.Tag
+' '           Text
+'prefork.c'   Literal.String
+'>'           Name.Tag
+'\n'          Text
+
+'StartServers' Name.Builtin
+'         '   Text
+'5'           Literal.Number
+''            Text
+'\n'          Text
+
+'MinSpareServers' Name.Builtin
+'      '      Text
+'5'           Literal.Number
+''            Text
+'\n'          Text
+
+'MaxSpareServers' Name.Builtin
+'     '       Text
+'10'          Literal.Number
+''            Text
+'\n'          Text
+
+'MaxClients'  Name.Builtin
+'          '  Text
+'20'          Literal.Number
+''            Text
+'\n'          Text
+
+'MaxRequestsPerChild' Name.Builtin
+'  '          Text
+'0'           Literal.Number
+''            Text
+'\n'          Text
+
+'</IfModule'  Name.Tag
+'>'           Name.Tag
+'\n\n'        Text
+
+'# pthread MPM' Comment
+'\n'          Text
+
+'# StartServers ......... initial  number of server processes to start' Comment
+'\n'          Text
+
+'# MaxClients ........... maximum  number of server processes allowed to start' Comment
+'\n'          Text
+
+'# MinSpareThreads ...... minimum  number of worker threads which are kept spare' Comment
+'\n'          Text
+
+'# MaxSpareThreads ...... maximum  number of worker threads which are kept spare' Comment
+'\n'          Text
+
+'# ThreadsPerChild ...... constant number of worker threads in each server process' Comment
+'\n'          Text
+
+'# MaxRequestsPerChild .. maximum  number of requests a server process serves' Comment
+'\n'          Text
+
+'<IfModule'   Name.Tag
+' '           Text
+'worker.c'    Literal.String
+'>'           Name.Tag
+'\n'          Text
+
+'StartServers' Name.Builtin
+'         '   Text
+'2'           Literal.Number
+''            Text
+'\n'          Text
+
+'MaxClients'  Name.Builtin
+'         '   Text
+'150'         Literal.Number
+' '           Text
+''            Text
+'\n'          Text
+
+'MinSpareThreads' Name.Builtin
+'     '       Text
+'25'          Literal.Number
+''            Text
+'\n'          Text
+
+'MaxSpareThreads' Name.Builtin
+'     '       Text
+'75'          Literal.Number
+''            Text
+'\n'          Text
+
+'ThreadsPerChild' Name.Builtin
+'     '       Text
+'25'          Literal.Number
+''            Text
+'\n'          Text
+
+'MaxRequestsPerChild' Name.Builtin
+'  '          Text
+'0'           Literal.Number
+''            Text
+'\n'          Text
+
+'</IfModule'  Name.Tag
+'>'           Name.Tag
+'\n\n'        Text
+
+'# perchild MPM' Comment
+'\n'          Text
+
+'# NumServers ........... constant number of server processes' Comment
+'\n'          Text
+
+'# StartThreads ......... initial  number of worker threads in each server process' Comment
+'\n'          Text
+
+'# MinSpareThreads ...... minimum  number of worker threads which are kept spare' Comment
+'\n'          Text
+
+'# MaxSpareThreads ...... maximum  number of worker threads which are kept spare' Comment
+'\n'          Text
+
+'# MaxThreadsPerChild ... maximum  number of worker threads in each server process' Comment
+'\n'          Text
+
+'# MaxRequestsPerChild .. maximum  number of connections per server process (then it dies)' Comment
+'\n'          Text
+
+'<IfModule'   Name.Tag
+' '           Text
+'perchild.c'  Literal.String
+'>'           Name.Tag
+'\n'          Text
+
+'NumServers'  Name.Builtin
+'           ' Text
+'5'           Literal.Number
+''            Text
+'\n'          Text
+
+'StartThreads' Name.Builtin
+'         '   Text
+'5'           Literal.Number
+''            Text
+'\n'          Text
+
+'MinSpareThreads' Name.Builtin
+'      '      Text
+'5'           Literal.Number
+''            Text
+'\n'          Text
+
+'MaxSpareThreads' Name.Builtin
+'     '       Text
+'10'          Literal.Number
+''            Text
+'\n'          Text
+
+'MaxThreadsPerChild' Name.Builtin
+'  '          Text
+'20'          Literal.Number
+''            Text
+'\n'          Text
+
+'MaxRequestsPerChild' Name.Builtin
+'  '          Text
+'0'           Literal.Number
+''            Text
+'\n'          Text
+
+'AcceptMutex' Name.Builtin
+' '           Text
+'fcntl'       Text
+''            Text
+'\n'          Text
+
+'</IfModule'  Name.Tag
+'>'           Name.Tag
+'\n\n'        Text
+
+'User'        Name.Builtin
+' '           Text
+'www-data'    Text
+''            Text
+'\n'          Text
+
+'Group'       Name.Builtin
+' '           Text
+'www-data'    Text
+''            Text
+'\n\n'        Text
+
+'# The following directives define some format nicknames for use with' Comment
+'\n'          Text
+
+'# a CustomLog directive (see below).' Comment
+'\n'          Text
+
+'LogFormat'   Name.Builtin
+' '           Text
+'"%h %l %u %t \\"%r\\" %>s %b \\"%{Referer}i\\" \\"%{User-Agent}i\\""' Literal.String.Double
+' '           Text
+'combined'    Text
+''            Text
+'\n'          Text
+
+'LogFormat'   Name.Builtin
+' '           Text
+'"%h %l %u %t \\"%r\\" %>s %b"' Literal.String.Double
+' '           Text
+'common'      Text
+''            Text
+'\n'          Text
+
+'LogFormat'   Name.Builtin
+' '           Text
+'"%{Referer}i -> %U"' Literal.String.Double
+' '           Text
+'referer'     Text
+''            Text
+'\n'          Text
+
+'LogFormat'   Name.Builtin
+' '           Text
+'"%{User-agent}i"' Literal.String.Double
+' '           Text
+'agent'       Text
+''            Text
+'\n\n\n'      Text
+
+'# Global error log.' Comment
+'\n'          Text
+
+'ErrorLog'    Name.Builtin
+' '           Text
+'/var/log/apache2/error.log' Literal.String.Other
+''            Text
+'\n\n'        Text
+
+'# Include module configuration:' Comment
+'\n'          Text
+
+'Include'     Name.Builtin
+' '           Text
+'/etc/apache2/mods-enabled/*.load' Literal.String.Other
+''            Text
+'\n'          Text
+
+'Include'     Name.Builtin
+' '           Text
+'/etc/apache2/mods-enabled/*.conf' Literal.String.Other
+''            Text
+'\n\n'        Text
+
+'# Include all the user configurations:' Comment
+'\n'          Text
+
+'Include'     Name.Builtin
+' '           Text
+'/etc/apache2/httpd.conf' Literal.String.Other
+''            Text
+'\n\n'        Text
+
+'# Include ports listing' Comment
+'\n'          Text
+
+'Include'     Name.Builtin
+' '           Text
+'/etc/apache2/ports.conf' Literal.String.Other
+''            Text
+'\n\n'        Text
+
+'# Include generic snippets of statements' Comment
+'\n'          Text
+
+'Include'     Name.Builtin
+' '           Text
+'/etc/apache2/conf.d/' Literal.String.Other
+'[^.#]*'      Text
+''            Text
+'\n\n'        Text
+
+"#Let's have some Icons, shall we?" Comment
+'\n'          Text
+
+'Alias'       Name.Builtin
+' '           Text
+'/icons/'     Literal.String.Other
+' '           Text
+'"/usr/share/apache2/icons/"' Literal.String.Double
+''            Text
+'\n'          Text
+
+'<Directory'  Name.Tag
+' '           Text
+'"/usr/share/apache2/icons"' Literal.String
+'>'           Name.Tag
+'\n    '      Text
+'Options'     Name.Builtin
+' '           Text
+'Indexes'     Text
+' '           Text
+'MultiViews'  Text
+''            Text
+'\n    '      Text
+'AllowOverride' Name.Builtin
+' '           Text
+'None'        Keyword
+''            Text
+'\n    '      Text
+'Order'       Name.Builtin
+' '           Text
+'allow,deny'  Text
+''            Text
+'\n    '      Text
+'Allow'       Name.Builtin
+' '           Text
+'from'        Text
+' '           Text
+'all'         Keyword
+''            Text
+'\n'          Text
+
+'</Directory' Name.Tag
+'>'           Name.Tag
+'\n\n'        Text
+
+'# Set up the default error docs.' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'# Customizable error responses come in three flavors:' Comment
+'\n'          Text
+
+'# 1) plain text 2) local redirects 3) external redirects' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'# Some examples:' Comment
+'\n'          Text
+
+'#ErrorDocument 500 "The server made a boo boo."' Comment
+'\n'          Text
+
+'#ErrorDocument 404 /missing.html' Comment
+'\n'          Text
+
+'#ErrorDocument 404 "/cgi-bin/missing_handler.pl"' Comment
+'\n'          Text
+
+'#ErrorDocument 402 http://www.example.com/subscription_info.html' Comment
+'\n'          Text
+
+'#'           Comment
+'\n\n'        Text
+
+'#'           Comment
+'\n'          Text
+
+'# Putting this all together, we can Internationalize error responses.' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'# We use Alias to redirect any /error/HTTP_<error>.html.var response to' Comment
+'\n'          Text
+
+'# our collection of by-error message multi-language collections.  We use ' Comment
+'\n'          Text
+
+'# includes to substitute the appropriate text.' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+"# You can modify the messages' appearance without changing any of the" Comment
+'\n'          Text
+
+'# default HTTP_<error>.html.var files by adding the line;' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'#   Alias /error/include/ "/your/include/path/"' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'# which allows you to create your own set of files by starting with the' Comment
+'\n'          Text
+
+'# /usr/local/apache2/error/include/ files and' Comment
+'\n'          Text
+
+'# copying them to /your/include/path/, even on a per-VirtualHost basis.' Comment
+'\n'          Text
+
+'#'           Comment
+'\n\n'        Text
+
+'<IfModule'   Name.Tag
+' '           Text
+'mod_negotiation.c' Literal.String
+'>'           Name.Tag
+'\n'          Text
+
+'<IfModule'   Name.Tag
+' '           Text
+'mod_include.c' Literal.String
+'>'           Name.Tag
+'\n    '      Text
+'Alias'       Name.Builtin
+' '           Text
+'/error/'     Literal.String.Other
+' '           Text
+'"/usr/share/apache2/error/"' Literal.String.Double
+''            Text
+'\n\n    '    Text
+'<Directory'  Name.Tag
+' '           Text
+'"/usr/share/apache2/error"' Literal.String
+'>'           Name.Tag
+'\n        '  Text
+'AllowOverride' Name.Builtin
+' '           Text
+'None'        Keyword
+''            Text
+'\n        '  Text
+'Options'     Name.Builtin
+' '           Text
+'IncludesNoExec' Text
+''            Text
+'\n        '  Text
+'AddOutputFilter' Name.Builtin
+' '           Text
+'Includes'    Text
+' '           Text
+'html'        Text
+''            Text
+'\n        '  Text
+'AddHandler'  Name.Builtin
+' '           Text
+'type-map'    Text
+' '           Text
+'var'         Text
+''            Text
+'\n        '  Text
+'Order'       Name.Builtin
+' '           Text
+'allow,deny'  Text
+''            Text
+'\n        '  Text
+'Allow'       Name.Builtin
+' '           Text
+'from'        Text
+' '           Text
+'all'         Keyword
+''            Text
+'\n        '  Text
+'LanguagePriority' Name.Builtin
+' '           Text
+'en'          Text
+' '           Text
+'es'          Text
+' '           Text
+'de'          Text
+' '           Text
+'fr'          Text
+''            Text
+'\n        '  Text
+'ForceLanguagePriority' Name.Builtin
+' '           Text
+'Prefer'      Text
+' '           Text
+'Fallback'    Text
+''            Text
+'\n    '      Text
+'</Directory' Name.Tag
+'>'           Name.Tag
+'\n\n    '    Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'400'         Literal.Number
+' '           Text
+'/error/HTTP_BAD_REQUEST.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'401'         Literal.Number
+' '           Text
+'/error/HTTP_UNAUTHORIZED.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'403'         Literal.Number
+' '           Text
+'/error/HTTP_FORBIDDEN.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'404'         Literal.Number
+' '           Text
+'/error/HTTP_NOT_FOUND.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'405'         Literal.Number
+' '           Text
+'/error/HTTP_METHOD_NOT_ALLOWED.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'408'         Literal.Number
+' '           Text
+'/error/HTTP_REQUEST_TIME_OUT.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'410'         Literal.Number
+' '           Text
+'/error/HTTP_GONE.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'411'         Literal.Number
+' '           Text
+'/error/HTTP_LENGTH_REQUIRED.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'412'         Literal.Number
+' '           Text
+'/error/HTTP_PRECONDITION_FAILED.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'413'         Literal.Number
+' '           Text
+'/error/HTTP_REQUEST_ENTITY_TOO_LARGE.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'414'         Literal.Number
+' '           Text
+'/error/HTTP_REQUEST_URI_TOO_LARGE.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'415'         Literal.Number
+' '           Text
+'/error/HTTP_SERVICE_UNAVAILABLE.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'500'         Literal.Number
+' '           Text
+'/error/HTTP_INTERNAL_SERVER_ERROR.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'501'         Literal.Number
+' '           Text
+'/error/HTTP_NOT_IMPLEMENTED.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'502'         Literal.Number
+' '           Text
+'/error/HTTP_BAD_GATEWAY.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'503'         Literal.Number
+' '           Text
+'/error/HTTP_SERVICE_UNAVAILABLE.html.var' Literal.String.Other
+''            Text
+'\n    '      Text
+'ErrorDocument' Name.Builtin
+' '           Text
+'506'         Literal.Number
+' '           Text
+'/error/HTTP_VARIANT_ALSO_VARIES.html.var' Literal.String.Other
+''            Text
+'\n\n'        Text
+
+'</IfModule'  Name.Tag
+'>'           Name.Tag
+'\n'          Text
+
+'</IfModule'  Name.Tag
+'>'           Name.Tag
+'\n\n'        Text
+
+'DirectoryIndex' Name.Builtin
+' '           Text
+'index.html'  Text
+' '           Text
+'index.cgi'   Text
+' '           Text
+'index.pl'    Text
+' '           Text
+'index.php'   Text
+' '           Text
+'index.xhtml' Text
+''            Text
+'\n\n'        Text
+
+'# UserDir is now a module' Comment
+'\n'          Text
+
+'#UserDir public_html' Comment
+'\n'          Text
+
+'#UserDir disabled root' Comment
+'\n\n'        Text
+
+'#<Directory /home/*/public_html>' Comment
+'\n'          Text
+
+'#\tAllowOverride FileInfo AuthConfig Limit' Comment
+'\n'          Text
+
+'#\tOptions Indexes SymLinksIfOwnerMatch IncludesNoExec' Comment
+'\n'          Text
+
+'#</Directory>' Comment
+'\n\n'        Text
+
+'AccessFileName' Name.Builtin
+' '           Text
+'.htaccess'   Text
+''            Text
+'\n\n'        Text
+
+'<Files'      Name.Tag
+' '           Text
+'~ "^\\.ht"'  Literal.String
+'>'           Name.Tag
+'\n    '      Text
+'Order'       Name.Builtin
+' '           Text
+'allow,deny'  Text
+''            Text
+'\n    '      Text
+'Deny'        Name.Builtin
+' '           Text
+'from'        Text
+' '           Text
+'all'         Keyword
+''            Text
+'\n'          Text
+
+'</Files'     Name.Tag
+'>'           Name.Tag
+'\n\n'        Text
+
+'UseCanonicalName' Name.Builtin
+' '           Text
+'Off'         Keyword
+''            Text
+'\n\n'        Text
+
+'TypesConfig' Name.Builtin
+' '           Text
+'/etc/mime.types' Literal.String.Other
+''            Text
+'\n'          Text
+
+'DefaultType' Name.Builtin
+' '           Text
+'text/plain'  Text
+''            Text
+'\n\n'        Text
+
+'HostnameLookups' Name.Builtin
+' '           Text
+'Off'         Keyword
+''            Text
+'\n\n'        Text
+
+'IndexOptions' Name.Builtin
+' '           Text
+'FancyIndexing' Text
+' '           Text
+'VersionSort' Text
+''            Text
+'\n\n'        Text
+
+'AddIconByEncoding' Name.Builtin
+' '           Text
+'(CMP,/icons/compressed.gif)' Text
+' '           Text
+'x-compress'  Text
+' '           Text
+'x-gzip'      Text
+''            Text
+'\n\n'        Text
+
+'AddIconByType' Name.Builtin
+' '           Text
+'(TXT,/icons/text.gif)' Text
+' '           Text
+'text/*'      Text
+''            Text
+'\n'          Text
+
+'AddIconByType' Name.Builtin
+' '           Text
+'(IMG,/icons/image2.gif)' Text
+' '           Text
+'image/*'     Text
+''            Text
+'\n'          Text
+
+'AddIconByType' Name.Builtin
+' '           Text
+'(SND,/icons/sound2.gif)' Text
+' '           Text
+'audio/*'     Text
+''            Text
+'\n'          Text
+
+'AddIconByType' Name.Builtin
+' '           Text
+'(VID,/icons/movie.gif)' Text
+' '           Text
+'video/*'     Text
+''            Text
+'\n\n'        Text
+
+'# This really should be .jpg.' Comment
+'\n\n'        Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/binary.gif' Literal.String.Other
+' '           Text
+'.bin'        Text
+' '           Text
+'.exe'        Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/binhex.gif' Literal.String.Other
+' '           Text
+'.hqx'        Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/tar.gif' Literal.String.Other
+' '           Text
+'.tar'        Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/world2.gif' Literal.String.Other
+' '           Text
+'.wrl'        Text
+' '           Text
+'.wrl.gz'     Text
+' '           Text
+'.vrml'       Text
+' '           Text
+'.vrm'        Text
+' '           Text
+'.iv'         Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/compressed.gif' Literal.String.Other
+' '           Text
+'.Z'          Text
+' '           Text
+'.z'          Text
+' '           Text
+'.tgz'        Text
+' '           Text
+'.gz'         Text
+' '           Text
+'.zip'        Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/a.gif' Literal.String.Other
+' '           Text
+'.ps'         Text
+' '           Text
+'.ai'         Text
+' '           Text
+'.eps'        Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/layout.gif' Literal.String.Other
+' '           Text
+'.html'       Text
+' '           Text
+'.shtml'      Text
+' '           Text
+'.htm'        Text
+' '           Text
+'.pdf'        Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/text.gif' Literal.String.Other
+' '           Text
+'.txt'        Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/c.gif' Literal.String.Other
+' '           Text
+'.c'          Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/p.gif' Literal.String.Other
+' '           Text
+'.pl'         Text
+' '           Text
+'.py'         Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/f.gif' Literal.String.Other
+' '           Text
+'.for'        Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/dvi.gif' Literal.String.Other
+' '           Text
+'.dvi'        Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/uuencoded.gif' Literal.String.Other
+' '           Text
+'.uu'         Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/script.gif' Literal.String.Other
+' '           Text
+'.conf'       Text
+' '           Text
+'.sh'         Text
+' '           Text
+'.shar'       Text
+' '           Text
+'.csh'        Text
+' '           Text
+'.ksh'        Text
+' '           Text
+'.tcl'        Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/tex.gif' Literal.String.Other
+' '           Text
+'.tex'        Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/bomb.gif' Literal.String.Other
+' '           Text
+'core'        Text
+''            Text
+'\n\n'        Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/back.gif' Literal.String.Other
+' '           Text
+'..'          Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/hand.right.gif' Literal.String.Other
+' '           Text
+'README'      Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/folder.gif' Literal.String.Other
+' '           Text
+'^^DIRECTORY^^' Text
+''            Text
+'\n'          Text
+
+'AddIcon'     Name.Builtin
+' '           Text
+'/icons/blank.gif' Literal.String.Other
+' '           Text
+'^^BLANKICON^^' Text
+''            Text
+'\n\n\n'      Text
+
+"# This is from Matty J's patch. Anyone want to make the icons?" Comment
+'\n'          Text
+
+'#AddIcon /icons/dirsymlink.jpg ^^SYMDIR^^' Comment
+'\n'          Text
+
+'#AddIcon /icons/symlink.jpg ^^SYMLINK^^' Comment
+'\n\n'        Text
+
+'DefaultIcon' Name.Builtin
+' '           Text
+'/icons/unknown.gif' Literal.String.Other
+''            Text
+'\n\n'        Text
+
+'ReadmeName'  Name.Builtin
+' '           Text
+'README.html' Text
+''            Text
+'\n'          Text
+
+'HeaderName'  Name.Builtin
+' '           Text
+'HEADER.html' Text
+''            Text
+'\n\n'        Text
+
+'IndexIgnore' Name.Builtin
+' '           Text
+'.??*'        Text
+' '           Text
+'*~'          Text
+' '           Text
+'*#'          Text
+' '           Text
+'HEADER*'     Text
+' '           Text
+'RCS'         Text
+' '           Text
+'CVS'         Text
+' '           Text
+'*,t'         Text
+''            Text
+'\n\n'        Text
+
+'AddEncoding' Name.Builtin
+' '           Text
+'x-compress'  Text
+' '           Text
+'Z'           Text
+''            Text
+'\n'          Text
+
+'AddEncoding' Name.Builtin
+' '           Text
+'x-gzip'      Text
+' '           Text
+'gz'          Text
+' '           Text
+'tgz'         Text
+''            Text
+'\n\n'        Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'da'          Text
+' '           Text
+'.dk'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'nl'          Text
+' '           Text
+'.nl'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'en'          Text
+' '           Text
+'.en'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'et'          Text
+' '           Text
+'.et'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'fr'          Text
+' '           Text
+'.fr'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'de'          Text
+' '           Text
+'.de'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'el'          Text
+' '           Text
+'.el'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'it'          Text
+' '           Text
+'.it'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'ja'          Text
+' '           Text
+'.ja'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'pl'          Text
+' '           Text
+'.po'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'ko'          Text
+' '           Text
+'.ko'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'pt'          Text
+' '           Text
+'.pt'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'no'          Text
+' '           Text
+'.no'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'pt-br'       Text
+' '           Text
+'.pt-br'      Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'ltz'         Text
+' '           Text
+'.ltz'        Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'ca'          Text
+' '           Text
+'.ca'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'es'          Text
+' '           Text
+'.es'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'sv'          Text
+' '           Text
+'.se'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'cz'          Text
+' '           Text
+'.cz'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'ru'          Text
+' '           Text
+'.ru'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'tw'          Text
+' '           Text
+'.tw'         Text
+''            Text
+'\n'          Text
+
+'AddLanguage' Name.Builtin
+' '           Text
+'zh-tw'       Text
+' '           Text
+'.tw'         Text
+''            Text
+'\n\n'        Text
+
+'LanguagePriority' Name.Builtin
+' '           Text
+'en'          Text
+' '           Text
+'da'          Text
+' '           Text
+'nl'          Text
+' '           Text
+'et'          Text
+' '           Text
+'fr'          Text
+' '           Text
+'de'          Text
+' '           Text
+'el'          Text
+' '           Text
+'it'          Text
+' '           Text
+'ja'          Text
+' '           Text
+'ko'          Text
+' '           Text
+'no'          Text
+' '           Text
+'pl'          Text
+' '           Text
+'pt'          Text
+' '           Text
+'pt-br'       Text
+' '           Text
+'ltz'         Text
+' '           Text
+'ca'          Text
+' '           Text
+'es'          Text
+' '           Text
+'sv'          Text
+' '           Text
+'tw'          Text
+''            Text
+'\n\n\n'      Text
+
+'#AddDefaultCharset\tISO-8859-1' Comment
+'\n\n'        Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-8859-1'  Text
+'  '          Text
+'.iso8859-1'  Text
+'  '          Text
+'.latin1'     Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-8859-2'  Text
+'  '          Text
+'.iso8859-2'  Text
+'  '          Text
+'.latin2'     Text
+' '           Text
+'.cen'        Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-8859-3'  Text
+'  '          Text
+'.iso8859-3'  Text
+'  '          Text
+'.latin3'     Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-8859-4'  Text
+'  '          Text
+'.iso8859-4'  Text
+'  '          Text
+'.latin4'     Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-8859-5'  Text
+'  '          Text
+'.iso8859-5'  Text
+'  '          Text
+'.latin5'     Text
+' '           Text
+'.cyr'        Text
+' '           Text
+'.iso-ru'     Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-8859-6'  Text
+'  '          Text
+'.iso8859-6'  Text
+'  '          Text
+'.latin6'     Text
+' '           Text
+'.arb'        Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-8859-7'  Text
+'  '          Text
+'.iso8859-7'  Text
+'  '          Text
+'.latin7'     Text
+' '           Text
+'.grk'        Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-8859-8'  Text
+'  '          Text
+'.iso8859-8'  Text
+'  '          Text
+'.latin8'     Text
+' '           Text
+'.heb'        Text
+'\t'          Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-8859-9'  Text
+'  '          Text
+'.iso8859-9'  Text
+'  '          Text
+'.latin9'     Text
+' '           Text
+'.trk'        Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-2022-JP' Text
+' '           Text
+'.iso2022-jp' Text
+' '           Text
+'.jis'        Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-2022-KR' Text
+' '           Text
+'.iso2022-kr' Text
+' '           Text
+'.kis'        Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-2022-CN' Text
+' '           Text
+'.iso2022-cn' Text
+' '           Text
+'.cis'        Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'Big5'        Text
+'        '    Text
+'.Big5'       Text
+'       '     Text
+'.big5'       Text
+''            Text
+'\n'          Text
+
+'# For russian, more than one charset is used (depends on client, mostly):' Comment
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'WINDOWS-1251' Text
+' '           Text
+'.cp-1251'    Text
+'   '         Text
+'.win-1251'   Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'CP866'       Text
+'       '     Text
+'.cp866'      Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'KOI8-r'      Text
+'      '      Text
+'.koi8-r'     Text
+' '           Text
+'.koi8-ru'    Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'KOI8-ru'     Text
+'     '       Text
+'.koi8-uk'    Text
+' '           Text
+'.ua'         Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-10646-UCS-2' Text
+' '           Text
+'.ucs2'       Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'ISO-10646-UCS-4' Text
+' '           Text
+'.ucs4'       Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'UTF-8'       Text
+'       '     Text
+'.utf8'       Text
+''            Text
+'\n\n'        Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'GB2312'      Text
+'      '      Text
+'.gb2312'     Text
+' '           Text
+'.gb'         Text
+' '           Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'utf-7'       Text
+'       '     Text
+'.utf7'       Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'utf-8'       Text
+'       '     Text
+'.utf8'       Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'big5'        Text
+'\t       '   Text
+'.big5'       Text
+' '           Text
+'.b5'         Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'EUC-TW'      Text
+'      '      Text
+'.euc-tw'     Text
+'\t'          Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'EUC-JP'      Text
+'      '      Text
+'.euc-jp'     Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'EUC-KR'      Text
+'      '      Text
+'.euc-kr'     Text
+''            Text
+'\n'          Text
+
+'AddCharset'  Name.Builtin
+' '           Text
+'shift_jis'   Text
+'   '         Text
+'.sjis'       Text
+''            Text
+'\n\n'        Text
+
+'#AddType application/x-httpd-php .php' Comment
+'\n'          Text
+
+'#AddType application/x-httpd-php-source .phps' Comment
+'\n\n'        Text
+
+'AddType'     Name.Builtin
+' '           Text
+'application/x-tar' Text
+' '           Text
+'.tgz'        Text
+''            Text
+'\n\n'        Text
+
+'# To use CGI scripts outside /cgi-bin/:' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'#AddHandler cgi-script .cgi' Comment
+'\n\n'        Text
+
+'# To use server-parsed HTML files' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'<FilesMatch' Name.Tag
+' '           Text
+'"\\.shtml(\\..+)?$"' Literal.String
+'>'           Name.Tag
+'\n    '      Text
+'SetOutputFilter' Name.Builtin
+' '           Text
+'INCLUDES'    Text
+''            Text
+'\n'          Text
+
+'</FilesMatch' Name.Tag
+'>'           Name.Tag
+'\n\n'        Text
+
+'# If you wish to use server-parsed imagemap files, use' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'#AddHandler imap-file map' Comment
+'\n\n'        Text
+
+'BrowserMatch' Name.Builtin
+' '           Text
+'"Mozilla/2"' Literal.String.Double
+' '           Text
+'nokeepalive' Text
+''            Text
+'\n'          Text
+
+'BrowserMatch' Name.Builtin
+' '           Text
+'"MSIE 4\\.0b2;"' Literal.String.Double
+' '           Text
+'nokeepalive' Text
+' '           Text
+'downgrade-1.0' Text
+' '           Text
+'force-response-1.0' Text
+''            Text
+'\n'          Text
+
+'BrowserMatch' Name.Builtin
+' '           Text
+'"RealPlayer 4\\.0"' Literal.String.Double
+' '           Text
+'force-response-1.0' Text
+''            Text
+'\n'          Text
+
+'BrowserMatch' Name.Builtin
+' '           Text
+'"Java/1\\.0"' Literal.String.Double
+' '           Text
+'force-response-1.0' Text
+''            Text
+'\n'          Text
+
+'BrowserMatch' Name.Builtin
+' '           Text
+'"JDK/1\\.0"' Literal.String.Double
+' '           Text
+'force-response-1.0' Text
+''            Text
+'\n\n'        Text
+
+'#'           Comment
+'\n'          Text
+
+'# The following directive disables redirects on non-GET requests for' Comment
+'\n'          Text
+
+'# a directory that does not include the trailing slash.  This fixes a ' Comment
+'\n'          Text
+
+'# problem with Microsoft WebFolders which does not appropriately handle ' Comment
+'\n'          Text
+
+'# redirects for folders with DAV methods.' Comment
+'\n'          Text
+
+'#'           Comment
+'\n\n'        Text
+
+'BrowserMatch' Name.Builtin
+' '           Text
+'"Microsoft Data Access Internet Publishing Provider"' Literal.String.Double
+' '           Text
+'redirect-carefully' Text
+''            Text
+'\n'          Text
+
+'BrowserMatch' Name.Builtin
+' '           Text
+'"^WebDrive"' Literal.String.Double
+' '           Text
+'redirect-carefully' Text
+''            Text
+'\n'          Text
+
+'BrowserMatch' Name.Builtin
+' '           Text
+'"^gnome-vfs"' Literal.String.Double
+' '           Text
+'redirect-carefully' Text
+' '           Text
+''            Text
+'\n'          Text
+
+'BrowserMatch' Name.Builtin
+' '           Text
+'"^WebDAVFS/1.[012]"' Literal.String.Double
+' '           Text
+'redirect-carefully' Text
+''            Text
+'\n\n'        Text
+
+'# Allow server status reports, with the URL of http://servername/server-status' Comment
+'\n'          Text
+
+'# Change the ".your_domain.com" to match your domain to enable.' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'#<Location /server-status>' Comment
+'\n'          Text
+
+'#    SetHandler server-status' Comment
+'\n'          Text
+
+'#    Order deny,allow' Comment
+'\n'          Text
+
+'#    Deny from all' Comment
+'\n'          Text
+
+'#    Allow from .your_domain.com' Comment
+'\n'          Text
+
+'#</Location>' Comment
+'\n\n'        Text
+
+'# Allow remote server configuration reports, with the URL of' Comment
+'\n'          Text
+
+'#  http://servername/server-info (requires that mod_info.c be loaded).' Comment
+'\n'          Text
+
+'# Change the ".your_domain.com" to match your domain to enable.' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'#<Location /server-info>' Comment
+'\n'          Text
+
+'#    SetHandler server-info' Comment
+'\n'          Text
+
+'#    Order deny,allow' Comment
+'\n'          Text
+
+'#    Deny from all' Comment
+'\n'          Text
+
+'#    Allow from .your_domain.com' Comment
+'\n'          Text
+
+'#</Location>' Comment
+'\n\n'        Text
+
+'# Include the virtual host configurations:' Comment
+'\n'          Text
+
+'Include'     Name.Builtin
+' '           Text
+'/etc/apache2/sites-enabled/' Literal.String.Other
+'[^.#]*'      Text
+''            Text
+'\n\n'        Text
+
+'# From PR#766' Comment
+'\n'          Text
+
+'<IfVersion'  Name.Tag
+' '           Text
+'>= 2.4'      Literal.String
+'>'           Name.Tag
+'\n'          Text
+
+'ErrorLogFormat' Name.Builtin
+' '           Text
+'"%{cu}t %M"' Literal.String.Double
+''            Text
+'\n'          Text
+
+'</IfVersion' Name.Tag
+'>'           Name.Tag
+'\n'          Text

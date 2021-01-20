@@ -1,0 +1,148 @@
+'--'          Comment
+'\n'          Text
+
+'-- Example of an openEHR Archetype, written in the Archetype Definition Language (ADL)' Comment
+'\n'          Text
+
+'-- Definition available here: http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf' Comment
+'\n'          Text
+
+'-- Author: derived from the openEHR-EHR-EVALUATION.adverse_reaction.v1 archetype at http://www.openEHR.org/ckm' Comment
+'\n'          Text
+
+'--'          Comment
+'\n\n'        Text
+
+'archetype'   Generic.Heading
+' ('          Punctuation
+'adl_version' Name.Class
+'='           Operator
+'2.0.5'       Literal
+';'           Punctuation
+' '           Text
+'rm_release'  Name.Class
+'='           Operator
+'1.0.2'       Literal
+';'           Punctuation
+' '           Text
+'generated'   Name.Class
+')'           Punctuation
+'\n'          Text
+
+'\topenEHR-EHR-EVALUATION.adverse_reaction.v1.0.0' Name.Decorator
+'\n\n'        Text
+
+'language\n'  Generic.Heading
+
+'\t'          Text
+'original_language' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'['           Punctuation
+'ISO_639-1'   Name.Decorator
+'::'          Punctuation
+'en'          Name.Decorator
+']'           Punctuation
+'>'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'description\n' Generic.Heading
+
+'\t'          Text
+'lifecycle_state' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'unmanaged'   Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'definition\n' Generic.Heading
+
+'\t'          Text
+'EVALUATION'  Name.Class
+'['           Punctuation
+'id1'         Name.Decorator
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'terminology\n' Generic.Heading
+
+'\t'          Text
+'term_definitions' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'['           Punctuation
+'"'           Literal.String
+'en'          Literal.String
+'"'           Literal.String
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'['           Punctuation
+'"'           Literal.String
+'id1'         Literal.String
+'"'           Literal.String
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'text'        Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'Adverse Reaction' Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'description' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'xxx'         Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'>'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'>'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'>'           Punctuation
+'\n'          Text

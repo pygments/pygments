@@ -1,0 +1,35 @@
+'<?xml version="1.0" encoding="iso-8859-1"?>' Comment.Preproc
+'\n'          Text
+
+'<window'     Name.Tag
+'\n'          Text
+
+'   '         Text
+'xmlns='      Name.Attribute
+'"http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"' Literal.String
+'>'           Name.Tag
+'\n'          Text
+
+'#'           Comment.Preproc
+'if'          Comment.Preproc
+' '           Text
+'defined'     Keyword
+'('           Punctuation
+'__foo__'     Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'<description' Name.Tag
+' '           Text
+'value='      Name.Attribute
+'"Text"'      Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n'          Text
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Text
+
+'</window>'   Name.Tag
+'\n'          Text

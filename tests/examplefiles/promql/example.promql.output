@@ -1,0 +1,57 @@
+'# A metric with label filtering' Comment.Single
+'\n'          Text.Whitespace
+
+'go_gc_duration_seconds' Name.Variable
+'{'           Punctuation
+'instance'    Name.Label
+'='           Operator
+'"'           Punctuation
+'localhost:9090' Literal.String
+'"'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'job'         Name.Label
+'='           Operator
+'"'           Punctuation
+'alertmanager' Literal.String
+'"'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# Aggregation operators' Comment.Single
+'\n'          Text.Whitespace
+
+'sum'         Keyword
+' '           Text.Whitespace
+'by'          Keyword
+' '           Text.Whitespace
+'('           Operator
+'app'         Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'proc'        Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'instance_memory_limit_bytes' Name.Variable
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'instance_memory_usage_bytes' Name.Variable
+'\n'          Text.Whitespace
+
+')'           Operator
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'1024'        Literal.Number.Integer
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'1024'        Literal.Number.Integer
+'\n'          Text.Whitespace
