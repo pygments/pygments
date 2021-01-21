@@ -1,12 +1,6 @@
-'\ufeff'      Text
-'#'           Error
-''            Text
-'charset'     Name.Class
-' '           Text
-'"'           Literal.String.Double
-'utf-8'       Literal.String.Double
-'"'           Literal.String.Double
-'\n\n'        Text
+'#charset "utf-8"\n' Comment.Preproc
+
+'\n'          Text
 
 '#include <adv3.h>\n' Comment.Preproc
 
@@ -14,6 +8,7 @@
 
 '\n'          Text
 
+''            Text
 'extern'      Keyword.Reserved
 ' '           Text
 'function'    Keyword.Reserved

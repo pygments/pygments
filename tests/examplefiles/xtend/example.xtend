@@ -11,20 +11,20 @@ class BottleSong {
 	}
 	
 	def singTheSong(int all) '''
-		«FOR i : all .. 1»
-			«i.Bottles» of beer on the wall, «i.bottles» of beer.
-			Take one down and pass it around, «(i - 1).bottles» of beer on the wall.
+		Â«FOR i : all .. 1Â»
+			Â«i.BottlesÂ» of beer on the wall, Â«i.bottlesÂ» of beer.
+			Take one down and pass it around, Â«(i - 1).bottlesÂ» of beer on the wall.
 			
-		«ENDFOR»
+		Â«ENDFORÂ»
 		No more bottles of beer on the wall, no more bottles of beer.
-		Go to the store and buy some more, «all.bottles» of beer on the wall.
+		Go to the store and buy some more, Â«all.bottlesÂ» of beer on the wall.
 	'''
 
 	def private java.lang.String bottles(int i) {
 		switch i {
 			case 0 : 'no more bottles'
 			case 1 : 'one bottle'
-			default : '''«i» bottles'''
+			default : '''Â«iÂ» bottles'''
 		}.toString
 	}	
 	

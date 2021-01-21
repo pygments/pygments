@@ -2,7 +2,7 @@
                     ansigenerator.cpp  -  description
                              -------------------
     begin                : Jul 5 2004
-    copyright            : (C) 2004 by André Simon
+    copyright            : (C) 2004 by AndrÃ© Simon
     email                : andre.simon1@gmx.de
  ***************************************************************************/
 

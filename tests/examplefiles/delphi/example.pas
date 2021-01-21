@@ -7,7 +7,7 @@ unit YTools;
    cYcnus.YTools 1.0.3 Beta for Delphi 4+
    by licenser and Murphy
 
-   ©2000-2003 by cYcnus
+   Â©2000-2003 by cYcnus
    visit www.cYcnus.de
 
    licenser@cYcnus.de (Heinz N. Gies)

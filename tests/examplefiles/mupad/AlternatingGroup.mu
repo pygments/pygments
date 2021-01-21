@@ -6,7 +6,7 @@ n	   - integer >= 1
 
 Elements are represented as in Dom::PermutationGroup(n)
 
-Author:	     Nicolas M. Thiéry <nthiery@users.sourceforge.net>
+Author:	     Nicolas M. ThiÃ©ry <nthiery@users.sourceforge.net>
 License:     LGPL
 Created:     August 8th, 1999
 Last update: $Date: 2003/09/08 15:00:47 $
