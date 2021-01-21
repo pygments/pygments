@@ -6,7 +6,7 @@
     This script converts vim colorscheme files to valid pygments
     style classes meant for putting into modules.
 
-    :copyright 2006 by Armin Ronacher.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
