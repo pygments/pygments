@@ -10,6 +10,7 @@
 
 import os
 import sys
+import shutil
 import argparse
 from textwrap import dedent
 
@@ -447,12 +448,24 @@ def main_inner(parser, argns):
                 outfile.close()
 
 
+class HelpFormatter(argparse.HelpFormatter):
+    def __init__(self, prog, indent_increment=2, max_help_position=16, width=None):
+        if width is None:
+            try:
+                width = shutil.get_terminal_size().columns - 2
+            except Exception:
+                pass
+        argparse.HelpFormatter.__init__(self, prog, indent_increment,
+                                        max_help_position, width)
+
+
 def main(args=sys.argv):
     """
     Main command line entry point.
     """
     desc = "Highlight an input file and write the result to an output file."
-    parser = argparse.ArgumentParser(description=desc, add_help=False)
+    parser = argparse.ArgumentParser(description=desc, add_help=False,
+                                     formatter_class=HelpFormatter)
 
     operation = parser.add_argument_group('Main operation')
     lexersel = operation.add_mutually_exclusive_group()
