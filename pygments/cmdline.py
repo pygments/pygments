@@ -145,23 +145,30 @@ def main_inner(parser, argns):
               'Chajdas and contributors.' % __version__)
         return 0
 
+    def is_only_option(opt):
+        return not any(v for (k, v) in vars(argns).items() if k != opt)
+
     # handle ``pygmentize -L``
     if argns.L is not None:
-        if any(v for (k, v) in vars(argns).items() if k != 'L'):
+        if not is_only_option('L'):
             parser.print_help(sys.stderr)
             return 2
         # print version
         main(['', '-V'])
-        largs = argns.L
+        allowed_types = {'lexer', 'formatter', 'filter', 'style'}
+        largs = [arg.rstrip('s') for arg in argns.L]
+        if any(arg not in allowed_types for arg in largs):
+            parser.print_help(sys.stderr)
+            return 0
         if not largs:
-            largs = ['lexer', 'formatter', 'filter', 'style']
+            largs = allowed_types
         for arg in largs:
-            _print_list(arg.rstrip('s'))
+            _print_list(arg)
         return 0
 
     # handle ``pygmentize -H``
     if argns.H:
-        if any(v for (k, v) in vars(argns).items() if k != 'H'):
+        if not is_only_option('H'):
             parser.print_help(sys.stderr)
             return 2
         what, name = argns.H
