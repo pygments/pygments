@@ -172,7 +172,7 @@ class ScalaLexer(RegexLexer):
           u'\u4dc0-\u4dff\ua490-\ua4c6\ua828-\ua82b\ufb29\ufdfd\ufe62\ufe64-\ufe66'
           u'\uff0b\uff1c-\uff1e\uff5c\uff5e\uffe2\uffe4\uffe8-\uffee\ufffc-\ufffd]')
     
-    lowerLetterChars = (u'_a-z\\$\u00aa\u00b5\u00ba\u00c0-\u00d6\u00d8-\u00f6'
+    letter = (u'[_a-zA-Z\\$\u00aa\u00b5\u00ba\u00c0-\u00d6\u00d8-\u00f6'
               u'\u00f8-\u02af\u0370-\u0373\u0376-\u0377\u037b-\u037d\u0386'
               u'\u0388-\u03f5\u03f7-\u0481\u048a-\u0556\u0561-\u0587\u05d0-\u05f2'
               u'\u0621-\u063f\u0641-\u064a\u066e-\u066f\u0671-\u06d3\u06d5'
@@ -204,9 +204,9 @@ class ScalaLexer(RegexLexer):
               u'\ua840-\ua873\ua882-\ua8b3\ua90a-\ua925\ua930-\ua946\uaa00-\uaa28'
               u'\uaa40-\uaa42\uaa44-\uaa4b\uac00-\ud7a3\uf900-\ufb1d\ufb1f-\ufb28'
               u'\ufb2a-\ufd3d\ufd50-\ufdfb\ufe70-\ufefc\uff21-\uff3a\uff41-\uff5a'
-              u'\uff66-\uff6f\uff71-\uff9d\uffa0-\uffdc')
+              u'\uff66-\uff6f\uff71-\uff9d\uffa0-\uffdc]')
     
-    upperLetterChars = (u'A-Z\u00c0-\u00d6\u00d8-\u00de\u0100\u0102\u0104\u0106\u0108'
+    upperLetter = (u'[A-Z\u00c0-\u00d6\u00d8-\u00de\u0100\u0102\u0104\u0106\u0108'
              u'\u010a\u010c\u010e\u0110\u0112\u0114\u0116\u0118\u011a\u011c'
              u'\u011e\u0120\u0122\u0124\u0126\u0128\u012a\u012c\u012e\u0130'
              u'\u0132\u0134\u0136\u0139\u013b\u013d\u013f\u0141\u0143\u0145'
@@ -266,20 +266,14 @@ class ScalaLexer(RegexLexer):
              u'\ua738\ua73a\ua73c\ua73e\ua740\ua742\ua744\ua746\ua748\ua74a'
              u'\ua74c\ua74e\ua750\ua752\ua754\ua756\ua758\ua75a\ua75c\ua75e'
              u'\ua760\ua762\ua764\ua766\ua768\ua76a\ua76c\ua76e\ua779\ua77b'
-             u'\ua77d-\ua77e\ua780\ua782\ua784\ua786\ua78b\uff21-\uff3a')
+             u'\ua77d-\ua77e\ua780\ua782\ua784\ua786\ua78b\uff21-\uff3a]')
 
-    upperLetter = u'[%s]' % upperLetterChars
-    lowerLetter = u'[%s]' % lowerLetterChars
-    letterChars = u'%s%s' % (upperLetterChars, lowerLetterChars)
-    letter = u'[%s]' % letterChars
-    letterOrDigitChars = u'%s0-9' % letterChars
-    letterOrDigit = u'[%s]' % letterOrDigitChars
+    letterOrDigit = u'(?:%s|[0-9])' % letter
+    letterOrDigitNoDollarSign = u'(?:%s|[0-9])' % letter.replace('\\$', '')
     alphaId = u'%s+' % letter
-    letterOrDigitNoDollarSign = u'[%s]' % letterOrDigitChars.replace('\\$', '')
-    simpleInterpolatedVariable  = u'%s%s*' % (letter, letterOrDigitNoDollarSign) # see SIP-11 https://docs.scala-lang.org/sips/string-interpolation.html
+    simpleInterpolatedVariable  = u'%s%s*' % (letter, letterOrDigitNoDollarSign)
     idrest = u'%s%s*(?:(?<=_)%s+)?' % (letter, letterOrDigit, opchar)
     idUpper = u'%s%s*(?:(?<=_)%s+)?' % (upperLetter, letterOrDigit, opchar)
-    idLower = u'%s%s*(?:(?<=_)%s+)?' % (lowerLetter, letterOrDigit, opchar)
     plainid = u'(?:%s|%s+)' % (idrest, opchar)
     backQuotedId = r'`[^`]+`'
     anyId = u'(?:%s|%s)' % (plainid, backQuotedId)
