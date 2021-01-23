@@ -357,7 +357,7 @@ class ScalaLexer(RegexLexer):
             (u'\\b(given)\\b(\\s*)(%s)?' % anyId, bygroups(Keyword, Text, Name)),
         ],
         'inheritance': [
-            (u'\\b(extends|with|derives)\\b(\\s*)(%s|%s|(?=\\([^\\)]+=>)|(?=%s)|(?="))?', bygroups(Keyword, Text, Name.Class)),
+            (u'\\b(extends|with|derives)\\b(\\s*)(%s|%s|(?=\\([^\\)]+=>)|(?=%s)|(?="))?' % (idUpper, backQuotedId, plainid), bygroups(Keyword, Text, Name.Class)),
         ],
         'extension': [
             (r'\b(extension)(\s+)(?=[\[\(])', bygroups(Keyword, Text)),
