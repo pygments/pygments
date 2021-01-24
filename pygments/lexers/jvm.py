@@ -321,46 +321,67 @@ class ScalaLexer(RegexLexer):
             (r'\b(import)(\s+)', bygroups(Keyword, Text), 'import-path'),
         ],
         'exports': [
-            (r'\b(export)(\s+)(given)(\s+)', bygroups(Keyword, Text, Keyword, Text), 'export-path'),
+            (r'\b(export)(\s+)(given)(\s+)',
+                bygroups(Keyword, Text, Keyword, Text), 'export-path'),
             (r'\b(export)(\s+)', bygroups(Keyword, Text), 'export-path'),
         ],
         'storage-modifiers': [
             (r'\b(private|protected)\b', Keyword),
-            (r'\b(synchronized|@volatile|abstract|final|lazy|sealed|implicit|override|@transient|@native)\b', Keyword),
-            # Only highlight soft modifiers if they are eventually followed by the correct keyword.
-            # Note that soft modifiers can be followed by a sequence of regular modifiers; [a-z\s]* skips those,
-            # and we just check that the soft modifier is applied to a supported statement.
-            (r'\b(transparent|opaque|infix|open|inline)\b(?=[a-z\s]*\b(def|val|var|given|type|class|trait|object|enum)\b)', Keyword),
+            (r'\b(synchronized|@volatile|abstract|final|lazy|sealed|implicit|'
+             r'override|@transient|@native)\b', Keyword),
+            # Only highlight soft modifiers if they are eventually followed by
+            # the correct keyword. Note that soft modifiers can be followed by a
+            # sequence of regular modifiers; [a-z\s]* skips those, and we just
+            # check that the soft modifier is applied to a supported statement.
+            (r'\b(transparent|opaque|infix|open|inline)\b(?=[a-z\s]*\b'
+             r'(def|val|var|given|type|class|trait|object|enum)\b)', Keyword),
         ],
         'annotations': [
             (u'@%s' % idrest, Name.Decorator),
         ],
         'using': [
-            # using is a soft keyword, can only be used in the first position of a parameter or argument list
+            # using is a soft keyword, can only be used in the first position of
+            # a parameter or argument list.
             (r'(\()(\s*)(using)(\s)', bygroups(Punctuation, Text, Keyword, Text)),
         ],
         'declarations': [
-            (u'\\b(def)\\b(\\s*)%s(%s)?' % (notStartOfComment, anyId), bygroups(Keyword, Text, Name.Function)),
-            (u'\\b(trait)\\b(\\s*)%s(%s)?' % (notStartOfComment, anyId), bygroups(Keyword, Text, Name.Class)),
-            (u'\\b(?:(case)(\\s+))?(class|object|enum)\\b(\\s*)%s(%s)?' % (notStartOfComment, anyId), bygroups(Keyword, Text, Keyword, Text, Name.Class)),
-            (u'(?<!\\.)\\b(type)\\b(\\s*)%s(%s)?' % (notStartOfComment, anyId), bygroups(Keyword, Text, Name.Class)),
+            (u'\\b(def)\\b(\\s*)%s(%s)?' % (notStartOfComment, anyId),
+             bygroups(Keyword, Text, Name.Function)),
+            (u'\\b(trait)\\b(\\s*)%s(%s)?' % (notStartOfComment, anyId),
+                bygroups(Keyword, Text, Name.Class)),
+            (u'\\b(?:(case)(\\s+))?(class|object|enum)\\b(\\s*)%s(%s)?' %
+                (notStartOfComment, anyId),
+                bygroups(Keyword, Text, Keyword, Text, Name.Class)),
+            (u'(?<!\\.)\\b(type)\\b(\\s*)%s(%s)?' % (notStartOfComment, anyId),
+                bygroups(Keyword, Text, Name.Class)),
             (u'\\b(val|var)\\b', Keyword.Declaration),
-            (u'\\b(package)(\\s+)(object)\\b(\\s*)%s(%s)?' % (notStartOfComment, anyId), bygroups(Keyword, Text, Keyword, Text, Name.Namespace)),
+            (u'\\b(package)(\\s+)(object)\\b(\\s*)%s(%s)?' %
+                (notStartOfComment, anyId),
+                bygroups(Keyword, Text, Keyword, Text, Name.Namespace)),
             (u'\\b(package)(\\s+)', bygroups(Keyword, Text), 'package'),
-            (u'\\b(given)\\b(\\s*)(%s)' % idUpper, bygroups(Keyword, Text, Name.Class)),
-            (u'\\b(given)\\b(\\s*)(%s)?' % anyId, bygroups(Keyword, Text, Name)),
+            (u'\\b(given)\\b(\\s*)(%s)' % idUpper,
+                bygroups(Keyword, Text, Name.Class)),
+            (u'\\b(given)\\b(\\s*)(%s)?' % anyId, 
+                bygroups(Keyword, Text, Name)),
         ],
         'inheritance': [
-            (u'\\b(extends|with|derives)\\b(\\s*)(%s|%s|(?=\\([^\\)]+=>)|(?=%s)|(?="))?' % (idUpper, backQuotedId, plainid), bygroups(Keyword, Text, Name.Class)),
+            (r'\b(extends|with|derives)\b(\s*)'
+             u'(%s|%s|(?=\\([^\\)]+=>)|(?=%s)|(?="))?' %
+                (idUpper, backQuotedId, plainid),
+                bygroups(Keyword, Text, Name.Class)),
         ],
         'extension': [
             (r'\b(extension)(\s+)(?=[\[\(])', bygroups(Keyword, Text)),
         ],
         'end': [
             # end is a soft keyword, should only be highlighted in certain cases
-            (r'\b(end)(\s+)(if|while|for|match|new|extension|val|var)\b', bygroups(Keyword, Text, Keyword)),
-            (u'\\b(end)(\\s+)(%s)%s' % (idUpper, endOfLineMaybeWithComment), bygroups(Keyword, Text, Name.Class)),
-            (u'\\b(end)(\\s+)(%s|%s)?%s' % (backQuotedId, plainid, endOfLineMaybeWithComment), bygroups(Keyword, Text, Name.Namespace)),
+            (r'\b(end)(\s+)(if|while|for|match|new|extension|val|var)\b',
+                bygroups(Keyword, Text, Keyword)),
+            (u'\\b(end)(\\s+)(%s)%s' % (idUpper, endOfLineMaybeWithComment),
+                bygroups(Keyword, Text, Name.Class)),
+            (u'\\b(end)(\\s+)(%s|%s)?%s' %
+                (backQuotedId, plainid, endOfLineMaybeWithComment),
+                bygroups(Keyword, Text, Name.Namespace)),
         ],
         'punctuation': [
             (r'[{}()\[\];,.]', Punctuation),
@@ -385,7 +406,8 @@ class ScalaLexer(RegexLexer):
             (r'\b(this|super)\b', Name.Builtin.Pseudo),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'0[xX][0-9a-fA-F_]*', Number.Hex),
-            (r'([0-9][0-9_]*\.[0-9][0-9_]*|\.[0-9][0-9_]*)([eE][+-]?[0-9][0-9_]*)?[fFdD]?', Number.Float),
+            (r'([0-9][0-9_]*\.[0-9][0-9_]*|\.[0-9][0-9_]*)'
+             r'([eE][+-]?[0-9][0-9_]*)?[fFdD]?', Number.Float),
             (r'[0-9]+([eE][+-]?[0-9]+)?[fFdD]', Number.Float),
             (r'[0-9]+([eE][+-]?[0-9]+)[fFdD]?', Number.Float),
             (r'[0-9]+[lL]', Number.Integer.Long),
@@ -407,11 +429,12 @@ class ScalaLexer(RegexLexer):
             (r'(\.)(type)\b', bygroups(Punctuation, Keyword)),
         ],
         'inline': [
-            # inline is a soft modifer, only highlighted if followed by if, match or parameter
-            # inline parameters:
-            (u'\\b(inline)(?=\\s+(%s|%s)\\s*:)' % (plainid, backQuotedId), Keyword),
-            # inline control flow:
-            (r'\b(inline)\b(?=(?:.(?!\b(?:val|def|given)\b))*\b(if|match)\b)', Keyword),
+            # inline is a soft modifer, only highlighted if followed by if, 
+            # match or parameters.
+            (u'\\b(inline)(?=\\s+(%s|%s)\\s*:)' % (plainid, backQuotedId),
+                Keyword),
+            (r'\b(inline)\b(?=(?:.(?!\b(?:val|def|given)\b))*\b(if|match)\b)',
+                Keyword),
         ],
         'quoted': [
             # '{...} or ${...}
@@ -499,7 +522,8 @@ class ScalaLexer(RegexLexer):
         'interpolated-string-common': [
             (r'[^"$\\]+', String),
             (r'\$\$', String.Escape),
-            (u'(\\$)(%s)' % simpleInterpolatedVariable, bygroups(String.Interpol, Name)),
+            (u'(\\$)(%s)' % simpleInterpolatedVariable,
+                bygroups(String.Interpol, Name)),
             (r'\$\{', String.Interpol, 'interpolated-string-brace'),
             (r'\\.', String),
         ],
