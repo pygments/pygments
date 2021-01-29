@@ -14,7 +14,7 @@ from pygments.lexer import RegexLexer, include, bygroups, using, \
     this, inherit, default, words
 from pygments.util import get_bool_opt
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error
+    Number, Punctuation
 
 __all__ = ['CLexer', 'CppLexer']
 
@@ -76,7 +76,6 @@ class CFamilyLexer(RegexLexer):
             (r'(-)?0[bB][01](\'?[01])*' + _intsuffix, Number.Bin),
             (r'(-)?0(\'?[0-7])+' + _intsuffix, Number.Oct),
             (r'(-)?' + _decpart + _intsuffix, Number.Integer),
-            (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
             (r'(struct|union)(\s+)', bygroups(Keyword, Text), 'classname'),
