@@ -13,6 +13,8 @@ import pytest
 from pygments.lexers.html import HtmlLexer
 from pygments.token import Token
 
+MAX_HL_TIME = 10
+
 
 @pytest.fixture(scope='module')
 def lexer_html():
@@ -26,7 +28,7 @@ def test_happy_javascript_fragment(lexer_html):
     start_time = time.time()
     tokens = list(lexer_html.get_tokens(fragment))
     assert all(x[1] != Token.Error for x in tokens)
-    assert time.time() - start_time < 5, 'The HTML lexer might have an expensive happy-path script case'
+    assert time.time() - start_time < MAX_HL_TIME, 'The HTML lexer might have an expensive happy-path script case'
 
 
 def test_happy_css_fragment(lexer_html):
@@ -36,7 +38,7 @@ def test_happy_css_fragment(lexer_html):
     start_time = time.time()
     tokens = list(lexer_html.get_tokens(fragment))
     assert all(x[1] != Token.Error for x in tokens)
-    assert time.time() - start_time < 5, 'The HTML lexer might have an expensive happy-path style case'
+    assert time.time() - start_time < MAX_HL_TIME, 'The HTML lexer might have an expensive happy-path style case'
 
 
 def test_long_unclosed_javascript_fragment(lexer_html):
@@ -46,7 +48,7 @@ def test_long_unclosed_javascript_fragment(lexer_html):
     fragment = "<script type=\"text/javascript\">"+"alert(\"hi\");"*reps
     start_time = time.time()
     tokens = list(lexer_html.get_tokens(fragment))
-    assert time.time() - start_time < 5, 'The HTML lexer might have an expensive error script case'
+    assert time.time() - start_time < MAX_HL_TIME, 'The HTML lexer might have an expensive error script case'
     tokens_intro = [
         (Token.Punctuation, '<'),
         (Token.Name.Tag, 'script'),
@@ -80,7 +82,7 @@ def test_long_unclosed_css_fragment(lexer_html):
     fragment = "<style>"+".ui-helper-hidden{display:none}"*reps
     start_time = time.time()
     tokens = list(lexer_html.get_tokens(fragment))
-    assert time.time() - start_time < 5, 'The HTML lexer might have an expensive error style case'
+    assert time.time() - start_time < MAX_HL_TIME, 'The HTML lexer might have an expensive error style case'
 
     tokens_intro = [
         (Token.Punctuation, '<'),
