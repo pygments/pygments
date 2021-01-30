@@ -15,18 +15,22 @@ Version 2.8.0
 
   * AMDGPU (#1626)
 
+- Updated lexers:
+
+  * C/C++ & related: Fix mishandling '*/' (#1695)
+  * Console (#1672)
+  * JavaScript/TypeScript: Fix escapes in backtick strings (#1679, #1686)
+
 - The `pygmentize` script now uses `argparse`, all options should work
   as before
 
 - Added `pygmentize -C` option to guess a lexer from content
 
-- Fix escapes in JavaScript and TypeScript backtick strings (#1679, #1686)
 - Make guessing prefer Python 3 lexer
 - Do not guess MIME or SQL without reason
 - Changed setuptools to use a declarative config through ``setup.cfg``.
   Building Pygments now requires setuptools 39.2+.
 - Added markdown to MarkdownLexer aliases (#1687)
-- Fix mishandling '*/' in C/C++ and related (#1695)
 
 
 Version 2.7.4
