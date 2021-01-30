@@ -11,6 +11,9 @@ Version 2.8.0
 -------------
 (not released yet)
 
+- The `pygmentize` script now uses `argparse`, all options should work
+  as before
+
 - Added `pygmentize -C` option to guess a lexer from content
 
 - Fix escapes in JavaScript and TypeScript backtick strings (#1679, #1686)

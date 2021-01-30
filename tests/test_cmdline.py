@@ -14,6 +14,7 @@ import tempfile
 from io import BytesIO
 from os import path
 
+import pytest
 from pytest import raises
 
 from pygments import cmdline, highlight
@@ -68,10 +69,14 @@ def check_success(*cmdline, **kwds):
 
 def check_failure(*cmdline, **kwds):
     expected_code = kwds.pop('code', 1)
-    code, out, err = run_cmdline(*cmdline, **kwds)
-    assert code == expected_code
-    assert out == ''
-    return err
+    try:
+        code, out, err = run_cmdline(*cmdline, **kwds)
+    except SystemExit as err:
+        assert err.args[0] == expected_code
+    else:
+        assert code == expected_code
+        assert out == ''
+        return err
 
 
 def test_normal():
@@ -148,7 +153,7 @@ def test_stream_opt():
 
 def test_h_opt():
     o = check_success('-h')
-    assert 'Usage:' in o
+    assert 'usage:' in o
 
 
 def test_L_opt():
@@ -226,23 +231,23 @@ def test_C_opt():
     assert 'text' == o.strip()
 
 
-def test_invalid_opts():
-    for opts in [
-        ('-X',),
-        ('-L', '-lpy'),
-        ('-L', '-fhtml'),
-        ('-L', '-Ox'),
-        ('-S', 'default', '-l', 'py', '-f', 'html'),
-        ('-S', 'default'),
-        ('-a', 'arg'),
-        ('-H',),
-        (TESTFILE, TESTFILE),
-        ('-H', 'formatter'),
-        ('-H', 'foo', 'bar'),
-        ('-s',),
-        ('-s', TESTFILE),
-    ]:
-        check_failure(*opts, code=2)
+@pytest.mark.parametrize('opts', [
+    ('-X',),
+    ('-L', '-lpy'),
+    ('-L', '-fhtml'),
+    ('-L', '-Ox'),
+    ('-S', 'default', '-l', 'py', '-f', 'html'),
+    ('-S', 'default'),
+    ('-a', 'arg'),
+    ('-H',),
+    (TESTFILE, TESTFILE),
+    ('-H', 'formatter'),
+    ('-H', 'foo', 'bar'),
+    ('-s',),
+    ('-s', TESTFILE),
+])
+def test_invalid_opts(opts):
+    check_failure(*opts, code=2)
 
 
 def test_errors():
