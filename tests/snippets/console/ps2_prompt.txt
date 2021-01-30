@@ -1,16 +1,15 @@
 ---input---
-$ ls \
-> hi
-hi
+$ ls\
+> /does/not/exist
+ls: cannot access ...
 
 ---tokens---
 '$ '          Generic.Prompt
 'ls'          Text
-' '           Text
 '\\\n'        Literal.String.Escape
 
 '> '          Generic.Prompt
-'hi'          Text
+'/does/not/exist' Text
 '\n'          Text
 
-'hi\n'        Generic.Output
+'ls: cannot access ...\n' Generic.Output

@@ -1,6 +1,6 @@
 ---input---
 $ echo \
-hi
+> hi
 hi
 
 ---tokens---
@@ -9,6 +9,7 @@ hi
 ' '           Text
 '\\\n'        Literal.String.Escape
 
+'> '          Generic.Prompt
 'hi'          Text
 '\n'          Text
 
