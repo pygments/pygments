@@ -6,5 +6,7 @@ a
 comment"""
 
 ---tokens---
-'"""\nthis\nis\na\ncomment"""' Literal.String
+'"""'         Literal.String
+'\nthis\nis\na\ncomment' Literal.String
+'"""'         Literal.String
 '\n'          Text
