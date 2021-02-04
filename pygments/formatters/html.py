@@ -922,11 +922,16 @@ class HtmlFormatter(Formatter):
         linewise, e.g. line number generators.
         """
         source = self._format_lines(tokensource)
+
+        # As a special case, we wrap line numbers before line highlighting
+        # so the line numbers get wrapped in the highlighting tag.
+        if not self.nowrap and self.linenos == 2:
+            source = self._wrap_inlinelinenos(source)
+
         if self.hl_lines:
             source = self._highlight_lines(source)
+
         if not self.nowrap:
-            if self.linenos == 2:
-                source = self._wrap_inlinelinenos(source)
             if self.lineanchors:
                 source = self._wrap_lineanchors(source)
             if self.linespans:
