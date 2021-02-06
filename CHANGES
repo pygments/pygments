@@ -32,7 +32,8 @@ Version 2.8.0
 - Changed setuptools to use a declarative config through ``setup.cfg``.
   Building Pygments now requires setuptools 39.2+.
 - Added markdown to MarkdownLexer aliases (#1687)
-
+- Removed "raw" alias from RawTokenLexer, so that it cannot be
+  selected by alias.
 
 Version 2.7.4
 -------------
