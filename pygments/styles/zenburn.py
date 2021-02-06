@@ -28,6 +28,8 @@ class ZenburnStyle(Style):
     highlight_color = '#484848'
     line_number_color = '#5d6262'
     line_number_background_color = '#353535'
+    line_number_special_color = '#7a8080'
+    line_number_special_background_color = '#353535'
     styles = {
         Token: '#dcdccc',
         Error: '#e37170 bold',
