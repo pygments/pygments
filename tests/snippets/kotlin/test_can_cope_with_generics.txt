@@ -2,9 +2,11 @@
 inline fun <reified T : ContractState> VaultService.queryBy(): Vault.Page<T> {
 
 ---tokens---
-'inline fun'  Keyword
+'inline'      Keyword.Declaration
 ' '           Text
-'<'           Punctuation
+'fun'         Keyword.Declaration
+' '           Text
+'<'           Operator
 'reified'     Keyword
 ' '           Text
 'T'           Name
@@ -12,9 +14,9 @@ inline fun <reified T : ContractState> VaultService.queryBy(): Vault.Page<T> {
 ':'           Punctuation
 ' '           Text
 'ContractState' Name
-'>'           Punctuation
+'>'           Operator
 ' '           Text
-'VaultService' Name.Class
+'VaultService' Name
 '.'           Punctuation
 'queryBy'     Name.Function
 '('           Punctuation
@@ -23,10 +25,10 @@ inline fun <reified T : ContractState> VaultService.queryBy(): Vault.Page<T> {
 ' '           Text
 'Vault'       Name
 '.'           Punctuation
-'Page'        Name
-'<'           Punctuation
+'Page'        Name.Attribute
+'<'           Operator
 'T'           Name
-'>'           Punctuation
+'>'           Operator
 ' '           Text
 '{'           Punctuation
 '\n'          Text

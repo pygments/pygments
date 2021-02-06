@@ -2,26 +2,26 @@
 val (a: List<Something>, b: Set<Wobble>) =
 
 ---tokens---
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
 '('           Punctuation
-'a'           Name.Property
+'a'           Name.Variable
 ':'           Punctuation
 ' '           Text
-'List'        Name.Property
-'<'           Punctuation
+'List'        Name
+'<'           Operator
 'Something'   Name
-'>'           Punctuation
+'>'           Operator
 ','           Punctuation
 ' '           Text
-'b'           Name.Property
+'b'           Name.Variable
 ':'           Punctuation
 ' '           Text
-'Set'         Name.Property
-'<'           Punctuation
+'Set'         Name
+'<'           Operator
 'Wobble'      Name
-'>'           Punctuation
+'>'           Operator
 ')'           Punctuation
 ' '           Text
-'='           Punctuation
+'='           Operator
 '\n'          Text

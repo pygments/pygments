@@ -81,8 +81,10 @@ class MatlabLexer(RegexLexer):
             (_operators, Operator),
 
             # numbers (must come before punctuation to handle `.5`; cannot use
-            # `\b` due to e.g. `5. + .5`).
-            (r'(?<!\w)((\d+\.\d*)|(\d*\.\d+))([eEf][+-]?\d+)?(?!\w)', Number.Float),
+            # `\b` due to e.g. `5. + .5`).  The negative lookahead on operators
+            # avoids including the dot in `1./x` (the dot is part of `./`).
+            (r'(?<!\w)((\d+\.\d+)|(\d*\.\d+)|(\d+\.(?!%s)))'
+             r'([eEf][+-]?\d+)?(?!\w)' % _operators, Number.Float),
             (r'\b\d+[eEf][+-]?[0-9]+\b', Number.Float),
             (r'\b\d+\b', Number.Integer),
 
@@ -133,9 +135,11 @@ class MatlabLexer(RegexLexer):
             # command form:
             # "How MATLAB Recognizes Command Syntax" specifies that an operator
             # is recognized if it is either surrounded by spaces or by no
-            # spaces on both sides; only the former case matters for us.  (This
-            # allows distinguishing `cd ./foo` from `cd ./ foo`.)
-            (r'(?:^|(?<=;))(\s*)(\w+)(\s+)(?!=|\(|(?:%s)\s+|\s)' % _operators,
+            # spaces on both sides (this allows distinguishing `cd ./foo` from
+            # `cd ./ foo`.).  Here, the regex checks that the first word in the
+            # line is not followed by <spaces> and then
+            # (equal | open-parenthesis | <operator><space> | <space>).
+            (r'(?:^|(?<=;))(\s*)(\w+)(\s+)(?!=|\(|%s\s|\s)' % _operators,
              bygroups(Whitespace, Name, Whitespace), 'commandargs'),
 
             include('expressions')

@@ -3,130 +3,128 @@
 'addressbook' Name.Namespace
 '\n\n'        Text
 
-'class'       Keyword
+'class'       Keyword.Declaration
 ' '           Text
 'Contact'     Name.Class
 '('           Punctuation
 '\n  '        Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'name'        Name.Property
+'name'        Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
-'String'      Name
+'String'      Keyword.Type
 ','           Punctuation
 '\n  '        Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'emails'      Name.Property
+'emails'      Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
 'List'        Name
-'<'           Punctuation
+'<'           Operator
 'EmailAddress' Name
-'>'           Punctuation
+'>'           Operator
 ','           Punctuation
 '\n  '        Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'addresses'   Name.Property
+'addresses'   Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
 'List'        Name
-'<'           Punctuation
+'<'           Operator
 'PostalAddress' Name
-'>'           Punctuation
+'>'           Operator
 ','           Punctuation
 '\n  '        Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'phonenums'   Name.Property
+'phonenums'   Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
 'List'        Name
-'<'           Punctuation
+'<'           Operator
 'PhoneNumber' Name
-'>'           Punctuation
+'>'           Operator
 '\n'          Text
 
 ')'           Punctuation
 '\n\n'        Text
 
-'class'       Keyword
+'class'       Keyword.Declaration
 ' '           Text
 'EmailAddress' Name.Class
 '('           Punctuation
 '\n  '        Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'user'        Name.Property
+'user'        Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
-'String'      Name
+'String'      Keyword.Type
 ','           Punctuation
 '\n  '        Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'host'        Name.Property
+'host'        Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
-'String'      Name
+'String'      Keyword.Type
 '\n'          Text
 
 ')'           Punctuation
 '\n\n'        Text
 
-'class'       Keyword
+'class'       Keyword.Declaration
 ' '           Text
 'PostalAddress' Name.Class
 '('           Punctuation
 '\n  '        Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'streetAddress' Name.Property
-' '           Text
-':'           Punctuation
-' '           Text
-'String'      Name
-','           Punctuation
-'\n  '        Text
-'val'         Keyword
-' '           Text
-'city'        Name.Property
+'streetAddress' Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
-'String'      Name
+'String'      Keyword.Type
 ','           Punctuation
 '\n  '        Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'zip'         Name.Property
+'city'        Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
-'String'      Name
+'String'      Keyword.Type
 ','           Punctuation
 '\n  '        Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'state'       Name.Property
+'zip'         Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
-'USState'     Name
-'?'           Punctuation
+'String'      Keyword.Type
 ','           Punctuation
 '\n  '        Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'country'     Name.Property
+'state'       Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'USState?,'   Name
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'country'     Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
@@ -143,10 +141,10 @@
 '('           Punctuation
 'state'       Name
 ' '           Text
-'='           Punctuation
-'='           Punctuation
+'='           Operator
+'='           Operator
 ' '           Text
-'null'        Keyword
+'null'        Keyword.Constant
 ')'           Punctuation
 ' '           Text
 'xor'         Name
@@ -154,13 +152,15 @@
 '('           Punctuation
 'country'     Name
 ' '           Text
-'='           Punctuation
-'='           Punctuation
+'='           Operator
+'='           Operator
 ' '           Text
 'Countries'   Name
-'['           Punctuation
-'"US"'        Literal.String
-']'           Punctuation
+'['           Operator
+'"'           Literal.String
+'US'          Literal.String
+'"'           Literal.String
+']'           Operator
 ')'           Punctuation
 ' '           Text
 '}'           Punctuation
@@ -169,48 +169,48 @@
 '}'           Punctuation
 '\n\n'        Text
 
-'class'       Keyword
+'class'       Keyword.Declaration
 ' '           Text
 'PhoneNumber' Name.Class
 '('           Punctuation
 '\n  '        Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'country'     Name.Property
+'country'     Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
 'Country'     Name
 ','           Punctuation
 '\n  '        Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'areaCode'    Name.Property
+'areaCode'    Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
-'Int'         Name
+'Int'         Keyword.Type
 ','           Punctuation
 '\n  '        Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'number'      Name.Property
+'number'      Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
-'Long'        Name
+'Long'        Keyword.Type
 '\n'          Text
 
 ')'           Punctuation
 '\n\n'        Text
 
-'object'      Keyword
+'object'      Keyword.Declaration
 ' '           Text
 'Countries'   Name.Class
 ' '           Text
 '{'           Punctuation
 '\n  '        Text
-'fun'         Keyword
+'fun'         Keyword.Declaration
 ' '           Text
 'get'         Name.Function
 '('           Punctuation
@@ -225,49 +225,49 @@
 ' '           Text
 'Country'     Name
 ' '           Text
-'='           Punctuation
+'='           Operator
 ' '           Text
 'countryTable' Name
-'['           Punctuation
+'['           Operator
 'id'          Name
-']'           Punctuation
+']'           Operator
 '\n  \n  '    Text
-'private'     Keyword
+'private'     Keyword.Declaration
 ' '           Text
-'var'         Keyword
+'var'         Keyword.Declaration
 ' '           Text
-'table'       Name.Property
+'table'       Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
 'Map'         Name
-'<'           Punctuation
-'String'      Name
+'<'           Operator
+'String'      Keyword.Type
 ','           Punctuation
 ' '           Text
 'Country'     Name
-'>'           Punctuation
-'?'           Punctuation
+'>'           Operator
+'?'           Operator
 ' '           Text
-'='           Punctuation
+'='           Operator
 ' '           Text
-'null'        Keyword
+'null'        Keyword.Constant
 '\n  '        Text
-'private'     Keyword
+'private'     Keyword.Declaration
 ' '           Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'countryTable' Name.Property
+'countryTable' Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
 'Map'         Name
-'<'           Punctuation
-'String'      Name
+'<'           Operator
+'String'      Keyword.Type
 ','           Punctuation
 ' '           Text
 'Country'     Name
-'>'           Punctuation
+'>'           Operator
 '\n    '      Text
 'get'         Keyword
 '('           Punctuation
@@ -280,17 +280,17 @@
 '('           Punctuation
 'table'       Name
 ' '           Text
-'='           Punctuation
-'='           Punctuation
+'='           Operator
+'='           Operator
 ' '           Text
-'null'        Keyword
+'null'        Keyword.Constant
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
 '\n        '  Text
 'table'       Name
 ' '           Text
-'='           Punctuation
+'='           Operator
 ' '           Text
 'HashMap'     Name
 '('           Punctuation
@@ -305,27 +305,29 @@
 ' '           Text
 'TextFile'    Name
 '('           Punctuation
-'"countries.txt"' Literal.String
+'"'           Literal.String
+'countries.txt' Literal.String
+'"'           Literal.String
 ')'           Punctuation
 '.'           Punctuation
-'lines'       Name
+'lines'       Name.Attribute
 '('           Punctuation
 'stripWhiteSpace' Name
 ' '           Text
-'='           Punctuation
+'='           Operator
 ' '           Text
-'true'        Keyword
+'true'        Keyword.Constant
 ')'           Punctuation
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
 '\n          ' Text
 'table'       Name
-'['           Punctuation
+'['           Operator
 'line'        Name
-']'           Punctuation
+']'           Operator
 ' '           Text
-'='           Punctuation
+'='           Operator
 ' '           Text
 'Country'     Name
 '('           Punctuation
@@ -346,16 +348,16 @@
 '}'           Punctuation
 '\n\n'        Text
 
-'class'       Keyword
+'class'       Keyword.Declaration
 ' '           Text
 'Country'     Name.Class
 '('           Punctuation
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
-'name'        Name.Property
+'name'        Name.Variable
 ' '           Text
 ':'           Punctuation
 ' '           Text
-'String'      Name
+'String'      Keyword.Type
 ')'           Punctuation
 '\n'          Text
