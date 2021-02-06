@@ -26,12 +26,18 @@ class ZenburnStyle(Style):
 
     default_style = ""
     background_color = '#3f3f3f'
+    highlight_color = '#484848'
+    line_number_color = '#5d6262'
+    line_number_background_color = '#353535'
     styles = {
         Token: '#dcdccc',
         Error: '#e37170 bold',
 
         Keyword: '#efdcbc',
         Keyword.Type: '#dfdfbf bold',
+        Keyword.Constant: '#dca3a3',
+        Keyword.Declaration: '#f0dfaf',
+        Keyword.Namespace: '#f0dfaf',
 
         Name: '#dcdccc',
         Name.Tag: '#e89393 bold',
