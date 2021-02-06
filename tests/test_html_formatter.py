@@ -148,11 +148,11 @@ def test_get_style_defs_contains_default_line_numbers_styles():
 
     assert style_defs[1] == (
         'td.linenos pre '
-        '{ color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }'
+        '{ color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }'
     )
     assert style_defs[2] == (
         'span.linenos '
-        '{ color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }'
+        '{ color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }'
     )
 
 
