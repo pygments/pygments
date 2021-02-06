@@ -1,0 +1,283 @@
+'#'           Comment
+' Some multiline comments' Comment
+'\n\n'        Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'manager'     Text
+' '           Text.Whitespace
+'proto'       Keyword
+' '           Text.Whitespace
+'cache_object' Text
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'localhost'   Text
+' '           Text.Whitespace
+'src'         Keyword
+' '           Text.Whitespace
+'127.0.0.1/32' Literal.Number.Float
+' '           Text.Whitespace
+'::1'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'to_localhost' Text
+' '           Text.Whitespace
+'dst'         Keyword
+' '           Text.Whitespace
+'127.0.0.0/8' Literal.Number.Float
+' '           Text.Whitespace
+'0.0.0.0/32'  Literal.Number.Float
+' '           Text.Whitespace
+'::1'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'SSL_ports'   Text
+' '           Text.Whitespace
+'port'        Keyword
+' '           Text.Whitespace
+'443'         Literal.Number
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'Safe_ports'  Text
+' '           Text.Whitespace
+'port'        Keyword
+' '           Text.Whitespace
+'80'          Literal.Number
+'\t\t'        Text.Whitespace
+'#'           Comment
+' http'       Comment
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'Safe_ports'  Text
+' '           Text.Whitespace
+'port'        Keyword
+' '           Text.Whitespace
+'21'          Literal.Number
+'\t\t'        Text.Whitespace
+'#'           Comment
+' ftp'        Comment
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'Safe_ports'  Text
+' '           Text.Whitespace
+'port'        Keyword
+' '           Text.Whitespace
+'443'         Literal.Number
+'\t\t'        Text.Whitespace
+'#'           Comment
+' https'      Comment
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'Safe_ports'  Text
+' '           Text.Whitespace
+'port'        Keyword
+' '           Text.Whitespace
+'70'          Literal.Number
+'\t\t'        Text.Whitespace
+'#'           Comment
+' gopher'     Comment
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'Safe_ports'  Text
+' '           Text.Whitespace
+'port'        Keyword
+' '           Text.Whitespace
+'210'         Literal.Number
+'\t\t'        Text.Whitespace
+'#'           Comment
+' wais'       Comment
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'Safe_ports'  Text
+' '           Text.Whitespace
+'port'        Keyword
+' '           Text.Whitespace
+'1025-65535'  Literal.Number
+'\t'          Text.Whitespace
+'#'           Comment
+' unregistered ports' Comment
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'Safe_ports'  Text
+' '           Text.Whitespace
+'port'        Keyword
+' '           Text.Whitespace
+'280'         Literal.Number
+'\t\t'        Text.Whitespace
+'#'           Comment
+' http-mgmt'  Comment
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'Safe_ports'  Text
+' '           Text.Whitespace
+'port'        Keyword
+' '           Text.Whitespace
+'488'         Literal.Number
+'\t\t'        Text.Whitespace
+'#'           Comment
+' gss-http'   Comment
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'Safe_ports'  Text
+' '           Text.Whitespace
+'port'        Keyword
+' '           Text.Whitespace
+'591'         Literal.Number
+'\t\t'        Text.Whitespace
+'#'           Comment
+' filemaker'  Comment
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'Safe_ports'  Text
+' '           Text.Whitespace
+'port'        Keyword
+' '           Text.Whitespace
+'777'         Literal.Number
+'\t\t'        Text.Whitespace
+'#'           Comment
+' multiling http' Comment
+'\n'          Text.Whitespace
+
+'acl'         Keyword
+' '           Text.Whitespace
+'CONNECT'     Text
+' '           Text.Whitespace
+'method'      Keyword
+' '           Text.Whitespace
+'CONNECT'     Text
+'\n'          Text.Whitespace
+
+'http_access' Keyword
+' '           Text.Whitespace
+'allow'       Name.Constant
+' '           Text.Whitespace
+'manager'     Text
+' '           Text.Whitespace
+'localhost'   Text
+'\n'          Text.Whitespace
+
+'http_access' Keyword
+' '           Text.Whitespace
+'deny'        Name.Constant
+' '           Text.Whitespace
+'manager'     Text
+'\n'          Text.Whitespace
+
+'http_access' Keyword
+' '           Text.Whitespace
+'deny'        Name.Constant
+' '           Text.Whitespace
+'!Safe_ports' Text
+'\n'          Text.Whitespace
+
+'http_access' Keyword
+' '           Text.Whitespace
+'deny'        Name.Constant
+' '           Text.Whitespace
+'CONNECT'     Text
+' '           Text.Whitespace
+'!SSL_ports'  Text
+'\n'          Text.Whitespace
+
+'http_access' Keyword
+' '           Text.Whitespace
+'allow'       Name.Constant
+' '           Text.Whitespace
+'localhost'   Text
+'\n'          Text.Whitespace
+
+'http_access' Keyword
+' '           Text.Whitespace
+'deny'        Name.Constant
+' '           Text.Whitespace
+'all'         Name.Constant
+'\n'          Text.Whitespace
+
+'http_port'   Keyword
+' '           Text.Whitespace
+'3128'        Literal.Number
+'\n'          Text.Whitespace
+
+'hierarchy_stoplist' Keyword
+' '           Text.Whitespace
+'cgi-bin'     Text
+' '           Text.Whitespace
+'?'           Text
+'\n'          Text.Whitespace
+
+'coredump_dir' Keyword
+' '           Text.Whitespace
+'/var/spool/squid3' Text
+'\n'          Text.Whitespace
+
+'refresh_pattern' Keyword
+' '           Text.Whitespace
+'^ftp:'       Text
+'\t\t'        Text.Whitespace
+'1440'        Literal.Number
+'\t'          Text.Whitespace
+'20%'         Literal.Number
+'\t'          Text.Whitespace
+'10080'       Literal.Number
+'\n'          Text.Whitespace
+
+'refresh_pattern' Keyword
+' '           Text.Whitespace
+'^gopher:'    Text
+'\t'          Text.Whitespace
+'1440'        Literal.Number
+'\t'          Text.Whitespace
+'0%'          Literal.Number
+'\t'          Text.Whitespace
+'1440'        Literal.Number
+'\n'          Text.Whitespace
+
+'refresh_pattern' Keyword
+' '           Text.Whitespace
+'-i'          Text
+' '           Text.Whitespace
+'(/cgi-bin/|\\?)' Text
+' '           Text.Whitespace
+'0'           Literal.Number
+'\t'          Text.Whitespace
+'0%'          Literal.Number
+'\t'          Text.Whitespace
+'0'           Literal.Number
+'\n'          Text.Whitespace
+
+'refresh_pattern' Keyword
+' '           Text.Whitespace
+'.'           Text
+'\t\t'        Text.Whitespace
+'0'           Literal.Number
+'\t'          Text.Whitespace
+'20%'         Literal.Number
+'\t'          Text.Whitespace
+'4320'        Literal.Number
+'\n'          Text.Whitespace

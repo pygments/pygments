@@ -1,13 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     Test suite for the util module
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-
-import re
 
 from pytest import raises
 
@@ -156,7 +153,7 @@ def test_duplicates_removed_nonconsecutive():
 
 def test_guess_decode():
     # UTF-8 should be decoded as UTF-8
-    s = util.guess_decode('\xff'.encode('utf-8'))
+    s = util.guess_decode('\xff'.encode())
     assert s == ('\xff', 'utf-8')
 
     # otherwise, it could be latin1 or the locale encoding...
@@ -172,7 +169,7 @@ def test_guess_decode_from_terminal():
     s = util.guess_decode_from_terminal('\xff'.encode('utf-7'), Term)
     assert s == ('\xff', 'utf-7')
 
-    s = util.guess_decode_from_terminal('\xff'.encode('utf-8'), Term)
+    s = util.guess_decode_from_terminal('\xff'.encode(), Term)
     assert s == ('\xff', 'utf-8')
 
 

@@ -1,0 +1,486 @@
+'# A file is a class!' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'# Inheritance' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'extends'     Keyword
+' '           Text
+'BaseClass'   Name
+'\n'          Text
+
+'\n'          Text
+
+'# (optional) class definition with a custom icon' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'class_name'  Keyword
+' '           Text
+'MyClass'     Name
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'res://path/to/optional/icon.svg' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'# Member variables' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'var'         Keyword
+' '           Text
+'a'           Name
+' '           Text
+'='           Operator
+' '           Text
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword
+' '           Text
+'s'           Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'Hello'       Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'var'         Keyword
+' '           Text
+'arr'         Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text
+
+'var'         Keyword
+' '           Text
+'dict'        Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'"'           Literal.String.Double
+'key'         Literal.String.Double
+'"'           Literal.String.Double
+':'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+':'           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text
+
+'var'         Keyword
+' '           Text
+'typed_var'   Name
+':'           Punctuation
+' '           Text
+'int'         Name.Builtin.Type
+'\n'          Text
+
+'var'         Keyword
+' '           Text
+'inferred_type' Name
+' '           Text
+':'           Punctuation
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'String'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'# Constants' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'const'       Keyword
+' '           Text
+'ANSWER'      Name
+' '           Text
+'='           Operator
+' '           Text
+'42'          Literal.Number.Integer
+'\n'          Text
+
+'const'       Keyword
+' '           Text
+'THE_NAME'    Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'Charly'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'# Enums'     Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'enum'        Keyword
+' '           Text
+'{'           Punctuation
+'UNIT_NEUTRAL' Name
+','           Punctuation
+' '           Text
+'UNIT_ENEMY'  Name
+','           Punctuation
+' '           Text
+'UNIT_ALLY'   Name
+'}'           Punctuation
+'\n'          Text
+
+'enum'        Keyword
+' '           Text
+'Named'       Name
+' '           Text
+'{'           Punctuation
+'THING_1'     Name
+','           Punctuation
+' '           Text
+'THING_2'     Name
+','           Punctuation
+' '           Text
+'ANOTHER_THING' Name
+' '           Text
+'='           Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'# Built-in vector types' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'var'         Keyword
+' '           Text
+'v2'          Name
+' '           Text
+'='           Operator
+' '           Text
+'Vector2'     Name.Builtin.Type
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'var'         Keyword
+' '           Text
+'v3'          Name
+' '           Text
+'='           Operator
+' '           Text
+'Vector3'     Name.Builtin.Type
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'# Function'  Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'func'        Keyword
+' '           Text
+'some_function' Name
+'('           Punctuation
+'param1'      Name
+','           Punctuation
+' '           Text
+'param2'      Name
+')'           Punctuation
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'local_var'   Name
+' '           Text
+'='           Operator
+' '           Text
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'param1'      Name
+' '           Text
+'<'           Operator
+' '           Text
+'local_var'   Name
+':'           Punctuation
+'\n'          Text
+
+'        '    Text
+'print'       Name.Builtin
+'('           Punctuation
+'param1'      Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'elif'        Keyword
+' '           Text
+'param2'      Name
+' '           Text
+'>'           Operator
+' '           Text
+'5'           Literal.Number.Integer
+':'           Punctuation
+'\n'          Text
+
+'        '    Text
+'print'       Name.Builtin
+'('           Punctuation
+'param2'      Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'else'        Keyword
+':'           Punctuation
+'\n'          Text
+
+'        '    Text
+'print'       Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'Fail!'       Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'for'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'range'       Name.Builtin
+'('           Punctuation
+'20'          Literal.Number.Integer
+')'           Punctuation
+':'           Punctuation
+'\n'          Text
+
+'        '    Text
+'print'       Name.Builtin
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'while'       Keyword
+' '           Text
+'param2'      Name
+' '           Text
+'!='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+':'           Punctuation
+'\n'          Text
+
+'        '    Text
+'param2'      Name
+' '           Text
+'-='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'local_var2'  Name
+' '           Text
+'='           Operator
+' '           Text
+'param1'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'local_var2'  Name
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'# Functions override functions with the same name on the base/parent class.' Comment.Single
+'\n'          Text
+
+"# If you still want to call them, use '.' (like 'super' in other languages)." Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'func'        Keyword
+' '           Text
+'something'   Name
+'('           Punctuation
+'p1'          Name
+','           Punctuation
+' '           Text
+'p2'          Name
+')'           Punctuation
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'.'           Operator
+'something'   Name
+'('           Punctuation
+'p1'          Name
+','           Punctuation
+' '           Text
+'p2'          Name
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'# Inner class' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'class'       Keyword
+' '           Text
+'Something'   Name
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'a'           Name
+' '           Text
+'='           Operator
+' '           Text
+'10'          Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'# Constructor' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'func'        Keyword
+' '           Text
+'_init'       Name
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'print'       Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'Constructed!' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'lv'          Name
+' '           Text
+'='           Operator
+' '           Text
+'Something'   Name
+'.'           Operator
+'new'         Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'print'       Name.Builtin
+'('           Punctuation
+'lv'          Name
+'.'           Operator
+'a'           Name
+')'           Punctuation
+'\n'          Text

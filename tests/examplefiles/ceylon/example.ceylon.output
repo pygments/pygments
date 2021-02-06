@@ -1,0 +1,546 @@
+'import'      Keyword.Namespace
+' '           Text
+'ceylon.language' Name.Namespace
+' '           Text
+'{'           Operator
+' '           Text
+'parseInteger' Name
+' '           Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'doc'         Name.Decorator
+' '           Text
+'"A top-level function,\n     with multi-line documentation."' Literal.String
+'\n'          Text
+
+'void'        Keyword.Type
+' '           Text
+'topLevel'    Name.Function
+'('           Operator
+'String'      Name
+'?'           Operator
+' '           Text
+'a'           Name
+','           Operator
+' '           Text
+'Integer'     Name
+' '           Text
+'b'           Name
+'='           Operator
+'5'           Literal.Number.Integer
+','           Operator
+' '           Text
+'String'      Name
+'*'           Operator
+' '           Text
+'seqs'        Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'function'    Keyword.Type
+' '           Text
+'nested'      Name.Function
+'('           Operator
+'String'      Name
+' '           Text
+'s'           Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'print'       Name
+'('           Operator
+'s'           Name
+'['           Operator
+'1'           Literal.Number.Integer
+'.'           Operator
+'.'           Operator
+'2'           Literal.Number.Integer
+']'           Operator
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'true'        Keyword.Constant
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'    '        Text
+'for'         Keyword
+' '           Text
+'('           Operator
+'s'           Name
+' '           Text
+'in'          Keyword
+' '           Text
+'seqs'        Name
+'.'           Operator
+'filter'      Name.Attribute
+'('           Operator
+'('           Operator
+'String'      Name
+' '           Text
+'x'           Name
+')'           Operator
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'x'           Name
+'.'           Operator
+'size'        Name.Attribute
+' '           Text
+'>'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Operator
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'nested'      Name
+'('           Operator
+'s'           Name
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'    '        Text
+'value'       Keyword.Type
+' '           Text
+'uppers'      Name
+' '           Text
+'='           Operator
+' '           Text
+'seqs'        Name
+'.'           Operator
+'map'         Name.Attribute
+'('           Operator
+'('           Operator
+'String'      Name
+' '           Text
+'x'           Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'x'           Name
+'.'           Operator
+'uppercased'  Name.Attribute
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'String'      Name
+'|'           Operator
+'Null'        Name
+' '           Text
+'z'           Name
+' '           Text
+'='           Operator
+' '           Text
+'a'           Name
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'{'           Operator
+'Integer'     Name
+'+'           Operator
+'}'           Operator
+' '           Text
+'ints'        Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Operator
+' '           Text
+'2'           Literal.Number.Integer
+','           Operator
+' '           Text
+'3'           Literal.Number.Integer
+','           Operator
+' '           Text
+'4'           Literal.Number.Integer
+','           Operator
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+'}'           Operator
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'value'       Keyword.Type
+' '           Text
+'numbers'     Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Operator
+' '           Text
+'#ffff'       Literal.Number.Hex
+','           Operator
+' '           Text
+'#ffff_ffff'  Literal.Number.Hex
+','           Operator
+' '           Text
+'$10101010'   Literal.Number.Bin
+','           Operator
+' '           Text
+'$1010_1010_1010_1010' Literal.Number.Bin
+','           Operator
+'\n'          Text
+
+'        '    Text
+'123_456_789' Literal.Number.Integer
+' '           Text
+']'           Operator
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'value'       Keyword.Type
+' '           Text
+'chars'       Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Operator
+"'a'"         Literal.String.Char
+','           Operator
+' '           Text
+"'\\{#ffff}'" Literal.String.Char
+' '           Text
+']'           Operator
+';'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'shared'      Name.Decorator
+' '           Text
+'class'       Keyword.Declaration
+' '           Text
+'Example_1'   Name.Class
+'<'           Operator
+'Element'     Name
+'>'           Operator
+'('           Operator
+'name'        Name
+','           Operator
+' '           Text
+'element'     Name
+')'           Operator
+' '           Text
+'satisfies'   Keyword.Declaration
+' '           Text
+'Comparable'  Name
+'<'           Operator
+'Example_1'   Name
+'<'           Operator
+'Element'     Name
+'>'           Operator
+'>'           Operator
+'\n'          Text
+
+'        '    Text
+'given'       Keyword.Declaration
+' '           Text
+'Element'     Name
+' '           Text
+'satisfies'   Keyword.Declaration
+' '           Text
+'Comparable'  Name
+'<'           Operator
+'Element'     Name
+'>'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'shared'      Name.Decorator
+' '           Text
+'String'      Name
+' '           Text
+'name'        Name
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'shared'      Name.Decorator
+' '           Text
+'Element'     Name
+' '           Text
+'element'     Name
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'shared'      Name.Decorator
+' '           Text
+'['           Operator
+'Integer'     Name
+','           Operator
+'String'      Name
+']'           Operator
+' '           Text
+'tuple'       Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Operator
+'1'           Literal.Number.Integer
+','           Operator
+' '           Text
+'"2"'         Literal.String
+']'           Operator
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'shared'      Name.Decorator
+' '           Text
+'late'        Name.Decorator
+' '           Text
+'String'      Name
+' '           Text
+'lastName'    Name
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'variable'    Name.Decorator
+' '           Text
+'Integer'     Name
+' '           Text
+'cnt'         Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'shared'      Name.Decorator
+' '           Text
+'Integer'     Name
+' '           Text
+'count'       Name
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'cnt'         Name
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'assign'      Keyword.Declaration
+' '           Text
+'count'       Name
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'assert'      Keyword
+'('           Operator
+'count'       Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'cnt'         Name
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'        '    Text
+'cnt'         Name
+' '           Text
+'='           Operator
+' '           Text
+'count'       Name
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'shared'      Name.Decorator
+' '           Text
+'actual'      Name.Decorator
+' '           Text
+'Comparison'  Name
+' '           Text
+'compare'     Name.Function
+'('           Operator
+'Example_1'   Name
+'<'           Operator
+'Element'     Name
+'>'           Operator
+' '           Text
+'other'       Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'element'     Name
+' '           Text
+'<'           Operator
+'='           Operator
+'>'           Operator
+' '           Text
+'other'       Name
+'.'           Operator
+'element'     Name.Attribute
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'shared'      Name.Decorator
+' '           Text
+'actual'      Name.Decorator
+' '           Text
+'String'      Name
+' '           Text
+'string'      Name
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'"Example with ``element.string``"' Literal.String
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'Example_1'   Name
+'<'           Operator
+'Integer'     Name
+'>'           Operator
+' '           Text
+'instance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'Example_1'   Name
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'element'     Name
+' '           Text
+'='           Operator
+' '           Text
+'5'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"Named args call \\{#0060}"' Literal.String
+';'           Operator
+'\n'          Text
+
+'}'           Operator
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'object'      Keyword.Declaration
+' '           Text
+'example1'    Name.Class
+' '           Text
+'extends'     Keyword.Declaration
+' '           Text
+'Example_1'   Name
+'<'           Operator
+'Integer'     Name
+'>'           Operator
+'('           Operator
+'"object"'    Literal.String
+','           Operator
+' '           Text
+'5'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text

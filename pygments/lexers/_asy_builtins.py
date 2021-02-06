@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers._asy_builtins
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -10,7 +9,7 @@
     TODO: perl/python script in Asymptote SVN similar to asy-list.pl but only
     for function and variable names.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

@@ -1,0 +1,34 @@
+'#'           Comment.Preproc
+'include <sourcemod>' Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'// Single line comment\n' Comment.Single
+
+'/* Multi line\n   comment */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'public'      Keyword
+' '           Text
+'OnPluginStart' Name.Builtin
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'PrintToServer' Name.Builtin
+'('           Punctuation
+'"'           Literal.String
+'Hello.'      Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

@@ -1,0 +1,292 @@
+'#'           Comment.Preproc
+'pike __REAL_VERSION__' Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'constant'    Keyword
+' '           Text
+'Generic'     Name
+' '           Text
+'='           Operator
+' '           Text
+'__builtin'   Name
+'.'           Punctuation
+'GenericError' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'constant'    Keyword
+' '           Text
+'Index'       Name
+' '           Text
+'='           Operator
+' '           Text
+'__builtin'   Name
+'.'           Punctuation
+'IndexError'  Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'constant'    Keyword
+' '           Text
+'BadArgument' Name
+' '           Text
+'='           Operator
+' '           Text
+'__builtin'   Name
+'.'           Punctuation
+'BadArgumentError' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'constant'    Keyword
+' '           Text
+'Math'        Name
+' '           Text
+'='           Operator
+' '           Text
+'__builtin'   Name
+'.'           Punctuation
+'MathError'   Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'constant'    Keyword
+' '           Text
+'Resource'    Name
+' '           Text
+'='           Operator
+' '           Text
+'__builtin'   Name
+'.'           Punctuation
+'ResourceError' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'constant'    Keyword
+' '           Text
+'Permission'  Name
+' '           Text
+'='           Operator
+' '           Text
+'__builtin'   Name
+'.'           Punctuation
+'PermissionError' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'constant'    Keyword
+' '           Text
+'Decode'      Name
+' '           Text
+'='           Operator
+' '           Text
+'__builtin'   Name
+'.'           Punctuation
+'DecodeError' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'constant'    Keyword
+' '           Text
+'Cpp'         Name
+' '           Text
+'='           Operator
+' '           Text
+'__builtin'   Name
+'.'           Punctuation
+'CppError'    Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'constant'    Keyword
+' '           Text
+'Compilation' Name
+' '           Text
+'='           Operator
+' '           Text
+'__builtin'   Name
+'.'           Punctuation
+'CompilationError' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'constant'    Keyword
+' '           Text
+'MasterLoad'  Name
+' '           Text
+'='           Operator
+' '           Text
+'__builtin'   Name
+'.'           Punctuation
+'MasterLoadError' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'constant'    Keyword
+' '           Text
+'ModuleLoad'  Name
+' '           Text
+'='           Operator
+' '           Text
+'__builtin'   Name
+'.'           Punctuation
+'ModuleLoadError' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'//! Returns an Error object for any argument it receives. If the\n' Comment.Single
+
+'//! argument already is an Error object or is empty, it does nothing.\n' Comment.Single
+
+'object'      Keyword.Type
+' '           Text
+'mkerror'     Name.Function
+'('           Punctuation
+'mixed'       Keyword.Type
+' '           Text
+'error'       Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'error'       Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'UNDEFINED'   Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'error'       Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'objectp'     Name
+'('           Punctuation
+'error'       Name
+')'           Punctuation
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'error'       Name
+'-'           Operator
+'>'           Operator
+'is_generic_error' Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'error'       Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'arrayp'      Name
+'('           Punctuation
+'error'       Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'Error'       Name
+'.'           Punctuation
+'Generic'     Name
+'('           Punctuation
+'@'           Operator
+'error'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'stringp'     Name
+'('           Punctuation
+'error'       Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'Error'       Name
+'.'           Punctuation
+'Generic'     Name
+'('           Punctuation
+'error'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'return'      Keyword
+' '           Text
+'Error'       Name
+'.'           Punctuation
+'Generic'     Name
+'('           Punctuation
+'sprintf'     Name
+'('           Punctuation
+'"'           Literal.String
+'%O'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'error'       Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

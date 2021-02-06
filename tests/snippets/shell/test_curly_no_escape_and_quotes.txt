@@ -1,0 +1,15 @@
+---input---
+echo "${a//["b"]/}"
+
+---tokens---
+'echo'        Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'${'          Literal.String.Interpol
+'a'           Name.Variable
+'//['         Punctuation
+'"b"'         Literal.String.Double
+']/'          Punctuation
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text

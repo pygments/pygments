@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.shell
     ~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for various shells.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -57,7 +56,7 @@ class BashLexer(RegexLexer):
             (r'\$', Text),
         ],
         'basic': [
-            (r'\b(if|fi|else|while|do|done|for|then|return|function|case|'
+            (r'\b(if|fi|else|while|in|do|done|for|then|return|function|case|'
              r'select|continue|until|esac|elif)(\s*)\b',
              bygroups(Keyword, Text)),
             (r'\b(alias|bg|bind|break|builtin|caller|cd|command|compgen|'
@@ -169,10 +168,6 @@ class ShellSessionBaseLexer(Lexer):
 
         for match in line_re.finditer(text):
             line = match.group()
-            if backslash_continuation:
-                curcode += line
-                backslash_continuation = curcode.endswith('\\\n')
-                continue
 
             venv_match = self._venv.match(line)
             if venv_match:
@@ -197,7 +192,7 @@ class ShellSessionBaseLexer(Lexer):
                                    [(0, Generic.Prompt, m.group(1))]))
                 curcode += m.group(2)
                 backslash_continuation = curcode.endswith('\\\n')
-            elif line.startswith(self._ps2):
+            elif line.startswith(self._ps2) and backslash_continuation:
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, line[:len(self._ps2)])]))
                 curcode += line[len(self._ps2):]
@@ -232,8 +227,8 @@ class BashSessionLexer(ShellSessionBaseLexer):
     _innerLexerCls = BashLexer
     _ps1rgx = re.compile(
         r'^((?:(?:\[.*?\])|(?:\(\S+\))?(?:| |sh\S*?|\w+\S+[@:]\S+(?:\s+\S+)' \
-        r'?|\[\S+[@:][^\n]+\].+))\s*[$#%])(.*\n?)')
-    _ps2 = '>'
+        r'?|\[\S+[@:][^\n]+\].+))\s*[$#%]\s*)(.*\n?)')
+    _ps2 = '> '
 
 
 class BatchLexer(RegexLexer):

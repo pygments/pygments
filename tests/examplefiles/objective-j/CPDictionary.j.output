@@ -1,0 +1,2275 @@
+'/*\n * CPDictionary.j\n * Foundation\n *\n * Created by Francisco Tolmasky.\n * Copyright 2008, 280 North, Inc.\n *\n * This library is free software; you can redistribute it and/or\n * modify it under the terms of the GNU Lesser General Public\n * License as published by the Free Software Foundation; either\n * version 2.1 of the License, or (at your option) any later version.\n *\n * This library is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU\n * Lesser General Public License for more details.\n *\n * You should have received a copy of the GNU Lesser General Public\n * License along with this library; if not, write to the Free Software\n * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA\n */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'//@import "CPRange.j"\n' Comment.Single
+
+'@import'     Comment.Preproc
+' '           Text
+'"CPObject.j"' Literal.String.Double
+'\n'          Text
+
+'@import'     Comment.Preproc
+' '           Text
+'"CPEnumerator.j"' Literal.String.Double
+'\n'          Text
+
+'@import'     Comment.Preproc
+' '           Text
+'"CPException.j"' Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'/* @ignore */' Comment.Multiline
+'\n'          Text
+
+'@implementation' Keyword
+' '           Text
+'_CPDictionaryValueEnumerator' Name.Class
+' '           Text
+':'           Operator
+' '           Text
+'CPEnumerator' Name.Class
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'CPEnumerator' Name
+'    '        Text
+'_keyEnumerator' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'CPDictionary' Name
+'    '        Text
+'_dictionary' Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'initWithDictionary:' Name.Function
+'('           Punctuation
+'CPDictionary' Keyword.Type
+')'           Punctuation
+'aDictionary' Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'self'        Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'super'       Name.Builtin
+' '           Text
+'init'        Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'self'        Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'_keyEnumerator' Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'aDictionary' Name
+' '           Text
+'keyEnumerator' Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'_dictionary' Name
+' '           Text
+'='           Operator
+' '           Text
+'aDictionary' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'return'      Keyword
+' '           Text
+'self'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'nextObject'  Name.Function
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword.Declaration
+' '           Text
+'key'         Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'_keyEnumerator' Name
+' '           Text
+'nextObject'  Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Operator
+'key'         Name
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'nil'         Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'['           Punctuation
+'_dictionary' Name
+' '           Text
+'objectForKey' Name
+':'           Operator
+'key'         Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'@end'        Keyword
+'\n\n'        Text
+
+'/*! \n    @class CPDictionary\n    @ingroup foundation\n    @brief A mutable key-value pair collection.\n\n    A dictionary is the standard way of passing around key-value pairs in\n    the Cappuccino framework. It is similar to the\n    <a href="http://java.sun.com/javase/6/docs/api/index.html">Java map interface</a>,\n    except all keys are CPStrings and values can be any\n    Cappuccino or JavaScript object.\n\n    If you are familiar with dictionaries in Cocoa, you\'ll notice that\n    there is no CPMutableDictionary class. The regular CPDictionary\n    has \\c -setObject:forKey: and \\c -removeObjectForKey: methods.\n    In Cappuccino there is no distinction between immutable and mutable classes.\n    They are all mutable.\n*/' Comment.Multiline
+'\n'          Text
+
+'@implementation' Keyword
+' '           Text
+'CPDictionary' Name.Class
+' '           Text
+':'           Operator
+' '           Text
+'CPObject'    Name.Class
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*\n    @ignore\n*/' Comment.Multiline
+'\n'          Text
+
+'+'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'alloc'       Name.Function
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'objj_dictionary' Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Returns a new empty CPDictionary.\n*/' Comment.Multiline
+'\n'          Text
+
+'+'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'dictionary'  Name.Function
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'['           Punctuation
+'['           Punctuation
+'self'        Name.Builtin
+' '           Text
+'alloc'       Name
+']'           Punctuation
+' '           Text
+'init'        Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Returns a new dictionary, initialized with the contents of \\c aDictionary.\n    @param aDictionary the dictionary to copy key-value pairs from\n    @return the new CPDictionary\n*/' Comment.Multiline
+'\n'          Text
+
+'+'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'dictionaryWithDictionary:' Name.Function
+'('           Punctuation
+'CPDictionary' Keyword.Type
+')'           Punctuation
+'aDictionary' Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'['           Punctuation
+'['           Punctuation
+'self'        Name.Builtin
+' '           Text
+'alloc'       Name
+']'           Punctuation
+' '           Text
+'initWithDictionary' Name
+':'           Operator
+'aDictionary' Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Creates a new dictionary with single key-value pair.\n    @param anObject the object for the paring\n    @param aKey the key for the pairing\n    @return the new CPDictionary\n*/' Comment.Multiline
+'\n'          Text
+
+'+'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'dictionaryWithObject:' Name.Function
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'anObject'    Text
+' '           Text
+'forKey:'     Name.Function
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'aKey'        Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'['           Punctuation
+'['           Punctuation
+'self'        Name.Builtin
+' '           Text
+'alloc'       Name
+']'           Punctuation
+' '           Text
+'initWithObjects' Name
+':'           Operator
+'['           Punctuation
+'anObject'    Name
+']'           Punctuation
+' '           Text
+'forKeys'     Name
+':'           Operator
+'['           Punctuation
+'aKey'        Name
+']'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Creates a dictionary with multiple key-value pairs.\n    @param objects the objects to place in the dictionary\n    @param keys the keys for each of the objects\n    @throws CPInvalidArgumentException if the number of objects and keys is different\n    @return the new CPDictionary\n*/' Comment.Multiline
+'\n'          Text
+
+'+'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'dictionaryWithObjects:' Name.Function
+'('           Punctuation
+'CPArray'     Keyword.Type
+')'           Punctuation
+'objects'     Text
+' '           Text
+'forKeys:'    Name.Function
+'('           Punctuation
+'CPArray'     Keyword.Type
+')'           Punctuation
+'keys'        Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'['           Punctuation
+'['           Punctuation
+'self'        Name.Builtin
+' '           Text
+'alloc'       Name
+']'           Punctuation
+' '           Text
+'initWithObjects' Name
+':'           Operator
+'objects'     Name
+' '           Text
+'forKeys'     Name
+':'           Operator
+'keys'        Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Creates a dictionary with multiple key-value pairs.\n    @param JavaScript object\n    @return the new CPDictionary\n*/' Comment.Multiline
+'\n'          Text
+
+'+'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'dictionaryWithJSObject:' Name.Function
+'('           Punctuation
+'JSObject'    Keyword.Type
+')'           Punctuation
+'object'      Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'['           Punctuation
+'self'        Name.Builtin
+' '           Text
+'dictionaryWithJSObject' Name
+':'           Operator
+'object'      Name
+' '           Text
+'recursively' Name
+':'           Operator
+'NO'          Keyword.Constant
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Creates a dictionary with multiple key-value pairs, recursively.\n    @param JavaScript object\n    @return the new CPDictionary\n*/' Comment.Multiline
+'\n'          Text
+
+'+'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'dictionaryWithJSObject:' Name.Function
+'('           Punctuation
+'JSObject'    Keyword.Type
+')'           Punctuation
+'object'      Text
+' '           Text
+'recursively:' Name.Function
+'('           Punctuation
+'BOOL'        Keyword.Type
+')'           Punctuation
+'recursively' Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword.Declaration
+' '           Text
+'dictionary'  Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'['           Punctuation
+'self'        Name.Builtin
+' '           Text
+'alloc'       Name
+']'           Punctuation
+' '           Text
+'init'        Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        \n    ' Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'var'         Keyword.Declaration
+' '           Text
+'key'         Name
+' '           Text
+'in'          Keyword
+' '           Text
+'object'      Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'var'         Keyword.Declaration
+' '           Text
+'value'       Name
+' '           Text
+'='           Operator
+' '           Text
+'object'      Name
+'['           Punctuation
+'key'         Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    \n        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'recursively' Name
+' '           Text
+'&&'          Operator
+' '           Text
+'value'       Name
+'.'           Punctuation
+'constructor' Name
+' '           Text
+'==='         Operator
+' '           Text
+'Object'      Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'value'       Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'CPDictionary' Name
+' '           Text
+'dictionaryWithJSObject' Name
+':'           Operator
+'value'       Name
+' '           Text
+'recursively' Name
+':'           Operator
+'YES'         Keyword.Constant
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    \n        ' Text
+'['           Punctuation
+'dictionary'  Name
+' '           Text
+'setObject'   Name
+':'           Operator
+'value'       Name
+' '           Text
+'forKey'      Name
+':'           Operator
+'key'         Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'return'      Keyword
+' '           Text
+'dictionary'  Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Creates and returns a dictionary constructed by a given pairs of keys and values.\n    @param firstObject first object value\n    @param ... key for the first object and ongoing value-key pairs for more objects.\n    @throws CPInvalidArgumentException if the number of objects and keys is different\n    @return the new CPDictionary\n    \n    Assuming that there\'s no object retaining in Cappuccino, you can create\n    dictionaries same way as with alloc and initWithObjectsAndKeys:\n    var dict = [CPDictionary dictionaryWithObjectsAndKeys:\n    @"value1", @"key1",\n    @"value2", @"key2"];\n    \n    Note, that there\'s no final nil like in Objective-C/Cocoa.\n    \n    @see [CPDictionary initWithObjectsAndKeys:]\n*/' Comment.Multiline
+'\n'          Text
+
+'+'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'dictionaryWithObjectsAndKeys:' Name.Function
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'firstObject' Text
+','           Punctuation
+' '           Text
+'.'           Punctuation
+'.'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'arguments'   Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'self'        Name.Builtin
+' '           Text
+'alloc'       Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'arguments'   Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'@selector'   Keyword
+'('           Punctuation
+'initWithObjectsAndKeys' Name
+':'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'return'      Keyword
+' '           Text
+'objj_msgSend' Name
+'.'           Punctuation
+'apply'       Name.Function
+'('           Punctuation
+'this'        Name.Builtin
+','           Punctuation
+' '           Text
+'arguments'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Initializes the dictionary with the contents of another dictionary.\n    @param aDictionary the dictionary to copy key-value pairs from\n    @return the initialized dictionary\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'initWithDictionary:' Name.Function
+'('           Punctuation
+'CPDictionary' Keyword.Type
+')'           Punctuation
+'aDictionary' Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword.Declaration
+' '           Text
+'key'         Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text
+
+'        '    Text
+'dictionary'  Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'['           Punctuation
+'CPDictionary' Name
+' '           Text
+'alloc'       Name
+']'           Punctuation
+' '           Text
+'init'        Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'key'         Name
+' '           Text
+'in'          Keyword
+' '           Text
+'aDictionary' Name
+'.'           Punctuation
+'_buckets'    Name
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'dictionary'  Name
+' '           Text
+'setObject'   Name
+':'           Operator
+'['           Punctuation
+'aDictionary' Name
+' '           Text
+'objectForKey' Name
+':'           Operator
+'key'         Name
+']'           Punctuation
+' '           Text
+'forKey'      Name
+':'           Operator
+'key'         Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        \n    ' Text
+'return'      Keyword
+' '           Text
+'dictionary'  Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Initializes the dictionary from the arrays of keys and objects.\n    @param objects the objects to put in the dictionary\n    @param keyArray the keys for the objects to put in the dictionary\n    @throws CPInvalidArgumentException if the number of objects and keys is different\n    @return the initialized dictionary\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'initWithObjects:' Name.Function
+'('           Punctuation
+'CPArray'     Keyword.Type
+')'           Punctuation
+'objects'     Text
+' '           Text
+'forKeys:'    Name.Function
+'('           Punctuation
+'CPArray'     Keyword.Type
+')'           Punctuation
+'keyArray'    Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'self'        Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'super'       Name.Builtin
+' '           Text
+'init'        Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'['           Punctuation
+'objects'     Name
+' '           Text
+'count'       Name
+']'           Punctuation
+' '           Text
+'!='          Operator
+' '           Text
+'['           Punctuation
+'keyArray'    Name
+' '           Text
+'count'       Name
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'CPException' Name
+' '           Text
+'raise'       Name
+':'           Operator
+'CPInvalidArgumentException' Name
+' '           Text
+'reason'      Name
+':'           Operator
+'"'           Literal.String
+'Counts are different.(' Literal.String
+'"'           Literal.String
+'+'           Operator
+'['           Punctuation
+'objects'     Name
+' '           Text
+'count'       Name
+']'           Punctuation
+'+'           Operator
+'"'           Literal.String
+'!='          Literal.String
+'"'           Literal.String
+'+'           Operator
+'['           Punctuation
+'keyArray'    Name
+' '           Text
+'count'       Name
+']'           Punctuation
+'+'           Operator
+'"'           Literal.String
+')'           Literal.String
+'"'           Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'self'        Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'var'         Keyword.Declaration
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'keyArray'    Name
+' '           Text
+'count'       Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        \n        ' Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'i'           Name
+'--'          Operator
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'['           Punctuation
+'self'        Name.Builtin
+' '           Text
+'setObject'   Name
+':'           Operator
+'objects'     Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+' '           Text
+'forKey'      Name
+':'           Operator
+'keyArray'    Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'return'      Keyword
+' '           Text
+'self'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Creates and returns a dictionary constructed by a given pairs of keys and values.\n    @param firstObject first object value\n    @param ... key for the first object and ongoing value-key pairs for more objects.\n    @throws CPInvalidArgumentException if the number of objects and keys is different\n    @return the new CPDictionary\n    \n    You can create dictionaries this way:\n    var dict = [[CPDictionary alloc] initWithObjectsAndKeys:\n    @"value1", @"key1",\n    @"value2", @"key2"];\n    \n    Note, that there\'s no final nil like in Objective-C/Cocoa.\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'initWithObjectsAndKeys:' Name.Function
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'firstObject' Text
+','           Punctuation
+' '           Text
+'.'           Punctuation
+'.'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword.Declaration
+' '           Text
+'argCount'    Name
+' '           Text
+'='           Operator
+' '           Text
+'arguments'   Name
+'.'           Punctuation
+'length'      Name
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'argCount'    Name
+' '           Text
+'%'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'!=='         Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'CPException' Name
+' '           Text
+'raise'       Name
+':'           Operator
+'CPInvalidArgumentException' Name
+' '           Text
+'reason'      Name
+':'           Operator
+'"'           Literal.String
+'Key-value count is mismatched. (' Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'argCount'    Name
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+' arguments passed)' Literal.String
+'"'           Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'self'        Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'super'       Name.Builtin
+' '           Text
+'init'        Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'self'        Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'// The arguments array contains self and _cmd, so the first object is at position 2.\n' Comment.Single
+
+'        '    Text
+'var'         Keyword.Declaration
+' '           Text
+'index'       Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'        \n        ' Text
+'for'         Keyword
+'('           Punctuation
+';'           Punctuation
+' '           Text
+'index'       Name
+' '           Text
+'<'           Operator
+' '           Text
+'argCount'    Name
+';'           Punctuation
+' '           Text
+'index'       Name
+' '           Text
+'+='          Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'var'         Keyword.Declaration
+' '           Text
+'value'       Name
+' '           Text
+'='           Operator
+' '           Text
+'arguments'   Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'value'       Name
+' '           Text
+'==='         Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'            ' Text
+'['           Punctuation
+'self'        Name.Builtin
+' '           Text
+'setObject'   Name
+':'           Operator
+'value'       Name
+' '           Text
+'forKey'      Name
+':'           Operator
+'arguments'   Name
+'['           Punctuation
+'index'       Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'self'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    return a copy of the receiver (does not deep copy the objects contained in the dictionary).\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'CPDictionary' Keyword.Type
+')'           Punctuation
+'copy'        Name.Function
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'['           Punctuation
+'CPDictionary' Name
+' '           Text
+'dictionaryWithDictionary' Name
+':'           Operator
+'self'        Name.Builtin
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Returns the number of entries in the dictionary\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'int'         Keyword.Type
+')'           Punctuation
+'count'       Name.Function
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'count'       Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Returns an array of keys for all the entries in the dictionary.\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'CPArray'     Keyword.Type
+')'           Punctuation
+'allKeys'     Name.Function
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'_keys'       Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Returns an array of values for all the entries in the dictionary.\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'CPArray'     Keyword.Type
+')'           Punctuation
+'allValues'   Name.Function
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword.Declaration
+' '           Text
+'index'       Name
+' '           Text
+'='           Operator
+' '           Text
+'_keys'       Name
+'.'           Punctuation
+'length'      Name
+','           Punctuation
+'\n'          Text
+
+'        '    Text
+'values'      Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        \n    ' Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'index'       Name
+'--'          Operator
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'values'      Name
+'.'           Punctuation
+'push'        Name.Function
+'('           Punctuation
+'dictionary_getValue' Name.Function
+'('           Punctuation
+'self'        Name.Builtin
+','           Punctuation
+' '           Text
+'['           Punctuation
+'_keys'       Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'values'      Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+"/*!\n    Returns an enumerator that enumerates over all the dictionary's keys.\n*/" Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'CPEnumerator' Keyword.Type
+')'           Punctuation
+'keyEnumerator' Name.Function
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'['           Punctuation
+'_keys'       Name
+' '           Text
+'objectEnumerator' Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+"/*!\n    Returns an enumerator that enumerates over all the dictionary's values.\n*/" Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'CPEnumerator' Keyword.Type
+')'           Punctuation
+'objectEnumerator' Name.Function
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'['           Punctuation
+'['           Punctuation
+'_CPDictionaryValueEnumerator' Name
+' '           Text
+'alloc'       Name
+']'           Punctuation
+' '           Text
+'initWithDictionary' Name
+':'           Operator
+'self'        Name.Builtin
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Compare the receiver to this dictionary, and return whether or not they are equal. \n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'BOOL'        Keyword.Type
+')'           Punctuation
+'isEqualToDictionary:' Name.Function
+'('           Punctuation
+'CPDictionary' Keyword.Type
+')'           Punctuation
+'aDictionary' Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'count'       Name
+' '           Text
+'!=='         Operator
+' '           Text
+'['           Punctuation
+'aDictionary' Name
+' '           Text
+'count'       Name
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'NO'          Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'var'         Keyword.Declaration
+' '           Text
+'index'       Name
+' '           Text
+'='           Operator
+' '           Text
+'count'       Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'index'       Name
+'--'          Operator
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'var'         Keyword.Declaration
+' '           Text
+'currentKey'  Name
+' '           Text
+'='           Operator
+' '           Text
+'_keys'       Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'            ' Text
+'lhsObject'   Name
+' '           Text
+'='           Operator
+' '           Text
+'_buckets'    Name
+'['           Punctuation
+'currentKey'  Name
+']'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'            ' Text
+'rhsObject'   Name
+' '           Text
+'='           Operator
+' '           Text
+'aDictionary' Name
+'.'           Punctuation
+'_buckets'    Name
+'['           Punctuation
+'currentKey'  Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'lhsObject'   Name
+' '           Text
+'==='         Operator
+' '           Text
+'rhsObject'   Name
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'continue'    Keyword
+';'           Punctuation
+'\n'          Text
+
+'            \n        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'lhsObject'   Name
+'.'           Punctuation
+'isa'         Name
+' '           Text
+'&&'          Operator
+' '           Text
+'rhsObject'   Name
+'.'           Punctuation
+'isa'         Name
+' '           Text
+'&&'          Operator
+' '           Text
+'['           Punctuation
+'lhsObject'   Name
+' '           Text
+'respondsToSelector' Name
+':'           Operator
+'@selector'   Keyword
+'('           Punctuation
+'isEqual'     Name
+':'           Operator
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'&&'          Operator
+' '           Text
+'['           Punctuation
+'lhsObject'   Name
+' '           Text
+'isEqual'     Name
+':'           Operator
+'rhsObject'   Name
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'continue'    Keyword
+';'           Punctuation
+'\n'          Text
+
+'        \n        ' Text
+'return'      Keyword
+' '           Text
+'NO'          Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'YES'         Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*\n    Instance.isEqualToDictionary(aDictionary)\n    {\n        if(this.count()!=aDictionary.count()) return NO;\n        \n        var i= this._keys.count();\n        while(i--) if(this.objectForKey(this._keys[i])!=aDictionary.objectForKey(this._keys[i])) return NO;\n        \n        return YES;\n    }\n    \n    Instance.allKeys()\n    {\n        return this._keys;\n    }\n    \n    Instance.allKeysForObject(anObject)\n    {\n        var i= 0,\n            keys= CPArray.array(),\n            count= this.count();\n        \n        while((i= this._objects.indexOfObjectInRage(0, count-i))!=CPNotFound) keys.addObject(this._keys[i]);\n        \n        return keys;\n    }\n    \n    Instance.allValues()\n    {\n        return this._objects;\n    }\n    \n    Instance.keyEnumerator()\n    {\n        return this._keys.objectEnumerator();\n    }\n    \n    Instance.keysSortedByValueUsingSelector(aSelector)\n    {\n        var dictionary= this,\n            objectSelector= function(rhs)\n            {\n                return aSelector.apply(dictionary.objectForKey(this), [dictionary.objectForKey(rhs)]);\n            };\n        \n        return this._keys.sortedArrayUsingSelector(objectSelector);\n    }\n    \n    Instance.objectEnumerator()\n    {\n        return this._objects.objectEnumerator();\n    }\n*/' Comment.Multiline
+'\n'          Text
+
+"/*!\n    Returns the object for the entry with key \\c aKey.\n    @param aKey the key for the object's entry\n    @return the object for the entry\n*/" Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'objectForKey:' Name.Function
+'('           Punctuation
+'CPString'    Keyword.Type
+')'           Punctuation
+'aKey'        Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword.Declaration
+' '           Text
+'object'      Name
+' '           Text
+'='           Operator
+' '           Text
+'_buckets'    Name
+'['           Punctuation
+'aKey'        Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'return'      Keyword
+' '           Text
+'('           Punctuation
+'object'      Name
+' '           Text
+'==='         Operator
+' '           Text
+'undefined'   Keyword.Constant
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'nil'         Keyword.Constant
+' '           Text
+':'           Operator
+' '           Text
+'object'      Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'/*\n    Instance.objectsForKeys(keys, aNotFoundMarker)\n    {\n        var i= keys.length,\n            objects= CPArray.array();\n        \n        while(i--)\n        {\n            var object= this.objectForKey(keys[i]);\n            objects.addObject(object==nil?aNotFoundMarker:object);\n        }\n        \n        return objects;\n    }\n    \n    Instance.valueForKey(aKey)\n    {\n        if(aKey.length && aKey[0]=="@") return this.objectForKey(aKey.substr(1));\n        \n        return base.valueForKey(aKey);\n    }\n    \n    //\n    \n    Instance.addEntriesFromDictionary(aDictionary)\n    {\n        var key,\n            keyEnumerator= aDictionary.keyEnumerator();\n\n        while(key= keyEnumerator.nextObject()) this.setObjectForKey(aDictionary.objectForKey(key), key);\n    }\n*/' Comment.Multiline
+'\n'          Text
+
+'/*!\n    Removes all the entries from the dictionary.\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+'removeAllObjects' Name.Function
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'_keys'       Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'count'       Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'_buckets'    Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Removes the entry for the specified key.\n    @param aKey the key of the entry to be removed\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+'removeObjectForKey:' Name.Function
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'aKey'        Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'dictionary_removeValue' Name.Function
+'('           Punctuation
+'self'        Name.Builtin
+','           Punctuation
+' '           Text
+'aKey'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Removes each entry in allKeys from the receiver.\n    @param allKeys an array of keys that will be removed from the dictionary\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+'removeObjectsForKeys:' Name.Function
+'('           Punctuation
+'CPArray'     Keyword.Type
+')'           Punctuation
+'allKeys'     Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword.Declaration
+' '           Text
+'index'       Name
+' '           Text
+'='           Operator
+' '           Text
+'allKeys'     Name
+'.'           Punctuation
+'length'      Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'index'       Name
+'--'          Operator
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'dictionary_removeValue' Name.Function
+'('           Punctuation
+'self'        Name.Builtin
+','           Punctuation
+' '           Text
+'allKeys'     Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*\n    Instance.removeObjectForKey(aKey)\n    {\n        var entry= this._dictionary[aKey];\n        \n        if(entry)\n        {\n            var range= CPMakeRange(entry.index, 1);\n            \n            this._keys.removeObjectsInRange(range);\n            this._objects.removeObjectsInRange(range);\n        \n            delete this._dictionary[aKey];\n        }\n    }\n    \n    Instance.setDictionary(aDictionary)\n    {\n        this._keys= CPArray.arrayWithArray(aDictionary.allKeys());\n        this._objects= CPArray.arrayWithArray(aDictionary.allValues());\n        \n        this._dictionary= { };\n        \n        var i= this._keys.count();\n        while(i--) this._dictionary[this._keys[i]]= { object: this._objects[i], index: i };\n    }\n*/' Comment.Multiline
+'\n'          Text
+
+"/*!\n    Adds an entry into the dictionary.\n    @param anObject the object for the entry\n    @param aKey the entry's key\n*/" Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+'setObject:'  Name.Function
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'anObject'    Text
+' '           Text
+'forKey:'     Name.Function
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'aKey'        Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'dictionary_setValue' Name.Function
+'('           Punctuation
+'self'        Name.Builtin
+','           Punctuation
+' '           Text
+'aKey'        Name
+','           Punctuation
+' '           Text
+'anObject'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'/*\n    Instance.setValueForKey(aValue, aKey)\n    {\n        if(!aValue) this.removeObjectForKey(aKey);\n        else this.setObjectForKey(aValue, aKey);\n    }\n    \n    Instance.copy()\n    {\n        return CPDictionary.alloc().dictionaryWithDictionary(this);\n    }\n*/' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Take all the key/value pairs in aDictionary and apply them to this dictionary.\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+'addEntriesFromDictionary:' Name.Function
+'('           Punctuation
+'CPDictionary' Keyword.Type
+')'           Punctuation
+'aDictionary' Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Operator
+'aDictionary' Name
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'return'      Keyword
+';'           Punctuation
+'\n'          Text
+
+'        \n    ' Text
+'var'         Keyword.Declaration
+' '           Text
+'keys'        Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'aDictionary' Name
+' '           Text
+'allKeys'     Name
+']'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'        '    Text
+'index'       Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'keys'        Name
+' '           Text
+'count'       Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'index'       Name
+'--'          Operator
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'var'         Keyword.Declaration
+' '           Text
+'key'         Name
+' '           Text
+'='           Operator
+' '           Text
+'keys'        Name
+'['           Punctuation
+'index'       Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'self'        Name.Builtin
+' '           Text
+'setObject'   Name
+':'           Operator
+'['           Punctuation
+'aDictionary' Name
+' '           Text
+'objectForKey' Name
+':'           Operator
+'key'         Name
+']'           Punctuation
+' '           Text
+'forKey'      Name
+':'           Operator
+'key'         Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Returns a human readable description of the dictionary.\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'CPString'    Keyword.Type
+')'           Punctuation
+'description' Name.Function
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword.Declaration
+' '           Text
+'description' Name
+' '           Text
+'='           Operator
+' '           Text
+'@"'          Literal.String
+'CPDictionary {' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'var'         Keyword.Declaration
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'_keys'       Name
+'.'           Punctuation
+'length'      Name
+';'           Punctuation
+'\n'          Text
+
+'    \n    '  Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'i'           Name
+'--'          Operator
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'description' Name
+' '           Text
+'+='          Operator
+' '           Text
+'_keys'       Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+':'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'var'         Keyword.Declaration
+' '           Text
+'object'      Name
+' '           Text
+'='           Operator
+' '           Text
+'_buckets'    Name
+'['           Punctuation
+'_keys'       Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'object'      Name
+' '           Text
+'&&'          Operator
+' '           Text
+'object'      Name
+'.'           Punctuation
+'isa'         Name
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'description' Name
+' '           Text
+'+='          Operator
+' '           Text
+'['           Punctuation
+'object'      Name
+' '           Text
+'description' Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'else'        Keyword
+'\n'          Text
+
+'            ' Text
+'description' Name
+' '           Text
+'+='          Operator
+' '           Text
+'object'      Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'description' Name
+' '           Text
+'+='          Operator
+' '           Text
+'"'           Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'description' Name
+' '           Text
+'+='          Operator
+' '           Text
+'"'           Literal.String
+'}'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'description' Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'@end'        Keyword
+'\n\n'        Text
+
+'@implementation' Keyword
+' '           Text
+'CPDictionary' Name.Class
+' '           Text
+'('           Punctuation
+'CPCoding'    Name.Label
+')'           Text
+'\n'          Text
+
+'\n'          Text
+
+'/*\n    Initializes the dictionary by unarchiving the data from a coder.\n    @param aCoder the coder from which the data will be unarchived.\n    @return the initialized dictionary\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'id'          Keyword.Type
+')'           Punctuation
+'initWithCoder:' Name.Function
+'('           Punctuation
+'CPCoder'     Keyword.Type
+')'           Punctuation
+'aCoder'      Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'['           Punctuation
+'aCoder'      Name
+' '           Text
+'_decodeDictionaryOfObjectsForKey' Name
+':'           Operator
+'@"'          Literal.String
+'CP.objects'  Literal.String
+'"'           Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*!\n    Archives the dictionary to a provided coder.\n    @param aCoder the coder to which the dictionary data will be archived.\n*/' Comment.Multiline
+'\n'          Text
+
+'-'           Operator
+' '           Text
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+'encodeWithCoder:' Name.Function
+'('           Punctuation
+'CPCoder'     Keyword.Type
+')'           Punctuation
+'aCoder'      Text
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'['           Punctuation
+'aCoder'      Name
+' '           Text
+'_encodeDictionaryOfObjects' Name
+':'           Operator
+'self'        Name.Builtin
+' '           Text
+'forKey'      Name
+':'           Operator
+'@"'          Literal.String
+'CP.objects'  Literal.String
+'"'           Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'@end'        Keyword
+'\n\n'        Text
+
+'/*!\n    @class CPMutableDictionary\n    @ingroup compatability\n\n    This class is just an empty subclass of CPDictionary.\n    CPDictionary already implements mutable methods and\n    this class only exists for source compatability.\n*/' Comment.Multiline
+'\n'          Text
+
+'@implementation' Keyword
+' '           Text
+'CPMutableDictionary' Name.Class
+' '           Text
+':'           Operator
+' '           Text
+'CPDictionary' Name.Class
+'\n'          Text
+
+'\n'          Text
+
+'@end'        Keyword
+'\n\n'        Text
+
+'objj_dictionary' Name
+'.'           Punctuation
+'prototype'   Keyword
+'.'           Punctuation
+'isa'         Name
+' '           Text
+'='           Operator
+' '           Text
+'CPDictionary' Name
+';'           Punctuation
+'\n'          Text

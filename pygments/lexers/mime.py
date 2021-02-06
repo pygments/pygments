@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.mime
     ~~~~~~~~~~~~~~~~~~~~
 
     Lexer for Multipurpose Internet Mail Extensions (MIME) data.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -77,7 +76,7 @@ class MIMELexer(RegexLexer):
                 return 1
 
         except ValueError:
-            return 0.1
+            return 0
 
     def get_header_tokens(self, match):
         field = match.group(1)

@@ -1,0 +1,383 @@
+'role'        Keyword
+' '           Text
+'q'           Name
+' '           Text
+'{'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'token'       Keyword
+' stopper'    Name
+' '           Text
+'{'           Text
+' '           Literal.String.Regex
+'\\'          Literal.String.Regex
+"'"           Literal.String.Regex
+' '           Literal.String.Regex
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'token'       Keyword
+' escape:sym' Name
+'<\\\\>'      Name
+' '           Text
+'{'           Text
+' '           Literal.String.Regex
+'<'           Literal.String.Regex
+'s'           Literal.String.Regex
+'y'           Literal.String.Regex
+'m'           Literal.String.Regex
+'>'           Literal.String.Regex
+' '           Literal.String.Regex
+'<'           Literal.String.Regex
+'i'           Literal.String.Regex
+'t'           Literal.String.Regex
+'e'           Literal.String.Regex
+'m'           Literal.String.Regex
+'='           Literal.String.Regex
+'.'           Literal.String.Regex
+'b'           Literal.String.Regex
+'a'           Literal.String.Regex
+'c'           Literal.String.Regex
+'k'           Literal.String.Regex
+'s'           Literal.String.Regex
+'l'           Literal.String.Regex
+'a'           Literal.String.Regex
+'s'           Literal.String.Regex
+'h'           Literal.String.Regex
+'>'           Literal.String.Regex
+' '           Literal.String.Regex
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'token'       Keyword
+' backslash:sym' Name
+'<qq>'        Name
+' '           Text
+'{'           Text
+' '           Literal.String.Regex
+'<'           Literal.String.Regex
+'?'           Literal.String.Regex
+'b'           Literal.String.Regex
+'e'           Literal.String.Regex
+'f'           Literal.String.Regex
+'o'           Literal.String.Regex
+'r'           Literal.String.Regex
+'e'           Literal.String.Regex
+' '           Literal.String.Regex
+"'q'"         Literal.String.Regex
+'>'           Literal.String.Regex
+' '           Literal.String.Regex
+'<'           Literal.String.Regex
+'q'           Literal.String.Regex
+'u'           Literal.String.Regex
+'o'           Literal.String.Regex
+'t'           Literal.String.Regex
+'e'           Literal.String.Regex
+'='           Literal.String.Regex
+'.'           Literal.String.Regex
+'L'           Literal.String.Regex
+'A'           Literal.String.Regex
+'N'           Literal.String.Regex
+'G'           Literal.String.Regex
+'('           Literal.String.Regex
+"'MAIN'"      Literal.String.Regex
+','           Literal.String.Regex
+"'quote'"     Literal.String.Regex
+')'           Literal.String.Regex
+'>'           Literal.String.Regex
+' '           Literal.String.Regex
+'}'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'token'       Keyword
+' backslash:sym' Name
+'<\\\\>'      Name
+' '           Text
+'{'           Text
+' '           Literal.String.Regex
+'<'           Literal.String.Regex
+'t'           Literal.String.Regex
+'e'           Literal.String.Regex
+'x'           Literal.String.Regex
+'t'           Literal.String.Regex
+'='           Literal.String.Regex
+'.'           Literal.String.Regex
+'s'           Literal.String.Regex
+'y'           Literal.String.Regex
+'m'           Literal.String.Regex
+'>'           Literal.String.Regex
+' '           Literal.String.Regex
+'}'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'token'       Keyword
+' backslash:sym' Name
+'<stopper>'   Name
+' '           Text
+'{'           Text
+' '           Literal.String.Regex
+'<'           Literal.String.Regex
+'t'           Literal.String.Regex
+'e'           Literal.String.Regex
+'x'           Literal.String.Regex
+'t'           Literal.String.Regex
+'='           Literal.String.Regex
+'.'           Literal.String.Regex
+'s'           Literal.String.Regex
+'t'           Literal.String.Regex
+'o'           Literal.String.Regex
+'p'           Literal.String.Regex
+'p'           Literal.String.Regex
+'e'           Literal.String.Regex
+'r'           Literal.String.Regex
+'>'           Literal.String.Regex
+' '           Literal.String.Regex
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'token'       Keyword
+' backslash:sym' Name
+'<miscq>'     Name
+' '           Text
+'{'           Text
+' '           Literal.String.Regex
+'{'           Text
+'}'           Text
+' '           Literal.String.Regex
+'.'           Literal.String.Regex
+' '           Literal.String.Regex
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'method'      Keyword
+' '           Text
+'tweak_q'     Name
+'('           Text
+'$v'          Name.Variable
+')'           Text
+' '           Text
+'{'           Text
+' '           Text
+'self'        Name.Builtin
+'.'           Text
+'panic'       Name
+'('           Text
+'"Too late for :q"' Literal.String
+')'           Text
+' '           Text
+'}'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'method'      Keyword
+' '           Text
+'tweak_qq'    Name
+'('           Text
+'$v'          Name.Variable
+')'           Text
+' '           Text
+'{'           Text
+' '           Text
+'self'        Name.Builtin
+'.'           Text
+'panic'       Name
+'('           Text
+'"Too late for :qq"' Literal.String
+')'           Text
+' '           Text
+'}'           Text
+'\n'          Text
+
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+'role'        Keyword
+' '           Text
+'q'           Name
+'q'           Name
+' '           Text
+'does'        Keyword
+' '           Text
+'b1'          Name
+' '           Text
+'does'        Keyword
+' '           Text
+'c1'          Name
+' '           Text
+'does'        Keyword
+' '           Text
+'s1'          Name
+' '           Text
+'does'        Keyword
+' '           Text
+'a1'          Name
+' '           Text
+'does'        Keyword
+' '           Text
+'h1'          Name
+' '           Text
+'does'        Keyword
+' '           Text
+'f1'          Name
+' '           Text
+'{'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'token'       Keyword
+' stopper'    Name
+' '           Text
+'{'           Text
+' '           Literal.String.Regex
+'\\'          Literal.String.Regex
+'"'           Literal.String.Regex
+' '           Literal.String.Regex
+'}'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'token'       Keyword
+' backslash:sym' Name
+'<unrec>'     Name
+' '           Text
+'{'           Text
+' '           Literal.String.Regex
+'{'           Text
+'}'           Text
+' '           Literal.String.Regex
+'('           Literal.String.Regex
+'\\'          Literal.String.Regex
+'w'           Literal.String.Regex
+')'           Literal.String.Regex
+' '           Literal.String.Regex
+'{'           Text
+' '           Text
+'self'        Name.Builtin
+'.'           Text
+'throw_unrecog_backslash_seq:' Name
+' '           Text
+'$/'          Name.Variable.Global
+'['           Text
+'0'           Literal.Number.Integer
+']'           Text
+'.'           Text
+'Str'         Name.Builtin
+' '           Text
+'}'           Text
+' '           Literal.String.Regex
+'}'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'token'       Keyword
+' backslash:sym' Name
+'<misc>'      Name
+' '           Text
+'{'           Text
+' '           Literal.String.Regex
+'\\'          Literal.String.Regex
+'W'           Literal.String.Regex
+' '           Literal.String.Regex
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'method'      Keyword
+' '           Text
+'tweak_q'     Name
+'('           Text
+'$v'          Name.Variable
+')'           Text
+' '           Text
+'{'           Text
+' '           Text
+'self'        Name.Builtin
+'.'           Text
+'panic'       Name
+'('           Text
+'"Too late for :q"' Literal.String
+')'           Text
+' '           Text
+'}'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'method'      Keyword
+' '           Text
+'tweak_qq'    Name
+'('           Text
+'$v'          Name.Variable
+')'           Text
+' '           Text
+'{'           Text
+' '           Text
+'self'        Name.Builtin
+'.'           Text
+'panic'       Name
+'('           Text
+'"Too late for :qq"' Literal.String
+')'           Text
+' '           Text
+'}'           Text
+'\n'          Text
+
+'}'           Text
+'\n'          Text

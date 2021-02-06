@@ -1,0 +1,14 @@
+---input---
+fr"x={4*10}"
+
+---tokens---
+'fr'          Literal.String.Affix
+'"'           Literal.String.Double
+'x='          Literal.String.Double
+'{'           Literal.String.Interpol
+'4'           Literal.Number.Integer
+'*'           Operator
+'10'          Literal.Number.Integer
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text

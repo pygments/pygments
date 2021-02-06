@@ -1,0 +1,16 @@
+---input---
+f"{f'{inner}'}"
+
+---tokens---
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'{'           Literal.String.Interpol
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'{'           Literal.String.Interpol
+'inner'       Name
+'}'           Literal.String.Interpol
+"'"           Literal.String.Single
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text

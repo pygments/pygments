@@ -1,0 +1,158 @@
+'<'           Operator
+'cfcomponent' Name.Variable
+'>'           Operator
+'\n\t\n\t'    Text
+'<'           Operator
+'cffunction'  Name.Variable
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'init'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'access'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'public'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'returntype'  Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'any'         Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+'\n\t\t'      Text
+'<'           Operator
+'cfargument'  Name.Variable
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'arg1'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'type'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'any'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'required'    Keyword
+'='           Operator
+'"'           Literal.String.Double
+'true'        Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+'\n\t\t'      Text
+'<'           Operator
+'cfset'       Name.Variable
+' '           Text
+'this'        Name.Constant
+'.'           Punctuation
+'myVariable'  Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'arguments'   Name.Constant
+'.'           Punctuation
+'arg1'        Name.Variable
+'>'           Operator
+'\n\n\t\t'    Text
+'<'           Operator
+'cfreturn'    Name.Variable
+' '           Text
+'this'        Name.Constant
+'>'           Operator
+'\n\t'        Text
+'<'           Operator
+'/'           Operator
+'cffunction'  Name.Variable
+'>'           Operator
+'\n\n\t'      Text
+'<'           Operator
+'cffunction'  Name.Variable
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'testFunc'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'access'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'private'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'returntype'  Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'void'        Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+'\n\t\t'      Text
+'<'           Operator
+'cfargument'  Name.Variable
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'arg1'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'type'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'any'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'required'    Keyword
+'='           Operator
+'"'           Literal.String.Double
+'false'       Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+'\n\t\t\n\t\t' Text
+'<'           Operator
+'cfif'        Name.Variable
+' '           Text
+'structKeyExists' Name.Function
+'('           Punctuation
+'arguments'   Name.Constant
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'arg1'        Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'>'           Operator
+'\n\t\t\t'    Text
+'<'           Operator
+'cfset'       Name.Variable
+' '           Text
+'writeoutput' Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'Argument exists' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'>'           Operator
+'\n\t\t'      Text
+'<'           Operator
+'/'           Operator
+'cfif'        Name.Variable
+'>'           Operator
+'\n\t'        Text
+'<'           Operator
+'/'           Operator
+'cffunction'  Name.Variable
+'>'           Operator
+'\n\t\n'      Text
+
+'<'           Operator
+'/'           Operator
+'cfcomponent' Name.Variable
+'>'           Operator
+'\n'          Text

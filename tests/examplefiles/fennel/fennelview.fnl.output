@@ -1,0 +1,1769 @@
+';; A pretty-printer that outputs tables in Fennel syntax.' Comment.Single
+'\n'          Text
+
+';; Loosely based on inspect.lua: http://github.com/kikito/inspect.lua' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'view-quote'  Name.Variable
+' '           Text
+'['           Punctuation
+'str'         Name.Variable
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'.. '         Keyword
+'"\\""'       Literal.String
+' '           Text
+'('           Punctuation
+': '          Keyword
+'str'         Name.Variable
+' '           Text
+':gsub'       Literal.String.Symbol
+' '           Text
+'"\\""'       Literal.String
+' '           Text
+'"\\\\\\""'   Literal.String
+')'           Punctuation
+' '           Text
+'"\\""'       Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'local '      Keyword
+'short-control-char-escapes' Name.Variable
+'\n       '   Text
+'{'           Punctuation
+'"\\a"'       Literal.String
+' '           Text
+'"\\\\a"'     Literal.String
+' '           Text
+'"\\b"'       Literal.String
+' '           Text
+'"\\\\b"'     Literal.String
+' '           Text
+'"\\f"'       Literal.String
+' '           Text
+'"\\\\f"'     Literal.String
+' '           Text
+'"\\n"'       Literal.String
+' '           Text
+'"\\\\n"'     Literal.String
+'\n        '  Text
+'"\\r"'       Literal.String
+' '           Text
+'"\\\\r"'     Literal.String
+' '           Text
+'"\\t"'       Literal.String
+' '           Text
+'"\\\\t"'     Literal.String
+' '           Text
+'"\\v"'       Literal.String
+' '           Text
+'"\\\\v"'     Literal.String
+'}'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'local '      Keyword
+'long-control-char-escapes' Name.Variable
+'\n       '   Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'long'        Name.Variable
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+']'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'for '        Keyword
+'['           Punctuation
+'i'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'31'          Literal.Number.Integer
+']'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'ch'          Name.Variable
+' '           Text
+'('           Punctuation
+'string.char' Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'when '       Keyword
+'('           Punctuation
+'not '        Keyword
+'('           Punctuation
+'. '          Keyword
+'short-control-char-escapes' Name.Variable
+' '           Text
+'ch'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n               ' Text
+'('           Punctuation
+'tset '       Keyword
+'short-control-char-escapes' Name.Variable
+' '           Text
+'ch'          Name.Variable
+' '           Text
+'('           Punctuation
+'.. '         Keyword
+'"\\\\"'      Literal.String
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n               ' Text
+'('           Punctuation
+'tset '       Keyword
+'long'        Name.Variable
+' '           Text
+'ch'          Name.Variable
+' '           Text
+'('           Punctuation
+': '          Keyword
+'"\\\\%03d"'  Literal.String
+' '           Text
+':format'     Literal.String.Symbol
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n         ' Text
+'long'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'escape'      Name.Variable
+' '           Text
+'['           Punctuation
+'str'         Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'-> '         Keyword
+'str'         Name.Variable
+'\n      '    Text
+'('           Punctuation
+': '          Keyword
+':gsub'       Literal.String.Symbol
+' '           Text
+'"\\\\"'      Literal.String
+' '           Text
+'"\\\\\\\\"'  Literal.String
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+': '          Keyword
+':gsub'       Literal.String.Symbol
+' '           Text
+'"(%c)%f[0-9]"' Literal.String
+' '           Text
+'long-control-char-escapes' Name.Variable
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+': '          Keyword
+':gsub'       Literal.String.Symbol
+' '           Text
+'"%c"'        Literal.String
+' '           Text
+'short-control-char-escapes' Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'sequence-key?' Name.Variable
+' '           Text
+'['           Punctuation
+'k'           Name.Variable
+' '           Text
+'len'         Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'and '        Keyword
+'('           Punctuation
+'= '          Keyword
+'('           Punctuation
+'type '       Name.Builtin
+'k'           Name.Variable
+')'           Punctuation
+' '           Text
+'"number"'    Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'<= '         Keyword
+'1'           Literal.Number.Integer
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'<= '         Keyword
+'k'           Name.Variable
+' '           Text
+'len'         Name.Variable
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'= '          Keyword
+'('           Punctuation
+'math.floor'  Name.Variable
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'local '      Keyword
+'type-order'  Name.Variable
+' '           Text
+'{'           Punctuation
+':number'     Literal.String.Symbol
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+':boolean'    Literal.String.Symbol
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+':string'     Literal.String.Symbol
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+':table'      Literal.String.Symbol
+' '           Text
+'4'           Literal.Number.Integer
+'\n                   ' Text
+':function'   Literal.String.Symbol
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+':userdata'   Literal.String.Symbol
+' '           Text
+'6'           Literal.Number.Integer
+' '           Text
+':thread'     Literal.String.Symbol
+' '           Text
+'7'           Literal.Number.Integer
+'}'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'sort-keys'   Name.Variable
+' '           Text
+'['           Punctuation
+'a'           Name.Variable
+' '           Text
+'b'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'ta'          Name.Variable
+' '           Text
+'('           Punctuation
+'type '       Name.Builtin
+'a'           Name.Variable
+')'           Punctuation
+' '           Text
+'tb'          Name.Variable
+' '           Text
+'('           Punctuation
+'type '       Name.Builtin
+'b'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'and '        Keyword
+'('           Punctuation
+'= '          Keyword
+'ta'          Name.Variable
+' '           Text
+'tb'          Name.Variable
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'or '         Keyword
+'('           Punctuation
+'= '          Keyword
+'ta'          Name.Variable
+' '           Text
+'"string"'    Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'= '          Keyword
+'ta'          Name.Variable
+' '           Text
+'"number"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'< '          Keyword
+'a'           Name.Variable
+' '           Text
+'b'           Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'dta'         Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'type-order'  Name.Variable
+' '           Text
+'a'           Name.Variable
+')'           Punctuation
+'\n              ' Text
+'dtb'         Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'type-order'  Name.Variable
+' '           Text
+'b'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n          ' Text
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'and '        Keyword
+'dta'         Name.Variable
+' '           Text
+'dtb'         Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'< '          Keyword
+'dta'         Name.Variable
+' '           Text
+'dtb'         Name.Variable
+')'           Punctuation
+'\n              ' Text
+'dta'         Name.Variable
+' '           Text
+'true'        Name.Variable
+'\n              ' Text
+'dtb'         Name.Variable
+' '           Text
+'false'       Name.Variable
+'\n              ' Text
+':else'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'< '          Keyword
+'ta'          Name.Variable
+' '           Text
+'tb'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'get-sequence-length' Name.Variable
+' '           Text
+'['           Punctuation
+'t'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'var '        Keyword
+'len'         Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'each '       Keyword
+'['           Punctuation
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'ipairs '     Name.Builtin
+'t'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'set '        Keyword
+'len'         Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'len'         Name.Variable
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'get-nonsequential-keys' Name.Variable
+' '           Text
+'['           Punctuation
+'t'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'keys'        Name.Variable
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n        '  Text
+'sequence-length' Name.Variable
+' '           Text
+'('           Punctuation
+'get-sequence-length' Name.Variable
+' '           Text
+'t'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'each '       Keyword
+'['           Punctuation
+'k'           Name.Variable
+' '           Text
+'('           Punctuation
+'pairs '      Name.Builtin
+'t'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'when '       Keyword
+'('           Punctuation
+'not '        Keyword
+'('           Punctuation
+'sequence-key?' Name.Variable
+' '           Text
+'k'           Name.Variable
+' '           Text
+'sequence-length' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'table.insert' Name.Variable
+' '           Text
+'keys'        Name.Variable
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'table.sort'  Name.Variable
+' '           Text
+'keys'        Name.Variable
+' '           Text
+'sort-keys'   Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'values '     Keyword
+'keys'        Name.Variable
+' '           Text
+'sequence-length' Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'count-table-appearances' Name.Variable
+' '           Text
+'['           Punctuation
+'t'           Name.Variable
+' '           Text
+'appearances' Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'when '       Keyword
+'('           Punctuation
+'= '          Keyword
+'('           Punctuation
+'type '       Name.Builtin
+'t'           Name.Variable
+')'           Punctuation
+' '           Text
+'"table"'     Literal.String
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'not '        Keyword
+'('           Punctuation
+'. '          Keyword
+'appearances' Name.Variable
+' '           Text
+'t'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'do '         Keyword
+'('           Punctuation
+'tset '       Keyword
+'appearances' Name.Variable
+' '           Text
+'t'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'each '       Keyword
+'['           Punctuation
+'k'           Name.Variable
+' '           Text
+'v'           Name.Variable
+' '           Text
+'('           Punctuation
+'pairs '      Name.Builtin
+'t'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'count-table-appearances' Name.Variable
+' '           Text
+'k'           Name.Variable
+' '           Text
+'appearances' Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'count-table-appearances' Name.Variable
+' '           Text
+'v'           Name.Variable
+' '           Text
+'appearances' Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'tset '       Keyword
+'appearances' Name.Variable
+' '           Text
+'t'           Name.Variable
+' '           Text
+'('           Punctuation
+'+ '          Keyword
+'('           Punctuation
+'or '         Keyword
+'('           Punctuation
+'. '          Keyword
+'appearances' Name.Variable
+' '           Text
+'t'           Name.Variable
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'appearances' Name.Variable
+')'           Punctuation
+'\n\n\x0c\n\n' Text
+
+'('           Punctuation
+'var '        Keyword
+'put-value'   Name.Variable
+' '           Text
+'nil'         Name.Variable
+')'           Punctuation
+' '           Text
+'; mutual recursion going on; defined below' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'puts'        Name.Variable
+' '           Text
+'['           Punctuation
+'self'        Name.Variable
+' '           Text
+'...'         Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'each '       Keyword
+'['           Punctuation
+'_'           Name.Variable
+' '           Text
+'v'           Name.Variable
+' '           Text
+'('           Punctuation
+'ipairs '     Name.Builtin
+'['           Punctuation
+'...'         Name.Variable
+']'           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'table.insert' Name.Variable
+' '           Text
+'self.buffer' Name.Variable
+' '           Text
+'v'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'tabify'      Name.Variable
+' '           Text
+'['           Punctuation
+'self'        Name.Variable
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'"\\n"'       Literal.String
+' '           Text
+'('           Punctuation
+': '          Keyword
+'self.indent' Name.Variable
+' '           Text
+':rep'        Literal.String.Symbol
+' '           Text
+'self.level'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'already-visited?' Name.Variable
+' '           Text
+'['           Punctuation
+'self'        Name.Variable
+' '           Text
+'v'           Name.Variable
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'not= '       Keyword
+'('           Punctuation
+'. '          Keyword
+'self.ids'    Name.Variable
+' '           Text
+'v'           Name.Variable
+')'           Punctuation
+' '           Text
+'nil'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'get-id'      Name.Variable
+' '           Text
+'['           Punctuation
+'self'        Name.Variable
+' '           Text
+'v'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'var '        Keyword
+'id'          Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'self.ids'    Name.Variable
+' '           Text
+'v'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'when '       Keyword
+'('           Punctuation
+'not '        Keyword
+'id'          Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'tv'          Name.Variable
+' '           Text
+'('           Punctuation
+'type '       Name.Builtin
+'v'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'set '        Keyword
+'id'          Name.Variable
+' '           Text
+'('           Punctuation
+'+ '          Keyword
+'('           Punctuation
+'or '         Keyword
+'('           Punctuation
+'. '          Keyword
+'self.max-ids' Name.Variable
+' '           Text
+'tv'          Name.Variable
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'tset '       Keyword
+'self.max-ids' Name.Variable
+' '           Text
+'tv'          Name.Variable
+' '           Text
+'id'          Name.Variable
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'tset '       Keyword
+'self.ids'    Name.Variable
+' '           Text
+'v'           Name.Variable
+' '           Text
+'id'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'tostring '   Name.Builtin
+'id'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'put-sequential-table' Name.Variable
+' '           Text
+'['           Punctuation
+'self'        Name.Variable
+' '           Text
+'t'           Name.Variable
+' '           Text
+'len'         Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'"["'         Literal.String
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'set '        Keyword
+'self.level'  Name.Variable
+' '           Text
+'('           Punctuation
+'+ '          Keyword
+'self.level'  Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'for '        Keyword
+'['           Punctuation
+'i'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'len'         Name.Variable
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'when '       Keyword
+'('           Punctuation
+'< '          Keyword
+'1'           Literal.Number.Integer
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'+ '          Keyword
+'1'           Literal.Number.Integer
+' '           Text
+'len'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'" "'         Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'put-value'   Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'t'           Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'set '        Keyword
+'self.level'  Name.Variable
+' '           Text
+'('           Punctuation
+'- '          Keyword
+'self.level'  Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'"]"'         Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'put-key'     Name.Variable
+' '           Text
+'['           Punctuation
+'self'        Name.Variable
+' '           Text
+'k'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'and '        Keyword
+'('           Punctuation
+'= '          Keyword
+'('           Punctuation
+'type '       Name.Builtin
+'k'           Name.Variable
+')'           Punctuation
+' '           Text
+'"string"'    Literal.String
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+': '          Keyword
+'k'           Name.Variable
+' '           Text
+':find'       Literal.String.Symbol
+' '           Text
+'"^[-%w?\\\\^_!$%&*+./@:|<=>]+$"' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'":"'         Literal.String
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'put-value'   Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'put-kv-table' Name.Variable
+' '           Text
+'['           Punctuation
+'self'        Name.Variable
+' '           Text
+'t'           Name.Variable
+' '           Text
+'ordered-keys' Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'"{"'         Literal.String
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'set '        Keyword
+'self.level'  Name.Variable
+' '           Text
+'('           Punctuation
+'+ '          Keyword
+'self.level'  Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+';; first, output sorted nonsequential keys' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'each '       Keyword
+'['           Punctuation
+'i'           Name.Variable
+' '           Text
+'k'           Name.Variable
+' '           Text
+'('           Punctuation
+'ipairs '     Name.Builtin
+'ordered-keys' Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'when '       Keyword
+'('           Punctuation
+'or '         Keyword
+'self.table-edges' Name.Variable
+' '           Text
+'('           Punctuation
+'not= '       Keyword
+'i'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'tabify'      Name.Variable
+' '           Text
+'self'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'put-key'     Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'" "'         Literal.String
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'put-value'   Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'t'           Name.Variable
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+';; next, output any sequential keys' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'each '       Keyword
+'['           Punctuation
+'i'           Name.Variable
+' '           Text
+'v'           Name.Variable
+' '           Text
+'('           Punctuation
+'ipairs '     Name.Builtin
+'t'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'tabify'      Name.Variable
+' '           Text
+'self'        Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'put-key'     Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'" "'         Literal.String
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'put-value'   Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'v'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'set '        Keyword
+'self.level'  Name.Variable
+' '           Text
+'('           Punctuation
+'- '          Keyword
+'self.level'  Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'when '       Keyword
+'self.table-edges' Name.Variable
+'\n    '      Text
+'('           Punctuation
+'tabify'      Name.Variable
+' '           Text
+'self'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'"}"'         Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'put-table'   Name.Variable
+' '           Text
+'['           Punctuation
+'self'        Name.Variable
+' '           Text
+'t'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'metamethod'  Name.Variable
+' '           Text
+'('           Punctuation
+'and '        Keyword
+'self.metamethod?' Name.Variable
+' '           Text
+'('           Punctuation
+'-?> '        Keyword
+'t'           Name.Variable
+' '           Text
+'getmetatable ' Name.Builtin
+'('           Punctuation
+'. '          Keyword
+':__fennelview' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'and '        Keyword
+'('           Punctuation
+'already-visited?' Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'t'           Name.Variable
+')'           Punctuation
+' '           Text
+'self.detect-cycles?' Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'"#<table @"' Literal.String
+' '           Text
+'('           Punctuation
+'get-id'      Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'t'           Name.Variable
+')'           Punctuation
+' '           Text
+'">"'         Literal.String
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'>= '         Keyword
+'self.level'  Name.Variable
+' '           Text
+'self.depth'  Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'"{...}"'     Literal.String
+')'           Punctuation
+'\n        '  Text
+'metamethod'  Name.Variable
+'\n        '  Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'('           Punctuation
+'metamethod'  Name.Variable
+' '           Text
+'t'           Name.Variable
+' '           Text
+'self.fennelview' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+':else'       Literal.String.Symbol
+'\n        '  Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'('           Punctuation
+'non-seq-keys' Name.Variable
+' '           Text
+'len'         Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'get-nonsequential-keys' Name.Variable
+' '           Text
+'t'           Name.Variable
+')'           Punctuation
+'\n              ' Text
+'id'          Name.Variable
+' '           Text
+'('           Punctuation
+'get-id'      Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'t'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n          ' Text
+';; fancy metatable stuff can result in self.appearances not including' Comment.Single
+'\n          ' Text
+";; a table, so if it's not found, assume we haven't seen it; we can't" Comment.Single
+'\n          ' Text
+';; do cycle detection in that case.' Comment.Single
+'\n          ' Text
+'('           Punctuation
+'when '       Keyword
+'('           Punctuation
+'and '        Keyword
+'('           Punctuation
+'< '          Keyword
+'1'           Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'or '         Keyword
+'('           Punctuation
+'. '          Keyword
+'self.appearances' Name.Variable
+' '           Text
+'t'           Name.Variable
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'self.detect-cycles?' Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'"@"'         Literal.String
+' '           Text
+'id'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n          ' Text
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'and '        Keyword
+'('           Punctuation
+'= '          Keyword
+'('           Punctuation
+'length '     Keyword
+'non-seq-keys' Name.Variable
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'= '          Keyword
+'('           Punctuation
+'length '     Keyword
+'t'           Name.Variable
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'('           Punctuation
+'if '         Keyword
+'self.empty-as-square' Name.Variable
+' '           Text
+'"[]"'        Literal.String
+' '           Text
+'"{}"'        Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'= '          Keyword
+'('           Punctuation
+'length '     Keyword
+'non-seq-keys' Name.Variable
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'put-sequential-table' Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'t'           Name.Variable
+' '           Text
+'len'         Name.Variable
+')'           Punctuation
+'\n              ' Text
+':else'       Literal.String.Symbol
+'\n              ' Text
+'('           Punctuation
+'put-kv-table' Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'t'           Name.Variable
+' '           Text
+'non-seq-keys' Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'set '        Keyword
+'put-value'   Name.Variable
+' '           Text
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'self'        Name.Variable
+' '           Text
+'v'           Name.Variable
+']'           Punctuation
+'\n                 ' Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'tv'          Name.Variable
+' '           Text
+'('           Punctuation
+'type '       Name.Builtin
+'v'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n                   ' Text
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'= '          Keyword
+'tv'          Name.Variable
+' '           Text
+'"string"'    Literal.String
+')'           Punctuation
+'\n                       ' Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'('           Punctuation
+'view-quote'  Name.Variable
+' '           Text
+'('           Punctuation
+'escape'      Name.Variable
+' '           Text
+'v'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                       ' Text
+'('           Punctuation
+'or '         Keyword
+'('           Punctuation
+'= '          Keyword
+'tv'          Name.Variable
+' '           Text
+'"number"'    Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'= '          Keyword
+'tv'          Name.Variable
+' '           Text
+'"boolean"'   Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'= '          Keyword
+'tv'          Name.Variable
+' '           Text
+'"nil"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n                       ' Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'('           Punctuation
+'tostring '   Name.Builtin
+'v'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                       ' Text
+'('           Punctuation
+'= '          Keyword
+'tv'          Name.Variable
+' '           Text
+'"table"'     Literal.String
+')'           Punctuation
+'\n                       ' Text
+'('           Punctuation
+'put-table'   Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'v'           Name.Variable
+')'           Punctuation
+'\n                       ' Text
+':else'       Literal.String.Symbol
+'\n                       ' Text
+'('           Punctuation
+'puts'        Name.Variable
+' '           Text
+'self'        Name.Variable
+' '           Text
+'"#<"'        Literal.String
+' '           Text
+'('           Punctuation
+'tostring '   Name.Builtin
+'v'           Name.Variable
+')'           Punctuation
+' '           Text
+'">"'         Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n\x0c\n\n' Text
+
+'('           Punctuation
+'fn '         Keyword
+'one-line'    Name.Variable
+' '           Text
+'['           Punctuation
+'str'         Name.Variable
+']'           Punctuation
+'\n  '        Text
+";; save return value as local to ignore gsub's extra return value" Comment.Single
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'ret'         Name.Variable
+' '           Text
+'('           Punctuation
+'-> '         Keyword
+'str'         Name.Variable
+'\n                ' Text
+'('           Punctuation
+': '          Keyword
+':gsub'       Literal.String.Symbol
+' '           Text
+'"\\n"'       Literal.String
+' '           Text
+'" "'         Literal.String
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+': '          Keyword
+':gsub'       Literal.String.Symbol
+' '           Text
+'"%[ "'       Literal.String
+' '           Text
+'"["'         Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+': '          Keyword
+':gsub'       Literal.String.Symbol
+' '           Text
+'" %]"'       Literal.String
+' '           Text
+'"]"'         Literal.String
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+': '          Keyword
+':gsub'       Literal.String.Symbol
+' '           Text
+'"%{ "'       Literal.String
+' '           Text
+'"{"'         Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+': '          Keyword
+':gsub'       Literal.String.Symbol
+' '           Text
+'" %}"'       Literal.String
+' '           Text
+'"}"'         Literal.String
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+': '          Keyword
+':gsub'       Literal.String.Symbol
+' '           Text
+'"%( "'       Literal.String
+' '           Text
+'"("'         Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+': '          Keyword
+':gsub'       Literal.String.Symbol
+' '           Text
+'" %)"'       Literal.String
+' '           Text
+'")"'         Literal.String
+')'           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'ret'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'fn '         Keyword
+'fennelview'  Name.Variable
+' '           Text
+'['           Punctuation
+'x'           Name.Variable
+' '           Text
+'options'     Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return a string representation of x.\n\nCan take an options table with these keys:\n* :one-line (boolean: default: false) keep the output string as a one-liner\n* :depth (number, default: 128) limit how many levels to go (default: 128)\n* :indent (string, default: \\"  \\") use this string to indent each level\n* :detect-cycles? (boolean, default: true) don\'t try to traverse a looping table\n* :metamethod? (boolean: default: true) use the __fennelview metamethod if found\n* :table-edges (boolean: default: true) put {} table brackets on their own line\n* :empty-as-square (boolean: default: false) render empty tables as [], not {}\n\nThe __fennelview metamethod should take the table being serialized as its first\nargument and a function as its second arg which can be used on table elements to\ncontinue the fennelview process on them.\n"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'options'     Name.Variable
+' '           Text
+'('           Punctuation
+'or '         Keyword
+'options'     Name.Variable
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'inspector'   Name.Variable
+' '           Text
+'{'           Punctuation
+':appearances' Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'count-table-appearances' Name.Variable
+' '           Text
+'x'           Name.Variable
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+'\n                   ' Text
+':depth'      Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'or '         Keyword
+'options.depth' Name.Variable
+' '           Text
+'128'         Literal.Number.Integer
+')'           Punctuation
+'\n                   ' Text
+':level'      Literal.String.Symbol
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+':buffer'     Literal.String.Symbol
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+' '           Text
+':ids'        Literal.String.Symbol
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+' '           Text
+':max-ids'    Literal.String.Symbol
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n                   ' Text
+':indent'     Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'or '         Keyword
+'options.indent' Name.Variable
+' '           Text
+'('           Punctuation
+'if '         Keyword
+'options.one-line' Name.Variable
+' '           Text
+'""'          Literal.String
+' '           Text
+'"  "'        Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n                   ' Text
+':detect-cycles?' Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'not '        Keyword
+'('           Punctuation
+'= '          Keyword
+'false '      Keyword
+'options.detect-cycles?' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                   ' Text
+':metamethod?' Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'not '        Keyword
+'('           Punctuation
+'= '          Keyword
+'false '      Keyword
+'options.metamethod?' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                   ' Text
+':fennelview' Literal.String.Symbol
+' '           Text
+'#'           Punctuation
+'('           Punctuation
+'fennelview'  Name.Variable
+' '           Text
+'$1'          Name.Variable
+' '           Text
+'options'     Name.Variable
+')'           Punctuation
+'\n                   ' Text
+':table-edges' Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'not= '       Keyword
+'options.table-edges' Name.Variable
+' '           Text
+'false'       Name.Variable
+')'           Punctuation
+'\n                   ' Text
+':empty-as-square' Literal.String.Symbol
+' '           Text
+'options.empty-as-square' Name.Variable
+'}'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'put-value'   Name.Variable
+' '           Text
+'inspector'   Name.Variable
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'str'         Name.Variable
+' '           Text
+'('           Punctuation
+'table.concat' Name.Variable
+' '           Text
+'inspector.buffer' Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'if '         Keyword
+'options.one-line' Name.Variable
+' '           Text
+'('           Punctuation
+'one-line'    Name.Variable
+' '           Text
+'str'         Name.Variable
+')'           Punctuation
+' '           Text
+'str'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text

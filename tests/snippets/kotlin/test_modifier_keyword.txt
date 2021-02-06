@@ -1,0 +1,18 @@
+---input---
+data class A(val data: String)
+
+---tokens---
+'data'        Keyword.Declaration
+' '           Text
+'class'       Keyword.Declaration
+' '           Text
+'A'           Name.Class
+'('           Punctuation
+'val'         Keyword.Declaration
+' '           Text
+'data'        Name.Variable
+':'           Punctuation
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'\n'          Text

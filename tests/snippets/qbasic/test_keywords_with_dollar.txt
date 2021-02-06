@@ -1,0 +1,22 @@
+---input---
+DIM x
+x = RIGHT$("abc", 1)
+
+---tokens---
+'DIM'         Keyword.Declaration
+' '           Text.Whitespace
+'x'           Name.Variable.Global
+'\n'          Text
+
+'x'           Name.Variable.Global
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'RIGHT$'      Keyword.Reserved
+'('           Punctuation
+'"abc"'       Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer.Long
+')'           Punctuation
+'\n'          Text

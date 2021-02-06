@@ -1,0 +1,5514 @@
+'implement'   Keyword
+' '           Text
+'Ninewin'     Name
+';'           Punctuation
+'\n'          Text
+
+'include'     Keyword
+' '           Text
+'"'           Literal.String
+'sys.m'       Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'sys'         Name
+':'           Operator
+' '           Text
+'Sys'         Name
+';'           Punctuation
+'\n'          Text
+
+'include'     Keyword
+' '           Text
+'"'           Literal.String
+'draw.m'      Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'draw'        Name
+':'           Operator
+' '           Text
+'Draw'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Image'       Name
+','           Punctuation
+' '           Text
+'Display'     Name
+','           Punctuation
+' '           Text
+'Pointer'     Name
+':'           Operator
+' '           Text
+'import'      Keyword
+' '           Text
+'draw'        Name
+';'           Punctuation
+'\n'          Text
+
+'include'     Keyword
+' '           Text
+'"'           Literal.String
+'arg.m'       Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'include'     Keyword
+' '           Text
+'"'           Literal.String
+'keyboard.m'  Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'include'     Keyword
+' '           Text
+'"'           Literal.String
+'tk.m'        Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'include'     Keyword
+' '           Text
+'"'           Literal.String
+'wmclient.m'  Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'wmclient'    Name
+':'           Operator
+' '           Text
+'Wmclient'    Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Window'      Name
+':'           Operator
+' '           Text
+'import'      Keyword
+' '           Text
+'wmclient'    Name
+';'           Punctuation
+'\n'          Text
+
+'include'     Keyword
+' '           Text
+'"'           Literal.String
+'sh.m'        Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'sh'          Name
+':'           Operator
+' '           Text
+'Sh'          Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'# run a p9 graphics program (default rio) under inferno wm,\n' Comment.Single
+
+'# making available to it:\n' Comment.Single
+
+'# /dev/winname - naming the current inferno window (changing on resize)\n' Comment.Single
+
+'# /dev/mouse - pointer file + resize events; write to change position\n' Comment.Single
+
+'# /dev/cursor - change appearance of cursor.\n' Comment.Single
+
+'# /dev/draw - inferno draw device\n' Comment.Single
+
+'# /dev/cons - read keyboard events, write to 9win stdout.\n' Comment.Single
+
+'\n'          Text
+
+'Ninewin'     Name
+':'           Operator
+' '           Text
+'module'      Keyword.Type
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'init'        Name
+':'           Operator
+' '           Text
+'fn'          Keyword.Type
+'('           Punctuation
+'ctxt'        Name
+':'           Operator
+' '           Text
+'ref'         Keyword.Type
+' '           Text
+'Draw'        Name
+'-'           Operator
+'>'           Operator
+'Context'     Name
+','           Punctuation
+' '           Text
+'argv'        Name
+':'           Operator
+' '           Text
+'list'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'string'      Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'winname'     Name
+':'           Operator
+' '           Text
+'string'      Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'init'        Name
+'('           Punctuation
+'ctxt'        Name
+':'           Operator
+' '           Text
+'ref'         Keyword.Type
+' '           Text
+'Draw'        Name
+'-'           Operator
+'>'           Operator
+'Context'     Name
+','           Punctuation
+' '           Text
+'argv'        Name
+':'           Operator
+' '           Text
+'list'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'string'      Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'size'        Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'Draw'        Name
+'-'           Operator
+'>'           Operator
+'Point'       Name
+'('           Punctuation
+'500'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'500'         Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'sys'         Name
+' '           Text
+'='           Operator
+' '           Text
+'load'        Keyword
+' '           Text
+'Sys'         Name
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'PATH'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'draw'        Name
+' '           Text
+'='           Operator
+' '           Text
+'load'        Keyword
+' '           Text
+'Draw'        Name
+' '           Text
+'Draw'        Name
+'-'           Operator
+'>'           Operator
+'PATH'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'wmclient'    Name
+' '           Text
+'='           Operator
+' '           Text
+'load'        Keyword
+' '           Text
+'Wmclient'    Name
+' '           Text
+'Wmclient'    Name
+'-'           Operator
+'>'           Operator
+'PATH'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'wmclient'    Name
+'-'           Operator
+'>'           Operator
+'init'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'sh'          Name
+' '           Text
+'='           Operator
+' '           Text
+'load'        Keyword
+' '           Text
+'Sh'          Name
+' '           Text
+'Sh'          Name
+'-'           Operator
+'>'           Operator
+'PATH'        Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'buts'        Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'Wmclient'    Name
+'-'           Operator
+'>'           Operator
+'Resize'      Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'ctxt'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'ctxt'        Name
+' '           Text
+'='           Operator
+' '           Text
+'wmclient'    Name
+'-'           Operator
+'>'           Operator
+'makedrawcontext' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'buts'        Name
+' '           Text
+'='           Operator
+' '           Text
+'Wmclient'    Name
+'-'           Operator
+'>'           Operator
+'Plain'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'arg'         Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'load'        Keyword
+' '           Text
+'Arg'         Name
+' '           Text
+'Arg'         Name
+'-'           Operator
+'>'           Operator
+'PATH'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'arg'         Name
+'-'           Operator
+'>'           Operator
+'init'        Name
+'('           Punctuation
+'argv'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'arg'         Name
+'-'           Operator
+'>'           Operator
+'setusage'    Name
+'('           Punctuation
+'"'           Literal.String
+'9win [-s] [-x width] [-y height]' Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'exportonly'  Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'while'       Keyword
+'('           Punctuation
+'('           Punctuation
+'('           Punctuation
+'opt'         Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'arg'         Name
+'-'           Operator
+'>'           Operator
+'opt'         Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'case'        Keyword
+' '           Text
+'opt'         Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+"'s'"         Literal.String.Char
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'exportonly'  Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+"'x'"         Literal.String.Char
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'size'        Name
+'.'           Punctuation
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'arg'         Name
+'-'           Operator
+'>'           Operator
+'earg'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+"'y'"         Literal.String.Char
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'size'        Name
+'.'           Punctuation
+'y'           Name
+' '           Text
+'='           Operator
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'arg'         Name
+'-'           Operator
+'>'           Operator
+'earg'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'*'           Operator
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'arg'         Name
+'-'           Operator
+'>'           Operator
+'usage'       Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'size'        Name
+'.'           Punctuation
+'x'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'size'        Name
+'.'           Punctuation
+'y'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'arg'         Name
+'-'           Operator
+'>'           Operator
+'usage'       Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'argv'        Name
+' '           Text
+'='           Operator
+' '           Text
+'arg'         Name
+'-'           Operator
+'>'           Operator
+'argv'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'argv'        Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'hd'          Keyword
+' '           Text
+'argv'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'"'           Literal.String
+'-s'          Literal.String
+'"'           Literal.String
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'exportonly'  Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'argv'        Name
+' '           Text
+'='           Operator
+' '           Text
+'tl'          Keyword
+' '           Text
+'argv'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'argv'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'!'           Operator
+'exportonly'  Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'argv'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'rio'         Literal.String
+'"'           Literal.String
+' '           Text
+':'           Operator
+':'           Operator
+' '           Text
+'nil'         Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'argv'        Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'exportonly'  Name
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fprint'      Name
+'('           Punctuation
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fildes'      Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'9win: no command allowed with -s flag' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'raise'       Name
+' '           Text
+'"'           Literal.String
+'fail:usage'  Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'title'       Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'"'           Literal.String
+'9win'        Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'exportonly'  Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'title'       Name
+' '           Text
+'+'           Operator
+'='           Operator
+' '           Text
+'"'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'hd'          Keyword
+' '           Text
+'argv'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'w'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'wmclient'    Name
+'-'           Operator
+'>'           Operator
+'window'      Name
+'('           Punctuation
+'ctxt'        Name
+','           Punctuation
+' '           Text
+'title'       Name
+','           Punctuation
+' '           Text
+'buts'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'w'           Name
+'.'           Punctuation
+'reshape'     Name
+'('           Punctuation
+'('           Punctuation
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'size'        Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'w'           Name
+'.'           Punctuation
+'onscreen'    Name
+'('           Punctuation
+'nil'         Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'w'           Name
+'.'           Punctuation
+'image'       Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fprint'      Name
+'('           Punctuation
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fildes'      Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'9win: cannot get image to draw on' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'raise'       Name
+' '           Text
+'"'           Literal.String
+'fail:no window' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'pctl'        Name
+'('           Punctuation
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'FORKNS'      Name
+'|'           Operator
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'NEWPGRP'     Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'ld'          Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'"'           Literal.String
+'/n/9win'     Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'bind'        Name
+'('           Punctuation
+'"'           Literal.String
+'#s'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'ld'          Name
+','           Punctuation
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'MREPL'       Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'&'           Operator
+'&'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'bind'        Name
+'('           Punctuation
+'"'           Literal.String
+'#s'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'ld'          Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'/n/local'    Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'MREPL'       Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fprint'      Name
+'('           Punctuation
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fildes'      Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'9win: cannot bind files: %r' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'raise'       Name
+' '           Text
+'"'           Literal.String
+'fail:error'  Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'w'           Name
+'.'           Punctuation
+'startinput'  Name
+'('           Punctuation
+'"'           Literal.String
+'kbd'         Literal.String
+'"'           Literal.String
+' '           Text
+':'           Operator
+':'           Operator
+' '           Text
+'"'           Literal.String
+'ptr'         Literal.String
+'"'           Literal.String
+' '           Text
+':'           Operator
+':'           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'spawn'       Keyword
+' '           Text
+'ptrproc'     Name
+'('           Punctuation
+'rq'          Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'chan'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'Rread'       Name
+','           Punctuation
+' '           Text
+'ptr'         Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'chan'        Keyword.Type
+'['           Punctuation
+'10'          Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'ref'         Keyword.Type
+' '           Text
+'Pointer'     Name
+','           Punctuation
+' '           Text
+'reshape'     Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'chan'        Keyword.Type
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'int'         Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t\t\n\t'    Text
+'fwinname'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'file2chan'   Name
+'('           Punctuation
+'ld'          Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'winname'     Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'fconsctl'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'file2chan'   Name
+'('           Punctuation
+'ld'          Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'consctl'     Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'fcons'       Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'file2chan'   Name
+'('           Punctuation
+'ld'          Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'cons'        Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'fmouse'      Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'file2chan'   Name
+'('           Punctuation
+'ld'          Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'mouse'       Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'fcursor'     Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'file2chan'   Name
+'('           Punctuation
+'ld'          Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'cursor'      Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'exportonly'  Name
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'spawn'       Keyword
+' '           Text
+'run'         Name
+'('           Punctuation
+'sync'        Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'chan'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'string'      Keyword.Type
+','           Punctuation
+' '           Text
+'w'           Name
+'.'           Punctuation
+'ctl'         Name
+','           Punctuation
+' '           Text
+'ld'          Name
+','           Punctuation
+' '           Text
+'argv'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'('           Punctuation
+'e'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'sync'        Name
+')'           Punctuation
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fprint'      Name
+'('           Punctuation
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fildes'      Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'9win: %s'    Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'e'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'raise'       Name
+' '           Text
+'"'           Literal.String
+'fail:error'  Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'spawn'       Keyword
+' '           Text
+'serveproc'   Name
+'('           Punctuation
+'w'           Name
+','           Punctuation
+' '           Text
+'rq'          Name
+','           Punctuation
+' '           Text
+'fwinname'    Name
+','           Punctuation
+' '           Text
+'fconsctl'    Name
+','           Punctuation
+' '           Text
+'fcons'       Name
+','           Punctuation
+' '           Text
+'fmouse'      Name
+','           Punctuation
+' '           Text
+'fcursor'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'exportonly'  Name
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'# handle events synchronously so that we don\'t get a "killed" message\n' Comment.Single
+
+'\t\t'        Text
+'# from the shell.\n' Comment.Single
+
+'\t\t'        Text
+'handleevents' Name
+'('           Punctuation
+'w'           Name
+','           Punctuation
+' '           Text
+'ptr'         Name
+','           Punctuation
+' '           Text
+'reshape'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'else'        Keyword
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'spawn'       Keyword
+' '           Text
+'handleevents' Name
+'('           Punctuation
+'w'           Name
+','           Punctuation
+' '           Text
+'ptr'         Name
+','           Punctuation
+' '           Text
+'reshape'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'bind'        Name
+'('           Punctuation
+'ld'          Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'/dev'        Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'MBEFORE'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'export'      Name
+'('           Punctuation
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fildes'      Name
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'w'           Name
+'.'           Punctuation
+'ctl'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'handleevents' Name
+'('           Punctuation
+'w'           Name
+':'           Operator
+' '           Text
+'ref'         Keyword.Type
+' '           Text
+'Window'      Name
+','           Punctuation
+' '           Text
+'ptr'         Name
+':'           Operator
+' '           Text
+'chan'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'ref'         Keyword.Type
+' '           Text
+'Pointer'     Name
+','           Punctuation
+' '           Text
+'reshape'     Name
+':'           Operator
+' '           Text
+'chan'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'int'         Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'for'         Name
+'('           Punctuation
+';'           Punctuation
+';'           Punctuation
+')'           Punctuation
+'alt'         Keyword
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'c'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'w'           Name
+'.'           Punctuation
+'ctxt'        Name
+'.'           Punctuation
+'ctl'         Name
+' '           Text
+'or'          Name
+'\n'          Text
+
+'\t'          Text
+'c'           Name
+' '           Text
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'w'           Name
+'.'           Punctuation
+'ctl'         Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'e'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'w'           Name
+'.'           Punctuation
+'wmctl'       Name
+'('           Punctuation
+'c'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'e'           Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fprint'      Name
+'('           Punctuation
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fildes'      Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'9win: ctl error: %s' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'e'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'e'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'c'           Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'c'           Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'!'"         Literal.String.Char
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'alt'         Keyword
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'reshape'     Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t\t\t'    Text
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'*'           Operator
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t\t\t'    Text
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'winname'     Name
+' '           Text
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'p'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'w'           Name
+'.'           Punctuation
+'ctxt'        Name
+'.'           Punctuation
+'ptr'         Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'w'           Name
+'.'           Punctuation
+'pointer'     Name
+'('           Punctuation
+'*'           Operator
+'p'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+"# XXX would block here if client isn't reading mouse... but we do want to\n" Comment.Single
+
+'\t\t\t'      Text
+'# extert back-pressure, which conflicts.\n' Comment.Single
+
+'\t\t\t'      Text
+'alt'         Keyword
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'ptr'         Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'p'           Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t\t\t'    Text
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'*'           Operator
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t\t\t'    Text
+';'           Punctuation
+' '           Text
+'# sys->fprint(sys->fildes(2), "9win: discarding mouse event\\n");\n' Comment.Single
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'serveproc'   Name
+'('           Punctuation
+'w'           Name
+':'           Operator
+' '           Text
+'ref'         Keyword.Type
+' '           Text
+'Window'      Name
+','           Punctuation
+' '           Text
+'mouserq'     Name
+':'           Operator
+' '           Text
+'chan'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'Rread'       Name
+','           Punctuation
+' '           Text
+'fwinname'    Name
+','           Punctuation
+' '           Text
+'fconsctl'    Name
+','           Punctuation
+' '           Text
+'fcons'       Name
+','           Punctuation
+' '           Text
+'fmouse'      Name
+','           Punctuation
+' '           Text
+'fcursor'     Name
+':'           Operator
+' '           Text
+'ref'         Keyword.Type
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'FileIO'      Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'winid'       Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'krc'         Name
+':'           Operator
+' '           Text
+'list'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'Rread'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'ks'          Name
+':'           Operator
+' '           Text
+'string'      Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'for'         Name
+'('           Punctuation
+';'           Punctuation
+';'           Punctuation
+')'           Punctuation
+'alt'         Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'c'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'w'           Name
+'.'           Punctuation
+'ctxt'        Name
+'.'           Punctuation
+'kbd'         Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'ks'          Name
+'['           Punctuation
+'len'         Keyword
+' '           Text
+'ks'          Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'inf2p9key'   Name
+'('           Punctuation
+'c'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'krc'         Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'hd'          Keyword
+' '           Text
+'krc'         Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'array'       Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'byte'        Keyword.Type
+' '           Text
+'ks'          Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'ks'          Name
+' '           Text
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'krc'         Name
+' '           Text
+'='           Operator
+' '           Text
+'tl'          Keyword
+' '           Text
+'krc'         Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'('           Punctuation
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'wc'          Name
+')'           Punctuation
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'fcons'       Name
+'.'           Punctuation
+'write'       Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'wc'          Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'write'       Name
+'('           Punctuation
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fildes'      Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'len'         Keyword
+' '           Text
+'d'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'wc'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'len'         Keyword
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'('           Punctuation
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'rc'          Name
+')'           Punctuation
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'fcons'       Name
+'.'           Punctuation
+'read'        Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'rc'          Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'ks'          Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'rc'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'array'       Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'byte'        Keyword.Type
+' '           Text
+'ks'          Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'ks'          Name
+' '           Text
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'krc'         Name
+' '           Text
+'='           Operator
+' '           Text
+'rc'          Name
+' '           Text
+':'           Operator
+':'           Operator
+' '           Text
+'krc'         Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'('           Punctuation
+'offset'      Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'rc'          Name
+')'           Punctuation
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'fwinname'    Name
+'.'           Punctuation
+'read'        Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'rc'          Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'winname'     Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'winname'     Name
+' '           Text
+'='           Operator
+' '           Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'sprint'      Name
+'('           Punctuation
+'"'           Literal.String
+'noborder.9win.%d' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'winid'       Name
+'+'           Operator
+'+'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'if'          Keyword
+'('           Punctuation
+'w'           Name
+'.'           Punctuation
+'image'       Name
+'.'           Punctuation
+'name'        Name
+'('           Punctuation
+'winname'     Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fprint'      Name
+'('           Punctuation
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fildes'      Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'9win: namewin %q failed: %r' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'winname'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'rc'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'namewin failure' Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'d'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'array'       Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'byte'        Keyword.Type
+' '           Text
+'winname'     Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'offset'      Name
+' '           Text
+'<'           Operator
+' '           Text
+'len'         Keyword
+' '           Text
+'d'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'d'           Name
+' '           Text
+'='           Operator
+' '           Text
+'d'           Name
+'['           Punctuation
+'offset'      Name
+':'           Operator
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'d'           Name
+' '           Text
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'rc'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'d'           Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'('           Punctuation
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'wc'          Name
+')'           Punctuation
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'fwinname'    Name
+'.'           Punctuation
+'write'       Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'wc'          Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'wc'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'permission denied' Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'('           Punctuation
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'rc'          Name
+')'           Punctuation
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'fconsctl'    Name
+'.'           Punctuation
+'read'        Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'rc'          Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'rc'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'permission denied' Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'('           Punctuation
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'wc'          Name
+')'           Punctuation
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'fconsctl'    Name
+'.'           Punctuation
+'write'       Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'wc'          Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'string'      Keyword.Type
+' '           Text
+'d'           Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'"'           Literal.String
+'rawon'       Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'wc'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'cannot change console mode' Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'wc'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'len'         Keyword
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'('           Punctuation
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'rc'          Name
+')'           Punctuation
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'fmouse'      Name
+'.'           Punctuation
+'read'        Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'rc'          Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'mouserq'     Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'rc'          Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'('           Punctuation
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'wc'          Name
+')'           Punctuation
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'fmouse'      Name
+'.'           Punctuation
+'write'       Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'wc'          Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'e'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'cursorset'   Name
+'('           Punctuation
+'w'           Name
+','           Punctuation
+' '           Text
+'string'      Keyword.Type
+' '           Text
+'d'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'e'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'wc'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'len'         Keyword
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'wc'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'e'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'('           Punctuation
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'rc'          Name
+')'           Punctuation
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'fcursor'     Name
+'.'           Punctuation
+'read'        Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'rc'          Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'rc'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'permission denied' Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'('           Punctuation
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'wc'          Name
+')'           Punctuation
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'fcursor'     Name
+'.'           Punctuation
+'write'       Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'wc'          Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'e'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'cursorswitch' Name
+'('           Punctuation
+'w'           Name
+','           Punctuation
+' '           Text
+'d'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'e'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'wc'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'len'         Keyword
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'wc'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'e'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'ptrproc'     Name
+'('           Punctuation
+'rq'          Name
+':'           Operator
+' '           Text
+'chan'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'Rread'       Name
+','           Punctuation
+' '           Text
+'ptr'         Name
+':'           Operator
+' '           Text
+'chan'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'ref'         Keyword.Type
+' '           Text
+'Pointer'     Name
+','           Punctuation
+' '           Text
+'reshape'     Name
+':'           Operator
+' '           Text
+'chan'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'int'         Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'rl'          Name
+':'           Operator
+' '           Text
+'list'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'Rread'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'c'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'ref'         Keyword.Type
+' '           Text
+'Pointer'     Name
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'for'         Name
+'('           Punctuation
+';'           Punctuation
+';'           Punctuation
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'ch'          Name
+':'           Operator
+' '           Text
+'int'         Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'alt'         Keyword
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'p'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'ptr'         Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'ch'          Name
+' '           Text
+'='           Operator
+' '           Text
+"'m'"         Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'c'           Name
+' '           Text
+'='           Operator
+' '           Text
+'p'           Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'<'           Operator
+'-'           Operator
+'reshape'     Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'ch'          Name
+' '           Text
+'='           Operator
+' '           Text
+"'r'"         Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'rc'          Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'rq'          Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'rl'          Name
+'  '          Text
+'='           Operator
+' '           Text
+'rc'          Name
+' '           Text
+':'           Operator
+':'           Operator
+' '           Text
+'rl'          Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'continue'    Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'rl'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'rl'          Name
+' '           Text
+'='           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'rq'          Name
+' '           Text
+':'           Operator
+':'           Operator
+' '           Text
+'rl'          Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'hd'          Keyword
+' '           Text
+'rl'          Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'aprint'      Name
+'('           Punctuation
+'"'           Literal.String
+'%c%11d %11d %11d %11d ' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'ch'          Name
+','           Punctuation
+' '           Text
+'c'           Name
+'.'           Punctuation
+'xy'          Name
+'.'           Punctuation
+'x'           Name
+','           Punctuation
+' '           Text
+'c'           Name
+'.'           Punctuation
+'xy'          Name
+'.'           Punctuation
+'y'           Name
+','           Punctuation
+' '           Text
+'c'           Name
+'.'           Punctuation
+'buttons'     Name
+','           Punctuation
+' '           Text
+'c'           Name
+'.'           Punctuation
+'msec'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'rl'          Name
+' '           Text
+'='           Operator
+' '           Text
+'tl'          Keyword
+' '           Text
+'rl'          Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'cursorset'   Name
+'('           Punctuation
+'w'           Name
+':'           Operator
+' '           Text
+'ref'         Keyword.Type
+' '           Text
+'Window'      Name
+','           Punctuation
+' '           Text
+'m'           Name
+':'           Operator
+' '           Text
+'string'      Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'string'      Keyword.Type
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'m'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'m'           Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+"'m'"         Literal.String.Char
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'"'           Literal.String
+'invalid mouse message' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'x'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'m'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+':'           Operator
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'for'         Name
+'('           Punctuation
+'i'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'len'         Keyword
+' '           Text
+'m'           Name
+';'           Punctuation
+' '           Text
+'i'           Name
+'+'           Operator
+'+'           Operator
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'m'           Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"' '"         Literal.String.Char
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'while'       Keyword
+'('           Punctuation
+'m'           Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"' '"         Literal.String.Char
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'i'           Name
+'+'           Operator
+'+'           Operator
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'i'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'len'         Keyword
+' '           Text
+'m'           Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'"'           Literal.String
+'invalid mouse message' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'y'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'m'           Name
+'['           Punctuation
+'i'           Name
+':'           Operator
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'w'           Name
+'.'           Punctuation
+'wmctl'       Name
+'('           Punctuation
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'sprint'      Name
+'('           Punctuation
+'"'           Literal.String
+'ptr %d %d'   Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'x'           Name
+','           Punctuation
+' '           Text
+'y'           Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'cursorswitch' Name
+'('           Punctuation
+'w'           Name
+':'           Operator
+' '           Text
+'ref'         Keyword.Type
+' '           Text
+'Window'      Name
+','           Punctuation
+' '           Text
+'d'           Name
+':'           Operator
+' '           Text
+'array'       Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'byte'        Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'string'      Keyword.Type
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Hex'         Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+' '           Text
+'"'           Literal.String
+'0123456789abcdef' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'len'         Keyword
+' '           Text
+'d'           Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'*'           Operator
+'4'           Literal.Number.Integer
+'+'           Operator
+'64'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'w'           Name
+'.'           Punctuation
+'wmctl'       Name
+'('           Punctuation
+'"'           Literal.String
+'cursor'      Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'hot'         Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'Draw'        Name
+'-'           Operator
+'>'           Operator
+'Point'       Name
+'('           Punctuation
+'bglong'      Name
+'('           Punctuation
+'d'           Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+'*'           Operator
+'4'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'bglong'      Name
+'('           Punctuation
+'d'           Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+'*'           Operator
+'4'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'s'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'sprint'      Name
+'('           Punctuation
+'"'           Literal.String
+'cursor %d %d 16 32 ' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'hot'         Name
+'.'           Punctuation
+'x'           Name
+','           Punctuation
+' '           Text
+'hot'         Name
+'.'           Punctuation
+'y'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'for'         Name
+'('           Punctuation
+'i'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'*'           Operator
+'4'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'len'         Keyword
+' '           Text
+'d'           Name
+';'           Punctuation
+' '           Text
+'i'           Name
+'+'           Operator
+'+'           Operator
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'c'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'d'           Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'s'           Name
+'['           Punctuation
+'len'         Keyword
+' '           Text
+'s'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'Hex'         Name
+'['           Punctuation
+'c'           Name
+' '           Text
+'>'           Operator
+'>'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'s'           Name
+'['           Punctuation
+'len'         Keyword
+' '           Text
+'s'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'Hex'         Name
+'['           Punctuation
+'c'           Name
+' '           Text
+'&'           Operator
+' '           Text
+'16rf'        Literal.Number.Hex
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'w'           Name
+'.'           Punctuation
+'wmctl'       Name
+'('           Punctuation
+'s'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'run'         Name
+'('           Punctuation
+'sync'        Name
+','           Punctuation
+' '           Text
+'ctl'         Name
+':'           Operator
+' '           Text
+'chan'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'string'      Keyword.Type
+','           Punctuation
+' '           Text
+'ld'          Name
+':'           Operator
+' '           Text
+'string'      Keyword.Type
+','           Punctuation
+' '           Text
+'argv'        Name
+':'           Operator
+' '           Text
+'list'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'string'      Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Rcmeta'      Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+' '           Text
+'"'           Literal.String
+'|<>&^*[]?();' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'pctl'        Name
+'('           Punctuation
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'FORKNS'      Name
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'bind'        Name
+'('           Punctuation
+'"'           Literal.String
+'#₪'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'/srv'        Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'MCREATE'     Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'sync'        Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'sprint'      Name
+'('           Punctuation
+'"'           Literal.String
+'cannot bind srv device: %r' Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'exit'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'srvname'     Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'"'           Literal.String
+'/srv/9win.'  Literal.String
+'"'           Literal.String
+'+'           Operator
+'string'      Keyword.Type
+' '           Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'pctl'        Name
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\t'          Text
+'# XXX do better.\n' Comment.Single
+
+'\t'          Text
+'fd'          Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'create'      Name
+'('           Punctuation
+'srvname'     Name
+','           Punctuation
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'ORDWR'       Name
+','           Punctuation
+' '           Text
+'8r600'       Literal.Number.Oct
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'fd'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'sync'        Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'sprint'      Name
+'('           Punctuation
+'"'           Literal.String
+'cannot create %s: %r' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'srvname'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'exit'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'sync'        Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'spawn'       Keyword
+' '           Text
+'export'      Name
+'('           Punctuation
+'fd'          Name
+','           Punctuation
+' '           Text
+'ctl'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'sh'          Name
+'-'           Operator
+'>'           Operator
+'run'         Name
+'('           Punctuation
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'os'          Literal.String
+'"'           Literal.String
+' '           Text
+':'           Operator
+':'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'"'           Literal.String
+'rc'          Literal.String
+'"'           Literal.String
+' '           Text
+':'           Operator
+':'           Operator
+' '           Text
+'"'           Literal.String
+'-c'          Literal.String
+'"'           Literal.String
+' '           Text
+':'           Operator
+':'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'"'           Literal.String
+'mount '      Literal.String
+'"'           Literal.String
+'+'           Operator
+'srvname'     Name
+'+'           Operator
+'"'           Literal.String
+' /mnt/term;' Literal.String
+'"'           Literal.String
+'+'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'"'           Literal.String
+'rm '         Literal.String
+'"'           Literal.String
+'+'           Operator
+'srvname'     Name
+'+'           Operator
+'"'           Literal.String
+';'           Literal.String
+'"'           Literal.String
+'+'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'"'           Literal.String
+'bind -b /mnt/term' Literal.String
+'"'           Literal.String
+'+'           Operator
+'ld'          Name
+'+'           Operator
+'"'           Literal.String
+' /dev;'      Literal.String
+'"'           Literal.String
+'+'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'"'           Literal.String
+'bind /mnt/term/dev/draw /dev/draw ||' Literal.String
+'"'           Literal.String
+'+'           Operator
+'\n'          Text
+
+'\t\t\t\t'    Text
+'"'           Literal.String
+'bind -a /mnt/term/dev /dev;' Literal.String
+'"'           Literal.String
+'+'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'quotedc'     Name
+'('           Punctuation
+'"'           Literal.String
+'cd'          Literal.String
+'"'           Literal.String
+':'           Operator
+':'           Operator
+'"'           Literal.String
+'/mnt/term'   Literal.String
+'"'           Literal.String
+'+'           Operator
+'cwd'         Name
+'('           Punctuation
+')'           Punctuation
+':'           Operator
+':'           Operator
+'nil'         Keyword.Constant
+','           Punctuation
+' '           Text
+'Rcmeta'      Name
+')'           Punctuation
+'+'           Operator
+'"'           Literal.String
+';'           Literal.String
+'"'           Literal.String
+'+'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'quotedc'     Name
+'('           Punctuation
+'argv'        Name
+','           Punctuation
+' '           Text
+'Rcmeta'      Name
+')'           Punctuation
+'+'           Operator
+'"'           Literal.String
+';'           Literal.String
+'"'           Literal.String
+':'           Operator
+':'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'nil'         Keyword.Constant
+'\n'          Text
+
+'\t\t'        Text
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'export'      Name
+'('           Punctuation
+'fd'          Name
+':'           Operator
+' '           Text
+'ref'         Keyword.Type
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'FD'          Name
+','           Punctuation
+' '           Text
+'ctl'         Name
+':'           Operator
+' '           Text
+'chan'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'string'      Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'export'      Name
+'('           Punctuation
+'fd'          Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'/'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'EXPWAIT'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'ctl'         Name
+' '           Text
+'<'           Operator
+'-'           Operator
+'='           Operator
+' '           Text
+'"'           Literal.String
+'exit'        Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'inf2p9key'   Name
+'('           Punctuation
+'c'           Name
+':'           Operator
+' '           Text
+'int'         Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'int'         Keyword.Type
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'KF'          Name
+':'           Operator
+' '           Text
+'import'      Keyword
+' '           Text
+'Keyboard'    Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'P9KF'        Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'16rF000'     Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Spec'        Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'16rF800'     Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Khome'       Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'P9KF'        Name
+'|'           Operator
+'16r0D'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Kup'         Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'P9KF'        Name
+'|'           Operator
+'16r0E'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Kpgup'       Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'P9KF'        Name
+'|'           Operator
+'16r0F'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Kprint'      Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'P9KF'        Name
+'|'           Operator
+'16r10'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Kleft'       Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'P9KF'        Name
+'|'           Operator
+'16r11'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Kright'      Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'P9KF'        Name
+'|'           Operator
+'16r12'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Kdown'       Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'Spec'        Name
+'|'           Operator
+'16r00'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Kview'       Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'Spec'        Name
+'|'           Operator
+'16r00'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Kpgdown'     Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'P9KF'        Name
+'|'           Operator
+'16r13'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Kins'        Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'P9KF'        Name
+'|'           Operator
+'16r14'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Kend'        Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'P9KF'        Name
+'|'           Operator
+'16r18'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Kalt'        Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t\t'        Text
+'P9KF'        Name
+'|'           Operator
+'16r15'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Kshift'      Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t'          Text
+'P9KF'        Name
+'|'           Operator
+'16r16'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Kctl'        Name
+':'           Operator
+' '           Text
+'con'         Keyword.Constant
+'\t\t'        Text
+'P9KF'        Name
+'|'           Operator
+'16r17'       Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'case'        Keyword
+' '           Text
+'c'           Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Keyboard'    Name
+'-'           Operator
+'>'           Operator
+'LShift'      Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'Kshift'      Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Keyboard'    Name
+'-'           Operator
+'>'           Operator
+'LCtrl'       Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'Kctl'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Keyboard'    Name
+'-'           Operator
+'>'           Operator
+'LAlt'        Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'Kalt'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Keyboard'    Name
+'-'           Operator
+'>'           Operator
+'Home'        Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'Khome'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Keyboard'    Name
+'-'           Operator
+'>'           Operator
+'End'         Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'Kend'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Keyboard'    Name
+'-'           Operator
+'>'           Operator
+'Up'          Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'Kup'         Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Keyboard'    Name
+'-'           Operator
+'>'           Operator
+'Down'        Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'Kdown'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Keyboard'    Name
+'-'           Operator
+'>'           Operator
+'Left'        Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'Kleft'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Keyboard'    Name
+'-'           Operator
+'>'           Operator
+'Right'       Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'Kright'      Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Keyboard'    Name
+'-'           Operator
+'>'           Operator
+'Pgup'        Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'Kpgup'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Keyboard'    Name
+'-'           Operator
+'>'           Operator
+'Pgdown'      Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'Kpgdown'     Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Keyboard'    Name
+'-'           Operator
+'>'           Operator
+'Ins'         Name
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'Kins'        Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'# function keys\n' Comment.Single
+
+'\t'          Text
+'KF'          Name
+'|'           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'or'          Name
+'\n'          Text
+
+'\t'          Text
+'KF'          Name
+'|'           Operator
+'2'           Literal.Number.Integer
+' '           Text
+'or'          Name
+'\n'          Text
+
+'\t'          Text
+'KF'          Name
+'|'           Operator
+'3'           Literal.Number.Integer
+' '           Text
+'or'          Name
+'\n'          Text
+
+'\t'          Text
+'KF'          Name
+'|'           Operator
+'4'           Literal.Number.Integer
+' '           Text
+'or'          Name
+'\n'          Text
+
+'\t'          Text
+'KF'          Name
+'|'           Operator
+'5'           Literal.Number.Integer
+' '           Text
+'or'          Name
+'\n'          Text
+
+'\t'          Text
+'KF'          Name
+'|'           Operator
+'6'           Literal.Number.Integer
+' '           Text
+'or'          Name
+'\n'          Text
+
+'\t'          Text
+'KF'          Name
+'|'           Operator
+'7'           Literal.Number.Integer
+' '           Text
+'or'          Name
+'\n'          Text
+
+'\t'          Text
+'KF'          Name
+'|'           Operator
+'8'           Literal.Number.Integer
+' '           Text
+'or'          Name
+'\n'          Text
+
+'\t'          Text
+'KF'          Name
+'|'           Operator
+'9'           Literal.Number.Integer
+' '           Text
+'or'          Name
+'\n'          Text
+
+'\t'          Text
+'KF'          Name
+'|'           Operator
+'10'          Literal.Number.Integer
+' '           Text
+'or'          Name
+'\n'          Text
+
+'\t'          Text
+'KF'          Name
+'|'           Operator
+'11'          Literal.Number.Integer
+' '           Text
+'or'          Name
+'\n'          Text
+
+'\t'          Text
+'KF'          Name
+'|'           Operator
+'12'          Literal.Number.Integer
+' '           Text
+'='           Operator
+'>'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'('           Punctuation
+'c'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'KF'          Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'P9KF'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'c'           Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'cwd'         Name
+'('           Punctuation
+')'           Punctuation
+':'           Operator
+' '           Text
+'string'      Keyword.Type
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'fd2path'     Name
+'('           Punctuation
+'sys'         Name
+'-'           Operator
+'>'           Operator
+'open'        Name
+'('           Punctuation
+'"'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'Sys'         Name
+'-'           Operator
+'>'           Operator
+'OREAD'       Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'# from string.b, waiting for declaration to be uncommented.\n' Comment.Single
+
+'quotedc'     Name
+'('           Punctuation
+'argv'        Name
+':'           Operator
+' '           Text
+'list'        Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'string'      Keyword.Type
+','           Punctuation
+' '           Text
+'cl'          Name
+':'           Operator
+' '           Text
+'string'      Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'string'      Keyword.Type
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'s'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'argv'        Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'arg'         Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'hd'          Keyword
+' '           Text
+'argv'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'for'         Name
+' '           Text
+'('           Punctuation
+'i'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'len'         Keyword
+' '           Text
+'arg'         Name
+';'           Punctuation
+' '           Text
+'i'           Name
+'+'           Operator
+'+'           Operator
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'c'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'arg'         Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'c'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"' '"         Literal.String.Char
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'c'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'\\t'"       Literal.String.Char
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'c'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'\\n'"       Literal.String.Char
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'c'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'\\''"       Literal.String.Char
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'in'          Name
+'('           Punctuation
+'c'           Name
+','           Punctuation
+' '           Text
+'cl'          Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'len'         Keyword
+' '           Text
+'arg'         Name
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'arg'         Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'s'           Name
+' '           Text
+'+'           Operator
+'='           Operator
+' '           Text
+'"'           Literal.String
+"'"           Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'arg'         Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+':'           Operator
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'for'         Name
+' '           Text
+'('           Punctuation
+';'           Punctuation
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'len'         Keyword
+' '           Text
+'arg'         Name
+';'           Punctuation
+' '           Text
+'i'           Name
+'+'           Operator
+'+'           Operator
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'arg'         Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'\\''"       Literal.String.Char
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'s'           Name
+'['           Punctuation
+'len'         Keyword
+' '           Text
+'s'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+"'\\''"       Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'s'           Name
+'['           Punctuation
+'len'         Keyword
+' '           Text
+'s'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'arg'         Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'s'           Name
+'['           Punctuation
+'len'         Keyword
+' '           Text
+'s'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+"'\\''"       Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'s'           Name
+' '           Text
+'+'           Operator
+'='           Operator
+' '           Text
+'arg'         Name
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'tl'          Keyword
+' '           Text
+'argv'        Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'s'           Name
+'['           Punctuation
+'len'         Keyword
+' '           Text
+'s'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+"' '"         Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'argv'        Name
+' '           Text
+'='           Operator
+' '           Text
+'tl'          Keyword
+' '           Text
+'argv'        Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'s'           Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'in'          Name
+'('           Punctuation
+'c'           Name
+':'           Operator
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'s'           Name
+':'           Operator
+' '           Text
+'string'      Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'int'         Keyword.Type
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'n'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'len'         Keyword
+' '           Text
+'s'           Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'n'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'ans'         Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'negate'      Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'s'           Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'^'"         Literal.String.Char
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'negate'      Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'s'           Name
+' '           Text
+'='           Operator
+' '           Text
+'s'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+':'           Operator
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'n'           Name
+'-'           Operator
+'-'           Operator
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'for'         Name
+'('           Punctuation
+'i'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'n'           Name
+';'           Punctuation
+' '           Text
+'i'           Name
+'+'           Operator
+'+'           Operator
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'s'           Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'-'"         Literal.String.Char
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'i'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'n'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'  '          Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+'c'           Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'s'           Name
+'['           Punctuation
+'i'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'c'           Name
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'s'           Name
+'['           Punctuation
+'i'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'ans'         Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'i'           Name
+'+'           Operator
+'+'           Operator
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+'c'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'s'           Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'ans'         Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+'('           Punctuation
+'negate'      Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'ans'         Name
+' '           Text
+'='           Operator
+' '           Text
+'!'           Operator
+'ans'         Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'# just to showcase labels\n' Comment.Single
+
+'skip:\n'     Name.Label
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'ans'         Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'bglong'      Name
+'('           Punctuation
+'d'           Name
+':'           Operator
+' '           Text
+'array'       Keyword.Type
+' '           Text
+'of'          Keyword.Type
+' '           Text
+'byte'        Keyword.Type
+','           Punctuation
+' '           Text
+'i'           Name
+':'           Operator
+' '           Text
+'int'         Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'int'         Keyword.Type
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'d'           Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'d'           Name
+'['           Punctuation
+'i'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+'<'           Operator
+'<'           Operator
+'8'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'d'           Name
+'['           Punctuation
+'i'           Name
+'+'           Operator
+'2'           Literal.Number.Integer
+']'           Punctuation
+'<'           Operator
+'<'           Operator
+'16'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'d'           Name
+'['           Punctuation
+'i'           Name
+'+'           Operator
+'3'           Literal.Number.Integer
+']'           Punctuation
+'<'           Operator
+'<'           Operator
+'24'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

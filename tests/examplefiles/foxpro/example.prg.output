@@ -1,0 +1,1764 @@
+''            Text
+'&'           Text
+'&'           Text
+' '           Text
+'This'        Name.Builtin
+' '           Text
+'i'           Text
+'s'           Text
+' '           Text
+'a'           Text
+' '           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'c'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'n'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+' '           Text
+'o'           Text
+'f'           Text
+' '           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'V'           Text
+'F'           Text
+'P'           Text
+' '           Text
+'e'           Text
+'x'           Text
+'a'           Text
+'m'           Text
+'p'           Text
+'l'           Text
+'e'           Text
+'s'           Text
+' '           Text
+'o'           Text
+'n'           Text
+' '           Text
+'W'           Text
+'i'           Text
+'k'           Text
+'i'           Text
+'p'           Text
+'e'           Text
+'d'           Text
+'i'           Text
+'a'           Text
+'.'           Text
+'\n'          Text
+
+'&'           Text
+'&'           Text
+' '           Text
+'C'           Text
+'o'           Text
+'p'           Text
+'y'           Text
+'r'           Text
+'i'           Text
+'g'           Text
+'h'           Text
+'t'           Text
+' '           Text
+'2'           Text
+'0'           Text
+'1'           Text
+'3'           Text
+' '           Text
+'W'           Text
+'i'           Text
+'k'           Text
+'i'           Text
+'m'           Text
+'e'           Text
+'d'           Text
+'i'           Text
+'a'           Text
+','           Text
+' '           Text
+'u'           Text
+'n'           Text
+'d'           Text
+'e'           Text
+'r'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'G'           Text
+'F'           Text
+'D'           Text
+'L'           Text
+'.'           Text
+'\n\n'        Text
+
+'FOR'         Keyword.Reserved
+' '           Text
+'i'           Text
+' '           Text
+'='           Text
+' '           Text
+'1'           Text
+' '           Text
+'t'           Text
+'o'           Text
+' '           Text
+'1'           Text
+'0'           Text
+'\n   '       Text
+'x'           Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'x'           Text
+' '           Text
+'+'           Text
+' '           Text
+'6'           Text
+'.'           Text
+'5'           Text
+'\n'          Text
+
+'ENDFOR'      Keyword.Reserved
+'\n \n'       Text
+
+'IF'          Keyword.Reserved
+' '           Text
+'i'           Text
+' '           Text
+'='           Text
+' '           Text
+'2'           Text
+'5'           Text
+'\n   '       Text
+'i'           Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'i'           Text
+' '           Text
+'+'           Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'ELSE'        Keyword.Reserved
+'\n   '       Text
+'i'           Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'i'           Text
+' '           Text
+'+'           Text
+' '           Text
+'3'           Text
+'\n'          Text
+
+'ENDIF'       Keyword.Reserved
+'\n \n'       Text
+
+'x'           Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'DO'          Keyword.Reserved
+' '           Text
+'W'           Text
+'H'           Text
+'I'           Text
+'L'           Text
+'E'           Text
+' '           Text
+'x'           Text
+' '           Text
+'<'           Text
+' '           Text
+'5'           Text
+'0'           Text
+'\n   '       Text
+'x'           Name.Variable
+' '           Text
+'='           Text
+'  '          Text
+'x'           Text
+' '           Text
+'+'           Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'ENDDO'       Keyword.Reserved
+'\n \n'       Text
+
+'x'           Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'DO'          Keyword.Reserved
+' '           Text
+'W'           Text
+'H'           Text
+'I'           Text
+'L'           Text
+'E'           Text
+' '           Text
+'.T.'         Operator.Word
+'\n  '        Text
+'x'           Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'x'           Text
+' '           Text
+'+'           Text
+' '           Text
+'1'           Text
+'\n  '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'x'           Text
+' '           Text
+'<'           Text
+' '           Text
+'5'           Text
+'0'           Text
+'\n   '       Text
+'LOOP'        Keyword.Reserved
+'\n  '        Text
+'ELSE'        Keyword.Reserved
+'\n   '       Text
+'EXIT'        Keyword.Reserved
+'\n  '        Text
+'ENDIF'       Keyword.Reserved
+'\n'          Text
+
+'ENDDO'       Keyword.Reserved
+'\n \n'       Text
+
+'nMonth'      Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'MONTH'       Name.Function
+'('           Text
+'DATE'        Name.Function
+'('           Text
+')'           Text
+')'           Text
+'\n'          Text
+
+'DO'          Keyword.Reserved
+' '           Text
+'C'           Text
+'A'           Text
+'S'           Text
+'E'           Text
+'\n      '    Text
+'CASE'        Keyword.Reserved
+' '           Text
+'n'           Text
+'M'           Text
+'o'           Text
+'n'           Text
+'t'           Text
+'h'           Text
+' '           Text
+'<'           Text
+'='           Text
+' '           Text
+'3'           Text
+'\n               ' Text
+'MESSAGEBOX'  Name.Variable
+'('           Text
+'"Q1"'        Literal.String
+')'           Text
+'\n \n      ' Text
+'CASE'        Keyword.Reserved
+' '           Text
+'n'           Text
+'M'           Text
+'o'           Text
+'n'           Text
+'t'           Text
+'h'           Text
+' '           Text
+'<'           Text
+'='           Text
+' '           Text
+'6'           Text
+'\n               ' Text
+'MESSAGEBOX'  Name.Variable
+'('           Text
+'"Q2"'        Literal.String
+')'           Text
+'\n \n      ' Text
+'CASE'        Keyword.Reserved
+' '           Text
+'n'           Text
+'M'           Text
+'o'           Text
+'n'           Text
+'t'           Text
+'h'           Text
+' '           Text
+'<'           Text
+'='           Text
+' '           Text
+'9'           Text
+'\n               ' Text
+'MESSAGEBOX'  Name.Variable
+'('           Text
+'"Q3"'        Literal.String
+')'           Text
+'\n \n      ' Text
+'OTHERWISE'   Keyword.Reserved
+'\n               ' Text
+'MESSAGEBOX'  Name.Variable
+'('           Text
+'"Q4"'        Literal.String
+')'           Text
+'\n'          Text
+
+'ENDCASE'     Keyword.Reserved
+'\n \n'       Text
+
+'FOR'         Keyword.Reserved
+' '           Text
+'E'           Text
+'A'           Text
+'C'           Text
+'H'           Text
+' '           Text
+'o'           Text
+'Control'     Name.Class
+' '           Text
+'I'           Text
+'N'           Text
+' '           Text
+'THISFORM'    Name.Builtin
+'.Controls'   Name.Attribute
+'\n  '        Text
+'MESSAGEBOX'  Name.Variable
+'('           Text
+'o'           Text
+'Control'     Name.Class
+'.Name'       Name.Attribute
+')'           Text
+'\n'          Text
+
+'ENDFOR'      Keyword.Reserved
+'\n \n'       Text
+
+'f'           Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'F'           Text
+'a'           Text
+'c'           Text
+'t'           Text
+'o'           Text
+'r'           Text
+'i'           Text
+'a'           Text
+'l'           Text
+'('           Text
+'1'           Text
+'0'           Text
+')'           Text
+'\n \n'       Text
+
+'FUNCTION'    Keyword.Reserved
+' '           Text
+'F'           Text
+'a'           Text
+'c'           Text
+'t'           Text
+'o'           Text
+'r'           Text
+'i'           Text
+'a'           Text
+'l'           Text
+'('           Text
+'n'           Text
+')'           Text
+'\n '         Text
+'LOCAL'       Name.Variable
+' '           Text
+'i'           Text
+','           Text
+'r'           Text
+'\n '         Text
+'r'           Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'1'           Text
+'\n '         Text
+'FOR'         Keyword.Reserved
+' '           Text
+'i'           Text
+' '           Text
+'='           Text
+' '           Text
+'n'           Text
+' '           Text
+'T'           Text
+'O'           Text
+' '           Text
+'1'           Text
+' '           Text
+'S'           Text
+'T'           Text
+'E'           Text
+'P'           Text
+' '           Text
+'-'           Text
+'1'           Text
+'\n  '        Text
+'r'           Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'r'           Text
+' '           Text
+'*'           Text
+' '           Text
+'n'           Text
+'\n '         Text
+'ENDFOR'      Keyword.Reserved
+'\n '         Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'r'           Text
+'\n'          Text
+
+'ENDFUNC'     Name.Variable
+'\n\n'        Text
+
+'loForm'      Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'CREATEOBJECT' Name.Function
+'('           Text
+'"HiForm"'    Literal.String
+')'           Text
+'\n'          Text
+
+'loForm'      Name.Variable
+'.Show'       Name.Function
+'('           Text
+'1'           Text
+')'           Text
+'\n \n'       Text
+
+'DEFINE'      Name.Variable
+' '           Text
+'C'           Text
+'L'           Text
+'A'           Text
+'S'           Text
+'S'           Text
+' '           Text
+'H'           Text
+'i'           Text
+'Form'        Name.Class
+' '           Text
+'A'           Text
+'S'           Text
+' '           Text
+'Form'        Name.Class
+'\n  '        Text
+'AutoCenter'  Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'.T.'         Operator.Word
+'\n  '        Text
+'Caption'     Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'"Hello, World"' Literal.String
+'\n \n  '     Text
+'ADD'         Name.Variable
+' '           Text
+'O'           Text
+'B'           Text
+'J'           Text
+'E'           Text
+'C'           Text
+'T'           Text
+' '           Text
+'l'           Text
+'b'           Text
+'l'           Text
+'H'           Text
+'i'           Text
+' '           Text
+'a'           Text
+'s'           Text
+' '           Text
+'Label'       Name.Class
+' '           Text
+'W'           Text
+'I'           Text
+'T'           Text
+'H'           Text
+' '           Text
+';\n'         Punctuation
+
+'    '        Text
+'Caption'     Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'"Hello, World!"' Literal.String
+'\n'          Text
+
+'ENDDEFINE'   Name.Variable
+'\n\n'        Text
+
+'loMine'      Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'CREATEOBJECT' Name.Function
+'('           Text
+'"MyClass"'   Literal.String
+')'           Text
+'\n'          Text
+
+'?'           Text
+' '           Text
+'l'           Text
+'o'           Text
+'M'           Text
+'i'           Text
+'n'           Text
+'e'           Text
+'.'           Text
+'c'           Text
+'P'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+'1'           Text
+'   '         Text
+'&& This will work. (Double-ampersand marks an end-of-line comment)\n' Comment.Single
+
+''            Text
+'?'           Text
+' '           Text
+'l'           Text
+'o'           Text
+'M'           Text
+'i'           Text
+'n'           Text
+'e'           Text
+'.'           Text
+'c'           Text
+'P'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+'2'           Text
+'   '         Text
+'&& Program Error: Property CPROP2 is not found.\n' Comment.Single
+
+' \n'         Text
+
+'?'           Text
+' '           Text
+'l'           Text
+'o'           Text
+'M'           Text
+'i'           Text
+'n'           Text
+'e'           Text
+'.'           Text
+'M'           Text
+'y'           Text
+'M'           Text
+'e'           Text
+'t'           Text
+'h'           Text
+'o'           Text
+'d'           Text
+'1'           Text
+'('           Text
+')'           Text
+'  '          Text
+'&& This will work.\n' Comment.Single
+
+''            Text
+'?'           Text
+' '           Text
+'l'           Text
+'o'           Text
+'M'           Text
+'i'           Text
+'n'           Text
+'e'           Text
+'.'           Text
+'M'           Text
+'y'           Text
+'M'           Text
+'e'           Text
+'t'           Text
+'h'           Text
+'o'           Text
+'d'           Text
+'2'           Text
+'('           Text
+')'           Text
+'  '          Text
+'&& Program Error: Property MYMETHOD2 is not found.\n' Comment.Single
+
+' \n'         Text
+
+'DEFINE'      Name.Variable
+' '           Text
+'C'           Text
+'L'           Text
+'A'           Text
+'S'           Text
+'S'           Text
+' '           Text
+'M'           Text
+'y'           Text
+'C'           Text
+'l'           Text
+'a'           Text
+'s'           Text
+'s'           Text
+' '           Text
+'A'           Text
+'S'           Text
+' '           Text
+'Custom'      Name.Class
+'\n  '        Text
+'cProp1'      Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'"My Property"' Literal.String
+'    '        Text
+'&& This is a public property\n' Comment.Single
+
+'  '          Text
+'HIDDEN'      Name.Variable
+' '           Text
+'c'           Text
+'P'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+'2'           Text
+'     '       Text
+'&& This is a private (hidden) property\n' Comment.Single
+
+'  '          Text
+'dProp3'      Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'{'           Text
+'}'           Text
+'     '       Text
+'&& Another public property\n' Comment.Single
+
+' \n  '       Text
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'I'           Text
+'n'           Text
+'i'           Text
+'t'           Text
+'('           Text
+')'           Text
+'    '        Text
+'&& Class constructor\n' Comment.Single
+
+'    '        Text
+'This'        Name.Variable
+'.'           Text
+'c'           Text
+'P'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+'2'           Text
+' '           Text
+'='           Text
+' '           Text
+'"This is a hidden property."' Literal.String
+'\n  '        Text
+'ENDPROC'     Name.Variable
+'\n \n  '     Text
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'d'           Text
+'P'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+'3'           Text
+'_'           Text
+'A'           Text
+'c'           Text
+'c'           Text
+'e'           Text
+'s'           Text
+'s'           Text
+'    '        Text
+'&& Property Getter\n' Comment.Single
+
+'   '         Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'DATE'        Name.Function
+'('           Text
+')'           Text
+'\n  '        Text
+'ENDPROC'     Name.Variable
+'\n  '        Text
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'d'           Text
+'P'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+'3'           Text
+'_'           Text
+'A'           Text
+'s'           Text
+'sign'        Name.Function
+'('           Text
+'v'           Text
+'N'           Text
+'e'           Text
+'w'           Text
+'V'           Text
+'a'           Text
+'l'           Text
+')'           Text
+'   '         Text
+'&& Property Setter\n' Comment.Single
+
+'    '        Text
+'IF'          Keyword.Reserved
+' '           Text
+'VARTYPE'     Name.Function
+'('           Text
+'v'           Text
+'N'           Text
+'e'           Text
+'w'           Text
+'V'           Text
+'a'           Text
+'l'           Text
+')'           Text
+' '           Text
+'='           Text
+' '           Text
+'"D"'         Literal.String
+'\n     '     Text
+'THIS'        Name.Variable
+'.'           Text
+'d'           Text
+'P'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+'3'           Text
+' '           Text
+'='           Text
+' '           Text
+'v'           Text
+'N'           Text
+'e'           Text
+'w'           Text
+'V'           Text
+'a'           Text
+'l'           Text
+'\n    '      Text
+'ENDIF'       Keyword.Reserved
+'\n  '        Text
+'ENDPROC'     Name.Variable
+'\n \n  '     Text
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'M'           Text
+'y'           Text
+'M'           Text
+'e'           Text
+'t'           Text
+'h'           Text
+'o'           Text
+'d'           Text
+'1'           Text
+'('           Text
+')'           Text
+'\n    '      Text
+'* This is a public method, calling a hidden method that returns' Comment.Single
+'\n    '      Text
+'* the value of a hidden property.' Comment.Single
+'\n    '      Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'This'        Name.Builtin
+'.'           Text
+'M'           Text
+'y'           Text
+'M'           Text
+'e'           Text
+'t'           Text
+'h'           Text
+'o'           Text
+'d'           Text
+'2'           Text
+'('           Text
+')'           Text
+'\n  '        Text
+'ENDPROC'     Name.Variable
+'\n \n  '     Text
+'HIDDEN'      Name.Variable
+' '           Text
+'P'           Text
+'R'           Text
+'O'           Text
+'C'           Text
+'E'           Text
+'D'           Text
+'U'           Text
+'R'           Text
+'E'           Text
+' '           Text
+'M'           Text
+'y'           Text
+'M'           Text
+'e'           Text
+'t'           Text
+'h'           Text
+'o'           Text
+'d'           Text
+'2'           Text
+'('           Text
+')'           Text
+'  '          Text
+'&& This is a private (hidden) method\n' Comment.Single
+
+'    '        Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'This'        Name.Builtin
+'.'           Text
+'c'           Text
+'P'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+'2'           Text
+'\n  '        Text
+'ENDPROC'     Name.Variable
+'\n'          Text
+
+'ENDDEFINE'   Name.Variable
+'\n\n'        Text
+
+'&'           Text
+'&'           Text
+' '           Text
+'C'           Text
+'r'           Text
+'e'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'a'           Text
+' '           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'l'           Text
+'e'           Text
+'\n'          Text
+
+'CREATE'      Keyword.Reserved
+' '           Text
+'T'           Text
+'A'           Text
+'B'           Text
+'L'           Text
+'E'           Text
+' '           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'D'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+'('           Text
+'i'           Text
+'D'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+'I'           Text
+')'           Text
+'\n \n'       Text
+
+'&'           Text
+'&'           Text
+' '           Text
+'P'           Text
+'o'           Text
+'p'           Text
+'u'           Text
+'l'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'w'           Text
+'i'           Text
+'t'           Text
+'h'           Text
+' '           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'o'           Text
+'m'           Text
+' '           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+'u'           Text
+'s'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+' '           Text
+'x'           Text
+'B'           Text
+'a'           Text
+'s'           Text
+'e'           Text
+' '           Text
+'and'         Operator.Word
+' '           Text
+'S'           Text
+'Q'           Text
+'L'           Text
+' '           Text
+'D'           Text
+'M'           Text
+'L'           Text
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'m'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'s'           Text
+'\n'          Text
+
+'FOR'         Keyword.Reserved
+' '           Text
+'i'           Text
+' '           Text
+'='           Text
+' '           Text
+'1'           Text
+' '           Text
+'T'           Text
+'O'           Text
+' '           Text
+'5'           Text
+'0'           Text
+'\n    '      Text
+'APPEND'      Keyword.Reserved
+' '           Text
+'B'           Text
+'L'           Text
+'A'           Text
+'N'           Text
+'K'           Text
+'\n    '      Text
+'REPLACE'     Keyword.Reserved
+' '           Text
+'i'           Text
+'D'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+'W'           Text
+'I'           Text
+'T'           Text
+'H'           Text
+' '           Text
+'('           Text
+'RAND'        Name.Function
+'('           Text
+')'           Text
+' '           Text
+'*'           Text
+' '           Text
+'1'           Text
+'0'           Text
+'0'           Text
+')'           Text
+'\n \n    '   Text
+'INSERT'      Keyword.Reserved
+' '           Text
+'I'           Text
+'N'           Text
+'T'           Text
+'O'           Text
+' '           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'D'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+'('           Text
+'i'           Text
+'D'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+')'           Text
+' '           Text
+'V'           Text
+'A'           Text
+'L'           Text
+'U'           Text
+'E'           Text
+'S'           Text
+' '           Text
+'('           Text
+'RAND'        Name.Function
+'('           Text
+')'           Text
+' '           Text
+'*'           Text
+' '           Text
+'1'           Text
+'0'           Text
+'0'           Text
+')'           Text
+'\n'          Text
+
+'ENDFOR'      Keyword.Reserved
+'\n \n'       Text
+
+'&'           Text
+'&'           Text
+' '           Text
+'P'           Text
+'l'           Text
+'a'           Text
+'c'           Text
+'e'           Text
+' '           Text
+'a'           Text
+' '           Text
+'s'           Text
+'t'           Text
+'r'           Text
+'u'           Text
+'c'           Text
+'t'           Text
+'u'           Text
+'r'           Text
+'a'           Text
+'l'           Text
+' '           Text
+'i'           Text
+'n'           Text
+'d'           Text
+'e'           Text
+'x'           Text
+' '           Text
+'o'           Text
+'n'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+'\n'          Text
+
+'INDEX'       Keyword.Reserved
+' '           Text
+'O'           Text
+'N'           Text
+' '           Text
+'i'           Text
+'D'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+'T'           Text
+'A'           Text
+'G'           Text
+' '           Text
+'i'           Text
+'D'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+'\n'          Text
+
+'CLOSE'       Keyword.Reserved
+' '           Text
+'A'           Text
+'L'           Text
+'L'           Text
+'\n \n'       Text
+
+'&'           Text
+'&'           Text
+' '           Text
+'D'           Text
+'i'           Text
+'s'           Text
+'p'           Text
+'l'           Text
+'a'           Text
+'y'           Text
+' '           Text
+'o'           Text
+'r'           Text
+'d'           Text
+'e'           Text
+'r'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+'u'           Text
+'s'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+' '           Text
+'x'           Text
+'B'           Text
+'a'           Text
+'s'           Text
+'e'           Text
+'-'           Text
+'s'           Text
+'t'           Text
+'y'           Text
+'l'           Text
+'e'           Text
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'m'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'s'           Text
+'\n'          Text
+
+'USE'         Keyword.Reserved
+' '           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'D'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+'\n'          Text
+
+'SET'         Keyword.Reserved
+' '           Text
+'O'           Text
+'R'           Text
+'D'           Text
+'E'           Text
+'R'           Text
+' '           Text
+'T'           Text
+'O'           Text
+' '           Text
+'i'           Text
+'D'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+'\n'          Text
+
+'GO'          Keyword.Reserved
+' '           Text
+'T'           Text
+'O'           Text
+'P'           Text
+'\n'          Text
+
+'LIST'        Keyword.Reserved
+' '           Text
+'N'           Text
+'E'           Text
+'X'           Text
+'T'           Text
+' '           Text
+'1'           Text
+'0'           Text
+'  '          Text
+'&& First 10 \n' Comment.Single
+
+''            Text
+'GO'          Keyword.Reserved
+' '           Text
+'B'           Text
+'O'           Text
+'T'           Text
+'T'           Text
+'O'           Text
+'M'           Text
+'\n'          Text
+
+'SKIP'        Keyword.Reserved
+' '           Text
+'-'           Text
+'1'           Text
+'0'           Text
+'\n'          Text
+
+'LIST'        Keyword.Reserved
+' '           Text
+'R'           Text
+'E'           Text
+'S'           Text
+'T'           Text
+'     '       Text
+'&& Last 10\n' Comment.Single
+
+''            Text
+'CLOSE'       Keyword.Reserved
+' '           Text
+'A'           Text
+'L'           Text
+'L'           Text
+'\n \n'       Text
+
+'&'           Text
+'&'           Text
+' '           Text
+'B'           Text
+'r'           Text
+'o'           Text
+'w'           Text
+'s'           Text
+'e'           Text
+' '           Text
+'o'           Text
+'r'           Text
+'d'           Text
+'e'           Text
+'r'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+'u'           Text
+'s'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+' '           Text
+'S'           Text
+'Q'           Text
+'L'           Text
+' '           Text
+'D'           Text
+'M'           Text
+'L'           Text
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'m'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'s'           Text
+'\n'          Text
+
+'SELECT'      Keyword.Reserved
+' '           Text
+'*'           Text
+' '           Text
+';\n'         Punctuation
+
+'  '          Text
+'FROM'        Name.Variable
+' '           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'D'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+';\n'         Punctuation
+
+'  '          Text
+'ORDER'       Name.Variable
+' '           Text
+'B'           Text
+'Y'           Text
+' '           Text
+'i'           Text
+'D'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+'D'           Text
+'E'           Text
+'S'           Text
+'C'           Text
+'E'           Text
+'N'           Text
+'D'           Text
+'I'           Text
+'N'           Text
+'G'           Text
+'\n\n\n'      Text
+
+'&'           Text
+'&'           Text
+' '           Text
+'C'           Text
+'o'           Text
+'n'           Text
+'n'           Text
+'e'           Text
+'c'           Text
+'t'           Text
+' '           Text
+'t'           Text
+'o'           Text
+' '           Text
+'a'           Text
+'n'           Text
+' '           Text
+'O'           Text
+'D'           Text
+'B'           Text
+'C'           Text
+' '           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+'s'           Text
+'o'           Text
+'u'           Text
+'r'           Text
+'c'           Text
+'e'           Text
+'\n'          Text
+
+'LOCAL'       Name.Variable
+' '           Text
+'n'           Text
+'H'           Text
+'n'           Text
+'d'           Text
+'\n'          Text
+
+'nHnd'        Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'SQLCONNECT'  Name.Function
+' '           Text
+'('           Text
+'"ODBCDSN"'   Literal.String
+','           Text
+' '           Text
+'"user"'      Literal.String
+','           Text
+' '           Text
+'"pwd"'       Literal.String
+')'           Text
+'\n \n'       Text
+
+'&'           Text
+'&'           Text
+' '           Text
+'E'           Text
+'x'           Text
+'e'           Text
+'c'           Text
+'u'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'a'           Text
+' '           Text
+'S'           Text
+'Q'           Text
+'L'           Text
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'m'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'\n'          Text
+
+'LOCAL'       Name.Variable
+' '           Text
+'n'           Text
+'R'           Text
+'e'           Text
+'s'           Text
+'u'           Text
+'l'           Text
+'t'           Text
+'\n'          Text
+
+'nResult'     Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'SQLEXEC'     Name.Function
+' '           Text
+'('           Text
+'n'           Text
+'H'           Text
+'n'           Text
+'d'           Text
+','           Text
+' '           Text
+'"USE master"' Literal.String
+')'           Text
+'\n'          Text
+
+'IF'          Keyword.Reserved
+' '           Text
+'n'           Text
+'R'           Text
+'e'           Text
+'s'           Text
+'u'           Text
+'l'           Text
+'t'           Text
+' '           Text
+'<'           Text
+' '           Text
+'0'           Text
+'\n  '        Text
+'MESSAGEBOX'  Name.Variable
+' '           Text
+'('           Text
+'"MASTER database does not exist!"' Literal.String
+')'           Text
+'\n  '        Text
+'RETURN'      Keyword.Reserved
+'\n'          Text
+
+'ENDIF'       Keyword.Reserved
+'\n \n'       Text
+
+'&'           Text
+'&'           Text
+' '           Text
+'R'           Text
+'e'           Text
+'t'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'v'           Text
+'e'           Text
+' '           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+'f'           Text
+'r'           Text
+'o'           Text
+'m'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'r'           Text
+'e'           Text
+'m'           Text
+'o'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'server'      Name.Class
+' '           Text
+'and'         Operator.Word
+' '           Text
+'s'           Text
+'t'           Text
+'o'           Text
+'r'           Text
+'e'           Text
+'s'           Text
+' '           Text
+'i'           Text
+'t'           Text
+' '           Text
+'i'           Text
+'n'           Text
+'\n'          Text
+
+'&'           Text
+'&'           Text
+' '           Text
+'a'           Text
+' '           Text
+'l'           Text
+'o'           Text
+'c'           Text
+'a'           Text
+'l'           Text
+' '           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+'cursor'      Name.Class
+'\n'          Text
+
+'nResult'     Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'SQLEXEC'     Name.Function
+' '           Text
+'('           Text
+'n'           Text
+'H'           Text
+'n'           Text
+'d'           Text
+','           Text
+' '           Text
+'"SELECT * FROM authors"' Literal.String
+','           Text
+' '           Text
+'"QAUTHORS"'  Literal.String
+')'           Text
+'\n \n'       Text
+
+'&'           Text
+'&'           Text
+' '           Text
+'U'           Text
+'p'           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'a'           Text
+' '           Text
+'r'           Text
+'e'           Text
+'c'           Text
+'o'           Text
+'r'           Text
+'d'           Text
+' '           Text
+'i'           Text
+'n'           Text
+' '           Text
+'a'           Text
+' '           Text
+'r'           Text
+'e'           Text
+'m'           Text
+'o'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'l'           Text
+'e'           Text
+' '           Text
+'u'           Text
+'s'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+' '           Text
+'p'           Text
+'a'           Text
+'r'           Text
+'a'           Text
+'m'           Text
+'e'           Text
+'t'           Text
+'e'           Text
+'r'           Text
+'s'           Text
+'\n'          Text
+
+'PRIVATE'     Keyword.Reserved
+' '           Text
+'c'           Text
+'A'           Text
+'u'           Text
+'t'           Text
+'h'           Text
+'o'           Text
+'r'           Text
+'I'           Text
+'D'           Text
+','           Text
+' '           Text
+'c'           Text
+'A'           Text
+'u'           Text
+'t'           Text
+'h'           Text
+'o'           Text
+'r'           Text
+'N'           Text
+'a'           Text
+'m'           Text
+'e'           Text
+'\n'          Text
+
+'cAuthorID'   Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'"1001"'      Literal.String
+'\n'          Text
+
+'cAuthorName' Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'"New name"'  Literal.String
+'\n'          Text
+
+'nResult'     Name.Variable
+' '           Text
+'='           Text
+' '           Text
+'SQLEXEC'     Name.Function
+' '           Text
+'('           Text
+'n'           Text
+'H'           Text
+'n'           Text
+'d'           Text
+','           Text
+' '           Text
+'"UPDATE authors SET auth_name = ?cAuthorName WHERE auth_id = ?cAuthorID"' Literal.String
+')'           Text
+'\n \n'       Text
+
+'&'           Text
+'&'           Text
+' '           Text
+'C'           Text
+'l'           Text
+'o'           Text
+'s'           Text
+'e'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'n'           Text
+'e'           Text
+'c'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'\n'          Text
+
+'SQLDISCONNECT' Name.Variable
+'('           Text
+'n'           Text
+'H'           Text
+'n'           Text
+'d'           Text
+')'           Text
+'\n'          Text

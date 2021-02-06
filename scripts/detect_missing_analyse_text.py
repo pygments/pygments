@@ -1,7 +1,16 @@
+"""
+    detect_missing_analyse_text
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 import sys
 
 from pygments.lexers import get_all_lexers, find_lexer_class
 from pygments.lexer import Lexer
+
 
 def main():
     uses = {}
@@ -27,6 +36,7 @@ def main():
                     print(i, "needs analyse_text, multiple lexers for", k)
                     ret |= 2
     return ret
+
 
 if __name__ == '__main__':
     sys.exit(main())

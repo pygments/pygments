@@ -1,0 +1,172 @@
+'-----------------------------------------------------------' Comment.Single
+'\n'          Text
+
+"-- Print the lyrics to the song '99 bottles of beer'" Comment.Single
+'\n\n'        Text
+
+'output'      Name.Variable.Magic
+' '           Text
+'='           Operator
+'\n  '        Text
+'range'       Name.Variable
+'('           Punctuation
+'99'          Literal.Number
+','           Punctuation
+' '           Text
+'1'           Literal.Number
+')'           Punctuation
+'\n  '        Text
+'|>'          Operator
+' '           Text
+'map'         Name.Variable
+'('           Punctuation
+'showBeer'    Name.Variable
+')'           Punctuation
+'\n  '        Text
+'|>'          Operator
+' '           Text
+'printLines'  Name.Variable
+'\n\n'        Text
+
+'beerFmt'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"""'         Literal.String
+'{} of beer on the wall!\n{} of beer!\nYou take one down, pass it around\n{}' Literal.String
+'"""'         Literal.String
+'\n\n'        Text
+
+'showBeer'    Name.Variable
+'('           Punctuation
+'n'           Name.Variable
+')'           Punctuation
+' '           Text
+'='           Operator
+'\n  '        Text
+'format'      Name.Variable
+'('           Punctuation
+'\n    '      Text
+'beerFmt'     Name.Variable
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'showBottle'  Name.Variable
+'('           Punctuation
+'n'           Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'showBottle'  Name.Variable
+'('           Punctuation
+'n'           Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'nextBeer'    Name.Variable
+'('           Punctuation
+'n'           Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number
+')'           Punctuation
+']'           Punctuation
+'\n  '        Text
+')'           Punctuation
+'\n\n'        Text
+
+'nextBeer'    Name.Variable
+'('           Punctuation
+'n'           Name.Variable
+')'           Punctuation
+' '           Text
+'='           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'n'           Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+'then'        Keyword
+' '           Text
+'"'           Literal.String
+'No more bottles of beer on the wall!' Literal.String
+'"'           Literal.String
+'\n  '        Text
+'else'        Keyword
+' '           Text
+'format'      Name.Variable
+'('           Punctuation
+'"'           Literal.String
+'{} of beer on the wall!' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'['           Punctuation
+'showBottle'  Name.Variable
+'('           Punctuation
+'n'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'-----------------------------------------------------------' Comment.Single
+'\n'          Text
+
+"-- Get appropriate singular / plural form of 'n bottle(s)'" Comment.Single
+'\n\n'        Text
+
+'showBottle'  Name.Variable
+'('           Punctuation
+'n'           Name.Variable
+')'           Punctuation
+' '           Text
+'='           Operator
+'\n  '        Text
+'format'      Name.Variable
+'('           Punctuation
+'"'           Literal.String
+'{} {}'       Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'['           Punctuation
+'n'           Name.Variable
+','           Punctuation
+' '           Text
+'bottleStr'   Name.Variable
+']'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'where'       Keyword
+' '           Text
+'bottleStr'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'if'          Keyword
+' '           Text
+'n'           Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number
+' '           Text
+'then'        Keyword
+' '           Text
+'"'           Literal.String
+'bottle'      Literal.String
+'"'           Literal.String
+' '           Text
+'else'        Keyword
+' '           Text
+'"'           Literal.String
+'bottles'     Literal.String
+'"'           Literal.String
+'\n'          Text

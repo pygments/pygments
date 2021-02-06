@@ -1,0 +1,28 @@
+# Tests that the lexer can parse numeric literals with underscores
+
+---input---
+1_000_000
+1_000.000_001
+1_000e1_000j
+0xCAFE_F00D
+0b_0011_1111_0100_1110
+0o_777_123
+
+---tokens---
+'1_000_000'   Literal.Number.Integer
+'\n'          Text
+
+'1_000.000_001' Literal.Number.Float
+'\n'          Text
+
+'1_000e1_000j' Literal.Number.Float
+'\n'          Text
+
+'0xCAFE_F00D' Literal.Number.Hex
+'\n'          Text
+
+'0b_0011_1111_0100_1110' Literal.Number.Bin
+'\n'          Text
+
+'0o_777_123'  Literal.Number.Oct
+'\n'          Text

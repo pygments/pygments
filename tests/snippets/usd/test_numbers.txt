@@ -1,0 +1,21 @@
+---input---
+8 8.0123312132, -4 -14.123 1e10 0.1e10 10.123e+10 0.123e-14
+
+---tokens---
+'8'           Literal.Number
+' '           Text.Whitespace
+'8.0123312132' Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'-4'          Literal.Number
+' '           Text.Whitespace
+'-14.123'     Literal.Number
+' '           Text.Whitespace
+'1e10'        Literal.Number
+' '           Text.Whitespace
+'0.1e10'      Literal.Number
+' '           Text.Whitespace
+'10.123e+10'  Literal.Number
+' '           Text.Whitespace
+'0.123e-14'   Literal.Number
+'\n'          Text.Whitespace

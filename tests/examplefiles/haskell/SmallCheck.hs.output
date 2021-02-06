@@ -1,0 +1,4638 @@
+'---------------------------------------------------------------------' Comment.Single
+'\n'          Text
+
+'-- SmallCheck: another lightweight testing library.' Comment.Single
+'\n'          Text
+
+'-- Colin Runciman, August 2006' Comment.Single
+'\n'          Text
+
+'-- Version 0.2 (November 2006)' Comment.Single
+'\n'          Text
+
+'--'          Comment.Single
+'\n'          Text
+
+'-- After QuickCheck, by Koen Claessen and John Hughes (2000-2004).' Comment.Single
+'\n'          Text
+
+'---------------------------------------------------------------------' Comment.Single
+'\n\n'        Text
+
+'module'      Keyword.Reserved
+' '           Text
+'SmallCheck'  Name.Namespace
+' '           Text
+'('           Punctuation
+'\n  '        Text
+'smallCheck'  Name.Function
+','           Punctuation
+' '           Text
+'depthCheck'  Name.Function
+','           Punctuation
+'\n  '        Text
+'Property'    Keyword.Type
+','           Punctuation
+' '           Text
+'Testable'    Keyword.Type
+','           Punctuation
+'\n  '        Text
+'forAll'      Name.Function
+','           Punctuation
+' '           Text
+'forAllElem'  Name.Function
+','           Punctuation
+'\n  '        Text
+'exists'      Name.Function
+','           Punctuation
+' '           Text
+'existsDeeperBy' Name.Function
+','           Punctuation
+' '           Text
+'thereExists' Name.Function
+','           Punctuation
+' '           Text
+'thereExistsElem' Name.Function
+','           Punctuation
+'\n  '        Text
+'('           Punctuation
+'==>'         Operator
+')'           Punctuation
+','           Punctuation
+'\n  '        Text
+'Series'      Keyword.Type
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+'('           Punctuation
+'..'          Operator
+')'           Punctuation
+','           Punctuation
+'\n  '        Text
+'('           Punctuation
+'\\/'         Operator
+')'           Punctuation
+','           Punctuation
+' '           Text
+'('           Punctuation
+'><'          Operator
+')'           Punctuation
+','           Punctuation
+' '           Text
+'two'         Name.Function
+','           Punctuation
+' '           Text
+'three'       Name.Function
+','           Punctuation
+' '           Text
+'four'        Name.Function
+','           Punctuation
+'\n  '        Text
+'cons0'       Name.Function
+','           Punctuation
+' '           Text
+'cons1'       Name.Function
+','           Punctuation
+' '           Text
+'cons2'       Name.Function
+','           Punctuation
+' '           Text
+'cons3'       Name.Function
+','           Punctuation
+' '           Text
+'cons4'       Name.Function
+','           Punctuation
+'\n  '        Text
+'alts0'       Name.Function
+','           Punctuation
+' '           Text
+'alts1'       Name.Function
+','           Punctuation
+' '           Text
+'alts2'       Name.Function
+','           Punctuation
+' '           Text
+'alts3'       Name.Function
+','           Punctuation
+' '           Text
+'alts4'       Name.Function
+','           Punctuation
+'\n  '        Text
+'N'           Keyword.Type
+'('           Punctuation
+'..'          Operator
+')'           Punctuation
+','           Punctuation
+' '           Text
+'Nat'         Keyword.Type
+','           Punctuation
+' '           Text
+'Natural'     Keyword.Type
+','           Punctuation
+'\n  '        Text
+'depth'       Name.Function
+','           Punctuation
+' '           Text
+'inc'         Name.Function
+','           Punctuation
+' '           Text
+'dec'         Name.Function
+'\n  '        Text
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+'\n\n'        Text
+
+'import'      Keyword.Reserved
+' '           Text
+'Data.List'   Name.Namespace
+' '           Text
+'('           Punctuation
+'intersperse' Name.Function
+')'           Punctuation
+'\n'          Text
+
+'import'      Keyword.Reserved
+' '           Text
+'Control.Monad' Name.Namespace
+' '           Text
+'('           Punctuation
+'when'        Name.Function
+')'           Punctuation
+'\n'          Text
+
+'import'      Keyword.Reserved
+' '           Text
+'System.IO'   Name.Namespace
+' '           Text
+'('           Punctuation
+'stdout'      Name.Function
+','           Punctuation
+' '           Text
+'hFlush'      Name.Function
+')'           Punctuation
+'\n\n'        Text
+
+'------------------ <Series of depth-bounded values> -----------------' Comment.Single
+'\n\n'        Text
+
+'-- Series arguments should be interpreted as a depth bound (>=0)' Comment.Single
+'\n'          Text
+
+'-- Series results should have finite length' Comment.Single
+'\n\n'        Text
+
+'type'        Keyword.Reserved
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+'\n\n'        Text
+
+'-- sum'      Comment.Single
+'\n'          Text
+
+'infixr'      Keyword.Reserved
+' '           Text
+'7'           Literal.Number.Integer
+' '           Text
+'\\/'         Operator
+'\n'          Text
+
+'('           Punctuation
+'\\/'         Operator
+')'           Punctuation
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'a'           Name
+'\n'          Text
+
+'s1'          Name.Function
+' '           Text
+'\\/'         Operator
+' '           Text
+'s2'          Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'\\'          Name.Function
+'d'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'s1'          Name
+' '           Text
+'d'           Name
+' '           Text
+'++'          Operator
+' '           Text
+'s2'          Name
+' '           Text
+'d'           Name
+'\n\n'        Text
+
+'-- product'  Comment.Single
+'\n'          Text
+
+'infixr'      Keyword.Reserved
+' '           Text
+'8'           Literal.Number.Integer
+' '           Text
+'><'          Operator
+'\n'          Text
+
+'('           Punctuation
+'><'          Operator
+')'           Punctuation
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'b'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'b'           Name
+')'           Punctuation
+'\n'          Text
+
+'s1'          Name.Function
+' '           Text
+'><'          Operator
+' '           Text
+'s2'          Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'\\'          Name.Function
+'d'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'x'           Name
+','           Punctuation
+'y'           Name
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'s1'          Name
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'y'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'s2'          Name
+' '           Text
+'d'           Name
+']'           Punctuation
+'\n\n'        Text
+
+'------------------- <methods for type enumeration> ------------------' Comment.Single
+'\n\n'        Text
+
+'-- enumerated data values should be finite and fully defined' Comment.Single
+'\n'          Text
+
+'-- enumerated functional values should be total and strict' Comment.Single
+'\n\n'        Text
+
+'-- bounds:'  Comment.Single
+'\n'          Text
+
+'-- for data values, the depth of nested constructor applications' Comment.Single
+'\n'          Text
+
+'-- for functional values, both the depth of nested case analysis' Comment.Single
+'\n'          Text
+
+'-- and the depth of results' Comment.Single
+'\n \n'       Text
+
+'class'       Keyword.Reserved
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+'   '         Text
+'::'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'a'           Name
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'b'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+')'           Punctuation
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'()'          Name.Builtin
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+'   '         Text
+'_'           Keyword.Reserved
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+'()'          Name.Builtin
+']'           Punctuation
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'\\'          Name.Function
+'()'          Name.Builtin
+' '           Text
+'->'          Operator.Word
+' '           Text
+'b'           Name
+'\n               ' Text
+'|'           Operator
+' '           Text
+'b'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+'   '         Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'-'           Operator
+'d'           Name
+')'           Punctuation
+'..'          Operator
+'d'           Name
+']'           Punctuation
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'\\'          Name.Function
+'i'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'i'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'f'           Name
+' '           Text
+'('           Punctuation
+'N'           Keyword.Type
+' '           Text
+'('           Punctuation
+'i'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                       ' Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'g'           Name
+' '           Text
+'('           Punctuation
+'N'           Keyword.Type
+' '           Text
+'('           Punctuation
+'abs'         Name
+' '           Text
+'i'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                       ' Text
+'else'        Keyword.Reserved
+' '           Text
+'z'           Name
+'\n               ' Text
+'|'           Operator
+' '           Text
+'z'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'alts0'       Name
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'f'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'alts1'       Name
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'g'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'alts1'       Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'Integer'     Keyword.Type
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+'   '         Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'toInteger'   Name
+' '           Text
+'('           Punctuation
+'i'           Name
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+')'           Punctuation
+'\n               ' Text
+'|'           Operator
+' '           Text
+'i'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'f'           Name
+' '           Text
+'.'           Operator
+' '           Text
+'('           Punctuation
+'fromInteger' Name
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Integer'     Keyword.Type
+'->'          Operator.Word
+'Int'         Keyword.Type
+')'           Punctuation
+'\n               ' Text
+'|'           Operator
+' '           Text
+'f'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n\n'        Text
+
+'newtype'     Keyword.Reserved
+' '           Text
+'N'           Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'N'           Keyword.Type
+' '           Text
+'a'           Name
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Show'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Show'        Keyword.Type
+' '           Text
+'('           Punctuation
+'N'           Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'show'        Name
+' '           Text
+'('           Punctuation
+'N'           Keyword.Type
+' '           Text
+'i'           Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'show'        Name
+' '           Text
+'i'           Name
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'('           Punctuation
+'Integral'    Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'('           Punctuation
+'N'           Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+'   '         Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'map'         Name
+' '           Text
+'N'           Keyword.Type
+' '           Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+"d'"          Name
+']'           Punctuation
+'\n               ' Text
+'where'       Keyword.Reserved
+'\n               ' Text
+"d'"          Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'fromInteger' Name
+' '           Text
+'('           Punctuation
+'toInteger'   Name
+' '           Text
+'d'           Name
+')'           Punctuation
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'\\'          Name.Function
+'('           Punctuation
+'N'           Keyword.Type
+' '           Text
+'i'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'i'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'f'           Name
+' '           Text
+'('           Punctuation
+'N'           Keyword.Type
+' '           Text
+'('           Punctuation
+'i'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                           ' Text
+'else'        Keyword.Reserved
+' '           Text
+'z'           Name
+'\n               ' Text
+'|'           Operator
+' '           Text
+'z'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'alts0'       Name
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'f'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'alts1'       Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n\n'        Text
+
+'type'        Keyword.Reserved
+' '           Text
+'Nat'         Keyword.Type
+' '           Text
+'='           Operator.Word
+' '           Text
+'N'           Keyword.Type
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'type'        Keyword.Reserved
+' '           Text
+'Natural'     Keyword.Type
+' '           Text
+'='           Operator.Word
+' '           Text
+'N'           Keyword.Type
+' '           Text
+'Integer'     Keyword.Type
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'Float'       Keyword.Type
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+' '           Text
+'d'           Name
+'   '         Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'encodeFloat' Name
+' '           Text
+'sig'         Name
+' '           Text
+'exp'         Name
+'\n               ' Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'sig'         Name
+','           Punctuation
+'exp'         Name
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+','           Punctuation
+'\n                 ' Text
+'odd'         Name
+' '           Text
+'sig'         Name
+' '           Text
+'||'          Operator
+' '           Text
+'sig'         Name
+'=='          Operator
+'0'           Literal.Number.Integer
+' '           Text
+'&&'          Operator
+' '           Text
+'exp'         Name
+'=='          Operator
+'0'           Literal.Number.Integer
+' '           Text
+']'           Punctuation
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'f'           Name
+' '           Text
+'.'           Operator
+' '           Text
+'decodeFloat' Name
+'\n               ' Text
+'|'           Operator
+' '           Text
+'f'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n             \n' Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'Double'      Keyword.Type
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+'   '         Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'frac'        Name
+' '           Text
+'('           Punctuation
+'x'           Name
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Float'       Keyword.Type
+')'           Punctuation
+'\n               ' Text
+'|'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'f'           Name
+' '           Text
+'.'           Operator
+' '           Text
+'('           Punctuation
+'frac'        Name
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Double'      Keyword.Type
+'->'          Operator.Word
+'Float'       Keyword.Type
+')'           Punctuation
+'\n               ' Text
+'|'           Operator
+' '           Text
+'f'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n\n'        Text
+
+'frac'        Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'('           Punctuation
+'Real'        Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Fractional'  Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Real'        Keyword.Type
+' '           Text
+'b'           Name
+','           Punctuation
+' '           Text
+'Fractional'  Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'b'           Name
+'\n'          Text
+
+'frac'        Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'fromRational' Name
+' '           Text
+'.'           Operator
+' '           Text
+'toRational'  Name
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'Char'        Keyword.Type
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+' '           Text
+'d'           Name
+'   '         Text
+'='           Operator.Word
+' '           Text
+'take'        Name
+' '           Text
+'('           Punctuation
+'d'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'['           Punctuation
+"'a'"         Literal.String.Char
+'..'          Operator
+"'z'"         Literal.String.Char
+']'           Punctuation
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'\\'          Name.Function
+'c'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'f'           Name
+' '           Text
+'('           Punctuation
+'N'           Keyword.Type
+' '           Text
+'('           Punctuation
+'fromEnum'    Name
+' '           Text
+'c'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'fromEnum'    Name
+' '           Text
+"'a'"         Literal.String.Char
+')'           Punctuation
+')'           Punctuation
+'\n               ' Text
+'|'           Operator
+' '           Text
+'f'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+'\n         ' Text
+'Serial'      Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'b'           Name
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+'   '         Text
+'='           Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'><'          Operator
+' '           Text
+'series'      Name
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'map'         Name
+' '           Text
+'uncurry'     Name
+' '           Text
+'.'           Operator
+' '           Text
+'coseries'    Name
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'b'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'c'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+'\n         ' Text
+'Serial'      Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'b'           Name
+','           Punctuation
+'c'           Name
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+'   '         Text
+'='           Operator.Word
+' '           Text
+'\\'          Name.Function
+'d'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'b'           Name
+','           Punctuation
+'c'           Name
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'('           Punctuation
+'b'           Name
+','           Punctuation
+'c'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+']'           Punctuation
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'map'         Name
+' '           Text
+'uncurry3'    Name
+' '           Text
+'.'           Operator
+' '           Text
+'coseries'    Name
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'b'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'c'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'d'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+'\n         ' Text
+'Serial'      Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'b'           Name
+','           Punctuation
+'c'           Name
+','           Punctuation
+'d'           Name
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+'   '         Text
+'='           Operator.Word
+' '           Text
+'\\'          Name.Function
+'d'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'b'           Name
+','           Punctuation
+'c'           Name
+','           Punctuation
+'d'           Name
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'('           Punctuation
+'b'           Name
+','           Punctuation
+'('           Punctuation
+'c'           Name
+','           Punctuation
+'d'           Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+']'           Punctuation
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'map'         Name
+' '           Text
+'uncurry4'    Name
+' '           Text
+'.'           Operator
+' '           Text
+'coseries'    Name
+'\n\n'        Text
+
+'uncurry3'    Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+'->'          Operator.Word
+'c'           Name
+'->'          Operator.Word
+'d'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'b'           Name
+','           Punctuation
+'c'           Name
+')'           Punctuation
+'->'          Operator.Word
+'d'           Name
+')'           Punctuation
+'\n'          Text
+
+'uncurry3'    Name.Function
+' '           Text
+'f'           Name
+' '           Text
+'('           Punctuation
+'x'           Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'z'           Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'f'           Name
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'z'           Name
+'\n\n'        Text
+
+'uncurry4'    Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+'->'          Operator.Word
+'c'           Name
+'->'          Operator.Word
+'d'           Name
+'->'          Operator.Word
+'e'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'b'           Name
+','           Punctuation
+'c'           Name
+','           Punctuation
+'d'           Name
+')'           Punctuation
+'->'          Operator.Word
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'uncurry4'    Name.Function
+' '           Text
+'f'           Name
+' '           Text
+'('           Punctuation
+'w'           Name
+','           Punctuation
+'x'           Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'z'           Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'f'           Name
+' '           Text
+'w'           Name
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'z'           Name
+'\n\n'        Text
+
+'two'         Name.Function
+'   '         Text
+'::'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'a'           Name
+')'           Punctuation
+'\n'          Text
+
+'two'         Name.Function
+'   '         Text
+'s'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'s'           Name
+' '           Text
+'><'          Operator
+' '           Text
+'s'           Name
+'\n\n'        Text
+
+'three'       Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'a'           Name
+','           Punctuation
+'a'           Name
+')'           Punctuation
+'\n'          Text
+
+'three'       Name.Function
+' '           Text
+'s'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'\\'          Name.Function
+'d'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'x'           Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'z'           Name
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'x'           Name
+','           Punctuation
+'('           Punctuation
+'y'           Name
+','           Punctuation
+'z'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'('           Punctuation
+'s'           Name
+' '           Text
+'><'          Operator
+' '           Text
+'s'           Name
+' '           Text
+'><'          Operator
+' '           Text
+'s'           Name
+')'           Punctuation
+' '           Text
+'d'           Name
+']'           Punctuation
+'\n\n'        Text
+
+'four'        Name.Function
+'  '          Text
+'::'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'a'           Name
+','           Punctuation
+'a'           Name
+','           Punctuation
+'a'           Name
+')'           Punctuation
+'\n'          Text
+
+'four'        Name.Function
+'  '          Text
+'s'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'\\'          Name.Function
+'d'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'w'           Name
+','           Punctuation
+'x'           Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'z'           Name
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'w'           Name
+','           Punctuation
+'('           Punctuation
+'x'           Name
+','           Punctuation
+'('           Punctuation
+'y'           Name
+','           Punctuation
+'z'           Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'('           Punctuation
+'s'           Name
+' '           Text
+'><'          Operator
+' '           Text
+'s'           Name
+' '           Text
+'><'          Operator
+' '           Text
+'s'           Name
+' '           Text
+'><'          Operator
+' '           Text
+'s'           Name
+')'           Punctuation
+' '           Text
+'d'           Name
+']'           Punctuation
+'\n\n'        Text
+
+'cons0'       Name.Function
+' '           Text
+'::'          Operator.Word
+' \n         ' Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'a'           Name
+'\n'          Text
+
+'cons0'       Name.Function
+' '           Text
+'c'           Name
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+'c'           Name
+']'           Punctuation
+'\n\n'        Text
+
+'cons1'       Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+'\n         ' Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'b'           Name
+'\n'          Text
+
+'cons1'       Name.Function
+' '           Text
+'c'           Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+'c'           Name
+' '           Text
+'z'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'d'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'z'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'('           Punctuation
+'d'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+']'           Punctuation
+'\n\n'        Text
+
+'cons2'       Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+'\n         ' Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+'->'          Operator.Word
+'c'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'c'           Name
+'\n'          Text
+
+'cons2'       Name.Function
+' '           Text
+'c'           Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+'c'           Name
+' '           Text
+'y'           Name
+' '           Text
+'z'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'d'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'('           Punctuation
+'y'           Name
+','           Punctuation
+'z'           Name
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'('           Punctuation
+'d'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+']'           Punctuation
+'\n\n'        Text
+
+'cons3'       Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'b'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'c'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+'\n         ' Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+'->'          Operator.Word
+'c'           Name
+'->'          Operator.Word
+'d'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'d'           Name
+'\n'          Text
+
+'cons3'       Name.Function
+' '           Text
+'c'           Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+'c'           Name
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'z'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'d'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'('           Punctuation
+'x'           Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'z'           Name
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'('           Punctuation
+'d'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+']'           Punctuation
+'\n\n'        Text
+
+'cons4'       Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'b'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'c'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'d'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+'\n         ' Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+'->'          Operator.Word
+'c'           Name
+'->'          Operator.Word
+'d'           Name
+'->'          Operator.Word
+'e'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'e'           Name
+'\n'          Text
+
+'cons4'       Name.Function
+' '           Text
+'c'           Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+'c'           Name
+' '           Text
+'w'           Name
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'z'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'d'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'('           Punctuation
+'w'           Name
+','           Punctuation
+'x'           Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'z'           Name
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'('           Punctuation
+'d'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+']'           Punctuation
+'\n\n'        Text
+
+'alts0'       Name.Function
+' '           Text
+'::'          Operator.Word
+'  '          Text
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+'\n            ' Text
+'Series'      Keyword.Type
+' '           Text
+'a'           Name
+'\n'          Text
+
+'alts0'       Name.Function
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+'\n\n'        Text
+
+'alts1'       Name.Function
+' '           Text
+'::'          Operator.Word
+'  '          Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+'\n            ' Text
+'Series'      Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+')'           Punctuation
+'\n'          Text
+
+'alts1'       Name.Function
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'d'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'series'      Name
+' '           Text
+'('           Punctuation
+'dec'         Name
+' '           Text
+'d'           Name
+')'           Punctuation
+'\n          ' Text
+'else'        Keyword.Reserved
+' '           Text
+'['           Punctuation
+'\\'          Name.Function
+'_'           Keyword.Reserved
+' '           Text
+'->'          Operator.Word
+' '           Text
+'x'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+']'           Punctuation
+'\n\n'        Text
+
+'alts2'       Name.Function
+' '           Text
+'::'          Operator.Word
+'  '          Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'b'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'c'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+'\n            ' Text
+'Series'      Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+'->'          Operator.Word
+'c'           Name
+')'           Punctuation
+'\n'          Text
+
+'alts2'       Name.Function
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'d'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'series'      Name
+' '           Text
+'('           Punctuation
+'dec'         Name
+' '           Text
+'d'           Name
+')'           Punctuation
+'\n          ' Text
+'else'        Keyword.Reserved
+' '           Text
+'['           Punctuation
+'\\'          Name.Function
+'_'           Keyword.Reserved
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'->'          Operator.Word
+' '           Text
+'x'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+']'           Punctuation
+'\n\n'        Text
+
+'alts3'       Name.Function
+' '           Text
+'::'          Operator.Word
+'  '          Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'b'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'c'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'d'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+'\n            ' Text
+'Series'      Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+'->'          Operator.Word
+'c'           Name
+'->'          Operator.Word
+'d'           Name
+')'           Punctuation
+'\n'          Text
+
+'alts3'       Name.Function
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'d'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'series'      Name
+' '           Text
+'('           Punctuation
+'dec'         Name
+' '           Text
+'d'           Name
+')'           Punctuation
+'\n          ' Text
+'else'        Keyword.Reserved
+' '           Text
+'['           Punctuation
+'\\'          Name.Function
+'_'           Keyword.Reserved
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'->'          Operator.Word
+' '           Text
+'x'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+']'           Punctuation
+'\n\n'        Text
+
+'alts4'       Name.Function
+' '           Text
+'::'          Operator.Word
+'  '          Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'b'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'c'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'e'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+'\n            ' Text
+'Series'      Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+'->'          Operator.Word
+'c'           Name
+'->'          Operator.Word
+'d'           Name
+'->'          Operator.Word
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'alts4'       Name.Function
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'d'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'series'      Name
+' '           Text
+'('           Punctuation
+'dec'         Name
+' '           Text
+'d'           Name
+')'           Punctuation
+'\n          ' Text
+'else'        Keyword.Reserved
+' '           Text
+'['           Punctuation
+'\\'          Name.Function
+'_'           Keyword.Reserved
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'->'          Operator.Word
+' '           Text
+'x'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+']'           Punctuation
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'Bool'        Keyword.Type
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+'     '       Text
+'='           Operator.Word
+' '           Text
+'cons0'       Name
+' '           Text
+'True'        Keyword.Type
+' '           Text
+'\\/'         Operator
+' '           Text
+'cons0'       Name
+' '           Text
+'False'       Keyword.Type
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'\\'          Name.Function
+'x'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'x'           Name
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'b1'          Name
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'b2'          Name
+'\n               ' Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'b1'          Name
+','           Punctuation
+'b2'          Name
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'('           Punctuation
+'Maybe'       Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+'     '       Text
+'='           Operator.Word
+' '           Text
+'cons0'       Name
+' '           Text
+'Nothing'     Keyword.Type
+' '           Text
+'\\/'         Operator
+' '           Text
+'cons1'       Name
+' '           Text
+'Just'        Keyword.Type
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'\\'          Name.Function
+'m'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'case'        Keyword.Reserved
+' '           Text
+'m'           Name
+' '           Text
+'of'          Keyword.Reserved
+'\n                       ' Text
+'Nothing'     Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'z'           Name
+'\n                       ' Text
+'Just'        Keyword.Type
+' '           Text
+'x'           Name
+'  '          Text
+'->'          Operator.Word
+' '           Text
+'f'           Name
+' '           Text
+'x'           Name
+'\n               ' Text
+'|'           Operator
+'  '          Text
+'z'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'alts0'       Name
+' '           Text
+'d'           Name
+' '           Text
+','           Punctuation
+'\n                  ' Text
+'f'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'alts1'       Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'('           Punctuation
+'Either'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+'     '       Text
+'='           Operator.Word
+' '           Text
+'cons1'       Name
+' '           Text
+'Left'        Keyword.Type
+' '           Text
+'\\/'         Operator
+' '           Text
+'cons1'       Name
+' '           Text
+'Right'       Keyword.Type
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'\\'          Name.Function
+'e'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'case'        Keyword.Reserved
+' '           Text
+'e'           Name
+' '           Text
+'of'          Keyword.Reserved
+'\n                       ' Text
+'Left'        Keyword.Type
+' '           Text
+'x'           Name
+'  '          Text
+'->'          Operator.Word
+' '           Text
+'f'           Name
+' '           Text
+'x'           Name
+'\n                       ' Text
+'Right'       Keyword.Type
+' '           Text
+'y'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'g'           Name
+' '           Text
+'y'           Name
+'\n               ' Text
+'|'           Operator
+'  '          Text
+'f'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'alts1'       Name
+' '           Text
+'d'           Name
+' '           Text
+','           Punctuation
+'\n                  ' Text
+'g'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'alts1'       Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+'     '       Text
+'='           Operator.Word
+' '           Text
+'cons0'       Name
+' '           Text
+'[]'          Keyword.Type
+' '           Text
+'\\/'         Operator
+' '           Text
+'cons2'       Name
+' '           Text
+'('           Punctuation
+':'           Keyword.Type
+')'           Punctuation
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'\\'          Name.Function
+'xs'          Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'case'        Keyword.Reserved
+' '           Text
+'xs'          Name
+' '           Text
+'of'          Keyword.Reserved
+'\n                        ' Text
+'[]'          Keyword.Type
+'      '      Text
+'->'          Operator.Word
+' '           Text
+'y'           Name
+'\n                        ' Text
+'('           Punctuation
+'x'           Name
+':'           Keyword.Type
+"xs'"         Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'f'           Name
+' '           Text
+'x'           Name
+' '           Text
+"xs'"         Name
+'\n               ' Text
+'|'           Operator
+'   '         Text
+'y'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'alts0'       Name
+' '           Text
+'d'           Name
+' '           Text
+','           Punctuation
+'\n                   ' Text
+'f'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'alts2'       Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n\n'        Text
+
+'-- Warning: the coseries instance here may generate duplicates.' Comment.Single
+'\n'          Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Serial'      Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'series'      Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'coseries'    Name
+'\n  '        Text
+'coseries'    Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+' '           Text
+'\\'          Name.Function
+'f'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'g'           Name
+' '           Text
+'['           Punctuation
+'f'           Name
+' '           Text
+'x'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+']'           Punctuation
+'\n               ' Text
+'|'           Operator
+' '           Text
+'g'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'              \n\n' Text
+
+'-- For customising the depth measure.  Use with care!' Comment.Single
+'\n\n'        Text
+
+'depth'       Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'depth'       Name.Function
+' '           Text
+'d'           Name
+' '           Text
+"d'"          Name
+' '           Text
+'|'           Operator
+' '           Text
+'d'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'    '        Text
+'='           Operator.Word
+' '           Text
+"d'"          Name
+'+'           Operator
+'1'           Literal.Number.Integer
+'-'           Operator
+'d'           Name
+'\n           ' Text
+'|'           Operator
+' '           Text
+'otherwise'   Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'error'       Name.Exception
+' '           Text
+'"'           Literal.String
+'SmallCheck.depth: argument < 0' Literal.String
+'"'           Literal.String
+'\n\n'        Text
+
+'dec'         Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'dec'         Name.Function
+' '           Text
+'d'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'d'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'     '       Text
+'='           Operator.Word
+' '           Text
+'d'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+'\n      '    Text
+'|'           Operator
+' '           Text
+'otherwise'   Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'error'       Name.Exception
+' '           Text
+'"'           Literal.String
+'SmallCheck.dec: argument <= 0' Literal.String
+'"'           Literal.String
+'\n\n'        Text
+
+'inc'         Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'inc'         Name.Function
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'d'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+'\n\n'        Text
+
+'-- show the extension of a function (in part, bounded both by' Comment.Single
+'\n'          Text
+
+'-- the number and depth of arguments)' Comment.Single
+'\n'          Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Show'        Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Show'        Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Show'        Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'show'        Name
+' '           Text
+'f'           Name
+' '           Text
+'='           Operator.Word
+' \n    '     Text
+'if'          Keyword.Reserved
+' '           Text
+'maxarheight' Name
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n    '      Text
+'&&'          Operator
+' '           Text
+'sumarwidth'  Name
+' '           Text
+'+'           Operator
+' '           Text
+'length'      Name
+' '           Text
+'ars'         Name
+' '           Text
+'*'           Operator
+' '           Text
+'length'      Name
+' '           Text
+'"'           Literal.String
+'->;'         Literal.String
+'"'           Literal.String
+' '           Text
+'<'           Operator
+' '           Text
+'widthLimit'  Name
+' '           Text
+'then'        Keyword.Reserved
+'\n      '    Text
+'"'           Literal.String
+'{'           Literal.String
+'"'           Literal.String
+'++'          Operator
+'('           Punctuation
+'\n      '    Text
+'concat'      Name
+' '           Text
+'$'           Operator
+' '           Text
+'intersperse' Name
+' '           Text
+'"'           Literal.String
+';'           Literal.String
+'"'           Literal.String
+' '           Text
+'$'           Operator
+' '           Text
+'['           Punctuation
+'a'           Name
+'++'          Operator
+'"'           Literal.String
+'->'          Literal.String
+'"'           Literal.String
+'++'          Operator
+'r'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'r'           Name
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'ars'         Name
+']'           Punctuation
+'\n      '    Text
+')'           Punctuation
+'++'          Operator
+'"'           Literal.String
+'}'           Literal.String
+'"'           Literal.String
+'\n    '      Text
+'else'        Keyword.Reserved
+'\n      '    Text
+'concat'      Name
+' '           Text
+'$'           Operator
+' '           Text
+'['           Punctuation
+'a'           Name
+'++'          Operator
+'"'           Literal.String
+'->'          Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'indent'      Name
+' '           Text
+'r'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'r'           Name
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'ars'         Name
+']'           Punctuation
+'\n    '      Text
+'where'       Keyword.Reserved
+'\n    '      Text
+'ars'         Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'take'        Name
+' '           Text
+'lengthLimit' Name
+' '           Text
+'['           Punctuation
+' '           Text
+'('           Punctuation
+'show'        Name
+' '           Text
+'x'           Name
+','           Punctuation
+' '           Text
+'show'        Name
+' '           Text
+'('           Punctuation
+'f'           Name
+' '           Text
+'x'           Name
+')'           Punctuation
+')'           Punctuation
+'\n                           ' Text
+'|'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'series'      Name
+' '           Text
+'depthLimit'  Name
+' '           Text
+']'           Punctuation
+'\n    '      Text
+'maxarheight' Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'maximum'     Name
+'  '          Text
+'['           Punctuation
+' '           Text
+'max'         Name
+' '           Text
+'('           Punctuation
+'height'      Name
+' '           Text
+'a'           Name
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'height'      Name
+' '           Text
+'r'           Name
+')'           Punctuation
+'\n                           ' Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'r'           Name
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'ars'         Name
+' '           Text
+']'           Punctuation
+'\n    '      Text
+'sumarwidth'  Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'sum'         Name
+'       '     Text
+'['           Punctuation
+' '           Text
+'length'      Name
+' '           Text
+'a'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'length'      Name
+' '           Text
+'r'           Name
+' \n                           ' Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'a'           Name
+','           Punctuation
+'r'           Name
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'ars'         Name
+']'           Punctuation
+'\n    '      Text
+'indent'      Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'unlines'     Name
+' '           Text
+'.'           Operator
+' '           Text
+'map'         Name
+' '           Text
+'('           Punctuation
+'"'           Literal.String
+'  '          Literal.String
+'"'           Literal.String
+'++'          Operator
+')'           Punctuation
+' '           Text
+'.'           Operator
+' '           Text
+'lines'       Name
+'\n    '      Text
+'height'      Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'length'      Name
+' '           Text
+'.'           Operator
+' '           Text
+'lines'       Name
+'\n    '      Text
+'('           Punctuation
+'widthLimit'  Name
+','           Punctuation
+'lengthLimit' Name
+','           Punctuation
+'depthLimit'  Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Punctuation
+'80'          Literal.Number.Integer
+','           Punctuation
+'20'          Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+'::'          Operator.Word
+'('           Punctuation
+'Int'         Keyword.Type
+','           Punctuation
+'Int'         Keyword.Type
+','           Punctuation
+'Int'         Keyword.Type
+')'           Punctuation
+'\n\n'        Text
+
+'---------------- <properties and their evaluation> ------------------' Comment.Single
+'\n\n'        Text
+
+'-- adapted from QuickCheck originals: here results come in lists,' Comment.Single
+'\n'          Text
+
+'-- properties have depth arguments, stamps (for classifying random' Comment.Single
+'\n'          Text
+
+'-- tests) are omitted, existentials are introduced' Comment.Single
+'\n\n'        Text
+
+'newtype'     Keyword.Reserved
+' '           Text
+'PR'          Keyword.Type
+' '           Text
+'='           Operator.Word
+' '           Text
+'Prop'        Keyword.Type
+' '           Text
+'['           Punctuation
+'Result'      Keyword.Type
+']'           Punctuation
+'\n\n'        Text
+
+'data'        Keyword.Reserved
+' '           Text
+'Result'      Keyword.Type
+' '           Text
+'='           Operator.Word
+' '           Text
+'Result'      Keyword.Type
+' '           Text
+'{'           Punctuation
+'ok'          Name
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Maybe'       Keyword.Type
+' '           Text
+'Bool'        Keyword.Type
+','           Punctuation
+' '           Text
+'arguments'   Name
+' '           Text
+'::'          Operator.Word
+' '           Text
+'['           Punctuation
+'String'      Keyword.Type
+']'           Punctuation
+'}'           Punctuation
+'\n\n'        Text
+
+'nothing'     Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Result'      Keyword.Type
+'\n'          Text
+
+'nothing'     Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'Result'      Keyword.Type
+' '           Text
+'{'           Punctuation
+'ok'          Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'Nothing'     Keyword.Type
+','           Punctuation
+' '           Text
+'arguments'   Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'[]'          Keyword.Type
+'}'           Punctuation
+'\n\n'        Text
+
+'result'      Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Result'      Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'PR'          Keyword.Type
+'\n'          Text
+
+'result'      Name.Function
+' '           Text
+'res'         Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'Prop'        Keyword.Type
+' '           Text
+'['           Punctuation
+'res'         Name
+']'           Punctuation
+'\n\n'        Text
+
+'newtype'     Keyword.Reserved
+' '           Text
+'Property'    Keyword.Type
+' '           Text
+'='           Operator.Word
+' '           Text
+'Property'    Keyword.Type
+' '           Text
+'('           Punctuation
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'PR'          Keyword.Type
+')'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword.Reserved
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'property'    Name
+' '           Text
+'::'          Operator.Word
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'PR'          Keyword.Type
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'Bool'        Keyword.Type
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'property'    Name
+' '           Text
+'b'           Name
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'='           Operator.Word
+' '           Text
+'Prop'        Keyword.Type
+' '           Text
+'['           Punctuation
+'Result'      Keyword.Type
+' '           Text
+'('           Punctuation
+'Just'        Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'[]'          Keyword.Type
+']'           Punctuation
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'PR'          Keyword.Type
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'property'    Name
+' '           Text
+'prop'        Name
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'='           Operator.Word
+' '           Text
+'prop'        Name
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Show'        Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'property'    Name
+' '           Text
+'f'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+"f'"          Name
+' '           Text
+'where'       Keyword.Reserved
+' '           Text
+'Property'    Keyword.Type
+' '           Text
+"f'"          Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'forAll'      Name
+' '           Text
+'series'      Name
+' '           Text
+'f'           Name
+'\n\n'        Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'Property'    Keyword.Type
+' '           Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'property'    Name
+' '           Text
+'('           Punctuation
+'Property'    Keyword.Type
+' '           Text
+'f'           Name
+')'           Punctuation
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'f'           Name
+' '           Text
+'d'           Name
+'\n\n'        Text
+
+'evaluate'    Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'Result'      Keyword.Type
+'\n'          Text
+
+'evaluate'    Name.Function
+' '           Text
+'x'           Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'rs'          Name
+' '           Text
+'where'       Keyword.Reserved
+' '           Text
+'Prop'        Keyword.Type
+' '           Text
+'rs'          Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'property'    Name
+' '           Text
+'x'           Name
+' '           Text
+'d'           Name
+'\n\n'        Text
+
+'forAll'      Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'('           Punctuation
+'Show'        Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Property'    Keyword.Type
+'\n'          Text
+
+'forAll'      Name.Function
+' '           Text
+'xs'          Name
+' '           Text
+'f'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'Property'    Keyword.Type
+' '           Text
+'$'           Operator
+' '           Text
+'\\'          Name.Function
+'d'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Prop'        Keyword.Type
+' '           Text
+'$'           Operator
+'\n  '        Text
+'['           Punctuation
+' '           Text
+'r'           Name
+'{'           Punctuation
+'arguments'   Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'show'        Name
+' '           Text
+'x'           Name
+' '           Text
+':'           Keyword.Type
+' '           Text
+'arguments'   Name
+' '           Text
+'r'           Name
+'}'           Punctuation
+'\n  '        Text
+'|'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'xs'          Name
+' '           Text
+'d'           Name
+','           Punctuation
+' '           Text
+'r'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'evaluate'    Name
+' '           Text
+'('           Punctuation
+'f'           Name
+' '           Text
+'x'           Name
+')'           Punctuation
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+'\n\n'        Text
+
+'forAllElem'  Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'('           Punctuation
+'Show'        Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Property'    Keyword.Type
+'\n'          Text
+
+'forAllElem'  Name.Function
+' '           Text
+'xs'          Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'forAll'      Name
+' '           Text
+'('           Punctuation
+'const'       Name
+' '           Text
+'xs'          Name
+')'           Punctuation
+'\n\n'        Text
+
+'thereExists' Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'b'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Series'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Property'    Keyword.Type
+'\n'          Text
+
+'thereExists' Name.Function
+' '           Text
+'xs'          Name
+' '           Text
+'f'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'Property'    Keyword.Type
+' '           Text
+'$'           Operator
+' '           Text
+'\\'          Name.Function
+'d'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Prop'        Keyword.Type
+' '           Text
+'$'           Operator
+'\n  '        Text
+'['           Punctuation
+' '           Text
+'Result'      Keyword.Type
+'\n      '    Text
+'('           Punctuation
+' '           Text
+'Just'        Keyword.Type
+' '           Text
+'$'           Operator
+' '           Text
+'or'          Name
+' '           Text
+'['           Punctuation
+' '           Text
+'all'         Name
+' '           Text
+'pass'        Name
+' '           Text
+'('           Punctuation
+'evaluate'    Name
+' '           Text
+'('           Punctuation
+'f'           Name
+' '           Text
+'x'           Name
+')'           Punctuation
+' '           Text
+'d'           Name
+')'           Punctuation
+'\n                  ' Text
+'|'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'xs'          Name
+' '           Text
+'d'           Name
+' '           Text
+']'           Punctuation
+' '           Text
+')'           Punctuation
+'\n      '    Text
+'[]'          Keyword.Type
+' '           Text
+']'           Punctuation
+' \n  '       Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'pass'        Name
+' '           Text
+'('           Punctuation
+'Result'      Keyword.Type
+' '           Text
+'Nothing'     Keyword.Type
+' '           Text
+'_'           Keyword.Reserved
+')'           Punctuation
+'  '          Text
+'='           Operator.Word
+' '           Text
+'True'        Keyword.Type
+'\n  '        Text
+'pass'        Name
+' '           Text
+'('           Punctuation
+'Result'      Keyword.Type
+' '           Text
+'('           Punctuation
+'Just'        Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'_'           Keyword.Reserved
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'b'           Name
+'\n\n'        Text
+
+'thereExistsElem' Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'b'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Property'    Keyword.Type
+'\n'          Text
+
+'thereExistsElem' Name.Function
+' '           Text
+'xs'          Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'thereExists' Name
+' '           Text
+'('           Punctuation
+'const'       Name
+' '           Text
+'xs'          Name
+')'           Punctuation
+'\n\n'        Text
+
+'exists'      Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+'\n            ' Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Property'    Keyword.Type
+'\n'          Text
+
+'exists'      Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'thereExists' Name
+' '           Text
+'series'      Name
+'\n\n'        Text
+
+'existsDeeperBy' Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'('           Punctuation
+'Serial'      Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+'\n                    ' Text
+'('           Punctuation
+'Int'         Keyword.Type
+'->'          Operator.Word
+'Int'         Keyword.Type
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'('           Punctuation
+'a'           Name
+'->'          Operator.Word
+'b'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Property'    Keyword.Type
+'\n'          Text
+
+'existsDeeperBy' Name.Function
+' '           Text
+'f'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'thereExists' Name
+' '           Text
+'('           Punctuation
+'series'      Name
+' '           Text
+'.'           Operator
+' '           Text
+'f'           Name
+')'           Punctuation
+'\n \n'       Text
+
+'infixr'      Keyword.Reserved
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'==>'         Operator
+'\n\n'        Text
+
+'('           Punctuation
+'==>'         Operator
+')'           Punctuation
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Bool'        Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Property'    Keyword.Type
+'\n'          Text
+
+'True'        Keyword.Type
+' '           Text
+'==>'         Operator
+'  '          Text
+'x'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'Property'    Keyword.Type
+' '           Text
+'('           Punctuation
+'property'    Name
+' '           Text
+'x'           Name
+')'           Punctuation
+'\n'          Text
+
+'False'       Keyword.Type
+' '           Text
+'==>'         Operator
+' '           Text
+'x'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'Property'    Keyword.Type
+' '           Text
+'('           Punctuation
+'const'       Name
+' '           Text
+'('           Punctuation
+'result'      Name
+' '           Text
+'nothing'     Name
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'--------------------- <top-level test drivers> ----------------------' Comment.Single
+'\n\n'        Text
+
+'-- similar in spirit to QuickCheck but with iterative deepening' Comment.Single
+'\n\n'        Text
+
+'-- test for values of depths 0..d stopping when a property' Comment.Single
+'\n'          Text
+
+'-- fails or when it has been checked for all these values' Comment.Single
+'\n'          Text
+
+'smallCheck'  Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'IO'          Keyword.Type
+' '           Text
+'String'      Keyword.Type
+'\n'          Text
+
+'smallCheck'  Name.Function
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'iterCheck'   Name
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'Just'        Keyword.Type
+' '           Text
+'d'           Name
+')'           Punctuation
+'\n\n'        Text
+
+'depthCheck'  Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'IO'          Keyword.Type
+' '           Text
+'String'      Keyword.Type
+'\n'          Text
+
+'depthCheck'  Name.Function
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'iterCheck'   Name
+' '           Text
+'d'           Name
+' '           Text
+'('           Punctuation
+'Just'        Keyword.Type
+' '           Text
+'d'           Name
+')'           Punctuation
+'\n\n'        Text
+
+'iterCheck'   Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Testable'    Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Maybe'       Keyword.Type
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'IO'          Keyword.Type
+' '           Text
+'String'      Keyword.Type
+'\n'          Text
+
+'iterCheck'   Name.Function
+' '           Text
+'dFrom'       Name
+' '           Text
+'mdTo'        Name
+' '           Text
+'t'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'iter'        Name
+' '           Text
+'dFrom'       Name
+'\n  '        Text
+'where'       Keyword.Reserved
+'\n  '        Text
+'iter'        Name
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'IO'          Keyword.Type
+' '           Text
+'String'      Keyword.Type
+'\n  '        Text
+'iter'        Name
+' '           Text
+'d'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'do'          Keyword.Reserved
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'Prop'        Keyword.Type
+' '           Text
+'results'     Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'property'    Name
+' '           Text
+'t'           Name
+' '           Text
+'d'           Name
+'\n    '      Text
+'('           Punctuation
+'ok'          Name
+','           Punctuation
+'s'           Name
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'check'       Name
+' '           Text
+'('           Punctuation
+'mdTo'        Name
+'=='          Operator
+'Nothing'     Keyword.Type
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'True'        Keyword.Type
+' '           Text
+'results'     Name
+'\n    '      Text
+'maybe'       Name
+' '           Text
+'('           Punctuation
+'iter'        Name
+' '           Text
+'('           Punctuation
+'d'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n          ' Text
+'('           Punctuation
+'\\'          Name.Function
+'dTo'         Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'ok'          Name
+' '           Text
+'&&'          Operator
+' '           Text
+'d'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'dTo'         Name
+'\n                        ' Text
+'then'        Keyword.Reserved
+' '           Text
+'iter'        Name
+' '           Text
+'('           Punctuation
+'d'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n                        ' Text
+'else'        Keyword.Reserved
+' '           Text
+'return'      Name
+' '           Text
+'s'           Name
+')'           Punctuation
+'\n          ' Text
+'mdTo'        Name
+'\n\n'        Text
+
+'check'       Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Bool'        Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Bool'        Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'Result'      Keyword.Type
+']'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'IO'          Keyword.Type
+' '           Text
+'('           Punctuation
+'Bool'        Keyword.Type
+','           Punctuation
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'check'       Name.Function
+' '           Text
+'i'           Name
+' '           Text
+'n'           Name
+' '           Text
+'x'           Name
+' '           Text
+'ok'          Name
+' '           Text
+'rs'          Name
+' '           Text
+'|'           Operator
+' '           Text
+'null'        Name
+' '           Text
+'rs'          Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'do'          Keyword.Reserved
+'\n  '        Text
+'let'         Keyword.Reserved
+' '           Text
+'s'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'"'           Literal.String
+'  Completed ' Literal.String
+'"'           Literal.String
+'++'          Operator
+'show'        Name
+' '           Text
+'n'           Name
+'++'          Operator
+'"'           Literal.String
+' test(s)'    Literal.String
+'"'           Literal.String
+'\n      '    Text
+'y'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'i'           Name
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'"'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'"'           Literal.String
+' without failure.' Literal.String
+'"'           Literal.String
+'\n      '    Text
+'z'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'     '       Text
+'='           Operator.Word
+' '           Text
+'"'           Literal.String
+'  But '      Literal.String
+'"'           Literal.String
+'++'          Operator
+'show'        Name
+' '           Text
+'x'           Name
+'++'          Operator
+'"'           Literal.String
+' did not meet ==> condition.' Literal.String
+'"'           Literal.String
+'\n        '  Text
+'|'           Operator
+' '           Text
+'otherwise'   Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+'\n  '        Text
+'return'      Name
+' '           Text
+'('           Punctuation
+'ok'          Name
+','           Punctuation
+' '           Text
+'s'           Name
+' '           Text
+'++'          Operator
+' '           Text
+'y'           Name
+' '           Text
+'++'          Operator
+' '           Text
+'z'           Name
+')'           Punctuation
+'\n\n'        Text
+
+'check'       Name.Function
+' '           Text
+'i'           Name
+' '           Text
+'n'           Name
+' '           Text
+'x'           Name
+' '           Text
+'ok'          Name
+' '           Text
+'('           Punctuation
+'Result'      Keyword.Type
+' '           Text
+'Nothing'     Keyword.Type
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+':'           Keyword.Type
+' '           Text
+'rs'          Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'do'          Keyword.Reserved
+'\n  '        Text
+'progressReport' Name
+' '           Text
+'i'           Name
+' '           Text
+'n'           Name
+' '           Text
+'x'           Name
+'\n  '        Text
+'check'       Name
+' '           Text
+'i'           Name
+' '           Text
+'('           Punctuation
+'n'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'x'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ok'          Name
+' '           Text
+'rs'          Name
+'\n\n'        Text
+
+'check'       Name.Function
+' '           Text
+'i'           Name
+' '           Text
+'n'           Name
+' '           Text
+'x'           Name
+' '           Text
+'f'           Name
+' '           Text
+'('           Punctuation
+'Result'      Keyword.Type
+' '           Text
+'('           Punctuation
+'Just'        Keyword.Type
+' '           Text
+'True'        Keyword.Type
+')'           Punctuation
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+':'           Keyword.Type
+' '           Text
+'rs'          Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'do'          Keyword.Reserved
+'\n  '        Text
+'progressReport' Name
+' '           Text
+'i'           Name
+' '           Text
+'n'           Name
+' '           Text
+'x'           Name
+'\n  '        Text
+'check'       Name
+' '           Text
+'i'           Name
+' '           Text
+'('           Punctuation
+'n'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'x'           Name
+' '           Text
+'f'           Name
+' '           Text
+'rs'          Name
+'\n\n'        Text
+
+'check'       Name.Function
+' '           Text
+'i'           Name
+' '           Text
+'n'           Name
+' '           Text
+'x'           Name
+' '           Text
+'f'           Name
+' '           Text
+'('           Punctuation
+'Result'      Keyword.Type
+' '           Text
+'('           Punctuation
+'Just'        Keyword.Type
+' '           Text
+'False'       Keyword.Type
+')'           Punctuation
+' '           Text
+'args'        Name
+' '           Text
+':'           Keyword.Type
+' '           Text
+'rs'          Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'do'          Keyword.Reserved
+'\n  '        Text
+'let'         Keyword.Reserved
+' '           Text
+'s'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'"'           Literal.String
+'  Failed test no. ' Literal.String
+'"'           Literal.String
+'++'          Operator
+'show'        Name
+' '           Text
+'('           Punctuation
+'n'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'++'          Operator
+'"'           Literal.String
+'. Test values follow.' Literal.String
+'"'           Literal.String
+'\n      '    Text
+"s'"          Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'s'           Name
+' '           Text
+'++'          Operator
+' '           Text
+'"'           Literal.String
+': '          Literal.String
+'"'           Literal.String
+' '           Text
+'++'          Operator
+' '           Text
+'concat'      Name
+' '           Text
+'('           Punctuation
+'intersperse' Name
+' '           Text
+'"'           Literal.String
+', '          Literal.String
+'"'           Literal.String
+' '           Text
+'args'        Name
+')'           Punctuation
+'\n  '        Text
+'if'          Keyword.Reserved
+' '           Text
+'i'           Name
+' '           Text
+'then'        Keyword.Reserved
+'\n      '    Text
+'check'       Name
+' '           Text
+'i'           Name
+' '           Text
+'('           Punctuation
+'n'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'x'           Name
+' '           Text
+'False'       Keyword.Type
+' '           Text
+'rs'          Name
+'\n    '      Text
+'else'        Keyword.Reserved
+'\n      '    Text
+'return'      Name
+' '           Text
+'('           Punctuation
+'False'       Keyword.Type
+','           Punctuation
+' '           Text
+"s'"          Name
+')'           Punctuation
+'\n\n'        Text
+
+'progressReport' Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Bool'        Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'IO'          Keyword.Type
+' '           Text
+'()'          Name.Builtin
+'\n'          Text
+
+'progressReport' Name.Function
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'='           Operator.Word
+' '           Text
+'return'      Name
+' '           Text
+'()'          Name.Builtin
+'\n'          Text

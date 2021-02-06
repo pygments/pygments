@@ -1,0 +1,46 @@
+# Tests that the lexer can parse raw f-strings
+
+---input---
+rf"m_\nu = x"
+
+f"m_\nu = {x}"
+
+rf"m_{{\nu}} = {x}"
+
+---tokens---
+'rf'          Literal.String.Affix
+'"'           Literal.String.Double
+'m_'          Literal.String.Double
+'\\'          Literal.String.Double
+'nu = x'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'m_'          Literal.String.Double
+'\\n'         Literal.String.Escape
+'u = '        Literal.String.Double
+'{'           Literal.String.Interpol
+'x'           Name
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'rf'          Literal.String.Affix
+'"'           Literal.String.Double
+'m_'          Literal.String.Double
+'{{'          Literal.String.Escape
+'\\'          Literal.String.Double
+'nu'          Literal.String.Double
+'}}'          Literal.String.Escape
+' = '         Literal.String.Double
+'{'           Literal.String.Interpol
+'x'           Name
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text

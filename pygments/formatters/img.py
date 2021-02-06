@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.formatters.img
     ~~~~~~~~~~~~~~~~~~~~~~~
 
     Formatter for Pixmap output.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -156,7 +155,7 @@ class FontManager:
                     valname = '%s%s%s' % (basename, style and ' '+style, suffix)
                     val, _ = _winreg.QueryValueEx(key, valname)
                     return val
-                except EnvironmentError:
+                except OSError:
                     continue
         else:
             if fail:
@@ -190,7 +189,7 @@ class FontManager:
                     lookuperror = err
                 finally:
                     _winreg.CloseKey(key)
-            except EnvironmentError:
+            except OSError:
                 pass
         else:
             # If we get here, we checked all registry keys and had no luck

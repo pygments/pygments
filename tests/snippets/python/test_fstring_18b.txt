@@ -1,0 +1,25 @@
+---input---
+f"{fn(lst,2)} {fn(lst,3)}"
+
+---tokens---
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'{'           Literal.String.Interpol
+'fn'          Name
+'('           Punctuation
+'lst'         Name
+','           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+'}'           Literal.String.Interpol
+' '           Literal.String.Double
+'{'           Literal.String.Interpol
+'fn'          Name
+'('           Punctuation
+'lst'         Name
+','           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text

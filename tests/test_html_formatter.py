@@ -1,13 +1,11 @@
-# -*- coding: utf-8 -*-
 """
     Pygments HTML formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import io
 import os
 import re
 import tempfile
@@ -24,7 +22,7 @@ from pygments.style import Style
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_html_formatter.py')
 
-with io.open(TESTFILE, encoding='utf-8') as fp:
+with open(TESTFILE, encoding='utf-8') as fp:
     tokensource = list(PythonLexer().get_tokens(fp.read()))
 
 
@@ -54,7 +52,7 @@ def test_external_css():
     try:
         fmt2.format(tokensource, tfile)
         assert path.isfile(path.join(TESTDIR, 'fmt2.css'))
-    except IOError:
+    except OSError:
         # test directory not writable
         pass
     tfile.close()

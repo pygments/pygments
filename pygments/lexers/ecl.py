@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.ecl
     ~~~~~~~~~~~~~~~~~~~
 
     Lexers for the ECL language.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error
+    Number, Punctuation
 
 __all__ = ['ECLLexer']
 
@@ -56,7 +55,6 @@ class ECLLexer(RegexLexer):
             (r'0x[0-9a-f]+[lu]*', Number.Hex),
             (r'0[0-7]+[lu]*', Number.Oct),
             (r'\d+[lu]*', Number.Integer),
-            (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]+', Operator),
             (r'[{}()\[\],.;]', Punctuation),
             (r'[a-z_]\w*', Name),

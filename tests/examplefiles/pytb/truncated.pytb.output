@@ -1,0 +1,157 @@
+''            Generic.Traceback
+'  File '     Text
+'"/usr/lib/python2.3/site-packages/trac/web/main.py"' Name.Builtin
+', line '     Text
+'314'         Literal.Number
+', in '       Text
+'dispatch_request' Name
+'\n'          Text
+
+'    '        Text
+'dispatcher'  Name
+'.'           Operator
+'dispatch'    Name
+'('           Punctuation
+'req'         Name
+')'           Punctuation
+'\n'          Text
+
+'  File '     Text
+'"/usr/lib/python2.3/site-packages/trac/web/main.py"' Name.Builtin
+', line '     Text
+'186'         Literal.Number
+', in '       Text
+'dispatch'    Name
+'\n'          Text
+
+'    '        Text
+'req'         Name
+'.'           Operator
+'session'     Name
+' '           Text
+'='           Operator
+' '           Text
+'Session'     Name
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'env'         Name
+','           Punctuation
+' '           Text
+'req'         Name
+')'           Punctuation
+'\n'          Text
+
+'  File '     Text
+'"/usr/lib/python2.3/site-packages/trac/web/session.py"' Name.Builtin
+', line '     Text
+'52'          Literal.Number
+', in '       Text
+'__init__'    Name
+'\n'          Text
+
+'    '        Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'promote_session' Name
+'('           Punctuation
+'sid'         Name
+')'           Punctuation
+'\n'          Text
+
+'  File '     Text
+'"/usr/lib/python2.3/site-packages/trac/web/session.py"' Name.Builtin
+', line '     Text
+'125'         Literal.Number
+', in '       Text
+'promote_session' Name
+'\n'          Text
+
+'    '        Text
+'"'           Literal.String.Double
+'AND authenticated=0' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'('           Punctuation
+'sid'         Name
+','           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'  File '     Text
+'"/usr/lib/python2.3/site-packages/trac/db/util.py"' Name.Builtin
+', line '     Text
+'47'          Literal.Number
+', in '       Text
+'execute'     Name
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'cursor'      Name
+'.'           Operator
+'execute'     Name
+'('           Punctuation
+'sql_escape_percent' Name
+'('           Punctuation
+'sql'         Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'args'        Name
+')'           Punctuation
+'\n'          Text
+
+'  File '     Text
+'"/usr/lib/python2.3/site-packages/trac/db/sqlite_backend.py"' Name.Builtin
+', line '     Text
+'44'          Literal.Number
+', in '       Text
+'execute'     Name
+'\n'          Text
+
+'    '        Text
+'args'        Name
+' '           Text
+'or'          Operator.Word
+' '           Text
+'['           Punctuation
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'  File '     Text
+'"/usr/lib/python2.3/site-packages/trac/db/sqlite_backend.py"' Name.Builtin
+', line '     Text
+'36'          Literal.Number
+', in '       Text
+'_rollback_on_error' Name
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'function'    Name
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+','           Punctuation
+' '           Text
+'*'           Operator
+'args'        Name
+','           Punctuation
+' '           Text
+'*'           Operator
+'*'           Operator
+'kwargs'      Name
+')'           Punctuation
+'\n'          Text
+
+'OperationalError' Generic.Error
+': '          Text
+'database is locked' Name
+'\n'          Text

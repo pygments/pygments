@@ -1,0 +1,77 @@
+'<%@'         Keyword
+' '           Text
+'val'         Name
+' '           Text
+'someName'    Name
+':'           Punctuation
+' '           Text
+'String'      Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'someDefaultValue' Literal.String
+'"'           Literal.String
+' '           Text
+'%>'          Keyword
+'\n'          Text
+
+'<%'          Keyword
+' '           Text
+'import'      Keyword.Namespace
+' '           Text
+'com.acme.MySnippets._' Name.Namespace
+' '           Text
+'%>'          Keyword
+'\n'          Text
+
+'<html'       Name.Tag
+'>'           Name.Tag
+'\n'          Text
+
+'<body'       Name.Tag
+'>'           Name.Tag
+'\n'          Text
+
+'<h1'         Name.Tag
+'>'           Name.Tag
+'Hello ${someName}%' Text
+'</h1>'       Name.Tag
+'\n\n'        Text
+
+'<ul'         Name.Tag
+'>'           Name.Tag
+'\n'          Text
+
+'<%='         Keyword
+' '           Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'person'      Name
+' '           Text
+'<'           Operator
+'-'           Operator
+' '           Text
+'people'      Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'%>'          Keyword
+'\n  '        Text
+'<li'         Name.Tag
+'>'           Name.Tag
+'${person.name}' Text
+'</li>'       Name.Tag
+'\n'          Text
+
+'<%'          Keyword
+' '           Text
+'}'           Punctuation
+' '           Text
+'%>'          Keyword
+'\n'          Text
+
+'</ul>'       Name.Tag
+'  \n'        Text

@@ -1,0 +1,752 @@
+'#!/bin/awk -f' Comment.Single
+'\n\n'        Text
+
+'BEGIN'       Name.Builtin
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'# It is not possible to define output file names here because' Comment.Single
+'\n  '        Text
+'# FILENAME is not define in the BEGIN section' Comment.Single
+'\n  '        Text
+'n'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'printf'      Keyword.Reserved
+' '           Text
+'"Generating data files ..."' Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'network_max_bandwidth_in_byte' Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'10000000'    Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text
+'network_max_packet_per_second' Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'1000000'     Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text
+'last3'       Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text
+'last4'       Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text
+'last5'       Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text
+'last6'       Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$'           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'~'           Operator
+' '           Text
+'/Average/'   Literal.String.Regex
+')'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'# Skip the Average values' Comment.Single
+'\n      '    Text
+'n'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String.Double
+';'           Punctuation
+'\n      '    Text
+'next'        Keyword.Reserved
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n  '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$'           Operator
+'2'           Literal.Number.Integer
+' '           Text
+'~'           Operator
+' '           Text
+'/all/'       Literal.String.Regex
+')'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'# This is the cpu info' Comment.Single
+'\n      '    Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'3'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".cpu.user.dat"' Literal.String.Double
+';'           Punctuation
+'\n'          Text
+
+'#\t  print $4 > FILENAME".cpu.nice.dat";' Comment.Single
+'\n      '    Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'5'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".cpu.system.dat"' Literal.String.Double
+';'           Punctuation
+'\n'          Text
+
+'#     print $6 > FILENAME".cpu.iowait.dat";' Comment.Single
+'\n      '    Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'7'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".cpu.idle.dat"' Literal.String.Double
+';'           Punctuation
+'\n      '    Text
+'print'       Keyword.Reserved
+' '           Text
+'100'         Literal.Number.Integer
+'-'           Operator
+'$'           Operator
+'7'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".cpu.busy.dat"' Literal.String.Double
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$'           Operator
+'2'           Literal.Number.Integer
+' '           Text
+'~'           Operator
+' '           Text
+'/eth0/'      Literal.String.Regex
+')'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'# This is the eth0 network info' Comment.Single
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$'           Operator
+'3'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'network_max_packet_per_second' Name.Other
+')'           Punctuation
+'\n\t'        Text
+'print'       Keyword.Reserved
+' '           Text
+'last3'       Name.Other
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".net.rxpck.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Total number of packets received per second.' Comment.Single
+'\n      '    Text
+'else'        Keyword
+'\n\t'        Text
+'{'           Punctuation
+'\n\t  '      Text
+'last3'       Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'$'           Operator
+'3'           Literal.Number.Integer
+';'           Punctuation
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'3'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".net.rxpck.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Total number of packets received per second.' Comment.Single
+'\n\t'        Text
+'}'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$'           Operator
+'4'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'network_max_packet_per_second' Name.Other
+')'           Punctuation
+'\n\t'        Text
+'print'       Keyword.Reserved
+' '           Text
+'last4'       Name.Other
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".net.txpck.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Total number of packets transmitted per second.' Comment.Single
+'\n      '    Text
+'else'        Keyword
+'\n\t'        Text
+'{'           Punctuation
+'\n\t  '      Text
+'last4'       Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'$'           Operator
+'4'           Literal.Number.Integer
+';'           Punctuation
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'4'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".net.txpck.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Total number of packets transmitted per second.' Comment.Single
+'\n\t'        Text
+'}'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$'           Operator
+'5'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'network_max_bandwidth_in_byte' Name.Other
+')'           Punctuation
+'\n\t'        Text
+'print'       Keyword.Reserved
+' '           Text
+'last5'       Name.Other
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".net.rxbyt.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Total number of bytes received per second.' Comment.Single
+'\n      '    Text
+'else'        Keyword
+'\n\t'        Text
+'{'           Punctuation
+'\n\t  '      Text
+'last5'       Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'$'           Operator
+'5'           Literal.Number.Integer
+';'           Punctuation
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'5'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".net.rxbyt.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Total number of bytes received per second.' Comment.Single
+'\n\t'        Text
+'}'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$'           Operator
+'6'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'network_max_bandwidth_in_byte' Name.Other
+')'           Punctuation
+'\n\t'        Text
+'print'       Keyword.Reserved
+' '           Text
+'last6'       Name.Other
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".net.txbyt.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Total number of bytes transmitted per second.' Comment.Single
+'\n      '    Text
+'else'        Keyword
+'\n\t'        Text
+'{'           Punctuation
+'\n\t  '      Text
+'last6'       Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'$'           Operator
+'6'           Literal.Number.Integer
+';'           Punctuation
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'6'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".net.txbyt.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Total number of bytes transmitted per second.' Comment.Single
+'\n\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'#     print $7 > FILENAME".net.rxcmp.dat"; # Number of compressed packets received per second (for cslip etc.).' Comment.Single
+'\n'          Text
+
+'#     print $8 > FILENAME".net.txcmp.dat"; # Number of compressed packets transmitted per second.' Comment.Single
+'\n'          Text
+
+'#     print $9 > FILENAME".net.rxmcst.dat"; # Number of multicast packets received per second.' Comment.Single
+'\n    '      Text
+'}'           Punctuation
+'\n\n  '      Text
+'# Detect which is the next info to be parsed' Comment.Single
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$'           Operator
+'2'           Literal.Number.Integer
+' '           Text
+'~'           Operator
+' '           Text
+'/proc|cswch|tps|kbmemfree|totsck/' Literal.String.Regex
+')'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+'\n      '    Text
+'n'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'$'           Operator
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n  '      Text
+'# Only get lines with numbers (real data !)' Comment.Single
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$'           Operator
+'2'           Literal.Number.Integer
+' '           Text
+'~'           Operator
+' '           Text
+'/[0-9]/'     Literal.String.Regex
+')'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'n'           Name.Other
+' '           Text
+'=='          Operator
+' '           Text
+'"proc/s"'    Literal.String.Double
+')'           Punctuation
+'\n\t'        Text
+'{'           Punctuation
+' '           Text
+'# This is the proc/s info' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'2'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".proc.dat"' Literal.String.Double
+';'           Punctuation
+'\n'          Text
+
+'#\t  n = "";' Comment.Single
+'\n\t'        Text
+'}'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'n'           Name.Other
+' '           Text
+'=='          Operator
+' '           Text
+'"cswch/s"'   Literal.String.Double
+')'           Punctuation
+'\n\t'        Text
+'{'           Punctuation
+' '           Text
+'# This is the context switches per second info' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'2'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".ctxsw.dat"' Literal.String.Double
+';'           Punctuation
+'\n'          Text
+
+'#\t  n = "";' Comment.Single
+'\n\t'        Text
+'}'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'n'           Name.Other
+' '           Text
+'=='          Operator
+' '           Text
+'"tps"'       Literal.String.Double
+')'           Punctuation
+'\n\t'        Text
+'{'           Punctuation
+' '           Text
+'# This is the disk info' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'2'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".disk.tps.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# total transfers per second' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'3'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".disk.rtps.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# read requests per second' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'4'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".disk.wtps.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# write requests per second' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'5'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".disk.brdps.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# block reads per second' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'6'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".disk.bwrps.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# block writes per second' Comment.Single
+'\n'          Text
+
+'#\t  n = "";' Comment.Single
+'\n\t'        Text
+'}'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'n'           Name.Other
+' '           Text
+'=='          Operator
+' '           Text
+'"kbmemfree"' Literal.String.Double
+')'           Punctuation
+'\n\t'        Text
+'{'           Punctuation
+' '           Text
+'# This is the mem info' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'2'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".mem.kbmemfree.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Amount of free memory available in kilobytes.' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'3'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".mem.kbmemused.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Amount of used memory in kilobytes. This does not take into account memory used by the kernel itself.' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'4'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".mem.memused.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Percentage of used memory.' Comment.Single
+'\n'          Text
+
+'#         It appears the kbmemshrd has been removed from the sysstat output - ntolia' Comment.Single
+'\n'          Text
+
+'#\t  print $X > FILENAME".mem.kbmemshrd.dat"; # Amount of memory shared by the system in kilobytes.  Always zero with 2.4 kernels.' Comment.Single
+'\n'          Text
+
+'#\t  print $5 > FILENAME".mem.kbbuffers.dat"; # Amount of memory used as buffers by the kernel in kilobytes.' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'6'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".mem.kbcached.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Amount of memory used to cache data by the kernel in kilobytes.' Comment.Single
+'\n'          Text
+
+'#\t  print $7 > FILENAME".mem.kbswpfree.dat"; # Amount of free swap space in kilobytes.' Comment.Single
+'\n'          Text
+
+'#\t  print $8 > FILENAME".mem.kbswpused.dat"; # Amount of used swap space in kilobytes.' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'9'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".mem.swpused.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Percentage of used swap space.' Comment.Single
+'\n'          Text
+
+'#\t  n = "";' Comment.Single
+'\n \t'       Text
+'}'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'n'           Name.Other
+' '           Text
+'=='          Operator
+' '           Text
+'"totsck"'    Literal.String.Double
+')'           Punctuation
+'\n\t'        Text
+'{'           Punctuation
+' '           Text
+'# This is the socket info' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'2'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".sock.totsck.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Total number of used sockets.' Comment.Single
+'\n\t  '      Text
+'print'       Keyword.Reserved
+' '           Text
+'$'           Operator
+'3'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'FILENAME'    Name.Builtin
+'".sock.tcpsck.dat"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'# Number of TCP sockets currently in use.' Comment.Single
+'\n'          Text
+
+'#\t  print $4 > FILENAME".sock.udpsck.dat"; # Number of UDP sockets currently in use.' Comment.Single
+'\n'          Text
+
+'#\t  print $5 > FILENAME".sock.rawsck.dat"; # Number of RAW sockets currently in use.' Comment.Single
+'\n'          Text
+
+'#\t  print $6 > FILENAME".sock.ip-frag.dat"; # Number of IP fragments currently in use.' Comment.Single
+'\n'          Text
+
+'#\t  n = "";' Comment.Single
+'\n \t'       Text
+'}'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'END'         Name.Builtin
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'print'       Keyword.Reserved
+' '           Text
+'" \'"'       Literal.String.Double
+' '           Text
+'FILENAME'    Name.Builtin
+' '           Text
+'"\' done."'  Literal.String.Double
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

@@ -1,0 +1,615 @@
+'#############################################################################' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'#W  example.gd' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'##  This file contains a sample of a GAP implementation file.' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'#############################################################################' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'#M  SomeOperation( <val> )' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'##  performs some operation on <val>' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'InstallMethod' Name.Builtin
+'('           Punctuation
+' '           Text
+'SomeProperty' Name.Variable
+','           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'"for left modules"' Literal.String
+','           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'['           Punctuation
+' '           Text
+'IsLeftModule' Name.Variable
+' '           Text
+']'           Punctuation
+','           Operator
+' '           Text
+'0'           Name.Variable
+','           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'function'    Keyword
+'('           Punctuation
+' '           Text
+'M'           Name.Variable
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'IsFreeLeftModule' Name.Variable
+'('           Punctuation
+' '           Text
+'M'           Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+'and'         Operator.Word
+' '           Text
+'not'         Operator.Word
+' '           Text
+'IsTrivial'   Name.Variable
+'('           Punctuation
+' '           Text
+'M'           Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'return'      Keyword
+' '           Text
+'true'        Name.Constant
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'fi'          Keyword
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'TryNextMethod' Keyword
+'('           Punctuation
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end'         Keyword
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'#############################################################################' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'#F  SomeGlobalFunction( )' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'##  A global variadic funfion.' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'InstallGlobalFunction' Name.Builtin
+'('           Punctuation
+' '           Text
+'SomeGlobalFunction' Name.Variable
+','           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+' '           Text
+'arg'         Name.Variable
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'Length'      Name.Variable
+'('           Punctuation
+' '           Text
+'arg'         Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'3'           Name.Variable
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'return'      Keyword
+' '           Text
+'arg'         Name.Variable
+'['           Punctuation
+'1'           Name.Variable
+']'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'arg'         Name.Variable
+'['           Punctuation
+'2'           Name.Variable
+']'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'arg'         Name.Variable
+'['           Punctuation
+'3'           Name.Variable
+']'           Punctuation
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'elif'        Keyword
+' '           Text
+'Length'      Name.Variable
+'('           Punctuation
+' '           Text
+'arg'         Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'2'           Name.Variable
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'return'      Keyword
+' '           Text
+'arg'         Name.Variable
+'['           Punctuation
+'1'           Name.Variable
+']'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'arg'         Name.Variable
+'['           Punctuation
+'2'           Name.Variable
+']'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'else'        Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Error'       Name.Variable
+'('           Punctuation
+' '           Text
+'"usage: SomeGlobalFunction( <x>, <y>[, <z>] )"' Literal.String
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'fi'          Keyword
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'end'         Keyword
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'#'           Comment.Single
+'\n'          Text
+
+'# A plain function.' Comment.Single
+'\n'          Text
+
+'#'           Comment.Single
+'\n'          Text
+
+'SomeFunc'    Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'x'           Name.Variable
+','           Operator
+' '           Text
+'y'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'local'       Keyword
+' '           Text
+'z'           Name.Variable
+','           Operator
+' '           Text
+'func'        Name.Variable
+','           Operator
+' '           Text
+'tmp'         Name.Variable
+','           Operator
+' '           Text
+'j'           Name.Variable
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'z'           Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'x'           Name.Variable
+' '           Text
+'*'           Operator
+' '           Text
+'1'           Name.Variable
+'.'           Operator
+'0'           Name.Variable
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'y'           Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'17'          Name.Variable
+'^'           Operator
+'17'          Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'y'           Name.Variable
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'func'        Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name.Variable
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'a'           Name.Variable
+' '           Text
+'mod'         Operator.Word
+' '           Text
+'5'           Name.Variable
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'tmp'         Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'List'        Name.Variable
+'('           Punctuation
+' '           Text
+'['           Punctuation
+'1'           Name.Variable
+'.'           Operator
+'.'           Operator
+'50'          Name.Variable
+']'           Punctuation
+','           Operator
+' '           Text
+'func'        Name.Variable
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'while'       Keyword
+' '           Text
+'y'           Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Name.Variable
+' '           Text
+'do'          Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'for'         Keyword
+' '           Text
+'j'           Name.Variable
+' '           Text
+'in'          Operator.Word
+' '           Text
+'tmp'         Name.Variable
+' '           Text
+'do'          Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Print'       Name.Variable
+'('           Punctuation
+'j'           Name.Variable
+','           Operator
+' '           Text
+'"\\n"'       Literal.String
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'od'          Keyword
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'repeat'      Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'y'           Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'y'           Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Name.Variable
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'until'       Keyword
+' '           Text
+'0'           Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'1'           Name.Variable
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'y'           Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'y'           Name.Variable
+' '           Text
+'-'           Operator
+'1'           Name.Variable
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'od'          Keyword
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'return'      Keyword
+' '           Text
+'z'           Name.Variable
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text

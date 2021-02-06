@@ -1,0 +1,20 @@
+---input---
+selected("Sound", i+(a*b))
+
+---tokens---
+'selected'    Name.Function
+'('           Punctuation
+'"'           Literal.String
+'Sound'       Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'i'           Text
+'+'           Operator
+'('           Text
+'a'           Text
+'*'           Operator
+'b'           Text
+')'           Text
+')'           Punctuation
+'\n'          Text

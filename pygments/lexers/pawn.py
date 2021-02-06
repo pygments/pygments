@@ -1,17 +1,16 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.pawn
     ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Pawn languages.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.lexer import RegexLexer
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error
+    Number, Punctuation
 from pygments.util import get_bool_opt
 
 __all__ = ['SourcePawnLexer', 'PawnLexer']
@@ -54,7 +53,6 @@ class SourcePawnLexer(RegexLexer):
             (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
             (r'0[0-7]+[LlUu]*', Number.Oct),
             (r'\d+[LlUu]*', Number.Integer),
-            (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.;]', Punctuation),
             (r'(case|const|continue|native|'
@@ -166,7 +164,6 @@ class PawnLexer(RegexLexer):
             (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
             (r'0[0-7]+[LlUu]*', Number.Oct),
             (r'\d+[LlUu]*', Number.Integer),
-            (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.;]', Punctuation),
             (r'(switch|case|default|const|new|static|char|continue|break|'

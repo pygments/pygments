@@ -1,0 +1,343 @@
+'# This is an example file. Process it with `./pygmentize -O full -f html -o /liquid-example.html example.liquid`.\n\n' Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'raw'         Name.Tag
+' '           Text.Whitespace
+'%}'          Punctuation
+'\nsome '     Text
+'{'           Text
+'{'           Text
+'raw}} liquid syntax\n\n' Text
+
+'{'           Text
+'% raw %}\n'  Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'endraw'      Name.Tag
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text
+
+'\nJust regular text - what happens?\n\n' Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'comment'     Name.Tag
+' '           Text.Whitespace
+'%}'          Punctuation
+'M'           Comment
+'y'           Comment
+' '           Comment
+'l'           Comment
+'o'           Comment
+'v'           Comment
+'e'           Comment
+'l'           Comment
+'y'           Comment
+' '           Comment
+'{'           Comment
+'{'           Comment
+'c'           Comment
+'o'           Comment
+'m'           Comment
+'m'           Comment
+'e'           Comment
+'n'           Comment
+'t'           Comment
+'}'           Comment
+'}'           Comment
+' '           Comment
+'{'           Comment
+'%'           Comment
+' '           Comment
+'c'           Comment
+'o'           Comment
+'m'           Comment
+'m'           Comment
+'e'           Comment
+'n'           Comment
+'t'           Comment
+' '           Comment
+'%'           Comment
+'}'           Comment
+'{%'          Punctuation
+' '           Text.Whitespace
+'endcomment'  Name.Tag
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n\n'        Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'custom_tag'  Name.Tag
+' '           Text.Whitespace
+'params'      Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'true'        Keyword.Constant
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'custom_block' Name.Tag
+' '           Text.Whitespace
+'my'          Name.Attribute
+'='           Operator
+'"abc"'       Literal.String.Double
+' '           Text.Whitespace
+'c'           Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'false'       Keyword.Constant
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n\tJust usual ' Text
+'{{'          Punctuation
+'liquid'      Name.Variable
+'}}'          Punctuation
+'.\n'         Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'endcustom_block' Name.Tag
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n\n'        Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'another_tag' Name.Tag
+' '           Text.Whitespace
+'"my string param"' Literal.String.Double
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n\n'        Text
+
+'{{'          Punctuation
+' '           Text.Whitespace
+'variable'    Name.Variable
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'upcase'      Name.Function
+' '           Text.Whitespace
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+' '           Text.Whitespace
+'var'         Name.Variable
+'.'           Punctuation
+'field'       Name.Variable
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'textilize'   Name.Function
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'markdownify' Name.Function
+' '           Text.Whitespace
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+' '           Text.Whitespace
+'var'         Name.Variable
+'.'           Punctuation
+'field'       Name.Variable
+'.'           Punctuation
+'property'    Name.Variable
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'textilize'   Name.Function
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'markdownify' Name.Function
+' '           Text.Whitespace
+'}}'          Punctuation
+'\n'          Text
+
+'{{'          Punctuation
+' '           Text.Whitespace
+"'string'"    Literal.String.Single
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'truncate'    Name.Function
+':'           Punctuation
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+' '           Text.Whitespace
+'param'       Name.Attribute
+'='           Operator
+'\'df"g\''    Literal.String.Single
+' '           Text.Whitespace
+'}}'          Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'cycle'       Name.Tag
+' '           Text.Whitespace
+"'1'"         Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'var'         Name.Variable
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'cycle'       Name.Tag
+' '           Text.Whitespace
+"'group1'"    Literal.String.Single
+':'           Punctuation
+' '           Text.Whitespace
+"'1'"         Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'var'         Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'cycle'       Name.Tag
+' '           Text.Whitespace
+'group2'      Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+"'1'"         Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'var'         Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n\n'        Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'if'          Keyword.Reserved
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+"'B'"         Literal.String.Single
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'elsif'       Keyword.Reserved
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+"'C%}'"       Literal.String.Single
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'else'        Keyword.Reserved
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'endif'       Keyword.Reserved
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n\n'        Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'unless'      Keyword.Reserved
+' '           Text.Whitespace
+'not'         Operator.Word
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'else'        Keyword.Reserved
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'endunless'   Keyword.Reserved
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n\n'        Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'case'        Keyword.Reserved
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'when'        Keyword.Reserved
+' '           Text.Whitespace
+"'B'"         Literal.String.Single
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'when'        Keyword.Reserved
+' '           Text.Whitespace
+"'C'"         Literal.String.Single
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'else'        Keyword.Reserved
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text
+
+'{%'          Punctuation
+' '           Text.Whitespace
+'endcase'     Keyword.Reserved
+' '           Text.Whitespace
+'%}'          Punctuation
+'\n'          Text

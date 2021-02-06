@@ -1,0 +1,6471 @@
+'!!$\n'       Comment
+
+'!!$\n'       Comment
+
+'!!$                    MD2P4\n' Comment
+
+'!!$    Multilevel Domain Decomposition Parallel Preconditioner Package for PSBLAS\n' Comment
+
+'!!$                      for\n' Comment
+
+'!!$              Parallel Sparse BLAS  v2.0\n' Comment
+
+'!!$    (C) Copyright 2006 Salvatore Filippone    University of Rome Tor Vergata\n' Comment
+
+'!!$                       Alfredo Buttari        University of Rome Tor Vergata\n' Comment
+
+'!!$                       Daniela Di Serafino    II University of Naples\n' Comment
+
+"!!$                       Pasqua D'Ambra         ICAR-CNR\n" Comment
+
+'!!$\n'       Comment
+
+'!!$  Redistribution and use in source and binary forms, with or without\n' Comment
+
+'!!$  modification, are permitted provided that the following conditions\n' Comment
+
+'!!$  are met:\n' Comment
+
+'!!$    1. Redistributions of source code must retain the above copyright\n' Comment
+
+'!!$       notice, this list of conditions and the following disclaimer.\n' Comment
+
+'!!$    2. Redistributions in binary form must reproduce the above copyright\n' Comment
+
+'!!$       notice, this list of conditions, and the following disclaimer in the\n' Comment
+
+'!!$       documentation and/or other materials provided with the distribution.\n' Comment
+
+'!!$    3. The name of the MD2P4 group or the names of its contributors may\n' Comment
+
+'!!$       not be used to endorse or promote products derived from this\n' Comment
+
+'!!$       software without specific written permission.\n' Comment
+
+'!!$\n'       Comment
+
+'!!$  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n' Comment
+
+"!!$  ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED\n" Comment
+
+'!!$  TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR\n' Comment
+
+'!!$  PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE MD2P4 GROUP OR ITS CONTRIBUTORS\n' Comment
+
+'!!$  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR\n' Comment
+
+'!!$  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF\n' Comment
+
+'!!$  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS\n' Comment
+
+'!!$  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN\n' Comment
+
+'!!$  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\n' Comment
+
+'!!$  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\n' Comment
+
+'!!$  POSSIBILITY OF SUCH DAMAGE.\n' Comment
+
+'!!$\n'       Comment
+
+'!!$\n'       Comment
+
+'subroutine ' Keyword
+'psb_zmlprc_aply' Name
+'('           Punctuation
+'alpha'       Name
+','           Punctuation
+'baseprecv'   Name
+','           Punctuation
+'x'           Name
+','           Punctuation
+'beta'        Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'desc_data'   Name
+','           Punctuation
+'trans'       Name
+','           Punctuation
+'work'        Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n  '        Text
+'!\n'         Comment
+
+'  '          Text
+'!  Compute   Y <-  beta*Y + alpha*K^-1 X\n' Comment
+
+'  '          Text
+'!  where K is a multilevel  preconditioner stored in baseprecv\n' Comment
+
+'  '          Text
+'!\n'         Comment
+
+'  '          Text
+'!  cfr.: Smith, Biorstad & Gropp\n' Comment
+
+'  '          Text
+'!        Domain Decomposition\n' Comment
+
+'  '          Text
+'!        Cambridge Univ. Press\n' Comment
+
+'  '          Text
+'!\n'         Comment
+
+'  '          Text
+'!  To each level I there corresponds a matrix A(I) and a preconditioner K(I)\n' Comment
+
+'  '          Text
+'!\n'         Comment
+
+'  '          Text
+'!  A notational difference: in the DD reference above the preconditioner for\n' Comment
+
+'  '          Text
+'!  a given level K(I) is written out as a sum over the subdomains\n' Comment
+
+'  '          Text
+'!\n'         Comment
+
+'  '          Text
+'!  SUM_k(R_k^T A_k R_k)\n' Comment
+
+'  '          Text
+'!\n'         Comment
+
+'  '          Text
+'!  whereas in this code the sum is implicit in the parallelization,\n' Comment
+
+'  '          Text
+'!  i.e. each process takes care of one subdomain, and for each level we have\n' Comment
+
+'  '          Text
+'!  as many subdomains as there are processes (except for the coarsest level where\n' Comment
+
+'  '          Text
+'!  we might have a replicated index space). Thus the sum apparently disappears\n' Comment
+
+'  '          Text
+'!  from our code, but only apparently, because it is implicit in the call\n' Comment
+
+'  '          Text
+'!  to psb_baseprc_aply.\n' Comment
+
+'  '          Text
+'!\n'         Comment
+
+'  '          Text
+'!  A bit of description of the baseprecv(:) data structure:\n' Comment
+
+'  '          Text
+'!   1. Number of levels = NLEV = size(baseprecv(:))\n' Comment
+
+'  '          Text
+'!   2. baseprecv(ilev)%av(:)    sparse matrices needed for the current level.\n' Comment
+
+'  '          Text
+'!      Includes:\n' Comment
+
+'  '          Text
+'!   2.1.:  baseprecv(ilev)%av(l_pr_)    L factor of ILU preconditioners\n' Comment
+
+'  '          Text
+'!   2.2.:  baseprecv(ilev)%av(u_pr_)    U factor of ILU preconditioners\n' Comment
+
+'  '          Text
+'!   2.3.:  baseprecv(ilev)%av(ap_nd_)   Off-diagonal part of A for Jacobi sweeps\n' Comment
+
+'  '          Text
+'!   2.4.:  baseprecv(ilev)%av(ac_)      Aggregated matrix of level ILEV\n' Comment
+
+'  '          Text
+'!   2.5.:  baseprecv(ilev)%av(sm_pr_t_) Smoother prolongator transpose; maps vectors\n' Comment
+
+'  '          Text
+'!                                          (ilev-1) --->  (ilev)\n' Comment
+
+'  '          Text
+'!   2.6.:  baseprecv(ilev)%av(sm_pr_)   Smoother prolongator; maps vectors\n' Comment
+
+'  '          Text
+'!                                          (ilev)   --->  (ilev-1)\n' Comment
+
+'  '          Text
+"!   Shouldn't we keep just one of them and handle transpose in the sparse BLAS? maybe\n" Comment
+
+'  '          Text
+'!\n'         Comment
+
+'  '          Text
+'!   3.    baseprecv(ilev)%desc_data     comm descriptor for level ILEV\n' Comment
+
+'  '          Text
+'!   4.    baseprecv(ilev)%base_a        Pointer (really a pointer!) to the base matrix\n' Comment
+
+'  '          Text
+'!                                       of the current level, i.e.: if ILEV=1 then  A\n' Comment
+
+'  '          Text
+'!                                       else the aggregated matrix av(ac_); so we have\n' Comment
+
+'  '          Text
+'!                                       a unified treatment of residuals. Need this to\n' Comment
+
+'  '          Text
+'!                                       avoid passing explicitly matrix A to the\n' Comment
+
+'  '          Text
+'!                                       outer prec. routine\n' Comment
+
+'  '          Text
+'!   5.    baseprecv(ilev)%mlia          The aggregation map from (ilev-1)-->(ilev)\n' Comment
+
+'  '          Text
+'!                                       if no smoother, it is used instead of sm_pr_\n' Comment
+
+'  '          Text
+'!   6.    baseprecv(ilev)%nlaggr        Number of aggregates on the various procs.\n' Comment
+
+'  '          Text
+'!\n'         Comment
+
+'\n  '        Text
+'use '        Keyword
+'psb_serial_mod' Name
+'\n  '        Text
+'use '        Keyword
+'psb_descriptor_type' Name
+'\n  '        Text
+'use '        Keyword
+'psb_prec_type' Name
+'\n  '        Text
+'use '        Keyword
+'psb_psblas_mod' Name
+'\n  '        Text
+'use '        Keyword
+'psb_penv_mod' Name
+'\n  '        Text
+'use '        Keyword
+'psb_const_mod' Name
+'\n  '        Text
+'use '        Keyword
+'psb_error_mod' Name
+'\n  '        Text
+'use '        Keyword
+'psb_penv_mod' Name
+'\n  '        Text
+'implicit '   Keyword
+'none\n\n  '  Keyword
+'type'        Keyword
+'('           Punctuation
+'psb_desc_type' Name
+')'           Punctuation
+','           Punctuation
+'intent'      Keyword
+'('           Punctuation
+'in'          Name
+')'           Punctuation
+'      '      Text
+'::'          Keyword.Declaration
+' '           Text
+'desc_data'   Name
+'\n  '        Text
+'type'        Keyword
+'('           Punctuation
+'psb_zbaseprc_type' Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'intent'      Keyword
+'('           Punctuation
+'in'          Name
+')'           Punctuation
+' '           Text
+'::'          Keyword.Declaration
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'complex'     Keyword.Type
+'('           Punctuation
+'kind'        Name.Builtin
+'('           Punctuation
+'1.d0'        Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'intent'      Keyword
+'('           Punctuation
+'in'          Name
+')'           Punctuation
+'      '      Text
+'::'          Keyword.Declaration
+' '           Text
+'alpha'       Name
+','           Punctuation
+'beta'        Name
+'\n  '        Text
+'complex'     Keyword.Type
+'('           Punctuation
+'kind'        Name.Builtin
+'('           Punctuation
+'1.d0'        Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'intent'      Keyword
+'('           Punctuation
+'inout'       Name
+')'           Punctuation
+'   '         Text
+'::'          Keyword.Declaration
+' '           Text
+'x'           Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'y'           Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'character'   Keyword.Type
+'                           ' Text
+'::'          Keyword.Declaration
+' '           Text
+'trans'       Name
+'\n  '        Text
+'complex'     Keyword.Type
+'('           Punctuation
+'kind'        Name.Builtin
+'('           Punctuation
+'1.d0'        Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'target'      Keyword
+'          '  Text
+'::'          Keyword.Declaration
+' '           Text
+'work'        Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'integer'     Keyword.Type
+','           Punctuation
+' '           Text
+'intent'      Keyword
+'('           Punctuation
+'out'         Name
+')'           Punctuation
+'                ' Text
+'::'          Keyword.Declaration
+' '           Text
+'info'        Name
+'\n\n\n  '    Text
+'! Local variables\n' Comment
+
+'  '          Text
+'integer'     Keyword.Type
+' '           Text
+'::'          Keyword.Declaration
+' '           Text
+'n_row'       Name
+','           Punctuation
+'n_col'       Name
+'\n  '        Text
+'complex'     Keyword.Type
+'('           Punctuation
+'kind'        Name.Builtin
+'('           Punctuation
+'1.d0'        Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'allocatable' Keyword
+' '           Text
+'::'          Keyword.Declaration
+' '           Text
+'tx'          Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+','           Punctuation
+'ty'          Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+','           Punctuation
+'t2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+','           Punctuation
+'w2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+','           Punctuation
+'&'           Punctuation
+'\n       '   Text
+'&'           Punctuation
+'   '         Text
+'x2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+','           Punctuation
+'b2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+','           Punctuation
+'tz'          Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+','           Punctuation
+'tty'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'character'   Keyword.Type
+'     '       Text
+'::'          Keyword.Declaration
+'diagl'       Name
+','           Punctuation
+' '           Text
+'diagu'       Name
+'\n  '        Text
+'integer'     Keyword.Type
+' '           Text
+'::'          Keyword.Declaration
+' '           Text
+'ictxt'       Name
+','           Punctuation
+'np'          Name
+','           Punctuation
+'me'          Name
+','           Punctuation
+'i'           Name
+','           Punctuation
+' '           Text
+'isz'         Name
+','           Punctuation
+' '           Text
+'nrg'         Name
+','           Punctuation
+'nr2l'        Name
+','           Punctuation
+'err_act'     Name
+','           Punctuation
+' '           Text
+'iptype'      Name
+','           Punctuation
+' '           Text
+'int_err'     Name
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n  '        Text
+'real'        Keyword.Type
+'('           Punctuation
+'kind'        Name.Builtin
+'('           Punctuation
+'1.d0'        Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'::'          Keyword.Declaration
+' '           Text
+'omega'       Name
+'\n  '        Text
+'real'        Keyword.Type
+'('           Punctuation
+'kind'        Name.Builtin
+'('           Punctuation
+'1.d0'        Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'::'          Keyword.Declaration
+' '           Text
+'t1'          Name
+','           Punctuation
+' '           Text
+'t2'          Name
+','           Punctuation
+' '           Text
+'t3'          Name
+','           Punctuation
+' '           Text
+'t4'          Name
+','           Punctuation
+' '           Text
+'t5'          Name
+','           Punctuation
+' '           Text
+'t6'          Name
+','           Punctuation
+' '           Text
+'t7'          Name
+','           Punctuation
+' '           Text
+'mpi_wtime'   Name
+'\n  '        Text
+'logical'     Keyword.Type
+','           Punctuation
+' '           Text
+'parameter'   Keyword
+'          '  Text
+'::'          Keyword.Declaration
+' '           Text
+'debug'       Name
+'='           Operator
+'.'           Punctuation
+'false'       Name
+'.'           Punctuation
+','           Punctuation
+' '           Text
+'debugprt'    Name
+'='           Operator
+'.'           Punctuation
+'false'       Name
+'.'           Punctuation
+'\n  '        Text
+'integer'     Keyword.Type
+'      '      Text
+'::'          Keyword.Declaration
+' '           Text
+'ismth'       Name
+','           Punctuation
+' '           Text
+'nlev'        Name
+','           Punctuation
+' '           Text
+'ilev'        Name
+'\n  '        Text
+'external '   Keyword
+'mpi_wtime'   Name
+'\n  '        Text
+'character'   Keyword.Type
+'('           Punctuation
+'len'         Name.Builtin
+'='           Operator
+'20'          Literal.Number.Integer
+')'           Punctuation
+'   '         Text
+'::'          Keyword.Declaration
+' '           Text
+'name'        Name
+','           Punctuation
+' '           Text
+'ch_err'      Name
+'\n\n  '      Text
+'type '       Keyword
+'psb_mlprec_wrk_type' Name
+'\n    '      Text
+'complex'     Keyword.Type
+'('           Punctuation
+'kind'        Name.Builtin
+'('           Punctuation
+'1.d0'        Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'pointer'     Keyword
+' '           Text
+'::'          Keyword.Declaration
+' '           Text
+'tx'          Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'='           Operator
+'>'           Operator
+'null'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+'ty'          Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'='           Operator
+'>'           Operator
+'null'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+'&'           Punctuation
+'\n         ' Text
+'&'           Punctuation
+' '           Text
+'x2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'='           Operator
+'>'           Operator
+'null'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+'y2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'='           Operator
+'>'           Operator
+'null'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+'&'           Punctuation
+'\n         ' Text
+'&'           Punctuation
+' '           Text
+'b2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'='           Operator
+'>'           Operator
+'null'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+'tty'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'='           Operator
+'>'           Operator
+'null'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+'\n  '        Text
+'end '        Keyword
+'type '       Keyword
+'psb_mlprec_wrk_type' Name
+'\n  '        Text
+'type'        Keyword
+'('           Punctuation
+'psb_mlprec_wrk_type' Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'pointer'     Keyword
+' '           Text
+'::'          Keyword.Declaration
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'\n\n  '      Text
+'interface '  Keyword
+'psb_baseprc_aply' Name
+'\n    '      Text
+'subroutine ' Keyword
+'psb_zbaseprc_aply' Name
+'('           Punctuation
+'alpha'       Name
+','           Punctuation
+'prec'        Name
+','           Punctuation
+'x'           Name
+','           Punctuation
+'beta'        Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'desc_data'   Name
+','           Punctuation
+'trans'       Name
+','           Punctuation
+'work'        Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n      '    Text
+'use '        Keyword
+'psb_descriptor_type' Name
+'\n      '    Text
+'use '        Keyword
+'psb_prec_type' Name
+'\n      '    Text
+'type'        Keyword
+'('           Punctuation
+'psb_desc_type' Name
+')'           Punctuation
+','           Punctuation
+'intent'      Keyword
+'('           Punctuation
+'in'          Name
+')'           Punctuation
+'      '      Text
+'::'          Keyword.Declaration
+' '           Text
+'desc_data'   Name
+'\n      '    Text
+'type'        Keyword
+'('           Punctuation
+'psb_zbaseprc_type' Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'intent'      Keyword
+'('           Punctuation
+'in'          Name
+')'           Punctuation
+' '           Text
+'::'          Keyword.Declaration
+' '           Text
+'prec'        Name
+'\n      '    Text
+'complex'     Keyword.Type
+'('           Punctuation
+'kind'        Name.Builtin
+'('           Punctuation
+'1.d0'        Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'intent'      Keyword
+'('           Punctuation
+'inout'       Name
+')'           Punctuation
+'   '         Text
+'::'          Keyword.Declaration
+' '           Text
+'x'           Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'y'           Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'complex'     Keyword.Type
+'('           Punctuation
+'kind'        Name.Builtin
+'('           Punctuation
+'1.d0'        Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'intent'      Keyword
+'('           Punctuation
+'in'          Name
+')'           Punctuation
+'      '      Text
+'::'          Keyword.Declaration
+' '           Text
+'alpha'       Name
+','           Punctuation
+'beta'        Name
+'\n      '    Text
+'character'   Keyword.Type
+'('           Punctuation
+'len'         Name.Builtin
+'='           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'                    ' Text
+'::'          Keyword.Declaration
+' '           Text
+'trans'       Name
+'\n      '    Text
+'complex'     Keyword.Type
+'('           Punctuation
+'kind'        Name.Builtin
+'('           Punctuation
+'1.d0'        Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'target'      Keyword
+'          '  Text
+'::'          Keyword.Declaration
+' '           Text
+'work'        Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'integer'     Keyword.Type
+','           Punctuation
+' '           Text
+'intent'      Keyword
+'('           Punctuation
+'out'         Name
+')'           Punctuation
+'                ' Text
+'::'          Keyword.Declaration
+' '           Text
+'info'        Name
+'\n    '      Text
+'end '        Keyword
+'subroutine ' Keyword
+'psb_zbaseprc_aply' Name
+'\n  '        Text
+'end '        Keyword
+'interface\n\n  ' Keyword
+'name'        Name
+'='           Operator
+"'psb_mlprc_aply'" Literal.String.Single
+'\n  '        Text
+'info'        Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n  '        Text
+'call '       Keyword
+'psb_erractionsave' Name
+'('           Punctuation
+'err_act'     Name
+')'           Punctuation
+'\n\n\n  '    Text
+'ictxt'       Name
+'='           Operator
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_ctxt_'   Name
+')'           Punctuation
+'\n  '        Text
+'call '       Keyword
+'psb_info'    Name
+'('           Punctuation
+'ictxt'       Name
+','           Punctuation
+' '           Text
+'me'          Name
+','           Punctuation
+' '           Text
+'np'          Name
+')'           Punctuation
+'\n\n  '      Text
+'nlev'        Name
+' '           Text
+'='           Operator
+' '           Text
+'size'        Name
+'('           Punctuation
+'baseprecv'   Name
+')'           Punctuation
+'\n  '        Text
+'allocate'    Keyword
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'nlev'        Name
+')'           Punctuation
+','           Punctuation
+'stat'        Name.Builtin
+'='           Operator
+'info'        Name
+')'           Punctuation
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'then\n    '  Keyword
+'call '       Keyword
+'psb_errpush' Name
+'('           Punctuation
+'4010'        Literal.Number.Integer
+','           Punctuation
+'name'        Name
+','           Punctuation
+'a_err'       Name
+'='           Operator
+"'Allocate'"  Literal.String.Single
+')'           Punctuation
+'\n    '      Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n  '        Text
+'end '        Keyword
+'if\n\n\n  '  Keyword
+'select '     Keyword
+'case'        Keyword
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'ml_type_'    Name
+')'           Punctuation
+')'           Punctuation
+'\n\n  '      Text
+'case'        Keyword
+'('           Punctuation
+'no_ml_'      Name
+')'           Punctuation
+'\n    '      Text
+'! Should not really get here.\n' Comment
+
+'    '        Text
+'call '       Keyword
+'psb_errpush' Name
+'('           Punctuation
+'4010'        Literal.Number.Integer
+','           Punctuation
+'name'        Name
+','           Punctuation
+'a_err'       Name
+'='           Operator
+"'no_ml_ in mlprc_aply?'" Literal.String.Single
+')'           Punctuation
+'\n    '      Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n\n  '    Text
+'case'        Keyword
+'('           Punctuation
+'add_ml_prec_' Name
+')'           Punctuation
+'\n\n\n    '  Text
+'!\n'         Comment
+
+'    '        Text
+'!    Additive is very simple.\n' Comment
+
+'    '        Text
+'!    1.  X(1) = Xext\n' Comment
+
+'    '        Text
+'!    2.  DO ILEV=2,NLEV\n' Comment
+
+'    '        Text
+'!           X(ILEV) = AV(PR_SM_T_)*X(ILEV-1)\n' Comment
+
+'    '        Text
+'!    3.  Y(ILEV) = (K(ILEV)**(-1))*X(ILEV)\n' Comment
+
+'    '        Text
+'!    4.  DO  ILEV=NLEV-1,1,-1\n' Comment
+
+'    '        Text
+'!           Y(ILEV) = AV(PR_SM_)*Y(ILEV+1)\n' Comment
+
+'    '        Text
+'!    5.  Yext    = beta*Yext + Y(1)\n' Comment
+
+'    '        Text
+'!\n'         Comment
+
+'    '        Text
+'!    Note: level numbering reversed wrt ref. DD, i.e.\n' Comment
+
+'    '        Text
+'!         1..NLEV <=>  (j) <-> 0\n' Comment
+
+'\n\n    '    Text
+'call '       Keyword
+'psb_baseprc_aply' Name
+'('           Punctuation
+'alpha'       Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'x'           Name
+','           Punctuation
+'beta'        Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'&'           Punctuation
+'\n         ' Text
+'&'           Punctuation
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'trans'       Name
+','           Punctuation
+'work'        Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n    '      Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n    '      Text
+'allocate'    Keyword
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'size'        Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'size'        Name
+'('           Punctuation
+'y'           Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'x'           Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'\n\n\n    '  Text
+'do '         Keyword
+'ilev'        Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'nlev'        Name
+'\n      '    Text
+'n_row'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_row_'  Name
+')'           Punctuation
+'\n      '    Text
+'n_col'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n      '    Text
+'nr2l'        Name
+'  '          Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n      '    Text
+'nrg'         Name
+'   '         Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_row_'  Name
+')'           Punctuation
+'\n      '    Text
+'allocate'    Keyword
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+'max'         Name.Builtin
+'('           Punctuation
+'n_row'       Name
+','           Punctuation
+'n_col'       Name
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+'('           Punctuation
+'max'         Name.Builtin
+'('           Punctuation
+'n_row'       Name
+','           Punctuation
+'n_col'       Name
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'stat'        Name.Builtin
+'='           Operator
+'info'        Name
+')'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'then\n        ' Keyword
+'call '       Keyword
+'psb_errpush' Name
+'('           Punctuation
+'4010'        Literal.Number.Integer
+','           Punctuation
+'name'        Name
+','           Punctuation
+'a_err'       Name
+'='           Operator
+"'Allocate'"  Literal.String.Single
+')'           Punctuation
+'\n        '  Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n      '    Text
+'end '        Keyword
+'if\n\n      ' Keyword
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n      '    Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n      '    Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+':'           Punctuation
+'n_row'       Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+':'           Punctuation
+'n_row'       Name
+')'           Punctuation
+'\n      '    Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+'n_row'       Name
+'+'           Operator
+'1'           Literal.Number.Integer
+':'           Punctuation
+'max'         Name.Builtin
+'('           Punctuation
+'n_row'       Name
+','           Punctuation
+'n_col'       Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n      '    Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n\n      '  Text
+'ismth'       Name
+'='           Operator
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'smth_kind_'  Name
+')'           Punctuation
+'\n\n      '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'ismth'       Name
+'  '          Text
+'/'           Operator
+'='           Operator
+' '           Text
+'no_smth_'    Name
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n        '  Text
+'!\n'         Comment
+
+'        '    Text
+'! Smoothed aggregation\n' Comment
+
+'        '    Text
+'!\n'         Comment
+
+'\n\n        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'glb_smth_'   Name
+')'           Punctuation
+' '           Text
+'>'           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'then\n          ' Keyword
+'call '       Keyword
+'psb_halo'    Name
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+'  '          Text
+'info'        Name
+','           Punctuation
+'work'        Name
+'='           Operator
+'work'        Name
+')'           Punctuation
+'\n          ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n        '  Text
+'else\n          ' Keyword
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'n_row'       Name
+'+'           Operator
+'1'           Literal.Number.Integer
+':'           Punctuation
+'max'         Name.Builtin
+'('           Punctuation
+'n_row'       Name
+','           Punctuation
+'n_col'       Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n        '  Text
+'end '        Keyword
+'if\n\n        ' Keyword
+'call '       Keyword
+'psb_csmm'    Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'av'          Name
+'('           Punctuation
+'sm_pr_t_'    Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+' '           Text
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n        '  Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n      '  Text
+'else'        Keyword
+'\n        '  Text
+'!\n'         Comment
+
+'        '    Text
+'! Raw  aggregation, may take shortcut\n' Comment
+
+'        '    Text
+'!\n'         Comment
+
+'        '    Text
+'do '         Keyword
+'i'           Name
+'='           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+'n_row'       Name
+'\n          ' Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'mlia'        Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+'  '          Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'mlia'        Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+'  '          Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'\n        '  Text
+'end '        Keyword
+'do\n\n      ' Keyword
+'end '        Keyword
+'if\n\n      ' Keyword
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'coarse_mat_' Name
+')'           Punctuation
+'=='          Operator
+'mat_repl_'   Name
+')'           Punctuation
+' '           Text
+'Then\n        ' Keyword
+'call '       Keyword
+'psb_sum'     Name
+'('           Punctuation
+'ictxt'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+':'           Punctuation
+'nrg'         Name
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'else '       Keyword
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'coarse_mat_' Name
+')'           Punctuation
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'mat_distr_'  Name
+')'           Punctuation
+' '           Text
+'Then\n        ' Keyword
+'write'       Keyword
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'*'           Operator
+')'           Punctuation
+' '           Text
+"'Unknown value for baseprecv(2)%iprcparm(coarse_mat_) '" Literal.String.Single
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'coarse_mat_' Name
+')'           Punctuation
+'\n      '    Text
+'endif'       Name
+'\n\n      '  Text
+'call '       Keyword
+'psb_baseprc_aply' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+','           Punctuation
+' '           Text
+"'N'"         Literal.String.Single
+','           Punctuation
+'work'        Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n    '    Text
+'enddo'       Name
+'\n\n    '    Text
+'do '         Keyword
+'ilev'        Name
+' '           Text
+'='           Operator
+'nlev'        Name
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+'\n\n      '  Text
+'ismth'       Name
+'='           Operator
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'smth_kind_'  Name
+')'           Punctuation
+'\n      '    Text
+'n_row'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_row_'  Name
+')'           Punctuation
+'\n      '    Text
+'n_col'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n      '    Text
+'nr2l'        Name
+'  '          Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n      '    Text
+'nrg'         Name
+'   '         Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_row_'  Name
+')'           Punctuation
+'\n\n      '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'ismth'       Name
+'  '          Text
+'/'           Operator
+'='           Operator
+' '           Text
+'no_smth_'    Name
+')'           Punctuation
+' '           Text
+'then\n\n        ' Keyword
+'call '       Keyword
+'psb_csmm'    Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'av'          Name
+'('           Punctuation
+'sm_pr_'      Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+' '           Text
+'zone'        Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n        '  Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n      '  Text
+'else\n\n        ' Keyword
+'do '         Keyword
+'i'           Name
+'='           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'n_row'       Name
+'\n          ' Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+'   '         Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'mlia'        Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'enddo'       Name
+'\n\n      '  Text
+'end '        Keyword
+'if\n    '    Keyword
+'end '        Keyword
+'do\n\n    '  Keyword
+'call '       Keyword
+'psb_geaxpby' Name
+'('           Punctuation
+'alpha'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'zone'        Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n    '      Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n\n  '    Text
+'case'        Keyword
+'('           Punctuation
+'mult_ml_prec_' Name
+')'           Punctuation
+'\n\n    '    Text
+'!\n'         Comment
+
+'    '        Text
+'!  Multiplicative multilevel\n' Comment
+
+'    '        Text
+'!  Pre/post smoothing versions.\n' Comment
+
+'    '        Text
+'!\n'         Comment
+
+'\n    '      Text
+'select '     Keyword
+'case'        Keyword
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'smth_pos_'   Name
+')'           Punctuation
+')'           Punctuation
+'\n\n    '    Text
+'case'        Keyword
+'('           Punctuation
+'post_smooth_' Name
+')'           Punctuation
+'\n\n\n      ' Text
+'!\n'         Comment
+
+'      '      Text
+'!    Post smoothing.\n' Comment
+
+'      '      Text
+'!    1.   X(1) = Xext\n' Comment
+
+'      '      Text
+'!    2.   DO ILEV=2, NLEV :: X(ILEV) = AV(PR_SM_T_,ILEV)*X(ILEV-1)\n' Comment
+
+'      '      Text
+'!    3.   Y(NLEV) = (K(NLEV)**(-1))*X(NLEV)\n' Comment
+
+'      '      Text
+'!    4.   DO  ILEV=NLEV-1,1,-1\n' Comment
+
+'      '      Text
+'!          Y(ILEV) = AV(PR_SM_,ILEV+1)*Y(ILEV+1)\n' Comment
+
+'      '      Text
+'!          Y(ILEV) = Y(ILEV) + (K(ILEV)**(-1))*(X(ILEV)-A(ILEV)*Y(ILEV))\n' Comment
+
+'      '      Text
+'!\n'         Comment
+
+'      '      Text
+'!    5.  Yext    = beta*Yext + Y(1)\n' Comment
+
+'      '      Text
+'!\n'         Comment
+
+'      '      Text
+'!    Note: level numbering reversed wrt ref. DD, i.e.\n' Comment
+
+'      '      Text
+'!         1..NLEV <=>  (j) <-> 0\n' Comment
+
+'      '      Text
+'!\n'         Comment
+
+'      '      Text
+'!    Also: post smoothing is not spelled out in detail in DD.\n' Comment
+
+'      '      Text
+'!\n'         Comment
+
+'      '      Text
+'!\n'         Comment
+
+'\n\n      '  Text
+'n_col'       Name
+' '           Text
+'='           Operator
+' '           Text
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n      '    Text
+'nr2l'        Name
+'  '          Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n\n      '  Text
+'allocate'    Keyword
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'stat'        Name.Builtin
+'='           Operator
+'info'        Name
+')'           Punctuation
+'\n      '    Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n      '    Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n      '    Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n\n      '  Text
+'call '       Keyword
+'psb_geaxpby' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'x'           Name
+','           Punctuation
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n      '    Text
+'call '       Keyword
+'psb_geaxpby' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'x'           Name
+','           Punctuation
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n      '  Text
+'do '         Keyword
+'ilev'        Name
+'='           Operator
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'nlev'        Name
+'\n        '  Text
+'n_row'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_row_'  Name
+')'           Punctuation
+'\n        '  Text
+'n_col'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n        '  Text
+'nr2l'        Name
+'  '          Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n        '  Text
+'nrg'         Name
+'   '         Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_row_'  Name
+')'           Punctuation
+'\n        '  Text
+'ismth'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'smth_kind_'  Name
+')'           Punctuation
+'\n\n        ' Text
+'allocate'    Keyword
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+'   '         Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'stat'        Name.Builtin
+'='           Operator
+'info'        Name
+')'           Punctuation
+'\n\n        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'then\n          ' Keyword
+'call '       Keyword
+'psb_errpush' Name
+'('           Punctuation
+'4010'        Literal.Number.Integer
+','           Punctuation
+'name'        Name
+','           Punctuation
+'a_err'       Name
+'='           Operator
+"'Allocate'"  Literal.String.Single
+')'           Punctuation
+'\n          ' Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n        '  Text
+'end '        Keyword
+'if\n\n        ' Keyword
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n        '  Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n        '  Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'ismth'       Name
+'  '          Text
+'/'           Operator
+'='           Operator
+' '           Text
+'no_smth_'    Name
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n          ' Text
+'!\n'         Comment
+
+'          '  Text
+'! Smoothed aggregation\n' Comment
+
+'          '  Text
+'!\n'         Comment
+
+'          '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'glb_smth_'   Name
+')'           Punctuation
+' '           Text
+'>'           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'then\n            ' Keyword
+'call '       Keyword
+'psb_halo'    Name
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n                 ' Text
+'&'           Punctuation
+'  '          Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+','           Punctuation
+'work'        Name
+'='           Operator
+'work'        Name
+')'           Punctuation
+'\n            ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n          ' Text
+'else\n            ' Keyword
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'n_row'       Name
+'+'           Operator
+'1'           Literal.Number.Integer
+':'           Punctuation
+'max'         Name.Builtin
+'('           Punctuation
+'n_row'       Name
+','           Punctuation
+'n_col'       Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n          ' Text
+'end '        Keyword
+'if\n\n          ' Keyword
+'call '       Keyword
+'psb_csmm'    Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'av'          Name
+'('           Punctuation
+'sm_pr_t_'    Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+' '           Text
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+' '           Text
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n          ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n        ' Text
+'else'        Keyword
+'\n          ' Text
+'!\n'         Comment
+
+'          '  Text
+'! Raw  aggregation, may take shortcut\n' Comment
+
+'          '  Text
+'!\n'         Comment
+
+'          '  Text
+'do '         Keyword
+'i'           Name
+'='           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+'n_row'       Name
+'\n            ' Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'mlia'        Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'&'           Punctuation
+'\n                 ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'mlia'        Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'&'           Punctuation
+'\n                 ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'\n          ' Text
+'end '        Keyword
+'do\n        ' Keyword
+'end '        Keyword
+'if\n\n        ' Keyword
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'coarse_mat_' Name
+')'           Punctuation
+'=='          Operator
+'mat_repl_'   Name
+')'           Punctuation
+' '           Text
+'Then\n          ' Keyword
+'call '       Keyword
+'psb_sum'     Name
+'('           Punctuation
+'ictxt'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+':'           Punctuation
+'nrg'         Name
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'else '       Keyword
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'coarse_mat_' Name
+')'           Punctuation
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'mat_distr_'  Name
+')'           Punctuation
+' '           Text
+'Then\n          ' Keyword
+'write'       Keyword
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'*'           Operator
+')'           Punctuation
+' '           Text
+"'Unknown value for baseprecv(2)%iprcparm(coarse_mat_) '" Literal.String.Single
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'coarse_mat_' Name
+')'           Punctuation
+'\n        '  Text
+'endif'       Name
+'\n        '  Text
+'call '       Keyword
+'psb_geaxpby' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n        '  Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n      '  Text
+'enddo'       Name
+'\n\n\n      ' Text
+'call '       Keyword
+'psb_baseprc_aply' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'nlev'        Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'nlev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+' '           Text
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'zzero'       Name
+','           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'nlev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'nlev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+','           Punctuation
+"'N'"         Literal.String.Single
+','           Punctuation
+'work'        Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n      '  Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n\n      ' Text
+'do '         Keyword
+'ilev'        Name
+'='           Operator
+'nlev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+'\n        '  Text
+'ismth'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'smth_kind_'  Name
+')'           Punctuation
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'ismth'       Name
+'  '          Text
+'/'           Operator
+'='           Operator
+' '           Text
+'no_smth_'    Name
+')'           Punctuation
+' '           Text
+'then\n          ' Keyword
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'ismth'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'smth_omg_'   Name
+')'           Punctuation
+' '           Text
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+' '           Text
+'call '       Keyword
+'psb_halo'    Name
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+'  '          Text
+'info'        Name
+','           Punctuation
+'work'        Name
+'='           Operator
+'work'        Name
+')'           Punctuation
+'\n          ' Text
+'call '       Keyword
+'psb_csmm'    Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'av'          Name
+'('           Punctuation
+'sm_pr_'      Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+'  '          Text
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n          ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n        ' Text
+'else\n          ' Keyword
+'n_row'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_row_'  Name
+')'           Punctuation
+'\n          ' Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n          ' Text
+'do '         Keyword
+'i'           Name
+'='           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'n_row'       Name
+'\n            ' Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'&'           Punctuation
+'\n                 ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'mlia'        Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+'\n          ' Text
+'enddo'       Name
+'\n\n        ' Text
+'end '        Keyword
+'if\n\n        ' Keyword
+'call '       Keyword
+'psb_spmm'    Name
+'('           Punctuation
+'-'           Operator
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_a'      Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+'   '         Text
+'zone'        Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+','           Punctuation
+'work'        Name
+'='           Operator
+'work'        Name
+')'           Punctuation
+'\n\n        ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n        ' Text
+'call '       Keyword
+'psb_baseprc_aply' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+' '           Text
+'zone'        Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+' '           Text
+'trans'       Name
+','           Punctuation
+' '           Text
+'work'        Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n        ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n      '  Text
+'enddo'       Name
+'\n\n      '  Text
+'call '       Keyword
+'psb_geaxpby' Name
+'('           Punctuation
+'alpha'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'beta'        Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n      '  Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n\n    '  Text
+'case'        Keyword
+'('           Punctuation
+'pre_smooth_' Name
+')'           Punctuation
+'\n\n\n      ' Text
+'!\n'         Comment
+
+'      '      Text
+'!    Pre smoothing.\n' Comment
+
+'      '      Text
+'!    1.   X(1)  = Xext\n' Comment
+
+'      '      Text
+'!    2.   Y(1)  = (K(1)**(-1))*X(1)\n' Comment
+
+'      '      Text
+'!    3.   TX(1) = X(1) - A(1)*Y(1)\n' Comment
+
+'      '      Text
+'!    4.   DO ILEV=2, NLEV\n' Comment
+
+'      '      Text
+'!          X(ILEV) = AV(PR_SM_T_,ILEV)*TX(ILEV-1)\n' Comment
+
+'      '      Text
+'!          Y(ILEV) = (K(ILEV)**(-1))*X(ILEV)\n' Comment
+
+'      '      Text
+'!          TX(ILEV) = (X(ILEV)-A(ILEV)*Y(ILEV))\n' Comment
+
+'      '      Text
+'!    5.   DO  ILEV=NLEV-1,1,-1\n' Comment
+
+'      '      Text
+'!          Y(ILEV) = Y(ILEV) + AV(PR_SM_,ILEV+1)*Y(ILEV+1)\n' Comment
+
+'      '      Text
+'!    6.  Yext    = beta*Yext + Y(1)\n' Comment
+
+'      '      Text
+'!\n'         Comment
+
+'      '      Text
+'!    Note: level numbering reversed wrt ref. DD, i.e.\n' Comment
+
+'      '      Text
+'!         1..NLEV <=>  (j) <-> 0\n' Comment
+
+'      '      Text
+'!\n'         Comment
+
+'      '      Text
+'!\n'         Comment
+
+'\n      '    Text
+'n_col'       Name
+' '           Text
+'='           Operator
+' '           Text
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n      '    Text
+'nr2l'        Name
+'  '          Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n\n      '  Text
+'allocate'    Keyword
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'stat'        Name.Builtin
+'='           Operator
+'info'        Name
+')'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'then\n        ' Keyword
+'call '       Keyword
+'psb_errpush' Name
+'('           Punctuation
+'4010'        Literal.Number.Integer
+','           Punctuation
+'name'        Name
+','           Punctuation
+'a_err'       Name
+'='           Operator
+"'Allocate'"  Literal.String.Single
+')'           Punctuation
+'\n        '  Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n      '    Text
+'end '        Keyword
+'if\n\n      ' Keyword
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n\n\n      ' Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'x'           Name
+'\n\n      '  Text
+'call '       Keyword
+'psb_baseprc_aply' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+'  '          Text
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+'  '          Text
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+'  '          Text
+'trans'       Name
+','           Punctuation
+'work'        Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n      '  Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n      '  Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+' '           Text
+'='           Operator
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'\n\n      '  Text
+'call '       Keyword
+'psb_spmm'    Name
+'('           Punctuation
+'-'           Operator
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_a'      Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'zone'        Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+','           Punctuation
+'work'        Name
+'='           Operator
+'work'        Name
+')'           Punctuation
+'\n      '    Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n      '  Text
+'do '         Keyword
+'ilev'        Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'nlev'        Name
+'\n        '  Text
+'n_row'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_row_'  Name
+')'           Punctuation
+'\n        '  Text
+'n_col'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n        '  Text
+'nr2l'        Name
+'  '          Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n        '  Text
+'nrg'         Name
+'   '         Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_row_'  Name
+')'           Punctuation
+'\n        '  Text
+'ismth'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'smth_kind_'  Name
+')'           Punctuation
+'\n        '  Text
+'allocate'    Keyword
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+'   '         Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'stat'        Name.Builtin
+'='           Operator
+'info'        Name
+')'           Punctuation
+'\n\n\n        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'then\n          ' Keyword
+'call '       Keyword
+'psb_errpush' Name
+'('           Punctuation
+'4010'        Literal.Number.Integer
+','           Punctuation
+'name'        Name
+','           Punctuation
+'a_err'       Name
+'='           Operator
+"'Allocate'"  Literal.String.Single
+')'           Punctuation
+'\n          ' Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n        '  Text
+'end '        Keyword
+'if\n\n        ' Keyword
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n        '  Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n        '  Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n\n\n        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'ismth'       Name
+'  '          Text
+'/'           Operator
+'='           Operator
+' '           Text
+'no_smth_'    Name
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n          ' Text
+'!\n'         Comment
+
+'          '  Text
+'!Smoothed Aggregation\n' Comment
+
+'          '  Text
+'!\n'         Comment
+
+'          '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'glb_smth_'   Name
+')'           Punctuation
+' '           Text
+'>'           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'then\n\n            ' Keyword
+'call '       Keyword
+'psb_halo'    Name
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'&'           Punctuation
+'\n                 ' Text
+'&'           Punctuation
+' '           Text
+'info'        Name
+','           Punctuation
+'work'        Name
+'='           Operator
+'work'        Name
+')'           Punctuation
+'\n            ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n          ' Text
+'else\n            ' Keyword
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+'n_row'       Name
+'+'           Operator
+'1'           Literal.Number.Integer
+':'           Punctuation
+'max'         Name.Builtin
+'('           Punctuation
+'n_row'       Name
+','           Punctuation
+'n_col'       Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n          ' Text
+'end '        Keyword
+'if\n\n          ' Keyword
+'call '       Keyword
+'psb_csmm'    Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'av'          Name
+'('           Punctuation
+'sm_pr_t_'    Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+','           Punctuation
+'zzero'       Name
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n          ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n        ' Text
+'else'        Keyword
+'\n          ' Text
+'!\n'         Comment
+
+'          '  Text
+'! Raw  aggregation, may take shortcuts\n' Comment
+
+'          '  Text
+'!\n'         Comment
+
+'          '  Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n          ' Text
+'do '         Keyword
+'i'           Name
+'='           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+'n_row'       Name
+'\n            ' Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'mlia'        Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'&'           Punctuation
+'\n                 ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'mlia'        Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'&'           Punctuation
+'\n                 ' Text
+'&'           Punctuation
+'  '          Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'\n          ' Text
+'end '        Keyword
+'do\n        ' Keyword
+'end '        Keyword
+'if\n\n        ' Keyword
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'coarse_mat_' Name
+')'           Punctuation
+'=='          Operator
+'mat_repl_'   Name
+')'           Punctuation
+' '           Text
+'then\n          ' Keyword
+'call '       Keyword
+'psb_sum'     Name
+'('           Punctuation
+'ictxt'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+':'           Punctuation
+'nrg'         Name
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'else '       Keyword
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'coarse_mat_' Name
+')'           Punctuation
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'mat_distr_'  Name
+')'           Punctuation
+' '           Text
+'then\n          ' Keyword
+'write'       Keyword
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'*'           Operator
+')'           Punctuation
+' '           Text
+"'Unknown value for baseprecv(2)%iprcparm(coarse_mat_) '" Literal.String.Single
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'coarse_mat_' Name
+')'           Punctuation
+'\n        '  Text
+'endif'       Name
+'\n\n\n        ' Text
+'call '       Keyword
+'psb_baseprc_aply' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+' '           Text
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+','           Punctuation
+' '           Text
+"'N'"         Literal.String.Single
+','           Punctuation
+'work'        Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n        ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n        ' Text
+'if'          Keyword
+'('           Punctuation
+'ilev'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'nlev'        Name
+')'           Punctuation
+' '           Text
+'then\n          ' Keyword
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+' '           Text
+'='           Operator
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'\n          ' Text
+'call '       Keyword
+'psb_spmm'    Name
+'('           Punctuation
+'-'           Operator
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_a'      Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+' '           Text
+'zone'        Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+','           Punctuation
+'work'        Name
+'='           Operator
+'work'        Name
+')'           Punctuation
+'\n          ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n        '  Text
+'endif'       Name
+'\n\n      '  Text
+'enddo'       Name
+'\n\n      '  Text
+'do '         Keyword
+'ilev'        Name
+' '           Text
+'='           Operator
+' '           Text
+'nlev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+'\n\n        ' Text
+'ismth'       Name
+'='           Operator
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'smth_kind_'  Name
+')'           Punctuation
+'\n\n        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'ismth'       Name
+'  '          Text
+'/'           Operator
+'='           Operator
+' '           Text
+'no_smth_'    Name
+')'           Punctuation
+' '           Text
+'then\n\n          ' Keyword
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'ismth'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'smth_omg_'   Name
+')'           Punctuation
+' '           Text
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+' '           Text
+'call '       Keyword
+'psb_halo'    Name
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+','           Punctuation
+'info'        Name
+','           Punctuation
+'work'        Name
+'='           Operator
+'work'        Name
+')'           Punctuation
+'\n          ' Text
+'call '       Keyword
+'psb_csmm'    Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'av'          Name
+'('           Punctuation
+'sm_pr_'      Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+' '           Text
+'zone'        Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n          ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n        ' Text
+'else\n\n          ' Keyword
+'n_row'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_row_'  Name
+')'           Punctuation
+'\n          ' Text
+'do '         Keyword
+'i'           Name
+'='           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'n_row'       Name
+'\n            ' Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'&'           Punctuation
+'\n                 ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'mlia'        Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+'\n          ' Text
+'enddo'       Name
+'\n\n        ' Text
+'end '        Keyword
+'if\n\n      ' Keyword
+'enddo'       Name
+'\n\n      '  Text
+'call '       Keyword
+'psb_geaxpby' Name
+'('           Punctuation
+'alpha'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'beta'        Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+'  '          Text
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n      '  Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n\n\n    ' Text
+'case'        Keyword
+'('           Punctuation
+'smooth_both_' Name
+')'           Punctuation
+'\n\n      '  Text
+'!\n'         Comment
+
+'      '      Text
+'!    Symmetrized  smoothing.\n' Comment
+
+'      '      Text
+'!    1.   X(1)  = Xext\n' Comment
+
+'      '      Text
+'!    2.   Y(1)  = (K(1)**(-1))*X(1)\n' Comment
+
+'      '      Text
+'!    3.   TX(1) = X(1) - A(1)*Y(1)\n' Comment
+
+'      '      Text
+'!    4.   DO ILEV=2, NLEV\n' Comment
+
+'      '      Text
+'!          X(ILEV) = AV(PR_SM_T_,ILEV)*TX(ILEV-1)\n' Comment
+
+'      '      Text
+'!          Y(ILEV) = (K(ILEV)**(-1))*X(ILEV)\n' Comment
+
+'      '      Text
+'!          TX(ILEV) = (X(ILEV)-A(ILEV)*Y(ILEV))\n' Comment
+
+'      '      Text
+'!    5.   DO  ILEV=NLEV-1,1,-1\n' Comment
+
+'      '      Text
+'!          Y(ILEV) = Y(ILEV) + AV(PR_SM_,ILEV+1)*Y(ILEV+1)\n' Comment
+
+'      '      Text
+'!          Y(ILEV) = Y(ILEV) + (K(ILEV)**(-1))*(X(ILEV)-A(ILEV)*Y(ILEV))\n' Comment
+
+'      '      Text
+'!    6.  Yext    = beta*Yext + Y(1)\n' Comment
+
+'      '      Text
+'!\n'         Comment
+
+'      '      Text
+'!    Note: level numbering reversed wrt ref. DD, i.e.\n' Comment
+
+'      '      Text
+'!         1..NLEV <=>  (j) <-> 0\n' Comment
+
+'      '      Text
+'!\n'         Comment
+
+'      '      Text
+'!\n'         Comment
+
+'      '      Text
+'n_col'       Name
+' '           Text
+'='           Operator
+' '           Text
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n      '    Text
+'nr2l'        Name
+'  '          Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n\n      '  Text
+'allocate'    Keyword
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'stat'        Name.Builtin
+'='           Operator
+'info'        Name
+')'           Punctuation
+'\n\n      '  Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n      '    Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n      '    Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n      '    Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n\n\n      ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'then\n        ' Keyword
+'call '       Keyword
+'psb_errpush' Name
+'('           Punctuation
+'4010'        Literal.Number.Integer
+','           Punctuation
+'name'        Name
+','           Punctuation
+'a_err'       Name
+'='           Operator
+"'Allocate'"  Literal.String.Single
+')'           Punctuation
+'\n        '  Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n      '    Text
+'end '        Keyword
+'if\n\n      ' Keyword
+'call '       Keyword
+'psb_geaxpby' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'x'           Name
+','           Punctuation
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n      '    Text
+'call '       Keyword
+'psb_geaxpby' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'x'           Name
+','           Punctuation
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n      '  Text
+'call '       Keyword
+'psb_baseprc_aply' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+'  '          Text
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+'  '          Text
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+'  '          Text
+'trans'       Name
+','           Punctuation
+'work'        Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n      '  Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n      '  Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+' '           Text
+'='           Operator
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'\n\n      '  Text
+'call '       Keyword
+'psb_spmm'    Name
+'('           Punctuation
+'-'           Operator
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_a'      Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+' '           Text
+'zone'        Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+','           Punctuation
+'work'        Name
+'='           Operator
+'work'        Name
+')'           Punctuation
+'\n      '    Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n      '  Text
+'do '         Keyword
+'ilev'        Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'nlev'        Name
+'\n        '  Text
+'n_row'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_row_'  Name
+')'           Punctuation
+'\n        '  Text
+'n_col'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n        '  Text
+'nr2l'        Name
+'  '          Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_col_'  Name
+')'           Punctuation
+'\n        '  Text
+'nrg'         Name
+'   '         Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_row_'  Name
+')'           Punctuation
+'\n        '  Text
+'ismth'       Name
+'='           Operator
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'smth_kind_'  Name
+')'           Punctuation
+'\n        '  Text
+'allocate'    Keyword
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+'   '         Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'nr2l'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'stat'        Name.Builtin
+'='           Operator
+'info'        Name
+')'           Punctuation
+'\n\n        ' Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n        '  Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n        '  Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n        '  Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n\n\n        ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'then\n          ' Keyword
+'call '       Keyword
+'psb_errpush' Name
+'('           Punctuation
+'4010'        Literal.Number.Integer
+','           Punctuation
+'name'        Name
+','           Punctuation
+'a_err'       Name
+'='           Operator
+"'Allocate'"  Literal.String.Single
+')'           Punctuation
+'\n          ' Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n        '  Text
+'end '        Keyword
+'if\n\n\n        ' Keyword
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'ismth'       Name
+'  '          Text
+'/'           Operator
+'='           Operator
+' '           Text
+'no_smth_'    Name
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n          ' Text
+'!\n'         Comment
+
+'          '  Text
+'!Smoothed Aggregation\n' Comment
+
+'          '  Text
+'!\n'         Comment
+
+'          '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'glb_smth_'   Name
+')'           Punctuation
+' '           Text
+'>'           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'then\n\n            ' Keyword
+'call '       Keyword
+'psb_halo'    Name
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'&'           Punctuation
+'\n                 ' Text
+'&'           Punctuation
+' '           Text
+'info'        Name
+','           Punctuation
+'work'        Name
+'='           Operator
+'work'        Name
+')'           Punctuation
+'\n            ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n          ' Text
+'else\n            ' Keyword
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+'('           Punctuation
+'n_row'       Name
+'+'           Operator
+'1'           Literal.Number.Integer
+':'           Punctuation
+'max'         Name.Builtin
+'('           Punctuation
+'n_row'       Name
+','           Punctuation
+'n_col'       Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n          ' Text
+'end '        Keyword
+'if\n\n          ' Keyword
+'call '       Keyword
+'psb_csmm'    Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'av'          Name
+'('           Punctuation
+'sm_pr_t_'    Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+','           Punctuation
+'zzero'       Name
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n          ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n        ' Text
+'else'        Keyword
+'\n          ' Text
+'!\n'         Comment
+
+'          '  Text
+'! Raw  aggregation, may take shortcuts\n' Comment
+
+'          '  Text
+'!\n'         Comment
+
+'          '  Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+' '           Text
+'='           Operator
+' '           Text
+'zzero'       Name
+'\n          ' Text
+'do '         Keyword
+'i'           Name
+'='           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+'n_row'       Name
+'\n            ' Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'mlia'        Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'&'           Punctuation
+'\n                 ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'mlia'        Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'&'           Punctuation
+'\n                 ' Text
+'&'           Punctuation
+'  '          Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'\n          ' Text
+'end '        Keyword
+'do\n        ' Keyword
+'end '        Keyword
+'if\n\n        ' Keyword
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'coarse_mat_' Name
+')'           Punctuation
+'=='          Operator
+'mat_repl_'   Name
+')'           Punctuation
+' '           Text
+'then\n          ' Keyword
+'call '       Keyword
+'psb_sum'     Name
+'('           Punctuation
+'ictxt'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+':'           Punctuation
+'nrg'         Name
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'else '       Keyword
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'coarse_mat_' Name
+')'           Punctuation
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'mat_distr_'  Name
+')'           Punctuation
+' '           Text
+'then\n          ' Keyword
+'write'       Keyword
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'*'           Operator
+')'           Punctuation
+' '           Text
+"'Unknown value for baseprecv(2)%iprcparm(coarse_mat_) '" Literal.String.Single
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'coarse_mat_' Name
+')'           Punctuation
+'\n        '  Text
+'endif'       Name
+'\n\n        ' Text
+'call '       Keyword
+'psb_geaxpby' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n        '  Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n        ' Text
+'call '       Keyword
+'psb_baseprc_aply' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+' '           Text
+'zzero'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+','           Punctuation
+' '           Text
+"'N'"         Literal.String.Single
+','           Punctuation
+'work'        Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n        ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n        ' Text
+'if'          Keyword
+'('           Punctuation
+'ilev'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'nlev'        Name
+')'           Punctuation
+' '           Text
+'then\n          ' Keyword
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+' '           Text
+'='           Operator
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+'\n          ' Text
+'call '       Keyword
+'psb_spmm'    Name
+'('           Punctuation
+'-'           Operator
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_a'      Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+' '           Text
+'zone'        Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+','           Punctuation
+'work'        Name
+'='           Operator
+'work'        Name
+')'           Punctuation
+'\n          ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n        '  Text
+'endif'       Name
+'\n\n      '  Text
+'enddo'       Name
+'\n\n\n      ' Text
+'do '         Keyword
+'ilev'        Name
+'='           Operator
+'nlev'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+'\n\n        ' Text
+'ismth'       Name
+'='           Operator
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'smth_kind_'  Name
+')'           Punctuation
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'ismth'       Name
+'  '          Text
+'/'           Operator
+'='           Operator
+' '           Text
+'no_smth_'    Name
+')'           Punctuation
+' '           Text
+'then\n          ' Keyword
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'ismth'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'smth_omg_'   Name
+')'           Punctuation
+' '           Text
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+' '           Text
+'call '       Keyword
+'psb_halo'    Name
+'('           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'desc_data'   Name
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+'  '          Text
+'info'        Name
+','           Punctuation
+'work'        Name
+'='           Operator
+'work'        Name
+')'           Punctuation
+'\n          ' Text
+'call '       Keyword
+'psb_csmm'    Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'av'          Name
+'('           Punctuation
+'sm_pr_'      Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n               ' Text
+'&'           Punctuation
+'  '          Text
+'zone'        Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n          ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n        ' Text
+'else\n          ' Keyword
+'n_row'       Name
+' '           Text
+'='           Operator
+' '           Text
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+'%'           Punctuation
+'matrix_data' Name
+'('           Punctuation
+'psb_n_row_'  Name
+')'           Punctuation
+'\n          ' Text
+'do '         Keyword
+'i'           Name
+'='           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'n_row'       Name
+'\n            ' Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'&'           Punctuation
+'\n                 ' Text
+'&'           Punctuation
+' '           Text
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+'('           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'mlia'        Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+'\n          ' Text
+'enddo'       Name
+'\n\n        ' Text
+'end '        Keyword
+'if\n\n        ' Keyword
+'call '       Keyword
+'psb_spmm'    Name
+'('           Punctuation
+'-'           Operator
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_a'      Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+'   '         Text
+'zone'        Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+','           Punctuation
+'work'        Name
+'='           Operator
+'work'        Name
+')'           Punctuation
+'\n\n        ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n        ' Text
+'call '       Keyword
+'psb_baseprc_aply' Name
+'('           Punctuation
+'zone'        Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+','           Punctuation
+'&'           Punctuation
+'\n             ' Text
+'&'           Punctuation
+' '           Text
+'zone'        Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'baseprecv'   Name
+'('           Punctuation
+'ilev'        Name
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+' '           Text
+'trans'       Name
+','           Punctuation
+' '           Text
+'work'        Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n        ' Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n      '  Text
+'enddo'       Name
+'\n\n      '  Text
+'call '       Keyword
+'psb_geaxpby' Name
+'('           Punctuation
+'alpha'       Name
+','           Punctuation
+'mlprec_wrk'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+','           Punctuation
+'beta'        Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+'   '         Text
+'baseprecv'   Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'base_desc'   Name
+','           Punctuation
+'info'        Name
+')'           Punctuation
+'\n\n      '  Text
+'if'          Keyword
+'('           Punctuation
+'info'        Name
+' '           Text
+'/'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n\n    '  Text
+'case '       Keyword
+'default'     Name
+'\n\n      '  Text
+'call '       Keyword
+'psb_errpush' Name
+'('           Punctuation
+'4013'        Literal.Number.Integer
+','           Punctuation
+'name'        Name
+','           Punctuation
+'a_err'       Name
+'='           Operator
+"'wrong smooth_pos'" Literal.String.Single
+','           Punctuation
+'&'           Punctuation
+'\n           ' Text
+'&'           Punctuation
+'  '          Text
+'i_Err'       Name
+'='           Operator
+'('           Punctuation
+'/'           Operator
+'baseprecv'   Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'smth_pos_'   Name
+')'           Punctuation
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+'/'           Operator
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n    '    Text
+'end '        Keyword
+'select\n\n  ' Keyword
+'case '       Keyword
+'default'     Name
+'\n    '      Text
+'call '       Keyword
+'psb_errpush' Name
+'('           Punctuation
+'4013'        Literal.Number.Integer
+','           Punctuation
+'name'        Name
+','           Punctuation
+'a_err'       Name
+'='           Operator
+"'wrong mltype'" Literal.String.Single
+','           Punctuation
+'&'           Punctuation
+'\n         ' Text
+'&'           Punctuation
+'  '          Text
+'i_Err'       Name
+'='           Operator
+'('           Punctuation
+'/'           Operator
+'baseprecv'   Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+'%'           Punctuation
+'iprcparm'    Name
+'('           Punctuation
+'ml_type_'    Name
+')'           Punctuation
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+'/'           Operator
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'goto '       Keyword
+'9999'        Literal.Number.Integer
+'\n\n  '      Text
+'end '        Keyword
+'select\n\n\n  ' Keyword
+'call '       Keyword
+'mlprec_wrk_free' Name
+'('           Punctuation
+'mlprec_wrk'  Name
+')'           Punctuation
+'\n  '        Text
+'deallocate'  Keyword
+'('           Punctuation
+'mlprec_wrk'  Name
+')'           Punctuation
+'\n\n  '      Text
+'call '       Keyword
+'psb_erractionrestore' Name
+'('           Punctuation
+'err_act'     Name
+')'           Punctuation
+'\n  '        Text
+'return\n\n'  Keyword
+
+'9999'        Literal.Number.Integer
+' '           Text
+'continue\n  ' Keyword
+'call '       Keyword
+'psb_errpush' Name
+'('           Punctuation
+'info'        Name
+','           Punctuation
+'name'        Name
+')'           Punctuation
+'\n  '        Text
+'call '       Keyword
+'psb_erractionrestore' Name
+'('           Punctuation
+'err_act'     Name
+')'           Punctuation
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'err_act'     Name
+'.'           Punctuation
+'eq'          Name
+'.'           Punctuation
+'act_abort'   Name
+')'           Punctuation
+' '           Text
+'then\n    '  Keyword
+'call '       Keyword
+'psb_error'   Name
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text
+'return\n  '  Keyword
+'end '        Keyword
+'if\n  '      Keyword
+'return\n\n'  Keyword
+
+'contains\n  ' Keyword
+'subroutine ' Keyword
+'mlprec_wrk_free' Name
+'('           Punctuation
+'wrk'         Name
+')'           Punctuation
+'\n    '      Text
+'type'        Keyword
+'('           Punctuation
+'psb_mlprec_wrk_type' Name
+')'           Punctuation
+' '           Text
+'::'          Keyword.Declaration
+' '           Text
+'wrk'         Name
+'('           Punctuation
+':'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'! This will not be needed when we have allocatables, as\n' Comment
+
+'    '        Text
+'! it is sufficient to deallocate the container, and\n' Comment
+
+'    '        Text
+'! the compiler is supposed to recursively deallocate the\n' Comment
+
+'    '        Text
+'! various components.\n' Comment
+
+'    '        Text
+'integer '    Keyword.Type
+'i'           Name
+'\n\n    '    Text
+'do '         Keyword
+'i'           Name
+'='           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'size'        Name
+'('           Punctuation
+'wrk'         Name
+')'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'associated'  Name.Builtin
+'('           Punctuation
+'wrk'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+')'           Punctuation
+')'           Punctuation
+'  '          Text
+'deallocate'  Keyword
+'('           Punctuation
+'wrk'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'%'           Punctuation
+'tx'          Name
+')'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'associated'  Name.Builtin
+'('           Punctuation
+'wrk'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+')'           Punctuation
+')'           Punctuation
+'  '          Text
+'deallocate'  Keyword
+'('           Punctuation
+'wrk'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'%'           Punctuation
+'ty'          Name
+')'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'associated'  Name.Builtin
+'('           Punctuation
+'wrk'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'deallocate'  Keyword
+'('           Punctuation
+'wrk'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'%'           Punctuation
+'x2l'         Name
+')'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'associated'  Name.Builtin
+'('           Punctuation
+'wrk'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'deallocate'  Keyword
+'('           Punctuation
+'wrk'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'%'           Punctuation
+'y2l'         Name
+')'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'associated'  Name.Builtin
+'('           Punctuation
+'wrk'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'%'           Punctuation
+'b2l'         Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'deallocate'  Keyword
+'('           Punctuation
+'wrk'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'%'           Punctuation
+'b2l'         Name
+')'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'associated'  Name.Builtin
+'('           Punctuation
+'wrk'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'%'           Punctuation
+'tty'         Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'deallocate'  Keyword
+'('           Punctuation
+'wrk'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'%'           Punctuation
+'tty'         Name
+')'           Punctuation
+'\n    '      Text
+'end '        Keyword
+'do\n  '      Keyword
+'end '        Keyword
+'subroutine ' Keyword
+'mlprec_wrk_free' Name
+'\n\n'        Text
+
+'end '        Keyword
+'subroutine ' Keyword
+'psb_zmlprc_aply' Name
+'\n'          Text

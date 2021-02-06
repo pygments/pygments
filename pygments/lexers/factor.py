@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.factor
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Factor language.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -265,7 +264,7 @@ class FactorLexer(RegexLexer):
             (r'(?:<PRIVATE|PRIVATE>)\s', Keyword.Namespace),
 
             # strings
-            (r'"""\s+(?:.|\n)*?\s+"""', String),
+            (r'"""\s(?:.|\n)*?\s"""', String),
             (r'"(?:\\\\|\\"|[^"])*"', String),
             (r'\S+"\s+(?:\\\\|\\"|[^"])*"', String),
             (r'CHAR:\s+(?:\\[\\abfnrstv]|[^\\]\S*)\s', String.Char),
@@ -322,7 +321,7 @@ class FactorLexer(RegexLexer):
         'slots': [
             (r'\s+', Text),
             (r';\s', Keyword, '#pop'),
-            (r'(\{\s+)(\S+)(\s+[^}]+\s+\}\s)',
+            (r'(\{\s+)(\S+)(\s[^}]+\s\}\s)',
              bygroups(Text, Name.Variable, Text)),
             (r'\S+', Name.Variable),
         ],

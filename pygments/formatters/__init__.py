@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.formatters
     ~~~~~~~~~~~~~~~~~~~
 
     Pygments formatters.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -107,7 +106,7 @@ def load_formatter_from_file(filename, formattername="CustomFormatter",
         formatter_class = custom_namespace[formattername]
         # And finally instantiate it with the options
         return formatter_class(**options)
-    except IOError as err:
+    except OSError as err:
         raise ClassNotFound('cannot read %s: %s' % (filename, err))
     except ClassNotFound:
         raise

@@ -1,0 +1,14 @@
+'#!/bin/bash\n' Comment.Hashbang
+
+'#SBATCH --partition=part\n' Keyword.Pseudo
+
+'#SBATCH --job-name=job\n' Keyword.Pseudo
+
+'#SBATCH --mem=1G\n' Keyword.Pseudo
+
+'#SBATCH --cpus-per-task=8\n' Keyword.Pseudo
+
+'srun'        Name.Builtin
+' '           Text
+'/usr/bin/sleep' Text
+'\n'          Text

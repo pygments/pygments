@@ -1,0 +1,510 @@
+'# This is a test SPARQL query' Comment
+'\n\n'        Text
+
+'BASE'        Keyword
+' '           Text
+'<http://pygments.org/examples/sparql.rq>' Name.Label
+'\n\n'        Text
+
+'PREFIX'      Keyword
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+' '           Text
+'<http://xmlns.com/foaf/0.1/>' Name.Label
+'\n'          Text
+
+'PREFIX'      Keyword
+' '           Text
+'ex'          Name.Namespace
+':'           Punctuation
+' '           Text
+'<http://example.org/>' Name.Label
+'\n'          Text
+
+'PREFIX'      Keyword
+' '           Text
+'xsd'         Name.Namespace
+':'           Punctuation
+' '           Text
+'<http://www.w3.org/2001/XMLSchema#>' Name.Label
+'\n'          Text
+
+'PREFIX'      Keyword
+' '           Text
+'dcterms'     Name.Namespace
+':'           Punctuation
+' '           Text
+'<http://purl.org/dc/terms/>' Name.Label
+'\n\n'        Text
+
+'SELECT'      Keyword
+' '           Text
+'?person'     Name.Variable
+' '           Text
+'('           Punctuation
+'COUNT'       Name.Function
+'('           Punctuation
+'?nick'       Name.Variable
+')'           Punctuation
+' '           Text
+'AS'          Keyword
+' '           Text
+'?nickCount'  Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'<#jonny>'    Name.Label
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'knows'       Name.Tag
+' '           Text
+'?person'     Name.Variable
+' '           Text
+'.'           Punctuation
+'\n    '      Text
+'?person'     Name.Variable
+' '           Text
+'a'           Keyword
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'Person'      Name.Tag
+' '           Text
+'.'           Punctuation
+'\n    '      Text
+'?person'     Name.Variable
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'firstName'   Name.Tag
+' '           Text
+'"'           Literal.String
+'Freddy'      Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Punctuation
+'\n    '      Text
+'?person'     Name.Variable
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'lastName'    Name.Tag
+' '           Text
+'"'           Literal.String
+'Smith'       Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Punctuation
+'\n    '      Text
+'# predicate-object list' Comment
+'\n    '      Text
+'?person'     Name.Variable
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'nick'        Name.Tag
+' '           Text
+'?nick'       Name.Variable
+' '           Text
+';'           Punctuation
+'\n      '    Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'age'         Name.Tag
+' '           Text
+'"'           Literal.String
+'21'          Literal.String
+'"'           Literal.String
+'^^'          Operator
+'xsd'         Name.Namespace
+':'           Punctuation
+'int'         Name.Tag
+' '           Text
+';'           Punctuation
+' '           Text
+'# typed literal' Comment
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'title'       Name.Tag
+' '           Text
+"'"           Literal.String
+'Mr'          Literal.String
+"'"           Literal.String
+' '           Text
+';'           Punctuation
+' '           Text
+'# single-quoted string' Comment
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'width'       Name.Tag
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+';'           Punctuation
+' '           Text
+'# integer'   Comment
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'height'      Name.Tag
+' '           Text
+'1.80'        Literal.Number.Float
+' '           Text
+';'           Punctuation
+' '           Text
+'# float'     Comment
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'distanceToSun' Name.Tag
+' '           Text
+'1.4e8'       Literal.Number.Float
+' '           Text
+';'           Punctuation
+' '           Text
+'# float with exponent' Comment
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'ownsACat'    Name.Tag
+' '           Text
+'true'        Keyword.Constant
+' '           Text
+';'           Punctuation
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'catName'     Name.Tag
+' '           Text
+'"'           Literal.String
+'Kitty'       Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'Kitty_'      Literal.String
+'"'           Literal.String
+' '           Text
+';'           Punctuation
+' '           Text
+'# object list' Comment
+'\n      '    Text
+'# some other float values' Comment
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'float1'      Name.Tag
+' '           Text
+'.125'        Literal.Number.Float
+' '           Text
+';'           Punctuation
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'float2'      Name.Tag
+' '           Text
+'+2.5e10'     Literal.Number.Float
+' '           Text
+';'           Punctuation
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'float3'      Name.Tag
+' '           Text
+'2.5e+10'     Literal.Number.Float
+' '           Text
+';'           Punctuation
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'float4'      Name.Tag
+' '           Text
+'-1.e-10'     Literal.Number.Float
+' '           Text
+';'           Punctuation
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'float5'      Name.Tag
+' '           Text
+'.0e1'        Literal.Number.Float
+' '           Text
+';'           Punctuation
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'float6'      Name.Tag
+' '           Text
+'5e11'        Literal.Number.Float
+' '           Text
+';'           Punctuation
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'float7'      Name.Tag
+' '           Text
+'1.'          Literal.Number.Float
+' '           Text
+';'           Punctuation
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'aUnicodeÀExample' Name.Tag
+' '           Text
+'"'           Literal.String
+'somestring'  Literal.String
+'"'           Literal.String
+' '           Text
+';'           Punctuation
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'catName'     Name.Tag
+' '           Text
+'"'           Literal.String
+'Kitty'       Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'Kitty_'      Literal.String
+'"'           Literal.String
+' '           Text
+';'           Punctuation
+' '           Text
+'# object list' Comment
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'escape'      Name.Tag
+' '           Text
+'"'           Literal.String
+'\\'          Literal.String
+'n'           Literal.String.Escape
+'\\'          Literal.String
+'u00c0'       Literal.String.Escape
+'\\'          Literal.String
+'U00010000'   Literal.String.Escape
+'"'           Literal.String
+';'           Punctuation
+'\n      '    Text
+'ex'          Name.Namespace
+':'           Punctuation
+'catAge'      Name.Tag
+' '           Text
+'?catage'     Name.Variable
+' '           Text
+';'           Punctuation
+'\n      '    Text
+'dcterms'     Name.Namespace
+':'           Punctuation
+'description' Name.Tag
+' '           Text
+'"'           Literal.String
+'Someone with a cat called ' Literal.String
+'\\'          Literal.String
+'"'           Literal.String.Escape
+'cat'         Literal.String
+'\\'          Literal.String
+'"'           Literal.String.Escape
+'.'           Literal.String
+'"'           Literal.String
+'@'           Operator
+'en'          Name.Function
+' '           Text
+'.'           Punctuation
+' '           Text
+'# language tag' Comment
+'\n    '      Text
+'?person'     Name.Variable
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'knows'       Name.Tag
+' '           Text
+'_:b0'        Name.Label
+' '           Text
+'.'           Punctuation
+'\n    '      Text
+'_:b0'        Name.Label
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'knows'       Name.Tag
+' '           Text
+'['           Punctuation
+' '           Text
+'_:b1'        Name.Label
+' '           Text
+'a'           Keyword
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'Person'      Name.Tag
+';'           Punctuation
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'name'        Name.Tag
+' '           Text
+'"'           Literal.String
+'Jonny'       Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Punctuation
+' '           Text
+']'           Punctuation
+' '           Text
+'.'           Punctuation
+'\n    '      Text
+'OPTIONAL'    Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'?person'     Name.Variable
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'isPrimaryTopicOf' Name.Tag
+' '           Text
+'?page'       Name.Variable
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'OPTIONAL'    Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'?person'     Name.Variable
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'name'        Name.Tag
+' '           Text
+'?name'       Name.Variable
+'\n               ' Text
+'{'           Punctuation
+' '           Text
+'?person'     Name.Variable
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'depiction'   Name.Tag
+' '           Text
+'?img'        Name.Variable
+' '           Text
+'}'           Punctuation
+'\n               ' Text
+'UNION'       Keyword
+'\n               ' Text
+'{'           Punctuation
+' '           Text
+'?person'     Name.Variable
+' '           Text
+'foaf'        Name.Namespace
+':'           Punctuation
+'firstName'   Name.Tag
+' '           Text
+'?firstN'     Name.Variable
+' '           Text
+'}'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'FILTER'      Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'bound'       Name.Function
+'('           Punctuation
+'?page'       Name.Variable
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'bound'       Name.Function
+'('           Punctuation
+'?img'        Name.Variable
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'bound'       Name.Function
+'('           Punctuation
+'?firstN'     Name.Variable
+')'           Punctuation
+' '           Text
+')'           Punctuation
+'\n    '      Text
+'FILTER'      Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'?catage'     Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'101'         Literal.Number.Integer
+' '           Text
+'&&'          Operator
+' '           Text
+'?catage'     Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'9'           Literal.Number.Integer
+' '           Text
+'&&'          Operator
+' '           Text
+'?catage'     Name.Variable
+' '           Text
+'>='          Operator
+' '           Text
+'10'          Literal.Number.Integer
+' '           Text
+'&&'          Operator
+' '           Text
+'?catage'     Name.Variable
+' '           Text
+'<='          Operator
+' '           Text
+'100'         Literal.Number.Integer
+' '           Text
+'&&'          Operator
+' '           Text
+'?catage'     Name.Variable
+' '           Text
+'!='          Operator
+' '           Text
+'20'          Literal.Number.Integer
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' \n'         Text
+
+'GROUP BY'    Keyword
+' '           Text
+'?person'     Name.Variable
+' \n'         Text
+
+'ORDER BY'    Keyword
+' '           Text
+'?img'        Name.Variable
+' '           Text
+'ASC'         Keyword
+'('           Punctuation
+'?firstN'     Name.Variable
+')'           Punctuation
+' '           Text
+'DESC'        Keyword
+'('           Punctuation
+'?page'       Name.Variable
+')'           Punctuation
+'\n'          Text

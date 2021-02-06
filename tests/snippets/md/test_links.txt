@@ -1,0 +1,23 @@
+---input---
+[text](link)
+
+![Image of foo](https://bar.baz)
+
+---tokens---
+'['           Text
+'text'        Name.Tag
+']'           Text
+'('           Text
+'link'        Name.Attribute
+')'           Text
+'\n'          Text
+
+'\n'          Text
+
+'!['          Text
+'Image of foo' Name.Tag
+']'           Text
+'('           Text
+'https://bar.baz' Name.Attribute
+')'           Text
+'\n'          Text

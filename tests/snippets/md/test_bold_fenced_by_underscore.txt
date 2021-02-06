@@ -1,0 +1,15 @@
+---input---
+__bold__
+
+(__bold__)
+
+---tokens---
+'__bold__'    Generic.Strong
+'\n'          Text
+
+'\n'          Text
+
+'('           Text
+'__bold__'    Generic.Strong
+')'           Text
+'\n'          Text
