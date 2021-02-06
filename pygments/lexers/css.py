@@ -688,6 +688,7 @@ class LessCssLexer(CssLexer):
         ],
         'content': [
             (r'\{', Punctuation, '#push'),
+            (r'//.*\n', Comment.Single),
             inherit,
         ],
     }
