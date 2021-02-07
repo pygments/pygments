@@ -169,6 +169,17 @@
 
 '\n'          Text
 
+'$myvar'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String
+'boo; bar; "baz"' Literal.String
+"'"           Literal.String
+'\n'          Text
+
+'\n'          Text
+
 '#cs\nConsoleWrite(@Error)\nSleep(10000)\n#ce' Comment.Multiline
 '\n'          Text
 
