@@ -552,9 +552,9 @@ class HtmlFormatter(Formatter):
     def get_linenos_style_defs(self):
         lines = [
             'pre { %s }' % self._pre_style,
-            'td.linenos pre { %s }' % self._linenos_style,
+            'td.linenos .normal { %s }' % self._linenos_style,
             'span.linenos { %s }' % self._linenos_style,
-            'td.linenos pre.special { %s }' % self._linenos_special_style,
+            'td.linenos .special { %s }' % self._linenos_special_style,
             'span.linenos.special { %s }' % self._linenos_special_style,
         ]
 
@@ -682,7 +682,7 @@ class HtmlFormatter(Formatter):
                 if special_line:
                     style = ' class="special"'
                 else:
-                    style = ''
+                    style = ' class="normal"'
 
             if style:
                 line = '<span%s>%s</span>' % (style, line)

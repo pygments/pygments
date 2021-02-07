@@ -147,7 +147,7 @@ def test_get_style_defs_contains_default_line_numbers_styles():
     style_defs = HtmlFormatter().get_style_defs().splitlines()
 
     assert style_defs[1] == (
-        'td.linenos pre '
+        'td.linenos .normal '
         '{ color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }'
     )
     assert style_defs[2] == (
@@ -166,7 +166,7 @@ def test_get_style_defs_contains_style_specific_line_numbers_styles():
     style_defs = HtmlFormatter(style=TestStyle).get_style_defs().splitlines()
 
     assert style_defs[1] == (
-        'td.linenos pre '
+        'td.linenos .normal '
         '{ color: #ff0000; background-color: #0000ff; padding-left: 5px; padding-right: 5px; }'
     )
     assert style_defs[2] == (
@@ -174,7 +174,7 @@ def test_get_style_defs_contains_style_specific_line_numbers_styles():
         '{ color: #ff0000; background-color: #0000ff; padding-left: 5px; padding-right: 5px; }'
     )
     assert style_defs[3] == (
-        'td.linenos pre.special '
+        'td.linenos .special '
         '{ color: #00ff00; background-color: #ffffff; padding-left: 5px; padding-right: 5px; }'
     )
     assert style_defs[4] == (
