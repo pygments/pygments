@@ -1,0 +1,19 @@
+---input---
+delta(cpu_temp_celsius{host="zeus"}[2h])
+
+---tokens---
+'delta'       Keyword.Reserved
+'('           Operator
+'cpu_temp_celsius' Name.Variable
+'{'           Punctuation
+'host'        Name.Label
+'='           Operator
+'"'           Punctuation
+'zeus'        Literal.String
+'"'           Punctuation
+'}'           Punctuation
+'['           Punctuation
+'2h'          Literal.String
+']'           Punctuation
+')'           Operator
+'\n'          Text.Whitespace

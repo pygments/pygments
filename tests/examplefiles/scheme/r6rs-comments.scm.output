@@ -1,0 +1,57 @@
+'#!r6rs'      Comment
+'\n\n'        Text
+
+'#|'          Comment.Multiline
+'\n\n   The FACT procedure computes the factorial\n\n   of a non-negative integer.\n\n' Comment.Multiline
+
+'|#'          Comment.Multiline
+'\n\n'        Text
+
+'('           Punctuation
+'define '     Keyword
+'fact'        Name.Variable
+'\n\n  '      Text
+'('           Punctuation
+'lambda '     Keyword
+'('           Punctuation
+'n'           Name.Function
+')'           Punctuation
+'\n\n    '    Text
+';; base case' Comment.Single
+'\n\n    '    Text
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'= '          Name.Builtin
+'n'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n\n        ' Text
+'#;('         Comment
+'= n 1'       Comment
+')'           Comment
+'\n\n        ' Text
+'1'           Literal.Number.Integer
+'       '     Text
+'; identity of *' Comment.Single
+'\n\n        ' Text
+'('           Punctuation
+'* '          Name.Builtin
+'n'           Name.Variable
+' '           Text
+'('           Punctuation
+'fact'        Name.Function
+' '           Text
+'('           Punctuation
+'- '          Name.Builtin
+'n'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text

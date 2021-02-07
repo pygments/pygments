@@ -1,0 +1,10 @@
+# Make sure that no other rules override a string match.
+
+---input---
+"""
+custom int[] foo = [8, 10, 14]
+"""
+
+---tokens---
+'"""\ncustom int[] foo = [8, 10, 14]\n"""' Literal.String
+'\n'          Text.Whitespace

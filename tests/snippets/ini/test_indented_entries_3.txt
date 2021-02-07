@@ -1,0 +1,20 @@
+---input---
+[section]
+    key 1 = value1
+    key 2 = value2
+
+---tokens---
+'[section]'   Keyword
+'\n    '      Text
+'key 1'       Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'value1'      Literal.String
+'\n    '      Text
+'key 2'       Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'value2'      Literal.String
+'\n'          Text

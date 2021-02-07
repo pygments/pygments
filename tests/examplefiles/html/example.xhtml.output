@@ -1,0 +1,2554 @@
+'<'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'head'        Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'script'      Name.Tag
+' '           Text
+'lang'        Name.Attribute
+'='           Operator
+'"javascript"' Literal.String
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"text/javascript"' Literal.String
+'>'           Punctuation
+''            Text
+'\n  '        Text
+'// <!--\n'   Comment.Single
+
+'    '        Text
+'function'    Keyword.Declaration
+' '           Text
+'toggleVisible' Name.Other
+'('           Punctuation
+'element'     Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'element'     Name.Other
+'.'           Punctuation
+'style'       Name.Other
+'.'           Punctuation
+'display'     Name.Other
+' '           Text
+'=='          Operator
+' '           Text
+"'block'"     Literal.String.Single
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'element'     Name.Other
+'.'           Punctuation
+'style'       Name.Other
+'.'           Punctuation
+'display'     Name.Other
+' '           Text
+'='           Operator
+' '           Text
+"'none'"      Literal.String.Single
+';'           Punctuation
+'\n       '   Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n         ' Text
+'element'     Name.Other
+'.'           Punctuation
+'style'       Name.Other
+'.'           Punctuation
+'display'     Name.Other
+' '           Text
+'='           Operator
+' '           Text
+"'block'"     Literal.String.Single
+';'           Punctuation
+'\n       '   Text
+'}'           Punctuation
+'\n       '   Text
+'return'      Keyword
+' '           Text
+'false'       Keyword.Constant
+';'           Punctuation
+'      \n    ' Text
+'}'           Punctuation
+'          \n    ' Text
+'// -->\n'    Comment.Single
+
+''            Text
+'    '        Text
+'<'           Punctuation
+'/'           Punctuation
+'script'      Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'title'       Name.Tag
+'>'           Punctuation
+'Error'       Text
+'<'           Punctuation
+'/'           Punctuation
+'title'       Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'style'       Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'.'           Punctuation
+'path'        Name.Class
+' '           Text
+'{'           Punctuation
+' \n        ' Text
+'padding'     Keyword
+':'           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+'px'          Keyword.Type
+';'           Punctuation
+'\n        '  Text
+'font-size'   Keyword
+':'           Punctuation
+' '           Text
+'140'         Literal.Number.Integer
+'%'           Keyword.Type
+';'           Punctuation
+'\n        '  Text
+'background'  Keyword
+':'           Punctuation
+' '           Text
+'#ddd'        Literal.Number.Hex
+';'           Punctuation
+'\n      '    Text
+'}'           Punctuation
+'\n      '    Text
+'.'           Punctuation
+'error'       Name.Class
+' '           Text
+'{'           Punctuation
+' \n        ' Text
+'padding'     Keyword
+':'           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+'px'          Keyword.Type
+';'           Punctuation
+'\n        '  Text
+'padding-top' Keyword
+':'           Punctuation
+' '           Text
+'15'          Literal.Number.Integer
+'px'          Keyword.Type
+';'           Punctuation
+'\n        '  Text
+'font-size'   Keyword
+':'           Punctuation
+' '           Text
+'140'         Literal.Number.Integer
+'%'           Keyword.Type
+';'           Punctuation
+'\n        '  Text
+'color'       Keyword
+':'           Punctuation
+' '           Text
+'#f00'        Literal.Number.Hex
+';'           Punctuation
+'\n      '    Text
+'}'           Punctuation
+'\n      '    Text
+'.'           Punctuation
+'load'        Name.Class
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'padding'     Keyword
+':'           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+'px'          Keyword.Type
+';'           Punctuation
+'\n        '  Text
+'color'       Keyword
+':'           Punctuation
+' '           Text
+'#555'        Literal.Number.Hex
+';'           Punctuation
+'\n      '    Text
+'}'           Punctuation
+'\n      '    Text
+'.'           Punctuation
+'source'      Name.Class
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'border'      Keyword
+':'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+'px'          Keyword.Type
+' '           Text
+'solid'       Keyword.Constant
+' '           Text
+'#ccc'        Literal.Number.Hex
+';'           Punctuation
+' \n        ' Text
+'padding'     Keyword
+':'           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+'px'          Keyword.Type
+';'           Punctuation
+'\n        '  Text
+'margin-top'  Keyword
+':'           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+'px'          Keyword.Type
+';'           Punctuation
+' '           Text
+'margin-bottom' Keyword
+':'           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+'px'          Keyword.Type
+';'           Punctuation
+'\n      '    Text
+'}'           Punctuation
+'\n      '    Text
+'h2'          Name.Tag
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'padding-left' Keyword
+':'           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+'px'          Keyword.Type
+';'           Punctuation
+'\n        '  Text
+'background'  Keyword
+':'           Punctuation
+' '           Text
+'#eee'        Literal.Number.Hex
+';'           Punctuation
+'\n      '    Text
+'}'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'style'       Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'head'        Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'body'        Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'Error'       Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+"<?r \n    if Run.mode == :debug \n    require 'cgi'\n?>" Comment.Preproc
+'\n    '      Text
+'<?r  for error, path in @context.rendering_errors ?>' Comment.Preproc
+'\n      '    Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"path"'      Literal.String
+'>'           Punctuation
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'Path:'       Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+' #{path}'    Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"error"'     Literal.String
+'>'           Punctuation
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'#{CGI.escapeHTML(error.to_s)}' Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"load"'      Literal.String
+'>'           Punctuation
+'\n        '  Text
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{request.uri}"' Literal.String
+'>'           Punctuation
+'Reload'      Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+' this page. \n        Go to the ' Text
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{request.referer}"' Literal.String
+'>'           Punctuation
+'referer'     Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+' or the '    Text
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"/"'         Literal.String
+'>'           Punctuation
+'home page'   Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'.\n      '   Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"source"'    Literal.String
+'>'           Punctuation
+'\n      '    Text
+'<?r \n        extract = error.source_extract.split("\\n")\n      ?>' Comment.Preproc
+'\n      In file ' Text
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+"'#{error.hot_file}'" Text
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+" #{error.hot_file =~ /\\.xhtml$/ ? '(line numbering is aproximate due to template transformation)' : nil}:\n      " Text
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n      '    Text
+'<?r\n        extract.each_with_index do |line, idx|\n          line = sanitize(line)\n          if 5 == idx\n      ?>' Comment.Preproc
+'\n          ' Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"background: #eee"' Literal.String
+'>'           Punctuation
+'#{line}'     Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<?r  else ?>' Comment.Preproc
+'\n          ' Text
+'<'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'#{line}'     Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<?r  \n          end \n        end\n      ?>' Comment.Preproc
+'\n      '    Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#"'         Literal.String
+' '           Text
+'onclick'     Name.Attribute
+'='           Operator
+'"return toggleVisible(document.getElementById(\'trace\'));"' Literal.String
+'>'           Punctuation
+'Stack Trace' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'id'          Name.Attribute
+'='           Operator
+'"trace"'     Literal.String
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"display: none;"' Literal.String
+'>'           Punctuation
+'\n        '  Text
+'<?r error.backtrace.zip(error.source_for_backtrace).each_with_index do |step,step_idx| ?>' Comment.Preproc
+'\n      '    Text
+'<'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#"'         Literal.String
+' '           Text
+'onclick'     Name.Attribute
+'='           Operator
+'"return toggleVisible(document.getElementById(\'trace_#{step_idx}\'));"' Literal.String
+'>'           Punctuation
+'#{sanitize(step.first)}' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"source"'    Literal.String
+' '           Text
+'id'          Name.Attribute
+'='           Operator
+'"trace_#{step_idx}"' Literal.String
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"display: none;"' Literal.String
+'>'           Punctuation
+'\n      '    Text
+'<?r \n        extract = step.last.split("\\n")      \n        extract.each_with_index do |line, idx|\n          line = sanitize(line)\n          if 5 == idx\n      ?>' Comment.Preproc
+'\n          ' Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"background: #eee"' Literal.String
+'>'           Punctuation
+'#{line}'     Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<?r  else ?>' Comment.Preproc
+'\n          ' Text
+'<'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'#{line}'     Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<?r  \n          end \n        end\n      ?>' Comment.Preproc
+'\n      '    Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n\n        \n        ' Text
+'<?r end ?>'  Comment.Preproc
+'\n      '    Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<?r end ?>'  Comment.Preproc
+'\n\n    '    Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#"'         Literal.String
+' '           Text
+'onclick'     Name.Attribute
+'='           Operator
+'"document.getElementById(\'request\').style.display = \'block\'; return false"' Literal.String
+'>'           Punctuation
+'Request'     Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'id'          Name.Attribute
+'='           Operator
+'"request"'   Literal.String
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"display: none"' Literal.String
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'Parameters:' Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+' #{request.params.reject{ |k,v| k == :__RELOADED__ }.inspect}' Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'  \n      '  Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'Cookies:'    Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+' #{request.cookies.inspect}' Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'  \n      '  Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'Headers:'    Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'#{request.headers.collect { |k, v| "#{k} => #{v}" }.join(\'' Text
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+"')}"         Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'  \n    '    Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n\n    '    Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#"'         Literal.String
+' '           Text
+'onclick'     Name.Attribute
+'='           Operator
+'"document.getElementById(\'response\').style.display = \'block\'; return false"' Literal.String
+'>'           Punctuation
+'Response'    Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'id'          Name.Attribute
+'='           Operator
+'"response"'  Literal.String
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"display: none"' Literal.String
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'Headers:'    Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+' #{request.response_headers.inspect}' Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'  \n      '  Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'Cookies:'    Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+' #{request.response_cookies.inspect}' Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'  \n    '    Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n\n    '    Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#"'         Literal.String
+' '           Text
+'onclick'     Name.Attribute
+'='           Operator
+'"document.getElementById(\'session\').style.display = \'block\'; return false"' Literal.String
+'>'           Punctuation
+'Session'     Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'id'          Name.Attribute
+'='           Operator
+'"session"'   Literal.String
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"display: none"' Literal.String
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'Values:'     Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+' #{session.inspect}' Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'  \n    '    Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n\n    '    Text
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n    Powered by ' Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"http://www.nitrohq.com"' Literal.String
+'>'           Punctuation
+'Nitro'       Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+' version #{Nitro::Version}\n' Text
+
+'<?r end ?>'  Comment.Preproc
+'    \n  '    Text
+'<'           Punctuation
+'/'           Punctuation
+'body'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r base = "#{@base}/%base%" ?>' Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"/"'         Literal.String
+'>'           Punctuation
+' Home'       Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+' > '         Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#@base"'    Literal.String
+'>'           Punctuation
+'System'      Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+' > '         Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/list"' Literal.String
+'>'           Punctuation
+'#{"%plural%".humanize}' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+' > Edit #{"%name%".humanize} ' Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r if @all ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{request.uri.gsub(/\\/all$/, \'\')}"' Literal.String
+'>'           Punctuation
+'Show editable' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n    #{form_for @obj, :action => "#{base}/save", :cancel => "#{base}/list", :all => true}\n  ' Text
+'<?r else ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{request.uri}/all"' Literal.String
+'>'           Punctuation
+'Show all'    Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n    #{form_for @obj, :action => "#{base}/save", :cancel => "#{base}/list"}\n  ' Text
+'<?r end ?>'  Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'\n#{form_for(@%name%)}\n' Text
+
+'<'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r base = "#{@base}/%base%" ?>' Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'#{"%plural%".humanize}' Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/new"' Literal.String
+'>'           Punctuation
+'New #{"%name%".humanize}' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'form'        Name.Tag
+' '           Text
+'action'      Name.Attribute
+'='           Operator
+'"search"'    Literal.String
+'>'           Punctuation
+'\n    Search #{"%plural%".humanize}: ' Text
+'<'           Punctuation
+'input'       Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"text"'      Literal.String
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"q"'         Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'&nbsp;'      Name.Entity
+'<'           Punctuation
+'input'       Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"submit"'    Literal.String
+' '           Text
+'value'       Name.Attribute
+'='           Operator
+'"Search"'    Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'form'        Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r for obj in @list ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'width'       Name.Attribute
+'='           Operator
+'"100%"'      Literal.String
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/edit/#{obj.oid}"' Literal.String
+'>'           Punctuation
+'#{obj.to_s}' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<?r if obj.respond_to?(:update_time) ?>' Comment.Preproc
+'\n        '  Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'nowrap'      Name.Attribute
+'='           Operator
+'"1"'         Literal.String
+'>'           Punctuation
+'#{obj.update_time.stamp(:db)}' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<?r end ?>'  Comment.Preproc
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/edit/#{obj.oid}"' Literal.String
+'>'           Punctuation
+'edit'        Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/delete/#{obj.oid}"' Literal.String
+'>'           Punctuation
+'del'         Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r end ?>'  Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r base = "#{@base}/%base%" ?>' Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"/"'         Literal.String
+'>'           Punctuation
+' Home'       Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+' > '         Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#@base"'    Literal.String
+'>'           Punctuation
+'System'      Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+' > #{"%plural%".humanize}' Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/new"' Literal.String
+'>'           Punctuation
+'New #{"%name%".humanize}' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'form'        Name.Tag
+' '           Text
+'action'      Name.Attribute
+'='           Operator
+'"#{base}/search"' Literal.String
+'>'           Punctuation
+'\n    Search #{"%plural%".humanize}: ' Text
+'<'           Punctuation
+'input'       Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"text"'      Literal.String
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"q"'         Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'&nbsp;'      Name.Entity
+'<'           Punctuation
+'input'       Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"submit"'    Literal.String
+' '           Text
+'value'       Name.Attribute
+'='           Operator
+'"Search"'    Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'form'        Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r for obj in @list ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'width'       Name.Attribute
+'='           Operator
+'"100%"'      Literal.String
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/edit/#{obj.oid}"' Literal.String
+'>'           Punctuation
+'#(obj.to_s)' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<?r if obj.respond_to?(:update_time) ?>' Comment.Preproc
+'\n        '  Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'nowrap'      Name.Attribute
+'='           Operator
+'"1"'         Literal.String
+'>'           Punctuation
+'#{obj.update_time.stamp(:db)}' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<?r end ?>'  Comment.Preproc
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/edit/#{obj.oid}"' Literal.String
+'>'           Punctuation
+'edit'        Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/delete/#{obj.oid}"' Literal.String
+' '           Text
+'onclick'     Name.Attribute
+'='           Operator
+'"confirm(\'Are you sure?\')"' Literal.String
+'>'           Punctuation
+'del'         Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r end ?>'  Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pager"'     Literal.String
+' '           Text
+'if'          Name.Attribute
+'='           Operator
+'"@pager and @pager.navigation?"' Literal.String
+'>'           Punctuation
+'\n    #{@pager.navigation}\n  ' Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'  \n'        Text
+
+'<'           Punctuation
+'/'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r base = "#{@base}/%base%" ?>' Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"/"'         Literal.String
+'>'           Punctuation
+' Home'       Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+' > '         Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#@base"'    Literal.String
+'>'           Punctuation
+'System'      Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+' > '         Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/list"' Literal.String
+'>'           Punctuation
+'#{"%plural%".humanize}' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+' > New #{"%name%".humanize}' Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r if @all ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{request.uri.gsub(/\\/all$/, \'\')}"' Literal.String
+'>'           Punctuation
+'Show editable' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n    #{form_for @obj, :action => "#{base}/save", :cancel => "#{base}/list", :all => true, :enctype => "multipart/form-data"}\n  ' Text
+'<?r else ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{request.uri}/all"' Literal.String
+'>'           Punctuation
+'Show all'    Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n    #{form_for @obj, :action => "#{base}/save", :cancel => "#{base}/list", :enctype => "multipart/form-data"}\n  ' Text
+'<?r end ?>'  Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r base = "#{@base}/%base%" ?>' Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"/"'         Literal.String
+'>'           Punctuation
+' Home'       Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+' > '         Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#@base"'    Literal.String
+'>'           Punctuation
+'System'      Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+' > '         Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/list"' Literal.String
+'>'           Punctuation
+'#{"%plural%".humanize}' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+" > Search for '#@query'" Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'form'        Name.Tag
+' '           Text
+'action'      Name.Attribute
+'='           Operator
+'"#{base}/search"' Literal.String
+'>'           Punctuation
+'\n    Search #{"%plural%".humanize}: ' Text
+'<'           Punctuation
+'input'       Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"text"'      Literal.String
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"q"'         Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'&nbsp;'      Name.Entity
+'<'           Punctuation
+'input'       Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"submit"'    Literal.String
+' '           Text
+'value'       Name.Attribute
+'='           Operator
+'"Search"'    Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'form'        Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r if @list.nil? ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'Search method is not implemented for this object' Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r else ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<?r for obj in @list ?>' Comment.Preproc
+'\n      '    Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n        '  Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'width'       Name.Attribute
+'='           Operator
+'"100%"'      Literal.String
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/edit/#{obj.oid}"' Literal.String
+'>'           Punctuation
+'#(obj.to_s)' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n        '  Text
+'<?r if obj.respond_to?(:update_time) ?>' Comment.Preproc
+'\n          ' Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'nowrap'      Name.Attribute
+'='           Operator
+'"1"'         Literal.String
+'>'           Punctuation
+'#{obj.update_time.stamp(:db)}' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n        '  Text
+'<?r end ?>'  Comment.Preproc
+'\n        '  Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/edit/#{obj.oid}"' Literal.String
+'>'           Punctuation
+'edit'        Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n        '  Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/delete/#{obj.oid}"' Literal.String
+'>'           Punctuation
+'del'         Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<?r end ?>'  Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pager"'     Literal.String
+' '           Text
+'if'          Name.Attribute
+'='           Operator
+'"@pager and @pager.navigation?"' Literal.String
+'>'           Punctuation
+'\n      #{@pager.navigation}\n    ' Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'  \n  '      Text
+'<?r end ?>'  Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r base = "#{@base}/%base%" ?>' Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'View %name%' Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#{base}/list"' Literal.String
+'>'           Punctuation
+'List of %plural%' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'code'        Name.Tag
+'>'           Punctuation
+'\n    #{@obj.to_yaml} \n  ' Text
+'<'           Punctuation
+'/'           Punctuation
+'code'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'Access denied' Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r base = "#{@base}/%base%" ?>' Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+"'/'"         Literal.String
+'>'           Punctuation
+'Home'        Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+' > System'   Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n  \n  '    Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'Og managed classes' Text
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n  \n  '    Text
+'<'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'Class'       Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'Count'       Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'colspan'     Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+'>'           Punctuation
+'Cleanup'     Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'Properties'  Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r for c in @classes ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"#@base/#{Scaffolding.class_to_path(c).plural}/list"' Literal.String
+'>'           Punctuation
+'#{c.name}'   Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'#{c.count}'  Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"delete_all/#{c.name}"' Literal.String
+' '           Text
+'onclick'     Name.Attribute
+'='           Operator
+'"return confirm(\'Delete all instances?\')"' Literal.String
+'>'           Punctuation
+'delete'      Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"destroy/#{c.name}"' Literal.String
+' '           Text
+'onclick'     Name.Attribute
+'='           Operator
+'"return confirm(\'Drop the schema?\')"' Literal.String
+'>'           Punctuation
+'destroy'     Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'width'       Name.Attribute
+'='           Operator
+'"100%"'      Literal.String
+'>'           Punctuation
+"#{c.properties.values.join(', ')}" Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r end ?>'  Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n  \n  '    Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'System configuration' Text
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n  \n  '    Text
+'<'           Punctuation
+'table'       Name.Tag
+' '           Text
+'width'       Name.Attribute
+'='           Operator
+'"100%"'      Literal.String
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'Name'        Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'Value'       Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'Type'        Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'Description' Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r for s in @settings ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'#{s.owner}.' Text
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'#{s.name}'   Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'#{s.value.inspect}' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'#{s.type}'   Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'#{s.options[:doc]}' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<?r end ?>'  Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'SystemPage'  Name.Tag
+'>'           Punctuation
+'  \n\n'      Text
+
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'<?r $include1 = true ?>' Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'<?r $include2 = true ?>' Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'Test'        Text
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<?r @tflag = true ?>' Comment.Preproc
+'\n\n'        Text
+
+'<'           Punctuation
+'render'      Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"blog/inc1"' Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'render'      Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+"'blog/inc2'" Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'/'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'hello'       Text
+'<'           Punctuation
+'/'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\nHello #{username}\n\nhow do you feel?\n\nHere is your ' Text
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'Token'       Text
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+': #{token}\n' Text
+
+'<'           Punctuation
+'Page'        Name.Tag
+' '           Text
+'title'       Name.Attribute
+'='           Operator
+'"Questions and Tips by Tags"' Literal.String
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'id'          Name.Attribute
+'='           Operator
+'"left"'      Literal.String
+'>'           Punctuation
+'\n    '      Text
+'<?r if @tags ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'Questions with Tags: #{@tags.join(" ")}' Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n\n    '    Text
+'<?r if @questions && @questions.size > 0 ?>' Comment.Preproc
+'\n      '    Text
+'<?r if @qtags ?>' Comment.Preproc
+'\n        Too many results for that Tag, please reduce the number by using one of the following Tags:\n        #{cloud_of(@qtags)}\n      ' Text
+'<?r end ?>'  Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"results"'   Literal.String
+'>'           Punctuation
+'\n      '    Text
+'<?r @questions.each do |q| ?>' Comment.Preproc
+'\n        '  Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"/question/#{q.oid}"' Literal.String
+'>'           Punctuation
+'#{q.question}' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n        '  Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n          ' Text
+'<?r excerpt = excerpt_with_words(q.text, @tags) ?>' Comment.Preproc
+'\n          #{excerpt}\n        ' Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n        '  Text
+'<'           Punctuation
+'p'           Name.Tag
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"float:right;"' Literal.String
+'>'           Punctuation
+'#{q.answers.size.to_i} answers' Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<?r end ?>'  Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pager"'     Literal.String
+'>'           Punctuation
+'\n      #{@qpager.navigation}\n    ' Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<?r else ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"results_none"' Literal.String
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'no question with this/these tag(s) found' Text
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"/ask"'      Literal.String
+'>'           Punctuation
+'Ask a question here.' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<?r end ?>'  Comment.Preproc
+'\n    \n    ' Text
+'<?r if @tips && @tips.size > 0 ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'Tips with Tags: #{@tags.join(" ")}' Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<?r if @ttags ?>' Comment.Preproc
+'\n      Too many results for that Tag, please reduce the number by using one of the following Tags:\n      #{cloud_of(@ttags)}\n    ' Text
+'<?r end ?>'  Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"results"'   Literal.String
+'>'           Punctuation
+'\n      '    Text
+'<?r @tips.each do |t| ?>' Comment.Preproc
+'\n        '  Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"/tip/#{t.oid}"' Literal.String
+'>'           Punctuation
+'#{t.title}'  Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n        '  Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n          ' Text
+'<?r excerpt = excerpt_with_words(t.text, @tags) ?>' Comment.Preproc
+'\n          #{excerpt}\n        ' Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<?r end ?>'  Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pager"'     Literal.String
+'>'           Punctuation
+'\n      #{@tpager.navigation}\n    ' Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<?r end ?>'  Comment.Preproc
+'\n    \n    ' Text
+'<?r if @tutorials && @tutorials.size > 0 ?>' Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'Tutorials with Tags: #{@tags.join(" ")}' Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<?r if @tuttags ?>' Comment.Preproc
+'\n      Too many results for that Tag, please reduce the number by using one of the following Tags:\n      #{cloud_of(@tuttags)}\n    ' Text
+'<?r end ?>'  Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"results"'   Literal.String
+'>'           Punctuation
+'\n      '    Text
+'<?r @tutorials.each do |t| ?>' Comment.Preproc
+'\n        '  Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"/tutorial/#{t.oid}"' Literal.String
+'>'           Punctuation
+'#{t.title}'  Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n        '  Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n          ' Text
+'<?r excerpt = excerpt_with_words(t.text, @tags) ?>' Comment.Preproc
+'\n          #{excerpt}\n        ' Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<?r end ?>'  Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pager"'     Literal.String
+'>'           Punctuation
+'\n      #{@tpager.navigation}\n    ' Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<?r end ?>'  Comment.Preproc
+'\n    \n    \n    ' Text
+'<?r else ?>' Comment.Preproc
+'\n      '    Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"cloud"'     Literal.String
+'>'           Punctuation
+'\n        '  Text
+'<?r\n          sum = all_tags.inject(0) { |sum, t| sum + t.popularity.to_i }\n        ?>' Comment.Preproc
+'\n        '  Text
+'<?r all_tags.each do |t| ?>' Comment.Preproc
+'\n          ' Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"/tags/#{t.name}"' Literal.String
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"font-size:#{(1+((t.popularity.to_i/sum.to_f)*2)).to_s[0..3]}em;"' Literal.String
+'>'           Punctuation
+'#{t.name}'   Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n        '  Text
+'<?r end ?>'  Comment.Preproc
+'\n      '    Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+' '           Text
+'<!--'        Comment
+' #cloud '    Comment
+'-->'         Comment
+'\n    '      Text
+'<?r end ?>'  Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+' '           Text
+'<!--'        Comment
+' #left '     Comment
+'-->'         Comment
+'\n  \n  '    Text
+'<'           Punctuation
+'render'      Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"/right"'    Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'Page'        Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<!--'        Comment
+' Copyright © 2006 Kashia Buch (kashia@vfemail.net), Fabian Buch (fabian@fabian' Comment
+'-'           Comment
+'buch.de). All rights reserved. ' Comment
+'-->'         Comment
+'\n'          Text

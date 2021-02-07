@@ -1,0 +1,14 @@
+---input---
+fr"{header}:\s+"
+
+---tokens---
+'fr'          Literal.String.Affix
+'"'           Literal.String.Double
+'{'           Literal.String.Interpol
+'header'      Name
+'}'           Literal.String.Interpol
+':'           Literal.String.Double
+'\\'          Literal.String.Double
+'s+'          Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text

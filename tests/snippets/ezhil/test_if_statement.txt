@@ -1,0 +1,28 @@
+---input---
+@( 0 > 3 ) ஆனால்
+    பதிப்பி "wont print"
+முடி
+
+---tokens---
+'@'           Operator
+'('           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'>'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+')'           Punctuation
+' '           Text
+'ஆனால்'       Keyword
+'\n'          Text
+
+'    '        Text
+'பதிப்பி'     Keyword
+' '           Text
+'"wont print"' Literal.String
+'\n'          Text
+
+'முடி'        Keyword
+'\n'          Text

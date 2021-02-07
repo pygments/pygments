@@ -1,0 +1,15 @@
+---input---
+f'*{n=!r:30}*'
+
+---tokens---
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'*'           Literal.String.Single
+'{'           Literal.String.Interpol
+'n'           Name
+'=!r:'        Literal.String.Interpol
+'30'          Literal.String.Single
+'}'           Literal.String.Interpol
+'*'           Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text

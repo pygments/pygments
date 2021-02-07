@@ -1,11 +1,11 @@
-.TH PYGMENTIZE 1 "February 15, 2007"
+.TH PYGMENTIZE 1 "January 20, 2021"
 
 .SH NAME
 pygmentize \- highlights the input file
 
 .SH SYNOPSIS
 .B \fBpygmentize\fP
-.RI  [-l\ \fI<lexer>\fP]\ [-F\ \fI<filter>\fP[:\fI<options>\fP]]\ [-f\ \fI<formatter>\fP]
+.RI  [-l\ \fI<lexer>\fP\ |\ -g]\ [-F\ \fI<filter>\fP[:\fI<options>\fP]]\ [-f\ \fI<formatter>\fP]
 .RI  [-O\ \fI<options>\fP]\ [-P\ \fI<option=value>\fP]\ [-o\ \fI<outfile>\fP]\ [\fI<infile>\fP]
 .br
 .B \fBpygmentize\fP
@@ -13,6 +13,12 @@ pygmentize \- highlights the input file
 .br
 .B \fBpygmentize\fP
 .RI -L\ [\fI<which>\fP\ ...]
+.br
+.B \fBpygmentize\fP
+.RI -N\ \fI<filename>\fP
+.br
+.B \fBpygmentize\fP
+.RI -C
 .br
 .B \fBpygmentize\fP
 .RI -H\ \fI<type>\fP\ \fI<name>\fP
@@ -41,6 +47,10 @@ A summary of options is included below.
 .B \-l \fI<lexer>\fP
 Set the lexer name. If not given, the lexer is guessed from the extension of the
 input file name (this obviously doesn't work if the input is stdin).
+.TP
+.B \-g
+Attempt to guess the lexer from the file contents, or pass through as plain text
+if this fails (this option works for highlighting standard input).
 .TP
 .B \-F \fI<filter>\fP[:\fI<options>\fP]
 Add a filter to the token stream. You can give options in the same way as for
@@ -75,6 +85,14 @@ is formatter dependent and can be found in the documentation.
 .B \-L [\fI<which>\fP ...]
 List lexers, formatters, styles or filters. Set \fI<which>\fP to the thing you want
 to list (e.g. "styles"), or omit it to list everything.
+.TP
+.B \-N \fI<filename>\fP
+Guess and print out a lexer name based solely on the given filename.  Does not
+take input or highlight anything.  If no specific lexer can be found, "text"
+is printed.
+.TP
+.B \-C
+Like \fI-N\fP, but guess a lexer based on content read from standard input.
 .TP
 .B \-H \fI<type>\fP \fI<name>\fP
 Print detailed help for the object \fI<name>\fP of type \fI<type>\fP, where \fI<type>\fP is one

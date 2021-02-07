@@ -1,0 +1,12 @@
+---input---
+<!--- nested <!--- cfcomment ---> --->
+
+---tokens---
+'<!---'       Comment.Multiline
+' nested '    Comment.Multiline
+'<!---'       Comment.Multiline
+' cfcomment ' Comment.Multiline
+'--->'        Comment.Multiline
+' '           Comment.Multiline
+'--->'        Comment.Multiline
+'\n'          Text

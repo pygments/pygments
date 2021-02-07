@@ -1,0 +1,1816 @@
+'{-# STDLIB_VERSION 3 #-}' Keyword.Reserved
+'\n'          Text
+
+'{-# CONTENT_TYPE DAPP #-}' Keyword.Reserved
+'\n'          Text
+
+'{-# SCRIPT_TYPE ACCOUNT #-}' Keyword.Reserved
+'\n\n\n'      Text
+
+'let'         Keyword.Reserved
+' '           Text
+'maxAuctionDuration' Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'1440'        Literal.Number.Integer
+' '           Text
+'*'           Name.Function
+' '           Text
+'30'          Literal.Number.Integer
+' \n'         Text
+
+'# ~ 30 days' Comment.Single
+'\n\n'        Text
+
+'# priceAssetId = "WAVES" or assetId' Comment.Single
+'\n'          Text
+
+'@Callable'   Keyword.Reserved
+'('           Punctuation
+'i'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'func'        Keyword.Reserved
+' '           Text
+'startAuction' Name.Variable
+'('           Punctuation
+'duration'    Name.Variable
+':'           Name.Function
+' '           Text
+'Int'         Keyword.Type
+','           Punctuation
+' '           Text
+'startPrice'  Name.Variable
+':'           Name.Function
+' '           Text
+'Int'         Keyword.Type
+','           Punctuation
+' '           Text
+'priceAssetId' Name.Variable
+':'           Name.Function
+'String'      Keyword.Type
+')'           Punctuation
+' '           Text
+'='           Name.Function
+' '           Text
+'{'           Punctuation
+'\n    \n    ' Text
+'let'         Keyword.Reserved
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'toBase58String' Name.Function
+'('           Punctuation
+'i'           Name.Variable
+'.'           Name.Function
+'transactionId' Name.Variable
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'endHeight'   Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'lastBlock'   Name.Function
+'.'           Name.Function
+'height'      Name.Function
+' '           Text
+'+'           Name.Function
+' '           Text
+'duration'    Name.Variable
+'\n\n    '    Text
+'let'         Keyword.Reserved
+' '           Text
+'pmt'         Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'extract'     Name.Function
+'('           Punctuation
+'i'           Name.Variable
+'.'           Name.Function
+'payment'     Name.Variable
+')'           Punctuation
+'\n    \n    ' Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'duration'    Name.Variable
+' '           Text
+'>'           Name.Function
+' '           Text
+'maxAuctionDuration' Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'throw'       Name.Function
+'('           Punctuation
+'"'           Literal.String
+'D'           Literal.String
+'u'           Literal.String
+'r'           Literal.String
+'a'           Literal.String
+'t'           Literal.String
+'i'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'o'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'.'           Literal.String
+' '           Literal.String
+'M'           Literal.String
+'u'           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Name.Function
+' '           Text
+'toString'    Name.Function
+'('           Punctuation
+'maxAuctionDuration' Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'else'        Keyword.Reserved
+'\n    '      Text
+'WriteSet'    Keyword.Type
+'('           Punctuation
+' \n            ' Text
+'['           Punctuation
+'   '         Text
+'DataEntry'   Keyword.Type
+'('           Punctuation
+'auctionId'   Name.Variable
+','           Punctuation
+' '           Text
+'endHeight'   Name.Variable
+')'           Punctuation
+','           Punctuation
+' \n                ' Text
+'DataEntry'   Keyword.Type
+'('           Punctuation
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'g'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'i'           Literal.String
+'z'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'i'           Name.Variable
+'.'           Name.Function
+'caller'      Name.Variable
+'.'           Name.Function
+'bytes'       Name.Variable
+'.'           Name.Function
+'toBase58String' Name.Function
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+' \n                ' Text
+'DataEntry'   Keyword.Type
+'('           Punctuation
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'_'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'I'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'isDefined'   Name.Function
+'('           Punctuation
+'pmt'         Name.Variable
+'.'           Name.Function
+'assetId'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'toBase58String' Name.Function
+'('           Punctuation
+'value'       Name.Function
+'('           Punctuation
+'pmt'         Name.Variable
+'.'           Name.Function
+'assetId'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'"'           Literal.String
+'W'           Literal.String
+'A'           Literal.String
+'V'           Literal.String
+'E'           Literal.String
+'S'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+','           Punctuation
+'\n                ' Text
+'DataEntry'   Keyword.Type
+'('           Punctuation
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'_'           Literal.String
+'a'           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'pmt'         Name.Variable
+'.'           Name.Function
+'amount'      Name.Variable
+')'           Punctuation
+','           Punctuation
+' \n                ' Text
+'DataEntry'   Keyword.Type
+'('           Punctuation
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'t'           Literal.String
+'P'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'c'           Literal.String
+'e'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'startPrice'  Name.Variable
+')'           Punctuation
+','           Punctuation
+' \n                ' Text
+'DataEntry'   Keyword.Type
+'('           Punctuation
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'p'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'c'           Literal.String
+'e'           Literal.String
+'A'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'I'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'priceAssetId' Name.Variable
+')'           Punctuation
+'\n            ' Text
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' \n\n'       Text
+
+'@Callable'   Keyword.Reserved
+'('           Punctuation
+'i'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'func'        Keyword.Reserved
+' '           Text
+'bid'         Name.Variable
+'('           Punctuation
+'auctionId'   Name.Variable
+':'           Name.Function
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+' '           Text
+'='           Name.Function
+' '           Text
+'{'           Punctuation
+'\n\n    '    Text
+'let'         Keyword.Reserved
+' '           Text
+'pmt'         Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'extract'     Name.Function
+'('           Punctuation
+'i'           Name.Variable
+'.'           Name.Function
+'payment'     Name.Variable
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'pmtAssetIdStr' Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'isDefined'   Name.Function
+'('           Punctuation
+'pmt'         Name.Variable
+'.'           Name.Function
+'assetId'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'toBase58String' Name.Function
+'('           Punctuation
+'value'       Name.Function
+'('           Punctuation
+'pmt'         Name.Variable
+'.'           Name.Function
+'assetId'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'"'           Literal.String
+'W'           Literal.String
+'A'           Literal.String
+'V'           Literal.String
+'E'           Literal.String
+'S'           Literal.String
+'"'           Literal.String
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'callerAddressStr' Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'i'           Name.Variable
+'.'           Name.Function
+'caller'      Name.Variable
+'.'           Name.Function
+'bytes'       Name.Variable
+'.'           Name.Function
+'toBase58String' Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n\n    '    Text
+'let'         Keyword.Reserved
+' '           Text
+'endHeight'   Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'getIntegerValue' Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'startPrice'  Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'getIntegerValue' Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'t'           Literal.String
+'P'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'c'           Literal.String
+'e'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'priceAssetId' Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'getStringValue' Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'p'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'c'           Literal.String
+'e'           Literal.String
+'A'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'I'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'winAmount'   Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'getInteger'  Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'w'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'A'           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'winner'      Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'getString'   Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'w'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'n'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n\n    '    Text
+'let'         Keyword.Reserved
+' '           Text
+'bidFromTheSameUser' Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'isDefined'   Name.Function
+'('           Punctuation
+'winner'      Name.Variable
+')'           Punctuation
+' '           Text
+'&&'          Name.Function
+' '           Text
+'value'       Name.Function
+'('           Punctuation
+'winner'      Name.Variable
+')'           Punctuation
+' '           Text
+'=='          Name.Function
+' '           Text
+'callerAddressStr' Name.Variable
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'totalBidAmount' Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'pmt'         Name.Variable
+'.'           Name.Function
+'amount'      Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'bidFromTheSameUser' Name.Variable
+' '           Text
+'then'        Keyword.Reserved
+'\n                                         ' Text
+'value'       Name.Function
+'('           Punctuation
+'winAmount'   Name.Variable
+')'           Punctuation
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'0'           Literal.Number.Integer
+'\n\n    '    Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'lastBlock'   Name.Function
+'.'           Name.Function
+'height'      Name.Function
+' '           Text
+'>='          Name.Function
+' '           Text
+'endHeight'   Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' \n        ' Text
+'throw'       Name.Function
+'('           Punctuation
+'"'           Literal.String
+'A'           Literal.String
+'u'           Literal.String
+'c'           Literal.String
+'t'           Literal.String
+'i'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'a'           Literal.String
+'d'           Literal.String
+'y'           Literal.String
+' '           Literal.String
+'f'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+'else'        Keyword.Reserved
+'\n    '      Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'priceAssetId' Name.Variable
+' '           Text
+'!='          Name.Function
+' '           Text
+'pmtAssetIdStr' Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' \n        ' Text
+'throw'       Name.Function
+'('           Punctuation
+'"'           Literal.String
+'B'           Literal.String
+'i'           Literal.String
+'d'           Literal.String
+' '           Literal.String
+'m'           Literal.String
+'u'           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+"'"           Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Name.Function
+' '           Text
+'priceAssetId' Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+"'"           Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+'else'        Keyword.Reserved
+'\n    '      Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'isDefined'   Name.Function
+'('           Punctuation
+'winAmount'   Name.Variable
+')'           Punctuation
+' '           Text
+'&&'          Name.Function
+' '           Text
+'totalBidAmount' Name.Variable
+' '           Text
+'<='          Name.Function
+' '           Text
+'value'       Name.Function
+'('           Punctuation
+'winAmount'   Name.Variable
+')'           Punctuation
+' '           Text
+'||'          Name.Function
+'\n        '  Text
+'!'           Name.Function
+'isDefined'   Name.Function
+'('           Punctuation
+'winAmount'   Name.Variable
+')'           Punctuation
+' '           Text
+'&&'          Name.Function
+' '           Text
+'totalBidAmount' Name.Variable
+' '           Text
+'<='          Name.Function
+' '           Text
+'startPrice'  Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' \n        ' Text
+'throw'       Name.Function
+'('           Punctuation
+'"'           Literal.String
+'B'           Literal.String
+'i'           Literal.String
+'d'           Literal.String
+' '           Literal.String
+'m'           Literal.String
+'u'           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' \n           ' Text
+'+'           Name.Function
+' '           Text
+'toString'    Name.Function
+'('           Punctuation
+'if'          Keyword.Reserved
+' '           Text
+'isDefined'   Name.Function
+'('           Punctuation
+'winAmount'   Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'value'       Name.Function
+'('           Punctuation
+'winAmount'   Name.Variable
+')'           Punctuation
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'startPrice'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+' \n    '     Text
+'else'        Keyword.Reserved
+'\n        '  Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'bidFromTheSameUser' Name.Variable
+' '           Text
+'||'          Name.Function
+' '           Text
+'!'           Name.Function
+'isDefined'   Name.Function
+'('           Punctuation
+'winner'      Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n            ' Text
+'WriteSet'    Keyword.Type
+'('           Punctuation
+'['           Punctuation
+'\n                ' Text
+'DataEntry'   Keyword.Type
+'('           Punctuation
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'w'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'n'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'callerAddressStr' Name.Variable
+')'           Punctuation
+','           Punctuation
+'\n                ' Text
+'DataEntry'   Keyword.Type
+'('           Punctuation
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'w'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'A'           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'totalBidAmount' Name.Variable
+')'           Punctuation
+'\n            ' Text
+']'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'else'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n            ' Text
+'let'         Keyword.Reserved
+' '           Text
+'previousBidderAddr' Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'addressFromStringValue' Name.Function
+'('           Punctuation
+'value'       Name.Function
+'('           Punctuation
+'winner'      Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'let'         Keyword.Reserved
+' '           Text
+'priceAsset'  Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'priceAssetId' Name.Variable
+' '           Text
+'=='          Name.Function
+' '           Text
+'"'           Literal.String
+'W'           Literal.String
+'A'           Literal.String
+'V'           Literal.String
+'E'           Literal.String
+'S'           Literal.String
+'"'           Literal.String
+' '           Text
+'||'          Name.Function
+' '           Text
+'priceAssetId' Name.Variable
+' '           Text
+'=='          Name.Function
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'unit'        Name.Function
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'fromBase58String' Name.Function
+'('           Punctuation
+'priceAssetId' Name.Variable
+')'           Punctuation
+'\n            ' Text
+'ScriptResult' Keyword.Type
+'('           Punctuation
+'\n                ' Text
+'WriteSet'    Keyword.Type
+'('           Punctuation
+'['           Punctuation
+'\n                    ' Text
+'DataEntry'   Keyword.Type
+'('           Punctuation
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'w'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'n'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'callerAddressStr' Name.Variable
+')'           Punctuation
+','           Punctuation
+'\n                    ' Text
+'DataEntry'   Keyword.Type
+'('           Punctuation
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'w'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'A'           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'totalBidAmount' Name.Variable
+')'           Punctuation
+'\n                ' Text
+']'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n                ' Text
+'TransferSet' Keyword.Type
+'('           Punctuation
+'['           Punctuation
+'\n                    ' Text
+'ScriptTransfer' Keyword.Type
+'('           Punctuation
+'previousBidderAddr' Name.Variable
+','           Punctuation
+' '           Text
+'value'       Name.Function
+'('           Punctuation
+'winAmount'   Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'priceAsset'  Name.Variable
+')'           Punctuation
+'\n                ' Text
+']'           Punctuation
+')'           Punctuation
+'\n            ' Text
+')'           Punctuation
+'\n        '  Text
+'}'           Punctuation
+'\n\n'        Text
+
+'}'           Punctuation
+'\n\n\n'      Text
+
+'@Callable'   Keyword.Reserved
+'('           Punctuation
+'i'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'func'        Keyword.Reserved
+' '           Text
+'withdraw'    Name.Variable
+'('           Punctuation
+'auctionId'   Name.Variable
+':'           Name.Function
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+' '           Text
+'='           Name.Function
+' '           Text
+'{'           Punctuation
+'\n\n    '    Text
+'let'         Keyword.Reserved
+' '           Text
+'pmt'         Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'extract'     Name.Function
+'('           Punctuation
+'i'           Name.Variable
+'.'           Name.Function
+'payment'     Name.Variable
+')'           Punctuation
+'    \n    '  Text
+'let'         Keyword.Reserved
+' '           Text
+'pmtAssetIdStr' Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'isDefined'   Name.Function
+'('           Punctuation
+'pmt'         Name.Variable
+'.'           Name.Function
+'assetId'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'toBase58String' Name.Function
+'('           Punctuation
+'value'       Name.Function
+'('           Punctuation
+'pmt'         Name.Variable
+'.'           Name.Function
+'assetId'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'"'           Literal.String
+'W'           Literal.String
+'A'           Literal.String
+'V'           Literal.String
+'E'           Literal.String
+'S'           Literal.String
+'"'           Literal.String
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'callerAddressStr' Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'i'           Name.Variable
+'.'           Name.Function
+'caller'      Name.Variable
+'.'           Name.Function
+'bytes'       Name.Variable
+'.'           Name.Function
+'toBase58String' Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n\n    '    Text
+'let'         Keyword.Reserved
+' '           Text
+'endHeight'   Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'getIntegerValue' Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'organizer'   Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'getStringValue' Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'g'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'i'           Literal.String
+'z'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'winner'      Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'getString'   Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'w'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'n'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'lotAssetId'  Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'getStringValue' Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'_'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'I'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'lotAmount'   Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'getIntegerValue' Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'_'           Literal.String
+'a'           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'priceAssetId' Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'getStringValue' Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'p'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'c'           Literal.String
+'e'           Literal.String
+'A'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'I'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'winAmount'   Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'getIntegerValue' Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'w'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'A'           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    \n    ' Text
+'let'         Keyword.Reserved
+' '           Text
+'lotAsset'    Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'lotAssetId'  Name.Variable
+' '           Text
+'=='          Name.Function
+' '           Text
+'"'           Literal.String
+'W'           Literal.String
+'A'           Literal.String
+'V'           Literal.String
+'E'           Literal.String
+'S'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'unit'        Name.Function
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'fromBase58String' Name.Function
+'('           Punctuation
+'lotAssetId'  Name.Variable
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'priceAsset'  Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'priceAssetId' Name.Variable
+' '           Text
+'=='          Name.Function
+' '           Text
+'"'           Literal.String
+'W'           Literal.String
+'A'           Literal.String
+'V'           Literal.String
+'E'           Literal.String
+'S'           Literal.String
+'"'           Literal.String
+' '           Text
+'||'          Name.Function
+' '           Text
+'priceAssetId' Name.Variable
+' '           Text
+'=='          Name.Function
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'unit'        Name.Function
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'fromBase58String' Name.Function
+'('           Punctuation
+'priceAssetId' Name.Variable
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'winnerAddr'  Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'addressFromStringValue' Name.Function
+'('           Punctuation
+'value'       Name.Function
+'('           Punctuation
+'winner'      Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'let'         Keyword.Reserved
+' '           Text
+'organizerAddr' Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'addressFromStringValue' Name.Function
+'('           Punctuation
+'value'       Name.Function
+'('           Punctuation
+'organizer'   Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n    '    Text
+'let'         Keyword.Reserved
+' '           Text
+'betAmount'   Name.Variable
+' '           Text
+'='           Name.Function
+' '           Text
+'getInteger'  Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'b'           Literal.String
+'i'           Literal.String
+'d'           Literal.String
+'d'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'_'           Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Name.Function
+' '           Text
+'callerAddressStr' Name.Variable
+')'           Punctuation
+'\n\n    '    Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'lastBlock'   Name.Function
+'.'           Name.Function
+'height'      Name.Function
+' '           Text
+'<'           Name.Function
+' '           Text
+'endHeight'   Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' \n        ' Text
+'throw'       Name.Function
+'('           Punctuation
+'"'           Literal.String
+'A'           Literal.String
+'u'           Literal.String
+'c'           Literal.String
+'t'           Literal.String
+'i'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'n'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'f'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'d'           Literal.String
+' '           Literal.String
+'y'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+'else'        Keyword.Reserved
+'\n    \n    ' Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'!'           Name.Function
+'isDefined'   Name.Function
+'('           Punctuation
+'winner'      Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'isDefined'   Name.Function
+'('           Punctuation
+'getString'   Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'_'           Literal.String
+'p'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n            ' Text
+'throw'       Name.Function
+'('           Punctuation
+'"'           Literal.String
+'O'           Literal.String
+'r'           Literal.String
+'g'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'i'           Literal.String
+'z'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+' '           Literal.String
+'h'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'a'           Literal.String
+'d'           Literal.String
+'y'           Literal.String
+' '           Literal.String
+'g'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'h'           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'a'           Literal.String
+'c'           Literal.String
+'k'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n        '  Text
+'else'        Keyword.Reserved
+'\n            ' Text
+'ScriptResult' Keyword.Type
+'('           Punctuation
+'\n                ' Text
+'WriteSet'    Keyword.Type
+'('           Punctuation
+'['           Punctuation
+'DataEntry'   Keyword.Type
+'('           Punctuation
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'_'           Literal.String
+'p'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'organizer'   Name.Variable
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n                ' Text
+'TransferSet' Keyword.Type
+'('           Punctuation
+'['           Punctuation
+'ScriptTransfer' Keyword.Type
+'('           Punctuation
+'organizerAddr' Name.Variable
+','           Punctuation
+' '           Text
+'lotAmount'   Name.Variable
+','           Punctuation
+' '           Text
+'lotAsset'    Name.Variable
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+'\n            ' Text
+')'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'else'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+"# Lot -> winner, winner's bet -> organizer" Comment.Single
+'\n        '  Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'isDefined'   Name.Function
+'('           Punctuation
+'getString'   Name.Function
+'('           Punctuation
+'this'        Name.Function
+','           Punctuation
+' '           Text
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'_'           Literal.String
+'p'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n            ' Text
+'throw'       Name.Function
+'('           Punctuation
+'"'           Literal.String
+'L'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'a'           Literal.String
+'d'           Literal.String
+'y'           Literal.String
+' '           Literal.String
+'p'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'d'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'w'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'n'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+','           Literal.String
+' '           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'g'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'i'           Literal.String
+'z'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+' '           Literal.String
+'g'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'h'           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'w'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n        '  Text
+'else'        Keyword.Reserved
+'\n            ' Text
+'ScriptResult' Keyword.Type
+'('           Punctuation
+'\n                ' Text
+'WriteSet'    Keyword.Type
+'('           Punctuation
+'['           Punctuation
+'DataEntry'   Keyword.Type
+'('           Punctuation
+'auctionId'   Name.Variable
+' '           Text
+'+'           Name.Function
+' '           Text
+'"'           Literal.String
+'_'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'_'           Literal.String
+'p'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'winnerAddr'  Name.Variable
+'.'           Name.Function
+'bytes'       Name.Variable
+'.'           Name.Function
+'toBase58String' Name.Function
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n                ' Text
+'TransferSet' Keyword.Type
+'('           Punctuation
+'['           Punctuation
+'ScriptTransfer' Keyword.Type
+'('           Punctuation
+'winnerAddr'  Name.Variable
+','           Punctuation
+' '           Text
+'lotAmount'   Name.Variable
+','           Punctuation
+' '           Text
+'lotAsset'    Name.Variable
+')'           Punctuation
+','           Punctuation
+'\n                            ' Text
+'ScriptTransfer' Keyword.Type
+'('           Punctuation
+'organizerAddr' Name.Variable
+','           Punctuation
+' '           Text
+'winAmount'   Name.Variable
+','           Punctuation
+' '           Text
+'priceAsset'  Name.Variable
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+'\n            ' Text
+')'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

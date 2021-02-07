@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     Pygments RTF formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

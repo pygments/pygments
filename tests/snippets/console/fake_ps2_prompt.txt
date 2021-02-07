@@ -1,0 +1,14 @@
+# Test that missing backslash means it's no prompt.
+
+---input---
+$ echo "> not a prompt"
+> not a prompt
+
+---tokens---
+'$ '          Generic.Prompt
+'echo'        Name.Builtin
+' '           Text
+'"> not a prompt"' Literal.String.Double
+'\n'          Text
+
+'> not a prompt\n' Generic.Output

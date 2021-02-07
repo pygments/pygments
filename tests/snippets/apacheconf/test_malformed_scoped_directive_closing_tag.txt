@@ -1,0 +1,20 @@
+---input---
+<VirtualHost "test">
+</VirtualHost
+>
+
+---tokens---
+'<VirtualHost' Name.Tag
+' '           Text
+'"test"'      Literal.String
+'>'           Name.Tag
+'\n'          Text
+
+'<'           Error
+'/'           Error
+'VirtualHost' Name.Builtin
+''            Text
+'\n'          Text
+
+'>'           Error
+'\n'          Text

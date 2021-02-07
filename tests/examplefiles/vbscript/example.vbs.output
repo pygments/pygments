@@ -1,0 +1,360 @@
+'rem VBScript examples' Comment.Single
+'\n\n'        Text.Whitespace
+
+"' Various constants of different types" Comment.Single
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'someText'    Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'some '       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'""'          Literal.String.Double
+'text'        Literal.String.Double
+'""'          Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'someInt'     Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'123'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'someHex'     Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'&h3110c0d3'  Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'someFloat'   Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'123.45e-67'  Literal.Number.Float
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'someDate'    Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'#1/2/2016#'  Literal.String
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'someTime'    Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'#12:34:56 AM#' Literal.String
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'someBool'    Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'vbTrue'      Name.Constant
+'  '          Text.Whitespace
+"' -1"        Comment.Single
+'\n\n'        Text.Whitespace
+
+"' Do some math." Comment.Single
+'\n'          Text.Whitespace
+
+'radius'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.e2'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'area'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'radius'      Name
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'3.1315'      Literal.Number.Float
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'17'          Literal.Number.Integer
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'23'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'c'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'sqr'         Name.Builtin
+'('           Punctuation
+'a'           Name
+' '           Text.Whitespace
+'^'           Operator
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+"' Write 10 files." Comment.Single
+'\n'          Text.Whitespace
+
+'For'         Keyword
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'to'          Name
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n    '      Text.Whitespace
+'createFile'  Name
+'('           Punctuation
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'Next'        Keyword
+'\n\n'        Text.Whitespace
+
+'Public'      Keyword
+' '           Text.Whitespace
+'Sub'         Keyword.Declaration
+' '           Text.Whitespace
+'createFile'  Name.Function
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'Dim'         Keyword.Declaration
+' '           Text.Whitespace
+'fso'         Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'TargetFile'  Name.Variable
+'\n    '      Text.Whitespace
+'TargetPath'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'C:\\some_'   Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'.tmp'        Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'Set'         Keyword
+' '           Text.Whitespace
+'fso'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'CreateObject' Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'Scripting.FileSystemObject' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n    '      Text.Whitespace
+'Set'         Keyword
+' '           Text.Whitespace
+'TargetFile'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'fso'         Name
+'.'           Punctuation
+'CreateTextFile' Name
+'('           Punctuation
+'TargetPath'  Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'TargetFile'  Name
+'.'           Punctuation
+'WriteLine'   Name
+'('           Punctuation
+'"'           Literal.String.Double
+'Hello '      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'vbCrLf'      Name.Constant
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'world!'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n    '      Text.Whitespace
+'TargetFile'  Name
+'.'           Punctuation
+'Close'       Name
+'\n'          Text.Whitespace
+
+'End'         Keyword
+' '           Text.Whitespace
+'Sub'         Keyword
+'\n\n'        Text.Whitespace
+
+"' Define a class with a property." Comment.Single
+'\n'          Text.Whitespace
+
+'Class'       Keyword.Declaration
+' '           Text.Whitespace
+'Customer'    Name.Class
+'\n    '      Text.Whitespace
+'Private'     Keyword
+' '           Text.Whitespace
+'m_CustomerName' Name
+'\n\n    '    Text.Whitespace
+'Private'     Keyword
+' '           Text.Whitespace
+'Sub'         Keyword.Declaration
+' '           Text.Whitespace
+'Class_Initialize' Name.Function
+'\n        '  Text.Whitespace
+'m_CustomerName' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'End'         Keyword
+' '           Text.Whitespace
+'Sub'         Keyword
+'\n\n    '    Text.Whitespace
+"' CustomerName property." Comment.Single
+'\n    '      Text.Whitespace
+'Public'      Keyword
+' '           Text.Whitespace
+'Property'    Keyword.Declaration
+' '           Text.Whitespace
+'Get'         Keyword.Declaration
+' '           Text.Whitespace
+'CustomerName' Name.Property
+'\n        '  Text.Whitespace
+'CustomerName' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'m_CustomerName' Name
+'\n    '      Text.Whitespace
+'End'         Keyword
+' '           Text.Whitespace
+'Property'    Keyword
+'\n\n    '    Text.Whitespace
+'Public'      Keyword
+' '           Text.Whitespace
+'Property'    Keyword.Declaration
+' '           Text.Whitespace
+'Let'         Keyword.Declaration
+' '           Text.Whitespace
+'CustomerName' Name.Property
+'('           Punctuation
+'custname'    Name
+')'           Punctuation
+'\n        '  Text.Whitespace
+'m_CustomerName' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'custname'    Name
+'\n    '      Text.Whitespace
+'End'         Keyword
+' '           Text.Whitespace
+'Property'    Keyword
+'\n'          Text.Whitespace
+
+'End'         Keyword
+' '           Text.Whitespace
+'Class'       Keyword
+'\n\n'        Text.Whitespace
+
+"' Special constructs" Comment.Single
+'\n'          Text.Whitespace
+
+'Option'      Keyword
+' '           Text.Whitespace
+'Explicit'    Keyword
+'\n'          Text.Whitespace
+
+'On'          Keyword
+' '           Text.Whitespace
+'Error'       Keyword
+' '           Text.Whitespace
+'Resume'      Keyword
+' '           Text.Whitespace
+'Next'        Keyword
+'\n'          Text.Whitespace
+
+'On'          Keyword
+' '           Text.Whitespace
+'Error'       Keyword
+' '           Text.Whitespace
+'Goto'        Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n\n'        Text.Whitespace
+
+"' Comment without terminating CR/LF." Comment.Single
+'\n'          Text.Whitespace

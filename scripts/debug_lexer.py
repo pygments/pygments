@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
     Lexing error finder
     ~~~~~~~~~~~~~~~~~~~
@@ -14,6 +13,7 @@
 
 import os
 import sys
+import struct
 
 # always prefer Pygments from source if exists
 srcpath = os.path.join(os.path.dirname(__file__), '..')
@@ -95,22 +95,56 @@ class DebuggingRegexLexer(ExtendedRegexLexer):
                     break
 
 
+def decode_atheris(bstr):
+    """Decode a byte string into a Unicode string using the algorithm
+    of Google's Atheris fuzzer library, which aims to produce a wide
+    range of possible Unicode inputs.
+
+    Corresponds to ConsumeUnicodeImpl() with filter_surrogates=false in
+    https://github.com/google/atheris/blob/master/fuzzed_data_provider.cc
+    """
+    if len(bstr) < 2:
+        return ''
+    # The first byte only selects if the rest is decoded as ascii, "utf-16" or "utf-32"
+    spec, bstr = bstr[0], bstr[1:]
+    if spec & 1:  # pure ASCII
+        return ''.join(chr(ch & 0x7f) for ch in bstr)
+    elif spec & 2:  # UTF-16
+        bstr = bstr if len(bstr) % 2 == 0 else bstr[:-1]
+        return bstr.decode('utf16')
+
+    # else UTF-32
+    def valid_codepoint(ch):
+        ch &= 0x1fffff
+        if ch & 0x100000:
+            ch &= ~0x0f0000
+        return chr(ch)
+
+    chars = struct.unpack('%dI%dx' % divmod(len(bstr), 4), bstr)
+    return ''.join(map(valid_codepoint), chars)
+
+
 def main(fn, lexer=None, options={}):
     if fn == '-':
         text = sys.stdin.read()
     else:
-        try:
-            with open(fn, 'rb') as fp:
-                text = fp.read().decode('utf-8')
-        except UnicodeError:
-            if decode_strategy == 'latin1':
+        with open(fn, 'rb') as fp:
+            text = fp.read()
+        if decode_strategy == 'latin1':
+            try:
+                text = text.decode('utf8')
+            except UnicodeError:
                 print('Warning: non-UTF8 input, using latin1')
-                with open(fn, 'rb') as fp:
-                    text = fp.read().decode('latin1')
-            elif decode_strategy == 'utf8-ignore':
+                text = text.decode('latin1')
+        elif decode_strategy == 'utf8-ignore':
+            try:
+                text = text.decode('utf8')
+            except UnicodeError:
                 print('Warning: ignoring non-UTF8 bytes in input')
-                with open(fn, 'rb') as fp:
-                    text = fp.read().decode('utf-8', 'ignore')
+                text = text.decode('utf8', 'ignore')
+        elif decode_strategy == 'atheris':
+            text = decode_atheris(text)
+
     text = text.strip('\n') + '\n'
 
     if lexer is not None:
@@ -206,6 +240,8 @@ Selecting lexer and options:
     -g              guess lexer from content
     -u              if input is non-utf8, use "ignore" handler instead
                     of using latin1 encoding
+    -U              use Atheris fuzzer's method of converting
+                    byte input to Unicode
     -O OPTIONSTR    use lexer options parsed from OPTIONSTR
 
 Debugging lexing errors:
@@ -236,7 +272,7 @@ decode_strategy = 'latin1'
 
 if __name__ == '__main__':
     import getopt
-    opts, args = getopt.getopt(sys.argv[1:], 'n:l:aepO:s:hgu')
+    opts, args = getopt.getopt(sys.argv[1:], 'n:l:aepO:s:hguU')
     for opt, val in opts:
         if opt == '-n':
             num = int(val)
@@ -256,6 +292,8 @@ if __name__ == '__main__':
             guess = True
         elif opt == '-u':
             decode_strategy = 'utf8-ignore'
+        elif opt == '-U':
+            decode_strategy = 'atheris'
         elif opt == '-h':
             print_help()
             sys.exit(0)

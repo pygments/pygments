@@ -1,0 +1,1410 @@
+'Red ['       Generic.Strong
+'\n    '      Text
+'Title:'      Generic.Subheading
+'  '          Text
+'"'           Literal.String
+'Red console' Literal.String
+'"'           Literal.String
+'\n    '      Text
+'Author:'     Generic.Subheading
+' '           Text
+'['           Generic.Strong
+'"'           Literal.String
+'Nenad Rakocevic' Literal.String
+'"'           Literal.String
+' '           Text
+'"'           Literal.String
+'Kaj de Vos'  Literal.String
+'"'           Literal.String
+']'           Generic.Strong
+'\n    '      Text
+'File:'       Generic.Subheading
+'   '         Text
+'%console.red' Name.Decorator
+'\n    '      Text
+'Tabs:'       Generic.Subheading
+'   '         Text
+'4'           Literal.Number
+'\n    '      Text
+'Rights:'     Generic.Subheading
+' '           Text
+'"'           Literal.String
+'Copyright '  Literal.String
+'('           Literal.String
+'C'           Literal.String
+')'           Literal.String
+' 2012-2013 Nenad Rakocevic. All rights reserved.' Literal.String
+'"'           Literal.String
+'\n    '      Text
+'License:'    Generic.Subheading
+' '           Text
+'{'           Literal.String
+'\n        Distributed under the Boost Software License, Version 1.0.\n        See https://github.com/dockimbel/Red/blob/master/BSL-License.txt\n    ' Literal.String
+'}'           Literal.String
+'\n    '      Text
+'Purpose:'    Generic.Subheading
+'    '        Text
+'"'           Literal.String
+'Just some code for testing Pygments colorizer' Literal.String
+'"'           Literal.String
+'\n    '      Text
+'Language:'   Generic.Subheading
+'   '         Text
+'http://www.red-lang.org/' Name.Decorator
+'\n'          Text
+
+']'           Generic.Strong
+'\n\n'        Text
+
+'#system-global' Keyword.Namespace
+' '           Text
+'['           Generic.Strong
+'\n    '      Text
+'#either'     Keyword.Namespace
+' '           Text
+'OS'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'Windows"    Name.Variable.Instance
+' '           Text
+'['           Generic.Strong
+'\n        '  Text
+'#import'     Keyword.Namespace
+' '           Text
+'['           Generic.Strong
+'\n            ' Text
+'"'           Literal.String
+'kernel32.dll' Literal.String
+'"'           Literal.String
+' '           Text
+'stdcall'     Keyword.Namespace
+' '           Text
+'['           Generic.Strong
+'\n                ' Text
+'AttachConsole:' Generic.Subheading
+'   '         Text
+'"'           Literal.String
+'AttachConsole' Literal.String
+'"'           Literal.String
+' '           Text
+'['           Generic.Strong
+'\n                    ' Text
+'processID'   Name.Variable
+'       '     Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n                    ' Text
+'return:'     Generic.Subheading
+'         '   Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n                ' Text
+']'           Generic.Strong
+'\n                ' Text
+'SetConsoleTitle:' Generic.Subheading
+' '           Text
+'"'           Literal.String
+'SetConsoleTitleA' Literal.String
+'"'           Literal.String
+' '           Text
+'['           Generic.Strong
+'\n                    ' Text
+'title'       Name.Variable
+'           ' Text
+'['           Generic.Strong
+'c-string!'   Keyword.Type
+']'           Generic.Strong
+'\n                    ' Text
+'return:'     Generic.Subheading
+'         '   Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n                ' Text
+']'           Generic.Strong
+'\n                ' Text
+'ReadConsole:' Generic.Subheading
+'     '       Text
+'"'           Literal.String
+'ReadConsoleA' Literal.String
+'"'           Literal.String
+' '           Text
+'['           Generic.Strong
+'\n                    ' Text
+'consoleInput' Name.Variable
+'    '        Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n                    ' Text
+'buffer'      Name.Variable
+'          '  Text
+'['           Generic.Strong
+'byte-ptr!'   Keyword.Type
+']'           Generic.Strong
+'\n                    ' Text
+'charsToRead' Name.Variable
+'     '       Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n                    ' Text
+'numberOfChars' Name.Variable
+'   '         Text
+'['           Generic.Strong
+'int-ptr!'    Keyword.Type
+']'           Generic.Strong
+'\n                    ' Text
+'inputControl' Name.Variable
+'    '        Text
+'['           Generic.Strong
+'int-ptr!'    Keyword.Type
+']'           Generic.Strong
+'\n                    ' Text
+'return:'     Generic.Subheading
+'         '   Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n                ' Text
+']'           Generic.Strong
+'\n            ' Text
+']'           Generic.Strong
+'\n        '  Text
+']'           Generic.Strong
+'\n        '  Text
+'line-buffer-size:' Generic.Subheading
+' '           Text
+'16'          Literal.Number
+' '           Text
+'*'           Operator
+' '           Text
+'1024'        Literal.Number
+'\n        '  Text
+'line-buffer:' Generic.Subheading
+' '           Text
+'allocate'    Name.Variable
+' '           Text
+'line-buffer-size' Name.Variable
+'\n    '      Text
+']'           Generic.Strong
+'['           Generic.Strong
+'\n        '  Text
+'#switch'     Keyword.Namespace
+' '           Text
+'OS'          Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n            ' Text
+'MacOSX'      Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n                ' Text
+'#define'     Keyword.Namespace
+' '           Text
+'ReadLine-library' Name.Variable
+' '           Text
+'"'           Literal.String
+'libreadline.dylib' Literal.String
+'"'           Literal.String
+'\n            ' Text
+']'           Generic.Strong
+'\n            ' Text
+'#default'    Keyword.Namespace
+' '           Text
+'['           Generic.Strong
+'\n                ' Text
+'#define'     Keyword.Namespace
+' '           Text
+'ReadLine-library' Name.Variable
+' '           Text
+'"'           Literal.String
+'libreadline.so.6' Literal.String
+'"'           Literal.String
+'\n                ' Text
+'#define'     Keyword.Namespace
+' '           Text
+'History-library' Name.Variable
+'  '          Text
+'"'           Literal.String
+'libhistory.so.6' Literal.String
+'"'           Literal.String
+'\n            ' Text
+']'           Generic.Strong
+'\n        '  Text
+']'           Generic.Strong
+'\n        '  Text
+'#import'     Keyword.Namespace
+' '           Text
+'['           Generic.Strong
+'\n            ' Text
+'ReadLine-library' Name.Variable
+' '           Text
+'cdecl'       Keyword.Namespace
+' '           Text
+'['           Generic.Strong
+'\n                ' Text
+'read-line:'  Generic.Subheading
+' '           Text
+'"'           Literal.String
+'readline'    Literal.String
+'"'           Literal.String
+' '           Text
+'['           Generic.Strong
+'  '          Text
+'; Read a line from the console.\n' Comment
+
+'                    ' Text
+'prompt'      Name.Variable
+'          '  Text
+'['           Generic.Strong
+'c-string!'   Keyword.Type
+']'           Generic.Strong
+'\n                    ' Text
+'return:'     Generic.Subheading
+'         '   Text
+'['           Generic.Strong
+'c-string!'   Keyword.Type
+']'           Generic.Strong
+'\n                ' Text
+']'           Generic.Strong
+'\n                ' Text
+'rl-bind-key:' Generic.Subheading
+' '           Text
+'"'           Literal.String
+'rl_bind_key' Literal.String
+'"'           Literal.String
+' '           Text
+'['           Generic.Strong
+'\n                    ' Text
+'key'         Name.Variable
+'             ' Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n                    ' Text
+'command'     Name.Variable
+'         '   Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n                    ' Text
+'return:'     Generic.Subheading
+'         '   Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n                ' Text
+']'           Generic.Strong
+'\n                ' Text
+'rl-insert:'  Generic.Subheading
+'   '         Text
+'"'           Literal.String
+'rl_insert'   Literal.String
+'"'           Literal.String
+' '           Text
+'['           Generic.Strong
+'\n                    ' Text
+'count'       Name.Variable
+'           ' Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n                    ' Text
+'key'         Name.Variable
+'             ' Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n                    ' Text
+'return:'     Generic.Subheading
+'         '   Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n                ' Text
+']'           Generic.Strong
+'\n            ' Text
+']'           Generic.Strong
+'\n            ' Text
+'#if'         Keyword.Namespace
+' '           Text
+'OS'          Name.Variable
+' '           Text
+'<>'          Operator
+' '           Text
+"'MacOSX"     Name.Variable.Instance
+' '           Text
+'['           Generic.Strong
+'\n                ' Text
+'History-library' Name.Variable
+' '           Text
+'cdecl'       Keyword.Namespace
+' '           Text
+'['           Generic.Strong
+'\n                    ' Text
+'add-history:' Generic.Subheading
+' '           Text
+'"'           Literal.String
+'add_history' Literal.String
+'"'           Literal.String
+' '           Text
+'['           Generic.Strong
+'  '          Text
+'; Add line to the history.\n' Comment
+
+'                        ' Text
+'line'        Name.Variable
+'        '    Text
+'['           Generic.Strong
+'c-string!'   Keyword.Type
+']'           Generic.Strong
+'\n                    ' Text
+']'           Generic.Strong
+'\n                ' Text
+']'           Generic.Strong
+'\n            ' Text
+']'           Generic.Strong
+'\n        '  Text
+']'           Generic.Strong
+'\n\n        ' Text
+'rl-insert-wrapper:' Generic.Subheading
+' '           Text
+'func'        Name.Builtin
+' '           Text
+'['           Generic.Strong
+'\n            ' Text
+'['           Generic.Strong
+'cdecl'       Keyword.Namespace
+']'           Generic.Strong
+'\n            ' Text
+'count'       Name.Variable
+'   '         Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n            ' Text
+'key'         Name.Variable
+'     '       Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n            ' Text
+'return:'     Generic.Subheading
+' '           Text
+'['           Generic.Strong
+'integer!'    Keyword.Type
+']'           Generic.Strong
+'\n        '  Text
+']'           Generic.Strong
+'['           Generic.Strong
+'\n            ' Text
+'rl-insert'   Name.Variable
+' '           Text
+'count'       Name.Variable
+' '           Text
+'key'         Name.Variable
+'\n        '  Text
+']'           Generic.Strong
+'\n        \n    ' Text
+']'           Generic.Strong
+'\n'          Text
+
+']'           Generic.Strong
+'\n\n'        Text
+
+'Windows?:'   Generic.Subheading
+' '           Text
+'system'      Name.Exception
+'/platform'   Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+"'Windows"    Name.Variable.Instance
+'\n\n'        Text
+
+'read-argument:' Generic.Subheading
+' '           Text
+'routine'     Name.Builtin
+' '           Text
+'['           Generic.Strong
+'\n    '      Text
+'/local'      Name.Attribute
+'\n        '  Text
+'args'        Name.Variable
+' '           Text
+'['           Generic.Strong
+'str-array!'  Keyword.Type
+']'           Generic.Strong
+'\n        '  Text
+'str'         Name.Variable
+'  '          Text
+'['           Generic.Strong
+'red-string!' Keyword.Type
+']'           Generic.Strong
+'\n'          Text
+
+']'           Generic.Strong
+'['           Generic.Strong
+'\n    '      Text
+'if'          Name.Builtin
+' '           Text
+'system'      Name.Exception
+'/args-count' Name.Attribute
+' '           Text
+'<>'          Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'['           Generic.Strong
+'\n        '  Text
+'SET_RETURN'  Name.Variable
+'('           Generic.Strong
+'none-value'  Text
+')'           Generic.Strong
+'\n        '  Text
+'exit'        Name.Exception
+'\n    '      Text
+']'           Generic.Strong
+'\n    '      Text
+'args:'       Generic.Subheading
+' '           Text
+'system'      Name.Exception
+'/args-list'  Name.Attribute
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number
+'                          ' Text
+';-- skip binary filename\n' Comment
+
+'    '        Text
+'str:'        Generic.Subheading
+' '           Text
+'simple-io'   Name.Variable
+'/read-txt'   Name.Attribute
+' '           Text
+'args'        Name.Variable
+'/item'       Name.Attribute
+'\n    '      Text
+'SET_RETURN'  Name.Variable
+'('           Generic.Strong
+'str'         Text
+')'           Generic.Strong
+'\n'          Text
+
+']'           Generic.Strong
+'\n\n'        Text
+
+'init-console:' Generic.Subheading
+' '           Text
+'routine'     Name.Builtin
+' '           Text
+'['           Generic.Strong
+'\n    '      Text
+'str'         Name.Variable
+' '           Text
+'['           Generic.Strong
+'string!'     Keyword.Type
+']'           Generic.Strong
+'\n    '      Text
+'/local'      Name.Attribute
+'\n        '  Text
+'ret'         Name.Variable
+'\n'          Text
+
+']'           Generic.Strong
+'['           Generic.Strong
+'\n    '      Text
+'#either'     Keyword.Namespace
+' '           Text
+'OS'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'Windows"    Name.Variable.Instance
+' '           Text
+'['           Generic.Strong
+'\n        '  Text
+';ret: AttachConsole -1\n' Comment
+
+'        '    Text
+';if zero? ret [print-line "ReadConsole failed!" halt]\n' Comment
+
+'        \n        ' Text
+'ret:'        Generic.Subheading
+' '           Text
+'SetConsoleTitle' Name.Variable
+' '           Text
+'as'          Name.Variable
+' '           Text
+'c-string!'   Keyword.Type
+' '           Text
+'string'      Name.Variable
+'/rs-head'    Name.Attribute
+' '           Text
+'str'         Name.Variable
+'\n        '  Text
+'if'          Name.Builtin
+' '           Text
+'zero?'       Keyword
+' '           Text
+'ret'         Name.Variable
+' '           Text
+'['           Generic.Strong
+'print-line'  Name.Variable
+' '           Text
+'"'           Literal.String
+'SetConsoleTitle failed!' Literal.String
+'"'           Literal.String
+' '           Text
+'halt'        Name.Exception
+']'           Generic.Strong
+'\n    '      Text
+']'           Generic.Strong
+'['           Generic.Strong
+'\n        '  Text
+'rl-bind-key' Name.Variable
+' '           Text
+'as-integer'  Name.Variable
+' '           Text
+'tab'         Name.Builtin.Pseudo
+' '           Text
+'as-integer'  Name.Variable
+' '           Text
+':rl-insert-wrapper' Generic.Subheading
+'\n    '      Text
+']'           Generic.Strong
+'\n'          Text
+
+']'           Generic.Strong
+'\n\n'        Text
+
+'input:'      Generic.Subheading
+' '           Text
+'routine'     Name.Builtin
+' '           Text
+'['           Generic.Strong
+'\n    '      Text
+'prompt'      Name.Variable
+' '           Text
+'['           Generic.Strong
+'string!'     Keyword.Type
+']'           Generic.Strong
+'\n    '      Text
+'/local'      Name.Attribute
+'\n        '  Text
+'len'         Name.Variable
+' '           Text
+'ret'         Name.Variable
+' '           Text
+'str'         Name.Variable
+' '           Text
+'buffer'      Name.Variable
+' '           Text
+'line'        Name.Variable
+'\n'          Text
+
+']'           Generic.Strong
+'['           Generic.Strong
+'\n    '      Text
+'#either'     Keyword.Namespace
+' '           Text
+'OS'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'Windows"    Name.Variable.Instance
+' '           Text
+'['           Generic.Strong
+'\n        '  Text
+'len:'        Generic.Subheading
+' '           Text
+'0'           Literal.Number
+'\n        '  Text
+'print'       Name.Builtin
+' '           Text
+'as'          Name.Variable
+' '           Text
+'c-string!'   Keyword.Type
+' '           Text
+'string'      Name.Variable
+'/rs-head'    Name.Attribute
+' '           Text
+'prompt'      Name.Variable
+'\n        '  Text
+'ret:'        Generic.Subheading
+' '           Text
+'ReadConsole' Name.Variable
+' '           Text
+'stdin'       Name.Variable
+' '           Text
+'line-buffer' Name.Variable
+' '           Text
+'line-buffer-size' Name.Variable
+' '           Text
+':len'        Generic.Subheading
+' '           Text
+'null'        Name.Builtin.Pseudo
+'\n        '  Text
+'if'          Name.Builtin
+' '           Text
+'zero?'       Keyword
+' '           Text
+'ret'         Name.Variable
+' '           Text
+'['           Generic.Strong
+'print-line'  Name.Variable
+' '           Text
+'"'           Literal.String
+'ReadConsole failed!' Literal.String
+'"'           Literal.String
+' '           Text
+'halt'        Name.Exception
+']'           Generic.Strong
+'\n        '  Text
+'len:'        Generic.Subheading
+' '           Text
+'len'         Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number
+'\n        '  Text
+'line-buffer' Name.Variable
+'/len:'       Name.Attribute
+' '           Text
+'null-byte'   Name.Builtin.Pseudo
+'\n        '  Text
+'str:'        Generic.Subheading
+' '           Text
+'string'      Name.Variable
+'/load'       Name.Attribute
+' '           Text
+'as'          Name.Variable
+' '           Text
+'c-string!'   Keyword.Type
+' '           Text
+'line-buffer' Name.Variable
+' '           Text
+'len'         Name.Variable
+'\n    '      Text
+']'           Generic.Strong
+'['           Generic.Strong
+'\n        '  Text
+'line:'       Generic.Subheading
+' '           Text
+'read-line'   Name.Variable
+' '           Text
+'as'          Name.Variable
+' '           Text
+'c-string!'   Keyword.Type
+' '           Text
+'string'      Name.Variable
+'/rs-head'    Name.Attribute
+' '           Text
+'prompt'      Name.Variable
+'\n        '  Text
+'if'          Name.Builtin
+' '           Text
+'line'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'null'        Name.Builtin.Pseudo
+' '           Text
+'['           Generic.Strong
+'halt'        Name.Exception
+']'           Generic.Strong
+'  '          Text
+'; EOF\n'     Comment
+
+'\n         ' Text
+'#if'         Keyword.Namespace
+' '           Text
+'OS'          Name.Variable
+' '           Text
+'<>'          Operator
+' '           Text
+"'MacOSX"     Name.Variable.Instance
+' '           Text
+'['           Generic.Strong
+'add-history' Name.Variable
+' '           Text
+'line'        Name.Variable
+']'           Generic.Strong
+'\n\n        ' Text
+'str:'        Generic.Subheading
+' '           Text
+'string'      Name.Variable
+'/load'       Name.Attribute
+' '           Text
+'line'        Name.Variable
+'  '          Text
+'1'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'length?'     Name.Function
+' '           Text
+'line'        Name.Variable
+'\n'          Text
+
+';       free as byte-ptr! line\n' Comment
+
+'    '        Text
+']'           Generic.Strong
+'\n    '      Text
+'SET_RETURN'  Name.Variable
+'('           Generic.Strong
+'str'         Text
+')'           Generic.Strong
+'\n'          Text
+
+']'           Generic.Strong
+'\n\n'        Text
+
+'count-delimiters:' Generic.Subheading
+' '           Text
+'function'    Name.Builtin
+' '           Text
+'['           Generic.Strong
+'\n    '      Text
+'buffer'      Name.Variable
+'  '          Text
+'['           Generic.Strong
+'string!'     Keyword.Type
+']'           Generic.Strong
+'\n    '      Text
+'return:'     Generic.Subheading
+' '           Text
+'['           Generic.Strong
+'block!'      Keyword.Type
+']'           Generic.Strong
+'\n'          Text
+
+']'           Generic.Strong
+'['           Generic.Strong
+'\n    '      Text
+'list:'       Generic.Subheading
+' '           Text
+'copy'        Name.Function
+' '           Text
+'['           Generic.Strong
+'0'           Literal.Number
+' '           Text
+'0'           Literal.Number
+']'           Generic.Strong
+'\n    '      Text
+'c:'          Generic.Subheading
+' '           Text
+'none'        Name.Builtin.Pseudo
+'\n    \n    ' Text
+'foreach'     Name.Builtin
+' '           Text
+'c'           Name.Variable
+' '           Text
+'buffer'      Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n        '  Text
+'case'        Name.Builtin
+' '           Text
+'['           Generic.Strong
+'\n            ' Text
+'escaped?'    Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n                ' Text
+'escaped?:'   Generic.Subheading
+' '           Text
+'no'          Name.Builtin.Pseudo
+'\n            ' Text
+']'           Generic.Strong
+'\n            ' Text
+'in-comment?' Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n                ' Text
+'switch'      Name.Builtin
+' '           Text
+'c'           Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n                    ' Text
+'#"'          Literal.String.Char
+'^/"'         Literal.String.Char
+' '           Text
+'['           Generic.Strong
+'in-comment?:' Generic.Subheading
+' '           Text
+'no'          Name.Builtin.Pseudo
+']'           Generic.Strong
+'\n                ' Text
+']'           Generic.Strong
+'\n            ' Text
+']'           Generic.Strong
+'\n            ' Text
+"'else"       Name.Variable.Instance
+' '           Text
+'['           Generic.Strong
+'\n                ' Text
+'switch'      Name.Builtin
+' '           Text
+'c'           Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n                    ' Text
+'#"'          Literal.String.Char
+'^^"'         Literal.String.Char
+' '           Text
+'['           Generic.Strong
+'escaped?:'   Generic.Subheading
+' '           Text
+'yes'         Name.Builtin.Pseudo
+']'           Generic.Strong
+'\n                    ' Text
+'#"'          Literal.String.Char
+';"'          Literal.String.Char
+'  '          Text
+'['           Generic.Strong
+'if'          Name.Builtin
+' '           Text
+'zero?'       Keyword
+' '           Text
+'list'        Name.Variable
+'/2'          Name.Attribute
+' '           Text
+'['           Generic.Strong
+'in-comment?:' Generic.Subheading
+' '           Text
+'yes'         Name.Builtin.Pseudo
+']'           Generic.Strong
+']'           Generic.Strong
+'\n                    ' Text
+'#"'          Literal.String.Char
+'["'          Literal.String.Char
+'  '          Text
+'['           Generic.Strong
+'list'        Name.Variable
+'/1:'         Name.Attribute
+' '           Text
+'list'        Name.Variable
+'/1'          Name.Attribute
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number
+']'           Generic.Strong
+'\n                    ' Text
+'#"'          Literal.String.Char
+']"'          Literal.String.Char
+'  '          Text
+'['           Generic.Strong
+'list'        Name.Variable
+'/1:'         Name.Attribute
+' '           Text
+'list'        Name.Variable
+'/1'          Name.Attribute
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number
+']'           Generic.Strong
+'\n                    ' Text
+'#"'          Literal.String.Char
+'{"'          Literal.String.Char
+'  '          Text
+'['           Generic.Strong
+'list'        Name.Variable
+'/2:'         Name.Attribute
+' '           Text
+'list'        Name.Variable
+'/2'          Name.Attribute
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number
+']'           Generic.Strong
+'\n                    ' Text
+'#"'          Literal.String.Char
+'}"'          Literal.String.Char
+'  '          Text
+'['           Generic.Strong
+'list'        Name.Variable
+'/2:'         Name.Attribute
+' '           Text
+'list'        Name.Variable
+'/2'          Name.Attribute
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number
+']'           Generic.Strong
+'\n                ' Text
+']'           Generic.Strong
+'\n            ' Text
+']'           Generic.Strong
+'\n        '  Text
+']'           Generic.Strong
+'\n    '      Text
+']'           Generic.Strong
+'\n    '      Text
+'list'        Name.Variable
+'\n'          Text
+
+']'           Generic.Strong
+'\n\n'        Text
+
+'do-console:' Generic.Subheading
+' '           Text
+'function'    Name.Builtin
+' '           Text
+'['           Generic.Strong
+']'           Generic.Strong
+'['           Generic.Strong
+'\n    '      Text
+'buffer:'     Generic.Subheading
+' '           Text
+'make'        Name.Function
+' '           Text
+'string!'     Keyword.Type
+' '           Text
+'10000'       Literal.Number
+'\n    '      Text
+'prompt:'     Generic.Subheading
+' '           Text
+'red-prompt:' Generic.Subheading
+' '           Text
+'"'           Literal.String
+'red>> '      Literal.String
+'"'           Literal.String
+'\n    '      Text
+'mode:'       Generic.Subheading
+'  '          Text
+"'mono"       Name.Variable.Instance
+'\n    \n    ' Text
+'switch-mode:' Generic.Subheading
+' '           Text
+'['           Generic.Strong
+'\n        '  Text
+'mode:'       Generic.Subheading
+' '           Text
+'case'        Name.Builtin
+' '           Text
+'['           Generic.Strong
+'\n            ' Text
+'cnt'         Name.Variable
+'/1'          Name.Attribute
+' '           Text
+'>'           Name.Variable
+' '           Text
+'0'           Literal.Number
+' '           Text
+'['           Generic.Strong
+"'block"      Name.Variable.Instance
+']'           Generic.Strong
+'\n            ' Text
+'cnt'         Name.Variable
+'/2'          Name.Attribute
+' '           Text
+'>'           Name.Variable
+' '           Text
+'0'           Literal.Number
+' '           Text
+'['           Generic.Strong
+"'string"     Name.Variable.Instance
+']'           Generic.Strong
+'\n            ' Text
+"'else"       Name.Variable.Instance
+'     '       Text
+'['           Generic.Strong
+'\n                ' Text
+'prompt:'     Generic.Subheading
+' '           Text
+'red-prompt'  Name.Variable
+'\n                ' Text
+'do'          Name.Exception
+' '           Text
+'eval'        Name.Variable
+'\n                ' Text
+"'mono"       Name.Variable.Instance
+'\n            ' Text
+']'           Generic.Strong
+'\n        '  Text
+']'           Generic.Strong
+'\n        '  Text
+'prompt:'     Generic.Subheading
+' '           Text
+'switch'      Name.Builtin
+' '           Text
+'mode'        Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n            ' Text
+'block'       Name.Variable
+'  '          Text
+'['           Generic.Strong
+'"'           Literal.String
+'['           Literal.String
+'^-'          Literal.String.Escape
+'"'           Literal.String
+']'           Generic.Strong
+'\n            ' Text
+'string'      Name.Variable
+' '           Text
+'['           Generic.Strong
+'"'           Literal.String
+'{'           Literal.String
+'^-'          Literal.String.Escape
+'"'           Literal.String
+']'           Generic.Strong
+'\n            ' Text
+'mono'        Name.Variable
+'   '         Text
+'['           Generic.Strong
+'red-prompt'  Name.Variable
+']'           Generic.Strong
+'\n        '  Text
+']'           Generic.Strong
+'\n    '      Text
+']'           Generic.Strong
+'\n    \n    ' Text
+'eval:'       Generic.Subheading
+' '           Text
+'['           Generic.Strong
+'\n        '  Text
+'code:'       Generic.Subheading
+' '           Text
+'load'        Name.Exception
+'/all'        Name.Attribute
+' '           Text
+'buffer'      Name.Variable
+'\n        \n        ' Text
+'unless'      Name.Builtin
+' '           Text
+'tail?'       Name.Function
+' '           Text
+'code'        Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n            ' Text
+'set'         Name.Builtin
+'/any'        Name.Attribute
+' '           Text
+"'result"     Name.Variable.Instance
+' '           Text
+'do'          Name.Exception
+' '           Text
+'code'        Name.Variable
+'\n            \n            ' Text
+'unless'      Name.Builtin
+' '           Text
+'unset?'      Keyword
+' '           Text
+':result'     Generic.Subheading
+' '           Text
+'['           Generic.Strong
+'\n                ' Text
+'if'          Name.Builtin
+' '           Text
+'67'          Literal.Number
+' '           Text
+'='           Operator
+' '           Text
+'length?'     Name.Function
+' '           Text
+'result:'     Generic.Subheading
+' '           Text
+'mold'        Name.Function
+'/part'       Name.Attribute
+' '           Text
+':result'     Generic.Subheading
+' '           Text
+'67'          Literal.Number
+' '           Text
+'['           Generic.Strong
+'  '          Text
+';-- optimized for width = 72\n' Comment
+
+'                    ' Text
+'clear'       Name.Function
+' '           Text
+'back'        Name.Function
+' '           Text
+'tail'        Name.Function
+' '           Text
+'result'      Name.Variable
+'\n                    ' Text
+'append'      Name.Function
+' '           Text
+'result'      Name.Variable
+' '           Text
+'"'           Literal.String
+'...'         Literal.String
+'"'           Literal.String
+'\n                ' Text
+']'           Generic.Strong
+'\n                ' Text
+'print'       Name.Builtin
+' '           Text
+'['           Generic.Strong
+'"'           Literal.String
+'=='          Literal.String
+'"'           Literal.String
+' '           Text
+'result'      Name.Variable
+']'           Generic.Strong
+'\n            ' Text
+']'           Generic.Strong
+'\n        '  Text
+']'           Generic.Strong
+'\n        '  Text
+'clear'       Name.Function
+' '           Text
+'buffer'      Name.Variable
+'\n    '      Text
+']'           Generic.Strong
+'\n\n    '    Text
+'while'       Name.Builtin
+' '           Text
+'['           Generic.Strong
+'true'        Name.Builtin.Pseudo
+']'           Generic.Strong
+'['           Generic.Strong
+'\n        '  Text
+'unless'      Name.Builtin
+' '           Text
+'tail?'       Name.Function
+' '           Text
+'line:'       Generic.Subheading
+' '           Text
+'input'       Name.Variable
+' '           Text
+'prompt'      Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n            ' Text
+'append'      Name.Function
+' '           Text
+'buffer'      Name.Variable
+' '           Text
+'line'        Name.Variable
+'\n            ' Text
+'cnt:'        Generic.Subheading
+' '           Text
+'count-delimiters' Name.Variable
+' '           Text
+'buffer'      Name.Variable
+'\n\n            ' Text
+'either'      Name.Builtin
+' '           Text
+'Windows?'    Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n                ' Text
+'remove'      Name.Function
+' '           Text
+'skip'        Name.Function
+' '           Text
+'tail'        Name.Function
+' '           Text
+'buffer'      Name.Variable
+' '           Text
+'-2'          Literal.Number
+'          '  Text
+';-- clear extra CR (Windows)\n' Comment
+
+'            ' Text
+']'           Generic.Strong
+'['           Generic.Strong
+'\n                ' Text
+'append'      Name.Function
+' '           Text
+'buffer'      Name.Variable
+' '           Text
+'lf'          Name.Builtin.Pseudo
+'                    ' Text
+';-- Unix\n'  Comment
+
+'            ' Text
+']'           Generic.Strong
+'\n            \n            ' Text
+'switch'      Name.Builtin
+' '           Text
+'mode'        Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n                ' Text
+'block'       Name.Variable
+'  '          Text
+'['           Generic.Strong
+'if'          Name.Builtin
+' '           Text
+'cnt'         Name.Variable
+'/1'          Name.Attribute
+' '           Text
+'<='          Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+'['           Generic.Strong
+'do'          Name.Exception
+' '           Text
+'switch-mode' Name.Variable
+']'           Generic.Strong
+']'           Generic.Strong
+'\n                ' Text
+'string'      Name.Variable
+' '           Text
+'['           Generic.Strong
+'if'          Name.Builtin
+' '           Text
+'cnt'         Name.Variable
+'/2'          Name.Attribute
+' '           Text
+'<='          Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+'['           Generic.Strong
+'do'          Name.Exception
+' '           Text
+'switch-mode' Name.Variable
+']'           Generic.Strong
+']'           Generic.Strong
+'\n                ' Text
+'mono'        Name.Variable
+'   '         Text
+'['           Generic.Strong
+'do'          Name.Exception
+' '           Text
+'either'      Name.Builtin
+' '           Text
+'any'         Name.Builtin
+' '           Text
+'['           Generic.Strong
+'cnt'         Name.Variable
+'/1'          Name.Attribute
+' '           Text
+'>'           Name.Variable
+' '           Text
+'0'           Literal.Number
+' '           Text
+'cnt'         Name.Variable
+'/2'          Name.Attribute
+' '           Text
+'>'           Name.Variable
+' '           Text
+'0'           Literal.Number
+']'           Generic.Strong
+'['           Generic.Strong
+'switch-mode' Name.Variable
+']'           Generic.Strong
+'['           Generic.Strong
+'eval'        Name.Variable
+']'           Generic.Strong
+']'           Generic.Strong
+'\n            ' Text
+']'           Generic.Strong
+'\n        '  Text
+']'           Generic.Strong
+'\n    '      Text
+']'           Generic.Strong
+'\n'          Text
+
+']'           Generic.Strong
+'\n\n'        Text
+
+'q:'          Generic.Subheading
+' '           Text
+':quit'       Generic.Subheading
+'\n\n'        Text
+
+'if'          Name.Builtin
+' '           Text
+'script:'     Generic.Subheading
+' '           Text
+'read-argument' Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n    '      Text
+'script:'     Generic.Subheading
+' '           Text
+'load'        Name.Exception
+' '           Text
+'script'      Name.Variable
+'\n    '      Text
+'either'      Name.Builtin
+' '           Text
+'any'         Name.Builtin
+' '           Text
+'['           Generic.Strong
+'\n        '  Text
+'script'      Name.Variable
+'/1'          Name.Attribute
+' '           Text
+'<>'          Operator
+' '           Text
+"'Red"        Name.Variable.Instance
+'\n        '  Text
+'not'         Name.Builtin
+' '           Text
+'block?'      Keyword
+' '           Text
+'script'      Name.Variable
+'/2'          Name.Attribute
+' \n    '     Text
+']'           Generic.Strong
+'['           Generic.Strong
+'\n        '  Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'*** Error: not a Red program!' Literal.String
+'"'           Literal.String
+'\n    '      Text
+']'           Generic.Strong
+'['           Generic.Strong
+'\n        '  Text
+'do'          Name.Exception
+' '           Text
+'skip'        Name.Function
+' '           Text
+'script'      Name.Variable
+' '           Text
+'2'           Literal.Number
+'\n    '      Text
+']'           Generic.Strong
+'\n    '      Text
+'quit'        Name.Exception
+'\n'          Text
+
+']'           Generic.Strong
+'\n\n'        Text
+
+'init-console' Name.Variable
+' '           Text
+'"'           Literal.String
+'Red Console' Literal.String
+'"'           Literal.String
+'\n\n'        Text
+
+'print'       Name.Builtin
+' '           Text
+'{'           Literal.String
+'\n-=== Red Console alpha version ===-\n' Literal.String
+
+'('           Literal.String
+'only ASCII input supported' Literal.String
+')'           Literal.String
+'\n'          Literal.String
+
+'}'           Literal.String
+'\n\n'        Text
+
+'do-console'  Name.Variable
+'\n'          Text

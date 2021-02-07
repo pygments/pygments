@@ -1,0 +1,1631 @@
+'/*'          Comment.Multiline
+'\n'          Comment.Multiline
+
+'m'           Comment.Multiline
+'u'           Comment.Multiline
+'l'           Comment.Multiline
+'t'           Comment.Multiline
+'i'           Comment.Multiline
+'l'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'c'           Comment.Multiline
+'o'           Comment.Multiline
+'m'           Comment.Multiline
+'m'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'m'           Comment.Multiline
+'s'           Comment.Multiline
+'g'           Comment.Multiline
+'b'           Comment.Multiline
+'o'           Comment.Multiline
+'x'           Comment.Multiline
+'('           Comment.Multiline
+'c'           Comment.Multiline
+'o'           Comment.Multiline
+'m'           Comment.Multiline
+'m'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+')'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text
+
+'send'        Name.Builtin
+','           Punctuation
+' '           Text
+'key'         Name
+'['           Punctuation
+'pgdn'        Name
+']'           Punctuation
+'\n'          Text
+
+'string'      Name
+' '           Text
+':='          Operator
+' '           Text
+'"'           Literal.String
+'hello'       Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'.'           Operator
+' '           Text
+'"'           Literal.String
+'world!'      Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'string'      Name
+' '           Text
+':='          Operator
+' '           Text
+'"'           Literal.String
+'hello '      Literal.String
+'""'          Literal.String.Escape
+'world'       Literal.String
+'""'          Literal.String.Escape
+'! '          Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'string'      Name
+' '           Text
+':='          Operator
+' '           Text
+'"'           Literal.String
+'hello `'     Literal.String
+'"'           Literal.String
+'world'       Name
+'"'           Literal.String
+'"'           Literal.String
+'!'           Operator
+' '           Text
+'"'           Literal.String
+'\n'          Text
+
+'; single line comment1' Comment.Single
+'\n;;;  single line comment2' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'::stopi::'   Name.Label
+'viper_off'   Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+' '           Text
+'\n'          Text
+
+'\n'          Text
+
+'a::'         Name.Label
+'send'        Name
+','           Punctuation
+' '           Text
+'^'           Operator
+'a'           Name
+'\n'          Text
+
+'mylabel:'    Name.Label
+'send'        Name
+','           Punctuation
+' '           Text
+'^'           Operator
+'{'           Punctuation
+'space'       Name
+'}'           Punctuation
+'  ;; set mark' Comment.Single
+'\n'          Text
+
+'e::'         Name.Label
+'send'        Name
+','           Punctuation
+' '           Text
+'^'           Operator
+'e'           Name
+'\n'          Text
+
+'n::'         Name.Label
+'\n'          Text
+
+'  '          Text
+'send'        Name.Builtin
+','           Punctuation
+' '           Text
+'^'           Operator
+'n'           Name
+'\n'          Text
+
+'  '          Text
+'return'      Name.Builtin
+'\n'          Text
+
+'!'           Operator
+'i'           Name
+':'           Operator
+':'           Operator
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+'viper'       Name
+'('           Punctuation
+'"'           Literal.String
+'iviper'      Literal.String
+'"'           Literal.String
+')'           Punctuation
+'   ; stdlib' Comment.Single
+'\n'          Text
+
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'viper'       Literal.String
+'""'          Literal.String.Escape
+' '           Literal.String
+'"'           Literal.String
+'  ; escaped quote' Comment.Single
+'\n'          Text
+
+'Return'      Name.Builtin
+'\n'          Text
+
+'#If'         Name
+' '           Text
+'WinExist'    Name.Function
+'('           Punctuation
+'"'           Literal.String
+'iviper'      Literal.String
+'"'           Literal.String
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'indexdir'    Name
+' '           Text
+'='           Operator
+' '           Text
+'%A_ScriptDir%' Name.Variable
+'\\'          Text
+'%dir%'       Name.Variable
+'\n'          Text
+
+'FileCreateDir' Name.Builtin
+','           Punctuation
+' '           Text
+'%'           Operator
+' '           Text
+'indexdir'    Name
+'\n'          Text
+
+'fileindex'   Name
+' '           Text
+'='           Operator
+' '           Text
+'%indexdir%'  Name.Variable
+'\\'          Text
+'_files'      Name
+'\n'          Text
+
+'FileSelectFile' Name.Builtin
+','           Punctuation
+' '           Text
+'file'        Name
+','           Punctuation
+','           Punctuation
+','           Punctuation
+' '           Text
+'Select'      Name
+' '           Text
+'an'          Name
+' '           Text
+'image'       Name
+':'           Operator
+','           Punctuation
+' '           Text
+'Images'      Name
+' '           Text
+'('           Punctuation
+'*'           Operator
+'.'           Operator
+'gif'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'jpg'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'bmp'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'png'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'tif'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'ico'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'cur'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'ani'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'exe'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'dll'         Name
+')'           Punctuation
+'\n\n; viper' Comment.Single
+'\n'          Text
+
+'\n\n'        Text
+
+'i::'         Name.Label
+'viper_off'   Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'\n'          Text
+
+'#If'         Name
+'\n\n;; keybindings' Comment.Single
+'\n'          Text
+
+'#If'         Name
+' '           Text
+'WinExist'    Name.Function
+'('           Punctuation
+'"'           Literal.String
+'iviper'      Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+'and'         Operator.Word
+' '           Text
+'WinActive'   Name.Function
+'('           Punctuation
+'"'           Literal.String
+'ahk_class Emacs' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'p::'         Name.Label
+'\n'          Text
+
+'k::'         Name.Label
+'\n'          Text
+
+'send'        Name.Builtin
+','           Punctuation
+' '           Text
+'^'           Operator
+'p'           Name
+'\n'          Text
+
+'return'      Name.Builtin
+'\n'          Text
+
+','           Punctuation
+':'           Operator
+':'           Operator
+'send'        Name
+','           Punctuation
+' '           Text
+'+'           Operator
+'!'           Operator
+','           Punctuation
+'  ;; beginning of page' Comment.Single
+'\n'          Text
+
+'.'           Operator
+':'           Operator
+':'           Operator
+'send'        Name
+','           Punctuation
+' '           Text
+'+'           Operator
+'!'           Operator
+'.'           Operator
+'  ;; end of page' Comment.Single
+'\n'          Text
+
+'['           Punctuation
+':'           Operator
+':'           Operator
+'send'        Name
+','           Punctuation
+' '           Text
+'!'           Operator
+'a'           Name
+'\n'          Text
+
+']'           Punctuation
+':'           Operator
+':'           Operator
+'send'        Name
+','           Punctuation
+' '           Text
+'!'           Operator
+'e'           Name
+' '           Text
+' '           Text
+'\n'          Text
+
+'d::'         Name.Label
+' '           Text
+'^'           Operator
+'k'           Name
+'  ;; kill line' Comment.Single
+'\n'          Text
+
+'x::'         Name.Label
+' '           Text
+'send'        Name
+' '           Text
+'^'           Operator
+'d'           Name
+'\n'          Text
+
+'\\::'        Name.Label
+' '           Text
+'^'           Operator
+'!'           Operator
+'k'           Name
+'  ;; kill next word or sexp' Comment.Single
+'\n'          Text
+
+'\n\n'        Text
+
+'#IfWinActive' Name.Builtin
+'\n'          Text
+
+'#Persistent' Name.Builtin
+'\n'          Text
+
+'  \n'        Text
+
+'F2::'        Name.Label
+'     ;; hotkey' Comment.Single
+'\n'          Text
+
+'start:'      Name.Label
+'   ;; label' Comment.Single
+'\n'          Text
+
+'start2:'     Name.Label
+'   ; label'  Comment.Single
+'\n'          Text
+
+' '           Text
+' '           Text
+'ppm'         Name
+' '           Text
+':='          Operator
+' '           Text
+'ppm_new'     Name
+'('           Punctuation
+'50'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'50'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'255'         Literal.Number.Integer
+')'           Punctuation
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'ppm_fill'    Name
+'('           Punctuation
+'ppm'         Name
+','           Punctuation
+' '           Text
+'80'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'90'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'95'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+'  '          Text
+'msgbox'      Name.Builtin
+' '           Text
+'%'           Operator
+' '           Text
+'getPixel'    Name
+'('           Punctuation
+'ppm'         Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'setPixel'    Name
+'('           Punctuation
+'90'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'90'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'90'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'ppm'         Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'msgbox'      Name.Builtin
+' '           Text
+'%'           Operator
+' '           Text
+'getPixel'    Name
+'('           Punctuation
+'ppm'         Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'ListVars'    Name.Builtin
+'  ; command' Comment.Single
+'\n'          Text
+
+'  '          Text
+'msgbox'      Name.Builtin
+' '           Text
+'%'           Operator
+' '           Text
+'ppm'         Name
+'\n'          Text
+
+'  '          Text
+'return'      Name.Builtin
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'ppm_read'    Name
+'('           Punctuation
+'file'        Name
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'fileread'    Name.Builtin
+','           Punctuation
+' '           Text
+'ppm'         Name
+','           Punctuation
+' '           Text
+'%'           Operator
+' '           Text
+'file'        Name
+'\n'          Text
+
+' '           Text
+'return'      Name.Builtin
+' '           Text
+'ppm'         Name
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'::hotstring::' Name.Label
+'\n'          Text
+
+':'           Operator
+':'           Operator
+'hot3'        Name
+':'           Operator
+':'           Operator
+'\n'          Text
+
+'ppm_width'   Name
+'('           Punctuation
+'ppm'         Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+'regexmatch'  Name.Function
+'('           Punctuation
+'ppm'         Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'\\R(\\d+)\\s(\\d+)' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'dim'         Name
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+'return'      Name.Builtin
+' '           Text
+'dim1'        Name
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'ppm_height'  Name
+'('           Punctuation
+'ppm'         Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+'regexmatch'  Name.Function
+'('           Punctuation
+'ppm'         Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'\\R(\\d+)\\s(\\d+)' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'dim'         Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Name.Builtin
+' '           Text
+'dim2'        Name
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'\n'          Text
+
+'\n'          Text
+
+'ppm_colors'  Name
+'('           Punctuation
+'ppm'         Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'regexmatch'  Name.Function
+'('           Punctuation
+'ppm'         Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'\\R(\\d+)\\D*\\R' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'colors'      Name
+')'           Punctuation
+'  ; \\R stands for any' Comment.Single
+'\n'          Text
+
+'return'      Name.Builtin
+' '           Text
+'colors1'     Name
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'ppm_data'    Name
+'('           Punctuation
+'ppm'         Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'pos'         Name
+' '           Text
+':='          Operator
+' '           Text
+' '           Text
+'regexmatch'  Name.Function
+'('           Punctuation
+'ppm'         Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'\\R(\\d+)\\D*\\R' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'colors'      Name
+')'           Punctuation
+'  ; \\R stands for any newline' Comment.Single
+'\n'          Text
+
+'stringtrimleft' Name.Builtin
+','           Punctuation
+' '           Text
+'data'        Name
+','           Punctuation
+' '           Text
+'ppm'         Name
+','           Punctuation
+' '           Text
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'strlen'      Name.Function
+'('           Punctuation
+'colors1'     Name
+')'           Punctuation
+'\n'          Text
+
+'return'      Name.Builtin
+' '           Text
+'data'        Name
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'ppm_header'  Name
+'('           Punctuation
+'ppm'         Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'pos'         Name
+' '           Text
+':='          Operator
+' '           Text
+' '           Text
+'regexmatch'  Name.Function
+'('           Punctuation
+'ppm'         Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'\\R(\\d+)\\D*\\R' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'colors'      Name
+')'           Punctuation
+'  ; \\R stands for any newline' Comment.Single
+'\n'          Text
+
+'stringleft'  Name.Builtin
+','           Punctuation
+' '           Text
+'header'      Name
+','           Punctuation
+' '           Text
+'ppm'         Name
+','           Punctuation
+' '           Text
+'pos'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'strlen'      Name.Function
+'('           Punctuation
+'colors1'     Name
+')'           Punctuation
+'\n'          Text
+
+'return'      Name.Builtin
+' '           Text
+'header'      Name
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'ppm_fill'    Name
+'('           Punctuation
+'ByRef'       Name
+' '           Text
+'ppm'         Name
+','           Punctuation
+' '           Text
+'r'           Name
+','           Punctuation
+' '           Text
+'g'           Name
+','           Punctuation
+' '           Text
+'b'           Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'width'       Name
+' '           Text
+':='          Operator
+' '           Text
+'ppm_width'   Name
+'('           Punctuation
+'ppm'         Name
+')'           Punctuation
+'\t'          Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'height'      Name
+' '           Text
+':='          Operator
+' '           Text
+'ppm_height'  Name
+'('           Punctuation
+'ppm'         Name
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'header'      Name
+' '           Text
+':='          Operator
+' '           Text
+'ppm_header'  Name
+'('           Punctuation
+'ppm'         Name
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'headerLength' Name
+' '           Text
+':='          Operator
+' '           Text
+'strlen'      Name.Function
+'('           Punctuation
+'header'      Name
+')'           Punctuation
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'varsetcapacity' Name.Function
+'('           Punctuation
+'data'        Name
+','           Punctuation
+' '           Text
+'width'       Name
+' '           Text
+'*'           Operator
+' '           Text
+'height'      Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'loop'        Name.Builtin
+','           Punctuation
+' '           Text
+'%'           Operator
+' '           Text
+'('           Punctuation
+'width'       Name
+' '           Text
+'*'           Operator
+' '           Text
+'height'      Name
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if '         Name.Builtin
+'r'           Name
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+'numput'      Name.Function
+'('           Punctuation
+'r'           Name
+','           Punctuation
+' '           Text
+'data'        Name
+','           Punctuation
+' '           Text
+'('           Punctuation
+'A_Index'     Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'uchar'       Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+'if '         Name.Builtin
+'g'           Name
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+'numput'      Name.Function
+'('           Punctuation
+'g'           Name
+','           Punctuation
+' '           Text
+'data'        Name
+','           Punctuation
+' '           Text
+'('           Punctuation
+'A_Index'     Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'uchar'       Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+'if '         Name.Builtin
+'b'           Name
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+'numput'      Name.Function
+'('           Punctuation
+'b'           Name
+','           Punctuation
+' '           Text
+'data'        Name
+','           Punctuation
+' '           Text
+'('           Punctuation
+'A_Index'     Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'uchar'       Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'VarCopy'     Name
+'('           Punctuation
+'&'           Operator
+'ppm'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'headerLength' Name
+','           Punctuation
+' '           Text
+'&'           Operator
+'data'        Name
+','           Punctuation
+' '           Text
+'width'       Name
+' '           Text
+'*'           Operator
+' '           Text
+'height'      Name
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'ppm_new'     Name
+'('           Punctuation
+'width'       Name
+','           Punctuation
+' '           Text
+'height'      Name
+','           Punctuation
+' '           Text
+'colors'      Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'header'      Name
+' '           Text
+'='           Operator
+' '           Text
+'P6'          Name
+'`n'          Literal.String.Escape
+'%width%'     Name.Variable
+' '           Text
+'%height%'    Name.Variable
+'`n'          Literal.String.Escape
+'%colors%'    Name.Variable
+'`n'          Literal.String.Escape
+'\n'          Text
+
+' '           Text
+' '           Text
+'headerLength' Name
+' '           Text
+':='          Operator
+' '           Text
+'strlen'      Name.Function
+'('           Punctuation
+'header'      Name
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'varsetcapacity' Name.Function
+'('           Punctuation
+'ppm'         Name
+','           Punctuation
+' '           Text
+'width'       Name
+' '           Text
+'*'           Operator
+' '           Text
+'height'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'headerLength' Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'varsetcapacity' Name.Function
+'('           Punctuation
+'data'        Name
+','           Punctuation
+' '           Text
+'width'       Name
+' '           Text
+'*'           Operator
+' '           Text
+'height'      Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'VarCopy'     Name
+'('           Punctuation
+'&'           Operator
+'ppm'         Name
+','           Punctuation
+' '           Text
+'&'           Operator
+'header'      Name
+','           Punctuation
+' '           Text
+'headerLength' Name
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'VarCopy'     Name
+'('           Punctuation
+'&'           Operator
+'ppm'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'headerLength' Name
+','           Punctuation
+' '           Text
+'&'           Operator
+'data'        Name
+','           Punctuation
+' '           Text
+'width'       Name
+' '           Text
+'*'           Operator
+' '           Text
+'height'      Name
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'return'      Name.Builtin
+' '           Text
+'ppm'         Name
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'heredoc'     Name
+' '           Text
+'='           Operator
+' '           Text
+'\n'          Text
+
+'('           Generic
+'\n'          Generic
+
+' '           Generic
+' '           Generic
+'P'           Generic
+'6'           Generic
+'\n'          Generic
+
+' '           Generic
+' '           Generic
+'#'           Generic
+' '           Generic
+'l'           Generic
+'a'           Generic
+'s'           Generic
+'d'           Generic
+'j'           Generic
+'k'           Generic
+'f'           Generic
+'\n'          Generic
+
+' '           Generic
+' '           Generic
+'8'           Generic
+'7'           Generic
+' '           Generic
+'0'           Generic
+'9'           Generic
+'\n'          Generic
+
+' '           Generic
+' '           Generic
+'2'           Generic
+'5'           Generic
+'5'           Generic
+'\n'          Generic
+
+' '           Generic
+' '           Generic
+'c'           Generic
+'o'           Generic
+'l'           Generic
+'o'           Generic
+'r'           Generic
+' '           Generic
+'d'           Generic
+'a'           Generic
+'t'           Generic
+'a'           Generic
+'.'           Generic
+'.'           Generic
+'.'           Generic
+'\n'          Generic
+
+')'           Generic
+'\n\n; Example: Simple image viewer:' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'Gui'         Name.Builtin
+','           Punctuation
+' '           Text
+'+'           Operator
+'Resize'      Name
+'\n'          Text
+
+'Gui'         Name.Builtin
+','           Punctuation
+' '           Text
+'Add'         Name
+','           Punctuation
+' '           Text
+'Button'      Name
+','           Punctuation
+' '           Text
+'default'     Name
+','           Punctuation
+' '           Text
+'&'           Operator
+'Load'        Name
+' '           Text
+'New'         Name
+' '           Text
+'Image'       Name
+'\n'          Text
+
+'Gui'         Name.Builtin
+','           Punctuation
+' '           Text
+'Add'         Name
+','           Punctuation
+' '           Text
+'Radio'       Name
+','           Punctuation
+' '           Text
+'ym'          Name
+'+'           Operator
+'5'           Literal.Number.Integer
+' '           Text
+'x'           Name
+'+'           Operator
+'10'          Literal.Number.Integer
+' '           Text
+'vRadio'      Name
+' '           Text
+'checked'     Name
+','           Punctuation
+' '           Text
+'Load'        Name
+' '           Text
+'&'           Operator
+'actual'      Name
+' '           Text
+'size'        Name
+'\n'          Text
+
+'Gui'         Name.Builtin
+','           Punctuation
+' '           Text
+'Add'         Name
+','           Punctuation
+' '           Text
+'Radio'       Name
+','           Punctuation
+' '           Text
+'ym'          Name
+'+'           Operator
+'5'           Literal.Number.Integer
+' '           Text
+'x'           Name
+'+'           Operator
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'Load'        Name
+' '           Text
+'to'          Name
+' '           Text
+'&'           Operator
+'fit'         Name
+' '           Text
+'screen'      Name
+'\n'          Text
+
+'Gui'         Name.Builtin
+','           Punctuation
+' '           Text
+'Add'         Name
+','           Punctuation
+' '           Text
+'Pic'         Name
+','           Punctuation
+' '           Text
+'xm'          Name
+' '           Text
+'vPic'        Name
+'\n'          Text
+
+'Gui'         Name.Builtin
+','           Punctuation
+' '           Text
+'Show'        Name
+'\n'          Text
+
+'return'      Name.Builtin
+'\n'          Text
+
+'\n'          Text
+
+'ButtonLoadNewImage:' Name.Label
+'\n'          Text
+
+'FileSelectFile' Name.Builtin
+','           Punctuation
+' '           Text
+'file'        Name
+','           Punctuation
+','           Punctuation
+','           Punctuation
+' '           Text
+'Select'      Name
+' '           Text
+'an'          Name
+' '           Text
+'image'       Name
+':'           Operator
+','           Punctuation
+' '           Text
+'Images'      Name
+' '           Text
+'('           Punctuation
+'*'           Operator
+'.'           Operator
+'gif'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'jpg'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'bmp'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'png'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'tif'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'ico'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'cur'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'ani'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'exe'         Name
+';'           Punctuation
+' '           Text
+'*'           Operator
+'.'           Operator
+'dll'         Name
+')'           Punctuation
+'\n'          Text
+
+'if '         Name.Builtin
+'file'        Name
+' '           Text
+'='           Operator
+'\n'          Text
+
+'    '        Text
+'return'      Name.Builtin
+'\n'          Text
+
+'Gui'         Name.Builtin
+','           Punctuation
+' '           Text
+'Submit'      Name
+','           Punctuation
+' '           Text
+'NoHide'      Name
+' ; Save the values of the radio buttons.' Comment.Single
+'\n'          Text
+
+'if '         Name.Builtin
+'Radio'       Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'  ; Display image at its actual size.' Comment.Single
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Width'       Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Height'      Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'else'        Name.Builtin
+' ; Second radio is selected: Resize the image to fit the screen.' Comment.Single
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Width'       Name
+' '           Text
+':='          Operator
+' '           Text
+'A_ScreenWidth' Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'28'          Literal.Number.Integer
+'  ; Minus 28 to allow room for borders and margins inside.' Comment.Single
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'Height'      Name
+' '           Text
+'='           Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+'  ; "Keep aspect ratio" seems best.' Comment.Single
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'GuiControl'  Name.Builtin
+','           Punctuation
+','           Punctuation
+' '           Text
+'Pic'         Name
+','           Punctuation
+' '           Text
+'*'           Operator
+'w'           Name
+'%width%'     Name.Variable
+' '           Text
+'*'           Operator
+'h'           Name
+'%height%'    Name.Variable
+' '           Text
+'%file%'      Name.Variable
+'  ; Load the image.' Comment.Single
+'\n'          Text
+
+'Gui'         Name.Builtin
+','           Punctuation
+' '           Text
+'Show'        Name
+','           Punctuation
+' '           Text
+'xCenter'     Name
+' '           Text
+'y0'          Name
+' '           Text
+'AutoSize'    Name
+','           Punctuation
+' '           Text
+'%file%'      Name.Variable
+'  ; Resize the window to match the picture size.' Comment.Single
+'\n'          Text
+
+'return'      Name.Builtin
+'\n'          Text
+
+'\n'          Text
+
+'GuiClose:'   Name.Label
+'\n'          Text
+
+'ExitApp'     Name.Builtin
+'\n; Example: Simple text editor with menu bar.' Comment.Single
+'\n\n; Create the sub-menus for the menu bar:' Comment.Single
+'\n'          Text
+
+'Menu'        Name.Builtin
+','           Punctuation
+' '           Text
+'FileMenu'    Name
+','           Punctuation
+' '           Text
+'Add'         Name
+','           Punctuation
+' '           Text
+'&'           Operator
+'New'         Name
+','           Punctuation
+' '           Text
+'FileNew'     Name
+'\n'          Text

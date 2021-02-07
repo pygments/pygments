@@ -1,0 +1,1291 @@
+'<'           Operator
+'cfscript'    Name.Variable
+'>'           Operator
+'\n'          Text
+
+'/**\n********************************************************************************\nContentBox - A Modular Content Platform\nCopyright 2012 by Luis Majano and Ortus Solutions, Corp\nwww.gocontentbox.org | www.luismajano.com | www.ortussolutions.com\n********************************************************************************\nApache License, Version 2.0\n\nCopyright Since [2012] [Luis Majano and Ortus Solutions,Corp]\n\nLicensed under the Apache License, Version 2.0 (the "License");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an "AS IS" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n********************************************************************************\n* A generic content service for content objects\n*/' Comment.Multiline
+'\n'          Text
+
+'component'   Keyword
+' '           Text
+'extends'     Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'coldbox.system.orm.hibernate.VirtualEntityService' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'singleton'   Name.Variable
+'{'           Punctuation
+'\n\n\t'      Text
+'// DI\n'     Comment.Single
+
+'\t'          Text
+'property'    Keyword
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'settingService' Literal.String.Double
+'"'           Literal.String.Double
+'\t\t\t'      Text
+'inject'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'id:settingService@cb' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t'        Text
+'property'    Keyword
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'cacheBox'    Literal.String.Double
+'"'           Literal.String.Double
+'\t\t\t\t'    Text
+'inject'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'cachebox'    Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t'        Text
+'property'    Keyword
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'log'         Literal.String.Double
+'"'           Literal.String.Double
+'\t\t\t\t\t\t' Text
+'inject'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'logbox:logger:{this}' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t'        Text
+'property'    Keyword
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'customFieldService' Literal.String.Double
+'"'           Literal.String.Double
+' \t \t'      Text
+'inject'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'customFieldService@cb' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t'        Text
+'property'    Keyword
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'categoryService' Literal.String.Double
+'"'           Literal.String.Double
+' \t \t'      Text
+'inject'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'categoryService@cb' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t'        Text
+'property'    Keyword
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'commentService' Literal.String.Double
+'"'           Literal.String.Double
+' \t \t\t'    Text
+'inject'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'commentService@cb' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t'        Text
+'property'    Keyword
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'contentVersionService' Literal.String.Double
+'"'           Literal.String.Double
+'\t'          Text
+'inject'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'contentVersionService@cb' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t'        Text
+'property'    Keyword
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'authorService' Literal.String.Double
+'"'           Literal.String.Double
+'\t\t\t'      Text
+'inject'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'authorService@cb' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t'        Text
+'property'    Keyword
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'populator'   Literal.String.Double
+'"'           Literal.String.Double
+'\t\t\t\t'    Text
+'inject'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'wirebox:populator' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t'        Text
+'property'    Keyword
+' '           Text
+'name'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'systemUtil'  Literal.String.Double
+'"'           Literal.String.Double
+'\t\t\t\t'    Text
+'inject'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'SystemUtil@cb' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t\n\t'    Text
+'/*\n\t* Constructor\n\t* @entityName.hint The content entity name to bind this service to.\n\t*/' Comment.Multiline
+'\n\t'        Text
+'ContentService' Name.Variable
+' '           Text
+'function'    Keyword
+' '           Text
+'init'        Name.Function
+'('           Punctuation
+'entityName'  Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'cbContent'   Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t'      Text
+'// init it\n' Comment.Single
+
+'\t\t'        Text
+'super'       Name.Constant
+'.'           Punctuation
+'init'        Name.Function
+'('           Punctuation
+'entityName'  Name.Variable
+'='           Operator
+'arguments'   Name.Constant
+'.'           Punctuation
+'entityName'  Name.Variable
+','           Punctuation
+' '           Text
+'useQueryCaching' Name.Variable
+'='           Operator
+'true'        Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n\n\t\t'    Text
+'// Test scope coloring in pygments\n' Comment.Single
+
+'\t\t'        Text
+'this'        Name.Constant
+'.'           Punctuation
+'colorTestVar' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'Just for testing pygments!' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t\t'      Text
+'cookie'      Name.Constant
+'.'           Punctuation
+'colorTestVar' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t\t'      Text
+'client'      Name.Constant
+'.'           Punctuation
+'colorTestVar' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'\n\t\t'      Text
+'session'     Name.Constant
+'.'           Punctuation
+'colorTestVar' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t\t'      Text
+'application' Name.Constant
+'.'           Punctuation
+'colorTestVar' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\n\t\t'    Text
+'return'      Keyword
+' '           Text
+'this'        Name.Constant
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n\n\t'      Text
+'/**\n\t* Clear all content caches\n\t* @async.hint Run it asynchronously or not, defaults to false\n\t*/' Comment.Multiline
+'\n\t'        Text
+'function'    Keyword
+' '           Text
+'clearAllCaches' Name.Function
+'('           Punctuation
+'boolean'     Keyword
+' '           Text
+'async'       Name.Variable
+'='           Operator
+'false'       Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t'      Text
+'var'         Keyword
+' '           Text
+'settings'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'settingService.getAllSettings' Name.Function
+'('           Punctuation
+'asStruct'    Name.Variable
+'='           Operator
+'true'        Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'// Get appropriate cache provider\n' Comment.Single
+
+'\t\t'        Text
+'var'         Keyword
+' '           Text
+'cache'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'cacheBox.getCache' Name.Function
+'('           Punctuation
+' '           Text
+'settings.cb_content_cacheName' Name.Variable
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'cache.clearByKeySnippet' Name.Function
+'('           Punctuation
+'keySnippet'  Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'cb-content'  Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'async'       Name.Variable
+'='           Operator
+'arguments'   Name.Constant
+'.'           Punctuation
+'async'       Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'return'      Keyword
+' '           Text
+'this'        Name.Constant
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n\n\t'      Text
+'/**\n\t* Clear all page wrapper caches\n\t* @async.hint Run it asynchronously or not, defaults to false\n\t*/' Comment.Multiline
+'\n\t'        Text
+'function'    Keyword
+' '           Text
+'clearAllPageWrapperCaches' Name.Function
+'('           Punctuation
+'boolean'     Keyword
+' '           Text
+'async'       Name.Variable
+'='           Operator
+'false'       Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t'      Text
+'var'         Keyword
+' '           Text
+'settings'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'settingService.getAllSettings' Name.Function
+'('           Punctuation
+'asStruct'    Name.Variable
+'='           Operator
+'true'        Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'// Get appropriate cache provider\n' Comment.Single
+
+'\t\t'        Text
+'var'         Keyword
+' '           Text
+'cache'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'cacheBox.getCache' Name.Function
+'('           Punctuation
+' '           Text
+'settings.cb_content_cacheName' Name.Variable
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'cache.clearByKeySnippet' Name.Function
+'('           Punctuation
+'keySnippet'  Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'cb-content-pagewrapper' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'async'       Name.Variable
+'='           Operator
+'arguments'   Name.Constant
+'.'           Punctuation
+'async'       Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'return'      Keyword
+' '           Text
+'this'        Name.Constant
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n\n\t'      Text
+'/**\n\t* Clear all page wrapper caches\n\t* @slug.hint The slug partial to clean on\n\t* @async.hint Run it asynchronously or not, defaults to false\n\t*/' Comment.Multiline
+'\n\t'        Text
+'function'    Keyword
+' '           Text
+'clearPageWrapperCaches' Name.Function
+'('           Punctuation
+'required'    Keyword
+' '           Text
+'any'         Keyword
+' '           Text
+'slug'        Name.Variable
+','           Punctuation
+' '           Text
+'boolean'     Keyword
+' '           Text
+'async'       Name.Variable
+'='           Operator
+'false'       Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t'      Text
+'var'         Keyword
+' '           Text
+'settings'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'settingService.getAllSettings' Name.Function
+'('           Punctuation
+'asStruct'    Name.Variable
+'='           Operator
+'true'        Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'// Get appropriate cache provider\n' Comment.Single
+
+'\t\t'        Text
+'var'         Keyword
+' '           Text
+'cache'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'cacheBox.getCache' Name.Function
+'('           Punctuation
+' '           Text
+'settings.cb_content_cacheName' Name.Variable
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'cache.clearByKeySnippet' Name.Function
+'('           Punctuation
+'keySnippet'  Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'cb-content-pagewrapper-' Literal.String.Double
+'#arguments.slug#' Literal.String.Interp
+'"'           Literal.String.Double
+','           Punctuation
+'async'       Name.Variable
+'='           Operator
+'arguments'   Name.Constant
+'.'           Punctuation
+'async'       Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'return'      Keyword
+' '           Text
+'this'        Name.Constant
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n\n\t'      Text
+'/**\n\t* Clear a page wrapper cache\n\t* @slug.hint The slug to clean\n\t* @async.hint Run it asynchronously or not, defaults to false\n\t*/' Comment.Multiline
+'\n\t'        Text
+'function'    Keyword
+' '           Text
+'clearPageWrapper' Name.Function
+'('           Punctuation
+'required'    Keyword
+' '           Text
+'any'         Keyword
+' '           Text
+'slug'        Name.Variable
+','           Punctuation
+' '           Text
+'boolean'     Keyword
+' '           Text
+'async'       Name.Variable
+'='           Operator
+'false'       Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t'      Text
+'var'         Keyword
+' '           Text
+'settings'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'settingService.getAllSettings' Name.Function
+'('           Punctuation
+'asStruct'    Name.Variable
+'='           Operator
+'true'        Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'// Get appropriate cache provider\n' Comment.Single
+
+'\t\t'        Text
+'var'         Keyword
+' '           Text
+'cache'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'cacheBox.getCache' Name.Function
+'('           Punctuation
+' '           Text
+'settings.cb_content_cacheName' Name.Variable
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'cache.clear' Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'cb-content-pagewrapper-' Literal.String.Double
+'#arguments.slug#' Literal.String.Interp
+'/'           Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'return'      Keyword
+' '           Text
+'this'        Name.Constant
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n\n\t'      Text
+"/**\n\t* Searches published content with cool paramters, remember published content only\n\t* @searchTerm.hint The search term to search\n\t* @max.hint The maximum number of records to paginate\n\t* @offset.hint The offset in the pagination\n\t* @asQuery.hint Return as query or array of objects, defaults to array of objects\n\t* @sortOrder.hint The sorting of the search results, defaults to publishedDate DESC\n\t* @isPublished.hint Search for published, non-published or both content objects [true, false, 'all']\n\t* @searchActiveContent.hint Search only content titles or both title and active content. Defaults to both.\n\t*/" Comment.Multiline
+'\n\t'        Text
+'function'    Keyword
+' '           Text
+'searchContent' Name.Function
+'('           Punctuation
+'\n\t\t'      Text
+'any'         Keyword
+' '           Text
+'searchTerm'  Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' \n\t\t'     Text
+'numeric'     Keyword
+' '           Text
+'max'         Name.Variable
+'='           Operator
+'0'           Literal.Number
+','           Punctuation
+' \n\t\t'     Text
+'numeric'     Keyword
+' '           Text
+'offset'      Name.Variable
+'='           Operator
+'0'           Literal.Number
+','           Punctuation
+' \n\t\t'     Text
+'boolean'     Keyword
+' '           Text
+'asQuery'     Name.Variable
+'='           Operator
+'false'       Keyword.Constant
+','           Punctuation
+' \n\t\t'     Text
+'any'         Keyword
+' '           Text
+'sortOrder'   Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'publishedDate DESC' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' \n\t\t'     Text
+'any'         Keyword
+' '           Text
+'isPublished' Name.Variable
+'='           Operator
+'true'        Keyword.Constant
+','           Punctuation
+' \n\t\t'     Text
+'boolean'     Keyword
+' '           Text
+'searchActiveContent' Name.Variable
+'='           Operator
+'true'        Keyword.Constant
+')'           Punctuation
+'{'           Punctuation
+'\n\n\t\t'    Text
+'var'         Keyword
+' '           Text
+'results'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'var'         Keyword
+' '           Text
+'c'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'newCriteria' Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\n\t\t'    Text
+'// only published content\n' Comment.Single
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+' '           Text
+'isBoolean'   Name.Function
+'('           Punctuation
+' '           Text
+'arguments'   Name.Constant
+'.'           Punctuation
+'isPublished' Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t\t'    Text
+'// Published bit\n' Comment.Single
+
+'\t\t\t'      Text
+'c.isEq'      Name.Function
+'('           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'isPublished' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'javaCast'    Name.Function
+'('           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'Boolean'     Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'arguments'   Name.Constant
+'.'           Punctuation
+'isPublished' Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'// Published eq true evaluate other params\n' Comment.Single
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+' '           Text
+'arguments'   Name.Constant
+'.'           Punctuation
+'isPublished' Name.Variable
+' '           Text
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t\t\t'  Text
+'c.isLt'      Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'publishedDate' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'now'         Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+')'           Punctuation
+'\n\t\t\t\t'  Text
+'.'           Punctuation
+'$or'         Name.Function
+'('           Punctuation
+' '           Text
+'c.restrictions.isNull' Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'expireDate'  Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+','           Punctuation
+' '           Text
+'c.restrictions.isGT' Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'expireDate'  Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'now'         Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+')'           Punctuation
+' '           Text
+')'           Punctuation
+'\n\t\t\t\t'  Text
+'.'           Punctuation
+'isEq'        Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'passwordProtection' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'}'           Punctuation
+'\n\t\t'      Text
+'}'           Punctuation
+'\n\n\t\t'    Text
+'// Search Criteria\n' Comment.Single
+
+'\t\t'        Text
+'if'          Keyword
+'('           Punctuation
+' '           Text
+'len'         Keyword
+'('           Punctuation
+' '           Text
+'arguments'   Name.Constant
+'.'           Punctuation
+'searchTerm'  Name.Variable
+' '           Text
+')'           Punctuation
+' '           Text
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t\t'    Text
+'// like disjunctions\n' Comment.Single
+
+'\t\t\t'      Text
+'c.createAlias' Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'activeContent' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'"'           Literal.String.Double
+'ac'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'// Do we search title and active content or just title?\n' Comment.Single
+
+'\t\t\t'      Text
+'if'          Keyword
+'('           Punctuation
+' '           Text
+'arguments'   Name.Constant
+'.'           Punctuation
+'searchActiveContent' Name.Variable
+' '           Text
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t\t\t'  Text
+'c.'          Name.Variable
+'$or'         Name.Function
+'('           Punctuation
+' '           Text
+'c.restrictions.like' Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'title'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'"'           Literal.String.Double
+'%'           Literal.String.Double
+'#arguments.searchTerm#' Literal.String.Interp
+'%'           Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+','           Punctuation
+'\n\t\t\t\t  \t  ' Text
+'c.restrictions.like' Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'ac.content'  Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'%'           Literal.String.Double
+'#arguments.searchTerm#' Literal.String.Interp
+'%'           Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'}'           Punctuation
+'\n\t\t\t'    Text
+'else'        Keyword
+'{'           Punctuation
+'\n\t\t\t\t'  Text
+'c.like'      Name.Function
+'('           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'title'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'%'           Literal.String.Double
+'#arguments.searchTerm#' Literal.String.Interp
+'%'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+')'           Punctuation
+';'           Punctuation
+' \n\t\t\t'   Text
+'}'           Punctuation
+'\n\t\t'      Text
+'}'           Punctuation
+'\n\n\t\t'    Text
+'// run criteria query and projections count\n' Comment.Single
+
+'\t\t'        Text
+'results.count' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'c.count'     Name.Function
+'('           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'contentID'   Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'results.content' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'c.resultTransformer' Name.Function
+'('           Punctuation
+' '           Text
+'c.DISTINCT_ROOT_ENTITY' Name.Variable
+' '           Text
+')'           Punctuation
+'\n\t\t\t\t\t\t\t' Text
+'.'           Punctuation
+'list'        Name.Function
+'('           Punctuation
+'offset'      Name.Variable
+'='           Operator
+'arguments'   Name.Constant
+'.'           Punctuation
+'offset'      Name.Variable
+','           Punctuation
+' '           Text
+'max'         Name.Variable
+'='           Operator
+'arguments'   Name.Constant
+'.'           Punctuation
+'max'         Name.Variable
+','           Punctuation
+' '           Text
+'sortOrder'   Name.Variable
+'='           Operator
+'arguments'   Name.Constant
+'.'           Punctuation
+'sortOrder'   Name.Variable
+','           Punctuation
+' '           Text
+'asQuery'     Name.Variable
+'='           Operator
+'arguments'   Name.Constant
+'.'           Punctuation
+'asQuery'     Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n\t\n\t\t'  Text
+'return'      Keyword
+' '           Text
+'results'     Name.Variable
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n\n'        Text
+
+'/********************************************* PRIVATE *********************************************/' Comment.Multiline
+'\n\t\n\n\t'  Text
+'/**\n\t* Update the content hits\n\t* @contentID.hint The content id to update\n\t*/' Comment.Multiline
+'\n\t'        Text
+'private'     Name.Variable
+' '           Text
+'function'    Keyword
+' '           Text
+'syncUpdateHits' Name.Function
+'('           Punctuation
+'required'    Keyword
+' '           Text
+'contentID'   Name.Variable
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t'      Text
+'var'         Keyword
+' '           Text
+'q'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Name.Variable
+' '           Text
+'Query'       Keyword
+'('           Punctuation
+'sql'         Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'UPDATE cb_content SET hits = hits + 1 WHERE contentID = ' Literal.String.Double
+'#arguments.contentID#' Literal.String.Interp
+'"'           Literal.String.Double
+')'           Punctuation
+'.'           Punctuation
+'execute'     Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'return'      Keyword
+' '           Text
+'this'        Name.Constant
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n\t\n\t\n\t' Text
+'private'     Name.Variable
+' '           Text
+'function'    Keyword
+' '           Text
+'closureTest' Name.Function
+'('           Punctuation
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t'      Text
+'methodCall'  Name.Function
+'('           Punctuation
+'\n\t\t\t'    Text
+'param1'      Name.Variable
+','           Punctuation
+'\n\t\t\t'    Text
+'function'    Keyword
+'('           Punctuation
+' '           Text
+'arg1'        Name.Variable
+','           Punctuation
+' '           Text
+'required'    Keyword
+' '           Text
+'arg2'        Name.Variable
+' '           Text
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t\t\t'  Text
+'var'         Keyword
+' '           Text
+'settings'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'settingService.getAllSettings' Name.Function
+'('           Punctuation
+'asStruct'    Name.Variable
+'='           Operator
+'true'        Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'// Get appropriate cache provider\n' Comment.Single
+
+'\t\t\t\t'    Text
+'var'         Keyword
+' '           Text
+'cache'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'cacheBox.getCache' Name.Function
+'('           Punctuation
+' '           Text
+'settings.cb_content_cacheName' Name.Variable
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'cache.clear' Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'cb-content-pagewrapper-' Literal.String.Double
+'#arguments.slug#' Literal.String.Interp
+'/'           Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'return'      Keyword
+' '           Text
+'this'        Name.Constant
+';'           Punctuation
+'\n\t\t\t'    Text
+'}'           Punctuation
+','           Punctuation
+'\n\t\t\t'    Text
+'param1'      Name.Variable
+'\n\t\t'      Text
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n\t\n\t'    Text
+'private'     Name.Variable
+' '           Text
+'function'    Keyword
+' '           Text
+'StructliteralTest' Name.Function
+'('           Punctuation
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t'      Text
+'return'      Keyword
+' '           Text
+'{'           Punctuation
+'\n\t\t\t'    Text
+'foo'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'bar'         Name.Variable
+','           Punctuation
+'\n\t\t\t'    Text
+'brad'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'Wood'"      Literal.String.Single
+','           Punctuation
+'\n\t\t\t'    Text
+'func'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+' '           Text
+'arg1'        Name.Variable
+','           Punctuation
+' '           Text
+'required'    Keyword
+' '           Text
+'arg2'        Name.Variable
+' '           Text
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t\t\t'  Text
+'var'         Keyword
+' '           Text
+'settings'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'settingService.getAllSettings' Name.Function
+'('           Punctuation
+'asStruct'    Name.Variable
+'='           Operator
+'true'        Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'// Get appropriate cache provider\n' Comment.Single
+
+'\t\t\t\t'    Text
+'var'         Keyword
+' '           Text
+'cache'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'cacheBox.getCache' Name.Function
+'('           Punctuation
+' '           Text
+'settings.cb_content_cacheName' Name.Variable
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'cache.clear' Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'cb-content-pagewrapper-' Literal.String.Double
+'#arguments.slug#' Literal.String.Interp
+'/'           Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t\t'  Text
+'return'      Keyword
+' '           Text
+'this'        Name.Constant
+';'           Punctuation
+'\n\t\t\t'    Text
+'}'           Punctuation
+','           Punctuation
+'\n\t\t\t'    Text
+'array'       Keyword
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'\n\t\t\t\t'  Text
+'1'           Literal.Number
+','           Punctuation
+'\n\t\t\t\t'  Text
+'2'           Literal.Number
+','           Punctuation
+'\n\t\t\t\t'  Text
+'3'           Literal.Number
+','           Punctuation
+'\n\t\t\t\t'  Text
+'4'           Literal.Number
+','           Punctuation
+'\n\t\t\t\t'  Text
+'5'           Literal.Number
+','           Punctuation
+'\n\t\t\t\t'  Text
+"'test'"      Literal.String.Single
+','           Punctuation
+'\n\t\t\t\t'  Text
+"'testing'"   Literal.String.Single
+','           Punctuation
+'\n\t\t\t\t'  Text
+"'testerton'" Literal.String.Single
+','           Punctuation
+'\n\t\t\t\t'  Text
+'{'           Punctuation
+'\n\t\t\t\t\t' Text
+'foo'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+','           Punctuation
+'\n\t\t\t\t\t' Text
+'brad'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+','           Punctuation
+'\n\t\t\t\t\t' Text
+'wood'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword.Constant
+'\n\t\t\t\t'  Text
+'}'           Punctuation
+'\n\t\t\t'    Text
+']'           Punctuation
+','           Punctuation
+'\n\t\t\t'    Text
+'last'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'final'       Literal.String.Double
+'"'           Literal.String.Double
+'\n\t\t'      Text
+'}'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n\t\n\t'    Text
+'private'     Name.Variable
+' '           Text
+'function'    Keyword
+' '           Text
+'arrayliteralTest' Name.Function
+'('           Punctuation
+')'           Punctuation
+'{'           Punctuation
+'\n\t\t'      Text
+'return'      Keyword
+' '           Text
+'['           Punctuation
+'\n\t\t\t'    Text
+'1'           Literal.Number
+','           Punctuation
+'\n\t\t\t'    Text
+'2'           Literal.Number
+','           Punctuation
+'\n\t\t\t'    Text
+'3'           Literal.Number
+','           Punctuation
+'\n\t\t\t'    Text
+'4'           Literal.Number
+','           Punctuation
+'\n\t\t\t'    Text
+'5'           Literal.Number
+','           Punctuation
+'\n\t\t\t'    Text
+"'test'"      Literal.String.Single
+','           Punctuation
+'\n\t\t\t'    Text
+"'testing'"   Literal.String.Single
+','           Punctuation
+'\n\t\t\t'    Text
+"'testerton'" Literal.String.Single
+','           Punctuation
+'\n\t\t\t'    Text
+'{'           Punctuation
+'\n\t\t\t\t'  Text
+'foo'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+','           Punctuation
+'\n\t\t\t\t'  Text
+'brad'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+','           Punctuation
+'\n\t\t\t\t'  Text
+'wood'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword.Constant
+'\n\t\t\t'    Text
+'}'           Punctuation
+','           Punctuation
+'\n\t\t\t'    Text
+"'testy-von-testavich'" Literal.String.Single
+'\n\t\t'      Text
+']'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n\t\n'      Text
+
+'}'           Punctuation
+'\n'          Text
+
+'<'           Operator
+'/'           Operator
+'cfscript'    Name.Variable
+'>'           Operator
+'\n'          Text

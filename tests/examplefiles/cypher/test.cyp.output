@@ -1,0 +1,1297 @@
+'//test comment\n' Comment.Single
+
+'START'       Keyword
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'node'        Name
+'('           Punctuation
+'*'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'m'           Name
+')'           Punctuation
+'<-['         Operator
+':'           Punctuation
+'DIRECTED'    Name
+']-'          Operator
+'('           Punctuation
+'d'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'a'           Name
+'.'           Punctuation
+'name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'m'           Name
+'.'           Punctuation
+'title'       Name
+','           Punctuation
+' '           Text.Whitespace
+'d'           Name
+'.'           Punctuation
+'name'        Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'node'        Name
+'('           Punctuation
+'*'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'m'           Name
+')'           Punctuation
+'<-['         Operator
+':'           Punctuation
+'DIRECTED'    Name
+']-'          Operator
+'('           Punctuation
+'d'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'WITH'        Keyword
+' '           Text.Whitespace
+'d'           Name
+','           Punctuation
+'m'           Name
+','           Punctuation
+'count'       Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'Actors'      Name
+'\n'          Text.Whitespace
+
+'WHERE'       Keyword
+' '           Text.Whitespace
+'Actors'      Name
+' '           Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'d'           Name
+'.'           Punctuation
+'name'        Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'Director'    Name
+','           Punctuation
+'m'           Name
+'.'           Punctuation
+'title'       Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'Movie'       Name
+','           Punctuation
+' '           Text.Whitespace
+'Actors'      Name
+' '           Text.Whitespace
+'ORDER'       Keyword
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'Actors'      Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'a'           Name
+'='           Punctuation
+'node'        Name
+'('           Punctuation
+'*'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'p'           Name
+'='           Punctuation
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'m'           Name
+')'           Punctuation
+'<-['         Operator
+':'           Punctuation
+'DIRECTED'    Name
+']-'          Operator
+'('           Punctuation
+'d'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'return'      Keyword
+' '           Text.Whitespace
+'p'           Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'node'        Name
+'('           Punctuation
+'*'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'p1'          Name
+'='           Punctuation
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'m'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'p2'          Name
+'='           Punctuation
+'d'           Name
+'-['          Operator
+':'           Punctuation
+'DIRECTED'    Name
+']->'         Operator
+'('           Punctuation
+'m'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'WHERE'       Keyword
+' '           Text.Whitespace
+'m'           Name
+'.'           Punctuation
+'title'       Name
+'='           Punctuation
+'"The Matrix"' Literal.String
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'p1'          Name
+','           Punctuation
+' '           Text.Whitespace
+'p2'          Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'node'        Name
+'('           Punctuation
+'*'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'m'           Name
+')'           Punctuation
+'<-['         Operator
+':'           Punctuation
+'DIRECTED'    Name
+']-'          Operator
+'('           Punctuation
+'d'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'WHERE'       Keyword
+' '           Text.Whitespace
+'a'           Name
+'='           Punctuation
+'d'           Name
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'a'           Name
+'.'           Punctuation
+'name'        Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'node'        Name
+'('           Punctuation
+'*'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'m'           Name
+')'           Punctuation
+'<-['         Operator
+':'           Punctuation
+'DIRECTED'    Name
+']-'          Operator
+'('           Punctuation
+'d'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'WHERE'       Keyword
+' '           Text.Whitespace
+'a'           Name
+'='           Punctuation
+'d'           Name
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'a'           Name
+'.'           Punctuation
+'name'        Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'a'           Name
+'='           Punctuation
+'node'        Name
+'('           Punctuation
+'*'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'m'           Name
+')'           Punctuation
+'<-['         Operator
+':'           Punctuation
+'DIRECTED'    Name
+']-'          Operator
+'('           Punctuation
+'d'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'a'           Name
+'.'           Punctuation
+'name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'d'           Name
+'.'           Punctuation
+'name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'count'       Name
+'('           Punctuation
+'*'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'Movies'      Name
+','           Punctuation
+'collect'     Name
+'('           Punctuation
+'m'           Name
+'.'           Punctuation
+'title'       Name
+')'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'Titles'      Name
+'\n'          Text.Whitespace
+
+'ORDER'       Keyword
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Movies'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'DESC'        Keyword
+'\n'          Text.Whitespace
+
+'LIMIT'       Keyword
+' '           Text.Whitespace
+'5'           Literal.Number
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'keanu'       Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Keanu Reeves"' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'keanu'       Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'keanu'       Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Keanu Reeves"' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'keanu'       Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'movie'       Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'movie'       Name
+'.'           Punctuation
+'title'       Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'keanu'       Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Keanu Reeves"' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'keanu'       Name
+')'           Punctuation
+'-['          Operator
+'r'           Name
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'movie'       Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'WHERE'       Keyword
+' '           Text.Whitespace
+'"Neo"'       Literal.String
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'r'           Name
+'.'           Punctuation
+'roles'       Name
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'DISTINCT'    Keyword
+' '           Text.Whitespace
+'movie'       Name
+'.'           Punctuation
+'title'       Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'keanu'       Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Keanu Reeves"' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'keanu'       Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+')'           Punctuation
+'<-['         Operator
+':'           Punctuation
+'DIRECTED'    Name
+']-'          Operator
+'('           Punctuation
+'director'    Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'director'    Name
+'.'           Punctuation
+'name'        Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'keanu'       Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Keanu Reeves"' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'keanu'       Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'movie'       Name
+')'           Punctuation
+'<-['         Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']-'          Operator
+'('           Punctuation
+'n'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'WHERE'       Keyword
+' '           Text.Whitespace
+'n'           Name
+'.'           Punctuation
+'born'        Name
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'keanu'       Name
+'.'           Punctuation
+'born'        Name
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'DISTINCT'    Keyword
+' '           Text.Whitespace
+'n'           Name
+'.'           Punctuation
+'name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'keanu'       Name
+'.'           Punctuation
+'born'        Name
+' '           Text.Whitespace
+','           Punctuation
+'n'           Name
+'.'           Punctuation
+'born'        Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'keanu'       Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Keanu Reeves"' Literal.String
+')'           Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'hugo'        Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Hugo Weaving"' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'keanu'       Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'movie'       Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'WHERE'       Keyword
+' '           Text.Whitespace
+'NOT'         Keyword
+'('           Punctuation
+'('           Punctuation
+'hugo'        Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'movie'       Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'DISTINCT'    Keyword
+' '           Text.Whitespace
+'movie'       Name
+'.'           Punctuation
+'title'       Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'node'        Name
+'('           Punctuation
+'*'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'m'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'WITH'        Keyword
+' '           Text.Whitespace
+'a'           Name
+','           Punctuation
+'count'       Name
+'('           Punctuation
+'m'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'Movies'      Name
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'a'           Name
+'.'           Punctuation
+'name'        Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'Actor'       Name
+','           Punctuation
+' '           Text.Whitespace
+'Movies'      Name
+' '           Text.Whitespace
+'ORDER'       Keyword
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'Movies'      Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'keanu'       Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Keanu Reeves"' Literal.String
+')'           Punctuation
+','           Punctuation
+'actor'       Name
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'past'        Name
+'='           Punctuation
+'('           Punctuation
+'keanu'       Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+')'           Punctuation
+'<-['         Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']-'          Operator
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'actors'      Name
+'='           Punctuation
+'('           Punctuation
+'actor'       Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'WHERE'       Keyword
+' '           Text.Whitespace
+'hasnt'       Name
+'='           Punctuation
+'actors'      Name
+' '           Text.Whitespace
+'NOT'         Keyword
+' '           Text.Whitespace
+'IN'          Keyword
+' '           Text.Whitespace
+'past'        Name
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'hasnt'       Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'keanu'       Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Keanu Reeves"' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'keanu'       Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+')'           Punctuation
+'<-['         Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']-'          Operator
+'('           Punctuation
+'c'           Name
+')'           Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'('           Punctuation
+'c'           Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+')'           Punctuation
+'<-['         Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']-'          Operator
+'('           Punctuation
+'coc'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'WHERE'       Keyword
+' '           Text.Whitespace
+'NOT'         Keyword
+'('           Punctuation
+'('           Punctuation
+'keanu'       Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+')'           Punctuation
+'<-['         Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']-'          Operator
+'('           Punctuation
+'coc'         Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'AND'         Name
+' '           Text.Whitespace
+'coc'         Name
+' '           Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'keanu'       Name
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'coc'         Name
+'.'           Punctuation
+'name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'count'       Name
+'('           Punctuation
+'coc'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'ORDER'       Keyword
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'count'       Name
+'('           Punctuation
+'coc'         Name
+')'           Punctuation
+' '           Text.Whitespace
+'DESC'        Keyword
+'\n'          Text.Whitespace
+
+'LIMIT'       Keyword
+' '           Text.Whitespace
+'3'           Literal.Number
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'kevin'       Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Kevin Bacon"' Literal.String
+')'           Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'movie'       Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Mystic River"' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'kevin'       Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+'movie'       Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'DISTINCT'    Keyword
+' '           Text.Whitespace
+'movie'       Name
+'.'           Punctuation
+'title'       Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name
+' \n\t'       Text.Whitespace
+'{'           Punctuation
+'\n       '   Text.Whitespace
+'title'       Name
+':'           Punctuation
+'"Mystic River"' Literal.String
+','           Punctuation
+'\n       '   Text.Whitespace
+'released'    Name
+':'           Punctuation
+'1993'        Literal.Number
+','           Punctuation
+'\n       '   Text.Whitespace
+'tagline'     Name
+':'           Punctuation
+'"We bury our sins here, Dave. We wash them clean."' Literal.String
+'\n       '   Text.Whitespace
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'RETURN'      Keyword
+' '           Text.Whitespace
+'n'           Name
+';'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'movie'       Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'title'       Name
+'='           Punctuation
+'"Mystic River"' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'SET'         Keyword
+' '           Text.Whitespace
+'movie'       Name
+'.'           Punctuation
+'released'    Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'2003'        Literal.Number
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'movie'       Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'start'       Keyword
+' '           Text.Whitespace
+'emil'        Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Emil Eifrem"' Literal.String
+')'           Punctuation
+' '           Text.Whitespace
+'MATCH'       Keyword
+' '           Text.Whitespace
+'emil'        Name
+'-['          Operator
+'r'           Name
+']->'         Operator
+'('           Punctuation
+'n'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'DELETE'      Keyword
+' '           Text.Whitespace
+'r'           Name
+','           Punctuation
+' '           Text.Whitespace
+'emil'        Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'a'           Name
+'='           Punctuation
+'node'        Name
+'('           Punctuation
+'*'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']->'         Operator
+'('           Punctuation
+')'           Punctuation
+'<-['         Operator
+':'           Punctuation
+'ACTED_IN'    Name
+']-'          Operator
+'('           Punctuation
+'b'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'UNIQUE'      Name
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'KNOWS'       Name
+']->'         Operator
+'('           Punctuation
+'b'           Name
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'keanu'       Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Keanu Reeves"' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'keanu'       Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'KNOWS'       Name
+'*'           Punctuation
+'2'           Literal.Number
+']->'         Operator
+'('           Punctuation
+'fof'         Name
+')'           Punctuation
+' \n'         Text.Whitespace
+
+'WHERE'       Keyword
+' '           Text.Whitespace
+'keanu'       Name
+' '           Text.Whitespace
+'<'           Punctuation
+'>'           Punctuation
+' '           Text.Whitespace
+'fof'         Name
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'distinct'    Keyword
+' '           Text.Whitespace
+'fof'         Name
+'.'           Punctuation
+'name'        Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'charlize'    Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Charlize Theron"' Literal.String
+')'           Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'bacon'       Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'node_auto_index' Name
+'('           Punctuation
+'name'        Name
+'='           Punctuation
+'"Kevin Bacon"' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'p'           Name
+'='           Punctuation
+'shortestPath' Name
+'('           Punctuation
+'('           Punctuation
+'charlize'    Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'KNOWS'       Name
+'*'           Punctuation
+']->'         Operator
+'('           Punctuation
+'bacon'       Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'RETURN'      Keyword
+' '           Text.Whitespace
+'extract'     Name
+'('           Punctuation
+'n'           Name
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'nodes'       Name
+'('           Punctuation
+'p'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'n'           Name
+'.'           Punctuation
+'name'        Name
+')'           Punctuation
+'['           Operator
+'1'           Literal.Number
+']'           Operator
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'START'       Keyword
+' '           Text.Whitespace
+'actors'      Name
+'='           Punctuation
+'node'        Name
+':'           Punctuation
+'\n\n'        Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'alice'       Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'`REALLY LIKES`' Name.Variable
+']->'         Operator
+'('           Punctuation
+'bob'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'alice'       Name
+')'           Punctuation
+'-['          Operator
+':'           Punctuation
+'`REALLY ``LIKES```' Name.Variable
+']->'         Operator
+'('           Punctuation
+'bob'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'myFancyIdentifier' Name
+'.'           Punctuation
+'`(weird property name)`' Name.Variable
+'\n'          Text.Whitespace
+
+'"string\\t\\n\\b\\f\\\\\\\'\'\\""' Literal.String
+'\n'          Text.Whitespace

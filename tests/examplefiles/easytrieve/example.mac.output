@@ -1,0 +1,36 @@
+'* Example Easytrieve macro declaration. For an example on calling this\n' Comment.Single
+
+'* macro, see example.ezt.\n' Comment.Single
+
+'MACRO'       Keyword.Declaration
+' '           Text.Whitespace
+'FILENAME'    Name.Function
+' '           Text.Whitespace
+'PREFIX'      Name
+'\n'          Text.Whitespace
+
+'&FILENAME.'  Name.Variable
+'\n'          Text.Whitespace
+
+'&PREFIX.'    Name.Variable
+'-'           Operator
+'LINE'        Keyword.Reserved
+' '           Operator
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'80'          Literal.Number.Integer
+' '           Text.Whitespace
+'A'           Name
+'\n'          Text.Whitespace
+
+'&PREFIX.'    Name.Variable
+'-'           Operator
+'KEY'         Keyword.Reserved
+' '           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'  '          Text.Whitespace
+'8'           Literal.Number.Integer
+' '           Text.Whitespace
+'A'           Name
+'\n'          Text.Whitespace

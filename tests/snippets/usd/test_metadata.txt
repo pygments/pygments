@@ -1,0 +1,36 @@
+# Make sure metadata [the stuff inside ()s] don't match as Attributes.
+
+---input---
+float[] primvars:skel:jointWeights = [1] (
+    elementSize = 1
+    interpolation = "constant"
+)
+
+---tokens---
+'float[]'     Keyword.Type
+' '           Text.Whitespace
+'primvars:skel:jointWeights' Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'\n    '      Text.Whitespace
+'elementSize' Name.Builtins
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n    '      Text.Whitespace
+'interpolation' Name.Builtins
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"constant"'  Literal.String
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace

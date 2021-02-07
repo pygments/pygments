@@ -11,25 +11,58 @@ Version 2.8.0
 -------------
 (not released yet)
 
+- Added lexers:
+
+  * AMDGPU (#1626)
+  * Graphviz/DOT (#1657)
+
+- Updated lexers:
+
+  * C/C++ & related: Fix mishandling '*/' (#1695)
+  * Console (#1672)
+  * JavaScript/TypeScript: Fix escapes in backtick strings (#1679, #1686)
+  * LESS: Support single-line comments (#1046)
+  * Stata: Updated keywords (#1470)
+  
+- Added styles:
+
+  * Material (#1662)
+  * Zenburn (#1659)
+  
+- The `pygmentize` script now uses `argparse`, all options should work
+  as before
+
+- Added `pygmentize -C` option to guess a lexer from content
+
+- Make guessing prefer Python 3 lexer
+- Do not guess MIME or SQL without reason
+- Changed setuptools to use a declarative config through ``setup.cfg``.
+  Building Pygments now requires setuptools 39.2+.
+- Added markdown to MarkdownLexer aliases (#1687)
+- Removed "raw" alias from RawTokenLexer, so that it cannot be
+  selected by alias.
+- Added prompt colors to the Solarized theme (#1529)
 
 Version 2.7.4
 -------------
-(released January 9, 2021)
+(released January 12, 2021)
 
 - Updated lexers:
 
   - Apache configurations: Improve handling of malformed tags (#1656)
-  - Crystal (#1650)
+  - CSS: Add support for variables (#1633, #1666)
+  - Crystal (#1650, #1670)
   - Coq (#1648)
-  - Fortran: Add missing ``ONLY`` keyword (#1635)
+  - Fortran: Add missing keywords (#1635, #1665)
   - Ini (#1624)
   - JavaScript and variants (#1647 -- missing regex flags, #1651)
-  - Markdown (#1623)
+  - Markdown (#1623, #1617)
   - Shell
 
     - Lex trailing whitespace as part of the prompt (#1645)
     - Add missing ``in`` keyword (#1652)
     
+  - SQL - Fix keywords (#1668)
   - Typescript: Fix incorrect punctuation handling (#1510, #1511)
 
 - Fix infinite loop in SML lexer (#1625)
@@ -38,11 +71,13 @@ Version 2.7.4
 - Limit recursion with nesting Ruby heredocs (#1638)
 - Fix a few inefficient regexes for guessing lexers
 - Fix the raw token lexer handling of Unicode (#1616)
-- Revert a private API change in the HTML formatter (#1655) -- please note that private APIs remain subject to change!
-- Add Dracula theme style (#1636)
+- Revert a private API change in the HTML formatter (#1655) -- 
+  please note that private APIs remain subject to change!
+- Fix several exponential/cubic-complexity regexes found by
+  Ben Caller/Doyensec (#1675)
+- Fix incorrect MATLAB example (#1582)
 
 Thanks to Google's OSS-Fuzz project for finding many of these bugs.
-
 
 Version 2.7.3
 -------------
@@ -68,7 +103,7 @@ Version 2.7.3
 - Fixed duplicated Juttle language alias (#1604, #1606)
 - Added support for Kotlin scripts (#1587)
 - Removed CSS rule which forced margin to 0
-  
+
 
 Version 2.7.2
 -------------

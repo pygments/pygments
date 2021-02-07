@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.css
     ~~~~~~~~~~~~~~~~~~~
@@ -310,6 +309,8 @@ class CssLexer(RegexLexer):
             (words(_vendor_prefixes,), Keyword.Pseudo),
             (r'('+r'|'.join(_css_properties)+r')(\s*)(\:)',
              bygroups(Keyword, Text, Punctuation), 'value-start'),
+            (r'([-]+[a-zA-Z_][\w-]*)(\s*)(\:)', bygroups(Name.Variable, Text, Punctuation),
+             'value-start'),
             (r'([a-zA-Z_][\w-]*)(\s*)(\:)', bygroups(Name, Text, Punctuation),
              'value-start'),
 
@@ -343,6 +344,7 @@ class CssLexer(RegexLexer):
         ],
         'function-start': [
             (r'\s+', Text),
+            (r'[-]+([\w+]+[-]*)+', Name.Variable),
             include('urls'),
             (words(_vendor_prefixes,), Keyword.Pseudo),
             (words(_keyword_values, suffix=r'\b'), Keyword.Constant),
@@ -686,6 +688,7 @@ class LessCssLexer(CssLexer):
         ],
         'content': [
             (r'\{', Punctuation, '#push'),
+            (r'//.*\n', Comment.Single),
             inherit,
         ],
     }

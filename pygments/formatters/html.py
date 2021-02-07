@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.formatters.html
     ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -628,7 +627,7 @@ class HtmlFormatter(Formatter):
                     with open(cssfilename, "w") as cf:
                         cf.write(CSSFILE_TEMPLATE %
                                  {'styledefs': self.get_style_defs('body')})
-            except IOError as err:
+            except OSError as err:
                 err.strerror = 'Error writing CSS file: ' + err.strerror
                 raise
 
@@ -710,6 +709,8 @@ class HtmlFormatter(Formatter):
         st = self.linenostep
         num = self.linenostart
         mw = len(str(len(inner_lines) + num - 1))
+        la = self.lineanchors
+        aln = self.anchorlinenos
         nocls = self.noclasses
 
         for _, inner_line in inner_lines:
@@ -733,9 +734,15 @@ class HtmlFormatter(Formatter):
                     style = ' class="linenos"'
 
             if style:
-                yield 1, '<span%s>%s</span>' % (style, line) + inner_line
+                linenos = '<span%s>%s</span>' % (style, line)
             else:
-                yield 1, line +  inner_line
+                linenos = line
+
+            if aln:
+                yield 1, ('<a href="#%s-%d">%s</a>' % (la, num, linenos) +
+                          inner_line)
+            else:
+                yield 1, linenos + inner_line
             num += 1
 
     def _wrap_lineanchors(self, inner):

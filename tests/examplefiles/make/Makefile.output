@@ -1,0 +1,8421 @@
+'# Generated automatically from Makefile.pre by makesetup.\n' Comment
+
+'# Top-level Makefile for Python\n' Comment
+
+'#\n'         Comment
+
+'# As distributed, this file is called Makefile.pre.in; it is processed\n' Comment
+
+'# into the real Makefile by running the script ./configure, which\n' Comment
+
+'# replaces things like @spam@ with values appropriate for your system.\n' Comment
+
+'# This means that if you edit Makefile, your changes get lost the next\n' Comment
+
+'# time you run the configure script.  Ideally, you can do:\n' Comment
+
+'#\n'         Comment
+
+'#\t./configure\n' Comment
+
+'#\tmake\n'   Comment
+
+'#\tmake test\n' Comment
+
+'#\tmake install\n' Comment
+
+'#\n'         Comment
+
+"# If you have a previous version of Python installed that you don't\n" Comment
+
+'# want to overwrite, you can use "make altinstall" instead of "make\n' Comment
+
+'# install".  Refer to the "Installing" section in the README file for\n' Comment
+
+'# additional details.\n' Comment
+
+'#\n'         Comment
+
+'# See also the section "Build instructions" in the README file.\n' Comment
+
+'\n'          Text
+
+'# === Variables set by makesetup ===\n' Comment
+
+'\n'          Text
+
+'MODOBJS'     Name.Variable
+'='           Operator
+'          '  Text
+'Modules/threadmodule.o' Text
+'  '          Text
+'Modules/signalmodule.o' Text
+'  '          Text
+'Modules/posixmodule.o' Text
+'  '          Text
+'Modules/errnomodule.o' Text
+'  '          Text
+'Modules/pwdmodule.o' Text
+'  '          Text
+'Modules/_sre.o' Text
+'  '          Text
+'Modules/_codecsmodule.o' Text
+'  '          Text
+'Modules/zipimport.o' Text
+'  '          Text
+'Modules/symtablemodule.o' Text
+'  '          Text
+'Modules/xxsubtype.o' Text
+'\n'          Text
+
+'MODLIBS'     Name.Variable
+'='           Operator
+'        '    Text
+'$('          Keyword
+'LOCALMODLIBS' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'BASEMODLIBS' Text
+')'           Keyword
+'\n'          Text
+
+'\n'          Text
+
+'# === Variables set by configure\n' Comment
+
+'VERSION'     Name.Variable
+'='           Operator
+'\t'          Text
+'2'           Literal.Number
+'.6'          Text
+'\n'          Text
+
+'srcdir'      Name.Variable
+'='           Operator
+'\t\t'        Text
+'.'           Text
+'\n'          Text
+
+'\n\n'        Text
+
+'CC'          Name.Variable
+'='           Operator
+'\t\t'        Text
+'gcc'         Text
+' '           Text
+'-pthread'    Text
+'\n'          Text
+
+'CXX'         Name.Variable
+'='           Operator
+'\t\t'        Text
+'g++'         Text
+' '           Text
+'-pthread'    Text
+'\n'          Text
+
+'MAINCC'      Name.Variable
+'='           Operator
+'\t\t'        Text
+'$('          Keyword
+'CC'          Text
+')'           Keyword
+'\n'          Text
+
+'LINKCC'      Name.Variable
+'='           Operator
+'\t\t'        Text
+'$('          Keyword
+'PURIFY'      Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'MAINCC'      Text
+')'           Keyword
+'\n'          Text
+
+'AR'          Name.Variable
+'='           Operator
+'\t\t'        Text
+'ar'          Text
+'\n'          Text
+
+'RANLIB'      Name.Variable
+'='           Operator
+'\t\t'        Text
+'ranlib'      Text
+'\n'          Text
+
+'SVNVERSION'  Name.Variable
+'='           Operator
+'\t'          Text
+'svnversion'  Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'\n'          Text
+
+'\n'          Text
+
+'# Shell used by make (some versions default to the login shell, which is bad)\n' Comment
+
+'SHELL'       Name.Variable
+'='           Operator
+'\t\t'        Text
+'/bin/sh'     Text
+'\n'          Text
+
+'\n'          Text
+
+'# Use this to make a link between python$(VERSION) and python in $(BINDIR)\n' Comment
+
+'LN'          Name.Variable
+'='           Operator
+'\t\t'        Text
+'ln'          Text
+'\n'          Text
+
+'\n'          Text
+
+"# Portable install script (configure doesn't always guess right)\n" Comment
+
+'INSTALL'     Name.Variable
+'='           Operator
+'\t'          Text
+'/usr/bin/install' Text
+' '           Text
+'-c'          Text
+'\n'          Text
+
+'INSTALL_PROGRAM' Name.Variable
+'='           Operator
+'${'          Literal.String.Interpol
+'INSTALL'     Name.Variable
+'}'           Literal.String.Interpol
+'\n'          Text
+
+'INSTALL_SCRIPT' Name.Variable
+'='           Operator
+' '           Text
+'${'          Literal.String.Interpol
+'INSTALL'     Name.Variable
+'}'           Literal.String.Interpol
+'\n'          Text
+
+'INSTALL_DATA' Name.Variable
+'='           Operator
+'\t'          Text
+'${'          Literal.String.Interpol
+'INSTALL'     Name.Variable
+'}'           Literal.String.Interpol
+' '           Text
+'-m'          Text
+' '           Text
+'644'         Literal.Number
+'\n'          Text
+
+'# Shared libraries must be installed with executable mode on some systems;\n' Comment
+
+'# rather than figuring out exactly which, we always give them executable mode.\n' Comment
+
+'# Also, making them read-only seems to be a good idea...\n' Comment
+
+'INSTALL_SHARED' Name.Variable
+'='           Operator
+' '           Text
+'${'          Literal.String.Interpol
+'INSTALL'     Name.Variable
+'}'           Literal.String.Interpol
+' '           Text
+'-m'          Text
+' '           Text
+'555'         Literal.Number
+'\n'          Text
+
+'\n'          Text
+
+'MAKESETUP'   Name.Variable
+'='           Operator
+'      '      Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Modules/makesetup' Text
+'\n'          Text
+
+'\n'          Text
+
+'# Compiler options\n' Comment
+
+'OPT'         Name.Variable
+'='           Operator
+'\t\t'        Text
+'-g'          Text
+' '           Text
+'-Wall'       Text
+' '           Text
+'-Wstrict-prototypes' Text
+'\n'          Text
+
+'BASECFLAGS'  Name.Variable
+'='           Operator
+'\t '         Text
+'-fno-strict-aliasing' Text
+'\n'          Text
+
+'CFLAGS'      Name.Variable
+'='           Operator
+'\t\t'        Text
+'$('          Keyword
+'BASECFLAGS'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'OPT'         Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'EXTRA_CFLAGS' Text
+')'           Keyword
+'\n'          Text
+
+"# Both CPPFLAGS and LDFLAGS need to contain the shell's value for setup.py to\n" Comment
+
+'# be able to build extension modules using the directories specified in the\n' Comment
+
+'# environment variables\n' Comment
+
+'CPPFLAGS'    Name.Variable
+'='           Operator
+'\t'          Text
+'-I.'         Text
+' '           Text
+'-I'          Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Include'    Text
+' \n'         Text
+
+'LDFLAGS'     Name.Variable
+'='           Operator
+'\t'          Text
+'\n'          Text
+
+'LDLAST'      Name.Variable
+'='           Operator
+'\t\t'        Text
+'\n'          Text
+
+'SGI_ABI'     Name.Variable
+'='           Operator
+'\t'          Text
+'\n'          Text
+
+'CCSHARED'    Name.Variable
+'='           Operator
+'\t'          Text
+'-fPIC'       Text
+'\n'          Text
+
+'LINKFORSHARED' Name.Variable
+'='           Operator
+'\t'          Text
+'-Xlinker'    Text
+' '           Text
+'-export-dynamic' Text
+'\n'          Text
+
+'# Extra C flags added for building the interpreter object files.\n' Comment
+
+'CFLAGSFORSHARED' Name.Variable
+'='           Operator
+'\n'          Text
+
+'# C flags used for building the interpreter object files\n' Comment
+
+'PY_CFLAGS'   Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'CFLAGS'      Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'CPPFLAGS'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'CFLAGSFORSHARED' Text
+')'           Keyword
+' '           Text
+'-DPy_BUILD_CORE' Text
+'\n'          Text
+
+'\n\n'        Text
+
+'# Machine-dependent subdirectories\n' Comment
+
+'MACHDEP'     Name.Variable
+'='           Operator
+'\t'          Text
+'linux2'      Text
+'\n'          Text
+
+'\n'          Text
+
+'# Install prefix for architecture-independent files\n' Comment
+
+'prefix'      Name.Variable
+'='           Operator
+'\t\t'        Text
+'/usr/local'  Text
+'\n'          Text
+
+'\n'          Text
+
+'# Install prefix for architecture-dependent files\n' Comment
+
+'exec_prefix' Name.Variable
+'='           Operator
+'\t'          Text
+'${'          Literal.String.Interpol
+'prefix'      Name.Variable
+'}'           Literal.String.Interpol
+'\n'          Text
+
+'\n'          Text
+
+'# Expanded directories\n' Comment
+
+'BINDIR'      Name.Variable
+'='           Operator
+'\t\t'        Text
+'$('          Keyword
+'exec_prefix' Text
+')'           Keyword
+'/bin'        Text
+'\n'          Text
+
+'LIBDIR'      Name.Variable
+'='           Operator
+'\t\t'        Text
+'$('          Keyword
+'exec_prefix' Text
+')'           Keyword
+'/lib'        Text
+'\n'          Text
+
+'MANDIR'      Name.Variable
+'='           Operator
+'\t\t'        Text
+'${'          Literal.String.Interpol
+'prefix'      Name.Variable
+'}'           Literal.String.Interpol
+'/man'        Text
+'\n'          Text
+
+'INCLUDEDIR'  Name.Variable
+'='           Operator
+'\t'          Text
+'${'          Literal.String.Interpol
+'prefix'      Name.Variable
+'}'           Literal.String.Interpol
+'/include'    Text
+'\n'          Text
+
+'CONFINCLUDEDIR' Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'exec_prefix' Text
+')'           Keyword
+'/include'    Text
+'\n'          Text
+
+'SCRIPTDIR'   Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'prefix'      Text
+')'           Keyword
+'/lib'        Text
+'\n'          Text
+
+'\n'          Text
+
+'# Detailed destination directories\n' Comment
+
+'BINLIBDEST'  Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'LIBDIR'      Text
+')'           Keyword
+'/python'     Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'\n'          Text
+
+'LIBDEST'     Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'SCRIPTDIR'   Text
+')'           Keyword
+'/python'     Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'\n'          Text
+
+'INCLUDEPY'   Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'INCLUDEDIR'  Text
+')'           Keyword
+'/python'     Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'\n'          Text
+
+'CONFINCLUDEPY' Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'CONFINCLUDEDIR' Text
+')'           Keyword
+'/python'     Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'\n'          Text
+
+'LIBP'        Name.Variable
+'='           Operator
+'\t\t'        Text
+'$('          Keyword
+'LIBDIR'      Text
+')'           Keyword
+'/python'     Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'\n'          Text
+
+'\n'          Text
+
+'# Symbols used for using shared libraries\n' Comment
+
+'SO'          Name.Variable
+'='           Operator
+'\t\t'        Text
+'.so'         Text
+'\n'          Text
+
+'LDSHARED'    Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'CC'          Text
+')'           Keyword
+' '           Text
+'-shared'     Text
+'\n'          Text
+
+'BLDSHARED'   Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'CC'          Text
+')'           Keyword
+' '           Text
+'-shared'     Text
+'\n'          Text
+
+'DESTSHARED'  Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'BINLIBDEST'  Text
+')'           Keyword
+'/lib-dynload' Text
+'\n'          Text
+
+'\n'          Text
+
+'# Executable suffix (.exe on Windows and Mac OS X)\n' Comment
+
+'EXE'         Name.Variable
+'='           Operator
+'\t\t'        Text
+'\n'          Text
+
+'BUILDEXE'    Name.Variable
+'='           Operator
+'\t'          Text
+'\n'          Text
+
+'\n'          Text
+
+'# Short name and location for Mac OS X Python framework\n' Comment
+
+'UNIVERSALSDK' Name.Variable
+'='           Operator
+'\n'          Text
+
+'PYTHONFRAMEWORK' Name.Variable
+'='           Operator
+'\t'          Text
+'\n'          Text
+
+'PYTHONFRAMEWORKDIR' Name.Variable
+'='           Operator
+'\t'          Text
+'no-framework' Text
+'\n'          Text
+
+'PYTHONFRAMEWORKPREFIX' Name.Variable
+'='           Operator
+'\t'          Text
+'\n'          Text
+
+'PYTHONFRAMEWORKINSTALLDIR' Name.Variable
+'='           Operator
+' '           Text
+'\n'          Text
+
+'# Deployment target selected during configure, to be checked\n' Comment
+
+'# by distutils. The export statement is needed to ensure that the\n' Comment
+
+'# deployment target is active during build.\n' Comment
+
+'MACOSX_DEPLOYMENT_TARGET' Name.Variable
+'='           Operator
+'\n'          Text
+
+'#export MACOSX_DEPLOYMENT_TARGET\n' Comment
+
+'\n'          Text
+
+'# Options to enable prebinding (for fast startup prior to Mac OS X 10.3)\n' Comment
+
+'OTHER_LIBTOOL_OPT' Name.Variable
+'='           Operator
+'\n'          Text
+
+'\n'          Text
+
+'# Environment to run shared python without installed libraries\n' Comment
+
+'RUNSHARED'   Name.Variable
+'='           Operator
+'       '     Text
+'\n'          Text
+
+'\n'          Text
+
+'# Modes for directories, executables and data files created by the\n' Comment
+
+'# install process.  Default to user-only-writable for all file types.\n' Comment
+
+'DIRMODE'     Name.Variable
+'='           Operator
+'\t'          Text
+'755'         Literal.Number
+'\n'          Text
+
+'EXEMODE'     Name.Variable
+'='           Operator
+'\t'          Text
+'755'         Literal.Number
+'\n'          Text
+
+'FILEMODE'    Name.Variable
+'='           Operator
+'\t'          Text
+'644'         Literal.Number
+'\n'          Text
+
+'\n'          Text
+
+'# configure script arguments\n' Comment
+
+'CONFIG_ARGS' Name.Variable
+'='           Operator
+'\t'          Text
+"'--with-pydebug'" Literal.String.Single
+'\n'          Text
+
+'\n\n'        Text
+
+'# Subdirectories with code\n' Comment
+
+'SRCDIRS'     Name.Variable
+'='           Operator
+' \t'         Text
+'Parser'      Text
+' '           Text
+'Grammar'     Text
+' '           Text
+'Objects'     Text
+' '           Text
+'Python'      Text
+' '           Text
+'Modules'     Text
+' '           Text
+'Mac'         Text
+'\n'          Text
+
+'\n'          Text
+
+'# Other subdirectories\n' Comment
+
+'SUBDIRSTOO'  Name.Variable
+'='           Operator
+'\t'          Text
+'Include'     Text
+' '           Text
+'Lib'         Text
+' '           Text
+'Misc'        Text
+' '           Text
+'Demo'        Text
+'\n'          Text
+
+'\n'          Text
+
+'# Files and directories to be distributed\n' Comment
+
+'CONFIGFILES' Name.Variable
+'='           Operator
+'\t'          Text
+'configure'   Text
+' '           Text
+'configure.in' Text
+' '           Text
+'acconfig.h'  Text
+' '           Text
+'pyconfig.h.in' Text
+' '           Text
+'Makefile.pre.in' Text
+'\n'          Text
+
+'DISTFILES'   Name.Variable
+'='           Operator
+'\t'          Text
+'README'      Text
+' '           Text
+'ChangeLog'   Text
+' '           Text
+'$('          Keyword
+'CONFIGFILES' Text
+')'           Keyword
+'\n'          Text
+
+'DISTDIRS'    Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'SUBDIRS'     Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'SUBDIRSTOO'  Text
+')'           Keyword
+' '           Text
+'Ext-dummy'   Text
+'\n'          Text
+
+'DIST'        Name.Variable
+'='           Operator
+'\t\t'        Text
+'$('          Keyword
+'DISTFILES'   Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'DISTDIRS'    Text
+')'           Keyword
+'\n'          Text
+
+'\n\n'        Text
+
+'LIBRARY'     Name.Variable
+'='           Operator
+'\t'          Text
+'libpython'   Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'.a'          Text
+'\n'          Text
+
+'LDLIBRARY'   Name.Variable
+'='           Operator
+'      '      Text
+'libpython'   Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'.a'          Text
+'\n'          Text
+
+'BLDLIBRARY'  Name.Variable
+'='           Operator
+'     '       Text
+'$('          Keyword
+'LDLIBRARY'   Text
+')'           Keyword
+'\n'          Text
+
+'DLLLIBRARY'  Name.Variable
+'='           Operator
+'\t'          Text
+'\n'          Text
+
+'LDLIBRARYDIR' Name.Variable
+'='           Operator
+'   '         Text
+'\n'          Text
+
+'INSTSONAME'  Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'LDLIBRARY'   Text
+')'           Keyword
+'\n'          Text
+
+'\n\n'        Text
+
+'LIBS'        Name.Variable
+'='           Operator
+'\t\t'        Text
+'-lpthread'   Text
+' '           Text
+'-ldl'        Text
+'  '          Text
+'-lutil'      Text
+'\n'          Text
+
+'LIBM'        Name.Variable
+'='           Operator
+'\t\t'        Text
+'-lm'         Text
+'\n'          Text
+
+'LIBC'        Name.Variable
+'='           Operator
+'\t\t'        Text
+'\n'          Text
+
+'SYSLIBS'     Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'LIBM'        Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LIBC'        Text
+')'           Keyword
+'\n'          Text
+
+'SHLIBS'      Name.Variable
+'='           Operator
+'\t\t'        Text
+'$('          Keyword
+'LIBS'        Text
+')'           Keyword
+'\n'          Text
+
+'\n'          Text
+
+'THREADOBJ'   Name.Variable
+'='           Operator
+'\t'          Text
+'Python/thread.o' Text
+'\n'          Text
+
+'DLINCLDIR'   Name.Variable
+'='           Operator
+'\t'          Text
+'.'           Text
+'\n'          Text
+
+'DYNLOADFILE' Name.Variable
+'='           Operator
+'\t'          Text
+'dynload_shlib.o' Text
+'\n'          Text
+
+'MACHDEP_OBJS' Name.Variable
+'='           Operator
+'\t'          Text
+'\n'          Text
+
+'UNICODE_OBJS' Name.Variable
+'='           Operator
+'   '         Text
+'Objects/unicodeobject.o' Text
+' '           Text
+'Objects/unicodectype.o' Text
+'\n'          Text
+
+'\n'          Text
+
+'PYTHON'      Name.Variable
+'='           Operator
+'\t\t'        Text
+'python'      Text
+'$('          Keyword
+'EXE'         Text
+')'           Keyword
+'\n'          Text
+
+'BUILDPYTHON' Name.Variable
+'='           Operator
+'\t'          Text
+'python'      Text
+'$('          Keyword
+'BUILDEXE'    Text
+')'           Keyword
+'\n'          Text
+
+'\n'          Text
+
+'# === Definitions added by makesetup ===\n' Comment
+
+'\n'          Text
+
+'LOCALMODLIBS' Name.Variable
+'='           Operator
+'          '  Text
+'\n'          Text
+
+'BASEMODLIBS' Name.Variable
+'='           Operator
+'\n'          Text
+
+'GLHACK'      Name.Variable
+'='           Operator
+'-Dclear'     Text
+'='           Operator
+'__GLclear'   Text
+'\n'          Text
+
+'PYTHONPATH'  Name.Variable
+'='           Operator
+'$('          Keyword
+'COREPYTHONPATH' Text
+')'           Keyword
+'\n'          Text
+
+'COREPYTHONPATH' Name.Variable
+'='           Operator
+'$('          Keyword
+'DESTPATH'    Text
+')'           Keyword
+'$('          Keyword
+'SITEPATH'    Text
+')'           Keyword
+'$('          Keyword
+'TESTPATH'    Text
+')'           Keyword
+'$('          Keyword
+'MACHDEPPATH' Text
+')'           Keyword
+'$('          Keyword
+'EXTRAMACHDEPPATH' Text
+')'           Keyword
+'$('          Keyword
+'TKPATH'      Text
+')'           Keyword
+'\n'          Text
+
+'TKPATH'      Name.Variable
+'='           Operator
+':lib-tk'     Text
+'\n'          Text
+
+'EXTRAMACHDEPPATH' Name.Variable
+'='           Operator
+'\n'          Text
+
+'MACHDEPPATH' Name.Variable
+'='           Operator
+':plat-'      Text
+'$('          Keyword
+'MACHDEP'     Text
+')'           Keyword
+'\n'          Text
+
+'TESTPATH'    Name.Variable
+'='           Operator
+'\n'          Text
+
+'SITEPATH'    Name.Variable
+'='           Operator
+'\n'          Text
+
+'DESTPATH'    Name.Variable
+'='           Operator
+'\n'          Text
+
+'MACHDESTLIB' Name.Variable
+'='           Operator
+'$('          Keyword
+'BINLIBDEST'  Text
+')'           Keyword
+'\n'          Text
+
+'DESTLIB'     Name.Variable
+'='           Operator
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'\n'          Text
+
+'\n\n\n'      Text
+
+'##########################################################################\n' Comment
+
+'# Modules\n' Comment
+
+'MODULE_OBJS' Name.Variable
+'='           Operator
+'\t'          Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Modules/config.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Modules/getpath.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Modules/main.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Modules/gcmodule.o' Text
+'\n\n'        Text
+
+'# Used of signalmodule.o is not available\n' Comment
+
+'SIGNAL_OBJS' Name.Variable
+'='           Operator
+'\t'          Text
+'\n'          Text
+
+'\n\n'        Text
+
+'##########################################################################\n' Comment
+
+'# Grammar\n' Comment
+
+'GRAMMAR_H'   Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Include/graminit.h' Text
+'\n'          Text
+
+'GRAMMAR_C'   Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Python/graminit.c' Text
+'\n'          Text
+
+'GRAMMAR_INPUT' Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Grammar/Grammar' Text
+'\n'          Text
+
+'\n\n'        Text
+
+'##########################################################################\n' Comment
+
+'# Parser\n'  Comment
+
+'PGEN'        Name.Variable
+'='           Operator
+'\t\t'        Text
+'Parser/pgen' Text
+'$('          Keyword
+'EXE'         Text
+')'           Keyword
+'\n'          Text
+
+'\n'          Text
+
+'POBJS'       Name.Variable
+'='           Operator
+'\t\t'        Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/acceler.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/grammar1.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/listnode.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/node.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/parser.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/parsetok.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/bitset.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/metagrammar.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/firstsets.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/grammar.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/pgen.o' Text
+'\n\n'        Text
+
+'PARSER_OBJS' Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'POBJS'       Text
+')'           Keyword
+' '           Text
+'Parser/myreadline.o' Text
+' '           Text
+'Parser/tokenizer.o' Text
+'\n'          Text
+
+'\n'          Text
+
+'PGOBJS'      Name.Variable
+'='           Operator
+'\t\t'        Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/obmalloc.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/mysnprintf.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/tokenizer_pgen.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/printgrammar.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Parser/pgenmain.o' Text
+'\n\n'        Text
+
+'PGENOBJS'    Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'PGENMAIN'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'POBJS'       Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PGOBJS'      Text
+')'           Keyword
+'\n'          Text
+
+'\n'          Text
+
+'##########################################################################\n' Comment
+
+'# AST\n'     Comment
+
+'AST_H_DIR'   Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Include'    Text
+'\n'          Text
+
+'AST_H'       Name.Variable
+'='           Operator
+'\t\t'        Text
+'$('          Keyword
+'AST_H_DIR'   Text
+')'           Keyword
+'/Python-ast.h' Text
+'\n'          Text
+
+'AST_C_DIR'   Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Python'     Text
+'\n'          Text
+
+'AST_C'       Name.Variable
+'='           Operator
+'\t\t'        Text
+'$('          Keyword
+'AST_C_DIR'   Text
+')'           Keyword
+'/Python-ast.c' Text
+'\n'          Text
+
+'AST_ASDL'    Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Parser/Python.asdl' Text
+'\n'          Text
+
+'\n'          Text
+
+'ASDLGEN_FILES' Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Parser/asdl.py' Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Parser/asdl_c.py' Text
+'\n'          Text
+
+'# XXX Note that a build now requires Python exist before the build starts\n' Comment
+
+'ASDLGEN'     Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Parser/asdl_c.py' Text
+'\n'          Text
+
+'\n'          Text
+
+'##########################################################################\n' Comment
+
+'# Python\n'  Comment
+
+'PYTHON_OBJS' Name.Variable
+'='           Operator
+'\t'          Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/Python-ast.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/asdl.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/ast.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/bltinmodule.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/ceval.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/compile.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/codecs.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/errors.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/frozen.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/frozenmain.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/future.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/getargs.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/getcompiler.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/getcopyright.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/getmtime.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/getplatform.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/getversion.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/graminit.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/import.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/importdl.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/marshal.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/modsupport.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/mystrtoul.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/mysnprintf.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/peephole.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/pyarena.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/pyfpe.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/pystate.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/pythonrun.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/structmember.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/symtable.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/sysmodule.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/traceback.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/getopt.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/pystrtod.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Python/'     Text
+'$('          Keyword
+'DYNLOADFILE' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'MACHDEP_OBJS' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'THREADOBJ'   Text
+')'           Keyword
+'\n\n\n'      Text
+
+'##########################################################################\n' Comment
+
+'# Objects\n' Comment
+
+'OBJECT_OBJS' Name.Variable
+'='           Operator
+'\t'          Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/abstract.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/boolobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/bufferobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/cellobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/classobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/cobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/codeobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/complexobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/descrobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/enumobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/exceptions.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/genobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/fileobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/floatobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/frameobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/funcobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/intobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/iterobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/listobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/longobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/dictobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/methodobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/moduleobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/object.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/obmalloc.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/rangeobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'                ' Text
+'Objects/setobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/sliceobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/stringobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/structseq.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/tupleobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/typeobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Objects/weakrefobject.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'UNICODE_OBJS' Text
+')'           Keyword
+'\n\n\n'      Text
+
+'##########################################################################\n' Comment
+
+'# objects that get linked into the Python library\n' Comment
+
+'LIBRARY_OBJS' Name.Variable
+'='           Operator
+'\t'          Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Modules/_typesmodule.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Modules/getbuildinfo.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'PARSER_OBJS' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'OBJECT_OBJS' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'PYTHON_OBJS' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'MODULE_OBJS' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'SIGNAL_OBJS' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'MODOBJS'     Text
+')'           Keyword
+'\n\n'        Text
+
+'#########################################################################\n' Comment
+
+'# Rules\n'   Comment
+
+'\n'          Text
+
+'# Default target\n' Comment
+
+'all'         Name.Function
+':'           Operator
+'\t\t'        Text
+'$('          Keyword
+'BUILDPYTHON' Name.Variable
+')'           Keyword
+' '           Text
+'oldsharedmods' Name
+' '           Text
+'sharedmods'  Name
+'\n'          Text
+
+'\n'          Text
+
+'# Build the interpreter\n' Comment
+
+'$(BUILDPYTHON)' Name.Function
+':'           Operator
+'\t'          Text
+'Modules'     Name
+'/'           Text
+'python'      Name
+'.'           Text
+'o'           Name
+' '           Text
+'$('          Keyword
+'LIBRARY'     Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LDLIBRARY'   Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t\t'        Text
+'$('          Keyword
+'LINKCC'      Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LDFLAGS'     Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LINKFORSHARED' Text
+')'           Keyword
+' '           Text
+'-o'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'Modules/python.o' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'$('          Keyword
+'BLDLIBRARY'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LIBS'        Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'MODLIBS'     Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'SYSLIBS'     Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LDLAST'      Text
+')'           Keyword
+'\n\n'        Text
+
+'platform'    Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'BUILDPYTHON' Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'RUNSHARED'   Text
+')'           Keyword
+' '           Text
+'./'          Text
+'$('          Keyword
+'BUILDPYTHON' Text
+')'           Keyword
+' '           Text
+'-E'          Text
+' '           Text
+'-c'          Text
+' '           Text
+'\'import sys ; from distutils.util import get_platform ; print get_platform()+"-"+sys.version[0:3]\'' Literal.String.Single
+' '           Text
+'>platform'   Text
+'\n\n\n'      Text
+
+'# Build the shared modules\n' Comment
+
+'sharedmods'  Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'BUILDPYTHON' Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t'          Text
+'@case'       Text
+' '           Text
+'$$'          Name.Variable
+'MAKEFLAGS'   Text
+' '           Text
+'in'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'*-s*'        Text
+')'           Operator
+' '           Text
+'$('          Keyword
+'RUNSHARED'   Text
+')'           Keyword
+' '           Text
+'CC'          Name.Variable
+'='           Operator
+"'$(CC)'"     Literal.String.Single
+' '           Text
+'LDSHARED'    Name.Variable
+'='           Operator
+"'$(BLDSHARED)'" Literal.String.Single
+' '           Text
+'OPT'         Name.Variable
+'='           Operator
+"'$(OPT)'"    Literal.String.Single
+' '           Text
+'./'          Text
+'$('          Keyword
+'BUILDPYTHON' Text
+')'           Keyword
+' '           Text
+'-E'          Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/setup.py'   Text
+' '           Text
+'-q'          Text
+' '           Text
+'build'       Text
+';'           Punctuation
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'*'           Text
+')'           Operator
+' '           Text
+'$('          Keyword
+'RUNSHARED'   Text
+')'           Keyword
+' '           Text
+'CC'          Name.Variable
+'='           Operator
+"'$(CC)'"     Literal.String.Single
+' '           Text
+'LDSHARED'    Name.Variable
+'='           Operator
+"'$(BLDSHARED)'" Literal.String.Single
+' '           Text
+'OPT'         Name.Variable
+'='           Operator
+"'$(OPT)'"    Literal.String.Single
+' '           Text
+'./'          Text
+'$('          Keyword
+'BUILDPYTHON' Text
+')'           Keyword
+' '           Text
+'-E'          Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/setup.py'   Text
+' '           Text
+'build'       Text
+';'           Punctuation
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'esac'        Keyword
+'\n\n'        Text
+
+'# Build static library\n' Comment
+
+'# avoid long command lines, same as LIBRARY_OBJS\n' Comment
+
+'$(LIBRARY)'  Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'LIBRARY_OBJS' Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t'          Text
+'-rm'         Text
+' '           Text
+'-f'          Text
+' '           Text
+'$@'          Name.Variable
+'\n\t'        Text
+'$('          Keyword
+'AR'          Text
+')'           Keyword
+' '           Text
+'cr'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'Modules/getbuildinfo.o' Text
+'\n\t'        Text
+'$('          Keyword
+'AR'          Text
+')'           Keyword
+' '           Text
+'cr'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'Modules/_typesmodule.o' Text
+'\n\t'        Text
+'$('          Keyword
+'AR'          Text
+')'           Keyword
+' '           Text
+'cr'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'$('          Keyword
+'PARSER_OBJS' Text
+')'           Keyword
+'\n\t'        Text
+'$('          Keyword
+'AR'          Text
+')'           Keyword
+' '           Text
+'cr'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'$('          Keyword
+'OBJECT_OBJS' Text
+')'           Keyword
+'\n\t'        Text
+'$('          Keyword
+'AR'          Text
+')'           Keyword
+' '           Text
+'cr'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'$('          Keyword
+'PYTHON_OBJS' Text
+')'           Keyword
+'\n\t'        Text
+'$('          Keyword
+'AR'          Text
+')'           Keyword
+' '           Text
+'cr'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'$('          Keyword
+'MODULE_OBJS' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'SIGNAL_OBJS' Text
+')'           Keyword
+'\n\t'        Text
+'$('          Keyword
+'AR'          Text
+')'           Keyword
+' '           Text
+'cr'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'$('          Keyword
+'MODOBJS'     Text
+')'           Keyword
+'\n\t'        Text
+'$('          Keyword
+'RANLIB'      Text
+')'           Keyword
+' '           Text
+'$@'          Name.Variable
+'\n\n'        Text
+
+'libpython$(VERSION).so' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'LIBRARY_OBJS' Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\tif test $(INSTSONAME) != $(LDLIBRARY); then \\\n' Comment.Preproc
+
+'\t\t$(LDSHARED) -Wl,-h$(INSTSONAME) -o $(INSTSONAME) $(LIBRARY_OBJS) $(SHLIBS) $(LIBC) $(LIBM); \\\n' Comment.Preproc
+
+'\t\t$(LN) -f $(INSTSONAME) $@; \\\n' Comment.Preproc
+
+'\telse\\\n'  Comment.Preproc
+
+'\t\t$(LDSHARED) -o $@ $(LIBRARY_OBJS) $(SHLIBS) $(LIBC) $(LIBM); \\\n' Comment.Preproc
+
+'\tfi\n'      Comment.Preproc
+
+'\n'          Text
+
+'libpython$(VERSION).sl' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'LIBRARY_OBJS' Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'LDSHARED'    Text
+')'           Keyword
+' '           Text
+'-o'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'$('          Keyword
+'LIBRARY_OBJS' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'SHLIBS'      Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LIBC'        Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LIBM'        Text
+')'           Keyword
+'\n\n'        Text
+
+'# This rule is here for OPENSTEP/Rhapsody/MacOSX. It builds a temporary\n' Comment
+
+'# minimal framework (not including the Lib directory and such) in the current\n' Comment
+
+'# directory.\n' Comment
+
+'RESSRCDIR'   Name.Variable
+'='           Operator
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Mac/Resources/framework' Text
+'\n'          Text
+
+'$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)' Name.Function
+':'           Operator
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'$('          Keyword
+'LIBRARY'     Name.Variable
+')'           Keyword
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'$('          Keyword
+'RESSRCDIR'   Name.Variable
+')'           Keyword
+'/'           Text
+'Info'        Name
+'.'           Text
+'plist'       Name
+' '           Text
+'\\\n'        Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'$('          Keyword
+'RESSRCDIR'   Name.Variable
+')'           Keyword
+'/'           Text
+'version'     Name
+'.'           Text
+'plist'       Name
+' '           Text
+'\\\n'        Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'$('          Keyword
+'RESSRCDIR'   Name.Variable
+')'           Keyword
+'/'           Text
+'English'     Name
+'.'           Text
+'lproj'       Name
+'/'           Text
+'InfoPlist'   Name
+'.'           Text
+'strings'     Name
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'INSTALL'     Text
+')'           Keyword
+' '           Text
+'-d'          Text
+' '           Text
+'-m'          Text
+' '           Text
+'$('          Keyword
+'DIRMODE'     Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PYTHONFRAMEWORKDIR' Text
+')'           Keyword
+'/Versions/'  Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'\n'          Text
+
+'\tif test "${UNIVERSALSDK}"; then \\\n' Comment.Preproc
+
+'\t\t$(CC) -o $(LDLIBRARY) -arch i386 -arch ppc -dynamiclib \\\n' Comment.Preproc
+
+'\t\t\t-isysroot "${UNIVERSALSDK}" \\\n' Comment.Preproc
+
+'\t\t\t-all_load $(LIBRARY) -Wl,-single_module \\\n' Comment.Preproc
+
+'\t\t\t-install_name $(DESTDIR)$(PYTHONFRAMEWORKINSTALLDIR)/Versions/$(VERSION)/Python \\\n' Comment.Preproc
+
+'\t\t\t-compatibility_version $(VERSION) \\\n' Comment.Preproc
+
+'\t\t\t-current_version $(VERSION); \\\n' Comment.Preproc
+
+'        else \\\n' Comment.Preproc
+
+'\t\tlibtool -o $(LDLIBRARY) -dynamic $(OTHER_LIBTOOL_OPT) $(LIBRARY) \\\n' Comment.Preproc
+
+'\t\t\t ;\\\n' Comment.Preproc
+
+'\tfi\n'      Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'INSTALL'     Text
+')'           Keyword
+' '           Text
+'-d'          Text
+' '           Text
+'-m'          Text
+' '           Text
+'$('          Keyword
+'DIRMODE'     Text
+')'           Keyword
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'PYTHONFRAMEWORKDIR' Text
+')'           Keyword
+'/Versions/'  Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'/Resources/English.lproj' Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'RESSRCDIR'   Text
+')'           Keyword
+'/Info.plist' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'PYTHONFRAMEWORKDIR' Text
+')'           Keyword
+'/Versions/'  Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'/Resources/Info.plist' Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'RESSRCDIR'   Text
+')'           Keyword
+'/version.plist' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'PYTHONFRAMEWORKDIR' Text
+')'           Keyword
+'/Versions/'  Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'/Resources/version.plist' Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'RESSRCDIR'   Text
+')'           Keyword
+'/English.lproj/InfoPlist.strings' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'PYTHONFRAMEWORKDIR' Text
+')'           Keyword
+'/Versions/'  Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'/Resources/English.lproj/InfoPlist.strings' Text
+'\n\t'        Text
+'$('          Keyword
+'LN'          Text
+')'           Keyword
+' '           Text
+'-fsn'        Text
+' '           Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PYTHONFRAMEWORKDIR' Text
+')'           Keyword
+'/Versions/Current' Text
+'\n\t'        Text
+'$('          Keyword
+'LN'          Text
+')'           Keyword
+' '           Text
+'-fsn'        Text
+' '           Text
+'Versions/Current/' Text
+'$('          Keyword
+'PYTHONFRAMEWORK' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PYTHONFRAMEWORKDIR' Text
+')'           Keyword
+'/'           Text
+'$('          Keyword
+'PYTHONFRAMEWORK' Text
+')'           Keyword
+'\n\t'        Text
+'$('          Keyword
+'LN'          Text
+')'           Keyword
+' '           Text
+'-fsn'        Text
+' '           Text
+'Versions/Current/Headers' Text
+' '           Text
+'$('          Keyword
+'PYTHONFRAMEWORKDIR' Text
+')'           Keyword
+'/Headers'    Text
+'\n\t'        Text
+'$('          Keyword
+'LN'          Text
+')'           Keyword
+' '           Text
+'-fsn'        Text
+' '           Text
+'Versions/Current/Resources' Text
+' '           Text
+'$('          Keyword
+'PYTHONFRAMEWORKDIR' Text
+')'           Keyword
+'/Resources'  Text
+'\n\n'        Text
+
+'# This rule builds the Cygwin Python DLL and import library if configured\n' Comment
+
+'# for a shared core library; otherwise, this rule is a noop.\n' Comment
+
+'$(DLLLIBRARY) libpython$(VERSION).dll.a' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'LIBRARY_OBJS' Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\tif test -n "$(DLLLIBRARY)"; then \\\n' Comment.Preproc
+
+'\t\t$(LDSHARED) -Wl,--out-implib=$@ -o $(DLLLIBRARY) $^ \\\n' Comment.Preproc
+
+'\t\t\t$(LIBS) $(MODLIBS) $(SYSLIBS); \\\n' Comment.Preproc
+
+'\telse true; \\\n' Comment.Preproc
+
+'\tfi\n'      Comment.Preproc
+
+'\n\n'        Text
+
+'oldsharedmods' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'SHAREDMODS'  Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\n\n'        Text
+
+'Makefile Modules/config.c' Name.Function
+':'           Operator
+' '           Text
+'Makefile'    Name
+'.'           Text
+'pre'         Name
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'config'      Name
+'.'           Text
+'c'           Name
+'.'           Text
+'in'          Name
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'$('          Keyword
+'MAKESETUP'   Name.Variable
+')'           Keyword
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'Modules'     Name
+'/'           Text
+'Setup'       Name
+'.'           Text
+'config'      Name
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'Modules'     Name
+'/'           Text
+'Setup'       Name
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'Modules'     Name
+'/'           Text
+'Setup'       Name
+'.'           Text
+'local'       Name
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'SHELL'       Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'MAKESETUP'   Text
+')'           Keyword
+' '           Text
+'-c'          Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Modules/config.c.in' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t\t'    Text
+'-s'          Text
+' '           Text
+'Modules'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t\t'    Text
+'Modules/Setup.config' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t\t'    Text
+'Modules/Setup.local' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t\t'    Text
+'Modules/Setup' Text
+'\n\t'        Text
+'@mv'         Text
+' '           Text
+'config.c'    Text
+' '           Text
+'Modules'     Text
+'\n\t'        Text
+'@echo'       Text
+' '           Text
+'"The Makefile was updated, you may need to re-run make."' Literal.String.Double
+'\n\n\n'      Text
+
+'Modules/Setup' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'Setup'       Name
+'.'           Text
+'dist'        Name
+'\n'          Text
+
+'\t'          Text
+'@if'         Text
+' '           Text
+'test'        Name.Builtin
+' '           Text
+'-f'          Text
+' '           Text
+'Modules/Setup' Text
+';'           Punctuation
+' '           Text
+'then'        Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Name.Builtin
+' '           Text
+'"-----------------------------------------------"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Name.Builtin
+' '           Text
+'"Modules/Setup.dist is newer than Modules/Setup;"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Name.Builtin
+' '           Text
+'"check to make sure you have all the updates you"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Name.Builtin
+' '           Text
+'"need in your Modules/Setup file."' Literal.String.Double
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Name.Builtin
+' '           Text
+'"Usually, copying Setup.dist to Setup will work."' Literal.String.Double
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Name.Builtin
+' '           Text
+'"-----------------------------------------------"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'fi'          Keyword
+'\n\n'        Text
+
+'############################################################################\n' Comment
+
+'# Special rules for object files\n' Comment
+
+'\n'          Text
+
+'Modules/getbuildinfo.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'PARSER_OBJS' Name.Variable
+')'           Keyword
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'$('          Keyword
+'OBJECT_OBJS' Name.Variable
+')'           Keyword
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'$('          Keyword
+'PYTHON_OBJS' Name.Variable
+')'           Keyword
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'$('          Keyword
+'MODULE_OBJS' Name.Variable
+')'           Keyword
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'$('          Keyword
+'SIGNAL_OBJS' Name.Variable
+')'           Keyword
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'$('          Keyword
+'MODOBJS'     Name.Variable
+')'           Keyword
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'getbuildinfo' Name
+'.'           Text
+'c'           Name
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'CC'          Text
+')'           Keyword
+' '           Text
+'-c'          Text
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Text
+')'           Keyword
+' '           Text
+'-DSVNVERSION' Text
+'='           Operator
+'\\"'         Literal.String.Escape
+'`'           Literal.String.Backtick
+'LC_ALL'      Name.Variable
+'='           Operator
+'C'           Text
+' '           Text
+'$('          Keyword
+'SVNVERSION'  Text
+')'           Keyword
+'`'           Literal.String.Backtick
+'\\"'         Literal.String.Escape
+' '           Text
+'-o'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Modules/getbuildinfo.c' Text
+'\n\n'        Text
+
+'Modules/getpath.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'getpath'     Name
+'.'           Text
+'c'           Name
+' '           Text
+'Makefile'    Name
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'CC'          Text
+')'           Keyword
+' '           Text
+'-c'          Text
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Text
+')'           Keyword
+' '           Text
+'-DPYTHONPATH' Text
+'='           Operator
+'\'"$(PYTHONPATH)"\'' Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-DPREFIX'    Text
+'='           Operator
+'\'"$(prefix)"\'' Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-DEXEC_PREFIX' Text
+'='           Operator
+'\'"$(exec_prefix)"\'' Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-DVERSION'   Text
+'='           Operator
+'\'"$(VERSION)"\'' Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-DVPATH'     Text
+'='           Operator
+'\'"$(VPATH)"\'' Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Modules/getpath.c' Text
+'\n\n'        Text
+
+'Modules/python.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'python'      Name
+'.'           Text
+'c'           Name
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'MAINCC'      Text
+')'           Keyword
+' '           Text
+'-c'          Text
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Text
+')'           Keyword
+' '           Text
+'-o'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Modules/python.c' Text
+'\n\n\n'      Text
+
+'$(GRAMMAR_H) $(GRAMMAR_C)' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'PGEN'        Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'GRAMMAR_INPUT' Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t\t'        Text
+'-'           Text
+'$('          Keyword
+'PGEN'        Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'GRAMMAR_INPUT' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'GRAMMAR_H'   Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'GRAMMAR_C'   Text
+')'           Keyword
+'\n\n'        Text
+
+'$(PGEN)'     Name.Function
+':'           Operator
+'\t'          Text
+'$('          Keyword
+'PGENOBJS'    Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t\t'        Text
+'$('          Keyword
+'CC'          Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'OPT'         Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LDFLAGS'     Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PGENOBJS'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LIBS'        Text
+')'           Keyword
+' '           Text
+'-o'          Text
+' '           Text
+'$('          Keyword
+'PGEN'        Text
+')'           Keyword
+'\n\n'        Text
+
+'Parser/grammar.o' Name.Function
+':'           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Parser'      Name
+'/'           Text
+'grammar'     Name
+'.'           Text
+'c'           Name
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Include'     Name
+'/'           Text
+'token'       Name
+'.'           Text
+'h'           Name
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Include'     Name
+'/'           Text
+'grammar'     Name
+'.'           Text
+'h'           Name
+'\n'          Text
+
+'Parser/metagrammar.o' Name.Function
+':'           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Parser'      Name
+'/'           Text
+'metagrammar' Name
+'.'           Text
+'c'           Name
+'\n'          Text
+
+'\n'          Text
+
+'Parser/tokenizer_pgen.o' Name.Function
+':'           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Parser'      Name
+'/'           Text
+'tokenizer'   Name
+'.'           Text
+'c'           Name
+'\n'          Text
+
+'\n'          Text
+
+'Parser/pgenmain.o' Name.Function
+':'           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Include'     Name
+'/'           Text
+'parsetok'    Name
+'.'           Text
+'h'           Name
+'\n'          Text
+
+'\n'          Text
+
+'$(AST_H)'    Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'AST_ASDL'    Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'ASDLGEN_FILES' Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'ASDLGEN'     Text
+')'           Keyword
+' '           Text
+'-h'          Text
+' '           Text
+'$('          Keyword
+'AST_H_DIR'   Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'AST_ASDL'    Text
+')'           Keyword
+'\n\n'        Text
+
+'$(AST_C)'    Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'AST_ASDL'    Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'ASDLGEN_FILES' Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'ASDLGEN'     Text
+')'           Keyword
+' '           Text
+'-c'          Text
+' '           Text
+'$('          Keyword
+'AST_C_DIR'   Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'AST_ASDL'    Text
+')'           Keyword
+'\n\n'        Text
+
+'Python/compile.o Python/symtable.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'GRAMMAR_H'   Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'AST_H'       Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\n'          Text
+
+'Python/getplatform.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'getplatform' Name
+'.'           Text
+'c'           Name
+'\n'          Text
+
+'\t\t'        Text
+'$('          Keyword
+'CC'          Text
+')'           Keyword
+' '           Text
+'-c'          Text
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Text
+')'           Keyword
+' '           Text
+'-DPLATFORM'  Text
+'='           Operator
+'\'"$(MACHDEP)"\'' Literal.String.Single
+' '           Text
+'-o'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Python/getplatform.c' Text
+'\n\n'        Text
+
+'Python/importdl.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'importdl'    Name
+'.'           Text
+'c'           Name
+'\n'          Text
+
+'\t\t'        Text
+'$('          Keyword
+'CC'          Text
+')'           Keyword
+' '           Text
+'-c'          Text
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Text
+')'           Keyword
+' '           Text
+'-I'          Text
+'$('          Keyword
+'DLINCLDIR'   Text
+')'           Keyword
+' '           Text
+'-o'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Python/importdl.c' Text
+'\n\n'        Text
+
+'Objects/unicodectype.o' Name.Function
+':'           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Objects'     Name
+'/'           Text
+'unicodectype' Name
+'.'           Text
+'c'           Name
+' '           Text
+'\\\n'        Text
+
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Objects'     Name
+'/'           Text
+'unicodetype_db' Name
+'.'           Text
+'h'           Name
+'\n'          Text
+
+'\n'          Text
+
+'############################################################################\n' Comment
+
+'# Header files\n' Comment
+
+'\n'          Text
+
+'PYTHON_HEADERS' Name.Variable
+'='           Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/Python.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/Python-ast.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/asdl.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/abstract.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/boolobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/bufferobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/ceval.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/classobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/cobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/code.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/codecs.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/compile.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/complexobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/descrobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/dictobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/enumobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/genobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/fileobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/floatobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/funcobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/import.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/intobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/intrcheck.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/iterobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/listobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/longobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/methodobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/modsupport.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/moduleobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/object.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/objimpl.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/parsetok.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/patchlevel.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/pyarena.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/pydebug.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/pyerrors.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/pyfpe.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/pymem.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/pyport.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/pystate.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/pythonrun.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/rangeobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'                ' Text
+'Include/setobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/sliceobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/stringobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/structseq.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/structmember.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/symtable.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/sysmodule.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/traceback.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/tupleobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/unicodeobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Include/weakrefobject.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'pyconfig.h'  Text
+'\n\n'        Text
+
+'$(LIBRARY_OBJS) $(MODOBJS) Modules/python.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'PYTHON_HEADERS' Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\n\n'        Text
+
+'######################################################################\n' Comment
+
+'\n'          Text
+
+'# Test the interpreter (twice, once without .pyc files, once with)\n' Comment
+
+"# In the past, we've had problems where bugs in the marshalling or\n" Comment
+
+'# elsewhere caused bytecode read from .pyc files to behave differently\n' Comment
+
+'# than bytecode generated directly from a .py source file.  Sometimes\n' Comment
+
+'# the bytecode read from a .pyc file had the bug, somtimes the directly\n' Comment
+
+'# generated bytecode.  This is sometimes a very shy bug needing a lot of\n' Comment
+
+'# sample data.\n' Comment
+
+'\n'          Text
+
+'TESTOPTS'    Name.Variable
+'='           Operator
+'\t'          Text
+'-l'          Text
+' '           Text
+'$('          Keyword
+'EXTRATESTOPTS' Text
+')'           Keyword
+'\n'          Text
+
+'TESTPROG'    Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib/test/regrtest.py' Text
+'\n'          Text
+
+'TESTPYTHON'  Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'RUNSHARED'   Text
+')'           Keyword
+' '           Text
+'./'          Text
+'$('          Keyword
+'BUILDPYTHON' Text
+')'           Keyword
+' '           Text
+'-E'          Text
+' '           Text
+'-tt'         Text
+'\n'          Text
+
+'test'        Name.Function
+':'           Operator
+'\t\t'        Text
+'all'         Name
+' '           Text
+'platform'    Name
+'\n'          Text
+
+'\t\t'        Text
+'-find'       Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib'        Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.py[co]'"  Literal.String.Single
+' '           Text
+'-print'      Text
+' '           Text
+'|'           Punctuation
+' '           Text
+'xargs'       Text
+' '           Text
+'rm'          Text
+' '           Text
+'-f'          Text
+'\n\t\t'      Text
+'-'           Text
+'$('          Keyword
+'TESTPYTHON'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTPROG'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTOPTS'    Text
+')'           Keyword
+'\n\t\t'      Text
+'$('          Keyword
+'TESTPYTHON'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTPROG'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTOPTS'    Text
+')'           Keyword
+'\n\n'        Text
+
+'testall'     Name.Function
+':'           Operator
+'\t'          Text
+'all'         Name
+' '           Text
+'platform'    Name
+'\n'          Text
+
+'\t\t'        Text
+'-find'       Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib'        Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.py[co]'"  Literal.String.Single
+' '           Text
+'-print'      Text
+' '           Text
+'|'           Punctuation
+' '           Text
+'xargs'       Text
+' '           Text
+'rm'          Text
+' '           Text
+'-f'          Text
+'\n\t\t'      Text
+'-'           Text
+'$('          Keyword
+'TESTPYTHON'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTPROG'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTOPTS'    Text
+')'           Keyword
+' '           Text
+'-uall'       Text
+'\n\t\t'      Text
+'$('          Keyword
+'TESTPYTHON'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTPROG'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTOPTS'    Text
+')'           Keyword
+' '           Text
+'-uall'       Text
+'\n\n'        Text
+
+'#  Run the unitests for both architectures in a Universal build on OSX\n' Comment
+
+'#  Must be run on an Intel box.\n' Comment
+
+'testuniversal' Name.Function
+':'           Operator
+'\t'          Text
+'all'         Name
+' '           Text
+'platform'    Name
+'\n'          Text
+
+"\t\tif [ `arch` != 'i386' ];then \\\n" Comment.Preproc
+
+'\t\t\techo "This can only be used on OSX/i386" ;\\\n' Comment.Preproc
+
+'\t\t\texit 1 ;\\\n' Comment.Preproc
+
+'\t\tfi\n'    Comment.Preproc
+
+'\t\t'        Text
+'-find'       Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib'        Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.py[co]'"  Literal.String.Single
+' '           Text
+'-print'      Text
+' '           Text
+'|'           Punctuation
+' '           Text
+'xargs'       Text
+' '           Text
+'rm'          Text
+' '           Text
+'-f'          Text
+'\n\t\t'      Text
+'-'           Text
+'$('          Keyword
+'TESTPYTHON'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTPROG'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTOPTS'    Text
+')'           Keyword
+' '           Text
+'-uall'       Text
+'\n\t\t'      Text
+'$('          Keyword
+'TESTPYTHON'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTPROG'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTOPTS'    Text
+')'           Keyword
+' '           Text
+'-uall'       Text
+'\n\t\t'      Text
+'$('          Keyword
+'RUNSHARED'   Text
+')'           Keyword
+' '           Text
+'/usr/libexec/oah/translate' Text
+' '           Text
+'./'          Text
+'$('          Keyword
+'BUILDPYTHON' Text
+')'           Keyword
+' '           Text
+'-E'          Text
+' '           Text
+'-tt'         Text
+' '           Text
+'$('          Keyword
+'TESTPROG'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTOPTS'    Text
+')'           Keyword
+' '           Text
+'-uall'       Text
+'\n\n\n'      Text
+
+'# Like testall, but with a single pass only\n' Comment
+
+'buildbottest' Name.Function
+':'           Operator
+'\t'          Text
+'all'         Name
+' '           Text
+'platform'    Name
+'\n'          Text
+
+'\t\t'        Text
+'$('          Keyword
+'TESTPYTHON'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTPROG'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTOPTS'    Text
+')'           Keyword
+' '           Text
+'-uall'       Text
+' '           Text
+'-rw'         Text
+'\n\n'        Text
+
+'QUICKTESTOPTS' Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'TESTOPTS'    Text
+')'           Keyword
+' '           Text
+'-x'          Text
+' '           Text
+'test_thread' Text
+' '           Text
+'test_signal' Text
+' '           Text
+'test_strftime' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'test_unicodedata' Text
+' '           Text
+'test_re'     Text
+' '           Text
+'test_sre'    Text
+' '           Text
+'test_select' Text
+' '           Text
+'test_poll'   Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'test_linuxaudiodev' Text
+' '           Text
+'test_struct' Text
+' '           Text
+'test_sunaudiodev' Text
+' '           Text
+'test_zlib'   Text
+'\n'          Text
+
+'quicktest'   Name.Function
+':'           Operator
+'\t'          Text
+'all'         Name
+' '           Text
+'platform'    Name
+'\n'          Text
+
+'\t\t'        Text
+'-find'       Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib'        Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.py[co]'"  Literal.String.Single
+' '           Text
+'-print'      Text
+' '           Text
+'|'           Punctuation
+' '           Text
+'xargs'       Text
+' '           Text
+'rm'          Text
+' '           Text
+'-f'          Text
+'\n\t\t'      Text
+'-'           Text
+'$('          Keyword
+'TESTPYTHON'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTPROG'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'QUICKTESTOPTS' Text
+')'           Keyword
+'\n\t\t'      Text
+'$('          Keyword
+'TESTPYTHON'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTPROG'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'QUICKTESTOPTS' Text
+')'           Keyword
+'\n\n'        Text
+
+'MEMTESTOPTS' Name.Variable
+'='           Operator
+'    '        Text
+'$('          Keyword
+'QUICKTESTOPTS' Text
+')'           Keyword
+' '           Text
+'-x'          Text
+' '           Text
+'test_dl'     Text
+' '           Text
+'test___all__' Text
+' '           Text
+'test_fork1'  Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'test_longexp' Text
+'\n'          Text
+
+'memtest'     Name.Function
+':'           Operator
+'\t'          Text
+'all'         Name
+' '           Text
+'platform'    Name
+'\n'          Text
+
+'\t\t'        Text
+'-rm'         Text
+' '           Text
+'-f'          Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib/test/*.py' Text
+'['           Operator
+'co'          Text
+']'           Operator
+'\n\t\t'      Text
+'-'           Text
+'$('          Keyword
+'TESTPYTHON'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTPROG'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'MEMTESTOPTS' Text
+')'           Keyword
+'\n\t\t'      Text
+'$('          Keyword
+'TESTPYTHON'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'TESTPROG'    Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'MEMTESTOPTS' Text
+')'           Keyword
+'\n\n'        Text
+
+'# Install everything\n' Comment
+
+'install'     Name.Function
+':'           Operator
+'\t '         Text
+'altinstall'  Name
+' '           Text
+'bininstall'  Name
+' '           Text
+'maninstall'  Name
+' '           Text
+'\n'          Text
+
+'\n'          Text
+
+'# Install almost everything without disturbing previous versions\n' Comment
+
+'altinstall'  Name.Function
+':'           Operator
+'\t '         Text
+'altbininstall' Name
+' '           Text
+'libinstall'  Name
+' '           Text
+'inclinstall' Name
+' '           Text
+'libainstall' Name
+' '           Text
+'\\\n'        Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'sharedinstall' Name
+' '           Text
+'oldsharedinstall' Name
+' '           Text
+'\n'          Text
+
+'\n'          Text
+
+'# Install shared libraries enabled by Setup\n' Comment
+
+'DESTDIRS'    Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'exec_prefix' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LIBDIR'      Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'BINLIBDEST'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'DESTSHARED'  Text
+')'           Keyword
+'\n'          Text
+
+'\n'          Text
+
+'oldsharedinstall' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'DESTSHARED'  Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'SHAREDMODS'  Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t\t'        Text
+'@for'        Text
+' '           Text
+'i'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'X'           Text
+' '           Text
+'$('          Keyword
+'SHAREDMODS'  Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t  if test $$i != X; then \\\n' Comment.Preproc
+
+'\t\t    echo $(INSTALL_SHARED) $$i $(DESTSHARED)/`basename $$i`; \\\n' Comment.Preproc
+
+'\t\t    $(INSTALL_SHARED) $$i $(DESTDIR)$(DESTSHARED)/`basename $$i`; \\\n' Comment.Preproc
+
+'\t\t  fi; \\\n' Comment.Preproc
+
+'\t\tdone\n'  Comment.Preproc
+
+'\n'          Text
+
+'$(DESTSHARED)' Name.Function
+':'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'@for'        Text
+' '           Text
+'i'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'DESTDIRS'    Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\tif test ! -d $(DESTDIR)$$i; then \\\n' Comment.Preproc
+
+'\t\t\t\techo "Creating directory $$i"; \\\n' Comment.Preproc
+
+'\t\t\t\t$(INSTALL) -d -m $(DIRMODE) $(DESTDIR)$$i; \\\n' Comment.Preproc
+
+'\t\t\telse    true; \\\n' Comment.Preproc
+
+'\t\t\tfi; \\\n' Comment.Preproc
+
+'\t\tdone\n'  Comment.Preproc
+
+'\n\n'        Text
+
+'# Install the interpreter (by creating a hard link to python$(VERSION))\n' Comment
+
+'bininstall'  Name.Function
+':'           Operator
+'\t'          Text
+'altbininstall' Name
+'\n'          Text
+
+'\t'          Text
+'-if'         Text
+' '           Text
+'test'        Name.Builtin
+' '           Text
+'-f'          Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'BINDIR'      Text
+')'           Keyword
+'/'           Text
+'$('          Keyword
+'PYTHON'      Text
+')'           Keyword
+' '           Text
+'-o'          Text
+' '           Text
+'-h'          Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'BINDIR'      Text
+')'           Keyword
+'/'           Text
+'$('          Keyword
+'PYTHON'      Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'then'        Keyword
+' '           Text
+'rm'          Text
+' '           Text
+'-f'          Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'BINDIR'      Text
+')'           Keyword
+'/'           Text
+'$('          Keyword
+'PYTHON'      Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\telse true; \\\n' Comment.Preproc
+
+'\tfi\n'      Comment.Preproc
+
+'\t'          Text
+'('           Operator
+'cd'          Name.Builtin
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'BINDIR'      Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'$('          Keyword
+'LN'          Text
+')'           Keyword
+' '           Text
+'python'      Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'$('          Keyword
+'EXE'         Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PYTHON'      Text
+')'           Keyword
+')'           Operator
+'\n\t'        Text
+'('           Operator
+'cd'          Name.Builtin
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'BINDIR'      Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'$('          Keyword
+'LN'          Text
+')'           Keyword
+' '           Text
+'-sf'         Text
+' '           Text
+'python'      Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'-config'     Text
+' '           Text
+'python-config' Text
+')'           Operator
+'\n\n'        Text
+
+'# Install the interpreter with $(VERSION) affixed\n' Comment
+
+'# This goes into $(exec_prefix)\n' Comment
+
+'altbininstall' Name.Function
+':'           Operator
+'\t'          Text
+'$('          Keyword
+'BUILDPYTHON' Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t'          Text
+'@for'        Text
+' '           Text
+'i'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'BINDIR'      Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LIBDIR'      Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\tif test ! -d $(DESTDIR)$$i; then \\\n' Comment.Preproc
+
+'\t\t\techo "Creating directory $$i"; \\\n' Comment.Preproc
+
+'\t\t\t$(INSTALL) -d -m $(DIRMODE) $(DESTDIR)$$i; \\\n' Comment.Preproc
+
+'\t\telse\ttrue; \\\n' Comment.Preproc
+
+'\t\tfi; \\\n' Comment.Preproc
+
+'\tdone\n'    Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'INSTALL_PROGRAM' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'BUILDPYTHON' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'BINDIR'      Text
+')'           Keyword
+'/python'     Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'$('          Keyword
+'EXE'         Text
+')'           Keyword
+'\n'          Text
+
+'\tif test -f libpython$(VERSION)$(SO); then \\\n' Comment.Preproc
+
+'\t\tif test "$(SO)" = .dll; then \\\n' Comment.Preproc
+
+'\t\t\t$(INSTALL_SHARED) libpython$(VERSION)$(SO) $(DESTDIR)$(BINDIR); \\\n' Comment.Preproc
+
+'\t\telse \\\n' Comment.Preproc
+
+'\t\t\t$(INSTALL_SHARED) libpython$(VERSION)$(SO) $(DESTDIR)$(LIBDIR)/$(INSTSONAME); \\\n' Comment.Preproc
+
+'\t\t\tif test libpython$(VERSION)$(SO) != $(INSTSONAME); then \\\n' Comment.Preproc
+
+'\t\t\t\t(cd $(DESTDIR)$(LIBDIR); $(LN) -sf $(INSTSONAME) libpython$(VERSION)$(SO)); \\\n' Comment.Preproc
+
+'\t\t\tfi \\\n' Comment.Preproc
+
+'\t\tfi; \\\n' Comment.Preproc
+
+'\telse\ttrue; \\\n' Comment.Preproc
+
+'\tfi\n'      Comment.Preproc
+
+'\n'          Text
+
+'# Install the manual page\n' Comment
+
+'maninstall'  Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'@for'        Text
+' '           Text
+'i'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'MANDIR'      Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'MANDIR'      Text
+')'           Keyword
+'/man1'       Text
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\tif test ! -d $(DESTDIR)$$i; then \\\n' Comment.Preproc
+
+'\t\t\techo "Creating directory $$i"; \\\n' Comment.Preproc
+
+'\t\t\t$(INSTALL) -d -m $(DIRMODE) $(DESTDIR)$$i; \\\n' Comment.Preproc
+
+'\t\telse\ttrue; \\\n' Comment.Preproc
+
+'\t\tfi; \\\n' Comment.Preproc
+
+'\tdone\n'    Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Misc/python.man' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'MANDIR'      Text
+')'           Keyword
+'/man1/python.1' Text
+'\n\n'        Text
+
+'# Install the library\n' Comment
+
+'PLATDIR'     Name.Variable
+'='           Operator
+'\t'          Text
+'plat-'       Text
+'$('          Keyword
+'MACHDEP'     Text
+')'           Keyword
+'\n'          Text
+
+'EXTRAPLATDIR' Name.Variable
+'='           Operator
+' '           Text
+'\n'          Text
+
+'EXTRAMACHDEPPATH' Name.Variable
+'='           Operator
+'\n'          Text
+
+'MACHDEPS'    Name.Variable
+'='           Operator
+'\t'          Text
+'$('          Keyword
+'PLATDIR'     Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'EXTRAPLATDIR' Text
+')'           Keyword
+'\n'          Text
+
+'XMLLIBSUBDIRS' Name.Variable
+'='           Operator
+'  '          Text
+'xml'         Text
+' '           Text
+'xml/dom'     Text
+' '           Text
+'xml/etree'   Text
+' '           Text
+'xml/parsers' Text
+' '           Text
+'xml/sax'     Text
+'\n'          Text
+
+'PLATMACDIRS' Name.Variable
+'='           Operator
+' '           Text
+'plat-mac'    Text
+' '           Text
+'plat-mac/Carbon' Text
+' '           Text
+'plat-mac/lib-scriptpackages' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'plat-mac/lib-scriptpackages/_builtinSuites' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'plat-mac/lib-scriptpackages/CodeWarrior' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'plat-mac/lib-scriptpackages/Explorer' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'plat-mac/lib-scriptpackages/Finder' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'plat-mac/lib-scriptpackages/Netscape' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'plat-mac/lib-scriptpackages/StdSuites' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'plat-mac/lib-scriptpackages/SystemEvents' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'plat-mac/lib-scriptpackages/Terminal' Text
+' \n'         Text
+
+'PLATMACPATH' Name.Variable
+'='           Operator
+':plat-mac:plat-mac/lib-scriptpackages' Text
+'\n'          Text
+
+'LIBSUBDIRS'  Name.Variable
+'='           Operator
+'\t'          Text
+'lib-tk'      Text
+' '           Text
+'site-packages' Text
+' '           Text
+'test'        Name.Builtin
+' '           Text
+'test/output' Text
+' '           Text
+'test/data'   Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'test/decimaltestdata' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'encodings'   Text
+' '           Text
+'compiler'    Text
+' '           Text
+'hotshot'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'email'       Text
+' '           Text
+'email/mime'  Text
+' '           Text
+'email/test'  Text
+' '           Text
+'email/test/data' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'sqlite3'     Text
+' '           Text
+'sqlite3/test' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'logging'     Text
+' '           Text
+'bsddb'       Text
+' '           Text
+'bsddb/test'  Text
+' '           Text
+'csv'         Text
+' '           Text
+'wsgiref'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'ctypes'      Text
+' '           Text
+'ctypes/test' Text
+' '           Text
+'ctypes/macholib' Text
+' '           Text
+'idlelib'     Text
+' '           Text
+'idlelib/Icons' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'distutils'   Text
+' '           Text
+'distutils/command' Text
+' '           Text
+'distutils/tests' Text
+' '           Text
+'$('          Keyword
+'XMLLIBSUBDIRS' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'setuptools'  Text
+' '           Text
+'setuptools/command' Text
+' '           Text
+'setuptools/tests' Text
+' '           Text
+'setuptools.egg-info' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'curses'      Text
+' '           Text
+'$('          Keyword
+'MACHDEPS'    Text
+')'           Keyword
+'\n'          Text
+
+'libinstall'  Name.Function
+':'           Operator
+'\t'          Text
+'$('          Keyword
+'BUILDPYTHON' Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Lib'         Name
+'/'           Text
+'$('          Keyword
+'PLATDIR'     Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t'          Text
+'@for'        Text
+' '           Text
+'i'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'SCRIPTDIR'   Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\tif test ! -d $(DESTDIR)$$i; then \\\n' Comment.Preproc
+
+'\t\t\techo "Creating directory $$i"; \\\n' Comment.Preproc
+
+'\t\t\t$(INSTALL) -d -m $(DIRMODE) $(DESTDIR)$$i; \\\n' Comment.Preproc
+
+'\t\telse\ttrue; \\\n' Comment.Preproc
+
+'\t\tfi; \\\n' Comment.Preproc
+
+'\tdone\n'    Comment.Preproc
+
+'\t'          Text
+'@for'        Text
+' '           Text
+'d'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'LIBSUBDIRS'  Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'a'           Name.Variable
+'='           Operator
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib/'       Text
+'$$'          Name.Variable
+'d'           Text
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\tif test ! -d $$a; then continue; else true; fi; \\\n' Comment.Preproc
+
+'\t\tb=$(LIBDEST)/$$d; \\\n' Comment.Preproc
+
+'\t\tif test ! -d $(DESTDIR)$$b; then \\\n' Comment.Preproc
+
+'\t\t\techo "Creating directory $$b"; \\\n' Comment.Preproc
+
+'\t\t\t$(INSTALL) -d -m $(DIRMODE) $(DESTDIR)$$b; \\\n' Comment.Preproc
+
+'\t\telse\ttrue; \\\n' Comment.Preproc
+
+'\t\tfi; \\\n' Comment.Preproc
+
+'\tdone\n'    Comment.Preproc
+
+'\t'          Text
+'@for'        Text
+' '           Text
+'i'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib/*.py'   Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib/*.doc'  Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib/*.egg-info' Text
+' '           Text
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\tif test -x $$i; then \\\n' Comment.Preproc
+
+'\t\t\t$(INSTALL_SCRIPT) $$i $(DESTDIR)$(LIBDEST); \\\n' Comment.Preproc
+
+'\t\t\techo $(INSTALL_SCRIPT) $$i $(LIBDEST); \\\n' Comment.Preproc
+
+'\t\telse \\\n' Comment.Preproc
+
+'\t\t\t$(INSTALL_DATA) $$i $(DESTDIR)$(LIBDEST); \\\n' Comment.Preproc
+
+'\t\t\techo $(INSTALL_DATA) $$i $(LIBDEST); \\\n' Comment.Preproc
+
+'\t\tfi; \\\n' Comment.Preproc
+
+'\tdone\n'    Comment.Preproc
+
+'\t'          Text
+'@for'        Text
+' '           Text
+'d'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'LIBSUBDIRS'  Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'a'           Name.Variable
+'='           Operator
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib/'       Text
+'$$'          Name.Variable
+'d'           Text
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\tif test ! -d $$a; then continue; else true; fi; \\\n' Comment.Preproc
+
+'\t\tif test `ls $$a | wc -l` -lt 1; then continue; fi; \\\n' Comment.Preproc
+
+'\t\tb=$(LIBDEST)/$$d; \\\n' Comment.Preproc
+
+'\t\tfor i in $$a/*; \\\n' Comment.Preproc
+
+'\t\tdo \\\n' Comment.Preproc
+
+'\t\t\tcase $$i in \\\n' Comment.Preproc
+
+'\t\t\t*CVS) ;; \\\n' Comment.Preproc
+
+'\t\t\t*.py[co]) ;; \\\n' Comment.Preproc
+
+'\t\t\t*.orig) ;; \\\n' Comment.Preproc
+
+'\t\t\t*~) ;; \\\n' Comment.Preproc
+
+'\t\t\t*) \\\n' Comment.Preproc
+
+'\t\t\t\tif test -d $$i; then continue; fi; \\\n' Comment.Preproc
+
+'\t\t\t\tif test -x $$i; then \\\n' Comment.Preproc
+
+'\t\t\t\t    echo $(INSTALL_SCRIPT) $$i $$b; \\\n' Comment.Preproc
+
+'\t\t\t\t    $(INSTALL_SCRIPT) $$i $(DESTDIR)$$b; \\\n' Comment.Preproc
+
+'\t\t\t\telse \\\n' Comment.Preproc
+
+'\t\t\t\t    echo $(INSTALL_DATA) $$i $$b; \\\n' Comment.Preproc
+
+'\t\t\t\t    $(INSTALL_DATA) $$i $(DESTDIR)$$b; \\\n' Comment.Preproc
+
+'\t\t\t\tfi;; \\\n' Comment.Preproc
+
+'\t\t\tesac; \\\n' Comment.Preproc
+
+'\t\tdone; \\\n' Comment.Preproc
+
+'\tdone\n'    Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/LICENSE'    Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'/LICENSE.txt' Text
+'\n\t'        Text
+'PYTHONPATH'  Name.Variable
+'='           Operator
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'  '          Text
+'$('          Keyword
+'RUNSHARED'   Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'./'          Text
+'$('          Keyword
+'BUILDPYTHON' Text
+')'           Keyword
+' '           Text
+'-Wi'         Text
+' '           Text
+'-tt'         Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'/compileall.py' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-d'          Text
+' '           Text
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+' '           Text
+'-f'          Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-x'          Text
+' '           Text
+"'bad_coding|badsyntax|site-packages'" Literal.String.Single
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'\n\t'        Text
+'PYTHONPATH'  Name.Variable
+'='           Operator
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'RUNSHARED'   Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'./'          Text
+'$('          Keyword
+'BUILDPYTHON' Text
+')'           Keyword
+' '           Text
+'-Wi'         Text
+' '           Text
+'-tt'         Text
+' '           Text
+'-O'          Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'/compileall.py' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-d'          Text
+' '           Text
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+' '           Text
+'-f'          Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-x'          Text
+' '           Text
+"'bad_coding|badsyntax|site-packages'" Literal.String.Single
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'\n\t'        Text
+'-PYTHONPATH' Text
+'='           Operator
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'  '          Text
+'$('          Keyword
+'RUNSHARED'   Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'./'          Text
+'$('          Keyword
+'BUILDPYTHON' Text
+')'           Keyword
+' '           Text
+'-Wi'         Text
+' '           Text
+'-t'          Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'/compileall.py' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-d'          Text
+' '           Text
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'/site-packages' Text
+' '           Text
+'-f'          Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-x'          Text
+' '           Text
+'badsyntax'   Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'/site-packages' Text
+'\n\t'        Text
+'-PYTHONPATH' Text
+'='           Operator
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'RUNSHARED'   Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'./'          Text
+'$('          Keyword
+'BUILDPYTHON' Text
+')'           Keyword
+' '           Text
+'-Wi'         Text
+' '           Text
+'-t'          Text
+' '           Text
+'-O'          Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'/compileall.py' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-d'          Text
+' '           Text
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'/site-packages' Text
+' '           Text
+'-f'          Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-x'          Text
+' '           Text
+'badsyntax'   Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBDEST'     Text
+')'           Keyword
+'/site-packages' Text
+'\n\n'        Text
+
+"# Create the PLATDIR source directory, if one wasn't distributed..\n" Comment
+
+'$(srcdir)/Lib/$(PLATDIR)' Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'mkdir'       Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib/'       Text
+'$('          Keyword
+'PLATDIR'     Text
+')'           Keyword
+'\n\t'        Text
+'cp'          Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib/plat-generic/regen' Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib/'       Text
+'$('          Keyword
+'PLATDIR'     Text
+')'           Keyword
+'/regen'      Text
+'\n\t'        Text
+'export'      Name.Builtin
+' '           Text
+'PATH'        Text
+';'           Punctuation
+' '           Text
+'PATH'        Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'`pwd`:'      Literal.String.Double
+'$$'          Name.Variable
+'PATH'        Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'export'      Name.Builtin
+' '           Text
+'PYTHONPATH'  Text
+';'           Punctuation
+' '           Text
+'PYTHONPATH'  Name.Variable
+'='           Operator
+'"`pwd`/Lib"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'export'      Name.Builtin
+' '           Text
+'DYLD_FRAMEWORK_PATH' Text
+';'           Punctuation
+' '           Text
+'DYLD_FRAMEWORK_PATH' Name.Variable
+'='           Operator
+'"`pwd`"'     Literal.String.Double
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'export'      Name.Builtin
+' '           Text
+'EXE'         Text
+';'           Punctuation
+' '           Text
+'EXE'         Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$('          Keyword
+'BUILDEXE'    Text
+')'           Keyword
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'cd'          Name.Builtin
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib/'       Text
+'$('          Keyword
+'PLATDIR'     Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'./regen'     Text
+'\n\n'        Text
+
+'# Install the include files\n' Comment
+
+'INCLDIRSTOMAKE' Name.Variable
+'='           Operator
+'$('          Keyword
+'INCLUDEDIR'  Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'CONFINCLUDEDIR' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'INCLUDEPY'   Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'CONFINCLUDEPY' Text
+')'           Keyword
+'\n'          Text
+
+'inclinstall' Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'@for'        Text
+' '           Text
+'i'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'INCLDIRSTOMAKE' Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\tif test ! -d $(DESTDIR)$$i; then \\\n' Comment.Preproc
+
+'\t\t\techo "Creating directory $$i"; \\\n' Comment.Preproc
+
+'\t\t\t$(INSTALL) -d -m $(DIRMODE) $(DESTDIR)$$i; \\\n' Comment.Preproc
+
+'\t\telse\ttrue; \\\n' Comment.Preproc
+
+'\t\tfi; \\\n' Comment.Preproc
+
+'\tdone\n'    Comment.Preproc
+
+'\t'          Text
+'@for'        Text
+' '           Text
+'i'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Include/*.h' Text
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Name.Builtin
+' '           Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'$$'          Name.Variable
+'i'           Text
+' '           Text
+'$('          Keyword
+'INCLUDEPY'   Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'$$'          Name.Variable
+'i'           Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'INCLUDEPY'   Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'done'        Keyword
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'pyconfig.h'  Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'CONFINCLUDEPY' Text
+')'           Keyword
+'/pyconfig.h' Text
+'\n\n'        Text
+
+'# Install the library and miscellaneous stuff needed for extending/embedding\n' Comment
+
+'# This goes into $(exec_prefix)\n' Comment
+
+'LIBPL'       Name.Variable
+'='           Operator
+'\t\t'        Text
+'$('          Keyword
+'LIBP'        Text
+')'           Keyword
+'/config'     Text
+'\n'          Text
+
+'libainstall' Name.Function
+':'           Operator
+'\t'          Text
+'all'         Name
+'\n'          Text
+
+'\t'          Text
+'@for'        Text
+' '           Text
+'i'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'LIBDIR'      Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LIBP'        Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\tif test ! -d $(DESTDIR)$$i; then \\\n' Comment.Preproc
+
+'\t\t\techo "Creating directory $$i"; \\\n' Comment.Preproc
+
+'\t\t\t$(INSTALL) -d -m $(DIRMODE) $(DESTDIR)$$i; \\\n' Comment.Preproc
+
+'\t\telse\ttrue; \\\n' Comment.Preproc
+
+'\t\tfi; \\\n' Comment.Preproc
+
+'\tdone\n'    Comment.Preproc
+
+'\t'          Text
+'@if'         Text
+' '           Text
+'test'        Name.Builtin
+' '           Text
+'-d'          Text
+' '           Text
+'$('          Keyword
+'LIBRARY'     Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'then'        Keyword
+' '           Text
+':'           Text
+';'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\tif test "$(PYTHONFRAMEWORKDIR)" = no-framework; then \\\n' Comment.Preproc
+
+'\t\t\tif test "$(SO)" = .dll; then \\\n' Comment.Preproc
+
+'\t\t\t\t$(INSTALL_DATA) $(LDLIBRARY) $(DESTDIR)$(LIBPL) ; \\\n' Comment.Preproc
+
+'\t\t\telse \\\n' Comment.Preproc
+
+'\t\t\t\t$(INSTALL_DATA) $(LIBRARY) $(DESTDIR)$(LIBPL)/$(LIBRARY) ; \\\n' Comment.Preproc
+
+'\t\t\t\t$(RANLIB) $(DESTDIR)$(LIBPL)/$(LIBRARY) ; \\\n' Comment.Preproc
+
+'\t\t\tfi; \\\n' Comment.Preproc
+
+'\t\telse \\\n' Comment.Preproc
+
+'\t\t\techo Skip install of $(LIBRARY) - use make frameworkinstall; \\\n' Comment.Preproc
+
+'\t\tfi; \\\n' Comment.Preproc
+
+'\tfi\n'      Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'Modules/config.c' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/config.c'   Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'Modules/python.o' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/python.o'   Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Modules/config.c.in' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/config.c.in' Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'Makefile'    Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/Makefile'   Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'Modules/Setup' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/Setup'      Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'Modules/Setup.local' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/Setup.local' Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'Modules/Setup.config' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/Setup.config' Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_SCRIPT' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Modules/makesetup' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/makesetup'  Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_SCRIPT' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/install-sh' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/install-sh' Text
+'\n'          Text
+
+'\t# Substitution happens here, as the completely-expanded BINDIR\n' Comment
+
+'\t# is not available in configure\n' Comment
+
+'\t'          Text
+'sed'         Text
+' '           Text
+'-e'          Text
+' '           Text
+'"'           Literal.String.Double
+'s,@EXENAME@,' Literal.String.Double
+'$('          Keyword
+'BINDIR'      Text
+')'           Keyword
+'/python'     Literal.String.Double
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'$('          Keyword
+'EXE'         Text
+')'           Keyword
+','           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'<'           Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Misc/python-config.in' Text
+' '           Text
+'>python-config' Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_SCRIPT' Text
+')'           Keyword
+' '           Text
+'python-config' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'BINDIR'      Text
+')'           Keyword
+'/python'     Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'-config'     Text
+'\n\t'        Text
+'rm'          Text
+' '           Text
+'python-config' Text
+'\n\t'        Text
+'@if'         Text
+' '           Text
+'['           Operator
+' '           Text
+'-s'          Text
+' '           Text
+'Modules/python.exp' Text
+' '           Text
+'-a'          Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'"'           Literal.String.Double
+'`echo '      Literal.String.Double
+'$('          Keyword
+'MACHDEP'     Text
+')'           Keyword
+" | sed 's/^\\(...\\).*/\\1/'`" Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'"aix"'       Literal.String.Double
+' '           Text
+']'           Operator
+';'           Punctuation
+' '           Text
+'then'        Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Text
+';'           Punctuation
+' '           Text
+'echo'        Name.Builtin
+' '           Text
+'"Installing support files for building shared extension modules on AIX:"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'Modules/python.exp' Text
+'\t\t'        Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t\t'    Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/python.exp' Text
+';'           Punctuation
+'\t\t'        Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Text
+';'           Punctuation
+' '           Text
+'echo'        Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/python.exp' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\t\t'        Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'INSTALL_SCRIPT' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Modules/makexp_aix' Text
+'\t'          Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t\t'    Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/makexp_aix' Text
+';'           Punctuation
+'\t\t'        Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/makexp_aix' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\t\t\t'      Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'INSTALL_SCRIPT' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Modules/ld_so_aix' Text
+'\t'          Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t\t'    Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/ld_so_aix'  Text
+';'           Punctuation
+'\t\t'        Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/ld_so_aix'  Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\t\t\t'      Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Text
+';'           Punctuation
+' '           Text
+'echo'        Name.Builtin
+' '           Text
+'"See Misc/AIX-NOTES for details."' Literal.String.Double
+';'           Punctuation
+'\t'          Text
+'\\\n'        Literal.String.Escape
+
+'\telse true; \\\n' Comment.Preproc
+
+'\tfi\n'      Comment.Preproc
+
+'\t'          Text
+'@case'       Text
+' '           Text
+'"'           Literal.String.Double
+'$('          Keyword
+'MACHDEP'     Text
+')'           Keyword
+'"'           Literal.String.Double
+' '           Text
+'in'          Keyword
+' '           Text
+'beos*'       Text
+')'           Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Text
+';'           Punctuation
+' '           Text
+'echo'        Name.Builtin
+' '           Text
+'"Installing support files for building shared extension modules on BeOS:"' Literal.String.Double
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'Misc/BeOS-NOTES' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/README'     Text
+';'           Punctuation
+'\t'          Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Text
+';'           Punctuation
+' '           Text
+'echo'        Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/README'     Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\t\t\t'      Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'INSTALL_SCRIPT' Text
+')'           Keyword
+' '           Text
+'Modules/ar_beos' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/ar_beos'    Text
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/ar_beos'    Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\t\t\t'      Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'INSTALL_SCRIPT' Text
+')'           Keyword
+' '           Text
+'Modules/ld_so_beos' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/ld_so_beos' Text
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'$('          Keyword
+'LIBPL'       Text
+')'           Keyword
+'/ld_so_beos' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\t\t\t'      Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Text
+';'           Punctuation
+' '           Text
+'echo'        Name.Builtin
+' '           Text
+'"See Misc/BeOS-NOTES for details."' Literal.String.Double
+';'           Punctuation
+'\t'          Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+';'           Punctuation
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'esac'        Keyword
+'\n\n'        Text
+
+'# Install the dynamically loadable modules\n' Comment
+
+'# This goes into $(exec_prefix)\n' Comment
+
+'sharedinstall' Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'RUNSHARED'   Text
+')'           Keyword
+' '           Text
+'./'          Text
+'$('          Keyword
+'BUILDPYTHON' Text
+')'           Keyword
+' '           Text
+'-E'          Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/setup.py'   Text
+' '           Text
+'install'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t   \t'     Text
+'--prefix'    Text
+'='           Operator
+'$('          Keyword
+'prefix'      Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'--install-scripts' Text
+'='           Operator
+'$('          Keyword
+'BINDIR'      Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'--install-platlib' Text
+'='           Operator
+'$('          Keyword
+'DESTSHARED'  Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'--root'      Text
+'='           Operator
+'/'           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'\n\n'        Text
+
+'# Here are a couple of targets for MacOSX again, to install a full\n' Comment
+
+'# framework-based Python. frameworkinstall installs everything, the\n' Comment
+
+'# subtargets install specific parts. Much of the actual work is offloaded to\n' Comment
+
+'# the Makefile in Mac\n' Comment
+
+'#\n'         Comment
+
+'#\n'         Comment
+
+'# This target is here for backward compatiblity, previous versions of Python\n' Comment
+
+"# hadn't integrated framework installation in the normal install process.\n" Comment
+
+'frameworkinstall' Name.Function
+':'           Operator
+' '           Text
+'install'     Name
+'\n'          Text
+
+'\n'          Text
+
+'# On install, we re-make the framework\n' Comment
+
+'# structure in the install location, /Library/Frameworks/ or the argument to\n' Comment
+
+'# --enable-framework. If --enable-framework has been specified then we have\n' Comment
+
+'# automatically set prefix to the location deep down in the framework, so we\n' Comment
+
+'# only have to cater for the structural bits of the framework.\n' Comment
+
+'\n'          Text
+
+'frameworkinstallframework' Name.Function
+':'           Operator
+' '           Text
+'frameworkinstallstructure' Name
+' '           Text
+'install'     Name
+' '           Text
+'frameworkinstallmaclib' Name
+'\n'          Text
+
+'\n'          Text
+
+'frameworkinstallstructure' Name.Function
+':'           Operator
+'\t'          Text
+'$('          Keyword
+'LDLIBRARY'   Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t'          Text
+'@if'         Text
+' '           Text
+'test'        Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'$('          Keyword
+'PYTHONFRAMEWORKDIR' Text
+')'           Keyword
+'"'           Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'no-framework' Text
+';'           Punctuation
+' '           Text
+'then'        Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'echo'        Name.Builtin
+' '           Text
+'Not'         Text
+' '           Text
+'configured'  Text
+' '           Text
+'with'        Text
+' '           Text
+'--enable-framework' Text
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'exit'        Name.Builtin
+' '           Text
+'1'           Literal.Number
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\telse true; \\\n' Comment.Preproc
+
+'\tfi\n'      Comment.Preproc
+
+'\t'          Text
+'@for'        Text
+' '           Text
+'i'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'prefix'      Text
+')'           Keyword
+'/Resources/English.lproj' Text
+' '           Text
+'$('          Keyword
+'prefix'      Text
+')'           Keyword
+'/lib'        Text
+';'           Punctuation
+' '           Text
+'do'          Keyword
+'\\\n'        Literal.String.Escape
+
+'\t\tif test ! -d $(DESTDIR)$$i; then \\\n' Comment.Preproc
+
+'\t\t\techo "Creating directory $(DESTDIR)$$i"; \\\n' Comment.Preproc
+
+'\t\t\t$(INSTALL) -d -m $(DIRMODE) $(DESTDIR)$$i; \\\n' Comment.Preproc
+
+'\t\telse\ttrue; \\\n' Comment.Preproc
+
+'\t\tfi; \\\n' Comment.Preproc
+
+'\tdone\n'    Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'LN'          Text
+')'           Keyword
+' '           Text
+'-fsn'        Text
+' '           Text
+'include/python' Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'prefix'      Text
+')'           Keyword
+'/Headers'    Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'RESSRCDIR'   Text
+')'           Keyword
+'/Info.plist' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'prefix'      Text
+')'           Keyword
+'/Resources/Info.plist' Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'RESSRCDIR'   Text
+')'           Keyword
+'/version.plist' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'prefix'      Text
+')'           Keyword
+'/Resources/version.plist' Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_DATA' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'RESSRCDIR'   Text
+')'           Keyword
+'/English.lproj/InfoPlist.strings' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'prefix'      Text
+')'           Keyword
+'/Resources/English.lproj/InfoPlist.strings' Text
+'\n\t'        Text
+'$('          Keyword
+'LN'          Text
+')'           Keyword
+' '           Text
+'-fsn'        Text
+' '           Text
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'PYTHONFRAMEWORKINSTALLDIR' Text
+')'           Keyword
+'/Versions/Current' Text
+'\n\t'        Text
+'$('          Keyword
+'LN'          Text
+')'           Keyword
+' '           Text
+'-fsn'        Text
+' '           Text
+'Versions/Current/Python' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'PYTHONFRAMEWORKINSTALLDIR' Text
+')'           Keyword
+'/Python'     Text
+'\n\t'        Text
+'$('          Keyword
+'LN'          Text
+')'           Keyword
+' '           Text
+'-fsn'        Text
+' '           Text
+'Versions/Current/Headers' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'PYTHONFRAMEWORKINSTALLDIR' Text
+')'           Keyword
+'/Headers'    Text
+'\n\t'        Text
+'$('          Keyword
+'LN'          Text
+')'           Keyword
+' '           Text
+'-fsn'        Text
+' '           Text
+'Versions/Current/Resources' Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'PYTHONFRAMEWORKINSTALLDIR' Text
+')'           Keyword
+'/Resources'  Text
+'\n\t'        Text
+'$('          Keyword
+'INSTALL_SHARED' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LDLIBRARY'   Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'PYTHONFRAMEWORKPREFIX' Text
+')'           Keyword
+'/'           Text
+'$('          Keyword
+'LDLIBRARY'   Text
+')'           Keyword
+'\n\n'        Text
+
+'# This installs Mac/Lib into the framework\n' Comment
+
+'# Install a number of symlinks to keep software that expects a normal unix\n' Comment
+
+'# install (which includes python-config) happy.\n' Comment
+
+'frameworkinstallmaclib' Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'ln'          Text
+' '           Text
+'-fs'         Text
+' '           Text
+'"../../../Python"' Literal.String.Double
+' '           Text
+'"'           Literal.String.Double
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'prefix'      Text
+')'           Keyword
+'/lib/python' Literal.String.Double
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'/config/libpython' Literal.String.Double
+'$('          Keyword
+'VERSION'     Text
+')'           Keyword
+'.a'          Literal.String.Double
+'"'           Literal.String.Double
+'\n\t'        Text
+'cd'          Name.Builtin
+' '           Text
+'Mac'         Text
+' '           Text
+'&&'          Operator
+' '           Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'installmacsubtree' Text
+' '           Text
+'DESTDIR'     Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'# This installs the IDE, the Launcher and other apps into /Applications\n' Comment
+
+'frameworkinstallapps' Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'cd'          Name.Builtin
+' '           Text
+'Mac'         Text
+' '           Text
+'&&'          Operator
+' '           Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'installapps' Text
+' '           Text
+'DESTDIR'     Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'# This install the unix python and pythonw tools in /usr/local/bin\n' Comment
+
+'frameworkinstallunixtools' Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'cd'          Name.Builtin
+' '           Text
+'Mac'         Text
+' '           Text
+'&&'          Operator
+' '           Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'installunixtools' Text
+' '           Text
+'DESTDIR'     Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'frameworkaltinstallunixtools' Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'cd'          Name.Builtin
+' '           Text
+'Mac'         Text
+' '           Text
+'&&'          Operator
+' '           Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'altinstallunixtools' Text
+' '           Text
+'DESTDIR'     Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'# This installs the Demos and Tools into the applications directory.\n' Comment
+
+'# It is not part of a normal frameworkinstall\n' Comment
+
+'frameworkinstallextras' Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'cd'          Name.Builtin
+' '           Text
+'Mac'         Text
+' '           Text
+'&&'          Operator
+' '           Text
+'Make'        Text
+' '           Text
+'installextras' Text
+' '           Text
+'DESTDIR'     Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'# This installs a few of the useful scripts in Tools/scripts\n' Comment
+
+'scriptsinstall' Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'SRCDIR'      Name.Variable
+'='           Operator
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'RUNSHARED'   Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'./'          Text
+'$('          Keyword
+'BUILDPYTHON' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Tools/scripts/setup.py' Text
+' '           Text
+'install'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'--prefix'    Text
+'='           Operator
+'$('          Keyword
+'prefix'      Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'--install-scripts' Text
+'='           Operator
+'$('          Keyword
+'BINDIR'      Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'--root'      Text
+'='           Operator
+'/'           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'\n\n'        Text
+
+'# Build the toplevel Makefile\n' Comment
+
+'Makefile.pre' Name.Function
+':'           Operator
+' '           Text
+'Makefile'    Name
+'.'           Text
+'pre'         Name
+'.'           Text
+'in'          Name
+' '           Text
+'config'      Name
+'.'           Text
+'status'      Name
+'\n'          Text
+
+'\t'          Text
+'CONFIG_FILES' Name.Variable
+'='           Operator
+'Makefile.pre' Text
+' '           Text
+'CONFIG_HEADERS' Name.Variable
+'='           Operator
+' '           Text
+'$('          Keyword
+'SHELL'       Text
+')'           Keyword
+' '           Text
+'config.status' Text
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'-f'          Text
+' '           Text
+'Makefile.pre' Text
+' '           Text
+'Makefile'    Text
+'\n\n'        Text
+
+'# Run the configure script.\n' Comment
+
+'config.status' Name.Function
+':'           Operator
+'\t'          Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'configure'   Name
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'SHELL'       Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/configure'  Text
+' '           Text
+'$('          Keyword
+'CONFIG_ARGS' Text
+')'           Keyword
+'\n\n'        Text
+
+'.PRECIOUS'   Name.Function
+':'           Operator
+' '           Text
+'config'      Name
+'.'           Text
+'status'      Name
+' '           Text
+'$('          Keyword
+'BUILDPYTHON' Name.Variable
+')'           Keyword
+' '           Text
+'Makefile'    Name
+' '           Text
+'Makefile'    Name
+'.'           Text
+'pre'         Name
+'\n'          Text
+
+'\n'          Text
+
+"# Some make's put the object file in the current directory\n" Comment
+
+'.c.o'        Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'CC'          Text
+')'           Keyword
+' '           Text
+'-c'          Text
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Text
+')'           Keyword
+' '           Text
+'-o'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'$'           Text
+'<'           Text
+'\n\n'        Text
+
+'# Run reindent on the library\n' Comment
+
+'reindent'    Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'./python'    Text
+'$('          Keyword
+'EXEEXT'      Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Tools/scripts/reindent.py' Text
+' '           Text
+'-r'          Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/Lib'        Text
+'\n\n'        Text
+
+'# Rerun configure with the same options as it was run last time,\n' Comment
+
+'# provided the config.status script exists\n' Comment
+
+'recheck'     Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'SHELL'       Text
+')'           Keyword
+' '           Text
+'config.status' Text
+' '           Text
+'--recheck'   Text
+'\n\t'        Text
+'$('          Keyword
+'SHELL'       Text
+')'           Keyword
+' '           Text
+'config.status' Text
+'\n\n'        Text
+
+'# Rebuild the configure script from configure.in; also rebuild pyconfig.h.in\n' Comment
+
+'autoconf'    Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'('           Operator
+'cd'          Name.Builtin
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'autoconf'    Text
+')'           Operator
+'\n\t'        Text
+'('           Operator
+'cd'          Name.Builtin
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'autoheader'  Text
+')'           Operator
+'\n\n'        Text
+
+'# Create a tags file for vi\n' Comment
+
+'tags'        Name.Function
+'::'          Operator
+'\n'          Text
+
+'\t'          Text
+'cd'          Name.Builtin
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'ctags'       Text
+' '           Text
+'-w'          Text
+' '           Text
+'-t'          Text
+' '           Text
+'Include/*.h' Text
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'for'         Keyword
+' '           Text
+'i'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'SRCDIRS'     Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'ctags'       Text
+' '           Text
+'-w'          Text
+' '           Text
+'-t'          Text
+' '           Text
+'-a'          Text
+' '           Text
+'$$'          Name.Variable
+'i/*.'        Text
+'['           Operator
+'ch'          Text
+']'           Operator
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'done'        Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'sort'        Text
+' '           Text
+'-o'          Text
+' '           Text
+'tags'        Text
+' '           Text
+'tags'        Text
+'\n\n'        Text
+
+'# Create a tags file for GNU Emacs\n' Comment
+
+'TAGS'        Name.Function
+'::'          Operator
+'\n'          Text
+
+'\t'          Text
+'cd'          Name.Builtin
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'etags'       Text
+' '           Text
+'Include/*.h' Text
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'for'         Keyword
+' '           Text
+'i'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'SRCDIRS'     Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'etags'       Text
+' '           Text
+'-a'          Text
+' '           Text
+'$$'          Name.Variable
+'i/*.'        Text
+'['           Operator
+'ch'          Text
+']'           Operator
+';'           Punctuation
+' '           Text
+'done'        Keyword
+'\n\n'        Text
+
+'# Sanitation targets -- clean leaves libraries, executables and tags\n' Comment
+
+'# files, which clobber removes those as well\n' Comment
+
+'pycremoval'  Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'find'        Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+' '           Text
+'-name'       Text
+' '           Text
+"'*.py[co]'"  Literal.String.Single
+' '           Text
+'-exec'       Text
+' '           Text
+'rm'          Text
+' '           Text
+'-f'          Text
+' '           Text
+'{'           Operator
+'}'           Operator
+' '           Text
+"';'"         Literal.String.Single
+'\n\n'        Text
+
+'clean'       Name.Function
+':'           Operator
+' '           Text
+'pycremoval'  Name
+'\n'          Text
+
+'\t'          Text
+'find'        Text
+' '           Text
+'.'           Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.o'"       Literal.String.Single
+' '           Text
+'-exec'       Text
+' '           Text
+'rm'          Text
+' '           Text
+'-f'          Text
+' '           Text
+'{'           Operator
+'}'           Operator
+' '           Text
+"';'"         Literal.String.Single
+'\n\t'        Text
+'find'        Text
+' '           Text
+'.'           Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.s[ol]'"   Literal.String.Single
+' '           Text
+'-exec'       Text
+' '           Text
+'rm'          Text
+' '           Text
+'-f'          Text
+' '           Text
+'{'           Operator
+'}'           Operator
+' '           Text
+"';'"         Literal.String.Single
+'\n\t'        Text
+'find'        Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/build'      Text
+' '           Text
+'-name'       Text
+' '           Text
+"'fficonfig.h'" Literal.String.Single
+' '           Text
+'-exec'       Text
+' '           Text
+'rm'          Text
+' '           Text
+'-f'          Text
+' '           Text
+'{'           Operator
+'}'           Operator
+' '           Text
+"';'"         Literal.String.Single
+' '           Text
+'||'          Operator
+' '           Text
+'true'        Name.Builtin
+'\n\t'        Text
+'find'        Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+'/build'      Text
+' '           Text
+'-name'       Text
+' '           Text
+"'fficonfig.py'" Literal.String.Single
+' '           Text
+'-exec'       Text
+' '           Text
+'rm'          Text
+' '           Text
+'-f'          Text
+' '           Text
+'{'           Operator
+'}'           Operator
+' '           Text
+"';'"         Literal.String.Single
+' '           Text
+'||'          Operator
+' '           Text
+'true'        Name.Builtin
+'\n\n'        Text
+
+'clobber'     Name.Function
+':'           Operator
+' '           Text
+'clean'       Name
+'\n'          Text
+
+'\t'          Text
+'-rm'         Text
+' '           Text
+'-f'          Text
+' '           Text
+'$('          Keyword
+'BUILDPYTHON' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PGEN'        Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LIBRARY'     Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'LDLIBRARY'   Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'DLLLIBRARY'  Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'tags'        Text
+' '           Text
+'TAGS'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'config.cache' Text
+' '           Text
+'config.log'  Text
+' '           Text
+'pyconfig.h'  Text
+' '           Text
+'Modules/config.c' Text
+'\n\t'        Text
+'-rm'         Text
+' '           Text
+'-rf'         Text
+' '           Text
+'build'       Text
+' '           Text
+'platform'    Text
+'\n\t'        Text
+'-rm'         Text
+' '           Text
+'-rf'         Text
+' '           Text
+'$('          Keyword
+'PYTHONFRAMEWORKDIR' Text
+')'           Keyword
+'\n\n'        Text
+
+'# Make things extra clean, before making a distribution:\n' Comment
+
+'# remove all generated files, even Makefile[.pre]\n' Comment
+
+"# Keep configure and Python-ast.[ch], it's possible they can't be generated\n" Comment
+
+'distclean'   Name.Function
+':'           Operator
+' '           Text
+'clobber'     Name
+'\n'          Text
+
+'\t'          Text
+'-rm'         Text
+' '           Text
+'-f'          Text
+' '           Text
+'core'        Text
+' '           Text
+'Makefile'    Text
+' '           Text
+'Makefile.pre' Text
+' '           Text
+'config.status' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'Modules/Setup' Text
+' '           Text
+'Modules/Setup.local' Text
+' '           Text
+'Modules/Setup.config' Text
+'\n\t'        Text
+'find'        Text
+' '           Text
+'$('          Keyword
+'srcdir'      Text
+')'           Keyword
+' '           Text
+"'('"         Literal.String.Single
+' '           Text
+'-name'       Text
+' '           Text
+"'*.fdc'"     Literal.String.Single
+' '           Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*~'"        Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t   '   Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'[@,#]*'"    Literal.String.Single
+' '           Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.old'"     Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t   '   Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.orig'"    Literal.String.Single
+' '           Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.rej'"     Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t   '   Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.bak'"     Literal.String.Single
+' '           Text
+"')'"         Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t   '   Text
+'-exec'       Text
+' '           Text
+'rm'          Text
+' '           Text
+'-f'          Text
+' '           Text
+'{'           Operator
+'}'           Operator
+' '           Text
+"';'"         Literal.String.Single
+'\n\n'        Text
+
+'# Check for smelly exported symbols (not starting with Py/_Py)\n' Comment
+
+'smelly'      Name.Function
+':'           Operator
+' '           Text
+'all'         Name
+'\n'          Text
+
+'\t'          Text
+'nm'          Text
+' '           Text
+'-p'          Text
+' '           Text
+'$('          Keyword
+'LIBRARY'     Text
+')'           Keyword
+' '           Text
+'|'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'sed'         Text
+' '           Text
+'-n'          Text
+' '           Text
+'"/ [TDB] /s/.* //p"' Literal.String.Double
+' '           Text
+'|'           Punctuation
+' '           Text
+'grep'        Text
+' '           Text
+'-v'          Text
+' '           Text
+'"^_*Py"'     Literal.String.Double
+' '           Text
+'|'           Punctuation
+' '           Text
+'sort'        Text
+' '           Text
+'-u'          Text
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\n'          Text
+
+'# Find files with funny names\n' Comment
+
+'funny'       Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'find'        Text
+' '           Text
+'$('          Keyword
+'DISTDIRS'    Text
+')'           Keyword
+' '           Text
+'-type'       Text
+' '           Text
+'d'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.[chs]'"   Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.py'"      Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.doc'"     Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.sty'"     Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.bib'"     Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.dat'"     Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.el'"      Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.fd'"      Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.in'"      Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*.tex'"     Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'*,[vpt]'"   Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'Setup'"     Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+"'Setup.*'"   Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'README'      Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'Makefile'    Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'ChangeLog'   Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'Repository'  Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'Root'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'Entries'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'Tag'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'tags'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'TAGS'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'.cvsignore'  Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'MANIFEST'    Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'-o'          Text
+' '           Text
+'-print'      Text
+'\n\n'        Text
+
+'# Dependencies\n' Comment
+
+'\n'          Text
+
+'Python/thread.o' Name.Function
+':'           Operator
+'  '          Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'thread_atheos' Name
+'.'           Text
+'h'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'thread_beos' Name
+'.'           Text
+'h'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'thread_cthread' Name
+'.'           Text
+'h'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'thread_foobar' Name
+'.'           Text
+'h'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'thread_lwp'  Name
+'.'           Text
+'h'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'thread_nt'   Name
+'.'           Text
+'h'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'thread_os'   Name
+'2'           Text
+'.'           Text
+'h'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'thread_pth'  Name
+'.'           Text
+'h'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'thread_pthread' Name
+'.'           Text
+'h'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'thread_sgi'  Name
+'.'           Text
+'h'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'thread_solaris' Name
+'.'           Text
+'h'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Python'      Name
+'/'           Text
+'thread_wince' Name
+'.'           Text
+'h'           Name
+'\n'          Text
+
+'\n'          Text
+
+"# Declare targets that aren't real files\n" Comment
+
+'.PHONY'      Name.Function
+':'           Operator
+' '           Text
+'all'         Name
+' '           Text
+'sharedmods'  Name
+' '           Text
+'oldsharedmods' Name
+' '           Text
+'test'        Name
+' '           Text
+'quicktest'   Name
+' '           Text
+'memtest'     Name
+'\n'          Text
+
+'.PHONY'      Name.Function
+':'           Operator
+' '           Text
+'install'     Name
+' '           Text
+'altinstall'  Name
+' '           Text
+'oldsharedinstall' Name
+' '           Text
+'bininstall'  Name
+' '           Text
+'altbininstall' Name
+'\n'          Text
+
+'.PHONY'      Name.Function
+':'           Operator
+' '           Text
+'maninstall'  Name
+' '           Text
+'libinstall'  Name
+' '           Text
+'inclinstall' Name
+' '           Text
+'libainstall' Name
+' '           Text
+'sharedinstall' Name
+'\n'          Text
+
+'.PHONY'      Name.Function
+':'           Operator
+' '           Text
+'frameworkinstall' Name
+' '           Text
+'frameworkinstallframework' Name
+' '           Text
+'frameworkinstallstructure' Name
+'\n'          Text
+
+'.PHONY'      Name.Function
+':'           Operator
+' '           Text
+'frameworkinstallmaclib' Name
+' '           Text
+'frameworkinstallapps' Name
+' '           Text
+'frameworkinstallunixtools' Name
+'\n'          Text
+
+'.PHONY'      Name.Function
+':'           Operator
+' '           Text
+'frameworkaltinstallunixtools' Name
+' '           Text
+'recheck'     Name
+' '           Text
+'autoconf'    Name
+' '           Text
+'clean'       Name
+' '           Text
+'clobber'     Name
+' '           Text
+'distclean'   Name
+' '           Text
+'\n'          Text
+
+'.PHONY'      Name.Function
+':'           Operator
+' '           Text
+'smelly'      Name
+' '           Text
+'funny'       Name
+'\n'          Text
+
+'\n'          Text
+
+'# IF YOU PUT ANYTHING HERE IT WILL GO AWAY\n' Comment
+
+'\n'          Text
+
+'# Rules appended by makedepend\n' Comment
+
+'\n'          Text
+
+'Modules/threadmodule.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'threadmodule' Name
+'.'           Text
+'c'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'CC'          Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'-'           Text
+'c'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'threadmodule' Name
+'.'           Text
+'c'           Name
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'threadmodule' Name
+'.'           Text
+'o'           Name
+'\n'          Text
+
+'Modules/threadmodule$(SO)' Name.Function
+':'           Operator
+'  '          Text
+'Modules'     Name
+'/'           Text
+'threadmodule' Name
+'.'           Text
+'o'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'LDSHARED'    Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'Modules'     Name
+'/'           Text
+'threadmodule' Name
+'.'           Text
+'o'           Name
+' '           Text
+' '           Text
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'threadmodule' Name
+'$('          Keyword
+'SO'          Name.Variable
+')'           Keyword
+'\n'          Text
+
+'Modules/signalmodule.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'signalmodule' Name
+'.'           Text
+'c'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'CC'          Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'-'           Text
+'c'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'signalmodule' Name
+'.'           Text
+'c'           Name
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'signalmodule' Name
+'.'           Text
+'o'           Name
+'\n'          Text
+
+'Modules/signalmodule$(SO)' Name.Function
+':'           Operator
+'  '          Text
+'Modules'     Name
+'/'           Text
+'signalmodule' Name
+'.'           Text
+'o'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'LDSHARED'    Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'Modules'     Name
+'/'           Text
+'signalmodule' Name
+'.'           Text
+'o'           Name
+' '           Text
+' '           Text
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'signalmodule' Name
+'$('          Keyword
+'SO'          Name.Variable
+')'           Keyword
+'\n'          Text
+
+'Modules/posixmodule.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'posixmodule' Name
+'.'           Text
+'c'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'CC'          Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'-'           Text
+'c'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'posixmodule' Name
+'.'           Text
+'c'           Name
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'posixmodule' Name
+'.'           Text
+'o'           Name
+'\n'          Text
+
+'Modules/posixmodule$(SO)' Name.Function
+':'           Operator
+'  '          Text
+'Modules'     Name
+'/'           Text
+'posixmodule' Name
+'.'           Text
+'o'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'LDSHARED'    Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'Modules'     Name
+'/'           Text
+'posixmodule' Name
+'.'           Text
+'o'           Name
+' '           Text
+' '           Text
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'posixmodule' Name
+'$('          Keyword
+'SO'          Name.Variable
+')'           Keyword
+'\n'          Text
+
+'Modules/errnomodule.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'errnomodule' Name
+'.'           Text
+'c'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'CC'          Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'-'           Text
+'c'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'errnomodule' Name
+'.'           Text
+'c'           Name
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'errnomodule' Name
+'.'           Text
+'o'           Name
+'\n'          Text
+
+'Modules/errnomodule$(SO)' Name.Function
+':'           Operator
+'  '          Text
+'Modules'     Name
+'/'           Text
+'errnomodule' Name
+'.'           Text
+'o'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'LDSHARED'    Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'Modules'     Name
+'/'           Text
+'errnomodule' Name
+'.'           Text
+'o'           Name
+' '           Text
+' '           Text
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'errnomodule' Name
+'$('          Keyword
+'SO'          Name.Variable
+')'           Keyword
+'\n'          Text
+
+'Modules/pwdmodule.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'pwdmodule'   Name
+'.'           Text
+'c'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'CC'          Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'-'           Text
+'c'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'pwdmodule'   Name
+'.'           Text
+'c'           Name
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'pwdmodule'   Name
+'.'           Text
+'o'           Name
+'\n'          Text
+
+'Modules/pwdmodule$(SO)' Name.Function
+':'           Operator
+'  '          Text
+'Modules'     Name
+'/'           Text
+'pwdmodule'   Name
+'.'           Text
+'o'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'LDSHARED'    Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'Modules'     Name
+'/'           Text
+'pwdmodule'   Name
+'.'           Text
+'o'           Name
+' '           Text
+' '           Text
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'pwdmodule'   Name
+'$('          Keyword
+'SO'          Name.Variable
+')'           Keyword
+'\n'          Text
+
+'Modules/_sre.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'_sre'        Name
+'.'           Text
+'c'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'CC'          Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'-'           Text
+'c'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'_sre'        Name
+'.'           Text
+'c'           Name
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'_sre'        Name
+'.'           Text
+'o'           Name
+'\n'          Text
+
+'Modules/_sre$(SO)' Name.Function
+':'           Operator
+'  '          Text
+'Modules'     Name
+'/'           Text
+'_sre'        Name
+'.'           Text
+'o'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'LDSHARED'    Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'Modules'     Name
+'/'           Text
+'_sre'        Name
+'.'           Text
+'o'           Name
+' '           Text
+' '           Text
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'_sre'        Name
+'$('          Keyword
+'SO'          Name.Variable
+')'           Keyword
+'\n'          Text
+
+'Modules/_codecsmodule.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'_codecsmodule' Name
+'.'           Text
+'c'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'CC'          Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'-'           Text
+'c'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'_codecsmodule' Name
+'.'           Text
+'c'           Name
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'_codecsmodule' Name
+'.'           Text
+'o'           Name
+'\n'          Text
+
+'Modules/_codecsmodule$(SO)' Name.Function
+':'           Operator
+'  '          Text
+'Modules'     Name
+'/'           Text
+'_codecsmodule' Name
+'.'           Text
+'o'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'LDSHARED'    Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'Modules'     Name
+'/'           Text
+'_codecsmodule' Name
+'.'           Text
+'o'           Name
+' '           Text
+' '           Text
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'_codecsmodule' Name
+'$('          Keyword
+'SO'          Name.Variable
+')'           Keyword
+'\n'          Text
+
+'Modules/zipimport.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'zipimport'   Name
+'.'           Text
+'c'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'CC'          Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'-'           Text
+'c'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'zipimport'   Name
+'.'           Text
+'c'           Name
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'zipimport'   Name
+'.'           Text
+'o'           Name
+'\n'          Text
+
+'Modules/zipimport$(SO)' Name.Function
+':'           Operator
+'  '          Text
+'Modules'     Name
+'/'           Text
+'zipimport'   Name
+'.'           Text
+'o'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'LDSHARED'    Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'Modules'     Name
+'/'           Text
+'zipimport'   Name
+'.'           Text
+'o'           Name
+' '           Text
+' '           Text
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'zipimport'   Name
+'$('          Keyword
+'SO'          Name.Variable
+')'           Keyword
+'\n'          Text
+
+'Modules/symtablemodule.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'symtablemodule' Name
+'.'           Text
+'c'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'CC'          Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'-'           Text
+'c'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'symtablemodule' Name
+'.'           Text
+'c'           Name
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'symtablemodule' Name
+'.'           Text
+'o'           Name
+'\n'          Text
+
+'Modules/_symtablemodule$(SO)' Name.Function
+':'           Operator
+'  '          Text
+'Modules'     Name
+'/'           Text
+'symtablemodule' Name
+'.'           Text
+'o'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'LDSHARED'    Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'Modules'     Name
+'/'           Text
+'symtablemodule' Name
+'.'           Text
+'o'           Name
+' '           Text
+' '           Text
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'_symtablemodule' Name
+'$('          Keyword
+'SO'          Name.Variable
+')'           Keyword
+'\n'          Text
+
+'Modules/xxsubtype.o' Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'xxsubtype'   Name
+'.'           Text
+'c'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'CC'          Name.Variable
+')'           Keyword
+' '           Text
+'$('          Keyword
+'PY_CFLAGS'   Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'-'           Text
+'c'           Name
+' '           Text
+'$('          Keyword
+'srcdir'      Name.Variable
+')'           Keyword
+'/'           Text
+'Modules'     Name
+'/'           Text
+'xxsubtype'   Name
+'.'           Text
+'c'           Name
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'xxsubtype'   Name
+'.'           Text
+'o'           Name
+'\n'          Text
+
+'Modules/xxsubtype$(SO)' Name.Function
+':'           Operator
+'  '          Text
+'Modules'     Name
+'/'           Text
+'xxsubtype'   Name
+'.'           Text
+'o'           Name
+';'           Text
+' '           Text
+'$('          Keyword
+'LDSHARED'    Name.Variable
+')'           Keyword
+' '           Text
+' '           Text
+'Modules'     Name
+'/'           Text
+'xxsubtype'   Name
+'.'           Text
+'o'           Name
+' '           Text
+' '           Text
+' '           Text
+'-'           Text
+'o'           Name
+' '           Text
+'Modules'     Name
+'/'           Text
+'xxsubtype'   Name
+'$('          Keyword
+'SO'          Name.Variable
+')'           Keyword
+'\n'          Text

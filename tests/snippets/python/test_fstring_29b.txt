@@ -1,0 +1,15 @@
+---input---
+f'{math.pi=!f:.2f}'
+
+---tokens---
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'{'           Literal.String.Interpol
+'math'        Name
+'.'           Operator
+'pi'          Name
+'=!f:'        Literal.String.Interpol
+'.2f'         Literal.String.Single
+'}'           Literal.String.Interpol
+"'"           Literal.String.Single
+'\n'          Text

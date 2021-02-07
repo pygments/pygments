@@ -1,0 +1,9 @@
+# CPU is a valid directive, and we don't want to parse this as
+# cpu id, but as a single token. See bug #1517
+
+---input---
+cpuid
+
+---tokens---
+'cpuid'       Name.Function
+'\n'          Text

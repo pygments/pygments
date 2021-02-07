@@ -1,0 +1,207 @@
+'   '         Text
+'## a comment' Comment
+'\n'          Other
+
+'\n'          Other
+
+'\\'          Other
+'#'           Other
+'#'           Other
+' '           Other
+'not'         Other
+' '           Other
+'a'           Other
+' '           Other
+'comment'     Other
+'\n'          Other
+
+'\n'          Text
+
+'#'           Comment.Preproc
+'if'          Keyword
+' '           Text
+'foo'         Name
+'\n'          Other
+
+' '           Other
+' '           Other
+'${'          Comment.Preproc
+'bar'         Name
+'}'           Comment.Preproc
+'\n'          Other
+
+'#'           Comment.Preproc
+'endif'       Keyword
+'\n'          Other
+
+'\n'          Other
+
+'The'         Other
+' '           Other
+'answer'      Other
+' '           Other
+'is:'         Other
+'\n'          Other
+
+'#'           Comment.Preproc
+'choose'      Keyword
+'\n'          Other
+
+'  '          Text
+'#'           Comment.Preproc
+'when'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Other
+
+' '           Other
+' '           Other
+' '           Other
+' '           Other
+'0'           Other
+'\n'          Other
+
+'  '          Text
+'#'           Comment.Preproc
+'end'         Keyword
+'\n'          Other
+
+'  '          Text
+'#'           Comment.Preproc
+'when'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Other
+
+' '           Other
+' '           Other
+' '           Other
+' '           Other
+'1'           Other
+'\n'          Other
+
+'  '          Text
+'#'           Comment.Preproc
+'end'         Keyword
+'\n'          Other
+
+'  '          Text
+'#'           Comment.Preproc
+'otherwise'   Keyword
+'\n'          Other
+
+' '           Other
+' '           Other
+' '           Other
+' '           Other
+'2'           Other
+'\n'          Other
+
+'  '          Text
+'#'           Comment.Preproc
+'end'         Keyword
+'\n'          Other
+
+'#'           Comment.Preproc
+'end'         Keyword
+' '           Text
+'-- comment about choose' Comment
+'\n'          Other
+
+'\n'          Text
+
+'#'           Comment.Preproc
+'for'         Keyword
+' '           Text
+'item'        Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'items'       Name
+'\n'          Other
+
+' '           Other
+' '           Other
+'*'           Other
+' '           Other
+'${'          Comment.Preproc
+'item'        Name
+'}'           Comment.Preproc
+'\n'          Other
+
+'#'           Comment.Preproc
+'end'         Keyword
+'\n'          Other
+
+'\n'          Text
+
+'#'           Comment.Preproc
+'def'         Keyword
+' '           Text
+'greeting'    Name.Function
+'('           Punctuation
+'name'        Name
+')'           Punctuation
+'\n'          Other
+
+' '           Other
+' '           Other
+'Hello,'      Other
+' '           Other
+'${'          Comment.Preproc
+'name'        Name
+'}'           Comment.Preproc
+'!'           Other
+'\n'          Other
+
+'#'           Comment.Preproc
+'end'         Keyword
+'\n'          Other
+
+'${'          Comment.Preproc
+'greeting'    Name
+'('           Punctuation
+"'"           Literal.String.Single
+'world'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'}'           Comment.Preproc
+'\n'          Other
+
+'\n'          Text
+
+'#'           Comment.Preproc
+'with'        Keyword
+' '           Text
+'y'           Name
+'='           Operator
+'7'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'z'           Name
+'='           Operator
+'x'           Name
+'+'           Operator
+'10'          Literal.Number.Integer
+'\n'          Other
+
+' '           Other
+' '           Other
+'$x'          Name.Variable
+' '           Other
+'$y'          Name.Variable
+' '           Other
+'$z'          Name.Variable
+'\n'          Other
+
+'#'           Comment.Preproc
+'end'         Keyword
+'\n'          Other
