@@ -90,7 +90,9 @@ class JuliaLexer(RegexLexer):
 
             # names
             (allowed_variable, Name),
+            # macros
             (r'@' + allowed_variable, Name.Decorator),
+            (words([*OPERATORS_LIST, '..', '.', *DOTTED_OPERATORS_LIST], prefix='@'), Name.Decorator),
 
             # numbers
             (r'(\d+(_\d+)+\.\d*|\d*\.\d+(_\d+)+)([eEf][+-]?[0-9]+)?', Number.Float),
