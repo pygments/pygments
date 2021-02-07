@@ -1,0 +1,1999 @@
+'#'           Comment.Preproc
+'include <core>' Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'// Single line comment\n' Comment.Single
+
+'/* Multi line\n   comment */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'/// documentation\n' Comment.Single
+
+'/**\n\n\tdocumentation multi line\n\t\n**/' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'public'      Keyword
+' '           Text
+'OnGameModeInit' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'Hello, World!' Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'enum'        Keyword
+' '           Text
+'info'        Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'Float'       Keyword.Type
+':'           Operator
+'ex'          Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'exa'         Name
+','           Punctuation
+'\n'          Text
+
+'\t'          Text
+'exam'        Name
+'['           Punctuation
+'5'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'new'         Keyword
+' '           Text
+'arr'         Name
+'['           Punctuation
+'5'           Literal.Number.Integer
+']'           Punctuation
+'['           Punctuation
+'info'        Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'test_func'   Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'new'         Keyword
+' '           Text
+'a'           Name
+' '           Text
+'='           Operator
+' '           Text
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'b'           Name
+' '           Text
+'='           Operator
+' '           Text
+'10.3'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'a'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\n\t'    Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t\n\t'    Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'new'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'10'          Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'i'           Name
+'+'           Operator
+'+'           Operator
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'continue'    Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'do'          Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'a'           Name
+'-'           Operator
+'-'           Operator
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+' '           Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'a'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'a'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'a'           Name
+'+'           Operator
+'+'           Operator
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'switch'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'case'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+':'           Operator
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'case'        Keyword
+' '           Text
+'0.'          Literal.Number.Float
+'.4'          Literal.Number.Float
+':'           Operator
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'case'        Keyword
+' '           Text
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'6'           Literal.Number.Integer
+':'           Operator
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'static'      Keyword
+' '           Text
+'x'           Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'new'         Keyword
+' '           Text
+'xx'          Name
+' '           Text
+'='           Operator
+' '           Text
+'a'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+'?'           Operator
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+':'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'new'         Keyword
+' '           Text
+'array'       Name
+'['           Punctuation
+'sizeof'      Keyword
+' '           Text
+'arr'         Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'0'           Literal.Number.Integer
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'tagof'       Keyword
+' '           Text
+'a'           Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'state'       Keyword
+' '           Text
+'a'           Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'goto'        Keyword
+' '           Text
+'label'       Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'new'         Keyword
+' '           Text
+'byte'        Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+' '           Text
+'char'        Keyword
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'byte'        Name
+'{'           Punctuation
+'0'           Literal.Number.Integer
+'}'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+"'a'"         Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'return'      Keyword
+' '           Text
+'('           Punctuation
+'float'       Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'b'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'// float.inc\n' Comment.Single
+
+'/* Float arithmetic\n *\n * (c) Copyright 1999, Artran, Inc.\n * Written by Greg Garner (gmg@artran.com)\n * Modified in March 2001 to include user defined\n * operators for the floating point functions.\n *\n * This file is provided as is (no warranties).\n */' Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Preproc
+'if defined _Float_included' Comment.Preproc
+'\n'          Comment.Preproc
+
+'  #'         Comment.Preproc
+'endinput'    Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define _Float_included' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'pragma library Float' Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'/* Different methods of rounding */' Comment.Multiline
+'\n'          Text
+
+'enum'        Keyword
+' '           Text
+'floatround_method' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'floatround_round' Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'floatround_floor' Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'floatround_ceil' Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'floatround_tozero' Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'floatround_unbiased' Name
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'enum'        Keyword
+' '           Text
+'anglemode'   Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'radian'      Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'degrees'     Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'grades'      Name
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Convert an integer into a floating point value */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'float'       Name
+'('           Punctuation
+'value'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Convert a string into a floating point value */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'floatstr'    Name
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'string'      Name
+'['           Punctuation
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Multiple two floats together */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'floatmul'    Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Divide the dividend float by the divisor float */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'floatdiv'    Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'dividend'    Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'divisor'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Add two floats together */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'floatadd'    Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Subtract oper2 float from oper1 float */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'floatsub'    Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Return the fractional part of a float */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'floatfract'  Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'value'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Round a float into a integer value */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'floatround'  Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'value'       Name
+','           Punctuation
+' '           Text
+'floatround_method' Name
+':'           Operator
+'method'      Name
+'='           Operator
+'floatround_round' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Compare two integers. If the two elements are equal, return 0.\n   If the first argument is greater than the second argument, return 1,\n   If the first argument is less than the second argument, return -1. */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Return the square root of the input value, same as floatpower(value, 0.5) */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'floatsqroot' Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'value'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Return the value raised to the power of the exponent */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'floatpower'  Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'value'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'exponent'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Return the logarithm */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'floatlog'    Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'value'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'base'        Name
+'='           Operator
+'10.0'        Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Return the sine, cosine or tangent. The input angle may be in radian,\n   degrees or grades. */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'floatsin'    Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'value'       Name
+','           Punctuation
+' '           Text
+'anglemode'   Name
+':'           Operator
+'mode'        Name
+'='           Operator
+'radian'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'floatcos'    Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'value'       Name
+','           Punctuation
+' '           Text
+'anglemode'   Name
+':'           Operator
+'mode'        Name
+'='           Operator
+'radian'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'floattan'    Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'value'       Name
+','           Punctuation
+' '           Text
+'anglemode'   Name
+':'           Operator
+'mode'        Name
+'='           Operator
+'radian'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/**************************************************/' Comment.Multiline
+'\n'          Text
+
+'/* Return the absolute value */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'floatabs'    Name
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'value'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n\n/**************************************************/\n#' Comment.Preproc
+'pragma rational Float' Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'/* user defined operators */' Comment.Multiline
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'*'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'floatmul'    Name
+';'           Punctuation
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'/'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'floatdiv'    Name
+';'           Punctuation
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'+'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'floatadd'    Name
+';'           Punctuation
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'-'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'floatsub'    Name
+';'           Punctuation
+'\n'          Text
+
+'native'      Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'='           Operator
+'('           Punctuation
+'oper'        Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'float'       Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'+'           Operator
+'+'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper'        Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'oper'        Name
+'+'           Operator
+'1.0'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'-'           Operator
+'-'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper'        Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'oper'        Name
+'-'           Operator
+'1.0'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'-'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper'        Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'oper'        Name
+'^'           Operator
+'Float'       Keyword.Type
+':'           Operator
+'cellmin'     Name
+';'           Punctuation
+'                  ' Text
+'/* IEEE values are sign/magnitude */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'*'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatmul'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'float'       Name
+'('           Punctuation
+'oper2'       Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'       '     Text
+'/* "*" is commutative */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'/'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatdiv'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'float'       Name
+'('           Punctuation
+'oper2'       Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'/'           Operator
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatdiv'    Name
+'('           Punctuation
+'float'       Name
+'('           Punctuation
+'oper1'       Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'+'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatadd'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'float'       Name
+'('           Punctuation
+'oper2'       Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'       '     Text
+'/* "+" is commutative */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'-'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatsub'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'float'       Name
+'('           Punctuation
+'oper2'       Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'operator'    Keyword
+'-'           Operator
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatsub'    Name
+'('           Punctuation
+'float'       Name
+'('           Punctuation
+'oper1'       Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'='           Operator
+'='           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'='           Operator
+'='           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'float'       Name
+'('           Punctuation
+'oper2'       Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'  '          Text
+'/* "==" is commutative */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'!'           Operator
+'='           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'!'           Operator
+'='           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'float'       Name
+'('           Punctuation
+'oper2'       Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'  '          Text
+'/* "!=" is commutative */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'>'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'>'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'float'       Name
+'('           Punctuation
+'oper2'       Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'>'           Operator
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'float'       Name
+'('           Punctuation
+'oper1'       Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'>'           Operator
+'='           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'>'           Operator
+'='           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'float'       Name
+'('           Punctuation
+'oper2'       Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'>'           Operator
+'='           Operator
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'float'       Name
+'('           Punctuation
+'oper1'       Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'<'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'<'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'float'       Name
+'('           Punctuation
+'oper2'       Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'<'           Operator
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'float'       Name
+'('           Punctuation
+'oper1'       Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'<'           Operator
+'='           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'<'           Operator
+'='           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'float'       Name
+'('           Punctuation
+'oper2'       Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'<'           Operator
+'='           Operator
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'floatcmp'    Name
+'('           Punctuation
+'float'       Name
+'('           Punctuation
+'oper1'       Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'stock'       Name
+' '           Text
+'bool'        Keyword.Type
+':'           Operator
+'operator'    Keyword
+'!'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper'        Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'('           Punctuation
+'_'           Name
+':'           Operator
+'oper'        Name
+' '           Text
+'&'           Operator
+' '           Text
+'cellmax'     Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/* forbidden operations */' Comment.Multiline
+'\n'          Text
+
+'forward'     Name
+' '           Text
+'operator'    Keyword
+'%'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'forward'     Name
+' '           Text
+'operator'    Keyword
+'%'           Operator
+'('           Punctuation
+'Float'       Keyword.Type
+':'           Operator
+'oper1'       Name
+','           Punctuation
+' '           Text
+'oper2'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'forward'     Name
+' '           Text
+'operator'    Keyword
+'%'           Operator
+'('           Punctuation
+'oper1'       Name
+','           Punctuation
+' '           Text
+'Float'       Keyword.Type
+':'           Operator
+'oper2'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text

@@ -1,0 +1,63 @@
+'<?php'       Comment.Preproc
+'\n\n'        Text
+
+'$x'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'array'       Keyword
+'('           Punctuation
+'0123'        Literal.Number.Oct
+','           Punctuation
+' '           Text
+'0x0a'        Literal.Number.Hex
+','           Punctuation
+' '           Text
+'-'           Operator
+'0x0a'        Literal.Number.Hex
+','           Punctuation
+' '           Text
+'-'           Operator
+'0123'        Literal.Number.Oct
+','           Punctuation
+' '           Text
+'12'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'12'          Literal.Number.Integer
+');'          Punctuation
+'\n\n'        Text
+
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?php'       Comment.Preproc
+'\n'          Text
+
+'$a'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1.234'       Literal.Number.Float
+';'           Punctuation
+' \n'         Text
+
+'$b'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1.2e3'       Literal.Number.Float
+';'           Punctuation
+' \n'         Text
+
+'$c'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'7E-10'       Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'?>'          Comment.Preproc
+'\n'          Other

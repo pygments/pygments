@@ -1,0 +1,2397 @@
+'domain'      Keyword
+' '           Text
+'Option__Node' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'unique'      Keyword
+' '           Text
+'function'    Keyword
+' '           Text
+'Option__Node__Some' Name
+'('           Punctuation
+')'           Punctuation
+':'           Operator
+' '           Text
+'Option__Node' Name
+'\n'          Text
+
+'    '        Text
+'unique'      Keyword
+' '           Text
+'function'    Keyword
+' '           Text
+'Option__Node__None' Name
+'('           Punctuation
+')'           Punctuation
+':'           Operator
+' '           Text
+'Option__Node' Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'function'    Keyword
+' '           Text
+'variantOfOptionNode' Name
+'('           Punctuation
+'self'        Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Option__Node' Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'function'    Keyword
+' '           Text
+'isOptionNode' Name
+'('           Punctuation
+'self'        Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Bool'        Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'axiom'       Keyword
+' '           Text
+'ax_variantOfOptionNodeChoices' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'forall'      Keyword
+' '           Text
+'x'           Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+' '           Text
+':'           Operator
+':'           Operator
+' '           Text
+'{ variantOfOptionNode(x) }' Generic.Emph
+'\n'          Text
+
+'            ' Text
+'('           Punctuation
+'variantOfOptionNode' Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__Some' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'variantOfOptionNode' Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__None' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'axiom'       Keyword
+' '           Text
+'ax_isCounterState' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'forall'      Keyword
+' '           Text
+'x'           Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+' '           Text
+':'           Operator
+':'           Operator
+'  '          Text
+'{ variantOfOptionNode(x) }' Generic.Emph
+'\n'          Text
+
+'            ' Text
+'isOptionNode' Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'variantOfOptionNode' Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__Some' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'|'           Operator
+'|'           Operator
+'\n'          Text
+
+'                ' Text
+'variantOfOptionNode' Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__None' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'predicate'   Keyword
+' '           Text
+'validOption' Name
+'('           Punctuation
+'this'        Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'isOptionNode' Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+' '           Text
+'&'           Operator
+'&'           Operator
+'\n'          Text
+
+'    '        Text
+'variantOfOptionNode' Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__Some' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+'>'           Operator
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+'        '    Text
+'acc'         Keyword
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Option__Node__Some__1' Name
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+' '           Text
+'&'           Operator
+'&'           Operator
+'\n'          Text
+
+'        '    Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Option__Node__Some__1' Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'field'       Keyword
+' '           Text
+'Option__Node__Some__1' Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'field'       Keyword
+' '           Text
+'Node__v'     Name
+':'           Operator
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'field'       Keyword
+' '           Text
+'Node__next'  Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'predicate'   Keyword
+' '           Text
+'validNode'   Name
+'('           Punctuation
+'this'        Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'acc'         Keyword
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Node__v'     Name
+')'           Punctuation
+' '           Text
+'&'           Operator
+'&'           Operator
+'\n'          Text
+
+'    '        Text
+'acc'         Keyword
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+' '           Text
+'&'           Operator
+'&'           Operator
+'\n'          Text
+
+'    '        Text
+'acc'         Keyword
+'('           Punctuation
+'validOption' Name
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'length'      Name
+'('           Punctuation
+'this'        Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'    '        Text
+'requires'    Name.Decorator
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Name.Decorator
+' '           Text
+'result'      Keyword
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'unfolding'   Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+' '           Text
+'in'          Keyword
+'\n'          Text
+
+'        '    Text
+'unfolding'   Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validOption' Name
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'in'          Keyword
+'\n'          Text
+
+'        '    Text
+'('           Punctuation
+'variantOfOptionNode' Name
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__None' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'?'           Operator
+' \n            ' Text
+'1'           Literal.Number.Integer
+' '           Text
+':'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'length'      Name
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Node__next'  Name
+'.'           Punctuation
+'Option__Node__Some__1' Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'itemAt'      Name
+'('           Punctuation
+'this'        Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+','           Punctuation
+' '           Text
+'i'           Name
+':'           Operator
+' '           Text
+'Int'         Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'    '        Text
+'requires'    Name.Decorator
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'requires'    Name.Decorator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'i'           Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'length'      Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'unfolding'   Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+' '           Text
+'in'          Keyword
+' '           Text
+'unfolding'   Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validOption' Name
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'in'          Keyword
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+'        '    Text
+'('           Punctuation
+'i'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'?'           Operator
+'\n'          Text
+
+'            ' Text
+'this'        Name
+'.'           Punctuation
+'Node__v'     Name
+':'           Operator
+'\n'          Text
+
+'            ' Text
+'('           Punctuation
+'variantOfOptionNode' Name
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__Some' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'?'           Operator
+' \n                ' Text
+'itemAt'      Name
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Node__next'  Name
+'.'           Punctuation
+'Option__Node__Some__1' Name
+','           Punctuation
+' '           Text
+'i'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+':'           Operator
+' '           Text
+'this'        Name
+'.'           Punctuation
+'Node__v'     Name
+'\n'          Text
+
+'    '        Text
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'sum'         Name
+'('           Punctuation
+'this'        Name
+'$1'          Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'    '        Text
+'requires'    Name.Decorator
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'this'        Name
+'$1'          Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'unfolding'   Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'this'        Name
+'$1'          Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+' '           Text
+'in'          Keyword
+' '           Text
+'unfolding'   Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validOption' Name
+'('           Punctuation
+'this'        Name
+'$1'          Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'in'          Keyword
+' \n        ' Text
+'('           Punctuation
+'variantOfOptionNode' Name
+'('           Punctuation
+'this'        Name
+'$1'          Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__None' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+'this'        Name
+'$1'          Name
+'.'           Punctuation
+'Node__v'     Name
+' '           Text
+':'           Operator
+' '           Text
+'this'        Name
+'$1'          Name
+'.'           Punctuation
+'Node__v'     Name
+' '           Text
+'+'           Operator
+' '           Text
+'sum'         Name
+'('           Punctuation
+'this'        Name
+'$1'          Name
+'.'           Punctuation
+'Node__next'  Name
+'.'           Punctuation
+'Option__Node__Some__1' Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'method'      Keyword
+' '           Text
+'append'      Name
+'('           Punctuation
+'this'        Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+','           Punctuation
+' '           Text
+'val'         Name
+':'           Operator
+' '           Text
+'Int'         Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'requires'    Name.Decorator
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Name.Decorator
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+' '           Text
+'/*'          Comment.Multiline
+' POST1 '     Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'ensures'     Name.Decorator
+' '           Text
+'length'      Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'old'         Keyword
+'('           Punctuation
+'length'      Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'/*'          Comment.Multiline
+' POST2 '     Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'ensures'     Name.Decorator
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'i'           Name
+':'           Operator
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+':'           Operator
+':'           Operator
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'i'           Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'old'         Keyword
+'('           Punctuation
+'length'      Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+'>'           Operator
+' '           Text
+'('           Punctuation
+'itemAt'      Name
+'('           Punctuation
+'this'        Name
+','           Punctuation
+' '           Text
+'i'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'old'         Keyword
+'('           Punctuation
+'itemAt'      Name
+'('           Punctuation
+'this'        Name
+','           Punctuation
+' '           Text
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'/*'          Comment.Multiline
+' POST3 '     Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'ensures'     Name.Decorator
+' '           Text
+'itemAt'      Name
+'('           Punctuation
+'this'        Name
+','           Punctuation
+' '           Text
+'length'      Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'val'         Name
+' '           Text
+'/*'          Comment.Multiline
+' POST4 '     Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'ensures'     Name.Decorator
+' '           Text
+'true'        Keyword
+' '           Text
+'='           Operator
+'='           Operator
+'>'           Operator
+' '           Text
+'true'        Keyword
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'tmp_node'    Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'tmp_option'  Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'unfold'      Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'unfold'      Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validOption' Name
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'variantOfOptionNode' Name
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__None' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'tmp_node'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'new'         Keyword
+'('           Punctuation
+'Node__next'  Name
+','           Punctuation
+' '           Text
+'Node__v'     Name
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'tmp_node'    Name
+'.'           Punctuation
+'Node__next'  Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'null'        Keyword
+'\n'          Text
+
+'        '    Text
+'tmp_node'    Name
+'.'           Punctuation
+'Node__v'     Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'val'         Name
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'assume'      Keyword
+' '           Text
+'variantOfOptionNode' Name
+'('           Punctuation
+'tmp_node'    Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__None' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'fold'        Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validOption' Name
+'('           Punctuation
+'tmp_node'    Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'fold'        Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'tmp_node'    Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'tmp_option'  Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'new'         Keyword
+'('           Punctuation
+'Option__Node__Some__1' Name
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'tmp_option'  Name
+'.'           Punctuation
+'Option__Node__Some__1' Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'tmp_node'    Name
+'\n'          Text
+
+'        '    Text
+'assume'      Keyword
+' '           Text
+'variantOfOptionNode' Name
+'('           Punctuation
+'tmp_option'  Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__Some' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'fold'        Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validOption' Name
+'('           Punctuation
+'tmp_option'  Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'this'        Name
+'.'           Punctuation
+'Node__next'  Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'tmp_option'  Name
+'\n'          Text
+
+'\n'          Text
+
+' \n        ' Text
+'unfold'      Keyword
+' '           Text
+'validOption' Name
+'('           Punctuation
+'tmp_option'  Name
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'assert'      Keyword
+' '           Text
+'length'      Name
+'('           Punctuation
+'tmp_node'    Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'/*'          Comment.Multiline
+' TODO: Required by Silicon, POST2 fails otherwise ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'assert'      Keyword
+' '           Text
+'itemAt'      Name
+'('           Punctuation
+'tmp_node'    Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'val'         Name
+' '           Text
+'/*'          Comment.Multiline
+' TODO: Required by Silicon, POST4 fails otherwise ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'fold'        Keyword
+' '           Text
+'validOption' Name
+'('           Punctuation
+'tmp_option'  Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'append'      Name
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Node__next'  Name
+'.'           Punctuation
+'Option__Node__Some__1' Name
+','           Punctuation
+' '           Text
+'val'         Name
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'fold'        Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validOption' Name
+'('           Punctuation
+'this'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'fold'        Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'this'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'method'      Keyword
+' '           Text
+'prepend'     Name
+'('           Punctuation
+'tail'        Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+','           Punctuation
+' '           Text
+'val'         Name
+':'           Operator
+' '           Text
+'Int'         Keyword.Type
+')'           Punctuation
+' '           Text
+'returns'     Keyword
+' '           Text
+'('           Punctuation
+'res'         Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'requires'    Name.Decorator
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'tail'        Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Name.Decorator
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'res'         Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'//ensures acc(validNode(tail))\n' Comment.Single
+
+'    '        Text
+'ensures'     Name.Decorator
+' '           Text
+'length'      Name
+'('           Punctuation
+'res'         Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'old'         Keyword
+'('           Punctuation
+'length'      Name
+'('           Punctuation
+'tail'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'ensures'     Name.Decorator
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'i'           Name
+':'           Operator
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+':'           Operator
+':'           Operator
+' '           Text
+'('           Punctuation
+'1'           Literal.Number.Integer
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'i'           Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'length'      Name
+'('           Punctuation
+'res'         Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+'>'           Operator
+' '           Text
+'('           Punctuation
+'itemAt'      Name
+'('           Punctuation
+'res'         Name
+','           Punctuation
+' '           Text
+'i'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'old'         Keyword
+'('           Punctuation
+'itemAt'      Name
+'('           Punctuation
+'tail'        Name
+','           Punctuation
+' '           Text
+'i'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'/*'          Comment.Multiline
+' POST3 '     Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'ensures'     Name.Decorator
+' '           Text
+'itemAt'      Name
+'('           Punctuation
+'res'         Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'val'         Name
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'tmp_option'  Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'res'         Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'new'         Keyword
+'('           Punctuation
+'Node__v'     Name
+','           Punctuation
+' '           Text
+'Node__next'  Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'res'         Name
+'.'           Punctuation
+'Node__v'     Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'val'         Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'tmp_option'  Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'new'         Keyword
+'('           Punctuation
+'Option__Node__Some__1' Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'tmp_option'  Name
+'.'           Punctuation
+'Option__Node__Some__1' Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'tail'        Name
+'\n'          Text
+
+'    '        Text
+'assume'      Keyword
+' '           Text
+'variantOfOptionNode' Name
+'('           Punctuation
+'tmp_option'  Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__Some' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'res'         Name
+'.'           Punctuation
+'Node__next'  Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'tmp_option'  Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'assert'      Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'tail'        Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'fold'        Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validOption' Name
+'('           Punctuation
+'res'         Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'fold'        Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'res'         Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'method'      Keyword
+' '           Text
+'length_iter' Name
+'('           Punctuation
+'list'        Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+')'           Punctuation
+' '           Text
+'returns'     Keyword
+' '           Text
+'('           Punctuation
+'len'         Name
+':'           Operator
+' '           Text
+'Int'         Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'requires'    Name.Decorator
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'list'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Name.Decorator
+' '           Text
+'old'         Keyword
+'('           Punctuation
+'length'      Name
+'('           Punctuation
+'list'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'len'         Name
+'\n'          Text
+
+'    '        Text
+'// TODO we have to preserve this property\n' Comment.Single
+
+'    '        Text
+'// ensures acc(validNode(list))\n' Comment.Single
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'curr'        Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'list'        Name
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'tmp'         Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'list'        Name
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'len'         Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'unfold'      Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'curr'        Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'unfold'      Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validOption' Name
+'('           Punctuation
+'curr'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'while'       Keyword
+'('           Punctuation
+'variantOfOptionNode' Name
+'('           Punctuation
+'curr'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__Some' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'invariant'   Name.Decorator
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'curr'        Name
+'.'           Punctuation
+'Node__v'     Name
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'invariant'   Name.Decorator
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'curr'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'invariant'   Name.Decorator
+' '           Text
+'('           Punctuation
+'variantOfOptionNode' Name
+'('           Punctuation
+'curr'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__Some' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+'>'           Operator
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+'            ' Text
+'acc'         Keyword
+'('           Punctuation
+'curr'        Name
+'.'           Punctuation
+'Node__next'  Name
+'.'           Punctuation
+'Option__Node__Some__1' Name
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+' '           Text
+'&'           Operator
+'&'           Operator
+'\n'          Text
+
+'            ' Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'curr'        Name
+'.'           Punctuation
+'Node__next'  Name
+'.'           Punctuation
+'Option__Node__Some__1' Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'invariant'   Name.Decorator
+' '           Text
+'('           Punctuation
+'variantOfOptionNode' Name
+'('           Punctuation
+'curr'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__Some' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+'>'           Operator
+' '           Text
+'len'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'length'      Name
+'('           Punctuation
+'curr'        Name
+'.'           Punctuation
+'Node__next'  Name
+'.'           Punctuation
+'Option__Node__Some__1' Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'old'         Keyword
+'('           Punctuation
+'length'      Name
+'('           Punctuation
+'list'        Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'invariant'   Name.Decorator
+' '           Text
+'('           Punctuation
+'variantOfOptionNode' Name
+'('           Punctuation
+'curr'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__None' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+'>'           Operator
+' '           Text
+'len'         Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'old'         Keyword
+'('           Punctuation
+'length'      Name
+'('           Punctuation
+'list'        Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'assert'      Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'curr'        Name
+'.'           Punctuation
+'Node__next'  Name
+'.'           Punctuation
+'Option__Node__Some__1' Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'len'         Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'len'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'        '    Text
+'tmp'         Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'curr'        Name
+'\n'          Text
+
+'        '    Text
+'curr'        Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'curr'        Name
+'.'           Punctuation
+'Node__next'  Name
+'.'           Punctuation
+'Option__Node__Some__1' Name
+'\n'          Text
+
+'        '    Text
+'unfold'      Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'curr'        Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'unfold'      Keyword
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validOption' Name
+'('           Punctuation
+'curr'        Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'method'      Keyword
+' '           Text
+'t1'          Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'l'           Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'l'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'new'         Keyword
+'('           Punctuation
+'Node__v'     Name
+','           Punctuation
+' '           Text
+'Node__next'  Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'l'           Name
+'.'           Punctuation
+'Node__next'  Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'null'        Keyword
+'\n'          Text
+
+'    '        Text
+'l'           Name
+'.'           Punctuation
+'Node__v'     Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'assume'      Keyword
+' '           Text
+'variantOfOptionNode' Name
+'('           Punctuation
+'l'           Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Option__Node__None' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'fold'        Keyword
+' '           Text
+'validOption' Name
+'('           Punctuation
+'l'           Name
+'.'           Punctuation
+'Node__next'  Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'fold'        Keyword
+' '           Text
+'validNode'   Name
+'('           Punctuation
+'l'           Name
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'assert'      Keyword
+' '           Text
+'length'      Name
+'('           Punctuation
+'l'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'assert'      Keyword
+' '           Text
+'itemAt'      Name
+'('           Punctuation
+'l'           Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'append'      Name
+'('           Punctuation
+'l'           Name
+','           Punctuation
+' '           Text
+'7'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'assert'      Keyword
+' '           Text
+'itemAt'      Name
+'('           Punctuation
+'l'           Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'7'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'assert'      Keyword
+' '           Text
+'itemAt'      Name
+'('           Punctuation
+'l'           Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'assert'      Keyword
+' '           Text
+'length'      Name
+'('           Punctuation
+'l'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'l'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'prepend'     Name
+'('           Punctuation
+'l'           Name
+','           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'assert'      Keyword
+' '           Text
+'itemAt'      Name
+'('           Punctuation
+'l'           Name
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'7'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'assert'      Keyword
+' '           Text
+'itemAt'      Name
+'('           Punctuation
+'l'           Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'assert'      Keyword
+' '           Text
+'itemAt'      Name
+'('           Punctuation
+'l'           Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'10'          Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'assert'      Keyword
+' '           Text
+'length'      Name
+'('           Punctuation
+'l'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'3'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'//assert sum(l) == 18\n' Comment.Single
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'method'      Keyword
+' '           Text
+'t2'          Name
+'('           Punctuation
+'l'           Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+')'           Punctuation
+' '           Text
+'returns'     Keyword
+' '           Text
+'('           Punctuation
+'res'         Name
+':'           Operator
+' '           Text
+'Ref'         Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'requires'    Name.Decorator
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'l'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Name.Decorator
+' '           Text
+'acc'         Keyword
+'('           Punctuation
+'validNode'   Name
+'('           Punctuation
+'res'         Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'write'       Keyword
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Name.Decorator
+' '           Text
+'length'      Name
+'('           Punctuation
+'res'         Name
+')'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'old'         Keyword
+'('           Punctuation
+'length'      Name
+'('           Punctuation
+'l'           Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'res'         Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'prepend'     Name
+'('           Punctuation
+'l'           Name
+','           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

@@ -1,0 +1,37 @@
+# Test that unicode character, √, in an expression is recognized
+
+---input---
+s = √((1/n) * sum(count .^ 2) - mu .^2)
+
+---tokens---
+'s'           Name
+' '           Text
+'='           Operator
+' '           Text
+'√'           Operator
+'('           Punctuation
+'('           Punctuation
+'1'           Literal.Number.Integer
+'/'           Operator
+'n'           Name
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'sum'         Name
+'('           Punctuation
+'count'       Name
+' '           Text
+'.^'          Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'mu'          Name
+' '           Text
+'.^'          Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text

@@ -1,0 +1,213 @@
+'#!/usr/bin/ioke\n' Comment
+
+'\n'          Text
+
+'Ioke'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'LanguageExperiment' Name.Class
+' '           Text
+'with'        Keyword.Reserved
+'('           Punctuation
+'\n'          Text
+
+'  '          Text
+'goal:'       Literal.String.Other
+' '           Text
+':expressiveness' Literal.String.Symbol
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'data:'       Literal.String.Other
+' '           Text
+'as'          Name
+'('           Punctuation
+'code'        Name
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'code:'       Literal.String.Other
+' '           Text
+'as'          Name
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'features:'   Literal.String.Other
+' '           Text
+'['           Punctuation
+'\n'          Text
+
+'    '        Text
+':dynamic'    Literal.String.Symbol
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+':object_oriented' Literal.String.Symbol
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+':prototype_based' Literal.String.Symbol
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+':homoiconic' Literal.String.Symbol
+','           Punctuation
+'\n'          Text
+
+'    '        Text
+':macros'     Literal.String.Symbol
+'\n'          Text
+
+'  '          Text
+']'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'runtimes:'   Literal.String.Other
+'('           Punctuation
+'JVM'         Name.Class
+','           Punctuation
+' '           Text
+'CLR'         Name.Class
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'inspirations:' Literal.String.Other
+' '           Text
+'set'         Keyword.Reserved
+'('           Punctuation
+'Io'          Name.Class
+','           Punctuation
+' '           Text
+'Smalltalk'   Name.Class
+','           Punctuation
+' '           Text
+'Ruby'        Name.Class
+','           Punctuation
+' '           Text
+'Lisp'        Name.Class
+')'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'hello'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'method'      Name.Function
+'('           Punctuation
+'"'           Literal.String.Doc
+'E'           Literal.String.Doc
+'v'           Literal.String.Doc
+'e'           Literal.String.Doc
+'r'           Literal.String.Doc
+'y'           Literal.String.Doc
+' '           Literal.String.Doc
+'e'           Literal.String.Doc
+'x'           Literal.String.Doc
+'a'           Literal.String.Doc
+'m'           Literal.String.Doc
+'p'           Literal.String.Doc
+'l'           Literal.String.Doc
+'e'           Literal.String.Doc
+' '           Literal.String.Doc
+'n'           Literal.String.Doc
+'e'           Literal.String.Doc
+'e'           Literal.String.Doc
+'d'           Literal.String.Doc
+'s'           Literal.String.Doc
+' '           Literal.String.Doc
+'a'           Literal.String.Doc
+' '           Literal.String.Doc
+'h'           Literal.String.Doc
+'e'           Literal.String.Doc
+'l'           Literal.String.Doc
+'l'           Literal.String.Doc
+'o'           Literal.String.Doc
+' '           Literal.String.Doc
+'w'           Literal.String.Doc
+'o'           Literal.String.Doc
+'r'           Literal.String.Doc
+'l'           Literal.String.Doc
+'d'           Literal.String.Doc
+'!'           Literal.String.Doc
+'"'           Literal.String.Doc
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'name'        Name
+','           Punctuation
+'\n'          Text
+
+'  '          Text
+'"'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+','           Literal.String
+' '           Literal.String
+'#{'          Punctuation
+'name'        Name
+'}'           Punctuation
+'!'           Literal.String
+'"'           Literal.String
+' '           Text
+'println'     Keyword
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'Ioke'        Name.Class
+' '           Text
+'inspirations' Name
+' '           Text
+'select'      Name
+'('           Punctuation
+'\n'          Text
+
+'  '          Text
+'features'    Name
+' '           Text
+'include?'    Name
+'('           Punctuation
+':object_oriented' Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+' '           Text
+'each'        Name
+'('           Punctuation
+'x'           Name
+','           Punctuation
+' '           Text
+'hello'       Name
+'('           Punctuation
+'x'           Name
+' '           Text
+'name'        Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text

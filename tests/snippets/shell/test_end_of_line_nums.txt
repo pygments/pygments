@@ -1,0 +1,15 @@
+---input---
+a=1
+b=2 # comment
+
+---tokens---
+'a'           Name.Variable
+'='           Operator
+'1'           Literal.Number
+'\n'          Text
+
+'b'           Name.Variable
+'='           Operator
+'2'           Literal.Number
+' '           Text
+'# comment\n' Comment.Single

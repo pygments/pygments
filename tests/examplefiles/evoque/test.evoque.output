@@ -1,0 +1,289 @@
+'$'           Punctuation
+'overlay'     Name.Builtin
+'{'           Punctuation
+'name'        Literal.String
+'='           Operator
+'site_base'   Name
+'}'           Punctuation
+'\n\n'        Other
+
+'$'           Punctuation
+'begin'       Name.Builtin
+'{'           Punctuation
+'table_row'   Literal.String
+'}'           Punctuation
+'\n    '      Other
+'$'           Punctuation
+'for'         Name.Builtin
+'{'           Punctuation
+' '           Text
+'col'         Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'row'         Name
+' '           Text
+'}'           Punctuation
+'\n        <td>' Other
+'${'          Punctuation
+'col'         Name
+'}'           Punctuation
+'</td>\\\n    ' Other
+'$'           Punctuation
+'else'        Name.Builtin
+'\n        <td class="empty" colspan="7">empty row</td>\n    ' Other
+'$'           Punctuation
+'rof'         Name.Builtin
+'\n'          Other
+
+'$'           Punctuation
+'end'         Name.Builtin
+'{'           Punctuation
+'table_row'   Literal.String
+'}'           Punctuation
+'\n\n<table>\n    ' Other
+'$'           Punctuation
+'for'         Name.Builtin
+'{'           Punctuation
+' '           Text
+'i'           Name
+','           Punctuation
+' '           Text
+'row'         Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'enumerate'   Name.Builtin
+'('           Punctuation
+'rows'        Name
+')'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n        <tr' Other
+'$'           Punctuation
+'if'          Name.Builtin
+'{'           Punctuation
+'i'           Name
+'%'           Operator
+'2'           Literal.Number.Integer
+'}'           Punctuation
+' class="odd"' Other
+'$'           Punctuation
+'fi'          Name.Builtin
+'> '          Other
+'#['          Comment.Multiline
+' '           Comment.Multiline
+'"'           Comment.Multiline
+'o'           Comment.Multiline
+'d'           Comment.Multiline
+'d'           Comment.Multiline
+'"'           Comment.Multiline
+' '           Comment.Multiline
+'r'           Comment.Multiline
+'o'           Comment.Multiline
+'w'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'g'           Comment.Multiline
+'e'           Comment.Multiline
+'t'           Comment.Multiline
+' '           Comment.Multiline
+'a'           Comment.Multiline
+' '           Comment.Multiline
+'s'           Comment.Multiline
+'p'           Comment.Multiline
+'e'           Comment.Multiline
+'c'           Comment.Multiline
+'i'           Comment.Multiline
+'a'           Comment.Multiline
+'l'           Comment.Multiline
+' '           Comment.Multiline
+'s'           Comment.Multiline
+'t'           Comment.Multiline
+'y'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+']#'          Comment.Multiline
+'\n            ' Other
+'$'           Punctuation
+'evoque'      Name.Builtin
+'{'           Punctuation
+'#table_row'  Literal.String
+'}'           Punctuation
+'\n            ' Other
+'$'           Punctuation
+'evoque'      Name.Builtin
+'{'           Punctuation
+' \n                #table_row' Literal.String
+' '           Text
+'\n'          Text
+
+'            ' Text
+'}'           Punctuation
+'\n            ' Other
+'$'           Punctuation
+'evoque'      Name.Builtin
+'{'           Punctuation
+"'#table_row'" Literal.String
+'}'           Punctuation
+'\n            ' Other
+'$'           Punctuation
+'evoque'      Name.Builtin
+'{'           Punctuation
+" '#table_row'" Literal.String
+','           Punctuation
+' '           Text
+'collection'  Name
+'='           Operator
+'None'        Keyword.Constant
+','           Punctuation
+' '           Text
+'quoting'     Name
+'='           Operator
+'"'           Literal.String.Double
+'str'         Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+'\n            ' Other
+'$'           Punctuation
+'evoque'      Name.Builtin
+'{'           Punctuation
+'name'        Literal.String
+'='           Operator
+'"'           Literal.String.Double
+'#table_row'  Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+'\n            ' Other
+'$'           Punctuation
+'evoque'      Name.Builtin
+'{'           Punctuation
+'name'        Literal.String
+'='           Operator
+'var_table_row' Name
+'}'           Punctuation
+'\n            ' Other
+'$'           Punctuation
+'evoque'      Name.Builtin
+'{%'          Punctuation
+'#table_row'  Literal.String
+'%}'          Punctuation
+'\n            ' Other
+'$'           Punctuation
+'evoque'      Name.Builtin
+'{%'          Punctuation
+' #table_row' Literal.String
+' '           Text
+'%}'          Punctuation
+'\n        </tr>\n    ' Other
+'$'           Punctuation
+'rof'         Name.Builtin
+'\n</table>\n\n' Other
+
+'$'           Punctuation
+'evoque'      Name.Builtin
+'{'           Punctuation
+'disclaimer'  Literal.String
+','           Punctuation
+' '           Text
+'collection'  Name
+'='           Operator
+'"'           Literal.String.Double
+'legals'      Literal.String.Double
+'"'           Literal.String.Double
+'}'           Punctuation
+'\n'          Other
+
+'$'           Punctuation
+'evoque'      Name.Builtin
+'{'           Punctuation
+' disclaimer' Literal.String
+' '           Text
+','           Punctuation
+' '           Text
+'collection'  Name
+'='           Operator
+'"'           Literal.String.Double
+'legals'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'abc'         Name
+'='           Operator
+'123'         Literal.Number.Integer
+'}'           Punctuation
+'\n'          Other
+
+'$'           Punctuation
+'evoque'      Name.Builtin
+'{%'          Punctuation
+' disclaimer' Literal.String
+','           Punctuation
+' '           Text
+'collection'  Name
+'='           Operator
+'"'           Literal.String.Double
+'legals'      Literal.String.Double
+'"'           Literal.String.Double
+'%}'          Punctuation
+'\n\n'        Other
+
+'$'           Punctuation
+'test'        Name.Builtin
+'{%'          Punctuation
+' '           Text
+'site_base'   Name
+'='           Operator
+'"'           Literal.String.Double
+'site.html'   Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'\n'          Text
+
+'        '    Text
+'rows'        Name
+'='           Operator
+'['           Punctuation
+'('           Punctuation
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'b'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'3.0'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'{'           Punctuation
+'"'           Literal.String.Double
+'one'         Literal.String.Double
+'"'           Literal.String.Double
+':'           Punctuation
+'1'           Literal.Number.Integer
+'}'           Punctuation
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'<escape-me/>' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'j'           Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'%}'          Punctuation
+'\n'          Other

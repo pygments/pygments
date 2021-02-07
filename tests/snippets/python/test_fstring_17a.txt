@@ -1,0 +1,14 @@
+---input---
+f'x = {x:+3}'
+
+---tokens---
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'x = '        Literal.String.Single
+'{'           Literal.String.Interpol
+'x'           Name
+':'           Literal.String.Interpol
+'+3'          Literal.String.Single
+'}'           Literal.String.Interpol
+"'"           Literal.String.Single
+'\n'          Text

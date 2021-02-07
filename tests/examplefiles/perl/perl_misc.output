@@ -1,0 +1,387 @@
+'#!/usr/bin/perl' Comment.Hashbang
+'\n\n'        Text
+
+'# from http://gist.github.com/485595' Comment.Single
+'\n'          Text
+
+'use'         Keyword
+' '           Text
+'strict'      Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'use'         Keyword
+' '           Text
+'warnings'    Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'use'         Keyword
+' '           Text
+'Time::HiRes' Name.Namespace
+' '           Text
+"'usleep'"    Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'1'           Literal.Number.Integer
+'..'          Operator
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'open'        Name.Builtin
+' '           Text
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'in'          Name.Variable
+','           Punctuation
+' '           Text
+"'<'"         Literal.String
+','           Punctuation
+' '           Text
+"'/proc/sys/kernel/random/entropy_avail'" Literal.String
+' '           Text
+'or'          Operator.Word
+' '           Text
+'die'         Name.Builtin
+';'           Punctuation
+'\n    '      Text
+'print'       Keyword
+' '           Text
+'<$in>'       Literal.String.Regex
+';'           Punctuation
+'\n    '      Text
+'close'       Name.Builtin
+' '           Text
+'$'           Name.Variable
+'in'          Name.Variable
+';'           Punctuation
+'\n    '      Text
+''            Name
+'usleep'      Name
+' '           Text
+'100_000'     Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'# other miscellaneous tests of numbers separated by _' Comment.Single
+'\n'          Text
+
+'#usleep 100_000;' Comment.Single
+'\n'          Text
+
+'100_000_000' Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'nichts'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0.005_006'   Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'"$nichts\\n"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'nichts2'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0.005_006_007' Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'900_800_700.005_006_007' Literal.Number.Float
+','           Punctuation
+' '           Text
+'$/'          Name.Variable.Global
+';'           Punctuation
+'\n\n'        Text
+
+'# numbers from `man 1 perlnumber`' Comment.Single
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'n'           Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1234'        Literal.Number.Integer
+';'           Punctuation
+'              ' Text
+'# decimal integer' Comment.Single
+'\n'          Text
+
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0b1110011'   Literal.Number.Bin
+';'           Punctuation
+'         '   Text
+'# binary integer' Comment.Single
+'\n'          Text
+
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'01234'       Literal.Number.Oct
+';'           Punctuation
+'             ' Text
+'# octal integer' Comment.Single
+'\n'          Text
+
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0x1234'      Literal.Number.Hex
+';'           Punctuation
+'            ' Text
+'# hexadecimal integer' Comment.Single
+'\n'          Text
+
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'12.34e-56'   Literal.Number.Float
+';'           Punctuation
+'         '   Text
+'# exponential notation' Comment.Single
+'\n'          Text
+
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"-12.34e56"' Literal.String
+';'           Punctuation
+'       '     Text
+'# number specified as a string' Comment.Single
+'\n'          Text
+
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"1234"'      Literal.String
+';'           Punctuation
+'            ' Text
+'# number specified as a string' Comment.Single
+'\n\n'        Text
+
+'# other numbers' Comment.Single
+'\n'          Text
+
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'\n    '      Text
+'-'           Operator
+'9876'        Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'+'           Operator
+'8765'        Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'-'           Operator
+'9876.02'     Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'-'           Operator
+'9876.02e+10' Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'+'           Operator
+'765_432e30'  Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'2002'        Literal.Number.Integer
+'.'           Operator
+','           Punctuation
+'\n    '      Text
+'.2002'       Literal.Number.Float
+','           Punctuation
+'\n'          Text
+
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'_'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'# operators on numbers' Comment.Single
+'\n'          Text
+
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'300'         Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'300'         Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'/'           Operator
+' '           Text
+'300'         Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'10'          Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'*'           Operator
+' '           Text
+'250'         Literal.Number.Integer
+' '           Text
+'/'           Operator
+' '           Text
+'2.0'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'100'         Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'!='          Operator
+' '           Text
+'100'         Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'100'         Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'>='          Operator
+' '           Text
+'100'         Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'100'         Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'<='          Operator
+' '           Text
+'100'         Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'%'           Name.Variable
+' '           Text
+'2'           Name.Variable
+','           Punctuation
+'\n    '      Text
+'abs'         Name.Builtin
+' '           Text
+'$'           Name.Variable
+'n'           Name.Variable
+','           Punctuation
+'\n'          Text
+
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'_'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

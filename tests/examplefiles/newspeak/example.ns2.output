@@ -1,0 +1,319 @@
+'Newsqueak2'  Keyword.Declaration
+'\n'          Text
+
+"'Langexplr\n'" Literal.String
+'\n\n'        Text
+
+'class'       Keyword.Declaration
+' '           Text
+'ShapesExperiment' Name.Class
+' '           Text
+'usingLib:'   Name.Function
+' '           Text
+'platform'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+'"A small experiment for using Hopscotch shape classes ."' Comment
+'\n'          Text
+
+'|'           Operator
+'\n\t'        Text
+'CanvasDependent' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'platform'    Name.Variable
+' '           Text
+'CanvasDependent' Name.Variable
+'.'           Punctuation
+'\n\t'        Text
+'Presenter'   Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'platform'    Name.Variable
+' '           Text
+'HPresenter'  Name.Variable
+'.'           Punctuation
+'\n\t'        Text
+'Subject'     Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'platform'    Name.Variable
+' '           Text
+'Subject'     Name.Variable
+'.'           Punctuation
+'\n\t'        Text
+'EllipseShape' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'platform'    Name.Variable
+' '           Text
+'EllipseShape' Name.Variable
+'.'           Punctuation
+'\n\t'        Text
+'Color'       Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'platform'    Name.Variable
+' '           Text
+'Color'       Name.Variable
+'.'           Punctuation
+'\n'          Text
+
+'|'           Operator
+'\n'          Text
+
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'\n\n'        Text
+
+'class'       Keyword.Declaration
+' '           Text
+'ShapesExperimentSubject' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'Subject'     Name.Variable
+'('           Punctuation
+'\n'          Text
+
+'"Subject for shapes experiment"' Comment
+'\n'          Text
+
+'|'           Operator
+'\n\n'        Text
+
+'|'           Operator
+'\n'          Text
+
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+"'as yet unclassified'" Literal.String
+'\n'          Text
+
+'createPresenter' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'\n\t'        Text
+'^'           Operator
+'ShapesExperimentPresenter' Name.Variable
+' '           Text
+'new'         Name.Variable
+' '           Text
+'subject:'    Name.Function
+' '           Text
+'self'        Name.Variable
+'.'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword.Declaration
+' '           Text
+'ShapesExperimentPresenter' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'Presenter'   Name.Variable
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+'"A presenter for a small experiment of using shape classes"' Comment
+'\n'          Text
+
+'|'           Operator
+'\n'          Text
+
+'|'           Operator
+'\n'          Text
+
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+"'as yet unclassified'" Literal.String
+'\n'          Text
+
+'controlPoint' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'\n\t'        Text
+'^'           Operator
+'ControlPoint' Name.Variable
+' '           Text
+'new'         Name.Variable
+'.'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'definition'  Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'\n\t'        Text
+'^'           Operator
+' '           Text
+'column:'     Name.Function
+' '           Text
+'{'           Punctuation
+'\n          ' Text
+'canvas:'     Name.Function
+' '           Text
+'{'           Punctuation
+'\n               ' Text
+'at:'         Name.Function
+' '           Text
+'10'          Literal.Number.Integer
+' '           Text
+'@'           Operator
+' '           Text
+'10'          Literal.Number.Integer
+' '           Text
+'display:'    Name.Function
+' '           Text
+'controlPoint' Name.Variable
+'.'           Punctuation
+' \n               ' Text
+'at:'         Name.Function
+' '           Text
+'15'          Literal.Number.Integer
+' '           Text
+'@'           Operator
+' '           Text
+'10'          Literal.Number.Integer
+' '           Text
+'display:'    Name.Function
+' '           Text
+'controlPoint' Name.Variable
+'.'           Punctuation
+'\n          ' Text
+'}'           Punctuation
+'\n      '    Text
+'}'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword.Declaration
+' '           Text
+'ControlPoint' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'CanvasDependent' Name.Variable
+'('           Punctuation
+'\n'          Text
+
+'"A class that represents a small point in the screen"' Comment
+'\n'          Text
+
+'|'           Operator
+'\n'          Text
+
+'|'           Operator
+'\n'          Text
+
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+"'as yet unclassified'" Literal.String
+'\n'          Text
+
+'addVisualsTo:' Name.Function
+' '           Text
+'container'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'\n\t'        Text
+'container'   Name.Variable
+' '           Text
+'add:'        Name.Function
+' '           Text
+'visual'      Name.Variable
+'.'           Punctuation
+'\n      '    Text
+'updateLayout' Name.Variable
+'.'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'createVisual' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'\n     '     Text
+'|'           Operator
+' '           Text
+'s'           Name.Variable
+' '           Text
+'|'           Operator
+'\n     '     Text
+'s'           Name.Variable
+'::'          Operator
+' '           Text
+'EllipseShape' Name.Variable
+' '           Text
+'new'         Name.Variable
+' '           Text
+'size:'       Name.Function
+' '           Text
+'5'           Literal.Number.Integer
+'@'           Operator
+'5'           Literal.Number.Integer
+' '           Text
+'.'           Punctuation
+'\n     '     Text
+'s'           Name.Variable
+' '           Text
+'color:'      Name.Function
+' '           Text
+'Color'       Name.Variable
+' '           Text
+'red'         Name.Variable
+'.'           Punctuation
+'\n     '     Text
+'^'           Operator
+' '           Text
+'s'           Name.Variable
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+')'           Punctuation
+')'           Punctuation
+'\n'          Text

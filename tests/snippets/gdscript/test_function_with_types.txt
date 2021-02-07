@@ -1,0 +1,33 @@
+---input---
+func abc(arg: String) -> void:
+	print("Hello", arg)
+
+---tokens---
+'func'        Keyword
+' '           Text
+'abc'         Name
+'('           Punctuation
+'arg'         Name
+':'           Punctuation
+' '           Text
+'String'      Name.Builtin.Type
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'void'        Name
+':'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'print'       Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'Hello'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'arg'         Name
+')'           Punctuation
+'\n'          Text

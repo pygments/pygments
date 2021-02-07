@@ -1,0 +1,279 @@
+'{{'          Comment.Preproc
+'#'           Literal.Number.Attribute
+'view'        Literal.Number.Attribute
+' '           Text
+'EmberFirebaseChat' Name.Variable
+'.ChatView'   Name.Variable
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"chat-container"' Literal.String.Double
+'}}'          Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"chat-messages-container"' Literal.String
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'ul'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"chat-messages"' Literal.String
+'>'           Punctuation
+'\n      '    Text
+'{{'          Comment.Preproc
+'#'           Literal.Number.Attribute
+'each'        Literal.Number.Attribute
+' '           Text
+'message'     Name.Variable
+' '           Text
+'in'          Name.Variable
+' '           Text
+'content'     Name.Variable
+'}}'          Comment.Preproc
+'\n      '    Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n        [' Text
+'{{'          Comment.Preproc
+'formatTimestamp' Name.Variable
+' '           Text
+'"message.timestamp"' Literal.String.Double
+' '           Text
+'fmtString'   Name.Attribute
+'='           Operator
+'"h:mm:ss A"' Literal.String.Double
+'}}'          Comment.Preproc
+'] \n        ' Text
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'{{'          Comment.Preproc
+'message'     Name.Variable
+'.sender'     Name.Variable
+'}}'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+': '          Text
+'{{'          Comment.Preproc
+'message'     Name.Variable
+'.content'    Name.Variable
+'}}'          Comment.Preproc
+'\n      '    Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'{{'          Comment.Preproc
+'/'           Literal.Number.Attribute
+'each'        Literal.Number.Attribute
+'}}'          Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n\n  '      Text
+'{{! Comment }}' Comment
+'\n  '        Text
+'{{{'         Comment.Special
+'unescaped'   Name.Variable
+' '           Text
+'value'       Name.Variable
+'}}}'         Comment.Special
+'\n\n  '      Text
+'{{'          Comment.Preproc
+'#'           Literal.Number.Attribute
+'view'        Literal.Number.Attribute
+' '           Text
+'EmberFirebaseChat' Name.Variable
+'.InputView'  Name.Variable
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"chat-input-container"' Literal.String.Double
+'}}'          Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'form'        Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"form-inline"' Literal.String
+'>'           Punctuation
+'\n      '    Text
+'{{'          Comment.Preproc
+'#'           Literal.Number.Attribute
+'if'          Literal.Number.Attribute
+' '           Text
+'"auth.authed"' Literal.String.Double
+'}}'          Comment.Preproc
+'\n        '  Text
+'{{'          Comment.Preproc
+'#'           Literal.Number.Attribute
+'if'          Literal.Number.Attribute
+' '           Text
+'"auth.hasName"' Literal.String.Double
+'}}'          Comment.Preproc
+'\n          ' Text
+'<'           Punctuation
+'input'       Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"text"'      Literal.String
+' '           Text
+'id'          Name.Attribute
+'='           Operator
+'"message"'   Literal.String
+' '           Text
+'placeholder' Name.Attribute
+'='           Operator
+'"Message"'   Literal.String
+'>'           Punctuation
+'\n          ' Text
+'<'           Punctuation
+'button'      Name.Tag
+' '           Text
+'{{'          Comment.Preproc
+'action'      Name.Variable
+' '           Text
+'"postMessage"' Literal.String.Double
+' '           Text
+'target'      Name.Attribute
+'='           Operator
+'"view"'      Literal.String.Double
+'}}'          Comment.Preproc
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"btn"'       Literal.String
+'>'           Punctuation
+'Send'        Text
+'<'           Punctuation
+'/'           Punctuation
+'button'      Name.Tag
+'>'           Punctuation
+'\n        '  Text
+'{{'          Comment.Preproc
+'else'        Name.Variable
+'}}'          Comment.Preproc
+'\n          ' Text
+'<'           Punctuation
+'input'       Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"text"'      Literal.String
+' '           Text
+'id'          Name.Attribute
+'='           Operator
+'"username"'  Literal.String
+' '           Text
+'placeholder' Name.Attribute
+'='           Operator
+'"Enter your username..."' Literal.String
+'>'           Punctuation
+'\n          ' Text
+'<'           Punctuation
+'button'      Name.Tag
+' '           Text
+'{{'          Comment.Preproc
+'action'      Name.Variable
+' '           Text
+'"pickName"'  Literal.String.Double
+' '           Text
+'target'      Name.Attribute
+'='           Operator
+'"view"'      Literal.String.Double
+'}}'          Comment.Preproc
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"btn"'       Literal.String
+'>'           Punctuation
+'Send'        Text
+'<'           Punctuation
+'/'           Punctuation
+'button'      Name.Tag
+'>'           Punctuation
+'\n        '  Text
+'{{'          Comment.Preproc
+'/'           Literal.Number.Attribute
+'if'          Literal.Number.Attribute
+'}}'          Comment.Preproc
+'\n      '    Text
+'{{'          Comment.Preproc
+'else'        Name.Variable
+'}}'          Comment.Preproc
+'\n        '  Text
+'<'           Punctuation
+'input'       Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"text"'      Literal.String
+' '           Text
+'placeholder' Name.Attribute
+'='           Operator
+'"Log in with Persona to chat!"' Literal.String
+' '           Text
+'disabled'    Name.Attribute
+'='           Operator
+'"disabled"'  Literal.String
+'>'           Punctuation
+'\n        '  Text
+'<'           Punctuation
+'button'      Name.Tag
+' '           Text
+'{{'          Comment.Preproc
+'action'      Name.Variable
+' '           Text
+'"login"'     Literal.String.Double
+'}}'          Comment.Preproc
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"btn"'       Literal.String
+'>'           Punctuation
+'Login'       Text
+'<'           Punctuation
+'/'           Punctuation
+'button'      Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'{{'          Comment.Preproc
+'/'           Literal.Number.Attribute
+'if'          Literal.Number.Attribute
+'}}'          Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'form'        Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'{{'          Comment.Preproc
+'/'           Literal.Number.Attribute
+'view'        Literal.Number.Attribute
+'}}'          Comment.Preproc
+'\n'          Text
+
+'{{'          Comment.Preproc
+'/'           Literal.Number.Attribute
+'view'        Literal.Number.Attribute
+'}}'          Comment.Preproc
+'\n'          Text

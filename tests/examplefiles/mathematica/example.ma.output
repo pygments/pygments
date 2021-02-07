@@ -1,0 +1,85 @@
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'(* This is a comment *)' Comment
+'\n'          Text.Whitespace
+
+'Global`'     Name.Namespace
+'\n'          Text.Whitespace
+
+'SomeNamespace`' Name.Namespace
+'Foo'         Name
+'\n'          Text.Whitespace
+
+'f'           Name
+'['           Punctuation
+'x_'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'y__'         Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'z___'        Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'tsneirsnteintie' Name
+' '           Text.Whitespace
+'"fosrt"'     Literal.String
+' '           Text.Whitespace
+'neisnrteiasrn' Name
+'\n'          Text.Whitespace
+
+'E'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'Plus'        Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'Times'       Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'Map'         Name
+'['           Punctuation
+'#1'          Name.Variable
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'#2'          Name.Variable
+'&'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'SomePairList' Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'Plus'        Name
+'['           Punctuation
+'1.'          Literal.Number.Float
+','           Punctuation
+'-1'          Literal.Number.Integer
+','           Punctuation
+'-1.'         Literal.Number.Float
+','           Punctuation
+'-1.0'        Literal.Number.Float
+','           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace

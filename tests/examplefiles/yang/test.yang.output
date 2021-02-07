@@ -1,0 +1,264 @@
+'module'      Keyword
+' '           Text.Whitespace
+'server-system' Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'yang-version' Keyword
+' '           Text.Whitespace
+'1.1'         Literal.Number.Float
+';'           Punctuation
+'\n    '      Text.Whitespace
+'namespace'   Keyword
+' '           Text.Whitespace
+'"http://autlan.dt/gribok/yang/example"' Literal.String.Double
+';'           Punctuation
+'\n    '      Text.Whitespace
+'prefix'      Keyword
+' '           Text.Whitespace
+'ex'          Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'ietf-yang-types' Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n      '    Text.Whitespace
+'prefix'      Keyword
+' '           Text.Whitespace
+'yang'        Name.Variable
+';'           Punctuation
+'\n      '    Text.Whitespace
+'reference'   Keyword
+'\n        '  Text.Whitespace
+'"RFC 6991: Common YANG Data Types."' Literal.String.Double
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'organization' Keyword
+' '           Text.Whitespace
+'"Gribok"'    Literal.String.Double
+';'           Punctuation
+'\n    '      Text.Whitespace
+'contact'     Keyword
+' '           Text.Whitespace
+'"gribok@example.org"' Literal.String.Double
+';'           Punctuation
+'\n    '      Text.Whitespace
+'description' Keyword
+'\n        '  Text.Whitespace
+'"An example module"' Literal.String.Double
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'revision'    Keyword
+' '           Text.Whitespace
+'2020-04-03'  Name.Label
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'description' Keyword
+' '           Text.Whitespace
+'"Example yang"' Literal.String.Double
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'/*'          Comment
+'\n'          Comment
+
+' '           Comment
+' '           Comment
+' '           Comment
+' '           Comment
+' '           Comment
+'*'           Comment
+' '           Comment
+'C'           Comment
+'o'           Comment
+'m'           Comment
+'m'           Comment
+'e'           Comment
+'n'           Comment
+'t'           Comment
+' '           Comment
+'f'           Comment
+'o'           Comment
+'r'           Comment
+' '           Comment
+'c'           Comment
+'o'           Comment
+'n'           Comment
+'t'           Comment
+'a'           Comment
+'i'           Comment
+'n'           Comment
+'e'           Comment
+'r'           Comment
+' '           Comment
+'s'           Comment
+'y'           Comment
+'s'           Comment
+'t'           Comment
+'e'           Comment
+'m'           Comment
+'\n'          Comment
+
+' '           Comment
+' '           Comment
+' '           Comment
+' '           Comment
+' '           Comment
+'*/'          Comment
+'\n\n    '    Text.Whitespace
+'container'   Keyword
+' '           Text.Whitespace
+'system'      Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'leaf'        Keyword
+' '           Text.Whitespace
+'host-name'   Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'type'        Keyword
+' '           Text.Whitespace
+'string'      Name.Class
+';'           Punctuation
+'\n            ' Text.Whitespace
+'description' Keyword
+' '           Text.Whitespace
+'"Hostname for this system"' Literal.String.Double
+';'           Punctuation
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n\n        ' Text.Whitespace
+'leaf-list'   Keyword
+' '           Text.Whitespace
+'domain-search' Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'type'        Keyword
+' '           Text.Whitespace
+'string'      Name.Class
+';'           Punctuation
+'\n            ' Text.Whitespace
+'description' Keyword
+' '           Text.Whitespace
+'"List of domain names to search"' Literal.String.Double
+';'           Punctuation
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n\n        ' Text.Whitespace
+'container'   Keyword
+' '           Text.Whitespace
+'login'       Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'leaf'        Keyword
+' '           Text.Whitespace
+'message'     Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n                ' Text.Whitespace
+'type'        Keyword
+' '           Text.Whitespace
+'string'      Name.Class
+';'           Punctuation
+'\n                ' Text.Whitespace
+'description' Keyword
+'\n                    ' Text.Whitespace
+'"Message given at start of login session"' Literal.String.Double
+';'           Punctuation
+'\n            ' Text.Whitespace
+'}'           Punctuation
+'\n\n            ' Text.Whitespace
+'list'        Keyword
+' '           Text.Whitespace
+'user'        Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n                ' Text.Whitespace
+'key'         Keyword
+' '           Text.Whitespace
+'"name"'      Literal.String.Double
+';'           Punctuation
+'\n                ' Text.Whitespace
+'leaf'        Keyword
+' '           Text.Whitespace
+'name'        Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n                    ' Text.Whitespace
+'type'        Keyword
+' '           Text.Whitespace
+'string'      Name.Class
+';'           Punctuation
+'\n                ' Text.Whitespace
+'}'           Punctuation
+'\n                ' Text.Whitespace
+'leaf'        Keyword
+' '           Text.Whitespace
+'uuid'        Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n                  ' Text.Whitespace
+'type'        Keyword
+' '           Text.Whitespace
+'yang'        Name.Namespace
+':'           Punctuation
+'uuid'        Name.Variable
+';'           Punctuation
+'\n                ' Text.Whitespace
+'}'           Punctuation
+'\n                ' Text.Whitespace
+'leaf'        Keyword
+' '           Text.Whitespace
+'full-name'   Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n                    ' Text.Whitespace
+'type'        Keyword
+' '           Text.Whitespace
+'string'      Name.Class
+';'           Punctuation
+'\n                    ' Text.Whitespace
+'mandatory'   Keyword
+' '           Text.Whitespace
+'true'        Name.Class
+';'           Punctuation
+'\n                    ' Text.Whitespace
+'description' Keyword
+'\n                      ' Text.Whitespace
+'"The full name of user  See also \'name\'.  This could\n                       be, for example, a reference to the user name"' Literal.String.Double
+';'           Punctuation
+'\n                ' Text.Whitespace
+'}'           Punctuation
+'\n                ' Text.Whitespace
+'leaf'        Keyword
+' '           Text.Whitespace
+'class'       Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n                    ' Text.Whitespace
+'type'        Keyword
+' '           Text.Whitespace
+'string'      Name.Class
+';'           Punctuation
+'\n                ' Text.Whitespace
+'}'           Punctuation
+'\n            ' Text.Whitespace
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

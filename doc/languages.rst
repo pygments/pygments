@@ -51,6 +51,7 @@ Programming languages
 * `Dart <https://dart.dev/>`_
 * DCPU-16
 * `Delphi <https://www.embarcadero.com/products/delphi>`_
+* `DOT / Graphviz <https://graphviz.org>` _
 * `Devicetree <https://www.devicetree.org/>`_
 * `Dylan <https://opendylan.org/>`_ (incl. console)
 * `Eiffel <https://www.eiffel.org/>`_

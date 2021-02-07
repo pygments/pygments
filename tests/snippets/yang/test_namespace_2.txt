@@ -1,0 +1,13 @@
+# namespace-prefix `yang` should be explicitly highlighted
+
+---input---
+type yang:counter64;
+
+---tokens---
+'type'        Keyword
+' '           Text.Whitespace
+'yang'        Name.Namespace
+':'           Punctuation
+'counter64'   Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace

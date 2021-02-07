@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     Javascript tests
     ~~~~~~~~~~~~~~~~
@@ -9,8 +8,8 @@
 
 import pytest
 
-from pygments.lexers.javascript import JavascriptLexer, TypeScriptLexer
-from pygments.token import Number, Token
+from pygments.lexers.javascript import JavascriptLexer
+from pygments.token import Number
 
 
 @pytest.fixture(scope='module')
@@ -30,7 +29,8 @@ def test_float_literal_positive_matches(lexer, text):
     assert list(lexer.get_tokens(text))[0] == (Number.Float, text)
 
 
-@pytest.mark.parametrize('text', ('.\u0b6a', '.', '1..', '1n', '1ee', '1e', '1e-', '1e--1', '1e++1', '1e1.0'))
+@pytest.mark.parametrize('text', ('.\u0b6a', '.', '1..', '1n', '1ee', '1e',
+                                  '1e-', '1e--1', '1e++1', '1e1.0'))
 def test_float_literals_negative_matches(lexer, text):
     """Test text that should **not** be tokenized as float literals."""
     assert list(lexer.get_tokens(text))[0] != (Number.Float, text)
@@ -82,25 +82,3 @@ def test_hexadecimal_literal_positive_matches(lexer, text):
 def test_hexadecimal_literals_negative_matches(lexer, text):
     """Test text that should **not** be tokenized as hexadecimal literals."""
     assert list(lexer.get_tokens(text))[0] != (Number.Hex, text)
-
-@pytest.fixture(scope='module')
-def ts_lexer():
-    yield TypeScriptLexer()
-
-def test_function_definition(ts_lexer):
-    fragment = u'async function main() {\n}'
-    tokens = [
-        (Token.Keyword, u'async'),
-        (Token.Text, u' '),
-        (Token.Keyword.Declaration, u'function'),
-        (Token.Text, u' '),
-        (Token.Name.Other, u'main'),
-        (Token.Punctuation, u'('),
-        (Token.Punctuation, u')'),
-        (Token.Text, u' '),
-        (Token.Punctuation, u'{'),
-        (Token.Text, u'\n'),
-        (Token.Punctuation, u'}'),
-        (Token.Text, u'\n'),
-    ]
-    assert list(ts_lexer.get_tokens(fragment)) == tokens

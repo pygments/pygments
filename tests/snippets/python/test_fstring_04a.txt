@@ -1,0 +1,13 @@
+---input---
+f'{"quoted string"}'
+
+---tokens---
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'{'           Literal.String.Interpol
+'"'           Literal.String.Double
+'quoted string' Literal.String.Double
+'"'           Literal.String.Double
+'}'           Literal.String.Interpol
+"'"           Literal.String.Single
+'\n'          Text

@@ -1,0 +1,99 @@
+---input---
+# (C) முத்தையா அண்ணாமலை 2013, 2015
+நிரல்பாகம்  gcd ( x, y )
+மு = max(x,y)
+ q = min(x,y)
+
+@( q == 0 ) ஆனால்
+       பின்கொடு  மு
+முடி
+பின்கொடு  gcd( மு - q , q )
+முடி
+
+---tokens---
+'# (C) முத்தையா அண்ணாமலை 2013, 2015\n' Comment.Single
+
+'நிரல்பாகம்'  Keyword
+'  '          Text
+'gcd'         Name
+' '           Text
+'('           Punctuation
+' '           Text
+'x'           Name
+','           Operator
+' '           Text
+'y'           Name
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'மு'          Name
+' '           Text
+'='           Operator
+' '           Text
+'max'         Name.Builtin
+'('           Punctuation
+'x'           Name
+','           Operator
+'y'           Name
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+'q'           Name
+' '           Text
+'='           Operator
+' '           Text
+'min'         Name.Builtin
+'('           Punctuation
+'x'           Name
+','           Operator
+'y'           Name
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'@'           Operator
+'('           Punctuation
+' '           Text
+'q'           Name
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+')'           Punctuation
+' '           Text
+'ஆனால்'       Keyword
+'\n'          Text
+
+'       '     Text
+'பின்கொடு'    Keyword
+'  '          Text
+'மு'          Name
+'\n'          Text
+
+'முடி'        Keyword
+'\n'          Text
+
+'பின்கொடு'    Keyword
+'  '          Text
+'gcd'         Name
+'('           Punctuation
+' '           Text
+'மு'          Name
+' '           Text
+'-'           Operator
+' '           Text
+'q'           Name
+' '           Text
+','           Operator
+' '           Text
+'q'           Name
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'முடி'        Keyword
+'\n'          Text
