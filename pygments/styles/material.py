@@ -42,6 +42,7 @@ class MaterialStyle(Style):
     line_number_color = '#37474F'
     line_number_background_color = dark_teal
     line_number_special_color = '#607A86'
+    line_number_special_background_color = dark_teal
 
     styles = {
         Text:                          foreground,
