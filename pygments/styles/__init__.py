@@ -21,6 +21,7 @@ STYLE_MAP = {
     'autumn':   'autumn::AutumnStyle',
     'murphy':   'murphy::MurphyStyle',
     'manni':    'manni::ManniStyle',
+    'material': 'material::MaterialStyle',
     'monokai':  'monokai::MonokaiStyle',
     'perldoc':  'perldoc::PerldocStyle',
     'pastie':   'pastie::PastieStyle',
