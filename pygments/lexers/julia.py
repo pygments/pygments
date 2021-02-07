@@ -15,6 +15,8 @@ from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic
 from pygments.util import shebang_matches
+from pygments.lexers._julia_builtins import OPERATORS_LIST, DOTTED_OPERATORS_LIST, \
+    KEYWORD_LIST, BUILTIN_LIST, LITERAL_LIST
 
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer']
 
@@ -45,18 +47,17 @@ class JuliaLexer(RegexLexer):
             (r'[\[\]{}(),;]', Punctuation),
 
             # keywords
-            (r'in\b', Keyword.Pseudo),
-            (r'isa\b', Keyword.Pseudo),
-            (r'(true|false)\b', Keyword.Constant),
-            (r'(local|global|const)\b', Keyword.Declaration),
-            (words([
-                'function', 'type', 'typealias', 'abstract', 'immutable',
-                'baremodule', 'begin', 'bitstype', 'break', 'catch', 'ccall',
-                'continue', 'do', 'else', 'elseif', 'end', 'export', 'finally',
-                'for', 'if', 'import', 'importall', 'let', 'macro', 'module',
-                'mutable', 'primitive', 'quote', 'return', 'struct', 'try',
-                'using', 'while'],
-                suffix=r'\b'), Keyword),
+            (words(KEYWORD_LIST, suffix=r'\b'), Keyword),
+            (r'\b(((abstract|primitive)[ \t]+type|(mutable[ \t]+)?struct))\b', Keyword),
+            # builtin types
+            (words(BUILTIN_LIST, suffix=r'\b'), Keyword.Type),
+            # builtin literals
+            (words(LITERAL_LIST, suffix=r'\b'), Name.Builtin),
+
+            # operators
+            (words([*OPERATORS_LIST, *DOTTED_OPERATORS_LIST]), Operator),
+            (words(['.' + o for o in DOTTED_OPERATORS_LIST]), Operator),
+            (words(['...', '..', '.']), Operator),
 
             # NOTE
             # Patterns below work only for definition sites and thus hardly reliable.
@@ -68,120 +69,6 @@ class JuliaLexer(RegexLexer):
             # types
             # (r'(type|typealias|abstract|immutable)(\s+)(' + allowed_variable + ')',
             #  bygroups(Keyword, Text, Name.Class)),
-
-            # type names
-            (words([
-                'ANY', 'ASCIIString', 'AbstractArray', 'AbstractChannel',
-                'AbstractFloat', 'AbstractMatrix', 'AbstractRNG',
-                'AbstractSparseArray', 'AbstractSparseMatrix',
-                'AbstractSparseVector', 'AbstractString', 'AbstractVecOrMat',
-                'AbstractVector', 'Any', 'ArgumentError', 'Array',
-                'AssertionError', 'Associative', 'Base64DecodePipe',
-                'Base64EncodePipe', 'Bidiagonal', 'BigFloat', 'BigInt',
-                'BitArray', 'BitMatrix', 'BitVector', 'Bool', 'BoundsError',
-                'Box', 'BufferStream', 'CapturedException', 'CartesianIndex',
-                'CartesianRange', 'Cchar', 'Cdouble', 'Cfloat', 'Channel',
-                'Char', 'Cint', 'Cintmax_t', 'Clong', 'Clonglong',
-                'ClusterManager', 'Cmd', 'Coff_t', 'Colon', 'Complex',
-                'Complex128', 'Complex32', 'Complex64', 'CompositeException',
-                'Condition', 'Cptrdiff_t', 'Cshort', 'Csize_t', 'Cssize_t',
-                'Cstring', 'Cuchar', 'Cuint', 'Cuintmax_t', 'Culong',
-                'Culonglong', 'Cushort', 'Cwchar_t', 'Cwstring', 'DataType',
-                'Date', 'DateTime', 'DenseArray', 'DenseMatrix',
-                'DenseVecOrMat', 'DenseVector', 'Diagonal', 'Dict',
-                'DimensionMismatch', 'Dims', 'DirectIndexString', 'Display',
-                'DivideError', 'DomainError', 'EOFError', 'EachLine', 'Enum',
-                'Enumerate', 'ErrorException', 'Exception', 'Expr',
-                'Factorization', 'FileMonitor', 'FileOffset', 'Filter',
-                'Float16', 'Float32', 'Float64', 'FloatRange', 'Function',
-                'GenSym', 'GlobalRef', 'GotoNode', 'HTML', 'Hermitian', 'IO',
-                'IOBuffer', 'IOStream', 'IPv4', 'IPv6', 'InexactError',
-                'InitError', 'Int', 'Int128', 'Int16', 'Int32', 'Int64', 'Int8',
-                'IntSet', 'Integer', 'InterruptException', 'IntrinsicFunction',
-                'InvalidStateException', 'Irrational', 'KeyError', 'LabelNode',
-                'LambdaStaticData', 'LinSpace', 'LineNumberNode', 'LoadError',
-                'LocalProcess', 'LowerTriangular', 'MIME', 'Matrix',
-                'MersenneTwister', 'Method', 'MethodError', 'MethodTable',
-                'Module', 'NTuple', 'NewvarNode', 'NullException', 'Nullable',
-                'Number', 'ObjectIdDict', 'OrdinalRange', 'OutOfMemoryError',
-                'OverflowError', 'Pair', 'ParseError', 'PartialQuickSort',
-                'Pipe', 'PollingFileWatcher', 'ProcessExitedException',
-                'ProcessGroup', 'Ptr', 'QuoteNode', 'RandomDevice', 'Range',
-                'Rational', 'RawFD', 'ReadOnlyMemoryError', 'Real',
-                'ReentrantLock', 'Ref', 'Regex', 'RegexMatch',
-                'RemoteException', 'RemoteRef', 'RepString', 'RevString',
-                'RopeString', 'RoundingMode', 'SegmentationFault',
-                'SerializationState', 'Set', 'SharedArray', 'SharedMatrix',
-                'SharedVector', 'Signed', 'SimpleVector', 'SparseMatrixCSC',
-                'StackOverflowError', 'StatStruct', 'StepRange', 'StridedArray',
-                'StridedMatrix', 'StridedVecOrMat', 'StridedVector', 'SubArray',
-                'SubString', 'SymTridiagonal', 'Symbol', 'SymbolNode',
-                'Symmetric', 'SystemError', 'TCPSocket', 'Task', 'Text',
-                'TextDisplay', 'Timer', 'TopNode', 'Tridiagonal', 'Tuple',
-                'Type', 'TypeConstructor', 'TypeError', 'TypeName', 'TypeVar',
-                'UDPSocket', 'UInt', 'UInt128', 'UInt16', 'UInt32', 'UInt64',
-                'UInt8', 'UTF16String', 'UTF32String', 'UTF8String',
-                'UndefRefError', 'UndefVarError', 'UnicodeError', 'UniformScaling',
-                'Union', 'UnitRange', 'Unsigned', 'UpperTriangular', 'Val',
-                'Vararg', 'VecOrMat', 'Vector', 'VersionNumber', 'Void', 'WString',
-                'WeakKeyDict', 'WeakRef', 'WorkerConfig', 'Zip'], suffix=r'\b'),
-                Keyword.Type),
-
-            # builtins
-            (words([
-                'ARGS', 'CPU_CORES', 'C_NULL', 'DevNull', 'ENDIAN_BOM',
-                'ENV', 'I', 'Inf', 'Inf16', 'Inf32', 'Inf64',
-                'InsertionSort', 'JULIA_HOME', 'LOAD_PATH', 'MergeSort',
-                'NaN', 'NaN16', 'NaN32', 'NaN64', 'OS_NAME',
-                'QuickSort', 'RoundDown', 'RoundFromZero', 'RoundNearest',
-                'RoundNearestTiesAway', 'RoundNearestTiesUp',
-                'RoundToZero', 'RoundUp', 'STDERR', 'STDIN', 'STDOUT',
-                'VERSION', 'WORD_SIZE', 'catalan', 'e', 'eu',
-                'eulergamma', 'golden', 'im', 'nothing', 'pi', 'γ', 'π', 'φ'],
-                suffix=r'\b'), Name.Builtin),
-
-            # operators
-            # see: https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm
-            (words((
-                # prec-assignment
-                '=', ':=', '+=', '-=', '*=', '/=', '//=', './/=', '.*=', './=',
-                '\\=', '.\\=', '^=', '.^=', '÷=', '.÷=', '%=', '.%=', '|=', '&=',
-                '$=', '=>', '<<=', '>>=', '>>>=', '~', '.+=', '.-=',
-                # prec-conditional
-                '?',
-                # prec-arrow
-                '--', '-->',
-                # prec-lazy-or
-                '||',
-                # prec-lazy-and
-                '&&',
-                # prec-comparison
-                '>', '<', '>=', '≥', '<=', '≤', '==', '===', '≡', '!=', '≠',
-                '!==', '≢', '.>', '.<', '.>=', '.≥', '.<=', '.≤', '.==', '.!=',
-                '.≠', '.=', '.!', '<:', '>:', '∈', '∉', '∋', '∌', '⊆',
-                '⊈', '⊂',
-                '⊄', '⊊',
-                # prec-pipe
-                '|>', '<|',
-                # prec-colon
-                ':',
-                # prec-plus
-                '.+', '.-', '|', '∪', '$',
-                # prec-bitshift
-                '<<', '>>', '>>>', '.<<', '.>>', '.>>>',
-                # prec-times
-                '*', '/', './', '÷', '.÷', '%', '⋅', '.%', '.*', '\\', '.\\', '&', '∩',
-                # prec-rational
-                '//', './/',
-                # prec-power
-                '^', '.^',
-                # prec-decl
-                '::',
-                # prec-dot
-                '.',
-                # unary op
-                '+', '-', '!', '√', '∛', '∜',
-            )), Operator),
 
             # chars
             (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|"

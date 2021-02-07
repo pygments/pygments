@@ -1,0 +1,118 @@
+# Test that operators --- dotted and unicode --- are identified correctly.
+
+---input---
+a += b.c
+a .÷= .~b.c
+a = !b ⋆ c!
+a = b ? c : d ⊕ e
+a = √(5)
+a -> (a...) .+ 1
+a = a === b
+a <: T
+a >: T
+a::T
+
+---tokens---
+'a'           Name
+' '           Text
+'+='          Operator
+' '           Text
+'b'           Name
+'.'           Operator
+'c'           Name
+'\n'          Text
+
+'a'           Name
+' '           Text
+'.÷='         Operator
+' '           Text
+'.~'          Operator
+'b'           Name
+'.'           Operator
+'c'           Name
+'\n'          Text
+
+'a'           Name
+' '           Text
+'='           Operator
+' '           Text
+'!'           Operator
+'b'           Name
+' '           Text
+'⋆'           Operator
+' '           Text
+'c!'          Name
+'\n'          Text
+
+'a'           Name
+' '           Text
+'='           Operator
+' '           Text
+'b'           Name
+' '           Text
+'?'           Operator
+' '           Text
+'c'           Name
+' '           Text
+':'           Operator
+' '           Text
+'d'           Name
+' '           Text
+'⊕'           Operator
+' '           Text
+'e'           Name
+'\n'          Text
+
+'a'           Name
+' '           Text
+'='           Operator
+' '           Text
+'√'           Operator
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'a'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'('           Punctuation
+'a'           Name
+'...'         Operator
+')'           Punctuation
+' '           Text
+'.+'          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'a'           Name
+' '           Text
+'='           Operator
+' '           Text
+'a'           Name
+' '           Text
+'==='         Operator
+' '           Text
+'b'           Name
+'\n'          Text
+
+'a'           Name
+' '           Text
+'<:'          Operator
+' '           Text
+'T'           Name
+'\n'          Text
+
+'a'           Name
+' '           Text
+'>:'          Operator
+' '           Text
+'T'           Name
+'\n'          Text
+
+'a'           Name
+'::'          Operator
+'T'           Name
+'\n'          Text
