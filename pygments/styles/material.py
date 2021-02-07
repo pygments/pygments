@@ -41,7 +41,7 @@ class MaterialStyle(Style):
     highlight_color = '#2C3B41'
     line_number_color = '#37474F'
     line_number_background_color = dark_teal
-    line_number_special_color = faded
+    line_number_special_color = '#607A86'
 
     styles = {
         Text:                          foreground,
