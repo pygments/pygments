@@ -38,7 +38,7 @@ class MaterialStyle(Style):
 
     default_style = ""
     background_color = dark_teal
-    highlight_color = '#507174'
+    highlight_color = '#2C3B41'
     line_number_color = '#37474F'
     line_number_background_color = dark_teal
     line_number_special_color = faded
