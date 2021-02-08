@@ -88,6 +88,8 @@ class JuliaLexer(RegexLexer):
             (r'(?<=[.\w)\]])(\'' + operator_suffixes + ')+', Operator),
 
             # strings
+            (r'raw"""', String, 'tqrawstring'),
+            (r'raw"', String, 'rawstring'),
             (r'"""', String, 'tqstring'),
             (r'"', String, 'string'),
 
@@ -128,6 +130,16 @@ class JuliaLexer(RegexLexer):
             (r'[=#]', Comment.Multiline),
         ],
 
+        'tqrawstring': [
+            (r'"""', String, '#pop'),
+            (r'([^"]|"[^"][^"])+', String),
+        ],
+        'rawstring': [
+            (r'"', String, '#pop'),
+            (r'\\"', String.Escape),
+            (r'([^"\\]|\\[^"])+', String),
+        ],
+
         'string': [
             (r'"', String, '#pop'),
             # FIXME: This escape pattern is not perfect.
@@ -141,16 +153,15 @@ class JuliaLexer(RegexLexer):
             # @printf and @sprintf formats
             (r'%[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?[hlL]?[E-GXc-giorsux%]',
              String.Interpol),
-            (r'[^"$%\\]+|\s+', String),
+            (r'[^"$%\\]+', String),
             (r'.', String),
         ],
-
         'tqstring': [
             (r'"""', String, '#pop'),
             (r'\\([\\"\'$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
             (r'\$' + allowed_variable, String.Interpol),
             (r'(\$)(\()', bygroups(String.Interpol, Punctuation), 'in-intp'),
-            (r'[^"$%\\]+|\s+', String),
+            (r'[^"$%\\]+', String),
             (r'.', String),
         ],
 

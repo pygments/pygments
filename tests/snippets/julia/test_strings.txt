@@ -10,6 +10,12 @@ global function
 de e f
 "inner string"
 """
+raw"\\ a \" $interp $(1 + 1) \""
+raw"""
+"inner string"
+$interp
+$(1 + 1)
+"""
 # commented "string"
 
 @sprintf "%0.2f" var
@@ -64,6 +70,20 @@ global function
 'inner string' Literal.String
 '"'           Literal.String
 '\n'          Literal.String
+
+'"""'         Literal.String
+'\n'          Text
+
+'raw"'        Literal.String
+'\\\\ a '     Literal.String
+'\\"'         Literal.String.Escape
+' $interp $(1 + 1) ' Literal.String
+'\\"'         Literal.String.Escape
+'"'           Literal.String
+'\n'          Text
+
+'raw"""'      Literal.String
+'\n"inner string"\n$interp\n$(1 + 1)\n' Literal.String
 
 '"""'         Literal.String
 '\n'          Text
