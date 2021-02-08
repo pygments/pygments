@@ -27,7 +27,7 @@ $(1 + 1)
 ```
 global function
 "thing"
-`now`
+`now` $(now())
 ```
 # commented `command`
 
@@ -139,6 +139,13 @@ global function
 '`'           Literal.String.Backtick
 'now'         Literal.String.Backtick
 '`'           Literal.String.Backtick
+' '           Literal.String.Backtick
+'$'           Literal.String.Interpol
+'('           Punctuation
+'now'         Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
 '\n'          Literal.String.Backtick
 
 '```'         Literal.String.Backtick
