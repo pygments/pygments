@@ -46,15 +46,7 @@ class JuliaLexer(RegexLexer):
             (r'[^\S\n]+', Text),
             (r'#=', Comment.Multiline, "blockcomment"),
             (r'#.*$', Comment),
-            (r'[\[\]{}(),;]', Punctuation),
-
-            # keywords
-            (words(KEYWORD_LIST, suffix=r'\b'), Keyword),
-            (r'\b(((abstract|primitive)[ \t]+type|(mutable[ \t]+)?struct))\b', Keyword),
-            # builtin types
-            (words(BUILTIN_LIST, suffix=r'\b'), Keyword.Type),
-            # builtin literals
-            (words(LITERAL_LIST, suffix=r'\b'), Name.Builtin),
+            (r'[\[\](),;]', Punctuation),
 
             # symbols --- exclude i.e. a:b, 1:b, <:T, >:T, ::T
             ('(' + allowed_variable + r')(\s*)(:)(' + allowed_variable + ')',
@@ -62,6 +54,19 @@ class JuliaLexer(RegexLexer):
             (r'([\d.]+)(\s*)(:)(' + allowed_variable + ')',
                 bygroups(Number, Text, Operator, Name)),
             (r'(?<![<>:]):' + allowed_variable, String.Symbol),
+
+            # type assertions - excludes expressions like ::typeof(sin) and ::avec[1]
+            (r'(?<=::)(\s*)(' + allowed_variable + r')\b(?![(\[])', bygroups(Text, Keyword.Type)),
+            # type comparisons
+            # - MyType <: A or MyType >: A
+            ('(' + allowed_variable + r')(\s*)([<>]:)(\s*)(' + allowed_variable + r')\b(?![(\[])',
+                bygroups(Keyword.Type, Text, Operator, Text, Keyword.Type)),
+            # - <: B or >: B
+            (r'([<>]:)(\s*)(' + allowed_variable + r')\b(?![(\[])',
+                bygroups(Operator, Text, Keyword.Type)),
+            # - A <: or A >:
+            (r'\b(' + allowed_variable + r')(\s*)([<>]:)',
+                bygroups(Keyword.Type, Text, Operator)),
 
             # operators
             # Suffixes aren't actually allowed on all operators, but we'll ignore that
@@ -76,10 +81,6 @@ class JuliaLexer(RegexLexer):
             # functions
             # (r'(function)(\s+)(' + allowed_variable + ')',
             #  bygroups(Keyword, Text, Name.Function)),
-            #
-            # types
-            # (r'(type|typealias|abstract|immutable)(\s+)(' + allowed_variable + ')',
-            #  bygroups(Keyword, Text, Name.Class)),
 
             # chars
             (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|"
@@ -98,17 +99,37 @@ class JuliaLexer(RegexLexer):
             (r'(' + allowed_variable + ')?(""")', bygroups(String.Affix, String), 'tqstring'),
             (r'(' + allowed_variable + ')?(")', bygroups(String.Affix, String), 'string'),
 
-
             # backticks
             (r'(' + allowed_variable + ')?(```)', bygroups(String.Affix, String.Backtick), 'tqcommand'),
             (r'(' + allowed_variable + ')?(`)', bygroups(String.Affix, String.Backtick), 'command'),
 
-            # names
-            (allowed_variable, Name),
+            # type names
+            # - names that begin a curly expression
+            ('(' + allowed_variable + r')(\{)',
+                bygroups(Keyword.Type, Punctuation), 'curly'),
+            # - names as part of bare 'where'
+            (r'(where)(\s+)(' + allowed_variable + ')',
+                bygroups(Keyword, Text, Keyword.Type)),
+            # - curly expressions in general
+            (r'(\{)', Punctuation, 'curly'),
+            # - names as part of type declaration
+            (r'(abstract[ \t]+type|primitive[ \t]+type|mutable[ \t]+struct|struct)([\s()]+)(' +
+                allowed_variable + r')', bygroups(Keyword, Text, Keyword.Type)),
+
             # macros
             (r'@' + allowed_variable, Name.Decorator),
             (words([*OPERATORS_LIST, '..', '.', *DOTTED_OPERATORS_LIST],
                 prefix='@', suffix=operator_suffixes), Name.Decorator),
+
+            # keywords
+            (words(KEYWORD_LIST, suffix=r'\b'), Keyword),
+            # builtin types
+            (words(BUILTIN_LIST, suffix=r'\b'), Keyword.Type),
+            # builtin literals
+            (words(LITERAL_LIST, suffix=r'\b'), Name.Builtin),
+
+            # names
+            (allowed_variable, Name),
 
             # numbers
             (r'(\d+((_\d+)+)?\.(?!\.)(\d+((_\d+)+)?)?|\.\d+((_\d+)+)?)([eEf][+-]?[0-9]+)?', Number.Float),
@@ -128,6 +149,13 @@ class JuliaLexer(RegexLexer):
             (r'#=', Comment.Multiline, '#push'),
             (r'=#', Comment.Multiline, '#pop'),
             (r'[=#]', Comment.Multiline),
+        ],
+
+        'curly': [
+            (r'\{', Punctuation, '#push'),
+            (r'\}', Punctuation, '#pop'),
+            (allowed_variable, Keyword.Type),
+            include('root'),
         ],
 
         'tqrawstring': [

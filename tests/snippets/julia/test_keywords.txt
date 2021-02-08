@@ -14,28 +14,28 @@ mutable     struct MutableType end
 ---tokens---
 'mutable struct' Keyword
 ' '           Text
-'MutableType' Name
+'MutableType' Keyword.Type
 ' '           Text
 'end'         Keyword
 '\n'          Text
 
 'struct'      Keyword
 ' '           Text
-'ImmutableType' Name
+'ImmutableType' Keyword.Type
 ' '           Text
 'end'         Keyword
 '\n'          Text
 
 'abstract type' Keyword
 ' '           Text
-'AbstractMyType' Name
+'AbstractMyType' Keyword.Type
 ' '           Text
 'end'         Keyword
 '\n'          Text
 
 'primitive type' Keyword
 ' '           Text
-'MyPrimitive' Name
+'MyPrimitive' Keyword.Type
 ' '           Text
 '32'          Literal.Number.Integer
 ' '           Text
@@ -67,14 +67,14 @@ mutable     struct MutableType end
 
 'abstract    type' Keyword
 ' '           Text
-'AbstractMyType' Name
+'AbstractMyType' Keyword.Type
 ' '           Text
 'end'         Keyword
 '\n'          Text
 
 'primitive \ttype' Keyword
 ' '           Text
-'MyPrimitive' Name
+'MyPrimitive' Keyword.Type
 ' '           Text
 '32'          Literal.Number.Integer
 ' '           Text
@@ -83,7 +83,7 @@ mutable     struct MutableType end
 
 'mutable     struct' Keyword
 ' '           Text
-'MutableType' Name
+'MutableType' Keyword.Type
 ' '           Text
 'end'         Keyword
 '\n'          Text
