@@ -21,12 +21,12 @@ $(1 + 1)
 @sprintf "%0.2f" var
 
 `global function`
-`abc $interpolated`
+`abc \` \$ $interpolated`
 `abc $(a + 1)`
 ```a```
 ```
 global function
-"thing"
+"thing" ` \$
 `now` $(now())
 ```
 # commented `command`
@@ -111,6 +111,10 @@ global function
 
 '`'           Literal.String.Backtick
 'abc '        Literal.String.Backtick
+'\\`'         Literal.String.Escape
+' '           Literal.String.Backtick
+'\\$'         Literal.String.Escape
+' '           Literal.String.Backtick
 '$interpolated' Literal.String.Interpol
 '`'           Literal.String.Backtick
 '\n'          Text
@@ -134,7 +138,11 @@ global function
 '\n'          Text
 
 '```'         Literal.String.Backtick
-'\nglobal function\n"thing"\n' Literal.String.Backtick
+'\nglobal function\n"thing" ' Literal.String.Backtick
+'`'           Literal.String.Backtick
+' '           Literal.String.Backtick
+'\\$'         Literal.String.Escape
+'\n'          Literal.String.Backtick
 
 '`'           Literal.String.Backtick
 'now'         Literal.String.Backtick

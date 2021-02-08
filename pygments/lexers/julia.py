@@ -185,14 +185,16 @@ class JuliaLexer(RegexLexer):
 
         'command': [
             (r'`', String.Backtick, '#pop'),
+            (r'\\[`$]', String.Escape),
             include('interp'),
-            (r'[^`$]+', String.Backtick),
+            (r'[^\\`$]+', String.Backtick),
             (r'.', String.Backtick),
         ],
         'tqcommand': [
             (r'```', String.Backtick, '#pop'),
+            (r'\\[$]', String.Escape),
             include('interp'),
-            (r'[^`$]+', String.Backtick),
+            (r'[^\\`$]+', String.Backtick),
             (r'.', String.Backtick),
         ],
     }
