@@ -87,19 +87,20 @@ class JuliaLexer(RegexLexer):
             # try to match trailing transpose
             (r'(?<=[.\w)\]])(\'' + operator_suffixes + ')+', Operator),
 
-            # strings
-            (r'raw"""', String, 'tqrawstring'),
-            (r'raw"', String, 'rawstring'),
-            (r'"""', String, 'tqstring'),
-            (r'"', String, 'string'),
-
+            # raw strings
+            (r'(raw)(""")', bygroups(String.Affix, String), 'tqrawstring'),
+            (r'(raw)(")', bygroups(String.Affix, String), 'rawstring'),
             # regular expressions
-            (r'r"""', String.Regex, 'tqregex'),
-            (r'r"', String.Regex, 'regex'),
+            (r'(r)(""")', bygroups(String.Affix, String.Regex), 'tqregex'),
+            (r'(r)(")', bygroups(String.Affix, String.Regex), 'regex'),
+            # other strings
+            (r'(' + allowed_variable + ')?(""")', bygroups(String.Affix, String), 'tqstring'),
+            (r'(' + allowed_variable + ')?(")', bygroups(String.Affix, String), 'string'),
+
 
             # backticks
-            (r'```', String.Backtick, 'tqcommand'),
-            (r'`', String.Backtick, 'command'),
+            (r'(' + allowed_variable + ')?(```)', bygroups(String.Affix, String.Backtick), 'tqcommand'),
+            (r'(' + allowed_variable + ')?(`)', bygroups(String.Affix, String.Backtick), 'command'),
 
             # names
             (allowed_variable, Name),
@@ -154,7 +155,7 @@ class JuliaLexer(RegexLexer):
         ],
 
         'string': [
-            (r'"', String, '#pop'),
+            (r'(")(' + allowed_variable + r'|\d+)?', bygroups(String, String.Affix), '#pop'),
             # FIXME: This escape pattern is not perfect.
             (r'\\([\\"\'$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
             include('interp'),
@@ -165,7 +166,7 @@ class JuliaLexer(RegexLexer):
             (r'.', String),
         ],
         'tqstring': [
-            (r'"""', String, '#pop'),
+            (r'(""")(' + allowed_variable + r'|\d+)?', bygroups(String, String.Affix), '#pop'),
             (r'\\([\\"\'$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
             include('interp'),
             (r'[^"$%\\]+', String),
@@ -173,25 +174,25 @@ class JuliaLexer(RegexLexer):
         ],
 
         'regex': [
-            (r'"', String.Regex, '#pop'),
+            (r'(")([imsxa]*)?', bygroups(String.Regex, String.Affix), '#pop'),
             (r'\\"', String.Regex),
-            (r'.|\s', String.Regex),
+            (r'[^\\"]+', String.Regex),
         ],
 
         'tqregex': [
-            (r'"""', String.Regex, '#pop'),
-            (r'.|\s', String.Regex),
+            (r'(""")([imsxa]*)?', bygroups(String.Regex, String.Affix), '#pop'),
+            (r'[^"]+', String.Regex),
         ],
 
         'command': [
-            (r'`', String.Backtick, '#pop'),
+            (r'(`)(' + allowed_variable + r'|\d+)?', bygroups(String.Backtick, String.Affix), '#pop'),
             (r'\\[`$]', String.Escape),
             include('interp'),
             (r'[^\\`$]+', String.Backtick),
             (r'.', String.Backtick),
         ],
         'tqcommand': [
-            (r'```', String.Backtick, '#pop'),
+            (r'(```)(' + allowed_variable + r'|\d+)?', bygroups(String.Backtick, String.Affix), '#pop'),
             (r'\\[$]', String.Escape),
             include('interp'),
             (r'[^\\`$]+', String.Backtick),
