@@ -238,7 +238,7 @@ class JuliaConsoleLexer(Lexer):
     .. versionadded:: 1.6
     """
     name = 'Julia console'
-    aliases = ['jlcon']
+    aliases = ['jlcon', 'julia-repl']
 
     def get_tokens_unprocessed(self, text):
         jllexer = JuliaLexer(**self.options)
