@@ -1,0 +1,128 @@
+# Tests string forms
+
+---input---
+"global function"
+"An $interpolated variable"
+"An $(a + 1) expression"
+"""a"""
+"""
+global function
+de e f
+"inner string"
+"""
+# commented "string"
+
+@sprintf "%0.2f" var
+
+`global function`
+`abc $interpolated`
+`abc $(a + 1)`
+```a```
+```
+global function
+"thing"
+`now`
+```
+# commented `command`
+
+---tokens---
+'"'           Literal.String
+'global function' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'"'           Literal.String
+'An '         Literal.String
+'$interpolated' Literal.String.Interpol
+' variable'   Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'"'           Literal.String
+'An '         Literal.String
+'$'           Literal.String.Interpol
+'('           Punctuation
+'a'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' expression' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'"""'         Literal.String
+'a'           Literal.String
+'"""'         Literal.String
+'\n'          Text
+
+'"""'         Literal.String
+'\nglobal function\nde e f\n' Literal.String
+
+'"'           Literal.String
+'inner string' Literal.String
+'"'           Literal.String
+'\n'          Literal.String
+
+'"""'         Literal.String
+'\n'          Text
+
+'# commented "string"' Comment
+'\n'          Text
+
+'\n'          Text
+
+'@sprintf'    Name.Decorator
+' '           Text
+'"'           Literal.String
+'%0.2f'       Literal.String.Interpol
+'"'           Literal.String
+' '           Text
+'var'         Name
+'\n'          Text
+
+'\n'          Text
+
+'`'           Literal.String.Backtick
+'global function' Literal.String.Backtick
+'`'           Literal.String.Backtick
+'\n'          Text
+
+'`'           Literal.String.Backtick
+'abc '        Literal.String.Backtick
+'$interpolated' Literal.String.Interpol
+'`'           Literal.String.Backtick
+'\n'          Text
+
+'`'           Literal.String.Backtick
+'abc '        Literal.String.Backtick
+'$'           Literal.String.Interpol
+'('           Punctuation
+'a'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'`'           Literal.String.Backtick
+'\n'          Text
+
+'```'         Literal.String.Backtick
+'a'           Literal.String.Backtick
+'```'         Literal.String.Backtick
+'\n'          Text
+
+'```'         Literal.String.Backtick
+'\nglobal function\n"thing"\n' Literal.String.Backtick
+
+'`'           Literal.String.Backtick
+'now'         Literal.String.Backtick
+'`'           Literal.String.Backtick
+'\n'          Literal.String.Backtick
+
+'```'         Literal.String.Backtick
+'\n'          Text
+
+'# commented `command`' Comment
+'\n'          Text

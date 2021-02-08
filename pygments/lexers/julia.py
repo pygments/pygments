@@ -93,6 +93,7 @@ class JuliaLexer(RegexLexer):
             (r'r"', String.Regex, 'regex'),
 
             # backticks
+            (r'```', String.Backtick, 'tqcommand'),
             (r'`', String.Backtick, 'command'),
 
             # names
@@ -136,7 +137,8 @@ class JuliaLexer(RegexLexer):
             # @printf and @sprintf formats
             (r'%[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?[hlL]?[E-GXc-giorsux%]',
              String.Interpol),
-            (r'.|\s', String),
+            (r'[^"$%\\]+|\s+', String),
+            (r'.', String),
         ],
 
         'tqstring': [
@@ -144,7 +146,8 @@ class JuliaLexer(RegexLexer):
             (r'\\([\\"\'$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
             (r'\$' + allowed_variable, String.Interpol),
             (r'(\$)(\()', bygroups(String.Interpol, Punctuation), 'in-intp'),
-            (r'.|\s', String),
+            (r'[^"$%\\]+|\s+', String),
+            (r'.', String),
         ],
 
         'regex': [
@@ -162,7 +165,15 @@ class JuliaLexer(RegexLexer):
             (r'`', String.Backtick, '#pop'),
             (r'\$' + allowed_variable, String.Interpol),
             (r'(\$)(\()', bygroups(String.Interpol, Punctuation), 'in-intp'),
-            (r'.|\s', String.Backtick)
+            (r'[^`$]+|\s+', String.Backtick),
+            (r'.', String.Backtick),
+        ],
+        'tqcommand': [
+            (r'```', String.Backtick, '#pop'),
+            (r'\$' + allowed_variable, String.Interpol),
+            (r'(\$)(\()', bygroups(String.Interpol, Punctuation), 'in-intp'),
+            (r'[^`$]+|\s+', String.Backtick),
+            (r'.', String.Backtick),
         ],
 
         'in-intp': [
