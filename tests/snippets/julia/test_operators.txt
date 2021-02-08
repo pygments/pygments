@@ -12,6 +12,12 @@ a = a === b
 a <: T
 a >: T
 a::T
+[adjoint]'
+(identity)''
+adjoint'''
+transpose'ᵀ
+suffixed +¹ operator
+suffixed +¹²³ operator
 
 ---tokens---
 'a'           Name
@@ -121,4 +127,38 @@ a::T
 'a'           Name
 '::'          Operator
 'T'           Name
+'\n'          Text
+
+'['           Punctuation
+'adjoint'     Name
+']'           Punctuation
+"'"           Operator
+'\n'          Text
+
+'('           Punctuation
+'identity'    Name
+')'           Punctuation
+"''"          Operator
+'\n'          Text
+
+'adjoint'     Name
+"'''"         Operator
+'\n'          Text
+
+'transpose'   Name
+"'ᵀ"          Operator
+'\n'          Text
+
+'suffixed'    Name
+' '           Text
+'+¹'          Operator
+' '           Text
+'operator'    Name
+'\n'          Text
+
+'suffixed'    Name
+' '           Text
+'+¹²³'        Operator
+' '           Text
+'operator'    Name
 '\n'          Text

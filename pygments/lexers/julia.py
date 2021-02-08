@@ -22,7 +22,8 @@ __all__ = ['JuliaLexer', 'JuliaConsoleLexer']
 
 allowed_variable = \
     '(?:[a-zA-Z_\u00A1-\U0010ffff]|%s)(?:[a-zA-Z_0-9\u00A1-\U0010ffff])*!*'
-
+# see https://github.com/JuliaLang/julia/blob/master/src/flisp/julia_opsuffs.h
+operator_suffixes = r'[²³¹ʰʲʳʷʸˡˢˣᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿᵀᵁᵂᵃᵇᵈᵉᵍᵏᵐᵒᵖᵗᵘᵛᵝᵞᵟᵠᵡᵢᵣᵤᵥᵦᵧᵨᵩᵪᶜᶠᶥᶦᶫᶰᶸᶻᶿ′″‴‵‶‷⁗⁰ⁱ⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿ₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑₒₓₕₖₗₘₙₚₛₜⱼⱽ]*'
 
 class JuliaLexer(RegexLexer):
     """
@@ -62,8 +63,10 @@ class JuliaLexer(RegexLexer):
             (r'(?<![<>:]):' + allowed_variable, String.Symbol),
 
             # operators
-            (words([*OPERATORS_LIST, *DOTTED_OPERATORS_LIST]), Operator),
-            (words(['.' + o for o in DOTTED_OPERATORS_LIST]), Operator),
+            # Suffixes aren't actually allowed on all operators, but we'll ignore that
+            # since those cases are invalid Julia code.
+            (words([*OPERATORS_LIST, *DOTTED_OPERATORS_LIST], suffix=operator_suffixes), Operator),
+            (words(['.' + o for o in DOTTED_OPERATORS_LIST], suffix=operator_suffixes), Operator),
             (words(['...', '..', '.']), Operator),
 
             # NOTE
@@ -82,7 +85,7 @@ class JuliaLexer(RegexLexer):
              r"\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
 
             # try to match trailing transpose
-            (r'(?<=[.\w)\]])\'+', Operator),
+            (r'(?<=[.\w)\]])(\'' + operator_suffixes + ')+', Operator),
 
             # strings
             (r'"""', String, 'tqstring'),
@@ -100,7 +103,8 @@ class JuliaLexer(RegexLexer):
             (allowed_variable, Name),
             # macros
             (r'@' + allowed_variable, Name.Decorator),
-            (words([*OPERATORS_LIST, '..', '.', *DOTTED_OPERATORS_LIST], prefix='@'), Name.Decorator),
+            (words([*OPERATORS_LIST, '..', '.', *DOTTED_OPERATORS_LIST],
+                prefix='@', suffix=operator_suffixes), Name.Decorator),
 
             # numbers
             (r'(\d+(_\d+)+\.(?!\.)\d*|\d*\.\d+(_\d+)+)([eEf][+-]?[0-9]+)?', Number.Float),

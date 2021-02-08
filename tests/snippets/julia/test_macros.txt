@@ -6,6 +6,7 @@
 @~ a + b
 @± a + b
 @mymacro(a, b)
+@+¹ᵀ a
 
 ---tokens---
 '@generated'  Name.Decorator
@@ -47,4 +48,9 @@
 ' '           Text
 'b'           Name
 ')'           Punctuation
+'\n'          Text
+
+'@+¹ᵀ'        Name.Decorator
+' '           Text
+'a'           Name
 '\n'          Text
