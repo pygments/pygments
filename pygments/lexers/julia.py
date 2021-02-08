@@ -95,8 +95,8 @@ class JuliaLexer(RegexLexer):
             (words([*OPERATORS_LIST, '..', '.', *DOTTED_OPERATORS_LIST], prefix='@'), Name.Decorator),
 
             # numbers
-            (r'(\d+(_\d+)+\.\d*|\d*\.\d+(_\d+)+)([eEf][+-]?[0-9]+)?', Number.Float),
-            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'(\d+(_\d+)+\.(?!\.)\d*|\d*\.\d+(_\d+)+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'(\d+\.(?!\.)\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
             (r'\d+(_\d+)+[eEf][+-]?[0-9]+', Number.Float),
             (r'\d+[eEf][+-]?[0-9]+', Number.Float),
             (r'0b[01]+(_[01]+)+', Number.Bin),
