@@ -54,6 +54,13 @@ class JuliaLexer(RegexLexer):
             # builtin literals
             (words(LITERAL_LIST, suffix=r'\b'), Name.Builtin),
 
+            # symbols --- exclude i.e. a:b, 1:b, <:T, >:T, ::T
+            ('(' + allowed_variable + r')(\s*)(:)(' + allowed_variable + ')',
+                bygroups(Name, Text, Operator, Name)),
+            (r'([\d.]+)(\s*)(:)(' + allowed_variable + ')',
+                bygroups(Number, Text, Operator, Name)),
+            (r'(?<![<>:]):' + allowed_variable, String.Symbol),
+
             # operators
             (words([*OPERATORS_LIST, *DOTTED_OPERATORS_LIST]), Operator),
             (words(['.' + o for o in DOTTED_OPERATORS_LIST]), Operator),

@@ -1,0 +1,63 @@
+# Tests that symbols are parsed as special literals
+
+---input---
+:abc_123
+:abc_def
+:α
+Val{:mysymbol}
+1:b # not a symbol
+a:b # not a symbol
+a::T # not a symbol
+a<:T # not a symbol
+a>:T # not a symbol
+
+---tokens---
+':abc_123'    Literal.String.Symbol
+'\n'          Text
+
+':abc_def'    Literal.String.Symbol
+'\n'          Text
+
+':α'          Literal.String.Symbol
+'\n'          Text
+
+'Val'         Keyword.Type
+'{'           Punctuation
+':mysymbol'   Literal.String.Symbol
+'}'           Punctuation
+'\n'          Text
+
+'1'           Literal.Number
+':'           Operator
+'b'           Name
+' '           Text
+'# not a symbol' Comment
+'\n'          Text
+
+'a'           Name
+':'           Operator
+'b'           Name
+' '           Text
+'# not a symbol' Comment
+'\n'          Text
+
+'a'           Name
+'::'          Operator
+'T'           Name
+' '           Text
+'# not a symbol' Comment
+'\n'          Text
+
+'a'           Name
+'<:'          Operator
+'T'           Name
+' '           Text
+'# not a symbol' Comment
+'\n'          Text
+
+'a'           Name
+'>:'          Operator
+'T'           Name
+' '           Text
+'# not a symbol' Comment
+'\n'          Text
