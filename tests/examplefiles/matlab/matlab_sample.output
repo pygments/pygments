@@ -63,7 +63,7 @@
 ' '           Text.Whitespace
 '='           Punctuation
 ' '           Text.Whitespace
-'rand'        Name
+'rand'        Name.Builtin
 '('           Punctuation
 '30'          Literal.Number.Integer
 ')'           Punctuation
@@ -74,7 +74,7 @@
 ' '           Text.Whitespace
 '='           Punctuation
 ' '           Text.Whitespace
-'rand'        Name
+'rand'        Name.Builtin
 '('           Punctuation
 '30'          Literal.Number.Integer
 ')'           Punctuation
@@ -177,7 +177,7 @@
 'no_arg_func' Name.Function
 '\n'          Text.Whitespace
 
-'fprintf'     Name
+'fprintf'     Name.Builtin
 '('           Punctuation
 "'"           Literal.String
 "%s\\n'"      Literal.String
