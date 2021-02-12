@@ -1686,8 +1686,7 @@
 'coarse_mat_' Name
 ')'           Punctuation
 '\n      '    Text
-'endif'       Name
-'\n\n      '  Text
+'endif\n\n      ' Keyword
 'call '       Keyword
 'psb_baseprc_aply' Name
 '('           Punctuation
@@ -1737,8 +1736,7 @@
 'info'        Name
 ')'           Punctuation
 '\n\n    '    Text
-'enddo'       Name
-'\n\n    '    Text
+'enddo\n\n    ' Keyword
 'do '         Keyword
 'ilev'        Name
 ' '           Text
@@ -1953,8 +1951,7 @@
 ')'           Punctuation
 ')'           Punctuation
 '\n        '  Text
-'enddo'       Name
-'\n\n      '  Text
+'enddo\n\n      ' Keyword
 'end '        Keyword
 'if\n    '    Keyword
 'end '        Keyword
@@ -2785,8 +2782,7 @@
 'coarse_mat_' Name
 ')'           Punctuation
 '\n        '  Text
-'endif'       Name
-'\n        '  Text
+'endif\n        ' Keyword
 'call '       Keyword
 'psb_geaxpby' Name
 '('           Punctuation
@@ -2834,8 +2830,7 @@
 'goto '       Keyword
 '9999'        Literal.Number.Integer
 '\n\n      '  Text
-'enddo'       Name
-'\n\n\n      ' Text
+'enddo\n\n\n      ' Keyword
 'call '       Keyword
 'psb_baseprc_aply' Name
 '('           Punctuation
@@ -3125,8 +3120,7 @@
 ')'           Punctuation
 ')'           Punctuation
 '\n          ' Text
-'enddo'       Name
-'\n\n        ' Text
+'enddo\n\n        ' Keyword
 'end '        Keyword
 'if\n\n        ' Keyword
 'call '       Keyword
@@ -3246,8 +3240,7 @@
 'goto '       Keyword
 '9999'        Literal.Number.Integer
 '\n\n      '  Text
-'enddo'       Name
-'\n\n      '  Text
+'enddo\n\n      ' Keyword
 'call '       Keyword
 'psb_geaxpby' Name
 '('           Punctuation
@@ -4149,8 +4142,7 @@
 'coarse_mat_' Name
 ')'           Punctuation
 '\n        '  Text
-'endif'       Name
-'\n\n\n        ' Text
+'endif\n\n\n        ' Keyword
 'call '       Keyword
 'psb_baseprc_aply' Name
 '('           Punctuation
@@ -4293,10 +4285,8 @@
 'goto '       Keyword
 '9999'        Literal.Number.Integer
 '\n        '  Text
-'endif'       Name
-'\n\n      '  Text
-'enddo'       Name
-'\n\n      '  Text
+'endif\n\n      ' Keyword
+'enddo\n\n      ' Keyword
 'do '         Keyword
 'ilev'        Name
 ' '           Text
@@ -4516,12 +4506,10 @@
 ')'           Punctuation
 ')'           Punctuation
 '\n          ' Text
-'enddo'       Name
-'\n\n        ' Text
+'enddo\n\n        ' Keyword
 'end '        Keyword
 'if\n\n      ' Keyword
-'enddo'       Name
-'\n\n      '  Text
+'enddo\n\n      ' Keyword
 'call '       Keyword
 'psb_geaxpby' Name
 '('           Punctuation
@@ -5541,8 +5529,7 @@
 'coarse_mat_' Name
 ')'           Punctuation
 '\n        '  Text
-'endif'       Name
-'\n\n        ' Text
+'endif\n\n        ' Keyword
 'call '       Keyword
 'psb_geaxpby' Name
 '('           Punctuation
@@ -5732,10 +5719,8 @@
 'goto '       Keyword
 '9999'        Literal.Number.Integer
 '\n        '  Text
-'endif'       Name
-'\n\n      '  Text
-'enddo'       Name
-'\n\n\n      ' Text
+'endif\n\n      ' Keyword
+'enddo\n\n\n      ' Keyword
 'do '         Keyword
 'ilev'        Name
 '='           Operator
@@ -5951,8 +5936,7 @@
 ')'           Punctuation
 ')'           Punctuation
 '\n          ' Text
-'enddo'       Name
-'\n\n        ' Text
+'enddo\n\n        ' Keyword
 'end '        Keyword
 'if\n\n        ' Keyword
 'call '       Keyword
@@ -6072,8 +6056,7 @@
 'goto '       Keyword
 '9999'        Literal.Number.Integer
 '\n\n      '  Text
-'enddo'       Name
-'\n\n      '  Text
+'enddo\n\n      ' Keyword
 'call '       Keyword
 'psb_geaxpby' Name
 '('           Punctuation

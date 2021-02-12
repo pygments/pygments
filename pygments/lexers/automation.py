@@ -326,6 +326,7 @@ class AutoItLexer(RegexLexer):
             include('builtInFunctions'),
             include('builtInMarcros'),
             (r'"', String, combined('stringescape', 'dqs')),
+            (r"'", String, 'sqs'),
             include('numbers'),
             (r'[a-zA-Z_#@$][\w#@$]*', Name),
             (r'\\|\'', Text),
@@ -366,6 +367,11 @@ class AutoItLexer(RegexLexer):
         'dqs': [
             (r'"', String, '#pop'),
             include('strings')
+        ],
+        'sqs': [
+            (r'\'\'|\`([,%`abfnrtv])', String.Escape),
+            (r"'", String, '#pop'),
+            (r"[^'\n]+", String)
         ],
         'garbage': [
             (r'[^\S\n]', Text),

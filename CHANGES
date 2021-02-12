@@ -14,6 +14,7 @@ Version 2.8.0
 - Added lexers:
 
   * AMDGPU (#1626)
+  * Graphviz/DOT (#1657)
 
 - Updated lexers:
 
@@ -21,7 +22,13 @@ Version 2.8.0
   * Console (#1672)
   * JavaScript/TypeScript: Fix escapes in backtick strings (#1679, #1686)
   * LESS: Support single-line comments (#1046)
+  * Stata: Updated keywords (#1470)
+  
+- Added styles:
 
+  * Material (#1662)
+  * Zenburn (#1659)
+  
 - The `pygmentize` script now uses `argparse`, all options should work
   as before
 
@@ -49,6 +56,9 @@ Version 2.8.0
     ``color: inherit`` by default. This works much better with dark styles
     which don't have colors set for line numbers.
 
+- Removed "raw" alias from RawTokenLexer, so that it cannot be
+  selected by alias.
+- Added prompt colors to the Solarized theme (#1529)
 
 Version 2.7.4
 -------------
