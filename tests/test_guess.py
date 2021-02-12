@@ -11,6 +11,8 @@ from pathlib import Path
 import pytest
 
 from pygments.lexers import guess_lexer, get_lexer_by_name
+from pygments.lexers.basic import CbmBasicV2Lexer
+from pygments.lexers.ecl import ECLLexer
 
 TESTDIR = Path(__file__).resolve().parent
 
@@ -166,3 +168,17 @@ def test_guess_c_lexer():
     '''
     lexer = guess_lexer(code)
     assert lexer.__class__.__name__ == 'CLexer'
+
+
+def test_cbmbasicv2_analyse_text():
+    text = "10 PRINT \"PART 1\""
+    res = CbmBasicV2Lexer.analyse_text(text)
+    assert res == 0.2
+
+
+def test_ecl_analyze_text():
+    text = r"""
+            STRING  ABC -> size32_t lenAbc, const char * abc;
+            """
+    res = ECLLexer.analyse_text(text)
+    assert res == 0.01
