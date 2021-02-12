@@ -299,8 +299,8 @@ class LatexFormatter(Formatter):
                 cmndef += (r'\def\$$@tc##1{\textcolor[rgb]{%s}{##1}}' %
                            rgbcolor(ndef['color']))
             if ndef['border']:
-                cmndef += (r'\def\$$@bc##1{\setlength{\fboxsep}{0pt}'
-                           r'\fcolorbox[rgb]{%s}{%s}{\strut ##1}}' %
+                cmndef += (r'\def\$$@bc##1{{\setlength{\fboxsep}{-\fboxrule}'
+                           r'\fcolorbox[rgb]{%s}{%s}{\strut ##1}}}' %
                            (rgbcolor(ndef['border']),
                             rgbcolor(ndef['bgcolor'])))
             elif ndef['bgcolor']:
