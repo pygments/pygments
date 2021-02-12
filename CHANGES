@@ -39,6 +39,23 @@ Version 2.8.0
 - Changed setuptools to use a declarative config through ``setup.cfg``.
   Building Pygments now requires setuptools 39.2+.
 - Added markdown to MarkdownLexer aliases (#1687)
+- Changed line number handling
+
+  * In ``<table>`` based output, the ``td.linenos`` element will have either a
+    ``normal`` or ``special`` class attached. Previously, only ``special`` line
+    numbers got a class. This prevents styles from getting applied twice -
+    once via ``<pre>``, once via ``<span class="special">``. This also means
+    that ``td.linenos pre`` is no longer styled, instead, use
+    ``td.linenos .normal`` and ``td.linenos .special``.
+  * In the "inline" style, the DOM element order was changed. The line number
+    is added first, then the line is wrapped is wrapped by the highlighter.
+    This fixes lines not being fully highlighted.
+  * The visual output for inline and non-inline line numbers & highlighting,
+    as well as class-based and inline styling is now consistent.
+  * Line number styles are set to ``background-color: transparent`` and
+    ``color: inherit`` by default. This works much better with dark styles
+    which don't have colors set for line numbers.
+
 - Removed "raw" alias from RawTokenLexer, so that it cannot be
   selected by alias.
 - Added prompt colors to the Solarized theme (#1529)
