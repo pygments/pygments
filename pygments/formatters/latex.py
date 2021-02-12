@@ -321,8 +321,7 @@ class LatexFormatter(Formatter):
         cp = self.commandprefix
         styles = []
         for name, definition in self.cmd2def.items():
-            styles.append(r'\expandafter\def\csname %s@tok@%s\endcsname{%s}' %
-                          (cp, name, definition))
+            styles.append(r'\@namedef{%s@tok@%s}{%s}' % (cp, name, definition))
         return STYLE_TEMPLATE % {'cp': self.commandprefix,
                                  'styles': '\n'.join(styles)}
 
