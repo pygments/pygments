@@ -16,10 +16,10 @@ from pygments.token import Punctuation, \
 from pygments.util import get_choice_opt
 from pygments import unistring as uni
 
-from pygments.lexers.html import XmlLexer
+from pygments.lexers.html import HtmlLexer, XmlLexer
 
 __all__ = ['CSharpLexer', 'NemerleLexer', 'BooLexer', 'VbNetLexer',
-           'CSharpAspxLexer', 'VbNetAspxLexer', 'FSharpLexer']
+           'CSharpAspxLexer', 'VbNetAspxLexer', 'FSharpLexer', 'BlazorLexer']
 
 
 class CSharpLexer(RegexLexer):
@@ -704,3 +704,29 @@ class FSharpLexer(RegexLexer):
             result += 0.05
 
         return result
+
+
+class BlazorLexer(RegexLexer):
+    """
+    For `Blazor <https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-5.0>`_
+    source code.
+    """
+
+    name = 'Blazor'
+    aliases = ['blazor']
+    filenames = ['*.razor']
+    mimetypes = []
+
+    tokens = {
+        'root': [
+            (r'(@code |@page )', Keyword),
+            (r'.+', using(CSharpLexer)),
+        ],
+    }
+
+    def analyse_text(text):
+        if re.search(r'@code \{', text) is not None:
+            return 1.0
+        # @page here differs from CSS
+        elif re.search(r'@page \"', text) is not None:
+            return 0.6

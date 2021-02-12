@@ -58,6 +58,7 @@ LEXERS = {
     'BatchLexer': ('pygments.lexers.shell', 'Batchfile', ('bat', 'batch', 'dosbatch', 'winbatch'), ('*.bat', '*.cmd'), ('application/x-dos-batch',)),
     'BefungeLexer': ('pygments.lexers.esoteric', 'Befunge', ('befunge',), ('*.befunge',), ('application/x-befunge',)),
     'BibTeXLexer': ('pygments.lexers.bibtex', 'BibTeX', ('bib', 'bibtex'), ('*.bib',), ('text/x-bibtex',)),
+    'BlazorLexer': ('pygments.lexers.dotnet', 'Blazor', ('blazor',), ('*.razor',), ()),
     'BlitzBasicLexer': ('pygments.lexers.basic', 'BlitzBasic', ('blitzbasic', 'b3d', 'bplus'), ('*.bb', '*.decls'), ('text/x-bb',)),
     'BlitzMaxLexer': ('pygments.lexers.basic', 'BlitzMax', ('blitzmax', 'bmax'), ('*.bmx',), ('text/x-bmx',)),
     'BnfLexer': ('pygments.lexers.grammar_notation', 'BNF', ('bnf',), ('*.bnf',), ('text/x-bnf',)),
