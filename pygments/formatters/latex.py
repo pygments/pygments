@@ -304,8 +304,8 @@ class LatexFormatter(Formatter):
                            (rgbcolor(ndef['border']),
                             rgbcolor(ndef['bgcolor'])))
             elif ndef['bgcolor']:
-                cmndef += (r'\def\$$@bc##1{\setlength{\fboxsep}{0pt}'
-                           r'\colorbox[rgb]{%s}{\strut ##1}}' %
+                cmndef += (r'\def\$$@bc##1{{\setlength{\fboxsep}{0pt}'
+                           r'\colorbox[rgb]{%s}{\strut ##1}}}' %
                            rgbcolor(ndef['bgcolor']))
             if cmndef == '':
                 continue
