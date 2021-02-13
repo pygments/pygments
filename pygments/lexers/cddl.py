@@ -32,6 +32,11 @@ from pygments.token import (
 
 
 class CddlLexer(RegexLexer):
+    """
+    Lexer for CDDL definitions.
+
+    .. versionadded:: 2.8
+    """
     name = "CDDL"
     aliases = ["cddl"]
     filenames = ["*.cddl"]
@@ -135,7 +140,8 @@ class CddlLexer(RegexLexer):
             (r"(b64)(')", bygroups(String.Affix, String.Single), "bstrb64url"),
             (r"(h)(')", bygroups(String.Affix, String.Single), "bstrh"),
             (r"'", String.Single, "bstr"),
-            # Barewords as member keys (must be matched before values, types, typenames, groupnames).
+            # Barewords as member keys (must be matched before values, types, typenames,
+            # groupnames).
             # Token type is String as barewords are always interpreted as such.
             (
                 r"({bareword})(\s*)(:)".format(bareword=_re_id),
