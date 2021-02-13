@@ -123,7 +123,7 @@ class CddlLexer(RegexLexer):
             (r"#(\d\.{uint})?".format(uint=_re_uint), Keyword.Type), # type or any
             # occurence
             (
-                r"({uint}|)(\*)({uint}|)".format(uint=_re_uint),
+                r"({uint})?(\*)({uint})?".format(uint=_re_uint),
                 bygroups(Number, Operator, Number),
             ),
             (r"\?|\+", Operator),  # occurrence
@@ -157,7 +157,7 @@ class CddlLexer(RegexLexer):
             # values
             (r"0b[01]+", Number.Bin),
             (r"0o[0-7]+", Number.Oct),
-            (r"0x[0-9a-fA-F]+(\.[0-9a-fA-F]+|)p[+-]?\d+", Number.Hex),  # hexfloat
+            (r"0x[0-9a-fA-F]+(\.[0-9a-fA-F]+)?p[+-]?\d+", Number.Hex),  # hexfloat
             (r"0x[0-9a-fA-F]+", Number.Hex),  # hex
             # Float
             (
