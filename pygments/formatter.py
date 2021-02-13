@@ -1,29 +1,28 @@
-# -*- coding: utf-8 -*-
 """
     pygments.formatter
     ~~~~~~~~~~~~~~~~~~
 
     Base formatter class.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import codecs
 
-from pygments.util import get_bool_opt, string_types
+from pygments.util import get_bool_opt
 from pygments.styles import get_style_by_name
 
 __all__ = ['Formatter']
 
 
 def _lookup_style(style):
-    if isinstance(style, string_types):
+    if isinstance(style, str):
         return get_style_by_name(style)
     return style
 
 
-class Formatter(object):
+class Formatter:
     """
     Converts a token stream to text.
 

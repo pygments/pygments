@@ -1,0 +1,43 @@
+type PublicRSAKey data<128>
+type PublicED25519Key data<32>
+type Time string # ISO 8601
+
+enum Department {
+  ACCOUNTING
+  ADMINISTRATION
+  CUSTOMER_SERVICE
+  DEVELOPMENT # IMPORTANT
+
+  # Reserved for the CEO
+  JSMITH = 99
+}
+
+type Customer {
+  name: string
+  email: string
+  address: Address
+  orders: []{
+    orderId: i64
+    quantity: i32
+  }
+  metadata: map[string]data
+}
+
+type Employee {
+  name: string
+  email: string
+  address: Address
+  department: Department
+  hireDate: Time
+  publicKey: optional<(PublicRSAKey | PublicED25519Key)>
+  metadata: map[string]data
+}
+
+type Person (Customer | Employee)
+
+type Address {
+  address: [4]string
+  city: string
+  state: string
+  country: string
+}

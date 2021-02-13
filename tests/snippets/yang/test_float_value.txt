@@ -1,0 +1,11 @@
+# Float value `1.1` should be explicitly highlighted
+
+---input---
+yang-version 1.1;
+
+---tokens---
+'yang-version' Keyword
+' '           Text.Whitespace
+'1.1'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace

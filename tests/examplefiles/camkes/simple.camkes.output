@@ -1,0 +1,128 @@
+'/*\n * Example input for CAmkES lexer.\n */' Comment
+'\n\n'        Text
+
+'import <std_connector.camkes>;' Comment.Preproc
+'\n\n'        Text
+
+'// A single-line comment.\n' Comment
+
+'\n'          Text
+
+'import "components/Client/Client.camkes";' Comment.Preproc
+'\n'          Text
+
+'import "components/Echo/Echo.camkes";' Comment.Preproc
+'\n\n'        Text
+
+'component'   Keyword
+' '           Text
+'Foo'         Name
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'include "proc_defn.h";' Comment.Preproc
+'\n  '        Text
+'control'     Keyword
+';'           Punctuation
+'\n  '        Text
+'dataport'    Keyword
+' '           Text
+'Buf'         Keyword.Type
+' '           Text
+'my_port'     Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'#ifdef BAR_AVAILABLE\n' Comment.Preproc
+
+'  '          Text
+'component'   Keyword
+' '           Text
+'Bar'         Name
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'provides'    Keyword
+' '           Text
+'CharAccess'  Name
+' '           Text
+'ca'          Name
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n'          Text
+
+'#endif\n'    Comment.Preproc
+
+'\n    #define HASH_DEF_WITH_LEADING_SPACE\n' Comment.Preproc
+
+'\n'          Text
+
+'assembly'    Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'/* Another multiline comment. */' Comment
+'\n  '        Text
+'composition' Keyword
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'component'   Keyword
+' '           Text
+'Echo'        Name
+' '           Text
+'echo'        Name
+';'           Punctuation
+'\n    '      Text
+'component'   Keyword
+' '           Text
+'Client'      Name
+' '           Text
+'client'      Name
+';'           Punctuation
+'\n\n    '    Text
+'connection'  Keyword
+' '           Text
+'seL4RPC'     Name
+' '           Text
+'simple'      Name
+'('           Punctuation
+'from'        Keyword
+' '           Text
+'client'      Name
+'.'           Punctuation
+'s'           Name
+','           Punctuation
+' '           Text
+'to'          Keyword
+' '           Text
+'echo'        Name
+'.'           Punctuation
+'s'           Name
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n\n  '      Text
+'configuration' Keyword
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'echo'        Name
+'.'           Punctuation
+'dma_pool'    Keyword.Reserved
+' '           Text
+'='           Operator
+' '           Text
+'4096'        Literal.Number
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

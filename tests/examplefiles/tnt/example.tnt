@@ -1,0 +1,81 @@
+101 Aa:Ab:(a+Sb)=S(a+b)	axiom 3
+102 Ab:(0+Sb)=S(0+b)	specification
+103 (0+Sb)=S(0+b)	specification
+104 [			push
+105	(0+b)=b		premise
+106	S(0+b)=Sb	add S
+107	(0+Sb)=S(0+b)	carry over line 103
+108	(0+Sb)=Sb	transitivity
+109 ]			pop
+110 <(0+b)=b](0+Sb)=Sb>		fantasy rule
+111 Ab:<(0+b)=b](0+Sb)=Sb>	generalization
+112 Aa:(a+0)=a		axiom 2
+113 (0+0)=0		specification
+114 Ab:(0+b)=b		induction (lines 111, 113)
+115 (0+a)=a		specification
+116 Aa:(0+a)=a		generalization
+
+01 Aa:Ab:(a+Sb)=S(a+b)	axiom 3
+02 Ab:(d+Sb)=S(d+b)	specification
+03 (d+SSc)=S(d+Sc)	specification
+04 Ab:(Sd+Sb)=S(Sd+b)	specification (line 01)
+05 (Sd+Sc)=S(Sd+c)	specification
+06 S(Sd+c)=(Sd+Sc)	symmetry
+07 [			push
+08 	Ad:(d+Sc)=(Sd+c)	premise
+09	(d+Sc)=(Sd+c)		specification
+10	S(d+Sc)=S(Sd+c)		add S
+11	(d+SSc)=S(d+Sc) 	carry over 03
+12	(d+SSc)=S(Sd+c)		transitivity
+13	S(Sd+c)=(Sd+Sc)		carry over 06
+14	(d+SSc)=(Sd+Sc)		transitivity
+15	Ad:(d+SSc)=(Sd+Sc)	generalization
+16 ]			pop
+17 <Ad:(d+Sc)=(Sd+c)]Ad:(d+SSc)=(Sd+Sc)>	fantasy rule
+18 Ac:<Ad:(d+Sc)=(Sd+c)]Ad:(d+SSc)=(Sd+Sc)>	generalization
+19 (d+S0)=S(d+0)	specification (line 02)
+20 Aa:(a+0)=a		axiom 1
+21 (d+0)=d		specification
+22 S(d+0)=Sd		add S
+23 (d+S0)=Sd		transitivity (lines 19,22)
+24 (Sd+0)=Sd		specification (line 20)
+25 Sd=(Sd+0)		symmetry
+26 (d+S0)=(Sd+0)	transitivity (lines 23,25)
+27 Ad:(d+S0)=(Sd+0)	generalization
+
+28 Ac:Ad:(d+Sc)=(Sd+c)	induction (lines 18,27)
+   [S can be slipped back and forth in an addition.]
+
+29 Ab:(c+Sb)=S(c+b)	specification (line 01)
+30 (c+Sd)=S(c+d)	specification
+31 Ab:(d+Sb)=S(d+b)	specification (line 01)
+32 (d+Sc)=S(d+c)	specification
+33 S(d+c)=(d+Sc)	symmetry
+34 Ad:(d+Sc)=(Sd+c)	specification (line 28)
+35 (d+Sc)=(Sd+c)	specification
+36 [			push
+37	Ac:(c+d)=(d+c)		premise
+38	(c+d)=(d+c)		specification
+39	S(c+d)=S(d+c)		add S
+40	(c+Sd)=S(c+d)		carry over 30
+41	(c+Sd)=S(d+c)		transitivity
+42	S(d+c)=(d+Sc)		carry over 33
+43	(c+Sd)=(d+Sc)		transitivity
+44	(d+Sc)=(Sd+c)		carry over 35
+45	(c+Sd)=(Sd+c)		transitivity
+46	Ac:(c+Sd)=(Sd+c)	generalization
+47 ]			pop
+48 <Ac:(c+d)=(d+c)]Ac:(c+Sd)=(Sd+c)>	fantasy rule
+49 Ad:<Ac:(c+d)=(d+c)]Ac:(c+Sd)=(Sd+c)>	generalization
+   [If d commutes with every c, then Sd does too.]
+
+50 (c+0)=c		specification (line 20)
+51 Aa:(0+a)=a		carry over 116
+52 (0+c)=c		specification
+53 c=(0+c)		symmetry
+54 (c+0)=(0+c)		transitivity (lines 50,53)
+55 Ac:(c+0)=(0+c)	generalization
+   [0 commutes with every c.]
+
+56 Ad:Ac:(c+d)=(d+c)	induction (lines 49,55)
+   [Therefore, every d commmutes with every c.]

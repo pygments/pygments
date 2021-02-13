@@ -1,0 +1,729 @@
+'# (C) முத்தையா அண்ணாமலை 2013\n' Comment.Single
+
+'# (A) என். சொக்கன்\n' Comment.Single
+
+'# எழில் தமிழ் நிரலாக்க மொழி உதாரணம்\n' Comment.Single
+
+'# Muthu A granted permission for this to be included under the BSD license\n' Comment.Single
+
+'# https://bitbucket.org/birkenfeld/pygments-main/pull-requests/443/ezhil-language-lexer-for-pygments/diff\n' Comment.Single
+
+'\n'          Text
+
+'## Prime Factors Example\n' Comment.Single
+
+'## பகா எண் கூறுகளைக் கண்டறியும் உதாரணம்\n' Comment.Single
+
+'\n'          Text
+
+'## இது நிரல் தரப்பட்ட எண்ணின் பகாஎண் கூறுகளைக் கண்டறியும்\n' Comment.Single
+
+'\n'          Text
+
+'நிரல்பாகம்'  Keyword
+' '           Text
+'பகாஎண்ணா'    Name
+'('           Punctuation
+'எண்1'        Name
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'## இது நிரல்பாகம் தரப்பட்ட எண் பகு எண்ணா அல்லது பகா எண்ணா என்று கண்டறிந்து சொல்லும்\n' Comment.Single
+
+'  '          Text
+'## பகுஎண் என்றால் 0 திரும்பத் தரப்படும்\n' Comment.Single
+
+'  '          Text
+'## பகாஎண் என்றால் 1 திரும்பத் தரப்படும்\n' Comment.Single
+
+'\n'          Text
+
+'  '          Text
+'@'           Operator
+'('           Punctuation
+'எண்1'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ஆனால்'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'## எதிர்மறை எண்களை நேராக்குதல்\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text
+'எண்1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'எண்1'        Name
+' '           Text
+'*'           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'முடி'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'@'           Operator
+'('           Punctuation
+'எண்1'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ஆனால்'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'## பூஜ்ஜியம், ஒன்று ஆகியவை பகா எண்கள் அல்ல\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text
+'பின்கொடு'    Keyword
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'முடி'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'@'           Operator
+'('           Punctuation
+'எண்1'        Name
+' '           Text
+'=='          Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ஆனால்'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'## இரண்டு என்ற எண் ஒரு பகா எண்\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text
+'பின்கொடு'    Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'முடி'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'மீதம்'       Name
+' '           Text
+'='           Operator
+' '           Text
+'எண்1'        Name
+'%'           Operator
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'@'           Operator
+'('           Punctuation
+'மீதம்'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ஆனால்'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'## இரட்டைப்படை எண், ஆகவே, இது பகா எண் அல்ல\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text
+'பின்கொடு'    Keyword
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'முடி'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'எண்1வர்க்கமூலம்' Name
+' '           Text
+'='           Operator
+' '           Text
+'எண்1'        Name
+'^'           Operator
+'0.5'         Literal.Number.Float
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'@'           Operator
+'('           Punctuation
+'எண்2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'3'           Literal.Number.Integer
+','           Operator
+' '           Text
+'எண்2'        Name
+' '           Text
+'<='          Operator
+' '           Text
+'எண்1வர்க்கமூலம்' Name
+','           Operator
+' '           Text
+'எண்2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'எண்2'        Name
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ஆக'          Keyword
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'மீதம்1'      Name
+' '           Text
+'='           Operator
+' '           Text
+'எண்1'        Name
+'%'           Operator
+'எண்2'        Name
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'@'           Operator
+'('           Punctuation
+'மீதம்1'      Name
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ஆனால்'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'## ஏதேனும் ஓர் எண்ணால் முழுமையாக வகுபட்டுவிட்டது, ஆகவே அது பகா எண் அல்ல\n' Comment.Single
+
+'\n'          Text
+
+'        '    Text
+'பின்கொடு'    Keyword
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'முடி'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'முடி'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'பின்கொடு'    Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'முடி'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'நிரல்பாகம்'  Keyword
+' '           Text
+'பகுத்தெடு'   Name
+'('           Punctuation
+'எண்1'        Name
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'## இது எண் தரப்பட்ட எண்ணின் பகா எண் கூறுகளைக் கண்டறிந்து பட்டியல் இடும்\n' Comment.Single
+
+'\n'          Text
+
+'  '          Text
+'கூறுகள்'     Name
+' '           Text
+'='           Operator
+' '           Text
+'பட்டியல்'    Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'@'           Operator
+'('           Punctuation
+'எண்1'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ஆனால்'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'## எதிர்மறை எண்களை நேராக்குதல்\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text
+'எண்1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'எண்1'        Name
+' '           Text
+'*'           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'முடி'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'@'           Operator
+'('           Punctuation
+'எண்1'        Name
+' '           Text
+'<='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ஆனால்'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'## ஒன்று அல்லது அதற்குக் குறைவான எண்களுக்குப் பகா எண் விகிதம் கண்டறியமுடியாது\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text
+'பின்கொடு'    Keyword
+' '           Text
+'கூறுகள்'     Name
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'முடி'        Keyword
+'\n'          Text
+
+'  '          Text
+'\n'          Text
+
+'  '          Text
+'@'           Operator
+'('           Punctuation
+'பகாஎண்ணா'    Name
+'('           Punctuation
+'எண்1'        Name
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ஆனால்'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'## தரப்பட்ட எண்ணே பகா எண்ணாக அமைந்துவிட்டால், அதற்கு அதுவே பகாஎண் கூறு ஆகும்\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text
+'பின்இணை'     Name
+'('           Punctuation
+'கூறுகள்'     Name
+','           Operator
+' '           Text
+'எண்1'        Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'பின்கொடு'    Keyword
+' '           Text
+'கூறுகள்'     Name
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'முடி'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'தாற்காலிகஎண்' Name
+' '           Text
+'='           Operator
+' '           Text
+'எண்1'        Name
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'எண்2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'@'           Operator
+'('           Punctuation
+'எண்2'        Name
+' '           Text
+'<='          Operator
+' '           Text
+'தாற்காலிகஎண்' Name
+')'           Punctuation
+' '           Text
+'வரை'         Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'விடை1'       Name
+' '           Text
+'='           Operator
+' '           Text
+'பகாஎண்ணா'    Name
+'('           Punctuation
+'எண்2'        Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'மீண்டும்தொடங்கு' Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'@'           Operator
+'('           Punctuation
+'விடை1'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ஆனால்'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'விடை2'       Name
+' '           Text
+'='           Operator
+' '           Text
+'தாற்காலிகஎண்' Name
+'%'           Operator
+'எண்2'        Name
+'\n'          Text
+
+'      '      Text
+'\n'          Text
+
+'      '      Text
+'@'           Operator
+'('           Punctuation
+'விடை2'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ஆனால்'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'## பகா எண்ணால் முழுமையாக வகுபட்டுள்ளது, அதனைப் பட்டியலில் இணைக்கிறோம்\n' Comment.Single
+
+'\n'          Text
+
+'        '    Text
+'பின்இணை'     Name
+'('           Punctuation
+'கூறுகள்'     Name
+','           Operator
+' '           Text
+'எண்2'        Name
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'தாற்காலிகஎண்' Name
+' '           Text
+'='           Operator
+' '           Text
+'தாற்காலிகஎண்' Name
+'/'           Operator
+'எண்2'        Name
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'## மீண்டும் இரண்டில் தொடங்கி இதே கணக்கிடுதலைத் தொடரவேண்டும்\n' Comment.Single
+
+'\n'          Text
+
+'        '    Text
+'எண்2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'        '    Text
+'மீண்டும்தொடங்கு' Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'முடி'        Keyword
+'\n'          Text
+
+'      '      Text
+'\n'          Text
+
+'    '        Text
+'முடி'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'@'           Operator
+'('           Punctuation
+'மீண்டும்தொடங்கு' Name
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ஆனால்'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'## அடுத்த எண்ணைத் தேர்ந்தெடுத்துக் கணக்கிடுதலைத் தொடரவேண்டும்\n' Comment.Single
+
+'\n'          Text
+
+'      '      Text
+'எண்2'        Name
+' '           Text
+'='           Operator
+' '           Text
+'எண்2'        Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'முடி'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'முடி'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'பின்கொடு'    Keyword
+' '           Text
+'கூறுகள்'     Name
+'\n'          Text
+
+'\n'          Text
+
+'முடி'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'அ'           Name
+' '           Text
+'='           Operator
+' '           Text
+'int'         Name
+'('           Punctuation
+'உள்ளீடு'     Name
+'('           Punctuation
+'"உங்களுக்குப் பிடித்த ஓர் எண்ணைத் தாருங்கள்: "' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'பகாஎண்கூறுகள்' Name
+' '           Text
+'='           Operator
+' '           Text
+'பட்டியல்'    Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'பகாஎண்கூறுகள்' Name
+' '           Text
+'='           Operator
+' '           Text
+'பகுத்தெடு'   Name
+'('           Punctuation
+'அ'           Name
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'பதிப்பி'     Keyword
+' '           Text
+'"நீங்கள் தந்த எண்ணின் பகா எண் கூறுகள் இவை: "' Literal.String
+','           Operator
+' '           Text
+'பகாஎண்கூறுகள்' Name
+' '           Text
+'\n'          Text

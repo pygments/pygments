@@ -1,0 +1,533 @@
+'p'           Comment
+'r'           Comment
+'eface.... eve' Comment
+'r'           Comment
+'ything what is befo' Comment
+'r'           Comment
+'e heade'     Comment
+'r'           Comment
+' is not evaluated\nso this should not be colo' Comment
+'r'           Comment
+'ized:\n1 + 2\n\n' Comment
+
+'REBOL ['     Generic.Strong
+']'           Generic.Strong
+' '           Text
+';<- this is minimal header, everything behind it must be colorized\n' Comment
+
+'\n'          Text
+
+';## String tests ##\n' Comment.Special
+
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'Hello '      Literal.String
+'^"'          Literal.String.Escape
+'World'       Literal.String
+'"'           Literal.String
+' '           Text
+';<- with escaped char\n' Comment
+
+'multiline-string:' Generic.Subheading
+' '           Text
+'{'           Literal.String
+'\n    bla bla "bla" ' Literal.String
+'{'           Literal.String
+'bla'         Literal.String
+'}'           Literal.String
+'\n'          Literal.String
+
+'}'           Literal.String
+'\n'          Text
+
+'char-a:'     Generic.Subheading
+' '           Text
+'#"'          Literal.String.Char
+'a"'          Literal.String.Char
+'\n'          Text
+
+'escaped-a:'  Generic.Subheading
+' '           Text
+'#"'          Literal.String.Char
+'^(61)"'      Literal.String.Char
+'\n'          Text
+
+'new-line:'   Generic.Subheading
+' '           Text
+'#"'          Literal.String.Char
+'^/"'         Literal.String.Char
+'\n\n'        Text
+
+';## Binaries ##\n' Comment.Special
+
+'print'       Name.Builtin
+' '           Text
+'decompress'  Name.Builtin
+' '           Text
+'64#{eJzLSM3JyQcABiwCFQUAAAA=}' Literal.Number.Hex
+'\n'          Text
+
+';2#{0000 00000} ;<- this one is invalid!\n' Comment
+
+'2#{'         Literal.Number.Hex
+'}'           Literal.Number.Hex
+'\n'          Text
+
+'#{FF00}'     Literal.Number.Hex
+'\n\n'        Text
+
+';##Date + time ##\n' Comment.Special
+
+'1-Feb-2009'  Literal.String.Other
+'\n'          Text
+
+'1-Feb-2009/2:24:46+1:0' Literal.String.Other
+'\n'          Text
+
+'1:0'         Literal.String.Other
+' '           Text
+'1:1:1'       Literal.String.Other
+' '           Text
+'-0:1.1'      Literal.String.Other
+'\n\n'        Text
+
+';## Tuple ##\n' Comment.Special
+
+'red:'        Generic.Subheading
+' '           Text
+'255.0.0'     Keyword.Constant
+'\n'          Text
+
+'red-with-alpha:' Generic.Subheading
+' '           Text
+'255.0.0.100' Keyword.Constant
+'\n\n'        Text
+
+';## url!, file! and email! ##\n' Comment.Special
+
+'aaa@bbb.cz'  Name.Decorator
+'\n'          Text
+
+'http://'     Name.Decorator
+'\n'          Text
+
+'dns://'      Name.Decorator
+'\n'          Text
+
+'tcp://127.0.0.1' Name.Decorator
+'\n'          Text
+
+'%/c/rebol/'  Name.Decorator
+'\n'          Text
+
+'%"'          Name.Decorator
+'c:\\Program Files\\' Name.Decorator
+'"'           Name.Decorator
+'\n'          Text
+
+'%/c/Program%20Files/' Name.Decorator
+'\n'          Text
+
+'to-rebol-file' Name.Builtin
+' '           Text
+'"'           Literal.String
+'c:\\Program Files\\' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'suffix?'     Keyword
+' '           Text
+'%bla.swf'    Name.Decorator
+'\n\n'        Text
+
+';## Money ##\n' Comment.Special
+
+'$1'          Literal.Number.Float
+'\n'          Text
+
+'-$1.2'       Literal.Number.Float
+'\n'          Text
+
+'USA$100'     Literal.Number.Float
+'\n\n'        Text
+
+';## Tag! ##\n' Comment.Special
+
+'<a>'         Name.Variable
+'\n'          Text
+
+'<a'          Name.Variable
+' '           Text
+'href='       Name.Variable
+'"'           Literal.String
+'a'           Literal.String
+'()'          Literal.String
+'"'           Literal.String
+'>'           Operator
+'\n\n'        Text
+
+';## Pair! ##\n' Comment.Special
+
+'10x200'      Keyword.Constant
+'\n\n'        Text
+
+';## Issue! ##\n' Comment.Special
+
+'type?'       Name.Builtin
+' '           Text
+'#ff0000'     Name.Label
+' '           Text
+';== issue!\n' Comment
+
+'\n'          Text
+
+';## some numbers ##\n' Comment.Special
+
+'to'          Name.Function
+' '           Text
+'integer!'    Keyword.Type
+' '           Text
+'('           Generic.Strong
+'1'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'('           Generic.Strong
+'x'           Name.Variable
+' '           Text
+'/'           Name.Attribute
+' '           Text
+'4.5'         Literal.Number.Float
+')'           Generic.Strong
+' '           Text
+'*'           Operator
+' '           Text
+'1E-4'        Literal.Number.Float
+')'           Generic.Strong
+'\n\n'        Text
+
+';## some spec comments\n' Comment.Special
+
+'1'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number
+'\n'          Text
+
+'comment "'   Comment
+'aa'          Comment
+'"'           Comment
+'\t\t\t\t\t\t\t\t\n' Text
+
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'comment {'   Comment
+'aa'          Comment
+'}'           Comment
+'\n'          Text
+
+'3'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'3'           Literal.Number
+'\n'          Text
+
+'comment {'   Comment
+'a'           Comment
+'^{'          Comment
+'}'           Comment
+'\n'          Text
+
+'4'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'4'           Literal.Number
+'\n'          Text
+
+'comment {'   Comment
+'{'           Comment
+'}'           Comment
+'}'           Comment
+'\n'          Text
+
+'5'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'5'           Literal.Number
+'\n'          Text
+
+'comment {'   Comment
+'\n\tfoo: 6\n' Comment
+
+'}'           Comment
+'\n'          Text
+
+'6'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'6'           Literal.Number
+'\n'          Text
+
+'comment ['   Comment
+'foo: 6'      Comment
+']'           Comment
+'\n'          Text
+
+'7'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'7'           Literal.Number
+'\n'          Text
+
+'comment ['   Comment
+'foo: '       Comment
+'"'           Comment
+'['           Comment
+'"'           Comment
+' '           Comment
+']'           Comment
+'\n'          Text
+
+'8'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'8'           Literal.Number
+'\n'          Text
+
+'comment ['   Comment
+'foo: '       Comment
+'{'           Comment
+'^{'          Comment
+'}'           Comment
+' '           Comment
+']'           Comment
+'\n'          Text
+
+'9'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'9'           Literal.Number
+'\n'          Text
+
+'comment ['   Comment
+'foo: '       Comment
+'{'           Comment
+'boo'         Comment
+'}'           Comment
+' '           Comment
+']'           Comment
+'\n'          Text
+
+'10'          Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'10'          Literal.Number
+'\n'          Text
+
+'comment 5-May-2014/11:17:34+2:00' Comment
+'\n'          Text
+
+'5-May-2014/11:17:34+2:00' Literal.String.Other
+' '           Text
+'11'          Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'11'          Literal.Number
+'\t\n\n'      Text
+
+';## other tests ##\n' Comment.Special
+
+'---:'        Generic.Subheading
+' '           Text
+'1'           Literal.Number
+'\n'          Text
+
+'x'           Name.Variable
+'/'           Name.Attribute
+'('           Generic.Strong
+'1'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'n'           Text
+')'           Generic.Strong
+'/y'          Name.Attribute
+'\n'          Text
+
+'b'           Name.Variable
+'/:1'         Name.Attribute
+'\n\n'        Text
+
+';## and...\n' Comment.Special
+
+'REBOL'       Generic.Heading
+' '           Text
+'['           Generic.Strong
+'\n    '      Text
+'purpose:'    Generic.Subheading
+' '           Text
+'{'           Literal.String
+'\n        reads css file and creates html from it\n        so one can see how the styles looks like\n    ' Literal.String
+'}'           Literal.String
+' \n'         Text
+
+']'           Generic.Strong
+'\n'          Text
+
+'style:'      Generic.Subheading
+' '           Text
+'%default'    Name.Decorator
+'\n'          Text
+
+'out:'        Generic.Subheading
+' '           Text
+'rejoin'      Keyword.Namespace
+' '           Text
+'['           Generic.Strong
+'{'           Literal.String
+'\n<html>\n<head>\n  <title>Pygments style: ' Literal.String
+'}'           Literal.String
+' '           Text
+'style'       Name.Variable
+' '           Text
+'{'           Literal.String
+'.css</title>\n  <link rel="stylesheet" href="' Literal.String
+'}'           Literal.String
+' '           Text
+'style'       Name.Variable
+' '           Text
+'{'           Literal.String
+'.css">\n</head>\n<body>\n<div class="syntax"><pre>\n' Literal.String
+
+'}'           Literal.String
+']'           Generic.Strong
+'\n'          Text
+
+'css:'        Generic.Subheading
+' '           Text
+'read'        Name.Builtin
+'/lines'      Name.Attribute
+' '           Text
+'join'        Keyword.Namespace
+' '           Text
+'style'       Name.Variable
+' '           Text
+'%.css'       Name.Decorator
+'\n'          Text
+
+'foreach'     Name.Builtin
+' '           Text
+'line'        Name.Variable
+' '           Text
+'css'         Name.Variable
+' '           Text
+'['           Generic.Strong
+'\n    '      Text
+'parse'       Name.Exception
+' '           Text
+'line'        Name.Variable
+' '           Text
+'['           Generic.Strong
+'"'           Literal.String
+'.syntax .'   Literal.String
+'"'           Literal.String
+' '           Text
+'copy'        Name.Function
+' '           Text
+'c'           Name.Variable
+' '           Text
+'to'          Name.Function
+' '           Text
+'"'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'thru'        Name.Variable
+' '           Text
+'"'           Literal.String
+'/*'          Literal.String
+'"'           Literal.String
+' '           Text
+'copy'        Name.Function
+' '           Text
+'t'           Name.Variable
+' '           Text
+'to'          Name.Function
+' '           Text
+'"'           Literal.String
+'*/'          Literal.String
+'"'           Literal.String
+' '           Text
+'to'          Name.Function
+' '           Text
+'end'         Name.Variable
+' '           Text
+'('           Generic.Strong
+'\n        '  Text
+'append'      Keyword.Namespace
+' '           Text
+'out'         Name.Variable
+' '           Text
+'rejoin'      Keyword.Namespace
+' '           Text
+'['           Generic.Strong
+'"'           Literal.String
+'<span class=' Literal.String
+'"'           Literal.String
+' '           Text
+'c'           Name.Variable
+' '           Text
+'"'           Literal.String
+'>'           Literal.String
+'"'           Literal.String
+' '           Text
+'t'           Name.Variable
+' '           Text
+'"'           Literal.String
+'</span>'     Literal.String
+'^/'          Literal.String.Escape
+'"'           Literal.String
+']'           Generic.Strong
+')'           Generic.Strong
+'\n    '      Text
+']'           Generic.Strong
+'\n'          Text
+
+']'           Generic.Strong
+'\n'          Text
+
+'write'       Name.Builtin
+' '           Text
+'join'        Keyword.Namespace
+' '           Text
+'style'       Name.Variable
+' '           Text
+'%.html'      Name.Decorator
+' '           Text
+'join'        Keyword.Namespace
+' '           Text
+'out'         Name.Variable
+' '           Text
+'"'           Literal.String
+'</pre></div></body></html>' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'halt'        Name.Exception
+'\n'          Text

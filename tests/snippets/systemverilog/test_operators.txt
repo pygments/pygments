@@ -1,0 +1,213 @@
+# See 1800-2017 Table 11-2: Operator Precedence and Associativity
+# Note that the duplicates (unary/binary) have been removed,
+# ie '+', '-', '&', '|', '^', '~^', '^~'
+# Note: This is a inconsistent mix of operator and punctuation
+# Note: Operators would ideally be represented as one token: ':' ':' -> '::', '~' '&' -> '~&'
+
+---input---
+() [] :: .
++ - ! ~ & ~& | ~| ^ ~^ ^~ ++ --
+**
+* / %
+<< >> <<< >>>
+< <= > >= inside dist
+== != === !== ==? !=?
+&&
+||
+?:
+-> <->
+= += -= *= /= %= &= ^= |= <<= >>= <<<= >>>= := :/ <=
+{} {{}}
+
+---tokens---
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'['           Punctuation
+']'           Punctuation
+' '           Text
+':'           Operator
+':'           Operator
+' '           Text
+'.'           Punctuation
+'\n'          Text
+
+'+'           Operator
+' '           Text
+'-'           Operator
+' '           Text
+'!'           Operator
+' '           Text
+'~'           Operator
+' '           Text
+'&'           Operator
+' '           Text
+'~'           Operator
+'&'           Operator
+' '           Text
+'|'           Operator
+' '           Text
+'~'           Operator
+'|'           Operator
+' '           Text
+'^'           Operator
+' '           Text
+'~'           Operator
+'^'           Operator
+' '           Text
+'^'           Operator
+'~'           Operator
+' '           Text
+'+'           Operator
+'+'           Operator
+' '           Text
+'-'           Operator
+'-'           Operator
+'\n'          Text
+
+'*'           Operator
+'*'           Operator
+'\n'          Text
+
+'*'           Operator
+' '           Text
+'/'           Operator
+' '           Text
+'%'           Operator
+'\n'          Text
+
+'<'           Operator
+'<'           Operator
+' '           Text
+'>'           Operator
+'>'           Operator
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+' '           Text
+'>'           Operator
+'>'           Operator
+'>'           Operator
+'\n'          Text
+
+'<'           Operator
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'>'           Operator
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'inside'      Operator.Word
+' '           Text
+'dist'        Operator.Word
+'\n'          Text
+
+'='           Operator
+'='           Operator
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'='           Operator
+'='           Operator
+'='           Operator
+' '           Text
+'!'           Operator
+'='           Operator
+'='           Operator
+' '           Text
+'='           Operator
+'='           Operator
+'?'           Operator
+' '           Text
+'!'           Operator
+'='           Operator
+'?'           Operator
+'\n'          Text
+
+'&'           Operator
+'&'           Operator
+'\n'          Text
+
+'|'           Operator
+'|'           Operator
+'\n'          Text
+
+'?'           Operator
+':'           Operator
+'\n'          Text
+
+'-'           Operator
+'>'           Operator
+' '           Text
+'<'           Operator
+'-'           Operator
+'>'           Operator
+'\n'          Text
+
+'='           Operator
+' '           Text
+'+'           Operator
+'='           Operator
+' '           Text
+'-'           Operator
+'='           Operator
+' '           Text
+'*'           Operator
+'='           Operator
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'%'           Operator
+'='           Operator
+' '           Text
+'&'           Operator
+'='           Operator
+' '           Text
+'^'           Operator
+'='           Operator
+' '           Text
+'|'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'<'           Operator
+'='           Operator
+' '           Text
+'>'           Operator
+'>'           Operator
+'='           Operator
+' '           Text
+'<'           Operator
+'<'           Operator
+'<'           Operator
+'='           Operator
+' '           Text
+'>'           Operator
+'>'           Operator
+'>'           Operator
+'='           Operator
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+':'           Operator
+'/'           Operator
+' '           Text
+'<'           Operator
+'='           Operator
+'\n'          Text
+
+'{'           Punctuation
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'{'           Punctuation
+'}'           Punctuation
+'}'           Punctuation
+'\n'          Text

@@ -1,0 +1,19 @@
+---input---
+```
+code
+```
+* nocode
+* `code`
+
+---tokens---
+'```\ncode\n```\n' Literal.String.Backtick
+
+'*'           Keyword
+' '           Text
+'nocode'      Text
+'\n'          Text
+
+'*'           Keyword
+' '           Text
+'`code`'      Literal.String.Backtick
+'\n'          Text

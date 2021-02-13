@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.sphinxext
     ~~~~~~~~~~~~~~~~~~
@@ -6,11 +5,9 @@
     Sphinx extension to generate automatic documentation of lexers,
     formatters and filters.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-
-from __future__ import print_function
 
 import sys
 

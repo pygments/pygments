@@ -1,0 +1,604 @@
+"; docformat = 'rst'\n" Comment.Single
+
+'\n; Example IDL (Interactive Data Language) source code.\n' Comment.Single
+
+'\n;+\n'      Comment.Single
+
+'; Get `nIndices` random indices for an array of size `nValues` (without \n' Comment.Single
+
+'; repeating an index).\n' Comment.Single
+
+';\n'         Comment.Single
+
+'; :Examples:\n' Comment.Single
+
+';    Try::\n' Comment.Single
+
+';\n'         Comment.Single
+
+';       IDL> r = randomu(seed, 10)\n' Comment.Single
+
+";       IDL> print, r, format='(4F)'\n" Comment.Single
+
+';             0.6297589      0.7815896      0.2508559      0.7546844\n' Comment.Single
+
+';             0.1353382      0.1245834      0.8733745      0.0753110\n' Comment.Single
+
+';             0.8054136      0.9513228\n' Comment.Single
+
+';       IDL> ind = mg_sample(10, 3, seed=seed)\n' Comment.Single
+
+';       IDL> print, ind\n' Comment.Single
+
+';                  2           4           7\n' Comment.Single
+
+';       IDL> print, r[ind]\n' Comment.Single
+
+';            0.250856     0.135338    0.0753110\n' Comment.Single
+
+';\n'         Comment.Single
+
+'; :Returns: \n' Comment.Single
+
+';    lonarr(`nIndices`)\n' Comment.Single
+
+';\n'         Comment.Single
+
+'; :Params:\n' Comment.Single
+
+';    nValues : in, required, type=long\n' Comment.Single
+
+';       size of array to choose indices from\n' Comment.Single
+
+';    nIndices : in, required, type=long\n' Comment.Single
+
+';       number of indices needed\n' Comment.Single
+
+';\n'         Comment.Single
+
+'; :Keywords:\n' Comment.Single
+
+';    seed : in, out, optional, type=integer or lonarr(36)\n' Comment.Single
+
+';       seed to use for random number generation, leave undefined to use a \n' Comment.Single
+
+';       seed generated from the system clock; new seed will be output\n' Comment.Single
+
+';-\n'        Comment.Single
+
+'function'    Keyword
+' '           Text
+'m'           Text
+'g'           Text
+'_'           Text
+'s'           Text
+'a'           Text
+'m'           Text
+'p'           Text
+'l'           Text
+'e'           Text
+','           Text
+' '           Text
+'n'           Text
+'V'           Text
+'a'           Text
+'l'           Text
+'u'           Text
+'e'           Text
+'s'           Text
+','           Text
+' '           Text
+'n'           Text
+'I'           Text
+'n'           Text
+'d'           Text
+'i'           Text
+'c'           Text
+'e'           Text
+'s'           Text
+','           Text
+' '           Text
+'s'           Text
+'e'           Text
+'e'           Text
+'d'           Text
+'='           Operator
+'s'           Text
+'e'           Text
+'e'           Text
+'d'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'compile_opt' Keyword
+' '           Text
+'s'           Text
+'t'           Text
+'r'           Text
+'i'           Text
+'c'           Text
+'t'           Text
+'a'           Text
+'r'           Text
+'r'           Text
+'\n'          Text
+
+'  \n  ; get random nIndices by finding the indices of the smallest nIndices in a \n' Comment.Single
+
+'  ; array of random values\n' Comment.Single
+
+' '           Text
+' '           Text
+'v'           Text
+'a'           Text
+'l'           Text
+'u'           Text
+'e'           Text
+'s'           Text
+' '           Text
+'='           Operator
+' '           Text
+'randomu'     Name.Builtin
+'('           Text
+'s'           Text
+'e'           Text
+'e'           Text
+'d'           Text
+','           Text
+' '           Text
+'n'           Text
+'V'           Text
+'a'           Text
+'l'           Text
+'u'           Text
+'e'           Text
+'s'           Text
+')'           Text
+'\n'          Text
+
+'  \n  ; our random values are uniformly distributed, so ideally the nIndices \n' Comment.Single
+
+'  ; smallest values are in the first bin of the below histogram\n' Comment.Single
+
+' '           Text
+' '           Text
+'n'           Text
+'B'           Text
+'i'           Text
+'n'           Text
+'s'           Text
+' '           Text
+'='           Operator
+' '           Text
+'n'           Text
+'V'           Text
+'a'           Text
+'l'           Text
+'u'           Text
+'e'           Text
+'s'           Text
+' '           Text
+'/'           Operator
+' '           Text
+'n'           Text
+'I'           Text
+'n'           Text
+'d'           Text
+'i'           Text
+'c'           Text
+'e'           Text
+'s'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'h'           Text
+' '           Text
+'='           Operator
+' '           Text
+'histogram'   Name.Builtin
+'('           Text
+'v'           Text
+'a'           Text
+'l'           Text
+'u'           Text
+'e'           Text
+'s'           Text
+','           Text
+' '           Text
+'n'           Text
+'b'           Text
+'i'           Text
+'n'           Text
+'s'           Text
+'='           Operator
+'n'           Text
+'B'           Text
+'i'           Text
+'n'           Text
+'s'           Text
+','           Text
+' '           Text
+'r'           Text
+'e'           Text
+'v'           Text
+'e'           Text
+'r'           Text
+'s'           Text
+'e'           Text
+'_'           Text
+'i'           Text
+'n'           Text
+'d'           Text
+'i'           Text
+'c'           Text
+'e'           Text
+'s'           Text
+'='           Operator
+'r'           Text
+'i'           Text
+')'           Text
+'\n'          Text
+
+'\n  ; the candidates for being in the first nIndices will live in bins 0..bin\n' Comment.Single
+
+' '           Text
+' '           Text
+'n'           Text
+'C'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'i'           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'s'           Text
+' '           Text
+'='           Operator
+' '           Text
+'0L'          Literal.Number.Integer.Long
+'\n'          Text
+
+' '           Text
+' '           Text
+'for'         Keyword
+' '           Text
+'b'           Text
+'i'           Text
+'n'           Text
+' '           Text
+'='           Operator
+' '           Text
+'0L'          Literal.Number.Integer.Long
+','           Text
+' '           Text
+'n'           Text
+'B'           Text
+'i'           Text
+'n'           Text
+'s'           Text
+' '           Text
+'-'           Operator
+' '           Text
+'1L'          Literal.Number.Integer.Long
+' '           Text
+'do'          Keyword
+' '           Text
+'begin'       Keyword
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'n'           Text
+'C'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'i'           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'s'           Text
+' '           Text
+'+='          Operator
+' '           Text
+'h'           Text
+'['           Text
+'b'           Text
+'i'           Text
+'n'           Text
+']'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Text
+'n'           Text
+'C'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'i'           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'s'           Text
+' '           Text
+'ge'          Keyword
+' '           Text
+'n'           Text
+'I'           Text
+'n'           Text
+'d'           Text
+'i'           Text
+'c'           Text
+'e'           Text
+'s'           Text
+')'           Text
+' '           Text
+'then'        Keyword
+' '           Text
+'break'       Keyword
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n  ; get the candidates and sort them\n' Comment.Single
+
+' '           Text
+' '           Text
+'c'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'i'           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'s'           Text
+' '           Text
+'='           Operator
+' '           Text
+'r'           Text
+'i'           Text
+'['           Text
+'r'           Text
+'i'           Text
+'['           Text
+'0'           Literal.Number.Integer
+']'           Text
+' '           Text
+':'           Operator
+' '           Text
+'r'           Text
+'i'           Text
+'['           Text
+'b'           Text
+'i'           Text
+'n'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'1L'          Literal.Number.Integer.Long
+']'           Text
+' '           Text
+'-'           Operator
+' '           Text
+'1L'          Literal.Number.Integer.Long
+']'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'s'           Text
+'o'           Text
+'r'           Text
+'t'           Text
+'e'           Text
+'d'           Text
+'C'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'i'           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'s'           Text
+' '           Text
+'='           Operator
+' '           Text
+'sort'        Name.Builtin
+'('           Text
+'v'           Text
+'a'           Text
+'l'           Text
+'u'           Text
+'e'           Text
+'s'           Text
+'['           Text
+'c'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'i'           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'s'           Text
+']'           Text
+')'           Text
+'\n'          Text
+
+'\n  ; return the first nIndices of them\n' Comment.Single
+
+' '           Text
+' '           Text
+'return'      Name.Builtin
+','           Text
+' '           Text
+'('           Text
+'c'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'i'           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'s'           Text
+'['           Text
+'s'           Text
+'o'           Text
+'r'           Text
+'t'           Text
+'e'           Text
+'d'           Text
+'C'           Text
+'a'           Text
+'n'           Text
+'d'           Text
+'i'           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'s'           Text
+']'           Text
+')'           Text
+'['           Text
+'0'           Literal.Number.Integer
+':'           Operator
+'n'           Text
+'I'           Text
+'n'           Text
+'d'           Text
+'i'           Text
+'c'           Text
+'e'           Text
+'s'           Text
+'-'           Operator
+'1L'          Literal.Number.Integer.Long
+']'           Text
+'\n'          Text
+
+'end'         Keyword
+'\n'          Text
+
+'\n\n; main-level example program\n' Comment.Single
+
+'\n'          Text
+
+'r'           Text
+' '           Text
+'='           Operator
+' '           Text
+'randomu'     Name.Builtin
+'('           Text
+'s'           Text
+'e'           Text
+'e'           Text
+'d'           Text
+','           Text
+' '           Text
+'10'          Literal.Number.Integer
+')'           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'\n'          Text
+
+'print'       Name.Builtin
+','           Text
+' '           Text
+'r'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'d'           Text
+' '           Text
+'='           Operator
+' '           Text
+'m'           Text
+'g'           Text
+'_'           Text
+'s'           Text
+'a'           Text
+'m'           Text
+'p'           Text
+'l'           Text
+'e'           Text
+'('           Text
+'10'          Literal.Number.Integer
+','           Text
+' '           Text
+'3'           Literal.Number.Integer
+','           Text
+' '           Text
+'s'           Text
+'e'           Text
+'e'           Text
+'d'           Text
+'='           Operator
+'s'           Text
+'e'           Text
+'e'           Text
+'d'           Text
+')'           Text
+'\n'          Text
+
+'print'       Name.Builtin
+','           Text
+' '           Text
+'i'           Text
+'n'           Text
+'d'           Text
+'\n'          Text
+
+'print'       Name.Builtin
+','           Text
+' '           Text
+'r'           Text
+'['           Text
+'i'           Text
+'n'           Text
+'d'           Text
+']'           Text
+'\n'          Text
+
+'\n'          Text
+
+'end'         Keyword
+'\n'          Text

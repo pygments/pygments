@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.chapel
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the Chapel language.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -18,7 +17,7 @@ __all__ = ['ChapelLexer']
 
 class ChapelLexer(RegexLexer):
     """
-    For `Chapel <http://chapel.cray.com/>`_ source.
+    For `Chapel <https://chapel-lang.org/>`_ source.
 
     .. versionadded:: 2.0
     """
@@ -48,7 +47,7 @@ class ChapelLexer(RegexLexer):
                 'defer', 'delete', 'dmapped', 'do', 'domain',
                 'else', 'enum', 'except', 'export', 'extern',
                 'for', 'forall', 'forwarding',
-                'if', 'index', 'init', 'inline',
+                'if', 'import', 'index', 'init', 'inline',
                 'label', 'lambda', 'let', 'lifetime', 'local', 'locale'
                 'new', 'noinit',
                 'on', 'only', 'otherwise', 'override', 'owned',
@@ -88,8 +87,8 @@ class ChapelLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
 
             # strings
-            (r'"(\\\\|\\"|[^"])*"', String),
-            (r"'(\\\\|\\'|[^'])*'", String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
 
             # tokens
             (r'(=|\+=|-=|\*=|/=|\*\*=|%=|&=|\|=|\^=|&&=|\|\|=|<<=|>>=|'

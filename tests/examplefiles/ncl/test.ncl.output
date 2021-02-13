@@ -1,0 +1,123 @@
+'load'        Keyword
+' '           Text
+'"$NCARG_ROOT/lib/ncarg/nclscripts/csm/gsn_code.ncl"' Literal.String.Double
+'\n'          Text
+
+'load'        Keyword
+' '           Text
+'"$NCARG_ROOT/lib/ncarg/nclscripts/csm/gsn_csm.ncl"' Literal.String.Double
+'\n'          Text
+
+'load'        Keyword
+' '           Text
+'"$NCARG_ROOT/lib/ncarg/nclscripts/csm/contributed.ncl"' Literal.String.Double
+'\n'          Text
+
+'begin\n    ' Keyword
+'int_num'     Name
+' '           Text
+'='           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+'\n    '      Text
+'float_num'   Name
+' '           Text
+'='           Punctuation
+' '           Text
+'0.1'         Literal.Number.Float
+'\n    '      Text
+'str'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'"A void map"' Literal.String.Double
+'\n    '      Text
+'array'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'/'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+'/'           Operator
+')'           Punctuation
+'\n\n\n    '  Text
+'wks'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'gsn_open_wks' Name.Builtin
+'('           Punctuation
+'"X11"'       Literal.String.Double
+','           Punctuation
+' '           Text
+'"test_for_pygments"' Literal.String.Double
+')'           Punctuation
+'\n\n    '    Text
+'res'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'True\n    '  Keyword
+'res'         Name
+'@'           Punctuation
+'mpMinLonF'   Name.Builtin
+' '           Text
+'='           Punctuation
+' '           Text
+'9'           Literal.Number.Integer
+'0.'          Literal.Number.Float
+'\n    '      Text
+'res'         Name
+'@'           Punctuation
+'mpMaxLonF'   Name.Builtin
+' '           Text
+'='           Punctuation
+' '           Text
+'18'          Literal.Number.Integer
+'0.'          Literal.Number.Float
+'\n    '      Text
+'res'         Name
+'@'           Punctuation
+'mpMinLatF'   Name.Builtin
+' '           Text
+'='           Punctuation
+' '           Text
+'0.'          Literal.Number.Float
+'\n    '      Text
+'res'         Name
+'@'           Punctuation
+'mpMaxLatF'   Name.Builtin
+' '           Text
+'='           Punctuation
+' '           Text
+'9'           Literal.Number.Integer
+'0.'          Literal.Number.Float
+'\n\n    '    Text
+'plot'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'gsn_csm_map_ce' Name.Builtin
+'('           Punctuation
+'wks'         Name
+','           Punctuation
+' '           Text
+'res'         Name
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+'\n'          Text

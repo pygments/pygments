@@ -1,0 +1,521 @@
+'msc'         Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'hscale'      Name.Property
+'='           Operator
+'5'           Name.Variable
+';'           Punctuation
+'\n\n  '      Text.Whitespace
+'//test comment\n' Comment.Single
+
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+','           Punctuation
+'b'           Name.Variable
+','           Punctuation
+'c'           Name.Variable
+','           Punctuation
+'d'           Name.Variable
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/* another\ncomment\ngoes here */' Comment.Multiline
+' '           Text.Whitespace
+'/* too */'   Comment.Multiline
+' '           Text.Whitespace
+'// now\n'    Comment.Single
+
+'\n  '        Text.Whitespace
+'...'         Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test1"'     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"1"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'---'         Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test2"'     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'|||'         Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test3"'     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'ABOX'        Operator.Word
+' '           Text.Whitespace
+'b'           Name.Variable
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'--'          Operator
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test4"'     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test5"'     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'..'          Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test6"'     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'::'          Operator
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test7"'     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'<<=>>'       Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test8"'     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'<->'         Operator
+'c'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test9"'     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'RBOX'        Operator.Word
+' '           Text.Whitespace
+'c'           Name.Variable
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'BOX'         Operator.Word
+' '           Text.Whitespace
+'d'           Name.Variable
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'<=>'         Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test10"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'<<>>'        Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test11"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'<:>'         Operator
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test12"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'->'          Operator
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test13"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'=>>'         Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test14"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'c'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test15"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'=>'          Operator
+'   '         Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test16"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+':>'          Operator
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test17"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'-x'          Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test18"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'-X'          Operator
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test19"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'<-'          Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test20"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'<<='         Operator
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test21"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'<<'          Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test22"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test23"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'<:'          Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test24"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'-x'          Operator
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test25"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'-X'          Operator
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'label'       Name.Attribute
+'='           Operator
+'"test26"'    Literal.String
+','           Punctuation
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'a'           Name.Variable
+'->'          Operator
+'*'           Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test27"'    Literal.String
+' '           Text.Whitespace
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'*'           Name.Builtin
+'<-'          Operator
+'b'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"test28"'    Literal.String
+','           Punctuation
+'id'          Name.Attribute
+'='           Operator
+'"28"'        Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

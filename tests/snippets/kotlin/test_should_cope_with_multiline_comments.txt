@@ -1,0 +1,12 @@
+---input---
+"""
+this
+is
+a
+comment"""
+
+---tokens---
+'"""'         Literal.String
+'\nthis\nis\na\ncomment' Literal.String
+'"""'         Literal.String
+'\n'          Text

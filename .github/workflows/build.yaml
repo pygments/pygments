@@ -4,17 +4,17 @@ on: [push, pull_request]
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
-      max-parallel: 4
       matrix:
-        python-version: [2.7, 3.5, 3.6, 3.7, 3.8, pypy2, pypy3]
+        os: [ubuntu-latest, windows-latest]
+        python-version: [3.5, 3.6, 3.7, 3.8, 3.9, pypy3]
+      max-parallel: 4
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install package
@@ -24,3 +24,19 @@ jobs:
         pip install .
     - name: Test package
       run: make test TEST=-v
+      if: runner.os == 'Linux'
+    - name: Test package
+      run: py.test
+      if: runner.os == 'Windows' && ! contains(matrix['python-version'], 'pypy')
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Check out regexlint
+      run: git clone https://github.com/pygments/regexlint
+    - name: Run regexlint
+      run: make regexlint REGEXLINT=`pwd`/regexlint

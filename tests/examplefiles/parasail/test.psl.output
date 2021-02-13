@@ -1,0 +1,1547 @@
+'//  This is a comment\n' Comment.Single
+
+'\n'          Text
+
+'//  1. Basics\n' Comment.Single
+
+'\n'          Text
+
+'//  Functions\n' Comment.Single
+
+'func'        Keyword.Reserved
+' '           Text
+'Add'         Name
+'('           Punctuation
+'X'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Univ_Integer' Name
+';'           Punctuation
+' '           Text
+'Y'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Univ_Integer' Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'Univ_Integer' Name
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'return'      Keyword.Reserved
+' '           Text
+'X'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'Y'           Name
+';'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Add'         Name
+';'           Punctuation
+'\n'          Text
+
+'//  End of line semi-colons are optional\n' Comment.Single
+
+'//  +, +=, -, -=, *, *=, /, /=\n' Comment.Single
+
+"//  all do what you'd expect (/ is integer division)\n" Comment.Single
+
+'\n'          Text
+
+'//  If you find Univ_Integer to be too verbose you can import Short_Names\n' Comment.Single
+
+'//  which defines aliases like Int for Univ_Integer and String for Univ_String\n' Comment.Single
+
+'import'      Keyword.Reserved
+' '           Text
+'PSL'         Name
+':'           Punctuation
+':'           Punctuation
+'Short_Names' Name
+':'           Punctuation
+':'           Punctuation
+'*'           Operator
+','           Punctuation
+' '           Text
+'*'           Operator
+'\n\n'        Text
+
+'func'        Keyword.Reserved
+' '           Text
+'Greetings'   Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'const'       Keyword.Reserved
+' '           Text
+'S'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Name
+' '           Text
+':='          Operator
+' '           Text
+'"Hello, World!"' Literal.String
+'\n'          Text
+
+'   '         Text
+'Println'     Name
+'('           Punctuation
+'S'           Name
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Greetings'   Name
+'\n'          Text
+
+"//  All declarations are 'const', 'var', or 'ref'\n" Comment.Single
+
+'//  Assignment is :=, equality checks are ==, and != is not equals\n' Comment.Single
+
+'\n'          Text
+
+'func'        Keyword.Reserved
+' '           Text
+'Boolean_Examples' Name
+'('           Punctuation
+'B'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Bool'        Name
+')'           Punctuation
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'const'       Keyword.Reserved
+' '           Text
+'And'         Name
+' '           Text
+':='          Operator
+' '           Text
+'B'           Name
+' '           Text
+'and'         Operator.Word
+' '           Text
+'#true'       Literal
+'           ' Text
+'//  Parallel execution of operands\n' Comment.Single
+
+'   '         Text
+'const'       Keyword.Reserved
+' '           Text
+'And_Then'    Name
+' '           Text
+':='          Operator
+' '           Text
+'B'           Name
+' '           Text
+'and then'    Operator.Word
+' '           Text
+'#true'       Literal
+' '           Text
+'//  Short-Circuit\n' Comment.Single
+
+'   '         Text
+'const'       Keyword.Reserved
+' '           Text
+'Or'          Name
+' '           Text
+':='          Operator
+' '           Text
+'B'           Name
+' '           Text
+'or'          Operator.Word
+' '           Text
+'#false'      Literal
+'            ' Text
+'//  Parallel execution of operands\n' Comment.Single
+
+'   '         Text
+'const'       Keyword.Reserved
+' '           Text
+'Or_Else'     Name
+' '           Text
+':='          Operator
+' '           Text
+'B'           Name
+' '           Text
+'or else'     Operator.Word
+' '           Text
+'#false'      Literal
+'  '          Text
+'//  Short-Cirtuit\n' Comment.Single
+
+'   '         Text
+'const'       Keyword.Reserved
+' '           Text
+'Xor'         Name
+' '           Text
+':='          Operator
+' '           Text
+'B'           Name
+' '           Text
+'xor'         Operator.Word
+' '           Text
+'#true'       Literal
+'\n'          Text
+
+'   '         Text
+'var'         Keyword.Reserved
+' '           Text
+'Result'      Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Bool'        Name
+' '           Text
+':='          Operator
+' '           Text
+'#true'       Literal
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'Result'      Name
+' '           Text
+'and='        Operator.Word
+' '           Text
+'#false'      Literal
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'Result'      Name
+' '           Text
+'or='         Operator.Word
+' '           Text
+'#true'       Literal
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'Result'      Name
+' '           Text
+'xor='        Operator.Word
+' '           Text
+'#false'      Literal
+';'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Boolean_Examples' Name
+'\n'          Text
+
+'//  Booleans are a special type of enumeration\n' Comment.Single
+
+"//  All enumerations are preceded by a sharp '#'\n" Comment.Single
+
+'\n'          Text
+
+'func'        Keyword.Reserved
+' '           Text
+'Fib'         Name
+'('           Punctuation
+'N'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Int'         Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'N'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'}'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'Int'         Name
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'if'          Keyword.Reserved
+' '           Text
+'N'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'then'        Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'return'      Keyword.Reserved
+' '           Text
+'N'           Name
+'\n'          Text
+
+'   '         Text
+'else'        Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+"//  Left and right side of '+' are computed in Parallel here\n" Comment.Single
+
+'      '      Text
+'return'      Keyword.Reserved
+' '           Text
+'Fib'         Name
+'('           Punctuation
+'N'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'Fib'         Name
+'('           Punctuation
+'N'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+'\n'          Text
+
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Fib'         Name
+'\n'          Text
+
+"//  '{N >= 0}' is a precondition to this function\n" Comment.Single
+
+'//  Preconditions are built in to the language and checked by the compiler\n' Comment.Single
+
+'\n'          Text
+
+'//  ParaSail does not have mutable global variables\n' Comment.Single
+
+"//  Instead, use 'var' parameters\n" Comment.Single
+
+'func'        Keyword.Reserved
+' '           Text
+'Increment_All' Name
+'('           Punctuation
+'var'         Keyword.Reserved
+' '           Text
+'Nums'        Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Vector'      Name
+'<'           Punctuation
+'Int'         Name
+'>'           Punctuation
+')'           Punctuation
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'for'         Keyword.Reserved
+' '           Text
+'each'        Keyword.Reserved
+' '           Text
+'Elem'        Name
+' '           Text
+'of'          Keyword.Reserved
+' '           Text
+'Nums'        Name
+' '           Text
+'concurrent'  Keyword.Reserved
+' '           Text
+'loop'        Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'Elem'        Name
+' '           Text
+'+='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+' '           Text
+'loop'        Keyword.Reserved
+'\n'          Text
+
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Increment_All' Name
+'\n'          Text
+
+"//  The 'concurrent' keyword in the loop header tells the compiler that\n" Comment.Single
+
+'//  iterations of the loop can happen in any order.\n' Comment.Single
+
+'//  It will choose the most optimal number of threads to use.\n' Comment.Single
+
+"//  Other options are 'forward' and 'reverse'.\n" Comment.Single
+
+'\n'          Text
+
+'func'        Keyword.Reserved
+' '           Text
+'Sum_Of_Squares' Name
+'('           Punctuation
+'N'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Int'         Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'Int'         Name
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'//  The type of Sum is inferred\n' Comment.Single
+
+'   '         Text
+'var'         Keyword.Reserved
+' '           Text
+'Sum'         Name
+' '           Text
+':='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'   '         Text
+'for'         Keyword.Reserved
+' '           Text
+'I'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'..'          Operator
+' '           Text
+'N'           Name
+' '           Text
+'forward'     Keyword.Reserved
+' '           Text
+'loop'        Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'Sum'         Name
+' '           Text
+'+='          Operator
+' '           Text
+'I'           Name
+' '           Text
+'**'          Operator
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'//  ** is exponentiation\n' Comment.Single
+
+'   '         Text
+'end'         Keyword.Reserved
+' '           Text
+'loop'        Keyword.Reserved
+'\n'          Text
+
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Sum_Of_Squares' Name
+'\n\n'        Text
+
+'func'        Keyword.Reserved
+' '           Text
+'Sum_Of'      Name
+'('           Punctuation
+'N'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Int'         Name
+';'           Punctuation
+' '           Text
+'Map'         Name
+' '           Text
+':'           Punctuation
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'('           Punctuation
+'Int'         Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'Int'         Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'Int'         Name
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'return'      Keyword.Reserved
+' '           Text
+'('           Punctuation
+'for'         Keyword.Reserved
+' '           Text
+'I'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'..'          Operator
+' '           Text
+'N'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'<'           Punctuation
+'0'           Literal.Number.Integer
+'>'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'Map'         Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Sum_Of'      Name
+'\n'          Text
+
+'//  It has functional aspects as well\n' Comment.Single
+
+"//  Here, we're taking an (Int) -> Int function as a parameter\n" Comment.Single
+
+'//  and using the inherently parallel map-reduce.\n' Comment.Single
+
+'//  Initial value is enclosed with angle brackets\n' Comment.Single
+
+'\n'          Text
+
+'func'        Keyword.Reserved
+' '           Text
+'main'        Name
+'('           Punctuation
+'Args'        Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Basic_Array' Name
+'<'           Punctuation
+'String'      Name
+'>'           Punctuation
+')'           Punctuation
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'Greetings'   Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'//  Hello World\n' Comment.Single
+
+'   '         Text
+'Println'     Name
+'('           Punctuation
+'Fib'         Name
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'//  5\n'     Comment.Single
+
+'   '         Text
+'//  Container Comprehension\n' Comment.Single
+
+'   '         Text
+'var'         Keyword.Reserved
+' '           Text
+'Vec'         Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Vector'      Name
+'<'           Punctuation
+'Int'         Name
+'>'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'['           Punctuation
+'for'         Keyword.Reserved
+' '           Text
+'I'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'..'          Operator
+' '           Text
+'10'          Literal.Number.Integer
+' '           Text
+'{'           Punctuation
+'I'           Name
+' '           Text
+'mod'         Operator.Word
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'}'           Punctuation
+' '           Text
+'=>'          Operator
+' '           Text
+'I'           Name
+' '           Text
+'**'          Operator
+' '           Text
+'2'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text
+
+'   '         Text
+'//  Vec = [0, 4, 16, 36, 64, 100]\n' Comment.Single
+
+'   '         Text
+'Increment_All' Name
+'('           Punctuation
+'Vec'         Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'//  Vec = [1, 5, 17, 37, 65, 101]\n' Comment.Single
+
+'   '         Text
+"//  '|' is an overloaded operator.\n" Comment.Single
+
+'   '         Text
+"//  It's usually used for concatenation or adding to a container\n" Comment.Single
+
+'   '         Text
+'Println'     Name
+'('           Punctuation
+'"First: "'   Literal.String
+' '           Text
+'|'           Operator
+' '           Text
+'Vec'         Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'", Last: "'  Literal.String
+' '           Text
+'|'           Operator
+' '           Text
+'Vec'         Name
+'['           Punctuation
+'Length'      Name
+'('           Punctuation
+'Vec'         Name
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'//  Vectors are 1 indexed, 0 indexed ZVectors are also available\n' Comment.Single
+
+'   '         Text
+'\n'          Text
+
+'   '         Text
+'Println'     Name
+'('           Punctuation
+'Sum_Of_Squares' Name
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'\n'          Text
+
+'   '         Text
+'//  Sum of fibs!\n' Comment.Single
+
+'   '         Text
+'Println'     Name
+'('           Punctuation
+'Sum_Of'      Name
+'('           Punctuation
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'Fib'         Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'main'        Name
+'\n\n'        Text
+
+"//  Preceding a type with 'optional' allows it to take the value 'null'\n" Comment.Single
+
+'func'        Keyword.Reserved
+' '           Text
+'Divide'      Name
+'('           Punctuation
+'A'           Name
+','           Punctuation
+' '           Text
+'B'           Name
+','           Punctuation
+' '           Text
+'C'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Real'        Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'optional'    Keyword.Reserved
+' '           Text
+'Real'        Name
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'//  Real is the floating point type\n' Comment.Single
+
+'   '         Text
+'const'       Keyword.Reserved
+' '           Text
+'Epsilon'     Name
+' '           Text
+':='          Operator
+' '           Text
+'1.0e-6'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'if'          Keyword.Reserved
+' '           Text
+'B'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'-'           Operator
+'Epsilon'     Name
+' '           Text
+'..'          Operator
+' '           Text
+'Epsilon'     Name
+' '           Text
+'then'        Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'return'      Keyword.Reserved
+' '           Text
+'null'        Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'elsif'       Keyword.Reserved
+' '           Text
+'C'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'-'           Operator
+'Epsilon'     Name
+' '           Text
+'..'          Operator
+' '           Text
+'Epsilon'     Name
+' '           Text
+'then'        Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'return'      Keyword.Reserved
+' '           Text
+'null'        Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'else'        Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'return'      Keyword.Reserved
+' '           Text
+'A'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'B'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'A'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'C'           Name
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+'\n'          Text
+
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Divide'      Name
+'\n\n'        Text
+
+'//  2. Modules\n' Comment.Single
+
+'//  Modules are composed of an interface and a class\n' Comment.Single
+
+'//  ParaSail has object orientation features\n' Comment.Single
+
+'\n'          Text
+
+"//  modules can be defined as 'concurrent'\n" Comment.Single
+
+"//  which allows 'locked' and 'queued' parameters\n" Comment.Single
+
+'concurrent'  Keyword.Reserved
+' '           Text
+'interface'   Keyword.Reserved
+' '           Text
+'Locked_Box'  Name
+'<'           Punctuation
+'Content_Type' Name
+' '           Text
+'is'          Keyword.Reserved
+' '           Text
+'Assignable'  Name
+'<'           Punctuation
+'>>'          Operator
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'// Create a box with the given content\n' Comment.Single
+
+'   '         Text
+'func'        Keyword.Reserved
+' '           Text
+'Create'      Name
+'('           Punctuation
+'C'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'optional'    Keyword.Reserved
+' '           Text
+'Content_Type' Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'Locked_Box'  Name
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'// Put something into the box\n' Comment.Single
+
+'   '         Text
+'func'        Keyword.Reserved
+' '           Text
+'Put'         Name
+'('           Punctuation
+'locked'      Keyword.Reserved
+' '           Text
+'var'         Keyword.Reserved
+' '           Text
+'B'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Locked_Box'  Name
+';'           Punctuation
+' '           Text
+'C'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Content_Type' Name
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'// Get a copy of current content\n' Comment.Single
+
+'   '         Text
+'func'        Keyword.Reserved
+' '           Text
+'Content'     Name
+'('           Punctuation
+'locked'      Keyword.Reserved
+' '           Text
+'B'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Locked_Box'  Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'optional'    Keyword.Reserved
+' '           Text
+'Content_Type' Name
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'// Remove current content, leaving it null\n' Comment.Single
+
+'   '         Text
+'func'        Keyword.Reserved
+' '           Text
+'Remove'      Name
+'('           Punctuation
+'locked'      Keyword.Reserved
+' '           Text
+'var'         Keyword.Reserved
+' '           Text
+'B'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Locked_Box'  Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'optional'    Keyword.Reserved
+' '           Text
+'Content_Type' Name
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'// Wait until content is non-null, then return it, leaving it null.\n' Comment.Single
+
+'   '         Text
+'func'        Keyword.Reserved
+' '           Text
+'Get'         Name
+'('           Punctuation
+'queued'      Keyword.Reserved
+' '           Text
+'var'         Keyword.Reserved
+' '           Text
+'B'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Locked_Box'  Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'Content_Type' Name
+';'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+' '           Text
+'interface'   Keyword.Reserved
+' '           Text
+'Locked_Box'  Name
+';'           Punctuation
+'\n\n'        Text
+
+'concurrent'  Keyword.Reserved
+' '           Text
+'class'       Keyword.Reserved
+' '           Text
+'Locked_Box'  Name
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'var'         Keyword.Reserved
+' '           Text
+'Content'     Name
+' '           Text
+':'           Punctuation
+' '           Text
+'optional'    Keyword.Reserved
+' '           Text
+'Content_Type' Name
+';'           Punctuation
+'\n'          Text
+
+'exports'     Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'func'        Keyword.Reserved
+' '           Text
+'Create'      Name
+'('           Punctuation
+'C'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'optional'    Keyword.Reserved
+' '           Text
+'Content_Type' Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'Locked_Box'  Name
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'return'      Keyword.Reserved
+' '           Text
+'('           Punctuation
+'Content'     Name
+' '           Text
+'=>'          Operator
+' '           Text
+'C'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Create'      Name
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'func'        Keyword.Reserved
+' '           Text
+'Put'         Name
+'('           Punctuation
+'locked'      Keyword.Reserved
+' '           Text
+'var'         Keyword.Reserved
+' '           Text
+'B'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Locked_Box'  Name
+';'           Punctuation
+' '           Text
+'C'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Content_Type' Name
+')'           Punctuation
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'B'           Name
+'.'           Punctuation
+'Content'     Name
+' '           Text
+':='          Operator
+' '           Text
+'C'           Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Put'         Name
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'func'        Keyword.Reserved
+' '           Text
+'Content'     Name
+'('           Punctuation
+'locked'      Keyword.Reserved
+' '           Text
+'B'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Locked_Box'  Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'optional'    Keyword.Reserved
+' '           Text
+'Content_Type' Name
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'return'      Keyword.Reserved
+' '           Text
+'B'           Name
+'.'           Punctuation
+'Content'     Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Content'     Name
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'func'        Keyword.Reserved
+' '           Text
+'Remove'      Name
+'('           Punctuation
+'locked'      Keyword.Reserved
+' '           Text
+'var'         Keyword.Reserved
+' '           Text
+'B'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Locked_Box'  Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'Result'      Name
+' '           Text
+':'           Punctuation
+' '           Text
+'optional'    Keyword.Reserved
+' '           Text
+'Content_Type' Name
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+"// '<==' is the move operator\n" Comment.Single
+
+'      '      Text
+'// It moves the right operand into the left operand,\n' Comment.Single
+
+'      '      Text
+'// leaving the right null.\n' Comment.Single
+
+'      '      Text
+'Result'      Name
+' '           Text
+'<=='         Operator
+' '           Text
+'B'           Name
+'.'           Punctuation
+'Content'     Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Remove'      Name
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'func'        Keyword.Reserved
+' '           Text
+'Get'         Name
+'('           Punctuation
+'queued'      Keyword.Reserved
+' '           Text
+'var'         Keyword.Reserved
+' '           Text
+'B'           Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Locked_Box'  Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Punctuation
+' '           Text
+'Result'      Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Content_Type' Name
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'queued'      Keyword.Reserved
+' '           Text
+'until'       Keyword.Reserved
+' '           Text
+'B'           Name
+'.'           Punctuation
+'Content'     Name
+' '           Text
+'not null'    Operator.Word
+' '           Text
+'then'        Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'Result'      Name
+' '           Text
+'<=='         Operator
+' '           Text
+'B'           Name
+'.'           Punctuation
+'Content'     Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Get'         Name
+';'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+' '           Text
+'class'       Keyword.Reserved
+' '           Text
+'Locked_Box'  Name
+';'           Punctuation
+'\n\n'        Text
+
+'func'        Keyword.Reserved
+' '           Text
+'Use_Box'     Name
+'('           Punctuation
+'Seed'        Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Univ_Integer' Name
+')'           Punctuation
+' '           Text
+'is'          Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'var'         Keyword.Reserved
+' '           Text
+'U_Box'       Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Locked_Box'  Name
+'<'           Punctuation
+'Univ_Integer' Name
+'>'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'Create'      Name
+'('           Punctuation
+'null'        Keyword.Reserved
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+"//  The type of 'Ran' can be left out because\n" Comment.Single
+
+'   '         Text
+'//  it is inferred from the return type of Random::Start\n' Comment.Single
+
+'   '         Text
+'var'         Keyword.Reserved
+' '           Text
+'Ran'         Name
+' '           Text
+':='          Operator
+' '           Text
+'Random'      Name
+':'           Punctuation
+':'           Punctuation
+'Start'       Name
+'('           Punctuation
+'Seed'        Name
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'Println'     Name
+'('           Punctuation
+'"Starting 100 pico-threads trying to put something in the box"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'Println'     Name
+'('           Punctuation
+'" or take something out."' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'for'         Keyword.Reserved
+' '           Text
+'I'           Name
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number.Integer
+'..'          Operator
+'100'         Literal.Number.Integer
+' '           Text
+'concurrent'  Keyword.Reserved
+' '           Text
+'loop'        Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'if'          Keyword.Reserved
+' '           Text
+'I'           Name
+' '           Text
+'<'           Punctuation
+' '           Text
+'30'          Literal.Number.Integer
+' '           Text
+'then'        Keyword.Reserved
+'\n'          Text
+
+'         '   Text
+'Println'     Name
+'('           Punctuation
+'"Getting out "' Literal.String
+' '           Text
+'|'           Operator
+' '           Text
+'Get'         Name
+'('           Punctuation
+'U_Box'       Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'else'        Keyword.Reserved
+'\n'          Text
+
+'         '   Text
+'Println'     Name
+'('           Punctuation
+'"Putting in "' Literal.String
+' '           Text
+'|'           Operator
+' '           Text
+'I'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'U_Box'       Name
+'.'           Punctuation
+'Put'         Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'         '   Text
+'//  The first parameter can be moved to the front with a dot\n' Comment.Single
+
+'         '   Text
+'//  X.Foo(Y) is equivalent to Foo(X, Y)\n' Comment.Single
+
+'      '      Text
+'end'         Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+' '           Text
+'loop'        Keyword.Reserved
+';'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'Println'     Name
+'('           Punctuation
+'"And the winner is: "' Literal.String
+' '           Text
+'|'           Operator
+' '           Text
+'Remove'      Name
+'('           Punctuation
+'U_Box'       Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'Println'     Name
+'('           Punctuation
+'"And the box is now "' Literal.String
+' '           Text
+'|'           Operator
+' '           Text
+'Content'     Name
+'('           Punctuation
+'U_Box'       Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+' '           Text
+'func'        Keyword.Reserved
+' '           Text
+'Use_Box'     Name
+';'           Punctuation
+'\n'          Text

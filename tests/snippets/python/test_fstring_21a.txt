@@ -1,0 +1,15 @@
+---input---
+f'a={d[a]}'
+
+---tokens---
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'a='          Literal.String.Single
+'{'           Literal.String.Interpol
+'d'           Name
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+'}'           Literal.String.Interpol
+"'"           Literal.String.Single
+'\n'          Text

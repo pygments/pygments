@@ -1,0 +1,11 @@
+# Namespace `urn:test:std:yang` should not be explicitly highlighted
+
+---input---
+namespace urn:test:std:yang;
+
+---tokens---
+'namespace'   Keyword
+' '           Text.Whitespace
+'urn:test:std:yang' Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace

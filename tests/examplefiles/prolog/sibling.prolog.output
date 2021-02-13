@@ -1,0 +1,142 @@
+'/*'          Comment.Multiline
+' Comments '  Comment.Multiline
+'/*'          Comment.Multiline
+' can nest '  Comment.Multiline
+'*/'          Comment.Multiline
+'\nstill a comment\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n\n'        Text
+
+':-'          Punctuation
+' '           Text
+'module'      Name.Function
+'('           Punctuation
+'maplist'     Literal.String.Atom
+','           Punctuation
+' '           Text
+'maplist'     Literal.String.Atom
+'/'           Operator
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'assert'      Name.Function
+'('           Punctuation
+'world'       Name.Namespace
+':'           Punctuation
+'done'        Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+' '           Text
+'% asserts'   Comment.Single
+'\n\n'        Text
+
+'sibling'     Name.Function
+'('           Punctuation
+'X'           Name.Variable
+','           Punctuation
+' '           Text
+'Y'           Name.Variable
+')'           Punctuation
+'      '      Text
+':-'          Punctuation
+' '           Text
+'parent_child' Name.Function
+'('           Punctuation
+'Z'           Name.Variable
+','           Punctuation
+' '           Text
+'X'           Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'parent_child' Name.Function
+'('           Punctuation
+'Z'           Name.Variable
+','           Punctuation
+' '           Text
+'Y'           Name.Variable
+')'           Punctuation
+'.'           Punctuation
+'\n\n'        Text
+
+'parent_child' Name.Function
+'('           Punctuation
+'X'           Name.Variable
+','           Punctuation
+' '           Text
+'Y'           Name.Variable
+')'           Punctuation
+' '           Text
+':-'          Punctuation
+' '           Text
+'father_child' Name.Function
+'('           Punctuation
+'X'           Name.Variable
+','           Punctuation
+' '           Text
+'Y'           Name.Variable
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'parent_child' Name.Function
+'('           Punctuation
+'X'           Name.Variable
+','           Punctuation
+' '           Text
+'Y'           Name.Variable
+')'           Punctuation
+' '           Text
+':-'          Punctuation
+' '           Text
+'mother_child' Name.Function
+'('           Punctuation
+'X'           Name.Variable
+','           Punctuation
+' '           Text
+'Y'           Name.Variable
+')'           Punctuation
+'.'           Punctuation
+'\n\n'        Text
+
+'mother_child' Name.Function
+'('           Punctuation
+'trude'       Literal.String.Atom
+','           Punctuation
+' '           Text
+'sally'       Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+'\n\n'        Text
+
+'father_child' Name.Function
+'('           Punctuation
+'tom'         Literal.String.Atom
+','           Punctuation
+' '           Text
+'sally'       Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'father_child' Name.Function
+'('           Punctuation
+'tom'         Literal.String.Atom
+','           Punctuation
+' '           Text
+'erica'       Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'father_child' Name.Function
+'('           Punctuation
+'mike'        Literal.String.Atom
+','           Punctuation
+' '           Text
+'tom'         Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text

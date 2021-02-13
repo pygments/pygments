@@ -1,0 +1,363 @@
+'package'     Keyword
+' '           Text
+'addressbook' Name.Namespace
+'\n\n'        Text
+
+'class'       Keyword.Declaration
+' '           Text
+'Contact'     Name.Class
+'('           Punctuation
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'name'        Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'emails'      Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'List'        Name
+'<'           Operator
+'EmailAddress' Name
+'>'           Operator
+','           Punctuation
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'addresses'   Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'List'        Name
+'<'           Operator
+'PostalAddress' Name
+'>'           Operator
+','           Punctuation
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'phonenums'   Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'List'        Name
+'<'           Operator
+'PhoneNumber' Name
+'>'           Operator
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword.Declaration
+' '           Text
+'EmailAddress' Name.Class
+'('           Punctuation
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'user'        Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'host'        Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Keyword.Type
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword.Declaration
+' '           Text
+'PostalAddress' Name.Class
+'('           Punctuation
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'streetAddress' Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'city'        Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'zip'         Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Keyword.Type
+','           Punctuation
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'state'       Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'USState?,'   Name
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'country'     Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'Country'     Name
+'\n'          Text
+
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n   '       Text
+'assert'      Name
+' '           Text
+'{'           Punctuation
+'('           Punctuation
+'state'       Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'null'        Keyword.Constant
+')'           Punctuation
+' '           Text
+'xor'         Name
+' '           Text
+'('           Punctuation
+'country'     Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'Countries'   Name
+'['           Operator
+'"'           Literal.String
+'US'          Literal.String
+'"'           Literal.String
+']'           Operator
+')'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword.Declaration
+' '           Text
+'PhoneNumber' Name.Class
+'('           Punctuation
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'country'     Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'Country'     Name
+','           Punctuation
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'areaCode'    Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'Int'         Keyword.Type
+','           Punctuation
+'\n  '        Text
+'val'         Keyword.Declaration
+' '           Text
+'number'      Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'Long'        Keyword.Type
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'object'      Keyword.Declaration
+' '           Text
+'Countries'   Name.Class
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'fun'         Keyword.Declaration
+' '           Text
+'get'         Name.Function
+'('           Punctuation
+'id'          Name
+' '           Text
+':'           Punctuation
+' '           Text
+'CountryID'   Name
+')'           Punctuation
+' '           Text
+':'           Punctuation
+' '           Text
+'Country'     Name
+' '           Text
+'='           Operator
+' '           Text
+'countryTable' Name
+'['           Operator
+'id'          Name
+']'           Operator
+'\n  \n  '    Text
+'private'     Keyword.Declaration
+' '           Text
+'var'         Keyword.Declaration
+' '           Text
+'table'       Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'Map'         Name
+'<'           Operator
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'Country'     Name
+'>'           Operator
+'?'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword.Constant
+'\n  '        Text
+'private'     Keyword.Declaration
+' '           Text
+'val'         Keyword.Declaration
+' '           Text
+'countryTable' Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'Map'         Name
+'<'           Operator
+'String'      Keyword.Type
+','           Punctuation
+' '           Text
+'Country'     Name
+'>'           Operator
+'\n    '      Text
+'get'         Keyword
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'table'       Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'null'        Keyword.Constant
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'table'       Name
+' '           Text
+'='           Operator
+' '           Text
+'HashMap'     Name
+'('           Punctuation
+')'           Punctuation
+'\n        '  Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'line'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'TextFile'    Name
+'('           Punctuation
+'"'           Literal.String
+'countries.txt' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'.'           Punctuation
+'lines'       Name.Attribute
+'('           Punctuation
+'stripWhiteSpace' Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n          ' Text
+'table'       Name
+'['           Operator
+'line'        Name
+']'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'Country'     Name
+'('           Punctuation
+'line'        Name
+')'           Punctuation
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text
+'}'           Punctuation
+'\n      '    Text
+'return'      Keyword
+' '           Text
+'table'       Name
+'\n    '      Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword.Declaration
+' '           Text
+'Country'     Name.Class
+'('           Punctuation
+'val'         Keyword.Declaration
+' '           Text
+'name'        Name.Variable
+' '           Text
+':'           Punctuation
+' '           Text
+'String'      Keyword.Type
+')'           Punctuation
+'\n'          Text

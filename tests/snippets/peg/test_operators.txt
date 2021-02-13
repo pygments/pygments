@@ -1,0 +1,29 @@
+# see for example:
+# - https://github.com/gvanrossum/pegen
+# - https://nim-lang.org/docs/pegs.html
+
+---input---
+rule = 'a' | 'b'
+rule: 'a' ~ 'b'
+
+---tokens---
+'rule'        Name.Class
+' '           Text
+'='           Operator
+' '           Text
+"'a'"         Literal.String.Single
+' '           Text
+'|'           Operator
+' '           Text
+"'b'"         Literal.String.Single
+'\n'          Text
+
+'rule'        Name.Class
+':'           Operator
+' '           Text
+"'a'"         Literal.String.Single
+' '           Text
+'~'           Operator
+' '           Text
+"'b'"         Literal.String.Single
+'\n'          Text

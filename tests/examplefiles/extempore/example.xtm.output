@@ -1,0 +1,7375 @@
+';;; example.xtm -- Extempore code examples ' Comment.Single
+'\n\n'        Text
+
+';; Author: Ben Swift, Andrew Sorensen' Comment.Single
+'\n'          Text
+
+';; Keywords: extempore' Comment.Single
+'\n\n'        Text
+
+';;; Commentary:' Comment.Single
+'\n\n\n\n'    Text
+
+';;; Code:'   Comment.Single
+'\n\n'        Text
+
+';; bit twiddling' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_bit_twiddle_1' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'bitwise-and' Name.Variable
+' '           Text
+'65535'       Literal.Number.Integer
+' '           Text
+'255'         Literal.Number.Integer
+' '           Text
+'15'          Literal.Number.Integer
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_bit_twiddle_1' Name.Variable
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_bit_twiddle_2' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'bitwise-not' Name.Variable
+' '           Text
+'-1'          Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_bit_twiddle_2' Name.Variable
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_bit_twiddle_3' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'bitwise-not' Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_bit_twiddle_3' Name.Variable
+')'           Punctuation
+' '           Text
+'-1'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_bit_twiddle_4' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'bitwise-shift-right' Name.Variable
+' '           Text
+'65535'       Literal.Number.Integer
+' '           Text
+'8'           Literal.Number.Integer
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'bitwise-shift-right' Name.Variable
+' '           Text
+'65535'       Literal.Number.Integer
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_bit_twiddle_4' Name.Variable
+')'           Punctuation
+' '           Text
+'255'         Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_bit_twiddle_5' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'bitwise-shift-left' Name.Variable
+' '           Text
+'('           Punctuation
+'bitwise-shift-right' Name.Variable
+' '           Text
+'65535'       Literal.Number.Integer
+' '           Text
+'8'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_bit_twiddle_5' Name.Variable
+')'           Punctuation
+' '           Text
+'65280'       Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_bit_twiddle_6' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'bitwise-and' Name.Variable
+' '           Text
+'('           Punctuation
+'bitwise-or'  Name.Variable
+' '           Text
+'('           Punctuation
+'bitwise-eor' Name.Variable
+' '           Text
+'21844'       Literal.Number.Integer
+' '           Text
+'65534'       Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'bitwise-eor' Name.Variable
+' '           Text
+'43690'       Literal.Number.Integer
+' '           Text
+'65534'       Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_bit_twiddle_6' Name.Variable
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+';; integer literals default to 64 bit integers' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'int-literal-test' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'int-literal-test' Name.Variable
+' '           Text
+'6'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'30'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+';; float literals default to doubles' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'float-literal-test' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'5.0'         Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'float-literal-test' Name.Variable
+' '           Text
+'6.0'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'30.0'        Literal.Number.Float
+')'           Punctuation
+'\n\n'        Text
+
+';; you are free to recompile an existing closure' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'int-literal-test' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'/'           Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'int-literal-test' Name.Variable
+' '           Text
+'30'          Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'closure-test1' Name.Function
+'\n            ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'power'       Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'set!'        Keyword
+' '           Text
+'power'       Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'power'       Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+';; set! for closure mutation as per scheme' Comment.Single
+'\n                ' Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'power'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'closure-test1' Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'closure-returns-closure-test' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'closure-returns-closure-test' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'incrementer-test1' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+':i64'        Keyword.Type
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'incr'        Name.Variable
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'set!'        Keyword
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'i'           Name.Variable
+' '           Text
+'incr'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'incrementer-test1' Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'myf'         Name.Variable
+' '           Text
+'('           Punctuation
+'incrementer-test1' Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';; so we need to type f properly' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'incrementer-test2' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'f'           Name.Variable
+':[i64,i64]*' Keyword.Type
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'f'           Name.Variable
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'incrementer-test2' Name.Variable
+' '           Text
+'myf'         Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+';; and we can call my-in-maker-wrapper' Comment.Single
+'\n'          Text
+
+';; to appy myf' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest-result' Name.Variable
+' '           Text
+'('           Punctuation
+'incrementer-test2' Name.Variable
+' '           Text
+'myf'         Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'xtmtest-result' Name.Variable
+' '           Text
+'('           Punctuation
+'incrementer-test2' Name.Variable
+' '           Text
+'myf'         Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'xtmtest-result' Name.Variable
+' '           Text
+'('           Punctuation
+'incrementer-test2' Name.Variable
+' '           Text
+'myf'         Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+';; of course the wrapper is only required if you' Comment.Single
+'\n'          Text
+
+';; need interaction with the scheme world.' Comment.Single
+'\n'          Text
+
+';; otherwise you just call my-inc-maker directly' Comment.Single
+'\n\n'        Text
+
+';; this avoids the wrapper completely' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'incrementer-test3' Name.Function
+'\n            ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'f'           Name.Variable
+' '           Text
+'('           Punctuation
+'incrementer-test1' Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'f'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'incrementer-test3' Name.Variable
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest-result' Name.Variable
+' '           Text
+'('           Punctuation
+'incrementer-test3' Name.Variable
+')'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'xtmtest-result' Name.Variable
+' '           Text
+'('           Punctuation
+'incrementer-test3' Name.Variable
+')'           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+";; hopefully you're getting the idea." Comment.Single
+'\n'          Text
+
+";; note that once we've compiled something" Comment.Single
+'\n'          Text
+
+';; we can then use it any of our new' Comment.Single
+'\n'          Text
+
+';; function definitions.' Comment.Single
+'\n\n'        Text
+
+';; do a little 16bit test' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'bitsize-sixteen' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+':i16'        Keyword.Type
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'dtoi16'      Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'('           Punctuation
+'i16tod'      Name.Variable
+' '           Text
+'a'           Name.Variable
+')'           Punctuation
+' '           Text
+'5.0'         Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'bitsize-sixteen' Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'25'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+';; while loop test' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_while_loop_1' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'count'       Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'while'       Name.Variable
+' '           Text
+'('           Punctuation
+'<'           Name.Function
+' '           Text
+'count'       Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"count = %lld\\n"' Literal.String
+' '           Text
+'count'       Name.Variable
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'set!'        Keyword
+' '           Text
+'count'       Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'count'       Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'count'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_while_loop_1' Name.Variable
+')'           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; Closures can be recursive' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'recursive-closure-test' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'<'           Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"done\\n"'   Literal.String
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'begin'       Keyword
+' '           Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"a: %lld\\n"' Literal.String
+' '           Text
+'a'           Name.Variable
+')'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'recursive-closure-test' Name.Variable
+' '           Text
+'('           Punctuation
+'-'           Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'recursive-closure-test' Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';; check TAIL OPTIMIZATION' Comment.Single
+'\n'          Text
+
+';; if there is no tail call optimiation' Comment.Single
+'\n'          Text
+
+';; in place then this should blow the' Comment.Single
+'\n'          Text
+
+';; stack and crash the test' Comment.Single
+'\n\n'        Text
+
+';; CANNOT RUN THIS TEST ON WINDOWS (i.e. no salloc)!' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'not'         Name.Function
+' '           Text
+'('           Punctuation
+'equal?'      Name.Function
+' '           Text
+'('           Punctuation
+'sys:platform' Name.Variable
+')'           Punctuation
+' '           Text
+'"Windows"'   Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'tail_opt_test' Name.Function
+'\n                ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'n'           Name.Variable
+':i64'        Keyword.Type
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'a'           Name.Variable
+':float*'     Keyword.Type
+' '           Text
+'('           Punctuation
+'salloc'      Name.Function
+' '           Text
+'8000'        Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'n'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n                        ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"tail opt test passed!\\n"' Literal.String
+')'           Punctuation
+'\n                        ' Text
+'('           Punctuation
+'tail_opt_test' Name.Variable
+' '           Text
+'('           Punctuation
+'-'           Name.Function
+' '           Text
+'n'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n             ' Text
+'('           Punctuation
+'tail_opt_test' Name.Variable
+' '           Text
+'200'         Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    \n'    Text
+
+'('           Punctuation
+'println'     Name.Function
+' '           Text
+"'A"          Literal.String.Symbol
+' '           Text
+"'segfault"   Literal.String.Symbol
+' '           Text
+"'here"       Literal.String.Symbol
+' '           Text
+"'incidates"  Literal.String.Symbol
+' '           Text
+"'that"       Literal.String.Symbol
+' '           Text
+"'tail-call-optimizations" Literal.String.Symbol
+' '           Text
+"'are"        Literal.String.Symbol
+' '           Text
+"'not"        Literal.String.Symbol
+' '           Text
+"'working!"   Literal.String.Symbol
+')'           Punctuation
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; some anon lambda tests' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'infer_lambdas_test' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'a'           Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'b'           Name.Variable
+' '           Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'c'           Name.Variable
+' '           Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'y'           Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'y'           Name.Variable
+' '           Text
+'y'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'          \n                ' Text
+'('           Punctuation
+'c'           Name.Variable
+' '           Text
+'('           Punctuation
+'b'           Name.Variable
+' '           Text
+'a'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'infer_lambdas_test' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n\n'      Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';; a simple tuple example' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; tuple types are represented as <type,type,type>*' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n\n'        Text
+
+';; make and return a simple tuple' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'tuple-test1' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'t'           Name.Variable
+':<i64,double,i32>*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'t'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'tuple-test1' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';; logview shows [<i64,double,i32>*]*' Comment.Single
+'\n'          Text
+
+';; i.e. a closure that takes no arguments' Comment.Single
+'\n'          Text
+
+';; and returns the tuple <i64,double,i32>*' Comment.Single
+'\n\n\n'      Text
+
+";; here's another tuple example" Comment.Single
+'\n'          Text
+
+";; note that my-test-7's return type is inferred" Comment.Single
+'\n'          Text
+
+';; by the tuple-reference index' Comment.Single
+'\n'          Text
+
+';; (i.e. i64 being tuple index 0)' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'tuple-test2' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'a'           Name.Variable
+':<i64,double>*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'; returns pointer to type <i64,double>' Comment.Single
+'\n                    ' Text
+'('           Punctuation
+'b'           Name.Variable
+' '           Text
+'37'          Literal.Number.Integer
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'c'           Name.Variable
+' '           Text
+'6.4'         Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'tuple-set!'  Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'b'           Name.Variable
+')'           Punctuation
+' '           Text
+';; set i64 to 64' Comment.Single
+'\n                ' Text
+'('           Punctuation
+'tset!'       Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'c'           Name.Variable
+')'           Punctuation
+' '           Text
+';; set double to 6.4 - tset! is an alias for tuple-set!' Comment.Single
+'\n                ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"tuple:1 %lld::%f\\n"' Literal.String
+' '           Text
+'('           Punctuation
+'tuple-ref'   Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'tref'        Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+';; we can fill a tuple in a single call by using tfill!' Comment.Single
+'\n                ' Text
+'('           Punctuation
+'tfill!'      Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'77'          Literal.Number.Integer
+' '           Text
+'77.7'        Literal.Number.Float
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"tuple:2 %lld::%f\\n"' Literal.String
+' '           Text
+'('           Punctuation
+'tuple-ref'   Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'tuple-ref'   Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'tuple-ref'   Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'tuple-test2' Name.Variable
+')'           Punctuation
+' '           Text
+'77'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+';; return first element which is i64' Comment.Single
+'\n'          Text
+
+';; should be 64 as we return the' Comment.Single
+'\n'          Text
+
+';; first element of the tuple' Comment.Single
+'\n'          Text
+
+';; (println (my-test-7)) ; 77' Comment.Single
+'\n\n\n'      Text
+
+';; tbind binds variables to values' Comment.Single
+'\n'          Text
+
+';; based on tuple structure' Comment.Single
+'\n'          Text
+
+";; _ (underscore) means don't attempt" Comment.Single
+'\n'          Text
+
+';; to match against this position in' Comment.Single
+'\n'          Text
+
+';; the tuple (i.e. skip)' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'tuple-bind-test' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'t1'          Name.Variable
+':<i32,float,<i32,float>*,double>*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'t2'          Name.Variable
+':<i32,float>*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'a'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'b'           Name.Variable
+':float'      Keyword.Type
+' '           Text
+'0.0'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'c'           Name.Variable
+' '           Text
+'0.0'         Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'tfill!'      Name.Function
+' '           Text
+'t2'          Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'3.3'         Literal.Number.Float
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'tfill!'      Name.Function
+' '           Text
+'t1'          Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'2.0'         Literal.Number.Float
+' '           Text
+'t2'          Name.Variable
+' '           Text
+'4.0'         Literal.Number.Float
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'tbind'       Name.Function
+' '           Text
+'t1'          Name.Variable
+' '           Text
+'a'           Name.Variable
+' '           Text
+'b'           Name.Variable
+' '           Text
+'_'           Name.Variable
+' '           Text
+'c'           Name.Variable
+')'           Punctuation
+'\n                ' Text
+'c'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'tuple-bind-test' Name.Variable
+')'           Punctuation
+' '           Text
+'4.0'         Literal.Number.Float
+')'           Punctuation
+'\n\n\n'      Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';; some array code with *casting*' Comment.Single
+'\n'          Text
+
+';; this function returns void' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'array-test1' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'v1'          Name.Variable
+':|5,float|*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'v2'          Name.Variable
+':|5,float|*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'k'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n                  ' Text
+';; random returns double so "truncate" to float' Comment.Single
+'\n                  ' Text
+';; which is what v expects' Comment.Single
+'\n                  ' Text
+'('           Punctuation
+'array-set!'  Name.Function
+' '           Text
+'v1'          Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'dtof'        Name.Function
+' '           Text
+'('           Punctuation
+'random'      Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+';; we can use the afill! function to fill an array' Comment.Single
+'\n                ' Text
+'('           Punctuation
+'afill!'      Name.Function
+' '           Text
+'v2'          Name.Variable
+' '           Text
+'1.1'         Literal.Number.Float
+' '           Text
+'2.2'         Literal.Number.Float
+' '           Text
+'3.3'         Literal.Number.Float
+' '           Text
+'4.4'         Literal.Number.Float
+' '           Text
+'5.5'         Literal.Number.Float
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'k'           Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n                  ' Text
+";; unfortunately printf doesn't like floats" Comment.Single
+'\n                  ' Text
+';; so back to double for us :(' Comment.Single
+'\n                  ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"val: %lld::%f::%f\\n"' Literal.String
+' '           Text
+'k'           Name.Variable
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'array-ref'   Name.Function
+' '           Text
+'v1'          Name.Variable
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'v2'          Name.Variable
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'array-test1' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';; some crazy array code with' Comment.Single
+'\n'          Text
+
+';; closures and arrays' Comment.Single
+'\n'          Text
+
+';; try to figure out what this all does' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; this example uses the array type' Comment.Single
+'\n'          Text
+
+';; the pretty print for this type is' Comment.Single
+'\n'          Text
+
+';; |num,type| num elements of type' Comment.Single
+'\n'          Text
+
+';; |5,i64| is an array of 5 x i64' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; An array is not a pointer type' Comment.Single
+'\n'          Text
+
+';; i.e. |5,i64| cannot be bitcast to i64*' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; However an array can be a pointer' Comment.Single
+'\n'          Text
+
+';; i.e. |5,i64|* can be bitcast to i64*' Comment.Single
+'\n'          Text
+
+';; i.e. |5,i64|** to i64** etc..' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; make-array returns a pointer to an array' Comment.Single
+'\n'          Text
+
+';; i.e. (make-array 5 i64) returns type |5,i64|*' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; aref (array-ref) and aset! (array-set!)' Comment.Single
+'\n'          Text
+
+';; can operate with either pointers to arrays or' Comment.Single
+'\n'          Text
+
+';; standard pointers.' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; in other words aref and aset! are happy' Comment.Single
+'\n'          Text
+
+';; to work with either i64* or |5,i64|*' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'array-test2' Name.Function
+'\n   '       Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'v'           Name.Variable
+':|5,i64|*'   Keyword.Type
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'f'           Name.Variable
+' '           Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+'\n\t\t  '    Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'('           Punctuation
+'array-ref'   Name.Function
+' '           Text
+'v'           Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'f'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'array-test3' Name.Function
+'\n  '        Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'v'           Name.Variable
+':|5,[i64,i64]*|*' Keyword.Type
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'ff'          Name.Variable
+' '           Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'v'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'; aref alias for array-ref' Comment.Single
+'\n      '    Text
+'('           Punctuation
+'ff'          Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'array-test4' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'v'           Name.Variable
+':|5,[i64,i64]*|*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+' '           Text
+';; make an array of closures!' Comment.Single
+'\n                    ' Text
+'('           Punctuation
+'vv'          Name.Variable
+':|5,i64|*'   Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'array-set!'  Name.Function
+' '           Text
+'vv'          Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'v'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'array'       Name.Function
+'-test2'      Name.Variable
+' '           Text
+'vv'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+';; aset! alias for array-set!' Comment.Single
+'\n                ' Text
+'('           Punctuation
+'array'       Name.Function
+'-test3'      Name.Variable
+' '           Text
+'v'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+';; try to guess the answer before you call this!!' Comment.Single
+'\n         ' Text
+'('           Punctuation
+'array-test4' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';; some conditionals' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'cond-test1'  Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+':i64'        Keyword.Type
+' '           Text
+'y'           Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'>'           Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'y'           Name.Variable
+')'           Punctuation
+'\n                  ' Text
+'x'           Name.Variable
+'\n                  ' Text
+'y'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'cond'        Keyword
+'-test1'      Name.Variable
+' '           Text
+'12'          Literal.Number.Integer
+' '           Text
+'13'          Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';; returns boolean true' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'cond-test2'  Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+':i64'        Keyword.Type
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'cond'        Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"A\\n"'      Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"B\\n"'      Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"C\\n"'      Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"D\\n"'      Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'else'        Keyword
+' '           Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"E\\n"'      Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'#t'          Name.Constant
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'cond'        Keyword
+'-test2'      Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';; making a linear envelop generator' Comment.Single
+'\n'          Text
+
+';; for signal processing and alike' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'envelope-segments' Name.Function
+'\n  '        Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'points'      Name.Variable
+':double*'    Keyword.Type
+' '           Text
+'num-of-points' Name.Variable
+':i64'        Keyword.Type
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'lines'       Name.Variable
+':[double,double]**' Keyword.Type
+' '           Text
+'('           Punctuation
+'zone-alloc'  Name.Function
+' '           Text
+'num-of-points' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\t  '      Text
+'('           Punctuation
+'k'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'k'           Name.Variable
+' '           Text
+'num-of-points' Name.Variable
+')'           Punctuation
+'\n\t'        Text
+'('           Punctuation
+'let*'        Keyword.Type
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'idx'         Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'k'           Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\t       ' Text
+'('           Punctuation
+'x1'          Name.Variable
+' '           Text
+'('           Punctuation
+'pointer-ref' Name.Function
+' '           Text
+'points'      Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'idx'         Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t       ' Text
+'('           Punctuation
+'y1'          Name.Variable
+' '           Text
+'('           Punctuation
+'pointer-ref' Name.Function
+' '           Text
+'points'      Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'idx'         Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t       ' Text
+'('           Punctuation
+'x2'          Name.Variable
+' '           Text
+'('           Punctuation
+'pointer-ref' Name.Function
+' '           Text
+'points'      Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'idx'         Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t       ' Text
+'('           Punctuation
+'y2'          Name.Variable
+' '           Text
+'('           Punctuation
+'pointer-ref' Name.Function
+' '           Text
+'points'      Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'idx'         Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t       ' Text
+'('           Punctuation
+'m'           Name.Variable
+' '           Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'0.0'         Literal.Number.Float
+' '           Text
+'('           Punctuation
+'-'           Name.Function
+' '           Text
+'x2'          Name.Variable
+' '           Text
+'x1'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'0.0'         Literal.Number.Float
+' '           Text
+'('           Punctuation
+'/'           Name.Function
+' '           Text
+'('           Punctuation
+'-'           Name.Function
+' '           Text
+'y2'          Name.Variable
+' '           Text
+'y1'          Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'-'           Name.Function
+' '           Text
+'x2'          Name.Variable
+' '           Text
+'x1'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t       ' Text
+'('           Punctuation
+'c'           Name.Variable
+' '           Text
+'('           Punctuation
+'-'           Name.Function
+' '           Text
+'y2'          Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'m'           Name.Variable
+' '           Text
+'x2'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t       ' Text
+'('           Punctuation
+'l'           Name.Variable
+' '           Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'time'        Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'m'           Name.Variable
+' '           Text
+'time'        Name.Variable
+')'           Punctuation
+' '           Text
+'c'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t  '      Text
+'('           Punctuation
+'pointer-set!' Name.Function
+' '           Text
+'lines'       Name.Variable
+' '           Text
+'k'           Name.Variable
+' '           Text
+'l'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'lines'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'make-envelope' Name.Function
+'\n   '       Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'points'      Name.Variable
+':double*'    Keyword.Type
+' '           Text
+'num-of-points' Name.Variable
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'klines'      Name.Variable
+':[double,double]**' Keyword.Type
+' '           Text
+'('           Punctuation
+'envelope-segments' Name.Variable
+' '           Text
+'points'      Name.Variable
+' '           Text
+'num-of-points' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\t    '    Text
+'('           Punctuation
+'line-length' Name.Variable
+' '           Text
+'num-of-points' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\t '       Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'time'        Name.Variable
+')'           Punctuation
+'\n\t    '    Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'res'         Name.Variable
+' '           Text
+'-1.0'        Literal.Number.Float
+')'           Punctuation
+'\n\t\t  '    Text
+'('           Punctuation
+'k'           Name.Variable
+':i64'        Keyword.Type
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\t       ' Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'k'           Name.Variable
+' '           Text
+'num-of-points' Name.Variable
+')'           Punctuation
+'\n\t\t  '    Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'line'        Name.Variable
+' '           Text
+'('           Punctuation
+'pointer-ref' Name.Function
+' '           Text
+'klines'      Name.Variable
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\t\t\t'    Text
+'('           Punctuation
+'time-point'  Name.Variable
+' '           Text
+'('           Punctuation
+'pointer-ref' Name.Function
+' '           Text
+'points'      Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'k'           Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t\t     ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'or'          Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'time'        Name.Variable
+' '           Text
+'time-point'  Name.Variable
+')'           Punctuation
+'\n\t\t\t     ' Text
+'('           Punctuation
+'<'           Name.Function
+' '           Text
+'time-point'  Name.Variable
+' '           Text
+'time'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\t\t\t '   Text
+'('           Punctuation
+'set!'        Keyword
+' '           Text
+'res'         Name.Variable
+' '           Text
+'('           Punctuation
+'line'        Name.Variable
+' '           Text
+'time'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t       ' Text
+'res'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';; make a convenience wrapper' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'env-wrap'    Name.Function
+'\n            ' Text
+'('           Punctuation
+'let*'        Keyword.Type
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'points'      Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n                   ' Text
+'('           Punctuation
+'data'        Name.Variable
+':double*'    Keyword.Type
+' '           Text
+'('           Punctuation
+'zone-alloc'  Name.Function
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'points'      Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'pointer-set!' Name.Function
+' '           Text
+'data'        Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'0.0'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+';; point data' Comment.Single
+'\n              ' Text
+'('           Punctuation
+'pset!'       Name.Function
+' '           Text
+'data'        Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'0.0'         Literal.Number.Float
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'pset!'       Name.Function
+' '           Text
+'data'        Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'2.0'         Literal.Number.Float
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'pset!'       Name.Function
+' '           Text
+'data'        Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'1.0'         Literal.Number.Float
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'pset!'       Name.Function
+' '           Text
+'data'        Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'4.0'         Literal.Number.Float
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'pset!'       Name.Function
+' '           Text
+'data'        Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+'0.0'         Literal.Number.Float
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'f'           Name.Variable
+' '           Text
+'('           Punctuation
+'make-env'    Name.Function
+'elope'       Name.Variable
+' '           Text
+'data'        Name.Variable
+' '           Text
+'points'      Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'time'        Name.Variable
+':double'     Keyword.Type
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'f'           Name.Variable
+' '           Text
+'time'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'env-wrap'    Name.Variable
+' '           Text
+'0.0'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'0.0'         Literal.Number.Float
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest-result' Name.Variable
+' '           Text
+'('           Punctuation
+'env-wrap'    Name.Variable
+' '           Text
+'1.0'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'0.5'         Literal.Number.Float
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'xtmtest-result' Name.Variable
+' '           Text
+'('           Punctuation
+'env-wrap'    Name.Variable
+' '           Text
+'2.0'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'1.0'         Literal.Number.Float
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'xtmtest-result' Name.Variable
+' '           Text
+'('           Punctuation
+'env-wrap'    Name.Variable
+' '           Text
+'2.5'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'0.75'        Literal.Number.Float
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'xtmtest-result' Name.Variable
+' '           Text
+'('           Punctuation
+'env-wrap'    Name.Variable
+' '           Text
+'4.0'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'0.0'         Literal.Number.Float
+')'           Punctuation
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; direct access to a closures environment' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; it is possible to directly access a closures' Comment.Single
+'\n'          Text
+
+';; environment in order to read or modify data' Comment.Single
+'\n'          Text
+
+';; at runtime.' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; You do this using a dot operator' Comment.Single
+'\n'          Text
+
+';; To access an environment slot you use' Comment.Single
+'\n'          Text
+
+';; closure.slot:type' Comment.Single
+'\n'          Text
+
+';; So for example' Comment.Single
+'\n'          Text
+
+';; (f.a:i32)' Comment.Single
+'\n'          Text
+
+";; would return the 32bit integer symbol 'a'" Comment.Single
+'\n'          Text
+
+";; from the closure 'f'" Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; To set an environment slot you just' Comment.Single
+'\n'          Text
+
+';; add a value of the correct type' Comment.Single
+'\n'          Text
+
+';; for example' Comment.Single
+'\n'          Text
+
+';; (f.a:i32 565)' Comment.Single
+'\n'          Text
+
+";; would set 'a' in 'f' to 565" Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+";; let's create a closure that capture's 'a'" Comment.Single
+'\n\n\n'      Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'dot-access-test1' Name.Function
+'\n            ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'a'           Name.Variable
+':i32'        Keyword.Type
+' '           Text
+'6'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"a:%d\\n"'   Literal.String
+' '           Text
+'a'           Name.Variable
+')'           Punctuation
+'\n                ' Text
+'a'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'do'          Keyword
+'t-access-test1' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+";; now let's create a new function" Comment.Single
+'\n'          Text
+
+';; that calls my-test14 twice' Comment.Single
+'\n'          Text
+
+';; once normally' Comment.Single
+'\n'          Text
+
+";; then we directly set the closures 'a' binding" Comment.Single
+'\n'          Text
+
+';; then call again' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'dot-access-test2' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+':i32'        Keyword.Type
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'dot-access-test1' Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'dot-access-test1.a' Name.Variable
+':i32'        Keyword.Type
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'dot-access-test1' Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'do'          Keyword
+'t-access-test2' Name.Variable
+' '           Text
+'9'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';; of course this works just as well for' Comment.Single
+'\n'          Text
+
+';; non-global closures' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'dot-access-test3' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+':i32'        Keyword.Type
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'f'           Name.Variable
+' '           Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'a'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'f'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'do'          Keyword
+'t-access-test3' Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'dot-access-test4' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'f'           Name.Variable
+' '           Text
+'('           Punctuation
+'dot-access-test3' Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'f.a'         Name.Variable
+':i32'        Keyword.Type
+' '           Text
+'7'           Literal.Number.Integer
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'f'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'do'          Keyword
+'t-access-test4' Name.Variable
+')'           Punctuation
+'\n         ' Text
+'21'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+';; and you can get and set closures also!' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'dot-access-test5' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'f'           Name.Variable
+' '           Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+':i64'        Keyword.Type
+')'           Punctuation
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'z'           Name.Variable
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'f'           Name.Variable
+' '           Text
+'z'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'do'          Keyword
+'t-access-test5' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'dot-access-test6' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'t1'          Name.Variable
+' '           Text
+'('           Punctuation
+'dot-access-test5' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'t2'          Name.Variable
+' '           Text
+'('           Punctuation
+'dot-access-test5' Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+';; identity of 5' Comment.Single
+'\n                ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"%lld:%lld\\n"' Literal.String
+' '           Text
+'('           Punctuation
+'t1'          Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'t2'          Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'t1.f'        Name.Variable
+':[i64,i64]*' Keyword.Type
+' '           Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+':i64'        Keyword.Type
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+';; square of 5' Comment.Single
+'\n                ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"%lld:%lld\\n"' Literal.String
+' '           Text
+'('           Punctuation
+'t1'          Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'t2'          Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+';; cube of 5' Comment.Single
+'\n                ' Text
+'('           Punctuation
+'t2.f'        Name.Variable
+':[i64,i64]*' Keyword.Type
+' '           Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'y'           Name.Variable
+':i64'        Keyword.Type
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'y'           Name.Variable
+' '           Text
+'y'           Name.Variable
+' '           Text
+'y'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"%lld:%lld\\n"' Literal.String
+' '           Text
+'('           Punctuation
+'t1'          Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'t2'          Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'void'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'do'          Keyword
+'t-access-test6' Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+';; 5:5 > 25:5 > 25:125' Comment.Single
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; named types' Comment.Single
+'\n\n'        Text
+
+';; it can sometimes be helpful to allocate' Comment.Single
+'\n'          Text
+
+';; a predefined tuple type on the stack' Comment.Single
+'\n'          Text
+
+';; you can do this using allocate' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'bind-type'   Keyword
+' '           Text
+'vec3'        Name.Function
+' '           Text
+'<double,double,double>' Keyword.Type
+')'           Punctuation
+'\n\n'        Text
+
+';; String printing!' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'vec3_print'  Name.Function
+':[void,vec3*]*' Keyword.Type
+'\n  '        Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"<%d,%d,%d>"' Literal.String
+' '           Text
+'('           Punctuation
+'tref'        Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'tref'        Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'tref'        Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'void'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'bind-poly'   Keyword
+' '           Text
+'print'       Name.Function
+' '           Text
+'vec3_print'  Name.Variable
+')'           Punctuation
+'\n\n'        Text
+
+';; note that point is deallocated at the' Comment.Single
+'\n'          Text
+
+';; end of the function call.  You can' Comment.Single
+'\n'          Text
+
+';; stack allocate (stack-alloc)' Comment.Single
+'\n'          Text
+
+';; any valid type  (i64 for example)' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'salloc-test' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'point'       Name.Variable
+':vec3*'      Keyword.Type
+' '           Text
+'('           Punctuation
+'stack-alloc' Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'tset!'       Name.Function
+' '           Text
+'point'       Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'0.0'         Literal.Number.Float
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'tset!'       Name.Function
+' '           Text
+'point'       Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'-1.0'        Literal.Number.Float
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'tset!'       Name.Function
+' '           Text
+'point'       Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'1.0'         Literal.Number.Float
+')'           Punctuation
+'\n                ' Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'salloc-test' Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+';; 1'        Comment.Single
+'\n\n'        Text
+
+';; all named types have 2 default constructors' Comment.Single
+'\n'          Text
+
+';; name (zone alloation) + name_h (heap allocation)' Comment.Single
+'\n'          Text
+
+';; and a default print poly' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'data-constructor-test' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'v1'          Name.Variable
+' '           Text
+'('           Punctuation
+'vec3'        Name.Variable
+' '           Text
+'1.0'         Literal.Number.Float
+' '           Text
+'2.0'         Literal.Number.Float
+' '           Text
+'3.0'         Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'v2'          Name.Variable
+' '           Text
+'('           Punctuation
+'vec3_h'      Name.Variable
+' '           Text
+'4.0'         Literal.Number.Float
+' '           Text
+'5.0'         Literal.Number.Float
+' '           Text
+'6.0'         Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'println'     Name.Function
+' '           Text
+'v1'          Name.Variable
+' '           Text
+'v2'          Name.Variable
+')'           Punctuation
+'\n                ' Text
+';; halloced vec3 needs freeing' Comment.Single
+'\n                ' Text
+'('           Punctuation
+'free'        Name.Function
+' '           Text
+'v2'          Name.Variable
+')'           Punctuation
+'\n                ' Text
+'void'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'data-constructor-test' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; aref-ptr and tref-ptr' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n\n'        Text
+
+';; aref-ptr and tref-ptr return a pointer to an element' Comment.Single
+'\n'          Text
+
+';; just as aref and tref return elements aref-ptr and' Comment.Single
+'\n'          Text
+
+';; tref-ptr return a pointer to those elements.' Comment.Single
+'\n\n'        Text
+
+';; This allows you to do things like create an array' Comment.Single
+'\n'          Text
+
+';; with an offset' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'aref-ptr-test' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'arr'         Name.Variable
+':|32,i64|*'  Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'arroff'      Name.Variable
+' '           Text
+'('           Punctuation
+'aref-ptr'    Name.Function
+' '           Text
+'arr'         Name.Variable
+' '           Text
+'16'          Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'k'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+';; load arr' Comment.Single
+'\n                ' Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'32'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'arr'         Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'k'           Name.Variable
+' '           Text
+'16'          Literal.Number.Integer
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"index: %lld\\tarr: %lld\\tarroff: %lld\\n"' Literal.String
+'\n                          ' Text
+'k'           Name.Variable
+' '           Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'arr'         Name.Variable
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'pref'        Name.Function
+' '           Text
+'arroff'      Name.Variable
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'aref-ptr-test' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; arrays'   Comment.Single
+'\n'          Text
+
+';; Extempore lang supports arrays as for first class' Comment.Single
+'\n'          Text
+
+';; aggregate types (in other words as distinct from' Comment.Single
+'\n'          Text
+
+';; a pointer).' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; an array is made up of a size and a type' Comment.Single
+'\n'          Text
+
+';; |32,i64| is an array of 32 elements of type i64' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'bind-type'   Keyword
+' '           Text
+'tuple-with-array' Name.Function
+' '           Text
+'<double,|32,|4,i32||,float>' Keyword.Type
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'array-test5' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'tup'         Name.Variable
+':tuple-with-array*' Keyword.Type
+' '           Text
+'('           Punctuation
+'stack-alloc' Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'t2'          Name.Variable
+':|32,i64|*'  Keyword.Type
+' '           Text
+'('           Punctuation
+'stack-alloc' Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'t2'          Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'9'           Literal.Number.Integer
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'tset!'       Name.Function
+' '           Text
+'tup'         Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'5.5'         Literal.Number.Float
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'('           Punctuation
+'aref-ptr'    Name.Function
+' '           Text
+'('           Punctuation
+'tref-ptr'    Name.Function
+' '           Text
+'tup'         Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'('           Punctuation
+'aref-ptr'    Name.Function
+' '           Text
+'('           Punctuation
+'tref-ptr'    Name.Function
+' '           Text
+'tup'         Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'('           Punctuation
+'aref-ptr'    Name.Function
+' '           Text
+'('           Punctuation
+'tref-ptr'    Name.Function
+' '           Text
+'tup'         Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"val: %lld %lld %f\\n"' Literal.String
+'\n                        ' Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'('           Punctuation
+'aref-ptr'    Name.Function
+' '           Text
+'('           Punctuation
+'tref-ptr'    Name.Function
+' '           Text
+'tup'         Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n                        ' Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'t2'          Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'tref'        Name.Function
+' '           Text
+'tup'         Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'('           Punctuation
+'aref-ptr'    Name.Function
+' '           Text
+'('           Punctuation
+'tref-ptr'    Name.Function
+' '           Text
+'tup'         Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'array-test5' Name.Variable
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+';; val: 1 9 5.5' Comment.Single
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; Global Variables' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; You can allocate global variables using bind-val' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'g_var_a'     Name.Function
+' '           Text
+'i32'         Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+';; increment g_var_a by inc' Comment.Single
+'\n'          Text
+
+';; and return new value of g_var_a' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'global_var_test1' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'incr'        Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'set!'        Keyword
+' '           Text
+'g_var_a'     Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'g_var_a'     Name.Variable
+' '           Text
+'incr'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'g_var_a'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'global_var_test1' Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'8'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+';; 8'        Comment.Single
+'\n\n'        Text
+
+';; you can bind any primitive type' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'g_var_b'     Name.Function
+' '           Text
+'double'      Name.Variable
+' '           Text
+'5.5'         Literal.Number.Float
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'g_var_c'     Name.Function
+' '           Text
+'i1'          Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'global_var_test1b' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'g_var_b'     Name.Variable
+' '           Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'g_var_c'     Name.Variable
+' '           Text
+'1.0'         Literal.Number.Float
+' '           Text
+'4.0'         Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'global_var_test1b' Name.Variable
+')'           Punctuation
+' '           Text
+'22.0'        Literal.Number.Float
+')'           Punctuation
+'\n\n'        Text
+
+';; global strings' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'g_cstring'   Name.Function
+' '           Text
+'i8*'         Keyword.Type
+' '           Text
+'"Jiblet."'   Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_g_cstring' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'7'           Literal.Number.Integer
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"g_cstring[%lld] = %c\\n"' Literal.String
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'pref'        Name.Function
+' '           Text
+'g_cstring'   Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"\\nSpells... %s\\n"' Literal.String
+' '           Text
+'g_cstring'   Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_g_cstring' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_g_cstring1' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'test_cstring' Name.Variable
+' '           Text
+'"Niblot."'   Literal.String
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'total'       Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'7'           Literal.Number.Integer
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'c1'          Name.Variable
+' '           Text
+'('           Punctuation
+'pref'        Name.Function
+' '           Text
+'g_cstring'   Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                        ' Text
+'('           Punctuation
+'c2'          Name.Variable
+' '           Text
+'('           Punctuation
+'pref'        Name.Function
+' '           Text
+'test_cstring' Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"checking %c against %c\\n"' Literal.String
+' '           Text
+'c1'          Name.Variable
+' '           Text
+'c2'          Name.Variable
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'c1'          Name.Variable
+' '           Text
+'c2'          Name.Variable
+')'           Punctuation
+'\n                        ' Text
+'('           Punctuation
+'set!'        Keyword
+' '           Text
+'total'       Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'total'       Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'total'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_g_cstring1' Name.Variable
+')'           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n\n\n\n\n\n' Text
+
+';; for tuples, arrays and vectors, bind-val only takes *two*' Comment.Single
+'\n'          Text
+
+';; arguments. The tuple/array/vector will be initialised to zero.' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'g_tuple1'    Name.Function
+' '           Text
+'<i64,i64>'   Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'g_tuple2'    Name.Function
+' '           Text
+'<double,double>' Keyword.Type
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_g_tuple' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'tfill!'      Name.Function
+' '           Text
+'g_tuple1'    Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'tfill!'      Name.Function
+' '           Text
+'g_tuple2'    Name.Variable
+' '           Text
+'4.0'         Literal.Number.Float
+' '           Text
+'1.0'         Literal.Number.Float
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'and'         Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'('           Punctuation
+'tref'        Name.Function
+' '           Text
+'g_tuple1'    Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'dtoi64'      Name.Variable
+' '           Text
+'('           Punctuation
+'tref'        Name.Function
+' '           Text
+'g_tuple2'    Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                   ' Text
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'('           Punctuation
+'dtoi64'      Name.Variable
+' '           Text
+'('           Punctuation
+'tref'        Name.Function
+' '           Text
+'g_tuple2'    Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'tref'        Name.Function
+' '           Text
+'g_tuple1'    Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_g_tuple' Name.Variable
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+';; same thing with arrays' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'g_array1'    Name.Function
+' '           Text
+'|10,double|' Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'g_array2'    Name.Function
+' '           Text
+'|10,i64|'    Keyword.Type
+')'           Punctuation
+'\n\n'        Text
+
+';; if we just loop over and print the values in each array' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_g_array11' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"garray_1[%lld] = %f   garray_2[%lld] = %lld\\n"' Literal.String
+'\n                          ' Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'g_array1'    Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'g_array2'    Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_g_array11' Name.Variable
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+';; but if we loop over and set some values into the arrays' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_g_array2' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'g_array1'    Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'i64tod'      Name.Function
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'g_array2'    Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"garray_1[%lld] = %f   garray_2[%lld] = %lld\\n"' Literal.String
+'\n                          ' Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'g_array1'    Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'g_array2'    Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'('           Punctuation
+'dtoi64'      Name.Variable
+' '           Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'g_array1'    Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                   ' Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'g_array2'    Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_g_array2' Name.Variable
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+";; just to test, let's try a large array" Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'g_array3'    Name.Function
+' '           Text
+'|100000000,i64|' Keyword.Type
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_g_array3' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'100000000'   Literal.Number.Integer
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'g_array3'    Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'('           Punctuation
+'pref'        Name.Function
+' '           Text
+'g_array3'    Name.Variable
+' '           Text
+'87654321'    Literal.Number.Integer
+')'           Punctuation
+'\n                   ' Text
+'87654321'    Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_g_array3' Name.Variable
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+";; if you want to bind a global pointer, then the third 'value'" Comment.Single
+'\n'          Text
+
+';; argument is the size of the memory to allocate (in elements, not in bytes)' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'g_ptr0'      Name.Function
+' '           Text
+'double*'     Keyword.Type
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_g_ptr0' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'total'       Name.Variable
+' '           Text
+'0.0'         Literal.Number.Float
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'pset!'       Name.Function
+' '           Text
+'g_ptr0'      Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'i64tod'      Name.Function
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'set!'        Keyword
+' '           Text
+'total'       Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'total'       Name.Variable
+' '           Text
+'('           Punctuation
+'pref'        Name.Function
+' '           Text
+'g_ptr0'      Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'total'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_g_ptr0' Name.Variable
+')'           Punctuation
+' '           Text
+'45.0'        Literal.Number.Float
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'g_ptr1'      Name.Function
+' '           Text
+'|4,i32|*'    Keyword.Type
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'g_ptr2'      Name.Function
+' '           Text
+'<i64,double>*' Keyword.Type
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'test_g_ptr1' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'afill!'      Name.Function
+' '           Text
+'g_ptr1'      Name.Variable
+' '           Text
+'11'          Literal.Number.Integer
+' '           Text
+'66'          Literal.Number.Integer
+' '           Text
+'35'          Literal.Number.Integer
+' '           Text
+'81'          Literal.Number.Integer
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'tset!'       Name.Function
+' '           Text
+'g_ptr2'      Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'35.0'        Literal.Number.Float
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"%f :: %d\\n"' Literal.String
+' '           Text
+'('           Punctuation
+'tref'        Name.Function
+' '           Text
+'g_ptr2'      Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'g_ptr1'      Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'g_ptr1'      Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'test_g_ptr1' Name.Variable
+')'           Punctuation
+' '           Text
+'81'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+';; should also print 35.000000 :: 35' Comment.Single
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; Callbacks' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'callback-test' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'time'        Name.Variable
+':i64'        Keyword.Type
+' '           Text
+'count'       Name.Variable
+':i64'        Keyword.Type
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"time: %lld:%lld\\n"' Literal.String
+' '           Text
+'time'        Name.Variable
+' '           Text
+'count'       Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'callback'    Name.Function
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'time'        Name.Variable
+' '           Text
+'1000'        Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'callback-test' Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'time'        Name.Variable
+' '           Text
+'22050'       Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'count'       Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'callback'    Name.Function
+'-test'       Name.Variable
+' '           Text
+'('           Punctuation
+'now'         Name.Function
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';; compiling this will stop the callbacks' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; of course we need to keep the type' Comment.Single
+'\n'          Text
+
+';; signature the same [void,i64,i64]*' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'callback-test' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'time'        Name.Variable
+':i64'        Keyword.Type
+' '           Text
+'count'       Name.Variable
+':i64'        Keyword.Type
+')'           Punctuation
+'\n              ' Text
+'#t'          Name.Constant
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'callback'    Name.Function
+'-test'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; some memzone tests' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'memzone-test1' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'b'           Name.Variable
+':|5,double|*' Keyword.Type
+' '           Text
+'('           Punctuation
+'zalloc'      Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'b'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+'\n                       ' Text
+'('           Punctuation
+'memzone'     Keyword
+' '           Text
+'1024'        Literal.Number.Integer
+'\n                         ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'a'           Name.Variable
+':|10,double|*' Keyword.Type
+' '           Text
+'('           Punctuation
+'zalloc'      Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                           ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'3.5'         Literal.Number.Float
+')'           Punctuation
+'\n                           ' Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'c'           Name.Variable
+':|9,i32|*'   Keyword.Type
+' '           Text
+'('           Punctuation
+'zalloc'      Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'c'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'99'          Literal.Number.Integer
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'b'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'memzone-test1' Name.Variable
+')'           Punctuation
+' '           Text
+'3.5'         Literal.Number.Float
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'memzone-test2' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'memzone'     Keyword
+' '           Text
+'1024'        Literal.Number.Integer
+'\n                ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'k'           Name.Variable
+':|15,double|*' Keyword.Type
+' '           Text
+'('           Punctuation
+'zalloc'      Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                      ' Text
+'('           Punctuation
+'f'           Name.Variable
+' '           Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'fa'          Name.Variable
+':|15,double|*' Keyword.Type
+')'           Punctuation
+'\n                           ' Text
+'('           Punctuation
+'memzone'     Keyword
+' '           Text
+'1024'        Literal.Number.Integer
+'\n                             ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'a'           Name.Variable
+':|10,double|*' Keyword.Type
+' '           Text
+'('           Punctuation
+'zalloc'      Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                                   ' Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                               ' Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n                                 ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'fa'          Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'random'      Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                               ' Text
+'a'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'f'           Name.Variable
+' '           Text
+'k'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'memzone-test2' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'memzone-test3' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'v'           Name.Variable
+' '           Text
+'('           Punctuation
+'memzone'     Keyword
+'-test2'      Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"%lld:%f\\n"' Literal.String
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'v'           Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'memzone-test3' Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+";; should print all 0.0's" Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'memzone-test4' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'memzone'     Keyword
+' '           Text
+'1024'        Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'44100'       Literal.Number.Integer
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n                       ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'a'           Name.Variable
+':|5,double|*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'5.5'         Literal.Number.Float
+')'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'memzone-test4' Name.Variable
+')'           Punctuation
+' '           Text
+'5.50000'     Literal.Number.Float
+')'           Punctuation
+'\n\n'        Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; Large allocation of memory on BUILD (i.e. when the closure is created)' Comment.Single
+'\n'          Text
+
+';; requires an optional argument (i.e. an amount of memory to allocate' Comment.Single
+'\n'          Text
+
+';; specifically for closure creation)' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+";; This memory is automatically free'd whenever you recompile the closure" Comment.Single
+'\n'          Text
+
+';; (it will be destroyed and replaced by a new allocation of the' Comment.Single
+'\n'          Text
+
+';;  same amount or whatever new amount you have allocated for closure' Comment.Single
+'\n'          Text
+
+';;  compilation)' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'closure-zalloc-test' Name.Function
+' '           Text
+'1000000'     Literal.Number.Integer
+'\n            ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'k'           Name.Variable
+':|100000,double|*' Keyword.Type
+' '           Text
+'('           Punctuation
+'zalloc'      Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'aset!'       Name.Function
+' '           Text
+'k'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'1.0'         Literal.Number.Float
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'aref'        Name.Function
+' '           Text
+'k'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'closure-zalloc-test' Name.Variable
+' '           Text
+'1000000'     Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; Ad-Hoc Polymorphism' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n\n'        Text
+
+';; extempore supports ad-hoc polymorphism' Comment.Single
+'\n'          Text
+
+';; at some stage in the future this will' Comment.Single
+'\n'          Text
+
+';; be implicit - but for the moment' Comment.Single
+'\n'          Text
+
+';; it is explicitly defined using bind-poly' Comment.Single
+'\n\n'        Text
+
+';; ad-hoc polymorphism allows you to provide' Comment.Single
+'\n'          Text
+
+';; different specialisations depending on' Comment.Single
+'\n'          Text
+
+";; type.  In other words, a single 'name'" Comment.Single
+'\n'          Text
+
+';; can be bound to multiple function' Comment.Single
+'\n'          Text
+
+';; implementations each with a uniqute' Comment.Single
+'\n'          Text
+
+';; type.'    Comment.Single
+'\n\n\n'      Text
+
+';; poly variables can be for functions of' Comment.Single
+'\n'          Text
+
+';; mixed argument lengths' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; so for example:' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'poly-test4'  Name.Function
+'\n  '        Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+':i8*'        Keyword.Type
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"%s\\n"'     Literal.String
+' '           Text
+'a'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'poly-test5'  Name.Function
+'\n  '        Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+':i8*'        Keyword.Type
+' '           Text
+'b'           Name.Variable
+':i8*'        Keyword.Type
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"%s %s\\n"'  Literal.String
+' '           Text
+'a'           Name.Variable
+' '           Text
+'b'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'poly-test6'  Name.Function
+'\n  '        Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+':i8*'        Keyword.Type
+' '           Text
+'b'           Name.Variable
+':i8*'        Keyword.Type
+' '           Text
+'c'           Name.Variable
+':i8*'        Keyword.Type
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"%s %s %s\\n"' Literal.String
+' '           Text
+'a'           Name.Variable
+' '           Text
+'b'           Name.Variable
+' '           Text
+'c'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+";; bind these three functions to poly 'print'" Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'bind-poly'   Keyword
+' '           Text
+'testprint'   Name.Function
+' '           Text
+'poly-test4'  Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'bind-poly'   Keyword
+' '           Text
+'testprint'   Name.Function
+' '           Text
+'poly-test5'  Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'bind-poly'   Keyword
+' '           Text
+'testprint'   Name.Function
+' '           Text
+'poly-test6'  Name.Variable
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'poly-test7'  Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'testprint'   Name.Variable
+' '           Text
+'"extempore\'s"' Literal.String
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'testprint'   Name.Variable
+' '           Text
+'"extempore\'s"' Literal.String
+' '           Text
+'"polymorphism"' Literal.String
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'testprint'   Name.Variable
+' '           Text
+'"extempore\'s"' Literal.String
+' '           Text
+'"polymorphism"' Literal.String
+' '           Text
+'"rocks"'     Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'poly-test7'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';; polys can Also specialize' Comment.Single
+'\n'          Text
+
+';; on the return type' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'poly-test8'  Name.Function
+'\n  '        Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+':double'     Keyword.Type
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'a'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'poly-test9'  Name.Function
+'\n  '        Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+':double'     Keyword.Type
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'dtoi64'      Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'a'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'bind-poly'   Keyword
+' '           Text
+'sqrd'        Name.Function
+' '           Text
+'poly-test8'  Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'bind-poly'   Keyword
+' '           Text
+'sqrd'        Name.Function
+' '           Text
+'poly-test9'  Name.Variable
+')'           Punctuation
+'\n\n'        Text
+
+';; specialize on [i64,double]*' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'poly-test10' Name.Function
+':[i64,double]*' Keyword.Type
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'sqrd'        Name.Variable
+' '           Text
+'a'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'poly-test10' Name.Variable
+' '           Text
+'5.0'         Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';; specialize on [double,doube]*' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'poly-test11' Name.Function
+':[double,double]*' Keyword.Type
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'1.0'         Literal.Number.Float
+' '           Text
+'('           Punctuation
+'sqrd'        Name.Variable
+' '           Text
+'a'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'poly-test11' Name.Variable
+' '           Text
+'5.0'         Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+'\n\n\n'      Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; a little test for zone cleanup' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'MyLittleCleanupTest' Name.Function
+'\n  '        Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'tmp2'        Name.Variable
+':i8*'        Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+' '           Text
+'8'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'cleanup'     Name.Variable
+' '           Text
+'('           Punctuation
+'println'     Name.Function
+' '           Text
+'"Clean up before leaving zone!"' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'tmp2'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'cleanup-test' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'letz'        Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'tmp'         Name.Variable
+':i8*'        Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+' '           Text
+'8'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                     ' Text
+'('           Punctuation
+'t2'          Name.Variable
+' '           Text
+'('           Punctuation
+'MyLittleCleanupTest' Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'begin'       Keyword
+'\n                  ' Text
+'('           Punctuation
+'println'     Name.Function
+' '           Text
+'"In Zone ..."' Literal.String
+')'           Punctuation
+'\n                  ' Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'println'     Name.Function
+' '           Text
+'"Out of zone ..."' Literal.String
+')'           Punctuation
+'\n              ' Text
+'void'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'cleanup-test' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';; vector types' Comment.Single
+'\n\n'        Text
+
+';; (bind-func vector-test1' Comment.Single
+'\n'          Text
+
+';;   (lambda ()' Comment.Single
+'\n'          Text
+
+';;     (let ((v1:/4,float/* (alloc))' Comment.Single
+'\n'          Text
+
+';; \t  (v2:/4,float/* (alloc))' Comment.Single
+'\n'          Text
+
+';; \t  (v3:/4,float/* (alloc)))' Comment.Single
+'\n'          Text
+
+';;       (vfill! v1 4.0 3.0 2.0 1.0)' Comment.Single
+'\n'          Text
+
+';;       (vfill! v2 1.0 2.0 3.0 4.0)' Comment.Single
+'\n'          Text
+
+';;       (vfill! v3 5.0 5.0 5.0 5.0)' Comment.Single
+'\n'          Text
+
+';;       (let ((v4 (* v1 v2))' Comment.Single
+'\n'          Text
+
+";; \t    (v5 (> v3 v4))) ;; unforunately vector conditionals don't work!" Comment.Single
+'\n'          Text
+
+';; \t(printf "mul:%f:%f:%f:%f\\n" (ftod (vref v4 0)) (ftod (vref v4 1)) (ftod (vref v4 2)) (ftod (vref v4 3)))' Comment.Single
+'\n'          Text
+
+';; \t(printf "cmp:%d:%d:%d:%d\\n" (i1toi32 (vref v5 0)) (i1toi32 (vref v5 1)) (i1toi32 (vref v5 2)) (i1toi32 (vref v5 3)))' Comment.Single
+'\n'          Text
+
+';; \tvoid))))' Comment.Single
+'\n\n'        Text
+
+';; (test-xtfunc (vector-test1))' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'vector-test2' Name.Function
+'\n  '        Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'v1'          Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n\t  '      Text
+'('           Punctuation
+'v2'          Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'vfill!'      Name.Function
+' '           Text
+'v1'          Name.Variable
+' '           Text
+'1.0'         Literal.Number.Float
+' '           Text
+'2.0'         Literal.Number.Float
+' '           Text
+'4.0'         Literal.Number.Float
+' '           Text
+'8.0'         Literal.Number.Float
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'vfill!'      Name.Function
+' '           Text
+'v2'          Name.Variable
+' '           Text
+'2.0'         Literal.Number.Float
+' '           Text
+'2.5'         Literal.Number.Float
+' '           Text
+'2.25'        Literal.Number.Float
+' '           Text
+'2.125'       Literal.Number.Float
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'v1'          Name.Variable
+' '           Text
+'v2'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'vector-test3' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'a'           Name.Variable
+' '           Text
+'('           Punctuation
+'vector-test2' Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"%f:%f:%f:%f\\n"' Literal.String
+'\n                        ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                        ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                        ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                        ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'void'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'vector'      Name.Function
+'-test3'      Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';; vectorised sine func' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'vsinf4'      Name.Function
+'\n  '        Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'p'           Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'b'           Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'c'           Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'f1'          Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'f2'          Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'i'           Name.Variable
+':i32'        Keyword.Type
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'p_'          Name.Variable
+' '           Text
+'0.225'       Literal.Number.Float
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'b_'          Name.Variable
+' '           Text
+'('           Punctuation
+'dtof'        Name.Function
+' '           Text
+'('           Punctuation
+'/'           Name.Function
+' '           Text
+'4.0'         Literal.Number.Float
+' '           Text
+'3.1415'      Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'c_'          Name.Variable
+' '           Text
+'('           Punctuation
+'dtof'        Name.Function
+' '           Text
+'('           Punctuation
+'/'           Name.Function
+' '           Text
+'-4.0'        Literal.Number.Float
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'3.1415'      Literal.Number.Float
+' '           Text
+'3.1415'      Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vset!'       Name.Function
+' '           Text
+'p'           Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'p_'          Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vset!'       Name.Function
+' '           Text
+'b'           Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'b_'          Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vset!'       Name.Function
+' '           Text
+'c'           Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'c_'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+':/4,float/'  Keyword.Type
+')'           Punctuation
+'\n      '    Text
+';; no SIMD for abs yet!' Comment.Single
+'\n      '    Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vset!'       Name.Function
+' '           Text
+'f1'          Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'fabs'        Name.Variable
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'y'           Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'b'           Name.Variable
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'c'           Name.Variable
+' '           Text
+'x'           Name.Variable
+' '           Text
+'f1'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+';; no SIMD for abs yet!' Comment.Single
+'\n        '  Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vset!'       Name.Function
+' '           Text
+'f2'          Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'fabs'        Name.Variable
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'y'           Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'p'           Name.Variable
+' '           Text
+'('           Punctuation
+'-'           Name.Function
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'y'           Name.Variable
+' '           Text
+'f2'          Name.Variable
+')'           Punctuation
+' '           Text
+'y'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'y'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'vcosf4'      Name.Function
+'\n  '        Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'p'           Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'('           Punctuation
+'b'           Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'('           Punctuation
+'c'           Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'('           Punctuation
+'d'           Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'('           Punctuation
+'f1'          Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'('           Punctuation
+'f2'          Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'('           Punctuation
+'i'           Name.Variable
+':i32'        Keyword.Type
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n\t'        Text
+'('           Punctuation
+'p_'          Name.Variable
+' '           Text
+'0.225'       Literal.Number.Float
+')'           Punctuation
+'\n\t'        Text
+'('           Punctuation
+'d_'          Name.Variable
+' '           Text
+'('           Punctuation
+'dtof'        Name.Function
+' '           Text
+'('           Punctuation
+'/'           Name.Function
+' '           Text
+'3.1415'      Literal.Number.Float
+' '           Text
+'2.0'         Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'('           Punctuation
+'b_'          Name.Variable
+' '           Text
+'('           Punctuation
+'dtof'        Name.Function
+' '           Text
+'('           Punctuation
+'/'           Name.Function
+' '           Text
+'4.0'         Literal.Number.Float
+' '           Text
+'3.1415'      Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'('           Punctuation
+'c_'          Name.Variable
+' '           Text
+'('           Punctuation
+'dtof'        Name.Function
+' '           Text
+'('           Punctuation
+'/'           Name.Function
+' '           Text
+'-4.0'        Literal.Number.Float
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'3.1415'      Literal.Number.Float
+' '           Text
+'3.1415'      Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'vset!'       Name.Function
+' '           Text
+'p'           Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'p_'          Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vset!'       Name.Function
+' '           Text
+'b'           Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'b_'          Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vset!'       Name.Function
+' '           Text
+'c'           Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'c_'          Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vset!'       Name.Function
+' '           Text
+'d'           Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'d_'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+':/4,float/'  Keyword.Type
+')'           Punctuation
+'\n      '    Text
+';; offset x for cos' Comment.Single
+'\n      '    Text
+'('           Punctuation
+'set!'        Keyword
+' '           Text
+'x'           Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'d'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+';; no SIMD for abs yet!' Comment.Single
+'\n      '    Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vset!'       Name.Function
+' '           Text
+'f1'          Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'fabs'        Name.Variable
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'y'           Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'b'           Name.Variable
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'c'           Name.Variable
+' '           Text
+'x'           Name.Variable
+' '           Text
+'f1'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t'        Text
+';; no SIMD for abs yet!' Comment.Single
+'\n\t'        Text
+'('           Punctuation
+'dotimes'     Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vset!'       Name.Function
+' '           Text
+'f2'          Name.Variable
+' '           Text
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'fabs'        Name.Variable
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'y'           Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'p'           Name.Variable
+' '           Text
+'('           Punctuation
+'-'           Name.Function
+' '           Text
+'('           Punctuation
+'*'           Name.Function
+' '           Text
+'y'           Name.Variable
+' '           Text
+'f2'          Name.Variable
+')'           Punctuation
+' '           Text
+'y'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'y'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n\n'      Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'vector-test4' Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'a'           Name.Variable
+':/4,float/*' Keyword.Type
+' '           Text
+'('           Punctuation
+'alloc'       Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'vfill!'      Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'0.1'         Literal.Number.Float
+' '           Text
+'0.2'         Literal.Number.Float
+' '           Text
+'0.3'         Literal.Number.Float
+' '           Text
+'0.4'         Literal.Number.Float
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'b'           Name.Variable
+' '           Text
+'('           Punctuation
+'vsinf4'      Name.Variable
+' '           Text
+'('           Punctuation
+'pref'        Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                      ' Text
+'('           Punctuation
+'c'           Name.Variable
+' '           Text
+'('           Punctuation
+'vcosf4'      Name.Variable
+' '           Text
+'('           Punctuation
+'pref'        Name.Function
+' '           Text
+'a'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"precision inaccuracy is expected:\\n"' Literal.String
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'" sinf:\\t%f,%f,%f,%f\\n"' Literal.String
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'sin'         Name.Function
+' '           Text
+'0.1'         Literal.Number.Float
+':f'          Keyword.Type
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'sin'         Name.Function
+' '           Text
+'0.2'         Literal.Number.Float
+':f'          Keyword.Type
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'sin'         Name.Function
+' '           Text
+'0.3'         Literal.Number.Float
+':f'          Keyword.Type
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'sin'         Name.Function
+' '           Text
+'0.4'         Literal.Number.Float
+':f'          Keyword.Type
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"vsinf:\\t%f,%f,%f,%f\\n"' Literal.String
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'b'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'b'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'b'           Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'b'           Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'" cosf:\\t%f,%f,%f,%f\\n"' Literal.String
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'cos'         Name.Function
+' '           Text
+'0.1'         Literal.Number.Float
+':f'          Keyword.Type
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'cos'         Name.Function
+' '           Text
+'0.2'         Literal.Number.Float
+':f'          Keyword.Type
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'cos'         Name.Function
+' '           Text
+'0.3'         Literal.Number.Float
+':f'          Keyword.Type
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'cos'         Name.Function
+' '           Text
+'0.4'         Literal.Number.Float
+':f'          Keyword.Type
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"vcosf:\\t%f,%f,%f,%f\\n"' Literal.String
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'c'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'c'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'c'           Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'ftod'        Name.Function
+' '           Text
+'('           Punctuation
+'vref'        Name.Function
+' '           Text
+'c'           Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                  ' Text
+'void'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n         ' Text
+'('           Punctuation
+'vector'      Name.Function
+'-test4'      Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';; test the call-as-xtlang macro' Comment.Single
+'\n\n'        Text
+
+";; make sure it'll handle multiple body forms" Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'xtmtest-result' Name.Variable
+' '           Text
+'('           Punctuation
+'call-as-xtlang' Name.Variable
+' '           Text
+'('           Punctuation
+'println'     Name.Function
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'println'     Name.Function
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n                ' Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n\n\n'      Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; test globalvar as closure' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'testinc'     Name.Function
+'\n  '        Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'incr'        Name.Variable
+':i64'        Keyword.Type
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+':i64'        Keyword.Type
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'incr'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'GlobalInc'   Name.Function
+' '           Text
+'[i64,i64]*'  Keyword.Type
+' '           Text
+'('           Punctuation
+'testinc'     Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'xtmtest'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'ginc'        Name.Function
+'\n            ' Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'GlobalInc'   Name.Variable
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'ginc'        Name.Variable
+')'           Punctuation
+' '           Text
+'7'           Literal.Number.Integer
+')'           Punctuation
+'\n                       \n\n' Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+';; syntax highlighting tests ;;' Comment.Single
+'\n'          Text
+
+';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' Comment.Single
+'\n'          Text
+
+";; these don't return any values, they're visual tests---do they look" Comment.Single
+'\n'          Text
+
+';; right?'   Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'hl_test1a'   Name.Function
+':[i32,double,|4,i32|**]*' Keyword.Type
+' '           Text
+'4000'        Literal.Number.Integer
+'\n  '        Text
+'"docstring"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+'a'           Name.Variable
+' '           Text
+'b'           Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"done\\n"'   Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'bind-func'   Keyword
+' '           Text
+'hl_test1b'   Name.Function
+':[i32]*'     Keyword.Type
+'\n  '        Text
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'i'           Name.Variable
+':i32'        Keyword.Type
+' '           Text
+'6'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'printf'      Name.Function
+' '           Text
+'"done\\n"'   Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'hl_test2'    Name.Function
+' '           Text
+'<i32,i32>'   Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'hl_test3'    Name.Function
+' '           Text
+'|4,i8|'      Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'hl_test4'    Name.Function
+' '           Text
+'double*'     Keyword.Type
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'bind-val'    Keyword
+' '           Text
+'hl_test5'    Name.Function
+' '           Text
+'i8*'         Keyword.Type
+' '           Text
+'"teststr"'   Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'bind-type'   Keyword
+' '           Text
+'hl_test_type' Name.Function
+' '           Text
+'<i64>'       Keyword.Type
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'println'     Name.Function
+' '           Text
+"'"           Operator
+'('           Punctuation
+'bind-lib'    Keyword
+' '           Text
+'testlib'     Name.Function
+' '           Text
+'testfn'      Name.Variable
+' '           Text
+'[i32,i32]*'  Keyword.Type
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';; (and 4 5)' Comment.Single
+'\n'          Text
+
+';; (bind-val hl_test4 double* 10)' Comment.Single
+'\n'          Text
+
+';; (bind-type hl_test_type <i64> "docstring")' Comment.Single
+'\n'          Text
+
+';; (bind-lib testlib testfn [i32,i32]*)' Comment.Single
+'\n'          Text

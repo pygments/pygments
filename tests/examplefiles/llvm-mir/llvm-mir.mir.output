@@ -1,0 +1,211 @@
+'# YAML line comment' Comment
+'\n\n'        Text
+
+'--- |'       Keyword
+'\n  '        Text
+'; LLVM-IR line comment\n' Comment
+
+'  '          Text
+'define'      Keyword
+' '           Text
+'void'        Keyword
+' '           Text
+'@myfunction' Name.Variable.Global
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'ret'         Keyword
+' '           Text
+'void'        Keyword
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'...'         Keyword
+'\n\n'        Text
+
+'---'         Keyword
+'\n'          Text
+
+'name:'       Keyword
+' myfunction' Name
+'\n'          Text
+
+'legalized:'  Keyword
+' true'       Name.Builtin
+'\n'          Text
+
+'registers:'  Keyword
+'\n'          Text
+
+'  - { id: 0, class: gpr }' Text
+'\n'          Text
+
+'body: |'     Keyword
+'\n  '        Text
+'bb.0.named (address-taken):' Name.Label
+'\n    '      Text
+'liveins:'    Keyword
+' '           Text
+'$r0'         Literal.String.Single
+', '          Text
+'$r1'         Literal.String.Single
+'\n    '      Text
+'successors:' Keyword
+' '           Text
+'%bb.1.alsonamed' Name.Label
+'\n\n    '    Text
+'; MIR line comment' Comment
+'\n    '      Text
+'%0'          Name.Variable
+':'           Keyword
+'gpr'         Name.Variable
+'('           Text
+'s64'         Keyword.Type
+')'           Text
+''            Text
+' '           Text
+'='           Operator
+' '           Text
+'COPY'        Name.Builtin
+' '           Text
+'$r0'         Literal.String.Single
+'\n    '      Text
+'%1'          Name.Variable
+'('           Text
+'s32'         Keyword.Type
+')'           Text
+''            Text
+' '           Text
+'='           Operator
+' '           Text
+'COPY'        Name.Builtin
+' '           Text
+'$r1'         Literal.String.Single
+'\n  '        Text
+'bb.1.alsonamed:' Name.Label
+'\n    '      Text
+'successors:' Keyword
+' '           Text
+'%bb.2'       Name.Label
+'\n\n    '    Text
+'%2'          Name.Variable
+'('           Text
+'s32'         Keyword.Type
+')'           Text
+''            Text
+' '           Text
+'='           Operator
+' '           Text
+'EXTRACT_SUBREG' Name.Builtin
+' '           Text
+'%1'          Name.Variable
+'('           Text
+'s32'         Keyword.Type
+')'           Text
+''            Text
+', '          Text
+'%subreg.sub0' Name
+'\n    '      Text
+'%3'          Name.Variable
+'('           Text
+'s32'         Keyword.Type
+')'           Text
+''            Text
+' '           Text
+'='           Operator
+' '           Text
+'G_ADD'       Name.Builtin
+' '           Text
+'%0'          Name.Variable
+':'           Keyword
+'gpr'         Name.Variable
+'('           Text
+'s32'         Keyword.Type
+')'           Text
+''            Text
+', '          Text
+'%2'          Name.Variable
+'('           Text
+'s32'         Keyword.Type
+')'           Text
+''            Text
+' '           Text
+'killed'      Keyword
+'\n    '      Text
+'%4'          Name.Variable
+'('           Text
+'s32'         Keyword.Type
+')'           Text
+''            Text
+' '           Text
+'='           Operator
+' '           Text
+'G_CONSTANT'  Name.Builtin
+' '           Text
+'i32 '        Keyword.Type
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'%5'          Name.Variable
+'('           Text
+'s32'         Keyword.Type
+')'           Text
+''            Text
+' '           Text
+'='           Operator
+' '           Text
+'G_FCONSTANT' Name.Builtin
+' '           Text
+'float '      Keyword.Type
+'1.0'         Literal.Number.Float
+'\n'          Text
+
+'    '        Text
+'%6'          Name.Variable
+'('           Text
+'p0'          Keyword.Type
+')'           Text
+''            Text
+' '           Text
+'='           Operator
+' '           Text
+'G_LOAD'      Name.Builtin
+' '           Text
+'%6'          Name.Variable
+'('           Text
+'p0'          Keyword.Type
+')'           Text
+''            Text
+' '           Text
+':: '         Operator
+'('           Text
+'load'        Keyword
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'from'        Keyword
+' '           Text
+'%ir.myvar'   Name
+' '           Text
+'+'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+')'           Text
+'\n\n  '      Text
+'bb.2:'       Name.Label
+'\n    '      Text
+'$r0'         Literal.String.Single
+' '           Text
+'='           Operator
+' '           Text
+'COPY'        Name.Builtin
+' '           Text
+'%3'          Name.Variable
+'\n'          Text
+
+'...'         Keyword
+'\n'          Text

@@ -1,0 +1,10 @@
+---input---
+a;bc
+d
+
+---tokens---
+'a'           Name
+';bc\n'       Error
+
+'d'           Name
+'\n'          Text.Whitespace

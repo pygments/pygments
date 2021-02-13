@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.business
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for "business-oriented" languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -478,8 +477,8 @@ class OpenEdgeLexer(RegexLexer):
             (r'(?i)(DEFINE|DEF|DEFI|DEFIN)\b', Keyword.Declaration),
             (types, Keyword.Type),
             (keywords, Name.Builtin),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r'\s+', Text),
@@ -499,6 +498,21 @@ class OpenEdgeLexer(RegexLexer):
             (r'\}', Comment.Preproc, '#pop'),
         ],
     }
+
+    def analyse_text(text):
+        """Try to identify OpenEdge ABL based on a few common constructs."""
+        result = 0
+
+        if 'END.' in text:
+            result += 0.05
+
+        if 'END PROCEDURE.' in text:
+            result += 0.05
+
+        if 'ELSE DO:' in text:
+            result += 0.05
+
+        return result
 
 
 class GoodDataCLLexer(RegexLexer):

@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.formatters.img
     ~~~~~~~~~~~~~~~~~~~~~~~
 
     Formatter for Pixmap output.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -14,7 +13,7 @@ import sys
 
 from pygments.formatter import Formatter
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
-    get_choice_opt, xrange
+    get_choice_opt
 
 import subprocess
 
@@ -59,7 +58,7 @@ class FontNotFound(Exception):
     """When there are no usable fonts specified"""
 
 
-class FontManager(object):
+class FontManager:
     """
     Manages a set of fonts: normal, italic, bold, etc...
     """
@@ -126,7 +125,8 @@ class FontManager(object):
                          '/Library/Fonts/', '/System/Library/Fonts/'):
             font_map.update(
                 (os.path.splitext(f)[0].lower(), os.path.join(font_dir, f))
-                for f in os.listdir(font_dir) if f.lower().endswith('ttf'))
+                for f in os.listdir(font_dir)
+                if f.lower().endswith(('ttf', 'ttc')))
 
         for name in STYLES['NORMAL']:
             path = self._get_mac_font_path(font_map, self.font_name, name)
@@ -155,7 +155,7 @@ class FontManager(object):
                     valname = '%s%s%s' % (basename, style and ' '+style, suffix)
                     val, _ = _winreg.QueryValueEx(key, valname)
                     return val
-                except EnvironmentError:
+                except OSError:
                     continue
         else:
             if fail:
@@ -164,37 +164,55 @@ class FontManager(object):
             return None
 
     def _create_win(self):
-        try:
-            key = _winreg.OpenKey(
-                _winreg.HKEY_LOCAL_MACHINE,
-                r'Software\Microsoft\Windows NT\CurrentVersion\Fonts')
-        except EnvironmentError:
+        lookuperror = None
+        keynames = [ (_winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows NT\CurrentVersion\Fonts'),
+                     (_winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Fonts'),
+                     (_winreg.HKEY_LOCAL_MACHINE, r'Software\Microsoft\Windows NT\CurrentVersion\Fonts'),
+                     (_winreg.HKEY_LOCAL_MACHINE, r'Software\Microsoft\Windows\CurrentVersion\Fonts') ]
+        for keyname in keynames:
             try:
-                key = _winreg.OpenKey(
-                    _winreg.HKEY_LOCAL_MACHINE,
-                    r'Software\Microsoft\Windows\CurrentVersion\Fonts')
-            except EnvironmentError:
-                raise FontNotFound('Can\'t open Windows font registry key')
-        try:
-            path = self._lookup_win(key, self.font_name, STYLES['NORMAL'], True)
-            self.fonts['NORMAL'] = ImageFont.truetype(path, self.font_size)
-            for style in ('ITALIC', 'BOLD', 'BOLDITALIC'):
-                path = self._lookup_win(key, self.font_name, STYLES[style])
-                if path:
-                    self.fonts[style] = ImageFont.truetype(path, self.font_size)
-                else:
-                    if style == 'BOLDITALIC':
-                        self.fonts[style] = self.fonts['BOLD']
-                    else:
-                        self.fonts[style] = self.fonts['NORMAL']
-        finally:
-            _winreg.CloseKey(key)
+                key = _winreg.OpenKey(*keyname)
+                try:
+                    path = self._lookup_win(key, self.font_name, STYLES['NORMAL'], True)
+                    self.fonts['NORMAL'] = ImageFont.truetype(path, self.font_size)
+                    for style in ('ITALIC', 'BOLD', 'BOLDITALIC'):
+                        path = self._lookup_win(key, self.font_name, STYLES[style])
+                        if path:
+                            self.fonts[style] = ImageFont.truetype(path, self.font_size)
+                        else:
+                            if style == 'BOLDITALIC':
+                                self.fonts[style] = self.fonts['BOLD']
+                            else:
+                                self.fonts[style] = self.fonts['NORMAL']
+                    return
+                except FontNotFound as err:
+                    lookuperror = err
+                finally:
+                    _winreg.CloseKey(key)
+            except OSError:
+                pass
+        else:
+            # If we get here, we checked all registry keys and had no luck
+            # We can be in one of two situations now:
+            # * All key lookups failed. In this case lookuperror is None and we
+            #   will raise a generic error
+            # * At least one lookup failed with a FontNotFound error. In this
+            #   case, we will raise that as a more specific error
+            if lookuperror:
+                raise lookuperror
+            raise FontNotFound('Can\'t open Windows font registry key')
 
     def get_char_size(self):
         """
         Get the character size.
         """
         return self.fonts['NORMAL'].getsize('M')
+
+    def get_text_size(self, text):
+        """
+        Get the text size(width, height).
+        """
+        return self.fonts['NORMAL'].getsize(text)
 
     def get_font(self, bold, oblique):
         """
@@ -406,17 +424,17 @@ class ImageFormatter(Formatter):
         """
         return self.fontw
 
-    def _get_char_x(self, charno):
+    def _get_char_x(self, linelength):
         """
         Get the X coordinate of a character position.
         """
-        return charno * self.fontw + self.image_pad + self.line_number_width
+        return linelength + self.image_pad + self.line_number_width
 
-    def _get_text_pos(self, charno, lineno):
+    def _get_text_pos(self, linelength, lineno):
         """
         Get the actual position for a character and line position.
         """
-        return self._get_char_x(charno), self._get_line_y(lineno)
+        return self._get_char_x(linelength), self._get_line_y(lineno)
 
     def _get_linenumber_pos(self, lineno):
         """
@@ -440,11 +458,11 @@ class ImageFormatter(Formatter):
         """
         return self.fonts.get_font(style['bold'], style['italic'])
 
-    def _get_image_size(self, maxcharno, maxlineno):
+    def _get_image_size(self, maxlinelength, maxlineno):
         """
         Get the required image size.
         """
-        return (self._get_char_x(maxcharno) + self.image_pad,
+        return (self._get_char_x(maxlinelength) + self.image_pad,
                 self._get_line_y(maxlineno + 0) + self.image_pad)
 
     def _draw_linenumber(self, posno, lineno):
@@ -470,6 +488,7 @@ class ImageFormatter(Formatter):
         Create drawables for the token content.
         """
         lineno = charno = maxcharno = 0
+        maxlinelength = linelength = 0
         for ttype, value in tokensource:
             while ttype not in self.styles:
                 ttype = ttype.parent
@@ -484,17 +503,22 @@ class ImageFormatter(Formatter):
                 temp = line.rstrip('\n')
                 if temp:
                     self._draw_text(
-                        self._get_text_pos(charno, lineno),
+                        self._get_text_pos(linelength, lineno),
                         temp,
                         font = self._get_style_font(style),
                         fill = self._get_text_color(style)
                     )
+                    temp_width, temp_hight = self.fonts.get_text_size(temp)
+                    linelength += temp_width
+                    maxlinelength = max(maxlinelength, linelength)
                     charno += len(temp)
                     maxcharno = max(maxcharno, charno)
                 if line.endswith('\n'):
                     # add a line for each extra line in the value
+                    linelength = 0
                     charno = 0
                     lineno += 1
+        self.maxlinelength = maxlinelength
         self.maxcharno = maxcharno
         self.maxlineno = lineno
 
@@ -504,7 +528,7 @@ class ImageFormatter(Formatter):
         """
         if not self.line_numbers:
             return
-        for p in xrange(self.maxlineno):
+        for p in range(self.maxlineno):
             n = p + self.line_number_start
             if (n % self.line_number_step) == 0:
                 self._draw_linenumber(p, n)
@@ -538,7 +562,7 @@ class ImageFormatter(Formatter):
         self._draw_line_numbers()
         im = Image.new(
             'RGB',
-            self._get_image_size(self.maxcharno, self.maxlineno),
+            self._get_image_size(self.maxlinelength, self.maxlineno),
             self.background_color
         )
         self._paint_line_number_bg(im)

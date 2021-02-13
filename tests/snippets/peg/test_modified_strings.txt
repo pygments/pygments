@@ -1,0 +1,21 @@
+# see for example:
+# - http://textx.github.io/Arpeggio/
+# - https://nim-lang.org/docs/pegs.html
+# - https://github.com/erikrose/parsimonious
+# can't handle parsimonious-style regex while ~ is a cut operator
+
+---input---
+~"regex" i"insensitive" "multimod"ilx ("not modified")
+
+---tokens---
+'~'           Operator
+'"regex"'     Literal.String.Double
+' '           Text
+'i"insensitive"' Literal.String.Double
+' '           Text
+'"multimod"ilx' Literal.String.Double
+' '           Text
+'('           Punctuation
+'"not modified"' Literal.String.Double
+')'           Punctuation
+'\n'          Text

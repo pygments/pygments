@@ -1,0 +1,164 @@
+// Devicetree (https://www.devicetree.org/) example file,
+// Adapted from: https://github.com/torvalds/linux/blob/575966e080270b7574175da35f7f7dd5ecd89ff4/arch/arm/boot/dts/imx6q-dhcom-som.dtsi
+
+// SPDX-License-Identifier: (GPL-2.0+)
+/*
+ * Copyright (C) 2015 DH electronics GmbH
+ * Copyright (C) 2018 Marek Vasut <marex@denx.de>
+ */
+
+/dts-v1/;
+
+#include "imx6q.dtsi"
+#include <dt-bindings/pwm/pwm.h>
+/include/ "tps65217.dtsi"
+
+/ {
+	aliases {
+		mmc0 = &usdhc2;
+		mmc1 = &usdhc3;
+		mmc2 = &usdhc4;
+		mmc3 = &usdhc1;
+	};
+
+	memory@10000000 {
+		device_type = "memory";
+		reg = <0x10000000 0x40000000>;
+	};
+
+        /delete-property/ uart;
+
+	reg_usb_otg_vbus: regulator-usb-otg-vbus {
+		compatible = "regulator-fixed";
+		regulator-name = "usb_otg_vbus";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+	};
+};
+
+&can1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_flexcan1>;
+	status = "okay";
+};
+
+&ecspi1 {
+	cs-gpios = <&gpio2 30 GPIO_ACTIVE_HIGH>, <&gpio4 11 GPIO_ACTIVE_HIGH>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_ecspi1>;
+	status = "okay";
+
+	flash@0 {	/* S25FL116K */
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "jedec,spi-nor";
+		spi-max-frequency = <50000000>;
+		reg = <0>;
+		m25p,fast-read;
+	};
+};
+
+&fec {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_enet_100M>;
+	phy-mode = "rmii";
+	phy-handle = <&ethphy0>;
+	status = "okay";
+
+	mdio {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		ethphy0: ethernet-phy@0 {	/* SMSC LAN8710Ai */
+			reg = <0>;
+			max-speed = <100>;
+			reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
+			reset-delay-us = <1000>;
+			reset-post-delay-us = <1000>;
+		};
+	};
+};
+
+&i2c3 {
+	clock-frequency = <100000>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_i2c3>;
+	status = "okay";
+
+	ltc3676: pmic@3c {
+		compatible = "lltc,ltc3676";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_pmic_hw300>;
+		reg = <0x3c>;
+		interrupt-parent = <&gpio5>;
+		interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
+
+		regulators {
+			sw1_reg: sw1 {
+				regulator-min-microvolt = <787500>;
+				regulator-max-microvolt = <1527272>;
+				lltc,fb-voltage-divider = <100000 110000>;
+				regulator-suspend-mem-microvolt = <1040000>;
+				regulator-ramp-delay = <7000>;
+				regulator-boot-on;
+				regulator-always-on;
+			};
+
+		};
+	};
+
+	touchscreen@49 {	/* TSC2004 */
+		compatible = "ti,tsc2004";
+		reg = <0x49>;
+		vio-supply = <&reg_3p3v>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_tsc2004_hw300>;
+		interrupts-extended = <&gpio4 14 IRQ_TYPE_EDGE_FALLING>;
+		status = "disabled";
+	};
+
+};
+
+&iomuxc {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_hog_base>;
+
+	pinctrl_hog_base: hog-base-grp {
+		fsl,pins = <
+			MX6QDL_PAD_EIM_A19__GPIO2_IO19		0x120b0
+			MX6QDL_PAD_EIM_A23__GPIO6_IO06		0x120b0
+			MX6QDL_PAD_EIM_A22__GPIO2_IO16		0x120b0
+			MX6QDL_PAD_EIM_A16__GPIO2_IO22		0x120b0
+			MX6QDL_PAD_EIM_A17__GPIO2_IO21		0x120b0
+		>;
+	};
+
+	pinctrl_enet_100M: enet-100M-grp {
+		fsl,pins = <
+			MX6QDL_PAD_ENET_MDIO__ENET_MDIO		0x1b0b0
+			MX6QDL_PAD_ENET_MDC__ENET_MDC		0x1b0b0
+			MX6QDL_PAD_ENET_CRS_DV__ENET_RX_EN	0x1b0b0
+			MX6QDL_PAD_ENET_RX_ER__ENET_RX_ER	0x1b0b0
+			MX6QDL_PAD_ENET_RXD0__ENET_RX_DATA0	0x1b0b0
+			MX6QDL_PAD_ENET_RXD1__ENET_RX_DATA1	0x1b0b0
+			MX6QDL_PAD_ENET_TX_EN__ENET_TX_EN	0x1b0b0
+			MX6QDL_PAD_ENET_TXD0__ENET_TX_DATA0	0x1b0b0
+			MX6QDL_PAD_ENET_TXD1__ENET_TX_DATA1	0x1b0b0
+			MX6QDL_PAD_GPIO_16__ENET_REF_CLK	0x4001b0a8
+			MX6QDL_PAD_EIM_WAIT__GPIO5_IO00		0x000b0
+			MX6QDL_PAD_KEY_ROW4__GPIO4_IO15		0x000b1
+			MX6QDL_PAD_GPIO_7__GPIO1_IO07		0x120b0
+		>;
+	};
+
+};
+
+&usdhc4 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_usdhc4>;
+	non-removable;
+	bus-width = <8>;
+	no-1-8-v;
+	keep-power-in-suspend;
+	status = "okay";
+};

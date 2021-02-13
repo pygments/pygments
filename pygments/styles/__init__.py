@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.styles
     ~~~~~~~~~~~~~~~
 
     Contains built-in styles.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,6 +21,7 @@ STYLE_MAP = {
     'autumn':   'autumn::AutumnStyle',
     'murphy':   'murphy::MurphyStyle',
     'manni':    'manni::ManniStyle',
+    'material': 'material::MaterialStyle',
     'monokai':  'monokai::MonokaiStyle',
     'perldoc':  'perldoc::PerldocStyle',
     'pastie':   'pastie::PastieStyle',
@@ -51,6 +51,7 @@ STYLE_MAP = {
     'stata-light': 'stata_light::StataLightStyle',
     'stata-dark':  'stata_dark::StataDarkStyle',
     'inkpot':      'inkpot::InkPotStyle',
+    'zenburn': 'zenburn::ZenburnStyle',
 }
 
 
@@ -79,9 +80,8 @@ def get_style_by_name(name):
 
 
 def get_all_styles():
-    """Return an generator for all styles by name,
+    """Return a generator for all styles by name,
     both builtin and plugin."""
-    for name in STYLE_MAP:
-        yield name
+    yield from STYLE_MAP
     for name, _ in find_plugin_styles():
         yield name

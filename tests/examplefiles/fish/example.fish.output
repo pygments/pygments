@@ -1,0 +1,3231 @@
+'# -----------------------------------------------------------------------------\n' Comment
+
+'# Fishshell Samples\n' Comment
+
+'#  |- Theme / bobthefish\n' Comment
+
+'#  |- Function / funced\n' Comment
+
+'#  |- Configuration / config.fish\n' Comment
+
+'# -----------------------------------------------------------------------------\n' Comment
+
+'\n'          Text
+
+'# name: bobthefish\n' Comment
+
+'#\n'         Comment
+
+'# bobthefish is a Powerline-style, Git-aware fish theme optimized for awesome.\n' Comment
+
+'#\n'         Comment
+
+'# You will probably need a Powerline-patched font for this to work:\n' Comment
+
+'#\n'         Comment
+
+'#     https://powerline.readthedocs.org/en/latest/fontpatching.html\n' Comment
+
+'#\n'         Comment
+
+'# I recommend picking one of these:\n' Comment
+
+'#\n'         Comment
+
+'#     https://github.com/Lokaltog/powerline-fonts\n' Comment
+
+'#\n'         Comment
+
+'# You can override some default options in your config.fish:\n' Comment
+
+'#\n'         Comment
+
+'#     set -g theme_display_user yes\n' Comment
+
+'#     set -g default_user your_normal_user\n' Comment
+
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'-g'          Text
+' '           Text
+'__bobthefish_current_bg' Text
+' '           Text
+'NONE'        Text
+'\n\n'        Text
+
+'# Powerline glyphs\n' Comment
+
+'set'         Keyword
+' '           Text
+'__bobthefish_branch_glyph' Text
+'            ' Text
+'\\u'         Literal.String.Escape
+'E0A0'        Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_ln_glyph' Text
+'                ' Text
+'\\u'         Literal.String.Escape
+'E0A1'        Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_padlock_glyph' Text
+'           ' Text
+'\\u'         Literal.String.Escape
+'E0A2'        Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_right_black_arrow_glyph' Text
+' '           Text
+'\\u'         Literal.String.Escape
+'E0B0'        Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_right_arrow_glyph' Text
+'       '     Text
+'\\u'         Literal.String.Escape
+'E0B1'        Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_left_black_arrow_glyph' Text
+'  '          Text
+'\\u'         Literal.String.Escape
+'E0B2'        Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_left_arrow_glyph' Text
+'        '    Text
+'\\u'         Literal.String.Escape
+'E0B3'        Text
+'\n\n'        Text
+
+'# Additional glyphs\n' Comment
+
+'set'         Keyword
+' '           Text
+'__bobthefish_detached_glyph' Text
+'          '  Text
+'\\u'         Literal.String.Escape
+'27A6'        Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_nonzero_exit_glyph' Text
+'      '      Text
+"'! '"        Literal.String.Single
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_superuser_glyph' Text
+'         '   Text
+"'$ '"        Literal.String.Single
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_bg_job_glyph' Text
+'            ' Text
+"'% '"        Literal.String.Single
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_hg_glyph' Text
+'                ' Text
+'\\u'         Literal.String.Escape
+'263F'        Text
+'\n\n'        Text
+
+'# Python glyphs\n' Comment
+
+'set'         Keyword
+' '           Text
+'__bobthefish_superscript_glyph' Text
+'       '     Text
+'\\u'         Literal.String.Escape
+'00B9'        Text
+' '           Text
+'\\u'         Literal.String.Escape
+'00B2'        Text
+' '           Text
+'\\u'         Literal.String.Escape
+'00B3'        Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_virtualenv_glyph' Text
+'        '    Text
+'\\u'         Literal.String.Escape
+'25F0'        Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_pypy_glyph' Text
+'              ' Text
+'\\u'         Literal.String.Escape
+'1D56'        Text
+'\n\n'        Text
+
+'# Colors\n'  Comment
+
+'set'         Keyword
+' '           Text
+'__bobthefish_lt_green' Text
+'   '         Text
+'addc10'      Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_med_green' Text
+'  '          Text
+'189303'      Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_dk_green' Text
+'   '         Text
+'0c4801'      Text
+'\n\n'        Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_lt_red' Text
+'     '       Text
+'C99'         Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_med_red' Text
+'    '        Text
+'ce000f'      Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_dk_red' Text
+'     '       Text
+'600'         Text
+'\n\n'        Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_slate_blue' Text
+' '           Text
+'255e87'      Text
+'\n\n'        Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_lt_orange' Text
+'  '          Text
+'f6b117'      Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_dk_orange' Text
+'  '          Text
+'3a2a03'      Text
+'\n\n'        Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_dk_grey' Text
+'    '        Text
+'333'         Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_med_grey' Text
+'   '         Text
+'999'         Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_lt_grey' Text
+'    '        Text
+'ccc'         Text
+'\n\n'        Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_dk_brown' Text
+'   '         Text
+'4d2600'      Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_med_brown' Text
+'  '          Text
+'803F00'      Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_lt_brown' Text
+'   '         Text
+'BF5E00'      Text
+'\n\n'        Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_dk_blue' Text
+'    '        Text
+'1E2933'      Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_med_blue' Text
+'   '         Text
+'275379'      Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'__bobthefish_lt_blue' Text
+'    '        Text
+'326D9E'      Text
+'\n\n'        Text
+
+'# ===========================\n' Comment
+
+'# Helper methods\n' Comment
+
+'# ===========================\n' Comment
+
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_in_git' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Check whether pwd is inside a git repo'" Literal.String.Single
+'\n  '        Text
+'command '    Name.Builtin
+'which'       Text
+' '           Text
+'git'         Text
+' '           Text
+'>'           Operator
+' '           Text
+'/dev/null'   Text
+' '           Text
+'2>'          Text
+'&'           Operator
+'1'           Text
+';'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'command '    Name.Builtin
+'git'         Text
+' '           Text
+'rev-parse'   Text
+' '           Text
+'--is-inside-work-tree' Text
+' '           Text
+'>'           Operator
+'/dev/null'   Text
+' '           Text
+'2>'          Text
+'&'           Operator
+'1'           Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_in_hg' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Check whether pwd is inside a hg repo'" Literal.String.Single
+'\n  '        Text
+'command '    Name.Builtin
+'which'       Text
+' '           Text
+'hg'          Text
+' '           Text
+'>'           Operator
+' '           Text
+'/dev/null'   Text
+' '           Text
+'2>'          Text
+'&'           Operator
+'1'           Text
+';'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'command '    Name.Builtin
+'hg'          Text
+' '           Text
+'stat'        Text
+' '           Text
+'>'           Operator
+' '           Text
+'/dev/null'   Text
+' '           Text
+'2>'          Text
+'&'           Operator
+'1'           Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_git_branch' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Get the current git branch (or commitish)'" Literal.String.Single
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'ref'         Text
+' '           Text
+'('           Operator
+'command '    Name.Builtin
+'git'         Text
+' '           Text
+'symbolic-ref' Text
+' '           Text
+'HEAD'        Text
+' '           Text
+'2>'          Text
+' '           Text
+'/dev/null'   Text
+')'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'['           Operator
+' '           Text
+'$status'     Name.Variable
+' '           Text
+'-gt'         Text
+' '           Text
+'0'           Literal.Number
+' '           Text
+']'           Operator
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'branch'      Text
+' '           Text
+'('           Operator
+'command '    Name.Builtin
+'git'         Text
+' '           Text
+'show-ref'    Text
+' '           Text
+'--head'      Text
+' '           Text
+'-s'          Text
+' '           Text
+'--abbrev'    Text
+' '           Text
+'|'           Operator
+'head'        Text
+' '           Text
+'-n1'         Text
+' '           Text
+'2>'          Text
+' '           Text
+'/dev/null'   Text
+')'           Operator
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'ref'         Text
+' '           Text
+'"'           Literal.String.Double
+'$__bobthefish_detached_glyph' Name.Variable
+' '           Literal.String.Double
+'$branch'     Name.Variable
+'"'           Literal.String.Double
+'\n  '        Text
+'end'         Keyword
+'\n  '        Text
+'echo'        Keyword
+' '           Text
+'$ref'        Name.Variable
+' '           Text
+'|'           Operator
+' '           Text
+'sed'         Text
+'  '          Text
+'"'           Literal.String.Double
+'s-refs/heads/-' Literal.String.Double
+'$__bobthefish_branch_glyph' Name.Variable
+' -'          Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_hg_branch' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Get the current hg branch'" Literal.String.Single
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'branch'      Text
+' '           Text
+'('           Operator
+'hg'          Text
+' '           Text
+'branch'      Text
+' '           Text
+'^'           Operator
+'/dev/null'   Text
+')'           Operator
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'book'        Text
+' '           Text
+'" @ "'       Literal.String.Double
+'('           Operator
+'hg'          Text
+' '           Text
+'book'        Text
+' '           Text
+'|'           Operator
+' '           Text
+'grep'        Text
+' '           Text
+'\\*'         Literal.String.Escape
+' '           Text
+'|'           Operator
+' '           Text
+'cut'         Text
+' '           Text
+'-d'          Text
+'\\ '         Literal.String.Escape
+' '           Text
+'-f3'         Text
+')'           Operator
+'\n  '        Text
+'echo'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$__bobthefish_branch_glyph' Name.Variable
+' '           Literal.String.Double
+'$branch'     Name.Variable
+'$book'       Name.Variable
+'"'           Literal.String.Double
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_pretty_parent' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Print a parent directory, shortened to fit the prompt'" Literal.String.Single
+'\n  '        Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'('           Operator
+'dirname'     Text
+' '           Text
+'$argv'       Name.Variable
+'['           Operator
+'1'           Text
+']'           Operator
+')'           Operator
+' '           Text
+'|'           Operator
+' '           Text
+'sed'         Text
+' '           Text
+'-e'          Text
+' '           Text
+"'s|/private||'" Literal.String.Single
+' '           Text
+'-e'          Text
+' '           Text
+'"'           Literal.String.Double
+'s|^'         Literal.String.Double
+'$HOME'       Name.Variable
+'|~|'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'-e'          Text
+' '           Text
+"'s-/\\(\\.\\{0,1\\}[^/]\\)\\([^/]*\\)-/\\1-g'" Literal.String.Single
+' '           Text
+'-e'          Text
+' '           Text
+"'s|/$||'"    Literal.String.Single
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_git_project_dir' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Print the current git project base directory'" Literal.String.Single
+'\n  '        Text
+'command '    Name.Builtin
+'git'         Text
+' '           Text
+'rev-parse'   Text
+' '           Text
+'--show-toplevel' Text
+' '           Text
+'2>/dev/null' Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_hg_project_dir' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Print the current hg project base directory'" Literal.String.Single
+'\n  '        Text
+'command '    Name.Builtin
+'hg'          Text
+' '           Text
+'root'        Text
+' '           Text
+'2>/dev/null' Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_project_pwd' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Print the working directory relative to project root'" Literal.String.Single
+'\n  '        Text
+'echo'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$PWD'        Name.Variable
+'"'           Literal.String.Double
+' '           Text
+'|'           Operator
+' '           Text
+'sed'         Text
+' '           Text
+'-e'          Text
+' '           Text
+'"'           Literal.String.Double
+'s*'          Literal.String.Double
+'$argv'       Name.Variable
+'[1]**g'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'-e'          Text
+' '           Text
+"'s*^/**'"    Literal.String.Single
+'\n'          Text
+
+'end'         Keyword
+'\n\n\n'      Text
+
+'# ===========================\n' Comment
+
+'# Segment functions\n' Comment
+
+'# ===========================\n' Comment
+
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_start_segment' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Start a prompt segment'" Literal.String.Single
+'\n  '        Text
+'set_color'   Name.Builtin
+' '           Text
+'-b'          Text
+' '           Text
+'$argv'       Name.Variable
+'['           Operator
+'1'           Text
+']'           Operator
+'\n  '        Text
+'set_color'   Name.Builtin
+' '           Text
+'$argv'       Name.Variable
+'['           Operator
+'2'           Text
+']'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'['           Operator
+' '           Text
+'"'           Literal.String.Double
+'$__bobthefish_current_bg' Name.Variable
+'"'           Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+"'NONE'"      Literal.String.Single
+' '           Text
+']'           Operator
+'\n    '      Text
+"# If there's no background, just start one\n" Comment
+
+'    '        Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+"' '"         Literal.String.Single
+'\n  '        Text
+'else'        Keyword
+'\n    '      Text
+"# If there's already a background...\n" Comment
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'['           Operator
+' '           Text
+'"'           Literal.String.Double
+'$argv'       Name.Variable
+'[1]'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'$__bobthefish_current_bg' Name.Variable
+'"'           Literal.String.Double
+' '           Text
+']'           Operator
+'\n      '    Text
+"# and it's the same color, draw a separator\n" Comment
+
+'      '      Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'"'           Literal.String.Double
+'$__bobthefish_right_arrow_glyph' Name.Variable
+' '           Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text
+'else'        Keyword
+'\n      '    Text
+'# otherwise, draw the end of the previous segment and the start of the next\n' Comment
+
+'      '      Text
+'set_color'   Name.Builtin
+' '           Text
+'$__bobthefish_current_bg' Name.Variable
+'\n      '    Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'"'           Literal.String.Double
+'$__bobthefish_right_black_arrow_glyph' Name.Variable
+' '           Literal.String.Double
+'"'           Literal.String.Double
+'\n      '    Text
+'set_color'   Name.Builtin
+' '           Text
+'$argv'       Name.Variable
+'['           Operator
+'2'           Text
+']'           Operator
+'\n    '      Text
+'end'         Keyword
+'\n  '        Text
+'end'         Keyword
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'__bobthefish_current_bg' Text
+' '           Text
+'$argv'       Name.Variable
+'['           Operator
+'1'           Text
+']'           Operator
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_path_segment' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Display a shortened form of a directory'" Literal.String.Single
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'-w'          Text
+' '           Text
+'"'           Literal.String.Double
+'$argv'       Name.Variable
+'[1]'         Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text
+'__bobthefish_start_segment' Text
+' '           Text
+'$__bobthefish_dk_grey' Name.Variable
+' '           Text
+'$__bobthefish_med_grey' Name.Variable
+'\n  '        Text
+'else'        Keyword
+'\n    '      Text
+'__bobthefish_start_segment' Text
+' '           Text
+'$__bobthefish_dk_red' Name.Variable
+' '           Text
+'$__bobthefish_lt_red' Name.Variable
+'\n  '        Text
+'end'         Keyword
+'\n\n  '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'directory'   Text
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'parent'      Text
+'\n\n  '      Text
+'switch'      Keyword
+' '           Text
+'"'           Literal.String.Double
+'$argv'       Name.Variable
+'[1]'         Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'/'           Text
+'\n      '    Text
+'set'         Keyword
+' '           Text
+'directory'   Text
+' '           Text
+"'/'"         Literal.String.Single
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$HOME'       Name.Variable
+'"'           Literal.String.Double
+'\n      '    Text
+'set'         Keyword
+' '           Text
+'directory'   Text
+' '           Text
+"'~'"         Literal.String.Single
+'\n    '      Text
+'case'        Keyword
+' '           Text
+"'*'"         Literal.String.Single
+'\n      '    Text
+'set'         Keyword
+' '           Text
+'parent'      Text
+'    '        Text
+'('           Operator
+'__bobthefish_pretty_parent' Text
+' '           Text
+'"'           Literal.String.Double
+'$argv'       Name.Variable
+'[1]'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator
+'\n      '    Text
+'set'         Keyword
+' '           Text
+'parent'      Text
+'    '        Text
+'"'           Literal.String.Double
+'$parent'     Name.Variable
+'/'           Literal.String.Double
+'"'           Literal.String.Double
+'\n      '    Text
+'set'         Keyword
+' '           Text
+'directory'   Text
+' '           Text
+'('           Operator
+'basename'    Text
+' '           Text
+'"'           Literal.String.Double
+'$argv'       Name.Variable
+'[1]'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator
+'\n  '        Text
+'end'         Keyword
+'\n\n  '      Text
+'test'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$parent'     Name.Variable
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'-s'          Text
+' '           Text
+'"'           Literal.String.Double
+'$parent'     Name.Variable
+'"'           Literal.String.Double
+'\n  '        Text
+'set_color '  Name.Builtin
+'fff'         Text
+' '           Text
+'--bold'      Text
+'\n  '        Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'"'           Literal.String.Double
+'$directory'  Name.Variable
+' '           Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text
+'set_color '  Name.Builtin
+'normal'      Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_finish_segments' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Close open prompt segments'" Literal.String.Single
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'['           Operator
+' '           Text
+'-n'          Text
+' '           Text
+'$__bobthefish_current_bg' Name.Variable
+' '           Text
+'-a'          Text
+' '           Text
+'$__bobthefish_current_bg' Name.Variable
+' '           Text
+'!'           Text
+'='           Operator
+' '           Text
+"'NONE'"      Literal.String.Single
+' '           Text
+']'           Operator
+'\n    '      Text
+'set_color'   Name.Builtin
+' '           Text
+'-b'          Text
+' '           Text
+'normal'      Text
+'\n    '      Text
+'set_color'   Name.Builtin
+' '           Text
+'$__bobthefish_current_bg' Name.Variable
+'\n    '      Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'"'           Literal.String.Double
+'$__bobthefish_right_black_arrow_glyph' Name.Variable
+' '           Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text
+'set_color '  Name.Builtin
+'normal'      Text
+'\n  '        Text
+'end'         Keyword
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-g'          Text
+' '           Text
+'__bobthefish_current_bg' Text
+' '           Text
+'NONE'        Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n\n'      Text
+
+'# ===========================\n' Comment
+
+'# Theme components\n' Comment
+
+'# ===========================\n' Comment
+
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_prompt_status' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Display symbols for a non zero exit status, root and background jobs'" Literal.String.Single
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'nonzero'     Text
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'superuser'   Text
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'bg_jobs'     Text
+'\n\n  '      Text
+'# Last exit was nonzero\n' Comment
+
+'  '          Text
+'if'          Keyword
+' '           Text
+'['           Operator
+' '           Text
+'$status'     Name.Variable
+' '           Text
+'-ne'         Text
+' '           Text
+'0'           Literal.Number
+' '           Text
+']'           Operator
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'nonzero'     Text
+' '           Text
+'$__bobthefish_nonzero_exit_glyph' Name.Variable
+'\n  '        Text
+'end'         Keyword
+'\n\n  '      Text
+'# if superuser (uid == 0)\n' Comment
+
+'  '          Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'uid'         Text
+' '           Text
+'('           Operator
+'id'          Text
+' '           Text
+'-u'          Text
+' '           Text
+'$USER'       Name.Variable
+')'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'['           Operator
+' '           Text
+'$uid'        Name.Variable
+' '           Text
+'-eq'         Text
+' '           Text
+'0'           Literal.Number
+' '           Text
+']'           Operator
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'superuser'   Text
+' '           Text
+'$__bobthefish_superuser_glyph' Name.Variable
+'\n  '        Text
+'end'         Keyword
+'\n\n  '      Text
+'# Jobs display\n' Comment
+
+'  '          Text
+'if'          Keyword
+' '           Text
+'['           Operator
+' '           Text
+'('           Operator
+'jobs'        Name.Builtin
+' '           Text
+'-l'          Text
+' '           Text
+'|'           Operator
+' '           Text
+'wc'          Text
+' '           Text
+'-l'          Text
+')'           Operator
+' '           Text
+'-gt'         Text
+' '           Text
+'0'           Literal.Number
+' '           Text
+']'           Operator
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'bg_jobs'     Text
+' '           Text
+'$__bobthefish_bg_job_glyph' Name.Variable
+'\n  '        Text
+'end'         Keyword
+'\n\n  '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'status_flags' Text
+' '           Text
+'"'           Literal.String.Double
+'$nonzero'    Name.Variable
+'$superuser'  Name.Variable
+'$bg_jobs'    Name.Variable
+'"'           Literal.String.Double
+'\n\n  '      Text
+'if'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$nonzero'    Name.Variable
+'"'           Literal.String.Double
+' '           Text
+'-o'          Text
+' '           Text
+'"'           Literal.String.Double
+'$superuser'  Name.Variable
+'"'           Literal.String.Double
+' '           Text
+'-o'          Text
+' '           Text
+'"'           Literal.String.Double
+'$bg_jobs'    Name.Variable
+'"'           Literal.String.Double
+'\n    '      Text
+'__bobthefish_start_segment' Text
+' '           Text
+'fff'         Text
+' '           Text
+'000'         Text
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'['           Operator
+' '           Text
+'"'           Literal.String.Double
+'$nonzero'    Name.Variable
+'"'           Literal.String.Double
+' '           Text
+']'           Operator
+'\n      '    Text
+'set_color'   Name.Builtin
+' '           Text
+'$__bobthefish_med_red' Name.Variable
+' '           Text
+'--bold'      Text
+'\n      '    Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'$__bobthefish_nonzero_exit_glyph' Name.Variable
+'\n    '      Text
+'end'         Keyword
+'\n\n    '    Text
+'if'          Keyword
+' '           Text
+'['           Operator
+' '           Text
+'"'           Literal.String.Double
+'$superuser'  Name.Variable
+'"'           Literal.String.Double
+' '           Text
+']'           Operator
+'\n      '    Text
+'set_color'   Name.Builtin
+' '           Text
+'$__bobthefish_med_green' Name.Variable
+' '           Text
+'--bold'      Text
+'\n      '    Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'$__bobthefish_superuser_glyph' Name.Variable
+'\n    '      Text
+'end'         Keyword
+'\n\n    '    Text
+'if'          Keyword
+' '           Text
+'['           Operator
+' '           Text
+'"'           Literal.String.Double
+'$bg_jobs'    Name.Variable
+'"'           Literal.String.Double
+' '           Text
+']'           Operator
+'\n      '    Text
+'set_color'   Name.Builtin
+' '           Text
+'$__bobthefish_slate_blue' Name.Variable
+' '           Text
+'--bold'      Text
+'\n      '    Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'$__bobthefish_bg_job_glyph' Name.Variable
+'\n    '      Text
+'end'         Keyword
+'\n\n    '    Text
+'set_color '  Name.Builtin
+'normal'      Text
+'\n  '        Text
+'end'         Keyword
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_prompt_user' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Display actual user if different from $default_user'" Literal.String.Single
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'['           Operator
+' '           Text
+'"'           Literal.String.Double
+'$theme_display_user' Name.Variable
+'"'           Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+"'yes'"       Literal.String.Single
+' '           Text
+']'           Operator
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'['           Operator
+' '           Text
+'"'           Literal.String.Double
+'$USER'       Name.Variable
+'"'           Literal.String.Double
+' '           Text
+'!'           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'$default_user' Name.Variable
+'"'           Literal.String.Double
+' '           Text
+'-o'          Text
+' '           Text
+'-n'          Text
+' '           Text
+'"'           Literal.String.Double
+'$SSH_CLIENT' Name.Variable
+'"'           Literal.String.Double
+' '           Text
+']'           Operator
+'\n      '    Text
+'__bobthefish_start_segment' Text
+' '           Text
+'$__bobthefish_lt_grey' Name.Variable
+' '           Text
+'$__bobthefish_slate_blue' Name.Variable
+'\n      '    Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'-s'          Text
+' '           Text
+'('           Operator
+'whoami'      Text
+')'           Operator
+' '           Text
+"'@'"         Literal.String.Single
+' '           Text
+'('           Operator
+'hostname'    Text
+' '           Text
+'|'           Operator
+' '           Text
+'cut'         Text
+' '           Text
+'-d'          Text
+' '           Text
+'.'           Text
+' '           Text
+'-f'          Text
+' '           Text
+'1'           Text
+')'           Operator
+' '           Text
+"' '"         Literal.String.Single
+'\n    '      Text
+'end'         Keyword
+'\n  '        Text
+'end'         Keyword
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_prompt_hg' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Display the actual hg state'" Literal.String.Single
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'dirty'       Text
+'   '         Text
+'('           Operator
+'command '    Name.Builtin
+'hg'          Text
+' '           Text
+'stat'        Text
+';'           Punctuation
+' '           Text
+'or'          Keyword
+' '           Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+"'*'"         Literal.String.Single
+')'           Operator
+'\n\n  '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'flags'       Text
+' '           Text
+'"'           Literal.String.Double
+'$dirty'      Name.Variable
+'"'           Literal.String.Double
+'\n  '        Text
+'test'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$flags'      Name.Variable
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'set'         Keyword
+' '           Text
+'flags'       Text
+' '           Text
+'""'          Literal.String.Double
+'\n\n  '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'flag_bg'     Text
+' '           Text
+'$__bobthefish_lt_green' Name.Variable
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'flag_fg'     Text
+' '           Text
+'$__bobthefish_dk_green' Name.Variable
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$dirty'      Name.Variable
+'"'           Literal.String.Double
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'flag_bg'     Text
+' '           Text
+'$__bobthefish_med_red' Name.Variable
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'flag_fg'     Text
+' '           Text
+'fff'         Text
+'\n  '        Text
+'end'         Keyword
+'\n\n  '      Text
+'__bobthefish_path_segment' Text
+' '           Text
+'('           Operator
+'__bobthefish_hg_project_dir' Text
+')'           Operator
+'\n\n  '      Text
+'__bobthefish_start_segment' Text
+' '           Text
+'$flag_bg'    Name.Variable
+' '           Text
+'$flag_fg'    Name.Variable
+'\n  '        Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'-s'          Text
+' '           Text
+'$__bobthefish_hg_glyph' Name.Variable
+' '           Text
+"' '"         Literal.String.Single
+'\n\n  '      Text
+'__bobthefish_start_segment' Text
+' '           Text
+'$flag_bg'    Name.Variable
+' '           Text
+'$flag_fg'    Name.Variable
+'\n  '        Text
+'set_color'   Name.Builtin
+' '           Text
+'$flag_fg'    Name.Variable
+' '           Text
+'--bold'      Text
+'\n  '        Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'-s'          Text
+' '           Text
+'('           Operator
+'__bobthefish_hg_branch' Text
+')'           Operator
+' '           Text
+'$flags'      Name.Variable
+' '           Text
+"' '"         Literal.String.Single
+'\n  '        Text
+'set_color '  Name.Builtin
+'normal'      Text
+'\n\n  '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'project_pwd' Text
+'  '          Text
+'('           Operator
+'__bobthefish_project_pwd' Text
+' '           Text
+'('           Operator
+'__bobthefish_hg_project_dir' Text
+')'           Operator
+')'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$project_pwd' Name.Variable
+'"'           Literal.String.Double
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'-w'          Text
+' '           Text
+'"'           Literal.String.Double
+'$PWD'        Name.Variable
+'"'           Literal.String.Double
+'\n      '    Text
+'__bobthefish_start_segment' Text
+' '           Text
+'333'         Literal.Number
+' '           Text
+'999'         Text
+'\n    '      Text
+'else'        Keyword
+'\n      '    Text
+'__bobthefish_start_segment' Text
+' '           Text
+'$__bobthefish_med_red' Name.Variable
+' '           Text
+'$__bobthefish_lt_red' Name.Variable
+'\n    '      Text
+'end'         Keyword
+'\n\n    '    Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'-s'          Text
+' '           Text
+'$project_pwd' Name.Variable
+' '           Text
+"' '"         Literal.String.Single
+'\n  '        Text
+'end'         Keyword
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'# TODO: clean up the fugly $ahead business\n' Comment
+
+'function'    Keyword
+' '           Text
+'__bobthefish_prompt_git' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Display the actual git state'" Literal.String.Single
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'dirty'       Text
+'   '         Text
+'('           Operator
+'command '    Name.Builtin
+'git'         Text
+' '           Text
+'diff'        Text
+' '           Text
+'--no-ext-diff' Text
+' '           Text
+'--quiet'     Text
+' '           Text
+'--exit-code' Text
+';'           Punctuation
+' '           Text
+'or'          Keyword
+' '           Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+"'*'"         Literal.String.Single
+')'           Operator
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'staged'      Text
+'  '          Text
+'('           Operator
+'command '    Name.Builtin
+'git'         Text
+' '           Text
+'diff'        Text
+' '           Text
+'--cached'    Text
+' '           Text
+'--no-ext-diff' Text
+' '           Text
+'--quiet'     Text
+' '           Text
+'--exit-code' Text
+';'           Punctuation
+' '           Text
+'or'          Keyword
+' '           Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+"'~'"         Literal.String.Single
+')'           Operator
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'stashed'     Text
+' '           Text
+'('           Operator
+'command '    Name.Builtin
+'git'         Text
+' '           Text
+'rev-parse'   Text
+' '           Text
+'--verify'    Text
+' '           Text
+'refs/stash'  Text
+' '           Text
+'>'           Operator
+' '           Text
+'/dev/null'   Text
+' '           Text
+'2>'          Text
+'&'           Operator
+'1'           Text
+';'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+"'$'"         Literal.String.Single
+')'           Operator
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'ahead'       Text
+'   '         Text
+'('           Operator
+'command '    Name.Builtin
+'git'         Text
+' '           Text
+'branch'      Text
+' '           Text
+'-v'          Text
+' '           Text
+'2>'          Text
+' '           Text
+'/dev/null'   Text
+' '           Text
+'|'           Operator
+' '           Text
+'grep'        Text
+' '           Text
+'-Eo'         Text
+' '           Text
+"'^\\* [^ ]* *[^ ]* *\\[[^]]*\\]'" Literal.String.Single
+' '           Text
+'|'           Operator
+' '           Text
+'grep'        Text
+' '           Text
+'-Eo'         Text
+' '           Text
+"'\\[[^]]*\\]$'" Literal.String.Single
+' '           Text
+'|'           Operator
+' '           Text
+'awk'         Text
+' '           Text
+'\'ORS="";/ahead/ {print "+"} /behind/ {print "-"}\'' Literal.String.Single
+' '           Text
+'|'           Operator
+' '           Text
+'sed'         Text
+' '           Text
+'-e'          Text
+' '           Text
+"'s/+-/±/'"   Literal.String.Single
+')'           Operator
+'\n\n  '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'new'         Text
+' '           Text
+'('           Operator
+'command '    Name.Builtin
+'git'         Text
+' '           Text
+'ls-files'    Text
+' '           Text
+'--other'     Text
+' '           Text
+'--exclude-standard' Text
+')'           Operator
+';'           Punctuation
+'\n  '        Text
+'test'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$new'        Name.Variable
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'set'         Keyword
+' '           Text
+'new'         Text
+' '           Text
+"'…'"         Literal.String.Single
+'\n\n  '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'flags'       Text
+'   '         Text
+'"'           Literal.String.Double
+'$dirty'      Name.Variable
+'$staged'     Name.Variable
+'$stashed'    Name.Variable
+'$ahead'      Name.Variable
+'$new'        Name.Variable
+'"'           Literal.String.Double
+'\n  '        Text
+'test'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$flags'      Name.Variable
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'set'         Keyword
+' '           Text
+'flags'       Text
+' '           Text
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'$flags'      Name.Variable
+'"'           Literal.String.Double
+'\n\n  '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'flag_bg'     Text
+' '           Text
+'$__bobthefish_lt_green' Name.Variable
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'flag_fg'     Text
+' '           Text
+'$__bobthefish_dk_green' Name.Variable
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$dirty'      Name.Variable
+'"'           Literal.String.Double
+' '           Text
+'-o'          Text
+' '           Text
+'"'           Literal.String.Double
+'$staged'     Name.Variable
+'"'           Literal.String.Double
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'flag_bg'     Text
+' '           Text
+'$__bobthefish_med_red' Name.Variable
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'flag_fg'     Text
+' '           Text
+'fff'         Text
+'\n  '        Text
+'else'        Keyword
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$stashed'    Name.Variable
+'"'           Literal.String.Double
+'\n      '    Text
+'set'         Keyword
+' '           Text
+'flag_bg'     Text
+' '           Text
+'$__bobthefish_lt_orange' Name.Variable
+'\n      '    Text
+'set'         Keyword
+' '           Text
+'flag_fg'     Text
+' '           Text
+'$__bobthefish_dk_orange' Name.Variable
+'\n    '      Text
+'end'         Keyword
+'\n  '        Text
+'end'         Keyword
+'\n\n  '      Text
+'__bobthefish_path_segment' Text
+' '           Text
+'('           Operator
+'__bobthefish_git_project_dir' Text
+')'           Operator
+'\n\n  '      Text
+'__bobthefish_start_segment' Text
+' '           Text
+'$flag_bg'    Name.Variable
+' '           Text
+'$flag_fg'    Name.Variable
+'\n  '        Text
+'set_color'   Name.Builtin
+' '           Text
+'$flag_fg'    Name.Variable
+' '           Text
+'--bold'      Text
+'\n  '        Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'-s'          Text
+' '           Text
+'('           Operator
+'__bobthefish_git_branch' Text
+')'           Operator
+' '           Text
+'$flags'      Name.Variable
+' '           Text
+"' '"         Literal.String.Single
+'\n  '        Text
+'set_color '  Name.Builtin
+'normal'      Text
+'\n\n  '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'project_pwd' Text
+'  '          Text
+'('           Operator
+'__bobthefish_project_pwd' Text
+' '           Text
+'('           Operator
+'__bobthefish_git_project_dir' Text
+')'           Operator
+')'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$project_pwd' Name.Variable
+'"'           Literal.String.Double
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'-w'          Text
+' '           Text
+'"'           Literal.String.Double
+'$PWD'        Name.Variable
+'"'           Literal.String.Double
+'\n      '    Text
+'__bobthefish_start_segment' Text
+' '           Text
+'333'         Literal.Number
+' '           Text
+'999'         Text
+'\n    '      Text
+'else'        Keyword
+'\n      '    Text
+'__bobthefish_start_segment' Text
+' '           Text
+'$__bobthefish_med_red' Name.Variable
+' '           Text
+'$__bobthefish_lt_red' Name.Variable
+'\n    '      Text
+'end'         Keyword
+'\n\n    '    Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'-s'          Text
+' '           Text
+'$project_pwd' Name.Variable
+' '           Text
+"' '"         Literal.String.Single
+'\n  '        Text
+'end'         Keyword
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_prompt_dir' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Display a shortened form of the current directory'" Literal.String.Single
+'\n  '        Text
+'__bobthefish_path_segment' Text
+' '           Text
+'"'           Literal.String.Double
+'$PWD'        Name.Variable
+'"'           Literal.String.Double
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_in_virtualfish_virtualenv' Text
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'-q'          Text
+' '           Text
+'VIRTUAL_ENV' Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_virtualenv_python_version' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Get current python version'" Literal.String.Single
+'\n  '        Text
+'switch'      Keyword
+' '           Text
+'('           Operator
+'readlink'    Text
+' '           Text
+'('           Operator
+'which'       Text
+' '           Text
+'python'      Text
+')'           Operator
+')'           Operator
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'python2'     Text
+'\n      '    Text
+'echo'        Keyword
+' '           Text
+'$__bobthefish_superscript_glyph' Name.Variable
+'['           Operator
+'2'           Text
+']'           Operator
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'python3'     Text
+'\n      '    Text
+'echo'        Keyword
+' '           Text
+'$__bobthefish_superscript_glyph' Name.Variable
+'['           Operator
+'3'           Text
+']'           Operator
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'pypy'        Text
+'\n      '    Text
+'echo'        Keyword
+' '           Text
+'$__bobthefish_pypy_glyph' Name.Variable
+'\n    '      Text
+'end'         Keyword
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_virtualenv' Text
+' '           Text
+'-d'          Text
+' '           Text
+"'Get the current virtualenv'" Literal.String.Single
+'\n  '        Text
+'echo'        Keyword
+' '           Text
+'$__bobthefish_virtualenv_glyph' Name.Variable
+'('           Operator
+'__bobthefish_virtualenv_python_version' Text
+')'           Operator
+' '           Text
+'('           Operator
+'basename'    Text
+' '           Text
+'"'           Literal.String.Double
+'$VIRTUAL_ENV' Name.Variable
+'"'           Literal.String.Double
+')'           Operator
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'__bobthefish_prompt_virtualfish' Text
+' '           Text
+'-d'          Text
+' '           Text
+'"Display activated virtual environment (only for virtualfish, virtualenv\'s activate.fish changes prompt by itself)"' Literal.String.Double
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'flag_bg'     Text
+' '           Text
+'$__bobthefish_lt_blue' Name.Variable
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'flag_fg'     Text
+' '           Text
+'$__bobthefish_dk_blue' Name.Variable
+'\n  '        Text
+'__bobthefish_start_segment' Text
+' '           Text
+'$flag_bg'    Name.Variable
+' '           Text
+'$flag_fg'    Name.Variable
+'\n  '        Text
+'set_color'   Name.Builtin
+' '           Text
+'$flag_fg'    Name.Variable
+' '           Text
+'--bold'      Text
+'\n  '        Text
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'-s'          Text
+' '           Text
+'('           Operator
+'__bobthefish_virtualenv' Text
+')'           Operator
+' '           Text
+'$flags'      Name.Variable
+' '           Text
+"' '"         Literal.String.Single
+'\n  '        Text
+'set_color '  Name.Builtin
+'normal'      Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n\n'      Text
+
+'# ===========================\n' Comment
+
+'# Apply theme\n' Comment
+
+'# ===========================\n' Comment
+
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'fish_prompt' Name.Builtin
+' '           Text
+'-d'          Text
+' '           Text
+"'bobthefish, a fish theme optimized for awesome'" Literal.String.Single
+'\n  '        Text
+'__bobthefish_prompt_status' Text
+'\n  '        Text
+'__bobthefish_prompt_user' Text
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'__bobthefish_in_virtualfish_virtualenv' Text
+'\n    '      Text
+'__bobthefish_prompt_virtualfish' Text
+'\n  '        Text
+'end'         Keyword
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'__bobthefish_in_git' Text
+'       '     Text
+'# TODO: do this right.\n' Comment
+
+'    '        Text
+'__bobthefish_prompt_git' Text
+'    '        Text
+'# if something is in both git and hg, check the length of\n' Comment
+
+'  '          Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'__bobthefish_in_hg' Text
+'   '         Text
+'# __bobthefish_git_project_dir vs __bobthefish_hg_project_dir\n' Comment
+
+'    '        Text
+'__bobthefish_prompt_hg' Text
+'     '       Text
+'# and pick the longer of the two.\n' Comment
+
+'  '          Text
+'else'        Keyword
+'\n    '      Text
+'__bobthefish_prompt_dir' Text
+'\n  '        Text
+'end'         Keyword
+'\n  '        Text
+'__bobthefish_finish_segments' Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'# -----------------------------------------------------------------------------\n' Comment
+
+'# funced - edit a function interactively\n' Comment
+
+'#\n'         Comment
+
+'# Synopsis\n' Comment
+
+'#\n'         Comment
+
+'#   funced [OPTIONS] NAME\n' Comment
+
+'#\n'         Comment
+
+'# Description\n' Comment
+
+'#\n'         Comment
+
+'#   funced provides an interface to edit the definition of the function NAME.\n' Comment
+
+'# -----------------------------------------------------------------------------\n' Comment
+
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'funced'      Name.Builtin
+' '           Text
+'--description' Text
+' '           Text
+"'Edit function definition'" Literal.String.Single
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'editor'      Text
+' '           Text
+'$EDITOR'     Name.Variable
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'interactive' Text
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'funcname'    Text
+'\n    '      Text
+'while'       Keyword
+' '           Text
+'set'         Keyword
+' '           Text
+'-q'          Text
+' '           Text
+'argv'        Text
+'['           Operator
+'1'           Text
+']'           Operator
+'\n        '  Text
+'switch'      Keyword
+' '           Text
+'$argv'       Name.Variable
+'['           Operator
+'1'           Text
+']'           Operator
+'\n            ' Text
+'case'        Keyword
+' '           Text
+'-h'          Text
+' '           Text
+'--help'      Text
+'\n                ' Text
+'__fish_print_help' Text
+' '           Text
+'funced\n                ' Name.Builtin
+'return'      Keyword
+' '           Text
+'0'           Text
+'\n\n            ' Text
+'case'        Keyword
+' '           Text
+'-e'          Text
+' '           Text
+'--editor'    Text
+'\n                ' Text
+'set'         Keyword
+' '           Text
+'editor'      Text
+' '           Text
+'$argv'       Name.Variable
+'['           Operator
+'2'           Text
+']'           Operator
+'\n                ' Text
+'set'         Keyword
+' '           Text
+'-e'          Text
+' '           Text
+'argv'        Text
+'['           Operator
+'2'           Text
+']'           Operator
+'\n\n            ' Text
+'case'        Keyword
+' '           Text
+'-i'          Text
+' '           Text
+'--interactive' Text
+'\n                ' Text
+'set'         Keyword
+' '           Text
+'interactive' Text
+' '           Text
+'1'           Text
+'\n\n            ' Text
+'case'        Keyword
+' '           Text
+'--'          Text
+'\n                ' Text
+'set'         Keyword
+' '           Text
+'funcname'    Text
+' '           Text
+'$funcname'   Name.Variable
+' '           Text
+'$argv'       Name.Variable
+'['           Operator
+'2'           Text
+']'           Operator
+'\n                ' Text
+'set'         Keyword
+' '           Text
+'-e'          Text
+' '           Text
+'argv'        Text
+'['           Operator
+'2'           Text
+']'           Operator
+'\n\n            ' Text
+'case'        Keyword
+' '           Text
+"'-*'"        Literal.String.Single
+'\n                ' Text
+'set_color '  Name.Builtin
+'red'         Text
+'\n                ' Text
+'printf'      Name.Builtin
+' '           Text
+'('           Operator
+'_'           Text
+' '           Text
+'"%s: Unknown option %s\\n"' Literal.String.Double
+')'           Operator
+' '           Text
+'funced'      Name.Builtin
+' '           Text
+'$argv'       Name.Variable
+'['           Operator
+'1'           Text
+']'           Operator
+'\n                ' Text
+'set_color '  Name.Builtin
+'normal'      Text
+'\n                ' Text
+'return'      Keyword
+' '           Text
+'1'           Text
+'\n\n            ' Text
+'case'        Keyword
+' '           Text
+"'*'"         Literal.String.Single
+' '           Text
+"'.*'"        Literal.String.Single
+'\n                ' Text
+'set'         Keyword
+' '           Text
+'funcname'    Text
+' '           Text
+'$funcname'   Name.Variable
+' '           Text
+'$argv'       Name.Variable
+'['           Operator
+'1'           Text
+']'           Operator
+'\n        '  Text
+'end'         Keyword
+'\n        '  Text
+'set'         Keyword
+' '           Text
+'-e'          Text
+' '           Text
+'argv'        Text
+'['           Operator
+'1'           Text
+']'           Operator
+'\n    '      Text
+'end'         Keyword
+'\n\n    '    Text
+'if'          Keyword
+' '           Text
+'begin'       Keyword
+';'           Punctuation
+' '           Text
+'set'         Keyword
+' '           Text
+'-q'          Text
+' '           Text
+'funcname'    Text
+'['           Operator
+'2'           Text
+']'           Operator
+';'           Punctuation
+' '           Text
+'or'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$funcname'   Name.Variable
+'[1]'         Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text
+'end'         Keyword
+'\n        '  Text
+'set_color '  Name.Builtin
+'red'         Text
+'\n        '  Text
+'_'           Text
+' '           Text
+'"funced: You must specify one function name\n"' Literal.String.Double
+'\n        '  Text
+'set_color '  Name.Builtin
+'normal'      Text
+'\n        '  Text
+'return'      Keyword
+' '           Text
+'1'           Text
+'\n    '      Text
+'end'         Keyword
+'\n\n    '    Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'init'        Text
+'\n    '      Text
+'switch'      Keyword
+' '           Text
+'$funcname'   Name.Variable
+'\n        '  Text
+'case'        Keyword
+' '           Text
+"'-*'"        Literal.String.Single
+'\n        '  Text
+'set'         Keyword
+' '           Text
+'init'        Text
+' '           Text
+'function'    Keyword
+' '           Text
+'--'          Text
+' '           Text
+'$funcname'   Name.Variable
+'\\n'         Literal.String.Escape
+'\\n'         Literal.String.Escape
+'end'         Text
+'\n        '  Text
+'case'        Keyword
+' '           Text
+"'*'"         Literal.String.Single
+'\n        '  Text
+'set'         Keyword
+' '           Text
+'init'        Text
+' '           Text
+'function'    Keyword
+' '           Text
+'$funcname'   Name.Variable
+'\\n'         Literal.String.Escape
+'\\n'         Literal.String.Escape
+'end'         Text
+'\n    '      Text
+'end'         Keyword
+'\n\n    '    Text
+'# Break editor up to get its first command (i.e. discard flags)\n' Comment
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'"'           Literal.String.Double
+'$editor'     Name.Variable
+'"'           Literal.String.Double
+'\n        '  Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'editor_cmd'  Text
+'\n        '  Text
+'eval '       Name.Builtin
+'set'         Keyword
+' '           Text
+'editor_cmd'  Text
+' '           Text
+'$editor'     Name.Variable
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'type'        Name.Builtin
+' '           Text
+'-f'          Text
+' '           Text
+'"'           Literal.String.Double
+'$editor_cmd' Name.Variable
+'[1]'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'>'           Operator
+'/dev/null'   Text
+'\n            ' Text
+'_'           Text
+' '           Text
+'"'           Literal.String.Double
+"funced: The value for \\$EDITOR '" Literal.String.Double
+'$editor'     Name.Variable
+"' could not be used because the command '" Literal.String.Double
+'$editor_cmd' Name.Variable
+"[1]' could not be found\n    " Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text
+'set'         Keyword
+' '           Text
+'editor'      Text
+' '           Text
+'fish\n        ' Name.Builtin
+'end'         Keyword
+'\n    '      Text
+'end'         Keyword
+'\n\n    '    Text
+'# If no editor is specified, use fish\n' Comment
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'-z'          Text
+' '           Text
+'"'           Literal.String.Double
+'$editor'     Name.Variable
+'"'           Literal.String.Double
+'\n        '  Text
+'set'         Keyword
+' '           Text
+'editor'      Text
+' '           Text
+'fish\n    '  Name.Builtin
+'end'         Keyword
+'\n\n    '    Text
+'if'          Keyword
+' '           Text
+'begin'       Keyword
+';'           Punctuation
+' '           Text
+'set'         Keyword
+' '           Text
+'-q'          Text
+' '           Text
+'interactive' Text
+'['           Operator
+'1'           Text
+']'           Operator
+';'           Punctuation
+' '           Text
+'or'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'"'           Literal.String.Double
+'$editor'     Name.Variable
+'"'           Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'fish'        Name.Builtin
+';'           Punctuation
+' '           Text
+'end'         Keyword
+'\n        '  Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'IFS'         Text
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'functions'   Name.Builtin
+' '           Text
+'-q'          Text
+' '           Text
+'--'          Text
+' '           Text
+'$funcname'   Name.Variable
+'\n            ' Text
+'# Shadow IFS here to avoid array splitting in command substitution\n' Comment
+
+'            ' Text
+'set'         Keyword
+' '           Text
+'init'        Text
+' '           Text
+'('           Operator
+'functions'   Name.Builtin
+' '           Text
+'--'          Text
+' '           Text
+'$funcname'   Name.Variable
+' '           Text
+'|'           Operator
+' '           Text
+'fish_indent' Name.Builtin
+' '           Text
+'--no-indent' Text
+')'           Operator
+'\n        '  Text
+'end'         Keyword
+'\n\n        ' Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'prompt'      Text
+' '           Text
+'\'printf "%s%s%s> " (set_color green) \'' Literal.String.Single
+'$funcname'   Name.Variable
+"' (set_color normal)'" Literal.String.Single
+'\n        '  Text
+'# Unshadow IFS since the fish_title breaks otherwise\n' Comment
+
+'        '    Text
+'set'         Keyword
+' '           Text
+'-e'          Text
+' '           Text
+'IFS'         Text
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'read'        Name.Builtin
+' '           Text
+'-p'          Text
+' '           Text
+'$prompt'     Name.Variable
+' '           Text
+'-c'          Text
+' '           Text
+'"'           Literal.String.Double
+'$init'       Name.Variable
+'"'           Literal.String.Double
+' '           Text
+'-s'          Text
+' '           Text
+'cmd'         Text
+'\n            ' Text
+'# Shadow IFS _again_ to avoid array splitting in command substitution\n' Comment
+
+'            ' Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'IFS'         Text
+'\n            ' Text
+'eval'        Name.Builtin
+' '           Text
+'('           Operator
+'echo'        Keyword
+' '           Text
+'-n'          Text
+' '           Text
+'$cmd'        Name.Variable
+' '           Text
+'|'           Operator
+' '           Text
+'fish_indent' Name.Builtin
+')'           Operator
+'\n        '  Text
+'end'         Keyword
+'\n        '  Text
+'return'      Keyword
+' '           Text
+'0'           Text
+'\n    '      Text
+'end'         Keyword
+'\n\n    '    Text
+'set'         Keyword
+' '           Text
+'-q'          Text
+' '           Text
+'TMPDIR'      Text
+';'           Punctuation
+' '           Text
+'or'          Keyword
+' '           Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'TMPDIR'      Text
+' '           Text
+'/tmp'        Text
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'tmpname'     Text
+' '           Text
+'('           Operator
+'printf'      Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'$TMPDIR'     Name.Variable
+'/fish_funced_%d_%d.fish' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'%self'       Text
+' '           Text
+'('           Operator
+'random'      Name.Builtin
+')'           Operator
+')'           Operator
+'\n    '      Text
+'while'       Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'-f'          Text
+' '           Text
+'$tmpname'    Name.Variable
+'\n        '  Text
+'set'         Keyword
+' '           Text
+'tmpname'     Text
+' '           Text
+'('           Operator
+'printf'      Name.Builtin
+' '           Text
+'"'           Literal.String.Double
+'$TMPDIR'     Name.Variable
+'/fish_funced_%d_%d.fish' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'%self'       Text
+' '           Text
+'('           Operator
+'random'      Name.Builtin
+')'           Operator
+')'           Operator
+'\n    '      Text
+'end'         Keyword
+'\n\n    '    Text
+'if'          Keyword
+' '           Text
+'functions'   Name.Builtin
+' '           Text
+'-q'          Text
+' '           Text
+'--'          Text
+' '           Text
+'$funcname'   Name.Variable
+'\n        '  Text
+'functions'   Name.Builtin
+' '           Text
+'--'          Text
+' '           Text
+'$funcname'   Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'$tmpname'    Name.Variable
+'\n    '      Text
+'else'        Keyword
+'\n        '  Text
+'echo'        Keyword
+' '           Text
+'$init'       Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'$tmpname'    Name.Variable
+'\n    '      Text
+'end'         Keyword
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'eval'        Name.Builtin
+' '           Text
+'$editor'     Name.Variable
+' '           Text
+'$tmpname'    Name.Variable
+'\n        '  Text
+'.'           Text
+' '           Text
+'$tmpname'    Name.Variable
+'\n    '      Text
+'end'         Keyword
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'stat'        Text
+' '           Text
+'$status'     Name.Variable
+'\n    '      Text
+'rm'          Text
+' '           Text
+'-f'          Text
+' '           Text
+'$tmpname'    Name.Variable
+' '           Text
+'>'           Operator
+'/dev/null'   Text
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'$stat'       Name.Variable
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'# -----------------------------------------------------------------------------\n' Comment
+
+'# Main file for fish command completions. This file contains various\n' Comment
+
+'# common helper functions for the command completions. All actual\n' Comment
+
+'# completions are located in the completions subdirectory.\n' Comment
+
+'## -----------------------------------------------------------------------------\n' Comment
+
+'\n'          Text
+
+'#\n'         Comment
+
+'# Set default field separators\n' Comment
+
+'#\n'         Comment
+
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'-g'          Text
+' '           Text
+'IFS'         Text
+' '           Text
+'\\n'         Literal.String.Escape
+'\\ '         Literal.String.Escape
+'\\t'         Literal.String.Escape
+'\n\n'        Text
+
+'#\n'         Comment
+
+'# Set default search paths for completions and shellscript functions\n' Comment
+
+'# unless they already exist\n' Comment
+
+'#\n'         Comment
+
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'configdir'   Text
+' '           Text
+'~/.config'   Text
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+'set'         Keyword
+' '           Text
+'-q'          Text
+' '           Text
+'XDG_CONFIG_HOME' Text
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'configdir'   Text
+' '           Text
+'$XDG_CONFIG_HOME' Name.Variable
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'# __fish_datadir, __fish_sysconfdir, __fish_help_dir, __fish_bin_dir\n' Comment
+
+'# are expected to have been set up by read_init from fish.cpp\n' Comment
+
+'\n'          Text
+
+'# Set up function and completion paths. Make sure that the fish\n' Comment
+
+'# default functions/completions are included in the respective path.\n' Comment
+
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'set'         Keyword
+' '           Text
+'-q'          Text
+' '           Text
+'fish_function_path' Text
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'fish_function_path' Text
+' '           Text
+'$configdir'  Name.Variable
+'/fish/functions' Text
+'    '        Text
+'$__fish_sysconfdir' Name.Variable
+'/functions'  Text
+'    '        Text
+'$__fish_datadir' Name.Variable
+'/functions'  Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'contains'    Name.Builtin
+' '           Text
+'$__fish_datadir' Name.Variable
+'/functions'  Text
+' '           Text
+'$fish_function_path' Name.Variable
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'fish_function_path' Text
+'['           Operator
+'-1'          Text
+']'           Operator
+' '           Text
+'$__fish_datadir' Name.Variable
+'/functions'  Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'set'         Keyword
+' '           Text
+'-q'          Text
+' '           Text
+'fish_complete_path' Text
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'fish_complete_path' Text
+' '           Text
+'$configdir'  Name.Variable
+'/fish/completions' Text
+'  '          Text
+'$__fish_sysconfdir' Name.Variable
+'/completions' Text
+'  '          Text
+'$__fish_datadir' Name.Variable
+'/completions' Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'contains'    Name.Builtin
+' '           Text
+'$__fish_datadir' Name.Variable
+'/completions' Text
+' '           Text
+'$fish_complete_path' Name.Variable
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'fish_complete_path' Text
+'['           Operator
+'-1'          Text
+']'           Operator
+' '           Text
+'$__fish_datadir' Name.Variable
+'/completions' Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'#\n'         Comment
+
+'# This is a Solaris-specific test to modify the PATH so that\n' Comment
+
+'# Posix-conformant tools are used by default. It is separate from the\n' Comment
+
+'# other PATH code because this directory needs to be prepended, not\n' Comment
+
+'# appended, since it contains POSIX-compliant replacements for various\n' Comment
+
+'# system utilities.\n' Comment
+
+'#\n'         Comment
+
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'-d'          Text
+' '           Text
+'/usr/xpg4/bin' Text
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'contains'    Name.Builtin
+' '           Text
+'/usr/xpg4/bin' Text
+' '           Text
+'$PATH'       Name.Variable
+'\n    '      Text
+'set'         Keyword
+' '           Text
+'PATH'        Text
+' '           Text
+'/usr/xpg4/bin' Text
+' '           Text
+'$PATH'       Name.Variable
+'\n  '        Text
+'end'         Keyword
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'#\n'         Comment
+
+'# Add a few common directories to path, if they exists. Note that pure\n' Comment
+
+'# console programs like makedep sometimes live in /usr/X11R6/bin, so we\n' Comment
+
+'# want this even for text-only terminals.\n' Comment
+
+'#\n'         Comment
+
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'-l'          Text
+' '           Text
+'path_list'   Text
+' '           Text
+'/bin'        Text
+' '           Text
+'/usr/bin'    Text
+' '           Text
+'/usr/X11R6/bin' Text
+' '           Text
+'/usr/local/bin' Text
+' '           Text
+'$__fish_bin_dir' Name.Variable
+'\n\n'        Text
+
+'# Root should also have the sbin directories in the path\n' Comment
+
+'switch'      Keyword
+' '           Text
+'$USER'       Name.Variable
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'root'        Text
+'\n  '        Text
+'set'         Keyword
+' '           Text
+'path_list'   Text
+' '           Text
+'$path_list'  Name.Variable
+' '           Text
+'/sbin'       Text
+' '           Text
+'/usr/sbin'   Text
+' '           Text
+'/usr/local/sbin' Text
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'for'         Keyword
+' '           Text
+'i'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$path_list'  Name.Variable
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'contains'    Name.Builtin
+' '           Text
+'$i'          Name.Variable
+' '           Text
+'$PATH'       Name.Variable
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'test'        Keyword
+' '           Text
+'-d'          Text
+' '           Text
+'$i'          Name.Variable
+'\n      '    Text
+'set'         Keyword
+' '           Text
+'PATH'        Text
+' '           Text
+'$PATH'       Name.Variable
+' '           Text
+'$i'          Name.Variable
+'\n    '      Text
+'end'         Keyword
+'\n  '        Text
+'end'         Keyword
+'\n'          Text
+
+'end'         Keyword
+'\n\n'        Text
+
+'#\n'         Comment
+
+'# Launch debugger on SIGTRAP\n' Comment
+
+'#\n'         Comment
+
+'function'    Keyword
+' '           Text
+'fish_sigtrap_handler' Text
+' '           Text
+'--on-signal' Text
+' '           Text
+'TRAP'        Text
+' '           Text
+'--no-scope-shadowing' Text
+' '           Text
+'--description' Text
+' '           Text
+'"Signal handler for the TRAP signal. Lanches a debug prompt."' Literal.String.Double
+'\n  '        Text
+'breakpoint\n' Name.Builtin
+
+'end'         Keyword
+'\n\n'        Text
+
+'#\n'         Comment
+
+'# Whenever a prompt is displayed, make sure that interactive\n' Comment
+
+'# mode-specific initializations have been performed.\n' Comment
+
+'# This handler removes itself after it is first called.\n' Comment
+
+'#\n'         Comment
+
+'function'    Keyword
+' '           Text
+'__fish_on_interactive' Text
+' '           Text
+'--on-event'  Text
+' '           Text
+'fish_prompt\n  ' Name.Builtin
+'__fish_config_interactive' Text
+'\n  '        Text
+'functions'   Name.Builtin
+' '           Text
+'-e'          Text
+' '           Text
+'__fish_on_interactive' Text
+'\n'          Text
+
+'end'         Keyword
+'\n'          Text

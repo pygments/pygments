@@ -1,0 +1,87 @@
+---input---
+label_replace(
+    avg by(instance)
+        (irate(node_cpu_seconds_total{mode = "idle"}[5m] offset 3s)
+    ) * 100,
+    "device",
+    "cpu",
+    "instance",
+    ".*"
+)
+
+---tokens---
+'label_replace' Keyword.Reserved
+'('           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'avg'         Keyword
+' '           Text.Whitespace
+'by'          Keyword
+'('           Operator
+'instance'    Name.Variable
+')'           Operator
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'('           Operator
+'irate'       Keyword.Reserved
+'('           Operator
+'node_cpu_seconds_total' Name.Variable
+'{'           Punctuation
+'mode'        Name.Label
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Punctuation
+'idle'        Literal.String
+'"'           Punctuation
+'}'           Punctuation
+'['           Punctuation
+'5m'          Literal.String
+']'           Punctuation
+' '           Text.Whitespace
+'offset'      Keyword
+' '           Text.Whitespace
+'3s'          Literal.String
+')'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+')'           Operator
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"'           Punctuation
+'device'      Literal.String
+'"'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"'           Punctuation
+'cpu'         Literal.String
+'"'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"'           Punctuation
+'instance'    Literal.String
+'"'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"'           Punctuation
+'.*'          Literal.String
+'"'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Operator
+'\n'          Text.Whitespace

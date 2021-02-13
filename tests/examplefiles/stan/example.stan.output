@@ -1,0 +1,711 @@
+'/* \nA file for testing Stan syntax highlighting. \n\nIt is not a real model and will not compile\n*/' Comment.Multiline
+'\n'          Text
+
+'# also a comment' Comment.Single
+'\n'          Text
+
+'// also a comment' Comment.Single
+'\n'          Text
+
+'functions'   Keyword.Namespace
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'void'        Keyword.Type
+' '           Text
+'f1'          Name
+'('           Punctuation
+'void'        Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'real'        Keyword.Type
+' '           Text
+'b'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'1'           Literal.Number.Float
+' '           Text
+'/'           Operator
+' '           Text
+'a'           Name
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n  '        Text
+'real'        Keyword.Type
+' '           Text
+'f2'          Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'vector'      Keyword.Type
+' '           Text
+'b'           Name
+','           Punctuation
+' '           Text
+'real'        Keyword.Type
+' '           Text
+'c'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'a'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'b'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'c'           Name
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'data'        Keyword.Namespace
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'// valid name' Comment.Single
+'\n  '        Text
+'int'         Keyword.Type
+' '           Text
+'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_abc' Name
+';'           Punctuation
+'\n  '        Text
+'// all types should be highlighted' Comment.Single
+'\n  '        Text
+'int'         Keyword.Type
+' '           Text
+'a3'          Name
+';'           Punctuation
+'\n  '        Text
+'real'        Keyword.Type
+' '           Text
+'foo'         Name
+'['           Punctuation
+'2'           Literal.Number.Float
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text
+'vector'      Keyword.Type
+'['           Punctuation
+'3'           Literal.Number.Float
+']'           Punctuation
+' '           Text
+'bar'         Name
+';'           Punctuation
+'\n  '        Text
+'row_vector'  Keyword.Type
+'['           Punctuation
+'3'           Literal.Number.Float
+']'           Punctuation
+' '           Text
+'baz'         Name
+';'           Punctuation
+'\n  '        Text
+'matrix'      Keyword.Type
+'['           Punctuation
+'3'           Literal.Number.Float
+','           Punctuation
+'3'           Literal.Number.Float
+']'           Punctuation
+' '           Text
+'qux'         Name
+';'           Punctuation
+'\n  '        Text
+'simplex'     Keyword.Type
+'['           Punctuation
+'3'           Literal.Number.Float
+']'           Punctuation
+' '           Text
+'quux'        Name
+';'           Punctuation
+'\n  '        Text
+'ordered'     Keyword.Type
+'['           Punctuation
+'3'           Literal.Number.Float
+']'           Punctuation
+' '           Text
+'corge'       Name
+';'           Punctuation
+'\n  '        Text
+'positive_ordered' Keyword.Type
+'['           Punctuation
+'3'           Literal.Number.Float
+']'           Punctuation
+' '           Text
+'wibble'      Name
+';'           Punctuation
+'\n  '        Text
+'corr_matrix' Keyword.Type
+'['           Punctuation
+'3'           Literal.Number.Float
+']'           Punctuation
+' '           Text
+'grault'      Name
+';'           Punctuation
+'\n  '        Text
+'cov_matrix'  Keyword.Type
+'['           Punctuation
+'3'           Literal.Number.Float
+']'           Punctuation
+' '           Text
+'garply'      Name
+';'           Punctuation
+'\n  '        Text
+'cholesky_factor_cov' Keyword.Type
+'['           Punctuation
+'3'           Literal.Number.Float
+']'           Punctuation
+' '           Text
+'waldo'       Name
+';'           Punctuation
+'\n  '        Text
+'cholesky_factor_corr' Keyword.Type
+'['           Punctuation
+'3'           Literal.Number.Float
+']'           Punctuation
+' '           Text
+'waldo2'      Name
+';'           Punctuation
+'\n  \n  '    Text
+'real'        Keyword.Type
+'<'           Operator
+'lower'       Keyword
+'='           Punctuation
+'-'           Operator
+'1'           Literal.Number.Float
+','           Punctuation
+'upper'       Keyword
+'='           Punctuation
+'1'           Literal.Number.Float
+'>'           Operator
+' '           Text
+'foo1'        Name
+';'           Punctuation
+'\n  '        Text
+'real'        Keyword.Type
+'<'           Operator
+'lower'       Keyword
+'='           Punctuation
+'0'           Literal.Number.Float
+'>'           Operator
+' '           Text
+'foo2'        Name
+';'           Punctuation
+'\n  '        Text
+'real'        Keyword.Type
+'<'           Operator
+'upper'       Keyword
+'='           Punctuation
+'0'           Literal.Number.Float
+'>'           Operator
+' '           Text
+'foo3'        Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'transformed data' Keyword.Namespace
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'real'        Keyword.Type
+' '           Text
+'xyzzy'       Name
+';'           Punctuation
+'\n  '        Text
+'int'         Keyword.Type
+' '           Text
+'thud'        Name
+';'           Punctuation
+'\n  '        Text
+'row_vector'  Keyword.Type
+' '           Text
+'grault2'     Name
+';'           Punctuation
+'\n  '        Text
+'matrix'      Keyword.Type
+' '           Text
+'qux2'        Name
+';'           Punctuation
+'\n  \n  '    Text
+'// all floating point literals should be recognized' Comment.Single
+'\n  '        Text
+'// all operators should be recognized' Comment.Single
+'\n  '        Text
+'// paren should be recognized;' Comment.Single
+'\n  '        Text
+'xyzzy'       Name
+' '           Text
+'<-'          Operator
+' '           Text
+'1234.5687'   Literal.Number.Float
+' '           Text
+'+'           Operator
+' '           Text
+'.123'        Literal.Number.Float
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'2.7e3'       Literal.Number.Float
+' '           Text
+'/'           Operator
+' '           Text
+'2E-5'        Literal.Number.Float
+' '           Text
+'*'           Operator
+' '           Text
+'135e-5'      Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text
+'// integer literal' Comment.Single
+'\n  '        Text
+'thud'        Name
+' '           Text
+'<-'          Operator
+' '           Text
+'-'           Operator
+'12309865'    Literal.Number.Float
+';'           Punctuation
+'\n  '        Text
+'// ./ and .* should be recognized as operators' Comment.Single
+'\n  '        Text
+'grault2'     Name
+' '           Text
+'<-'          Operator
+' '           Text
+'grault'      Name
+' '           Text
+'.*'          Operator
+' '           Text
+'garply'      Name
+' '           Text
+'./'          Operator
+' '           Text
+'garply'      Name
+';'           Punctuation
+'\n  '        Text
+"// ' and \\ should be recognized as operators" Comment.Single
+'\n  '        Text
+'qux2'        Name
+' '           Text
+'<-'          Operator
+' '           Text
+'qux'         Name
+"'"           Operator
+' '           Text
+'\\'          Operator
+' '           Text
+'bar'         Name
+';'           Punctuation
+'\n  \n'      Text
+
+'}'           Punctuation
+'\n'          Text
+
+'parameters'  Keyword.Namespace
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'real'        Keyword.Type
+' '           Text
+'fred'        Name
+';'           Punctuation
+'\n  '        Text
+'real'        Keyword.Type
+' '           Text
+'plugh'       Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'transformed parameters' Keyword.Namespace
+' '           Text
+'{'           Punctuation
+'    \n'      Text
+
+'}'           Punctuation
+'\n'          Text
+
+'model'       Keyword.Namespace
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'// ~, <- are operators, ' Comment.Single
+'\n  '        Text
+'// T may be be recognized' Comment.Single
+'\n  '        Text
+'// normal is a function' Comment.Single
+'\n  '        Text
+'fred'        Name
+' '           Text
+'~'           Operator
+' '           Text.Whitespace
+'normal'      Name.Builtin
+'('           Punctuation
+'0'           Literal.Number.Float
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Float
+')'           Punctuation
+' '           Text
+'T'           Name
+'('           Punctuation
+'-'           Operator
+'0.5'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'0.5'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text
+'real'        Keyword.Type
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'// C++ reserved' Comment.Single
+'\n  '        Text
+'real'        Keyword.Type
+' '           Text
+'public'      Keyword.Reserved
+';'           Punctuation
+'\n  \n  '    Text
+'// control structures' Comment.Single
+'\n  '        Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'i'           Name
+' '           Text
+'in'          Keyword
+' '           Text
+'1'           Literal.Number.Float
+':'           Operator
+'10'          Literal.Number.Float
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'tmp'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'tmp'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'0.1'         Literal.Number.Float
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'0.0'         Literal.Number.Float
+';'           Punctuation
+'\n  '        Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'tmp'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'5.0'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'tmp'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'tmp'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Float
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'tmp'         Name
+' '           Text
+'>'           Operator
+' '           Text
+'0.0'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'print'       Keyword
+'('           Punctuation
+'tmp'         Name
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'print'       Keyword
+'('           Punctuation
+'tmp'         Name
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n\n  '      Text
+'// operators' Comment.Single
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'||'          Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'&&'          Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'=='          Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'!='          Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'   \n  '     Text
+'tmp'         Name
+' '           Text
+'<'           Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'<='          Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'>'           Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'>='          Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'*'           Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'/'           Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'.*'          Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'./'          Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+'^'           Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'!'           Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'-'           Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'+'           Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n  '        Text
+'tmp'         Name
+' '           Text
+"'"           Operator
+';'           Punctuation
+'\n\n  '      Text
+'// lp__ should be highlighted' Comment.Single
+'\n  '        Text
+'// normal_log as a function' Comment.Single
+'\n  '        Text
+'lp__'        Name.Builtin.Pseudo
+' '           Text
+'<-'          Operator
+' '           Text
+'lp__'        Name.Builtin.Pseudo
+' '           Text
+'+'           Operator
+' '           Text
+'normal_log'  Name
+'('           Punctuation
+'plugh'       Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Float
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text
+'increment_log_prob' Name
+'('           Punctuation
+'normal_log'  Name
+'('           Punctuation
+'plugh'       Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Float
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n  \n  '    Text
+'// print statement and string literal' Comment.Single
+'\n  '        Text
+'print'       Keyword
+'('           Punctuation
+'"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_~@#$%^&*`\'-+={}[].,;: "' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text
+'print'       Keyword
+'('           Punctuation
+'"Hello, world!"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text
+'print'       Keyword
+'('           Punctuation
+'""'          Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n\n  '      Text
+'// reject statement' Comment.Single
+'\n  '        Text
+'reject'      Keyword
+'('           Punctuation
+'"I just don\'t like it"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n  \n'      Text
+
+'}'           Punctuation
+'\n'          Text
+
+'generated quantities' Keyword.Namespace
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'real'        Keyword.Type
+' '           Text
+'bar1'        Name
+';'           Punctuation
+'\n  '        Text
+'bar1'        Name
+' '           Text
+'<-'          Operator
+' '           Text
+'foo'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

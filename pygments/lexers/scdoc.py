@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.scdoc
     ~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for scdoc, a simple man page generator.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -59,7 +58,7 @@ class ScdocLexer(RegexLexer):
             # underlines
             (r'(\s)(_[^_]+_)(\W|\n)', bygroups(Text, Generic.Emph, Text)),
             # bold
-            (r'(\s)(\*[^\*]+\*)(\W|\n)', bygroups(Text, Generic.Strong, Text)),
+            (r'(\s)(\*[^*]+\*)(\W|\n)', bygroups(Text, Generic.Strong, Text)),
             # inline code
             (r'`[^`]+`', String.Backtick),
 
@@ -68,3 +67,16 @@ class ScdocLexer(RegexLexer):
             (r'.', Text),
         ],
     }
+
+    def analyse_text(text):
+        """This is very similar to markdown, save for the escape characters
+        needed for * and _."""
+        result = 0
+
+        if '\\*' in text:
+            result += 0.01
+
+        if '\\_' in text:
+            result += 0.01
+
+        return result

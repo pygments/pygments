@@ -1,0 +1,176 @@
+'/*'          Comment.Multiline
+' This file ' Comment.Multiline
+'/*'          Comment.Multiline
+' which is totally legal scala ' Comment.Multiline
+'*/'          Comment.Multiline
+' will not be highlighted\n   correcty by pygments ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'object'      Keyword
+' '           Text
+'⌘'           Name.Class
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'val'         Keyword
+' '           Text
+'`interface`' Name
+' '           Text
+'='           Operator
+' '           Text
+'"""\nA\n"Multiline"\nString\n"""' Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'val'         Keyword
+' '           Text
+'foo_+'       Name
+' '           Text
+'='           Operator
+' '           Text
+'"foo plus"'  Literal.String
+'\n'          Text
+
+'  '          Text
+'val'         Keyword
+' '           Text
+'foo_⌬⌬'      Name
+' '           Text
+'='           Operator
+' '           Text
+'"double benzene"' Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'// Test some interpolated strings\n' Comment.Single
+
+'  '          Text
+'val'         Keyword
+' '           Text
+'mu'          Name
+' '           Text
+'='           Operator
+' '           Text
+'s"'          Literal.String
+'${'          Literal.String.Interpol
+'if'          Keyword
+' '           Text
+'('           Operator
+'true'        Keyword.Constant
+')'           Operator
+' '           Text
+'"a:b"'       Literal.String
+' '           Text
+'else'        Keyword
+' '           Text
+'"c"'         Literal.String
+' '           Text
+'{'           Literal.String.Interpol
+'with'        Keyword
+' '           Text
+'"braces"'    Literal.String
+'}'           Literal.String.Interpol
+'}'           Literal.String.Interpol
+'"'           Literal.String
+'\n'          Text
+
+'  '          Text
+'val'         Keyword
+' '           Text
+'mu2'         Name
+' '           Text
+'='           Operator
+' '           Text
+'f"'          Literal.String
+'${'          Literal.String.Interpol
+'if'          Keyword
+' '           Text
+'('           Operator
+'true'        Keyword.Constant
+')'           Operator
+' '           Text
+'"a:b"'       Literal.String
+' '           Text
+'else'        Keyword
+' '           Text
+'"c"'         Literal.String
+' '           Text
+'{'           Literal.String.Interpol
+'with'        Keyword
+' '           Text
+'"braces"'    Literal.String
+'}'           Literal.String.Interpol
+'}'           Literal.String.Interpol
+'"'           Literal.String
+'\n'          Text
+
+'  '          Text
+'val'         Keyword
+' '           Text
+'raw'         Name
+' '           Text
+'='           Operator
+' '           Text
+'raw"a raw\\nstring\\"with escaped quotes"' Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'def'         Keyword
+' '           Text
+'main'        Name
+'('           Operator
+'argv'        Name
+':'           Keyword
+' '           Text
+'Array'       Keyword.Type
+'['           Operator
+'String'      Keyword.Type
+']'           Operator
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'println'     Name
+'('           Operator
+'⌘'           Operator
+'.'           Operator
+'interface'   Name
+' '           Text
+'+'           Operator
+' '           Text
+'" "'         Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'foo_+'       Name
+' '           Text
+'+'           Operator
+' '           Text
+'" "'         Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'foo_⌬⌬'      Name
+' '           Text
+')'           Operator
+'\n'          Text
+
+'  '          Text
+'}'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text

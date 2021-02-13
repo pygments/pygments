@@ -1,0 +1,28 @@
+---input---
+GET / HTTP/1.0
+Content-Type: application/xml
+
+<foo>
+
+---tokens---
+'GET'         Name.Function
+' '           Text
+'/'           Name.Namespace
+' '           Text
+'HTTP'        Keyword.Reserved
+'/'           Operator
+'1.0'         Literal.Number
+'\n'          Text
+
+'Content-Type' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'application/xml' Literal
+'\n'          Text
+
+'\n'          Text
+
+'<foo'        Name.Tag
+'>'           Name.Tag
+'\n'          Text

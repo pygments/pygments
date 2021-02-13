@@ -1,0 +1,36 @@
+'<html>\n  <head><title>' Other
+'$'           Comment.Preproc
+'title'       Name
+'</title></head>\n  <body>\n    <table>\n      ' Other
+'#for'        Comment.Preproc
+' '           Text
+'$'           Comment.Preproc
+'client'      Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'$'           Comment.Preproc
+'clients'     Name
+'\n      <tr>\n        <td>' Other
+'$'           Comment.Preproc
+'client'      Name
+'.'           Operator
+'surname'     Name
+', '          Other
+'$'           Comment.Preproc
+'client'      Name
+'.'           Operator
+'firstname'   Name
+'</td>\n        <td><a href="mailto:' Other
+'$'           Comment.Preproc
+'client'      Name
+'.'           Operator
+'email'       Name
+'">'          Other
+'$'           Comment.Preproc
+'client'      Name
+'.'           Operator
+'email'       Name
+'</a></td>\n      </tr>\n      ' Other
+'#end for'    Comment.Preproc
+'\n    </table>\n  </body>\n</html>\n' Other

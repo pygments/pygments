@@ -1,0 +1,123 @@
+'<'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'{{'          Comment.Preproc
+'order'       Name.Variable
+'.DueTime'    Name.Variable
+' | '         Text
+'date'        Name.Variable
+":'d. MMMM yyyy HH:mm'" Literal.String.Single
+'}}'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'Status: '    Text
+'{{'          Comment.Preproc
+'order'       Name.Variable
+'.OrderState' Name.Variable
+'}}'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'button'      Name.Tag
+' '           Text
+'('           Punctuation
+'click'       Name.Attribute
+')'           Punctuation
+'='           Operator
+'"deleteOrder()"' Literal.String
+' '           Text
+'*'           Punctuation
+'ngIf'        Name.Attribute
+'='           Operator
+'"cancelable"' Literal.String
+' '           Text
+'['           Punctuation
+'value'       Name.Attribute
+']'           Punctuation
+'='           Operator
+'"test"'      Literal.String
+' '           Text
+'[('          Punctuation
+'twoWayTest'  Name.Attribute
+')]'          Punctuation
+'='           Operator
+'"foo.bar"'   Literal.String
+'>'           Punctuation
+'Remove'      Text
+'<'           Punctuation
+'/'           Punctuation
+'button'      Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n        '  Text
+'<'           Punctuation
+'li'          Name.Tag
+' '           Text
+'*'           Punctuation
+'ngFor'       Name.Attribute
+'='           Operator
+'"#meal of order.Positions"' Literal.String
+'>'           Punctuation
+'\n            ' Text
+'{{'          Comment.Preproc
+'meal'        Name.Variable
+'.Name'       Name.Variable
+'}}'          Comment.Preproc
+'\n        '  Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'Preis: '     Text
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'{{'          Comment.Preproc
+'order'       Name.Variable
+'.TotalPrice' Name.Variable
+' | '         Text
+'currency'    Name.Variable
+":'EUR'"      Literal.String.Single
+':true'       Literal.String.Boolean
+":'1.2-2'"    Literal.String.Single
+'}}'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n'          Text

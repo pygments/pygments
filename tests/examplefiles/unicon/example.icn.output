@@ -1,0 +1,1715 @@
+'#\n'         Comment.Single
+
+'# $Id: button.icn,v 1.7 2006-07-09 23:43:07 rparlett Exp $\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'# This file is in the public domain.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'# Author: Robert Parlett (parlett@dial.pipex.com)\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'\n'          Text
+
+'package'     Keyword.Declaration
+' '           Text
+'gui'         Name
+'\n'          Text
+
+'link'        Keyword.Declaration
+' '           Text
+'graphics'    Name
+'\n\n'        Text
+
+'$include'    Keyword.PreProc
+' '           Text
+'"guih.icn"'  Literal.String
+'\n\n\n'      Text
+
+'#\n'         Comment.Single
+
+'# This is the parent class of the button classes, including\n' Comment.Single
+
+'# checkboxes.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'# A {Button} produces a BUTTON_PRESS_EVENT when the button is\n' Comment.Single
+
+'# depressed, and code BUTTON_RELEASE_EVENT when it is released,\n' Comment.Single
+
+'# as well as an ACTION_EVENT.\n' Comment.Single
+
+'# \n'        Comment.Single
+
+'# By default, when a button holds the keyboard focus a dashed\n' Comment.Single
+
+'# line appears just within the button.  Then, when return is\n' Comment.Single
+
+'# pressed an ACTION_EVENT is generated.  The method\n' Comment.Single
+
+'# {Dialog.set_initial_focus()} can be used to have the button\n' Comment.Single
+
+'# have the focus when the dialog is first displayed.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'# Buttons also repeatedly produce a BUTTON_HELD_EVENT whilst they\n' Comment.Single
+
+'# are held down, rather like a repeating keyboard press.  The\n' Comment.Single
+
+'# delay between the initial repeat event and subsequent repeat\n' Comment.Single
+
+'# events is set in the parent dialog (see above).\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'class'       Keyword.Declaration
+' '           Text
+'Button'      Name.Function
+' '           Text
+':'           Punctuation
+' '           Text
+'Toggle'      Name.Function
+' '           Text
+':'           Punctuation
+' '           Text
+'Component'   Name.Function
+'('           Punctuation
+'\n'          Text
+
+'   '         Text
+'is_down'     Name.Variable
+','           Punctuation
+'                 ' Text
+'#               \n' Comment.Single
+
+'   '         Text
+'is_held'     Name.Variable
+','           Punctuation
+'                 ' Text
+'#               \n' Comment.Single
+
+'   '         Text
+'is_checked_flag' Name.Variable
+','           Punctuation
+'         '   Text
+'#                       \n' Comment.Single
+
+'   '         Text
+'label'       Name.Variable
+','           Punctuation
+'\n'          Text
+
+'   '         Text
+'img_up'      Name.Variable
+','           Punctuation
+'                  ' Text
+'#              \n' Comment.Single
+
+'   '         Text
+'img_down'    Name.Variable
+','           Punctuation
+'                ' Text
+'#                \n' Comment.Single
+
+'   '         Text
+'img_w'       Name.Variable
+','           Punctuation
+'                   ' Text
+'#             \n' Comment.Single
+
+'   '         Text
+'img_h'       Name.Variable
+','           Punctuation
+'                   ' Text
+'#             \n' Comment.Single
+
+'   '         Text
+'parent_check_box_group' Name.Variable
+','           Punctuation
+'  '          Text
+'#\n'         Comment.Single
+
+'   '         Text
+'parent_button_group' Name.Variable
+','           Punctuation
+'     '       Text
+'#                           \n' Comment.Single
+
+'   '         Text
+'repeat_delay' Name.Variable
+','           Punctuation
+'\n'          Text
+
+'   '         Text
+'no_keyboard_flag' Name.Variable
+','           Punctuation
+'        '    Text
+'#\n'         Comment.Single
+
+'   '         Text
+'toggles_flag' Name.Variable
+'\n'          Text
+
+'   '         Text
+')'           Punctuation
+'\n\n'        Text
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'set_parent_button_group' Name.Function
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword.Reserved
+' '           Text
+'self'        Name
+'.'           Literal.Number.Float
+'parent_button_group' Name
+' '           Text
+':='          Operator
+' '           Text
+'x'           Name
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'# Invoking this method disables the keyboard control over the\n' Comment.Single
+
+'   '         Text
+'# button described above.  No dashed line will ever appear in\n' Comment.Single
+
+'   '         Text
+'# the button display and return will have no effect on the\n' Comment.Single
+
+'   '         Text
+'# button even if it has the focus.\n' Comment.Single
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'set_no_keyboard' Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'no_keyboard_flag' Name
+' '           Text
+':='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'accepts_focus_flag' Name
+' '           Text
+':='          Operator
+' '           Text
+'&null'       Keyword.Constant
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'\n'          Text
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'# Clear the no keyboard behaviour (the default)\n' Comment.Single
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'clear_no_keyboard' Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'no_keyboard_flag' Name
+' '           Text
+':='          Operator
+' '           Text
+'&null'       Keyword.Constant
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'accepts_focus_flag' Name
+' '           Text
+':='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'tick'        Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword.Reserved
+' '           Text
+'dispatcher'  Name
+'.'           Literal.Number.Float
+'curr_time_of_day' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'self'        Name
+'.'           Literal.Number.Float
+'repeat_delay' Name
+' '           Text
+'then'        Keyword.Reserved
+'\n'          Text
+
+'         '   Text
+'fire'        Name
+'('           Punctuation
+'BUTTON_HELD_EVENT' Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'go_down'     Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'is_down'     Name
+' '           Text
+':='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'      '      Text
+'set_ticker'  Name
+'('           Punctuation
+'self'        Name
+'.'           Literal.Number.Float
+'parent_dialog' Name
+'.'           Literal.Number.Float
+'repeat_rate' Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'go_up'       Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'is_down'     Name
+' '           Text
+':='          Operator
+' '           Text
+'&null'       Keyword.Constant
+'\n'          Text
+
+'      '      Text
+'stop_ticker' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'handle_press' Name.Function
+'('           Punctuation
+'e'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'local'       Keyword.Reserved
+' '           Text
+'b'           Name
+'\n'          Text
+
+'      '      Text
+'if'          Keyword.Reserved
+' '           Text
+'self'        Name
+'.'           Literal.Number.Float
+'in_region'   Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'go_down'     Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'self'        Name
+'.'           Literal.Number.Float
+'repeat_delay' Name
+' '           Text
+':='          Operator
+' '           Text
+'dispatcher'  Name
+'.'           Literal.Number.Float
+'curr_time_of_day' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'self'        Name
+'.'           Literal.Number.Float
+'parent_dialog' Name
+'.'           Literal.Number.Float
+'repeat_delay' Name
+'\n'          Text
+
+'         '   Text
+'self'        Name
+'.'           Literal.Number.Float
+'is_held'     Name
+' '           Text
+':='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'         '   Text
+'every'       Keyword.Reserved
+' '           Text
+'b'           Name
+' '           Text
+':='          Operator
+' '           Text
+'!'           Operator
+'('           Punctuation
+'\\'          Operator
+'self'        Name
+'.'           Literal.Number.Float
+'parent_button_group' Name
+')'           Punctuation
+'.'           Literal.Number.Float
+'buttons'     Name
+' '           Text
+'do'          Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword.Reserved
+' '           Text
+'b'           Name
+'.'           Literal.Number.Float
+'is_unhidden' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'               ' Text
+'b'           Name
+'.'           Literal.Number.Float
+'is_held'     Name
+' '           Text
+':='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'               ' Text
+'b'           Name
+'.'           Literal.Number.Float
+'repeat_delay' Name
+' '           Text
+':='          Operator
+' '           Text
+'self'        Name
+'.'           Literal.Number.Float
+'repeat_delay' Name
+'\n'          Text
+
+'            ' Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'self'        Name
+'.'           Literal.Number.Float
+'invalidate'  Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'fire'        Name
+'('           Punctuation
+'BUTTON_PRESS_EVENT' Name
+','           Punctuation
+' '           Text
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'handle_drag' Name.Function
+'('           Punctuation
+'e'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword.Reserved
+' '           Text
+'\\'          Operator
+'self'        Name
+'.'           Literal.Number.Float
+'is_held'     Name
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'#\n'         Comment.Single
+
+'         '   Text
+'# Button held down; toggle on/off as it goes over the button \n' Comment.Single
+
+'         '   Text
+'#\n'         Comment.Single
+
+'         '   Text
+'if'          Keyword.Reserved
+' '           Text
+'self'        Name
+'.'           Literal.Number.Float
+'in_region'   Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword.Reserved
+' '           Text
+'/'           Operator
+'self'        Name
+'.'           Literal.Number.Float
+'is_down'     Name
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'               ' Text
+'go_down'     Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'               ' Text
+'invalidate'  Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword.Reserved
+' '           Text
+'\\'          Operator
+'self'        Name
+'.'           Literal.Number.Float
+'is_down'     Name
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'               ' Text
+'go_up'       Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'               ' Text
+'invalidate'  Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'handle_release' Name.Function
+'('           Punctuation
+'e'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword.Reserved
+' '           Text
+'\\'          Operator
+'self'        Name
+'.'           Literal.Number.Float
+'is_held'     Name
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'self'        Name
+'.'           Literal.Number.Float
+'is_held'     Name
+' '           Text
+':='          Operator
+' '           Text
+'&null'       Keyword.Constant
+'\n'          Text
+
+'         '   Text
+'if'          Keyword.Reserved
+' '           Text
+'\\'          Operator
+'self'        Name
+'.'           Literal.Number.Float
+'is_down'     Name
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'go_up'       Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'fire'        Name
+'('           Punctuation
+'BUTTON_RELEASE_EVENT' Name
+','           Punctuation
+' '           Text
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'on_action'   Name
+'('           Punctuation
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'on_action'   Name.Function
+'('           Punctuation
+'e'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword.Reserved
+' '           Text
+'\\'          Operator
+'self'        Name
+'.'           Literal.Number.Float
+'toggles_flag' Name
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword.Reserved
+' '           Text
+'\\'          Operator
+'self'        Name
+'.'           Literal.Number.Float
+'parent_check_box_group' Name
+' '           Text
+'then'        Keyword.Reserved
+'\n'          Text
+
+'            ' Text
+'self'        Name
+'.'           Literal.Number.Float
+'parent_check_box_group' Name
+'.'           Literal.Number.Float
+'set_which_one' Name
+'('           Punctuation
+'self'        Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'else'        Keyword.Reserved
+'\n'          Text
+
+'            ' Text
+'self'        Name
+'.'           Literal.Number.Float
+'toggle_is_checked' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'invalidate'  Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'fire'        Name
+'('           Punctuation
+'ACTION_EVENT' Name
+','           Punctuation
+' '           Text
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'handle_accel' Name.Function
+'('           Punctuation
+'e'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'Component'   Name
+'.'           Literal.Number.Float
+'handle_accel' Name
+'('           Punctuation
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'on_action'   Name
+'('           Punctuation
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'handle_default' Name.Function
+'('           Punctuation
+'e'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword.Reserved
+' '           Text
+'\\'          Operator
+'self'        Name
+'.'           Literal.Number.Float
+'has_focus'   Name
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword.Reserved
+' '           Text
+'/'           Operator
+'self'        Name
+'.'           Literal.Number.Float
+'no_keyboard_flag' Name
+' '           Text
+'&'           Operator
+' '           Text
+'e'           Name
+' '           Text
+'=='          Operator
+' '           Text
+'('           Punctuation
+'"\\r"'       Literal.String
+' '           Text
+'|'           Operator
+' '           Text
+'"\\l"'       Literal.String
+' '           Text
+'|'           Operator
+' '           Text
+'" "'         Literal.String
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'on_action'   Name
+'('           Punctuation
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'handle_event' Name.Function
+'('           Punctuation
+'e'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword.Reserved
+' '           Text
+'e'           Name
+' '           Text
+'==='         Operator
+' '           Text
+'('           Punctuation
+'&lpress'     Keyword.Reserved
+' '           Text
+'|'           Operator
+' '           Text
+'&rpress'     Keyword.Reserved
+' '           Text
+'|'           Operator
+' '           Text
+'&mpress'     Keyword.Reserved
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'handle_press' Name
+'('           Punctuation
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'e'           Name
+' '           Text
+'==='         Operator
+' '           Text
+'('           Punctuation
+'&ldrag'      Keyword.Reserved
+' '           Text
+'|'           Operator
+' '           Text
+'&rdrag'      Keyword.Reserved
+' '           Text
+'|'           Operator
+' '           Text
+'&mdrag'      Keyword.Reserved
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'handle_drag' Name
+'('           Punctuation
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'e'           Name
+' '           Text
+'==='         Operator
+' '           Text
+'('           Punctuation
+'&lrelease'   Keyword.Reserved
+' '           Text
+'|'           Operator
+' '           Text
+'&rrelease'   Keyword.Reserved
+' '           Text
+'|'           Operator
+' '           Text
+'&mrelease'   Keyword.Reserved
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'handle_release' Name
+'('           Punctuation
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'\n'          Text
+
+'         '   Text
+'handle_default' Name
+'('           Punctuation
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'# Set the up/down images (if any) to the strings provided,\n' Comment.Single
+
+'   '         Text
+'# which should be in Icon image format.\n' Comment.Single
+
+'   '         Text
+'# The two images must have the same dimensions.\n' Comment.Single
+
+'   '         Text
+'# @param x   The up image\n' Comment.Single
+
+'   '         Text
+'# @param y   The down image\n' Comment.Single
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'set_imgs'    Name.Function
+'('           Punctuation
+'x'           Name.Variable
+','           Punctuation
+' '           Text
+'y'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'img_up'      Name
+' '           Text
+':='          Operator
+' '           Text
+'x'           Name
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'img_w'       Name
+' '           Text
+':='          Operator
+' '           Text
+'img_width'   Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'img_width'   Name
+'('           Punctuation
+'y'           Name
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'fatal'       Name
+'('           Punctuation
+'"Image widths differ"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'img_h'       Name
+' '           Text
+':='          Operator
+' '           Text
+'img_height'  Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'img_height'  Name
+'('           Punctuation
+'y'           Name
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'fatal'       Name
+'('           Punctuation
+'"Image heights differ"' Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'img_down'    Name
+' '           Text
+':='          Operator
+' '           Text
+'y'           Name
+'\n\n'        Text
+
+'      '      Text
+'return'      Keyword.Reserved
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'# Set the image (if any) to the given string, which should be in Icon image\n' Comment.Single
+
+'   '         Text
+'# format.\n' Comment.Single
+
+'   '         Text
+'# @param x   The image\n' Comment.Single
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'set_img'     Name.Function
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'img_up'      Name
+' '           Text
+':='          Operator
+' '           Text
+'self'        Name
+'.'           Literal.Number.Float
+'img_down'    Name
+' '           Text
+':='          Operator
+' '           Text
+'x'           Name
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'img_w'       Name
+' '           Text
+':='          Operator
+' '           Text
+'img_width'   Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'img_h'       Name
+' '           Text
+':='          Operator
+' '           Text
+'img_height'  Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword.Reserved
+' '           Text
+'x'           Name
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'# Toggle the checked status of the button.  This method, and\n' Comment.Single
+
+'   '         Text
+'# the following two methods, may be\n' Comment.Single
+
+'   '         Text
+'# inappropriate for non-toggle styles of button.\n' Comment.Single
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'toggle_is_checked' Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'Toggle'      Name
+'.'           Literal.Number.Float
+'toggle_is_checked' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'invalidate'  Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'# Set the status to checked.\n' Comment.Single
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'set_is_checked' Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'Toggle'      Name
+'.'           Literal.Number.Float
+'set_is_checked' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'invalidate'  Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'# Set the status to unchecked.\n' Comment.Single
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'clear_is_checked' Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'Toggle'      Name
+'.'           Literal.Number.Float
+'clear_is_checked' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'invalidate'  Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'# Set the button so that when it is pressed, it toggles\n' Comment.Single
+
+'   '         Text
+'# between two states, as indicated by the is_checked\n' Comment.Single
+
+'   '         Text
+'# flag.\n'   Comment.Single
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'# Instances of Checkbox have this flag on by default, but \n' Comment.Single
+
+'   '         Text
+'# TextButton and IconButton do not.  When the flag is on,\n' Comment.Single
+
+'   '         Text
+'# the latter classes indicate their checked status by\n' Comment.Single
+
+'   '         Text
+'# showing the button as being "down".\n' Comment.Single
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'set_toggles' Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'toggles_flag' Name
+' '           Text
+':='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'invalidate'  Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'# Clear the toggles flag.\n' Comment.Single
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'clear_toggles' Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'toggles_flag' Name
+' '           Text
+':='          Operator
+' '           Text
+'&null'       Keyword.Constant
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'invalidate'  Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'# Set the label of the button, if any.\n' Comment.Single
+
+'   '         Text
+'# @param x   The label\n' Comment.Single
+
+'   '         Text
+'#\n'         Comment.Single
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'set_label'   Name.Function
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'label'       Name
+' '           Text
+':='          Operator
+' '           Text
+'x'           Name
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'invalidate'  Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword.Reserved
+' '           Text
+'x'           Name
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'method'      Keyword.Declaration
+' '           Text
+'set_one'     Name.Function
+'('           Punctuation
+'attr'        Name.Variable
+','           Punctuation
+' '           Text
+'val'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'case'        Keyword.Reserved
+' '           Text
+'attr'        Name
+' '           Text
+'of'          Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'"label"'     Literal.String
+' '           Text
+':'           Punctuation
+' '           Text
+'set_label'   Name
+'('           Punctuation
+'string_val'  Name
+'('           Punctuation
+'attr'        Name
+','           Punctuation
+' '           Text
+'val'         Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'"is_checked"' Literal.String
+' '           Text
+':'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword.Reserved
+' '           Text
+'test_flag'   Name
+'('           Punctuation
+'attr'        Name
+','           Punctuation
+' '           Text
+'val'         Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n'          Text
+
+'               ' Text
+'set_is_checked' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'else'        Keyword.Reserved
+'\n'          Text
+
+'               ' Text
+'clear_is_checked' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'"toggles"'   Literal.String
+' '           Text
+':'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword.Reserved
+' '           Text
+'test_flag'   Name
+'('           Punctuation
+'attr'        Name
+','           Punctuation
+' '           Text
+'val'         Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n'          Text
+
+'               ' Text
+'set_toggles' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'else'        Keyword.Reserved
+'\n'          Text
+
+'               ' Text
+'clear_toggles' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'"no_keyboard"' Literal.String
+' '           Text
+':'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword.Reserved
+' '           Text
+'test_flag'   Name
+'('           Punctuation
+'attr'        Name
+','           Punctuation
+' '           Text
+'val'         Name
+')'           Punctuation
+' '           Text
+'then'        Keyword.Reserved
+'\n'          Text
+
+'               ' Text
+'set_no_keyboard' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'else'        Keyword.Reserved
+'\n'          Text
+
+'               ' Text
+'clear_no_keyboard' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'default'     Keyword.Reserved
+':'           Punctuation
+' '           Text
+'self'        Name
+'.'           Literal.Number.Float
+'Component'   Name
+'.'           Literal.Number.Float
+'set_one'     Name
+'('           Punctuation
+'attr'        Name
+','           Punctuation
+' '           Text
+'val'         Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'   '         Text
+'initially'   Keyword.Reserved
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'Component'   Name
+'.'           Literal.Number.Float
+'initially'   Keyword.Reserved
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'self'        Name
+'.'           Literal.Number.Float
+'accepts_focus_flag' Name
+' '           Text
+':='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n'          Text

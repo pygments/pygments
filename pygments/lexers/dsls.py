@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.dsls
     ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for various domain-specific languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -14,7 +13,7 @@ import re
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, bygroups, words, \
     include, default, this, using, combined
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Literal, Whitespace
+    Number, Punctuation, Whitespace
 
 __all__ = ['ProtoBufLexer', 'ZeekLexer', 'PuppetLexer', 'RslLexer',
            'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer',
@@ -42,7 +41,7 @@ class ProtoBufLexer(RegexLexer):
             (words((
                 'import', 'option', 'optional', 'required', 'repeated',
                 'reserved', 'default', 'packed', 'ctype', 'extensions', 'to',
-                'max', 'rpc', 'returns', 'oneof'), prefix=r'\b', suffix=r'\b'),
+                'max', 'rpc', 'returns', 'oneof', 'syntax'), prefix=r'\b', suffix=r'\b'),
              Keyword),
             (words((
                 'int32', 'int64', 'uint32', 'uint64', 'sint32', 'sint64',
@@ -332,7 +331,7 @@ class ZeekLexer(RegexLexer):
 
         'string': [
             (r'\\.', String.Escape),
-            (r'%-?[0-9]*(\.[0-9]+)?[DTdxsefg]', String.Escape),
+            (r'%-?[0-9]*(\.[0-9]+)?[DTd-gsx]', String.Escape),
             (r'"', String, '#pop'),
             (r'.', String),
         ],
@@ -632,7 +631,7 @@ class AlloyLexer(RegexLexer):
             (iden_rex, Name),
             (r'[:,]', Punctuation),
             (r'[0-9]+', Number.Integer),
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r'\n', Text),
         ]
     }
@@ -827,7 +826,7 @@ class FlatlineLexer(RegexLexer):
             (r'0x-?[a-f\d]+', Number.Hex),
 
             # strings, symbols and characters
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r"\\(.|[a-z]+)", String.Char),
 
             # expression template placeholder

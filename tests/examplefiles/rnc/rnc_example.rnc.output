@@ -1,0 +1,403 @@
+'# This is a sample RNC file from the tutorial for the 2003 Working Draft' Comment.Single
+'\n'          Text
+
+'# http://relaxng.org/compact-tutorial-20030326.html' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'element'     Keyword.Declaration
+' html '      Name.Variable
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'element'     Keyword.Declaration
+' head '      Name.Variable
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'element'     Keyword.Declaration
+' title '     Name.Variable
+'{'           Punctuation
+' '           Text
+'text'        Keyword.Type
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'}'           Punctuation
+','           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+'element'     Keyword.Declaration
+' body '      Name.Variable
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'element'     Keyword.Declaration
+' table '     Name.Variable
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'attribute'   Keyword.Declaration
+' class '     Name.Variable
+'{'           Punctuation
+' '           Text
+'"addressBook"' Literal.String.Double
+' '           Text
+'}'           Punctuation
+','           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'element'     Keyword.Declaration
+' tr '        Name.Variable
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'attribute'   Keyword.Declaration
+' class '     Name.Variable
+'{'           Punctuation
+' '           Text
+'"card"'      Literal.String.Double
+' '           Text
+'}'           Punctuation
+','           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'element'     Keyword.Declaration
+' td '        Name.Variable
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'attribute'   Keyword.Declaration
+' class '     Name.Variable
+'{'           Punctuation
+' '           Text
+'"name"'      Literal.String.Double
+' '           Text
+'}'           Punctuation
+','           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'mixed'       Keyword.Declaration
+' '           Name.Variable
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'element'     Keyword.Declaration
+' span '      Name.Variable
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'attribute'   Keyword.Declaration
+' class '     Name.Variable
+'{'           Punctuation
+' '           Text
+'"givenName"' Literal.String.Double
+' '           Text
+'}'           Punctuation
+','           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'text'        Keyword.Type
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'}'           Punctuation
+'?'           Operator
+','           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'element'     Keyword.Declaration
+' span '      Name.Variable
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'attribute'   Keyword.Declaration
+' class '     Name.Variable
+'{'           Punctuation
+' '           Text
+'"familyName"' Literal.String.Double
+' '           Text
+'}'           Punctuation
+','           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'text'        Keyword.Type
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'}'           Punctuation
+'?'           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'}'           Punctuation
+','           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'element'     Keyword.Declaration
+' td '        Name.Variable
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'attribute'   Keyword.Declaration
+' class '     Name.Variable
+'{'           Punctuation
+' '           Text
+'"email"'     Literal.String.Double
+' '           Text
+'}'           Punctuation
+','           Operator
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'text'        Keyword.Type
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'}'           Punctuation
+'+'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
