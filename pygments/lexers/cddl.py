@@ -7,7 +7,7 @@
     convention to express CBOR and JSON data structures.
 
     More information:
-    https://datatracker.ietf.org/doc/draft-ietf-cbor-cddl/
+    https://datatracker.ietf.org/doc/rfc8610/
 
     :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
