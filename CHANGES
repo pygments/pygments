@@ -9,19 +9,35 @@ pull request numbers to the requests at
 
 Version 2.8.0
 -------------
-(not released yet)
+(released February 14, 2021)
 
 - Added lexers:
 
   * AMDGPU (#1626)
-  * Graphviz/DOT (#1657)
+  * CDDL (#1379, #1239)
+  * Futhark (#1691)
+  * Graphviz/DOT (#1657, #731)
 
 - Updated lexers:
 
+  * AutoIt: Support single quoted strings (#1667, #1663)
   * C/C++ & related: Fix mishandling '*/' (#1695)
+  * Cocoa: Add builtin types (#1703)
   * Console (#1672)
+  * Eiffel: Fix performance issues (#1658)
+  * Fortran: Improve combined keyword detection (#1677, #1188)
+  * J: Fix operator ``?`` lexing (#1700, #1149)
   * JavaScript/TypeScript: Fix escapes in backtick strings (#1679, #1686)
+  * Kotlin: Improve string interpolation, modifier keyword handling, and various small issues (#1699)
   * LESS: Support single-line comments (#1046)
+  * Matlab:
+
+    - Add support for class properties (#1466)
+    - Update builtin functions (#1705)
+    - Various cleanups (#1673)
+
+  * Python: Improve handling of raw f-strings (#1681, #1683)
+  * Ruby: Better method name handling (#1531)
   * Stata: Updated keywords (#1470)
   
 - Added styles:
@@ -32,14 +48,18 @@ Version 2.8.0
 - The `pygmentize` script now uses `argparse`, all options should work
   as before
 
-- Added `pygmentize -C` option to guess a lexer from content
+- Add `pygmentize -C` option to guess a lexer from content
 
+- With this release, Pygments moves to a new internal testing system (#1649.)
+  See ``Contributing.md`` for details. The main advantage of this new change
+  is a much better test coverage of all existing example lexers. It also makes
+  it much easier to add new test snippets.
 - Make guessing prefer Python 3 lexer
 - Do not guess MIME or SQL without reason
 - Changed setuptools to use a declarative config through ``setup.cfg``.
   Building Pygments now requires setuptools 39.2+.
-- Added markdown to MarkdownLexer aliases (#1687)
-- Changed line number handling
+- Add markdown to MarkdownLexer aliases (#1687)
+- Change line number handling
 
   * In ``<table>`` based output, the ``td.linenos`` element will have either a
     ``normal`` or ``special`` class attached. Previously, only ``special`` line
@@ -56,10 +76,17 @@ Version 2.8.0
     ``color: inherit`` by default. This works much better with dark styles
     which don't have colors set for line numbers.
 
-- Removed "raw" alias from RawTokenLexer, so that it cannot be
+- Remove "raw" alias from RawTokenLexer, so that it cannot be
   selected by alias.
-- Fixed RawTokenLexer to work in Python 3 and handle exceptions.
-- Added prompt colors to the Solarized theme (#1529)
+- Fix RawTokenLexer to work in Python 3 and handle exceptions.
+- Add prompt colors to the Solarized theme (#1529)
+- Image formatter supports background colors now (#1374)
+- Add support for anchors in conjunction with inline line numbers (#1591)
+- Modernize the codebase using ``pyupgrade`` (#1622)
+- Add support for line numbers to the ``terminal256`` formatter (#1674, #1653)
+- Improve ``analyze_text`` logic for ``ECL`` (#1610)
+- Improve ``analyze_text`` logic for ``CBM Basic V2`` (#1607)
+- Improve LaTeX formatter (#1708, #1709)
 
 Version 2.7.4
 -------------
