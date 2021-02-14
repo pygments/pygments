@@ -20,7 +20,6 @@ from pygments.lexers import _scilab_builtins
 __all__ = ['MatlabLexer', 'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer']
 
 
-
 class MatlabLexer(RegexLexer):
     """
     For Matlab source code.
@@ -2783,8 +2782,8 @@ class MatlabSessionLexer(Lexer):
                 # Set leading spaces with the length of the prompt to be a generic prompt
                 # This keeps code aligned when prompts are removed, say with some Javascript
                 if line.startswith(' '*line_start):
-                    insertions.append((len(curcode),
-                                    [(0, Generic.Prompt, line[:line_start])]))
+                    insertions.append(
+                        (len(curcode), [(0, Generic.Prompt, line[:line_start])]))
                     curcode += line[line_start:]
                 else:
                     curcode += line

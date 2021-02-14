@@ -15,6 +15,7 @@ import re
 
 __all__ = ['AMDGPULexer']
 
+
 class AMDGPULexer(RegexLexer):
     """
     For AMD GPU assembly.
@@ -24,7 +25,7 @@ class AMDGPULexer(RegexLexer):
     name = 'AMDGPU'
     aliases = ['amdgpu']
     filenames = ['*.isa']
-    
+
     flags = re.IGNORECASE
 
     tokens = {
