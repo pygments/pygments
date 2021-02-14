@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 """
-    pygments.lexers.AMDGPULexer
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.amdgpu
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the AMDGPU ISA assembly.
 
@@ -10,13 +9,18 @@
 """
 
 from pygments.lexer import RegexLexer
-from pygments.token import *
+from pygments.token import Name, Text, Keyword, Whitespace, Number, Comment
 
 import re
 
 __all__ = ['AMDGPULexer']
 
 class AMDGPULexer(RegexLexer):
+    """
+    For AMD GPU assembly.
+
+    .. versionadded:: 2.8
+    """
     name = 'AMDGPU'
     aliases = ['amdgpu']
     filenames = ['*.isa']

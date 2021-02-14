@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.graphviz
     ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -34,7 +33,9 @@ class GraphvizLexer(RegexLexer):
             (r'(?i)(node|edge|graph|digraph|subgraph|strict)\b', Keyword),
             (r'--|->', Operator),
             (r'[{}[\]:;,]', Punctuation),
-            (r'(\b\D\w*)(\s*)(=)(\s*)', bygroups(Name.Attribute, Whitespace, Punctuation, Whitespace), 'attr_id'),
+            (r'(\b\D\w*)(\s*)(=)(\s*)',
+                bygroups(Name.Attribute, Whitespace, Punctuation, Whitespace),
+                'attr_id'),
             (r'\b(n|ne|e|se|s|sw|w|nw|c|_)\b', Name.Builtin),
             (r'\b\D\w*', Name.Tag), # node
             (r'[-]?((\.[0-9]+)|([0-9]+(\.[0-9]*)?))', Number),
