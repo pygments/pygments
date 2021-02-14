@@ -20,11 +20,13 @@
 0xf 0xf_0 0xfff_000
 0o7 0o7_0 0o777_000
 0b1 0b1_0 0b111_000
-# invalid non-decimals
-0xg 0o8 0b2
 
-# no trailing underscores
-1_ 1.1_ 0xf_ 0o7_ 0b1_
+# invalid in Julia - out of range values
+0xg 0o8 0b2 0x1pA
+# invalid in Julia - no trailing underscores
+1_ 1.1_ 0xf_ 0o7_ 0b1_ 0xF_p1
+# parsed as juxtaposed numeral + variable in Julia (no underscores in exponents)
+1e1_1 1E1_1 1f1_1 0xfp1_1
 
 # not floats -- range-like expression parts
 1..1  ..1  1..
@@ -186,7 +188,9 @@
 '0b111_000'   Literal.Number.Bin
 '\n'          Text
 
-'# invalid non-decimals' Comment
+'\n'          Text
+
+'# invalid in Julia - out of range values' Comment
 '\n'          Text
 
 '0'           Literal.Number.Integer
@@ -197,11 +201,12 @@
 ' '           Text
 '0'           Literal.Number.Integer
 'b2'          Name
+' '           Text
+'0x1'         Literal.Number.Hex
+'pA'          Name
 '\n'          Text
 
-'\n'          Text
-
-'# no trailing underscores' Comment
+'# invalid in Julia - no trailing underscores' Comment
 '\n'          Text
 
 '1'           Literal.Number.Integer
@@ -218,6 +223,25 @@
 ' '           Text
 '0b1'         Literal.Number.Bin
 '_'           Name
+' '           Text
+'0xF'         Literal.Number.Hex
+'_p1'         Name
+'\n'          Text
+
+'# parsed as juxtaposed numeral + variable in Julia (no underscores in exponents)' Comment
+'\n'          Text
+
+'1e1'         Literal.Number.Float
+'_1'          Name
+' '           Text
+'1E1'         Literal.Number.Float
+'_1'          Name
+' '           Text
+'1f1'         Literal.Number.Float
+'_1'          Name
+' '           Text
+'0xfp1'       Literal.Number.Float
+'_1'          Name
 '\n'          Text
 
 '\n'          Text
