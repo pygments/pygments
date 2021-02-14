@@ -5,11 +5,15 @@
 :abc_def
 :α
 Val{:mysymbol}
-1:b # not a symbol
-a:b # not a symbol
-a::T # not a symbol
-a<:T # not a symbol
-a>:T # not a symbol
+
+# non-symbols
+a:b
+1:b
+1.:b
+a::T
+a<:T
+a>:T
+UInt(1):UInt(2)
 
 ---tokens---
 ':abc_123'    Literal.String.Symbol
@@ -27,37 +31,48 @@ a>:T # not a symbol
 '}'           Punctuation
 '\n'          Text
 
-'1'           Literal.Number
-':'           Operator
-'b'           Name
-' '           Text
-'# not a symbol' Comment
+'\n'          Text
+
+'# non-symbols' Comment
 '\n'          Text
 
 'a'           Name
 ':'           Operator
 'b'           Name
-' '           Text
-'# not a symbol' Comment
+'\n'          Text
+
+'1'           Literal.Number.Integer
+':'           Operator
+'b'           Name
+'\n'          Text
+
+'1.'          Literal.Number.Float
+':'           Operator
+'b'           Name
 '\n'          Text
 
 'a'           Name
 '::'          Operator
 'T'           Keyword.Type
-' '           Text
-'# not a symbol' Comment
 '\n'          Text
 
 'a'           Keyword.Type
 '<:'          Operator
 'T'           Keyword.Type
-' '           Text
-'# not a symbol' Comment
 '\n'          Text
 
 'a'           Keyword.Type
 '>:'          Operator
 'T'           Keyword.Type
-' '           Text
-'# not a symbol' Comment
+'\n'          Text
+
+'UInt'        Keyword.Type
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+':'           Operator
+'UInt'        Keyword.Type
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
 '\n'          Text

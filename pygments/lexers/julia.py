@@ -48,12 +48,13 @@ class JuliaLexer(RegexLexer):
             (r'#.*$', Comment),
             (r'[\[\](),;]', Punctuation),
 
-            # symbols --- exclude i.e. a:b, 1:b, <:T, >:T, ::T
-            ('(' + allowed_variable + r')(\s*)(:)(' + allowed_variable + ')',
+            # symbols
+            #   intercept range expressions first
+            (r'(' + allowed_variable + r')(\s*)(:)(' + allowed_variable + ')',
                 bygroups(Name, Text, Operator, Name)),
-            (r'([\d.]+)(\s*)(:)(' + allowed_variable + ')',
-                bygroups(Number, Text, Operator, Name)),
-            (r'(?<![<>:]):' + allowed_variable, String.Symbol),
+            #   then match :name which does not follow closing brackets, digits, or the
+            #   ::, <:, and :> operators
+            (r'(?<![\]):<>\d.])(:' + allowed_variable + ')', String.Symbol),
 
             # type assertions - excludes expressions like ::typeof(sin) and ::avec[1]
             (r'(?<=::)(\s*)(' + allowed_variable + r')\b(?![(\[])', bygroups(Text, Keyword.Type)),
