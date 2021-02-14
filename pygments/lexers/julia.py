@@ -20,8 +20,9 @@ from pygments.lexers._julia_builtins import OPERATORS_LIST, DOTTED_OPERATORS_LIS
 
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer']
 
+# see https://docs.julialang.org/en/v1/manual/variables/#Allowed-Variable-Names
 allowed_variable = \
-    '(?:[a-zA-Z_\u00A1-\U0010ffff]|%s)(?:[a-zA-Z_0-9\u00A1-\U0010ffff])*!*'
+    '(?:[a-zA-Z_\u00A1-\U0010ffff][a-zA-Z_0-9!\u00A1-\U0010ffff]*)'
 # see https://github.com/JuliaLang/julia/blob/master/src/flisp/julia_opsuffs.h
 operator_suffixes = r'[²³¹ʰʲʳʷʸˡˢˣᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿᵀᵁᵂᵃᵇᵈᵉᵍᵏᵐᵒᵖᵗᵘᵛᵝᵞᵟᵠᵡᵢᵣᵤᵥᵦᵧᵨᵩᵪᶜᶠᶥᶦᶫᶰᶸᶻᶿ′″‴‵‶‷⁗⁰ⁱ⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿ₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑₒₓₕₖₗₘₙₚₛₜⱼⱽ]*'
 
