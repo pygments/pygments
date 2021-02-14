@@ -552,9 +552,9 @@ class HtmlFormatter(Formatter):
     def get_linenos_style_defs(self):
         lines = [
             'pre { %s }' % self._pre_style,
-            'td.linenos pre { %s }' % self._linenos_style,
+            'td.linenos .normal { %s }' % self._linenos_style,
             'span.linenos { %s }' % self._linenos_style,
-            'td.linenos pre.special { %s }' % self._linenos_special_style,
+            'td.linenos .special { %s }' % self._linenos_special_style,
             'span.linenos.special { %s }' % self._linenos_special_style,
         ]
 
@@ -682,7 +682,7 @@ class HtmlFormatter(Formatter):
                 if special_line:
                     style = ' class="special"'
                 else:
-                    style = ''
+                    style = ' class="normal"'
 
             if style:
                 line = '<span%s>%s</span>' % (style, line)
@@ -930,11 +930,16 @@ class HtmlFormatter(Formatter):
         linewise, e.g. line number generators.
         """
         source = self._format_lines(tokensource)
+
+        # As a special case, we wrap line numbers before line highlighting
+        # so the line numbers get wrapped in the highlighting tag.
+        if not self.nowrap and self.linenos == 2:
+            source = self._wrap_inlinelinenos(source)
+
         if self.hl_lines:
             source = self._highlight_lines(source)
+
         if not self.nowrap:
-            if self.linenos == 2:
-                source = self._wrap_inlinelinenos(source)
             if self.lineanchors:
                 source = self._wrap_lineanchors(source)
             if self.linespans:

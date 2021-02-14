@@ -220,6 +220,7 @@ Other markup
 * BBCode
 * CapDL
 * `Cap'n Proto <https://capnproto.com>`_
+* `CDDL <https://datatracker.ietf.org/doc/rfc8610/>`_
 * CMake
 * `Csound <https://csound.com>`_ scores
 * CSS
