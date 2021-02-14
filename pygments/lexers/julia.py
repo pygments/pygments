@@ -68,7 +68,7 @@ class JuliaLexer(RegexLexer):
             # since those cases are invalid Julia code.
             (words([*OPERATORS_LIST, *DOTTED_OPERATORS_LIST], suffix=operator_suffixes), Operator),
             (words(['.' + o for o in DOTTED_OPERATORS_LIST], suffix=operator_suffixes), Operator),
-            (words(['...', '..', '.']), Operator),
+            (words(['...', '..']), Operator),
 
             # NOTE
             # Patterns below work only for definition sites and thus hardly reliable.
@@ -122,7 +122,10 @@ class JuliaLexer(RegexLexer):
             (r'0x[a-fA-F0-9]+(_[a-fA-F0-9]+)+', Number.Hex),
             (r'0x[a-fA-F0-9]+', Number.Hex),
             (r'\d+(_\d+)+', Number.Integer),
-            (r'\d+', Number.Integer)
+            (r'\d+', Number.Integer),
+
+            # single dot operator matched last to permit e.g. ".1" as a float
+            (words(['.']), Operator),
         ],
 
         "blockcomment": [

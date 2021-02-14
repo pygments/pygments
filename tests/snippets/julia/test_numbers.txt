@@ -1,0 +1,209 @@
+# Tests identification of number forms
+
+---input---
+# floats
+  1e1   1e+1   1e-1
+1.1e1 1.1e+1 1.1e-1 .1e1 .1_1e1 1_1.1e1 1.1_1e1 1.1_11e1
+1.1E1 1.1E+1 1.1E-1 .1E1 .1_1E1 1_1.1E1 1.1_1E1 1.1_11E1
+1.1f1 1.1f+1 1.1f-1 .1f1 .1_1f1 1_1.1f1 1.1_1f1 1.1_11f1
+1E1   1E+1   1E-1
+1f1   1f+1   1f-1
+.1  1.  1.1  1.1_1  1.1_11  .1_1  .1_11
+
+# integers
+1 01 10_1 10_11
+
+# non-decimal
+0xf 0xf_0 0xfff_000
+0o7 0o7_0 0o777_000
+0b1 0b1_0 0b111_000
+# invalid non-decimals
+0xg 0o8 0b2
+
+# no trailing underscores
+1_ 1.1_ 0xf_ 0o7_ 0b1_
+
+# not floats -- range-like expression parts
+1..1  ..1  1..
+
+---tokens---
+'# floats'    Comment
+'\n'          Text
+
+'  '          Text
+'1e1'         Literal.Number.Float
+'   '         Text
+'1e+1'        Literal.Number.Float
+'   '         Text
+'1e-1'        Literal.Number.Float
+'\n'          Text
+
+'1.1e1'       Literal.Number.Float
+' '           Text
+'1.1e+1'      Literal.Number.Float
+' '           Text
+'1.1e-1'      Literal.Number.Float
+' '           Text
+'.1e1'        Literal.Number.Float
+' '           Text
+'.1_1e1'      Literal.Number.Float
+' '           Text
+'1_1.1e1'     Literal.Number.Float
+' '           Text
+'1.1_1e1'     Literal.Number.Float
+' '           Text
+'1.1_11e1'    Literal.Number.Float
+'\n'          Text
+
+'1.1E1'       Literal.Number.Float
+' '           Text
+'1.1E+1'      Literal.Number.Float
+' '           Text
+'1.1E-1'      Literal.Number.Float
+' '           Text
+'.1E1'        Literal.Number.Float
+' '           Text
+'.1_1E1'      Literal.Number.Float
+' '           Text
+'1_1.1E1'     Literal.Number.Float
+' '           Text
+'1.1_1E1'     Literal.Number.Float
+' '           Text
+'1.1_11E1'    Literal.Number.Float
+'\n'          Text
+
+'1.1f1'       Literal.Number.Float
+' '           Text
+'1.1f+1'      Literal.Number.Float
+' '           Text
+'1.1f-1'      Literal.Number.Float
+' '           Text
+'.1f1'        Literal.Number.Float
+' '           Text
+'.1_1f1'      Literal.Number.Float
+' '           Text
+'1_1.1f1'     Literal.Number.Float
+' '           Text
+'1.1_1f1'     Literal.Number.Float
+' '           Text
+'1.1_11f1'    Literal.Number.Float
+'\n'          Text
+
+'1E1'         Literal.Number.Float
+'   '         Text
+'1E+1'        Literal.Number.Float
+'   '         Text
+'1E-1'        Literal.Number.Float
+'\n'          Text
+
+'1f1'         Literal.Number.Float
+'   '         Text
+'1f+1'        Literal.Number.Float
+'   '         Text
+'1f-1'        Literal.Number.Float
+'\n'          Text
+
+'.1'          Literal.Number.Float
+'  '          Text
+'1.'          Literal.Number.Float
+'  '          Text
+'1.1'         Literal.Number.Float
+'  '          Text
+'1.1_1'       Literal.Number.Float
+'  '          Text
+'1.1_11'      Literal.Number.Float
+'  '          Text
+'.1_1'        Literal.Number.Float
+'  '          Text
+'.1_11'       Literal.Number.Float
+'\n'          Text
+
+'\n'          Text
+
+'# integers'  Comment
+'\n'          Text
+
+'1'           Literal.Number.Integer
+' '           Text
+'01'          Literal.Number.Integer
+' '           Text
+'10_1'        Literal.Number.Integer
+' '           Text
+'10_11'       Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'# non-decimal' Comment
+'\n'          Text
+
+'0xf'         Literal.Number.Hex
+' '           Text
+'0xf_0'       Literal.Number.Hex
+' '           Text
+'0xfff_000'   Literal.Number.Hex
+'\n'          Text
+
+'0o7'         Literal.Number.Oct
+' '           Text
+'0o7_0'       Literal.Number.Oct
+' '           Text
+'0o777_000'   Literal.Number.Oct
+'\n'          Text
+
+'0b1'         Literal.Number.Bin
+' '           Text
+'0b1_0'       Literal.Number.Bin
+' '           Text
+'0b111_000'   Literal.Number.Bin
+'\n'          Text
+
+'# invalid non-decimals' Comment
+'\n'          Text
+
+'0'           Literal.Number.Integer
+'xg'          Name
+' '           Text
+'0'           Literal.Number.Integer
+'o8'          Name
+' '           Text
+'0'           Literal.Number.Integer
+'b2'          Name
+'\n'          Text
+
+'\n'          Text
+
+'# no trailing underscores' Comment
+'\n'          Text
+
+'1'           Literal.Number.Integer
+'_'           Name
+' '           Text
+'1.1'         Literal.Number.Float
+'_'           Name
+' '           Text
+'0xf'         Literal.Number.Hex
+'_'           Name
+' '           Text
+'0o7'         Literal.Number.Oct
+'_'           Name
+' '           Text
+'0b1'         Literal.Number.Bin
+'_'           Name
+'\n'          Text
+
+'\n'          Text
+
+'# not floats -- range-like expression parts' Comment
+'\n'          Text
+
+'1'           Literal.Number.Integer
+'..'          Operator
+'1'           Literal.Number.Integer
+'  '          Text
+'..'          Operator
+'1'           Literal.Number.Integer
+'  '          Text
+'1'           Literal.Number.Integer
+'..'          Operator
+'\n'          Text
