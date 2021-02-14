@@ -58,6 +58,7 @@ Version 2.8.0
 
 - Removed "raw" alias from RawTokenLexer, so that it cannot be
   selected by alias.
+- Fixed RawTokenLexer to work in Python 3 and handle exceptions.
 - Added prompt colors to the Solarized theme (#1529)
 
 Version 2.7.4
