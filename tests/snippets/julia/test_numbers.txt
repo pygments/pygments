@@ -8,7 +8,7 @@
 1.1f1 1.1f+1 1.1f-1 .1f1 .1_1f1 1_1.1f1 1.1_1f1 1.1_11f1
 1E1   1E+1   1E-1
 1f1   1f+1   1f-1
-.1  1.  1.1  1.1_1  1.1_11  .1_1  .1_11
+.1  1.  1.1  1.1_1  1.1_11  .1_1  .1_11 1_1.1_1
 
 # integers
 1 01 10_1 10_11
@@ -116,6 +116,8 @@
 '.1_1'        Literal.Number.Float
 '  '          Text
 '.1_11'       Literal.Number.Float
+' '           Text
+'1_1.1_1'     Literal.Number.Float
 '\n'          Text
 
 '\n'          Text

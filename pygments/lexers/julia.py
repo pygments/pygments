@@ -111,8 +111,7 @@ class JuliaLexer(RegexLexer):
                 prefix='@', suffix=operator_suffixes), Name.Decorator),
 
             # numbers
-            (r'(\d+(_\d+)+\.(?!\.)\d*|\d*\.\d+(_\d+)+)([eEf][+-]?[0-9]+)?', Number.Float),
-            (r'(\d+\.(?!\.)\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'(\d+((_\d+)+)?\.(?!\.)(\d+((_\d+)+)?)?|\.\d+((_\d+)+)?)([eEf][+-]?[0-9]+)?', Number.Float),
             (r'\d+((_\d+)+)?[eEf][+-]?[0-9]+', Number.Float),
             (r'0b[01]+((_[01]+)+)?', Number.Bin),
             (r'0o[0-7]+((_[0-7]+)+)?', Number.Oct),
