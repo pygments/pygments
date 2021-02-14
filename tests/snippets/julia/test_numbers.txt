@@ -9,6 +9,9 @@
 1E1   1E+1   1E-1
 1f1   1f+1   1f-1
 .1  1.  1.1  1.1_1  1.1_11  .1_1  .1_11 1_1.1_1
+# hex floats
+0x1p1 0xa_bp10 0x01_ap11 0x01_abp1
+0x1.1p1 0xA.Bp10 0x0.1_Ap9 0x0_1.Ap1 0x0_1.A_Bp9
 
 # integers
 1 01 10_1 10_11
@@ -118,6 +121,29 @@
 '.1_11'       Literal.Number.Float
 ' '           Text
 '1_1.1_1'     Literal.Number.Float
+'\n'          Text
+
+'# hex floats' Comment
+'\n'          Text
+
+'0x1p1'       Literal.Number.Float
+' '           Text
+'0xa_bp10'    Literal.Number.Float
+' '           Text
+'0x01_ap11'   Literal.Number.Float
+' '           Text
+'0x01_abp1'   Literal.Number.Float
+'\n'          Text
+
+'0x1.1p1'     Literal.Number.Float
+' '           Text
+'0xA.Bp10'    Literal.Number.Float
+' '           Text
+'0x0.1_Ap9'   Literal.Number.Float
+' '           Text
+'0x0_1.Ap1'   Literal.Number.Float
+' '           Text
+'0x0_1.A_Bp9' Literal.Number.Float
 '\n'          Text
 
 '\n'          Text
