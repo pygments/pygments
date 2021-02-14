@@ -221,7 +221,7 @@ class JuliaLexer(RegexLexer):
         ],
         'tqcommand': [
             (r'(```)(' + allowed_variable + r'|\d+)?', bygroups(String.Backtick, String.Affix), '#pop'),
-            (r'\\[$]', String.Escape),
+            (r'\\\$', String.Escape),
             include('interp'),
             (r'[^\\`$]+', String.Backtick),
             (r'.', String.Backtick),
