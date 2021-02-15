@@ -168,7 +168,6 @@ class ScalaLexer(RegexLexer):
     plainid = '(?:%s|%s+)' % (idrest, opchar)
     backQuotedId = r'`[^`]+`'
     anyId = r'(?:%s|%s)' % (plainid, backQuotedId)
-    endOfLineMaybeWithComment = r'(?=\s*(//.*|/\*(?!.*\*/\s*\S.*).*)?$)'
     notStartOfComment = r'(?!//|/\*)'
 
     tokens = {
@@ -268,10 +267,10 @@ class ScalaLexer(RegexLexer):
             # end is a soft keyword, should only be highlighted in certain cases
             (r'\b(end)(\s+)(if|while|for|match|new|extension|val|var)\b',
                 bygroups(Keyword, Text, Keyword)),
-            (r'\b(end)(\s+)(%s)%s' % (idUpper, endOfLineMaybeWithComment),
+            (r'\b(end)(\s+)(%s)' % idUpper,
                 bygroups(Keyword, Text, Name.Class)),
-            (r'\b(end)(\s+)(%s|%s)?%s' %
-                (backQuotedId, plainid, endOfLineMaybeWithComment),
+            (r'\b(end)(\s+)(?=//|/\*)', bygroups(Keyword, Text)),
+            (r'\b(end)(\s+)(%s|%s)?' % (backQuotedId, plainid),
                 bygroups(Keyword, Text, Name.Namespace)),
         ],
         'punctuation': [
