@@ -170,6 +170,24 @@ class ScalaLexer(RegexLexer):
     anyId = r'(?:%s|%s)' % (plainid, backQuotedId)
     notStartOfComment = r'(?!//|/\*)'
 
+    keywords = (
+        'new', 'return', 'throw', 'classOf', 'isInstanceOf', 'asInstanceOf',
+        'else', 'if', 'then', 'do', 'while', 'for', 'yield', 'match', 'case',
+        'catch', 'finally', 'try'
+    )
+
+    operators = (
+        '<%', '=:=', '<:<', '<%<', '>:', '<:', '=', '==', '!=', '<=', '>=',
+        '<>', '<', '>', '<-', '←', '->', '→', '=>', '⇒', '?', '@', '|', '-',
+        '+', '*', '%', '~'
+    )
+
+    storage_modifiers = (
+        'private', 'protected', 'synchronized', '@volatile', 'abstract',
+        'final', 'lazy', 'sealed', 'implicit', 'override', '@transient',
+        '@native'
+    )
+
     tokens = {
         'root': [
             include('whitespace'),
@@ -216,9 +234,7 @@ class ScalaLexer(RegexLexer):
             (r'\b(export)(\s+)', bygroups(Keyword, Text), 'export-path'),
         ],
         'storage-modifiers': [
-            (r'\b(private|protected)\b', Keyword),
-            (r'\b(synchronized|@volatile|abstract|final|lazy|sealed|implicit|'
-             r'override|@transient|@native)\b', Keyword),
+            (words(storage_modifiers, prefix=r'\b', suffix=r'\b'), Keyword),
             # Only highlight soft modifiers if they are eventually followed by
             # the correct keyword. Note that soft modifiers can be followed by a
             # sequence of regular modifiers; [a-z\s]* skips those, and we just
@@ -278,19 +294,13 @@ class ScalaLexer(RegexLexer):
             (r'(?<!:):(?!:)', Punctuation),  
         ],
         'keywords': [
-            (r'\b(new)\b', Keyword),
-            (r'\b(return|throw)\b', Keyword),
-            (r'\b(classOf|isInstanceOf|asInstanceOf)\b', Keyword),
-            (r'\b(else|if|then|do|while|for|yield|match|case)\b', Keyword),
-            (r'\b(catch|finally|try)\b', Keyword),
+            (words(keywords, prefix=r'\b', suffix=r'\b'), Keyword),
         ],
         'operators': [
             (r'(%s{2,})(\s+)' % opchar, bygroups(Operator, Text)),
-            (r'(<%|=:=|<:<|<%<|>:|<:)', Operator),
-            (r'(==?|!=|<=|>=|<>|<|>)', Operator),
-            (r'(<-|←|->|→|=>|⇒|\?|@|\|)+', Operator),
+            (r'/(?![/*])', Operator),
+            (words(operators), Operator),
             (r'(?<!%s)(!|&&|\|\|)(?!%s)' % (opchar, opchar), Operator),
-            (r'(\-|\+|\*|/(?![/*])|%|~)', Operator),
         ],
         'constants': [
             (r'\b(this|super)\b', Name.Builtin.Pseudo),
