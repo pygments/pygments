@@ -65,7 +65,7 @@ builtins = (
 class WatLexer(RegexLexer):
     """Lexer for the `WebAssembly text format <https://webassembly.org/>`_.
 
-    .. versionadded:: 2.7
+    .. versionadded:: 2.9
     """
 
     name = 'WebAssembly'
