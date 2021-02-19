@@ -3,7 +3,7 @@
 # Julia v1.6.0-rc1
 OPERATORS_LIST = [
     # other
-    '->', ':>', '<:',
+    '->',
     # prec-assignment
     ':=', '$=',
     # prec-conditional, prec-lazy-or, prec-lazy-and
