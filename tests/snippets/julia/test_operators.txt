@@ -7,6 +7,7 @@ a = !b ⋆ c!
 a = b ? c : d ⊕ e
 a = √(5)
 a -> (a...) .+ 1
+a \ b
 1..2
 a = a === b
 a <: T
@@ -92,6 +93,13 @@ suffixed +¹²³ operator
 '.+'          Operator
 ' '           Text
 '1'           Literal.Number.Integer
+'\n'          Text
+
+'a'           Name
+' '           Text
+'\\'          Operator
+' '           Text
+'b'           Name
 '\n'          Text
 
 '1'           Literal.Number.Integer
