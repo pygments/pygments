@@ -519,7 +519,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'string'      Name.Function
+'string'      Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -569,7 +569,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'string'      Name.Function
+'string'      Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -4875,7 +4875,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'beautify'    Name.Function
+'beautify'    Name
 '('           Punctuation
 'sourceIterator' Name
 '-'           Operator
@@ -7038,7 +7038,7 @@
 '    '        Text
 'else'        Keyword
 ' '           Text
-'if'          Name.Function
+'if'          Keyword
 ' '           Text
 '('           Punctuation
 '!'           Operator
@@ -8678,7 +8678,7 @@
 '\n'          Text
 
 '                  ' Text
-'registerInStatementIndent' Name.Function
+'registerInStatementIndent' Name
 '('           Punctuation
 'line'        Name
 ','           Punctuation
@@ -13779,7 +13779,7 @@
 '    '        Text
 'else'        Keyword
 ' '           Text
-'if'          Name.Function
+'if'          Keyword
 ' '           Text
 '('           Punctuation
 '!'           Operator
@@ -13838,7 +13838,7 @@
 '    '        Text
 'else'        Keyword
 ' '           Text
-'if'          Name.Function
+'if'          Keyword
 ' '           Text
 '('           Punctuation
 '!'           Operator
@@ -15080,7 +15080,7 @@
 '        '    Text
 'else'        Keyword
 ' '           Text
-'if'          Name.Function
+'if'          Keyword
 ' '           Text
 '('           Punctuation
 'ch'          Name
@@ -16363,7 +16363,7 @@
 ' '           Text
 'void'        Keyword.Type
 ' '           Text
-'init'        Name
+'init'        Name.Function
 '('           Punctuation
 'ASSourceIterator' Name
 '*'           Operator
@@ -16379,7 +16379,7 @@
 ' '           Text
 'void'        Keyword.Type
 ' '           Text
-'init'        Name
+'init'        Name.Function
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -16390,7 +16390,7 @@
 ' '           Text
 'bool'        Keyword.Type
 ' '           Text
-'hasMoreLines' Name
+'hasMoreLines' Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text
@@ -16403,7 +16403,7 @@
 ' '           Text
 'string'      Name
 ' '           Text
-'nextLine'    Name
+'nextLine'    Name.Function
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -16414,7 +16414,7 @@
 ' '           Text
 'string'      Name
 ' '           Text
-'beautify'    Name
+'beautify'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text
@@ -16680,7 +16680,7 @@
 'string'      Name
 ' '           Text
 '*'           Operator
-'findHeader'  Name
+'findHeader'  Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text

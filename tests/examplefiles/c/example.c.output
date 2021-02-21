@@ -40,7 +40,7 @@
 ' '           Text
 'void'        Keyword.Type
 ' '           Text
-'yyerror'     Name
+'yyerror'     Name.Function
 '('           Punctuation
 'char'        Keyword.Type
 '*'           Operator
@@ -216,7 +216,7 @@
 ' '           Text
 'void'        Keyword.Type
 ' '           Text
-'increaseStackby' Name
+'increaseStackby' Name.Function
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text
@@ -1809,7 +1809,7 @@
 ' '           Text
 'void'        Keyword.Type
 ' '           Text
-'increaseStackby' Name
+'increaseStackby' Name.Function
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text
@@ -1908,7 +1908,7 @@
 
 'char'        Keyword.Type
 ' '           Text
-'convertType' Name
+'convertType' Name.Function
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text
@@ -2026,7 +2026,7 @@
 
 'int'         Keyword.Type
 ' '           Text
-'main'        Name
+'main'        Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text
@@ -2643,7 +2643,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'rb_obj_freeze' Name.Function
+'rb_obj_freeze' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -2744,7 +2744,7 @@
 'VALUE'       Name
 '\n'          Text
 
-'ary_alloc'   Name
+'ary_alloc'   Name.Function
 '('           Punctuation
 'klass'       Name
 ')'           Punctuation
@@ -3067,7 +3067,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'ary_new'     Name.Function
+'ary_new'     Name
 '('           Punctuation
 'rb_cArray'   Name
 ','           Punctuation
@@ -3098,7 +3098,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'rb_ary_new2' Name.Function
+'rb_ary_new2' Name
 '('           Punctuation
 'ARY_DEFAULT_SIZE' Name
 ')'           Punctuation
@@ -3963,7 +3963,7 @@
 '\t'          Text
 'return'      Keyword
 ' '           Text
-'RARRAY'      Name.Function
+'RARRAY'      Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -4147,7 +4147,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'ary_shared_array' Name.Function
+'ary_shared_array' Name
 '('           Punctuation
 'rb_cValues'  Name
 ','           Punctuation
@@ -4184,7 +4184,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'ary_shared_array' Name.Function
+'ary_shared_array' Name
 '('           Punctuation
 'rb_cArray'   Name
 ','           Punctuation
@@ -4227,7 +4227,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'rb_values_new' Name.Function
+'rb_values_new' Name
 '('           Punctuation
 '2'           Literal.Number.Integer
 ','           Punctuation
@@ -4269,7 +4269,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'rb_convert_type' Name.Function
+'rb_convert_type' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -4318,7 +4318,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'rb_convert_type' Name.Function
+'rb_convert_type' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -4365,7 +4365,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'rb_check_convert_type' Name.Function
+'rb_check_convert_type' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -4420,7 +4420,7 @@
 'VALUE'       Name
 '\n'          Text
 
-'rb_ary_initialize' Name
+'rb_ary_initialize' Name.Function
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -6332,7 +6332,7 @@
 '\t'          Text
 'return'      Keyword
 ' '           Text
-'rb_ary_pop'  Name.Function
+'rb_ary_pop'  Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -6616,7 +6616,7 @@
 '\t'          Text
 'return'      Keyword
 ' '           Text
-'rb_ary_shift' Name.Function
+'rb_ary_shift' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -7929,7 +7929,7 @@
 '\t'          Text
 'return'      Keyword
 ' '           Text
-'rb_ary_entry' Name.Function
+'rb_ary_entry' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -8090,7 +8090,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'rb_ary_entry' Name.Function
+'rb_ary_entry' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -8197,7 +8197,7 @@
 '\t'          Text
 'return'      Keyword
 ' '           Text
-'RARRAY'      Name.Function
+'RARRAY'      Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -8223,7 +8223,7 @@
 '\t'          Text
 'return'      Keyword
 ' '           Text
-'ary_shared_first' Name.Function
+'ary_shared_first' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -8334,7 +8334,7 @@
 '\t'          Text
 'return'      Keyword
 ' '           Text
-'RARRAY'      Name.Function
+'RARRAY'      Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -8367,7 +8367,7 @@
 '\t'          Text
 'return'      Keyword
 ' '           Text
-'ary_shared_last' Name.Function
+'ary_shared_last' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -8841,7 +8841,7 @@
 '\t\t'        Text
 'return'      Keyword
 ' '           Text
-'LONG2NUM'    Name.Function
+'LONG2NUM'    Name
 '('           Punctuation
 'i'           Name
 ')'           Punctuation
@@ -9324,7 +9324,7 @@
 '\t'          Text
 'return'      Keyword
 ' '           Text
-'to_ary'      Name.Function
+'to_ary'      Name
 '('           Punctuation
 'obj'         Name
 ')'           Punctuation
@@ -11053,7 +11053,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'LONG2NUM'    Name.Function
+'LONG2NUM'    Name
 '('           Punctuation
 'RARRAY'      Name
 '('           Punctuation
@@ -11270,7 +11270,7 @@
 'VALUE'       Name
 '\n'          Text
 
-'recursive_join' Name
+'recursive_join' Name.Function
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -11320,7 +11320,7 @@
 '\t'          Text
 'return'      Keyword
 ' '           Text
-'rb_str_new2' Name.Function
+'rb_str_new2' Name
 '('           Punctuation
 '"'           Literal.String
 '[...]'       Literal.String
@@ -11986,7 +11986,7 @@
 '    \n    '  Text
 'return'      Keyword
 ' '           Text
-'rb_ary_join' Name.Function
+'rb_ary_join' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -12058,7 +12058,7 @@
 '    \n    '  Text
 'return'      Keyword
 ' '           Text
-'rb_ary_join' Name.Function
+'rb_ary_join' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -12381,7 +12381,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'rb_exec_recursive' Name.Function
+'rb_exec_recursive' Name
 '('           Punctuation
 'inspect_ary' Name
 ','           Punctuation
@@ -12743,7 +12743,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'rb_ary_reverse' Name.Function
+'rb_ary_reverse' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -12784,7 +12784,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'rb_ary_reverse' Name.Function
+'rb_ary_reverse' Name
 '('           Punctuation
 'rb_ary_dup'  Name
 '('           Punctuation
@@ -12839,7 +12839,7 @@
 'void'        Keyword.Type
 '\n'          Text
 
-'ary_sort_check' Name
+'ary_sort_check' Name.Function
 '('           Punctuation
 'data'        Name
 ')'           Punctuation
@@ -13232,7 +13232,7 @@
 '\t'          Text
 'return'      Keyword
 ' '           Text
-'rb_str_cmp'  Name.Function
+'rb_str_cmp'  Name
 '('           Punctuation
 'a'           Name
 ','           Punctuation
@@ -13696,7 +13696,7 @@
 '\t'          Text
 'return'      Keyword
 ' '           Text
-'rb_ary_new4' Name.Function
+'rb_ary_new4' Name
 '('           Punctuation
 'RARRAY'      Name
 '('           Punctuation
@@ -14319,7 +14319,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'rb_get_values_at' Name.Function
+'rb_get_values_at' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation

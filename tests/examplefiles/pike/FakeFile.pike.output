@@ -46,7 +46,7 @@
 
 'protected'   Keyword
 ' '           Text
-'int'         Name.Function
+'int'         Keyword.Type
 '('           Punctuation
 '0.'          Literal.Number.Float
 '.1'          Literal.Number.Float
@@ -58,7 +58,7 @@
 
 'protected'   Keyword
 ' '           Text
-'int'         Name.Function
+'int'         Keyword.Type
 '('           Punctuation
 '0.'          Literal.Number.Float
 '.1'          Literal.Number.Float
@@ -435,7 +435,7 @@
 ' '           Text
 'string'      Keyword.Type
 ' '           Text
-'make_type_str' Name
+'make_type_str' Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text
@@ -506,7 +506,7 @@
 
 'this_program' Name
 ' '           Text
-'dup'         Name
+'dup'         Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text
@@ -516,7 +516,7 @@
 '  '          Text
 'return'      Keyword
 ' '           Text
-'this_program' Name.Function
+'this_program' Name
 '('           Punctuation
 'data'        Name
 ','           Punctuation
@@ -544,7 +544,7 @@
 
 'int'         Keyword.Type
 ' '           Text
-'errno'       Name
+'errno'       Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text
@@ -800,7 +800,7 @@
 '  '          Text
 'return'      Keyword
 ' '           Text
-'lambda'      Name.Function
+'lambda'      Keyword.Type
 '('           Punctuation
 ')'           Punctuation
 ' '           Text
@@ -1649,7 +1649,7 @@
 '  '          Text
 'return'      Keyword
 ' '           Text
-'sizeof'      Name.Function
+'sizeof'      Keyword
 '('           Punctuation
 'data'        Name
 ')'           Punctuation
@@ -2492,7 +2492,7 @@
 '  '          Text
 'return'      Keyword
 ' '           Text
-'sizeof'      Name.Function
+'sizeof'      Keyword
 '('           Punctuation
 'data'        Name
 ')'           Punctuation

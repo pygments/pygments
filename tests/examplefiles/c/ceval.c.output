@@ -115,7 +115,7 @@
 'void'        Keyword.Type
 '\n'          Text
 
-'ppc_getcounter' Name
+'ppc_getcounter' Name.Function
 '('           Punctuation
 'uint64'      Name
 ' '           Text
@@ -178,7 +178,7 @@
 '\t'          Text
 'asm'         Keyword
 ' '           Text
-'volatile'    Name.Function
+'volatile'    Keyword
 ' '           Text
 '('           Punctuation
 '"'           Literal.String
@@ -202,7 +202,7 @@
 '\t'          Text
 'asm'         Keyword
 ' '           Text
-'volatile'    Name.Function
+'volatile'    Keyword
 ' '           Text
 '('           Punctuation
 '"'           Literal.String
@@ -321,7 +321,7 @@
 
 'void'        Keyword.Type
 ' '           Text
-'dump_tsc'    Name
+'dump_tsc'    Name.Function
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text
@@ -575,7 +575,7 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'call_function' Name
+'call_function' Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -607,7 +607,7 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'call_function' Name
+'call_function' Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -631,7 +631,7 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'fast_function' Name
+'fast_function' Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -662,7 +662,7 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'do_call'     Name
+'do_call'     Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -690,7 +690,7 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'ext_do_call' Name
+'ext_do_call' Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -721,7 +721,7 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'update_keyword_args' Name
+'update_keyword_args' Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -750,7 +750,7 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'update_star_args' Name
+'update_star_args' Name.Function
 '('           Punctuation
 'int'         Keyword.Type
 ','           Punctuation
@@ -778,7 +778,7 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'load_args'   Name
+'load_args'   Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -818,7 +818,7 @@
 ' '           Text
 'int'         Keyword.Type
 ' '           Text
-'prtrace'     Name
+'prtrace'     Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -840,7 +840,7 @@
 ' '           Text
 'int'         Keyword.Type
 ' '           Text
-'call_trace'  Name
+'call_trace'  Name.Function
 '('           Punctuation
 'Py_tracefunc' Name
 ','           Punctuation
@@ -871,7 +871,7 @@
 ' '           Text
 'void'        Keyword.Type
 ' '           Text
-'call_trace_protected' Name
+'call_trace_protected' Name.Function
 '('           Punctuation
 'Py_tracefunc' Name
 ','           Punctuation
@@ -902,7 +902,7 @@
 ' '           Text
 'void'        Keyword.Type
 ' '           Text
-'call_exc_trace' Name
+'call_exc_trace' Name.Function
 '('           Punctuation
 'Py_tracefunc' Name
 ','           Punctuation
@@ -923,7 +923,7 @@
 ' '           Text
 'int'         Keyword.Type
 ' '           Text
-'maybe_call_line_trace' Name
+'maybe_call_line_trace' Name.Function
 '('           Punctuation
 'Py_tracefunc' Name
 ','           Punctuation
@@ -965,7 +965,7 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'apply_slice' Name
+'apply_slice' Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -988,7 +988,7 @@
 ' '           Text
 'int'         Keyword.Type
 ' '           Text
-'assign_slice' Name
+'assign_slice' Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -1020,7 +1020,7 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'cmp_outcome' Name
+'cmp_outcome' Name.Function
 '('           Punctuation
 'int'         Keyword.Type
 ','           Punctuation
@@ -1043,7 +1043,7 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'import_from' Name
+'import_from' Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -1061,7 +1061,7 @@
 ' '           Text
 'int'         Keyword.Type
 ' '           Text
-'import_all_from' Name
+'import_all_from' Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -1081,7 +1081,7 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'build_class' Name
+'build_class' Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -1104,7 +1104,7 @@
 ' '           Text
 'int'         Keyword.Type
 ' '           Text
-'exec_statement' Name
+'exec_statement' Name.Function
 '('           Punctuation
 'PyFrameObject' Name
 ' '           Text
@@ -1134,7 +1134,7 @@
 ' '           Text
 'void'        Keyword.Type
 ' '           Text
-'set_exc_info' Name
+'set_exc_info' Name.Function
 '('           Punctuation
 'PyThreadState' Name
 ' '           Text
@@ -1162,7 +1162,7 @@
 ' '           Text
 'void'        Keyword.Type
 ' '           Text
-'reset_exc_info' Name
+'reset_exc_info' Name.Function
 '('           Punctuation
 'PyThreadState' Name
 ' '           Text
@@ -1175,7 +1175,7 @@
 ' '           Text
 'void'        Keyword.Type
 ' '           Text
-'format_exc_check_arg' Name
+'format_exc_check_arg' Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -1200,7 +1200,7 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'string_concatenate' Name
+'string_concatenate' Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -3176,7 +3176,7 @@
 ' '           Text
 'why_code'    Name
 ' '           Text
-'do_raise'    Name
+'do_raise'    Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
@@ -3199,7 +3199,7 @@
 ' '           Text
 'int'         Keyword.Type
 ' '           Text
-'unpack_iterable' Name
+'unpack_iterable' Name.Function
 '('           Punctuation
 'PyObject'    Name
 ' '           Text
