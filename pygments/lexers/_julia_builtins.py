@@ -92,7 +92,7 @@ for kw in collect(x.keyword for x in REPLCompletions.complete_keyword(""))
         push!(res, kw)
     end
 end
-sort!(unique!(res))
+sort!(unique!(setdiff!(res, ["true", "false"])))
 foreach(x -> println("\'", x, "\',"), res)
 '''
 KEYWORD_LIST = (
@@ -108,7 +108,6 @@ KEYWORD_LIST = (
     'elseif',
     'end',
     'export',
-    'false',
     'finally',
     'for',
     'function',
@@ -123,7 +122,6 @@ KEYWORD_LIST = (
     'module',
     'quote',
     'return',
-    'true',
     'try',
     'using',
     'where',
