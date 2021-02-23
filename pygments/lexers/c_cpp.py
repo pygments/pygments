@@ -43,8 +43,8 @@ class CFamilyLexer(RegexLexer):
 
     # Identifier regex with C and C++ Universal Character Name (UCN) support.
     chars = (r'[a-zA-Z_$]|\\u[0-9a-fA-F]{4}', r'\\U[0-9a-fA-F]{8})(?:[\w$]', r'\\u[0-9a-fA-F]{4}', r'\\U[0-9a-fA-F]{8}')
-    _ident = fr'(?:{"|".join(chars)})*'
-    _namespaced_ident = fr'(?:{"|".join(chars + (r"::",))})*'
+    _ident = r'(?:' + "|".join(chars) + r')*'
+    _namespaced_ident = r'(?:' + "|".join(chars + (r"::",)) + r')*'
 
     tokens = {
         'whitespace': [
