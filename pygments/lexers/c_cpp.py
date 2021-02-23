@@ -42,7 +42,9 @@ class CFamilyLexer(RegexLexer):
     _intsuffix = r'(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?'
 
     # Identifier regex with C and C++ Universal Character Name (UCN) support.
-    _ident = r'(?:[a-zA-Z_$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})*'
+    chars = (r'[a-zA-Z_$]|\\u[0-9a-fA-F]{4}', r'\\U[0-9a-fA-F]{8})(?:[\w$]', r'\\u[0-9a-fA-F]{4}', r'\\U[0-9a-fA-F]{8}')
+    _ident = fr'(?:{"|".join(chars)})*'
+    _namespaced_ident = fr'(?:{"|".join(chars + (r"::",))})*'
 
     tokens = {
         'whitespace': [
@@ -116,16 +118,16 @@ class CFamilyLexer(RegexLexer):
             include('whitespace'),
             include('keywords'),
             # functions
-            (r'((?:' + _ident + r'(?:[&*\s])+))'  # return arguments
-             r'(' + _ident + r')'             # method name
+            (r'((?:' + _namespaced_ident + r'(?:[&*\s])+))'  # return arguments
+             r'(' + _namespaced_ident + r')'             # method name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;{]*)(\{)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation),
              'function'),
             # function declarations
-            (r'((?:' + _ident + r'(?:[&*\s])+))'  # return arguments
-             r'(' + _ident + r')'             # method name
+            (r'((?:' + _namespaced_ident + r'(?:[&*\s])+))'  # return arguments
+             r'(' + _namespaced_ident + r')'             # method name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;]*)(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
