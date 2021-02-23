@@ -752,7 +752,7 @@ class HtmlFormatter(Formatter):
         for t, line in inner:
             if t:
                 i += 1
-                yield 1, '<a id="%s-%d"></a>' % (s, i) + line
+                yield 1, '<a id="%s-%d" name="%s-%d"></a>' % (s, i, s, i) + line
             else:
                 yield 0, line
 
