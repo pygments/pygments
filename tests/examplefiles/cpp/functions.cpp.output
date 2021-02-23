@@ -1,3 +1,12 @@
+'using'       Keyword
+' '           Text
+'std'         Name
+':'           Operator
+':'           Operator
+'numerical'   Name
+';'           Punctuation
+'\n'          Text
+
 'string'      Name
 ' '           Text
 'contains'    Name.Function
@@ -1079,3 +1088,318 @@
 '{'           Punctuation
 '}'           Punctuation
 '\n'          Text
+
+'\n'          Text
+
+'// Names with namespaces\n' Comment.Single
+
+'\n'          Text
+
+'string'      Name
+' '           Text
+'Type::contains' Name.Function
+'('           Punctuation
+'char'        Keyword.Type
+' '           Text
+'c'           Name
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'noexcept'    Keyword
+';'           Punctuation
+'\n'          Text
+
+'string'      Name
+' '           Text
+'Type::contains' Name.Function
+'('           Punctuation
+'char'        Keyword.Type
+' '           Text
+'c'           Name
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'noexcept'    Keyword
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'std'         Name
+':'           Operator
+':'           Operator
+'string'      Name
+' '           Text
+'contains'    Name.Function
+'('           Punctuation
+'char'        Keyword.Type
+' '           Text
+'c'           Name
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'noexcept'    Keyword
+';'           Punctuation
+'\n'          Text
+
+'std'         Name
+':'           Operator
+':'           Operator
+'string'      Name
+' '           Text
+'contains'    Name.Function
+'('           Punctuation
+'char'        Keyword.Type
+' '           Text
+'c'           Name
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'noexcept'    Keyword
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'std'         Name
+':'           Operator
+':'           Operator
+'string'      Name
+' '           Text
+'contains'    Name.Function
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'char'        Keyword.Type
+'>'           Operator
+' '           Text
+'chars'       Name
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'noexcept'    Keyword
+';'           Punctuation
+'\n'          Text
+
+'std'         Name
+':'           Operator
+':'           Operator
+'string'      Name
+' '           Text
+'contains'    Name.Function
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'char'        Keyword.Type
+'>'           Operator
+' '           Text
+'chars'       Name
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'noexcept'    Keyword
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'std'         Name
+':'           Operator
+':'           Operator
+'string'      Name
+' '           Text
+'std::vector::contains' Name.Function
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'char'        Keyword.Type
+'>'           Operator
+' '           Text
+'chars'       Name
+')'           Punctuation
+' '           Text
+'const'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'std'         Name
+':'           Operator
+':'           Operator
+'string'      Name
+' '           Text
+'std::vector::contains' Name.Function
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'char'        Keyword.Type
+'>'           Operator
+' '           Text
+'chars'       Name
+')'           Punctuation
+' '           Text
+'const'       Keyword
+'  '          Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'const'       Keyword
+' '           Text
+'inline'      Keyword.Reserved
+' '           Text
+'explicit'    Keyword
+' '           Text
+'std'         Name
+':'           Operator
+':'           Operator
+'string'      Name
+' '           Text
+'std::vector::contains' Name.Function
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'char'        Keyword.Type
+'>'           Operator
+' '           Text
+'chars'       Name
+')'           Punctuation
+' '           Text
+'const'       Keyword
+'  '          Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'const'       Keyword
+' '           Text
+'inline'      Keyword.Reserved
+' '           Text
+'explicit'    Keyword
+' '           Text
+'std'         Name
+':'           Operator
+':'           Operator
+'string'      Name
+' '           Text
+'std::vector::contains' Name.Function
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'char'        Keyword.Type
+'>'           Operator
+' '           Text
+'chars'       Name
+')'           Punctuation
+' '           Text
+'const'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// inside classes\n' Comment.Single
+
+'\n'          Text
+
+'class'       Keyword
+' '           Text
+'raz'         Name.Class
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'const'       Keyword
+' '           Text
+'virtual'     Keyword
+' '           Text
+'std'         Name
+':'           Operator
+':'           Operator
+'string'      Name
+' '           Text
+'contains'    Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'std'         Name
+':'           Operator
+':'           Operator
+'string'      Name
+' '           Text
+'str'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Make sure these are not functions:\n' Comment.Single
+
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'flag'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'func_call'   Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'new'         Keyword
+' '           Text
+'T'           Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'const'       Keyword
+' '           Text
+'operator'    Keyword
+' '           Text
+'int'         Keyword.Type
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+' '           Text
+'// so int is lexed as type and not function.name\n' Comment.Single
