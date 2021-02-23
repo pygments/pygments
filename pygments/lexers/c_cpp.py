@@ -118,7 +118,7 @@ class CFamilyLexer(RegexLexer):
             include('whitespace'),
             include('keywords'),
             # functions
-            (r'((?:' + _namespaced_ident + r'(?:[&*\s])+))'  # return arguments
+            (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
              r'(' + _namespaced_ident + r')'             # method name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;{]*)(\{)',
@@ -126,7 +126,7 @@ class CFamilyLexer(RegexLexer):
                       Punctuation),
              'function'),
             # function declarations
-            (r'((?:' + _namespaced_ident + r'(?:[&*\s])+))'  # return arguments
+            (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
              r'(' + _namespaced_ident + r')'             # method name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;]*)(;)',
