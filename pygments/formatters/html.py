@@ -303,7 +303,7 @@ class HtmlFormatter(Formatter):
 
     `lineanchors`
         If set to a nonempty string, e.g. ``foo``, the formatter will wrap each
-        output line in an anchor tag with a ``name`` of ``foo-linenumber``.
+        output line in an anchor tag with an ``id`` of ``foo-linenumber``.
         This allows easy linking to certain lines.
 
         .. versionadded:: 0.9
@@ -752,7 +752,7 @@ class HtmlFormatter(Formatter):
         for t, line in inner:
             if t:
                 i += 1
-                yield 1, '<a name="%s-%d"></a>' % (s, i) + line
+                yield 1, '<a id="%s-%d"></a>' % (s, i) + line
             else:
                 yield 0, line
 
