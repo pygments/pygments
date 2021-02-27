@@ -1,0 +1,276 @@
+'namespace'   Keyword
+' '           Text
+'std'         Name.Namespace
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'namespace'   Keyword
+' '           Text
+'std'         Name.Namespace
+':'           Operator
+':'           Operator
+'exprimental' Name.Namespace
+':'           Operator
+':'           Operator
+'inner'       Name.Namespace
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'namespace'   Keyword
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'namespace'   Keyword
+' '           Text
+'std'         Name.Namespace
+':'           Operator
+':'           Operator
+'exprimental' Name.Namespace
+':'           Operator
+':'           Operator
+'inline'      Keyword
+' '           Text
+'innner'      Name.Namespace
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'namespace'   Keyword
+' '           Text
+'std'         Name.Namespace
+':'           Operator
+':'           Operator
+'inline'      Keyword
+' '           Text
+'exprimental' Name.Namespace
+':'           Operator
+':'           Operator
+'innner'      Name.Namespace
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'namespace'   Keyword
+' '           Text
+'other'       Name.Namespace
+' '           Text
+'='           Operator
+' '           Text
+'std'         Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'namespace'   Keyword
+' '           Text
+'other'       Name.Namespace
+' '           Text
+'='           Operator
+' '           Text
+'std'         Name.Namespace
+':'           Operator
+':'           Operator
+'exprimental' Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'namespace'   Keyword
+' '           Text
+'std'         Name.Namespace
+':'           Operator
+':'           Operator
+'exprimental' Name.Namespace
+':'           Operator
+':'           Operator
+'inner'       Name.Namespace
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'class'       Keyword
+' '           Text
+'QualifiedName' Name.Class
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'public'      Keyword
+':'           Operator
+'\n'          Text
+
+'    '        Text
+'QualifiedName' Name
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'FlyString'   Name
+'&'           Operator
+' '           Text
+'local_name'  Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'const'       Keyword
+' '           Text
+'FlyString'   Name
+'&'           Operator
+' '           Text
+'local_name'  Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'m_local_name' Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'private'     Keyword
+':'           Operator
+'\n'          Text
+
+'    '        Text
+'FlyString'   Name
+' '           Text
+'m_local_name' Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'  \n'        Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'namespace'   Keyword
+' '           Text
+'ns'          Name.Namespace
+':'           Operator
+':'           Operator
+'inner'       Name.Namespace
+':'           Operator
+':'           Operator
+'inline'      Keyword
+' '           Text
+'pygments'    Name.Namespace
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'using'       Keyword
+' '           Text
+'namespace'   Keyword
+' '           Text
+'outer'       Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'int'         Keyword.Type
+' '           Text
+'has_value'   Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'namespace'   Keyword
+' '           Text
+'other'       Name.Namespace
+' '           Text
+'='           Operator
+' '           Text
+'std'         Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'namespace'   Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'namespace'   Keyword
+' '           Text
+'user'        Name.Namespace
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'int'         Keyword.Type
+' '           Text
+'has_value'   Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                ' Text
+'using'       Keyword
+' '           Text
+'namespace'   Keyword
+' '           Text
+'inner'       Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'                ' Text
+'return'      Keyword
+' '           Text
+'4'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'}'           Punctuation
+'\n'          Text
+
+'        '    Text
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
