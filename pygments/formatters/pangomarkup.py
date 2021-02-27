@@ -15,9 +15,10 @@ __all__ = ['PangoMarkupFormatter']
 
 
 class PangoMarkupFormatter(Formatter):
-    r"""
+    """
     Format tokens as Pango Markup code. It can then be rendered to an SVG.
     """
+
     name = 'Pango Markup'
     aliases = ['pango', 'pangomarkup']
     filenames = []
@@ -31,7 +32,7 @@ class PangoMarkupFormatter(Formatter):
             start = ''
             end = ''
             if style['color']:
-                start += f'<span fgcolor="#{style["color"]}">'
+                start += '<span fgcolor="#%s">' % style['color']
                 end = '</span>' + end
             if style['bold']:
                 start += '<b>'
