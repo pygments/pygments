@@ -6,40 +6,38 @@
     :license: BSD, see LICENSE for details.
 """
 
-import os
-import re
-import tempfile
-from io import StringIO
-from os import path
-
 import pytest
 
+from pygments import highlight
 from pygments.formatters import PangoMarkupFormatter, NullFormatter
-from pygments.lexers import PythonLexer
+from pygments.lexers import JavascriptLexer
 
-TESTDIR = path.dirname(path.abspath(__file__))
-TESTFILE = path.join(TESTDIR, 'test_pangomarkup_formatter.py')
+INPUT = r"""
+function foobar(a, b) {
+   if (a > b) {
+      return a & b;
+   }
+   if (a < b) {
+      return true;
+   }
+   console.log("single quote ' and double quote \"")
+   console.log('single quote \' and double quote "')
+   // comment with äöü ç
+}
+"""
 
-with open(TESTFILE, encoding='utf-8') as fp:
-    tokensource = list(PythonLexer().get_tokens(fp.read()))
-
+OUTPUT = r"""<tt><span fgcolor="#008000"><b>function</b></span> foobar(a, b) {
+   <span fgcolor="#008000"><b>if</b></span> (a <span fgcolor="#666666">></span> b) {
+      <span fgcolor="#008000"><b>return</b></span> a <span fgcolor="#666666">&amp;</span> b;
+   }
+   <span fgcolor="#008000"><b>if</b></span> (a <span fgcolor="#666666">&lt;</span> b) {
+      <span fgcolor="#008000"><b>return</b></span> <span fgcolor="#008000"><b>true</b></span>;
+   }
+   console.log(<span fgcolor="#BA2121">"single quote ' and double quote \""</span>)
+   console.log(<span fgcolor="#BA2121">'single quote \' and double quote "'</span>)
+   <span fgcolor="#408080"><i>// comment with äöü ç
+</i></span>}
+</tt>"""
 
 def test_correct_output():
-    pfmt = PangoMarkupFormatter(nowrap=True)
-    poutfile = StringIO()
-    pfmt.format(tokensource, poutfile)
-
-    nfmt = NullFormatter()
-    noutfile = StringIO()
-    nfmt.format(tokensource, noutfile)
-
-    stripped_markup = re.sub('</?(b|u|i)>', '', poutfile.getvalue())
-    stripped_markup = re.sub('<span[^>]+>', '', stripped_markup)
-    stripped_markup = re.sub('</span>', '', stripped_markup)
-
-    text = noutfile.getvalue()
-    text = text.replace('&', '&amp;')
-    text = text.replace('<', '&lt;')
-    text = '<tt>' + text + '</tt>'
-
-    assert stripped_markup == text
+    assert OUTPUT == highlight(INPUT, JavascriptLexer(), PangoMarkupFormatter())
