@@ -7,9 +7,10 @@
 """
 
 import pytest
+import re
 
 from pygments import highlight
-from pygments.formatters import PangoMarkupFormatter, NullFormatter
+from pygments.formatters import PangoMarkupFormatter
 from pygments.lexers import JavascriptLexer
 
 INPUT = r"""
@@ -26,18 +27,19 @@ function foobar(a, b) {
 }
 """
 
-OUTPUT = r"""<tt><span fgcolor="#008000"><b>function</b></span> foobar(a, b) {
-   <span fgcolor="#008000"><b>if</b></span> (a <span fgcolor="#666666">></span> b) {
-      <span fgcolor="#008000"><b>return</b></span> a <span fgcolor="#666666">&amp;</span> b;
+OUTPUT = r"""<tt><span fgcolor="#"><b>function</b></span> foobar(a, b) {
+   <span fgcolor="#"><b>if</b></span> (a <span fgcolor="#">></span> b) {
+      <span fgcolor="#"><b>return</b></span> a <span fgcolor="#">&amp;</span> b;
    }
-   <span fgcolor="#008000"><b>if</b></span> (a <span fgcolor="#666666">&lt;</span> b) {
-      <span fgcolor="#008000"><b>return</b></span> <span fgcolor="#008000"><b>true</b></span>;
+   <span fgcolor="#"><b>if</b></span> (a <span fgcolor="#">&lt;</span> b) {
+      <span fgcolor="#"><b>return</b></span> <span fgcolor="#"><b>true</b></span>;
    }
-   console.log(<span fgcolor="#BA2121">"single quote ' and double quote \""</span>)
-   console.log(<span fgcolor="#BA2121">'single quote \' and double quote "'</span>)
-   <span fgcolor="#408080"><i>// comment with äöü ç
+   console.log(<span fgcolor="#">"single quote ' and double quote \""</span>)
+   console.log(<span fgcolor="#">'single quote \' and double quote "'</span>)
+   <span fgcolor="#"><i>// comment with äöü ç
 </i></span>}
 </tt>"""
 
 def test_correct_output():
-    assert OUTPUT == highlight(INPUT, JavascriptLexer(), PangoMarkupFormatter())
+    markup = highlight(INPUT, JavascriptLexer(), PangoMarkupFormatter())
+    assert OUTPUT == re.sub('<span fgcolor="#[^"]{6}">', '<span fgcolor="#">', markup)
