@@ -3145,18 +3145,20 @@ class OctaveLexer(RegexLexer):
 
     tokens = {
         'root': [
-            # We should look into multiline comments
+            (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
             (r'[%#].*$', Comment),
             (r'^\s*function\b', Keyword, 'deffunc'),
 
             # from 'iskeyword' on hg changeset 8cc154f45e37
             (words((
-                '__FILE__', '__LINE__', 'break', 'case', 'catch', 'classdef', 'continue', 'do', 'else',
-                'elseif', 'end', 'end_try_catch', 'end_unwind_protect', 'endclassdef',
-                'endevents', 'endfor', 'endfunction', 'endif', 'endmethods', 'endproperties',
-                'endswitch', 'endwhile', 'events', 'for', 'function', 'get', 'global', 'if', 'methods',
-                'otherwise', 'persistent', 'properties', 'return', 'set', 'static', 'switch', 'try',
-                'until', 'unwind_protect', 'unwind_protect_cleanup', 'while'), suffix=r'\b'),
+                '__FILE__', '__LINE__', 'break', 'case', 'catch', 'classdef',
+                'continue', 'do', 'else', 'elseif', 'end', 'end_try_catch',
+                'end_unwind_protect', 'endclassdef', 'endevents', 'endfor',
+                'endfunction', 'endif', 'endmethods', 'endproperties', 'endswitch',
+                'endwhile', 'events', 'for', 'function', 'get', 'global', 'if',
+                'methods', 'otherwise', 'persistent', 'properties', 'return',
+                'set', 'static', 'switch', 'try', 'until', 'unwind_protect',
+                'unwind_protect_cleanup', 'while'), suffix=r'\b'),
              Keyword),
 
             (words(builtin_kw + command_kw + function_kw + loadable_kw + mapping_kw,
@@ -3191,6 +3193,11 @@ class OctaveLexer(RegexLexer):
 
             (r'[a-zA-Z_]\w*', Name),
             (r'.', Text),
+        ],
+        'blockcomment': [
+            (r'^\s*%\}', Comment.Multiline, '#pop'),
+            (r'^.*\n', Comment.Multiline),
+            (r'.', Comment.Multiline),
         ],
         'string': [
             (r"[^']*'", String, '#pop'),
