@@ -3145,7 +3145,8 @@ class OctaveLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
+            (r'%\{\s*\n', Comment.Multiline, 'percentblockcomment'),
+            (r'#\{\s*\n', Comment.Multiline, 'hashblockcomment'),
             (r'[%#].*$', Comment),
             (r'^\s*function\b', Keyword, 'deffunc'),
 
@@ -3192,10 +3193,16 @@ class OctaveLexer(RegexLexer):
             (r'(?<![\w)\].])\'', String, 'string'),
 
             (r'[a-zA-Z_]\w*', Name),
+            (r'\s+', Text),
             (r'.', Text),
         ],
-        'blockcomment': [
+        'percentblockcomment': [
             (r'^\s*%\}', Comment.Multiline, '#pop'),
+            (r'^.*\n', Comment.Multiline),
+            (r'.', Comment.Multiline),
+        ],
+        'hashblockcomment': [
+            (r'^\s*#\}', Comment.Multiline, '#pop'),
             (r'^.*\n', Comment.Multiline),
             (r'.', Comment.Multiline),
         ],
