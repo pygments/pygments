@@ -1,0 +1,113 @@
+'type'        Keyword
+' '           Text
+'Elem'        Name.Class
+'['           Punctuation
+'X'           Name.Class
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'X'           Name.Class
+' '           Text
+'match'       Keyword
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'String'      Name.Class
+' '           Text
+'=>'          Operator
+' '           Text
+'Char'        Name.Class
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'Array'       Name.Class
+'['           Punctuation
+'t'           Name
+']'           Punctuation
+' '           Text
+'=>'          Operator
+' '           Text
+'t'           Name
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'Iterable'    Name.Class
+'['           Punctuation
+'t'           Name
+']'           Punctuation
+' '           Text
+'=>'          Operator
+' '           Text
+'t'           Name
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'Concat'      Name.Class
+'['           Punctuation
+'Xs'          Name.Class
+' '           Text
+'<:'          Operator
+' '           Text
+'Tuple'       Name.Class
+','           Punctuation
+' '           Text
+'+'           Operator
+'Ys'          Name.Class
+' '           Text
+'<:'          Operator
+' '           Text
+'Tuple'       Name.Class
+']'           Punctuation
+' '           Text
+'<:'          Operator
+' '           Text
+'Tuple'       Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'Xs'          Name.Class
+' '           Text
+'match'       Keyword
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'Unit'        Name.Class
+' '           Text
+'=>'          Operator
+' '           Text
+'Ys'          Name.Class
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'x'           Name
+' '           Text
+'*:'          Operator
+' '           Text
+'xs'          Name
+' '           Text
+'=>'          Operator
+' '           Text
+'x'           Name
+' '           Text
+'*:'          Operator
+' '           Text
+'Concat'      Name.Class
+'['           Punctuation
+'xs'          Name
+','           Punctuation
+' '           Text
+'Ys'          Name.Class
+']'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

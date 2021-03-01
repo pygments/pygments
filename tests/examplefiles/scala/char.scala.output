@@ -1,4 +1,4 @@
-"'symbol"     Text.Symbol
+"'symbol"     Literal.String.Symbol
 '\n'          Text
 
 "'a'"         Literal.String.Char
@@ -7,5 +7,7 @@
 "'\\u1234'"   Literal.String.Char
 '\n'          Text
 
-"'\\n'"       Literal.String.Char
+"'"           Literal.String.Char
+'\\n'         Literal.String.Escape
+"'"           Literal.String.Char
 '\n'          Text

@@ -2,11 +2,11 @@
 '-@ '         Punctuation
 'import'      Keyword
 ' '           Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
 'city'        Name
-':'           Keyword
-'String'      Keyword.Type
+':'           Punctuation
+'String'      Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
@@ -16,11 +16,11 @@
 ''            Text
 '-'           Punctuation
 ' '           Text
-'val'         Keyword
+'val'         Keyword.Declaration
 ' '           Text
 'name'        Name
-':'           Keyword
-'String'      Keyword.Type
+':'           Punctuation
+'String'      Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
@@ -56,7 +56,7 @@
 ' '           Text
 'for'         Keyword
 ' '           Text
-'('           Operator
+'('           Punctuation
 ' '           Text
 'i'           Name
 ' '           Text
@@ -68,7 +68,7 @@
 ' '           Text
 '10'          Literal.Number.Integer
 ' '           Text
-')'           Operator
+')'           Punctuation
 '\n'          Text
 
 '      '      Text
