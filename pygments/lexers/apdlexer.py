@@ -1,11 +1,27 @@
+# -*- coding: utf-8 -*-
+"""
+    pygments.lexers.apdlexer.py
+    ~~~~~~~~~~~~~~~~~~~~~~
+
+    Lexers for ANSYS Parametric Design Language.
+
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 import re
-from pygments.lexer import RegexLexer, bygroups, include
+from pygments.lexer import RegexLexer, bygroups, include, words
 from pygments.token import *
 
 __all__ = ['apdlexer']
 
 
 class apdlexer(RegexLexer):
+    """
+    For APDL source code.
+
+    .. versionadded:: 2.80
+    """
     name = 'ANSYS parametric design language'
     aliases = ['ansys']
     filenames = ['*.ans']
