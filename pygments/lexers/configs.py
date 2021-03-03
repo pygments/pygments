@@ -349,7 +349,7 @@ class SquidConfLexer(RegexLexer):
         "cache_effective_user", "cache_host", "cache_host_acl",
         "cache_host_domain", "cache_log", "cache_mem", "cache_mem_high",
         "cache_mem_low", "cache_mgr", "cachemgr_passwd", "cache_peer",
-        "cache_peer_access", "cahce_replacement_policy", "cache_stoplist",
+        "cache_peer_access", "cache_replacement_policy", "cache_stoplist",
         "cache_stoplist_pattern", "cache_store_log", "cache_swap",
         "cache_swap_high", "cache_swap_log", "cache_swap_low", "client_db",
         "client_lifetime", "client_netmask", "connect_timeout", "coredump_dir",
