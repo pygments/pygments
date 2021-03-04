@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
     Pygments MySQL lexer tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -11,16 +10,8 @@ import pytest
 
 from pygments.lexers.sql import MySqlLexer
 
-from pygments.token import \
-    Comment, \
-    Keyword, \
-    Literal, \
-    Name, \
-    Number, \
-    Operator, \
-    Punctuation, \
-    String, \
-    Text
+from pygments.token import Comment, Keyword, Literal, Name, Number, Operator, \
+    Punctuation, String, Text
 
 
 @pytest.fixture(scope='module')
@@ -28,7 +19,8 @@ def lexer():
     yield MySqlLexer()
 
 
-@pytest.mark.parametrize('text', ('1', '22', '22 333', '22 a', '22+', '22)', '22\n333', '22\r\n333'))
+@pytest.mark.parametrize('text', ('1', '22', '22 333', '22 a', '22+', '22)',
+                                  '22\n333', '22\r\n333'))
 def test_integer_literals_positive_match(lexer, text):
     """Validate that integer literals are tokenized as integers."""
     token = list(lexer.get_tokens(text))[0]
@@ -36,7 +28,8 @@ def test_integer_literals_positive_match(lexer, text):
     assert token[1] in {'1', '22'}
 
 
-@pytest.mark.parametrize('text', ('1a', '1A', '1.', '1ひ', '1$', '1_', '1\u0080', '1\uffff'))
+@pytest.mark.parametrize('text', ('1a', '1A', '1.', '1ひ', '1$', '1_',
+                                  '1\u0080', '1\uffff'))
 def test_integer_literals_negative_match(lexer, text):
     """Validate that non-integer texts are not matched as integers."""
     assert list(lexer.get_tokens(text))[0][0] != Number.Integer

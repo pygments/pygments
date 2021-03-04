@@ -1,0 +1,15 @@
+---input---
+f'{chr(65) = }'
+
+---tokens---
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'{'           Literal.String.Interpol
+'chr'         Name.Builtin
+'('           Punctuation
+'65'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'= }'         Literal.String.Interpol
+"'"           Literal.String.Single
+'\n'          Text

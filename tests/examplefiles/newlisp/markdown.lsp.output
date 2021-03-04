@@ -1,0 +1,5279 @@
+'#!/usr/bin/env newlisp' Comment.Preproc
+'\n\n'        Text
+
+';; @module markdown' Comment.Single
+'\n'          Text
+
+';; @author cormullion' Comment.Single
+'\n'          Text
+
+";; @description a port of John Gruber's Markdown to newLISP" Comment.Single
+'\n'          Text
+
+';; @location http://unbalanced-parentheses.nfshost.com/' Comment.Single
+'\n'          Text
+
+';; @version of date 2011-10-02 22:36:02' Comment.Single
+'\n'          Text
+
+';; version history: at the end' Comment.Single
+'\n'          Text
+
+";; a port of John Gruber's Markdown.pl (http://daringfireball.net/markdown) script to newLISP..." Comment.Single
+'\n'          Text
+
+';; see his original Perl script for explanations of the fearsome regexen and' Comment.Single
+'\n'          Text
+
+';; byzantine logic, etc...' Comment.Single
+'\n'          Text
+
+';; TODO:'    Comment.Single
+'\n'          Text
+
+';;   the following Markdown tests fail:' Comment.Single
+'\n'          Text
+
+';;   Inline HTML (Advanced) ... FAILED' Comment.Single
+'\n'          Text
+
+';;   Links, reference style ... FAILED -- nested brackets ' Comment.Single
+'\n'          Text
+
+';;   Links, shortcut references ... FAILED' Comment.Single
+'\n'          Text
+
+';;   Markdown Documentation - Syntax ... FAILED' Comment.Single
+'\n'          Text
+
+';;   Ordered and unordered lists ... FAILED -- a nested ordered list error' Comment.Single
+'\n'          Text
+
+';;   parens in url : ![this is a stupid URL](http://example.com/(parens).jpg) see (Images.text)' Comment.Single
+'\n'          Text
+
+';;   Add: email address scrambling' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'context'     Keyword
+' '           Text
+"'"           Operator
+'Hash'        Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'HashTable'   Literal.String.Symbol
+':'           Operator
+'HashTable'   Literal.String.Symbol
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'build-escape-table' Name.Variable
+')'           Punctuation
+'\n   '       Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'*'           Keyword
+'escape-chars*' Literal.String.Symbol
+' '           Text
+'[text]'      Literal.String
+'\\`*_{}[]()>#+-.![/text]' Literal.String
+')'           Punctuation
+'   \n   '    Text
+'('           Punctuation
+'dolist'      Keyword
+' '           Text
+'('           Punctuation
+'c'           Name.Variable
+' '           Text
+'('           Punctuation
+'explode'     Keyword
+' '           Text
+'*'           Keyword
+'escape-chars*' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'c'           Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'hash'        Name.Variable
+' '           Text
+'c'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'init-hash'   Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n    '      Text
+"; finds a hash identifier that doesn't occur anywhere in the text" Comment.Single
+'\n    '      Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'counter'     Literal.String.Symbol
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'hash-prefix' Literal.String.Symbol
+' '           Text
+'"HASH"'      Literal.String
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'hash-id'     Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'hash-prefix' Literal.String.Symbol
+' '           Text
+'counter'     Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'do-while'    Keyword
+' '           Text
+'('           Punctuation
+'find'        Keyword
+' '           Text
+'hash-id'     Literal.String.Symbol
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'hash-id'     Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'hash-prefix' Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'inc'         Keyword
+' '           Text
+'counter'     Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'Hash'        Name.Variable
+':'           Operator
+'build-escape-table' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'hash'        Name.Variable
+' '           Text
+'s'           Literal.String.Symbol
+')'           Punctuation
+'\n   '       Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'s'           Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'hash-id'     Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'inc'         Keyword
+' '           Text
+'counter'     Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'context'     Keyword
+' '           Text
+"'"           Operator
+'markdown'    Literal.String.Symbol
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'markdown'    Name.Variable
+':'           Operator
+'markdown'    Literal.String.Symbol
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'initialize'  Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'Hash'        Name.Variable
+':'           Operator
+'init-hash'   Literal.String.Symbol
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'unescape-special-chars' Name.Variable
+' \n    '     Text
+'('           Punctuation
+'block-transforms' Name.Variable
+' \n      '   Text
+'('           Punctuation
+'strip-link-definitions' Name.Variable
+' \n         ' Text
+'('           Punctuation
+'protect'     Name.Variable
+' \n            ' Text
+'('           Punctuation
+'cleanup'     Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'initialize'  Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'*'           Keyword
+'escape-pairs*' Literal.String.Symbol
+'   '         Text
+"'"           Operator
+'('           Punctuation
+'\n       '   Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\\\\\'    Literal.String
+'}'           Literal.String
+' '           Text
+'{'           Literal.String
+'\\'          Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\`'       Literal.String
+'}'           Literal.String
+'  '          Text
+'{'           Literal.String
+'`'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\\\*'     Literal.String
+'}'           Literal.String
+' '           Text
+'{'           Literal.String
+'*'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' \n       '  Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\_'       Literal.String
+'}'           Literal.String
+'  '          Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'[text]'      Literal.String
+'\\\\\\{[/text]' Literal.String
+' '           Text
+'[text]'      Literal.String
+'{[/text]'    Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'[text]'      Literal.String
+'\\\\\\}[/text]' Literal.String
+' '           Text
+'[text]'      Literal.String
+'}[/text]'    Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\\\['     Literal.String
+'}'           Literal.String
+' '           Text
+'{'           Literal.String
+'['           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\\\]'     Literal.String
+'}'           Literal.String
+' '           Text
+'{'           Literal.String
+']'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\\\('     Literal.String
+'}'           Literal.String
+' '           Text
+'{'           Literal.String
+'('           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\\\)'     Literal.String
+'}'           Literal.String
+' '           Text
+'{'           Literal.String
+')'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\>'       Literal.String
+'}'           Literal.String
+'  '          Text
+'{'           Literal.String
+'>'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\\\#'     Literal.String
+'}'           Literal.String
+' '           Text
+'{'           Literal.String
+'#'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\\\+'     Literal.String
+'}'           Literal.String
+' '           Text
+'{'           Literal.String
+'+'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\\\-'     Literal.String
+'}'           Literal.String
+' '           Text
+'{'           Literal.String
+'-'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\\\.'     Literal.String
+'}'           Literal.String
+' '           Text
+'{'           Literal.String
+'.'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'{'           Literal.String
+'\\\\!'       Literal.String
+'}'           Literal.String
+'  '          Text
+'{'           Literal.String
+'!'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'*'           Keyword
+'hashed-html-blocks*' Literal.String.Symbol
+' '           Text
+"'"           Operator
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'*'           Keyword
+'list'        Keyword
+'-'           Keyword
+'level*'      Literal.String.Symbol
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'block-transforms' Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n   '       Text
+'('           Punctuation
+'form-paragraphs' Name.Variable
+' \n    '     Text
+'('           Punctuation
+'protect'     Name.Variable
+' \n     '    Text
+'('           Punctuation
+'block-quotes' Name.Variable
+' \n      '   Text
+'('           Punctuation
+'code-blocks' Name.Variable
+' \n       '  Text
+'('           Punctuation
+'lists'       Name.Variable
+' \n        ' Text
+'('           Punctuation
+'horizontal-rules' Name.Variable
+' \n         ' Text
+'('           Punctuation
+'headers'     Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'span-transforms' Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'line-breaks' Name.Variable
+' \n   '      Text
+'('           Punctuation
+'emphasis'    Name.Variable
+' \n    '     Text
+'('           Punctuation
+'amps-and-angles' Name.Variable
+' \n     '    Text
+'('           Punctuation
+'auto-links'  Name.Variable
+' \n      '   Text
+'('           Punctuation
+'anchors'     Name.Variable
+' \n       '  Text
+'('           Punctuation
+'images'      Name.Variable
+' \n        ' Text
+'('           Punctuation
+'escape-special-chars' Name.Variable
+' \n         ' Text
+'('           Punctuation
+'escape-special-chars' Name.Variable
+' '           Text
+'('           Punctuation
+'code-spans'  Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+' '           Text
+"'"           Operator
+'inside-attributes' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'tokenize-html' Name.Variable
+' '           Text
+'xhtml'       Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+'; return list of tag/text portions of xhtml text' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'letn'        Keyword
+' '           Text
+'('           Punctuation
+'\n       '   Text
+'('           Punctuation
+'tag-match'   Name.Variable
+' '           Text
+'[text]'      Literal.String
+'((?s:<!(-- .*? -- \\s*)+>)|\n(?s:<\\?.*?\\?>)|\n(?:<[a-z/!$](?:[^<>]|\n(?:<[a-z/!$](?:[^<>]|\n(?:<[a-z/!$](?:[^<>]|\n(?:<[a-z/!$](?:[^<>]|\n(?:<[a-z/!$](?:[^<>]|\n(?:<[a-z/!$](?:[^<>])*>))*>))*>))*>))*>))*>))[/text]' Literal.String
+')'           Punctuation
+' '           Text
+'; yeah, well...' Comment.Single
+'\n      '    Text
+'('           Punctuation
+'str'         Name.Variable
+' '           Text
+'xhtml'       Literal.String.Symbol
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'len'         Name.Variable
+' '           Text
+'('           Punctuation
+'length'      Keyword
+' '           Text
+'str'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'pos'         Name.Variable
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'tokens'      Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n '         Text
+'('           Punctuation
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'tag-start'   Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'find'        Keyword
+' '           Text
+'tag-match'   Literal.String.Symbol
+' '           Text
+'str'         Literal.String.Symbol
+' '           Text
+'8'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'<'           Name.Variable
+' '           Text
+'pos'         Literal.String.Symbol
+' '           Text
+'tag-start'   Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'push'        Keyword
+' '           Text
+'('           Punctuation
+'list'        Keyword
+' '           Text
+"'"           Operator
+'text'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'slice'       Keyword
+' '           Text
+'str'         Literal.String.Symbol
+' '           Text
+'pos'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'-'           Name.Variable
+' '           Text
+'tag-start'   Literal.String.Symbol
+' '           Text
+'pos'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'tokens'      Literal.String.Symbol
+' '           Text
+'-'           Keyword
+'1'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'push'        Keyword
+' '           Text
+'('           Punctuation
+'list'        Keyword
+' '           Text
+"'"           Operator
+'tag'         Literal.String.Symbol
+' '           Text
+'$0'          Keyword
+')'           Punctuation
+' '           Text
+'tokens'      Literal.String.Symbol
+' '           Text
+'-'           Keyword
+'1'           Literal.String.Symbol
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'str'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'slice'       Keyword
+' '           Text
+'str'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'+'           Name.Variable
+' '           Text
+'tag-start'   Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'length'      Keyword
+' '           Text
+'$0'          Keyword
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'pos'         Literal.String.Symbol
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n '         Text
+'; leftovers' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'<'           Name.Variable
+' '           Text
+'pos'         Literal.String.Symbol
+' '           Text
+'len'         Literal.String.Symbol
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'push'        Keyword
+' '           Text
+'('           Punctuation
+'list'        Keyword
+' '           Text
+"'"           Operator
+'text'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'slice'       Keyword
+' '           Text
+'str'         Literal.String.Symbol
+' '           Text
+'pos'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'-'           Name.Variable
+' '           Text
+'len'         Literal.String.Symbol
+' '           Text
+'pos'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'tokens'      Literal.String.Symbol
+' '           Text
+'-'           Keyword
+'1'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'tokens'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'escape-special-chars' Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'within-tag-attributes' Name.Variable
+' '           Text
+'nil'         Keyword
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'temp'        Name.Variable
+' '           Text
+'('           Punctuation
+'tokenize-html' Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'new'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'    \n    '  Text
+'('           Punctuation
+'dolist'      Keyword
+' '           Text
+'('           Punctuation
+'pair'        Name.Variable
+' '           Text
+'temp'        Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'('           Punctuation
+'first'       Keyword
+' '           Text
+'pair'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+"'"           Operator
+'tag'         Literal.String.Symbol
+')'           Punctuation
+'\n             ' Text
+"; 'tag"      Comment.Single
+'\n             ' Text
+'('           Punctuation
+'begin'       Keyword
+'              \n              ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'new'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\\\'        Literal.String
+'}'           Literal.String
+' '           Text
+'('           Punctuation
+'last'        Keyword
+' '           Text
+'pair'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'\\\\'        Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'[text]'      Literal.String
+'(?<=.)</?code>(?=.)[/text]' Literal.String
+' '           Text
+'new'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'`'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\*'         Literal.String
+'}'           Literal.String
+' '           Text
+'new'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'*'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+' '           Text
+'new'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n             ' Text
+"; 'text"     Comment.Single
+'\n             ' Text
+'('           Punctuation
+'if'          Keyword
+'  '          Text
+'within-tag-attributes' Literal.String.Symbol
+'\n                  ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'new'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'last'        Keyword
+' '           Text
+'pair'        Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'new'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'encode-backslash-escapes' Name.Variable
+' '           Text
+'('           Punctuation
+'last'        Keyword
+' '           Text
+'pair'        Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'temp'        Name.Variable
+' '           Text
+'$idx'        Keyword
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'list'        Keyword
+' '           Text
+'('           Punctuation
+'first'       Keyword
+' '           Text
+'pair'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'new'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'; return as text' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'join'        Keyword
+' '           Text
+'('           Punctuation
+'map'         Keyword
+' '           Text
+'last'        Keyword
+' '           Text
+'temp'        Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'encode-backslash-escapes' Name.Variable
+' '           Text
+'t'           Literal.String.Symbol
+')'           Punctuation
+'\n   '       Text
+'('           Punctuation
+'dolist'      Keyword
+' '           Text
+'('           Punctuation
+'pair'        Name.Variable
+' '           Text
+'*'           Keyword
+'escape-pairs*' Literal.String.Symbol
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'('           Punctuation
+'first'       Keyword
+' '           Text
+'pair'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'t'           Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'('           Punctuation
+'last'        Keyword
+' '           Text
+'pair'        Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'14'          Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'encode-code' Name.Variable
+' '           Text
+'s'           Literal.String.Symbol
+')'           Punctuation
+'\n '         Text
+'; encode/escape certain characters inside Markdown code runs' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'&'           Literal.String
+'}'           Literal.String
+'  '          Text
+'s'           Literal.String.Symbol
+'   '         Text
+'"&amp;"'     Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'<'           Literal.String
+'}'           Literal.String
+'  '          Text
+'s'           Literal.String.Symbol
+'   '         Text
+'"&lt;"'      Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'>'           Literal.String
+'}'           Literal.String
+'  '          Text
+'s'           Literal.String.Symbol
+'   '         Text
+'"&gt;"'      Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\*'         Literal.String
+'}'           Literal.String
+' '           Text
+'s'           Literal.String.Symbol
+'   '         Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'\\\\'        Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+'  '          Text
+'s'           Literal.String.Symbol
+'   '         Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'"{"'         Literal.String
+'  '          Text
+'s'           Literal.String.Symbol
+'   '         Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'"{"'         Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\['         Literal.String
+'}'           Literal.String
+' '           Text
+'s'           Literal.String.Symbol
+'   '         Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'['           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\]'         Literal.String
+'}'           Literal.String
+' '           Text
+'s'           Literal.String.Symbol
+'   '         Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+']'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\\\'        Literal.String
+'}'           Literal.String
+' '           Text
+'s'           Literal.String.Symbol
+'   '         Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'"\\\\"'      Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'code-spans'  Name.Variable
+' '           Text
+'s'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+'  \n    '    Text
+'{'           Literal.String
+'(?<!\\\\)(`+)(.+?)(?<!`)\\1(?!`)' Literal.String
+'}'           Literal.String
+' \n    '     Text
+'s'           Literal.String.Symbol
+' \n    '     Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'<code>'      Literal.String
+'}'           Literal.String
+' '           Text
+'('           Punctuation
+'encode-code' Name.Variable
+' '           Text
+'('           Punctuation
+'trim'        Keyword
+' '           Text
+'$2'          Keyword
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Literal.String
+'</code>'     Literal.String
+'}'           Literal.String
+')'           Punctuation
+' \n    '     Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'encode-alt'  Name.Variable
+' '           Text
+'s'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'&'           Literal.String
+'}'           Literal.String
+' '           Text
+'s'           Literal.String.Symbol
+' '           Text
+'"&amp;"'     Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+' '           Text
+'s'           Literal.String.Symbol
+' '           Text
+'"&quot;"'    Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'images'      Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n '         Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'alt-text'    Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'url'         Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'title'       Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'ref'         Keyword
+'-'           Keyword
+'regex'       Keyword
+'    '        Text
+'{'           Literal.String
+'(!\\[(.*?)\\][ ]?(?:\\n[ ]*)?\\[(.*?)\\])' Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'inline-regex' Name.Variable
+' '           Text
+'{'           Literal.String
+'(!\\[(.*?)\\]\\([ \\t]*<?(\\S+?)>?[ \\t]*(([\'"])(.*?)\\5[ \\t]*)?\\))' Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'whole-match' Name.Variable
+'  '          Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'result'      Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'id-ref'      Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'url'         Name.Variable
+'    '        Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+';  reference links ![alt text][id]' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' \n    '     Text
+'ref'         Keyword
+'-'           Keyword
+'regex'       Keyword
+' \n    '     Text
+'txt'         Literal.String.Symbol
+' \n    '     Text
+'('           Punctuation
+'begin'       Keyword
+'\n       '   Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'whole-match' Literal.String.Symbol
+' '           Text
+'$1'          Keyword
+' '           Text
+"'"           Operator
+'alt-text'    Literal.String.Symbol
+' '           Text
+'$2'          Keyword
+' '           Text
+"'"           Operator
+'id-ref'      Literal.String.Symbol
+' '           Text
+'$3'          Keyword
+')'           Punctuation
+'       \n       ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'alt-text'    Literal.String.Symbol
+'\n             ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+' '           Text
+'alt-text'    Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'&quot;'      Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'empty?'      Name.Variable
+' '           Text
+'id-ref'      Literal.String.Symbol
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'id-ref'      Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'lower-case'  Keyword
+' '           Text
+'alt-text'    Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'     \n       ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'lookup'      Keyword
+' '           Text
+'id-ref'      Literal.String.Symbol
+' '           Text
+'*'           Keyword
+'link-database*' Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'url'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'first'       Keyword
+' '           Text
+'('           Punctuation
+'lookup'      Keyword
+' '           Text
+'id-ref'      Literal.String.Symbol
+' '           Text
+'*'           Keyword
+'link-database*' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'url'         Literal.String.Symbol
+' '           Text
+'nil'         Keyword
+')'           Punctuation
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'url'         Literal.String.Symbol
+'\n           ' Text
+'('           Punctuation
+'begin'       Keyword
+' \n              ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\*'         Literal.String
+'}'           Literal.String
+' '           Text
+'url'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'*'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+'  '          Text
+'url'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+' \n            ' Text
+')'           Punctuation
+')'           Punctuation
+'             \n       ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'last'        Keyword
+' '           Text
+'('           Punctuation
+'lookup'      Keyword
+' '           Text
+'id-ref'      Literal.String.Symbol
+' '           Text
+'*'           Keyword
+'link-database*' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'; title'     Comment.Single
+'\n           ' Text
+'('           Punctuation
+'begin'       Keyword
+'\n             ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'title'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'last'        Keyword
+' '           Text
+'('           Punctuation
+'lookup'      Keyword
+' '           Text
+'id-ref'      Literal.String.Symbol
+' '           Text
+'*'           Keyword
+'link-database*' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+'  '          Text
+'title'       Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'&quot;'      Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\*'         Literal.String
+'}'           Literal.String
+' '           Text
+'title'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'*'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+'  '          Text
+'title'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n           ' Text
+'; no title'  Comment.Single
+'\n           ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'title'       Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n           ' Text
+')'           Punctuation
+'       \n       ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'url'         Literal.String.Symbol
+'\n        '  Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'result'      Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' \n          ' Text
+'{'           Literal.String
+'<img src="'  Literal.String
+'}'           Literal.String
+' \n          ' Text
+'('           Punctuation
+'trim'        Keyword
+' '           Text
+'url'         Literal.String.Symbol
+')'           Punctuation
+' \n          ' Text
+'{'           Literal.String
+'" alt="'     Literal.String
+'}'           Literal.String
+' \n          ' Text
+'alt-text'    Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'" '          Literal.String
+'}'           Literal.String
+'\n          ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'not'         Keyword
+' '           Text
+'('           Punctuation
+'empty?'      Name.Variable
+' '           Text
+'title'       Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n               ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+' title="'    Literal.String
+'}'           Literal.String
+' '           Text
+'title'       Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n          ' Text
+'{'           Literal.String
+' />'         Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'result'      Literal.String.Symbol
+' '           Text
+'whole-match' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+')'           Punctuation
+'\n     '     Text
+'0'           Literal.String.Symbol
+'\n   '       Text
+')'           Punctuation
+'\n   '       Text
+'; inline image refs:  ![alt text](url "optional title")' Comment.Single
+'\n    '      Text
+'('           Punctuation
+'replace'     Keyword
+' \n      '   Text
+'inline-regex' Literal.String.Symbol
+' \n      '   Text
+'txt'         Literal.String.Symbol
+' \n      '   Text
+'('           Punctuation
+'begin'       Keyword
+'\n        '  Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'whole-match' Literal.String.Symbol
+' '           Text
+'$1'          Keyword
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'alt-text'    Literal.String.Symbol
+' '           Text
+'$2'          Keyword
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'url'         Literal.String.Symbol
+' '           Text
+'$3'          Keyword
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'title'       Literal.String.Symbol
+' '           Text
+'$6'          Keyword
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'alt-text'    Literal.String.Symbol
+'\n             ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+' '           Text
+'alt-text'    Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'&quot;'      Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'alt-text'    Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'          \n        ' Text
+'('           Punctuation
+'if'          Keyword
+'  '          Text
+'title'       Literal.String.Symbol
+' \n             ' Text
+'('           Punctuation
+'begin'       Keyword
+' \n               ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+'  '          Text
+'title'       Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'&quot;'      Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n               ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\*'         Literal.String
+'}'           Literal.String
+' '           Text
+'title'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'*'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n               ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+'  '          Text
+'title'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'title'       Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'           \n        ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\*'         Literal.String
+'}'           Literal.String
+' '           Text
+'url'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'*'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+' '           Text
+'url'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'string'      Keyword
+' \n           ' Text
+'{'           Literal.String
+'<img src="'  Literal.String
+'}'           Literal.String
+' \n           ' Text
+'('           Punctuation
+'trim'        Keyword
+' '           Text
+'url'         Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'{'           Literal.String
+'" alt="'     Literal.String
+'}'           Literal.String
+' \n           ' Text
+'alt-text'    Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'" '          Literal.String
+'}'           Literal.String
+'\n           ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'title'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'title="'     Literal.String
+'}'           Literal.String
+' '           Text
+'title'       Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'{'           Literal.String
+' />'         Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n        '  Text
+')'           Punctuation
+'\n        '  Text
+'0'           Literal.String.Symbol
+'\n     '     Text
+')'           Punctuation
+'\n    '      Text
+'; empty ones are possible' Comment.Single
+'\n    '      Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'$1'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'!\\[(.*?)\\]\\([ \\t]*\\)' Literal.String
+'}'           Literal.String
+' \n     '    Text
+'txt'         Literal.String.Symbol
+' \n     '    Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'<img src="" alt="' Literal.String
+'}'           Literal.String
+' '           Text
+'$1'          Keyword
+' '           Text
+'{'           Literal.String
+'" title="" />' Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n     '     Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'make-anchor' Name.Variable
+' '           Text
+'link-text'   Literal.String.Symbol
+' '           Text
+'id-ref'      Literal.String.Symbol
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'; Link defs are in the form: ^[id]: url "optional title"' Comment.Single
+'\n'          Text
+
+'; stored in link db list  as (id (url title))' Comment.Single
+'\n'          Text
+
+'; params are text to be linked and the id of the link in the db' Comment.Single
+'\n'          Text
+
+'; eg bar 1 for [bar][1]' Comment.Single
+'\n\n   '     Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'title'       Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'id'          Name.Variable
+' '           Text
+'id-ref'      Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'url'         Name.Variable
+' '           Text
+'nil'         Keyword
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'link-text'   Literal.String.Symbol
+'\n          ' Text
+'('           Punctuation
+'begin'       Keyword
+'\n             ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+' '           Text
+'link-text'   Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'&quot;'      Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\n'         Literal.String
+'}'           Literal.String
+' '           Text
+'link-text'   Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+' '           Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'[ ]?\\n'     Literal.String
+'}'           Literal.String
+' '           Text
+'link-text'   Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+' '           Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'   \n      ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'null?'       Name.Variable
+' '           Text
+'id'          Literal.String.Symbol
+' '           Text
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'id'          Literal.String.Symbol
+'  '          Text
+'('           Punctuation
+'lower-case'  Keyword
+' '           Text
+'link-text'   Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'not'         Keyword
+' '           Text
+'('           Punctuation
+'nil'         Keyword
+'?'           Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'lookup'      Keyword
+' '           Text
+'id'          Literal.String.Symbol
+' '           Text
+'*'           Keyword
+'link-database*' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n          ' Text
+'('           Punctuation
+'begin'       Keyword
+'\n             ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'url'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'first'       Keyword
+' '           Text
+'('           Punctuation
+'lookup'      Keyword
+' '           Text
+'id'          Literal.String.Symbol
+'  '          Text
+'*'           Keyword
+'link-database*' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\*'         Literal.String
+'}'           Literal.String
+' '           Text
+'url'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'*'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+'  '          Text
+'url'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'title'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'last'        Keyword
+' '           Text
+'('           Punctuation
+'lookup'      Keyword
+' '           Text
+'id'          Literal.String.Symbol
+'  '          Text
+'*'           Keyword
+'link-database*' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                 ' Text
+'('           Punctuation
+'begin'       Keyword
+' \n                      ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+'  '          Text
+'title'       Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'&quot;'      Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n                      ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\*'         Literal.String
+'}'           Literal.String
+' '           Text
+'title'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'*'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n                      ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+'  '          Text
+'title'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'title'       Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'url'         Literal.String.Symbol
+' '           Text
+'nil'         Keyword
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'url'         Literal.String.Symbol
+'\n          ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'<a href="'   Literal.String
+'}'           Literal.String
+' '           Text
+'('           Punctuation
+'trim'        Keyword
+' '           Text
+'url'         Literal.String.Symbol
+')'           Punctuation
+' \n               ' Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+'\n               ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'not'         Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'title'       Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+' title="'    Literal.String
+'}'           Literal.String
+' '           Text
+'('           Punctuation
+'trim'        Keyword
+' '           Text
+'title'       Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n               ' Text
+'{'           Literal.String
+'>'           Literal.String
+'}'           Literal.String
+' '           Text
+'link-text'   Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'</a>'        Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n          ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'['           Literal.String
+'}'           Literal.String
+' '           Text
+'link-text'   Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+']['          Literal.String
+'}'           Literal.String
+' '           Text
+'id-ref'      Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+']'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'anchors'     Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'letn'        Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'nested-brackets' Name.Variable
+' '           Text
+'{'           Literal.String
+'(?>[^\\[\\]]+)*' Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'ref'         Keyword
+'-'           Keyword
+'link-regex'  Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'(\\[('       Literal.String
+'}'           Literal.String
+' '           Text
+'nested-brackets' Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+')\\][ ]?(?:\\n[ ]*)?\\[(.*?)\\])' Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'inline-regex' Name.Variable
+' '           Text
+'{'           Literal.String
+'(\\[(.*?)\\]\\([ ]*<?(.*?\\)?)>?[ ]*(([\'"])(.*?)\\5[ \\t]*)?\\))' Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'link-text'   Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'url'         Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'title'       Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'         \n  ' Text
+'; reference-style links: [link text] [id]' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'$1'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$2'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$3'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$4'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$5'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$6'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'    '        Text
+"; i still don't think I should have to do this..." Comment.Single
+'\n  \n  '    Text
+'; what about this regex instead?' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'ref'         Keyword
+'-'           Keyword
+'link-regex'  Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'(\\[(.*?)\\][ ]?\\[(.*?)\\])' Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n   \n  '   Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'ref'         Keyword
+'-'           Keyword
+'link-regex'  Literal.String.Symbol
+' '           Text
+'txt'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'make-anchor' Name.Variable
+' '           Text
+'$2'          Keyword
+' '           Text
+'$3'          Keyword
+')'           Punctuation
+' '           Text
+'8'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'; $2 is link text, $3 is id' Comment.Single
+'\n  '        Text
+'; inline links: [link text](url "optional title")' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'$1'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$2'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$3'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$4'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$5'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$6'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' \n     '    Text
+'inline-regex' Literal.String.Symbol
+' \n     '    Text
+'txt'         Literal.String.Symbol
+' \n    '     Text
+'('           Punctuation
+'begin'       Keyword
+'\n      '    Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'link-text'   Literal.String.Symbol
+' '           Text
+'$2'          Keyword
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'url'         Literal.String.Symbol
+' '           Text
+'$3'          Keyword
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'title'       Literal.String.Symbol
+' '           Text
+'$6'          Keyword
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'link-text'   Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+' '           Text
+'link-text'   Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'&quot;'      Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'          \n      ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'title'       Literal.String.Symbol
+' \n           ' Text
+'('           Punctuation
+'begin'       Keyword
+' \n             ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+'  '          Text
+'title'       Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'&quot;'      Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\*'         Literal.String
+'}'           Literal.String
+' '           Text
+'title'       Literal.String.Symbol
+'  '          Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'*'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+'  '          Text
+'title'       Literal.String.Symbol
+'  '          Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'title'       Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'           \n      ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\*'         Literal.String
+'}'           Literal.String
+' '           Text
+'url'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'*'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+'  '          Text
+'url'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+' '           Text
+'{'           Literal.String
+'_'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'^<(.*)>$'    Literal.String
+'}'           Literal.String
+' '           Text
+'url'         Literal.String.Symbol
+' '           Text
+'$1'          Keyword
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'string'      Keyword
+' \n         ' Text
+'{'           Literal.String
+'<a href="'   Literal.String
+'}'           Literal.String
+' \n         ' Text
+'('           Punctuation
+'trim'        Keyword
+' '           Text
+'url'         Literal.String.Symbol
+')'           Punctuation
+'\n         ' Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+'\n         ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'not'         Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'title'       Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n                 ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+' title="'    Literal.String
+'}'           Literal.String
+' '           Text
+'('           Punctuation
+'trim'        Keyword
+' '           Text
+'title'       Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' \n                 ' Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n         ' Text
+'{'           Literal.String
+'>'           Literal.String
+'}'           Literal.String
+' '           Text
+'link-text'   Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'</a>'        Literal.String
+'}'           Literal.String
+'\n         ' Text
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'8'           Literal.String.Symbol
+'\n   '       Text
+')'           Punctuation
+' '           Text
+'; replace'   Comment.Single
+'\n '         Text
+')'           Punctuation
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'auto-links'  Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n '         Text
+'('           Punctuation
+'replace'     Keyword
+' \n    '     Text
+'[text]'      Literal.String
+'<((https?|ftp):[^\'">\\s]+)>[/text]' Literal.String
+' \n    '     Text
+'txt'         Literal.String.Symbol
+' \n    '     Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'<a href="'   Literal.String
+'}'           Literal.String
+' '           Text
+'$1'          Keyword
+' '           Text
+'{'           Literal.String
+'">'          Literal.String
+'}'           Literal.String
+' '           Text
+'$1'          Keyword
+' '           Text
+'{'           Literal.String
+'</a>'        Literal.String
+'}'           Literal.String
+')'           Punctuation
+'  \n    '    Text
+'0'           Literal.String.Symbol
+'\n '         Text
+')'           Punctuation
+'\n  '        Text
+'; to-do: email ...' Comment.Single
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'amps-and-angles' Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+'; Smart processing for ampersands and angle brackets' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' \n    '     Text
+'[text]'      Literal.String
+'&(?!\\#?[xX]?(?:[0-9a-fA-F]+|\\w+);)[/text]' Literal.String
+'\n    '      Text
+'txt'         Literal.String.Symbol
+'\n    '      Text
+'{'           Literal.String
+'&amp;'       Literal.String
+'}'           Literal.String
+'\n    '      Text
+'10'          Literal.String.Symbol
+'\n  '        Text
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' \n    '     Text
+'[text]'      Literal.String
+'<(?![a-z/?\\$!])[/text]' Literal.String
+'\n    '      Text
+'txt'         Literal.String.Symbol
+'\n    '      Text
+'{'           Literal.String
+'&lt;'        Literal.String
+'}'           Literal.String
+'\n    '      Text
+'10'          Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'emphasis'    Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'; italics/bold: strong first' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' \n    '     Text
+'[text]'      Literal.String
+' (\\*\\*|__) (?=\\S) (.+?[*_]*) (?<=\\S) \\1 [/text]' Literal.String
+'\n    '      Text
+'txt'         Literal.String.Symbol
+'\n    '      Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'<strong>'    Literal.String
+'}'           Literal.String
+' '           Text
+'$2'          Keyword
+' '           Text
+'{'           Literal.String
+'</strong>'   Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n    '      Text
+'8'           Literal.String.Symbol
+'   \n  '     Text
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' \n    '     Text
+'[text]'      Literal.String
+' (\\*|_) (?=\\S) (.+?) (?<=\\S) \\1 [/text]' Literal.String
+'\n    '      Text
+'txt'         Literal.String.Symbol
+'\n    '      Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'<em>'        Literal.String
+'}'           Literal.String
+' '           Text
+'$2'          Keyword
+' '           Text
+'{'           Literal.String
+'</em>'       Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n    '      Text
+'8'           Literal.String.Symbol
+'  \n  '      Text
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'line-breaks' Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'; handles line break markers' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'" {2,}\\n"'  Literal.String
+' '           Text
+'txt'         Literal.String.Symbol
+' '           Text
+'" <br/>\\n"' Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'hex-str-to-unicode-char' Name.Variable
+' '           Text
+'strng'       Literal.String.Symbol
+')'           Punctuation
+'\n   '       Text
+'; given a five character string, assume it\'s "U" + 4 hex chars and convert' Comment.Single
+'\n   '       Text
+'; return the character...' Comment.Single
+'\n   '       Text
+'('           Punctuation
+'char'        Keyword
+' '           Text
+'('           Punctuation
+'int'         Keyword
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'"0x"'        Literal.String
+' '           Text
+'('           Punctuation
+'1'           Name.Variable
+' '           Text
+'strng'       Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+' '           Text
+'16'          Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'ustring'     Name.Variable
+' '           Text
+'s'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'; any four digit string preceded by U ' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'"U[0-9a-f]{4,}"' Literal.String
+' '           Text
+'s'           Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'hex-str-to-unicode-char' Name.Variable
+' '           Text
+'$0'          Keyword
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'cleanup'     Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'; cleanup the text by normalizing some possible variations' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'"\\r\\n|\\r"' Literal.String
+' '           Text
+'txt'         Literal.String.Symbol
+' '           Text
+'"\\n"'       Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'      '      Text
+'; standardize line ends' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'push'        Keyword
+' '           Text
+'"\\n\\n"'    Literal.String
+' '           Text
+'txt'         Literal.String.Symbol
+' '           Text
+'-'           Keyword
+'1'           Literal.String.Symbol
+')'           Punctuation
+'                ' Text
+'; end with two returns' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'txt'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'detab'       Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'              ' Text
+'; convert tabs to spaces' Comment.Single
+'\n  \n  '    Text
+'; convert inline Unicode:' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'txt'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'ustring'     Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'"\\n[ \\t]+\\n"' Literal.String
+' '           Text
+'txt'         Literal.String.Symbol
+' '           Text
+'"\\n\\n"'    Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'; lines with only spaces and tabs' Comment.Single
+'\n  '        Text
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'protect'     Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n '         Text
+'; protect or "hash html blocks" ' Comment.Single
+'\n '         Text
+'('           Punctuation
+'letn'        Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'nested-block-regex' Name.Variable
+'  '          Text
+'[text]'      Literal.String
+'(^<(p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|ins|del)\\b(.*\\n)*?</\\2>[ \\t]*(?=\\n+|\\Z))[/text]' Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'liberal-tag-regex' Name.Variable
+' '           Text
+'[text]'      Literal.String
+'(^<(p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math)\\b(.*\\n)*?.*</\\2>[ \\t]*(?=\\n+|\\Z))[/text]' Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'hr-regex'    Name.Variable
+'  '          Text
+'[text]'      Literal.String
+'(?:(?<=\\n\\n)|\\A\\n?)([ ]{0,3}<(hr)\\b([^<>])*?/?>[ \\t]*(?=\\n{2,}|\\Z))[/text]' Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'html-comment-regex' Name.Variable
+' '           Text
+'[text]'      Literal.String
+'(?:(?<=\\n\\n)|\\A\\n?)([ ]{0,3}(?s:<!(--.*?--\\s*)+>)[ \\t]*(?=\\n{2,}|\\Z))[/text]' Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'results'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'chunk-count' Name.Variable
+' '           Text
+'('           Punctuation
+'length'      Keyword
+' '           Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'chunks'      Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'parse'       Keyword
+' '           Text
+'txt'         Literal.String.Symbol
+' '           Text
+'"\\n\\n"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'chunk-size'  Name.Variable
+' '           Text
+'500'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n   \n   '  Text
+"; due to a limitation in PCRE, long sections have to be divided up otherwise we'll crash" Comment.Single
+'\n   '       Text
+'; so divide up long texts into chunks, then do the regex on each chunk' Comment.Single
+'\n   '       Text
+'; not an ideal solution, but it works ok :( ' Comment.Single
+'\n  \n   '   Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'0'           Literal.String.Symbol
+' '           Text
+'chunk-count' Literal.String.Symbol
+' '           Text
+'chunk-size'  Literal.String.Symbol
+')'           Punctuation
+'\n       '   Text
+'; do a chunk' Comment.Single
+'\n       '   Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'text-chunk'  Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'join'        Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'-'           Name.Variable
+' '           Text
+'('           Punctuation
+'min'         Keyword
+' '           Text
+'chunk-count' Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'-'           Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Variable
+' '           Text
+'i'           Literal.String.Symbol
+' '           Text
+'chunk-size'  Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'1'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'i'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'chunks'      Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'"\\n\\n"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'dolist'      Keyword
+' '           Text
+'('           Punctuation
+'rgx'         Name.Variable
+' '           Text
+'('           Punctuation
+'list'        Keyword
+' '           Text
+'nested-block-regex' Literal.String.Symbol
+' '           Text
+'liberal-tag-regex' Literal.String.Symbol
+' '           Text
+'hr-regex'    Literal.String.Symbol
+' '           Text
+'html-comment-regex' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'replace'     Keyword
+' \n            ' Text
+'rgx'         Literal.String.Symbol
+' \n            ' Text
+'text-chunk'  Literal.String.Symbol
+'\n            ' Text
+'('           Punctuation
+'begin'       Keyword
+'\n              ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'key'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'Hash'        Name.Variable
+':'           Operator
+'hash'        Literal.String.Symbol
+' '           Text
+'$1'          Keyword
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'push'        Keyword
+' '           Text
+'('           Punctuation
+'list'        Keyword
+' '           Text
+'key'         Literal.String.Symbol
+' '           Text
+'$1'          Keyword
+' '           Text
+')'           Punctuation
+' '           Text
+'*'           Keyword
+'hashed-html-blocks*' Literal.String.Symbol
+' '           Text
+'-'           Keyword
+'1'           Literal.String.Symbol
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'"\\n\\n"'    Literal.String
+' '           Text
+'key'         Literal.String.Symbol
+' '           Text
+'"\\n\\n"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'; save this partial result' Comment.Single
+'\n        '  Text
+'('           Punctuation
+'push'        Keyword
+' '           Text
+'text-chunk'  Literal.String.Symbol
+' '           Text
+'results'     Literal.String.Symbol
+' '           Text
+'-'           Keyword
+'1'           Literal.String.Symbol
+')'           Punctuation
+'\n    '      Text
+')'           Punctuation
+' '           Text
+'; for'       Comment.Single
+'\n  '        Text
+'; return string result' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'join'        Keyword
+' '           Text
+'results'     Literal.String.Symbol
+' '           Text
+'"\\n\\n"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'unescape-special-chars' Name.Variable
+' '           Text
+'t'           Literal.String.Symbol
+')'           Punctuation
+'\n '         Text
+"; Swap back in all the special characters we've hidden. " Comment.Single
+'\n  '        Text
+'('           Punctuation
+'dolist'      Keyword
+' '           Text
+'('           Punctuation
+'pair'        Name.Variable
+' '           Text
+'('           Punctuation
+'HashTable'   Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'('           Punctuation
+'last'        Keyword
+' '           Text
+'pair'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'t'           Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'first'       Keyword
+' '           Text
+'pair'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'10'          Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'t'           Literal.String.Symbol
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'strip-link-definitions' Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n '         Text
+'; strip link definitions from the text and store them' Comment.Single
+'\n '         Text
+'; Link defs are in the form: ^[id]: url "optional title"' Comment.Single
+'\n '         Text
+'; stored in link db list  as (id (url title))' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'link-db'     Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'url'         Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'id'          Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'title'       Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'replace'     Keyword
+' \n       '  Text
+'[text]'      Literal.String
+'^[ ]{0,3}\\[(.+)\\]:[ \\t]*\\n?[ \\t]*<?(\\S+?)>?[ \\t]*\\n?[ \\t]*(?:(?<=\\s)["(](.+?)[")][ \\t]*)?(?:\\n+|\\Z)[/text]' Literal.String
+'\n       '   Text
+'txt'         Literal.String.Symbol
+' \n       '  Text
+'('           Punctuation
+'begin'       Keyword
+' \n         ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'id'          Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'lower-case'  Keyword
+' '           Text
+'$1'          Keyword
+')'           Punctuation
+' '           Text
+"'"           Operator
+'url'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'amps-and-angles' Name.Variable
+' '           Text
+'$2'          Keyword
+')'           Punctuation
+' '           Text
+"'"           Operator
+'title'       Literal.String.Symbol
+' '           Text
+'$3'          Keyword
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'title'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'"'           Literal.String
+'}'           Literal.String
+' '           Text
+'title'       Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'&quot;'      Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'push'        Keyword
+' '           Text
+'('           Punctuation
+'list'        Keyword
+' '           Text
+'id'          Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'list'        Keyword
+' '           Text
+'url'         Literal.String.Symbol
+' '           Text
+'title'       Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'link-db'     Literal.String.Symbol
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'$3'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'; necessary?' Comment.Single
+'\n         ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+' '           Text
+'; remove from text' Comment.Single
+'\n         ' Text
+')'           Punctuation
+' \n       '  Text
+'10'          Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'*'           Keyword
+'link-database*' Literal.String.Symbol
+' '           Text
+'link-db'     Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'horizontal-rules' Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n   '       Text
+'('           Punctuation
+'replace'     Keyword
+' \n   '      Text
+'[text]'      Literal.String
+'^[ ]{0,2}([ ]?\\*[ ]?){3,}[ \\t]*$[/text]' Literal.String
+'\n    '      Text
+'txt'         Literal.String.Symbol
+'\n    '      Text
+'"\\n<hr />"' Literal.String
+'\n    '      Text
+'14'          Literal.String.Symbol
+')'           Punctuation
+'  \n   '     Text
+'('           Punctuation
+'replace'     Keyword
+' \n   '      Text
+'[text]'      Literal.String
+'^[ ]{0,2}([ ]? -[ ]?){3,}[ \\t]*$[/text]' Literal.String
+'\n   '       Text
+'txt'         Literal.String.Symbol
+'\n   '       Text
+'"\\n<hr />"' Literal.String
+'\n   '       Text
+'14'          Literal.String.Symbol
+')'           Punctuation
+'  \n   '     Text
+'('           Punctuation
+'replace'     Keyword
+' \n    '     Text
+'[text]'      Literal.String
+'^[ ]{0,2}([ ]? _[ ]?){3,}[ \\t]*$[/text]' Literal.String
+'\n    '      Text
+'txt'         Literal.String.Symbol
+'\n    '      Text
+'"\\n<hr />"' Literal.String
+'\n    '      Text
+'14'          Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'headers'     Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'; setext headers' Comment.Single
+'\n '         Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'level'       Name.Variable
+' '           Text
+'1'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'replace'     Keyword
+' \n      '   Text
+'[text]'      Literal.String
+'^(.+)[ \\t]*\\n=+[ \\t]*\\n+[/text]' Literal.String
+'\n      '    Text
+'txt'         Literal.String.Symbol
+' \n      '   Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'"<h1>"'      Literal.String
+' '           Text
+'('           Punctuation
+'span-transforms' Name.Variable
+' '           Text
+'$1'          Keyword
+')'           Punctuation
+' '           Text
+'"</h1>\\n\\n"' Literal.String
+')'           Punctuation
+'\n      '    Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+'  \n  \n    ' Text
+'('           Punctuation
+'replace'     Keyword
+' \n      '   Text
+'[text]'      Literal.String
+'^(.+)[ \\t]*\\n-+[ \\t]*\\n+[/text]' Literal.String
+'\n      '    Text
+'txt'         Literal.String.Symbol
+' \n      '   Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'"<h2>"'      Literal.String
+' '           Text
+'('           Punctuation
+'span-transforms' Name.Variable
+' '           Text
+'$1'          Keyword
+')'           Punctuation
+' '           Text
+'"</h2>\\n\\n"' Literal.String
+')'           Punctuation
+'\n      '    Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+' \n   '      Text
+'; atx headers' Comment.Single
+'\n    '      Text
+'('           Punctuation
+'replace'     Keyword
+' \n      '   Text
+'[text]'      Literal.String
+'^(\\#{1,6})\\s*(.+?)[ ]*\\#*(\\n+)[/text]' Literal.String
+'\n      '    Text
+'txt'         Literal.String.Symbol
+' \n      '   Text
+'('           Punctuation
+'begin'       Keyword
+'\n       '   Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'level'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'length'      Keyword
+' '           Text
+'$1'          Keyword
+')'           Punctuation
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'"<h"'        Literal.String
+' '           Text
+'level'       Literal.String.Symbol
+' '           Text
+'">"'         Literal.String
+' '           Text
+'('           Punctuation
+'span-transforms' Name.Variable
+' '           Text
+'$2'          Keyword
+')'           Punctuation
+' '           Text
+'"</h"'       Literal.String
+' '           Text
+'level'       Literal.String.Symbol
+' '           Text
+'">\\n\\n"'   Literal.String
+')'           Punctuation
+'\n       '   Text
+')'           Punctuation
+'\n      '    Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'lists'       Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n '         Text
+'('           Punctuation
+'letn'        Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'marker-ul'   Name.Variable
+' '           Text
+'{'           Literal.String
+'[*+-]'       Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'marker-ol'   Name.Variable
+' '           Text
+'{'           Literal.String
+'\\d+[.]'     Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'marker-any'  Name.Variable
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'(?:'         Literal.String
+'}'           Literal.String
+' '           Text
+'marker-ul'   Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'|'           Literal.String
+'}'           Literal.String
+' '           Text
+'marker-ol'   Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+')'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'whole-list-regex' Name.Variable
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'[text]'      Literal.String
+'(([ ]{0,3}([/text]' Literal.String
+' '           Text
+'marker-any'  Literal.String.Symbol
+' '           Text
+'[text]'      Literal.String
+')[ \\t]+)(?s:.+?)(\\z|\\n{2,}(?=\\S)(?![ \\t]*[/text]' Literal.String
+' '           Text
+'marker-any'  Literal.String.Symbol
+' '           Text
+'[text]'      Literal.String
+'[ \\t]+)))[/text]' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'my-list'     Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'list'        Keyword
+'-'           Keyword
+'type'        Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'my-result'   Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n   '       Text
+'('           Punctuation
+'replace'     Keyword
+' \n      '   Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'>'           Name.Variable
+' '           Text
+'*'           Keyword
+'list'        Keyword
+'-'           Keyword
+'level*'      Literal.String.Symbol
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n          ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'^'           Literal.String
+'}'           Literal.String
+' '           Text
+'whole-list-regex' Literal.String.Symbol
+')'           Punctuation
+' \n          ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'(?:(?<=\\n\\n)|\\A\\n?)' Literal.String
+'}'           Literal.String
+' '           Text
+'whole-list-regex' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'txt'         Literal.String.Symbol
+'\n      '    Text
+'('           Punctuation
+'begin'       Keyword
+'\n         ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'my-list'     Literal.String.Symbol
+' '           Text
+'$1'          Keyword
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'find'        Keyword
+' '           Text
+'$3'          Keyword
+' '           Text
+'marker-ul'   Literal.String.Symbol
+')'           Punctuation
+' \n            ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'list'        Keyword
+'-'           Keyword
+'type'        Literal.String.Symbol
+' '           Text
+'"ul"'        Literal.String
+' '           Text
+"'"           Operator
+'marker-type' Literal.String.Symbol
+' '           Text
+'marker-ul'   Literal.String.Symbol
+')'           Punctuation
+' \n            ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'list'        Keyword
+'-'           Keyword
+'type'        Literal.String.Symbol
+' '           Text
+'"ol"'        Literal.String
+' '           Text
+"'"           Operator
+'marker-type' Literal.String.Symbol
+' '           Text
+'marker-ol'   Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'[text]'      Literal.String
+'\\n{2,}[/text]' Literal.String
+' '           Text
+'my-list'     Literal.String.Symbol
+' '           Text
+'"\\n\\n\\n"' Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'my-result'   Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'process'     Keyword
+'-'           Keyword
+'list'        Keyword
+'-'           Keyword
+'items'       Literal.String.Symbol
+' '           Text
+'my-list'     Literal.String.Symbol
+' '           Text
+'marker-any'  Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'\\s+$'       Literal.String
+'}'           Literal.String
+' '           Text
+'my-result'   Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'<'           Literal.String
+'}'           Literal.String
+' '           Text
+'list'        Keyword
+'-'           Keyword
+'type'        Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'>'           Literal.String
+'}'           Literal.String
+' '           Text
+'"\\n"'       Literal.String
+' '           Text
+'my-result'   Literal.String.Symbol
+' '           Text
+'"\\n"'       Literal.String
+' '           Text
+'{'           Literal.String
+'</'          Literal.String
+'}'           Literal.String
+' '           Text
+'list'        Keyword
+'-'           Keyword
+'type'        Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'>'           Literal.String
+'}'           Literal.String
+' '           Text
+'"\\n"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'10'          Literal.String.Symbol
+' '           Text
+'; must be multiline' Comment.Single
+'\n      '    Text
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'process'     Keyword
+'-'           Keyword
+'list'        Keyword
+'-'           Keyword
+'items'       Literal.String.Symbol
+' '           Text
+'list'        Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+'marker-any'  Literal.String.Symbol
+')'           Punctuation
+'    \n  '    Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'list'        Keyword
+'-'           Keyword
+'regex'       Keyword
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'[text]'      Literal.String
+'(\\n)?(^[ \\t]*)([/text]' Literal.String
+' '           Text
+'marker-any'  Literal.String.Symbol
+' '           Text
+'[text]'      Literal.String
+')[ \\t]+((?s:.+?)(\\n{1,2}))(?=\\n*(\\z|\\2([/text]' Literal.String
+' '           Text
+'marker-any'  Literal.String.Symbol
+' '           Text
+'[text]'      Literal.String
+')[ \\t]+))[/text]' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'item'        Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'leading-line' Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'leading-space' Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'result'      Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'inc'         Keyword
+' '           Text
+'*'           Keyword
+'list'        Keyword
+'-'           Keyword
+'level*'      Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'[text]'      Literal.String
+'\\n{2,}\\z[/text]' Literal.String
+' '           Text
+'list'        Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+'"\\n"'       Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'$1'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$2'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$3'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$4'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+"'"           Operator
+'$5'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'replace'     Keyword
+' \n       '  Text
+'list'        Keyword
+'-'           Keyword
+'regex'       Keyword
+'\n       '   Text
+'list'        Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+'\n       '   Text
+'('           Punctuation
+'begin'       Keyword
+'\n         ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'item'        Literal.String.Symbol
+' '           Text
+'$4'          Keyword
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'leading-line' Literal.String.Symbol
+' '           Text
+'$1'          Keyword
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'leading-space' Literal.String.Symbol
+' '           Text
+'$2'          Keyword
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'or'          Keyword
+' '           Text
+'('           Punctuation
+'not'         Keyword
+' '           Text
+'('           Punctuation
+'empty?'      Name.Variable
+' '           Text
+'leading-line' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'ends-with'   Keyword
+' '           Text
+'item'        Literal.String.Symbol
+' '           Text
+'"\\n{2,}"'   Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'item'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'block-transforms' Name.Variable
+' '           Text
+'('           Punctuation
+'outdent'     Name.Variable
+' '           Text
+'item'        Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n           ' Text
+'; recurse for sub lists' Comment.Single
+'\n           ' Text
+'('           Punctuation
+'begin'       Keyword
+' \n              ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'item'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'lists'       Name.Variable
+' '           Text
+'('           Punctuation
+'outdent'     Name.Variable
+' '           Text
+'item'        Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' \n              ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'item'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'span-transforms' Name.Variable
+' '           Text
+'('           Punctuation
+'trim'        Keyword
+' '           Text
+'item'        Literal.String.Symbol
+' '           Text
+'"\\n"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+')'           Punctuation
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'<li>'        Literal.String
+'}'           Literal.String
+' '           Text
+'item'        Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'</li>'       Literal.String
+'}'           Literal.String
+' '           Text
+'"\\n"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'10'          Literal.String.Symbol
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'dec'         Keyword
+' '           Text
+'*'           Keyword
+'list'        Keyword
+'-'           Keyword
+'level*'      Literal.String.Symbol
+')'           Punctuation
+'\n   '       Text
+'list'        Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'code-blocks' Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n '         Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'code-block'  Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'token-list'  Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' \n    '     Text
+'[text]'      Literal.String
+'(?:\\n\\n|\\A)((?:(?:[ ]{4}|\\t).*\\n+)+)((?=^[ ]{0,3}\\S)|\\Z)[/text]' Literal.String
+'\n    '      Text
+'txt'         Literal.String.Symbol
+' \n    '     Text
+'('           Punctuation
+'begin'       Keyword
+' \n      '   Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'code-block'  Literal.String.Symbol
+' '           Text
+'$1'          Keyword
+')'           Punctuation
+'\n      '    Text
+"; format if Nestor module is loaded and it's not marked as plain" Comment.Single
+'\n      '    Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'and'         Keyword
+' '           Text
+'('           Punctuation
+'not'         Keyword
+' '           Text
+'('           Punctuation
+'starts-with' Keyword
+' '           Text
+'code-block'  Literal.String.Symbol
+' '           Text
+'"    ;plain\\n"' Literal.String
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'context'     Keyword
+'?'           Literal.String.Symbol
+' '           Text
+'Nestor'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n          ' Text
+'; format newlisp' Comment.Single
+'\n          ' Text
+'('           Punctuation
+'begin'       Keyword
+' \n             ' Text
+'; remove flag if present' Comment.Single
+'\n            ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'"[ ]{4};newlisp\\n"' Literal.String
+' '           Text
+'code-block'  Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'       \n            ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'code-block'  Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'protect'     Name.Variable
+' '           Text
+'('           Punctuation
+'Nestor'      Name.Variable
+':'           Operator
+'nlx-to-html' Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'Nestor'      Name.Variable
+':'           Operator
+'my-read'     Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'trim'        Keyword
+' '           Text
+'('           Punctuation
+'detab'       Name.Variable
+' '           Text
+'('           Punctuation
+'outdent'     Name.Variable
+' '           Text
+'code-block'  Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'code-block'  Literal.String.Symbol
+')'           Punctuation
+'\n          ' Text
+"; don't format " Comment.Single
+'\n          ' Text
+'('           Punctuation
+'begin'       Keyword
+'\n            ' Text
+'; trim leading and trailing newlines' Comment.Single
+'\n            ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'"[ ]{4};plain\\n"' Literal.String
+' '           Text
+'code-block'  Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'code-block'  Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'trim'        Keyword
+' '           Text
+'('           Punctuation
+'detab'       Name.Variable
+' '           Text
+'('           Punctuation
+'encode-code' Name.Variable
+' '           Text
+'('           Punctuation
+'outdent'     Name.Variable
+' '           Text
+'code-block'  Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'$1'          Keyword
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'code-block'  Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'"\\n\\n<pre><code>"' Literal.String
+' '           Text
+'code-block'  Literal.String.Symbol
+' '           Text
+'"\\n</code></pre>\\n\\n"' Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'10'          Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'block-quotes' Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'block-quote' Name.Variable
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'replace'     Keyword
+' \n       '  Text
+'[text]'      Literal.String
+'((^[ \\t]*>[ \\t]?.+\\n(.+\\n)*\\n*)+)[/text]' Literal.String
+'\n       '   Text
+'txt'         Literal.String.Symbol
+' \n       '  Text
+'('           Punctuation
+'begin'       Keyword
+' \n         ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'block-quote' Literal.String.Symbol
+' '           Text
+'$1'          Keyword
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'^[ ]*>[ ]?'  Literal.String
+'}'           Literal.String
+' '           Text
+'block-quote' Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'^[ ]+$'      Literal.String
+'}'           Literal.String
+' '           Text
+'block-quote' Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'block-quote' Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'block-transforms' Name.Variable
+' '           Text
+'block-quote' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'; recurse     ' Comment.Single
+'\n         ' Text
+'; remove leading spaces' Comment.Single
+'\n         ' Text
+'('           Punctuation
+'replace'     Keyword
+' \n             ' Text
+'{'           Literal.String
+'(\\s*<pre>.+?</pre>)' Literal.String
+'}'           Literal.String
+' \n             ' Text
+'block-quote' Literal.String.Symbol
+' \n             ' Text
+'('           Punctuation
+'trim'        Keyword
+' '           Text
+'$1'          Keyword
+')'           Punctuation
+'\n             ' Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'"<blockquote>\\n"' Literal.String
+' '           Text
+'block-quote' Literal.String.Symbol
+' '           Text
+'"\\n</blockquote>\\n\\n"' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n       '   Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'outdent'     Name.Variable
+' '           Text
+'s'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'[text]'      Literal.String
+'^(\\t|[ ]{1,4})[/text]' Literal.String
+' '           Text
+'s'           Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'detab'       Name.Variable
+' '           Text
+'s'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'[text]'      Literal.String
+'(.*?)\\t[/text]' Literal.String
+' \n    '     Text
+'s'           Literal.String.Symbol
+'   \n    '   Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'$1'          Keyword
+' '           Text
+'('           Punctuation
+'dup'         Keyword
+' '           Text
+'{'           Literal.String
+' '           Literal.String
+'}'           Literal.String
+' '           Text
+'('           Punctuation
+'-'           Name.Variable
+' '           Text
+'4'           Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'%'           Name.Variable
+' '           Text
+'('           Punctuation
+'length'      Keyword
+' '           Text
+'$1'          Keyword
+')'           Punctuation
+' '           Text
+'4'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'form-paragraphs' Name.Variable
+' '           Text
+'txt'         Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'grafs'       Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'original'    Name.Variable
+' '           Text
+'nil'         Keyword
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'txt'         Literal.String.Symbol
+'   '         Text
+'('           Punctuation
+'trim'        Keyword
+' '           Text
+'txt'         Literal.String.Symbol
+' '           Text
+'"\\n"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+'            ' Text
+'; strip blank lines before and after' Comment.Single
+'\n    '      Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'grafs'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'parse'       Keyword
+' '           Text
+'txt'         Literal.String.Symbol
+' '           Text
+'"\\n{2,}"'   Literal.String
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'     '       Text
+'; split    ' Comment.Single
+'\n    '      Text
+'('           Punctuation
+'dolist'      Keyword
+' '           Text
+'('           Punctuation
+'p'           Name.Variable
+' '           Text
+'grafs'       Literal.String.Symbol
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'original'    Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'lookup'      Keyword
+' '           Text
+'p'           Literal.String.Symbol
+' '           Text
+'*'           Keyword
+'hashed-html-blocks*' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'; html blocks' Comment.Single
+'\n        '  Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'grafs'       Name.Variable
+' '           Text
+'$idx'        Keyword
+')'           Punctuation
+' '           Text
+'original'    Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'; wrap <p> tags round everything else' Comment.Single
+'\n        '  Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'grafs'       Name.Variable
+' '           Text
+'$idx'        Keyword
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'{'           Literal.String
+'<p>'         Literal.String
+'}'           Literal.String
+' '           Text
+'('           Punctuation
+'replace'     Keyword
+' '           Text
+'{'           Literal.String
+'^[ ]*'       Literal.String
+'}'           Literal.String
+' '           Text
+'('           Punctuation
+'span-transforms' Name.Variable
+' '           Text
+'p'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'{'           Literal.String
+'}'           Literal.String
+' '           Text
+'('           Punctuation
+'+'           Name.Variable
+' '           Text
+'4'           Literal.String.Symbol
+' '           Text
+'8'           Literal.String.Symbol
+' '           Text
+'16'          Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Literal.String
+'</p>'        Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'join'        Keyword
+' '           Text
+'grafs'       Literal.String.Symbol
+' '           Text
+'"\\n\\n"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'[text]'      Literal.String
+'\n; three command line arguments: let\'s hope last one is a file\n(when (= 3 (length (main-args)))\n      (println (markdown (read-file (main-args 2))))\n      (exit))\n\n; hack for command-line and module loading\n(set \'level (sys-info 3))\n\n; if level is 2, then we\'re probably invoking markdown.lsp directly\n; if level is > 3, then we\'re probably loading it into another script...\n    \n(when (= level 2)\n   ; running on command line, read STDIN and execute:\n   (while (read-line)\n          (push (current-line) *stdin* -1))\n   (println (markdown (join *stdin* "\\n")))\n   (exit))\n[/text]' Literal.String
+'\n\n'        Text
+
+';; version 2011-09-16 16:31:29' Comment.Single
+'\n'          Text
+
+';;   Changed to different hash routine. Profiling shows that hashing takes 40% of the execution time.' Comment.Single
+'\n'          Text
+
+';;   Unfortunately this new version is only very slightly faster.' Comment.Single
+'\n'          Text
+
+";;   Command-line arguments hack in previous version doesn't work." Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; version 2011-08-18 15:04:40' Comment.Single
+'\n'          Text
+
+';;   various fixes, and added hack for running this from the command-line:' Comment.Single
+'\n'          Text
+
+';;     echo "hi there"     | newlisp markdown.lsp ' Comment.Single
+'\n'          Text
+
+';;     echo "hello world"  | markdown.lsp ' Comment.Single
+'\n'          Text
+
+';;     cat file.text       | newlisp markdown.lsp' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; version 2010-11-14 17:34:52' Comment.Single
+'\n'          Text
+
+";;    some problems in ustring. Probably remove it one day, as it's non standard..." Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; version 2010-10-14 18:41:38' Comment.Single
+'\n'          Text
+
+';;    added code to work round PCRE crash in (protect ...' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; version date 2010-07-10 22:20:25' Comment.Single
+'\n'          Text
+
+";;    modified call to 'read' since lutz has changed it" Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; version date 2009-11-16 22:10:10' Comment.Single
+'\n'          Text
+
+';;    fixed bug in tokenize.html' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; version date 2008-10-08 18:44:46' Comment.Single
+'\n'          Text
+
+';;    changed nth-set to setf to be version-10 ready. ' Comment.Single
+'\n'          Text
+
+';;    This means that now this script will NOT work with' Comment.Single
+'\n'          Text
+
+';;    earlier versions of newLISP!!!!!!!!!!!' Comment.Single
+'\n'          Text
+
+';;    requires Nestor if you want source code colouring...' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; version date 2008-08-08 16:54:56' Comment.Single
+'\n'          Text
+
+';;    changed (unless to (if (not ... :(' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; version date 2008-07-20 14:!2:29' Comment.Single
+'\n'          Text
+
+';;    added hex-str-to-unicode-char ustring' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; version date 2008-03-07 15:36:09' Comment.Single
+'\n'          Text
+
+';;    fixed load error' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; version date 2007-11-17 16:20:57' Comment.Single
+'\n'          Text
+
+';;    added syntax colouring module' Comment.Single
+'\n'          Text
+
+';; '         Comment.Single
+'\n'          Text
+
+';; version date  2007-11-14 09:19:42' Comment.Single
+'\n'          Text
+
+';;    removed reliance on dostring for compatibility with 9.1' Comment.Single
+'\n\n\n'      Text
+
+'; eof'       Comment.Single
+'\n'          Text

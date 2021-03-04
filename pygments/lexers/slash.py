@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.slash
     ~~~~~~~~~~~~~~~~~~~~~
@@ -6,7 +5,7 @@
     Lexer for the `Slash <https://github.com/arturadib/Slash-A>`_ programming
     language.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

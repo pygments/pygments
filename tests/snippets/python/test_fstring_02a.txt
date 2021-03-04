@@ -1,0 +1,13 @@
+---input---
+f'He said his name is {name!r}.'
+
+---tokens---
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'He said his name is ' Literal.String.Single
+'{'           Literal.String.Interpol
+'name'        Name
+'!r}'         Literal.String.Interpol
+'.'           Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text

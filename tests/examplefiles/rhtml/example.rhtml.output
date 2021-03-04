@@ -1,0 +1,4969 @@
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Moderatoren-Interface' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\n'        Text
+
+'<'           Punctuation
+'dl'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+"'"           Literal.String.Single
+'Proben'      Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'/admin/proben' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'Die angesetzten Proben des Orchesters' Text
+'<'           Punctuation
+'/'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+"'"           Literal.String.Single
+'Auftritte'   Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'/admin/proben' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'Die Auftritte des Orchesters' Text
+'<'           Punctuation
+'/'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<%-'         Comment.Preproc
+' '           Text
+'if'          Keyword
+' '           Text
+'@valid_user' Name.Variable.Instance
+' '           Text
+'and'         Operator.Word
+' '           Text
+'@valid_user' Name.Variable.Instance
+'.'           Operator
+'admin?'      Name
+' '           Text
+'-%>'         Comment.Preproc
+'\n\t'        Text
+'<'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+"'"           Literal.String.Single
+'Benutzer'    Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'/admin/user' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'Benutzer organisieren (nur für den Admin)' Text
+'<'           Punctuation
+'/'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<%-'         Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'dl'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Anmeldung'   Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\n'        Text
+
+'<%='         Comment.Preproc
+' '           Text
+'render'      Name
+' '           Text
+':partial'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'user_form'   Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':object'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'@user'       Name.Variable.Instance
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Administrator erstellen' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\n'        Text
+
+'<%='         Comment.Preproc
+' '           Text
+'render'      Name
+' '           Text
+':partial'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'user_form'   Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':object'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'@user'       Name.Variable.Instance
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'form_tag'    Name
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'Name:'       Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'text_field'  Name
+' '           Text
+"'"           Literal.String.Single
+'user'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'name'        Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'Passwort:'   Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'password_field' Name
+' '           Text
+"'"           Literal.String.Single
+'user'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'password'    Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'submit_tag'  Name
+' '           Text
+"'"           Literal.String.Single
+'Anmelden'    Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'end_form_tag' Name
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Neuer Benutzer' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'error_messages_for' Name
+' '           Text
+':user'       Literal.String.Symbol
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'render'      Name
+' '           Text
+':partial'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'form'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':object'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'@user'       Name.Variable.Instance
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'form_tag'    Name
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'Name:'       Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'text_field'  Name
+' '           Text
+"'"           Literal.String.Single
+'user'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'name'        Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'Passwort:'   Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'password_field' Name
+' '           Text
+"'"           Literal.String.Single
+'user'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'password'    Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'submit_tag'  Name
+' '           Text
+"'"           Literal.String.Single
+'Anlegen'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'end_form_tag' Name
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Auftritte'   Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\n'        Text
+
+'<'           Punctuation
+'table'       Name.Tag
+' '           Text
+'cellspacing' Name.Attribute
+'='           Operator
+'"0"'         Literal.String
+' '           Text
+'summary'     Name.Attribute
+'='           Operator
+'"Auftritte: Wann treten wir Wo auf?"' Literal.String
+'>'           Punctuation
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'render'      Name
+' '           Text
+':partial'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'head'        Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'render'      Name
+' '           Text
+':partial'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'day'         Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':collection' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'@days'       Name.Variable.Instance
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'day'         Name
+','           Punctuation
+' '           Text
+'auftritte'   Name
+' '           Text
+'='           Operator
+' '           Text
+'*'           Operator
+'day'         Name
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+'\n\t'        Text
+'for'         Keyword
+' '           Text
+'auftritt'    Name
+' '           Text
+'in'          Keyword
+' '           Text
+'auftritte'   Name
+' \n'         Text
+
+'-%>'         Comment.Preproc
+'\n\n'        Text
+
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_datum"' Literal.String
+'>'           Punctuation
+'\n\t\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'colorize'    Name
+' '           Text
+'day'         Name
+'.'           Operator
+'to_s'        Name
+'('           Punctuation
+':dots'       Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'day'         Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t\t'      Text
+'<%'          Comment.Preproc
+' '           Text
+'if'          Keyword
+' '           Text
+'day'         Name
+' '           Text
+'and'         Operator.Word
+' '           Text
+'day'         Name
+'.'           Operator
+'wday'        Name
+' '           Text
+'=='          Operator
+' '           Text
+'6'           Literal.Number.Integer
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'<'           Punctuation
+'em'          Name.Tag
+'>'           Punctuation
+'Samstag'     Text
+'<'           Punctuation
+'/'           Punctuation
+'em'          Name.Tag
+'>'           Punctuation
+'<%'          Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_zeit"' Literal.String
+'>'           Punctuation
+'\n\t\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'colorize'    Name
+' '           Text
+'auftritt'    Name
+'.'           Operator
+'time'        Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_stueck"' Literal.String
+'>'           Punctuation
+'\n\t\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'colorize'    Name
+' '           Text
+'auftritt'    Name
+'.'           Operator
+'program'     Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+"'"           Literal.String.Single
+'E'           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'admin/auftritte' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':action'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+':edit'       Literal.String.Symbol
+','           Punctuation
+' '           Text
+':id'         Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'auftritt'    Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_besetzung"' Literal.String
+'>'           Punctuation
+'\n\t\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'colorize'    Name
+'('           Punctuation
+'auftritt'    Name
+'.'           Operator
+'place'       Name
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'Ort: '       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String.Single
+'<br />'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'unless'      Keyword
+' '           Text
+'auftritt'    Name
+'.'           Operator
+'place'       Name
+'.'           Operator
+'blank?'      Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<%'          Comment.Preproc
+'\n\t'        Text
+'day'         Name
+' '           Text
+'='           Operator
+' '           Text
+'nil'         Keyword.Pseudo
+'\n\t'        Text
+'end'         Keyword
+' \n'         Text
+
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_datum"' Literal.String
+'>'           Punctuation
+'Datum'       Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_zeit"' Literal.String
+'>'           Punctuation
+'Zeit'        Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_stueck"' Literal.String
+'>'           Punctuation
+'Programm'    Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_besetzung"' Literal.String
+'>'           Punctuation
+'Ort'         Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'Besetzung - ' Literal.String.Double
+'#{'          Literal.String.Interpol
+'@instrument' Name.Variable.Instance
+'.'           Operator
+'name'        Name
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+' '           Text
+'%>'          Comment.Preproc
+'\n\n'        Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'pluralize'   Name
+'('           Punctuation
+'@members'    Name.Variable.Instance
+'.'           Operator
+'size'        Name
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'Schüler spielt' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'Schüler spielen' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'%>'          Comment.Preproc
+' '           Text
+'<%='         Comment.Preproc
+' '           Text
+'h'           Name
+' '           Text
+'@instrument' Name.Variable.Instance
+'.'           Operator
+'name'        Name
+' '           Text
+'%>'          Comment.Preproc
+':\n'         Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'table'       Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"members"'   Literal.String
+'>'           Punctuation
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'render'      Name
+' '           Text
+':partial'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'member'      Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':collection' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'@members'    Name.Variable.Instance
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Besetzung: %d Mitglieder' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%'           Operator
+' '           Text
+'Member'      Name.Constant
+'.'           Operator
+'count'       Name
+' '           Text
+'-%>'         Comment.Preproc
+'\n\n'        Text
+
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"page-links"' Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'if'          Keyword
+' '           Text
+'params'      Name
+'['           Operator
+':action'     Literal.String.Symbol
+']'           Operator
+' '           Text
+'=='          Operator
+' '           Text
+"'"           Literal.String.Single
+'all'         Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+"'"           Literal.String.Single
+'seitenweise' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':action'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+':index'      Literal.String.Symbol
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'else'        Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'link_to_if'  Name
+' '           Text
+'@member_pages' Name.Variable.Instance
+'.'           Operator
+'current'     Name
+'.'           Operator
+'previous'    Name
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'<<'          Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':page'       Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'@member_pages' Name.Variable.Instance
+'.'           Operator
+'current'     Name
+'.'           Operator
+'previous'    Name
+' '           Text
+'%>'          Comment.Preproc
+'\n| '        Text
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+"'"           Literal.String.Single
+'alle'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':action'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+':all'        Literal.String.Symbol
+' '           Text
+'%>'          Comment.Preproc
+' |\n'        Text
+
+'<%='         Comment.Preproc
+' '           Text
+'link_to_if'  Name
+' '           Text
+'@member_pages' Name.Variable.Instance
+'.'           Operator
+'current'     Name
+'.'           Operator
+'next'        Name
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'>>'          Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':page'       Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'@member_pages' Name.Variable.Instance
+'.'           Operator
+'current'     Name
+'.'           Operator
+'next'        Name
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n| '        Text
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+"'"           Literal.String.Single
+'Nach Instrumenten' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':action'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+':select_instrument' Literal.String.Symbol
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'table'       Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"members"'   Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'render'      Name
+' '           Text
+':partial'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'member'      Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':collection' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'@members'    Name.Variable.Instance
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'Besetzung - Instrument wählen' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'%>'          Comment.Preproc
+'\n\n'        Text
+
+'<'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'for'         Keyword
+' '           Text
+'instr'       Name
+' '           Text
+'in'          Keyword
+' '           Text
+'@instruments' Name.Variable.Instance
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+'h'           Name
+'('           Punctuation
+'instr'       Name
+'.'           Operator
+'name'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+':action'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+':instrument' Literal.String.Symbol
+','           Punctuation
+' '           Text
+':id'         Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'instr'       Name
+'.'           Operator
+'name'        Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"counter"'   Literal.String
+'>'           Punctuation
+'('           Text
+'<%='         Comment.Preproc
+' '           Text
+'h'           Name
+' '           Text
+'instr'       Name
+'.'           Operator
+'members'     Name
+'.'           Operator
+'size'        Name
+' '           Text
+'%>'          Comment.Preproc
+')'           Text
+'<'           Punctuation
+'/'           Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'Besetzung: ' Literal.String.Double
+'#{'          Literal.String.Interpol
+'@member'     Name.Variable.Instance
+'.'           Operator
+'name'        Name
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+' '           Text
+'-%>'         Comment.Preproc
+'\n\n'        Text
+
+'<'           Punctuation
+'dl'          Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'Instrument / Aufgabe:' Text
+'<'           Punctuation
+'/'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'link_to_instruments_of' Name
+' '           Text
+'@member'     Name.Variable.Instance
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'Geburtstag:' Text
+'<'           Punctuation
+'/'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'h'           Name
+' '           Text
+'@member'     Name.Variable.Instance
+'.'           Operator
+'birthday'    Name
+'.'           Operator
+'to_s'        Name
+'('           Punctuation
+':dots'       Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'Adresse:'    Text
+'<'           Punctuation
+'/'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'h'           Name
+' '           Text
+'@member'     Name.Variable.Instance
+'.'           Operator
+'street'      Name
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'h'           Name
+' '           Text
+'@member'     Name.Variable.Instance
+'.'           Operator
+'plz'         Name
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'Telefon:'    Text
+'<'           Punctuation
+'/'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'h'           Name
+' '           Text
+'@member'     Name.Variable.Instance
+'.'           Operator
+'phone'       Name
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'Email:'      Text
+'<'           Punctuation
+'/'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'mail_to'     Name
+' '           Text
+'@member'     Name.Variable.Instance
+'.'           Operator
+'email'       Name
+','           Punctuation
+' '           Text
+'@member'     Name.Variable.Instance
+'.'           Operator
+'email'       Name
+','           Punctuation
+' '           Text
+':encode'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'javascript'  Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'/'           Punctuation
+'dl'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'tr'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"member"'    Literal.String
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+'member'      Name
+'.'           Operator
+'name'        Name
+','           Punctuation
+' '           Text
+':action'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+':show'       Literal.String.Symbol
+','           Punctuation
+' '           Text
+':id'         Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'member'      Name
+' '           Text
+'%>'          Comment.Preproc
+':\n\t\t'     Text
+'<%='         Comment.Preproc
+' '           Text
+'link_to_instruments_of' Name
+' '           Text
+'member'      Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Arbeitsgruppen' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\tDie Arbeitsgruppen sind verantwortlich für die Organisation und Durchführung verschiedenster Aufgaben:\n' Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'ul'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"liste"'     Literal.String
+'>'           Punctuation
+'\n\n\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'Plakate und Konzertkarten' Text
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Frau Schraps' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Paul-Robert Achcenich' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Josefine Dahms' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\n\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'Noten'       Text
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Frau Puppe'  Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Theresa Rebin' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\n\t'    Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'Programme'   Text
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'?'           Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\n\t'    Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'Instrumentenstransporte' Text
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Frau Feldmann' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Knut Müller' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Patrick Wolter' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Alexaner Wolf' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\n\t'    Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'Internetseite' Text
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Frau Sternbeck' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Uwe Ritzschke' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Paul-Robert Achcenich' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Knut Müller' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'Alexander Wolf' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\n'      Text
+
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Chronik'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\tDas Jugendsinfonieorchester Marzahn-Hellersdorf wurde im Januar 2005 an der \n\tMusikschule Marzahn-Hellersdorf gegründet und gab im Mai 2005 sein erstes \n\tumjubeltes Konzert im FEZ Wuhlheide. Das Orchester umfasst zur Zeit ca. 65 \n\tjugendliche Musiker und soll auf die Größe eines ausgewachsenen \n\tSinfonieorchesters erweitert werden (80-100 Musiker).\n' Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\t\n'      Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+"\n\tAls musikalischer Leiter konnte der Dirigent und Echo-Preisträger Jobst \n\tLiebrecht gewonnen werden, der die Musikschule schon aus einer früheren \n\tZusammenarbeit anlässlich der Kinderoper 'Pollicino' von Hans Werner Henze \n\tkennt. Das Orchester probt wöchentlich. Neben den Tuttiproben finden außerdem \n\tebenfalls wöchentlich Stimmsatzproben statt, die von Lehrkräften betreut werden. \n\tDas gemeinsame Ziel ist der Aufbau eines leistungsstarken, lebendigen \n\tKlangkörpers, der die Jugendlichen und die Zuhörer ganz neu und direkt für die \n\tOrchestermusik begeistert und diese Musik in den sozialen Brennpunkt Marzahn-\n\tHellersdorf trägt. \n" Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\t\n'      Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\tIm Jahr sind etwa 2-3 Konzertprogramme geplant, mit denen wir in Konzertsälen \n\tauftreten. Das erste Konzert des Jugendsinfonieorchesters Marzahn-Hellersdorf \n\twurde von DeutschlandRadio Kultur aufgezeichnet und in einer Sendung mit dem \n\tTitel ' Text
+'&bdquo;'     Name.Entity
+'EINSTAND: Nicht nur auf der Strasse herumhängen' Text
+'&rdquo;'     Name.Entity
+' porträtiert.\n\tWir wollen außerdem vor Ort in Marzahn und Hellersdorf in die Öffentlichkeit\n\tgehen und spielen, um so für die Kultur zu werben und auch weitere Kinder und \n\tJugendliche für die Musik und fürs Mitmachen zu gewinnen. Durch die Einrichtung\n\teines zusätzlichen Vororchesters wird längerfristig versucht, die Arbeit auf ein \n\tbreites Fundament zu stellen, eine Werkstatt, ein musikalisches Bauhaus zu \n\tgründen. Wenn die Orchesterarbeit erfolgreich angelaufen ist, sollen auch \n\tübergreifende Projekte (Theater, Tanz, Chor) stattfinden. \n' Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\tDas Orchester will Musik von heute spielen in jedem Sinn, ob es sich um Stücke \n\taus der sinfonischen Tradition handelt oder um zeitgenössische Musik. Wir kennen \n\tkeine Berührungsängste und sind neugierig auf Musik aller Art und möchten diese \n\tNeugierde mit unserem Publikum teilen. \n' Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Dirigent - Jobst Liebrecht' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'image_tag'   Name
+' '           Text
+"'"           Literal.String.Single
+'jobstliebrecht.jpg' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':alt'        Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'Jobst Liebrecht' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':title'      Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'Jobst Liebrecht' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':class'      Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'pic_right'   Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\tJobst Liebrecht studierte Dirigieren an der Musikhochschule in München und bei Peter Eötvös. Sein spezielles Interesse \n\tfür neue Musik führte schnell zur Zusammenarbeit mit renommierten Ensembles auf dem Gebiet wie dem Ensemble Modern, \n\tFrankfurt, dem Klangforum-Ensemble, Wien, dem Ensemble Köln sowie dem Ensemble United Berlin. Aufnahmen entstanden beim \n\tWDR, beim DeutschlandRadio Berlin, beim BR und beim SFB. Er dirigierte u.a. das Rundfunk Sinfonieorchester Berlin, die \n\tDuisburger Philharmoniker und das Münchner Kammerorchester sowie in den Opernhäusern in Halle und Giessen. Tourneen im \n\tAusland führten ihn nach Argentinien, Georgien, Südkorea und in die USA.\n' Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\t\n'      Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+"\n\tZu den Ur- und Erstaufführungen, die er betreut hat, gehören die Opern 'Lunu' von Moritz Eggert, 'Gloria von Jaxtberg' von \n\tHK Gruber sowie in Zusammenarbeit mit dem Regisseur Einar Schleef das Musiktheaterspiel 'Der Golem in Bayreuth' von Ulla \n\tBerkewicz/Lesch Schmidt am Wiener Burgtheater.\n" Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\t\n'      Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+"\n\tJobst Liebrecht war mehrere Jahre lang Assistent von Hans Werner Henze und auch immer wieder pädagogisch tätig. Seine \n\tAufnahme von Henzes Märchenoper 'Pollicino', die als CD bei Wergo erschienen ist, wurde mit dem ECHO-Preis 2004 in der \n\tSparte 'Klassik für Kinder' ausgezeichnet.\n" Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\tAls Komponist ist Jobst Liebrecht mit Liedern, Kammermusik sowie Bühnenmusiken an die Öffentlichkeit getreten.\n' Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\t\n'        Text
+
+'<%'          Comment.Preproc
+' '           Text
+'message'     Name
+','           Punctuation
+' '           Text
+'backtrace'   Name
+' '           Text
+'='           Operator
+' '           Text
+'session'     Name
+'['           Operator
+':boom'       Literal.String.Symbol
+']'           Operator
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Fehler in Zeile %d' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%'           Operator
+' '           Text
+'['           Operator
+'backtrace'   Name
+'['           Operator
+'/'           Literal.String.Regex
+'line'        Literal.String.Regex
+'\\'          Literal.String.Regex
+'s+'          Literal.String.Regex
+'#'           Literal.String.Regex
+'('           Literal.String.Regex
+'\\'          Literal.String.Regex
+'d+)'         Literal.String.Regex
+'/'           Literal.String.Regex
+','           Punctuation
+'1'           Literal.Number.Integer
+']'           Operator
+']'           Operator
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"flash"'     Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"error"'     Literal.String
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'h'           Name
+' '           Text
+'message'     Name
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'debug'       Name
+' '           Text
+'backtrace'   Name
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'cache'       Name
+' '           Text
+':action_suffix' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'('           Punctuation
+'action'      Name
+' '           Text
+'='           Operator
+' '           Text
+'params'      Name
+'['           Operator
+':action'     Literal.String.Symbol
+']'           Operator
+')'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\nDer Inhalt für die Aktion ' Text
+'<%='         Comment.Preproc
+' '           Text
+'h'           Name
+' '           Text
+'action'      Name
+'.'           Operator
+'inspect'     Name
+' '           Text
+'%>'          Comment.Preproc
+' fehlt noch.\n' Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Schulferien Berlin' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\tUnser Orchester besteht zu einem sehr großen Teil aus Schülern und auch die\n\tMusikschule, der die meisten von uns entstammen, hat in den Schulferien\n\tgeschlossen.' Text
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\tDeshalb finden innerhalb der ' Text
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'Berliner Ferienzeiten keine Proben' Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+' statt.\n'   Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'table'       Name.Tag
+' '           Text
+'cellspacing' Name.Attribute
+'='           Operator
+'"0"'         Literal.String
+' '           Text
+'summary'     Name.Attribute
+'='           Operator
+'"Schulferien"' Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien"'    Literal.String
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n  \t'      Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_zeitraum"' Literal.String
+'>'           Punctuation
+'Zeitraum'    Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'2006'        Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n\t  '      Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'2007'        Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n\t  '      Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'2008'        Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\n\t'    Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_zeitraum"' Literal.String
+'>'           Punctuation
+'\n\t\t\tWinter' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t30.01. - 03.02.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t05.02. - 10.02.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t04.02. - 09.02.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\n\t'    Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_zeitraum"' Literal.String
+'>'           Punctuation
+'\n\t\t\tOstern/Frühjahr' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t10.04. - 21.04.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t02.04. - 13.04.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t17.03. - 28.03.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\n\t'    Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_zeitraum"' Literal.String
+'>'           Punctuation
+'\n\t\t\tHimmelf./Pfingsten' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t30.04. / 18.05.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t30.04. / 18.05.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t02.05.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\n\t'      Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_zeitraum"' Literal.String
+'>'           Punctuation
+'\n\t\t\tSommer' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t06.07. - 19.08.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t12.07. - 25.08.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t17.07. - 30.08.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\n\t'    Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_zeitraum"' Literal.String
+'>'           Punctuation
+'\n\t\t\tHerbst' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t02.10. - 14.10.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t15.10. - 27.10.' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t'    Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t\n\t'  Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_zeitraum"' Literal.String
+'>'           Punctuation
+'\n\t\t\tWeihnachten' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t27.12. - 05.01.07' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t24.12. - 04.01.08' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"ferien_jahr"' Literal.String
+'>'           Punctuation
+'\n\t\t\t'    Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t\n'    Text
+
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Termine'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'-%>'         Comment.Preproc
+'\n\n'        Text
+
+'<'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+"'"           Literal.String.Single
+'Auftritte'   Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'/auftritte'  Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+"'"           Literal.String.Single
+'Schulferien' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'/content'    Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':action'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+':schulferien' Literal.String.Symbol
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">' Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'html'        Name.Tag
+' '           Text
+'xmlns'       Name.Attribute
+'='           Operator
+'"http://www.w3.org/1999/xhtml"' Literal.String
+' '           Text
+'xml:lang'    Name.Attribute
+'='           Operator
+'"de"'        Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'head'        Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'tag'         Name
+' '           Text
+"'"           Literal.String.Single
+'meta'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+":'http-equiv'" Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'content-language' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':content'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'de'          Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'tag'         Name
+' '           Text
+"'"           Literal.String.Single
+'meta'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+":'http-equiv'" Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'content-type' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':content'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'text/html; charset=UTF-8' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<'           Punctuation
+'meta'        Name.Tag
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"AUTHOR"'    Literal.String
+' '           Text
+'content'     Name.Attribute
+'='           Operator
+'"Knut Müller, Alexander Wolf, Uwe Ritzschke, Paul-Robert Achcenich"' Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'meta'        Name.Tag
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"Publisher"' Literal.String
+' '           Text
+'content'     Name.Attribute
+'='           Operator
+'"Knut Müller, Alexander Wolf, Uwe Ritzschke, Paul-Robert Achcenich"' Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'meta'        Name.Tag
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"Copyright"' Literal.String
+' '           Text
+'content'     Name.Attribute
+'='           Operator
+'"Knut Müller, Alexander Wolf, Uwe Ritzschke, Paul-Robert Achcenich, 2006"' Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'meta'        Name.Tag
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"Keywords"'  Literal.String
+' '           Text
+'content'     Name.Attribute
+'='           Operator
+'"Jugendsinfonieorchester,Marzahn,Hellersdorf,Marzahn-Hellersdorf,Berlin,Orchester,Jobst Liebrecht,FEZ,Pollicino,Moritz Eggert,Popel,Konzert"' Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'meta'        Name.Tag
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"Description"' Literal.String
+' '           Text
+'content'     Name.Attribute
+'='           Operator
+'"JSO - JugendSinfonieOrchester der Musikschule Marzahn-Hellerdorf in Berlin"' Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'meta'        Name.Tag
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"Page-topic"' Literal.String
+' '           Text
+'content'     Name.Attribute
+'='           Operator
+'"JSO Marzahn-Hellersdorf - "' Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\n\t'      Text
+'<'           Punctuation
+'meta'        Name.Tag
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"Audience"'  Literal.String
+' '           Text
+'content'     Name.Attribute
+'='           Operator
+'"Alle"'      Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'meta'        Name.Tag
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"content-language"' Literal.String
+' '           Text
+'content'     Name.Attribute
+'='           Operator
+'"DE"'        Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'meta'        Name.Tag
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"Page-Type"' Literal.String
+' '           Text
+'content'     Name.Attribute
+'='           Operator
+'"Homepage"'  Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'meta'        Name.Tag
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"robots"'    Literal.String
+' '           Text
+'content'     Name.Attribute
+'='           Operator
+'"all"'       Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n\n\t'      Text
+'<'           Punctuation
+'title'       Name.Tag
+'>'           Punctuation
+'JSO'         Text
+'<%-'         Comment.Preproc
+'if'          Keyword
+' '           Text
+'@title'      Name.Variable.Instance
+'-%>'         Comment.Preproc
+' - '         Text
+'<%='         Comment.Preproc
+' '           Text
+'h'           Name
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'%>'          Comment.Preproc
+'<%-'         Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'title'       Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'stylesheet_link_tag' Name
+' '           Text
+"'"           Literal.String.Single
+'/rcss/main'  Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%#'         Comment.Preproc
+"= stylesheet_link_tag 'main' " Comment
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'javascript_include_tag' Name
+' '           Text
+"'"           Literal.String.Single
+'nospam'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%#'         Comment.Preproc
+'= javascript_include_tag :defaults ' Comment
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'head'        Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'body'        Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'table'       Name.Tag
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"width:100%; height:100%;"' Literal.String
+' '           Text
+'cellspacing' Name.Attribute
+'='           Operator
+'"10"'        Literal.String
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"height:120px; width:15%;text-align:center;vertical-align:middle;"' Literal.String
+'>'           Punctuation
+'\n\t\t\t'    Text
+'<%='         Comment.Preproc
+' '           Text
+'image_tag'   Name
+' '           Text
+"'"           Literal.String.Single
+'JSO-Logo.gif' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':alt'        Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'JSO-Logo'    Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t\t'      Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'id'          Name.Attribute
+'='           Operator
+'"title"'     Literal.String
+'>'           Punctuation
+'\n\t\t\t'    Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'id'          Name.Attribute
+'='           Operator
+'"musikschule"' Literal.String
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"http://www.musikschule-marzahn-hellersdorf.de"' Literal.String
+'>'           Punctuation
+'Musikschule Marzahn Hellersdorf' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n\t\t\t'    Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'id'          Name.Attribute
+'='           Operator
+'"orchester"' Literal.String
+'>'           Punctuation
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'j'           Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'ugend'       Text
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'s'           Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'infonie'     Text
+'<'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'o'           Text
+'<'           Punctuation
+'/'           Punctuation
+'strong'      Name.Tag
+'>'           Punctuation
+'rchester'    Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"width:15%;"' Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'if'          Keyword
+' '           Text
+'valid_user'  Name
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'li'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"menu2"'     Literal.String
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+'"'           Literal.String.Double
+'Logout '     Literal.String.Double
+'#{'          Literal.String.Interpol
+'valid_user'  Name
+'.'           Operator
+'name'        Name
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'/admin/admin' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':action'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+':logout'     Literal.String.Symbol
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'cache'       Name
+' '           Text
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'menu'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':action'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'main_menu'   Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'do'          Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'render_component' Name
+' '           Text
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'menu'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':action'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'index'       Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n\t\t'      Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'id'          Name.Attribute
+'='           Operator
+'"main"'      Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'unless'      Keyword
+' '           Text
+'@flash'      Name.Variable.Instance
+'.'           Operator
+'keys'        Name
+'.'           Operator
+'empty?'      Name
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"flash"'     Literal.String
+'>'           Punctuation
+'\n\t'        Text
+'<%-'         Comment.Preproc
+' '           Text
+'for'         Keyword
+' '           Text
+'kind'        Name
+','           Punctuation
+' '           Text
+'msg'         Name
+' '           Text
+'in'          Keyword
+' '           Text
+'@flash'      Name.Variable.Instance
+' '           Text
+'-%>'         Comment.Preproc
+'\n\t\t'      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"'           Literal.String
+'<%='         Comment.Preproc
+' '           Text
+'h'           Name
+' '           Text
+'kind'        Name
+' '           Text
+'%>'          Comment.Preproc
+'"'           Literal.String
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'h'           Name
+' '           Text
+'msg'         Name
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<%-'         Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'content_tag' Name
+' '           Text
+"'"           Literal.String.Single
+'h3'          Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'h'           Name
+'('           Punctuation
+'@title'      Name.Variable.Instance
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'@content_for_layout' Name.Variable.Instance
+' '           Text
+'%>'          Comment.Preproc
+'\n\t\t'      Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"height:80px; width:15%;"' Literal.String
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"height:80px;"' Literal.String
+'>'           Punctuation
+'\n\t\t\t'    Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"position:relative; top:80px; right:0px; text-align:right; font-size: x-small; color: #003;"' Literal.String
+'>'           Punctuation
+'\n\t\t\t\tpowered by ' Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"http://rubyonrails.org"' Literal.String
+'>'           Punctuation
+'Ruby on Rails' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+' '           Text
+'<%='         Comment.Preproc
+' '           Text
+'Rails'       Name.Constant
+'::'          Operator
+'Info'        Name.Constant
+'.'           Operator
+'properties'  Name
+'.'           Operator
+'value_for'   Name
+' '           Text
+"'"           Literal.String.Single
+'Rails version' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+' ['          Text
+'<%='         Comment.Preproc
+' '           Text
+'h'           Name
+' '           Text
+'RAILS_ENV'   Name.Constant
+'['           Operator
+'/'           Literal.String.Regex
+'^.'          Literal.String.Regex
+'/'           Literal.String.Regex
+']'           Operator
+' '           Text
+'%>'          Comment.Preproc
+']\n\t\t\t\t' Text
+'<%='         Comment.Preproc
+' '           Text
+'image_tag'   Name
+' '           Text
+"'"           Literal.String.Single
+'css.png'     Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':alt'        Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'valid CSS'   Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':title'      Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'valid Cascading Style Sheet' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':style'      Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'display: inline; vertical-align: middle' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t\t\t\t'  Text
+'<%='         Comment.Preproc
+' '           Text
+'image_tag'   Name
+' '           Text
+"'"           Literal.String.Single
+'xhtml11.png' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':alt'        Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'valid XHTML 1.1' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':title'      Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'valid eXtensible Hypertext Markup Language 1.1' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':style'      Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'display: inline; vertical-align: middle' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t\t\t'    Text
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'/'           Punctuation
+'body'        Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'/'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Übersicht'   Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'-%>'         Comment.Preproc
+'\n\n'        Text
+
+'<'           Punctuation
+'h4'          Name.Tag
+'>'           Punctuation
+'nächste Probe' Text
+'<'           Punctuation
+'/'           Punctuation
+'h4'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'table'       Name.Tag
+' '           Text
+'cellspacing' Name.Attribute
+'='           Operator
+'"0"'         Literal.String
+' '           Text
+'summary'     Name.Attribute
+'='           Operator
+'"Probenplan: Wann wird Was geprobt?"' Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"proben"'    Literal.String
+'>'           Punctuation
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'render'      Name
+' '           Text
+':partial'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'proben/head' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'render'      Name
+' '           Text
+':partial'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'proben/day'  Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':object'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'@next_probe' Name.Variable.Instance
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'h4'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+"'"           Literal.String.Single
+'weitere Proben...' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'proben'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'h4'          Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'h4'          Name.Tag
+'>'           Punctuation
+'nächster Auftritt' Text
+'<'           Punctuation
+'/'           Punctuation
+'h4'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'table'       Name.Tag
+' '           Text
+'cellspacing' Name.Attribute
+'='           Operator
+'"0"'         Literal.String
+' '           Text
+'summary'     Name.Attribute
+'='           Operator
+'"Auftritte: Wann treten wir Wo auf?"' Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"auftritte"' Literal.String
+'>'           Punctuation
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'render'      Name
+' '           Text
+':partial'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'auftritte/head' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'render'      Name
+' '           Text
+':partial'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'auftritte/day' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':object'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'@next_auftritt' Name.Variable.Instance
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'h4'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+"'"           Literal.String.Single
+'mehr Auftritte...' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'auftritte'   Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'h4'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'category'    Name
+' '           Text
+"'"           Literal.String.Single
+'Übersicht'   Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'home_url'    Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'subcat'      Name
+' '           Text
+"'"           Literal.String.Single
+'Wer sind wir?' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':wer'        Literal.String.Symbol
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'subcat'      Name
+' '           Text
+"'"           Literal.String.Single
+'Dirigent'    Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'subcat'      Name
+' '           Text
+"'"           Literal.String.Single
+'Besetzung'   Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'url_for'     Name
+'('           Punctuation
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'/besetzung'  Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'subcat'      Name
+' '           Text
+"'"           Literal.String.Single
+'Repertoire'  Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\n\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'category'    Name
+' '           Text
+"'"           Literal.String.Single
+'Termine'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'subcat'      Name
+' '           Text
+"'"           Literal.String.Single
+'Auftritte'   Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'url_for'     Name
+'('           Punctuation
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'/auftritte'  Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':action'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+':plan'       Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'subcat'      Name
+' '           Text
+"'"           Literal.String.Single
+'Schulferien' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\n\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'category'    Name
+' '           Text
+"'"           Literal.String.Single
+'Probenplan'  Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'url_for'     Name
+'('           Punctuation
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'/proben'     Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':action'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+':plan'       Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'%>'          Comment.Preproc
+'\n\n\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'category'    Name
+' '           Text
+"'"           Literal.String.Single
+'Organisation' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'subcat'      Name
+' '           Text
+"'"           Literal.String.Single
+'Orchesterrat' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'subcat'      Name
+' '           Text
+"'"           Literal.String.Single
+'Arbeitsgruppen' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\n\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'category'    Name
+' '           Text
+"'"           Literal.String.Single
+'Chronik'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'subcat'      Name
+' '           Text
+"'"           Literal.String.Single
+'Konzerte'    Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'subcat'      Name
+' '           Text
+"'"           Literal.String.Single
+'Audio'       Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'subcat'      Name
+' '           Text
+"'"           Literal.String.Single
+'Presse'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\n\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'category'    Name
+' '           Text
+"'"           Literal.String.Single
+'Links'       Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'#'           Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'subcat'      Name
+' '           Text
+"'"           Literal.String.Single
+'Bilderseite' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'http://musikschule.iden04.de' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'subcat'      Name
+' '           Text
+"'"           Literal.String.Single
+'Musikschule' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'http://www.musikschule-marzahn-hellersdorf.de' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\n\t'      Text
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\n\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'category'    Name
+' '           Text
+"'"           Literal.String.Single
+'Kontakt'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'@title'      Name.Variable.Instance
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Probenplan'  Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\n'        Text
+
+'<'           Punctuation
+'table'       Name.Tag
+' '           Text
+'cellspacing' Name.Attribute
+'='           Operator
+'"0"'         Literal.String
+' '           Text
+'summary'     Name.Attribute
+'='           Operator
+'"Probenplan: Wann wird Was geprobt?"' Literal.String
+'>'           Punctuation
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'render'      Name
+' '           Text
+':partial'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'head'        Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<%='         Comment.Preproc
+' '           Text
+'render'      Name
+' '           Text
+':partial'    Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'day'         Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':collection' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'@days'       Name.Variable.Instance
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'p'           Name.Tag
+' '           Text
+'style'       Name.Attribute
+'='           Operator
+'"font-size:14px; margin-top:-10px; padding-top:0px; padding-left:40px;"' Literal.String
+'>'           Punctuation
+'\nOrt (wenn nicht anders angegeben): Schule am Pappelhof\n' Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\t\n\n'      Text
+
+'<%='         Comment.Preproc
+' '           Text
+'render_partial' Name
+' '           Text
+"'"           Literal.String.Single
+'raum'        Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'day'         Name
+','           Punctuation
+' '           Text
+'proben'      Name
+' '           Text
+'='           Operator
+' '           Text
+'*'           Operator
+'day'         Name
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+'\n\t'        Text
+'for'         Keyword
+' '           Text
+'probe'       Name
+' '           Text
+'in'          Keyword
+' '           Text
+'proben'      Name
+' \n'         Text
+
+'-%>'         Comment.Preproc
+'\n\n'        Text
+
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_datum"' Literal.String
+'>'           Punctuation
+'\n\t\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'colorize'    Name
+' '           Text
+'day'         Name
+'.'           Operator
+'to_s'        Name
+'('           Punctuation
+':dots'       Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'day'         Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t\t'      Text
+'<%'          Comment.Preproc
+' '           Text
+'if'          Keyword
+' '           Text
+'day'         Name
+' '           Text
+'and'         Operator.Word
+' '           Text
+'day'         Name
+'.'           Operator
+'wday'        Name
+' '           Text
+'=='          Operator
+' '           Text
+'6'           Literal.Number.Integer
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'<'           Punctuation
+'em'          Name.Tag
+'>'           Punctuation
+'Samstag'     Text
+'<'           Punctuation
+'/'           Punctuation
+'em'          Name.Tag
+'>'           Punctuation
+'<%'          Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_zeit"' Literal.String
+'>'           Punctuation
+'\n\t\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'colorize'    Name
+' '           Text
+'probe'       Name
+'.'           Operator
+'time'        Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_stueck"' Literal.String
+'>'           Punctuation
+'\n\t\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'colorize'    Name
+'('           Punctuation
+'probe'       Name
+'.'           Operator
+'place'       Name
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'Ort: '       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String.Single
+'<br />'      Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'unless'      Keyword
+' '           Text
+'probe'       Name
+'.'           Operator
+'place'       Name
+'.'           Operator
+'blank?'      Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'colorize'    Name
+' '           Text
+'probe'       Name
+'.'           Operator
+'program'     Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+"'"           Literal.String.Single
+'E'           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':controller' Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'admin/proben' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':action'     Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+':edit'       Literal.String.Symbol
+','           Punctuation
+' '           Text
+':id'         Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'probe'       Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_besetzung"' Literal.String
+'>'           Punctuation
+'\n\t\t'      Text
+'<%='         Comment.Preproc
+' '           Text
+'h'           Name
+' '           Text
+'probe'       Name
+'.'           Operator
+'instrumentation' Name
+' '           Text
+'%>'          Comment.Preproc
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<%'          Comment.Preproc
+'\n\t'        Text
+'day'         Name
+' '           Text
+'='           Operator
+' '           Text
+'nil'         Keyword.Pseudo
+'\n\t'        Text
+'end'         Keyword
+' \n'         Text
+
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_datum"' Literal.String
+'>'           Punctuation
+'Datum'       Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_zeit"' Literal.String
+'>'           Punctuation
+'Zeit'        Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_stueck"' Literal.String
+'>'           Punctuation
+'Stücke'      Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"pplan_besetzung"' Literal.String
+'>'           Punctuation
+'Besetzung'   Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'h4'          Name.Tag
+'>'           Punctuation
+'Probenräume' Text
+'<'           Punctuation
+'/'           Punctuation
+'h4'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'table'       Name.Tag
+' '           Text
+'cellspacing' Name.Attribute
+'='           Operator
+'"0"'         Literal.String
+' '           Text
+'summary'     Name.Attribute
+'='           Operator
+'"Probenräume: Wer probt Wo?"' Literal.String
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_wer"' Literal.String
+'>'           Punctuation
+'Wer'         Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_raum"' Literal.String
+'>'           Punctuation
+'Raum'        Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'scope'       Name.Attribute
+'='           Operator
+'"col"'       Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_adresse"' Literal.String
+'>'           Punctuation
+'Adresse'     Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n\n\t'      Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_wer"' Literal.String
+'>'           Punctuation
+'Streicher'   Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_raum"' Literal.String
+'>'           Punctuation
+'Schule am Pappelhof' Text
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'(Raum Nr.)'  Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_adresse"' Literal.String
+'>'           Punctuation
+'(Anschrifft Pappelhofschule)' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\n\t\t'    Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_wer"' Literal.String
+'>'           Punctuation
+'Blechbläser' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_raum"' Literal.String
+'>'           Punctuation
+'Musikschule Marzahn' Text
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'(Raum Nr.)'  Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_adresse"' Literal.String
+'>'           Punctuation
+'(Anschrifft Musikscule Marzahn)' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_wer"' Literal.String
+'>'           Punctuation
+'Holzbläser'  Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\n\t\t'    Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_raum"' Literal.String
+'>'           Punctuation
+'Schule am Pappelhof' Text
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'(Raum Nr.)'  Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_adresse"' Literal.String
+'>'           Punctuation
+'(Anschrifft Pappelhofschule)' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_wer"' Literal.String
+'>'           Punctuation
+'...'         Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_raum"' Literal.String
+'>'           Punctuation
+'(Ort)'       Text
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'(Raum Nr.)'  Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\n\t\t'    Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"praum_adresse"' Literal.String
+'>'           Punctuation
+'(Anschrifft)' Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n'          Text

@@ -1,0 +1,7097 @@
+'namespace'   Keyword
+' '           Text
+'gui'         Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'import'      Keyword
+' '           Text
+'"'           Literal.String
+'Window'      Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'public'      Keyword
+' '           Text
+'struct'      Keyword
+' '           Text
+'AnchorValue' Name.Class
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'   '         Text
+'AnchorValueType' Name
+' '           Text
+'type'        Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'union'       Keyword
+'\n   '       Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'int'         Keyword.Type
+' '           Text
+'distance'    Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'float'       Keyword.Type
+' '           Text
+'percent'     Name
+';'           Punctuation
+'      \n   ' Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'property'    Keyword
+' '           Text
+'int'         Keyword.Type
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'set'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'value'       Name.Builtin
+';'           Punctuation
+' '           Text
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'offset'      Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'distance'    Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'property'    Keyword
+' '           Text
+'double'      Keyword.Type
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'set'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+' '           Text
+'value'       Name.Builtin
+';'           Punctuation
+' '           Text
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'relative'    Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'('           Punctuation
+'double'      Keyword.Type
+')'           Punctuation
+' '           Text
+'percent'     Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'OnGetString' Name
+'('           Punctuation
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'fieldData'   Name
+','           Punctuation
+' '           Text
+'bool'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'needClass'   Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'offset'      Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'sprintf'     Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'%d'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'distance'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'relative'    Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'int'         Keyword.Type
+' '           Text
+'c'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'int'         Keyword.Type
+' '           Text
+'last'        Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'sprintf'     Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'%f'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'percent'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'c'           Name
+' '           Text
+'='           Operator
+' '           Text
+'strlen'      Name
+'('           Punctuation
+'stringOutput' Name
+')'           Punctuation
+'-1'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'for'         Keyword
+'('           Punctuation
+' '           Text
+';'           Punctuation
+' '           Text
+'c'           Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'c'           Name
+'-'           Operator
+'-'           Operator
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+'('           Punctuation
+'stringOutput' Name
+'['           Punctuation
+'c'           Name
+']'           Punctuation
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+"'"           Literal.String.Char
+'0'           Literal.String.Char
+"'"           Literal.String.Char
+')'           Punctuation
+' \n               ' Text
+'last'        Name
+' '           Text
+'='           Operator
+' '           Text
+'Max'         Name
+'('           Punctuation
+'last'        Name
+','           Punctuation
+' '           Text
+'c'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+'('           Punctuation
+'stringOutput' Name
+'['           Punctuation
+'c'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'"           Literal.String.Char
+'.'           Literal.String.Char
+"'"           Literal.String.Char
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'{'           Punctuation
+'\n'          Text
+
+'               ' Text
+'if'          Keyword
+'('           Punctuation
+'last'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'c'           Name
+')'           Punctuation
+'\n'          Text
+
+'               ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                  ' Text
+'stringOutput' Name
+'['           Punctuation
+'c'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Char
+'0'           Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'                  ' Text
+'stringOutput' Name
+'['           Punctuation
+'c'           Name
+'+'           Operator
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'}'           Punctuation
+'\n'          Text
+
+'               ' Text
+'else'        Keyword
+'\n'          Text
+
+'                  ' Text
+'stringOutput' Name
+'['           Punctuation
+'last'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'needClass'   Name
+')'           Punctuation
+' '           Text
+'*'           Operator
+'needClass'   Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'stringOutput' Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'bool'        Keyword.Type
+' '           Text
+'OnGetDataFromString' Name
+'('           Punctuation
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'stringOutput' Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'end'         Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'strchr'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+"'"           Literal.String.Char
+'.'           Literal.String.Char
+"'"           Literal.String.Char
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'float'       Keyword.Type
+' '           Text
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+'strtod'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'&'           Operator
+'end'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         \n         ' Text
+'if'          Keyword
+'('           Punctuation
+'end'         Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'stringOutput' Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'this'        Name.Builtin
+'.'           Punctuation
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'percent'     Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'relative'    Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'return'      Keyword
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'stringOutput' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'int'         Keyword.Type
+' '           Text
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'strtol'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'&'           Operator
+'end'         Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'end'         Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'stringOutput' Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'this'        Name.Builtin
+'.'           Punctuation
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'distance'    Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'offset'      Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'return'      Keyword
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'public'      Keyword
+' '           Text
+'struct'      Keyword
+' '           Text
+'MiddleAnchorValue' Name.Class
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'   '         Text
+'AnchorValueType' Name
+' '           Text
+'type'        Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'union'       Keyword
+'\n   '       Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'int'         Keyword.Type
+' '           Text
+'distance'    Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'float'       Keyword.Type
+' '           Text
+'percent'     Name
+';'           Punctuation
+'      \n   ' Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'property'    Keyword
+' '           Text
+'int'         Keyword.Type
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'set'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'value'       Name.Builtin
+';'           Punctuation
+' '           Text
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'none'        Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'distance'    Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'property'    Keyword
+' '           Text
+'double'      Keyword.Type
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'set'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+' '           Text
+'value'       Name.Builtin
+';'           Punctuation
+' '           Text
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'middleRelative' Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'get'         Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'('           Punctuation
+'double'      Keyword.Type
+')'           Punctuation
+' '           Text
+'percent'     Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'OnGetString' Name
+'('           Punctuation
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'fieldData'   Name
+','           Punctuation
+' '           Text
+'bool'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'needClass'   Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'int'         Keyword.Type
+' '           Text
+'c'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'int'         Keyword.Type
+' '           Text
+'last'        Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'sprintf'     Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'%f'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'percent'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'c'           Name
+' '           Text
+'='           Operator
+' '           Text
+'strlen'      Name
+'('           Punctuation
+'stringOutput' Name
+')'           Punctuation
+'-1'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'for'         Keyword
+'('           Punctuation
+' '           Text
+';'           Punctuation
+' '           Text
+'c'           Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'c'           Name
+'-'           Operator
+'-'           Operator
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+'('           Punctuation
+'stringOutput' Name
+'['           Punctuation
+'c'           Name
+']'           Punctuation
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+"'"           Literal.String.Char
+'0'           Literal.String.Char
+"'"           Literal.String.Char
+')'           Punctuation
+' \n               ' Text
+'last'        Name
+' '           Text
+'='           Operator
+' '           Text
+'Max'         Name
+'('           Punctuation
+'last'        Name
+','           Punctuation
+' '           Text
+'c'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+'('           Punctuation
+'stringOutput' Name
+'['           Punctuation
+'c'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+"'"           Literal.String.Char
+'.'           Literal.String.Char
+"'"           Literal.String.Char
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'{'           Punctuation
+'\n'          Text
+
+'               ' Text
+'if'          Keyword
+'('           Punctuation
+'last'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'c'           Name
+')'           Punctuation
+'\n'          Text
+
+'               ' Text
+'{'           Punctuation
+'\n'          Text
+
+'                  ' Text
+'stringOutput' Name
+'['           Punctuation
+'c'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Char
+'0'           Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'                  ' Text
+'stringOutput' Name
+'['           Punctuation
+'c'           Name
+'+'           Operator
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'}'           Punctuation
+'\n'          Text
+
+'               ' Text
+'else'        Keyword
+'\n'          Text
+
+'                  ' Text
+'stringOutput' Name
+'['           Punctuation
+'last'        Name
+'+'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'none'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'distance'    Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'sprintf'     Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'%d'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'distance'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'needClass'   Name
+')'           Punctuation
+' '           Text
+'*'           Operator
+'needClass'   Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'stringOutput' Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'bool'        Keyword.Type
+' '           Text
+'OnGetDataFromString' Name
+'('           Punctuation
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'stringOutput' Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'strchr'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+"'"           Literal.String.Char
+'.'           Literal.String.Char
+"'"           Literal.String.Char
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+'strtod'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'null'        Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'middleRelative' Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'strtol'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'null'        Name.Builtin
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'none'        Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'public'      Keyword
+' '           Text
+'enum'        Keyword
+' '           Text
+'AnchorValueType' Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'none'        Name
+','           Punctuation
+' '           Text
+'offset'      Name
+','           Punctuation
+' '           Text
+'relative'    Name
+','           Punctuation
+' '           Text
+'middleRelative' Name
+','           Punctuation
+' '           Text
+'cascade'     Name
+','           Punctuation
+' '           Text
+'vTiled'      Name
+','           Punctuation
+' '           Text
+'hTiled'      Name
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'public'      Keyword
+' '           Text
+'struct'      Keyword
+' '           Text
+'Anchor'      Name.Class
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'   '         Text
+'union'       Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'AnchorValue' Name
+' '           Text
+'left'        Name
+';'           Punctuation
+' '           Text
+'MiddleAnchorValue' Name
+' '           Text
+'horz'        Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'union'       Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'AnchorValue' Name
+' '           Text
+'top'         Name
+';'           Punctuation
+' '           Text
+'MiddleAnchorValue' Name
+' '           Text
+'vert'        Name
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'AnchorValue' Name
+' '           Text
+'right'       Name
+','           Punctuation
+' '           Text
+'bottom'      Name
+';'           Punctuation
+'      \n\n   ' Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'OnGetString' Name.Function
+'('           Punctuation
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'fieldData'   Name
+','           Punctuation
+' '           Text
+'bool'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'needClass'   Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'char'        Keyword.Type
+' '           Text
+'tempString'  Name
+'['           Punctuation
+'256'         Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'anchorValue' Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'bool'        Keyword.Type
+' '           Text
+'subNeedClass' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'tempString'  Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Char
+'\\0'         Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'anchorValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'left'        Name
+'.'           Punctuation
+'OnGetString' Name
+'('           Punctuation
+'tempString'  Name
+','           Punctuation
+' '           Text
+'null'        Name.Builtin
+','           Punctuation
+' '           Text
+'&'           Operator
+'subNeedClass' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'stringOutput' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+', '          Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'left = '     Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'anchorValue' Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'      \n      ' Text
+'//if(((!left.type && !right.type) && horz.distance) || horz.type == middleRelative)\n' Comment.Single
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'right'       Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'!'           Operator
+'left'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'horz'        Name
+'.'           Punctuation
+'distance'    Name
+')'           Punctuation
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'horz'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'tempString'  Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Char
+'\\0'         Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchorValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'horz'        Name
+'.'           Punctuation
+'OnGetString' Name
+'('           Punctuation
+'tempString'  Name
+','           Punctuation
+' '           Text
+'null'        Name.Builtin
+','           Punctuation
+' '           Text
+'&'           Operator
+'subNeedClass' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'stringOutput' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+', '          Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'horz = '     Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'anchorValue' Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      \n      ' Text
+'tempString'  Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Char
+'\\0'         Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'anchorValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'top'         Name
+'.'           Punctuation
+'OnGetString' Name
+'('           Punctuation
+'tempString'  Name
+','           Punctuation
+' '           Text
+'null'        Name.Builtin
+','           Punctuation
+' '           Text
+'&'           Operator
+'subNeedClass' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'stringOutput' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+', '          Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'top = '      Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'anchorValue' Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'      \n      ' Text
+'tempString'  Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Char
+'\\0'         Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'anchorValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'right'       Name
+'.'           Punctuation
+'OnGetString' Name
+'('           Punctuation
+'tempString'  Name
+','           Punctuation
+' '           Text
+'null'        Name.Builtin
+','           Punctuation
+' '           Text
+'&'           Operator
+'subNeedClass' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'stringOutput' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+', '          Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'right = '    Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'anchorValue' Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'// if(((!top.type && !bottom.type) && vert.distance) || vert.type == middleRelative)\n' Comment.Single
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'!'           Operator
+'top'         Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'vert'        Name
+'.'           Punctuation
+'distance'    Name
+')'           Punctuation
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'vert'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'tempString'  Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Char
+'\\0'         Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchorValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'vert'        Name
+'.'           Punctuation
+'OnGetString' Name
+'('           Punctuation
+'tempString'  Name
+','           Punctuation
+' '           Text
+'null'        Name.Builtin
+','           Punctuation
+' '           Text
+'&'           Operator
+'subNeedClass' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'stringOutput' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+', '          Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'vert = '     Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'anchorValue' Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      \n      ' Text
+'tempString'  Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Char
+'\\0'         Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'anchorValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'bottom'      Name
+'.'           Punctuation
+'OnGetString' Name
+'('           Punctuation
+'tempString'  Name
+','           Punctuation
+' '           Text
+'null'        Name.Builtin
+','           Punctuation
+' '           Text
+'&'           Operator
+'subNeedClass' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'stringOutput' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+', '          Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'bottom = '   Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'strcat'      Name
+'('           Punctuation
+'stringOutput' Name
+','           Punctuation
+' '           Text
+'anchorValue' Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'      \n      ' Text
+'return'      Keyword
+' '           Text
+'stringOutput' Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'bool'        Keyword.Type
+' '           Text
+'OnGetDataFromString' Name.Function
+'('           Punctuation
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'string'      Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'this'        Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'Anchor'      Name
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'class'       Keyword
+':'           Operator
+':'           Operator
+'OnGetDataFromString' Name
+'('           Punctuation
+'string'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'bool'        Keyword.Type
+' '           Text
+'OnSaveEdit'  Name.Function
+'('           Punctuation
+'DropBox'     Name
+' '           Text
+'dropBox'     Name
+','           Punctuation
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'object'      Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'dropBox'     Name
+'.'           Punctuation
+'Save'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'Window'      Name
+' '           Text
+'OnEdit'      Name.Function
+'('           Punctuation
+'Window'      Name
+' '           Text
+'listBox'     Name
+','           Punctuation
+' '           Text
+'Window'      Name
+' '           Text
+'master'      Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'x'           Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'y'           Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'w'           Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'h'           Name
+','           Punctuation
+' '           Text
+'Window'      Name
+' '           Text
+'control'     Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'string'      Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'AnchorDropBox' Name
+' '           Text
+'comboBox'    Name
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'editText'    Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'parent'      Name
+' '           Text
+'='           Operator
+' '           Text
+'listBox'     Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'master'      Name
+' '           Text
+'='           Operator
+' '           Text
+'master'      Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'position'    Name
+' '           Text
+'='           Operator
+' '           Text
+'Point'       Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'x'           Name
+','           Punctuation
+' '           Text
+'y'           Name
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'//clientSize = Size { h = h };\n' Comment.Single
+
+'         '   Text
+'//size.w = w;\n' Comment.Single
+
+'         '   Text
+'size'        Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+' '           Text
+'w'           Name
+','           Punctuation
+' '           Text
+'h'           Name
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchorValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'this'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'control'     Name
+' '           Text
+'='           Operator
+' '           Text
+'control'     Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'borderStyle' Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      \n      ' Text
+'comboBox'    Name
+'.'           Punctuation
+'Create'      Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'char'        Keyword.Type
+' '           Text
+'tempString'  Name
+'['           Punctuation
+'MAX_F_STRING' Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'bool'        Keyword.Type
+' '           Text
+'needClass'   Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'result'      Name
+' '           Text
+'='           Operator
+' '           Text
+'OnGetString' Name
+'('           Punctuation
+'tempString'  Name
+','           Punctuation
+' '           Text
+'null'        Name.Builtin
+','           Punctuation
+' '           Text
+'&'           Operator
+'needClass'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'result'      Name
+')'           Punctuation
+' '           Text
+'string'      Name
+' '           Text
+'='           Operator
+' '           Text
+'result'      Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'comboBox'    Name
+'.'           Punctuation
+'contents'    Name
+' '           Text
+'='           Operator
+' '           Text
+'string'      Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'comboBox'    Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'private'     Keyword
+' '           Text
+'class'       Keyword
+' '           Text
+'AnchorButton' Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'Button'      Name
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'   '         Text
+'toggle'      Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+','           Punctuation
+' '           Text
+'bevel'       Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'void'        Keyword.Type
+' '           Text
+'OnRedraw'    Name.Function
+'('           Punctuation
+'Surface'     Name
+' '           Text
+'surface'     Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'int'         Keyword.Type
+' '           Text
+'cw'          Name
+' '           Text
+'='           Operator
+' '           Text
+'clientSize'  Name
+'.'           Punctuation
+'w'           Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'int'         Keyword.Type
+' '           Text
+'ch'          Name
+' '           Text
+'='           Operator
+' '           Text
+'clientSize'  Name
+'.'           Punctuation
+'h'           Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'surface'     Name
+'.'           Punctuation
+'SetForeground' Name
+'('           Punctuation
+'black'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'checked'     Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'surface'     Name
+'.'           Punctuation
+'SetBackground' Name
+'('           Punctuation
+'Color'       Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'85'          Literal.Number.Integer
+','           Punctuation
+'85'          Literal.Number.Integer
+','           Punctuation
+'85'          Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'surface'     Name
+'.'           Punctuation
+'Area'        Name
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'cw'          Name
+'-1'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'ch'          Name
+'-1'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'         '   Text
+'surface'     Name
+'.'           Punctuation
+'LineStipple' Name
+'('           Punctuation
+'0xAAAA'      Literal.Number.Hex
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'surface'     Name
+'.'           Punctuation
+'Rectangle'   Name
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'cw'          Name
+'-1'          Literal.Number.Integer
+','           Punctuation
+'ch'          Name
+'-1'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'active'      Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'surface'     Name
+'.'           Punctuation
+'LineStipple' Name
+'('           Punctuation
+'0xAAAA'      Literal.Number.Hex
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'surface'     Name
+'.'           Punctuation
+'Rectangle'   Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'cw'          Name
+'-3'          Literal.Number.Integer
+','           Punctuation
+'ch'          Name
+'-3'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'bool'        Keyword.Type
+' '           Text
+'AnchorEditor::NotifyClicked' Name.Function
+'('           Punctuation
+'Button'      Name
+' '           Text
+'button'      Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'x'           Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'y'           Name
+','           Punctuation
+' '           Text
+'Modifiers'   Name
+' '           Text
+'mods'        Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'AnchorDropBox' Name
+' '           Text
+'anchorDropBox' Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'AnchorDropBox' Name
+')'           Punctuation
+'master'      Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'Anchor'      Name
+' '           Text
+'anchor'      Name
+' '           Text
+'='           Operator
+' '           Text
+'anchorDropBox' Name
+'.'           Punctuation
+'anchorValue' Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'Window'      Name
+' '           Text
+'control'     Name
+' '           Text
+'='           Operator
+' '           Text
+'anchorDropBox' Name
+'.'           Punctuation
+'control'     Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'DataBox'     Name
+' '           Text
+'dropMaster'  Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'DataBox'     Name
+')'           Punctuation
+'anchorDropBox' Name
+'.'           Punctuation
+'master'      Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'int'         Keyword.Type
+' '           Text
+'id'          Name
+' '           Text
+'='           Operator
+' '           Text
+'button'      Name
+'.'           Punctuation
+'id'          Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'switch'      Keyword
+'('           Punctuation
+'id'          Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'case'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+':'           Operator
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+'   '         Text
+'='           Operator
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'?'           Operator
+' '           Text
+'offset'      Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'none'        Name
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'case'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+':'           Operator
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+'    '        Text
+'='           Operator
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'?'           Operator
+' '           Text
+'offset'      Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'none'        Name
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'case'        Keyword
+' '           Text
+'2'           Literal.Number.Integer
+':'           Operator
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'type'        Name
+'  '          Text
+'='           Operator
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'?'           Operator
+' '           Text
+'offset'      Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'none'        Name
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'case'        Keyword
+' '           Text
+'3'           Literal.Number.Integer
+':'           Operator
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'?'           Operator
+' '           Text
+'offset'      Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'none'        Name
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'horz'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'('           Punctuation
+'id'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'id'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchorDropBox' Name
+'.'           Punctuation
+'relButtons'  Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchorDropBox' Name
+'.'           Punctuation
+'relButtons'  Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'vert'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'('           Punctuation
+'id'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'id'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchorDropBox' Name
+'.'           Punctuation
+'relButtons'  Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchorDropBox' Name
+'.'           Punctuation
+'relButtons'  Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'anchorDropBox' Name
+'.'           Punctuation
+'relButtons'  Name
+'['           Punctuation
+'id'          Name
+']'           Punctuation
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'//anchor.horz.type = none;\n' Comment.Single
+
+'      '      Text
+'//anchor.vert.type = none;\n' Comment.Single
+
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'int'         Keyword.Type
+' '           Text
+'vpw'         Name
+','           Punctuation
+' '           Text
+'vph'         Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'int'         Keyword.Type
+' '           Text
+'x'           Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'w'           Name
+','           Punctuation
+'h'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'Window'      Name
+' '           Text
+'parent'      Name
+' '           Text
+'='           Operator
+' '           Text
+'control'     Name
+'.'           Punctuation
+'parent'      Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'         '   Text
+'// Fix Anchor\n' Comment.Single
+
+'         '   Text
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'control'     Name
+'.'           Punctuation
+'position'    Name
+'.'           Punctuation
+'x'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'y'           Name
+' '           Text
+'='           Operator
+' '           Text
+'control'     Name
+'.'           Punctuation
+'position'    Name
+'.'           Punctuation
+'y'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'w'           Name
+' '           Text
+'='           Operator
+' '           Text
+'control'     Name
+'.'           Punctuation
+'size'        Name
+'.'           Punctuation
+'w'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'h'           Name
+' '           Text
+'='           Operator
+' '           Text
+'control'     Name
+'.'           Punctuation
+'size'        Name
+'.'           Punctuation
+'h'           Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'         '   Text
+'vpw'         Name
+' '           Text
+'='           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'clientSize'  Name
+'.'           Punctuation
+'w'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'vph'         Name
+' '           Text
+'='           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'clientSize'  Name
+'.'           Punctuation
+'h'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'control'     Name
+'.'           Punctuation
+'nonClient'   Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'vpw'         Name
+' '           Text
+'='           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'size'        Name
+'.'           Punctuation
+'w'           Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'vph'         Name
+' '           Text
+'='           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'size'        Name
+'.'           Punctuation
+'h'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'('           Punctuation
+'('           Punctuation
+'BorderBits'  Name
+')'           Punctuation
+'control'     Name
+'.'           Punctuation
+'borderStyle' Name
+')'           Punctuation
+'.'           Punctuation
+'fixed'       Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'control'     Name
+'.'           Punctuation
+'dontScrollHorz' Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'scrollArea'  Name
+'.'           Punctuation
+'w'           Name
+')'           Punctuation
+' '           Text
+'vpw'         Name
+' '           Text
+'='           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'scrollArea'  Name
+'.'           Punctuation
+'w'           Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'control'     Name
+'.'           Punctuation
+'dontScrollVert' Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'scrollArea'  Name
+'.'           Punctuation
+'h'           Name
+')'           Punctuation
+' '           Text
+'vph'         Name
+' '           Text
+'='           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'scrollArea'  Name
+'.'           Punctuation
+'h'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'offset'      Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'x'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'relative'    Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+'x'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'vpw'         Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'offset'      Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'y'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'relative'    Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+'y'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'vph'         Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'offset'      Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'vpw'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'w'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'//else if(anchor.right.type == relative) anchor.right.percent = (float) (x + w) / vpw;\n' Comment.Single
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'relative'    Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vpw'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'w'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'/'           Operator
+' '           Text
+'vpw'         Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'offset'      Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'vph'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'h'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'//else if(anchor.bottom.type == relative) anchor.bottom.percent = (float) (y + h) / vph;\n' Comment.Single
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'relative'    Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vph'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'h'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'/'           Operator
+' '           Text
+'vph'         Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'!'           Operator
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'type'        Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'anchor'      Name
+'.'           Punctuation
+'horz'        Name
+'.'           Punctuation
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'w'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'vpw'         Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'//anchor.horz.type = anchor.horz.distance ? offset : 0;\n' Comment.Single
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'horz'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'horz'        Name
+'.'           Punctuation
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'w'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'vpw'         Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'/'           Operator
+' '           Text
+'vpw'         Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'!'           Operator
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'anchor'      Name
+'.'           Punctuation
+'vert'        Name
+'.'           Punctuation
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'h'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'vph'         Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'//anchor.vert.type = anchor.vert.distance ? offset : 0;\n' Comment.Single
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'vert'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'vert'        Name
+'.'           Punctuation
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+'('           Punctuation
+'('           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'h'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'vph'         Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'/'           Operator
+' '           Text
+'vph'         Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'char'        Keyword.Type
+' '           Text
+'tempString'  Name
+'['           Punctuation
+'1024'        Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'bool'        Keyword.Type
+' '           Text
+'needClass'   Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'string'      Name
+' '           Text
+'='           Operator
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'OnGetString' Name
+'('           Punctuation
+'tempString'  Name
+','           Punctuation
+' '           Text
+'null'        Name.Builtin
+','           Punctuation
+' '           Text
+'&'           Operator
+'needClass'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchorDropBox' Name
+'.'           Punctuation
+'contents'    Name
+' '           Text
+'='           Operator
+' '           Text
+'string'      Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'dropMaster'  Name
+'.'           Punctuation
+'SetData'     Name
+'('           Punctuation
+'&'           Operator
+'anchor'      Name
+','           Punctuation
+' '           Text
+'false'       Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'anchorDropBox' Name
+'.'           Punctuation
+'anchorValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'anchor'      Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'private'     Keyword
+' '           Text
+'class'       Keyword
+' '           Text
+'AnchorRelButton' Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'Button'      Name
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'   '         Text
+'toggle'      Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'bevel'       Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'text'        Name
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'%'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'//bevelOver = true;\n' Comment.Single
+
+'\n'          Text
+
+'   '         Text
+'void'        Keyword.Type
+' '           Text
+'OnRedraw'    Name.Function
+'('           Punctuation
+'Surface'     Name
+' '           Text
+'surface'     Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'int'         Keyword.Type
+' '           Text
+'cw'          Name
+' '           Text
+'='           Operator
+' '           Text
+'clientSize'  Name
+'.'           Punctuation
+'w'           Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'int'         Keyword.Type
+' '           Text
+'ch'          Name
+' '           Text
+'='           Operator
+' '           Text
+'clientSize'  Name
+'.'           Punctuation
+'h'           Name
+';'           Punctuation
+'\n'          Text
+
+'      \n      ' Text
+'if'          Keyword
+'('           Punctuation
+'checked'     Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'surface'     Name
+'.'           Punctuation
+'SetForeground' Name
+'('           Punctuation
+'black'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'surface'     Name
+'.'           Punctuation
+'SetForeground' Name
+'('           Punctuation
+'Color'       Name
+'{'           Punctuation
+'170'         Literal.Number.Integer
+','           Punctuation
+'170'         Literal.Number.Integer
+','           Punctuation
+'170'         Literal.Number.Integer
+'}'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'surface'     Name
+'.'           Punctuation
+'WriteText'   Name
+'('           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'%'           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'active'      Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'surface'     Name
+'.'           Punctuation
+'LineStipple' Name
+'('           Punctuation
+'0xAAAA'      Literal.Number.Hex
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'surface'     Name
+'.'           Punctuation
+'Rectangle'   Name
+'('           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'cw'          Name
+'-4'          Literal.Number.Integer
+','           Punctuation
+'ch'          Name
+'-4'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'bool'        Keyword.Type
+' '           Text
+'AnchorEditor::NotifyClicked' Name.Function
+'('           Punctuation
+'Button'      Name
+' '           Text
+'button'      Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'x'           Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'y'           Name
+','           Punctuation
+' '           Text
+'Modifiers'   Name
+' '           Text
+'mods'        Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'AnchorDropBox' Name
+' '           Text
+'anchorDropBox' Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'AnchorDropBox' Name
+')'           Punctuation
+'master'      Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'Anchor'      Name
+' '           Text
+'anchor'      Name
+' '           Text
+'='           Operator
+' '           Text
+'anchorDropBox' Name
+'.'           Punctuation
+'anchorValue' Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'Window'      Name
+' '           Text
+'control'     Name
+' '           Text
+'='           Operator
+' '           Text
+'anchorDropBox' Name
+'.'           Punctuation
+'control'     Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'DataBox'     Name
+' '           Text
+'dropMaster'  Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'DataBox'     Name
+')'           Punctuation
+'anchorDropBox' Name
+'.'           Punctuation
+'master'      Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'int'         Keyword.Type
+' '           Text
+'id'          Name
+' '           Text
+'='           Operator
+' '           Text
+'button'      Name
+'.'           Punctuation
+'id'          Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'('           Punctuation
+'id'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'id'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'!'           Operator
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'!'           Operator
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'type'        Name
+')'           Punctuation
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'horz'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'middleRelative' Name
+';'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'horz'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'none'        Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchorDropBox' Name
+'.'           Punctuation
+'relButtons'  Name
+'['           Punctuation
+'('           Punctuation
+'id'          Name
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'%'           Operator
+'4'           Literal.Number.Integer
+']'           Punctuation
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'('           Punctuation
+'id'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'id'          Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'!'           Operator
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'!'           Operator
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+')'           Punctuation
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'vert'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'middleRelative' Name
+';'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'vert'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'none'        Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchorDropBox' Name
+'.'           Punctuation
+'relButtons'  Name
+'['           Punctuation
+'('           Punctuation
+'id'          Name
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'%'           Operator
+'4'           Literal.Number.Integer
+']'           Punctuation
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'switch'      Keyword
+'('           Punctuation
+'id'          Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'case'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+':'           Operator
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+'   '         Text
+'='           Operator
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'?'           Operator
+' '           Text
+'relative'    Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+'   '         Text
+'?'           Operator
+' '           Text
+'offset'      Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'none'        Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'case'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+':'           Operator
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+'    '        Text
+'='           Operator
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'?'           Operator
+' '           Text
+'relative'    Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+'    '        Text
+'?'           Operator
+' '           Text
+'offset'      Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'none'        Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'case'        Keyword
+' '           Text
+'2'           Literal.Number.Integer
+':'           Operator
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'type'        Name
+'  '          Text
+'='           Operator
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'?'           Operator
+' '           Text
+'relative'    Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'type'        Name
+'  '          Text
+'?'           Operator
+' '           Text
+'offset'      Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'none'        Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'case'        Keyword
+' '           Text
+'3'           Literal.Number.Integer
+':'           Operator
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'?'           Operator
+' '           Text
+'relative'    Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'?'           Operator
+' '           Text
+'offset'      Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'none'        Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchorDropBox' Name
+'.'           Punctuation
+'buttons'     Name
+'['           Punctuation
+'id'          Name
+']'           Punctuation
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'horz'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'horz'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'none'        Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'vert'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'vert'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+' '           Text
+'none'        Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'int'         Keyword.Type
+' '           Text
+'vpw'         Name
+','           Punctuation
+' '           Text
+'vph'         Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'int'         Keyword.Type
+' '           Text
+'x'           Name
+','           Punctuation
+'y'           Name
+','           Punctuation
+'w'           Name
+','           Punctuation
+'h'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'Window'      Name
+' '           Text
+'parent'      Name
+' '           Text
+'='           Operator
+' '           Text
+'control'     Name
+'.'           Punctuation
+'parent'      Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'         '   Text
+'// Fix Anchor\n' Comment.Single
+
+'         '   Text
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'control'     Name
+'.'           Punctuation
+'position'    Name
+'.'           Punctuation
+'x'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'y'           Name
+' '           Text
+'='           Operator
+' '           Text
+'control'     Name
+'.'           Punctuation
+'position'    Name
+'.'           Punctuation
+'y'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'w'           Name
+' '           Text
+'='           Operator
+' '           Text
+'control'     Name
+'.'           Punctuation
+'size'        Name
+'.'           Punctuation
+'w'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'h'           Name
+' '           Text
+'='           Operator
+' '           Text
+'control'     Name
+'.'           Punctuation
+'size'        Name
+'.'           Punctuation
+'h'           Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'         '   Text
+'vpw'         Name
+' '           Text
+'='           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'clientSize'  Name
+'.'           Punctuation
+'w'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'vph'         Name
+' '           Text
+'='           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'clientSize'  Name
+'.'           Punctuation
+'h'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'control'     Name
+'.'           Punctuation
+'nonClient'   Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'vpw'         Name
+' '           Text
+'='           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'size'        Name
+'.'           Punctuation
+'w'           Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'vph'         Name
+' '           Text
+'='           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'size'        Name
+'.'           Punctuation
+'h'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'('           Punctuation
+'('           Punctuation
+'BorderBits'  Name
+')'           Punctuation
+'control'     Name
+'.'           Punctuation
+'borderStyle' Name
+')'           Punctuation
+'.'           Punctuation
+'fixed'       Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'control'     Name
+'.'           Punctuation
+'dontScrollHorz' Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'scrollArea'  Name
+'.'           Punctuation
+'w'           Name
+')'           Punctuation
+'  '          Text
+'vpw'         Name
+' '           Text
+'='           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'scrollArea'  Name
+'.'           Punctuation
+'w'           Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'control'     Name
+'.'           Punctuation
+'dontScrollVert' Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'scrollArea'  Name
+'.'           Punctuation
+'h'           Name
+')'           Punctuation
+' '           Text
+'vph'         Name
+' '           Text
+'='           Operator
+' '           Text
+'parent'      Name
+'.'           Punctuation
+'scrollArea'  Name
+'.'           Punctuation
+'h'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'offset'      Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'x'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'relative'    Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+'x'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'vpw'         Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'offset'      Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'y'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'relative'    Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+'y'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'vph'         Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'offset'      Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'vpw'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'w'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'//else if(anchor.right.type == relative) anchor.right.percent = (float) (x + w) / vpw;\n' Comment.Single
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'relative'    Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vpw'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'w'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'/'           Operator
+' '           Text
+'vpw'         Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'offset'      Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'vph'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'h'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'//else if(anchor.bottom.type == relative) anchor.bottom.percent = (float) (y + h) / vph;\n' Comment.Single
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'relative'    Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'vph'         Name
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'h'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'/'           Operator
+' '           Text
+'vph'         Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'anchor'      Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'!'           Operator
+'anchor'      Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'type'        Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'anchor'      Name
+'.'           Punctuation
+'horz'        Name
+'.'           Punctuation
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'w'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'vpw'         Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'//anchor.horz.type = anchor.horz.distance ? offset : none;\n' Comment.Single
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'horz'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'horz'        Name
+'.'           Punctuation
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'w'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'vpw'         Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'/'           Operator
+' '           Text
+'vpw'         Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'anchor'      Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'!'           Operator
+'anchor'      Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+')'           Punctuation
+' \n         ' Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'anchor'      Name
+'.'           Punctuation
+'vert'        Name
+'.'           Punctuation
+'distance'    Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'h'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'vph'         Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'//anchor.vert.type = anchor.vert.distance ? offset : none;\n' Comment.Single
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'vert'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'vert'        Name
+'.'           Punctuation
+'percent'     Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'float'       Keyword.Type
+')'           Punctuation
+'('           Punctuation
+'('           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'h'           Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'vph'         Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'/'           Operator
+' '           Text
+'vph'         Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'char'        Keyword.Type
+' '           Text
+'tempString'  Name
+'['           Punctuation
+'1024'        Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'bool'        Keyword.Type
+' '           Text
+'needClass'   Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'string'      Name
+' '           Text
+'='           Operator
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'OnGetString' Name
+'('           Punctuation
+'tempString'  Name
+','           Punctuation
+' '           Text
+'null'        Name.Builtin
+','           Punctuation
+' '           Text
+'&'           Operator
+'needClass'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchorDropBox' Name
+'.'           Punctuation
+'contents'    Name
+' '           Text
+'='           Operator
+' '           Text
+'string'      Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'dropMaster'  Name
+'.'           Punctuation
+'SetData'     Name
+'('           Punctuation
+'&'           Operator
+'anchor'      Name
+','           Punctuation
+' '           Text
+'false'       Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'anchorDropBox' Name
+'.'           Punctuation
+'anchorValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'anchor'      Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'private'     Keyword
+' '           Text
+'class'       Keyword
+' '           Text
+'AnchorEditor' Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'Window'      Name
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'   '         Text
+'interim'     Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'borderStyle' Name
+' '           Text
+'='           Operator
+' '           Text
+'deepContour' Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'size'        Name
+'.'           Punctuation
+'h'           Name
+' '           Text
+'='           Operator
+' '           Text
+'92'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'bool'        Keyword.Type
+' '           Text
+'OnKeyDown'   Name.Function
+'('           Punctuation
+'Key'         Name
+' '           Text
+'key'         Name
+','           Punctuation
+' '           Text
+'unichar'     Keyword.Type
+' '           Text
+'ch'          Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'key'         Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'escape'      Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'return'      Keyword
+' '           Text
+'master'      Name
+'.'           Punctuation
+'OnKeyDown'   Name
+'('           Punctuation
+'key'         Name
+','           Punctuation
+' '           Text
+'ch'          Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'private'     Keyword
+' '           Text
+'class'       Keyword
+' '           Text
+'AnchorDropBox' Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'DropBox'     Name
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'   '         Text
+'Anchor'      Name
+' '           Text
+'anchorValue' Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'Window'      Name
+' '           Text
+'control'     Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'Button'      Name
+' '           Text
+'relButtons'  Name
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'buttons'     Name
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'AnchorEditor' Name
+' '           Text
+'anchorEditor' Name
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'master'      Name
+' '           Text
+'='           Operator
+' '           Text
+'this'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'autoCreate'  Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'Window'      Name
+' '           Text
+'OnDropDown'  Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'int'         Keyword.Type
+' '           Text
+'c'           Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'Button'      Name
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchorEditor' Name
+','           Punctuation
+'\n'          Text
+
+'         '   Text
+'anchor'      Name
+' '           Text
+'='           Operator
+' '           Text
+'Anchor'      Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'left'        Name
+' '           Text
+'='           Operator
+' '           Text
+'28'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'top'         Name
+' '           Text
+'='           Operator
+' '           Text
+'28'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'right'       Name
+' '           Text
+'='           Operator
+' '           Text
+'28'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'bottom'      Name
+' '           Text
+'='           Operator
+' '           Text
+'28'          Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'         '   Text
+'inactive'    Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+','           Punctuation
+' '           Text
+'disabled'    Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'for'         Keyword
+'('           Punctuation
+'c'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'c'           Name
+'<'           Operator
+'4'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'c'           Name
+'+'           Operator
+'+'           Operator
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'Button'      Name
+' '           Text
+'button'      Name
+' '           Text
+'='           Operator
+' '           Text
+'buttons'     Name
+'['           Punctuation
+'c'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'AnchorButton' Name
+' \n         ' Text
+'{'           Punctuation
+' \n            ' Text
+'anchorEditor' Name
+','           Punctuation
+' '           Text
+'id'          Name
+' '           Text
+'='           Operator
+' '           Text
+'c'           Name
+','           Punctuation
+'\n'          Text
+
+'            ' Text
+'size'        Name
+' '           Text
+'='           Operator
+' '           Text
+'Size'        Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'('           Punctuation
+'c'           Name
+'%'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+'?'           Operator
+'10'          Literal.Number.Integer
+':'           Operator
+'28'          Literal.Number.Integer
+','           Punctuation
+' '           Text
+'('           Punctuation
+'c'           Name
+'%'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+'?'           Operator
+'28'          Literal.Number.Integer
+':'           Operator
+'10'          Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'Button'      Name
+' '           Text
+'relButton'   Name
+' '           Text
+'='           Operator
+' '           Text
+'relButtons'  Name
+'['           Punctuation
+'c'           Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'AnchorRelButton' Name
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'anchorEditor' Name
+','           Punctuation
+' '           Text
+'id'          Name
+' '           Text
+'='           Operator
+' '           Text
+'c'           Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'         '   Text
+'switch'      Keyword
+'('           Punctuation
+'c'           Name
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'case'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+':'           Operator
+'\n'          Text
+
+'               ' Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'anchorValue' Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'.'           Punctuation
+'left'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'relative'    Name
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'anchorValue' Name
+'.'           Punctuation
+'horz'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'relButton'   Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'               \n               ' Text
+'button'      Name
+'.'           Punctuation
+'anchor'      Name
+' '           Text
+'='           Operator
+' '           Text
+'Anchor'      Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'left'        Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'relButton'   Name
+'.'           Punctuation
+'anchor'      Name
+' '           Text
+'='           Operator
+' '           Text
+'Anchor'      Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'left'        Name
+' '           Text
+'='           Operator
+' '           Text
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'vert'        Name
+' '           Text
+'='           Operator
+' '           Text
+'16'          Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'case'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+':'           Operator
+'\n'          Text
+
+'               ' Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'anchorValue' Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'.'           Punctuation
+'top'         Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'relative'    Name
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'anchorValue' Name
+'.'           Punctuation
+'vert'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'relButton'   Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'               ' Text
+'button'      Name
+'.'           Punctuation
+'anchor'      Name
+' '           Text
+'='           Operator
+' '           Text
+'Anchor'      Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'top'         Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'relButton'   Name
+'.'           Punctuation
+'anchor'      Name
+' '           Text
+'='           Operator
+' '           Text
+'Anchor'      Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'top'         Name
+' '           Text
+'='           Operator
+' '           Text
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'horz'        Name
+' '           Text
+'='           Operator
+' '           Text
+'16'          Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'case'        Keyword
+' '           Text
+'2'           Literal.Number.Integer
+':'           Operator
+' \n               ' Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'anchorValue' Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'.'           Punctuation
+'right'       Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'relative'    Name
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'anchorValue' Name
+'.'           Punctuation
+'horz'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'relButton'   Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'               \n               ' Text
+'button'      Name
+'.'           Punctuation
+'anchor'      Name
+' '           Text
+'='           Operator
+' '           Text
+'Anchor'      Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'right'       Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'relButton'   Name
+'.'           Punctuation
+'anchor'      Name
+' '           Text
+'='           Operator
+' '           Text
+'Anchor'      Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'right'       Name
+' '           Text
+'='           Operator
+' '           Text
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'vert'        Name
+' '           Text
+'='           Operator
+' '           Text
+'16'          Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'case'        Keyword
+' '           Text
+'3'           Literal.Number.Integer
+':'           Operator
+' \n               ' Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'anchorValue' Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'button'      Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'if'          Keyword
+'('           Punctuation
+'anchorValue' Name
+'.'           Punctuation
+'bottom'      Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'relative'    Name
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'anchorValue' Name
+'.'           Punctuation
+'vert'        Name
+'.'           Punctuation
+'type'        Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'middleRelative' Name
+')'           Punctuation
+' '           Text
+'relButton'   Name
+'.'           Punctuation
+'checked'     Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'               ' Text
+'button'      Name
+'.'           Punctuation
+'anchor'      Name
+' '           Text
+'='           Operator
+' '           Text
+'Anchor'      Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'bottom'      Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'relButton'   Name
+'.'           Punctuation
+'anchor'      Name
+' '           Text
+'='           Operator
+' '           Text
+'Anchor'      Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'bottom'      Name
+' '           Text
+'='           Operator
+' '           Text
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'horz'        Name
+' '           Text
+'='           Operator
+' '           Text
+'16'          Literal.Number.Integer
+' '           Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'               ' Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'anchorEditor' Name
+'.'           Punctuation
+'Create'      Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'anchorEditor' Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'      \n   ' Text
+'void'        Keyword.Type
+' '           Text
+'OnCloseDropDown' Name.Function
+'('           Punctuation
+'Window'      Name
+' '           Text
+'anchorEditor' Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'// TOFIX: Patch for update bug\n' Comment.Single
+
+'      '      Text
+'master'      Name
+'.'           Punctuation
+'Update'      Name
+'('           Punctuation
+'null'        Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'anchorEditor' Name
+'.'           Punctuation
+'Destroy'     Name
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'bool'        Keyword.Type
+' '           Text
+'DataBox::NotifyTextEntry' Name.Function
+'('           Punctuation
+'AnchorDropBox' Name
+' '           Text
+'dropBox'     Name
+','           Punctuation
+' '           Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'string'      Name
+','           Punctuation
+' '           Text
+'bool'        Keyword.Type
+' '           Text
+'save'        Name
+')'           Punctuation
+'\n'          Text
+
+'   '         Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'Anchor'      Name
+' '           Text
+'anchor'      Name
+' '           Text
+'='           Operator
+' '           Text
+'dropBox'     Name
+'.'           Punctuation
+'anchorValue' Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'Window'      Name
+' '           Text
+'control'     Name
+' '           Text
+'='           Operator
+' '           Text
+'dropBox'     Name
+'.'           Punctuation
+'control'     Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'save'        Name
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'anchor'      Name
+'.'           Punctuation
+'OnGetDataFromString' Name
+'('           Punctuation
+'string'      Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'         '   Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'SetData'     Name
+'('           Punctuation
+'&'           Operator
+'anchor'      Name
+','           Punctuation
+' '           Text
+'false'       Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'dropBox'     Name
+'.'           Punctuation
+'anchorValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'anchor'      Name
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'else'        Keyword
+'\n'          Text
+
+'      '      Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'char'        Keyword.Type
+' '           Text
+'tempString'  Name
+'['           Punctuation
+'1024'        Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'bool'        Keyword.Type
+' '           Text
+'needClass'   Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'char'        Keyword.Type
+' '           Text
+'*'           Operator
+' '           Text
+'string'      Name
+' '           Text
+'='           Operator
+' '           Text
+'anchor'      Name
+'.'           Punctuation
+'OnGetString' Name
+'('           Punctuation
+'tempString'  Name
+','           Punctuation
+' '           Text
+'null'        Name.Builtin
+','           Punctuation
+' '           Text
+'&'           Operator
+'needClass'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'         '   Text
+'dropBox'     Name
+'.'           Punctuation
+'contents'    Name
+' '           Text
+'='           Operator
+' '           Text
+'string'      Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+' '           Text
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

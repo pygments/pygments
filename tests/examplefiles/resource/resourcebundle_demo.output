@@ -1,0 +1,65 @@
+'root'        Name
+':table'      Keyword
+' '           Text
+'{'           Operator
+'\n  '        Text
+'usage'       Name
+':string'     Keyword
+' '           Text
+'{'           Operator
+' '           Text
+'"'           Literal.String
+'Usage: genrb [Options] files' Literal.String
+'"'           Literal.String
+' '           Text
+'}'           Operator
+'\n  '        Text
+'version'     Name
+':int'        Keyword
+' '           Text
+'{'           Operator
+' '           Text
+'122'         Literal.Number.Integer
+' '           Text
+'}'           Operator
+'\n  '        Text
+'errorcodes'  Name
+':array'      Keyword
+' '           Text
+'{'           Operator
+'\n    '      Text
+':string'     Keyword
+' '           Text
+'{'           Operator
+' '           Text
+'"'           Literal.String
+'Invalid argument' Literal.String
+'"'           Literal.String
+' '           Text
+'}'           Operator
+'\n    '      Text
+':string'     Keyword
+' '           Text
+'{'           Operator
+' '           Text
+'"'           Literal.String
+'File not found' Literal.String
+'"'           Literal.String
+' '           Text
+'}'           Operator
+'\n    '      Text
+':string'     Keyword
+' '           Text
+'{'           Operator
+' '           Text
+'"'           Literal.String
+'\\x00 \\r \\t \\n \\u1234' Literal.String
+'"'           Literal.String
+' '           Text
+'}'           Operator
+'\n  '        Text
+'}'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text

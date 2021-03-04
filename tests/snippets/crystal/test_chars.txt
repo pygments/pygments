@@ -1,0 +1,25 @@
+---input---
+'a'
+'я'
+'\u{1234}'
+'
+'
+'abc'
+
+---tokens---
+"'a'"         Literal.String.Char
+'\n'          Text
+
+"'я'"         Literal.String.Char
+'\n'          Text
+
+"'\\u{1234}'" Literal.String.Char
+'\n'          Text
+
+"'\n'"        Literal.String.Char
+'\n'          Text
+
+"'"           Error
+'abc'         Name
+"'"           Error
+'\n'          Text

@@ -1,0 +1,8 @@
+---input---
+a=$'abc\''
+
+---tokens---
+'a'           Name.Variable
+'='           Operator
+"$'abc\\''"   Literal.String.Single
+'\n'          Text

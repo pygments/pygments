@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.styles.stata_dark
     ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -7,7 +6,7 @@
     meant to be a complete style, just for Stata's file formats.
 
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.other
     ~~~~~~~~~~~~~~~~~~~~~
 
     Just export lexer classes previously contained in this module.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

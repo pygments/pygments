@@ -1,0 +1,174 @@
+---input---
+double foo = 8.0
+
+custom double foo = 8.0
+
+uniform double foo = 8.0
+
+custom uniform double foo = 8.0
+
+custom double foo_underscore_name = 8.0
+
+double[] foo_underscore_name = [10.1, 12.0, 13]
+
+double[] primvar:foo_thing = [10.1, 12.0, 13]
+
+custom int[] foo = [8, 10, 14]
+
+custom int[] foo.timeSamples = {
+    1: [8, 0, 14],
+    2: [-8, 0, 14],
+}
+
+---tokens---
+'double'      Keyword.Type
+' '           Text.Whitespace
+'foo'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'8.0'         Literal.Number
+'\n\n'        Text.Whitespace
+
+'custom'      Keyword.Token
+' '           Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'foo'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'8.0'         Literal.Number
+'\n\n'        Text.Whitespace
+
+'uniform'     Keyword.Token
+' '           Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'foo'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'8.0'         Literal.Number
+'\n\n'        Text.Whitespace
+
+'custom'      Keyword.Token
+' '           Text.Whitespace
+'uniform'     Keyword.Token
+' '           Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'foo'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'8.0'         Literal.Number
+'\n\n'        Text.Whitespace
+
+'custom'      Keyword.Token
+' '           Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'foo_underscore_name' Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'8.0'         Literal.Number
+'\n\n'        Text.Whitespace
+
+'double[]'    Keyword.Type
+' '           Text.Whitespace
+'foo_underscore_name' Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'10.1'        Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'12.0'        Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'13'          Literal.Number
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'double[]'    Keyword.Type
+' '           Text.Whitespace
+'primvar:foo_thing' Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'10.1'        Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'12.0'        Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'13'          Literal.Number
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'custom'      Keyword.Token
+' '           Text.Whitespace
+'int[]'       Keyword.Type
+' '           Text.Whitespace
+'foo'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'8'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'14'          Literal.Number
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'custom'      Keyword.Token
+' '           Text.Whitespace
+'int[]'       Keyword.Type
+' '           Text.Whitespace
+'foo'         Name.Attribute
+'.'           Text
+'timeSamples' Name.Keyword.Tokens
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'1'           Literal.Number
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'8'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'14'          Literal.Number
+']'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'2'           Literal.Number
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'-8'          Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'14'          Literal.Number
+']'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

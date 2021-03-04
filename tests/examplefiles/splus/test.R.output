@@ -1,0 +1,1088 @@
+'#!/usr/bin/env Rscript' Comment.Single
+'\n'          Text
+
+'### Example R script for syntax highlighting' Comment.Single
+'\n\n'        Text
+
+'# This is also a comment' Comment.Single
+'\n\n'        Text
+
+'## Valid names' Comment.Single
+'\n'          Text
+
+'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUV0123456789._a' Name
+' '           Text
+'<-'          Operator
+' '           Text
+'NULL'        Keyword.Constant
+'\n'          Text
+
+'.foo_'       Name
+' '           Text
+'<-'          Operator
+' '           Text
+'NULL'        Keyword.Constant
+'\n'          Text
+
+'._foo'       Name
+' '           Text
+'<-'          Operator
+' '           Text
+'NULL'        Keyword.Constant
+'\n\n'        Text
+
+'## Invalid names' Comment.Single
+'\n'          Text
+
+'0'           Literal.Number
+'abc'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'NULL'        Keyword.Constant
+'\n'          Text
+
+'.'           Name
+'0'           Literal.Number
+'abc'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'NULL'        Keyword.Constant
+'\n'          Text
+
+'abc'         Name
+'+'           Operator
+'cde'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'NULL'        Keyword.Constant
+'\n\n'        Text
+
+'## Reserved Words' Comment.Single
+'\n'          Text
+
+'NA'          Keyword.Constant
+'\n'          Text
+
+'NA_integer_' Keyword.Constant
+'\n'          Text
+
+'NA_real_'    Keyword.Constant
+'\n'          Text
+
+'NA_character_' Keyword.Constant
+'\n'          Text
+
+'NA_complex_' Keyword.Constant
+'\n'          Text
+
+'NULL'        Keyword.Constant
+'\n'          Text
+
+'NaN'         Keyword.Constant
+'\n'          Text
+
+'Inf'         Keyword.Constant
+'\n'          Text
+
+'## Not reserved' Comment.Single
+'\n'          Text
+
+'NULLa'       Name
+' '           Text
+'<-'          Operator
+' '           Text
+'NULL'        Keyword.Constant
+'\n'          Text
+
+'NULL1'       Name
+' '           Text
+'<-'          Operator
+' '           Text
+'NULL'        Keyword.Constant
+'\n'          Text
+
+'NULL.'       Name
+' '           Text
+'<-'          Operator
+' '           Text
+'NULL'        Keyword.Constant
+'\n'          Text
+
+'NA_foo_'     Name
+' '           Text
+'<-'          Operator
+' '           Text
+'NULL'        Keyword.Constant
+'\n\n'        Text
+
+'## Numbers'  Comment.Single
+'\n'          Text
+
+'12345678901' Literal.Number
+'\n'          Text
+
+'123456.78901' Literal.Number
+'\n'          Text
+
+'123e3'       Literal.Number
+'\n'          Text
+
+'123E3'       Literal.Number
+'\n'          Text
+
+'6.02e23'     Literal.Number
+'\t\n'        Text
+
+'1.6e-35'     Literal.Number
+'\t\n'        Text
+
+'1'           Literal.Number
+'.E12'        Name
+'\n'          Text
+
+'.'           Name
+'1234'        Literal.Number
+'\n'          Text
+
+'## integers' Comment.Single
+'\n'          Text
+
+'123L'        Literal.Number
+'\n'          Text
+
+'1.23L'       Literal.Number
+'\n'          Text
+
+'## imaginary numbers' Comment.Single
+'\n'          Text
+
+'123i'        Literal.Number
+'\n'          Text
+
+'-123i'       Literal.Number
+'\n'          Text
+
+'123e4i'      Literal.Number
+'\n'          Text
+
+'123e-4i'     Literal.Number
+'\n'          Text
+
+'## Hex numbers' Comment.Single
+'\n'          Text
+
+'0xabcdefABCDEF01234' Literal.Number.Hex
+'\n'          Text
+
+'0xabcp123'   Literal.Number.Hex
+'\n'          Text
+
+'0xabcP123'   Literal.Number.Hex
+'\n'          Text
+
+'## Not hex'  Comment.Single
+'\n'          Text
+
+'0'           Literal.Number
+'xg'          Name
+'\n\n'        Text
+
+'## Special operators %xyz%' Comment.Single
+'\n'          Text
+
+'## %xyz%'    Comment.Single
+'\n'          Text
+
+'1'           Literal.Number
+' '           Text
+'%%'          Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'diag'        Name.Function
+'('           Punctuation
+'2'           Literal.Number
+')'           Punctuation
+' '           Text
+'%*%'         Operator
+' '           Text
+'diag'        Name.Function
+'('           Punctuation
+'2'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'1'           Literal.Number
+' '           Text
+'%/%'         Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'1'           Literal.Number
+' '           Text
+'%in%'        Operator
+' '           Text
+'1'           Literal.Number
+':'           Operator
+'10'          Literal.Number
+'\n'          Text
+
+'diag'        Name.Function
+'('           Punctuation
+'2'           Literal.Number
+')'           Punctuation
+' '           Text
+'%o%'         Operator
+' '           Text
+'diag'        Name.Function
+'('           Punctuation
+'2'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'diag'        Name.Function
+'('           Punctuation
+'2'           Literal.Number
+')'           Punctuation
+' '           Text
+'%x%'         Operator
+' '           Text
+'diag'        Name.Function
+'('           Punctuation
+'2'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'`%foo bar%`' Name
+' '           Text
+'<-'          Operator
+' '           Text
+'function'    Name.Function
+'('           Punctuation
+'x'           Name
+','           Punctuation
+' '           Text
+'y'           Name
+')'           Punctuation
+' '           Text
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'y'           Name
+'\n'          Text
+
+'1'           Literal.Number
+' '           Text
+'%foo bar%'   Operator
+' '           Text
+'2'           Literal.Number
+'\n\n'        Text
+
+'## Control Structures (3.2) and Function' Comment.Single
+'\n'          Text
+
+'## if, else' Comment.Single
+'\n'          Text
+
+'if '         Name.Function
+'('           Punctuation
+'TRUE'        Keyword.Constant
+')'           Punctuation
+' '           Text
+'print'       Name.Function
+'('           Punctuation
+'"'           Literal.String
+'foo"'        Literal.String
+')'           Punctuation
+' '           Text
+'else'        Name
+' '           Text
+'print'       Name.Function
+'('           Punctuation
+'"'           Literal.String
+'bar"'        Literal.String
+')'           Punctuation
+'\n'          Text
+
+'## For, in'  Comment.Single
+'\n'          Text
+
+'for'         Name.Function
+'('           Punctuation
+'i'           Name
+' '           Text
+'in'          Name
+' '           Text
+'1'           Literal.Number
+':'           Operator
+'5'           Literal.Number
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'print'       Name.Function
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'## While, break' Comment.Single
+'\n'          Text
+
+'i'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'1'           Literal.Number
+'\n'          Text
+
+'while '      Name.Function
+'('           Punctuation
+'TRUE'        Keyword.Constant
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'i'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'i'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number
+'\n    '      Text
+'if '         Name.Function
+'('           Punctuation
+'i'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'3'           Literal.Number
+')'           Punctuation
+' '           Text
+'break'       Name
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'## Repeat'   Comment.Single
+'\n'          Text
+
+'repeat'      Name
+' '           Text
+'{'           Punctuation
+'1'           Literal.Number
+'+1'          Literal.Number
+'}'           Punctuation
+'\n'          Text
+
+'## Switch'   Comment.Single
+'\n'          Text
+
+'x'           Name
+' '           Text
+'<-'          Operator
+' '           Text
+'3'           Literal.Number
+'\n'          Text
+
+'switch'      Name.Function
+'('           Punctuation
+'x'           Name
+','           Punctuation
+' '           Text
+'2'           Literal.Number
+'+2'          Literal.Number
+','           Punctuation
+' '           Text
+'mean'        Name.Function
+'('           Punctuation
+'1'           Literal.Number
+':'           Operator
+'10'          Literal.Number
+')'           Punctuation
+','           Punctuation
+' '           Text
+'rnorm'       Name.Function
+'('           Punctuation
+'5'           Literal.Number
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'## Function, dot-dot-dot, return, sum' Comment.Single
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'function'    Name.Function
+'('           Punctuation
+'...'         Keyword.Constant
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'return'      Name.Function
+'('           Punctuation
+'sum'         Name.Function
+'('           Punctuation
+'...'         Keyword.Constant
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'# Not keywords' Comment.Single
+'\n'          Text
+
+'functiona'   Name
+' '           Text
+'<-'          Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'function.'   Name
+' '           Text
+'<-'          Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'function1'   Name
+' '           Text
+'<-'          Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+'\n\n\n'      Text
+
+'## Grouping Tokens 10.3.7' Comment.Single
+'\n'          Text
+
+'## Parentheses' Comment.Single
+'\n'          Text
+
+'1'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'3'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'## brackets' Comment.Single
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'function'    Name.Function
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'a'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'## Indexing 10.3.8' Comment.Single
+'\n'          Text
+
+'## []'       Comment.Single
+'\n'          Text
+
+'bar'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'1'           Literal.Number
+':'           Operator
+'10'          Literal.Number
+'\n'          Text
+
+'bar'         Name
+'['           Punctuation
+'3'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'## [[]]'     Comment.Single
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'list'        Name.Function
+'('           Punctuation
+'a'           Name
+'='           Operator
+'1'           Literal.Number
+','           Punctuation
+' '           Text
+'b'           Name
+'='           Operator
+'2'           Literal.Number
+','           Punctuation
+' '           Text
+'c'           Name
+'='           Operator
+'3'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'foo'         Name
+'[['          Punctuation
+'"'           Literal.String
+'a"'          Literal.String
+']]'          Punctuation
+'\n'          Text
+
+'## $'        Comment.Single
+'\n'          Text
+
+'foo'         Name
+'$'           Operator
+'a'           Name
+'\n'          Text
+
+'foo'         Name
+'$'           Operator
+'"'           Literal.String
+'a"'          Literal.String
+'\n\n'        Text
+
+'## Operators' Comment.Single
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'-'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'~'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'!'           Operator
+' '           Text
+'TRUE'        Keyword.Constant
+'\n'          Text
+
+'?'           Operator
+'"'           Literal.String
+'help"'       Literal.String
+'\n'          Text
+
+'1'           Literal.Number
+':'           Operator
+'2'           Literal.Number
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'*'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'2'           Literal.Number
+'^'           Operator
+'2'           Literal.Number
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'<'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'>'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'=='          Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'>='          Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'<='          Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'!='          Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'TRUE'        Keyword.Constant
+' '           Text
+'&'           Operator
+' '           Text
+'FALSE'       Keyword.Constant
+'\n'          Text
+
+'TRUE'        Keyword.Constant
+' '           Text
+'&&'          Operator
+' '           Text
+'FALSE'       Keyword.Constant
+'\n'          Text
+
+'TRUE'        Keyword.Constant
+' '           Text
+'|'           Operator
+' '           Text
+'FALSE'       Keyword.Constant
+'\n'          Text
+
+'TRUE'        Keyword.Constant
+' '           Text
+'||'          Operator
+' '           Text
+'FALSE'       Keyword.Constant
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'->'          Operator
+' '           Text
+'foo'         Name
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'<<-'         Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'->>'         Operator
+' '           Text
+'foo'         Name
+'\n'          Text
+
+'base'        Name
+':::'         Operator
+'sum'         Name
+'\n'          Text
+
+'base'        Name
+'::'          Operator
+'sum'         Name
+'\n\n'        Text
+
+'## Strings'  Comment.Single
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'"'           Literal.String
+'hello, world!"' Literal.String
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+"'"           Literal.String
+"hello, world!'" Literal.String
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'"'           Literal.String
+'Hello, \'world!"' Literal.String
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+"'"           Literal.String
+'Hello, "world!\'' Literal.String
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+"'"           Literal.String
+"Hello, \\'world!\\''" Literal.String
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'"'           Literal.String
+'Hello, \\"world!\\""' Literal.String
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+'"'           Literal.String
+'Hello,\nworld!"' Literal.String
+'\n'          Text
+
+'foo'         Name
+' '           Text
+'<-'          Operator
+' '           Text
+"'"           Literal.String
+"Hello,\nworld!'" Literal.String
+'\n\n'        Text
+
+'## Backtick strings' Comment.Single
+'\n'          Text
+
+'`foo123 +!"bar\'baz`' Name
+' '           Text
+'<-'          Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+'\n\n'        Text
+
+'## Builtin funcitons' Comment.Single
+'\n'          Text
+
+'file.create' Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'gamma'       Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'grep'        Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'paste'       Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'rbind'       Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'rownames'    Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'R.Version'   Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'R.version.string' Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'sample'      Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'sapply'      Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'save.image'  Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'seq'         Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'setwd'       Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'sin'         Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'## Data structures' Comment.Single
+'\n'          Text
+
+'servo'       Name
+' '           Text
+'<-'          Operator
+' '           Text
+'matrix'      Name.Function
+'('           Punctuation
+'1'           Literal.Number
+':'           Operator
+'25'          Literal.Number
+','           Punctuation
+' '           Text
+'nrow'        Name
+' '           Text
+'='           Operator
+' '           Text
+'5'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'numeric'     Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'vector'      Name.Function
+'('           Punctuation
+'servo'       Name
+')'           Punctuation
+'\n'          Text
+
+'data.frame'  Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'list1'       Name
+' '           Text
+'<-'          Operator
+' '           Text
+'list'        Name.Function
+'('           Punctuation
+'time'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number
+':'           Operator
+'40'          Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'# multidimensional array ' Comment.Single
+'\n'          Text
+
+'array'       Name.Function
+'('           Punctuation
+'c'           Name.Function
+'('           Punctuation
+'c'           Name.Function
+'('           Punctuation
+'c'           Name.Function
+'('           Punctuation
+'2'           Literal.Number
+','           Punctuation
+'300'         Literal.Number
+','           Punctuation
+'4'           Literal.Number
+')'           Punctuation
+','           Punctuation
+'c'           Name.Function
+'('           Punctuation
+'8'           Literal.Number
+','           Punctuation
+'9'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'c'           Name.Function
+'('           Punctuation
+'c'           Name.Function
+'('           Punctuation
+'5'           Literal.Number
+','           Punctuation
+'60'          Literal.Number
+','           Punctuation
+'0'           Literal.Number
+')'           Punctuation
+','           Punctuation
+'c'           Name.Function
+'('           Punctuation
+'66'          Literal.Number
+','           Punctuation
+'7'           Literal.Number
+','           Punctuation
+'847'         Literal.Number
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'dim'         Name
+'='           Operator
+'c'           Name.Function
+'('           Punctuation
+'3'           Literal.Number
+','           Punctuation
+'2'           Literal.Number
+','           Punctuation
+'2'           Literal.Number
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'## Namespace' Comment.Single
+'\n'          Text
+
+'library'     Name.Function
+'('           Punctuation
+'ggplot2'     Name
+')'           Punctuation
+'\n'          Text
+
+'require'     Name.Function
+'('           Punctuation
+'plyr'        Name
+')'           Punctuation
+'\n'          Text
+
+'attach'      Name.Function
+'('           Punctuation
+'cars'        Name
+')'           Punctuation
+'\n'          Text
+
+'source'      Name.Function
+'('           Punctuation
+'"'           Literal.String
+'test.R"'     Literal.String
+')'           Punctuation
+'\n'          Text

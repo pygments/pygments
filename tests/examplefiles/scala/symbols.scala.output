@@ -1,0 +1,41 @@
+'// Symbols:\n' Comment.Single
+
+"'*"          Literal.String.Symbol
+' '           Text
+'//test\n'    Comment.Single
+
+"'*"          Literal.String.Symbol
+'\n'          Text
+
+"'symbol_*"   Literal.String.Symbol
+'\n'          Text
+
+"'symbol1"    Literal.String.Symbol
+' '           Text
+"//'\n"       Comment.Single
+
+"'ξφδ"        Literal.String.Symbol
+'\n'          Text
+
+"'φδφ0"       Literal.String.Symbol
+'\n'          Text
+
+"'δφξφξ_+-"   Literal.String.Symbol
+'\n'          Text
+
+"'***"        Literal.String.Symbol
+'\n\n'        Text
+
+'// Not (just) symbols:\n' Comment.Single
+
+"'symbol"     Literal.String.Symbol
+'*'           Operator
+'\n'          Text
+
+"'**"         Literal.String.Symbol
+'_x'          Name
+' '           Text
+"//'\n"       Comment.Single
+
+"'x'"         Literal.String.Char
+'\n'          Text

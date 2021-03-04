@@ -1,0 +1,18 @@
+---input---
+def < (y: String): Boolean
+
+---tokens---
+'def'         Keyword
+' '           Text
+'<'           Name.Function
+' '           Text
+'('           Punctuation
+'y'           Name
+':'           Punctuation
+' '           Text
+'String'      Name.Class
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'Boolean'     Name.Class
+'\n'          Text

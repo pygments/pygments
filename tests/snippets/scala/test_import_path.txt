@@ -1,0 +1,12 @@
+---input---
+import a.b.c
+
+---tokens---
+'import'      Keyword
+' '           Text
+'a'           Name.Namespace
+'.'           Punctuation
+'b'           Name.Namespace
+'.'           Punctuation
+'c'           Name
+'\n'          Text

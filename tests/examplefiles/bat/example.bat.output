@@ -1,0 +1,2028 @@
+'@'           Punctuation
+' '           Text
+'@@'          Punctuation
+' '           Text
+'echo'        Keyword
+' '           Text
+'off'         Text
+''            Text
+'\n'          Text
+
+''            Text
+':'           Punctuation
+':This is an example of the Windows batch language.' Comment.Single
+''            Text
+'\n\n'        Text
+
+'setlocal'    Keyword
+' '           Text
+'EnableDelayedExpansion' Text
+''            Text
+'\n'          Text
+
+'('           Punctuation
+'cls'         Keyword
+''            Text
+')'           Punctuation
+'\n'          Text
+
+'set'         Keyword
+'/a'          Keyword
+'^\n_'        Literal.String.Escape
+'te'          Name.Variable
+'^\ns'        Literal.String.Escape
+'ts'          Name.Variable
+'^\n='        Literal.String.Escape
+'0'           Name.Variable
+','           Punctuation
+'^\n_'        Literal.String.Escape
+'"'           Literal.String.Double
+'pa'          Literal.String.Double
+'"'           Literal.String.Double
+'^\ns'        Literal.String.Escape
+'sed'         Name.Variable
+'='           Operator
+'0'           Literal.Number.Integer
+'^\n0'        Literal.String.Escape
+''            Text
+'\n'          Text
+
+'set'         Keyword
+',/a title'   Name.Variable
+'='           Punctuation
+' '           Text
+'Batch'       Text
+' '           Text
+'test'        Text
+''            Text
+'\n'          Text
+
+'title'       Keyword
+'='           Text
+'%,/a title%' Name.Variable
+''            Text
+'\n'          Text
+
+'echo'        Keyword
+'^ '          Literal.String.Escape
+'%~nx0'       Name.Variable
+','           Text
+'^ '          Literal.String.Escape
+'the'         Text
+'>'           Punctuation
+','           Text
+'con'         Text
+' '           Text
+'comprehensive' Text
+' '           Text
+'testing'     Text
+' '           Text
+'suite'       Text
+''            Text
+'\n'          Text
+
+'ver'         Keyword
+''            Text
+'\n'          Text
+
+'echo'        Keyword
+'('           Text
+''            Text
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+'cmdextversion' Keyword
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'goto'        Keyword
+' '           Text
+'='           Text
+')'           Name.Label
+'\n'          Text
+
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'fail'        Name.Label
+'\n\n'        Text
+
+''            Text
+'     '       Text
+':'           Punctuation
+')'           Name.Label
+''            Text
+'\n'          Text
+
+'echo'        Keyword
+' '           Text
+'Starting'    Text
+' '           Text
+'tests'       Text
+' '           Text
+'at:'         Text
+''            Text
+'\n'          Text
+
+'date'        Keyword
+'/t'          Text
+' '           Text
+'&'           Punctuation
+' '           Text
+'time'        Keyword
+'/t'          Text
+''            Text
+'\n'          Text
+
+'echo'        Keyword
+'('           Text
+''            Text
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+"'"           Text
+'%*'          Name.Variable
+"'"           Text
+'=='          Operator
+"'--help'"    Text
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'echo'        Keyword
+' '           Text
+'Usage:'      Text
+' '           Text
+'%~nx0'       Name.Variable
+' '           Text
+'[--help]'    Text
+''            Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'echo'        Keyword
+' '           Text
+' '           Text
+' '           Text
+'--help:'     Text
+' '           Text
+'Display'     Text
+' '           Text
+'this'        Text
+' '           Text
+'help'        Text
+' '           Text
+'message'     Text
+' '           Text
+'and'         Text
+' '           Text
+'quit.'       Text
+''            Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'shift'       Keyword
+''            Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'exit'        Name.Label
+' comment'    Comment.Single
+')'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'rem'         Comment.Single
+''            Text
+'\n\n'        Text
+
+'('           Punctuation
+'call'        Keyword
+' '           Text
+':'           Punctuation
+'comments'    Name.Label
+')'           Punctuation
+'\n'          Text
+
+'call'        Keyword
+' '           Text
+':'           Punctuation
+':'           Punctuation
+'io'          Name.Label
+'+x'          Text
+''            Text
+'\n'          Text
+
+'call'        Keyword
+':'           Punctuation
+'control'     Name.Label
+':x'          Text
+''            Text
+'\n'          Text
+
+'call'        Keyword
+':'           Punctuation
+':'           Punctuation
+'internal'    Name.Label
+' '           Text
+'x'           Text
+''            Text
+'\n\n'        Text
+
+''            Text
+':'           Punctuation
+'exit'        Name.Label
+''            Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'/i'          Keyword
+' '           Text
+'!_tests!'    Name.Variable
+'=='          Operator
+'!_passed!'   Name.Variable
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'color'       Keyword
+' '           Text
+'0'           Text
+'2'           Text
+''            Text
+'\n'          Text
+
+')'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'!*'          Text
+'=='          Operator
+'*'           Text
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'color'       Keyword
+' '           Text
+'c'           Text
+''            Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'defined'     Keyword
+' '           Text
+'_exit'       Name.Variable
+'^\nC'        Literal.String.Escape
+'ode'         Name.Variable
+' '           Text
+'set'         Keyword
+' '           Text
+'_exit'       Name.Variable
+'^\nC'        Literal.String.Escape
+'ode'         Name.Variable
+'='           Punctuation
+'1'           Text
+''            Text
+'\n'          Text
+
+')'           Punctuation
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'_percentage' Name.Variable
+'='           Punctuation
+'NaN'         Text
+''            Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'defined'     Keyword
+' '           Text
+'_tests'      Name.Variable
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'!_tests!'    Name.Variable
+' '           Text
+'neq'         Operator.Word
+' '           Text
+'0'           Text
+' '           Text
+'('           Punctuation
+'set'         Keyword
+'/a'          Keyword
+'_percentage' Name.Variable
+'='           Operator
+'100'         Literal.Number.Integer
+'*'           Operator
+'_passed'     Name.Variable
+'/'           Operator
+'_tests'      Name.Variable
+''            Text
+')'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n'          Text
+
+'echo'        Keyword
+'('           Text
+''            Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'!_percentage!' Name.Variable
+'=='          Operator
+'NaN'         Text
+' '           Text
+'('           Punctuation
+' '           Text
+'echo'        Keyword
+'(There'      Text
+' '           Text
+'were'        Text
+' '           Text
+'no'          Text
+' '           Text
+'tests'       Text
+'^^!'         Literal.String.Escape
+' '           Text
+'&'           Punctuation
+' '           Text
+'color'       Keyword
+' '           Text
+'e'           Text
+''            Text
+'\n'          Text
+
+')'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'echo'        Keyword
+' '           Text
+'Tests'       Text
+' '           Text
+'passed:'     Text
+' '           Text
+'%_passed%'   Name.Variable
+'/'           Text
+'%_tests%'    Name.Variable
+' '           Text
+'('           Text
+'%_percentage%' Name.Variable
+'%%'          Literal.String.Escape
+'^)'          Literal.String.Escape
+' '           Text
+''            Text
+')'           Punctuation
+'\n'          Text
+
+'pause'       Keyword
+''            Text
+'\n'          Text
+
+'color'       Keyword
+''            Text
+'\n'          Text
+
+'title'       Keyword
+''            Text
+'\n'          Text
+
+'endlocal'    Keyword
+''            Text
+'\n'          Text
+
+'exit'        Keyword
+' '           Text
+'/b'          Text
+' '           Text
+'%_exitCode%' Name.Variable
+''            Text
+'\n\n'        Text
+
+''            Text
+'x'           Text
+':'           Punctuation
+'fail'        Name.Label
+''            Text
+'\n'          Text
+
+'rem This should never happen.' Comment.Single
+''            Text
+'\n'          Text
+
+'echo'        Keyword
+' '           Text
+'Internal'    Text
+' '           Text
+'error'       Text
+' '           Text
+'1'           Literal.Number.Integer
+'>&'          Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+'6'           Text
+'9'           Text
+'1'           Text
+'0'           Text
+'5'           Text
+'>>&'         Punctuation
+'2'           Literal.Number.Integer
+''            Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'/a'          Keyword
+' '           Text
+'_exitCode'   Name.Variable
+'='           Operator
+'0x69'        Literal.Number.Hex
+'+'           Operator
+'('           Punctuation
+'0105'        Literal.Number.Oct
+'*'           Operator
+'1000'        Literal.Number.Integer
+')'           Punctuation
+''            Text
+'\n'          Text
+
+'break'       Keyword
+''            Text
+'\n'          Text
+
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'exit'        Name.Label
+'\n\n'        Text
+
+''            Text
+':'           Punctuation
+'comments'    Name.Label
+''            Text
+'\n'          Text
+
+'('           Punctuation
+'rem )/?'     Comment.Single
+''            Text
+'\n'          Text
+
+')'           Punctuation
+'\n'          Text
+
+'rem "comment^' Comment.Single
+''            Text
+'\n'          Text
+
+'('           Punctuation
+'rem.'        Comment.Single
+''            Text
+')'           Punctuation
+' '           Text
+'&'           Punctuation
+' '           Text
+'set'         Keyword
+' '           Text
+'/a'          Keyword
+' '           Text
+'_tests'      Name.Variable
+'+='          Operator
+'1'           Literal.Number.Integer
+''            Text
+'\n'          Text
+
+'('           Punctuation
+'rem) & goto :fail' Comment.Single
+''            Text
+'\n'          Text
+
+'('           Punctuation
+'rem. '       Comment.Single
+''            Text
+')'           Punctuation
+' '           Text
+'&'           Punctuation
+' '           Text
+'('           Punctuation
+'rem. comment ' Comment.Single
+''            Text
+')'           Punctuation
+' '           Text
+'&'           Punctuation
+' '           Text
+'echo'        Keyword
+' '           Text
+'Test'        Text
+' '           Text
+'%_tests%'    Name.Variable
+':'           Text
+' '           Text
+'Comments'    Text
+''            Text
+'\n'          Text
+
+'rem )'       Comment.Single
+''            Text
+'\n'          Text
+
+')'           Punctuation
+'\n'          Text
+
+')|comment'   Comment.Single
+'\n'          Text
+
+')('          Comment.Single
+'\n'          Text
+
+''            Text
+':'           Punctuation
+': comment'   Comment.Single
+''            Text
+'\n'          Text
+
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'comments^^1' Name.Label
+':comment'    Comment.Single
+'\n'          Text
+
+''            Text
+':'           Punctuation
+'comments^^1' Name.Label
+' comment'    Comment.Single
+''            Text
+'\n'          Text
+
+'if'          Keyword
+'('           Text
+'1'           Text
+'=='          Operator
+'1'           Text
+')'           Text
+' '           Text
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'comments^\n^1' Name.Label
+'\n'          Text
+
+'rem^ /?'     Comment.Single
+''            Text
+'\n'          Text
+
+'rem ^\n^'    Comment.Single
+''            Text
+'\n'          Text
+
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'comments^\n2' Name.Label
+'+comment'    Comment.Single
+'\n'          Text
+
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'fail'        Name.Label
+'\n'          Text
+
+''            Text
+':'           Punctuation
+'comments2'   Name.Label
+''            Text
+'\n'          Text
+
+'rem >^'      Comment.Single
+''            Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'1'           Text
+'=='          Operator
+'1'           Text
+' '           Text
+'('           Punctuation
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'comments3'   Name.Label
+')'           Punctuation
+'\n'          Text
+
+''            Text
+':'           Punctuation
+'comments3)'  Name.Label
+''            Text
+'\n'          Text
+
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'fail'        Name.Label
+'\n'          Text
+
+''            Text
+':'           Punctuation
+'comments3'   Name.Label
+''            Text
+'\n'          Text
+
+'rem comment^\ngoto:fail' Comment.Single
+''            Text
+'\n'          Text
+
+'rem.comment comment^\ngoto fail' Comment.Single
+''            Text
+'\n'          Text
+
+'rem "comment comment"^\ngoto fail' Comment.Single
+''            Text
+'\n'          Text
+
+'rem comment comment^' Comment.Single
+''            Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'"'           Literal.String.Double
+'1==1'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'equ'         Operator.Word
+' '           Text
+'"'           Literal.String.Double
+'1==1'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'goto'        Keyword
+' '           Text
+'comments4'   Name.Label
+'\n'          Text
+
+'goto'        Keyword
+' '           Text
+'fail'        Name.Label
+'\n'          Text
+
+''            Text
+':'           Punctuation
+'comments4'   Name.Label
+''            Text
+'\n'          Text
+
+'rem comment"comment^' Comment.Single
+''            Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'/a'          Keyword
+' '           Text
+'_passed'     Name.Variable
+'+='          Operator
+'1'           Literal.Number.Integer
+''            Text
+'\n'          Text
+
+'GOTO'        Keyword
+' '           Text
+':'           Punctuation
+'EOF'         Name.Label
+'\n'          Text
+
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'fail'        Name.Label
+'\n\n'        Text
+
+''            Text
+':'           Punctuation
+'IO'          Name.Label
+''            Text
+'\n'          Text
+
+'SET'         Keyword
+' '           Text
+'/A'          Keyword
+' '           Text
+'_tests'      Name.Variable
+'+='          Operator
+'1'           Literal.Number.Integer
+' '           Text
+''            Text
+'&'           Punctuation
+' '           Text
+'Echo'        Keyword
+' '           Text
+'Test'        Text
+' '           Text
+'!_tests:*!==^!' Name.Variable
+':'           Text
+' '           Text
+'I/O'         Text
+''            Text
+'\n'          Text
+
+'verify'      Keyword
+' '           Text
+'on'          Text
+''            Text
+'\n'          Text
+
+'pushd'       Keyword
+' '           Text
+'.'           Text
+''            Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'exist'       Keyword
+' '           Text
+'temp'        Text
+' '           Text
+'echo'        Keyword
+' '           Text
+' '           Text
+'temp'        Text
+' '           Text
+'already'     Text
+' '           Text
+'exists.'     Text
+' '           Text
+'&'           Punctuation
+' '           Text
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'eof'         Name.Label
+'\n'          Text
+
+'md'          Keyword
+' '           Text
+'temp'        Text
+''            Text
+'\n'          Text
+
+'cd'          Keyword
+' '           Text
+'temp'        Text
+''            Text
+'\n'          Text
+
+'mkdir'       Keyword
+' '           Text
+'2'           Literal.Number.Integer
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'temp'        Text
+''            Text
+'\n'          Text
+
+'chdir'       Keyword
+' '           Text
+'temp'        Text
+''            Text
+'\n'          Text
+
+'>'           Punctuation
+'cd'          Text
+' '           Text
+' '           Text
+'echo'        Keyword
+' '           Text
+'Checking'    Text
+' '           Text
+'drive...'    Text
+''            Text
+'\n'          Text
+
+'>>'          Punctuation
+'cd'          Text
+' '           Text
+'echo'        Keyword
+' '           Text
+'must'        Text
+' '           Text
+'be'          Text
+' '           Text
+'C'           Text
+' '           Text
+'or'          Text
+' '           Text
+'else'        Text
+' '           Text
+'this'        Text
+' '           Text
+"won't"       Text
+' '           Text
+'work'        Text
+''            Text
+'\n'          Text
+
+'for'         Keyword
+' '           Text
+'/f'          Keyword
+' '           Text
+'"'           Literal.String.Double
+'tokens=* usebackq' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'%%'          Literal.String.Escape
+'G'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'('           Punctuation
+'"'           Literal.String.Double
+'cd'          Literal.String.Double
+'\n'          Text
+
+')'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'('           Punctuation
+'<'           Punctuation
+'nul'         Text
+' '           Text
+'set'         Keyword
+' '           Text
+'/p'          Keyword
+'='           Punctuation
+'"'           Literal.String.Double
+'%%'          Literal.String.Escape
+'G '          Literal.String.Double
+'"'           Literal.String.Double
+''            Text
+')'           Punctuation
+'\n'          Text
+
+'echo'        Keyword
+'('           Text
+''            Text
+'\n'          Text
+
+'DEL'         Keyword
+' '           Text
+'cd'          Text
+''            Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'"'           Literal.String.Double
+'%cd:~0,3%'   Name.Variable
+'"'           Literal.String.Double
+'=='          Operator
+'"'           Literal.String.Double
+'C:\\'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'call'        Keyword
+' '           Text
+'call'        Keyword
+' '           Text
+'echo'        Keyword
+' '           Text
+' '           Text
+'Wrong'       Text
+' '           Text
+'drive'       Text
+' '           Text
+'(should'     Text
+' '           Text
+'be'          Text
+' '           Text
+'C'           Text
+'^)'          Literal.String.Escape
+':'           Text
+''            Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'vol'         Keyword
+''            Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'test'        Name.Label
+')'           Punctuation
+'\n'          Text
+
+'>'           Punctuation
+'test'        Text
+'0'           Text
+'^\n.'        Literal.String.Escape
+'bat'         Text
+' '           Text
+'echo'        Keyword
+' '           Text
+'rem'         Text
+' '           Text
+'Machine-generated' Text
+';'           Text
+' '           Text
+'do'          Text
+' '           Text
+'not'         Text
+' '           Text
+'edit'        Text
+''            Text
+'\n'          Text
+
+'call'        Keyword
+' '           Text
+'echo'        Keyword
+' '           Text
+'set'         Text
+' '           Text
+'/a'          Text
+' '           Text
+'_passed+'    Text
+'='           Text
+'1'           Text
+' '           Text
+'>>'          Punctuation
+'test'        Text
+'0'           Text
+'.bat'        Text
+''            Text
+'\n'          Text
+
+'type'        Keyword
+' '           Text
+'test'        Text
+'0'           Text
+'.bat'        Text
+' '           Text
+'>'           Punctuation
+'"'           Literal.String.Double
+'test 1.bat'  Literal.String.Double
+''            Text
+'\n'          Text
+
+'ren'         Keyword
+' '           Text
+'"'           Literal.String.Double
+'test 1.bat'  Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'test'        Text
+'2'           Text
+'.bat'        Text
+''            Text
+'\n'          Text
+
+'rename'      Keyword
+' '           Text
+'test'        Text
+'2'           Text
+'.bat'        Text
+' '           Text
+'test.bat'    Text
+''            Text
+'\n'          Text
+
+'caLL'        Keyword
+' '           Text
+'^\nC'        Literal.String.Escape
+':'           Punctuation
+'test'        Name.Label
+''            Text
+'\n'          Text
+
+'del'         Keyword
+' '           Text
+'test.bat'    Text
+' '           Text
+'2'           Literal.Number.Integer
+'>'           Punctuation
+'nul'         Text
+''            Text
+'\n'          Text
+
+'2'           Literal.Number.Integer
+'>'           Punctuation
+'NUL'         Text
+' '           Text
+'erase'       Keyword
+' '           Text
+'test'        Text
+'0'           Text
+'.bat'        Text
+''            Text
+'\n'          Text
+
+'popd'        Keyword
+''            Text
+'\n'          Text
+
+'rd'          Keyword
+' '           Text
+'temp\\temp'  Text
+''            Text
+'\n'          Text
+
+'rmdir'       Keyword
+' '           Text
+'temp'        Text
+''            Text
+'\n'          Text
+
+'VERIFY'      Keyword
+' '           Text
+'OFF'         Text
+''            Text
+'\n'          Text
+
+'goto'        Keyword
+':'           Punctuation
+'eof'         Name.Label
+'\n\n'        Text
+
+''            Text
+':'           Punctuation
+'control'     Name.Label
+''            Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'/a'          Keyword
+' '           Text
+'_tests'      Name.Variable
+'+='          Operator
+'1'           Literal.Number.Integer
+''            Text
+'\n'          Text
+
+'echo'        Keyword
+' '           Text
+'Test'        Text
+' '           Text
+'%_tests%'    Name.Variable
+':'           Text
+' '           Text
+'Control'     Text
+' '           Text
+'statements'  Text
+''            Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'"'           Literal.String.Double
+'_iterations=0' Literal.String.Double
+'"'           Literal.String.Double
+'>'           Punctuation
+'nul'         Text
+''            Text
+'\n'          Text
+
+'for'         Keyword
+' '           Text
+'%%'          Literal.String.Escape
+'G'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'('           Punctuation
+','           Text
+'+'           Text
+','           Text
+','           Text
+'-'           Text
+','           Text
+'\n'          Text
+
+')'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'@'           Punctuation
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'for'         Keyword
+' '           Text
+'/l'          Keyword
+' '           Text
+'%%'          Literal.String.Escape
+'H'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'('           Punctuation
+','           Text
+'-1'          Literal.Number.Integer
+';'           Text
+';'           Text
+'-1'          Literal.Number.Integer
+'\t'          Text
+'-3'          Literal.Number.Integer
+','           Text
+')'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'for'         Keyword
+' '           Text
+'/f'          Keyword
+' '           Text
+'tokens'      Text
+'^='          Literal.String.Escape
+'1'           Text
+'-'           Text
+'2'           Text
+'^,'          Literal.String.Escape
+'5'           Text
+' '           Text
+'%%'          Literal.String.Escape
+'I'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'('           Punctuation
+'"'           Literal.String.Double
+'2 '          Literal.String.Double
+'%%'          Literal.String.Escape
+'H _ _ 10'    Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'for'         Keyword
+' '           Text
+'/f'          Keyword
+' '           Text
+'"'           Literal.String.Double
+'tokens=1 usebackq' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'%%'          Literal.String.Escape
+'L'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'`echo '      Literal.String.Backtick
+'%%'          Literal.String.Escape
+'G'           Literal.String.Backtick
+'%%'          Literal.String.Escape
+'J ``` `\n`  `' Literal.String.Backtick
+'    '        Text
+')'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'for'         Keyword
+' '           Text
+'/f'          Keyword
+' '           Text
+'"'           Literal.String.Double
+'tokens=2'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'%%'          Literal.String.Escape
+'M'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'('           Punctuation
+"'echo ' "    Literal.String.Single
+'%%'          Literal.String.Escape
+"L0 '\n'  '"  Literal.String.Single
+'      '      Text
+')'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'set'         Keyword
+' '           Text
+'/a'          Keyword
+' '           Text
+'_iterations' Name.Variable
+'+='          Operator
+'('           Punctuation
+'%%'          Operator
+'M'           Name.Variable
+'%%'          Operator
+'M'           Name.Variable
+'^)'          Literal.String.Escape
+''            Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'exist'       Keyword
+' '           Text
+'%~nx0'       Name.Variable
+' '           Text
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'exist'       Keyword
+' '           Text
+'%~nx0'       Name.Variable
+' '           Text
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'fail'        Name.Label
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'exist'       Keyword
+' '           Text
+'%~nx0'       Name.Variable
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'exist'       Keyword
+' '           Text
+'%~nx0'       Name.Variable
+' '           Text
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'fail'        Name.Label
+'\n'          Text
+
+')'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'exist'       Keyword
+' '           Text
+'%~nx0'       Name.Variable
+' '           Text
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'fail'        Name.Label
+'\n'          Text
+
+')'           Punctuation
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'/i'          Keyword
+' '           Text
+'%_iterations%' Name.Variable
+' '           Text
+'gtr'         Operator.Word
+' '           Text
+'-'           Text
+'2'           Text
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'/i'          Keyword
+' '           Text
+'%_iterations%' Name.Variable
+' '           Text
+'geq'         Operator.Word
+' '           Text
+'-'           Text
+'1'           Text
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'/i'          Keyword
+' '           Text
+'%_iterations%' Name.Variable
+' '           Text
+'lss'         Operator.Word
+' '           Text
+'1'           Text
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'/i'          Keyword
+' '           Text
+'%_iterations%' Name.Variable
+' '           Text
+'leq'         Operator.Word
+' '           Text
+'0'           Text
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'/i'          Keyword
+' '           Text
+'%_iterations%' Name.Variable
+' '           Text
+'equ'         Operator.Word
+' '           Text
+'0'           Text
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'equ'         Operator.Word
+' '           Text
+'01'          Literal.Number.Oct
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'1'           Text
+' '           Text
+'neq'         Operator.Word
+' '           Text
+'"'           Literal.String.Double
+'01'          Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'if'          Keyword
+' '           Text
+'"'           Literal.String.Double
+'1'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'neq'         Operator.Word
+' '           Text
+'0'           Text
+'1'           Text
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'set'         Keyword
+' '           Text
+'/a'          Keyword
+' '           Text
+'_passed'     Name.Variable
+'+='          Operator
+'1'           Literal.Number.Integer
+''            Text
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+') comment'   Comment.Single
+'\n'          Text
+
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'eof'         Name.Label
+'\n\n'        Text
+
+''            Text
+':'           Punctuation
+'internal'    Name.Label
+''            Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text
+'/a'          Keyword
+' '           Text
+'_tests'      Name.Variable
+'+='          Operator
+'1'           Literal.Number.Integer
+''            Text
+'\n'          Text
+
+'echo'        Keyword
+' '           Text
+'Test'        Text
+' '           Text
+'%_tests%'    Name.Variable
+':'           Text
+' '           Text
+'Internal'    Text
+' '           Text
+'commands'    Text
+''            Text
+'\n'          Text
+
+'keys'        Keyword
+' '           Text
+'on'          Text
+''            Text
+'\n'          Text
+
+'mklink'      Keyword
+' '           Text
+'2'           Literal.Number.Integer
+'>'           Punctuation
+'nul'         Text
+''            Text
+'\n'          Text
+
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'path'        Keyword
+' '           Text
+'%path%'      Name.Variable
+''            Text
+'\n'          Text
+
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'dpath'       Keyword
+' '           Text
+'%dpath%'     Name.Variable
+''            Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'defined'     Keyword
+' '           Text
+'prompt'      Name.Variable
+' '           Text
+'prompt'      Keyword
+' '           Text
+'$P$G'        Text
+''            Text
+'\n'          Text
+
+'prompt'      Keyword
+' '           Text
+'!prompt:~!'  Name.Variable
+'rem/'        Text
+' '           Text
+'$H?'         Text
+''            Text
+'\n'          Text
+
+'echo'        Keyword
+' '           Text
+'on'          Text
+''            Text
+'\n'          Text
+
+'rem'         Keyword
+'/?'          Text
+''            Text
+'\n'          Text
+
+'@'           Punctuation
+'echo'        Keyword
+' '           Text
+'off'         Text
+''            Text
+'\n'          Text
+
+'rem'         Keyword
+'(/?'         Text
+'>'           Punctuation
+'nul'         Text
+''            Text
+'\n'          Text
+
+'rem'         Keyword
+' '           Text
+')'           Text
+'/?'          Text
+' '           Text
+'>'           Punctuation
+'nul'         Text
+''            Text
+'\n'          Text
+
+'('           Punctuation
+'rem'         Keyword
+' '           Text
+'(/?'         Text
+''            Text
+')'           Punctuation
+' '           Text
+'>'           Punctuation
+'nul'         Text
+'\n'          Text
+
+'rem'         Keyword
+' '           Text
+'/?'          Text
+'>'           Punctuation
+'nul'         Text
+''            Text
+'\n'          Text
+
+'rem'         Keyword
+'^/'          Literal.String.Escape
+'?'           Text
+'>'           Punctuation
+'nul'         Text
+''            Text
+'\n'          Text
+
+'if'          Keyword
+'/?'          Text
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'if'          Keyword
+'^/'          Literal.String.Escape
+'^?'          Literal.String.Escape
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'/?'          Text
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'||'          Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'x/?'         Text
+' '           Text
+'>'           Punctuation
+'nul'         Text
+''            Text
+'\n'          Text
+
+'for'         Keyword
+'/?'          Text
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'&&'          Punctuation
+' '           Text
+'for'         Keyword
+'^/'          Literal.String.Escape
+'^?'          Literal.String.Escape
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'&&'          Punctuation
+' '           Text
+'for'         Keyword
+' '           Text
+'/?'          Text
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'&&'          Punctuation
+' '           Text
+'for'         Keyword
+' '           Text
+'x/?'         Text
+' '           Text
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'&&'          Punctuation
+' '           Text
+'for'         Keyword
+' '           Text
+'/?'          Text
+'x'           Text
+' '           Text
+'>'           Punctuation
+'nul'         Text
+''            Text
+'\n'          Text
+
+'goto'        Keyword
+'/?'          Text
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'&&'          Punctuation
+' '           Text
+'goto'        Keyword
+'^/'          Literal.String.Escape
+'?'           Text
+' '           Text
+'&&'          Punctuation
+' '           Text
+'goto'        Keyword
+'^ '          Literal.String.Escape
+'/?'          Text
+' '           Text
+'&&'          Punctuation
+' '           Text
+'goto'        Keyword
+' '           Text
+'/'           Text
+'^\n?'        Literal.String.Escape
+' '           Text
+'&&'          Punctuation
+' '           Text
+'goto'        Keyword
+' '           Text
+'/?'          Text
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'&&'          Punctuation
+' '           Text
+'goto'        Keyword
+':/?'         Text
+' '           Text
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'&&'          Punctuation
+' '           Text
+'goto'        Keyword
+' '           Text
+')'           Text
+' '           Text
+'/?'          Text
+' '           Text
+')'           Text
+' '           Text
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'&&'          Punctuation
+' '           Text
+'('           Punctuation
+'goto'        Keyword
+' '           Text
+'/?'          Text
+' '           Text
+''            Text
+')'           Punctuation
+'>'           Punctuation
+'nul'         Text
+'\n'          Text
+
+'='           Text
+'set'         Keyword
+"+;/p extension')," Name.Variable
+'='           Punctuation
+'.bat'        Text
+''            Text
+'\n'          Text
+
+'for'         Keyword
+' '           Text
+'/f'          Keyword
+' '           Text
+'"'           Literal.String.Double
+'tokens=2 delims==' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'%%'          Literal.String.Escape
+'G'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+"'assoc "     Literal.String.Single
+"%+;/p extension'),%" Name.Variable
+"'"           Literal.String.Single
+'\n '         Text
+')'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'('           Punctuation
+'\n'          Text
+
+' '           Text
+' '           Text
+'assoc'       Keyword
+' '           Text
+'2'           Literal.Number.Integer
+'>'           Punctuation
+'nul'         Text
+' '           Text
+"%+;/p extension'),:*.=.%" Name.Variable
+'='           Text
+'%%'          Literal.String.Escape
+'G'           Text
+''            Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'ftype'       Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'%%'          Literal.String.Escape
+'G'           Text
+''            Text
+'\n'          Text
+
+')'           Punctuation
+' '           Text
+'&'           Punctuation
+'>'           Punctuation
+'nul'         Text
+' '           Text
+'ver'         Keyword
+''            Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'errorlevel'  Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'if'          Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'errorlevel'  Keyword
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'set'         Keyword
+' '           Text
+'/a'          Keyword
+' '           Text
+'_passed'     Name.Variable
+'+='          Operator
+'1'           Literal.Number.Integer
+''            Text
+'\n'          Text
+
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'eof'         Name.Label
+'\n'          Text
+
+'FOR'         Keyword
+' '           Text
+'/F'          Keyword
+' '           Text
+'%%'          Literal.String.Escape
+'a'           Text
+' '           Text
+'IN'          Keyword
+' '           Text
+'('           Punctuation
+"'"           Literal.String.Single
+'%%'          Literal.String.Escape
+'c'           Literal.String.Single
+'%%'          Literal.String.Escape
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'DO'          Keyword
+' '           Text
+'%%'          Literal.String.Escape
+'a'           Text
+''            Text
+'\n'          Text
+
+'rem %x% %x% %x% %x% %x% %x% %x% %x% %x% %x% %x% %x% %x% %x% %x% %x%' Comment.Single
+''            Text
+'\n'          Text
+
+''            Text
+':'           Punctuation
+'/?'          Name.Label
+''            Text
+'\n'          Text
+
+'goto'        Keyword
+' '           Text
+':'           Punctuation
+'fail'        Name.Label
+'\n'          Text

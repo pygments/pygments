@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.theorem
     ~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for theorem-proving languages.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -30,6 +29,8 @@ class CoqLexer(RegexLexer):
     filenames = ['*.v']
     mimetypes = ['text/x-coq']
 
+    flags = re.UNICODE
+
     keywords1 = (
         # Vernacular commands
         'Section', 'Module', 'End', 'Require', 'Import', 'Export', 'Variable',
@@ -42,6 +43,7 @@ class CoqLexer(RegexLexer):
         'Canonical', 'Coercion', 'Theorem', 'Lemma', 'Corollary',
         'Proposition', 'Fact', 'Remark', 'Example', 'Proof', 'Goal', 'Save',
         'Qed', 'Defined', 'Hint', 'Resolve', 'Rewrite', 'View', 'Search',
+        'Abort', 'Admitted',
         'Show', 'Print', 'Printing', 'All', 'Graph', 'Projections', 'inside',
         'outside', 'Check', 'Global', 'Instance', 'Class', 'Existing',
         'Universe', 'Polymorphic', 'Monomorphic', 'Context'
@@ -54,7 +56,7 @@ class CoqLexer(RegexLexer):
     )
     keywords3 = (
         # Sorts
-        'Type', 'Prop',
+        'Type', 'Prop', 'SProp',
     )
     keywords4 = (
         # Tactics
@@ -93,7 +95,8 @@ class CoqLexer(RegexLexer):
         '<->', '=', '>', '>]', r'>\}', r'\?', r'\?\?', r'\[', r'\[<', r'\[>',
         r'\[\|', ']', '_', '`', r'\{', r'\{<', r'\|', r'\|]', r'\}', '~', '=>',
         r'/\\', r'\\/', r'\{\|', r'\|\}',
-        'Π', 'λ',
+        # 'Π', 'Σ', # Not defined in the standard library
+        'λ', '¬', '∧', '∨', '∀', '∃', '→', '↔', '≠', '≤', '≥',
     )
     operators = r'[!$%&*+\./:<=>?@^|~-]'
     prefix_syms = r'[!?~]'
@@ -123,14 +126,15 @@ class CoqLexer(RegexLexer):
             (r'0[bB][01][01_]*', Number.Bin),
             (r'-?\d[\d_]*(.[\d_]*)?([eE][+\-]?\d[\d_]*)', Number.Float),
 
-            (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'",
-             String.Char),
+            (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'", String.Char),
+
             (r"'.'", String.Char),
             (r"'", Keyword),  # a stray quote is another syntax element
 
             (r'"', String.Double, 'string'),
 
             (r'[~?][a-z][\w\']*:', Name),
+            (r'\S', Name.Builtin.Pseudo),
         ],
         'comment': [
             (r'[^(*)]+', Comment),
@@ -154,7 +158,7 @@ class CoqLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if 'qed' in text and 'tauto' in text:
+        if 'Qed' in text and 'Proof' in text:
             return 1
 
 
@@ -410,6 +414,7 @@ class LeanLexer(RegexLexer):
                 'universe', 'universes',
                 'inductive', 'coinductive', 'structure', 'extends',
                 'class', 'instance',
+                'abbreviation',
 
                 'noncomputable theory',
 
@@ -434,6 +439,7 @@ class LeanLexer(RegexLexer):
                 'let', 'if', 'else', 'then', 'in', 'with', 'calc', 'match',
                 'do'
             ), prefix=r'\b', suffix=r'\b'), Keyword),
+            (words(('sorry', 'admit'), prefix=r'\b', suffix=r'\b'), Generic.Error),
             (words(('Sort', 'Prop', 'Type'), prefix=r'\b', suffix=r'\b'), Keyword.Type),
             (words((
                 '#eval', '#check', '#reduce', '#exit',

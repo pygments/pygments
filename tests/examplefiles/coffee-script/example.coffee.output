@@ -1,0 +1,160 @@
+'# function arrows\n' Comment.Single
+
+'\n'          Text
+
+'methodA'     Name.Other
+':'           Operator
+'->'          Name.Function
+' '           Text
+"'"           Literal.String
+'A'           Literal.String
+"'"           Literal.String
+'\n'          Text
+
+'methodB'     Name.Other
+':'           Operator
+'=>'          Name.Function
+' '           Text
+"'"           Literal.String
+'B'           Literal.String
+"'"           Literal.String
+'\n'          Text
+
+'methodC'     Name.Other
+':'           Operator
+'()=>'        Name.Function
+' '           Text
+"'"           Literal.String
+'C'           Literal.String
+"'"           Literal.String
+'\n'          Text
+
+'methodD'     Name.Other
+':'           Operator
+'()->'        Name.Function
+' '           Text
+"'"           Literal.String
+'D'           Literal.String
+"'"           Literal.String
+'\n'          Text
+
+'methodE'     Name.Other
+':'           Operator
+'(a,b)->'     Name.Function
+' '           Text
+"'"           Literal.String
+'E'           Literal.String
+"'"           Literal.String
+'\n'          Text
+
+'methodF'     Name.Other
+':'           Operator
+'(c,d)->'     Name.Function
+' '           Text
+"'"           Literal.String
+'F'           Literal.String
+"'"           Literal.String
+'\n'          Text
+
+'->'          Name.Function
+' '           Text
+"'"           Literal.String
+'G'           Literal.String
+"'"           Literal.String
+'\n'          Text
+
+'=>'          Name.Function
+' '           Text
+"'"           Literal.String
+'H'           Literal.String
+"'"           Literal.String
+'\n\n'        Text
+
+'('           Punctuation
+'->'          Name.Function
+' '           Text
+"'"           Literal.String
+'I'           Literal.String
+"'"           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'=>'          Name.Function
+' '           Text
+"'"           Literal.String
+'J'           Literal.String
+"'"           Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'# strings\n' Comment.Single
+
+'\n'          Text
+
+'"'           Literal.String
+'#{'          Literal.String.Interpol
+'wow'         Name.Other
+'}'           Literal.String.Interpol
+'"'           Literal.String
+'\n'          Text
+
+'"'           Literal.String
+'w'           Literal.String
+'#{'          Literal.String.Interpol
+'wow'         Name.Other
+'}'           Literal.String.Interpol
+'w'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'"'           Literal.String
+'#'           Literal.String
+'wow'         Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'"'           Literal.String
+'wow'         Literal.String
+'#'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'"'           Literal.String
+'w'           Literal.String
+'#'           Literal.String
+'ow'          Literal.String
+'"'           Literal.String
+'\n\n'        Text
+
+"'"           Literal.String
+'#'           Literal.String
+'{wow}'       Literal.String
+"'"           Literal.String
+'\n'          Text
+
+"'"           Literal.String
+'w'           Literal.String
+'#'           Literal.String
+'{wow}w'      Literal.String
+"'"           Literal.String
+'\n'          Text
+
+"'"           Literal.String
+'#'           Literal.String
+'wow'         Literal.String
+"'"           Literal.String
+'\n'          Text
+
+"'"           Literal.String
+'wow'         Literal.String
+'#'           Literal.String
+"'"           Literal.String
+'\n'          Text
+
+"'"           Literal.String
+'w'           Literal.String
+'#'           Literal.String
+'ow'          Literal.String
+"'"           Literal.String
+'\n'          Text

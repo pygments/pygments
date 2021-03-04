@@ -1,0 +1,483 @@
+''            Text
+'/* Block comment */' Comment.Multiline
+'\n'          Text
+
+'/*\n    Multiline block\n    comment\n*/' Comment.Multiline
+'\n\n'        Text
+
+'// inline comment\n' Comment.Single
+
+'function'    Keyword.Declaration
+' '           Text
+'juttleFunction' Name.Other
+'('           Punctuation
+'arg'         Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'arg'         Name.Other
+' '           Text
+'=='          Operator
+' '           Text
+'null'        Keyword.Constant
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'return'      Keyword
+' '           Text
+'null'        Keyword.Constant
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'arg'         Name.Other
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'return'      Keyword
+' '           Text
+"'zero'"      Literal.String.Single
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'arg'         Name.Other
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'return'      Keyword
+' '           Text
+'"one"'       Literal.String.Double
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'return'      Keyword
+' '           Text
+'1.1'         Literal.Number.Float
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'reducer'     Keyword.Declaration
+' '           Text
+'juttleReducer' Name.Other
+'('           Punctuation
+'field'       Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'var'         Keyword.Declaration
+' '           Text
+'x'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text
+'function'    Keyword.Declaration
+' '           Text
+'update'      Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'x'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'*'           Operator
+'field'       Name.Other
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'function'    Keyword.Declaration
+' '           Text
+'result'      Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'return'      Keyword
+' '           Text
+'x'           Name.Other
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'sub'         Keyword.Declaration
+' '           Text
+'myemit'      Name.Other
+'('           Punctuation
+'limit'       Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'emit'        Keyword.Reserved
+' '           Text
+'-'           Operator
+'limit'       Name.Other
+' '           Text
+'limit'       Name.Other
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'input'       Keyword.Declaration
+' '           Text
+'test'        Name.Other
+':'           Operator
+' '           Text
+'text'        Name.Other
+' '           Text
+'-'           Operator
+'default'     Name.Other
+' '           Text
+"'input'"     Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'const'       Keyword.Declaration
+' '           Text
+'object'      Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'xyz'         Name.Other
+':'           Operator
+' '           Text
+'123'         Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'name'        Name.Other
+':'           Operator
+' '           Text
+"'something'" Literal.String.Single
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'const'       Keyword.Declaration
+' '           Text
+'array'       Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'\n    '      Text
+':2016-01-01:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':2016-01-01T01:00:00:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':2016-01-01T01:00:00.000:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':2016-01-01T01:00:00.000Z:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':2016-01-01T01:00:00.000-0800:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':2016-01-01T01:00:00.000-08:00:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':00:00:01:'  Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':00:00:00.001:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':now:'       Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':beginning:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':end:'       Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':forever:'   Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':yesterday:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':today:'     Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':tomorrow:'  Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':1:'         Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':1.1:'       Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':1s:'        Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':1 second:'  Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':1 seconds:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':100ms:'     Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':100 millisecond:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':100 milliseconds:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':1d:'        Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':1 day:'     Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':1 days:'    Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':.2h:'       Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':1.2h:'      Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':.2 hour:'   Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':1.2 hours:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':.5d:'       Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':1.5d:'      Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':.5 day:'    Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':1.5 days:'  Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':5m:'        Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':5 minutes:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':10w:'       Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':10 weeks:'  Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':10M:'       Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':10 months:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':100y:'      Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':100 years:' Literal.String.Moment
+','           Punctuation
+'\n    '      Text
+':1 year and 2 months and 2 days:' Literal.String.Moment
+'\n'          Text
+
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'emit'        Keyword.Reserved
+'\n  '        Text
+'|'           Operator
+' '           Text
+'batch'       Keyword.Reserved
+' '           Text
+':10 minutes:' Literal.String.Moment
+'\n  '        Text
+'|'           Operator
+' '           Text
+'filter'      Keyword.Reserved
+' '           Text
+'x'           Name.Other
+'='           Operator
+'true'        Keyword.Constant
+'\n  '        Text
+'|'           Operator
+' '           Text
+'head'        Keyword.Reserved
+' '           Text
+'1'           Literal.Number.Integer
+'\n  '        Text
+'|'           Operator
+' '           Text
+'join'        Keyword.Reserved
+'\n  '        Text
+'|'           Operator
+' '           Text
+'keep'        Keyword.Reserved
+' '           Text
+'x'           Name.Other
+'\n  '        Text
+'|'           Operator
+' '           Text
+'pace'        Keyword.Reserved
+' '           Text
+'-'           Operator
+'every'       Name.Other
+' '           Text
+':1 minute:'  Literal.String.Moment
+'\n  '        Text
+'|'           Operator
+' '           Text
+'pass'        Keyword.Reserved
+'\n  '        Text
+'|'           Operator
+' '           Text
+'put'         Keyword.Reserved
+' '           Text
+'y'           Name.Other
+'='           Operator
+'false'       Keyword.Constant
+'\n  '        Text
+'|'           Operator
+' '           Text
+'remove'      Keyword.Reserved
+' '           Text
+'z'           Name.Other
+'\n  '        Text
+'|'           Operator
+' '           Text
+'sequence'    Keyword.Reserved
+'\n  '        Text
+'|'           Operator
+' '           Text
+'skip'        Keyword.Reserved
+' '           Text
+'1'           Literal.Number.Integer
+'\n  '        Text
+'|'           Operator
+' '           Text
+'sort'        Keyword.Reserved
+' '           Text
+'field'       Name.Other
+' '           Text
+'-'           Operator
+'desc'        Name.Other
+'\n  '        Text
+'|'           Operator
+' '           Text
+'split'       Keyword.Reserved
+' '           Text
+'field'       Name.Other
+'\n  '        Text
+'|'           Operator
+' '           Text
+'tail'        Keyword.Reserved
+' '           Text
+'10'          Literal.Number.Integer
+'\n  '        Text
+'|'           Operator
+' '           Text
+'unbatch'     Keyword.Reserved
+'\n  '        Text
+'|'           Operator
+' '           Text
+'uniq'        Keyword.Reserved
+' '           Text
+'field'       Name.Other
+'\n'          Text
+
+';'           Punctuation
+'\n\n'        Text
+
+'read'        Keyword.Reserved
+' '           Text
+'adapter'     Name.Other
+' '           Text
+'-'           Operator
+'last'        Name.Other
+' '           Text
+':day:'       Literal.String.Moment
+' '           Text
+"'search'"    Literal.String.Single
+' '           Text
+'AND'         Name.Other
+' '           Text
+'field'       Name.Other
+'~'           Operator
+'/pattern/'   Literal.String.Regex
+' '           Text
+'OR'          Name.Other
+' '           Text
+'field'       Name.Other
+' '           Text
+'=='          Operator
+' '           Text
+"'string'"    Literal.String.Single
+'\n  '        Text
+'|'           Operator
+' '           Text
+'write'       Keyword.Reserved
+' '           Text
+'adapter'     Name.Other
+'\n'          Text

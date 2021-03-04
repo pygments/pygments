@@ -1,0 +1,59 @@
+'/* Fragment shader */' Comment.Multiline
+'\n'          Text
+
+'void'        Keyword.Type
+' '           Text
+'main'        Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n    '      Text
+'gl_FragColor' Name.Builtin
+'['           Punctuation
+'0'           Literal.Number.Oct
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'gl_FragCoord' Name.Builtin
+'['           Punctuation
+'0'           Literal.Number.Oct
+']'           Punctuation
+' '           Text
+'/'           Operator
+' '           Text
+'400.0'       Literal.Number.Float
+';'           Punctuation
+'\n    '      Text
+'gl_FragColor' Name.Builtin
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'gl_FragCoord' Name.Builtin
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'/'           Operator
+' '           Text
+'400.0'       Literal.Number.Float
+';'           Punctuation
+'\n    '      Text
+'gl_FragColor' Name.Builtin
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'1.0'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

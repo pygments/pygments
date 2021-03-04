@@ -1,0 +1,1178 @@
+';;;; This contains some of the core Hy functions used' Comment.Single
+'\n'          Text
+
+';;;; to make functional programming slightly easier.' Comment.Single
+'\n'          Text
+
+';;;;'        Comment.Single
+'\n\n\n'      Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'_numeric-check' Name.Variable
+' '           Text
+'['           Punctuation
+'x'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'not'         Name.Function
+' '           Text
+'('           Punctuation
+'numeric? '   Name.Builtin
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'raise'       Keyword
+' '           Text
+'('           Punctuation
+'TypeError'   Name.Exception
+' '           Text
+'('           Punctuation
+'.format'     Name.Function
+' '           Text
+'"{0!r} is not a number"' Literal.String
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'cycle '      Name.Builtin
+'['           Punctuation
+'coll'        Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Yield an infinite repetition of the items in coll"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'setv '       Keyword.Declaration
+'seen'        Name.Variable
+' '           Text
+'['           Punctuation
+']'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'['           Punctuation
+'x'           Name.Variable
+' '           Text
+'coll'        Name.Variable
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'yield'       Keyword
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'.append'     Name.Function
+' '           Text
+'seen'        Name.Variable
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'while'       Keyword
+' '           Text
+'seen'        Name.Variable
+'\n    '      Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'['           Punctuation
+'x'           Name.Variable
+' '           Text
+'seen'        Name.Variable
+']'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'yield'       Keyword
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'dec '        Name.Builtin
+'['           Punctuation
+'n'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Decrement n by 1"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'_numeric-check' Name.Function
+' '           Text
+'n'           Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'-'           Name.Function
+' '           Text
+'n'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'distinct '   Name.Builtin
+'['           Punctuation
+'coll'        Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return a generator from the original collection with duplicates\n   removed"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'['           Punctuation
+'seen'        Name.Variable
+' '           Text
+'['           Punctuation
+']'           Punctuation
+']'           Punctuation
+' '           Text
+'['           Punctuation
+'citer'       Name.Variable
+' '           Text
+'('           Punctuation
+'iter'        Name.Builtin
+' '           Text
+'coll'        Name.Variable
+')'           Punctuation
+']'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'['           Punctuation
+'val'         Name.Variable
+' '           Text
+'citer'       Name.Variable
+']'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'not_in'      Name.Function
+' '           Text
+'val'         Name.Variable
+' '           Text
+'seen'        Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'do'          Name.Function
+'\n         ' Text
+'('           Punctuation
+'yield'       Keyword
+' '           Text
+'val'         Name.Variable
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'.append'     Name.Function
+' '           Text
+'seen'        Name.Variable
+' '           Text
+'val'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'drop '       Name.Builtin
+'['           Punctuation
+'count'       Name.Variable
+' '           Text
+'coll'        Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Drop `count` elements from `coll` and yield back the rest"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'['           Punctuation
+'citer'       Name.Variable
+' '           Text
+'('           Punctuation
+'iter'        Name.Builtin
+' '           Text
+'coll'        Name.Variable
+')'           Punctuation
+']'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'try'         Keyword
+' '           Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'['           Punctuation
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'range'       Name.Builtin
+' '           Text
+'count'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'next'        Name.Builtin
+' '           Text
+'citer'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n         ' Text
+'('           Punctuation
+'catch'       Name.Function
+' '           Text
+'['           Punctuation
+'StopIteration' Name.Exception
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'citer'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'even? '      Name.Builtin
+'['           Punctuation
+'n'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return true if n is an even number"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'_numeric-check' Name.Function
+' '           Text
+'n'           Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'('           Punctuation
+'%'           Name.Function
+' '           Text
+'n'           Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'filter'      Name.Builtin
+' '           Text
+'['           Punctuation
+'pred'        Name.Variable
+' '           Text
+'coll'        Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return all elements from `coll` that pass `pred`"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'['           Punctuation
+'citer'       Name.Variable
+' '           Text
+'('           Punctuation
+'iter'        Name.Builtin
+' '           Text
+'coll'        Name.Variable
+')'           Punctuation
+']'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'['           Punctuation
+'val'         Name.Variable
+' '           Text
+'citer'       Name.Variable
+']'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'pred'        Name.Function
+' '           Text
+'val'         Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'yield'       Keyword
+' '           Text
+'val'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'inc '        Name.Builtin
+'['           Punctuation
+'n'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Increment n by 1"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'_numeric-check' Name.Function
+' '           Text
+'n'           Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'+'           Name.Function
+' '           Text
+'n'           Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'instance? '  Name.Builtin
+'['           Punctuation
+'klass'       Name.Variable
+' '           Text
+'x'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'isinstance'  Name.Builtin
+' '           Text
+'x'           Name.Variable
+' '           Text
+'klass'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'iterable? '  Name.Builtin
+'['           Punctuation
+'x'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return true if x is iterable"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'try'         Keyword
+' '           Text
+'('           Punctuation
+'do '         Keyword
+'('           Punctuation
+'iter'        Name.Builtin
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+' '           Text
+'true'        Name.Variable
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'catch'       Name.Function
+' '           Text
+'['           Punctuation
+'Exception'   Name.Exception
+']'           Punctuation
+' '           Text
+'false'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'iterate '    Name.Builtin
+'['           Punctuation
+'f'           Name.Variable
+' '           Text
+'x'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'setv '       Keyword.Declaration
+'val'         Name.Variable
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'while'       Keyword
+' '           Text
+'true'        Name.Variable
+'\n    '      Text
+'('           Punctuation
+'yield'       Keyword
+' '           Text
+'val'         Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'setv '       Keyword.Declaration
+'val'         Name.Variable
+' '           Text
+'('           Punctuation
+'f'           Name.Function
+' '           Text
+'val'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'iterator? '  Name.Builtin
+'['           Punctuation
+'x'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return true if x is an iterator"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'try'         Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'x'           Name.Variable
+' '           Text
+'('           Punctuation
+'iter'        Name.Builtin
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n       '   Text
+'('           Punctuation
+'catch'       Name.Function
+' '           Text
+'['           Punctuation
+'TypeError'   Name.Exception
+']'           Punctuation
+' '           Text
+'false'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'neg? '       Name.Builtin
+'['           Punctuation
+'n'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return true if n is < 0"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'_numeric-check' Name.Function
+' '           Text
+'n'           Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'<'           Name.Function
+' '           Text
+'n'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'none? '      Name.Builtin
+'['           Punctuation
+'x'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return true if x is None"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'is '         Keyword
+'x'           Name.Variable
+' '           Text
+'None'        Keyword.Constant
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'numeric? '   Name.Builtin
+'['           Punctuation
+'x'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'import '     Keyword
+'numbers'     Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'instance? '  Name.Builtin
+'numbers.Number' Name.Variable
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'nth '        Name.Builtin
+'['           Punctuation
+'coll'        Name.Variable
+' '           Text
+'index'       Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return nth item in collection or sequence, counting from 0"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'not'         Name.Function
+' '           Text
+'('           Punctuation
+'neg? '       Name.Builtin
+'index'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'iterable? '  Name.Builtin
+'coll'        Name.Variable
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'try'         Keyword
+' '           Text
+'('           Punctuation
+'first '      Keyword
+'('           Punctuation
+'list'        Name.Builtin
+' '           Text
+'('           Punctuation
+'take '       Name.Builtin
+'1'           Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'drop '       Name.Builtin
+'index'       Name.Variable
+' '           Text
+'coll'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'catch'       Name.Function
+' '           Text
+'['           Punctuation
+'IndexError'  Name.Exception
+']'           Punctuation
+' '           Text
+'None'        Keyword.Constant
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'try'         Keyword
+' '           Text
+'('           Punctuation
+'get '        Keyword
+'coll'        Name.Variable
+' '           Text
+'index'       Name.Variable
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'catch'       Name.Function
+' '           Text
+'['           Punctuation
+'IndexError'  Name.Exception
+']'           Punctuation
+' '           Text
+'None'        Keyword.Constant
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'None'        Keyword.Constant
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'odd? '       Name.Builtin
+'['           Punctuation
+'n'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return true if n is an odd number"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'_numeric-check' Name.Function
+' '           Text
+'n'           Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'('           Punctuation
+'%'           Name.Function
+' '           Text
+'n'           Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'pos? '       Name.Builtin
+'['           Punctuation
+'n'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return true if n is > 0"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'_numeric_check' Name.Function
+' '           Text
+'n'           Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'>'           Name.Function
+' '           Text
+'n'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'remove '     Name.Builtin
+'['           Punctuation
+'pred'        Name.Variable
+' '           Text
+'coll'        Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return coll with elements removed that pass `pred`"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'['           Punctuation
+'citer'       Name.Variable
+' '           Text
+'('           Punctuation
+'iter'        Name.Builtin
+' '           Text
+'coll'        Name.Variable
+')'           Punctuation
+']'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'['           Punctuation
+'val'         Name.Variable
+' '           Text
+'citer'       Name.Variable
+']'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'not'         Name.Function
+' '           Text
+'('           Punctuation
+'pred'        Name.Function
+' '           Text
+'val'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'yield'       Keyword
+' '           Text
+'val'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'repeat '     Name.Builtin
+'['           Punctuation
+'x'           Name.Variable
+' '           Text
+'&'           Operator
+'optional'    Name.Variable
+' '           Text
+'n'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Yield x forever or optionally n times"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'none? '      Name.Builtin
+'n'           Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'setv '       Keyword.Declaration
+'dispatch'    Name.Variable
+' '           Text
+'('           Punctuation
+'fn '         Keyword.Declaration
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'while'       Keyword
+' '           Text
+'true'        Name.Variable
+' '           Text
+'('           Punctuation
+'yield'       Keyword
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'setv '       Keyword.Declaration
+'dispatch'    Name.Variable
+' '           Text
+'('           Punctuation
+'fn '         Keyword.Declaration
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'['           Punctuation
+'_'           Name.Variable
+' '           Text
+'('           Punctuation
+'range'       Name.Builtin
+' '           Text
+'n'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'yield'       Keyword
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'dispatch'    Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'repeatedly ' Name.Builtin
+'['           Punctuation
+'func'        Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Yield result of running func repeatedly"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'while'       Keyword
+' '           Text
+'true'        Name.Variable
+'\n    '      Text
+'('           Punctuation
+'yield'       Keyword
+' '           Text
+'('           Punctuation
+'func'        Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'take '       Name.Builtin
+'['           Punctuation
+'count'       Name.Variable
+' '           Text
+'coll'        Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Take `count` elements from `coll`, or the whole set if the total\n    number of entries in `coll` is less than `count`."' Literal.String
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'['           Punctuation
+'citer'       Name.Variable
+' '           Text
+'('           Punctuation
+'iter'        Name.Builtin
+' '           Text
+'coll'        Name.Variable
+')'           Punctuation
+']'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'['           Punctuation
+'_'           Name.Variable
+' '           Text
+'('           Punctuation
+'range'       Name.Builtin
+' '           Text
+'count'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'yield'       Keyword
+' '           Text
+'('           Punctuation
+'next'        Name.Builtin
+' '           Text
+'citer'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'take-nth'    Name.Variable
+' '           Text
+'['           Punctuation
+'n'           Name.Variable
+' '           Text
+'coll'        Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return every nth member of coll\n     raises ValueError for (not (pos? n))"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'pos? '       Name.Builtin
+'n'           Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'['           Punctuation
+'citer'       Name.Variable
+' '           Text
+'('           Punctuation
+'iter'        Name.Builtin
+' '           Text
+'coll'        Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'['           Punctuation
+'skip'        Name.Variable
+' '           Text
+'('           Punctuation
+'dec '        Name.Builtin
+'n'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+']'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'['           Punctuation
+'val'         Name.Variable
+' '           Text
+'citer'       Name.Variable
+']'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'yield'       Keyword
+' '           Text
+'val'         Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'['           Punctuation
+'_'           Name.Variable
+' '           Text
+'('           Punctuation
+'range'       Name.Builtin
+' '           Text
+'skip'        Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n          ' Text
+'('           Punctuation
+'next'        Name.Builtin
+' '           Text
+'citer'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'raise'       Keyword
+' '           Text
+'('           Punctuation
+'ValueError'  Name.Exception
+' '           Text
+'"n must be positive"' Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'take-while'  Name.Variable
+' '           Text
+'['           Punctuation
+'pred'        Name.Variable
+' '           Text
+'coll'        Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Take all elements while `pred` is true"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'['           Punctuation
+'citer'       Name.Variable
+' '           Text
+'('           Punctuation
+'iter'        Name.Builtin
+' '           Text
+'coll'        Name.Variable
+')'           Punctuation
+']'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'['           Punctuation
+'val'         Name.Variable
+' '           Text
+'citer'       Name.Variable
+']'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'pred'        Name.Function
+' '           Text
+'val'         Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'yield'       Keyword
+' '           Text
+'val'         Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'break'       Keyword
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'zero? '      Name.Builtin
+'['           Punctuation
+'n'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'"Return true if n is 0"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'_numeric_check' Name.Function
+' '           Text
+'n'           Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'='           Name.Function
+' '           Text
+'n'           Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'def '        Keyword.Declaration
+'*exports*'   Name.Variable
+' '           Text
+'['           Punctuation
+'"cycle"'     Literal.String
+' '           Text
+'"dec"'       Literal.String
+' '           Text
+'"distinct"'  Literal.String
+' '           Text
+'"drop"'      Literal.String
+' '           Text
+'"even?"'     Literal.String
+' '           Text
+'"filter"'    Literal.String
+' '           Text
+'"inc"'       Literal.String
+'\n                ' Text
+'"instance?"' Literal.String
+' '           Text
+'"iterable?"' Literal.String
+' '           Text
+'"iterate"'   Literal.String
+' '           Text
+'"iterator?"' Literal.String
+' '           Text
+'"neg?"'      Literal.String
+'\n                ' Text
+'"none?"'     Literal.String
+' '           Text
+'"nth"'       Literal.String
+' '           Text
+'"numeric?"'  Literal.String
+' '           Text
+'"odd?"'      Literal.String
+' '           Text
+'"pos?"'      Literal.String
+' '           Text
+'"remove"'    Literal.String
+' '           Text
+'"repeat"'    Literal.String
+'\n                ' Text
+'"repeatedly"' Literal.String
+' '           Text
+'"take"'      Literal.String
+' '           Text
+'"take_nth"'  Literal.String
+' '           Text
+'"take_while"' Literal.String
+' '           Text
+'"zero?"'     Literal.String
+']'           Punctuation
+')'           Punctuation
+'\n'          Text

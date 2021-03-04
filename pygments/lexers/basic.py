@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.basic
     ~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for BASIC like languages (other than VB.net).
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -352,10 +351,10 @@ class CbmBasicV2Lexer(RegexLexer):
         ]
     }
 
-    def analyse_text(self, text):
+    def analyse_text(text):
         # if it starts with a line number, it shouldn't be a "modern" Basic
         # like VB.net
-        if re.match(r'\d+', text):
+        if re.match(r'^\d+', text):
             return 0.2
 
 

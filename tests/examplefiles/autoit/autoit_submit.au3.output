@@ -1,0 +1,211 @@
+'#include'    Name.Builtin
+' '           Text
+'<'           Operator
+'IE'          Name
+'.'           Operator
+'au3'         Name
+'>'           Operator
+'\n'          Text
+
+';http://msdn.microsoft.com/en-us/library/Aa752084.aspx\n' Comment.Single
+
+'$ourl'       Name.Variable
+'='           Operator
+'"'           Literal.String
+'http://localhost:5000/' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'$oIE'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'_IEAttach'   Name
+' '           Text
+'('           Punctuation
+'$ourl'       Name.Variable
+','           Punctuation
+'"'           Literal.String
+'url'         Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'If'          Name.Builtin
+' '           Text
+'@error'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$_IEStatus_NoMatch' Name.Variable
+' '           Text
+'Then'        Name.Builtin
+'\n'          Text
+
+'\t'          Text
+'$oIE'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'_IECreate'   Name
+' '           Text
+'('           Punctuation
+'$ourl'       Name.Variable
+' '           Text
+'&'           Operator
+' '           Text
+'"'           Literal.String
+'sample.html' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'endIf'       Name.Builtin
+'\n'          Text
+
+'\n'          Text
+
+'$oForm'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'_IEFormGetObjByName' Name
+' '           Text
+'('           Punctuation
+'$oIE'        Name.Variable
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'form1'       Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+';username, call DOM directly\n' Comment.Single
+
+'$oIE'        Name.Variable
+'.'           Operator
+'document'    Name
+'.'           Operator
+'getElementById' Name
+'('           Punctuation
+'"'           Literal.String
+'username'    Literal.String
+'"'           Literal.String
+')'           Punctuation
+'.'           Operator
+'value'       Name
+'='           Operator
+'"'           Literal.String
+'helloAutoIT' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+';state select\n' Comment.Single
+
+'$oSelect'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'_IEFormElementGetObjByName' Name
+' '           Text
+'('           Punctuation
+'$oForm'      Name.Variable
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'state'       Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'_IEFormElementOptionSelect' Name
+' '           Text
+'('           Punctuation
+'$oSelect'    Name.Variable
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'S2'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'byText'      Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+';options raido\n' Comment.Single
+
+'_IEFormElementRadioSelect' Name
+'('           Punctuation
+'$oForm'      Name.Variable
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'2nd'         Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'type'        Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'byValue'     Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'$myvar'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String
+'boo; bar; "baz"' Literal.String
+"'"           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'#cs\nConsoleWrite(@Error)\nSleep(10000)\n#ce' Comment.Multiline
+'\n'          Text
+
+'_IEFormSubmit' Name
+'('           Punctuation
+'$oForm'      Name.Variable
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'_IELoadWait' Name
+'('           Punctuation
+'$oIE'        Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'Sleep'       Name.Function
+'('           Punctuation
+'60000'       Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'_IEQuit'     Name
+'('           Punctuation
+'$oIE'        Name.Variable
+')'           Punctuation
+'\n'          Text

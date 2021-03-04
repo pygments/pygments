@@ -1,0 +1,537 @@
+'module'      Keyword
+' '           Text
+'&__llvm_hsail_module' Name.Variable.Global
+':'           Punctuation
+'1'           Literal.Number.Integer
+':'           Punctuation
+'0'           Literal.Number.Integer
+':'           Punctuation
+'$full'       Keyword
+':'           Punctuation
+'$large'      Keyword
+':'           Punctuation
+'$near'       Keyword
+';'           Punctuation
+'\n\n'        Text
+
+'prog'        Keyword
+' '           Text
+'kernel'      Keyword
+' '           Text
+'&mmul2d'     Name.Variable.Global
+'('           Punctuation
+'\n\t'        Text
+'kernarg_u64' Keyword.Type
+' '           Text
+'%__arg_p0'   Name.Variable
+','           Punctuation
+'\n\t'        Text
+'kernarg_u64' Keyword.Type
+' '           Text
+'%__arg_p1'   Name.Variable
+','           Punctuation
+'\n\t'        Text
+'kernarg_u64' Keyword.Type
+' '           Text
+'%__arg_p2'   Name.Variable
+','           Punctuation
+'\n\t'        Text
+'kernarg_u64' Keyword.Type
+' '           Text
+'%__arg_p3'   Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n\t'        Text
+'pragma'      Keyword
+' '           Text
+'"AMD RTI"'   Literal.String
+','           Punctuation
+' '           Text
+'"ARGSTART:mmul2d"' Literal.String
+';'           Punctuation
+'\n\t'        Text
+'pragma'      Keyword
+' '           Text
+'"AMD RTI"'   Literal.String
+','           Punctuation
+' '           Text
+'"version:3:1:104"' Literal.String
+';'           Punctuation
+'\n\t'        Text
+'pragma'      Keyword
+' '           Text
+'"AMD RTI"'   Literal.String
+','           Punctuation
+' '           Text
+'"device:generic"' Literal.String
+';'           Punctuation
+'\n\t'        Text
+'pragma'      Keyword
+' '           Text
+'"AMD RTI"'   Literal.String
+','           Punctuation
+' '           Text
+'"uniqueid:1025"' Literal.String
+';'           Punctuation
+'\n\t'        Text
+'pragma'      Keyword
+' '           Text
+'"AMD RTI"'   Literal.String
+','           Punctuation
+' '           Text
+'"function:1:0"' Literal.String
+';'           Punctuation
+'\n\t'        Text
+'pragma'      Keyword
+' '           Text
+'"AMD RTI"'   Literal.String
+','           Punctuation
+' '           Text
+'"memory:64bitABI"' Literal.String
+';'           Punctuation
+'\n\t'        Text
+'pragma'      Keyword
+' '           Text
+'"AMD RTI"'   Literal.String
+','           Punctuation
+' '           Text
+'"privateid:1"' Literal.String
+';'           Punctuation
+'\n\t'        Text
+'pragma'      Keyword
+' '           Text
+'"AMD RTI"'   Literal.String
+','           Punctuation
+' '           Text
+'"ARGEND:mmul2d"' Literal.String
+';'           Punctuation
+'\n\t'        Text
+'// BB#0:                                // %top\n' Comment.Single
+
+'\t'          Text
+'mov'         Keyword
+'_f64'        Keyword
+'\t'          Text
+'$d1'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'0.0E+0'      Literal.Number.Float
+';'           Punctuation
+'\n\t'        Text
+'gridsize'    Keyword
+'_u32'        Keyword
+'\t'          Text
+'$s0'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text
+'workitemabsid' Keyword
+'_u32'        Keyword
+'\t'          Text
+'$s1'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text
+'workitemabsid' Keyword
+'_u32'        Keyword
+'\t'          Text
+'$s2'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text
+'cvt'         Keyword
+'_u64'        Keyword
+'_u32'        Keyword
+'\t'          Text
+'$d0'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$s2'         Name.Variable.Anonymous
+';'           Punctuation
+'\n\t'        Text
+'cvt'         Keyword
+'_u64'        Keyword
+'_u32'        Keyword
+'\t'          Text
+'$d3'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$s1'         Name.Variable.Anonymous
+';'           Punctuation
+'\n\t'        Text
+'cvt'         Keyword
+'_u64'        Keyword
+'_u32'        Keyword
+'\t'          Text
+'$d4'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$s0'         Name.Variable.Anonymous
+';'           Punctuation
+'\n\t'        Text
+'ld'          Keyword
+'_kernarg'    Keyword
+'_align(8)'   Keyword
+'_width(all)' Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d2'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'['           Punctuation
+'%__arg_p2'   Name.Variable
+']'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'ld'          Keyword
+'_kernarg'    Keyword
+'_align(8)'   Keyword
+'_width(all)' Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d6'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'['           Punctuation
+'%__arg_p1'   Name.Variable
+']'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'ld'          Keyword
+'_kernarg'    Keyword
+'_align(8)'   Keyword
+'_width(all)' Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d5'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'['           Punctuation
+'%__arg_p3'   Name.Variable
+']'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'ld'          Keyword
+'_kernarg'    Keyword
+'_align(8)'   Keyword
+'_width(all)' Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d7'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'['           Punctuation
+'%__arg_p0'   Name.Variable
+']'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'cmp'         Keyword
+'_lt'         Keyword
+'_b1'         Keyword
+'_s64'        Keyword
+'\t'          Text
+'$c0'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d5'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text
+'cbr'         Keyword
+'_b1'         Keyword
+'\t'          Text
+'$c0'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'@BB0_3'      Name.Label
+';'           Punctuation
+'\n\t'        Text
+'// BB#1:                                // %L.preheader\n' Comment.Single
+
+'\t'          Text
+'mul'         Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d1'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d5'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d3'         Name.Variable.Anonymous
+';'           Punctuation
+'\n\t'        Text
+'shl'         Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d1'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d1'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text
+'shl'         Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d8'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d0'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text
+'add'         Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d8'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d7'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d8'         Name.Variable.Anonymous
+';'           Punctuation
+'\n\t'        Text
+'add'         Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d6'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d6'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d1'         Name.Variable.Anonymous
+';'           Punctuation
+'\n\t'        Text
+'shl'         Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d7'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d4'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text
+'mov'         Keyword
+'_f64'        Keyword
+'\t'          Text
+'$d1'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'0D0000000000000000' Literal.Number.Float
+';'           Punctuation
+'\n\n'        Text
+
+'@BB0_2:'     Name.Label
+'\n\t'        Text
+'// %L\n'     Comment.Single
+
+'\t'          Text
+'add'         Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d9'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d8'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d7'         Name.Variable.Anonymous
+';'           Punctuation
+'\n\t'        Text
+'ld'          Keyword
+'_global'     Keyword
+'_f64'        Keyword
+'\t'          Text
+'$d8'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'['           Punctuation
+'$d8'         Name.Variable.Anonymous
+']'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'ld'          Keyword
+'_global'     Keyword
+'_f64'        Keyword
+'\t'          Text
+'$d10'        Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'['           Punctuation
+'$d6'         Name.Variable.Anonymous
+']'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'mul'         Keyword
+'_f64'        Keyword
+'\t'          Text
+'$d8'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d8'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d10'        Name.Variable.Anonymous
+';'           Punctuation
+'\n\t'        Text
+'add'         Keyword
+'_f64'        Keyword
+'\t'          Text
+'$d1'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d1'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d8'         Name.Variable.Anonymous
+';'           Punctuation
+'\n\t'        Text
+'add'         Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d6'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d6'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'8'           Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text
+'add'         Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d5'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d5'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'18446744073709551615' Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text
+'cmp'         Keyword
+'_ne'         Keyword
+'_b1'         Keyword
+'_s64'        Keyword
+'\t'          Text
+'$c0'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d5'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text
+'mov'         Keyword
+'_b64'        Keyword
+'\t'          Text
+'$d8'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d9'         Name.Variable.Anonymous
+';'           Punctuation
+'\n\t'        Text
+'cbr'         Keyword
+'_b1'         Keyword
+'\t'          Text
+'$c0'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'@BB0_2'      Name.Label
+';'           Punctuation
+'\n\n'        Text
+
+'@BB0_3:'     Name.Label
+'\n\t'        Text
+'// %L.7\n'   Comment.Single
+
+'\t'          Text
+'mul'         Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d3'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d3'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d4'         Name.Variable.Anonymous
+';'           Punctuation
+'\n\t'        Text
+'add'         Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d0'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d3'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d0'         Name.Variable.Anonymous
+';'           Punctuation
+'\n\t'        Text
+'shl'         Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d0'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d0'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text
+'add'         Keyword
+'_u64'        Keyword
+'\t'          Text
+'$d0'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d2'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'$d0'         Name.Variable.Anonymous
+';'           Punctuation
+'\n\t'        Text
+'st'          Keyword
+'_global'     Keyword
+'_f64'        Keyword
+'\t'          Text
+'$d1'         Name.Variable.Anonymous
+','           Punctuation
+' '           Text
+'['           Punctuation
+'$d0'         Name.Variable.Anonymous
+']'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'ret'         Keyword
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text

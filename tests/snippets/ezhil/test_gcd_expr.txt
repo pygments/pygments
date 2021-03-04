@@ -1,0 +1,21 @@
+---input---
+1^3+(5-5)*gcd(a,b)
+
+---tokens---
+'1'           Literal.Number.Integer
+'^'           Operator
+'3'           Literal.Number.Integer
+'+'           Operator
+'('           Punctuation
+'5'           Literal.Number.Integer
+'-'           Operator
+'5'           Literal.Number.Integer
+')'           Punctuation
+'*'           Operator
+'gcd'         Name
+'('           Punctuation
+'a'           Name
+','           Operator
+'b'           Name
+')'           Punctuation
+'\n'          Text

@@ -1,0 +1,10 @@
+---input---
+HTTP/1.1 200
+
+---tokens---
+'HTTP'        Keyword.Reserved
+'/'           Operator
+'1.1'         Literal.Number
+' '           Text
+'200'         Literal.Number
+'\n'          Text

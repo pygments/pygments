@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.data
     ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for data file format.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -444,9 +443,9 @@ class JsonLexer(Lexer):
     """
 
     name = 'JSON'
-    aliases = ['json']
+    aliases = ['json', 'json-object']
     filenames = ['*.json', 'Pipfile.lock']
-    mimetypes = ['application/json']
+    mimetypes = ['application/json', 'application/json-object']
 
     # No validation of integers, floats, or constants is done.
     # As long as the characters are members of the following
@@ -637,12 +636,16 @@ class JsonBareObjectLexer(JsonLexer):
     For JSON data structures (with missing object curly braces).
 
     .. versionadded:: 2.2
+
+    .. deprecated:: 2.8.0
+
+       Behaves the same as `JsonLexer` now.
     """
 
     name = 'JSONBareObject'
-    aliases = ['json-object']
+    aliases = []
     filenames = []
-    mimetypes = ['application/json-object']
+    mimetypes = []
 
 
 class JsonLdLexer(JsonLexer):
@@ -687,7 +690,7 @@ class JsonLdLexer(JsonLexer):
     }
 
     def get_tokens_unprocessed(self, text):
-        for start, token, value in super(JsonLdLexer, self).get_tokens_unprocessed(text):
+        for start, token, value in super().get_tokens_unprocessed(text):
             if token is Name.Tag and value in self.json_ld_keywords:
                 yield start, Name.Decorator, value
             else:

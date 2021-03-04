@@ -1,0 +1,933 @@
+'{php}'       Comment.Preproc
+'\n    '      Text
+'include'     Keyword
+' '           Text
+'"'           Literal.String.Double
+'some/php/file.php' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\n    '    Text
+'foreach'     Keyword
+' '           Text
+'('           Punctuation
+'$rows'       Name.Variable
+' '           Text
+'as'          Keyword
+' '           Text
+'$row'        Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'echo'        Keyword
+' '           Text
+'$row'        Name.Variable
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n'          Text
+
+'{/php}'      Comment.Preproc
+'\n\n'        Other
+
+'{'           Comment.Preproc
+'* smarty comment *' Comment
+'}'           Comment.Preproc
+'\n<!-- ENTRIES START -->\n    ' Other
+'{'           Comment.Preproc
+'serendipity_hookPlugin' Name.Function
+' '           Text
+'hook'        Name.Attribute
+'='           Operator
+'"entries_header"' Literal.String.Double
+' '           Text
+'addData'     Name.Attribute
+'='           Operator
+'"$entry_id"' Literal.String.Double
+'}'           Comment.Preproc
+'\n\n    '    Other
+'{'           Comment.Preproc
+'foreach'     Name.Function
+' '           Text
+'from'        Name.Attribute
+'='           Operator
+'$entries'    Name.Variable
+' '           Text
+'item'        Name.Attribute
+'='           Operator
+'"dategroup"' Literal.String.Double
+'}'           Comment.Preproc
+'\n    <div class="serendipity_Entry_Date">\n        ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$dategroup.is_sticky' Name.Variable
+'}'           Comment.Preproc
+'\n        <h3 class="serendipity_date">' Other
+'{'           Comment.Preproc
+'$CONST.STICKY_POSTINGS' Name.Variable
+'}'           Comment.Preproc
+'</h3>\n        ' Other
+'{'           Comment.Preproc
+'else'        Name.Function
+'}'           Comment.Preproc
+'\n        <h3 class="serendipity_date">' Other
+'{'           Comment.Preproc
+'$dategroup.date' Name.Variable
+'|'           Operator
+'@'           Operator
+'formatTime'  Name.Attribute
+':'           Operator
+'DATE_FORMAT_BARSINISTER' Name.Attribute
+'}'           Comment.Preproc
+'</h3>\n        ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n        ' Other
+'{'           Comment.Preproc
+'foreach'     Name.Function
+' '           Text
+'from'        Name.Attribute
+'='           Operator
+'$dategroup.entries' Name.Variable
+' '           Text
+'item'        Name.Attribute
+'='           Operator
+'"entry"'     Literal.String.Double
+'}'           Comment.Preproc
+'\n        <h4 class="serendipity_title"><a href="' Other
+'{'           Comment.Preproc
+'$entry.link' Name.Variable
+'}'           Comment.Preproc
+'">'          Other
+'{'           Comment.Preproc
+'$entry.title' Name.Variable
+'}'           Comment.Preproc
+'</a></h4>\n\n        <div class="serendipity_entry serendipity_entry_author_' Other
+'{'           Comment.Preproc
+'$entry.author' Name.Variable
+'|'           Operator
+'@'           Operator
+'makeFilename' Name.Attribute
+'}'           Comment.Preproc
+' '           Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$entry.is_entry_owner' Name.Variable
+'}'           Comment.Preproc
+'serendipity_entry_author_self' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'">\n            ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$entry.categories' Name.Variable
+'}'           Comment.Preproc
+'\n            <span class="serendipity_entryIcon">\n            ' Other
+'{'           Comment.Preproc
+'foreach'     Name.Function
+' '           Text
+'from'        Name.Attribute
+'='           Operator
+'$entry.categories' Name.Variable
+' '           Text
+'item'        Name.Attribute
+'='           Operator
+'"category"'  Literal.String.Double
+'}'           Comment.Preproc
+'\n                ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$category.category_icon' Name.Variable
+'}'           Comment.Preproc
+'\n                    <a href="' Other
+'{'           Comment.Preproc
+'$category.category_link' Name.Variable
+'}'           Comment.Preproc
+'"><img class="serendipity_entryIcon" title="' Other
+'{'           Comment.Preproc
+'$category.category_name' Name.Variable
+'|'           Operator
+'@'           Operator
+'escape'      Name.Attribute
+'}'           Comment.Preproc
+'{'           Comment.Preproc
+'$category.category_description' Name.Variable
+'|'           Operator
+'@'           Operator
+'emptyPrefix' Name.Attribute
+'}'           Comment.Preproc
+'" alt="'     Other
+'{'           Comment.Preproc
+'$category.category_name' Name.Variable
+'|'           Operator
+'@'           Operator
+'escape'      Name.Attribute
+'}'           Comment.Preproc
+'" src="'     Other
+'{'           Comment.Preproc
+'$category.category_icon' Name.Variable
+'}'           Comment.Preproc
+'" /></a>\n                ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n            ' Other
+'{'           Comment.Preproc
+'/foreach'    Name.Function
+'}'           Comment.Preproc
+'\n            </span>\n            ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n            <div class="serendipity_entry_body">\n                ' Other
+'{'           Comment.Preproc
+'$entry.body' Name.Variable
+'}'           Comment.Preproc
+'\n            </div>\n\n            ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$entry.is_extended' Name.Variable
+'}'           Comment.Preproc
+'\n            <div class="serendipity_entry_extended"><a id="extended"></a>' Other
+'{'           Comment.Preproc
+'$entry.extended' Name.Variable
+'}'           Comment.Preproc
+'</div>\n            ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n            ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$entry.has_extended' Name.Variable
+' '           Text
+'and'         Name.Attribute
+' '           Text
+'not'         Name.Attribute
+' '           Text
+'$is_single_entry' Name.Variable
+' '           Text
+'and'         Name.Attribute
+' '           Text
+'not'         Name.Attribute
+' '           Text
+'$entry.is_extended' Name.Variable
+'}'           Comment.Preproc
+'<br />\n            <p class="continue_reading"><a href="' Other
+'{'           Comment.Preproc
+'$entry.link' Name.Variable
+'}'           Comment.Preproc
+'#extended">' Other
+'{'           Comment.Preproc
+'$CONST.VIEW_EXTENDED_ENTRY' Name.Variable
+'|'           Operator
+'@'           Operator
+'sprintf'     Name.Attribute
+':'           Operator
+'$entry.title' Name.Variable
+'}'           Comment.Preproc
+'</a></p><br />\n            ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+"\n\n            <div class='serendipity_entryFooter'>\n                " Other
+'{'           Comment.Preproc
+'$CONST.POSTED_BY' Name.Variable
+'}'           Comment.Preproc
+' <a href="'  Other
+'{'           Comment.Preproc
+'$entry.link_author' Name.Variable
+'}'           Comment.Preproc
+'">'          Other
+'{'           Comment.Preproc
+'$entry.author' Name.Variable
+'}'           Comment.Preproc
+'</a>\n                ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$entry.categories' Name.Variable
+'}'           Comment.Preproc
+'\n                   ' Other
+'{'           Comment.Preproc
+'$CONST.IN'   Name.Variable
+'}'           Comment.Preproc
+' '           Other
+'{'           Comment.Preproc
+'foreach'     Name.Function
+' '           Text
+'from'        Name.Attribute
+'='           Operator
+'$entry.categories' Name.Variable
+' '           Text
+'item'        Name.Attribute
+'='           Operator
+'"category"'  Literal.String.Double
+' '           Text
+'name'        Name.Attribute
+'='           Operator
+'"categories"' Literal.String.Double
+'}'           Comment.Preproc
+'<a href="'   Other
+'{'           Comment.Preproc
+'$category.category_link' Name.Variable
+'}'           Comment.Preproc
+'">'          Other
+'{'           Comment.Preproc
+'$category.category_name' Name.Variable
+'|'           Operator
+'@'           Operator
+'escape'      Name.Attribute
+'}'           Comment.Preproc
+'</a>'        Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'not'         Name.Attribute
+' '           Text
+'$smarty.foreach.categories.last' Name.Variable
+'}'           Comment.Preproc
+', '          Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'{'           Comment.Preproc
+'/foreach'    Name.Function
+'}'           Comment.Preproc
+'\n                ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n                ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$entry.has_comments' Name.Variable
+'}'           Comment.Preproc
+'\n                    ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$use_popups' Name.Variable
+'}'           Comment.Preproc
+'\n                        | <a href="' Other
+'{'           Comment.Preproc
+'$entry.link_popup_comments' Name.Variable
+'}'           Comment.Preproc
+'" onclick="window.open(this.href, \'comments\', \'width=480,height=480,scrollbars=yes\'); return false;">' Other
+'{'           Comment.Preproc
+'$entry.label_comments' Name.Variable
+'}'           Comment.Preproc
+' ('          Other
+'{'           Comment.Preproc
+'$entry.comments' Name.Variable
+'}'           Comment.Preproc
+')</a>\n                    ' Other
+'{'           Comment.Preproc
+'else'        Name.Function
+'}'           Comment.Preproc
+'\n                        | <a href="' Other
+'{'           Comment.Preproc
+'$entry.link' Name.Variable
+'}'           Comment.Preproc
+'#comments">' Other
+'{'           Comment.Preproc
+'$entry.label_comments' Name.Variable
+'}'           Comment.Preproc
+' ('          Other
+'{'           Comment.Preproc
+'$entry.comments' Name.Variable
+'}'           Comment.Preproc
+')</a>\n                    ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n                ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n                ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$entry.has_trackbacks' Name.Variable
+'}'           Comment.Preproc
+'\n                    ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$use_popups' Name.Variable
+'}'           Comment.Preproc
+'\n                        | <a href="' Other
+'{'           Comment.Preproc
+'$entry.link_popup_trackbacks' Name.Variable
+'}'           Comment.Preproc
+'" onclick="window.open(this.href, \'comments\', \'width=480,height=480,scrollbars=yes\'); return false;">' Other
+'{'           Comment.Preproc
+'$entry.label_trackbacks' Name.Variable
+'}'           Comment.Preproc
+' ('          Other
+'{'           Comment.Preproc
+'$entry.trackbacks' Name.Variable
+'}'           Comment.Preproc
+')</a>\n                    ' Other
+'{'           Comment.Preproc
+'else'        Name.Function
+'}'           Comment.Preproc
+'\n                        | <a href="' Other
+'{'           Comment.Preproc
+'$entry.link' Name.Variable
+'}'           Comment.Preproc
+'#trackbacks">' Other
+'{'           Comment.Preproc
+'$entry.label_trackbacks' Name.Variable
+'}'           Comment.Preproc
+' ('          Other
+'{'           Comment.Preproc
+'$entry.trackbacks' Name.Variable
+'}'           Comment.Preproc
+')</a>\n                    ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n                ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n                ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$entry.is_entry_owner' Name.Variable
+' '           Text
+'and'         Name.Attribute
+' '           Text
+'not'         Name.Attribute
+' '           Text
+'$is_preview' Name.Variable
+'}'           Comment.Preproc
+'\n                        | <a href="' Other
+'{'           Comment.Preproc
+'$entry.link_edit' Name.Variable
+'}'           Comment.Preproc
+'">'          Other
+'{'           Comment.Preproc
+'$CONST.EDIT_ENTRY' Name.Variable
+'}'           Comment.Preproc
+'</a>\n                ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n                ' Other
+'{'           Comment.Preproc
+'$entry.add_footer' Name.Variable
+'}'           Comment.Preproc
+'\n            </div>\n        </div>\n        <!--\n        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"\n                 xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"\n                 xmlns:dc="http://purl.org/dc/elements/1.1/">\n        <rdf:Description\n                 rdf:about="' Other
+'{'           Comment.Preproc
+'$entry.link_rdf' Name.Variable
+'}'           Comment.Preproc
+'"\n                 trackback:ping="' Other
+'{'           Comment.Preproc
+'$entry.link_trackback' Name.Variable
+'}'           Comment.Preproc
+'"\n                 dc:title="' Other
+'{'           Comment.Preproc
+'$entry.title' Name.Variable
+'}'           Comment.Preproc
+'"\n                 dc:identifier="' Other
+'{'           Comment.Preproc
+'$entry.rdf_ident' Name.Variable
+'}'           Comment.Preproc
+'" />\n        </rdf:RDF>\n        -->\n        ' Other
+'{'           Comment.Preproc
+'$entry.plugin_display_dat' Name.Variable
+'}'           Comment.Preproc
+'\n\n        ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$is_single_entry' Name.Variable
+' '           Text
+'and'         Name.Attribute
+' '           Text
+'not'         Name.Attribute
+' '           Text
+'$use_popups' Name.Variable
+' '           Text
+'and'         Name.Attribute
+' '           Text
+'not'         Name.Attribute
+' '           Text
+'$is_preview' Name.Variable
+'}'           Comment.Preproc
+'\n            ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$CONST.DATA_UNSUBSCRIBED' Name.Variable
+'}'           Comment.Preproc
+'\n                <br /><div class="serendipity_center serendipity_msg_notice">' Other
+'{'           Comment.Preproc
+'$CONST.DATA_UNSUBSCRIBED' Name.Variable
+'|'           Operator
+'@'           Operator
+'sprintf'     Name.Attribute
+':'           Operator
+'$CONST.UNSUBSCRIBE_OK' Name.Variable
+'}'           Comment.Preproc
+'</div><br />\n            ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n            ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$CONST.DATA_TRACKBACK_DELETED' Name.Variable
+'}'           Comment.Preproc
+'\n                <br /><div class="serendipity_center serendipity_msg_notice">' Other
+'{'           Comment.Preproc
+'$CONST.DATA_TRACKBACK_DELETED' Name.Variable
+'|'           Operator
+'@'           Operator
+'sprintf'     Name.Attribute
+':'           Operator
+'$CONST.TRACKBACK_DELETED' Name.Variable
+'}'           Comment.Preproc
+'</div><br />\n            ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n            ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$CONST.DATA_TRACKBACK_APPROVED' Name.Variable
+'}'           Comment.Preproc
+'\n                <br /><div class="serendipity_center serendipity_msg_notice">' Other
+'{'           Comment.Preproc
+'$CONST.DATA_TRACKBACK_APPROVED' Name.Variable
+'|'           Operator
+'@'           Operator
+'sprintf'     Name.Attribute
+':'           Operator
+'$CONST.TRACKBACK_APPROVED' Name.Variable
+'}'           Comment.Preproc
+'</div><br />\n            ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n            ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$CONST.DATA_COMMENT_DELETED' Name.Variable
+'}'           Comment.Preproc
+'\n                <br /><div class="serendipity_center serendipity_msg_notice">' Other
+'{'           Comment.Preproc
+'$CONST.DATA_COMMENT_DELETED' Name.Variable
+'|'           Operator
+'@'           Operator
+'sprintf'     Name.Attribute
+':'           Operator
+'$CONST.COMMENT_DELETED' Name.Variable
+'}'           Comment.Preproc
+'</div><br />\n            ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n            ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$CONST.DATA_COMMENT_APPROVED' Name.Variable
+'}'           Comment.Preproc
+'\n                <br /><div class="serendipity_center serendipity_msg_notice">' Other
+'{'           Comment.Preproc
+'$CONST.DATA_COMMENT_APPROVED' Name.Variable
+'|'           Operator
+'@'           Operator
+'sprintf'     Name.Attribute
+':'           Operator
+'$CONST.COMMENT_APPROVED' Name.Variable
+'}'           Comment.Preproc
+'</div><br />\n            ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n        ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n        ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$is_single_entry' Name.Variable
+' '           Text
+'and'         Name.Attribute
+' '           Text
+'not'         Name.Attribute
+' '           Text
+'$is_preview' Name.Variable
+'}'           Comment.Preproc
+'\n            <div class="serendipity_comments">\n                <br />\n                <a id="trackbacks"></a>\n                <div class="serendipity_commentsTitle">' Other
+'{'           Comment.Preproc
+'$CONST.TRACKBACKS' Name.Variable
+'}'           Comment.Preproc
+'</div>\n                    <div class="serendipity_center">\n                        <a rel="nofollow" style="font-weight: normal" href="' Other
+'{'           Comment.Preproc
+'$entry.link_trackback' Name.Variable
+'}'           Comment.Preproc
+'" onclick="alert(\'' Other
+'{'           Comment.Preproc
+'$CONST.TRACKBACK_SPECIFIC_ON_CLICK' Name.Variable
+'|'           Operator
+'@'           Operator
+'escape'      Name.Attribute
+':'           Operator
+'htmlall'     Name.Attribute
+'}'           Comment.Preproc
+'\'); return false;" title="' Other
+'{'           Comment.Preproc
+'$CONST.TRACKBACK_SPECIFIC_ON_CLICK' Name.Variable
+'|'           Operator
+'@'           Operator
+'escape'      Name.Attribute
+'}'           Comment.Preproc
+'">'          Other
+'{'           Comment.Preproc
+'$CONST.TRACKBACK_SPECIFIC' Name.Variable
+'}'           Comment.Preproc
+'</a>\n                    </div>\n                    <br />\n                        ' Other
+'{'           Comment.Preproc
+'serendipity_printTrackbacks' Name.Function
+' '           Text
+'entry'       Name.Attribute
+'='           Operator
+'$entry.id'   Name.Variable
+'}'           Comment.Preproc
+'\n            </div>\n            <div class="serendipity_comments">\n                <br />\n                <a id="comments"></a>\n                <div class="serendipity_commentsTitle">' Other
+'{'           Comment.Preproc
+'$CONST.COMMENTS' Name.Variable
+'}'           Comment.Preproc
+'</div>\n                <div class="serendipity_center">' Other
+'{'           Comment.Preproc
+'$CONST.DISPLAY_COMMENTS_AS' Name.Variable
+'}'           Comment.Preproc
+'\n                ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$entry.viewmode' Name.Variable
+' '           Text
+'eq'          Name.Attribute
+' '           Text
+'$CONST.VIEWMODE_LINEAR' Name.Variable
+'}'           Comment.Preproc
+'\n                    (' Other
+'{'           Comment.Preproc
+'$CONST.COMMENTS_VIEWMODE_LINEAR' Name.Variable
+'}'           Comment.Preproc
+' | <a href="' Other
+'{'           Comment.Preproc
+'$entry.link_viewmode_threaded' Name.Variable
+'}'           Comment.Preproc
+'#comments">' Other
+'{'           Comment.Preproc
+'$CONST.COMMENTS_VIEWMODE_THREADED' Name.Variable
+'}'           Comment.Preproc
+'</a>)\n                ' Other
+'{'           Comment.Preproc
+'else'        Name.Function
+'}'           Comment.Preproc
+'\n                    (<a href="' Other
+'{'           Comment.Preproc
+'$entry.link_viewmode_linear' Name.Variable
+'}'           Comment.Preproc
+'#comments">' Other
+'{'           Comment.Preproc
+'$CONST.COMMENTS_VIEWMODE_LINEAR' Name.Variable
+'}'           Comment.Preproc
+'</a> | '     Other
+'{'           Comment.Preproc
+'$CONST.COMMENTS_VIEWMODE_THREADED' Name.Variable
+'}'           Comment.Preproc
+')\n                ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n                </div>\n                <br />\n                    ' Other
+'{'           Comment.Preproc
+'serendipity_printComments' Name.Function
+' '           Text
+'entry'       Name.Attribute
+'='           Operator
+'$entry.id'   Name.Variable
+' '           Text
+'mode'        Name.Attribute
+'='           Operator
+'$entry.viewmode' Name.Variable
+'}'           Comment.Preproc
+'\n\n                ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$entry.is_entry_owner' Name.Variable
+'}'           Comment.Preproc
+'\n                    ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$entry.allow_comments' Name.Variable
+'}'           Comment.Preproc
+'\n                    <div class="serendipity_center">(<a href="' Other
+'{'           Comment.Preproc
+'$entry.link_deny_comments' Name.Variable
+'}'           Comment.Preproc
+'">'          Other
+'{'           Comment.Preproc
+'$CONST.COMMENTS_DISABLE' Name.Variable
+'}'           Comment.Preproc
+'</a>)</div>\n                    ' Other
+'{'           Comment.Preproc
+'else'        Name.Function
+'}'           Comment.Preproc
+'\n                    <div class="serendipity_center">(<a href="' Other
+'{'           Comment.Preproc
+'$entry.link_allow_comments' Name.Variable
+'}'           Comment.Preproc
+'">'          Other
+'{'           Comment.Preproc
+'$CONST.COMMENTS_ENABLE' Name.Variable
+'}'           Comment.Preproc
+'</a>)</div>\n                    ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n                ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n                <a id="feedback"></a>\n\n                ' Other
+'{'           Comment.Preproc
+'foreach'     Name.Function
+' '           Text
+'from'        Name.Attribute
+'='           Operator
+'$comments_messagestack' Name.Variable
+' '           Text
+'item'        Name.Attribute
+'='           Operator
+'"message"'   Literal.String.Double
+'}'           Comment.Preproc
+'\n                <div class="serendipity_center serendipity_msg_important">' Other
+'{'           Comment.Preproc
+'$message'    Name.Variable
+'}'           Comment.Preproc
+'</div>\n                ' Other
+'{'           Comment.Preproc
+'/foreach'    Name.Function
+'}'           Comment.Preproc
+'\n\n                ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$is_comment_added' Name.Variable
+'}'           Comment.Preproc
+'\n\n                <br />\n                <div class="serendipity_center serendipity_msg_notice">' Other
+'{'           Comment.Preproc
+'$CONST.COMMENT_ADDED' Name.Variable
+'}'           Comment.Preproc
+'</div>\n\n                ' Other
+'{'           Comment.Preproc
+'elseif'      Name.Function
+' '           Text
+'$is_comment_moderate' Name.Variable
+'}'           Comment.Preproc
+'\n\n                <br />\n                <div class="serendipity_center serendipity_msg_notice">' Other
+'{'           Comment.Preproc
+'$CONST.COMMENT_ADDED' Name.Variable
+'}'           Comment.Preproc
+'<br />'      Other
+'{'           Comment.Preproc
+'$CONST.THIS_COMMENT_NEEDS_REVIEW' Name.Variable
+'}'           Comment.Preproc
+'</div>\n\n                ' Other
+'{'           Comment.Preproc
+'elseif'      Name.Function
+' '           Text
+'not'         Name.Attribute
+' '           Text
+'$entry.allow_comments' Name.Variable
+'}'           Comment.Preproc
+'\n\n                <br />\n                <div class="serendipity_center serendipity_msg_important">' Other
+'{'           Comment.Preproc
+'$CONST.COMMENTS_CLOSED' Name.Variable
+'}'           Comment.Preproc
+'</div>\n\n                ' Other
+'{'           Comment.Preproc
+'else'        Name.Function
+'}'           Comment.Preproc
+'\n\n                <br />\n                <div class="serendipity_commentsTitle">' Other
+'{'           Comment.Preproc
+'$CONST.ADD_COMMENT' Name.Variable
+'}'           Comment.Preproc
+'</div>\n                ' Other
+'{'           Comment.Preproc
+'$COMMENTFORM' Name.Variable
+'}'           Comment.Preproc
+'\n\n                ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n            </div>\n        ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n        ' Other
+'{'           Comment.Preproc
+'$entry.backend_preview' Name.Variable
+'}'           Comment.Preproc
+'\n        '  Other
+'{'           Comment.Preproc
+'/foreach'    Name.Function
+'}'           Comment.Preproc
+'\n    </div>\n    ' Other
+'{'           Comment.Preproc
+'foreachelse' Name.Function
+'}'           Comment.Preproc
+'\n    '      Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'not'         Name.Attribute
+' '           Text
+'$plugin_clean_page' Name.Variable
+'}'           Comment.Preproc
+'\n        '  Other
+'{'           Comment.Preproc
+'$CONST.NO_ENTRIES_TO_PRINT' Name.Variable
+'}'           Comment.Preproc
+'\n    '      Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n    '      Other
+'{'           Comment.Preproc
+'/foreach'    Name.Function
+'}'           Comment.Preproc
+'\n\n'        Other
+
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$footer_info' Name.Variable
+'}'           Comment.Preproc
+'\n    <div class="serendipity_pageFooter">\n    ' Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$footer_info' Name.Variable
+'}'           Comment.Preproc
+'\n        '  Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$footer_prev_page' Name.Variable
+'}'           Comment.Preproc
+'\n        <span class="previous"><a href="' Other
+'{'           Comment.Preproc
+'$footer_prev_page' Name.Variable
+'}'           Comment.Preproc
+'">&laquo; '  Other
+'{'           Comment.Preproc
+'$CONST.PREVIOUS_PAGE' Name.Variable
+'}'           Comment.Preproc
+'</a></span>\n        ' Other
+'{'           Comment.Preproc
+'else'        Name.Function
+'}'           Comment.Preproc
+'\n        <span class="previous">&#160;</span>\n        ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n    '      Other
+'{'           Comment.Preproc
+'else'        Name.Function
+'}'           Comment.Preproc
+'\n    '      Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n    '    Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$footer_info' Name.Variable
+'}'           Comment.Preproc
+'\n        <span class="entries_info">(' Other
+'{'           Comment.Preproc
+'$footer_info' Name.Variable
+'}'           Comment.Preproc
+')</span>\n    ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n\n    '    Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$footer_info' Name.Variable
+'}'           Comment.Preproc
+'\n        '  Other
+'{'           Comment.Preproc
+'if'          Name.Function
+' '           Text
+'$footer_next_page' Name.Variable
+'}'           Comment.Preproc
+'\n        <span class="next"><a href="' Other
+'{'           Comment.Preproc
+'$footer_next_page' Name.Variable
+'}'           Comment.Preproc
+'">'          Other
+'{'           Comment.Preproc
+'$CONST.NEXT_PAGE' Name.Variable
+'}'           Comment.Preproc
+' &raquo;</a></span>\n        ' Other
+'{'           Comment.Preproc
+'else'        Name.Function
+'}'           Comment.Preproc
+'\n        <span class="next">&#160;</span>\n        ' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n    '      Other
+'{'           Comment.Preproc
+'else'        Name.Function
+'}'           Comment.Preproc
+'\n    '      Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n    </div>' Other
+'{'           Comment.Preproc
+'/if'         Name.Function
+'}'           Comment.Preproc
+'\n    '      Other
+'{'           Comment.Preproc
+'serendipity_hookPlugin' Name.Function
+' '           Text
+'hook'        Name.Attribute
+'='           Operator
+'"entries_footer"' Literal.String.Double
+'}'           Comment.Preproc
+'\n<!-- ENTRIES END -->\n' Other

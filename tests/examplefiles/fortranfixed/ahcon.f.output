@@ -1,0 +1,2050 @@
+'     '       Name.Label
+' '           Text
+'  '          Text
+'SUBROUTINE ' Keyword
+'AHCON'       Name
+' '           Text
+'('           Punctuation
+'SIZE'        Name
+','           Punctuation
+'N'           Name
+','           Punctuation
+'M'           Name
+','           Punctuation
+'A'           Name
+','           Punctuation
+'B'           Name
+','           Punctuation
+'OLEVR'       Name
+','           Punctuation
+'OLEVI'       Name
+','           Punctuation
+'CLEVR'       Name
+','           Punctuation
+'CLEVI'       Name
+','           Punctuation
+'         '   Text
+'TRUNCATED'   Comment
+'\n'          Text
+
+'     '       Name.Label
+'&'           Generic.Strong
+'                    ' Text
+'SCR1'        Name
+','           Punctuation
+'SCR2'        Name
+','           Punctuation
+'IPVT'        Name
+','           Punctuation
+'JPVT'        Name
+','           Punctuation
+'CON'         Name
+','           Punctuation
+'WORK'        Name
+','           Punctuation
+'ISEED'       Name
+','           Punctuation
+'IERR'        Name
+')'           Punctuation
+' '           Text
+'!Test'       Comment
+' inline comment' Comment
+'\n'          Text
+
+'C\n'         Comment
+
+'C       FUNCTION:\n' Comment
+
+'CF\n'        Comment
+
+'CF      Determines whether the pair (A,B) is controllable and flags\n' Comment
+
+'CF      the eigenvalues corresponding to uncontrollable modes.\n' Comment
+
+'CF      this ad-hoc controllability calculation uses a random matrix F\n' Comment
+
+'CF      and computes whether eigenvalues move from A to the controlled\n' Comment
+
+'CF      system A+B*F.\n' Comment
+
+'CF\n'        Comment
+
+'C       USAGE:\n' Comment
+
+'CU\n'        Comment
+
+'CU      CALL AHCON (SIZE,N,M,A,B,OLEVR,OLEVI,CLEVR,CLEVI,SCR1,SCR2,IPVT,\n' Comment
+
+'CU                  JPVT,CON,WORK,ISEED,IERR)\n' Comment
+
+'CU\n'        Comment
+
+'CU      since AHCON generates different random F matrices for each\n' Comment
+
+'CU      call, as long as iseed is not re-initialized by the main\n' Comment
+
+'CU      program, and since this code has the potential to be fooled\n' Comment
+
+'CU      by extremely ill-conditioned problems, the cautious user\n' Comment
+
+'CU      may wish to call it multiple times and rely, perhaps, on\n' Comment
+
+'CU      a 2-of-3 vote.  We believe, but have not proved, that any\n' Comment
+
+'CU      errors this routine may produce are conservative--i.e., that\n' Comment
+
+'CU      it may flag a controllable mode as uncontrollable, but\n' Comment
+
+'CU      not vice-versa.\n' Comment
+
+'CU\n'        Comment
+
+'C       INPUTS:\n' Comment
+
+'CI\n'        Comment
+
+'CI      SIZE    integer - first dimension of all 2-d arrays.\n' Comment
+
+'CI\n'        Comment
+
+'CI      N       integer - number of states.\n' Comment
+
+'CI\n'        Comment
+
+'CI      M       integer - number of inputs.\n' Comment
+
+'CI\n'        Comment
+
+'CI      A       double precision - SIZE by N array containing the\n' Comment
+
+'CI              N by N system dynamics matrix A.\n' Comment
+
+'CI\n'        Comment
+
+'CI      B       double precision - SIZE by M array containing the\n' Comment
+
+'CI              N by M system input matrix B.\n' Comment
+
+'CI\n'        Comment
+
+'CI      ISEED   initial seed for random number generator; if ISEED=0,\n' Comment
+
+'CI              then AHCON will set ISEED to a legal value.\n' Comment
+
+'CI\n'        Comment
+
+'C       OUTPUTS:\n' Comment
+
+'CO\n'        Comment
+
+'CO      OLEVR   double precision - N dimensional vector containing the\n' Comment
+
+'CO              real parts of the eigenvalues of A.\n' Comment
+
+'CO\n'        Comment
+
+'CO      OLEVI   double precision - N dimensional vector containing the\n' Comment
+
+'CO              imaginary parts of the eigenvalues of A.\n' Comment
+
+'CO\n'        Comment
+
+'CO      CLEVR   double precision - N dimensional vector work space\n' Comment
+
+'CO              containing the real parts of the eigenvalues of A+B*F,\n' Comment
+
+'CO              where F is the random matrix.\n' Comment
+
+'CO\n'        Comment
+
+'CO      CLEVI   double precision - N dimensional vector work space\n' Comment
+
+'CO              containing the imaginary parts of the eigenvalues of\n' Comment
+
+'CO              A+B*F, where F is the random matrix.\n' Comment
+
+'CO\n'        Comment
+
+'CO      SCR1    double precision - N dimensional vector containing the\n' Comment
+
+'CO              magnitudes of the corresponding eigenvalues of A.\n' Comment
+
+'CO\n'        Comment
+
+'CO      SCR2    double precision - N dimensional vector containing the\n' Comment
+
+'CO              damping factors of the corresponding eigenvalues of A.\n' Comment
+
+'CO\n'        Comment
+
+'CO      IPVT    integer - N dimensional vector; contains the row pivots\n' Comment
+
+'CO              used in finding the nearest neighbor eigenvalues between\n' Comment
+
+'CO              those of A and of A+B*F.  The IPVT(1)th eigenvalue of\n' Comment
+
+'CO              A and the JPVT(1)th eigenvalue of A+B*F are the closest\n' Comment
+
+'CO              pair.\n' Comment
+
+'CO\n'        Comment
+
+'CO      JPVT    integer - N dimensional vector; contains the column\n' Comment
+
+'CO              pivots used in finding the nearest neighbor eigenvalues;\n' Comment
+
+'CO              see IPVT.\n' Comment
+
+'CO\n'        Comment
+
+'CO      CON     logical - N dimensional vector; flagging the uncontrollable\n' Comment
+
+'CO              modes of the system.  CON(I)=.TRUE. implies the\n' Comment
+
+'CO              eigenvalue of A given by DCMPLX(OLEVR(IPVT(I)),OLEVI(IPVT(i)))\n' Comment
+
+'CO              corresponds to a controllable mode; CON(I)=.FALSE.\n' Comment
+
+'CO              implies an uncontrollable mode for that eigenvalue.\n' Comment
+
+'CO\n'        Comment
+
+'CO      WORK    double precision - SIZE by N dimensional array containing\n' Comment
+
+'CO              an N by N matrix.  WORK(I,J) is the distance between\n' Comment
+
+'CO              the open loop eigenvalue given by DCMPLX(OLEVR(I),OLEVI(I))\n' Comment
+
+'CO              and the closed loop eigenvalue of A+B*F given by\n' Comment
+
+'CO              DCMPLX(CLEVR(J),CLEVI(J)).\n' Comment
+
+'CO\n'        Comment
+
+'CO      IERR    integer - IERR=0 indicates normal return; a non-zero\n' Comment
+
+'CO              value indicates trouble in the eigenvalue calculation.\n' Comment
+
+'CO              see the EISPACK and EIGEN documentation for details.\n' Comment
+
+'CO\n'        Comment
+
+'C       ALGORITHM:\n' Comment
+
+'CA\n'        Comment
+
+'CA      Calculate eigenvalues of A and of A+B*F for a randomly\n' Comment
+
+'CA      generated F, and see which ones change.  Use a full pivot\n' Comment
+
+'CA      search through a matrix of euclidean distance measures\n' Comment
+
+'CA      between each pair of eigenvalues from (A,A+BF) to\n' Comment
+
+'CA      determine the closest pairs.\n' Comment
+
+'CA\n'        Comment
+
+'C       MACHINE DEPENDENCIES:\n' Comment
+
+'CM\n'        Comment
+
+'CM       NONE\n' Comment
+
+'CM\n'        Comment
+
+'C       HISTORY:\n' Comment
+
+'CH\n'        Comment
+
+'CH      written by:             Birdwell & Laub\n' Comment
+
+'CH      date:                   May 18, 1985\n' Comment
+
+'CH      current version:        1.0\n' Comment
+
+'CH      modifications:          made machine independent and modified for\n' Comment
+
+'CH                              f77:bb:8-86.\n' Comment
+
+'CH                              changed cmplx -> dcmplx: 7/27/88 jdb\n' Comment
+
+'CH\n'        Comment
+
+'C       ROUTINES CALLED:\n' Comment
+
+'CC\n'        Comment
+
+'CC      EIGEN,RAND\n' Comment
+
+'CC\n'        Comment
+
+'C       COMMON MEMORY USED:\n' Comment
+
+'CM\n'        Comment
+
+'CM      none\n' Comment
+
+'CM\n'        Comment
+
+'C----------------------------------------------------------------------\n' Comment
+
+'C       written for:    The CASCADE Project\n' Comment
+
+'C                       Oak Ridge National Laboratory\n' Comment
+
+'C                       U.S. Department of Energy\n' Comment
+
+'C                       contract number DE-AC05-840R21400\n' Comment
+
+'C                       subcontract number 37B-7685 S13\n' Comment
+
+'C                       organization:   The University of Tennessee\n' Comment
+
+'C----------------------------------------------------------------------\n' Comment
+
+'C       THIS SOFTWARE IS IN THE PUBLIC DOMAIN\n' Comment
+
+'C       NO RESTRICTIONS ON ITS USE ARE IMPLIED\n' Comment
+
+'C----------------------------------------------------------------------\n' Comment
+
+'C\n'         Comment
+
+'C--global variables:\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'SIZE'        Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'M'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'IPVT'        Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'JPVT'        Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'IERR'        Name
+'\n'          Text
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'A'           Name
+'('           Punctuation
+'SIZE'        Name
+','           Punctuation
+'N'           Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'B'           Name
+'('           Punctuation
+'SIZE'        Name
+','           Punctuation
+'M'           Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'WORK'        Name
+'('           Punctuation
+'SIZE'        Name
+','           Punctuation
+'N'           Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'CLEVR'       Name
+'('           Punctuation
+'N'           Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'CLEVI'       Name
+'('           Punctuation
+'N'           Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'OLEVR'       Name
+'('           Punctuation
+'N'           Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'OLEVI'       Name
+'('           Punctuation
+'N'           Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'SCR1'        Name
+'('           Punctuation
+'N'           Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'SCR2'        Name
+'('           Punctuation
+'N'           Name
+')'           Punctuation
+'\n'          Text
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'LOGICAL                 ' Keyword.Type
+'CON'         Name
+'('           Punctuation
+'N'           Name
+')'           Punctuation
+'\n'          Text
+
+'C\n'         Comment
+
+'C--local variables:\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'ISEED'       Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'ITEMP'       Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'K1'          Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'K2'          Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'I'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'J'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'K'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'IMAX'        Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'INTEGER         ' Keyword.Type
+'JMAX'        Name
+'\n'          Text
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'VALUE'       Keyword
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'EPS'         Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'EPS1'        Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'TEMP'        Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'CURR'        Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'ANORM'       Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'BNORM'       Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'COLNRM'      Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE PRECISION        ' Keyword.Type
+'RNDMNO'      Name
+'\n'          Text
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DOUBLE COMPLEX\t\t' Keyword.Type
+'DCMPLX'      Name
+'\n'          Text
+
+'C\n'         Comment
+
+'C--compute machine epsilon\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'EPS'         Name
+' '           Text
+'='           Operator
+' '           Text
+'1.D0'        Literal.Number.Float
+'\n'          Text
+
+'100  '       Name.Label
+' '           Text
+'  '          Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'EPS'         Name
+' '           Text
+'='           Operator
+' '           Text
+'EPS'         Name
+' '           Text
+'/'           Operator
+' '           Text
+'2.D0'        Literal.Number.Float
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'EPS1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1.D0'        Literal.Number.Float
+' '           Text
+'+'           Operator
+' '           Text
+'EPS'         Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'IF'          Keyword
+' '           Text
+'('           Punctuation
+'EPS1'        Name
+' '           Text
+'.'           Punctuation
+'NE'          Name
+'.'           Punctuation
+' '           Text
+'1.D0'        Literal.Number.Float
+')'           Punctuation
+' '           Text
+'GO'          Name
+' '           Text
+'TO'          Name
+' '           Text
+'100'         Literal.Number.Integer
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'EPS'         Name
+' '           Text
+'='           Operator
+' '           Text
+'EPS'         Name
+' '           Text
+'*'           Operator
+' '           Text
+'2.D0'        Literal.Number.Float
+'\n'          Text
+
+'C\n'         Comment
+
+'C--compute the l-1 norm of a\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'ANORM'       Name
+' '           Text
+'='           Operator
+' '           Text
+'0.0D0'       Literal.Number.Float
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DO '         Keyword
+'120'         Literal.Number.Integer
+' '           Text
+'J'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'COLNRM'      Name
+' '           Text
+'='           Operator
+' '           Text
+'0.D0'        Literal.Number.Float
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'DO '         Keyword
+'110'         Literal.Number.Integer
+' '           Text
+'I'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'      '      Text
+'COLNRM'      Name
+' '           Text
+'='           Operator
+' '           Text
+'COLNRM'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'ABS'         Name.Builtin
+'('           Punctuation
+'A'           Name
+'('           Punctuation
+'I'           Name
+','           Punctuation
+'J'           Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'110  '       Name.Label
+' '           Text
+'    '        Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'IF'          Keyword
+' '           Text
+'('           Punctuation
+'COLNRM'      Name
+' '           Text
+'.'           Punctuation
+'GT'          Name
+'.'           Punctuation
+' '           Text
+'ANORM'       Name
+')'           Punctuation
+' '           Text
+'ANORM'       Name
+' '           Text
+'='           Operator
+' '           Text
+'COLNRM'      Name
+'\n'          Text
+
+'120  '       Name.Label
+' '           Text
+'  '          Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'C\n'         Comment
+
+'C--compute the l-1 norm of b\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'BNORM'       Name
+' '           Text
+'='           Operator
+' '           Text
+'0.0D0'       Literal.Number.Float
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DO '         Keyword
+'140'         Literal.Number.Integer
+' '           Text
+'J'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'M'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'COLNRM'      Name
+' '           Text
+'='           Operator
+' '           Text
+'0.D0'        Literal.Number.Float
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'DO '         Keyword
+'130'         Literal.Number.Integer
+' '           Text
+'I'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'      '      Text
+'COLNRM'      Name
+' '           Text
+'='           Operator
+' '           Text
+'COLNRM'      Name
+' '           Text
+'+'           Operator
+' '           Text
+'ABS'         Name.Builtin
+'('           Punctuation
+'B'           Name
+'('           Punctuation
+'I'           Name
+','           Punctuation
+'J'           Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'130  '       Name.Label
+' '           Text
+'    '        Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'IF'          Keyword
+' '           Text
+'('           Punctuation
+'COLNRM'      Name
+' '           Text
+'.'           Punctuation
+'GT'          Name
+'.'           Punctuation
+' '           Text
+'BNORM'       Name
+')'           Punctuation
+' '           Text
+'BNORM'       Name
+' '           Text
+'='           Operator
+' '           Text
+'COLNRM'      Name
+'\n'          Text
+
+'140  '       Name.Label
+' '           Text
+'  '          Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'C\n'         Comment
+
+'C--compute a + b * f\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DO '         Keyword
+'160'         Literal.Number.Integer
+' '           Text
+'J'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'DO '         Keyword
+'150'         Literal.Number.Integer
+' '           Text
+'I'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'      '      Text
+'WORK'        Name
+'('           Punctuation
+'I'           Name
+','           Punctuation
+'J'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'A'           Name
+'('           Punctuation
+'I'           Name
+','           Punctuation
+'J'           Name
+')'           Punctuation
+'\n'          Text
+
+'150  '       Name.Label
+' '           Text
+'    '        Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'160  '       Name.Label
+' '           Text
+'  '          Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'C\n'         Comment
+
+'C--the elements of f are random with uniform distribution\n' Comment
+
+'C--from -anorm/bnorm to +anorm/bnorm\n' Comment
+
+'C--note that f is not explicitly stored as a matrix\n' Comment
+
+'C--pathalogical floating point notes:  the if (bnorm .gt. 0.d0)\n' Comment
+
+'C--test should actually be if (bnorm .gt. dsmall), where dsmall\n' Comment
+
+'C--is the smallest representable number whose reciprocal does\n' Comment
+
+'C--not generate an overflow or loss of precision.\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'IF'          Keyword
+' '           Text
+'('           Punctuation
+'ISEED'       Name
+' '           Text
+'.'           Punctuation
+'EQ'          Name
+'.'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'ISEED'       Name
+' '           Text
+'='           Operator
+' '           Text
+'86345823'    Literal.Number.Integer
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'IF'          Keyword
+' '           Text
+'('           Punctuation
+'ANORM'       Name
+' '           Text
+'.'           Punctuation
+'EQ'          Name
+'.'           Punctuation
+' '           Text
+'0.D0'        Literal.Number.Float
+')'           Punctuation
+' '           Text
+'ANORM'       Name
+' '           Text
+'='           Operator
+' '           Text
+'1.D0'        Literal.Number.Float
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'IF'          Keyword
+' '           Text
+'('           Punctuation
+'BNORM'       Name
+' '           Text
+'.'           Punctuation
+'GT'          Name
+'.'           Punctuation
+' '           Text
+'0.D0'        Literal.Number.Float
+')'           Punctuation
+' '           Text
+'THEN'        Keyword
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'TEMP'        Name
+' '           Text
+'='           Operator
+' '           Text
+'2.D0'        Literal.Number.Float
+' '           Text
+'*'           Operator
+' '           Text
+'ANORM'       Name
+' '           Text
+'/'           Operator
+' '           Text
+'BNORM'       Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'ELSE'        Keyword
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'TEMP'        Name
+' '           Text
+'='           Operator
+' '           Text
+'2.D0'        Literal.Number.Float
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'END '        Keyword
+'IF'          Keyword
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DO '         Keyword
+'190'         Literal.Number.Integer
+' '           Text
+'K'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'M'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'DO '         Keyword
+'180'         Literal.Number.Integer
+' '           Text
+'J'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'      '      Text
+'CALL '       Keyword
+'RAND'        Name.Builtin
+'('           Punctuation
+'ISEED'       Name
+','           Punctuation
+'ISEED'       Name
+','           Punctuation
+'RNDMNO'      Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'      '      Text
+'VALUE'       Keyword
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'RNDMNO'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'0.5D0'       Literal.Number.Float
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'TEMP'        Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'      '      Text
+'DO '         Keyword
+'170'         Literal.Number.Integer
+' '           Text
+'I'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'        '    Text
+'WORK'        Name
+'('           Punctuation
+'I'           Name
+','           Punctuation
+'J'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'WORK'        Name
+'('           Punctuation
+'I'           Name
+','           Punctuation
+'J'           Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'B'           Name
+'('           Punctuation
+'I'           Name
+','           Punctuation
+'K'           Name
+')'           Punctuation
+'*'           Operator
+'VALUE'       Keyword
+'\n'          Text
+
+'170  '       Name.Label
+' '           Text
+'      '      Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'180  '       Name.Label
+' '           Text
+'    '        Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'190  '       Name.Label
+' '           Text
+'  '          Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'C\n'         Comment
+
+'C--compute the eigenvalues of a + b*f, and several other things\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'CALL '       Keyword
+'EIGEN'       Name
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'SIZE'        Name
+','           Punctuation
+'N'           Name
+','           Punctuation
+'WORK'        Name
+','           Punctuation
+'CLEVR'       Name
+','           Punctuation
+'CLEVI'       Name
+','           Punctuation
+'WORK'        Name
+','           Punctuation
+'SCR1'        Name
+','           Punctuation
+'SCR2'        Name
+','           Punctuation
+'IERR'        Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'IF'          Keyword
+' '           Text
+'('           Punctuation
+'IERR'        Name
+' '           Text
+'.'           Punctuation
+'NE'          Name
+'.'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'RETURN'      Keyword
+'\n'          Text
+
+'C\n'         Comment
+
+'C--copy a so it is not destroyed\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DO '         Keyword
+'210'         Literal.Number.Integer
+' '           Text
+'J'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'DO '         Keyword
+'200'         Literal.Number.Integer
+' '           Text
+'I'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'      '      Text
+'WORK'        Name
+'('           Punctuation
+'I'           Name
+','           Punctuation
+'J'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'A'           Name
+'('           Punctuation
+'I'           Name
+','           Punctuation
+'J'           Name
+')'           Punctuation
+'\n'          Text
+
+'200  '       Name.Label
+' '           Text
+'    '        Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'210  '       Name.Label
+' '           Text
+'  '          Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'C\n'         Comment
+
+'C--compute the eigenvalues of a, and several other things\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'CALL '       Keyword
+'EIGEN'       Name
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'SIZE'        Name
+','           Punctuation
+'N'           Name
+','           Punctuation
+'WORK'        Name
+','           Punctuation
+'OLEVR'       Name
+','           Punctuation
+'OLEVI'       Name
+','           Punctuation
+'WORK'        Name
+','           Punctuation
+'SCR1'        Name
+','           Punctuation
+'SCR2'        Name
+','           Punctuation
+'IERR'        Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'IF'          Keyword
+' '           Text
+'('           Punctuation
+'IERR'        Name
+' '           Text
+'.'           Punctuation
+'NE'          Name
+'.'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'RETURN'      Keyword
+'\n'          Text
+
+'C\n'         Comment
+
+'C--form the matrix of distances between eigenvalues of a and\n' Comment
+
+'C--EIGENVALUES OF A+B*F\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DO '         Keyword
+'230'         Literal.Number.Integer
+' '           Text
+'J'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'DO '         Keyword
+'220'         Literal.Number.Integer
+' '           Text
+'I'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'      '      Text
+'WORK'        Name
+'('           Punctuation
+'I'           Name
+','           Punctuation
+'J'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'\n'          Text
+
+'     '       Name.Label
+'&'           Generic.Strong
+'        '    Text
+'ABS'         Name.Builtin
+'('           Punctuation
+'DCMPLX'      Name
+'('           Punctuation
+'OLEVR'       Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+','           Punctuation
+'OLEVI'       Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+')'           Punctuation
+'-'           Operator
+'DCMPLX'      Name
+'('           Punctuation
+'CLEVR'       Name
+'('           Punctuation
+'J'           Name
+')'           Punctuation
+','           Punctuation
+'CLEVI'       Name
+'('           Punctuation
+'J'           Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'220  '       Name.Label
+' '           Text
+'    '        Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'230  '       Name.Label
+' '           Text
+'  '          Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'C\n'         Comment
+
+'C--initialize row and column pivots\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DO '         Keyword
+'240'         Literal.Number.Integer
+' '           Text
+'I'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'IPVT'        Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'I'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'JPVT'        Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'I'           Name
+'\n'          Text
+
+'240  '       Name.Label
+' '           Text
+'  '          Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'C\n'         Comment
+
+'C--a little bit messy to avoid swapping columns and\n' Comment
+
+'C--rows of work\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DO '         Keyword
+'270'         Literal.Number.Integer
+' '           Text
+'I'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'C\n'         Comment
+
+'C--find the minimum element of each lower right square\n' Comment
+
+'C--submatrix of work, for submatrices of size n x n\n' Comment
+
+'C--through 2 x 2\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'CURR'        Name
+' '           Text
+'='           Operator
+' '           Text
+'WORK'        Name
+'('           Punctuation
+'IPVT'        Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+','           Punctuation
+'JPVT'        Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'IMAX'        Name
+' '           Text
+'='           Operator
+' '           Text
+'I'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'JMAX'        Name
+' '           Text
+'='           Operator
+' '           Text
+'I'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'TEMP'        Name
+' '           Text
+'='           Operator
+' '           Text
+'CURR'        Name
+'\n'          Text
+
+'C\n'         Comment
+
+'C--find the minimum element\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'DO '         Keyword
+'260'         Literal.Number.Integer
+' '           Text
+'K1'          Name
+' '           Text
+'='           Operator
+' '           Text
+'I'           Name
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'      '      Text
+'DO '         Keyword
+'250'         Literal.Number.Integer
+' '           Text
+'K2'          Name
+' '           Text
+'='           Operator
+' '           Text
+'I'           Name
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'        '    Text
+'IF'          Keyword
+' '           Text
+'('           Punctuation
+'WORK'        Name
+'('           Punctuation
+'IPVT'        Name
+'('           Punctuation
+'K1'          Name
+')'           Punctuation
+','           Punctuation
+'JPVT'        Name
+'('           Punctuation
+'K2'          Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'.'           Punctuation
+'LT'          Name
+'.'           Punctuation
+' '           Text
+'TEMP'        Name
+')'           Punctuation
+' '           Text
+'THEN'        Keyword
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'          '  Text
+'TEMP'        Name
+' '           Text
+'='           Operator
+' '           Text
+'WORK'        Name
+'('           Punctuation
+'IPVT'        Name
+'('           Punctuation
+'K1'          Name
+')'           Punctuation
+','           Punctuation
+'JPVT'        Name
+'('           Punctuation
+'K2'          Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'          '  Text
+'IMAX'        Name
+' '           Text
+'='           Operator
+' '           Text
+'K1'          Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'          '  Text
+'JMAX'        Name
+' '           Text
+'='           Operator
+' '           Text
+'K2'          Name
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'        '    Text
+'END '        Keyword
+'IF'          Keyword
+'\n'          Text
+
+'250  '       Name.Label
+' '           Text
+'      '      Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'260  '       Name.Label
+' '           Text
+'    '        Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'C\n'         Comment
+
+'C--update row and column pivots for indirect addressing of work\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'ITEMP'       Name
+' '           Text
+'='           Operator
+' '           Text
+'IPVT'        Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'IPVT'        Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'IPVT'        Name
+'('           Punctuation
+'IMAX'        Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'IPVT'        Name
+'('           Punctuation
+'IMAX'        Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'ITEMP'       Name
+'\n'          Text
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'ITEMP'       Name
+' '           Text
+'='           Operator
+' '           Text
+'JPVT'        Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'JPVT'        Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'JPVT'        Name
+'('           Punctuation
+'JMAX'        Name
+')'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'JPVT'        Name
+'('           Punctuation
+'JMAX'        Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'ITEMP'       Name
+'\n'          Text
+
+'C\n'         Comment
+
+'C--do next submatrix\n' Comment
+
+'C\n'         Comment
+
+'270  '       Name.Label
+' '           Text
+'  '          Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'C\n'         Comment
+
+'C--this threshold for determining when an eigenvalue has\n' Comment
+
+'C--not moved, and is therefore uncontrollable, is critical,\n' Comment
+
+'C--and may require future changes with more experience.\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'EPS1'        Name
+' '           Text
+'='           Operator
+' '           Text
+'SQRT'        Name.Builtin
+'('           Punctuation
+'EPS'         Name
+')'           Punctuation
+'\n'          Text
+
+'C\n'         Comment
+
+'C--for each eigenvalue pair, decide if it is controllable\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'DO '         Keyword
+'280'         Literal.Number.Integer
+' '           Text
+'I'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+'\n'          Text
+
+'C\n'         Comment
+
+'C--note that we are working with the "pivoted" work matrix\n' Comment
+
+'C--and are looking at its diagonal elements\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'IF'          Keyword
+' '           Text
+'('           Punctuation
+'WORK'        Name
+'('           Punctuation
+'IPVT'        Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+','           Punctuation
+'JPVT'        Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+')'           Punctuation
+'/'           Operator
+'ANORM'       Name
+' '           Text
+'.'           Punctuation
+'LE'          Name
+'.'           Punctuation
+' '           Text
+'EPS1'        Name
+')'           Punctuation
+' '           Text
+'THEN'        Keyword
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'      '      Text
+'CON'         Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'.'           Punctuation
+'FALSE'       Name
+'.'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'ELSE'        Keyword
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'      '      Text
+'CON'         Name
+'('           Punctuation
+'I'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'.'           Punctuation
+'TRUE'        Name
+'.'           Punctuation
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'    '        Text
+'END '        Keyword
+'IF'          Keyword
+'\n'          Text
+
+'280  '       Name.Label
+' '           Text
+'  '          Text
+'CONTINUE'    Keyword
+'\n'          Text
+
+'C\n'         Comment
+
+'C--finally!\n' Comment
+
+'C\n'         Comment
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'RETURN'      Keyword
+'\n'          Text
+
+'     '       Name.Label
+' '           Text
+'  '          Text
+'END'         Keyword
+'\n'          Text

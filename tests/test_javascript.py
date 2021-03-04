@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
     Javascript tests
     ~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -30,7 +29,8 @@ def test_float_literal_positive_matches(lexer, text):
     assert list(lexer.get_tokens(text))[0] == (Number.Float, text)
 
 
-@pytest.mark.parametrize('text', ('.\u0b6a', '.', '1..', '1n', '1ee', '1e', '1e-', '1e--1', '1e++1', '1e1.0'))
+@pytest.mark.parametrize('text', ('.\u0b6a', '.', '1..', '1n', '1ee', '1e',
+                                  '1e-', '1e--1', '1e++1', '1e1.0'))
 def test_float_literals_negative_matches(lexer, text):
     """Test text that should **not** be tokenized as float literals."""
     assert list(lexer.get_tokens(text))[0] != (Number.Float, text)

@@ -1,0 +1,3516 @@
+'// MiniScript (https://miniscript.org) example file,' Comment.Single
+'\n'          Text
+
+'// adapted from: http://rosettacode.org/wiki/RCRPG/MiniScript' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'pos'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'goal'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'floor'       Name.Builtin
+'('           Punctuation
+'rnd'         Name.Builtin
+'*'           Operator
+'10'          Literal.Number
+')'           Punctuation
+','           Punctuation
+' '           Text
+'floor'       Name.Builtin
+'('           Punctuation
+'rnd'         Name.Builtin
+'*'           Operator
+'10'          Literal.Number
+')'           Punctuation
+','           Punctuation
+' '           Text
+'floor'       Name.Builtin
+'('           Punctuation
+'3'           Literal.Number
+'+'           Operator
+'rnd'         Name.Builtin
+'*'           Operator
+'5'           Literal.Number
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'dir'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\t\t\t'      Text
+'// key: direction name; value: [dx, dy, dz]' Comment.Single
+'\n'          Text
+
+'dirAbbrevs'  Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\t\t'        Text
+'// key: direction abbrevation; value: full name' Comment.Single
+'\n'          Text
+
+'dir'         Name.Variable
+'.'           Operator
+'up'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'dir'         Name.Variable
+'.'           Operator
+'down'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'-'           Operator
+'1'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'dir'         Name.Variable
+'.'           Operator
+'north'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'1'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'dir'         Name.Variable
+'.'           Operator
+'south'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'-'           Operator
+'1'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'dir'         Name.Variable
+'.'           Operator
+'east'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'1'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'dir'         Name.Variable
+'.'           Operator
+'west'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'-'           Operator
+'1'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'for'         Keyword
+' '           Text
+'k'           Name.Variable
+' '           Text
+'in'          Keyword
+' '           Text
+'dir'         Name.Variable
+'.'           Operator
+'indexes'     Name.Builtin
+'\n'          Text
+
+'\t'          Text
+'dirAbbrevs'  Name.Variable
+'['           Punctuation
+'k'           Name.Variable
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'k'           Name.Variable
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'for'         Keyword
+'\n'          Text
+
+'inverseDir'  Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'"'           Literal.String
+'up'          Literal.String
+'"'           Literal.String
+':'           Operator
+'"'           Literal.String
+'down'        Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'down'        Literal.String
+'"'           Literal.String
+':'           Operator
+'"'           Literal.String
+'up'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'east'        Literal.String
+'"'           Literal.String
+':'           Operator
+'"'           Literal.String
+'west'        Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'west'        Literal.String
+'"'           Literal.String
+':'           Operator
+'"'           Literal.String
+'east'        Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'north'       Literal.String
+'"'           Literal.String
+':'           Operator
+'"'           Literal.String
+'south'       Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'south'       Literal.String
+'"'           Literal.String
+':'           Operator
+'"'           Literal.String
+'north'       Literal.String
+'"'           Literal.String
+'}'           Punctuation
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'descNum'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'count'       Name.Variable
+','           Punctuation
+' '           Text
+'noun'        Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'count'       Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number
+' '           Text
+'then'        Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'"'           Literal.String
+'a '          Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'noun'        Name.Variable
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'str'         Name.Builtin
+'('           Punctuation
+'count'       Name.Variable
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'noun'        Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+'s'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'descList'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'lst'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'lst'         Name.Variable
+'.'           Operator
+'len'         Name.Builtin
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+'then'        Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'lst'         Name.Variable
+'.'           Operator
+'len'         Name.Builtin
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number
+' '           Text
+'then'        Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'lst'         Name.Variable
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'lst'         Name.Variable
+'.'           Operator
+'len'         Name.Builtin
+' '           Text
+'=='          Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'then'        Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'lst'         Name.Variable
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+' and '       Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'lst'         Name.Variable
+'['           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'lst'         Name.Variable
+'['           Punctuation
+':'           Operator
+'-'           Operator
+'1'           Literal.Number
+']'           Punctuation
+'.'           Operator
+'join'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String
+', '          Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+', and '      Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'lst'         Name.Variable
+'['           Punctuation
+'-'           Operator
+'1'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'pickAny'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'options'     Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'lst'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'options'     Name.Variable
+'.'           Operator
+'split'       Name.Builtin
+'('           Punctuation
+'"'           Literal.String
+';'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'lst'         Name.Variable
+'['           Punctuation
+'rnd'         Name.Builtin
+' '           Text
+'*'           Operator
+' '           Text
+'lst'         Name.Variable
+'.'           Operator
+'len'         Name.Builtin
+']'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'Contents'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'Contents'    Name.Variable
+'.'           Operator
+'ladders'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'Contents'    Name.Variable
+'.'           Operator
+'gold'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'Contents'    Name.Variable
+'.'           Operator
+'hammers'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number
+'  '          Text
+'// (note: a "sledge" is a sled or sleigh, not a sledgehammer) ' Comment.Single
+'\n'          Text
+
+'Contents'    Name.Variable
+'.'           Operator
+'desc'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'prefix'      Name.Variable
+','           Punctuation
+' '           Text
+'postfix'     Name.Variable
+'='           Operator
+'"'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'s'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'ladders'     Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+'then'        Keyword
+' '           Text
+'s'           Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'descNum'     Name.Variable
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'ladders'     Name.Variable
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'ladder'      Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'hammers'     Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+'then'        Keyword
+' '           Text
+'s'           Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'descNum'     Name.Variable
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'hammers'     Name.Variable
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'sledgehammer' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'gold'        Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+'then'        Keyword
+' '           Text
+'s'           Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'descNum'     Name.Variable
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'gold'        Name.Variable
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'gold coin'   Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'not'         Operator.Word
+' '           Text
+'s'           Name.Variable
+' '           Text
+'then'        Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'prefix'      Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+' nothing'    Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'postfix'     Name.Variable
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'prefix'      Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'descList'    Name.Variable
+'('           Punctuation
+'s'           Name.Variable
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'postfix'     Name.Variable
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+'Contents'    Name.Variable
+'.'           Operator
+'initRandom'  Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'ladders'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'rnd'         Name.Builtin
+' '           Text
+'<'           Operator
+' '           Text
+'0.3'         Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'gold'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'ceil'        Name.Builtin
+'('           Punctuation
+'rnd'         Name.Builtin
+' '           Text
+'*'           Operator
+' '           Text
+'3'           Literal.Number
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'('           Punctuation
+'rnd'         Name.Builtin
+' '           Text
+'<'           Operator
+' '           Text
+'0.1'         Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'hammers'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'rnd'         Name.Builtin
+' '           Text
+'<'           Operator
+' '           Text
+'0.02'        Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+'Contents'    Name.Variable
+'.'           Operator
+'propName'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'obj'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'obj'         Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'ladder'      Literal.String
+'"'           Literal.String
+' '           Text
+'or'          Operator.Word
+' '           Text
+'obj'         Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'ladders'     Literal.String
+'"'           Literal.String
+' '           Text
+'then'        Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'"'           Literal.String
+'ladders'     Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'obj'         Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'gold'        Literal.String
+'"'           Literal.String
+' '           Text
+'or'          Operator.Word
+' '           Text
+'obj'         Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'coin'        Literal.String
+'"'           Literal.String
+' '           Text
+'or'          Operator.Word
+' '           Text
+'obj'         Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'coins'       Literal.String
+'"'           Literal.String
+' '           Text
+'then'        Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'"'           Literal.String
+'gold'        Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'obj'         Name.Variable
+'['           Punctuation
+':'           Operator
+'6'           Literal.Number
+']'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'hammer'      Literal.String
+'"'           Literal.String
+' '           Text
+'or'          Operator.Word
+' '           Text
+'obj'         Name.Variable
+'['           Punctuation
+':'           Operator
+'6'           Literal.Number
+']'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'sledge'      Literal.String
+'"'           Literal.String
+' '           Text
+'then'        Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'"'           Literal.String
+'hammers'     Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+'Contents'    Name.Variable
+'.'           Operator
+'hasAny'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'obj'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'pname'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Contents'    Name.Variable
+'.'           Operator
+'propName'    Name.Variable
+'('           Punctuation
+'obj'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'pname'       Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+' '           Text
+'then'        Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'false'       Keyword.Constant
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'self'        Name.Builtin.Pseudo
+'['           Punctuation
+'pname'       Name.Variable
+']'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+'Contents'    Name.Variable
+'.'           Operator
+'withdraw'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'obj'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'result'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Operator.Word
+' '           Text
+'Contents'    Name.Variable
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'obj'         Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'all'         Literal.String
+'"'           Literal.String
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'result'      Name.Variable
+'.'           Operator
+'ladders'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'ladders'     Name.Variable
+'\n'          Text
+
+'\t\t'        Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'ladders'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'\t\t'        Text
+'result'      Name.Variable
+'.'           Operator
+'hammers'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'hammers'     Name.Variable
+'\n'          Text
+
+'\t\t'        Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'hammers'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'\t\t'        Text
+'result'      Name.Variable
+'.'           Operator
+'gold'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'gold'        Name.Variable
+'\n'          Text
+
+'\t\t'        Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'gold'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'pname'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Contents'    Name.Variable
+'.'           Operator
+'propName'    Name.Variable
+'('           Punctuation
+'obj'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'self'        Name.Builtin.Pseudo
+'['           Punctuation
+'pname'       Name.Variable
+']'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'1'           Literal.Number
+' '           Text
+'then'        Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'null'        Keyword.Constant
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'obj'         Name.Variable
+'['           Punctuation
+'-'           Operator
+'1'           Literal.Number
+']'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'s'           Literal.String
+'"'           Literal.String
+' '           Text
+'then'        Keyword
+' '           Text
+'count'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'self'        Name.Builtin.Pseudo
+'['           Punctuation
+'pname'       Name.Variable
+']'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'count'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number
+'\n'          Text
+
+'\t\t'        Text
+'self'        Name.Builtin.Pseudo
+'['           Punctuation
+'pname'       Name.Variable
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'self'        Name.Builtin.Pseudo
+'['           Punctuation
+'pname'       Name.Variable
+']'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'count'       Name.Variable
+'\n'          Text
+
+'\t\t'        Text
+'result'      Name.Variable
+'['           Punctuation
+'pname'       Name.Variable
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'count'       Name.Variable
+'\n'          Text
+
+'\t'          Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'result'      Name.Variable
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+'Contents'    Name.Variable
+'.'           Operator
+'deposit'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'c'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'ladders'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'ladders'     Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'c'           Name.Variable
+'.'           Operator
+'ladders'     Name.Variable
+'\n'          Text
+
+'\t'          Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'hammers'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'hammers'     Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'c'           Name.Variable
+'.'           Operator
+'hammers'     Name.Variable
+'\n'          Text
+
+'\t'          Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'gold'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'gold'        Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'c'           Name.Variable
+'.'           Operator
+'gold'        Name.Variable
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'inventory'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Operator.Word
+' '           Text
+'Contents'    Name.Variable
+'\n'          Text
+
+'inventory'   Name.Variable
+'.'           Operator
+'hammers'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'Room'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'Room'        Name.Variable
+'.'           Operator
+'exits'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'Room'        Name.Variable
+'.'           Operator
+'color'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'Room'        Name.Variable
+'.'           Operator
+'init'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'pos'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'contents'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Operator.Word
+' '           Text
+'Contents'    Name.Variable
+'\n'          Text
+
+'\t'          Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'contents'    Name.Variable
+'.'           Operator
+'initRandom'  Name.Variable
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'pos'         Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'goal'        Name.Variable
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'color'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'YOU FOUND IT!  This is the mystical Room of MacGuffin!' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'rnd'         Name.Builtin
+' '           Text
+'<'           Operator
+' '           Text
+'0.5'         Literal.Number
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'// Give a hint about where the goal is.' Comment.Single
+'\n'          Text
+
+'\t\t'        Text
+'opt'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'floor'       Name.Builtin
+'('           Punctuation
+'rnd'         Name.Builtin
+' '           Text
+'*'           Operator
+' '           Text
+'3'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'opt'         Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'goal'        Name.Variable
+'['           Punctuation
+'2'           Literal.Number
+']'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'pos'         Name.Variable
+'['           Punctuation
+'2'           Literal.Number
+']'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'hint'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'The MacGuffin lies on this level.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'goal'        Name.Variable
+'['           Punctuation
+'2'           Literal.Number
+']'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'pos'         Name.Variable
+'['           Punctuation
+'2'           Literal.Number
+']'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'hint'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'The MacGuffin rests above.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'hint'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'The MacGuffin lies below.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'\t\t'        Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'opt'         Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'goal'        Name.Variable
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'pos'         Name.Variable
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'hint'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'The MacGuffin lies to the east.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'goal'        Name.Variable
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'pos'         Name.Variable
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'hint'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'The MacGuffin lies to the west.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'hint'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'The MacGuffin lies... <undecipherable>' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'\t\t'        Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'goal'        Name.Variable
+'['           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'pos'         Name.Variable
+'['           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'hint'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'The MacGuffin lies to the north.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'goal'        Name.Variable
+'['           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'pos'         Name.Variable
+'['           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'hint'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'The MacGuffin lies to the south.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'hint'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'The MacGuffin lies... <undecipherable>' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'\t\t'        Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'\t\t'        Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'color'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'Scratched on the wall is a message: ' Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'hint'        Name.Variable
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'rnd'         Name.Builtin
+' '           Text
+'<'           Operator
+' '           Text
+'0.5'         Literal.Number
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'// Give some random color comment.' Comment.Single
+'\n'          Text
+
+'\t\t'        Text
+'color'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'opt'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'floor'       Name.Builtin
+'('           Punctuation
+'rnd'         Name.Builtin
+' '           Text
+'*'           Operator
+' '           Text
+'3'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'opt'         Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'color'       Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'"'           Literal.String
+'You detect ' Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'pickAny'     Name.Variable
+'('           Punctuation
+'"'           Literal.String
+'a faint;an odd;a musty;a rotten;an unpleasant' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'color'       Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'pickAny'     Name.Variable
+'('           Punctuation
+'"'           Literal.String
+'smell;odor;scent;stench' Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+' here.'      Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t'        Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'opt'         Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'color'       Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'"'           Literal.String
+'You can hear a' Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'pickAny'     Name.Variable
+'('           Punctuation
+'"'           Literal.String
+' faint; quiet; soft; strange;n eerie' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'color'       Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'pickAny'     Name.Variable
+'('           Punctuation
+'"'           Literal.String
+'dripping;scratching;scrabbling;whistling;moaning' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'color'       Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'pickAny'     Name.Variable
+'('           Punctuation
+'"'           Literal.String
+'sound;noise' Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+' here.'      Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t'        Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'color'       Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'"'           Literal.String
+'The '        Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'pickAny'     Name.Variable
+'('           Punctuation
+'"'           Literal.String
+'walls here are;floor here is;ceiling of this room is' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'color'       Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'pickAny'     Name.Variable
+'('           Punctuation
+'"'           Literal.String
+'smeared with;discolored by;marred by;covered with' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'color'       Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'pickAny'     Name.Variable
+'('           Punctuation
+'"'           Literal.String
+'dried blood;cobwebs;scratches;gouges;scorch marks;soot;mineral deposits;bits of fur' Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t'        Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'\t\t'        Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'color'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'color'       Name.Variable
+'.'           Operator
+'join'        Name.Builtin
+'\n'          Text
+
+'\t'          Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'\t'          Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'exits'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'rooms'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'  '          Text
+'// key: STRING FORM of position; value: Room' Comment.Single
+'\n'          Text
+
+'getRoom'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'pos'         Name.Variable
+'='           Operator
+'null'        Keyword.Constant
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'pos'         Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'null'        Keyword.Constant
+' '           Text
+'then'        Keyword
+' '           Text
+'pos'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'globals'     Name.Builtin
+'.'           Operator
+'pos'         Name.Variable
+'\n'          Text
+
+'\t'          Text
+'key'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'str'         Name.Builtin
+'('           Punctuation
+'pos'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'not'         Operator.Word
+' '           Text
+'rooms'       Name.Variable
+'.'           Operator
+'hasIndex'    Name.Builtin
+'('           Punctuation
+'key'         Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'rooms'       Name.Variable
+'['           Punctuation
+'key'         Name.Variable
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'new'         Operator.Word
+' '           Text
+'Room'        Name.Variable
+'\n'          Text
+
+'\t\t'        Text
+'rooms'       Name.Variable
+'['           Punctuation
+'key'         Name.Variable
+']'           Punctuation
+'.'           Operator
+'init'        Name.Variable
+' '           Text
+'pos'         Name.Variable
+'\n'          Text
+
+'\t'          Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+'rooms'       Name.Variable
+'['           Punctuation
+'key'         Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'// Commands:' Comment.Single
+'\n'          Text
+
+'commands'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'help'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'commands'    Name.Variable
+'.'           Operator
+'drop'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'obj'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'items'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'inventory'   Name.Variable
+'.'           Operator
+'withdraw'    Name.Variable
+'('           Punctuation
+'obj'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'items'       Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'null'        Keyword.Constant
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+"You don't have any " Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'obj'         Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'getRoom'     Name.Variable
+'.'           Operator
+'contents'    Name.Variable
+'.'           Operator
+'deposit'     Name.Variable
+' '           Text
+'items'       Name.Variable
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'items'       Name.Variable
+'.'           Operator
+'desc'        Name.Variable
+'('           Punctuation
+'"'           Literal.String
+'You drop'    Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+'help'        Name.Variable
+'.'           Operator
+'drop'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'Drops an item from your inventory into the room.  Specify object name or ' Literal.String
+'""'          Literal.String
+'all'         Literal.String
+'""'          Literal.String
+'.'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'commands'    Name.Variable
+'.'           Operator
+'go'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'d'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'oldRoom'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'getRoom'     Name.Variable
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'dirAbbrevs'  Name.Variable
+'.'           Operator
+'hasIndex'    Name.Builtin
+'('           Punctuation
+'d'           Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword
+' '           Text
+'d'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'dirAbbrevs'  Name.Variable
+'['           Punctuation
+'d'           Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'not'         Operator.Word
+' '           Text
+'dir'         Name.Variable
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'Which direction?' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'not'         Operator.Word
+' '           Text
+'dir'         Name.Variable
+'.'           Operator
+'hasIndex'    Name.Builtin
+'('           Punctuation
+'d'           Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+"That's not a direction I recognize." Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'d'           Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'up'          Literal.String
+'"'           Literal.String
+' '           Text
+'and'         Operator.Word
+' '           Text
+'oldRoom'     Name.Variable
+'.'           Operator
+'contents'    Name.Variable
+'.'           Operator
+'ladders'     Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'There is no ladder in this room to go up.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'not'         Operator.Word
+' '           Text
+'oldRoom'     Name.Variable
+'.'           Operator
+'exits'       Name.Variable
+'.'           Operator
+'hasIndex'    Name.Builtin
+'('           Punctuation
+'d'           Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'inventory'   Name.Variable
+'.'           Operator
+'hammers'     Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'1'           Literal.Number
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+"There is no exit that way, and you don't have a sledgehammer." Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t\t'    Text
+'return'      Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'wall'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'wall'        Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'d'           Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'up'          Literal.String
+'"'           Literal.String
+' '           Text
+'then'        Keyword
+' '           Text
+'wall'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'ceiling'     Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'d'           Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'down'        Literal.String
+'"'           Literal.String
+' '           Text
+'then'        Keyword
+' '           Text
+'wall'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'floor'       Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'You bash the ' Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'wall'        Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+' until you make a passage big enough to crawl through.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'oldRoom'     Name.Variable
+'.'           Operator
+'exits'       Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'d'           Name.Variable
+'\n'          Text
+
+'\t\t'        Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'\t\t'        Text
+'delta'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'dir'         Name.Variable
+'['           Punctuation
+'d'           Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'pos'         Name.Variable
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'pos'         Name.Variable
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'delta'       Name.Variable
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'pos'         Name.Variable
+'['           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'pos'         Name.Variable
+'['           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'delta'       Name.Variable
+'['           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'pos'         Name.Variable
+'['           Punctuation
+'2'           Literal.Number
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'pos'         Name.Variable
+'['           Punctuation
+'2'           Literal.Number
+']'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'delta'       Name.Variable
+'['           Punctuation
+'2'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'newRoom'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'getRoom'     Name.Variable
+'\n'          Text
+
+'\t\t'        Text
+'newRoom'     Name.Variable
+'.'           Operator
+'exits'       Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'inverseDir'  Name.Variable
+'['           Punctuation
+'d'           Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'verb'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'crawl'       Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'d'           Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'up'          Literal.String
+'"'           Literal.String
+' '           Text
+'then'        Keyword
+' '           Text
+'verb'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'climb'       Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'d'           Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String
+'down'        Literal.String
+'"'           Literal.String
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'newRoom'     Name.Variable
+'.'           Operator
+'contents'    Name.Variable
+'.'           Operator
+'ladders'     Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+'then'        Keyword
+' '           Text
+'verb'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'climb'       Literal.String
+'"'           Literal.String
+' '           Text
+'else'        Keyword
+' '           Text
+'verb'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'drop'        Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t'        Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'You '        Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'verb'        Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'d'           Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t'        Text
+'commands'    Name.Variable
+'.'           Operator
+'look'        Name.Variable
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'pos'         Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'goal'        Name.Variable
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'You have recovered the MacGuffin and ' Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'descNum'     Name.Variable
+'('           Punctuation
+'inventory'   Name.Variable
+'.'           Operator
+'gold'        Name.Variable
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'gold coin'   Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+'.  You win!' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t\t\t'      Text
+'globals'     Name.Builtin
+'.'           Operator
+'gameOver'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'\t\t'        Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'\t'          Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+'help'        Name.Variable
+'.'           Operator
+'go'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'Moves in the given direction, bashing open a passage if necessary.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'commands'    Name.Variable
+'.'           Operator
+'help'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'arg'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'aliases'     Name.Variable
+'.'           Operator
+'hasIndex'    Name.Builtin
+'('           Punctuation
+'arg'         Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword
+' '           Text
+'arg'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'aliases'     Name.Variable
+'['           Punctuation
+'arg'         Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'help'        Name.Variable
+'.'           Operator
+'hasIndex'    Name.Builtin
+'('           Punctuation
+'arg'         Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'arg'         Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+': '          Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'help'        Name.Variable
+'['           Punctuation
+'arg'         Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'Available commands: ' Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'descList'    Name.Variable
+'('           Punctuation
+'help'        Name.Variable
+'.'           Operator
+'indexes'     Name.Builtin
+'.'           Operator
+'sort'        Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+'help'        Name.Variable
+'.'           Operator
+'help'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'Prints the help.  Obviously.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'commands'    Name.Variable
+'.'           Operator
+'inventory'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'arg'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'print'       Name.Builtin
+' '           Text
+'inventory'   Name.Variable
+'.'           Operator
+'desc'        Name.Variable
+'('           Punctuation
+'"'           Literal.String
+'You have'    Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+'help'        Name.Variable
+'.'           Operator
+'inventory'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'Lists the items you are carrying.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'commands'    Name.Variable
+'.'           Operator
+'look'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'arg'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'You are at ' Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'pos'         Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'room'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'getRoom'     Name.Variable
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'room'        Name.Variable
+'.'           Operator
+'color'       Name.Variable
+' '           Text
+'!='          Operator
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+' '           Text
+'then'        Keyword
+' '           Text
+'print'       Name.Builtin
+' '           Text
+'room'        Name.Variable
+'.'           Operator
+'color'       Name.Variable
+'\n'          Text
+
+'\t'          Text
+'print'       Name.Builtin
+' '           Text
+'room'        Name.Variable
+'.'           Operator
+'contents'    Name.Variable
+'.'           Operator
+'desc'        Name.Variable
+'('           Punctuation
+'"'           Literal.String
+'You see'     Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+' here.'      Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'exits'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'room'        Name.Variable
+'.'           Operator
+'exits'       Name.Variable
+'.'           Operator
+'indexes'     Name.Builtin
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'exits'       Name.Variable
+'.'           Operator
+'len'         Name.Builtin
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'There are no exits.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'room'        Name.Variable
+'.'           Operator
+'exits'       Name.Variable
+'.'           Operator
+'len'         Name.Builtin
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'There is a passage ' Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'exits'       Name.Variable
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'There are passages ' Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'descList'    Name.Variable
+'('           Punctuation
+'exits'       Name.Variable
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+'.'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\t\t'        Text
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+'help'        Name.Variable
+'.'           Operator
+'look'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'Prints a description of the room and its contents.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'commands'    Name.Variable
+'.'           Operator
+'quit'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'arg'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'Quitter!'    Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'globals'     Name.Builtin
+'.'           Operator
+'gameOver'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+'help'        Name.Variable
+'.'           Operator
+'quit'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'Quits the game.' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'commands'    Name.Variable
+'.'           Operator
+'take'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'obj'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'roomStuff'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'getRoom'     Name.Variable
+'.'           Operator
+'contents'    Name.Variable
+'\n'          Text
+
+'\t'          Text
+'items'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'roomStuff'   Name.Variable
+'.'           Operator
+'withdraw'    Name.Variable
+'('           Punctuation
+'obj'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'items'       Name.Variable
+' '           Text
+'=='          Operator
+' '           Text
+'null'        Keyword.Constant
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+"You don't see any " Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'obj'         Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+' here.'      Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'inventory'   Name.Variable
+'.'           Operator
+'deposit'     Name.Variable
+' '           Text
+'items'       Name.Variable
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'items'       Name.Variable
+'.'           Operator
+'desc'        Name.Variable
+'('           Punctuation
+'"'           Literal.String
+'You take'    Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'function'    Keyword
+'\n'          Text
+
+'help'        Name.Variable
+'.'           Operator
+'take'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'Picks up an item in the room; specify item name, or ' Literal.String
+'""'          Literal.String
+'all'         Literal.String
+'""'          Literal.String
+'.'           Literal.String
+'"'           Literal.String
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'// Command aliases:' Comment.Single
+'\n'          Text
+
+'aliases'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'"'           Literal.String
+'i'           Literal.String
+'"'           Literal.String
+':'           Operator
+'"'           Literal.String
+'inventory'   Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'inv'         Literal.String
+'"'           Literal.String
+':'           Operator
+'"'           Literal.String
+'inventory'   Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'l'           Literal.String
+'"'           Literal.String
+':'           Operator
+'"'           Literal.String
+'look'        Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'get'         Literal.String
+'"'           Literal.String
+':'           Operator
+'"'           Literal.String
+'take'        Literal.String
+'"'           Literal.String
+'}'           Punctuation
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'// Main game loop' Comment.Single
+'\n'          Text
+
+'gameOver'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+'\n'          Text
+
+'commands'    Name.Variable
+'.'           Operator
+'look'        Name.Variable
+'\n'          Text
+
+'while'       Keyword
+' '           Text
+'not'         Operator.Word
+' '           Text
+'gameOver'    Name.Variable
+'\n'          Text
+
+'\t'          Text
+'cmd'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'input'       Name.Builtin
+'('           Punctuation
+'"'           Literal.String
+'>'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'.'           Operator
+'split'       Name.Builtin
+'('           Punctuation
+'"'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'2'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'cmd'         Name.Variable
+'.'           Operator
+'len'         Name.Builtin
+' '           Text
+'=='          Operator
+' '           Text
+'1'           Literal.Number
+' '           Text
+'then'        Keyword
+' '           Text
+'cmd'         Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+' '           Text
+'null'        Keyword.Constant
+'\n'          Text
+
+'\t'          Text
+'verb'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'cmd'         Name.Variable
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'aliases'     Name.Variable
+'.'           Operator
+'hasIndex'    Name.Builtin
+'('           Punctuation
+'verb'        Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword
+' '           Text
+'verb'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'aliases'     Name.Variable
+'['           Punctuation
+'verb'        Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'commands'    Name.Variable
+'.'           Operator
+'hasIndex'    Name.Builtin
+'('           Punctuation
+'verb'        Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'f'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'commands'    Name.Variable
+'['           Punctuation
+'verb'        Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'f'           Name.Variable
+' '           Text
+'cmd'         Name.Variable
+'['           Punctuation
+'1'           Literal.Number
+']'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'dirAbbrevs'  Name.Variable
+'.'           Operator
+'hasIndex'    Name.Builtin
+'('           Punctuation
+'verb'        Name.Variable
+')'           Punctuation
+' '           Text
+'or'          Operator.Word
+' '           Text
+'dir'         Name.Variable
+'.'           Operator
+'hasIndex'    Name.Builtin
+'('           Punctuation
+'verb'        Name.Variable
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'commands'    Name.Variable
+'.'           Operator
+'go'          Name.Variable
+' '           Text
+'verb'        Name.Variable
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t'        Text
+'print'       Name.Builtin
+' '           Text
+'"'           Literal.String
+'Invalid command.  For help, enter: help' Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\t'          Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'while'       Keyword
+'\n'          Text

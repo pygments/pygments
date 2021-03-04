@@ -1,0 +1,13 @@
+"'symbol"     Literal.String.Symbol
+'\n'          Text
+
+"'a'"         Literal.String.Char
+'\n'          Text
+
+"'\\u1234'"   Literal.String.Char
+'\n'          Text
+
+"'"           Literal.String.Char
+'\\n'         Literal.String.Escape
+"'"           Literal.String.Char
+'\n'          Text

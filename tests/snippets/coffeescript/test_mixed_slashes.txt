@@ -1,0 +1,13 @@
+---input---
+a?/foo/:1/2;
+
+---tokens---
+'a'           Name.Other
+'?'           Operator
+'/foo/'       Literal.String.Regex
+':'           Operator
+'1'           Literal.Number.Integer
+'/'           Operator
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text

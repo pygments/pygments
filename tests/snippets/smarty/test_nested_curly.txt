@@ -1,0 +1,18 @@
+---input---
+{templateFunction param={anotherFunction} param2=$something}
+
+---tokens---
+'{'           Comment.Preproc
+'templateFunction' Name.Function
+' '           Text
+'param'       Name.Attribute
+'='           Operator
+'{'           Comment.Preproc
+'anotherFunction' Name.Attribute
+'}'           Comment.Preproc
+' '           Text
+'param2'      Name.Attribute
+'='           Operator
+'$something'  Name.Variable
+'}'           Comment.Preproc
+'\n'          Other

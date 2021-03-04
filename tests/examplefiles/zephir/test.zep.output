@@ -1,0 +1,159 @@
+'namespace'   Keyword
+' '           Text
+'Test'        Name.Other
+';'           Punctuation
+'\n\n'        Text
+
+'use'         Keyword
+' '           Text
+'Test\\Foo'   Name.Other
+';'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword.Reserved
+' '           Text
+'Bar'         Name.Other
+'\n'          Text
+
+'{'           Punctuation
+'\n    '      Text
+'protected'   Keyword.Reserved
+' '           Text
+'a'           Name.Other
+';'           Punctuation
+'\n    '      Text
+'private'     Keyword.Reserved
+' '           Text
+'b'           Name.Other
+';'           Punctuation
+'\n    '      Text
+'public'      Keyword.Reserved
+' '           Text
+'c'           Name.Other
+' '           Text
+'{'           Punctuation
+'set'         Name.Other
+','           Punctuation
+' '           Text
+'get'         Name.Other
+'}'           Punctuation
+';'           Punctuation
+'\n\n    '    Text
+'public'      Keyword.Reserved
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'__construct' Name.Other
+'('           Punctuation
+'string'      Keyword.Reserved
+' '           Text
+'str'         Name.Other
+','           Punctuation
+' '           Text
+'boolean'     Keyword.Reserved
+' '           Text
+'bool'        Keyword.Reserved
+')'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+'\n        '  Text
+'let'         Keyword.Declaration
+' '           Text
+'this'        Keyword
+'->'          Operator
+'c'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'str'         Name.Other
+';'           Punctuation
+'\n        '  Text
+'this'        Keyword
+'->'          Operator
+'setC'        Name.Other
+'('           Punctuation
+'bool'        Keyword.Reserved
+')'           Punctuation
+';'           Punctuation
+'\n        '  Text
+'let'         Keyword.Declaration
+' '           Text
+'this'        Keyword
+'->'          Operator
+'b'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'public'      Keyword.Reserved
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'sayHello'    Name.Other
+'('           Punctuation
+'string'      Keyword.Reserved
+' '           Text
+'name'        Name.Other
+')'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+'\n        '  Text
+'echo'        Keyword
+' '           Text
+'"Hello "'    Literal.String.Double
+' '           Text
+'.'           Punctuation
+' '           Text
+'name'        Name.Other
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'protected'   Keyword.Reserved
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'loops'       Name.Other
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+'\n        '  Text
+'for'         Keyword
+' '           Text
+'a'           Name.Other
+' '           Text
+'in'          Keyword
+' '           Text
+'b'           Name.Other
+' '           Text
+'{'           Punctuation
+'\n            ' Text
+'echo'        Keyword
+' '           Text
+'a'           Name.Other
+';'           Punctuation
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'loop'        Keyword
+' '           Text
+'{'           Punctuation
+'\n            ' Text
+'return'      Keyword
+' '           Text
+'"boo!"'      Literal.String.Double
+';'           Punctuation
+'\n        '  Text
+'}'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n'        Text
+
+'}'           Punctuation
+'\n'          Text

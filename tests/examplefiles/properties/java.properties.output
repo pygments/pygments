@@ -1,0 +1,50 @@
+'foo'         Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'bar'         Literal.String
+'\n'          Text
+
+'foo'         Name.Attribute
+':'           Operator
+' '           Text
+'bar'         Literal.String
+'\n'          Text
+
+'foo.oof'     Name.Attribute
+':'           Operator
+' '           Text
+'\\\n    bar=baz; \\\n    asdf' Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'// comment'  Comment
+'\n'          Text
+
+'# comment'   Comment
+'\n'          Text
+
+'; comment'   Comment
+'\n'          Text
+
+'\n'          Text
+
+'x'           Name.Attribute
+':'           Operator
+'a\\\nb'      Literal.String
+'\n'          Text
+
+'x'           Name.Attribute
+':'           Operator
+' '           Text
+'a \\\n  b'   Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'x'           Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'\\\n'        Literal.String

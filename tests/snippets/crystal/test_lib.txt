@@ -1,0 +1,58 @@
+---input---
+@[Link("some")]
+lib LibSome
+@[CallConvention("X86_StdCall")]
+fun foo="some.foo"(thing : Void*) : LibC::Int
+end
+
+---tokens---
+'@['          Operator
+'Link'        Name.Decorator
+'('           Punctuation
+'"'           Literal.String.Double
+'some'        Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+']'           Operator
+'\n'          Text
+
+'lib'         Keyword
+' '           Text
+'LibSome'     Name.Namespace
+'\n'          Text
+
+'@['          Operator
+'CallConvention' Name.Decorator
+'('           Punctuation
+'"'           Literal.String.Double
+'X86_StdCall' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+']'           Operator
+'\n'          Text
+
+'fun'         Keyword
+' '           Text
+'foo'         Name.Function
+'='           Operator
+'"'           Literal.String.Double
+'some.foo'    Literal.String.Double
+'"'           Literal.String.Double
+'('           Punctuation
+'thing'       Name
+' '           Text
+':'           Punctuation
+' '           Text
+'Void'        Name
+'*'           Operator
+')'           Punctuation
+' '           Text
+':'           Punctuation
+' '           Text
+'LibC'        Name
+'::'          Operator
+'Int'         Name
+'\n'          Text
+
+'end'         Keyword
+'\n'          Text

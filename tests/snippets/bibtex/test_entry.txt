@@ -1,0 +1,63 @@
+---input---
+This is a comment.
+
+@ARTICLE{ruckenstein-diffusion,
+    author = "Liu, Hongquin" # and # "Ruckenstein, Eli",
+    year = 1997,
+    month = JAN,
+    pages = "888-895"
+}
+
+---tokens---
+'This is a comment.' Comment
+'\n\n'        Text
+
+'@ARTICLE'    Name.Class
+'{'           Punctuation
+'ruckenstein-diffusion' Name.Label
+','           Punctuation
+'\n    '      Text
+'author'      Name.Attribute
+' '           Text
+'='           Punctuation
+' '           Text
+'"'           Literal.String
+'Liu, Hongquin' Literal.String
+'"'           Literal.String
+' '           Text
+'#'           Punctuation
+' '           Text
+'and'         Name.Variable
+' '           Text
+'#'           Punctuation
+' '           Text
+'"'           Literal.String
+'Ruckenstein, Eli' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n    '      Text
+'year'        Name.Attribute
+' '           Text
+'='           Punctuation
+' '           Text
+'1997'        Literal.Number
+','           Punctuation
+'\n    '      Text
+'month'       Name.Attribute
+' '           Text
+'='           Punctuation
+' '           Text
+'JAN'         Name.Variable
+','           Punctuation
+'\n    '      Text
+'pages'       Name.Attribute
+' '           Text
+'='           Punctuation
+' '           Text
+'"'           Literal.String
+'888-895'     Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
