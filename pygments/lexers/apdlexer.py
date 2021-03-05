@@ -23,7 +23,7 @@ class apdlexer(RegexLexer):
     .. versionadded:: 2.80
     """
     name = 'ANSYS parametric design language'
-    aliases = ['ansys','apdl']
+    aliases = ['ansys', 'apdl']
     filenames = ['*.ans']
     flags = re.IGNORECASE
 
@@ -115,6 +115,7 @@ class apdlexer(RegexLexer):
                "TOLIST", "TOPLOT", "TOPRINT", "TOSTAT", "TZAMESH",
                "TZDELE", "TZEGEN", "XVAROPT", "PGSAVE", "SOLCONTROL",
                "TOTAL", "VTGEOM", "VTREAL", "VTSTAT"]
+
     elafune = ["/ANUM", "AOFFST", "AOVLAP", "APLOT", "APPEND", "APTN",
                "ARCLEN", "ARCTRM", "AREAS", "AREFINE", "AREMESH",
                "AREVERSE", "AROTAT", "ARSCALE", "ARSYM", "ASBA",
@@ -396,10 +397,12 @@ class apdlexer(RegexLexer):
                "RAND()", "GDIS()", "SIN()", "COS()", "TAN()",
                "SINH()", "COSH()", "TANH()", "ASIN()", "ACOS()",
                "ATAN()", "ATAN2()"]
+
     elafung = ["NSEL()", "ESEL()", "KSEL()", "LSEL()", "ASEL()",
                "VSEL()", "NDNEXT()", "ELNEXT()", "KPNEXT()",
                "LSNEXT()", "ARNEXT()", "VLNEXT()", "CENTRX()",
                "CENTRY()", "CENTRZ()"]
+
     elafunh = ["~CAT5IN", "~CATIAIN", "~PARAIN", "~PROEIN", "~SATIN",
                "~UGIN", "A", "AADD", "AATT", "ABEXTRACT", "*ABBR",
                "ABBRES", "ABBSAV", "ABS", "ACCAT", "ACCOPTION",
