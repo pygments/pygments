@@ -1,0 +1,196 @@
+# Tests identifying names which must be types from context
+
+---input---
+Union{}
+MyType{Nothing, Any}
+f(::Union{T,S}) where S where T = 1
+f(::T) where {T} = 1
+f(::Type{<:T}) = 1
+f(::AT) where AT <: AbstractArray{MyType,1} = 1
+f(::Val{:named}) = 1
+f(::typeof(sin)) = 1
+MyInt <: Integer
+Number >: MyInt
+AT{T,1} <: B
+B>:AT{T,1}
+A <: f(B)
+g(C) <: T
+
+---tokens---
+'Union'       Keyword.Type
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'MyType'      Keyword.Type
+'{'           Punctuation
+'Nothing'     Keyword.Type
+','           Punctuation
+' '           Text
+'Any'         Keyword.Type
+'}'           Punctuation
+'\n'          Text
+
+'f'           Name
+'('           Punctuation
+'::'          Operator
+'Union'       Keyword.Type
+'{'           Punctuation
+'T'           Keyword.Type
+','           Punctuation
+'S'           Keyword.Type
+'}'           Punctuation
+')'           Punctuation
+' '           Text
+'where'       Keyword
+' '           Text
+'S'           Keyword.Type
+' '           Text
+'where'       Keyword
+' '           Text
+'T'           Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'f'           Name
+'('           Punctuation
+'::'          Operator
+'T'           Keyword.Type
+')'           Punctuation
+' '           Text
+'where'       Keyword
+' '           Text
+'{'           Punctuation
+'T'           Keyword.Type
+'}'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'f'           Name
+'('           Punctuation
+'::'          Operator
+'Type'        Keyword.Type
+'{'           Punctuation
+'<:'          Operator
+'T'           Keyword.Type
+'}'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'f'           Name
+'('           Punctuation
+'::'          Operator
+'AT'          Keyword.Type
+')'           Punctuation
+' '           Text
+'where'       Keyword
+' '           Text
+'AT'          Keyword.Type
+' '           Text
+'<:'          Operator
+' '           Text
+'AbstractArray' Keyword.Type
+'{'           Punctuation
+'MyType'      Keyword.Type
+','           Punctuation
+'1'           Literal.Number.Integer
+'}'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'f'           Name
+'('           Punctuation
+'::'          Operator
+'Val'         Keyword.Type
+'{'           Punctuation
+':named'      Literal.String.Symbol
+'}'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'f'           Name
+'('           Punctuation
+'::'          Operator
+'typeof'      Name
+'('           Punctuation
+'sin'         Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'MyInt'       Keyword.Type
+' '           Text
+'<:'          Operator
+' '           Text
+'Integer'     Keyword.Type
+'\n'          Text
+
+'Number'      Keyword.Type
+' '           Text
+'>:'          Operator
+' '           Text
+'MyInt'       Keyword.Type
+'\n'          Text
+
+'AT'          Keyword.Type
+'{'           Punctuation
+'T'           Keyword.Type
+','           Punctuation
+'1'           Literal.Number.Integer
+'}'           Punctuation
+' '           Text
+'<:'          Operator
+' '           Text
+'B'           Keyword.Type
+'\n'          Text
+
+'B'           Keyword.Type
+'>:'          Operator
+'AT'          Keyword.Type
+'{'           Punctuation
+'T'           Keyword.Type
+','           Punctuation
+'1'           Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text
+
+'A'           Keyword.Type
+' '           Text
+'<:'          Operator
+' '           Text
+'f'           Name
+'('           Punctuation
+'B'           Name
+')'           Punctuation
+'\n'          Text
+
+'g'           Name
+'('           Punctuation
+'C'           Name
+')'           Punctuation
+' '           Text
+'<:'          Operator
+' '           Text
+'T'           Keyword.Type
+'\n'          Text
