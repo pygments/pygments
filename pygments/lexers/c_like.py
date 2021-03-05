@@ -575,7 +575,7 @@ class OmgIdlLexer(CLexer):
     """
     Lexer for `Object Management Group Interface Definition Language <https://www.omg.org/spec/IDL/About-IDL/>`_.
 
-    .. versionadded:: 2.8
+    .. versionadded:: 2.9
     """
 
     name = 'OMG Interface Definition Language'
