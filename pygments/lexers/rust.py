@@ -152,6 +152,11 @@ class RustLexer(RegexLexer):
 
             # Attributes
             (r'#!?\[', Comment.Preproc, 'attribute['),
+
+            # Misc
+            # Lone hashes: not used in Rust syntax, but allowed in macro
+            # arguments, most famously for quote::quote!()
+            (r'#', Text),
         ],
         'comment': [
             (r'[^*/]+', Comment.Multiline),
