@@ -23,7 +23,7 @@ class apdlexer(RegexLexer):
     .. versionadded:: 2.80
     """
     name = 'ANSYS parametric design language'
-    aliases = ['ansys']
+    aliases = ['ansys','apdl']
     filenames = ['*.ans']
     flags = re.IGNORECASE
 
