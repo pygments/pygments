@@ -55,12 +55,12 @@ Version 2.8.0
   * Python: Improve handling of raw f-strings (#1681, #1683)
   * Ruby: Better method name handling (#1531)
   * Stata: Updated keywords (#1470)
-  
+
 - Added styles:
 
   * Material (#1662)
   * Zenburn (#1659)
-  
+
 - The `pygmentize` script now uses `argparse`, all options should work
   as before
 
@@ -122,7 +122,7 @@ Version 2.7.4
 
     - Lex trailing whitespace as part of the prompt (#1645)
     - Add missing ``in`` keyword (#1652)
-    
+
   - SQL - Fix keywords (#1668)
   - Typescript: Fix incorrect punctuation handling (#1510, #1511)
 
@@ -132,7 +132,7 @@ Version 2.7.4
 - Limit recursion with nesting Ruby heredocs (#1638)
 - Fix a few inefficient regexes for guessing lexers
 - Fix the raw token lexer handling of Unicode (#1616)
-- Revert a private API change in the HTML formatter (#1655) -- 
+- Revert a private API change in the HTML formatter (#1655) --
   please note that private APIs remain subject to change!
 - Fix several exponential/cubic-complexity regexes found by
   Ben Caller/Doyensec (#1675)
