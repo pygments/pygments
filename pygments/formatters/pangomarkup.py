@@ -28,6 +28,8 @@ def escape_special_chars(text, table=_escape_table):
 class PangoMarkupFormatter(Formatter):
     """
     Format tokens as Pango Markup code. It can then be rendered to an SVG.
+
+    .. versionadded:: 2.9
     """
 
     name = 'Pango Markup'
