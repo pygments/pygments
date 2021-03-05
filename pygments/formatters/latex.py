@@ -97,10 +97,6 @@ DOC_TEMPLATE = r'''
 
 STYLE_TEMPLATE = r'''
 \makeatletter
-%% workaround a minted <= v2.5 issue, which loads this file with - having
-%% catcode letter; also with _ having catcode 11 but this does not affect us
-\edef\%(cp)s@restore@catcode@of@minus@sign{\catcode`\noexpand\-=\the\catcode`\-\relax}
-\catcode`\-=12\relax
 \def\%(cp)s@reset{\let\%(cp)s@it=\relax \let\%(cp)s@bf=\relax%%
     \let\%(cp)s@ul=\relax \let\%(cp)s@tc=\relax%%
     \let\%(cp)s@bc=\relax \let\%(cp)s@ff=\relax}
@@ -132,7 +128,6 @@ STYLE_TEMPLATE = r'''
 \def\%(cp)sZat{@}
 \def\%(cp)sZlb{[}
 \def\%(cp)sZrb{]}
-\%(cp)s@restore@catcode@of@minus@sign
 \makeatother
 '''
 
@@ -304,7 +299,7 @@ class LatexFormatter(Formatter):
                 cmndef += (r'\def\$$@tc##1{\textcolor[rgb]{%s}{##1}}' %
                            rgbcolor(ndef['color']))
             if ndef['border']:
-                cmndef += (r'\def\$$@bc##1{{\setlength{\fboxsep}{-\fboxrule}'
+                cmndef += (r'\def\$$@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}'
                            r'\fcolorbox[rgb]{%s}{%s}{\strut ##1}}}' %
                            (rgbcolor(ndef['border']),
                             rgbcolor(ndef['bgcolor'])))
