@@ -100,7 +100,7 @@ STYLE_TEMPLATE = r'''
 %% workaround a minted <= v2.5 issue, which loads this file with - having
 %% catcode letter; also with _ having catcode 11 but this does not affect us
 \edef\%(cp)s@restore@catcode@of@minus@sign{\catcode`\noexpand\-=\the\catcode`\-\relax}
-\catcode`\-=12
+\catcode`\-=12\relax
 \def\%(cp)s@reset{\let\%(cp)s@it=\relax \let\%(cp)s@bf=\relax%%
     \let\%(cp)s@ul=\relax \let\%(cp)s@tc=\relax%%
     \let\%(cp)s@bc=\relax \let\%(cp)s@ff=\relax}
@@ -132,8 +132,8 @@ STYLE_TEMPLATE = r'''
 \def\%(cp)sZat{@}
 \def\%(cp)sZlb{[}
 \def\%(cp)sZrb{]}
-\makeatother
 \%(cp)s@restore@catcode@of@minus@sign
+\makeatother
 '''
 
 
