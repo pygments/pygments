@@ -1,0 +1,728 @@
+'note'        Keyword.Reserved
+'\n'          Text
+
+'\t'          Text
+'description' Name
+' '           Text
+':'           Punctuation
+' '           Text
+'"[\n\t\t\t\t\t\tThis is use to have almost every language element."\n\t\t\t\t\t\t\n\t\t\t\t\t\tThat way, I can correctly test the lexer. %]"\n\t\t\t\t\t\t\n\t\t\t\t\t\tDon\'t try to understand what it does. It\'s not even compilling.\n\t\t\t\t\t]"' Literal.String
+'\n'          Text
+
+'\t'          Text
+'date'        Name
+'        '    Text
+':'           Punctuation
+' '           Text
+'"August 6, 2013"' Literal.String
+'\n'          Text
+
+'\t'          Text
+'revision'    Name
+'    '        Text
+':'           Punctuation
+' '           Text
+'"0.1"'       Literal.String
+'\n\n'        Text
+
+'class'       Keyword.Reserved
+'\n'          Text
+
+'\t'          Text
+'SAMPLE'      Name.Class
+'\n\n'        Text
+
+'inherit'     Keyword.Reserved
+'\n'          Text
+
+'\t'          Text
+'ARGUMENTS'   Name.Class
+'\n'          Text
+
+'\t\t'        Text
+'rename'      Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'Command_line' Name
+' '           Text
+'as'          Keyword.Reserved
+' '           Text
+'Caller_command' Name
+','           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'command_name' Name
+' '           Text
+'as'          Keyword.Reserved
+' '           Text
+'Application_name' Name
+'\n'          Text
+
+'\t\t'        Text
+'undefine'    Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'out'         Name
+'\n'          Text
+
+'\t\t'        Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'\t'          Text
+'ANY'         Name.Class
+'\n'          Text
+
+'\t\t'        Text
+'export'      Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'{'           Punctuation
+'ANY'         Name.Class
+'}'           Punctuation
+' '           Text
+'out'         Name
+'\n'          Text
+
+'\t\t'        Text
+'redefine'    Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'out'         Name
+'\n'          Text
+
+'\t\t'        Text
+'end'         Keyword.Reserved
+'\n\n\n\n'    Text
+
+'create'      Keyword.Reserved
+'\n'          Text
+
+'\t'          Text
+'make'        Name
+'\n\n'        Text
+
+'convert'     Keyword.Reserved
+'\n'          Text
+
+'\t'          Text
+'as_boolean'  Name
+':'           Punctuation
+' '           Text
+'{'           Punctuation
+'BOOLEAN'     Name.Class
+'}'           Punctuation
+'\n\n'        Text
+
+'feature'     Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'NONE'        Keyword.Reserved
+'}'           Punctuation
+' '           Text
+'-- Initialization\n' Comment.Single
+
+'\n'          Text
+
+'\t'          Text
+'make'        Name
+'\n'          Text
+
+'\t\t\t'      Text
+'-- Run application.\n' Comment.Single
+
+'\t\t'        Text
+'local'       Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'i1_'         Name
+':'           Punctuation
+'expanded'    Keyword.Reserved
+' '           Text
+'INTEGER'     Name.Class
+'\n'          Text
+
+'\t\t\t'      Text
+'f_1'         Name
+':'           Punctuation
+'REAL_64'     Name.Class
+'\n'          Text
+
+'\t\t\t'      Text
+'l_char'      Name
+':'           Punctuation
+'CHARACTER_8' Name.Class
+'\n'          Text
+
+'\t\t'        Text
+'do'          Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'l_char'      Name
+':='          Operator
+"'!'"         Literal.String.Char
+'\n'          Text
+
+'\t\t\t'      Text
+'l_char'      Name
+':='          Operator
+"'%''"        Literal.String.Char
+'\n'          Text
+
+'\t\t\t'      Text
+'l_char'      Name
+':='          Operator
+"'%%'"        Literal.String.Char
+'\n'          Text
+
+'\t\t\t'      Text
+'i1_'         Name
+':='          Operator
+'80'          Literal.Number.Integer
+' '           Text
+'-'           Operator
+' '           Text
+'0x2F0C'      Literal.Number.Hex
+' '           Text
+'//'          Operator
+' '           Text
+'0C70'        Literal.Number.Oct
+' '           Text
+'\\\\'        Operator
+' '           Text
+'0b10110'     Literal.Number.Bin
+' '           Text
+'*'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'f_1'         Name
+':='          Operator
+'0.1'         Literal.Number.Float
+' '           Text
+'/'           Operator
+' '           Text
+'.567'        Literal.Number.Float
+'\n'          Text
+
+'\t\t\t'      Text
+'f_1'         Name
+':='          Operator
+'34.'         Literal.Number.Float
+'\n'          Text
+
+'\t\t\t'      Text
+'f_1'         Name
+':='          Operator
+'12345.67890' Literal.Number.Float
+'\n'          Text
+
+'\t\t\t'      Text
+'inspect'     Keyword.Reserved
+' '           Text
+'i1_'         Name
+'\n'          Text
+
+'\t\t\t'      Text
+'when'        Keyword.Reserved
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'then'        Keyword.Reserved
+'\n'          Text
+
+'\t\t\t\t'    Text
+'io'          Name
+'.'           Punctuation
+'output'      Name
+'.'           Punctuation
+'put_integer' Name
+' '           Text
+'('           Punctuation
+'i1_'         Name
+')'           Punctuation
+'\t\t'        Text
+'-- Comment\n' Comment.Single
+
+'\t\t\t'      Text
+'else'        Keyword.Reserved
+'\n'          Text
+
+'\t\t\t\t'    Text
+'io'          Name
+'.'           Punctuation
+'output'      Name
+'.'           Punctuation
+'put_real'    Name
+' '           Text
+'('           Punctuation
+'f_1'         Name
+'.'           Punctuation
+'truncated_to_real' Name
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'io'          Name
+'.'           Punctuation
+'output'      Name
+'.'           Punctuation
+'put_string'  Name
+' '           Text
+'('           Punctuation
+'CuRrEnt'     Keyword.Constant
+'.'           Punctuation
+'out'         Name
+')'           Punctuation
+'\t\t'        Text
+'-- Comment\n' Comment.Single
+
+'\t\t\t'      Text
+'('           Punctuation
+'agent'       Keyword.Reserved
+' '           Text
+'funct_1'     Name
+')'           Punctuation
+'.'           Punctuation
+'call'        Name
+'('           Punctuation
+'['           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'"Coucou"'    Literal.String
+']'           Operator
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'feature'     Keyword.Reserved
+' '           Text
+'-- Access\n' Comment.Single
+
+'\n'          Text
+
+'\t'          Text
+'funct_1'     Name
+'('           Punctuation
+'x'           Name
+','           Punctuation
+'y'           Name
+':'           Punctuation
+'separate'    Keyword.Reserved
+' '           Text
+'INTEGER'     Name.Class
+';'           Punctuation
+'a_text'      Name
+':'           Punctuation
+'READABLE_STRING_GENERAL' Name.Class
+')'           Punctuation
+':'           Punctuation
+'detachable'  Keyword.Reserved
+' '           Text
+'BOOLEAN'     Name.Class
+'\n'          Text
+
+'\t\t'        Text
+'obsolete'    Keyword.Reserved
+' '           Text
+'"This function is obsolete"' Literal.String
+'\n'          Text
+
+'\t\t'        Text
+'require'     Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'Is_Attached' Name
+':'           Punctuation
+' '           Text
+'AttAched'    Keyword.Reserved
+' '           Text
+'a_text'      Name
+'\n'          Text
+
+'\t\t'        Text
+'local'       Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'l_list'      Name
+':'           Punctuation
+'LIST'        Name.Class
+'['           Operator
+'like'        Keyword.Reserved
+' '           Text
+'x'           Name
+']'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'do'          Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'NOT'         Operator.Word
+' '           Text
+'a_text'      Name
+'.'           Punctuation
+'is_empty'    Name
+'='           Operator
+'TrUe'        Keyword.Constant
+' '           Text
+'or elSe'     Operator.Word
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'x'           Name
+'<'           Operator
+'0'           Literal.Number.Integer
+' '           Text
+'aNd'         Operator.Word
+' '           Text
+'x'           Name
+'>'           Operator
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'oR'          Operator.Word
+' '           Text
+'('           Punctuation
+'y'           Name
+'>'           Operator
+'0'           Literal.Number.Integer
+' '           Text
+'and then'    Operator.Word
+' '           Text
+'y'           Name
+'<'           Operator
+'10'          Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'xor'         Operator.Word
+' '           Text
+'True'        Keyword.Constant
+' '           Text
+'thEn'        Keyword.Reserved
+'\n'          Text
+
+'\t\t\t\t'    Text
+'ResuLT'      Keyword.Constant
+' '           Text
+':='          Operator
+' '           Text
+'FalSe'       Keyword.Constant
+'\n'          Text
+
+'\t\t\t'      Text
+'elseif'      Keyword.Reserved
+' '           Text
+'('           Punctuation
+'acROss'      Keyword.Reserved
+' '           Text
+'l_list'      Name
+' '           Text
+'as'          Keyword.Reserved
+' '           Text
+'la_list'     Name
+' '           Text
+'SoMe'        Name
+'\t'          Text
+'la_list'     Name
+'.'           Punctuation
+'item'        Name
+'<'           Operator
+'0'           Literal.Number.Integer
+' '           Text
+'end'         Keyword.Reserved
+')'           Punctuation
+' '           Text
+'implies'     Operator.Word
+' '           Text
+'a_text'      Name
+'.'           Punctuation
+'is_boolean'  Name
+' '           Text
+'then'        Keyword.Reserved
+'\n'          Text
+
+'\t\t\t\t'    Text
+'ResuLT'      Keyword.Constant
+' '           Text
+':='          Operator
+' '           Text
+'FalSe'       Keyword.Constant
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword.Reserved
+'\n'          Text
+
+'\t\t\t\t'    Text
+'Result'      Keyword.Constant
+' '           Text
+':='          Operator
+' '           Text
+'TruE'        Keyword.Constant
+'\n'          Text
+
+'\t\t\t'      Text
+'eND'         Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'from'        Keyword.Reserved
+'\n'          Text
+
+'\t\t\t\t'    Text
+'l_list'      Name
+'.'           Punctuation
+'start'       Name
+'\n'          Text
+
+'\t\t\t'      Text
+'until'       Keyword.Reserved
+'\n'          Text
+
+'\t\t\t\t'    Text
+'l_list'      Name
+'.'           Punctuation
+'exhausted'   Name
+'\n'          Text
+
+'\t\t\t'      Text
+'loop'        Keyword.Reserved
+'\n'          Text
+
+'\t\t\t\t'    Text
+'l_list'      Name
+'.'           Punctuation
+'forth'       Name
+'\n'          Text
+
+'\t\t\t'      Text
+'variant'     Keyword.Reserved
+'\n'          Text
+
+'\t\t\t\t'    Text
+'l_list'      Name
+'.'           Punctuation
+'count'       Name
+' '           Text
+'-'           Operator
+' '           Text
+'l_list'      Name
+'.'           Punctuation
+'index'       Name
+'\n'          Text
+
+'\t\t\t'      Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'check'       Keyword.Reserved
+' '           Text
+'Current'     Keyword.Constant
+' '           Text
+'/='          Operator
+' '           Text
+'Void'        Keyword.Constant
+' '           Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'debug'       Keyword.Reserved
+' '           Text
+'print'       Name
+'('           Punctuation
+'"%"Here%"%N"' Literal.String
+')'           Punctuation
+' '           Text
+'end'         Keyword.Reserved
+'\n'          Text
+
+'\t\t'        Text
+'ensure'      Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'Is_Cool_Not_Change' Name
+':'           Punctuation
+' '           Text
+'is_cool'     Name
+' '           Text
+'='           Operator
+' '           Text
+'old'         Keyword.Reserved
+' '           Text
+'is_cool'     Name
+'\n'          Text
+
+'\t\t'        Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'\t'          Text
+'is_cool'     Name
+':'           Punctuation
+'BOOLEAN'     Name.Class
+'\n'          Text
+
+'\t\t'        Text
+'attribute'   Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'Result'      Keyword.Constant
+':='          Operator
+'False'       Keyword.Constant
+'\n'          Text
+
+'\t\t'        Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'\t'          Text
+'froZen'      Keyword.Reserved
+' '           Text
+'c_malloc'    Name
+':'           Punctuation
+' '           Text
+'POINTER'     Name.Class
+' '           Text
+'is'          Name
+'\n'          Text
+
+'\t\t'        Text
+'exTErnal'    Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'"C inline use <stdlib.h>"' Literal.String
+'\n'          Text
+
+'\t\t'        Text
+'alIAs'       Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'"malloc (1)"' Literal.String
+'\n'          Text
+
+'\t\t'        Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'\t'          Text
+'as_boolean'  Name
+':'           Punctuation
+'BOOLEAN'     Name.Class
+'\n'          Text
+
+'\t\t'        Text
+'do'          Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'Result'      Keyword.Constant
+':='          Operator
+'True'        Keyword.Constant
+'\n'          Text
+
+'\t\t'        Text
+'rescue'      Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'retry'       Keyword.Reserved
+'\n'          Text
+
+'\t\t'        Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'feature'     Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'ANY'         Name.Class
+'}'           Punctuation
+' '           Text
+'-- The redefine feature\n' Comment.Single
+
+'\n'          Text
+
+'\t'          Text
+'out'         Name
+':'           Punctuation
+'STRING_8'    Name.Class
+'\n'          Text
+
+'\t\t'        Text
+'once'        Keyword.Reserved
+'\n'          Text
+
+'\t\t\t'      Text
+'reSUlt'      Keyword.Constant
+':='          Operator
+'PrecursOr'   Keyword.Constant
+' '           Text
+'{'           Punctuation
+'ANY'         Name.Class
+'}'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'Result'      Keyword.Constant
+' '           Text
+':='          Operator
+' '           Text
+'"Hello Worl"' Literal.String
+'+'           Operator
+'('           Punctuation
+"'d'"         Literal.String.Char
+')'           Punctuation
+'.'           Punctuation
+'out'         Name
+'\n'          Text
+
+'\t\t'        Text
+'end'         Keyword.Reserved
+'\n\n'        Text
+
+'invariant'   Keyword.Reserved
+'\n'          Text
+
+'\t'          Text
+'Always_Cool' Name
+':'           Punctuation
+' '           Text
+'is_cool'     Name
+'\n'          Text
+
+'end'         Keyword.Reserved
+'\n'          Text

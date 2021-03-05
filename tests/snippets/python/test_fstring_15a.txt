@@ -1,0 +1,42 @@
+---input---
+'a' 'b' f'{x}' '{c}' f'str<{y:^4}>' 'd' 'e'
+
+---tokens---
+"'"           Literal.String.Single
+'a'           Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+"'"           Literal.String.Single
+'b'           Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'{'           Literal.String.Interpol
+'x'           Name
+'}'           Literal.String.Interpol
+"'"           Literal.String.Single
+' '           Text
+"'"           Literal.String.Single
+'{c}'         Literal.String.Interpol
+"'"           Literal.String.Single
+' '           Text
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'str<'        Literal.String.Single
+'{'           Literal.String.Interpol
+'y'           Name
+':'           Literal.String.Interpol
+'^4'          Literal.String.Single
+'}'           Literal.String.Interpol
+'>'           Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+"'"           Literal.String.Single
+'d'           Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+"'"           Literal.String.Single
+'e'           Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text

@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.formatters.terminal
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Formatter for terminal output with ANSI sequences.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -92,12 +91,6 @@ class TerminalFormatter(Formatter):
         self._lineno = 0
 
     def format(self, tokensource, outfile):
-        # hack: if the output is a terminal and has an encoding set,
-        # use that to avoid unicode encode problems
-        if not self.encoding and hasattr(outfile, "encoding") and \
-           hasattr(outfile, "isatty") and outfile.isatty() and \
-           sys.version_info < (3,):
-            self.encoding = outfile.encoding
         return Formatter.format(self, tokensource, outfile)
 
     def _write_lineno(self, outfile):

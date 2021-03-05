@@ -1,0 +1,12 @@
+---input---
+HTTP/1.1 200 OK
+
+---tokens---
+'HTTP'        Keyword.Reserved
+'/'           Operator
+'1.1'         Literal.Number
+' '           Text
+'200'         Literal.Number
+' '           Text
+'OK'          Name.Exception
+'\n'          Text

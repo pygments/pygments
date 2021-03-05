@@ -1,0 +1,18 @@
+---input---
+f"{i}:{d[i]}"
+
+---tokens---
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'{'           Literal.String.Interpol
+'i'           Name
+'}'           Literal.String.Interpol
+':'           Literal.String.Double
+'{'           Literal.String.Interpol
+'d'           Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text

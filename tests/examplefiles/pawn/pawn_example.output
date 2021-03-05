@@ -1,0 +1,220 @@
+'{'           Punctuation
+'include'     Name
+'.'           Punctuation
+'i'           Name
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'nested'      Name
+'.'           Punctuation
+'i'           Name
+' '           Text
+'{'           Punctuation
+'include'     Name
+'.'           Punctuation
+'i'           Name
+'}'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'&'           Operator
+'SCOPED'      Name
+'-'           Operator
+'DEFINE'      Name
+' '           Text
+'MY_NAME'     Name
+' '           Text
+'"'           Literal.String
+'Abe'         Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'DEF'         Name
+' '           Text
+'VAR'         Name
+' '           Text
+'i'           Name
+' '           Text
+'AS'          Name
+' '           Text
+'INT'         Name
+' '           Text
+'NO'          Name
+'-'           Operator
+'UNDO'        Name
+'.'           Punctuation
+'\n'          Text
+
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0xABE'       Literal.Number.Hex
+' '           Text
+'+'           Operator
+' '           Text
+'1337'        Literal.Number.Integer
+' '           Text
+'/'           Operator
+' '           Text
+'('           Punctuation
+'1'           Literal.Number.Integer
+' '           Text
+'*'           Operator
+' '           Text
+'1.00'        Literal.Number.Float
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'def'         Name
+' '           Text
+'var'         Name
+' '           Text
+'clowercasetest' Name
+' '           Text
+'as'          Name
+' '           Text
+'char'        Keyword
+' '           Text
+'no'          Name
+'-'           Operator
+'undo'        Name
+'.'           Punctuation
+'\n'          Text
+
+'DEF'         Name
+' '           Text
+'VAR'         Name
+' '           Text
+'vardashtest' Name
+' '           Text
+'AS'          Name
+' '           Text
+'DATETIME'    Name
+'-'           Operator
+'TZ'          Name
+' '           Text
+'NO'          Name
+'-'           Operator
+'UNDO'        Name
+'.'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'DEFINE'      Name
+' '           Text
+'TEMP'        Name
+'-'           Operator
+'TABLE'       Name
+' '           Text
+'ttNames'     Name
+' '           Text
+'NO'          Name
+'-'           Operator
+'UNDO'        Name
+'\n'          Text
+
+'  '          Text
+'FIELD'       Name
+' '           Text
+'cName'       Name
+' '           Text
+'AS'          Name
+' '           Text
+'CHAR'        Name
+'\n'          Text
+
+'  '          Text
+'INDEX'       Name
+' '           Text
+'IXPK_ttNames' Name
+' '           Text
+'IS'          Name
+' '           Text
+'PRIMARY'     Name
+' '           Text
+'UNIQUE'      Name
+' '           Text
+'cName'       Name
+'.'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/* One-line comment */' Comment.Multiline
+'\n'          Text
+
+'/* Two-line\n   Comment  */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'CREATE'      Name
+' '           Text
+'ttNames'     Name
+'.'           Punctuation
+'\n'          Text
+
+'ASSIGN'      Name
+' '           Text
+'ttNames'     Name
+'.'           Punctuation
+'cName'       Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'&'           Operator
+'MY_NAME'     Name
+'}'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'FOR'         Name
+' '           Text
+'EACH'        Name
+' '           Text
+'ttNames'     Name
+':'           Operator
+'\n'          Text
+
+'  '          Text
+'MESSAGE'     Name
+' '           Text
+'"'           Literal.String
+'Hello, '     Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'ttNames'     Name
+'.'           Punctuation
+'cName'       Name
+' '           Text
+'+'           Operator
+' '           Text
+"'!'"         Literal.String.Char
+' '           Text
+'VIEW'        Name
+'-'           Operator
+'AS'          Name
+' '           Text
+'ALERT'       Name
+'-'           Operator
+'BOX'         Name
+'.'           Punctuation
+'\n'          Text
+
+'END'         Name
+'.'           Punctuation
+'\n'          Text

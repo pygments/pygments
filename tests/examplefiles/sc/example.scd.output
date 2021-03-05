@@ -1,0 +1,495 @@
+'Instr'       Name.Other
+'('           Punctuation
+'"cs.fm.BasicFM"' Literal.String.Double
+','           Punctuation
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'arg'         Keyword.Declaration
+' '           Text
+'freq'        Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'440'         Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'amp'         Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'0.9'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'gate'        Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+'\n    '      Text
+'carrierFreqRatio' Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'1.0'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'modulatorFreqRatio' Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'1.0'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'// not sure if having these defaults here actually does anything.\n' Comment.Single
+
+'    '        Text
+'modEnvShape' Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'Env'         Name.Other
+'.'           Punctuation
+'adsr'        Name.Other
+'('           Punctuation
+'\n      '    Text
+'attackTime'  Name.Other
+':'           Operator
+' '           Text
+'0.05'        Literal.Number.Float
+','           Punctuation
+'\n      '    Text
+'decayTime'   Name.Other
+':'           Operator
+' '           Text
+'0.1'         Literal.Number.Float
+','           Punctuation
+'\n      '    Text
+'sustainLevel' Name.Other
+':'           Operator
+' '           Text
+'0.5'         Literal.Number.Float
+' '           Text
+'*'           Operator
+' '           Text
+'amp'         Name.Other
+','           Punctuation
+'\n      '    Text
+'releaseTime' Name.Other
+':'           Operator
+' '           Text
+'0.1'         Literal.Number.Float
+','           Punctuation
+'\n      '    Text
+'peakLevel'   Name.Other
+':'           Operator
+' '           Text
+'amp'         Name.Other
+','           Punctuation
+'\n      '    Text
+'curve'       Name.Other
+':'           Operator
+' '           Text
+'['           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'2'           Literal.Number.Integer
+']'           Punctuation
+'\n    '      Text
+')'           Punctuation
+','           Punctuation
+'\n    '      Text
+'carrierEnvShape' Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'Env'         Name.Other
+'.'           Punctuation
+'adsr'        Name.Other
+'('           Punctuation
+'\n      '    Text
+'attackTime'  Name.Other
+':'           Operator
+' '           Text
+'0.05'        Literal.Number.Float
+','           Punctuation
+'\n      '    Text
+'decayTime'   Name.Other
+':'           Operator
+' '           Text
+'0.1'         Literal.Number.Float
+','           Punctuation
+'\n      '    Text
+'sustainLevel' Name.Other
+':'           Operator
+' '           Text
+'0.5'         Literal.Number.Float
+' '           Text
+'*'           Operator
+' '           Text
+'amp'         Name.Other
+','           Punctuation
+'\n      '    Text
+'releaseTime' Name.Other
+':'           Operator
+' '           Text
+'0.1'         Literal.Number.Float
+','           Punctuation
+'\n      '    Text
+'peakLevel'   Name.Other
+':'           Operator
+' '           Text
+'amp'         Name.Other
+','           Punctuation
+'\n      '    Text
+'curve'       Name.Other
+':'           Operator
+' '           Text
+'['           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'2'           Literal.Number.Integer
+']'           Punctuation
+'\n    '      Text
+')'           Punctuation
+';'           Punctuation
+'\n\n  '      Text
+'var'         Keyword.Declaration
+' '           Text
+'carrier'     Name.Other
+','           Punctuation
+'\n    '      Text
+'modulator'   Name.Other
+','           Punctuation
+'\n    '      Text
+'carrierEnv'  Name.Other
+','           Punctuation
+'\n    '      Text
+'modEnv'      Name.Other
+','           Punctuation
+'\n    '      Text
+'out'         Name.Other
+';'           Punctuation
+'\n\n  '      Text
+'modEnv'      Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'EnvGen'      Name.Other
+'.'           Punctuation
+'kr'          Name.Other
+'('           Punctuation
+'\n    '      Text
+'envelope'    Name.Other
+':'           Operator
+' '           Text
+'modEnvShape' Name.Other
+','           Punctuation
+'\n    '      Text
+'gate'        Name.Other
+':'           Operator
+' '           Text
+'gate'        Name.Other
+'\n  '        Text
+')'           Punctuation
+';'           Punctuation
+'\n  \n  '    Text
+'modulator'   Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'modEnv'      Name.Other
+' '           Text
+'*'           Operator
+' '           Text
+'SinOsc'      Name.Other
+'.'           Punctuation
+'ar'          Name.Other
+'('           Punctuation
+'freq'        Name.Other
+' '           Text
+'*'           Operator
+' '           Text
+'modulatorFreqRatio' Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n  \n  '    Text
+'// carrier sustains until noteoff\n' Comment.Single
+
+'  '          Text
+'carrierEnvShape' Name.Other
+'.'           Punctuation
+'releaseNode' Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n\n  '      Text
+'carrierEnv'  Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'EnvGen'      Name.Other
+'.'           Punctuation
+'kr'          Name.Other
+'('           Punctuation
+'\n    '      Text
+'envelope'    Name.Other
+':'           Operator
+' '           Text
+'carrierEnvShape' Name.Other
+','           Punctuation
+'\n    '      Text
+'gate'        Name.Other
+':'           Operator
+' '           Text
+'gate'        Name.Other
+'\n  '        Text
+')'           Punctuation
+';'           Punctuation
+'\n\n  '      Text
+'carrier'     Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'carrierEnv'  Name.Other
+' '           Text
+'*'           Operator
+' '           Text
+'SinOsc'      Name.Other
+'.'           Punctuation
+'ar'          Name.Other
+'('           Punctuation
+'\n    '      Text
+'('           Punctuation
+'freq'        Name.Other
+' '           Text
+'*'           Operator
+' '           Text
+'carrierFreqRatio' Name.Other
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'modulator'   Name.Other
+' '           Text
+'*'           Operator
+' '           Text
+'freq'        Name.Other
+')'           Punctuation
+'\n  '        Text
+')'           Punctuation
+';'           Punctuation
+'\n\n  '      Text
+'// free synth when both carrier and modulator envelopes are done\n' Comment.Single
+
+'  '          Text
+'FreeSelf'    Name.Other
+'.'           Punctuation
+'kr'          Name.Other
+'('           Punctuation
+'Done'        Name.Other
+'.'           Punctuation
+'kr'          Name.Other
+'('           Punctuation
+'carrierEnv'  Name.Other
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'Done'        Name.Other
+'.'           Punctuation
+'kr'          Name.Other
+'('           Punctuation
+'modEnv'      Name.Other
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n\n  '      Text
+'out'         Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'amp'         Name.Other
+' '           Text
+'*'           Operator
+' '           Text
+'carrier'     Name.Other
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+','           Punctuation
+' '           Text
+'['           Punctuation
+'\n  '        Text
+'\\freq'      Literal.String.Symbol
+'.'           Punctuation
+'asSpec'      Name.Other
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n  '        Text
+'\\amp'       Literal.String.Symbol
+'.'           Punctuation
+'asSpec'      Name.Other
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n  '        Text
+'\\nil'       Literal.String.Symbol
+','           Punctuation
+'\n  '        Text
+'ControlSpec' Name.Other
+'('           Punctuation
+'0.1'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n  '        Text
+'ControlSpec' Name.Other
+'('           Punctuation
+'0.1'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n  '        Text
+'EnvSpec'     Name.Other
+'('           Punctuation
+'Env'         Name.Other
+'.'           Punctuation
+'adsr'        Name.Other
+'('           Punctuation
+'\n    '      Text
+'attackTime'  Name.Other
+':'           Operator
+' '           Text
+'0.05'        Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'decayTime'   Name.Other
+':'           Operator
+' '           Text
+'0.1'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'sustainLevel' Name.Other
+':'           Operator
+' '           Text
+'0.8'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'releaseTime' Name.Other
+':'           Operator
+' '           Text
+'0.1'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'peakLevel'   Name.Other
+':'           Operator
+' '           Text
+'1.0'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'curve'       Name.Other
+':'           Operator
+' '           Text
+'['           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'2'           Literal.Number.Integer
+']'           Punctuation
+'\n  '        Text
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n  '        Text
+'EnvSpec'     Name.Other
+'('           Punctuation
+'Env'         Name.Other
+'.'           Punctuation
+'adsr'        Name.Other
+'('           Punctuation
+'\n    '      Text
+'attackTime'  Name.Other
+':'           Operator
+' '           Text
+'0.05'        Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'decayTime'   Name.Other
+':'           Operator
+' '           Text
+'0.1'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'sustainLevel' Name.Other
+':'           Operator
+' '           Text
+'0.8'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'releaseTime' Name.Other
+':'           Operator
+' '           Text
+'0.1'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'peakLevel'   Name.Other
+':'           Operator
+' '           Text
+'1.0'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text
+'curve'       Name.Other
+':'           Operator
+' '           Text
+'['           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'-'           Operator
+'2'           Literal.Number.Integer
+']'           Punctuation
+'\n  '        Text
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text

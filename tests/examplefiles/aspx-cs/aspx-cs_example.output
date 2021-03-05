@@ -1,0 +1,130 @@
+'<%@'         Name.Tag
+' '           Text
+'Page'        Name
+' '           Text
+'Language'    Name
+'='           Punctuation
+'"C#"'        Literal.String
+' '           Text
+'%>'          Name.Tag
+'\n \n'       Text
+
+'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"\n"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">' Comment.Preproc
+'\n \n'       Text
+
+'<script'     Name.Tag
+' '           Text
+'runat='      Name.Attribute
+'"server"'    Literal.String
+'>'           Name.Tag
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'    '        Text
+'protected'   Keyword
+' '           Text
+'void'        Keyword
+' '           Text
+'Page_Load'   Name.Function
+'('           Punctuation
+'object'      Keyword.Type
+' '           Text
+'sender'      Name
+','           Punctuation
+' '           Text
+'EventArgs'   Name
+' '           Text
+'e'           Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'Label1'      Name
+'.'           Punctuation
+'Text'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'DateTime'    Name
+'.'           Punctuation
+'Now'         Name
+'.'           Punctuation
+'ToLongDateString' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'</script>'   Name.Tag
+'\n \n'       Text
+
+'<html'       Name.Tag
+' '           Text
+'xmlns='      Name.Attribute
+'"http://www.w3.org/1999/xhtml"' Literal.String
+'>'           Name.Tag
+'\n'          Text
+
+'<head'       Name.Tag
+' '           Text
+'runat='      Name.Attribute
+'"server"'    Literal.String
+'>'           Name.Tag
+'\n    '      Text
+'<title'      Name.Tag
+'>'           Name.Tag
+'Sample page' Text
+'</title>'    Name.Tag
+'\n'          Text
+
+'</head>'     Name.Tag
+'\n'          Text
+
+'<body'       Name.Tag
+'>'           Name.Tag
+'\n    '      Text
+'<form'       Name.Tag
+' '           Text
+'id='         Name.Attribute
+'"form1"'     Literal.String
+' '           Text
+'runat='      Name.Attribute
+'"server"'    Literal.String
+'>'           Name.Tag
+'\n    '      Text
+'<div'        Name.Tag
+'>'           Name.Tag
+'\n        The current time is: ' Text
+'<asp:Label'  Name.Tag
+' '           Text
+'runat='      Name.Attribute
+'"server"'    Literal.String
+' '           Text
+'id='         Name.Attribute
+'"Label1"'    Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n    '      Text
+'</div>'      Name.Tag
+'\n    '      Text
+'</form>'     Name.Tag
+'\n \n'       Text
+
+'</body>'     Name.Tag
+'\n'          Text
+
+'</html>'     Name.Tag
+'\n'          Text

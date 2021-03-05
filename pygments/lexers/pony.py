@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.pony
     ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Pony and related languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -70,7 +69,7 @@ class PonyLexer(RegexLexer):
             (r'\d+', Number.Integer),
             (r'(true|false)\b', Name.Builtin),
             (r'_\d*', Name),
-            (r'_?[a-z][\w\'_]*', Name)
+            (r'_?[a-z][\w\']*', Name)
         ],
         'typename': [
             (_caps + r'?((?:\s)*)(_?[A-Z]\w*)',

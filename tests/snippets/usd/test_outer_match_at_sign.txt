@@ -1,0 +1,14 @@
+# Make sure that text between located between quotes and @@s are not matched.
+
+---input---
+@firststring@ something else @secondstring@
+
+---tokens---
+'@firststring@' Literal.String.Interpol
+' '           Text.Whitespace
+'something'   Text
+' '           Text.Whitespace
+'else'        Text
+' '           Text.Whitespace
+'@secondstring@' Literal.String.Interpol
+'\n'          Text.Whitespace

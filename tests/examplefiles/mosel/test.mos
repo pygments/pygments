@@ -1,0 +1,34 @@
+(!*******************************************************
+    Multiline comment
+*******************************************************!)
+model 'pygments test'
+    uses "mmxprs"
+
+    forward public procedure main    ! Test forward declaration
+
+    public procedure main
+        declarations
+            MySet = {1, 2}
+            I: range
+            Coefficients: array(I) of real
+            Vars: array(I) of mpvar
+        end-declarations
+
+        Coefficients :: [2.2, -3.3, 4.4, 5.5, 1.1, -3.3, 7.7]
+
+        ! Single line comment
+        forall (i in I) Vars(i) is_binary
+
+        ! Constraint
+        sum (i in I) Vars(i) <= 3
+
+        maximize(sum(i in I) Coefficients(i) * Vars(i))
+
+        forall (i in I| Vars(i).sol <> 0) do
+            writeln("Vars(", i,") = ", Vars(i).sol)
+        end-do
+    end-procedure
+
+    main
+end-model
+

@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.smalltalk
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Smalltalk and related languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -139,7 +138,7 @@ class SmalltalkLexer(RegexLexer):
 
 class NewspeakLexer(RegexLexer):
     """
-    For `Newspeak <http://newspeaklanguage.org/>` syntax.
+    For `Newspeak <http://newspeaklanguage.org/>`_ syntax.
 
     .. versionadded:: 1.1
     """

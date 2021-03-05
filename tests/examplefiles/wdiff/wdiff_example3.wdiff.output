@@ -1,0 +1,24 @@
+'This example is unbalanced open' Text
+'-'           Text
+"close.\nWe can't treat these easily.\n\n" Text
+
+'{+'          Generic.Inserted
+' added? '    Generic.Inserted
+'-]'          Generic.Inserted
+'\n'          Text
+
+'[-'          Generic.Deleted
+' deleted? '  Generic.Deleted
+'+}'          Generic.Deleted
+'\n\nsuddenly closed ' Text
+'-'           Text
+']'           Text
+'\nsuddenly closed ' Text
+'+'           Text
+'}'           Text
+'\n\n'        Text
+
+'{+'          Generic.Inserted
+' added? '    Generic.Inserted
+'[-'          Generic.Inserted
+' deleted?\n' Generic.Inserted

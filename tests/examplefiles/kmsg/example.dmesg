@@ -1,0 +1,52 @@
+[    0.000000] Linux version 5.0.9-arch1-1-ARCH (builduser@heftig-18307) (gcc version 8.3.0 (GCC)) #1 SMP PREEMPT Sat Apr 20 15:00:46 UTC 2019
+[    0.000000] Command line: initrd=\initramfs-linux.img root=/dev/nvme0n1p1 nouveau.noaccel=1 rw
+[    0.000000] KERNEL supported cpus:
+[    0.000000]   Intel GenuineIntel
+[    0.000000]   AMD AuthenticAMD
+[    0.000000]   Hygon HygonGenuine
+[    0.000000]   Centaur CentaurHauls
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x008: 'MPX bounds registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x010: 'MPX CSR'
+[    0.000000] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+[    0.000000] x86/fpu: xstate_offset[3]:  832, xstate_sizes[3]:   64
+[    0.000000] x86/fpu: xstate_offset[4]:  896, xstate_sizes[4]:   64
+[    0.000000] x86/fpu: Enabled xstate features 0x1f, context size is 960 bytes, using 'compacted' format.
+[    2.663456] tpm_crb MSFT0101:00: [Firmware Bug]: ACPI region does not cover the entire command/response buffer. [mem 0xfed40000-0xfed4087f flags 0x200] vs fed40080 f80
+[    2.663514] tpm_crb MSFT0101:00: [Firmware Bug]: ACPI region does not cover the entire command/response buffer. [mem 0xfed40000-0xfed4087f flags 0x200] vs fed40080 f80
+[    2.664809] Bluetooth: Core ver 2.22
+[    2.664820] NET: Registered protocol family 31
+[ 3134.452501] usb 2-2: new SuperSpeed Gen 1 USB device number 2 using xhci_hcd
+[ 3134.471506] usb 2-2: New USB device found, idVendor=0781, idProduct=cfd2, bcdDevice= 0.02
+[ 3134.471508] usb 2-2: New USB device strings: Mfr=3, Product=4, SerialNumber=2
+
+kern  :notice: [    0.000000] Linux version 5.0.9-arch1-1-ARCH (builduser@heftig-18307) (gcc version 8.3.0 (GCC)) #1 SMP PREEMPT Sat Apr 20 15:00:46 UTC 2019
+kern  :info  : [    0.000000] Command line: initrd=\initramfs-linux.img root=/dev/nvme0n1p1 nouveau.noaccel=1 rw
+kern  :info  : [    0.000000] KERNEL supported cpus:
+kern  :info  : [    0.000000]   Intel GenuineIntel
+kern  :info  : [    0.000000]   AMD AuthenticAMD
+kern  :info  : [    0.000000]   Hygon HygonGenuine
+kern  :info  : [    0.000000]   Centaur CentaurHauls
+kern  :info  : [    0.000000] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+kern  :info  : [    0.000000] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+kern  :info  : [    0.000000] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+kern  :info  : [    0.000000] x86/fpu: Supporting XSAVE feature 0x008: 'MPX bounds registers'
+kern  :info  : [    0.000000] x86/fpu: Supporting XSAVE feature 0x010: 'MPX CSR'
+kern  :info  : [    0.000000] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+kern  :info  : [    0.000000] x86/fpu: xstate_offset[3]:  832, xstate_sizes[3]:   64
+kern  :info  : [    0.000000] x86/fpu: xstate_offset[4]:  896, xstate_sizes[4]:   64
+kern  :info  : [    0.000000] x86/fpu: Enabled xstate features 0x1f, context size is 960 bytes, using 'compacted' format.
+kern  :info  : [    0.000000] BIOS-provided physical RAM map:
+kern  :info  : [    0.000000] BIOS-e820: [mem 0x0000000000000000-0x0000000000057fff] usable
+kern  :info  : [    2.382262] EXT4-fs (nvme0n1p1): re-mounted. Opts: (null)
+kern  :notice: [    2.389774] random: systemd-random-: uninitialized urandom read (512 bytes read)
+kern  :info  : [    2.397148] usb 1-10: New USB device found, idVendor=8087, idProduct=0aa7, bcdDevice= 0.01
+kern  :info  : [    2.397150] usb 1-10: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+kern  :info  : [    2.519599] usb 1-12: new high-speed USB device number 4 using xhci_hcd
+kern  :crit  : [18706.135478] mce: CPU6: Package temperature above threshold, cpu clock throttled (total events = 79)
+kern  :crit  : [18706.135479] mce: CPU3: Package temperature above threshold, cpu clock throttled (total events = 79)
+kern  :crit  : [18706.135484] mce: CPU4: Package temperature above threshold, cpu clock throttled (total events = 79)
+kern  :info  : [18706.136450] mce: CPU4: Core temperature/speed normal
+kern  :info  : [18706.136451] mce: CPU1: Package temperature/speed normal

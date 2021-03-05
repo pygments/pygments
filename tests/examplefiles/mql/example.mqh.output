@@ -1,0 +1,833 @@
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'//|                                                        Array.mqh |\n' Comment.Single
+
+'//|                   Copyright 2009-2013, MetaQuotes Software Corp. |\n' Comment.Single
+
+'//|                                              http://www.mql4.com |\n' Comment.Single
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'<Object.mqh>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'//| Class CArray                                                     |\n' Comment.Single
+
+'//| Purpose: Base class of dynamic arrays.                           |\n' Comment.Single
+
+'//|          Derives from class CObject.                             |\n' Comment.Single
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'class'       Keyword
+' '           Text
+'CArray'      Name.Class
+' '           Text
+':'           Operator
+' '           Text
+'public'      Keyword
+' '           Text
+'CObject'     Name
+'\n'          Text
+
+'  '          Text
+'{'           Punctuation
+'\n'          Text
+
+'protected'   Keyword
+':'           Operator
+'\n'          Text
+
+'   '         Text
+'int'         Keyword.Type
+'               ' Text
+'m_step_resize' Name
+';'           Punctuation
+'      '      Text
+'// increment size of the array\n' Comment.Single
+
+'   '         Text
+'int'         Keyword.Type
+'               ' Text
+'m_data_total' Name
+';'           Punctuation
+'       '     Text
+'// number of elements\n' Comment.Single
+
+'   '         Text
+'int'         Keyword.Type
+'               ' Text
+'m_data_max'  Name
+';'           Punctuation
+'         '   Text
+'// maximmum size of the array without memory reallocation\n' Comment.Single
+
+'   '         Text
+'int'         Keyword.Type
+'               ' Text
+'m_sort_mode' Name
+';'           Punctuation
+'        '    Text
+'// mode of array sorting\n' Comment.Single
+
+'\n'          Text
+
+'public'      Keyword
+':'           Operator
+'\n'          Text
+
+'                     ' Text
+'CArray'      Name
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'                    ' Text
+'~'           Operator
+'CArray'      Name
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'//--- methods of access to protected data\n' Comment.Single
+
+'   '         Text
+'int'         Keyword.Type
+'               ' Text
+'Step'        Name.Function
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+'('           Punctuation
+'m_step_resize' Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'bool'        Keyword.Type
+'              ' Text
+'Step'        Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'step'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'int'         Keyword.Type
+'               ' Text
+'Total'       Name.Function
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+'('           Punctuation
+'m_data_total' Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'int'         Keyword.Type
+'               ' Text
+'Available'   Name.Function
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+'('           Punctuation
+'m_data_max'  Name
+'-'           Operator
+'m_data_total' Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'int'         Keyword.Type
+'               ' Text
+'Max'         Name.Function
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+'('           Punctuation
+'m_data_max'  Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'bool'        Keyword.Type
+'              ' Text
+'IsSorted'    Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'mode'        Name
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+'('           Punctuation
+'m_sort_mode' Name
+'='           Operator
+'='           Operator
+'mode'        Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'int'         Keyword.Type
+'               ' Text
+'SortMode'    Name.Function
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+' '           Text
+'const'       Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'return'      Keyword
+'('           Punctuation
+'m_sort_mode' Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'//--- cleaning method\n' Comment.Single
+
+'   '         Text
+'void'        Keyword.Type
+'              ' Text
+'Clear'       Name.Function
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'m_data_total' Name
+'='           Operator
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'   '         Text
+'//--- methods for working with files\n' Comment.Single
+
+'   '         Text
+'virtual'     Keyword
+' '           Text
+'bool'        Keyword.Type
+'      '      Text
+'Save'        Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'file_handle' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'virtual'     Keyword
+' '           Text
+'bool'        Keyword.Type
+'      '      Text
+'Load'        Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'file_handle' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'//--- sorting method\n' Comment.Single
+
+'   '         Text
+'void'        Keyword.Type
+'              ' Text
+'Sort'        Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'mode'        Name
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'protected'   Keyword
+':'           Operator
+'\n'          Text
+
+'   '         Text
+'virtual'     Keyword
+' '           Text
+'void'        Keyword.Type
+'      '      Text
+'QuickSort'   Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'beg'         Name
+','           Punctuation
+'int'         Keyword.Type
+' '           Text
+'end'         Name
+','           Punctuation
+'const'       Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'mode'        Name
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'//| Constructor                                                      |\n' Comment.Single
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'CArray'      Name
+':'           Operator
+':'           Operator
+'CArray'      Name
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+' '           Text
+':'           Operator
+' '           Text
+'m_step_resize' Name
+'('           Punctuation
+'16'          Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'                       ' Text
+'m_data_total' Name
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'                       ' Text
+'m_data_max'  Name
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'                       ' Text
+'m_sort_mode' Name
+'('           Punctuation
+'-1'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'//| Destructor                                                       |\n' Comment.Single
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'CArray'      Name
+':'           Operator
+':'           Operator
+'~'           Operator
+'CArray'      Name
+'('           Punctuation
+'void'        Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'//| Method Set for variable m_step_resize                            |\n' Comment.Single
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'bool'        Keyword.Type
+' '           Text
+'CArray'      Name
+':'           Operator
+':'           Operator
+'Step'        Name
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'step'        Name
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'{'           Punctuation
+'\n'          Text
+
+'//--- check\n' Comment.Single
+
+'   '         Text
+'if'          Keyword
+'('           Punctuation
+'step'        Name
+'>'           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'     '       Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'m_step_resize' Name
+'='           Operator
+'step'        Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+'('           Punctuation
+'true'        Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'     '       Text
+'}'           Punctuation
+'\n'          Text
+
+'//--- failure\n' Comment.Single
+
+'   '         Text
+'return'      Keyword
+'('           Punctuation
+'false'       Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'//| Sorting an array in ascending order                              |\n' Comment.Single
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text
+'CArray'      Name
+':'           Operator
+':'           Operator
+'Sort'        Name
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'mode'        Name
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'{'           Punctuation
+'\n'          Text
+
+'//--- check\n' Comment.Single
+
+'   '         Text
+'if'          Keyword
+'('           Punctuation
+'IsSorted'    Name
+'('           Punctuation
+'mode'        Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'m_sort_mode' Name
+'='           Operator
+'mode'        Name
+';'           Punctuation
+'\n'          Text
+
+'   '         Text
+'if'          Keyword
+'('           Punctuation
+'m_data_total' Name
+'<'           Operator
+'='           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'      '      Text
+'return'      Keyword
+';'           Punctuation
+'\n'          Text
+
+'//--- sort\n' Comment.Single
+
+'   '         Text
+'QuickSort'   Name
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'m_data_total' Name
+'-1'          Literal.Number.Integer
+','           Punctuation
+'mode'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'//| Writing header of array to file                                  |\n' Comment.Single
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'bool'        Keyword.Type
+' '           Text
+'CArray'      Name
+':'           Operator
+':'           Operator
+'Save'        Name
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'file_handle' Name
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'{'           Punctuation
+'\n'          Text
+
+'//--- check handle\n' Comment.Single
+
+'   '         Text
+'if'          Keyword
+'('           Punctuation
+'file_handle' Name
+'!'           Operator
+'='           Operator
+'INVALID_HANDLE' Name.Constant
+')'           Punctuation
+'\n'          Text
+
+'     '       Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'//--- write start marker - 0xFFFFFFFFFFFFFFFF\n' Comment.Single
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'FileWriteLong' Name.Function
+'('           Punctuation
+'file_handle' Name
+','           Punctuation
+'-1'          Literal.Number.Integer
+')'           Punctuation
+'='           Operator
+'='           Operator
+'sizeof'      Keyword
+'('           Punctuation
+'long'        Keyword.Type
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'//--- write array type\n' Comment.Single
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'FileWriteInteger' Name.Function
+'('           Punctuation
+'file_handle' Name
+','           Punctuation
+'Type'        Name
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+'INT_VALUE'   Name
+')'           Punctuation
+'='           Operator
+'='           Operator
+'INT_VALUE'   Name
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'return'      Keyword
+'('           Punctuation
+'true'        Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'}'           Punctuation
+'\n'          Text
+
+'     '       Text
+'}'           Punctuation
+'\n'          Text
+
+'//--- failure\n' Comment.Single
+
+'   '         Text
+'return'      Keyword
+'('           Punctuation
+'false'       Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'//| Reading header of array from file                                |\n' Comment.Single
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'bool'        Keyword.Type
+' '           Text
+'CArray'      Name
+':'           Operator
+':'           Operator
+'Load'        Name
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'file_handle' Name
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'{'           Punctuation
+'\n'          Text
+
+'//--- check handle\n' Comment.Single
+
+'   '         Text
+'if'          Keyword
+'('           Punctuation
+'file_handle' Name
+'!'           Operator
+'='           Operator
+'INVALID_HANDLE' Name.Constant
+')'           Punctuation
+'\n'          Text
+
+'     '       Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'//--- read and check start marker - 0xFFFFFFFFFFFFFFFF\n' Comment.Single
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'FileReadLong' Name.Function
+'('           Punctuation
+'file_handle' Name
+')'           Punctuation
+'='           Operator
+'='           Operator
+'-1'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'{'           Punctuation
+'\n'          Text
+
+'         '   Text
+'//--- read and check array type\n' Comment.Single
+
+'         '   Text
+'if'          Keyword
+'('           Punctuation
+'FileReadInteger' Name.Function
+'('           Punctuation
+'file_handle' Name
+','           Punctuation
+'INT_VALUE'   Name
+')'           Punctuation
+'='           Operator
+'='           Operator
+'Type'        Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'return'      Keyword
+'('           Punctuation
+'true'        Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'}'           Punctuation
+'\n'          Text
+
+'     '       Text
+'}'           Punctuation
+'\n'          Text
+
+'//--- failure\n' Comment.Single
+
+'   '         Text
+'return'      Keyword
+'('           Punctuation
+'false'       Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'//+------------------------------------------------------------------+\n' Comment.Single

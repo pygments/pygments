@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.unicon
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Icon and Unicon languages, including ucode VM.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -129,17 +128,15 @@ class UniconLexer(RegexLexer):
                 'WSync'), prefix=r'\b', suffix=r'\b'),
              Name.Function),
             include('numbers'),
-            (r'<@|<<@|>@|>>@|\.>|\->', Operator),
-            (r'\*\*|\+\+|\-\-|\.|\=|\~\=|<\=|>\=|\=\=|\~\=\=|<<|<<\=|>>|>>\=', Operator),
-            (r':\=|:\=:|\->|<\->|\+:\=|\|', Operator),
-            (r'\=\=\=|\~\=\=\=', Operator),
+            (r'<@|<<@|>@|>>@|\.>|->|===|~===|\*\*|\+\+|--|\.|~==|~=|<=|>=|==|'
+             r'=|<<=|<<|>>=|>>|:=:|:=|->|<->|\+:=|\|', Operator),
             (r'"(?:[^\\"]|\\.)*"', String),
             (r"'(?:[^\\']|\\.)*'", String.Character),
             (r'[*<>+=/&!?@~\\-]', Operator),
             (r'\^', Operator),
             (r'(\w+)(\s*|[(,])', bygroups(Name, using(this))),
-            (r"([\[\]])", Punctuation),
-            (r"(<>|=>|[()|:;,.'`]|[{}]|[%]|[&?])", Punctuation),
+            (r"[\[\]]", Punctuation),
+            (r"<>|=>|[()|:;,.'`{}%&?]", Punctuation),
             (r'\n+', Text),
         ],
         'numbers': [
@@ -272,15 +269,14 @@ class IconLexer(RegexLexer):
                 'WSync'), prefix=r'\b', suffix=r'\b'),
              Name.Function),
             include('numbers'),
-            (r'\*\*|\+\+|\-\-|\.|\=|\~\=|<\=|>\=|\=\=|\~\=\=|<<|<<\=|>>|>>\=', Operator),
-            (r':\=|:\=:|<\-|<\->|\+:\=|\||\|\|', Operator),
-            (r'\=\=\=|\~\=\=\=', Operator),
+            (r'===|~===|\*\*|\+\+|--|\.|==|~==|<=|>=|=|~=|<<=|<<|>>=|>>|'
+             r':=:|:=|<->|<-|\+:=|\|\||\|', Operator),
             (r'"(?:[^\\"]|\\.)*"', String),
             (r"'(?:[^\\']|\\.)*'", String.Character),
             (r'[*<>+=/&!?@~\\-]', Operator),
             (r'(\w+)(\s*|[(,])', bygroups(Name, using(this))),
-            (r"([\[\]])", Punctuation),
-            (r"(<>|=>|[()|:;,.'`]|[{}]|[%^]|[&?])", Punctuation),
+            (r"[\[\]]", Punctuation),
+            (r"<>|=>|[()|:;,.'`{}%\^&?]", Punctuation),
             (r'\n+', Text),
         ],
         'numbers': [
@@ -388,3 +384,28 @@ class UcodeLexer(RegexLexer):
             (r'[\w-]+', Text),
         ],
     }
+
+    def analyse_text(text):
+        """endsuspend and endrepeat are unique to this language, and
+        \\self, /self doesn't seem to get used anywhere else either."""
+        result = 0
+
+        if 'endsuspend' in text:
+            result += 0.1
+
+        if 'endrepeat' in text:
+            result += 0.1
+
+        if ':=' in text:
+            result += 0.01
+
+        if 'procedure' in text and 'end' in text:
+            result += 0.01
+
+        # This seems quite unique to unicon -- doesn't appear in any other
+        # example source we have (A quick search reveals that \SELF appears in
+        # Perl/Raku code)
+        if r'\self' in text and r'/self' in text:
+            result += 0.5
+
+        return result

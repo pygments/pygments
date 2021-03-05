@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.c_like
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for other C-like languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -172,12 +171,7 @@ class ECLexer(CLexer):
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(null|value|this)\b', Name.Builtin),
             inherit,
-        ],
-        'classname': [
-            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
-            # template specification
-            (r'\s*(?=>)', Text, '#pop'),
-        ],
+        ]
     }
 
 
@@ -340,6 +334,11 @@ class SwigLexer(CppLexer):
     priority = 0.04  # Lower than C/C++ and Objective C/C++
 
     tokens = {
+        'root': [
+            # Match it here so it won't be matched as a function in the rest of root
+            (r'\$\**\&?\w+', Name),
+            inherit
+        ],
         'statements': [
             # SWIG directives
             (r'(%[a-z_][a-z0-9_]*)', Name.Function),
@@ -555,7 +554,7 @@ class CharmciLexer(CppLexer):
     mimetypes = []
 
     tokens = {
-        'statements': [
+        'keywords': [
             (r'(module)(\s+)', bygroups(Keyword, Text), 'classname'),
             (words(('mainmodule', 'mainchare', 'chare', 'array', 'group',
                     'nodegroup', 'message', 'conditional')), Keyword),

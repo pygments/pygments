@@ -58,4 +58,4 @@ Pygments documentation
    authors
 
 If you find bugs or have suggestions for the documentation, please submit them
-on `GitHub <https://github.com/pygments/pygments>`.
+on `GitHub <https://github.com/pygments/pygments>`_.

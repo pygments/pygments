@@ -1,0 +1,1020 @@
+'// Created by Lionello Lunesu and placed in the public domain.\n' Comment.Single
+
+'// This file has been modified from its original version.\n' Comment.Single
+
+'// It has been formatted to fit your screen.\n' Comment.Single
+
+'module'      Keyword
+' '           Text
+'phoneno'     Name
+';'           Punctuation
+'     '       Text
+'// optional\n' Comment.Single
+
+'import'      Keyword
+' '           Text
+'std'         Name
+'.'           Punctuation
+'stdio'       Name
+';'           Punctuation
+'   '         Text
+'// writefln     \n' Comment.Single
+
+'import'      Keyword
+' '           Text
+'std'         Name
+'.'           Punctuation
+'ctype'       Name
+';'           Punctuation
+'   '         Text
+'// isdigit     \n' Comment.Single
+
+'import'      Keyword
+' '           Text
+'std'         Name
+'.'           Punctuation
+'stream'      Name
+';'           Punctuation
+'  '          Text
+'// BufferedFile\n' Comment.Single
+
+'\n'          Text
+
+'// Just for readability (imagine char[][][char[]])    \n' Comment.Single
+
+'alias'       Keyword
+' '           Text
+'char'        Keyword.Type
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'string'      Name.Builtin
+';'           Punctuation
+'\n'          Text
+
+'alias'       Keyword
+' '           Text
+'string'      Name.Builtin
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'stringarray' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/// Strips non-digit characters from the string (COW)\n' Comment.Single
+
+'string'      Name.Builtin
+' '           Text
+'stripNonDigit' Name
+'('           Punctuation
+' '           Text
+'in'          Keyword
+' '           Text
+'string'      Name.Builtin
+' '           Text
+'line'        Name
+' '           Text
+')'           Punctuation
+' \n'         Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'string'      Name.Builtin
+' '           Text
+'ret'         Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'foreach'     Keyword
+'('           Punctuation
+'uint'        Keyword.Type
+' '           Text
+'i'           Name
+','           Punctuation
+' '           Text
+'c'           Name
+';'           Punctuation
+' '           Text
+'line'        Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'// Error: std.ctype.isdigit at C:\\dmd\\src\\phobos\\std\\ctype.d(37) \n' Comment.Single
+
+'        '    Text
+'// conflicts with std.stream.isdigit at C:\\dmd\\src\\phobos\\std\\stream.d(2924)\n' Comment.Single
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Punctuation
+'std'         Name
+'.'           Punctuation
+'ctype'       Name
+'.'           Punctuation
+'isdigit'     Name
+'('           Punctuation
+'c'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Punctuation
+'ret'         Name
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'ret'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'line'        Name
+'['           Punctuation
+'0.'          Literal.Number.Float
+'.'           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'    \n        ' Text
+'}'           Punctuation
+'    \n        ' Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'ret'         Name
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'ret'         Name
+' '           Text
+'~='          Punctuation
+' '           Text
+'c'           Name
+';'           Punctuation
+'    \n    '  Text
+'}'           Punctuation
+'    \n    '  Text
+'return'      Keyword
+' '           Text
+'ret'         Name
+'?'           Punctuation
+'ret'         Name
+':'           Punctuation
+'line'        Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'unittest'    Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'assert'      Keyword
+'('           Punctuation
+' '           Text
+'stripNonDigit' Name
+'('           Punctuation
+'"asdf"'      Literal.String
+')'           Punctuation
+' '           Text
+'=='          Punctuation
+' '           Text
+'""'          Literal.String
+'  '          Text
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'assert'      Keyword
+'('           Punctuation
+' '           Text
+'stripNonDigit' Name
+'('           Punctuation
+'"\\\'13-=2 4kop"' Literal.String
+')'           Punctuation
+' '           Text
+'=='          Punctuation
+'  '          Text
+'"1324"'      Literal.String
+'  '          Text
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/// Converts a word into a number, ignoring all non alpha characters  \n' Comment.Single
+
+'string'      Name.Builtin
+' '           Text
+'wordToNum'   Name
+'('           Punctuation
+' '           Text
+'in'          Keyword
+' '           Text
+'string'      Name.Builtin
+' '           Text
+'word'        Name
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'// translation table for the task at hand\n' Comment.Single
+
+'const'       Keyword
+' '           Text
+'char'        Keyword.Type
+'['           Punctuation
+'256'         Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'TRANSLATE'   Name
+' '           Text
+'='           Punctuation
+'    \n    '  Text
+'"                                "' Literal.String
+'  '          Text
+'// 0   \n'   Comment.Single
+
+'    '        Text
+'"                0123456789      "' Literal.String
+'  '          Text
+'// 32     \n' Comment.Single
+
+'    '        Text
+'" 57630499617851881234762239     "' Literal.String
+'  '          Text
+'// 64   \n'  Comment.Single
+
+'    '        Text
+'" 57630499617851881234762239     "' Literal.String
+'\n'          Text
+
+'    '        Text
+'"                                "' Literal.String
+'\n'          Text
+
+'    '        Text
+'"                                "' Literal.String
+'\n'          Text
+
+'    '        Text
+'"                                "' Literal.String
+'    \n    '  Text
+'"                                "' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'string'      Name.Builtin
+' '           Text
+'ret'         Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'foreach'     Keyword
+'('           Punctuation
+'c'           Name
+';'           Punctuation
+' '           Text
+'cast'        Keyword
+'('           Punctuation
+'ubyte'       Keyword.Type
+'['           Punctuation
+']'           Punctuation
+')'           Punctuation
+'word'        Name
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'TRANSLATE'   Name
+'['           Punctuation
+'c'           Name
+']'           Punctuation
+' '           Text
+'!='          Punctuation
+' '           Text
+"' '"         Literal.String.Char
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'ret'         Name
+' '           Text
+'~='          Punctuation
+' '           Text
+'TRANSLATE'   Name
+'['           Punctuation
+'c'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'ret'         Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'unittest'    Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+' '           Text
+'// Test wordToNum using the table from the task description.\n' Comment.Single
+
+' '           Text
+'assert'      Keyword
+'('           Punctuation
+' '           Text
+'"01112223334455666777888999"' Literal.String
+' '           Text
+'=='          Punctuation
+'\n'          Text
+
+'   '         Text
+'wordToNum'   Name
+'('           Punctuation
+'"E | J N Q | R W X | D S Y | F T | A M | C I V | B K U | L O P | G H Z"' Literal.String
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+' '           Text
+'assert'      Keyword
+'('           Punctuation
+' '           Text
+'"01112223334455666777888999"' Literal.String
+' '           Text
+'=='          Punctuation
+' \n   '      Text
+'wordToNum'   Name
+'('           Punctuation
+'"e | j n q | r w x | d s y | f t | a m | c i v | b k u | l o p | g h z"' Literal.String
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+' '           Text
+'assert'      Keyword
+'('           Punctuation
+' '           Text
+'"0123456789"' Literal.String
+' '           Text
+'=='          Punctuation
+' \n   '      Text
+'wordToNum'   Name
+'('           Punctuation
+'"0 |   1   |   2   |   3   |  4  |  5  |   6   |   7   |   8   |   9"' Literal.String
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'void'        Keyword.Type
+' '           Text
+'main'        Name
+'('           Punctuation
+' '           Text
+'string'      Name.Builtin
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'args'        Name
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'// This associative array maps a number to an array of words.    \n' Comment.Single
+
+'    '        Text
+'stringarray' Name
+'['           Punctuation
+'string'      Name.Builtin
+']'           Punctuation
+'    '        Text
+'num2words'   Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'foreach'     Keyword
+'('           Punctuation
+'string'      Name.Builtin
+' '           Text
+'word'        Name
+';'           Punctuation
+' '           Text
+'new'         Keyword
+' '           Text
+'BufferedFile' Name
+'('           Punctuation
+'"dictionary.txt"' Literal.String
+' '           Text
+')'           Punctuation
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'num2words'   Name
+'['           Punctuation
+' '           Text
+'wordToNum'   Name
+'('           Punctuation
+'word'        Name
+')'           Punctuation
+' '           Text
+']'           Punctuation
+' '           Text
+'~='          Punctuation
+' '           Text
+'word'        Name
+'.'           Punctuation
+'dup'         Name
+';'           Punctuation
+'        '    Text
+'// must dup\n' Comment.Single
+
+'\n'          Text
+
+'    '        Text
+'/// Finds all alternatives for the given number\n' Comment.Single
+
+'    '        Text
+'/// (should have been stripped from non-digit characters)\n' Comment.Single
+
+'    '        Text
+'stringarray' Name
+' '           Text
+'_FindWords'  Name
+'('           Punctuation
+' '           Text
+'string'      Name.Builtin
+' '           Text
+'numbers'     Name
+','           Punctuation
+' '           Text
+'bool'        Keyword.Type
+' '           Text
+'digitok'     Name
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'in'          Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'assert'      Keyword
+'('           Punctuation
+'numbers'     Name
+'.'           Punctuation
+'length'      Name
+' '           Text
+'>'           Punctuation
+'  '          Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'    \n    '  Text
+'}'           Punctuation
+'    \n    '  Text
+'out'         Keyword
+'('           Punctuation
+'result'      Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'foreach'     Keyword
+' '           Text
+'('           Punctuation
+'a'           Name
+';'           Punctuation
+' '           Text
+'result'      Name
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'assert'      Keyword
+'('           Punctuation
+' '           Text
+'wordToNum'   Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+' '           Text
+'=='          Punctuation
+' '           Text
+'numbers'     Name
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'    \n    '  Text
+'body'        Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'stringarray' Name
+' '           Text
+'ret'         Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'bool'        Keyword.Type
+' '           Text
+'foundword'   Name
+' '           Text
+'='           Punctuation
+' '           Text
+'false'       Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'uint'        Keyword.Type
+' '           Text
+'t'           Name
+'='           Punctuation
+'1'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'t'           Name
+'<='          Punctuation
+'numbers'     Name
+'.'           Punctuation
+'length'      Name
+';'           Punctuation
+' '           Text
+'++'          Punctuation
+'t'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'auto'        Keyword
+' '           Text
+'alternatives' Name
+' '           Text
+'='           Punctuation
+' '           Text
+'numbers'     Name
+'['           Punctuation
+'0.'          Literal.Number.Float
+'.'           Punctuation
+'t'           Name
+']'           Punctuation
+' '           Text
+'in'          Keyword
+' '           Text
+'num2words'   Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Punctuation
+'alternatives' Name
+')'           Punctuation
+'\n'          Text
+
+'                ' Text
+'continue'    Keyword
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'foundword'   Name
+' '           Text
+'='           Punctuation
+' '           Text
+'true'        Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'numbers'     Name
+'.'           Punctuation
+'length'      Name
+' '           Text
+'>'           Punctuation
+'  '          Text
+'t'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                ' Text
+'// Combine all current alternatives with all alternatives     \n' Comment.Single
+
+'                ' Text
+'// of the rest (next piece can start with a digit)              \n' Comment.Single
+
+'                ' Text
+'foreach'     Keyword
+' '           Text
+'('           Punctuation
+'a2'          Name
+';'           Punctuation
+' '           Text
+'_FindWords'  Name
+'('           Punctuation
+' '           Text
+'numbers'     Name
+'['           Punctuation
+'t'           Name
+'..'          Punctuation
+'$'           Punctuation
+']'           Punctuation
+','           Punctuation
+' '           Text
+'true'        Keyword.Constant
+'     '       Text
+')'           Punctuation
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'                    ' Text
+'foreach'     Keyword
+'('           Punctuation
+'a1'          Name
+';'           Punctuation
+' '           Text
+'*'           Punctuation
+'alternatives' Name
+')'           Punctuation
+'\n'          Text
+
+'                       ' Text
+'ret'         Name
+' '           Text
+'~='          Punctuation
+' '           Text
+'a1'          Name
+' '           Text
+'~'           Punctuation
+' '           Text
+'" "'         Literal.String
+' '           Text
+'~'           Punctuation
+' '           Text
+'a2'          Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'}'           Punctuation
+'\n'          Text
+
+'            ' Text
+'else'        Keyword
+'    \n                ' Text
+'ret'         Name
+' '           Text
+'~='          Punctuation
+' '           Text
+'*'           Punctuation
+'alternatives' Name
+';'           Punctuation
+'    '        Text
+'// append these alternatives\n' Comment.Single
+
+'        '    Text
+'}'           Punctuation
+'\n'          Text
+
+'        '    Text
+"// Try to keep 1 digit, only if we're allowed and no other\n" Comment.Single
+
+'        '    Text
+'// alternatives were found\n' Comment.Single
+
+'        '    Text
+'// Testing "ret.length" makes more sense than testing "foundword",\n' Comment.Single
+
+'        '    Text
+'// but the other implementations seem to do just this.\n' Comment.Single
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'digitok'     Name
+' '           Text
+'&&'          Punctuation
+' '           Text
+'!'           Punctuation
+'foundword'   Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'//ret.length == 0  \n' Comment.Single
+
+'            ' Text
+'if'          Keyword
+'('           Punctuation
+'numbers'     Name
+'.'           Punctuation
+'length'      Name
+' '           Text
+'>'           Punctuation
+'  '          Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'                ' Text
+'// Combine 1 digit with all altenatives from the rest    \n' Comment.Single
+
+'                ' Text
+'// (next piece can not start with a digit)          \n' Comment.Single
+
+'                ' Text
+'foreach'     Keyword
+' '           Text
+'('           Punctuation
+'a'           Name
+';'           Punctuation
+' '           Text
+'_FindWords'  Name
+'('           Punctuation
+' '           Text
+'numbers'     Name
+'['           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'$'           Punctuation
+']'           Punctuation
+','           Punctuation
+' '           Text
+'false'       Keyword.Constant
+' '           Text
+')'           Punctuation
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'                    ' Text
+'ret'         Name
+' '           Text
+'~='          Punctuation
+' '           Text
+'numbers'     Name
+'['           Punctuation
+'0.'          Literal.Number.Float
+'.1'          Literal.Number.Float
+']'           Punctuation
+' '           Text
+'~'           Punctuation
+' '           Text
+'" "'         Literal.String
+' '           Text
+'~'           Punctuation
+' '           Text
+'a'           Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'}'           Punctuation
+'    \n            ' Text
+'else'        Keyword
+'    \n                ' Text
+'ret'         Name
+' '           Text
+'~='          Punctuation
+' '           Text
+'numbers'     Name
+'['           Punctuation
+'0.'          Literal.Number.Float
+'.1'          Literal.Number.Float
+']'           Punctuation
+';'           Punctuation
+'    '        Text
+'// just append this digit             \n' Comment.Single
+
+'        '    Text
+'}'           Punctuation
+'    \n        ' Text
+'return'      Keyword
+' '           Text
+'ret'         Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'/// (This function was inlined in the original program) \n' Comment.Single
+
+'    '        Text
+'/// Finds all alternatives for the given phone number \n' Comment.Single
+
+'    '        Text
+'/// Returns: array of strings \n' Comment.Single
+
+'    '        Text
+'stringarray' Name
+' '           Text
+'FindWords'   Name
+'('           Punctuation
+' '           Text
+'string'      Name.Builtin
+' '           Text
+'phone_number' Name
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Punctuation
+'phone_number' Name
+'.'           Punctuation
+'length'      Name
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'return'      Keyword
+' '           Text
+'null'        Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'// Strip the non-digit characters from the phone number, and\n' Comment.Single
+
+'        '    Text
+'// pass it to the recursive function (leading digit is allowed)\n' Comment.Single
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'_FindWords'  Name
+'('           Punctuation
+' '           Text
+'stripNonDigit' Name
+'('           Punctuation
+'phone_number' Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'true'        Keyword.Constant
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'    \n    '  Text
+'}'           Punctuation
+'    \n    \n    ' Text
+'// Read the phone numbers     \n' Comment.Single
+
+'    '        Text
+'foreach'     Keyword
+'('           Punctuation
+'string'      Name.Builtin
+' '           Text
+'phone'       Name
+';'           Punctuation
+' '           Text
+'new'         Keyword
+' '           Text
+'BufferedFile' Name
+'('           Punctuation
+'"input.txt"' Literal.String
+'   '         Text
+')'           Punctuation
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'foreach'     Keyword
+'('           Punctuation
+'alternative' Name
+';'           Punctuation
+' '           Text
+'FindWords'   Name
+'('           Punctuation
+' '           Text
+'phone'       Name
+' '           Text
+')'           Punctuation
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'writefln'    Name
+'('           Punctuation
+'phone'       Name
+','           Punctuation
+' '           Text
+'": "'        Literal.String
+','           Punctuation
+' '           Text
+'alternative' Name
+' '           Text
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

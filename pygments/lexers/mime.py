@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.mime
     ~~~~~~~~~~~~~~~~~~~~
 
     Lexer for Multipurpose Internet Mail Extensions (MIME) data.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -58,7 +57,7 @@ class MIMELexer(RegexLexer):
                  "multipart/alternative"]
 
     def __init__(self, **options):
-        super(MIMELexer, self).__init__(**options)
+        super().__init__(**options)
         self.boundary = options.get("Multipart-Boundary")
         self.content_transfer_encoding = options.get("Content_Transfer_Encoding")
         self.content_type = options.get("Content_Type", "text/plain")
@@ -77,7 +76,7 @@ class MIMELexer(RegexLexer):
                 return 1
 
         except ValueError:
-            return 0.1
+            return 0
 
     def get_header_tokens(self, match):
         field = match.group(1)
@@ -100,7 +99,7 @@ class MIMELexer(RegexLexer):
 
         # skip first newline
         if entire_body[0] == '\n':
-            yield pos_body_start, Text.Whitespace, u'\n'
+            yield pos_body_start, Text.Whitespace, '\n'
             pos_body_start = pos_body_start + 1
             entire_body = entire_body[1:]
 
@@ -176,7 +175,7 @@ class MIMELexer(RegexLexer):
         prefix_len = match.start(1) - match.start(0)
         yield match.start(0), Text.Whitespace, match.group(0)[:prefix_len]
         yield match.start(1), Name.Label, match.group(2)
-        yield match.end(2), String.Delimiter, u"/"
+        yield match.end(2), String.Delimiter, '/'
         yield match.start(3), Name.Label, match.group(3)
 
     def get_content_type_subtokens(self, match):

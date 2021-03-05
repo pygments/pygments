@@ -1,0 +1,1803 @@
+'10'          Name.Label
+'REM'         Keyword.Declaration
+' >EIRC'      Comment.Single
+'\n'          Text.Whitespace
+
+'20'          Name.Label
+'REM'         Keyword.Declaration
+' The simplest IRC client you can write. Maybe.' Comment.Single
+'\n'          Text.Whitespace
+
+'30'          Name.Label
+'REM'         Keyword.Declaration
+' (C) Justin Fletcher, 1998' Comment.Single
+'\n'          Text.Whitespace
+
+'40'          Name.Label
+':'           Comment.Preproc
+'\n'          Text.Whitespace
+
+'50'          Name.Label
+'END'         Keyword
+'='           Operator
+'PAGE'        Keyword.Pseudo
+'+1024'       Literal.Number.Integer
+'*'           Operator
+'16'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'60'          Name.Label
+'REM'         Keyword.Declaration
+' Change these if you wish' Comment.Single
+'\n'          Text.Whitespace
+
+'70'          Name.Label
+'host$'       Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'irc.stealth.net' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'80'          Name.Label
+'port'        Name.Variable
+'='           Operator
+'6667'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'90'          Name.Label
+'nick$'       Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'eirc'        Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'100'         Name.Label
+'ourchan$'    Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'#acorn'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'110'         Name.Label
+':'           Comment.Preproc
+'\n'          Text.Whitespace
+
+'120'         Name.Label
+'REM'         Keyword.Declaration
+' Start connecting to a host' Comment.Single
+'\n'          Text.Whitespace
+
+'130'         Name.Label
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_ConnectToHost' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'host$'       Name.Variable
+','           Operator
+'port'        Name.Variable
+' '           Text.Whitespace
+'TO'          Keyword
+' '           Text.Whitespace
+'handle'      Name.Variable
+'\n'          Text.Whitespace
+
+'140'         Name.Label
+'REPEAT'      Keyword
+'\n'          Text.Whitespace
+
+'150'         Name.Label
+' '           Text.Whitespace
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_CheckState' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'handle'      Name.Variable
+' '           Text.Whitespace
+'TO'          Keyword
+' '           Text.Whitespace
+'state'       Name.Variable
+'\n'          Text.Whitespace
+
+'160'         Name.Label
+' '           Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'state'       Name.Variable
+'<'           Operator
+'-1'          Literal.Number.Integer
+' '           Text.Whitespace
+'THEN'        Keyword
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_Forget' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'handle'      Name.Variable
+':'           Comment.Preproc
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_DecodeState' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'state'       Name.Variable
+' '           Text.Whitespace
+'TO'          Keyword
+' '           Text.Whitespace
+'a$'          Name.Variable
+':'           Comment.Preproc
+'ERR'         Keyword.Pseudo
+'OR'          Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Operator
+'"'           Literal.String.Double
+'Failed ('    Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'a$'          Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+')'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'170'         Name.Label
+'UNTIL'       Keyword
+' '           Text.Whitespace
+'state'       Name.Variable
+'='           Operator
+'4'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'180'         Name.Label
+':'           Comment.Preproc
+'\n'          Text.Whitespace
+
+'190'         Name.Label
+'REM'         Keyword.Declaration
+' We are now connected' Comment.Single
+'\n'          Text.Whitespace
+
+'200'         Name.Label
+'PRINT'       Keyword
+'"'           Literal.String.Double
+'Connected'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'210'         Name.Label
+':'           Comment.Preproc
+'\n'          Text.Whitespace
+
+'220'         Name.Label
+'REM'         Keyword.Declaration
+' Log on to the server' Comment.Single
+'\n'          Text.Whitespace
+
+'230'         Name.Label
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_SendLine' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'handle'      Name.Variable
+','           Operator
+'"'           Literal.String.Double
+'USER '       Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'nick$'       Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' x x :'      Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'nick$'       Name.Variable
+'\n'          Text.Whitespace
+
+'240'         Name.Label
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_SendLine' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'handle'      Name.Variable
+','           Operator
+'"'           Literal.String.Double
+'NICK '       Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'nick$'       Name.Variable
+'\n'          Text.Whitespace
+
+'250'         Name.Label
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_SendLine' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'handle'      Name.Variable
+','           Operator
+'"'           Literal.String.Double
+'JOIN '       Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'ourchan$'    Name.Variable
+'\n'          Text.Whitespace
+
+'260'         Name.Label
+'REM'         Keyword.Declaration
+" Install a monitor so that we don't waste time" Comment.Single
+'\n'          Text.Whitespace
+
+'270'         Name.Label
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_Monitor' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'0'           Literal.Number.Integer
+','           Operator
+'handle'      Name.Variable
+' '           Text.Whitespace
+'TO'          Keyword
+' '           Text.Whitespace
+'monitor'     Name.Variable
+'\n'          Text.Whitespace
+
+'280'         Name.Label
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_ResetMonitor' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'monitor'     Name.Variable
+','           Operator
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'TO'          Keyword
+' '           Text.Whitespace
+'polladdr%'   Name.Variable
+'\n'          Text.Whitespace
+
+'290'         Name.Label
+':'           Comment.Preproc
+'\n'          Text.Whitespace
+
+'300'         Name.Label
+'REM'         Keyword.Declaration
+' If we crash, we should tidy up after ourselves' Comment.Single
+'\n'          Text.Whitespace
+
+'310'         Name.Label
+'ON'          Keyword
+' '           Text.Whitespace
+'ERR'         Keyword.Pseudo
+'OR'          Keyword
+' '           Text.Whitespace
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'XESocket_Forget' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'handle'      Name.Variable
+':'           Comment.Preproc
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'XESocket_Forget' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'monitor'     Name.Variable
+':'           Comment.Preproc
+'ERR'         Keyword.Pseudo
+'OR'          Keyword
+' '           Text.Whitespace
+'EXT'         Keyword
+' '           Text.Whitespace
+'ERR'         Keyword.Pseudo
+','           Operator
+'REPORT$'     Keyword.Pseudo
+'+'           Operator
+'"'           Literal.String.Double
+' at line '   Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'STR$'        Keyword
+'ERL'         Keyword.Pseudo
+'\n'          Text.Whitespace
+
+'320'         Name.Label
+':'           Comment.Preproc
+'\n'          Text.Whitespace
+
+'330'         Name.Label
+'REM'         Keyword.Declaration
+' Memory buffer for our data' Comment.Single
+'\n'          Text.Whitespace
+
+'340'         Name.Label
+'bufsize%'    Name.Variable
+'='           Operator
+'1024'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'350'         Name.Label
+'DIM'         Keyword
+' '           Text.Whitespace
+'buf%'        Name.Variable
+' '           Text.Whitespace
+'bufsize%'    Name.Variable
+'\n'          Text.Whitespace
+
+'360'         Name.Label
+':'           Comment.Preproc
+'\n'          Text.Whitespace
+
+'370'         Name.Label
+'input$'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+':'           Comment.Preproc
+'REM'         Keyword.Declaration
+' The input line' Comment.Single
+'\n'          Text.Whitespace
+
+'380'         Name.Label
+'REPEAT'      Keyword
+'\n'          Text.Whitespace
+
+'390'         Name.Label
+' '           Text.Whitespace
+'REM'         Keyword.Declaration
+' In a taskwindow we should yield until there is data' Comment.Single
+'\n'          Text.Whitespace
+
+'400'         Name.Label
+' '           Text.Whitespace
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'OS_UpCall'   Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'6'           Literal.Number.Integer
+','           Operator
+'polladdr%'   Name.Variable
+'\n'          Text.Whitespace
+
+'410'         Name.Label
+' '           Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'!'           Operator
+'polladdr%'   Name.Variable
+'<'           Operator
+'>'           Operator
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n'          Text.Whitespace
+
+'420'         Name.Label
+'  '          Text.Whitespace
+'REM'         Keyword.Declaration
+' Reset the monitor for the time being' Comment.Single
+'\n'          Text.Whitespace
+
+'430'         Name.Label
+'  '          Text.Whitespace
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_ResetMonitor' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'monitor'     Name.Variable
+','           Operator
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'TO'          Keyword
+' '           Text.Whitespace
+'polladdr%'   Name.Variable
+'\n'          Text.Whitespace
+
+'440'         Name.Label
+'  '          Text.Whitespace
+'REPEAT'      Keyword
+'\n'          Text.Whitespace
+
+'450'         Name.Label
+'   '         Text.Whitespace
+'REM'         Keyword.Declaration
+' Read lines from the connection until this buffer is empty' Comment.Single
+'\n'          Text.Whitespace
+
+'460'         Name.Label
+'   '         Text.Whitespace
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_ReadLine' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'handle'      Name.Variable
+','           Operator
+'buf%'        Name.Variable
+','           Operator
+'bufsize%'    Name.Variable
+','           Operator
+'%100'        Literal.Number.Bin
+' '           Text.Whitespace
+'TO'          Keyword
+' '           Text.Whitespace
+','           Operator
+'str'         Name.Variable
+','           Operator
+'len'         Name.Variable
+'\n'          Text.Whitespace
+
+'470'         Name.Label
+'   '         Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'str'         Name.Variable
+'<'           Operator
+'>'           Operator
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'AND'         Keyword
+' '           Text.Whitespace
+'$'           Operator
+'str'         Name.Variable
+'<'           Operator
+'>'           Operator
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n'          Text.Whitespace
+
+'480'         Name.Label
+'    '        Text.Whitespace
+'line$'       Name.Variable
+'='           Operator
+'$'           Operator
+'str'         Name.Variable
+'\n'          Text.Whitespace
+
+'490'         Name.Label
+'    '        Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'LEFT$'       Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'4'           Literal.Number.Integer
+')'           Operator
+'='           Operator
+'"'           Literal.String.Double
+'PING'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n'          Text.Whitespace
+
+'500'         Name.Label
+'     '       Text.Whitespace
+'REM'         Keyword.Declaration
+" Ping's must be replied to immediately" Comment.Single
+'\n'          Text.Whitespace
+
+'510'         Name.Label
+'     '       Text.Whitespace
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_SendLine' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'handle'      Name.Variable
+','           Operator
+'"'           Literal.String.Double
+'PONG '       Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'MID$'        Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'6'           Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'520'         Name.Label
+'    '        Text.Whitespace
+'ELSE'        Keyword
+'\n'          Text.Whitespace
+
+'530'         Name.Label
+'     '       Text.Whitespace
+'REM'         Keyword.Declaration
+' Extract source info' Comment.Single
+'\n'          Text.Whitespace
+
+'540'         Name.Label
+'     '       Text.Whitespace
+'from$'       Name.Variable
+'='           Operator
+'MID$'        Keyword
+'('           Operator
+'LEFT$'       Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'INSTR'       Keyword
+'('           Operator
+'line$'       Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator
+'-1'          Literal.Number.Integer
+')'           Operator
+','           Operator
+'2'           Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'550'         Name.Label
+'     '       Text.Whitespace
+'line$'       Name.Variable
+'='           Operator
+'MID$'        Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'INSTR'       Keyword
+'('           Operator
+'line$'       Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator
+'+1'          Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'560'         Name.Label
+'     '       Text.Whitespace
+'uid$'        Name.Variable
+'='           Operator
+'LEFT$'       Keyword
+'('           Operator
+'from$'       Name.Variable
+','           Operator
+'INSTR'       Keyword
+'('           Operator
+'from$'       Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+'!'           Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'"'           Literal.String.Double
+'!'           Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator
+'-1'          Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'570'         Name.Label
+'     '       Text.Whitespace
+'com$'        Name.Variable
+'='           Operator
+'LEFT$'       Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'INSTR'       Keyword
+'('           Operator
+'line$'       Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator
+'-1'          Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'580'         Name.Label
+'     '       Text.Whitespace
+'line$'       Name.Variable
+'='           Operator
+'MID$'        Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'INSTR'       Keyword
+'('           Operator
+'line$'       Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator
+'+1'          Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'590'         Name.Label
+'     '       Text.Whitespace
+'REM'         Keyword.Declaration
+' remove the input line' Comment.Single
+'\n'          Text.Whitespace
+
+'600'         Name.Label
+'     '       Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'input$'      Name.Variable
+'<'           Operator
+'>'           Operator
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'THEN'        Keyword
+'FOR'         Keyword
+'I'           Name.Variable
+'='           Operator
+'1'           Literal.Number.Integer
+'TO'          Keyword
+'LEN'         Keyword
+'('           Operator
+'input$'      Name.Variable
+')'           Operator
+':'           Comment.Preproc
+'VDU'         Keyword
+'127'         Literal.Number.Integer
+':'           Comment.Preproc
+'NEXT'        Keyword
+'\n'          Text.Whitespace
+
+'610'         Name.Label
+'     '       Text.Whitespace
+'CASE'        Keyword
+' '           Text.Whitespace
+'FN'          Keyword
+'upper'       Name.Function
+'('           Operator
+'com$'        Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'OF'          Keyword
+'\n'          Text.Whitespace
+
+'620'         Name.Label
+'      '      Text.Whitespace
+'WHEN'        Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'PRIVMSG'     Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'630'         Name.Label
+'       '     Text.Whitespace
+'REM'         Keyword.Declaration
+' Extract the destination' Comment.Single
+'\n'          Text.Whitespace
+
+'640'         Name.Label
+'       '     Text.Whitespace
+'chan$'       Name.Variable
+'='           Operator
+'LEFT$'       Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'INSTR'       Keyword
+'('           Operator
+'line$'       Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator
+'-1'          Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'650'         Name.Label
+'       '     Text.Whitespace
+'line$'       Name.Variable
+'='           Operator
+'MID$'        Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'INSTR'       Keyword
+'('           Operator
+'line$'       Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator
+'+2'          Literal.Number.Integer
+')'           Operator
+':'           Comment.Preproc
+'REM'         Keyword.Declaration
+' Skip :'     Comment.Single
+'\n'          Text.Whitespace
+
+'660'         Name.Label
+'       '     Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'LEFT$'       Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'1'           Literal.Number.Integer
+')'           Operator
+'='           Operator
+'CHR$'        Keyword
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n'          Text.Whitespace
+
+'670'         Name.Label
+'        '    Text.Whitespace
+'REM'         Keyword.Declaration
+' CTCP, so respond to it' Comment.Single
+'\n'          Text.Whitespace
+
+'680'         Name.Label
+'        '    Text.Whitespace
+'line$'       Name.Variable
+'='           Operator
+'MID$'        Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'2'           Literal.Number.Integer
+','           Operator
+'LEN'         Keyword
+'('           Operator
+'line$'       Name.Variable
+')'           Operator
+'-2'          Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'690'         Name.Label
+'        '    Text.Whitespace
+'com$'        Name.Variable
+'='           Operator
+'LEFT$'       Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'INSTR'       Keyword
+'('           Operator
+'line$'       Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator
+'-1'          Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'700'         Name.Label
+'        '    Text.Whitespace
+'line$'       Name.Variable
+'='           Operator
+'MID$'        Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'INSTR'       Keyword
+'('           Operator
+'line$'       Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator
+'+1'          Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'710'         Name.Label
+'        '    Text.Whitespace
+'CASE'        Keyword
+' '           Text.Whitespace
+'FN'          Keyword
+'upper'       Name.Function
+'('           Operator
+'com$'        Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'OF'          Keyword
+'\n'          Text.Whitespace
+
+'720'         Name.Label
+'         '   Text.Whitespace
+'WHEN'        Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'PING'        Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'730'         Name.Label
+'          '  Text.Whitespace
+'REM'         Keyword.Declaration
+' Ping lag timing' Comment.Single
+'\n'          Text.Whitespace
+
+'740'         Name.Label
+'          '  Text.Whitespace
+'line$'       Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'PONG '       Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'line$'       Name.Variable
+'\n'          Text.Whitespace
+
+'750'         Name.Label
+'          '  Text.Whitespace
+'PRINT'       Keyword
+'uid$'        Name.Variable
+';'           Operator
+'"'           Literal.String.Double
+' pinged us'  Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'760'         Name.Label
+'         '   Text.Whitespace
+'WHEN'        Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'VERSION'     Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'770'         Name.Label
+'          '  Text.Whitespace
+'REM'         Keyword.Declaration
+' Version checking' Comment.Single
+'\n'          Text.Whitespace
+
+'780'         Name.Label
+'          '  Text.Whitespace
+'line$'       Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'VERSION EIRC 1.00 (c) Justin Fletcher' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'790'         Name.Label
+'          '  Text.Whitespace
+'PRINT'       Keyword
+'uid$'        Name.Variable
+';'           Operator
+'"'           Literal.String.Double
+' wanted our version' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'800'         Name.Label
+'         '   Text.Whitespace
+'WHEN'        Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ACTION'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'810'         Name.Label
+'          '  Text.Whitespace
+'PRINT'       Keyword
+'"'           Literal.String.Double
+'* '          Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator
+'uid$'        Name.Variable
+';'           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator
+'line$'       Name.Variable
+'\n'          Text.Whitespace
+
+'820'         Name.Label
+'          '  Text.Whitespace
+'line$'       Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'830'         Name.Label
+'         '   Text.Whitespace
+'OTHERWISE'   Keyword
+'\n'          Text.Whitespace
+
+'840'         Name.Label
+'          '  Text.Whitespace
+'REM'         Keyword.Declaration
+' everything else is an error' Comment.Single
+'\n'          Text.Whitespace
+
+'850'         Name.Label
+'          '  Text.Whitespace
+'line$'       Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'ERRMSG '     Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'com$'        Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' not understood' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'860'         Name.Label
+'          '  Text.Whitespace
+'PRINT'       Keyword
+'"'           Literal.String.Double
+"CTCP '"      Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator
+'com$'        Name.Variable
+';'           Operator
+'"'           Literal.String.Double
+"' from "     Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator
+'uid$'        Name.Variable
+';'           Operator
+'"'           Literal.String.Double
+' ('          Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator
+'line$'       Name.Variable
+';'           Operator
+'"'           Literal.String.Double
+')'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'870'         Name.Label
+'        '    Text.Whitespace
+'END'         Keyword
+'CASE'        Keyword
+'\n'          Text.Whitespace
+
+'880'         Name.Label
+'        '    Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'line$'       Name.Variable
+'<'           Operator
+'>'           Operator
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n'          Text.Whitespace
+
+'890'         Name.Label
+'         '   Text.Whitespace
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_SendLine' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'handle'      Name.Variable
+','           Operator
+'"'           Literal.String.Double
+'NOTICE '     Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'uid$'        Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' :'          Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'CHR$'        Keyword
+'1'           Literal.Number.Integer
+'+'           Operator
+'line$'       Name.Variable
+'+'           Operator
+'CHR$'        Keyword
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'900'         Name.Label
+'        '    Text.Whitespace
+'END'         Keyword
+'IF'          Keyword
+'\n'          Text.Whitespace
+
+'910'         Name.Label
+'       '     Text.Whitespace
+'ELSE'        Keyword
+'\n'          Text.Whitespace
+
+'920'         Name.Label
+'        '    Text.Whitespace
+'REM'         Keyword.Declaration
+' Somebody said something...' Comment.Single
+'\n'          Text.Whitespace
+
+'930'         Name.Label
+'        '    Text.Whitespace
+'PRINT'       Keyword
+'"'           Literal.String.Double
+'<'           Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator
+'uid$'        Name.Variable
+';'           Operator
+'"'           Literal.String.Double
+'> '          Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator
+'FN'          Keyword
+'safe'        Name.Function
+'('           Operator
+'line$'       Name.Variable
+')'           Operator
+'\n'          Text.Whitespace
+
+'940'         Name.Label
+'       '     Text.Whitespace
+'END'         Keyword
+'IF'          Keyword
+'\n'          Text.Whitespace
+
+'950'         Name.Label
+'      '      Text.Whitespace
+'WHEN'        Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'JOIN'        Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'960'         Name.Label
+'       '     Text.Whitespace
+'REM'         Keyword.Declaration
+' We (or someone else) has joined the channel' Comment.Single
+'\n'          Text.Whitespace
+
+'970'         Name.Label
+'       '     Text.Whitespace
+'chan$'       Name.Variable
+'='           Operator
+'LEFT$'       Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'INSTR'       Keyword
+'('           Operator
+'line$'       Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator
+')'           Operator
+':'           Comment.Preproc
+'REM'         Keyword.Declaration
+' Skip :'     Comment.Single
+'\n'          Text.Whitespace
+
+'980'         Name.Label
+'       '     Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'LEFT$'       Keyword
+'('           Operator
+'chan$'       Name.Variable
+','           Operator
+'1'           Literal.Number.Integer
+')'           Operator
+'='           Operator
+'"'           Literal.String.Double
+':'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'THEN'        Keyword
+'chan$'       Name.Variable
+'='           Operator
+'MID$'        Keyword
+'('           Operator
+'chan$'       Name.Variable
+','           Operator
+'2'           Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'990'         Name.Label
+'       '     Text.Whitespace
+'PRINT'       Keyword
+'uid$'        Name.Variable
+';'           Operator
+'"'           Literal.String.Double
+' has joined ' Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator
+'chan$'       Name.Variable
+'\n'          Text.Whitespace
+
+'1000'        Name.Label
+'      '      Text.Whitespace
+'WHEN'        Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'PART'        Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'1010'        Name.Label
+'       '     Text.Whitespace
+'REM'         Keyword.Declaration
+' Someone else has left the channel' Comment.Single
+'\n'          Text.Whitespace
+
+'1020'        Name.Label
+'       '     Text.Whitespace
+'chan$'       Name.Variable
+'='           Operator
+'LEFT$'       Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'INSTR'       Keyword
+'('           Operator
+'line$'       Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator
+'-1'          Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'1030'        Name.Label
+'       '     Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'LEFT$'       Keyword
+'('           Operator
+'chan$'       Name.Variable
+','           Operator
+'1'           Literal.Number.Integer
+')'           Operator
+'='           Operator
+'"'           Literal.String.Double
+':'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'THEN'        Keyword
+'chan$'       Name.Variable
+'='           Operator
+'MID$'        Keyword
+'('           Operator
+'chan$'       Name.Variable
+','           Operator
+'2'           Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'1040'        Name.Label
+'       '     Text.Whitespace
+'PRINT'       Keyword
+'uid$'        Name.Variable
+';'           Operator
+'"'           Literal.String.Double
+' has left '  Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator
+'chan$'       Name.Variable
+'\n'          Text.Whitespace
+
+'1050'        Name.Label
+'      '      Text.Whitespace
+'WHEN'        Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'QUIT'        Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'1060'        Name.Label
+'       '     Text.Whitespace
+'REM'         Keyword.Declaration
+' Someone else has quit IRC' Comment.Single
+'\n'          Text.Whitespace
+
+'1070'        Name.Label
+'       '     Text.Whitespace
+'PRINT'       Keyword
+'uid$'        Name.Variable
+';'           Operator
+'"'           Literal.String.Double
+' quit IRC'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'1080'        Name.Label
+'      '      Text.Whitespace
+'OTHERWISE'   Keyword
+'\n'          Text.Whitespace
+
+'1090'        Name.Label
+'       '     Text.Whitespace
+'REM'         Keyword.Declaration
+' Some unknown command' Comment.Single
+'\n'          Text.Whitespace
+
+'1100'        Name.Label
+'       '     Text.Whitespace
+'PRINT'       Keyword
+'uid$'        Name.Variable
+';'           Operator
+'"'           Literal.String.Double
+':'           Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator
+'com$'        Name.Variable
+';'           Operator
+'"'           Literal.String.Double
+':'           Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator
+'FN'          Keyword
+'safe'        Name.Function
+'('           Operator
+'line$'       Name.Variable
+')'           Operator
+'\n'          Text.Whitespace
+
+'1110'        Name.Label
+'     '       Text.Whitespace
+'END'         Keyword
+'CASE'        Keyword
+'\n'          Text.Whitespace
+
+'1120'        Name.Label
+'     '       Text.Whitespace
+'REM'         Keyword.Declaration
+' Re-display our input line' Comment.Single
+'\n'          Text.Whitespace
+
+'1130'        Name.Label
+'     '       Text.Whitespace
+'PRINT'       Keyword
+'input$'      Name.Variable
+';'           Operator
+'\n'          Text.Whitespace
+
+'1140'        Name.Label
+'    '        Text.Whitespace
+'END'         Keyword
+'IF'          Keyword
+'\n'          Text.Whitespace
+
+'1150'        Name.Label
+'   '         Text.Whitespace
+'END'         Keyword
+'IF'          Keyword
+'\n'          Text.Whitespace
+
+'1160'        Name.Label
+'  '          Text.Whitespace
+'UNTIL'       Keyword
+' '           Text.Whitespace
+'str'         Name.Variable
+'='           Operator
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1170'        Name.Label
+' '           Text.Whitespace
+'END'         Keyword
+'IF'          Keyword
+'\n'          Text.Whitespace
+
+'1180'        Name.Label
+' '           Text.Whitespace
+'b$'          Name.Variable
+'='           Operator
+'INKEY$'      Keyword
+'('           Operator
+'0'           Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'1190'        Name.Label
+' '           Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'b$'          Name.Variable
+'<'           Operator
+'>'           Operator
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n'          Text.Whitespace
+
+'1200'        Name.Label
+'  '          Text.Whitespace
+'CASE'        Keyword
+' '           Text.Whitespace
+'b$'          Name.Variable
+' '           Text.Whitespace
+'OF'          Keyword
+'\n'          Text.Whitespace
+
+'1210'        Name.Label
+'   '         Text.Whitespace
+'WHEN'        Keyword
+' '           Text.Whitespace
+'CHR$'        Keyword
+'13'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1220'        Name.Label
+'    '        Text.Whitespace
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_SendLine' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'handle'      Name.Variable
+','           Operator
+'"'           Literal.String.Double
+'PRIVMSG '    Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'ourchan$'    Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+' :'          Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'input$'      Name.Variable
+'\n'          Text.Whitespace
+
+'1230'        Name.Label
+'    '        Text.Whitespace
+'REM'         Keyword.Declaration
+' Remove the line' Comment.Single
+'\n'          Text.Whitespace
+
+'1240'        Name.Label
+'    '        Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'input$'      Name.Variable
+'<'           Operator
+'>'           Operator
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'THEN'        Keyword
+'FOR'         Keyword
+'I'           Name.Variable
+'='           Operator
+'1'           Literal.Number.Integer
+'TO'          Keyword
+'LEN'         Keyword
+'('           Operator
+'input$'      Name.Variable
+')'           Operator
+':'           Comment.Preproc
+'VDU'         Keyword
+'127'         Literal.Number.Integer
+':'           Comment.Preproc
+'NEXT'        Keyword
+'\n'          Text.Whitespace
+
+'1250'        Name.Label
+'    '        Text.Whitespace
+'REM'         Keyword.Declaration
+' We said it...' Comment.Single
+'\n'          Text.Whitespace
+
+'1260'        Name.Label
+'    '        Text.Whitespace
+'PRINT'       Keyword
+'"'           Literal.String.Double
+'<'           Literal.String.Double
+'"'           Literal.String.Double
+'+'           Operator
+'nick$'       Name.Variable
+'+'           Operator
+'"'           Literal.String.Double
+'> '          Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator
+'input$'      Name.Variable
+'\n'          Text.Whitespace
+
+'1270'        Name.Label
+'    '        Text.Whitespace
+'input$'      Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'1280'        Name.Label
+'   '         Text.Whitespace
+'WHEN'        Keyword
+' '           Text.Whitespace
+'CHR$'        Keyword
+'127'         Literal.Number.Integer
+','           Operator
+'CHR$'        Keyword
+'8'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1290'        Name.Label
+'    '        Text.Whitespace
+'REM'         Keyword.Declaration
+' Backspace'  Comment.Single
+'\n'          Text.Whitespace
+
+'1300'        Name.Label
+'    '        Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'input$'      Name.Variable
+'<'           Operator
+'>'           Operator
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'THEN'        Keyword
+'VDU'         Keyword
+'127'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1310'        Name.Label
+'    '        Text.Whitespace
+'input$'      Name.Variable
+'='           Operator
+'LEFT$'       Keyword
+'('           Operator
+'input$'      Name.Variable
+')'           Operator
+'\n'          Text.Whitespace
+
+'1320'        Name.Label
+'   '         Text.Whitespace
+'OTHERWISE'   Keyword
+'\n'          Text.Whitespace
+
+'1330'        Name.Label
+'    '        Text.Whitespace
+'REM'         Keyword.Declaration
+' Ad to current input' Comment.Single
+'\n'          Text.Whitespace
+
+'1340'        Name.Label
+'    '        Text.Whitespace
+'input$'      Name.Variable
+'+='          Operator
+'b$'          Name.Variable
+'\n'          Text.Whitespace
+
+'1350'        Name.Label
+'    '        Text.Whitespace
+'PRINT'       Keyword
+'b$'          Name.Variable
+';'           Operator
+'\n'          Text.Whitespace
+
+'1360'        Name.Label
+'  '          Text.Whitespace
+'END'         Keyword
+'CASE'        Keyword
+'\n'          Text.Whitespace
+
+'1370'        Name.Label
+' '           Text.Whitespace
+'END'         Keyword
+'IF'          Keyword
+'\n'          Text.Whitespace
+
+'1380'        Name.Label
+' '           Text.Whitespace
+'REM'         Keyword.Declaration
+' Has the socket closed' Comment.Single
+'\n'          Text.Whitespace
+
+'1390'        Name.Label
+' '           Text.Whitespace
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_Closed' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'handle'      Name.Variable
+','           Operator
+'%0'          Literal.Number.Bin
+' '           Text.Whitespace
+'TO'          Keyword
+' '           Text.Whitespace
+'closed'      Name.Variable
+'\n'          Text.Whitespace
+
+'1400'        Name.Label
+'UNTIL'       Keyword
+' '           Text.Whitespace
+'closed'      Name.Variable
+'\n'          Text.Whitespace
+
+'1410'        Name.Label
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_Forget' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'handle'      Name.Variable
+'\n'          Text.Whitespace
+
+'1420'        Name.Label
+'SYS'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ESocket_Forget' Literal.String.Double
+'"'           Literal.String.Double
+','           Operator
+'monitor'     Name.Variable
+'\n'          Text.Whitespace
+
+'1430'        Name.Label
+'END'         Keyword
+'\n'          Text.Whitespace
+
+'1440'        Name.Label
+':'           Comment.Preproc
+'\n'          Text.Whitespace
+
+'1450'        Name.Label
+'DEF'         Keyword.Declaration
+'FN'          Keyword.Declaration
+'upper'       Name.Function
+'('           Operator
+'a$'          Name.Variable
+')'           Operator
+':'           Comment.Preproc
+'LOCAL'       Keyword
+' '           Text.Whitespace
+'c$'          Name.Variable
+','           Operator
+'b$'          Name.Variable
+','           Operator
+'I'           Name.Variable
+'\n'          Text.Whitespace
+
+'1460'        Name.Label
+'FOR'         Keyword
+'I'           Name.Variable
+'='           Operator
+'1'           Literal.Number.Integer
+'TO'          Keyword
+'LEN'         Keyword
+'('           Operator
+'a$'          Name.Variable
+')'           Operator
+'\n'          Text.Whitespace
+
+'1470'        Name.Label
+'c$'          Name.Variable
+'='           Operator
+'MID$'        Keyword
+'('           Operator
+'a$'          Name.Variable
+','           Operator
+'I'           Name.Variable
+','           Operator
+'1'           Literal.Number.Integer
+')'           Operator
+':'           Comment.Preproc
+'IF'          Keyword
+' '           Text.Whitespace
+'c$'          Name.Variable
+'>'           Operator
+'='           Operator
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'"'           Literal.String.Double
+'AND'         Keyword
+'c$'          Name.Variable
+'<'           Operator
+'='           Operator
+'"'           Literal.String.Double
+'z'           Literal.String.Double
+'"'           Literal.String.Double
+'THEN'        Keyword
+'c$'          Name.Variable
+'='           Operator
+'CHR$'        Keyword
+'('           Operator
+'ASC'         Keyword
+'('           Operator
+'c$'          Name.Variable
+')'           Operator
+'-32'         Literal.Number.Integer
+')'           Operator
+'\n'          Text.Whitespace
+
+'1480'        Name.Label
+'b$'          Name.Variable
+'+='          Operator
+'c$'          Name.Variable
+':'           Comment.Preproc
+'NEXT'        Keyword
+':'           Comment.Preproc
+'='           Operator
+'b$'          Name.Variable
+'\n'          Text.Whitespace
+
+'1490'        Name.Label
+'\n'          Text.Whitespace
+
+'1500'        Name.Label
+'REM'         Keyword.Declaration
+' Remove control codes' Comment.Single
+'\n'          Text.Whitespace
+
+'1510'        Name.Label
+'DEF'         Keyword.Declaration
+'FN'          Keyword.Declaration
+'safe'        Name.Function
+'('           Operator
+'line$'       Name.Variable
+')'           Operator
+'\n'          Text.Whitespace
+
+'1520'        Name.Label
+'LOCAL'       Keyword
+' '           Text.Whitespace
+'I'           Name.Variable
+'\n'          Text.Whitespace
+
+'1530'        Name.Label
+'FOR'         Keyword
+'I'           Name.Variable
+'='           Operator
+'1'           Literal.Number.Integer
+'TO'          Keyword
+'LEN'         Keyword
+'('           Operator
+'line$'       Name.Variable
+')'           Operator
+'\n'          Text.Whitespace
+
+'1540'        Name.Label
+' '           Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'MID$'        Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'I'           Name.Variable
+','           Operator
+'1'           Literal.Number.Integer
+')'           Operator
+'<'           Operator
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'THEN'        Keyword
+'MID$'        Keyword
+'('           Operator
+'line$'       Name.Variable
+','           Operator
+'I'           Name.Variable
+','           Operator
+'1'           Literal.Number.Integer
+')'           Operator
+'='           Operator
+'"'           Literal.String.Double
+'*'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'1550'        Name.Label
+'NEXT'        Keyword
+'\n'          Text.Whitespace
+
+'1560'        Name.Label
+'='           Operator
+'line$'       Name.Variable
+'\n'          Text.Whitespace

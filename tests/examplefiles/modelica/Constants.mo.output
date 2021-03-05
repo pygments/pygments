@@ -1,0 +1,1421 @@
+'within'      Keyword.Reserved
+' '           Text
+'Modelica'    Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'package'     Keyword.Reserved
+' '           Text
+'Constants'   Name.Class
+'\n  '        Text
+'"'           Literal.String.Double
+'Library of mathematical constants and constants of nature (e.g., pi, eps, R, sigma)' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text
+'import'      Keyword.Reserved
+' '           Text
+'SI'          Name
+' '           Text
+'='           Operator
+' '           Text
+'Modelica'    Name
+'.'           Operator
+'SIunits'     Name
+';'           Punctuation
+'\n  '        Text
+'import'      Keyword.Reserved
+' '           Text
+'NonSI'       Name
+' '           Text
+'='           Operator
+' '           Text
+'Modelica'    Name
+'.'           Operator
+'SIunits'     Name
+'.'           Operator
+'Conversions' Name
+'.'           Operator
+'NonSIunits'  Name
+';'           Punctuation
+'\n\n  '      Text
+'extends'     Keyword.Reserved
+' '           Text
+'Modelica'    Name
+'.'           Operator
+'Icons'       Name
+'.'           Operator
+'Library2'    Name
+';'           Punctuation
+'\n\n  '      Text
+'// Mathematical constants\n' Comment.Single
+
+'  '          Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'e'           Name
+'='           Operator
+'Modelica'    Name
+'.'           Operator
+'Math'        Name
+'.'           Operator
+'exp'         Name.Builtin
+'('           Punctuation
+'1.0'         Literal.Number.Float
+');'          Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'pi'          Name
+'='           Operator
+'2'           Literal.Number.Integer
+'*'           Operator
+'Modelica'    Name
+'.'           Operator
+'Math'        Name
+'.'           Operator
+'asin'        Name.Builtin
+'('           Punctuation
+'1.0'         Literal.Number.Float
+');'          Punctuation
+' '           Text
+'// 3.14159265358979;\n' Comment.Single
+
+'  '          Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'D2R'         Name
+'='           Operator
+'pi'          Name
+'/'           Operator
+'180'         Literal.Number.Integer
+' '           Text
+'"'           Literal.String.Double
+'Degree to Radian' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'R2D'         Name
+'='           Operator
+'180'         Literal.Number.Integer
+'/'           Operator
+'pi'          Name
+' '           Text
+'"'           Literal.String.Double
+'Radian to Degree' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\n  '      Text
+'// Machine dependent constants\n' Comment.Single
+
+'  '          Text
+'// (the definition is a temporary fix since not adapted to the\n' Comment.Single
+
+'  '          Text
+'// machine where the Modelica translator is running)\n' Comment.Single
+
+'  '          Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'eps'         Name
+'='           Operator
+'1.e-15'      Literal.Number.Float
+' '           Text
+'"'           Literal.String.Double
+'Biggest number such that 1.0 + eps = 1.0' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'small'       Name
+'='           Operator
+'1.e-60'      Literal.Number.Float
+'\n    '      Text
+'"'           Literal.String.Double
+'Smallest number such that small and -small are representable on the machine' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'inf'         Name
+'='           Operator
+'1.e+60'      Literal.Number.Float
+'\n    '      Text
+'"'           Literal.String.Double
+'Biggest Real number such that inf and -inf are representable on the machine' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Integer'     Name.Builtin
+' '           Text
+'Integer_inf' Name
+'='           Operator
+'2147483647'  Literal.Number.Integer
+'\n    '      Text
+'"'           Literal.String.Double
+'Biggest Integer number such that Integer_inf and -Integer_inf are representable on the machine' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\n  '      Text
+'// Constants of nature\n' Comment.Single
+
+'  '          Text
+'// (name, value, description from http://physics.nist.gov/cuu/Constants/)\n' Comment.Single
+
+'  '          Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'SI'          Name
+'.'           Operator
+'Velocity'    Name
+' '           Text
+'c'           Name
+'='           Operator
+'299792458'   Literal.Number.Integer
+' '           Text
+'"'           Literal.String.Double
+'Speed of light in vacuum' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'SI'          Name
+'.'           Operator
+'Acceleration' Name
+' '           Text
+'g_n'         Name
+'='           Operator
+'9.80665'     Literal.Number.Float
+'\n    '      Text
+'"'           Literal.String.Double
+'Standard acceleration of gravity on earth' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'G'           Name
+'('           Punctuation
+'final'       Keyword.Reserved
+' '           Text
+'unit'        Name
+'='           Operator
+'"'           Literal.String.Double
+'m3/(kg.s2)'  Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'6.6742e-11'  Literal.Number.Float
+'\n    '      Text
+'"'           Literal.String.Double
+'Newtonian constant of gravitation' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'SI'          Name
+'.'           Operator
+'FaradayConstant' Name
+' '           Text
+'F'           Name
+' '           Text
+'='           Operator
+' '           Text
+'9.64853399e4' Literal.Number.Float
+' '           Text
+'"'           Literal.String.Double
+'Faraday constant, C/mol' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'h'           Name
+'('           Punctuation
+'final'       Keyword.Reserved
+' '           Text
+'unit'        Name
+'='           Operator
+'"'           Literal.String.Double
+'J.s'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'6.6260693e-34' Literal.Number.Float
+' '           Text
+'"'           Literal.String.Double
+'Planck constant' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'k'           Name
+'('           Punctuation
+'final'       Keyword.Reserved
+' '           Text
+'unit'        Name
+'='           Operator
+'"'           Literal.String.Double
+'J/K'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'1.3806505e-23' Literal.Number.Float
+' '           Text
+'"'           Literal.String.Double
+'Boltzmann constant' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'R'           Name
+'('           Punctuation
+'final'       Keyword.Reserved
+' '           Text
+'unit'        Name
+'='           Operator
+'"'           Literal.String.Double
+'J/(mol.K)'   Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'8.314472'    Literal.Number.Float
+' '           Text
+'"'           Literal.String.Double
+'Molar gas constant' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'sigma'       Name
+'('           Punctuation
+'final'       Keyword.Reserved
+' '           Text
+'unit'        Name
+'='           Operator
+'"'           Literal.String.Double
+'W/(m2.K4)'   Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'5.670400e-8' Literal.Number.Float
+'\n    '      Text
+'"'           Literal.String.Double
+'Stefan-Boltzmann constant' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'N_A'         Name
+'('           Punctuation
+'final'       Keyword.Reserved
+' '           Text
+'unit'        Name
+'='           Operator
+'"'           Literal.String.Double
+'1/mol'       Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'6.0221415e23' Literal.Number.Float
+'\n    '      Text
+'"'           Literal.String.Double
+'Avogadro constant' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'mue_0'       Name
+'('           Punctuation
+'final'       Keyword.Reserved
+' '           Text
+'unit'        Name
+'='           Operator
+'"'           Literal.String.Double
+'N/A2'        Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'4'           Literal.Number.Integer
+'*'           Operator
+'pi'          Name
+'*'           Operator
+'1.e-7'       Literal.Number.Float
+' '           Text
+'"'           Literal.String.Double
+'Magnetic constant' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'Real'        Name.Builtin
+' '           Text
+'epsilon_0'   Name
+'('           Punctuation
+'final'       Keyword.Reserved
+' '           Text
+'unit'        Name
+'='           Operator
+'"'           Literal.String.Double
+'F/m'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'/'           Operator
+'('           Punctuation
+'mue_0'       Name
+'*'           Operator
+'c'           Name
+'*'           Operator
+'c'           Name
+')'           Punctuation
+'\n    '      Text
+'"'           Literal.String.Double
+'Electric constant' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text
+'final'       Keyword.Reserved
+' '           Text
+'constant'    Keyword.Reserved
+' '           Text
+'NonSI'       Name
+'.'           Operator
+'Temperature_degC' Name
+' '           Text
+'T_zero'      Name
+'='           Operator
+'-'           Operator
+'273.15'      Literal.Number.Float
+'\n    '      Text
+'"'           Literal.String.Double
+'Absolute zero temperature' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\n  '      Text
+'annotation'  Keyword.Reserved
+' '           Text
+'('           Punctuation
+'\n    '      Text
+'Documentation' Name
+'('           Punctuation
+'info'        Name
+'='           Operator
+'"'           Literal.String.Double
+'<'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\nThis package provides often needed constants from mathematics, machine\ndependent constants and constants from nature. The latter constants\n(name, value, description) are from the following source:\n' Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'dl'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'Peter J. Mohr and Barry N. Taylor (1999):' Text
+'<'           Punctuation
+'/'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'CODATA Recommended Values of the Fundamental Physical Constants: 1998' Text
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'.\n    Journal of Physical and Chemical Reference Data, Vol. 28, No. 6, 1999 and\n    Reviews of Modern Physics, Vol. 72, No. 2, 2000. See also ' Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'\n'          Text
+
+'\\"http://physics.nist.gov/cuu/Constants/\\"' Literal.String
+'>'           Punctuation
+'http://physics.nist.gov/cuu/Constants/' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'dl'          Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'CODATA is the Committee on Data for Science and Technology.' Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'dl'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'Main Author:' Text
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'dt'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'\\"http://www.robotic.dlr.de/Martin.Otter/\\"' Literal.String
+'>'           Punctuation
+'Martin Otter' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+'>'           Punctuation
+'\n    Deutsches Zentrum f' Text
+'&uuml;'      Name.Entity
+'r Luft und Raumfahrt e. V. (DLR)' Text
+'<'           Punctuation
+'br'          Name.Tag
+'>'           Punctuation
+'\n    Oberpfaffenhofen' Text
+'<'           Punctuation
+'br'          Name.Tag
+'>'           Punctuation
+'\n    Postfach 11 16' Text
+'<'           Punctuation
+'br'          Name.Tag
+'>'           Punctuation
+'\n    D-82230 We' Text
+'&szlig;'     Name.Entity
+'ling'        Text
+'<'           Punctuation
+'br'          Name.Tag
+'>'           Punctuation
+'\n    email: ' Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'\\"mailto:Martin.Otter@dlr.de\\"' Literal.String
+'>'           Punctuation
+'Martin.Otter@dlr.de' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'dd'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'dl'          Name.Tag
+'>'           Punctuation
+'\n\n\n'      Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\nCopyright ' Text
+'&copy;'      Name.Entity
+' 1998-2009, Modelica Association and DLR.\n' Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'i'           Name.Tag
+'>'           Punctuation
+'This Modelica package is ' Text
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'free'        Text
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+' software; it can be redistributed and/or modified\nunder the terms of the ' Text
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'Modelica license' Text
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+', see the license conditions\nand the accompanying ' Text
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'disclaimer'  Text
+'<'           Punctuation
+'/'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+' \n'         Text
+
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'\\"Modelica://Modelica.UsersGuide.ModelicaLicense\\"' Literal.String
+'>'           Punctuation
+'here'        Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'.'           Text
+'<'           Punctuation
+'/'           Punctuation
+'i'           Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n'          Literal.String.Double
+
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'revisions'   Name
+'='           Operator
+'"'           Literal.String.Double
+'<'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'i'           Name.Tag
+'>'           Punctuation
+'Nov 8, 2004' Text
+'<'           Punctuation
+'/'           Punctuation
+'i'           Name.Tag
+'>'           Punctuation
+'\n       by ' Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'\\"http://www.robotic.dlr.de/Christian.Schweiger/\\"' Literal.String
+'>'           Punctuation
+'Christian Schweiger' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+':'           Text
+'<'           Punctuation
+'br'          Name.Tag
+'>'           Punctuation
+'\n       Constants updated according to 2002 CODATA values.' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'i'           Name.Tag
+'>'           Punctuation
+'Dec 9, 1999' Text
+'<'           Punctuation
+'/'           Punctuation
+'i'           Name.Tag
+'>'           Punctuation
+'\n       by ' Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'\\"http://www.robotic.dlr.de/Martin.Otter/\\"' Literal.String
+'>'           Punctuation
+'Martin Otter' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+':'           Text
+'<'           Punctuation
+'br'          Name.Tag
+'>'           Punctuation
+'\n       Constants updated according to 1998 CODATA values. Using names, values\n       and description text from this source. Included magnetic and\n       electric constant.' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'i'           Name.Tag
+'>'           Punctuation
+'Sep 18, 1999' Text
+'<'           Punctuation
+'/'           Punctuation
+'i'           Name.Tag
+'>'           Punctuation
+'\n       by ' Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'\\"http://www.robotic.dlr.de/Martin.Otter/\\"' Literal.String
+'>'           Punctuation
+'Martin Otter' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+':'           Text
+'<'           Punctuation
+'br'          Name.Tag
+'>'           Punctuation
+'\n       Constants eps, inf, small introduced.' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'i'           Name.Tag
+'>'           Punctuation
+'Nov 15, 1997' Text
+'<'           Punctuation
+'/'           Punctuation
+'i'           Name.Tag
+'>'           Punctuation
+'\n       by ' Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'\\"http://www.robotic.dlr.de/Martin.Otter/\\"' Literal.String
+'>'           Punctuation
+'Martin Otter' Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+':'           Text
+'<'           Punctuation
+'br'          Name.Tag
+'>'           Punctuation
+'\n       Realized.' Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'"'           Literal.String.Double
+'),'          Punctuation
+'\n    '      Text
+'Invisible'   Name
+'='           Operator
+'true'        Keyword.Constant
+','           Punctuation
+'\n    '      Text
+'Icon'        Name
+'('           Punctuation
+'coordinateSystem' Name
+'('           Punctuation
+'preserveAspectRatio' Name
+'='           Operator
+'true'        Keyword.Constant
+','           Punctuation
+' '           Text
+'extent'      Name
+'='           Operator
+'{{'          Punctuation
+'-'           Operator
+'100'         Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'100'         Literal.Number.Integer
+'},{'         Punctuation
+'100'         Literal.Number.Integer
+','           Punctuation
+'\n            ' Text
+'100'         Literal.Number.Integer
+'}}),'        Punctuation
+' '           Text
+'graphics'    Name
+'='           Operator
+'{'           Punctuation
+'\n        '  Text
+'Line'        Name
+'('           Punctuation
+'\n          ' Text
+'points'      Name
+'='           Operator
+'{{'          Punctuation
+'-'           Operator
+'34'          Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'38'          Literal.Number.Integer
+'},{'         Punctuation
+'12'          Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'38'          Literal.Number.Integer
+'}},'         Punctuation
+'\n          ' Text
+'color'       Name
+'='           Operator
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+'},'          Punctuation
+'\n          ' Text
+'thickness'   Name
+'='           Operator
+'0.5'         Literal.Number.Float
+'),'          Punctuation
+'\n        '  Text
+'Line'        Name
+'('           Punctuation
+'\n          ' Text
+'points'      Name
+'='           Operator
+'{{'          Punctuation
+'-'           Operator
+'20'          Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'38'          Literal.Number.Integer
+'},{'         Punctuation
+'-'           Operator
+'24'          Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'48'          Literal.Number.Integer
+'},{'         Punctuation
+'-'           Operator
+'28'          Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'56'          Literal.Number.Integer
+'},{'         Punctuation
+'-'           Operator
+'34'          Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'64'          Literal.Number.Integer
+'}},'         Punctuation
+'\n          ' Text
+'color'       Name
+'='           Operator
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+'},'          Punctuation
+'\n          ' Text
+'thickness'   Name
+'='           Operator
+'0.5'         Literal.Number.Float
+'),'          Punctuation
+'\n        '  Text
+'Line'        Name
+'('           Punctuation
+'\n          ' Text
+'points'      Name
+'='           Operator
+'{{'          Punctuation
+'-'           Operator
+'2'           Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'38'          Literal.Number.Integer
+'},{'         Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'46'          Literal.Number.Integer
+'},{'         Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'56'          Literal.Number.Integer
+'},{'         Punctuation
+'14'          Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'64'          Literal.Number.Integer
+'}},'         Punctuation
+'\n          ' Text
+'color'       Name
+'='           Operator
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+'},'          Punctuation
+'\n          ' Text
+'thickness'   Name
+'='           Operator
+'0.5'         Literal.Number.Float
+')}),'        Punctuation
+'\n    '      Text
+'Diagram'     Name
+'('           Punctuation
+'graphics'    Name
+'='           Operator
+'{'           Punctuation
+'\n        '  Text
+'Rectangle'   Name
+'('           Punctuation
+'\n          ' Text
+'extent'      Name
+'='           Operator
+'{{'          Punctuation
+'200'         Literal.Number.Integer
+','           Punctuation
+'162'         Literal.Number.Integer
+'},{'         Punctuation
+'380'         Literal.Number.Integer
+','           Punctuation
+'312'         Literal.Number.Integer
+'}},'         Punctuation
+'\n          ' Text
+'fillColor'   Name
+'='           Operator
+'{'           Punctuation
+'235'         Literal.Number.Integer
+','           Punctuation
+'235'         Literal.Number.Integer
+','           Punctuation
+'235'         Literal.Number.Integer
+'},'          Punctuation
+'\n          ' Text
+'fillPattern' Name
+'='           Operator
+'FillPattern' Name
+'.'           Operator
+'Solid'       Name
+','           Punctuation
+'\n          ' Text
+'lineColor'   Name
+'='           Operator
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'255'         Literal.Number.Integer
+'}),'         Punctuation
+'\n        '  Text
+'Polygon'     Name
+'('           Punctuation
+'\n          ' Text
+'points'      Name
+'='           Operator
+'{{'          Punctuation
+'200'         Literal.Number.Integer
+','           Punctuation
+'312'         Literal.Number.Integer
+'},{'         Punctuation
+'220'         Literal.Number.Integer
+','           Punctuation
+'332'         Literal.Number.Integer
+'},{'         Punctuation
+'400'         Literal.Number.Integer
+','           Punctuation
+'332'         Literal.Number.Integer
+'},{'         Punctuation
+'380'         Literal.Number.Integer
+','           Punctuation
+'312'         Literal.Number.Integer
+'},{'         Punctuation
+'200'         Literal.Number.Integer
+','           Punctuation
+'312'         Literal.Number.Integer
+'}},'         Punctuation
+'\n          ' Text
+'fillColor'   Name
+'='           Operator
+'{'           Punctuation
+'235'         Literal.Number.Integer
+','           Punctuation
+'235'         Literal.Number.Integer
+','           Punctuation
+'235'         Literal.Number.Integer
+'},'          Punctuation
+'\n          ' Text
+'fillPattern' Name
+'='           Operator
+'FillPattern' Name
+'.'           Operator
+'Solid'       Name
+','           Punctuation
+'\n          ' Text
+'lineColor'   Name
+'='           Operator
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'255'         Literal.Number.Integer
+'}),'         Punctuation
+'\n        '  Text
+'Polygon'     Name
+'('           Punctuation
+'\n          ' Text
+'points'      Name
+'='           Operator
+'{{'          Punctuation
+'400'         Literal.Number.Integer
+','           Punctuation
+'332'         Literal.Number.Integer
+'},{'         Punctuation
+'400'         Literal.Number.Integer
+','           Punctuation
+'182'         Literal.Number.Integer
+'},{'         Punctuation
+'380'         Literal.Number.Integer
+','           Punctuation
+'162'         Literal.Number.Integer
+'},{'         Punctuation
+'380'         Literal.Number.Integer
+','           Punctuation
+'312'         Literal.Number.Integer
+'},{'         Punctuation
+'400'         Literal.Number.Integer
+','           Punctuation
+'332'         Literal.Number.Integer
+'}},'         Punctuation
+'\n          ' Text
+'fillColor'   Name
+'='           Operator
+'{'           Punctuation
+'235'         Literal.Number.Integer
+','           Punctuation
+'235'         Literal.Number.Integer
+','           Punctuation
+'235'         Literal.Number.Integer
+'},'          Punctuation
+'\n          ' Text
+'fillPattern' Name
+'='           Operator
+'FillPattern' Name
+'.'           Operator
+'Solid'       Name
+','           Punctuation
+'\n          ' Text
+'lineColor'   Name
+'='           Operator
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'255'         Literal.Number.Integer
+'}),'         Punctuation
+'\n        '  Text
+'Text'        Name
+'('           Punctuation
+'\n          ' Text
+'extent'      Name
+'='           Operator
+'{{'          Punctuation
+'210'         Literal.Number.Integer
+','           Punctuation
+'302'         Literal.Number.Integer
+'},{'         Punctuation
+'370'         Literal.Number.Integer
+','           Punctuation
+'272'         Literal.Number.Integer
+'}},'         Punctuation
+'\n          ' Text
+'lineColor'   Name
+'='           Operator
+'{'           Punctuation
+'160'         Literal.Number.Integer
+','           Punctuation
+'160'         Literal.Number.Integer
+','           Punctuation
+'164'         Literal.Number.Integer
+'},'          Punctuation
+'\n          ' Text
+'fillColor'   Name
+'='           Operator
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+'},'          Punctuation
+'\n          ' Text
+'fillPattern' Name
+'='           Operator
+'FillPattern' Name
+'.'           Operator
+'Solid'       Name
+','           Punctuation
+'\n          ' Text
+'textString'  Name
+'='           Operator
+'"'           Literal.String.Double
+'Library'     Literal.String.Double
+'"'           Literal.String.Double
+'),'          Punctuation
+'\n        '  Text
+'Line'        Name
+'('           Punctuation
+'\n          ' Text
+'points'      Name
+'='           Operator
+'{{'          Punctuation
+'266'         Literal.Number.Integer
+','           Punctuation
+'224'         Literal.Number.Integer
+'},{'         Punctuation
+'312'         Literal.Number.Integer
+','           Punctuation
+'224'         Literal.Number.Integer
+'}},'         Punctuation
+'\n          ' Text
+'color'       Name
+'='           Operator
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+'},'          Punctuation
+'\n          ' Text
+'thickness'   Name
+'='           Operator
+'1'           Literal.Number.Integer
+'),'          Punctuation
+'\n        '  Text
+'Line'        Name
+'('           Punctuation
+'\n          ' Text
+'points'      Name
+'='           Operator
+'{{'          Punctuation
+'280'         Literal.Number.Integer
+','           Punctuation
+'224'         Literal.Number.Integer
+'},{'         Punctuation
+'276'         Literal.Number.Integer
+','           Punctuation
+'214'         Literal.Number.Integer
+'},{'         Punctuation
+'272'         Literal.Number.Integer
+','           Punctuation
+'206'         Literal.Number.Integer
+'},{'         Punctuation
+'266'         Literal.Number.Integer
+','           Punctuation
+'198'         Literal.Number.Integer
+'}},'         Punctuation
+'\n          ' Text
+'color'       Name
+'='           Operator
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+'},'          Punctuation
+'\n          ' Text
+'thickness'   Name
+'='           Operator
+'1'           Literal.Number.Integer
+'),'          Punctuation
+'\n        '  Text
+'Line'        Name
+'('           Punctuation
+'\n          ' Text
+'points'      Name
+'='           Operator
+'{{'          Punctuation
+'298'         Literal.Number.Integer
+','           Punctuation
+'224'         Literal.Number.Integer
+'},{'         Punctuation
+'302'         Literal.Number.Integer
+','           Punctuation
+'216'         Literal.Number.Integer
+'},{'         Punctuation
+'308'         Literal.Number.Integer
+','           Punctuation
+'206'         Literal.Number.Integer
+'},{'         Punctuation
+'314'         Literal.Number.Integer
+','           Punctuation
+'198'         Literal.Number.Integer
+'}},'         Punctuation
+'\n          ' Text
+'color'       Name
+'='           Operator
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+'},'          Punctuation
+'\n          ' Text
+'thickness'   Name
+'='           Operator
+'1'           Literal.Number.Integer
+'),'          Punctuation
+'\n        '  Text
+'Text'        Name
+'('           Punctuation
+'\n          ' Text
+'extent'      Name
+'='           Operator
+'{{'          Punctuation
+'152'         Literal.Number.Integer
+','           Punctuation
+'412'         Literal.Number.Integer
+'},{'         Punctuation
+'458'         Literal.Number.Integer
+','           Punctuation
+'334'         Literal.Number.Integer
+'}},'         Punctuation
+'\n          ' Text
+'lineColor'   Name
+'='           Operator
+'{'           Punctuation
+'255'         Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+'},'          Punctuation
+'\n          ' Text
+'textString'  Name
+'='           Operator
+'"'           Literal.String.Double
+'Modelica.Constants' Literal.String.Double
+'"'           Literal.String.Double
+')}));'       Punctuation
+'\n'          Text
+
+'end'         Keyword.Reserved
+' '           Text
+'Constants'   Name.Class
+';'           Punctuation
+'\n'          Text

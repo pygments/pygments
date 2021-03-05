@@ -1,0 +1,23 @@
+---input---
+f'{(lambda x: x*2)(3)}'
+
+---tokens---
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'{'           Literal.String.Interpol
+'('           Punctuation
+'lambda'      Keyword
+' '           Text
+'x'           Name
+':'           Punctuation
+' '           Text
+'x'           Name
+'*'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+'}'           Literal.String.Interpol
+"'"           Literal.String.Single
+'\n'          Text

@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.chapel
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the Chapel language.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -18,7 +17,7 @@ __all__ = ['ChapelLexer']
 
 class ChapelLexer(RegexLexer):
     """
-    For `Chapel <http://chapel.cray.com/>`_ source.
+    For `Chapel <https://chapel-lang.org/>`_ source.
 
     .. versionadded:: 2.0
     """
@@ -38,24 +37,24 @@ class ChapelLexer(RegexLexer):
 
             (r'(config|const|in|inout|out|param|ref|type|var)\b',
              Keyword.Declaration),
-            (r'(false|nil|true)\b', Keyword.Constant),
-            (r'(bool|complex|imag|int|opaque|range|real|string|uint)\b',
+            (r'(false|nil|none|true)\b', Keyword.Constant),
+            (r'(bool|bytes|complex|imag|int|nothing|opaque|range|real|string|uint|void)\b',
              Keyword.Type),
             (words((
                 'align', 'as', 'atomic',
                 'begin', 'borrowed', 'break', 'by',
                 'catch', 'cobegin', 'coforall', 'continue',
-                'delete', 'dmapped', 'do', 'domain',
+                'defer', 'delete', 'dmapped', 'do', 'domain',
                 'else', 'enum', 'except', 'export', 'extern',
-                'for', 'forall',
-                'if', 'index', 'inline',
-                'label', 'lambda', 'let', 'local',
+                'for', 'forall', 'forwarding',
+                'if', 'import', 'index', 'init', 'inline',
+                'label', 'lambda', 'let', 'lifetime', 'local', 'locale'
                 'new', 'noinit',
                 'on', 'only', 'otherwise', 'override', 'owned',
                 'pragma', 'private', 'prototype', 'public',
                 'reduce', 'require', 'return',
                 'scan', 'select', 'serial', 'shared', 'single', 'sparse', 'subdomain', 'sync',
-                'then', 'throw', 'throws', 'try',
+                'then', 'this', 'throw', 'throws', 'try',
                 'unmanaged', 'use',
                 'when', 'where', 'while', 'with',
                 'yield',
@@ -88,8 +87,8 @@ class ChapelLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
 
             # strings
-            (r'"(\\\\|\\"|[^"])*"', String),
-            (r"'(\\\\|\\'|[^'])*'", String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
 
             # tokens
             (r'(=|\+=|-=|\*=|/=|\*\*=|%=|&=|\|=|\^=|&&=|\|\|=|<<=|>>=|'

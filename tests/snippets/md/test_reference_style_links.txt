@@ -1,0 +1,18 @@
+---input---
+[an example][id]
+[id]: http://example.com
+
+---tokens---
+'['           Text
+'an example'  Name.Tag
+']'           Text
+'['           Text
+'id'          Name.Label
+']'           Text
+'\n'          Text
+
+'['           Text
+'id'          Name.Label
+']: '         Text
+'http://example.com' Name.Attribute
+'\n'          Text

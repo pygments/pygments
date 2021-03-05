@@ -1,0 +1,5012 @@
+'" Vim completion script' Comment
+'\n'          Text
+
+'" Language:\tPHP' Comment
+'\n'          Text
+
+'" Maintainer:\tMikolaj Machowski ( mikmach AT wp DOT pl )' Comment
+'\n'          Text
+
+'" Last Change:\t2006 May 9' Comment
+'\n'          Text
+
+'"'           Comment
+'\n'          Text
+
+'"   TODO:'   Comment
+'\n'          Text
+
+'"   - Class aware completion:' Comment
+'\n'          Text
+
+'"      a) caching?' Comment
+'\n'          Text
+
+'"   - Switching to HTML (XML?) completion (SQL) inside of phpStrings' Comment
+'\n'          Text
+
+'"   - allow also for XML completion <- better do html_flavor for HTML' Comment
+'\n'          Text
+
+'"     completion' Comment
+'\n'          Text
+
+'"   - outside of <?php?> getting parent tag may cause problems. Heh, even in' Comment
+'\n'          Text
+
+'"     perfect conditions GetLastOpenTag doesn\'t cooperate... Inside of' Comment
+'\n'          Text
+
+'"     phpStrings this can be even a bonus but outside of <?php?> it is not the' Comment
+'\n'          Text
+
+'"     best situation' Comment
+'\n'          Text
+
+'\n'          Text
+
+'function'    Keyword
+'!'           Punctuation
+' '           Text
+'phpcomplete' Text
+'#'           Text
+'CompletePHP' Text
+'('           Punctuation
+'findstart'   Text
+','           Punctuation
+' '           Text
+'base'        Text
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'a'           Keyword
+':'           Text
+'findstart'   Text
+'\n'          Text
+
+'\t\t'        Text
+'unlet'       Text
+'!'           Punctuation
+' '           Text
+'b'           Keyword
+':'           Text
+'php_menu'    Text
+'\n'          Text
+
+'\t\t" Check if we are inside of PHP markup' Comment
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'pos'         Text
+' '           Text
+'='           Punctuation
+' '           Text
+'getpos'      Text
+'('           Punctuation
+"'.'"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'phpbegin'    Text
+' '           Text
+'='           Punctuation
+' '           Text
+'searchpairpos' Text
+'('           Punctuation
+"'<?'"        Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+','           Punctuation
+' '           Text
+"'?>'"        Literal.String.Single
+','           Punctuation
+' '           Text
+"'bWn'"       Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'\\'          Text
+' '           Text
+'\'synIDattr(synID(line("."), col("."), 0), "name") =~? "string\\|comment"\'' Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'phpend'      Text
+'   '         Text
+'='           Punctuation
+' '           Text
+'searchpairpos' Text
+'('           Punctuation
+"'<?'"        Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+','           Punctuation
+' '           Text
+"'?>'"        Literal.String.Single
+','           Punctuation
+' '           Text
+"'Wn'"        Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'\\'          Text
+' '           Text
+'\'synIDattr(synID(line("."), col("."), 0), "name") =~? "string\\|comment"\'' Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'phpbegin'    Text
+' '           Text
+'='           Punctuation
+'='           Punctuation
+' '           Text
+'['           Text
+'0'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+']'           Text
+' '           Text
+'&'           Text
+'&'           Text
+' '           Text
+'phpend'      Text
+' '           Text
+'='           Punctuation
+'='           Punctuation
+' '           Text
+'['           Text
+'0'           Literal.Number
+','           Punctuation
+'0'           Literal.Number
+']'           Text
+'\n'          Text
+
+'\t\t\t" We are outside of any PHP markup. Complete HTML' Comment
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'htmlbegin'   Text
+' '           Text
+'='           Punctuation
+' '           Text
+'htmlcomplete' Text
+'#'           Text
+'CompleteTags' Text
+'('           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'cursor_col'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'pos'         Text
+'['           Text
+'2'           Literal.Number
+']'           Text
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'base'        Text
+' '           Text
+'='           Punctuation
+' '           Text
+'getline'     Text
+'('           Punctuation
+"'.'"         Literal.String.Single
+')'           Punctuation
+'['           Text
+'htmlbegin'   Text
+' '           Text
+':'           Text
+' '           Text
+'cursor_col'  Text
+']'           Text
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'b'           Keyword
+':'           Text
+'php_menu'    Text
+' '           Text
+'='           Punctuation
+' '           Text
+'htmlcomplete' Text
+'#'           Text
+'CompleteTags' Text
+'('           Punctuation
+'0'           Literal.Number
+','           Punctuation
+' '           Text
+'base'        Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'htmlbegin'   Text
+'\n'          Text
+
+'\t\t'        Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t" locate the start of the word' Comment
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'line'        Text
+' '           Text
+'='           Punctuation
+' '           Text
+'getline'     Text
+'('           Punctuation
+"'.'"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'start'       Keyword
+' '           Text
+'='           Punctuation
+' '           Text
+'col'         Keyword
+'('           Punctuation
+"'.'"         Literal.String.Single
+')'           Punctuation
+' '           Text
+'-'           Punctuation
+' '           Text
+'1'           Literal.Number
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'curline'     Text
+' '           Text
+'='           Punctuation
+' '           Text
+'line'        Text
+'('           Punctuation
+"'.'"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'compl_begin' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'col'         Keyword
+'('           Punctuation
+"'.'"         Literal.String.Single
+')'           Punctuation
+' '           Text
+'-'           Punctuation
+' '           Text
+'2'           Literal.Number
+'\n'          Text
+
+'\t\t\t'      Text
+'while'       Keyword
+' '           Text
+'start'       Keyword
+' '           Text
+'>'           Punctuation
+'='           Punctuation
+' '           Text
+'0'           Literal.Number
+' '           Text
+'&'           Text
+'&'           Text
+' '           Text
+'line'        Text
+'['           Text
+'start'       Keyword
+' '           Text
+'-'           Punctuation
+' '           Text
+'1'           Literal.Number
+']'           Text
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'[a-zA-Z_0-9\\x7f-\\xff$]'" Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'start'       Keyword
+' '           Text
+'-'           Punctuation
+'='           Punctuation
+' '           Text
+'1'           Literal.Number
+'\n'          Text
+
+'\t\t\t'      Text
+'endwhile'    Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'b'           Keyword
+':'           Text
+'compl_context' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'getline'     Text
+'('           Punctuation
+"'.'"         Literal.String.Single
+')'           Punctuation
+'['           Text
+'0'           Literal.Number
+':'           Text
+'compl_begin' Text
+']'           Text
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'start'       Keyword
+'\n'          Text
+
+'\n\t\t\t" We can be also inside of phpString with HTML tags. Deal with' Comment
+'\n'          Text
+
+'\t\t\t" it later (time, not lines).' Comment
+'\n'          Text
+
+'\t\t'        Text
+'endif'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'endif'       Keyword
+'\n'          Text
+
+'\t" If exists b:php_menu it means completion was already constructed we' Comment
+'\n'          Text
+
+'\t" don\'t need to do anything more' Comment
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'exists'      Text
+'('           Punctuation
+'"b:php_menu"' Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'b'           Keyword
+':'           Text
+'php_menu'    Text
+'\n'          Text
+
+'\t'          Text
+'endif'       Keyword
+'\n'          Text
+
+'\t" Initialize base return lists' Comment
+'\n'          Text
+
+'\t'          Text
+'let'         Keyword
+' '           Text
+'res'         Keyword
+' '           Text
+'='           Punctuation
+' '           Text
+'['           Text
+']'           Text
+'\n'          Text
+
+'\t'          Text
+'let'         Keyword
+' '           Text
+'res2'        Text
+' '           Text
+'='           Punctuation
+' '           Text
+'['           Text
+']'           Text
+'\n'          Text
+
+'\t" a:base is very short - we need context' Comment
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'exists'      Text
+'('           Punctuation
+'"b:compl_context"' Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'context'     Text
+' '           Text
+'='           Punctuation
+' '           Text
+'b'           Keyword
+':'           Text
+'compl_context' Text
+'\n'          Text
+
+'\t\t'        Text
+'unlet'       Text
+'!'           Punctuation
+' '           Text
+'b'           Keyword
+':'           Text
+'compl_context' Text
+'\n'          Text
+
+'\t'          Text
+'endif'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'!'           Punctuation
+'exists'      Text
+'('           Punctuation
+"'g:php_builtin_functions'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'phpcomplete' Text
+'#'           Text
+'LoadData'    Text
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'endif'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'let'         Keyword
+' '           Text
+'scontext'    Text
+' '           Text
+'='           Punctuation
+' '           Text
+'substitute'  Text
+'('           Punctuation
+'context'     Text
+','           Punctuation
+' '           Text
+"'\\$\\?[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*$'" Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'scontext'    Text
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'\\(=\\s*new\\|extends\\)\\s\\+$'" Literal.String.Single
+'\n'          Text
+
+'\t\t" Complete class name' Comment
+'\n'          Text
+
+'\t\t" Internal solution for finding classes in current file.' Comment
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'file'        Keyword
+' '           Text
+'='           Punctuation
+' '           Text
+'getline'     Text
+'('           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text
+"'$'"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'filter'      Text
+'('           Punctuation
+'file'        Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'\\'          Text
+' '           Text
+'\'v:val =~ "class\\\\s\\\\+[a-zA-Z_\\\\x7f-\\\\xff][a-zA-Z_0-9\\\\x7f-\\\\xff]*\\\\s*("\'' Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'fnames'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'map'         Text
+'('           Punctuation
+'tagfiles'    Text
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'\'escape(v:val, " \\\\#%")\'' Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'jfile'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'file'        Keyword
+','           Punctuation
+' '           Text
+"' '"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_values'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'split'       Text
+'('           Punctuation
+'jfile'       Text
+','           Punctuation
+' '           Text
+"'class\\s\\+'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_classes' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'int_values'  Text
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'c_name'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+' '           Text
+"'^[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'c_name'      Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'int_classes' Text
+'['           Text
+'c_name'      Text
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n\t\t" Prepare list of classes from tags file' Comment
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'ext_classes' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'fnames'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'map'         Text
+'('           Punctuation
+'tagfiles'    Text
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'\'escape(v:val, " \\\\#%")\'' Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'fnames'      Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'exe'         Text
+' '           Text
+"'silent! vimgrep /^'" Literal.String.Single
+'.'           Text
+'a'           Keyword
+':'           Text
+'base'        Text
+'.'           Text
+"'.*\\tc\\(\\t\\|$\\)/j '" Literal.String.Single
+'.'           Text
+'fnames'      Text
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'qflist'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'getqflist'   Text
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'len'         Text
+'('           Punctuation
+'qflist'      Text
+')'           Punctuation
+' '           Text
+'>'           Punctuation
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'\t\t\t\t'    Text
+'for'         Keyword
+' '           Text
+'field'       Text
+' '           Text
+'in'          Keyword
+' '           Text
+'qflist'      Text
+'\n'          Text
+
+'\t\t\t\t\t" [:space:] thing: we don\'t have to be so strict when' Comment
+'\n'          Text
+
+'\t\t\t\t\t" dealing with tags files - entries there were already' Comment
+'\n'          Text
+
+'\t\t\t\t\t" checked by ctags.' Comment
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'item'        Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+','           Punctuation
+' '           Text
+"'^[^[:space:]]\\+'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'ext_classes' Text
+'['           Text
+'item'        Text
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'endfor'      Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endif'       Keyword
+'\n'          Text
+
+'\n\t\t" Prepare list of built in classes from g:php_builtin_functions' Comment
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'!'           Punctuation
+'exists'      Text
+'('           Punctuation
+'"g:php_omni_bi_classes"' Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'g'           Keyword
+':'           Text
+'php_omni_bi_classes' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t\t'      Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'keys'        Text
+'('           Punctuation
+'g'           Keyword
+':'           Text
+'php_builtin_object_functions' Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'g'           Keyword
+':'           Text
+'php_omni_bi_classes' Text
+'['           Text
+'substitute'  Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+' '           Text
+"'::.*$'"     Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+')'           Punctuation
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'endfor'      Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endif'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'classes'     Text
+' '           Text
+'='           Punctuation
+' '           Text
+'sort'        Keyword
+'('           Punctuation
+'keys'        Text
+'('           Punctuation
+'int_classes' Text
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'classes'     Text
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'sort'        Keyword
+'('           Punctuation
+'keys'        Text
+'('           Punctuation
+'ext_classes' Text
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'classes'     Text
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'sort'        Keyword
+'('           Punctuation
+'keys'        Text
+'('           Punctuation
+'g'           Keyword
+':'           Text
+'php_omni_bi_classes' Text
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'m'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'classes'     Text
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'m'           Keyword
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'^'"         Literal.String.Single
+'.'           Text
+'a'           Keyword
+':'           Text
+'base'        Text
+'\n'          Text
+
+'\t\t\t\t'    Text
+'call'        Keyword
+' '           Text
+'add'         Text
+'('           Punctuation
+'res'         Keyword
+','           Punctuation
+' '           Text
+'m'           Keyword
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'final_menu'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'['           Text
+']'           Text
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'res'         Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'final_menu'  Text
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'['           Text
+'{'           Text
+"'word'"      Literal.String.Single
+':'           Text
+'i'           Keyword
+','           Punctuation
+' '           Text
+"'kind'"      Literal.String.Single
+':'           Text
+"'c'"         Literal.String.Single
+'}'           Text
+']'           Text
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'final_menu'  Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'elseif'      Keyword
+' '           Text
+'scontext'    Text
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'\\(->\\|::\\)$'" Literal.String.Single
+'\n'          Text
+
+'\t\t" Complete user functions and variables' Comment
+'\n'          Text
+
+'\t\t" Internal solution for current file.' Comment
+'\n'          Text
+
+'\t\t" That seems as unnecessary repeating of functions but there are' Comment
+'\n'          Text
+
+'\t\t" few not so subtle differences as not appending of $ and addition' Comment
+'\n'          Text
+
+'\t\t" of \'kind\' tag (not necessary in regular completion)' Comment
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'scontext'    Text
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'->$'"       Literal.String.Single
+' '           Text
+'&'           Text
+'&'           Text
+' '           Text
+'scontext'    Text
+' '           Text
+'!'           Punctuation
+'~'           Punctuation
+' '           Text
+"'\\$this->$'" Literal.String.Single
+'\n'          Text
+
+'\n\t\t\t" Get name of the class' Comment
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'classname'   Text
+' '           Text
+'='           Punctuation
+' '           Text
+'phpcomplete' Text
+'#'           Text
+'GetClassName' Text
+'('           Punctuation
+'scontext'    Text
+')'           Punctuation
+'\n'          Text
+
+'\n\t\t\t" Get location of class definition, we have to iterate through all' Comment
+'\n'          Text
+
+'\t\t\t" tags files separately because we need relative path from current' Comment
+'\n'          Text
+
+'\t\t\t" file to the exact file (tags file can be in different dir)' Comment
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'classname'   Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'classlocation' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'phpcomplete' Text
+'#'           Text
+'GetClassLocation' Text
+'('           Punctuation
+'classname'   Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'classlocation' Text
+' '           Text
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'classlocation' Text
+' '           Text
+'='           Punctuation
+'='           Punctuation
+' '           Text
+"'VIMPHP_BUILTINOBJECT'" Literal.String.Single
+'\n'          Text
+
+'\n'          Text
+
+'\t\t\t\t'    Text
+'for'         Keyword
+' '           Text
+'object'      Text
+' '           Text
+'in'          Keyword
+' '           Text
+'keys'        Text
+'('           Punctuation
+'g'           Keyword
+':'           Text
+'php_builtin_object_functions' Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'if'          Keyword
+' '           Text
+'object'      Text
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'^'"         Literal.String.Single
+'.'           Text
+'classname'   Text
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'let'         Keyword
+' '           Text
+'res'         Keyword
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'['           Text
+'{'           Text
+"'word'"      Literal.String.Single
+':'           Text
+'substitute'  Text
+'('           Punctuation
+'object'      Text
+','           Punctuation
+' '           Text
+"'.*::'"      Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t   \t' Text
+'\\'          Text
+'    '        Text
+"'info'"      Literal.String.Single
+':'           Text
+' '           Text
+'g'           Keyword
+':'           Text
+'php_builtin_object_functions' Text
+'['           Text
+'object'      Text
+']'           Text
+'}'           Text
+']'           Text
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t\t\t'    Text
+'return'      Keyword
+' '           Text
+'res'         Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'filereadable' Text
+'('           Punctuation
+'classlocation' Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'classfile'   Text
+' '           Text
+'='           Punctuation
+' '           Text
+'readfile'    Text
+'('           Punctuation
+'classlocation' Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'classcontent' Text
+' '           Text
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'classcontent' Text
+' '           Text
+'.'           Text
+'='           Punctuation
+' '           Text
+'"\\n"'       Literal.String.Double
+'.'           Text
+'phpcomplete' Text
+'#'           Text
+'GetClassContents' Text
+'('           Punctuation
+'classfile'   Text
+','           Punctuation
+' '           Text
+'classname'   Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'sccontent'   Text
+' '           Text
+'='           Punctuation
+' '           Text
+'split'       Text
+'('           Punctuation
+'classcontent' Text
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'\n\t\t\t\t" YES, YES, YES! - we have whole content including extends!' Comment
+'\n'          Text
+
+'\t\t\t\t" Now we need to get two elements: public functions and public' Comment
+'\n'          Text
+
+'\t\t\t\t" vars' Comment
+'\n'          Text
+
+'\t\t\t\t" NO, NO, NO! - third separate filtering looking for content' Comment
+'\n'          Text
+
+'\t\t\t\t" :(, but all of them have differences. To squeeze them into' Comment
+'\n'          Text
+
+'\t\t\t\t" one implementation would require many additional arguments' Comment
+'\n'          Text
+
+'\t\t\t\t" and ifs. No good solution' Comment
+'\n'          Text
+
+'\t\t\t\t" Functions declared with public keyword or without any' Comment
+'\n'          Text
+
+'\t\t\t\t" keyword are public' Comment
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'functions'   Text
+' '           Text
+'='           Punctuation
+' '           Text
+'filter'      Text
+'('           Punctuation
+'deepcopy'    Text
+'('           Punctuation
+'sccontent'   Text
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+'\'v:val =~ "^\\\\s*\\\\(static\\\\s\\\\+\\\\|public\\\\s\\\\+\\\\)*function"\'' Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'jfuncs'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'functions'   Text
+','           Punctuation
+' '           Text
+"' '"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'sfuncs'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'split'       Text
+'('           Punctuation
+'jfuncs'      Text
+','           Punctuation
+' '           Text
+"'function\\s\\+'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'c_functions' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t\t\t'    Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'sfuncs'      Text
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'f_name'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'^&\\?\\zs[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*\\ze'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'f_args'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'^&\\?[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*\\s*(\\zs.\\{-}\\ze)\\_s*{'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'if'          Keyword
+' '           Text
+'f_name'      Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'let'         Keyword
+' '           Text
+'c_functions' Text
+'['           Text
+'f_name'      Text
+'.'           Text
+"'('"         Literal.String.Single
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+'f_args'      Text
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'endfor'      Keyword
+'\n'          Text
+
+'\t\t\t\t" Variables declared with var or with public keyword are' Comment
+'\n'          Text
+
+'\t\t\t\t" public' Comment
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'variables'   Text
+' '           Text
+'='           Punctuation
+' '           Text
+'filter'      Text
+'('           Punctuation
+'deepcopy'    Text
+'('           Punctuation
+'sccontent'   Text
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+'\'v:val =~ "^\\\\s*\\\\(public\\\\|var\\\\)\\\\s\\\\+\\\\$"\'' Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'jvars'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'variables'   Text
+','           Punctuation
+' '           Text
+"' '"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'svars'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'split'       Text
+'('           Punctuation
+'jvars'       Text
+','           Punctuation
+' '           Text
+"'\\$'"       Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'c_variables' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t\t\t'    Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'svars'       Text
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'c_var'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'^\\zs[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*\\ze'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'if'          Keyword
+' '           Text
+'c_var'       Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'let'         Keyword
+' '           Text
+'c_variables' Text
+'['           Text
+'c_var'       Text
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'all_values'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t\t\t'    Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'all_values'  Text
+','           Punctuation
+' '           Text
+'c_functions' Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'all_values'  Text
+','           Punctuation
+' '           Text
+'c_variables' Text
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t\t\t\t'    Text
+'for'         Keyword
+' '           Text
+'m'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'sort'        Keyword
+'('           Punctuation
+'keys'        Text
+'('           Punctuation
+'all_values'  Text
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'if'          Keyword
+' '           Text
+'m'           Keyword
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'^'"         Literal.String.Single
+'.'           Text
+'a'           Keyword
+':'           Text
+'base'        Text
+' '           Text
+'&'           Text
+'&'           Text
+' '           Text
+'m'           Keyword
+' '           Text
+'!'           Punctuation
+'~'           Punctuation
+' '           Text
+"'::'"        Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'call'        Keyword
+' '           Text
+'add'         Text
+'('           Punctuation
+'res'         Keyword
+','           Punctuation
+' '           Text
+'m'           Keyword
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'elseif'      Keyword
+' '           Text
+'m'           Keyword
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'::'"        Literal.String.Single
+'.'           Text
+'a'           Keyword
+':'           Text
+'base'        Text
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'call'        Keyword
+' '           Text
+'add'         Text
+'('           Punctuation
+'res2'        Text
+','           Punctuation
+' '           Text
+'m'           Keyword
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'start_list'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'res'         Keyword
+' '           Text
+'+'           Punctuation
+' '           Text
+'res2'        Text
+'\n'          Text
+
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'final_list'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'['           Text
+']'           Text
+'\n'          Text
+
+'\t\t\t\t'    Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'start_list'  Text
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'if'          Keyword
+' '           Text
+'has_key'     Text
+'('           Punctuation
+'c_variables' Text
+','           Punctuation
+' '           Text
+'i'           Keyword
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'let'         Keyword
+' '           Text
+'class'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+"' '"         Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'if'          Keyword
+' '           Text
+'all_values'  Text
+'['           Text
+'i'           Keyword
+']'           Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'let'         Keyword
+' '           Text
+'class'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'i'           Keyword
+'.'           Text
+"' class '"   Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'let'         Keyword
+' '           Text
+'final_list'  Text
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+'['           Text
+'{'           Text
+"'word'"      Literal.String.Single
+':'           Text
+'i'           Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+'   '         Text
+"'info'"      Literal.String.Single
+':'           Text
+'class'       Text
+'.'           Text
+'all_values'  Text
+'['           Text
+'i'           Keyword
+']'           Text
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+'   '         Text
+"'kind'"      Literal.String.Single
+':'           Text
+"'v'"         Literal.String.Single
+'}'           Text
+']'           Text
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'let'         Keyword
+' '           Text
+'final_list'  Text
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+'['           Text
+'{'           Text
+"'word'"      Literal.String.Single
+':'           Text
+'substitute'  Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+' '           Text
+"'.*::'"      Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+'   '         Text
+"'info'"      Literal.String.Single
+':'           Text
+'i'           Keyword
+'.'           Text
+'all_values'  Text
+'['           Text
+'i'           Keyword
+']'           Text
+'.'           Text
+"')'"         Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+'   '         Text
+"'kind'"      Literal.String.Single
+':'           Text
+"'f'"         Literal.String.Single
+'}'           Text
+']'           Text
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t\t\t'    Text
+'return'      Keyword
+' '           Text
+'final_list'  Text
+'\n'          Text
+
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'endif'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'a'           Keyword
+':'           Text
+'base'        Text
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'^\\$'"      Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'adddollar'   Text
+' '           Text
+'='           Punctuation
+' '           Text
+"'$'"         Literal.String.Single
+'\n'          Text
+
+'\t\t'        Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'adddollar'   Text
+' '           Text
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t'        Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'file'        Keyword
+' '           Text
+'='           Punctuation
+' '           Text
+'getline'     Text
+'('           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text
+"'$'"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'jfile'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'file'        Keyword
+','           Punctuation
+' '           Text
+"' '"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'sfile'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'split'       Text
+'('           Punctuation
+'jfile'       Text
+','           Punctuation
+' '           Text
+"'\\$'"       Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_vars'    Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'sfile'       Text
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'^\\$[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*\\s*=\\s*new'" Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'val'         Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+' '           Text
+"'^[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*'" Literal.String.Single
+')'           Punctuation
+'.'           Text
+"'->'"        Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'val'         Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+' '           Text
+"'^[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'val'         Text
+' '           Text
+'!'           Punctuation
+'~'           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'int_vars'    Text
+'['           Text
+'adddollar'   Text
+'.'           Text
+'val'         Text
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n\t\t" ctags has good support for PHP, use tags file for external' Comment
+'\n'          Text
+
+'\t\t" variables' Comment
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'fnames'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'map'         Text
+'('           Punctuation
+'tagfiles'    Text
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'\'escape(v:val, " \\\\#%")\'' Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'ext_vars'    Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'fnames'      Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'sbase'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'substitute'  Text
+'('           Punctuation
+'a'           Keyword
+':'           Text
+'base'        Text
+','           Punctuation
+' '           Text
+"'^\\$'"      Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'exe'         Text
+' '           Text
+"'silent! vimgrep /^'" Literal.String.Single
+'.'           Text
+'sbase'       Text
+'.'           Text
+"'.*\\tv\\(\\t\\|$\\)/j '" Literal.String.Single
+'.'           Text
+'fnames'      Text
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'qflist'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'getqflist'   Text
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'len'         Text
+'('           Punctuation
+'qflist'      Text
+')'           Punctuation
+' '           Text
+'>'           Punctuation
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'\t\t\t\t'    Text
+'for'         Keyword
+' '           Text
+'field'       Text
+' '           Text
+'in'          Keyword
+' '           Text
+'qflist'      Text
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'item'        Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+','           Punctuation
+' '           Text
+"'^[^[:space:]]\\+'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t" Add -> if it is possible object declaration' Comment
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'classname'   Text
+' '           Text
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'if'          Keyword
+' '           Text
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+'item'        Text
+'.'           Text
+"'\\s*=\\s*new\\s\\+'" Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'let'         Keyword
+' '           Text
+'item'        Text
+' '           Text
+'='           Punctuation
+' '           Text
+'item'        Text
+'.'           Text
+"'->'"        Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'let'         Keyword
+' '           Text
+'classname'   Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'=\\s*new\\s\\+\\zs[a-zA-Z_0-9\\x7f-\\xff]\\+\\ze'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'ext_vars'    Text
+'['           Text
+'adddollar'   Text
+'.'           Text
+'item'        Text
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+'classname'   Text
+'\n'          Text
+
+'\t\t\t\t'    Text
+'endfor'      Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endif'       Keyword
+'\n'          Text
+
+'\n\t\t" Now we have all variables in int_vars dictionary' Comment
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'int_vars'    Text
+','           Punctuation
+' '           Text
+'ext_vars'    Text
+')'           Punctuation
+'\n'          Text
+
+'\n\t\t" Internal solution for finding functions in current file.' Comment
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'file'        Keyword
+' '           Text
+'='           Punctuation
+' '           Text
+'getline'     Text
+'('           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text
+"'$'"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'filter'      Text
+'('           Punctuation
+'file'        Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'\\'          Text
+' '           Text
+'\'v:val =~ "function\\\\s\\\\+&\\\\?[a-zA-Z_\\\\x7f-\\\\xff][a-zA-Z_0-9\\\\x7f-\\\\xff]*\\\\s*("\'' Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'fnames'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'map'         Text
+'('           Punctuation
+'tagfiles'    Text
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'\'escape(v:val, " \\\\#%")\'' Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'jfile'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'file'        Keyword
+','           Punctuation
+' '           Text
+"' '"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_values'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'split'       Text
+'('           Punctuation
+'jfile'       Text
+','           Punctuation
+' '           Text
+"'function\\s\\+'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_functions' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'int_values'  Text
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'f_name'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'\\'          Text
+' '           Text
+"'^&\\?\\zs[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*\\ze'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'f_args'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'\\'          Text
+' '           Text
+"'^&\\?[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*\\s*(\\zs.\\{-}\\ze)\\_s*{'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'int_functions' Text
+'['           Text
+'f_name'      Text
+'.'           Text
+"'('"         Literal.String.Single
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+'f_args'      Text
+'.'           Text
+"')'"         Literal.String.Single
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n\t\t" Prepare list of functions from tags file' Comment
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'ext_functions' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'fnames'      Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'exe'         Text
+' '           Text
+"'silent! vimgrep /^'" Literal.String.Single
+'.'           Text
+'a'           Keyword
+':'           Text
+'base'        Text
+'.'           Text
+"'.*\\tf\\(\\t\\|$\\)/j '" Literal.String.Single
+'.'           Text
+'fnames'      Text
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'qflist'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'getqflist'   Text
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'len'         Text
+'('           Punctuation
+'qflist'      Text
+')'           Punctuation
+' '           Text
+'>'           Punctuation
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'\t\t\t\t'    Text
+'for'         Keyword
+' '           Text
+'field'       Text
+' '           Text
+'in'          Keyword
+' '           Text
+'qflist'      Text
+'\n'          Text
+
+'\t\t\t\t\t" File name' Comment
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'item'        Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+','           Punctuation
+' '           Text
+"'^[^[:space:]]\\+'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'fname'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+','           Punctuation
+' '           Text
+"'\\t\\zs\\f\\+\\ze'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'prototype'   Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'function\\s\\+&\\?[^[:space:]]\\+\\s*(\\s*\\zs.\\{-}\\ze\\s*)\\s*{\\?'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'ext_functions' Text
+'['           Text
+'item'        Text
+'.'           Text
+"'('"         Literal.String.Single
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+'prototype'   Text
+'.'           Text
+"') - '"      Literal.String.Single
+'.'           Text
+'fname'       Text
+'\n'          Text
+
+'\t\t\t\t'    Text
+'endfor'      Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endif'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'all_values'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'all_values'  Text
+','           Punctuation
+' '           Text
+'int_functions' Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'all_values'  Text
+','           Punctuation
+' '           Text
+'ext_functions' Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'all_values'  Text
+','           Punctuation
+' '           Text
+'int_vars'    Text
+')'           Punctuation
+' '           Text
+'" external variables are already in' Comment
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'all_values'  Text
+','           Punctuation
+' '           Text
+'g'           Keyword
+':'           Text
+'php_builtin_object_functions' Text
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'m'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'sort'        Keyword
+'('           Punctuation
+'keys'        Text
+'('           Punctuation
+'all_values'  Text
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'m'           Keyword
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'\\(^\\|::\\)'" Literal.String.Single
+'.'           Text
+'a'           Keyword
+':'           Text
+'base'        Text
+'\n'          Text
+
+'\t\t\t\t'    Text
+'call'        Keyword
+' '           Text
+'add'         Text
+'('           Punctuation
+'res'         Keyword
+','           Punctuation
+' '           Text
+'m'           Keyword
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'start_list'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'res'         Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'final_list'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'['           Text
+']'           Text
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'start_list'  Text
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'has_key'     Text
+'('           Punctuation
+'int_vars'    Text
+','           Punctuation
+' '           Text
+'i'           Keyword
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'class'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+"' '"         Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'if'          Keyword
+' '           Text
+'all_values'  Text
+'['           Text
+'i'           Keyword
+']'           Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'class'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'i'           Keyword
+'.'           Text
+"' class '"   Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'final_list'  Text
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'['           Text
+'{'           Text
+"'word'"      Literal.String.Single
+':'           Text
+'i'           Keyword
+','           Punctuation
+' '           Text
+"'info'"      Literal.String.Single
+':'           Text
+'class'       Text
+'.'           Text
+'all_values'  Text
+'['           Text
+'i'           Keyword
+']'           Text
+','           Punctuation
+' '           Text
+"'kind'"      Literal.String.Single
+':'           Text
+"'v'"         Literal.String.Single
+'}'           Text
+']'           Text
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'final_list'  Text
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+'['           Text
+'{'           Text
+"'word'"      Literal.String.Single
+':'           Text
+'substitute'  Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+' '           Text
+"'.*::'"      Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+')'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'\\'          Text
+'   '         Text
+"'info'"      Literal.String.Single
+':'           Text
+'i'           Keyword
+'.'           Text
+'all_values'  Text
+'['           Text
+'i'           Keyword
+']'           Text
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'\\'          Text
+'   '         Text
+"'kind'"      Literal.String.Single
+':'           Text
+"'f'"         Literal.String.Single
+'}'           Text
+']'           Text
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'final_list'  Text
+'\n'          Text
+
+'\t'          Text
+'endif'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'if'          Keyword
+' '           Text
+'a'           Keyword
+':'           Text
+'base'        Text
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'^\\$'"      Literal.String.Single
+'\n'          Text
+
+'\t\t" Complete variables' Comment
+'\n'          Text
+
+'\t\t" Built-in variables {{{' Comment
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'g'           Keyword
+':'           Text
+'php_builtin_vars' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+"'$GLOBALS'"  Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$_SERVER'"  Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$_GET'"     Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$_POST'"    Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$_COOKIE'"  Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$_FILES'"   Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$_ENV'"     Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$_REQUEST'" Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$_SESSION'" Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$HTTP_SERVER_VARS'" Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$HTTP_ENV_VARS'" Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$HTTP_COOKIE_VARS'" Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$HTTP_GET_VARS'" Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$HTTP_POST_VARS'" Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$HTTP_POST_FILES'" Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$HTTP_SESSION_VARS'" Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$php_errormsg'" Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'$this'"     Literal.String.Single
+':'           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+'}'           Text
+'\n'          Text
+
+'\t\t" }}}'   Comment
+'\n'          Text
+
+'\n\t\t" Internal solution for current file.' Comment
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'file'        Keyword
+' '           Text
+'='           Punctuation
+' '           Text
+'getline'     Text
+'('           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text
+"'$'"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'jfile'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'file'        Keyword
+','           Punctuation
+' '           Text
+"' '"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_vals'    Text
+' '           Text
+'='           Punctuation
+' '           Text
+'split'       Text
+'('           Punctuation
+'jfile'       Text
+','           Punctuation
+' '           Text
+"'\\ze\\$'"   Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_vars'    Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'int_vals'    Text
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'^\\$[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*\\s*=\\s*new'" Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'val'         Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'^\\$[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*'" Literal.String.Single
+')'           Punctuation
+'.'           Text
+"'->'"        Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'val'         Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'^\\$[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'val'         Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'int_vars'    Text
+'['           Text
+'val'         Text
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'int_vars'    Text
+','           Punctuation
+'g'           Keyword
+':'           Text
+'php_builtin_vars' Text
+')'           Punctuation
+'\n'          Text
+
+'\n\t\t" ctags has support for PHP, use tags file for external variables' Comment
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'fnames'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'map'         Text
+'('           Punctuation
+'tagfiles'    Text
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'\'escape(v:val, " \\\\#%")\'' Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'ext_vars'    Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'fnames'      Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'sbase'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'substitute'  Text
+'('           Punctuation
+'a'           Keyword
+':'           Text
+'base'        Text
+','           Punctuation
+' '           Text
+"'^\\$'"      Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+','           Punctuation
+' '           Text
+"''"          Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'exe'         Text
+' '           Text
+"'silent! vimgrep /^'" Literal.String.Single
+'.'           Text
+'sbase'       Text
+'.'           Text
+"'.*\\tv\\(\\t\\|$\\)/j '" Literal.String.Single
+'.'           Text
+'fnames'      Text
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'qflist'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'getqflist'   Text
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'len'         Text
+'('           Punctuation
+'qflist'      Text
+')'           Punctuation
+' '           Text
+'>'           Punctuation
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'\t\t\t\t'    Text
+'for'         Keyword
+' '           Text
+'field'       Text
+' '           Text
+'in'          Keyword
+' '           Text
+'qflist'      Text
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'item'        Text
+' '           Text
+'='           Punctuation
+' '           Text
+"'$'"         Literal.String.Single
+'.'           Text
+'matchstr'    Text
+'('           Punctuation
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+','           Punctuation
+' '           Text
+"'^[^[:space:]]\\+'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'m_menu'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t" Add -> if it is possible object declaration' Comment
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'if'          Keyword
+' '           Text
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+'item'        Text
+'.'           Text
+"'\\s*=\\s*new\\s\\+'" Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'let'         Keyword
+' '           Text
+'item'        Text
+' '           Text
+'='           Punctuation
+' '           Text
+'item'        Text
+'.'           Text
+"'->'"        Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'let'         Keyword
+' '           Text
+'m_menu'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'=\\s*new\\s\\+\\zs[a-zA-Z_0-9\\x7f-\\xff]\\+\\ze'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'ext_vars'    Text
+'['           Text
+'item'        Text
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+'m_menu'      Text
+'\n'          Text
+
+'\t\t\t\t'    Text
+'endfor'      Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endif'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'int_vars'    Text
+','           Punctuation
+' '           Text
+'ext_vars'    Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'g'           Keyword
+':'           Text
+'a0'          Text
+' '           Text
+'='           Punctuation
+' '           Text
+'keys'        Text
+'('           Punctuation
+'int_vars'    Text
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'m'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'sort'        Keyword
+'('           Punctuation
+'keys'        Text
+'('           Punctuation
+'int_vars'    Text
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'m'           Keyword
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'^\\'"       Literal.String.Single
+'.'           Text
+'a'           Keyword
+':'           Text
+'base'        Text
+'\n'          Text
+
+'\t\t\t\t'    Text
+'call'        Keyword
+' '           Text
+'add'         Text
+'('           Punctuation
+'res'         Keyword
+','           Punctuation
+' '           Text
+'m'           Keyword
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_list'    Text
+' '           Text
+'='           Punctuation
+' '           Text
+'res'         Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_dict'    Text
+' '           Text
+'='           Punctuation
+' '           Text
+'['           Text
+']'           Text
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'int_list'    Text
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'int_vars'    Text
+'['           Text
+'i'           Keyword
+']'           Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'class'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+"' '"         Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'if'          Keyword
+' '           Text
+'int_vars'    Text
+'['           Text
+'i'           Keyword
+']'           Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'class'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'i'           Keyword
+'.'           Text
+"' class '"   Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'int_dict'    Text
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'['           Text
+'{'           Text
+"'word'"      Literal.String.Single
+':'           Text
+'i'           Keyword
+','           Punctuation
+' '           Text
+"'info'"      Literal.String.Single
+':'           Text
+'class'       Text
+'.'           Text
+'int_vars'    Text
+'['           Text
+'i'           Keyword
+']'           Text
+','           Punctuation
+' '           Text
+"'kind'"      Literal.String.Single
+':'           Text
+"'v'"         Literal.String.Single
+'}'           Text
+']'           Text
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'int_dict'    Text
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'['           Text
+'{'           Text
+"'word'"      Literal.String.Single
+':'           Text
+'i'           Keyword
+','           Punctuation
+' '           Text
+"'kind'"      Literal.String.Single
+':'           Text
+"'v'"         Literal.String.Single
+'}'           Text
+']'           Text
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'int_dict'    Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t" Complete everything else -' Comment
+'\n'          Text
+
+'\t\t"  + functions,  DONE' Comment
+'\n'          Text
+
+'\t\t"  + keywords of language DONE' Comment
+'\n'          Text
+
+'\t\t"  + defines (constant definitions), DONE' Comment
+'\n'          Text
+
+'\t\t"  + extend keywords for predefined constants, DONE' Comment
+'\n'          Text
+
+'\t\t"  + classes (after new), DONE' Comment
+'\n'          Text
+
+'\t\t"  + limit choice after -> and :: to funcs and vars DONE' Comment
+'\n'          Text
+
+'\n\t\t" Internal solution for finding functions in current file.' Comment
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'file'        Keyword
+' '           Text
+'='           Punctuation
+' '           Text
+'getline'     Text
+'('           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text
+"'$'"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'filter'      Text
+'('           Punctuation
+'file'        Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'\\'          Text
+' '           Text
+'\'v:val =~ "function\\\\s\\\\+&\\\\?[a-zA-Z_\\\\x7f-\\\\xff][a-zA-Z_0-9\\\\x7f-\\\\xff]*\\\\s*("\'' Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'fnames'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'map'         Text
+'('           Punctuation
+'tagfiles'    Text
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'\'escape(v:val, " \\\\#%")\'' Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'jfile'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'file'        Keyword
+','           Punctuation
+' '           Text
+"' '"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_values'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'split'       Text
+'('           Punctuation
+'jfile'       Text
+','           Punctuation
+' '           Text
+"'function\\s\\+'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_functions' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'int_values'  Text
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'f_name'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'\\'          Text
+' '           Text
+"'^&\\?\\zs[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*\\ze'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'f_args'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'\\'          Text
+' '           Text
+"'^&\\?[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*\\s*(\\s*\\zs.\\{-}\\ze\\s*)\\_s*{'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'int_functions' Text
+'['           Text
+'f_name'      Text
+'.'           Text
+"'('"         Literal.String.Single
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+'f_args'      Text
+'.'           Text
+"')'"         Literal.String.Single
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n\t\t" Prepare list of functions from tags file' Comment
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'ext_functions' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'fnames'      Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'exe'         Text
+' '           Text
+"'silent! vimgrep /^'" Literal.String.Single
+'.'           Text
+'a'           Keyword
+':'           Text
+'base'        Text
+'.'           Text
+"'.*\\tf\\(\\t\\|$\\)/j '" Literal.String.Single
+'.'           Text
+'fnames'      Text
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'qflist'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'getqflist'   Text
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'len'         Text
+'('           Punctuation
+'qflist'      Text
+')'           Punctuation
+' '           Text
+'>'           Punctuation
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'\t\t\t\t'    Text
+'for'         Keyword
+' '           Text
+'field'       Text
+' '           Text
+'in'          Keyword
+' '           Text
+'qflist'      Text
+'\n'          Text
+
+'\t\t\t\t\t" File name' Comment
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'item'        Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+','           Punctuation
+' '           Text
+"'^[^[:space:]]\\+'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'fname'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+','           Punctuation
+' '           Text
+"'\\t\\zs\\f\\+\\ze'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'prototype'   Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+"'function\\s\\+&\\?[^[:space:]]\\+\\s*(\\s*\\zs.\\{-}\\ze\\s*)\\s*{\\?'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'ext_functions' Text
+'['           Text
+'item'        Text
+'.'           Text
+"'('"         Literal.String.Single
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+'prototype'   Text
+'.'           Text
+"') - '"      Literal.String.Single
+'.'           Text
+'fname'       Text
+'\n'          Text
+
+'\t\t\t\t'    Text
+'endfor'      Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endif'       Keyword
+'\n'          Text
+
+'\n\t\t" All functions' Comment
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'int_functions' Text
+','           Punctuation
+' '           Text
+'ext_functions' Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'int_functions' Text
+','           Punctuation
+' '           Text
+'g'           Keyword
+':'           Text
+'php_builtin_functions' Text
+')'           Punctuation
+'\n'          Text
+
+'\n\t\t" Internal solution for finding constants in current file' Comment
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'file'        Keyword
+' '           Text
+'='           Punctuation
+' '           Text
+'getline'     Text
+'('           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text
+"'$'"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'filter'      Text
+'('           Punctuation
+'file'        Keyword
+','           Punctuation
+' '           Text
+'\'v:val =~ "define\\\\s*("\'' Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'jfile'       Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'file'        Keyword
+','           Punctuation
+' '           Text
+"' '"         Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_values'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'split'       Text
+'('           Punctuation
+'jfile'       Text
+','           Punctuation
+' '           Text
+"'define\\s*(\\s*'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_constants' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'int_values'  Text
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'c_name'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'i'           Keyword
+','           Punctuation
+' '           Text
+'\'\\(["\'\']\\)\\zs[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*\\ze\\1\'' Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t" let c_value = matchstr(i,' Comment
+'\n'          Text
+
+'\t\t\t" \\ \'\\(["\'\']\\)[a-zA-Z_\\x7f-\\xff][a-zA-Z_0-9\\x7f-\\xff]*\\1\\s*,\\s*\\zs.\\{-}\\ze\\s*)\')' Comment
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'c_name'      Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'int_constants' Text
+'['           Text
+'c_name'      Text
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+' '           Text
+'" c_value'   Comment
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n\t\t" Prepare list of constants from tags file' Comment
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'fnames'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'join'        Keyword
+'('           Punctuation
+'map'         Text
+'('           Punctuation
+'tagfiles'    Text
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'\'escape(v:val, " \\\\#%")\'' Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'ext_constants' Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'fnames'      Text
+' '           Text
+'!'           Punctuation
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'exe'         Text
+' '           Text
+"'silent! vimgrep /^'" Literal.String.Single
+'.'           Text
+'a'           Keyword
+':'           Text
+'base'        Text
+'.'           Text
+"'.*\\td\\(\\t\\|$\\)/j '" Literal.String.Single
+'.'           Text
+'fnames'      Text
+'\n'          Text
+
+'\t\t\t'      Text
+'let'         Keyword
+' '           Text
+'qflist'      Text
+' '           Text
+'='           Punctuation
+' '           Text
+'getqflist'   Text
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'len'         Text
+'('           Punctuation
+'qflist'      Text
+')'           Punctuation
+' '           Text
+'>'           Punctuation
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'\t\t\t\t'    Text
+'for'         Keyword
+' '           Text
+'field'       Text
+' '           Text
+'in'          Keyword
+' '           Text
+'qflist'      Text
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'item'        Text
+' '           Text
+'='           Punctuation
+' '           Text
+'matchstr'    Text
+'('           Punctuation
+'field'       Text
+'['           Text
+"'text'"      Literal.String.Single
+']'           Text
+','           Punctuation
+' '           Text
+"'^[^[:space:]]\\+'" Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t'  Text
+'let'         Keyword
+' '           Text
+'ext_constants' Text
+'['           Text
+'item'        Text
+']'           Text
+' '           Text
+'='           Punctuation
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'\t\t\t\t'    Text
+'endfor'      Keyword
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endif'       Keyword
+'\n'          Text
+
+'\n\t\t" All constants' Comment
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'int_constants' Text
+','           Punctuation
+' '           Text
+'ext_constants' Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t" Treat keywords as constants' Comment
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'all_values'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'{'           Text
+'}'           Text
+'\n'          Text
+
+'\n\t\t" One big dictionary of functions' Comment
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'all_values'  Text
+','           Punctuation
+' '           Text
+'int_functions' Text
+')'           Punctuation
+'\n'          Text
+
+'\n\t\t" Add constants' Comment
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'all_values'  Text
+','           Punctuation
+' '           Text
+'int_constants' Text
+')'           Punctuation
+'\n'          Text
+
+'\t\t" Add keywords' Comment
+'\n'          Text
+
+'\t\t'        Text
+'call'        Keyword
+' '           Text
+'extend'      Text
+'('           Punctuation
+'all_values'  Text
+','           Punctuation
+' '           Text
+'g'           Keyword
+':'           Text
+'php_keywords' Text
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'m'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'sort'        Keyword
+'('           Punctuation
+'keys'        Text
+'('           Punctuation
+'all_values'  Text
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'m'           Keyword
+' '           Text
+'='           Punctuation
+'~'           Punctuation
+' '           Text
+"'^'"         Literal.String.Single
+'.'           Text
+'a'           Keyword
+':'           Text
+'base'        Text
+'\n'          Text
+
+'\t\t\t\t'    Text
+'call'        Keyword
+' '           Text
+'add'         Text
+'('           Punctuation
+'res'         Keyword
+','           Punctuation
+' '           Text
+'m'           Keyword
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'int_list'    Text
+' '           Text
+'='           Punctuation
+' '           Text
+'res'         Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'let'         Keyword
+' '           Text
+'final_list'  Text
+' '           Text
+'='           Punctuation
+' '           Text
+'['           Text
+']'           Text
+'\n'          Text
+
+'\t\t'        Text
+'for'         Keyword
+' '           Text
+'i'           Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'int_list'    Text
+'\n'          Text
+
+'\t\t\t'      Text
+'if'          Keyword
+' '           Text
+'has_key'     Text
+'('           Punctuation
+'int_functions' Text
+','           Punctuation
+' '           Text
+'i'           Keyword
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'final_list'  Text
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'\\'          Text
+' '           Text
+'['           Text
+'{'           Text
+"'word'"      Literal.String.Single
+':'           Text
+'i'           Keyword
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'\\'          Text
+'   '         Text
+"'info'"      Literal.String.Single
+':'           Text
+'i'           Keyword
+'.'           Text
+'int_functions' Text
+'['           Text
+'i'           Keyword
+']'           Text
+','           Punctuation
+'\n'          Text
+
+'\t\t\t\t\t\t' Text
+'\\'          Text
+'   '         Text
+"'kind'"      Literal.String.Single
+':'           Text
+"'f'"         Literal.String.Single
+'}'           Text
+']'           Text
+'\n'          Text
+
+'\t\t\t'      Text
+'elseif'      Keyword
+' '           Text
+'has_key'     Text
+'('           Punctuation
+'int_constants' Text
+','           Punctuation
+' '           Text
+'i'           Keyword
+')'           Punctuation
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'final_list'  Text
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'['           Text
+'{'           Text
+"'word'"      Literal.String.Single
+':'           Text
+'i'           Keyword
+','           Punctuation
+' '           Text
+"'kind'"      Literal.String.Single
+':'           Text
+"'d'"         Literal.String.Single
+'}'           Text
+']'           Text
+'\n'          Text
+
+'\t\t\t'      Text
+'else'        Keyword
+'\n'          Text
+
+'\t\t\t\t'    Text
+'let'         Keyword
+' '           Text
+'final_list'  Text
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'['           Text
+'{'           Text
+"'word'"      Literal.String.Single
+':'           Text
+'i'           Keyword
+'}'           Text
+']'           Text
+'\n'          Text
+
+'\t\t\t'      Text
+'endif'       Keyword
+'\n'          Text
+
+'\t\t'        Text
+'endfor'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'final_list'  Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'endif'       Keyword
+'\n'          Text
+
+'\n'          Text
+
+'endfunction' Keyword
+'\n'          Text
+
+'" vim:set foldmethod=marker:' Comment
+'\n'          Text

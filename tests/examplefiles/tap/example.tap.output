@@ -1,0 +1,417 @@
+'TAP version 13\n' Name.Namespace
+
+'1..42'       Keyword.Declaration
+'\n'          Comment
+
+'1..13'       Keyword.Declaration
+' '           Text
+'A plan only supports directives so this text is wrong.\n' Generic.Error
+
+'ok'          Keyword.Reserved
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'A'           Text
+' '           Text
+'normal'      Text
+' '           Text
+'test'        Text
+' '           Text
+'line'        Text
+' '           Text
+'includes'    Text
+' '           Text
+'a'           Text
+' '           Text
+'number.'     Text
+'\n'          Text
+
+'ok'          Keyword.Reserved
+' '           Text
+'But'         Text
+' '           Text
+'a'           Text
+' '           Text
+'test'        Text
+' '           Text
+'line'        Text
+' '           Text
+'may'         Text
+' '           Text
+'also'        Text
+' '           Text
+'omit'        Text
+' '           Text
+'a'           Text
+' '           Text
+'number.'     Text
+'\n'          Text
+
+'\n'          Text
+
+'A random line that does not look like a test or diagnostic should be ignored.\n' Text
+
+'      No matter how it is spaced out.\n' Text
+
+'\n'          Text
+
+'Or if it is a totally blank line.\n' Text
+
+'\n'          Text
+
+'not ok'      Generic.Error
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'This'        Text
+' '           Text
+'is'          Text
+' '           Text
+'a'           Text
+' '           Text
+'failing'     Text
+' '           Text
+'test'        Text
+' '           Text
+'line.'       Text
+'\n'          Text
+
+'\n'          Text
+
+'# Diagnostics are any lines...\n' Comment
+
+'# ... beginning with a hash character.\n' Comment
+
+'\n'          Text
+
+'not ok'      Generic.Error
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'There'       Text
+' '           Text
+'are'         Text
+' '           Text
+'a'           Text
+' '           Text
+'couple'      Text
+' '           Text
+'of'          Text
+' '           Text
+'directives.' Text
+' '           Text
+'#'           Comment
+' '           Comment
+'TODO'        Comment.Preproc
+' '           Comment
+'is'          Comment
+' '           Comment
+'one'         Comment
+' '           Comment
+'of'          Comment
+' '           Comment
+'those'       Comment
+' '           Comment
+'directives.' Comment
+'\n'          Comment
+
+'not ok'      Generic.Error
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+'#'           Comment
+' '           Comment
+'TODO'        Comment.Preproc
+':'           Comment
+' '           Comment
+'is'          Comment
+' '           Comment
+'invalid'     Comment
+' '           Comment
+'because'     Comment
+' '           Comment
+'the'         Comment
+' '           Comment
+'directive'   Comment
+' '           Comment
+'must'        Comment
+' '           Comment
+'be'          Comment
+' '           Comment
+'followed'    Comment
+' '           Comment
+'by'          Comment
+' '           Comment
+'a'           Comment
+' '           Comment
+'space.'      Comment
+'\n'          Comment
+
+'ok'          Keyword.Reserved
+' '           Text
+'6'           Literal.Number.Integer
+' '           Text
+'-'           Text
+' '           Text
+'Another'     Text
+' '           Text
+'directive'   Text
+' '           Text
+'line'        Text
+' '           Text
+'#'           Comment
+' '           Comment
+'toDO'        Comment.Preproc
+' '           Comment
+'is'          Comment
+' '           Comment
+'not'         Comment
+' '           Comment
+'case'        Comment
+' '           Comment
+'sensitive.'  Comment
+'\n'          Comment
+
+'\n'          Text
+
+'ok'          Keyword.Reserved
+' '           Text
+'7'           Literal.Number.Integer
+' '           Text
+'A'           Text
+' '           Text
+'line'        Text
+' '           Text
+'that'        Text
+' '           Text
+'is'          Text
+' '           Text
+'a'           Text
+' '           Text
+'#'           Comment
+' '           Comment
+'SKIP'        Comment.Preproc
+'\n'          Comment
+
+'ok'          Keyword.Reserved
+' '           Text
+'8'           Literal.Number.Integer
+' '           Text
+'Tests'       Text
+' '           Text
+'can'         Text
+' '           Text
+'be'          Text
+' '           Text
+'#'           Comment
+' '           Comment
+'skipped'     Comment.Preproc
+' '           Comment
+'as'          Comment
+' '           Comment
+'long'        Comment
+' '           Comment
+'as'          Comment
+' '           Comment
+'the'         Comment
+' '           Comment
+'directive'   Comment
+' '           Comment
+'has'         Comment
+' '           Comment
+'the'         Comment
+' '           Comment
+'"skip"'      Comment
+' '           Comment
+'stem.'       Comment
+'\n'          Comment
+
+'ok'          Keyword.Reserved
+' '           Text
+'9'           Literal.Number.Integer
+' '           Text
+'The'         Text
+' '           Text
+'TODO'        Text
+' '           Text
+'directive'   Text
+' '           Text
+'must'        Text
+' '           Text
+'be'          Text
+' '           Text
+'followed'    Text
+' '           Text
+'by'          Text
+' '           Text
+'a'           Text
+' '           Text
+'space,'      Text
+' '           Text
+'but'         Text
+' '           Text
+'#'           Comment
+' '           Comment
+'skip:'       Comment.Preproc
+' '           Comment
+'is'          Comment
+' '           Comment
+'valid.'      Comment
+'\n'          Comment
+
+'1..0'        Keyword.Declaration
+' '           Text
+'#'           Comment
+' '           Comment
+'Skipped'     Comment.Preproc
+' '           Comment
+'directives'  Comment
+' '           Comment
+'can'         Comment
+' '           Comment
+'show'        Comment
+' '           Comment
+'on'          Comment
+' '           Comment
+'a'           Comment
+' '           Comment
+'plan'        Comment
+' '           Comment
+'line'        Comment
+' '           Comment
+'too.'        Comment
+'\n'          Comment
+
+'\n'          Text
+
+'Bail out! is a special phrase emitted when a TAP file aborted.\n' Generic.Error
+
+'\n'          Text
+
+'not ok'      Generic.Error
+' '           Text
+'10'          Literal.Number.Integer
+' '           Text
+'Having'      Text
+' '           Text
+'TAP'         Text
+' '           Text
+'version'     Text
+' '           Text
+'13'          Text
+' '           Text
+'in'          Text
+' '           Text
+'the'         Text
+' '           Text
+'middle'      Text
+' '           Text
+'of'          Text
+' '           Text
+'a'           Text
+' '           Text
+'line'        Text
+' '           Text
+'is'          Text
+' '           Text
+'not'         Text
+' '           Text
+'a'           Text
+' '           Text
+'TAP'         Text
+' '           Text
+'version.'    Text
+'\n'          Text
+
+'not ok'      Generic.Error
+' '           Text
+'11'          Literal.Number.Integer
+' '           Text
+'Having'      Text
+' '           Text
+'Bail'        Text
+' '           Text
+'out!'        Text
+' '           Text
+'in'          Text
+' '           Text
+'the'         Text
+' '           Text
+'middle'      Text
+' '           Text
+'of'          Text
+' '           Text
+'a'           Text
+' '           Text
+'line'        Text
+' '           Text
+'is'          Text
+' '           Text
+'not'         Text
+' '           Text
+'a'           Text
+' '           Text
+'bail'        Text
+' '           Text
+'out.'        Text
+'\n'          Text
+
+'\n'          Text
+
+'ok'          Keyword.Reserved
+' '           Text
+'12'          Literal.Number.Integer
+' '           Text
+'Here'        Text
+' '           Text
+'is'          Text
+' '           Text
+'an'          Text
+' '           Text
+'empty'       Text
+' '           Text
+'directive.'  Text
+' '           Text
+'#'           Comment
+'\n'          Comment
+
+'\n'          Text
+
+'# The most basic valid test lines.\n' Comment
+
+'ok'          Keyword.Reserved
+'\n'          Text
+
+'not ok'      Generic.Error
+'\n'          Text
+
+'\n'          Text
+
+'ok'          Keyword.Reserved
+' '           Text
+'15'          Literal.Number.Integer
+' '           Text
+'Only'        Text
+' '           Text
+'the'         Text
+' '           Text
+'test'        Text
+' '           Text
+'number'      Text
+' '           Text
+'should'      Text
+' '           Text
+'look'        Text
+' '           Text
+'different.'  Text
+' '           Text
+'Not'         Text
+' '           Text
+'another'     Text
+' '           Text
+'42,'         Text
+' '           Text
+'for'         Text
+' '           Text
+'example.'    Text
+'\n'          Text

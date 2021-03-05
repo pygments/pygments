@@ -1,0 +1,26 @@
+'if DEBUG\n'  Comment.Preproc
+
+'DBG'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'debug'       Text
+'\n'          Text
+
+'else\n'      Comment.Preproc
+
+'DBG'         Name.Variable
+' '           Text
+'='           Operator
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'noinst_PROGRAMS' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$('          Keyword
+'DBG'         Text
+')'           Keyword
+'\n'          Text

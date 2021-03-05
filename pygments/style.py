@@ -1,16 +1,14 @@
-# -*- coding: utf-8 -*-
 """
     pygments.style
     ~~~~~~~~~~~~~~
 
     Basic style object.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.token import Token, STANDARD_TYPES
-from pygments.util import add_metaclass
 
 # Default mapping of ansixxx to RGB colors.
 _ansimap = {
@@ -169,14 +167,25 @@ class StyleMeta(type):
         return len(cls._styles)
 
 
-@add_metaclass(StyleMeta)
-class Style(object):
+class Style(metaclass=StyleMeta):
 
     #: overall background color (``None`` means transparent)
     background_color = '#ffffff'
 
     #: highlight background color
     highlight_color = '#ffffcc'
+
+    #: line number font color
+    line_number_color = 'inherit'
+
+    #: line number background color
+    line_number_background_color = 'transparent'
+
+    #: special line number font color
+    line_number_special_color = '#000000'
+
+    #: special line number background color
+    line_number_special_background_color = '#ffffc0'
 
     #: Style definitions for individual token types.
     styles = {}

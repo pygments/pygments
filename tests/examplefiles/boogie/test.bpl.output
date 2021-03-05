@@ -1,0 +1,2311 @@
+'/*'          Comment.Multiline
+'\n '         Comment.Multiline
+'*'           Comment.Multiline
+' Test Boogie rendering\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'const'       Keyword.Reserved
+' '           Text
+'N'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'axiom'       Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'<='          Operator
+' '           Text
+'N'           Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'foo'         Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'// array to sort as global array, because partition & quicksort have to \n' Comment.Single
+
+'var'         Keyword
+' '           Text
+'a'           Name
+':'           Punctuation
+' '           Text
+'['           Operator
+'int'         Keyword.Type
+']'           Operator
+' '           Text
+'int'         Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'var'         Keyword
+' '           Text
+'original'    Name
+':'           Punctuation
+' '           Text
+'['           Operator
+'int'         Keyword.Type
+']'           Operator
+' '           Text
+'int'         Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'var'         Keyword
+' '           Text
+'perm'        Name
+':'           Punctuation
+' '           Text
+'['           Operator
+'int'         Keyword.Type
+']'           Operator
+' '           Text
+'int'         Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Is array a of length N sorted?\n' Comment.Single
+
+'function'    Keyword
+' '           Text
+'is_sorted'   Name
+'('           Punctuation
+'a'           Name
+':'           Punctuation
+' '           Text
+'['           Operator
+'int'         Keyword.Type
+']'           Operator
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'l'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'r'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'bool'        Keyword.Type
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'j'           Name
+','           Punctuation
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'l'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'j'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'j'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'k'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'j'           Name
+']'           Operator
+' '           Text
+'<='          Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// is range a[l:r] unchanged?\n' Comment.Single
+
+'function'    Keyword
+' '           Text
+'is_unchanged' Name
+'('           Punctuation
+'a'           Name
+':'           Punctuation
+' '           Text
+'['           Operator
+'int'         Keyword.Type
+']'           Operator
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'b'           Name
+':'           Punctuation
+' '           Text
+'['           Operator
+'int'         Keyword.Type
+']'           Operator
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'l'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'r'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'bool'        Keyword.Type
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'i'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'l'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'i'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'i'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'b'           Name
+'['           Operator
+'i'           Name
+']'           Operator
+')'           Punctuation
+' \n'         Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'is_permutation' Name
+'('           Punctuation
+'a'           Name
+':'           Punctuation
+' '           Text
+'['           Operator
+'int'         Keyword.Type
+']'           Operator
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'original'    Name
+':'           Punctuation
+' '           Text
+'['           Operator
+'int'         Keyword.Type
+']'           Operator
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'perm'        Name
+':'           Punctuation
+' '           Text
+'['           Operator
+'int'         Keyword.Type
+']'           Operator
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'N'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'bool'        Keyword.Type
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'<='          Operator
+' '           Text
+'k'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'N'           Name
+' '           Text
+'==>'         Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'<='          Operator
+' '           Text
+'perm'        Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'&&'          Operator
+' '           Text
+'perm'        Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'<'           Operator
+' '           Text
+'N'           Name
+')'           Punctuation
+' '           Text
+'&&'          Operator
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+','           Punctuation
+' '           Text
+'j'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'<='          Operator
+' '           Text
+'k'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'j'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'j'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'N'           Name
+' '           Text
+'==>'         Operator
+' '           Text
+'perm'        Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'!='          Operator
+' '           Text
+'perm'        Name
+'['           Operator
+'j'           Name
+']'           Operator
+')'           Punctuation
+' '           Text
+'&&'          Operator
+'\n'          Text
+
+'    '        Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'<='          Operator
+' '           Text
+'k'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'N'           Name
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'original'    Name
+'['           Operator
+'perm'        Name
+'['           Operator
+'k'           Name
+']'           Operator
+']'           Operator
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'count'       Name
+'('           Punctuation
+'a'           Name
+':'           Punctuation
+' '           Text
+'['           Operator
+'int'         Keyword.Type
+']'           Operator
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'x'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'N'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+')'           Punctuation
+' '           Text
+'returns'     Name
+' '           Text
+'('           Punctuation
+'int'         Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'{ if N == 0 then 0 else if a[N-1] == x then count(a, x, N - 1) + 1 else count(a, x, N-1) }' Generic.Emph
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'/*'          Comment.Multiline
+'\nfunction count(a: [int] int, x: int, N: int) returns (int)\n{ if N == 0 then 0 else if a[N-1] == x then count(a, x, N - 1) + 1 else count(a, x, N-1) }\n\nfunction is_permutation(a: [int] int, b: [int] int, l: int, r: int): bool {\n  (forall i: int :: l <= i && i <= r ==> count(a, a[i], r+1) == count(b, a[i], r+1))\n}\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'partition'   Name
+'('           Punctuation
+'l'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'r'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'N'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+')'           Punctuation
+' '           Text
+'returns'     Name
+' '           Text
+'('           Punctuation
+'p'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'modifies'    Keyword
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'perm'        Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'requires'    Keyword
+' '           Text
+'N'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'requires'    Keyword
+' '           Text
+'l'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'&&'          Operator
+' '           Text
+'l'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'r'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'r'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'N'           Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'requires'    Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'r'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'N'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'<='          Operator
+' '           Text
+'a'           Name
+'['           Operator
+'r'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'requires'    Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'l'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'>='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'>'           Operator
+' '           Text
+'a'           Name
+'['           Operator
+'l'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'/*'          Comment.Multiline
+' a is a permutation of the original array original ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'requires'    Keyword
+' '           Text
+'is_permutation' Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'original'    Name
+','           Punctuation
+' '           Text
+'perm'        Name
+','           Punctuation
+' '           Text
+'N'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+' '           Text
+'&&'          Operator
+'  '          Text
+'k'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'p'           Name
+' '           Text
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'<='          Operator
+' '           Text
+'a'           Name
+'['           Operator
+'p'           Name
+']'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'p'           Name
+' '           Text
+'&&'          Operator
+'  '          Text
+'k'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+' '           Text
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'>'           Operator
+' '           Text
+'a'           Name
+'['           Operator
+'p'           Name
+']'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'p'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'p'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'is_unchanged' Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'old'         Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'l'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'is_unchanged' Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'old'         Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'r'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'r'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'N'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'<='          Operator
+' '           Text
+'a'           Name
+'['           Operator
+'r'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'l'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'>='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'>'           Operator
+' '           Text
+'a'           Name
+'['           Operator
+'l'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'/*'          Comment.Multiline
+' a is a permutation of the original array original ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'is_permutation' Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'original'    Name
+','           Punctuation
+' '           Text
+'perm'        Name
+','           Punctuation
+' '           Text
+'N'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'i'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'sv'          Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'pivot'       Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'tmp'         Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'i'           Name
+' '           Text
+':='          Operator
+' '           Text
+'l'           Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'sv'          Name
+' '           Text
+':='          Operator
+' '           Text
+'l'           Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'pivot'       Name
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+'['           Operator
+'r'           Name
+']'           Operator
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'i'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'invariant'   Keyword
+' '           Text
+'i'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'i'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'invariant'   Keyword
+' '           Text
+'sv'          Name
+' '           Text
+'<='          Operator
+' '           Text
+'i'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'sv'          Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'invariant'   Keyword
+' '           Text
+'pivot'       Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'a'           Name
+'['           Operator
+'r'           Name
+']'           Operator
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'invariant'   Keyword
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+' '           Text
+'&&'          Operator
+'  '          Text
+'k'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'sv'          Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'<='          Operator
+' '           Text
+'old'         Name
+'('           Punctuation
+'a'           Name
+'['           Operator
+'r'           Name
+']'           Operator
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'invariant'   Keyword
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'sv'          Name
+' '           Text
+'&&'          Operator
+'  '          Text
+'k'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'i'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'>'           Operator
+' '           Text
+'old'         Name
+'('           Punctuation
+'a'           Name
+'['           Operator
+'r'           Name
+']'           Operator
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'/*'          Comment.Multiline
+' a is a permutation of the original array original ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'        '    Text
+'invariant'   Keyword
+' '           Text
+'is_permutation' Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'original'    Name
+','           Punctuation
+' '           Text
+'perm'        Name
+','           Punctuation
+' '           Text
+'N'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'invariant'   Keyword
+' '           Text
+'is_unchanged' Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'old'         Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'l'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'invariant'   Keyword
+' '           Text
+'is_unchanged' Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'old'         Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'r'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'invariant'   Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'r'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'N'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'<='          Operator
+' '           Text
+'a'           Name
+'['           Operator
+'r'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'invariant'   Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'l'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'>='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'>'           Operator
+' '           Text
+'a'           Name
+'['           Operator
+'l'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'a'           Name
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+'<='          Operator
+' '           Text
+'pivot'       Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'            ' Text
+'tmp'         Name
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+'['           Operator
+'i'           Name
+']'           Operator
+';'           Punctuation
+' '           Text
+'a'           Name
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+'['           Operator
+'sv'          Name
+']'           Operator
+';'           Punctuation
+' '           Text
+'a'           Name
+'['           Operator
+'sv'          Name
+']'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'tmp'         Name
+' '           Text
+':='          Operator
+' '           Text
+'perm'        Name
+'['           Operator
+'i'           Name
+']'           Operator
+';'           Punctuation
+'  '          Text
+'perm'        Name
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'perm'        Name
+'['           Operator
+'sv'          Name
+']'           Operator
+';'           Punctuation
+'  '          Text
+'perm'        Name
+'['           Operator
+'sv'          Name
+']'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n'          Text
+
+'            ' Text
+'sv'          Name
+' '           Text
+':='          Operator
+' '           Text
+'sv'          Name
+' '           Text
+'+'           Operator
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'        '    Text
+'}'           Punctuation
+'\n'          Text
+
+'        '    Text
+'i'           Name
+' '           Text
+':='          Operator
+' '           Text
+'i'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'//swap\n'    Comment.Single
+
+'    '        Text
+'tmp'         Name
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+'['           Operator
+'i'           Name
+']'           Operator
+';'           Punctuation
+' '           Text
+'a'           Name
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+'['           Operator
+'sv'          Name
+']'           Operator
+';'           Punctuation
+' '           Text
+'a'           Name
+'['           Operator
+'sv'          Name
+']'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'tmp'         Name
+' '           Text
+':='          Operator
+' '           Text
+'perm'        Name
+'['           Operator
+'i'           Name
+']'           Operator
+';'           Punctuation
+'  '          Text
+'perm'        Name
+'['           Operator
+'i'           Name
+']'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'perm'        Name
+'['           Operator
+'sv'          Name
+']'           Operator
+';'           Punctuation
+'  '          Text
+'perm'        Name
+'['           Operator
+'sv'          Name
+']'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'tmp'         Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'p'           Name
+' '           Text
+':='          Operator
+' '           Text
+'sv'          Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'quicksort'   Name
+'('           Punctuation
+'l'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'r'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+','           Punctuation
+' '           Text
+'N'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'modifies'    Keyword
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'perm'        Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'requires'    Keyword
+' '           Text
+'N'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'requires'    Keyword
+' '           Text
+'l'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'&&'          Operator
+' '           Text
+'l'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'r'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'r'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'N'           Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'requires'    Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'r'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'N'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'<='          Operator
+' '           Text
+'a'           Name
+'['           Operator
+'r'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'requires'    Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'l'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'>='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'>'           Operator
+' '           Text
+'a'           Name
+'['           Operator
+'l'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'/*'          Comment.Multiline
+' a is a permutation of the original array original ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'requires'    Keyword
+' '           Text
+'is_permutation' Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'original'    Name
+','           Punctuation
+' '           Text
+'perm'        Name
+','           Punctuation
+' '           Text
+'N'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'r'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'N'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'<='          Operator
+' '           Text
+'a'           Name
+'['           Operator
+'r'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'l'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'>='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'('           Punctuation
+'forall'      Keyword
+' '           Text
+'k'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+':'           Punctuation
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'k'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'l'           Name
+' '           Text
+'&&'          Operator
+' '           Text
+'k'           Name
+' '           Text
+'<='          Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+' '           Text
+'==>'         Operator
+' '           Text
+'a'           Name
+'['           Operator
+'k'           Name
+']'           Operator
+' '           Text
+'>'           Operator
+' '           Text
+'a'           Name
+'['           Operator
+'l'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'is_unchanged' Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'old'         Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'l'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'is_unchanged' Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'old'         Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'r'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'is_sorted'   Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'l'           Name
+','           Punctuation
+' '           Text
+'r'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'/*'          Comment.Multiline
+' a is a permutation of the original array original ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'    '        Text
+'ensures'     Keyword
+' '           Text
+'is_permutation' Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text
+'original'    Name
+','           Punctuation
+' '           Text
+'perm'        Name
+','           Punctuation
+' '           Text
+'N'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'var'         Keyword
+' '           Text
+'p'           Name
+':'           Punctuation
+' '           Text
+'int'         Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'call'        Keyword
+' '           Text
+'p'           Name
+' '           Text
+':='          Operator
+' '           Text
+'partition'   Name
+'('           Punctuation
+'l'           Name
+','           Punctuation
+' '           Text
+'r'           Name
+','           Punctuation
+' '           Text
+'N'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'p'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'l'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'call'        Keyword
+' '           Text
+'quicksort'   Name
+'('           Punctuation
+'l'           Name
+','           Punctuation
+' '           Text
+'p'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'N'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'p'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'        '    Text
+'call'        Keyword
+' '           Text
+'quicksort'   Name
+'('           Punctuation
+'p'           Name
+'+'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'r'           Name
+','           Punctuation
+' '           Text
+'N'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

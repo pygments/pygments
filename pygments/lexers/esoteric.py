@@ -1,17 +1,18 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.esoteric
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for esoteric languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
+
+import re
 
 __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'CAmkESLexer',
            'CapDLLexer', 'AheuiLexer']
@@ -47,6 +48,31 @@ class BrainfuckLexer(RegexLexer):
             include('common'),
         ]
     }
+
+    def analyse_text(text):
+        """It's safe to assume that a program which mostly consists of + -
+        and < > is brainfuck."""
+        plus_minus_count = 0
+        greater_less_count = 0
+
+        range_to_check = max(256, len(text))
+
+        for c in text[:range_to_check]:
+            if c == '+' or c == '-':
+                plus_minus_count += 1
+            if c == '<' or c == '>':
+                greater_less_count += 1
+
+        if plus_minus_count > (0.25 * range_to_check):
+            return 1.0
+        if greater_less_count > (0.25 * range_to_check):
+            return 1.0
+
+        result = 0
+        if '[-]' in text:
+            result += 0.5
+
+        return result
 
 
 class BefungeLexer(RegexLexer):
@@ -255,23 +281,23 @@ class AheuiLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (u'['
-             u'나-낳냐-냫너-넣녀-녛노-놓뇨-눟뉴-닇'
-             u'다-닿댜-댷더-덯뎌-뎧도-돟됴-둫듀-딓'
-             u'따-땋땨-떃떠-떻뗘-뗳또-똫뚀-뚷뜌-띟'
-             u'라-랗랴-럏러-렇려-렿로-롷료-뤃류-릫'
-             u'마-맣먀-먛머-멓며-몋모-뫃묘-뭏뮤-믷'
-             u'바-밯뱌-뱧버-벟벼-볗보-봏뵤-붛뷰-빃'
-             u'빠-빻뺘-뺳뻐-뻫뼈-뼣뽀-뽛뾰-뿧쀼-삏'
-             u'사-샇샤-샿서-섷셔-셯소-솧쇼-숳슈-싛'
-             u'싸-쌓쌰-썋써-쎃쎠-쎻쏘-쏳쑈-쑿쓔-씧'
-             u'자-잫쟈-쟣저-젛져-졓조-좋죠-줗쥬-즿'
-             u'차-챃챠-챻처-첳쳐-쳫초-촣쵸-춯츄-칗'
-             u'카-캏캬-컇커-컿켜-켷코-콯쿄-쿻큐-킣'
-             u'타-탛탸-턓터-텋텨-톃토-톻툐-퉇튜-틯'
-             u'파-팧퍄-퍟퍼-펗펴-폏포-퐇표-풓퓨-픻'
-             u'하-핳햐-햫허-헣혀-혛호-홓효-훟휴-힇'
-             u']', Operator),
+            ('['
+             '나-낳냐-냫너-넣녀-녛노-놓뇨-눟뉴-닇'
+             '다-닿댜-댷더-덯뎌-뎧도-돟됴-둫듀-딓'
+             '따-땋땨-떃떠-떻뗘-뗳또-똫뚀-뚷뜌-띟'
+             '라-랗랴-럏러-렇려-렿로-롷료-뤃류-릫'
+             '마-맣먀-먛머-멓며-몋모-뫃묘-뭏뮤-믷'
+             '바-밯뱌-뱧버-벟벼-볗보-봏뵤-붛뷰-빃'
+             '빠-빻뺘-뺳뻐-뻫뼈-뼣뽀-뽛뾰-뿧쀼-삏'
+             '사-샇샤-샿서-섷셔-셯소-솧쇼-숳슈-싛'
+             '싸-쌓쌰-썋써-쎃쎠-쎻쏘-쏳쑈-쑿쓔-씧'
+             '자-잫쟈-쟣저-젛져-졓조-좋죠-줗쥬-즿'
+             '차-챃챠-챻처-첳쳐-쳫초-촣쵸-춯츄-칗'
+             '카-캏캬-컇커-컿켜-켷코-콯쿄-쿻큐-킣'
+             '타-탛탸-턓터-텋텨-톃토-톻툐-퉇튜-틯'
+             '파-팧퍄-퍟퍼-펗펴-폏포-퐇표-풓퓨-픻'
+             '하-핳햐-햫허-헣혀-혛호-홓효-훟휴-힇'
+             ']', Operator),
             ('.', Comment),
         ],
     }

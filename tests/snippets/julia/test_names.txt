@@ -1,0 +1,148 @@
+# Test that the range of Julia variable names are correctly identified
+
+---input---
+a # single character variable
+a_simple_name
+_leading_underscore
+5implicit_mul
+6_more_mul
+nums1
+nums_2
+nameswith!
+multiple!!
+embedded!_inthemiddle
+embed!1
+prime_suffix′
+for_each # starts with keyword substring
+
+# variables with characters > \u00A1
+ð # category Ll
+Aʺ # category Lm -- \U02BA (MODIFIER LETTER DOUBLE PRIME), not \U2033 (DOUBLE PRIME)
+א # category Lo
+Ð # category Lu
+A̅ # category Mn -- \U0305 (COMBINING OVERLINE)
+ⅿ # category Nl -- \U217F (SMALL ROMAN NUMERAL ONE THOUSAND)
+A₁ # category No
+A² # category No
+€ # category Sc
+© # category So
+
+# number-like names
+𝟙 # category Nd
+𝟏 # category Nd
+
+---tokens---
+'a'           Name
+' '           Text
+'# single character variable' Comment
+'\n'          Text
+
+'a_simple_name' Name
+'\n'          Text
+
+'_leading_underscore' Name
+'\n'          Text
+
+'5'           Literal.Number.Integer
+'implicit_mul' Name
+'\n'          Text
+
+'6'           Literal.Number.Integer
+'_more_mul'   Name
+'\n'          Text
+
+'nums1'       Name
+'\n'          Text
+
+'nums_2'      Name
+'\n'          Text
+
+'nameswith!'  Name
+'\n'          Text
+
+'multiple!!'  Name
+'\n'          Text
+
+'embedded!_inthemiddle' Name
+'\n'          Text
+
+'embed!1'     Name
+'\n'          Text
+
+'prime_suffix′' Name
+'\n'          Text
+
+'for_each'    Name
+' '           Text
+'# starts with keyword substring' Comment
+'\n'          Text
+
+'\n'          Text
+
+'# variables with characters > \\u00A1' Comment
+'\n'          Text
+
+'ð'           Name
+' '           Text
+'# category Ll' Comment
+'\n'          Text
+
+'Aʺ'          Name
+' '           Text
+'# category Lm -- \\U02BA (MODIFIER LETTER DOUBLE PRIME), not \\U2033 (DOUBLE PRIME)' Comment
+'\n'          Text
+
+'א'           Name
+' '           Text
+'# category Lo' Comment
+'\n'          Text
+
+'Ð'           Name
+' '           Text
+'# category Lu' Comment
+'\n'          Text
+
+'A̅'          Name
+' '           Text
+'# category Mn -- \\U0305 (COMBINING OVERLINE)' Comment
+'\n'          Text
+
+'ⅿ'           Name
+' '           Text
+'# category Nl -- \\U217F (SMALL ROMAN NUMERAL ONE THOUSAND)' Comment
+'\n'          Text
+
+'A₁'          Name
+' '           Text
+'# category No' Comment
+'\n'          Text
+
+'A²'          Name
+' '           Text
+'# category No' Comment
+'\n'          Text
+
+'€'           Name
+' '           Text
+'# category Sc' Comment
+'\n'          Text
+
+'©'           Name
+' '           Text
+'# category So' Comment
+'\n'          Text
+
+'\n'          Text
+
+'# number-like names' Comment
+'\n'          Text
+
+'𝟙'           Name
+' '           Text
+'# category Nd' Comment
+'\n'          Text
+
+'𝟏'           Name
+' '           Text
+'# category Nd' Comment
+'\n'          Text

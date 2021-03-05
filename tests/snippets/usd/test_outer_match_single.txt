@@ -1,0 +1,12 @@
+---input---
+'firststring' something else 'secondstring'
+
+---tokens---
+"'firststring'" Literal.String
+' '           Text.Whitespace
+'something'   Text
+' '           Text.Whitespace
+'else'        Text
+' '           Text.Whitespace
+"'secondstring'" Literal.String
+'\n'          Text.Whitespace

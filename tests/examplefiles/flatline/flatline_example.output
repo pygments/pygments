@@ -1,0 +1,1727 @@
+'('           Punctuation
+'field '      Name.Builtin
+'"another field"' Literal.String
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'f '          Name.Builtin
+'"000001"'    Literal.String
+' '           Text
+'-2'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'missing? '   Name.Builtin
+'"a field"'   Literal.String
+' '           Text
+'23'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'random-value ' Name.Builtin
+'"age"'       Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'weighted-random-value ' Name.Builtin
+'"000001"'    Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'if '         Name.Builtin
+'('           Punctuation
+'missing? '   Name.Builtin
+'"00000"'     Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'random-value ' Name.Builtin
+'"000000"'    Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"000000"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'ensure-value ' Name.Builtin
+'"000000"'    Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'ensure-weighted-value ' Name.Builtin
+'"000000"'    Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'normalize '  Name.Builtin
+'"000001"'    Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'normalize '  Name.Builtin
+'"length"'    Literal.String
+' '           Text
+'8'           Literal.Number.Integer
+' '           Text
+'23'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'z-score '    Name.Builtin
+'"a numeric field"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'z-score '    Name.Builtin
+'23'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'field-prop ' Name.Builtin
+'string'      Name.Variable
+' '           Text
+'"00023"'     Literal.String
+' '           Text
+'name'        Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'field-prop ' Name.Builtin
+'numeric'     Name.Variable
+' '           Text
+'"00023"'     Literal.String
+' '           Text
+'summary '    Name.Builtin
+'missing_count' Name.Variable
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'category-count ' Name.Builtin
+'"species"'   Literal.String
+' '           Text
+'"Iris-versicolor"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'category-count ' Name.Builtin
+'"species"'   Literal.String
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"000004"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'bin-count '  Name.Builtin
+'"age"'       Literal.String
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"bin-selector"' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'bin-center ' Name.Builtin
+'"000003"'    Literal.String
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'bin-center ' Name.Builtin
+'('           Punctuation
+'field '      Name.Builtin
+'"field-selector"' Literal.String
+')'           Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'let '        Keyword
+'('           Punctuation
+'v'           Name.Function
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"age"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'cond '       Name.Builtin
+'('           Punctuation
+'< '          Name.Builtin
+'v'           Name.Variable
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'"baby"'      Literal.String
+'\n        '  Text
+'('           Punctuation
+'< '          Name.Builtin
+'v'           Name.Variable
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'"child"'     Literal.String
+'\n        '  Text
+'('           Punctuation
+'< '          Name.Builtin
+'v'           Name.Variable
+' '           Text
+'20'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'"teenager"'  Literal.String
+'\n        '  Text
+'"adult"'     Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'segment-label ' Name.Builtin
+'"000000"'    Literal.String
+' '           Text
+'"baby"'      Literal.String
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'"child"'     Literal.String
+' '           Text
+'10'          Literal.Number.Integer
+' '           Text
+'"teenager"'  Literal.String
+' '           Text
+'20'          Literal.Number.Integer
+' '           Text
+'"adult"'     Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'segment-label ' Name.Builtin
+'0'           Literal.Number.Integer
+' '           Text
+'"1st fourth"' Literal.String
+' '           Text
+'"2nd fourth"' Literal.String
+' '           Text
+'"3rd fourth"' Literal.String
+' '           Text
+'"4th fourth"' Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'let '        Keyword
+'('           Punctuation
+'max '        Name.Builtin
+'('           Punctuation
+'maximum '    Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n          ' Text
+'min '        Name.Builtin
+'('           Punctuation
+'minimum '    Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n          ' Text
+'step'        Name.Variable
+' '           Text
+'('           Punctuation
+'/'           Name.Function
+' '           Text
+'('           Punctuation
+'- '          Name.Builtin
+'max '        Name.Builtin
+'min'         Name.Variable
+')'           Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'segment-label ' Name.Builtin
+'0'           Literal.Number.Integer
+' '           Text
+'"1st fourth"' Literal.String
+' '           Text
+'('           Punctuation
+'+ '          Name.Builtin
+'min '        Name.Builtin
+'step'        Name.Variable
+')'           Punctuation
+'\n                 ' Text
+'"2nd fourth"' Literal.String
+' '           Text
+'('           Punctuation
+'+ '          Name.Builtin
+'min '        Name.Builtin
+'step'        Name.Variable
+' '           Text
+'step'        Name.Variable
+')'           Punctuation
+'\n                 ' Text
+'"3rd fourth"' Literal.String
+' '           Text
+'('           Punctuation
+'+ '          Name.Builtin
+'min '        Name.Builtin
+'step'        Name.Variable
+' '           Text
+'step'        Name.Variable
+' '           Text
+'step'        Name.Variable
+')'           Punctuation
+'\n                 ' Text
+'"4th fourth"' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'contains-items?' Name.Function
+' '           Text
+'"000000"'    Literal.String
+' '           Text
+'"blue"'      Literal.String
+' '           Text
+'"green"'     Literal.String
+' '           Text
+'"darkblue"'  Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'<= '         Name.Builtin
+'('           Punctuation
+'percentile ' Name.Builtin
+'"age"'       Literal.String
+' '           Text
+'0.5'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"age"'       Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'percentile ' Name.Builtin
+'"age"'       Literal.String
+' '           Text
+'0.95'        Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'within-percentiles? ' Name.Builtin
+'"age"'       Literal.String
+' '           Text
+'0.5'         Literal.Number.Float
+' '           Text
+'0.95'        Literal.Number.Float
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'percentile-label ' Name.Builtin
+'"000023"'    Literal.String
+' '           Text
+'"1st"'       Literal.String
+' '           Text
+'"2nd"'       Literal.String
+' '           Text
+'"3rd"'       Literal.String
+' '           Text
+'"4th"'       Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'cond '       Name.Builtin
+'('           Punctuation
+'within-percentiles? ' Name.Builtin
+'"000023"'    Literal.String
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'0.25'        Literal.Number.Float
+')'           Punctuation
+' '           Text
+'"1st"'       Literal.String
+'\n      '    Text
+'('           Punctuation
+'within-percentiles? ' Name.Builtin
+'"000023"'    Literal.String
+' '           Text
+'0.25'        Literal.Number.Float
+' '           Text
+'0.5'         Literal.Number.Float
+')'           Punctuation
+' '           Text
+'"2nd"'       Literal.String
+'\n      '    Text
+'('           Punctuation
+'within-percentiles? ' Name.Builtin
+'"000023"'    Literal.String
+' '           Text
+'0.5'         Literal.Number.Float
+' '           Text
+'0.75'        Literal.Number.Float
+')'           Punctuation
+' '           Text
+'"3rd"'       Literal.String
+'\n      '    Text
+'"4th"'       Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'str '        Name.Builtin
+'1'           Literal.Number.Integer
+' '           Text
+'"hello "'    Literal.String
+' '           Text
+'('           Punctuation
+'field '      Name.Builtin
+'"a"'         Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'str '        Name.Builtin
+'"value_"'    Literal.String
+' '           Text
+'('           Punctuation
+'+ '          Name.Builtin
+'3'           Literal.Number.Integer
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'"/"'         Literal.String
+' '           Text
+'('           Punctuation
+'name'        Name.Function
+' '           Text
+'"000001"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'length '     Name.Builtin
+'"abc"'       Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'length '     Name.Builtin
+'""'          Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'levenshtein ' Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'"a random string"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'if '         Name.Builtin
+'('           Punctuation
+'< '          Name.Builtin
+'('           Punctuation
+'levenshtein ' Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'"bluething"' Literal.String
+')'           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'"bluething"' Literal.String
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'occurrences ' Name.Builtin
+'"howdy woman, howdy"' Literal.String
+' '           Text
+'"howdy"'     Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'occurrences ' Name.Builtin
+'"howdy woman"' Literal.String
+' '           Text
+'"Man"'       Literal.String
+' '           Text
+'true'        Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'occurrences ' Name.Builtin
+'"howdy man"' Literal.String
+' '           Text
+'"Man"'       Literal.String
+' '           Text
+'true'        Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'occurrences ' Name.Builtin
+'"hola, Holas"' Literal.String
+' '           Text
+'"hola"'      Literal.String
+' '           Text
+'true'        Name.Variable
+' '           Text
+'"es"'        Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'md5 '        Name.Builtin
+'"a text"'    Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'sha1 '       Name.Builtin
+'"a text"'    Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'sha256 '     Name.Builtin
+'""'          Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'matches? '   Name.Builtin
+'('           Punctuation
+'field '      Name.Builtin
+'"name"'      Literal.String
+')'           Punctuation
+' '           Text
+'".*\\\\sHal\\\\s.*"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'matches? '   Name.Builtin
+'('           Punctuation
+'field '      Name.Builtin
+'"name"'      Literal.String
+')'           Punctuation
+' '           Text
+'"(?i).*\\\\shal\\\\s.*"' Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'if '         Name.Builtin
+'('           Punctuation
+'matches? '   Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'"result"'    Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'re-quote '   Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'"target"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'"GOOD"'      Literal.String
+' '           Text
+'"MISS"'      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'matches? '   Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'"name"'      Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'"^"'         Literal.String
+' '           Text
+'('           Punctuation
+'re-quote '   Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'"salutation"' Literal.String
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'"\\\\s *$"'  Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'replace '    Name.Builtin
+'"Almost Pig Latin"' Literal.String
+' '           Text
+'"\\\\b(\\\\w)(\\\\w+)\\\\b"' Literal.String
+' '           Text
+'"$2$1ay"'    Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'replace-first ' Name.Builtin
+'"swap first two words"' Literal.String
+' '           Text
+'"(\\\\w+)(\\\\s+)(\\\\w+)"' Literal.String
+' '           Text
+'"$3$2$1"'    Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'language '   Name.Builtin
+'"this is an English phrase"' Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'< '          Name.Builtin
+'('           Punctuation
+'field '      Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'field '      Name.Builtin
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'<= '         Name.Builtin
+'('           Punctuation
+'field '      Name.Builtin
+'0'           Literal.Number.Integer
+' '           Text
+'-1'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'field '      Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'field '      Name.Builtin
+'0'           Literal.Number.Integer
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'> '          Name.Builtin
+'('           Punctuation
+'field '      Name.Builtin
+'"date"'      Literal.String
+')'           Punctuation
+' '           Text
+'"07-14-1969"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'>= '         Name.Builtin
+'23'          Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"000004"'    Literal.String
+' '           Text
+'-2'          Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'= '          Name.Builtin
+'"Dante"'     Literal.String
+' '           Text
+'('           Punctuation
+'field '      Name.Builtin
+'"Author"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'= '          Name.Builtin
+'1300'        Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'field '      Name.Builtin
+'"Year"'      Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'= '          Name.Builtin
+'('           Punctuation
+'field '      Name.Builtin
+'"Year"'      Literal.String
+' '           Text
+'-2'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'field '      Name.Builtin
+'"Year"'      Literal.String
+' '           Text
+'-1'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'field '      Name.Builtin
+'"Year"'      Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'!= '         Name.Builtin
+'('           Punctuation
+'field '      Name.Builtin
+'"00033"'     Literal.String
+' '           Text
+'-1'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'field '      Name.Builtin
+'"00033"'     Literal.String
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'and '        Name.Builtin
+'('           Punctuation
+'= '          Name.Builtin
+'3'           Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'field '      Name.Builtin
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'= '          Name.Builtin
+'"meh"'       Literal.String
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"a"'         Literal.String
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'< '          Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'"pregnancies"' Literal.String
+')'           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'not '        Name.Builtin
+'true'        Name.Variable
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'linear-regression ' Name.Builtin
+'1'           Literal.Number.Integer
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'linear-regression ' Name.Builtin
+'2.0'         Literal.Number.Float
+' '           Text
+'3.1'         Literal.Number.Float
+' '           Text
+'2.3'         Literal.Number.Float
+' '           Text
+'3.3'         Literal.Number.Float
+' '           Text
+'24.3'        Literal.Number.Float
+' '           Text
+'45.2'        Literal.Number.Float
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'epoch-fields ' Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'"milliseconds"' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'epoch-year ' Name.Builtin
+'('           Punctuation
+'* '          Name.Builtin
+'1000'        Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"seconds"'   Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'/'           Name.Function
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"a-datetime-string"' Literal.String
+')'           Punctuation
+' '           Text
+'1000'        Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'/'           Name.Function
+' '           Text
+'('           Punctuation
+'epoch '      Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'"a-datetime-string"' Literal.String
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'1000'        Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'epoch-fields ' Name.Builtin
+'('           Punctuation
+'epoch '      Name.Builtin
+'"1969-14-07T06:00:12"' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'epoch-hour ' Name.Builtin
+'('           Punctuation
+'epoch '      Name.Builtin
+'"11~22~30"'  Literal.String
+' '           Text
+'"hh~mm~ss"'  Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'let '        Keyword
+'('           Punctuation
+'x'           Name.Function
+' '           Text
+'('           Punctuation
+'+ '          Name.Builtin
+'('           Punctuation
+'window '     Name.Builtin
+'"a"'         Literal.String
+' '           Text
+'-10'         Literal.Number.Integer
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'a'           Name.Variable
+' '           Text
+'('           Punctuation
+'/'           Name.Function
+' '           Text
+'('           Punctuation
+'* '          Name.Builtin
+'x'           Name.Variable
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'4.34'        Literal.Number.Float
+')'           Punctuation
+'\n        '  Text
+'y'           Name.Variable
+' '           Text
+'('           Punctuation
+'if '         Name.Builtin
+'('           Punctuation
+'< '          Name.Builtin
+'a'           Name.Variable
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'"Good"'      Literal.String
+' '           Text
+'"Bad"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'list '       Name.Builtin
+'x'           Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'"-"'         Literal.String
+' '           Text
+'y'           Name.Variable
+')'           Punctuation
+' '           Text
+'a'           Name.Variable
+' '           Text
+'y'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'list '       Name.Builtin
+'('           Punctuation
+'let '        Keyword
+'('           Punctuation
+'z'           Name.Function
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'* '          Name.Builtin
+'2'           Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'* '          Name.Builtin
+'z'           Name.Variable
+' '           Text
+'z'           Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'log '        Name.Builtin
+'z'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'let '        Keyword
+'('           Punctuation
+'pi'          Name.Function
+' '           Text
+'3.141592653589793' Literal.Number.Float
+' '           Text
+'r'           Name.Variable
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"radius"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'* '          Name.Builtin
+'4'           Literal.Number.Integer
+' '           Text
+'pi'          Name.Variable
+' '           Text
+'r'           Name.Variable
+' '           Text
+'r'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'if '         Name.Builtin
+'('           Punctuation
+'< '          Name.Builtin
+'('           Punctuation
+'field '      Name.Builtin
+'"age"'       Literal.String
+')'           Punctuation
+' '           Text
+'18'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'"non-adult"' Literal.String
+' '           Text
+'"adult"'     Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'if '         Name.Builtin
+'('           Punctuation
+'= '          Name.Builtin
+'"oh"'        Literal.String
+' '           Text
+'('           Punctuation
+'field '      Name.Builtin
+'"000000"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'"OH"'        Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'if '         Name.Builtin
+'('           Punctuation
+'> '          Name.Builtin
+'('           Punctuation
+'field '      Name.Builtin
+'"000001"'    Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'mean '       Name.Builtin
+'"000001"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'"above average"' Literal.String
+'\n  '        Text
+'('           Punctuation
+'if '         Name.Builtin
+'('           Punctuation
+'< '          Name.Builtin
+'('           Punctuation
+'field '      Name.Builtin
+'"000001"'    Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'mean '       Name.Builtin
+'"000001"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'"below average"' Literal.String
+'\n    '      Text
+'"mediocre"'  Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'cond '       Name.Builtin
+'('           Punctuation
+'> '          Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'"000001"'    Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'mean '       Name.Builtin
+'"000001"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'"above average"' Literal.String
+'\n      '    Text
+'('           Punctuation
+'= '          Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'"000001"'    Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'mean '       Name.Builtin
+'"000001"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'"below average"' Literal.String
+'\n      '    Text
+'"mediocre"'  Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'cond '       Name.Builtin
+'('           Punctuation
+'or '         Name.Builtin
+'('           Punctuation
+'= '          Name.Builtin
+'"a"'         Literal.String
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'= '          Name.Builtin
+'"a+"'        Literal.String
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+'\n      '    Text
+'('           Punctuation
+'or '         Name.Builtin
+'('           Punctuation
+'= '          Name.Builtin
+'"b"'         Literal.String
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'= '          Name.Builtin
+'"b+"'        Literal.String
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+'\n      '    Text
+'('           Punctuation
+'or '         Name.Builtin
+'('           Punctuation
+'= '          Name.Builtin
+'"c"'         Literal.String
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'= '          Name.Builtin
+'"c+"'        Literal.String
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'-1'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'cond '       Name.Builtin
+'('           Punctuation
+'< '          Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'"age"'       Literal.String
+')'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'"baby"'      Literal.String
+'\n      '    Text
+'('           Punctuation
+'and '        Name.Builtin
+'('           Punctuation
+'<= '         Name.Builtin
+'2'           Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"age"'       Literal.String
+')'           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'= '          Name.Builtin
+'"F"'         Literal.String
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"sex"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'"girl"'      Literal.String
+'\n      '    Text
+'('           Punctuation
+'and '        Name.Builtin
+'('           Punctuation
+'<= '         Name.Builtin
+'2'           Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"age"'       Literal.String
+')'           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'= '          Name.Builtin
+'"M"'         Literal.String
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"sex"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'"boy"'       Literal.String
+'\n      '    Text
+'('           Punctuation
+'< '          Name.Builtin
+'10'          Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"age"'       Literal.String
+')'           Punctuation
+' '           Text
+'20'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'"teenager"'  Literal.String
+'\n      '    Text
+'"adult"'     Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'list '       Name.Builtin
+'('           Punctuation
+'field '      Name.Builtin
+'"age"'       Literal.String
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'field '      Name.Builtin
+'"weight"'    Literal.String
+' '           Text
+'-1'          Literal.Number.Integer
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'population ' Name.Builtin
+'"age"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'list '       Name.Builtin
+'1.23'        Literal.Number.Float
+'\n      '    Text
+'('           Punctuation
+'if '         Name.Builtin
+'('           Punctuation
+'< '          Name.Builtin
+'('           Punctuation
+'field '      Name.Builtin
+'"age"'       Literal.String
+')'           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'"child"'     Literal.String
+' '           Text
+'"adult"'     Literal.String
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'field '      Name.Builtin
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'head '       Name.Builtin
+'('           Punctuation
+'cons '       Name.Builtin
+'x'           Name.Variable
+' '           Text
+'lst'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'tail '       Name.Builtin
+'('           Punctuation
+'cons '       Name.Builtin
+'x'           Name.Variable
+' '           Text
+'lst'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'count '      Name.Builtin
+'('           Punctuation
+'list '       Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'mode '       Name.Builtin
+'('           Punctuation
+'list '       Name.Builtin
+'a'           Name.Variable
+' '           Text
+'b'           Name.Variable
+' '           Text
+'b'           Name.Variable
+' '           Text
+'c'           Name.Variable
+' '           Text
+'b'           Name.Variable
+' '           Text
+'a'           Name.Variable
+' '           Text
+'c'           Name.Variable
+' '           Text
+'c'           Name.Variable
+' '           Text
+'c'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'max '        Name.Builtin
+'('           Punctuation
+'list '       Name.Builtin
+'-1'          Literal.Number.Integer
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'-2'          Literal.Number.Integer
+' '           Text
+'0.38'        Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'min '        Name.Builtin
+'('           Punctuation
+'list '       Name.Builtin
+'-1.3'        Literal.Number.Float
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'avg '        Name.Builtin
+'('           Punctuation
+'list '       Name.Builtin
+'-1'          Literal.Number.Integer
+' '           Text
+'-2'          Literal.Number.Integer
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'0.8'         Literal.Number.Float
+' '           Text
+'-0.8'        Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'in '         Name.Builtin
+'3'           Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'1'           Literal.Number.Integer
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'in '         Name.Builtin
+'"abc"'       Literal.String
+' '           Text
+'('           Punctuation
+'1'           Literal.Number.Integer
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'in '         Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'"size"'      Literal.String
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'"X"'         Literal.String
+' '           Text
+'"XXL"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'< '          Name.Builtin
+'_'           Literal.String.Symbol
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'+ '          Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'"000001"'    Literal.String
+' '           Text
+'_'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'< '          Name.Builtin
+'-18'         Literal.Number.Integer
+' '           Text
+'_'           Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'map '        Name.Builtin
+'('           Punctuation
+'* '          Name.Builtin
+'2'           Literal.Number.Integer
+' '           Text
+'_'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'list '       Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'0'           Literal.Number.Integer
+' '           Text
+'-1'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'0'           Literal.Number.Integer
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'all-but '    Name.Builtin
+'"id"'        Literal.String
+' '           Text
+'"000023"'    Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'fields '     Name.Builtin
+'"000003"'    Literal.String
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'"a field"'   Literal.String
+' '           Text
+'"another"'   Literal.String
+' '           Text
+'"0002a3b-3"' Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'all-with-defaults ' Name.Builtin
+'"species"'   Literal.String
+' '           Text
+'"Iris-versicolor"' Literal.String
+'\n                   ' Text
+'"petal-width"' Literal.String
+' '           Text
+'2.8'         Literal.Number.Float
+'\n                   ' Text
+'"000002"'    Literal.String
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'all-with-numeric-default ' Name.Builtin
+'"median"'    Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'all-with-numeric-default ' Name.Builtin
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'window '     Name.Builtin
+'"000001"'    Literal.String
+' '           Text
+'-1'          Literal.Number.Integer
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'filter '     Name.Builtin
+'('           Punctuation
+'< '          Name.Builtin
+'_'           Literal.String.Symbol
+' '           Text
+'99.9'        Literal.Number.Float
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'map '        Name.Builtin
+'('           Punctuation
+'+ '          Name.Builtin
+'32'          Literal.Number.Integer
+' '           Text
+'('           Punctuation
+'* '          Name.Builtin
+'1.8'         Literal.Number.Float
+' '           Text
+'_'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'window '     Name.Builtin
+'"Temp"'      Literal.String
+' '           Text
+'-2'          Literal.Number.Integer
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'let '        Keyword
+'('           Punctuation
+'now'         Name.Function
+' '           Text
+'('           Punctuation
+'f '          Name.Builtin
+'"epoch"'     Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'avg '        Name.Builtin
+'('           Punctuation
+'cond-window ' Name.Builtin
+'"temperature"' Literal.String
+' '           Text
+'('           Punctuation
+'< '          Name.Builtin
+'('           Punctuation
+'- '          Name.Builtin
+'('           Punctuation
+'f '          Name.Builtin
+'"epoch"'     Literal.String
+')'           Punctuation
+' '           Text
+'now'         Name.Variable
+')'           Punctuation
+' '           Text
+'240'         Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text

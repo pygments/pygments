@@ -1,0 +1,24 @@
+---input---
+extra = f'{extra},waiters:{len(self._waiters)}'
+
+---tokens---
+'extra'       Name
+' '           Text
+'='           Operator
+' '           Text
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'{'           Literal.String.Interpol
+'extra'       Name
+'}'           Literal.String.Interpol
+',waiters:'   Literal.String.Single
+'{'           Literal.String.Interpol
+'len'         Name.Builtin
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'_waiters'    Name
+')'           Punctuation
+'}'           Literal.String.Interpol
+"'"           Literal.String.Single
+'\n'          Text

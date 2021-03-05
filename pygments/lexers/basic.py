@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.basic
     ~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for BASIC like languages (other than VB.net).
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -19,7 +18,6 @@ from pygments.lexers import _vbscript_builtins
 
 __all__ = ['BlitzBasicLexer', 'BlitzMaxLexer', 'MonkeyLexer', 'CbmBasicV2Lexer',
            'QBasicLexer', 'VBScriptLexer', 'BBCBasicLexer']
-
 
 
 class BlitzMaxLexer(RegexLexer):
@@ -353,10 +351,10 @@ class CbmBasicV2Lexer(RegexLexer):
         ]
     }
 
-    def analyse_text(self, text):
+    def analyse_text(text):
         # if it starts with a line number, it shouldn't be a "modern" Basic
         # like VB.net
-        if re.match(r'\d+', text):
+        if re.match(r'^\d+', text):
             return 0.2
 
 
@@ -524,15 +522,18 @@ class VBScriptLexer(RegexLexer):
             (r'[0-9]+\.[0-9]*(e[+-]?[0-9]+)?', Number.Float),
             (r'\.[0-9]+(e[+-]?[0-9]+)?', Number.Float),  # Float variant 2, for example: .1, .1e2
             (r'[0-9]+e[+-]?[0-9]+', Number.Float),  # Float variant 3, for example: 123e45
-            (r'\d+', Number.Integer),
+            (r'[0-9]+', Number.Integer),
             ('#.+#', String),  # date or time value
             (r'(dim)(\s+)([a-z_][a-z0-9_]*)',
              bygroups(Keyword.Declaration, Whitespace, Name.Variable), 'dim_more'),
             (r'(function|sub)(\s+)([a-z_][a-z0-9_]*)',
              bygroups(Keyword.Declaration, Whitespace, Name.Function)),
-            (r'(class)(\s+)([a-z_][a-z0-9_]*)', bygroups(Keyword.Declaration, Whitespace, Name.Class)),
-            (r'(const)(\s+)([a-z_][a-z0-9_]*)', bygroups(Keyword.Declaration, Whitespace, Name.Constant)),
-            (r'(end)(\s+)(class|function|if|property|sub|with)', bygroups(Keyword, Whitespace, Keyword)),
+            (r'(class)(\s+)([a-z_][a-z0-9_]*)',
+             bygroups(Keyword.Declaration, Whitespace, Name.Class)),
+            (r'(const)(\s+)([a-z_][a-z0-9_]*)',
+             bygroups(Keyword.Declaration, Whitespace, Name.Constant)),
+            (r'(end)(\s+)(class|function|if|property|sub|with)',
+             bygroups(Keyword, Whitespace, Keyword)),
             (r'(on)(\s+)(error)(\s+)(goto)(\s+)(0)',
              bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword, Whitespace, Number.Integer)),
             (r'(on)(\s+)(error)(\s+)(resume)(\s+)(next)',
@@ -553,7 +554,8 @@ class VBScriptLexer(RegexLexer):
             (r'.+(\n)?', Error)
         ],
         'dim_more': [
-            (r'(\s*)(,)(\s*)([a-z_][a-z0-9]*)', bygroups(Whitespace, Punctuation, Whitespace, Name.Variable)),
+            (r'(\s*)(,)(\s*)([a-z_][a-z0-9]*)',
+             bygroups(Whitespace, Punctuation, Whitespace, Name.Variable)),
             default('#pop'),
         ],
         'string': [
@@ -609,7 +611,7 @@ class BBCBasicLexer(RegexLexer):
             (r"[0-9]+", Name.Label),
             (r"(\*)([^\n]*)",
              bygroups(Keyword.Pseudo, Comment.Special)),
-            (r"", Whitespace, 'code'),
+            default('code'),
         ],
 
         'code': [

@@ -36,4 +36,4 @@ If you do not want to do that and are willing to accept larger HTML output, you
 can set the ``INLINESTYLES`` option to True.
 
 
-.. _Moin: http://moinmoin.wikiwikiweb.de/
+.. _Moin: https://moinmo.in/

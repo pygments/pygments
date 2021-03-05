@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.algebra
     ~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for computer algebra systems.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -67,6 +66,25 @@ class GAPLexer(RegexLexer):
             (r'.', Text)
         ],
     }
+
+    def analyse_text(text):
+        score = 0.0
+
+        # Declaration part
+        if re.search(
+            r"(InstallTrueMethod|Declare(Attribute|Category|Filter|Operation" +
+            r"|GlobalFunction|Synonym|SynonymAttr|Property))", text
+        ):
+            score += 0.7
+
+        # Implementation part
+        if re.search(
+            r"(DeclareRepresentation|Install(GlobalFunction|Method|" +
+            r"ImmediateMethod|OtherMethod)|New(Family|Type)|Objectify)", text
+        ):
+            score += 0.7
+
+        return min(score, 1.0)
 
 
 class MathematicaLexer(RegexLexer):

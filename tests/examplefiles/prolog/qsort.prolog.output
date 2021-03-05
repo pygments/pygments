@@ -1,0 +1,165 @@
+'partition'   Name.Function
+'('           Punctuation
+'['           Punctuation
+']'           Punctuation
+','           Punctuation
+' '           Text
+'_'           Keyword
+','           Punctuation
+' '           Text
+'['           Punctuation
+']'           Punctuation
+','           Punctuation
+' '           Text
+'['           Punctuation
+']'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'partition'   Name.Function
+'('           Punctuation
+'['           Punctuation
+'X'           Name.Variable
+'|'           Punctuation
+'Xs'          Name.Variable
+']'           Punctuation
+','           Punctuation
+' '           Text
+'Pivot'       Name.Variable
+','           Punctuation
+' '           Text
+'Smalls'      Name.Variable
+','           Punctuation
+' '           Text
+'Bigs'        Name.Variable
+')'           Punctuation
+' '           Text
+':-'          Punctuation
+'\n    '      Text
+'('           Punctuation
+'   '         Text
+'X'           Name.Variable
+' '           Text
+'@<'          Literal.String.Atom
+' '           Text
+'Pivot'       Name.Variable
+' '           Text
+'->'          Literal.String.Atom
+'\n        '  Text
+'Smalls'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'X'           Name.Variable
+'|'           Punctuation
+'Rest'        Name.Variable
+']'           Punctuation
+','           Punctuation
+'\n        '  Text
+'partition'   Name.Function
+'('           Punctuation
+'Xs'          Name.Variable
+','           Punctuation
+' '           Text
+'Pivot'       Name.Variable
+','           Punctuation
+' '           Text
+'Rest'        Name.Variable
+','           Punctuation
+' '           Text
+'Bigs'        Name.Variable
+')'           Punctuation
+'\n    '      Text
+';'           Punctuation
+'   '         Text
+'Bigs'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'X'           Name.Variable
+'|'           Punctuation
+'Rest'        Name.Variable
+']'           Punctuation
+','           Punctuation
+'\n        '  Text
+'partition'   Name.Function
+'('           Punctuation
+'Xs'          Name.Variable
+','           Punctuation
+' '           Text
+'Pivot'       Name.Variable
+','           Punctuation
+' '           Text
+'Smalls'      Name.Variable
+','           Punctuation
+' '           Text
+'Rest'        Name.Variable
+')'           Punctuation
+'\n    '      Text
+')'           Punctuation
+'.'           Punctuation
+'\n\n'        Text
+
+'quicksort'   Name.Function
+'('           Punctuation
+'['           Punctuation
+']'           Punctuation
+')'           Punctuation
+'     '       Text
+'-->'         Punctuation
+' '           Text
+'['           Punctuation
+']'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'quicksort'   Name.Function
+'('           Punctuation
+'['           Punctuation
+'X'           Name.Variable
+'|'           Punctuation
+'Xs'          Name.Variable
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'-->'         Punctuation
+' \n    '     Text
+'{'           Punctuation
+' '           Text
+'partition'   Name.Function
+'('           Punctuation
+'Xs'          Name.Variable
+','           Punctuation
+' '           Text
+'X'           Name.Variable
+','           Punctuation
+' '           Text
+'Smaller'     Name.Variable
+','           Punctuation
+' '           Text
+'Bigger'      Name.Variable
+')'           Punctuation
+' '           Text
+'}'           Punctuation
+','           Punctuation
+'\n    '      Text
+'quicksort'   Name.Function
+'('           Punctuation
+'Smaller'     Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text
+'['           Punctuation
+'X'           Name.Variable
+']'           Punctuation
+','           Punctuation
+' '           Text
+'quicksort'   Name.Function
+'('           Punctuation
+'Bigger'      Name.Variable
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text

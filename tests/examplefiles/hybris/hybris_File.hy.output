@@ -1,0 +1,1389 @@
+'/*\n * This file is part of the Hybris programming language.\n *\n * Copyleft of Francesco Morucci aka merlok <merlok@ihteam.net>\n *\n * Hybris is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Hybris is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Hybris.  If not, see <http://www.gnu.org/licenses/>.\n*/' Comment.Multiline
+'\n'          Text
+
+'import'      Keyword.Namespace
+' '           Text
+'std.io.file' Name.Namespace
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'class'       Keyword.Declaration
+' '           Text
+'File'        Name.Class
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
+'protected'   Keyword.Declaration
+' '           Text
+'file'        Name.Builtin
+','           Operator
+' '           Text
+'fileName'    Name
+','           Operator
+' '           Text
+'mode'        Name
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'File'        Keyword.Type
+'('           Operator
+' '           Text
+'fileName'    Name
+','           Operator
+' '           Text
+'mode'        Name
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'me'          Keyword
+'.'           Operator
+'fileName'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'fileName'    Name
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'me'          Keyword
+'.'           Operator
+'mode'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'mode'        Name
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'fopen'       Name.Builtin
+' '           Text
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'fileName'    Name.Attribute
+','           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'mode'        Name.Attribute
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'private'     Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'isBinary'    Name
+'(){'         Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'me'          Keyword
+'.'           Operator
+'mode'        Name.Attribute
+'.'           Operator
+'find'        Name.Attribute
+'('           Operator
+'"b"'         Literal.String
+')'           Operator
+' '           Text
+'!='          Operator
+' '           Text
+'false'       Keyword.Constant
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'File'        Keyword.Type
+' '           Text
+'('           Operator
+' '           Text
+'file'        Name.Builtin
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'file'        Name.Builtin
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'private'     Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'__expire'    Name
+'()'          Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'me'          Keyword
+'.'           Operator
+'close'       Name.Attribute
+'();'         Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'close'       Name.Builtin
+'(){'         Operator
+'\n'          Text
+
+'\t\t'        Text
+'fclose'      Name.Builtin
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+' '           Text
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'readLine'    Name
+'(){'         Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'line'        Name
+' '           Text
+'='           Operator
+' '           Text
+'fgets'       Name.Builtin
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+' '           Text
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'getFileName' Name
+'(){'         Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'me'          Keyword
+'.'           Operator
+'fileName'    Name.Attribute
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'getSize'     Name
+'(){'         Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'fsize'       Name.Builtin
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'fileName'    Name.Attribute
+' '           Text
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'getPosition' Name
+'(){'         Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'ftell'       Name.Builtin
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+' '           Text
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'readAll'     Name
+'(){'         Operator
+'\n'          Text
+
+'\t\t'        Text
+'text'        Name
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'line'        Name
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'while'       Keyword
+' '           Text
+'('           Operator
+' '           Text
+'('           Operator
+' '           Text
+'line'        Name
+' '           Text
+'='           Operator
+' '           Text
+'fgets'       Name.Builtin
+'('           Operator
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+')'           Operator
+' '           Text
+')'           Operator
+' '           Text
+'!='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'text'        Name
+' '           Text
+'+='          Operator
+' '           Text
+'line'        Name
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'text'        Name
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'read'        Name
+'(){'         Operator
+'\n'          Text
+
+'\t\t'        Text
+'byte'        Name
+' '           Text
+'='           Operator
+' '           Text
+"' '"         Literal.String.Char
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'fread'       Name.Builtin
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+','           Operator
+' '           Text
+'byte'        Name
+')'           Operator
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'byte'        Name
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'else'        Keyword
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'read'        Name
+'('           Operator
+' '           Text
+'bytes'       Name
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'word'        Name
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'byte'        Name
+' '           Text
+'='           Operator
+' '           Text
+"' '"         Literal.String.Char
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'fread'       Name.Builtin
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+','           Operator
+' '           Text
+'byte'        Name
+','           Operator
+' '           Text
+'bytes'       Name
+')'           Operator
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'word'        Name
+' '           Text
+'+='          Operator
+' '           Text
+'byte'        Name
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'else'        Keyword
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'word'        Name
+';'           Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'read'        Name
+' '           Text
+'('           Operator
+' '           Text
+'seek'        Name
+','           Operator
+' '           Text
+'seekType'    Name
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'seek'        Name.Attribute
+'('           Operator
+' '           Text
+'seek'        Name
+','           Operator
+' '           Text
+'seekType'    Name
+')'           Operator
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+'  '          Text
+'me'          Keyword
+'.'           Operator
+'read'        Name.Attribute
+'();'         Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'read'        Name
+' '           Text
+'('           Operator
+' '           Text
+'bytes'       Name
+','           Operator
+' '           Text
+'seek'        Name
+','           Operator
+' '           Text
+'seekType'    Name
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'seek'        Name.Attribute
+'('           Operator
+' '           Text
+'seek'        Name
+','           Operator
+' '           Text
+'seekType'    Name
+')'           Operator
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+'  '          Text
+'me'          Keyword
+'.'           Operator
+'read'        Name.Attribute
+'('           Operator
+' '           Text
+'bytes'       Name
+' '           Text
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'readType'    Name
+' '           Text
+'('           Operator
+' '           Text
+'type'        Name
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'isBinary'    Name.Attribute
+'()'          Operator
+' '           Text
+'=='          Operator
+' '           Text
+'false'       Keyword.Constant
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'fread'       Name.Builtin
+' '           Text
+'('           Operator
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+','           Operator
+' '           Text
+'type'        Name
+' '           Text
+')'           Operator
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'type'        Name
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+' '           Text
+'\n'          Text
+
+'\t\t'        Text
+'else'        Keyword
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'operator'    Keyword.Declaration
+' '           Text
+'>>'          Operator
+' '           Text
+'('           Operator
+' '           Text
+'object'      Name
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'me'          Keyword
+'.'           Operator
+'readType'    Name.Attribute
+'('           Operator
+'object'      Name
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'readType'    Name
+' '           Text
+'('           Operator
+' '           Text
+'type'        Name
+','           Operator
+' '           Text
+'bytes'       Name
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'isBinary'    Name.Attribute
+'()'          Operator
+' '           Text
+'=='          Operator
+' '           Text
+'false'       Keyword.Constant
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'fread'       Name.Builtin
+' '           Text
+'('           Operator
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+','           Operator
+' '           Text
+'type'        Name
+','           Operator
+' '           Text
+'bytes'       Name
+' '           Text
+')'           Operator
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'){'          Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'type'        Name
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'else'        Keyword
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'readType'    Name
+' '           Text
+'('           Operator
+' '           Text
+'type'        Name
+','           Operator
+' '           Text
+'seek'        Name
+','           Operator
+' '           Text
+'seekType'    Name
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'isBinary'    Name.Attribute
+'()'          Operator
+' '           Text
+'=='          Operator
+' '           Text
+'false'       Keyword.Constant
+' '           Text
+')'           Operator
+' '           Text
+'|'           Operator
+' '           Text
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'seek'        Name.Attribute
+'('           Operator
+' '           Text
+'seek'        Name
+','           Operator
+' '           Text
+'seekType'    Name
+')'           Operator
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+')'           Operator
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'me'          Keyword
+'.'           Operator
+'readType'    Name.Attribute
+'('           Operator
+' '           Text
+'type'        Name
+' '           Text
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+'  '          Text
+'readType'    Name
+'('           Operator
+'  '          Text
+'type'        Name
+','           Operator
+' '           Text
+'bytes'       Name
+','           Operator
+' '           Text
+'seek'        Name
+','           Operator
+' '           Text
+'seekType'    Name
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'isBinary'    Name.Attribute
+'()'          Operator
+' '           Text
+'=='          Operator
+' '           Text
+'false'       Keyword.Constant
+' '           Text
+')'           Operator
+' '           Text
+'|'           Operator
+' '           Text
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'seek'        Name.Attribute
+'('           Operator
+' '           Text
+'seek'        Name
+','           Operator
+' '           Text
+'seekType'    Name
+')'           Operator
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+')'           Operator
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'return'      Keyword
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'me'          Keyword
+'.'           Operator
+'readType'    Name.Attribute
+'('           Operator
+' '           Text
+'type'        Name
+','           Operator
+' '           Text
+'bytes'       Name
+' '           Text
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'write'       Name
+'('           Operator
+' '           Text
+'data'        Name
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'fwrite'      Name.Builtin
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+','           Operator
+' '           Text
+'data'        Name
+' '           Text
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'operator'    Keyword.Declaration
+' '           Text
+'<<'          Operator
+' '           Text
+'('           Operator
+' '           Text
+'object'      Name
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'me'          Keyword
+'.'           Operator
+'write'       Name.Attribute
+'('           Operator
+'object'      Name
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'write'       Name
+' '           Text
+'('           Operator
+' '           Text
+'data'        Name
+','           Operator
+' '           Text
+'bytes'       Name
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'fwrite'      Name.Builtin
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+','           Operator
+' '           Text
+'data'        Name
+','           Operator
+' '           Text
+'bytes'       Name
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'seek'        Name
+'('           Operator
+' '           Text
+'pos'         Name
+','           Operator
+' '           Text
+'mode'        Name
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'fseek'       Name.Builtin
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+','           Operator
+' '           Text
+'pos'         Name
+','           Operator
+' '           Text
+'mode'        Name
+' '           Text
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'public'      Keyword.Declaration
+' '           Text
+'method'      Keyword.Declaration
+' '           Text
+'merge'       Name
+' '           Text
+'('           Operator
+' '           Text
+'fileName'    Name
+' '           Text
+'){'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'text'        Name
+' '           Text
+'='           Operator
+' '           Text
+'file'        Name.Builtin
+' '           Text
+'('           Operator
+' '           Text
+'fileName'    Name
+' '           Text
+');'          Operator
+'\n'          Text
+
+'\t\t'        Text
+'return'      Keyword
+' '           Text
+'me'          Keyword
+'.'           Operator
+'write'       Name.Attribute
+' '           Text
+'('           Operator
+' '           Text
+'me'          Keyword
+'.'           Operator
+'file'        Name.Attribute
+','           Operator
+' '           Text
+'text'        Name
+' '           Text
+');'          Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text

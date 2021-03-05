@@ -1,0 +1,34 @@
+---input---
+- [ ] sample task
+
+* [ ] sample task
+
+  * [ ] sample task
+
+---tokens---
+'- '          Keyword
+'[ ]'         Keyword
+' '           Text
+'sample'      Text
+' '           Text
+'task'        Text
+'\n'          Text
+
+'\n'          Text
+
+'* '          Keyword
+'[ ]'         Keyword
+' '           Text
+'sample'      Text
+' '           Text
+'task'        Text
+'\n'          Text
+
+'\n  '        Text
+'* '          Keyword
+'[ ]'         Keyword
+' '           Text
+'sample'      Text
+' '           Text
+'task'        Text
+'\n'          Text

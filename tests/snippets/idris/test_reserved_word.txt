@@ -1,0 +1,29 @@
+---input---
+namespace Foobar
+  links : String
+  links = "abc"
+
+---tokens---
+'namespace'   Keyword.Reserved
+' '           Text
+'Foobar'      Keyword.Type
+'\n'          Text
+
+'  '          Text
+'links'       Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'String'      Keyword.Type
+'\n'          Text
+
+' '           Text
+' '           Text
+'links'       Text
+' '           Text
+'='           Operator.Word
+' '           Text
+'"'           Literal.String
+'abc'         Literal.String
+'"'           Literal.String
+'\n'          Text

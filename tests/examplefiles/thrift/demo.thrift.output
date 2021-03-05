@@ -1,0 +1,71 @@
+'/* comment */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'/** doc comment */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'namespace'   Keyword.Namespace
+' '           Text.Whitespace
+'cpp'         Name.Namespace
+' '           Text.Whitespace
+'shared'      Name
+' '           Text.Whitespace
+'// inline comment\n' Comment
+
+'\n'          Text.Whitespace
+
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'Foo1'        Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'i32'         Keyword.Type
+' '           Text.Whitespace
+'key'         Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'2'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'value'       Name
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'service'     Keyword.Declaration
+' '           Text.Whitespace
+'Foo2'        Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'Foo1'        Name
+' '           Text.Whitespace
+'bar'         Name.Function
+'('           Operator
+'1'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'i32'         Keyword.Type
+' '           Text.Whitespace
+'key'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

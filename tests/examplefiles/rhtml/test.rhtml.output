@@ -1,0 +1,384 @@
+'<'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n '         Text
+'<%'          Comment.Preproc
+' '           Text
+'rows'        Name
+'.'           Operator
+'each'        Name
+' '           Text
+'do'          Keyword
+' '           Text
+'|'           Operator
+'row'         Name
+'|'           Operator
+' '           Text
+'%>'          Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'tr'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"'           Literal.String
+'<%='         Comment.Preproc
+' '           Text
+'row'         Name
+'.'           Operator
+'cls'         Name
+' '           Text
+'%>'          Comment.Preproc
+'"'           Literal.String
+'>'           Punctuation
+'\n   '       Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'href'        Name.Attribute
+'='           Operator
+'"'           Literal.String
+'<%='         Comment.Preproc
+' '           Text
+'item'        Name
+'.'           Operator
+'href'        Name
+' '           Text
+'%>'          Comment.Preproc
+'"'           Literal.String
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'item'        Name
+'.'           Operator
+'title'       Name
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n   '       Text
+'<'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'<%='         Comment.Preproc
+' '           Text
+'item'        Name
+'.'           Operator
+'description' Name
+' '           Text
+'%>'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n '         Text
+'<%'          Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n\n\n'      Text
+
+'<'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'Pages'       Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'table'       Name.Tag
+' '           Text
+'id'          Name.Attribute
+'='           Operator
+'"site-map"'  Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"index"'     Literal.String
+' '           Text
+'cellpadding' Name.Attribute
+'='           Operator
+'"0"'         Literal.String
+' '           Text
+'cellspacing' Name.Attribute
+'='           Operator
+'"0"'         Literal.String
+' '           Text
+'border'      Name.Attribute
+'='           Operator
+'"0"'         Literal.String
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'thead'       Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"page"'      Literal.String
+'>'           Punctuation
+'Page'        Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"status"'    Literal.String
+'>'           Punctuation
+'Status'      Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n      '    Text
+'<'           Punctuation
+'th'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"modify"'    Literal.String
+' '           Text
+'colspan'     Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+'>'           Punctuation
+'Modify'      Text
+'<'           Punctuation
+'/'           Punctuation
+'th'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'thead'       Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'tbody'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'if'          Keyword
+' '           Text
+'@homepage'   Name.Variable.Instance
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<%='         Comment.Preproc
+' '           Text
+'render_node' Name
+' '           Text
+'@homepage'   Name.Variable.Instance
+' '           Text
+'-%>'         Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'else'        Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'td'          Name.Tag
+' '           Text
+'colspan'     Name.Attribute
+'='           Operator
+'"4"'         Literal.String
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"note"'      Literal.String
+'>'           Punctuation
+'No Pages'    Text
+'<'           Punctuation
+'/'           Punctuation
+'td'          Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'tr'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'tbody'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'table'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'script'      Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"text/javascript"' Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'// <![CDATA[\n' Comment.Single
+
+'  '          Text
+'new'         Keyword
+' '           Text
+'SiteMap'     Name.Other
+'('           Punctuation
+"'site-map'"  Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'// ]]>\n'    Comment.Single
+
+'<'           Punctuation
+'/'           Punctuation
+'script'      Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'form'        Name.Tag
+' '           Text
+'action'      Name.Attribute
+'='           Operator
+'"'           Literal.String
+'<%='         Comment.Preproc
+' '           Text
+'clear_cache_url' Name
+' '           Text
+'%>'          Comment.Preproc
+'"'           Literal.String
+' '           Text
+'method'      Name.Attribute
+'='           Operator
+'"post"'      Literal.String
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'unless'      Keyword
+' '           Text
+'@homepage'   Name.Variable.Instance
+' '           Text
+'-%>'         Comment.Preproc
+'\n    '      Text
+'<%='         Comment.Preproc
+' '           Text
+'link_to'     Name
+' '           Text
+'image_tag'   Name
+'('           Punctuation
+"'"           Literal.String.Single
+'new-homepage' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+':alt'        Literal.String.Symbol
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String.Single
+'New Homepage' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+','           Punctuation
+' '           Text
+'homepage_new_url' Name
+' '           Text
+'%>'          Comment.Preproc
+'\n'          Text
+
+'<%'          Comment.Preproc
+' '           Text
+'end'         Keyword
+' '           Text
+'-%>'         Comment.Preproc
+'\n    '      Text
+'<%='         Comment.Preproc
+' '           Text
+'image_submit_tag' Name
+' '           Text
+"'"           Literal.String.Single
+'clear-page-cache' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'%>'          Comment.Preproc
+'\n  '        Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'form'        Name.Tag
+'>'           Punctuation
+'\n'          Text

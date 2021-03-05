@@ -1,17 +1,16 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.smv
     ~~~~~~~~~~~~~~~~~~~
 
     Lexers for the SMV languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.lexer import RegexLexer, words
-from pygments.token import Comment, Generic, Keyword, Name, Number, \
-    Operator, Punctuation, Text
+from pygments.token import Comment, Keyword, Name, Number, Operator, \
+    Punctuation, Text
 
 __all__ = ['NuSMVLexer']
 

@@ -1,0 +1,2586 @@
+'#\n'         Comment
+
+'# ***** BEGIN LICENSE BLOCK *****\n' Comment
+
+'# Version: MPL 1.1/GPL 2.0/LGPL 2.1\n' Comment
+
+'#\n'         Comment
+
+'# The contents of this file are subject to the Mozilla Public License Version\n' Comment
+
+'# 1.1 (the "License"); you may not use this file except in compliance with\n' Comment
+
+'# the License. You may obtain a copy of the License at\n' Comment
+
+'# http://www.mozilla.org/MPL/\n' Comment
+
+'#\n'         Comment
+
+'# Software distributed under the License is distributed on an "AS IS" basis,\n' Comment
+
+'# WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License\n' Comment
+
+'# for the specific language governing rights and limitations under the\n' Comment
+
+'# License.\n' Comment
+
+'#\n'         Comment
+
+'# The Original Code is mozilla.org code.\n' Comment
+
+'#\n'         Comment
+
+'# The Initial Developer of the Original Code is\n' Comment
+
+'# Netscape Communications Corporation.\n' Comment
+
+'# Portions created by the Initial Developer are Copyright (C) 1998\n' Comment
+
+'# the Initial Developer. All Rights Reserved.\n' Comment
+
+'#\n'         Comment
+
+'# Contributor(s):\n' Comment
+
+'#\n'         Comment
+
+'# Alternatively, the contents of this file may be used under the terms of\n' Comment
+
+'# either the GNU General Public License Version 2 or later (the "GPL"), or\n' Comment
+
+'# the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),\n' Comment
+
+'# in which case the provisions of the GPL or the LGPL are applicable instead\n' Comment
+
+'# of those above. If you wish to allow use of your version of this file only\n' Comment
+
+'# under the terms of either the GPL or the LGPL, and not to allow others to\n' Comment
+
+'# use your version of this file under the terms of the MPL, indicate your\n' Comment
+
+'# decision by deleting the provisions above and replace them with the notice\n' Comment
+
+'# and other provisions required by the GPL or the LGPL. If you do not delete\n' Comment
+
+'# the provisions above, a recipient may use your version of this file under\n' Comment
+
+'# the terms of any one of the MPL, the GPL or the LGPL.\n' Comment
+
+'#\n'         Comment
+
+'# ***** END LICENSE BLOCK *****\n' Comment
+
+'\n'          Text
+
+'DEPTH'       Name.Variable
+'\t\t'        Text
+'='           Operator
+' '           Text
+'.'           Text
+'\n'          Text
+
+'topsrcdir'   Name.Variable
+'\t'          Text
+'='           Operator
+' '           Text
+'@top_srcdir@' Text
+'\n'          Text
+
+'srcdir'      Name.Variable
+'\t\t'        Text
+'='           Operator
+' '           Text
+'@srcdir@'    Text
+'\n'          Text
+
+'VPATH'       Name.Variable
+'\t\t'        Text
+'='           Operator
+' '           Text
+'@srcdir@'    Text
+'\n'          Text
+
+'\n'          Text
+
+'include $(DEPTH)/config/autoconf.mk\n' Comment.Preproc
+
+'\n'          Text
+
+'include $(topsrcdir)/build/unix/modules.mk\n' Comment.Preproc
+
+'\n'          Text
+
+'ifeq ($(BUILD_MODULES),all)\n' Comment.Preproc
+
+'#\n'         Comment
+
+'# And now for something completely different...\n' Comment
+
+'# Divide the default build into tiers. \n' Comment
+
+'# Tiers must be defined on module boundaries \n' Comment
+
+'#\n'         Comment
+
+'SUPPRESS_DEFAULT_RULES' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number
+'\n'          Text
+
+'\n'          Text
+
+'default alldep all' Name.Function
+'::'          Operator
+' '           Text
+'$('          Keyword
+'SUBMAKEFILES' Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'RM'          Text
+')'           Keyword
+' '           Text
+'-rf'         Text
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+'/sdk'        Text
+'\n\t'        Text
+'$('          Keyword
+'RM'          Text
+')'           Keyword
+' '           Text
+'-rf'         Text
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+'/include'    Text
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'-C'          Text
+' '           Text
+'config'      Text
+' '           Text
+'export'      Name.Builtin
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'nspr'        Text
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'ldap'        Text
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'tier_0'      Text
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'tier_1'      Text
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'tier_2'      Text
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'tier_9'      Text
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'tier_50'     Text
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'tier_99'     Text
+'\n\n'        Text
+
+'# Make sure that the existing rulesets work\n' Comment
+
+'DIRS'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'$('          Keyword
+'tier_0_dirs' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'$('          Keyword
+'tier_1_dirs' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'$('          Keyword
+'tier_2_dirs' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'$('          Keyword
+'tier_9_dirs' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'$('          Keyword
+'tier_50_dirs' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'$('          Keyword
+'NULL'        Text
+')'           Keyword
+'\n\n'        Text
+
+'ifdef GC_LEAK_DETECTOR\n' Comment.Preproc
+
+'DIRS'        Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'gc/boehm'    Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'DIRS'        Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'$('          Keyword
+'tier_99_dirs' Text
+')'           Keyword
+'\n'          Text
+
+'\n'          Text
+
+'#\n'         Comment
+
+'# tier 0 - base build config dirs\n' Comment
+
+'# \n'        Comment
+
+'tier_0_dirs' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'config'      Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'build'       Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'$('          Keyword
+'NULL'        Text
+')'           Keyword
+'\n\n'        Text
+
+'#\n'         Comment
+
+'# tier 1 -  3rd party individual libraries\n' Comment
+
+'#\n'         Comment
+
+'tier_1_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'dbm'         Text
+'\n'          Text
+
+'\n'          Text
+
+'ifndef MOZ_NATIVE_JPEG\n' Comment.Preproc
+
+'tier_1_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'jpeg'        Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifndef MOZ_NATIVE_ZLIB\n' Comment.Preproc
+
+'tier_1_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'modules/zlib' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'# Installer needs standalone libjar, hence standalone zlib\n' Comment
+
+'ifdef MOZ_INSTALLER\n' Comment.Preproc
+
+'tier_1_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'modules/zlib/standalone' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_UPDATER\n' Comment.Preproc
+
+'tier_1_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'modules/libbz2' Text
+'\n'          Text
+
+'tier_1_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'modules/libmar' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_SVG_RENDERER_LIBART\n' Comment.Preproc
+
+'tier_1_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'other-licenses/libart_lgpl' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'#\n'         Comment
+
+'# tier 2 - base libraries\n' Comment
+
+'# \n'        Comment
+
+'tier_2_dirs' Name.Variable
+'\t'          Text
+'='           Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'js'          Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'xpcom'       Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'NULL'        Text
+')'           Keyword
+'\n\n'        Text
+
+'ifndef MOZ_NO_XPCOM_OBSOLETE\n' Comment.Preproc
+
+'tier_2_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'modules/libreg' Text
+' '           Text
+'xpcom/obsolete' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef NS_TRACE_MALLOC\n' Comment.Preproc
+
+'tier_2_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'tools/trace-malloc/lib' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'#\n'         Comment
+
+'# tier 9 - core components (necko,gecko)\n' Comment
+
+'#\n'         Comment
+
+'\n'          Text
+
+'tier_9_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'js/src/xpconnect' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'intl'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'db'          Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'NULL'        Text
+')'           Keyword
+'\n\n'        Text
+
+'ifdef MOZ_STORAGE\n' Comment.Preproc
+
+'tier_9_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'storage'     Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_ENABLE_XLIB\n' Comment.Preproc
+
+'tier_9_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'gfx/src/xlibrgb' Text
+' '           Text
+'widget/src/xlibxtbin' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_ENABLE_GTK\n' Comment.Preproc
+
+'tier_9_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'widget/src/gtksuperwin' Text
+' '           Text
+'widget/src/gtkxtbin' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_ENABLE_GTK2\n' Comment.Preproc
+
+'tier_9_dirs' Name.Variable
+'     '       Text
+'+='          Operator
+' '           Text
+'widget/src/gtkxtbin' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_IPCD\n' Comment.Preproc
+
+'tier_9_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'ipc/ipcd'    Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_JSDEBUGGER\n' Comment.Preproc
+
+'tier_9_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'js/jsd'      Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'tier_9_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'modules/libutil' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'netwerk'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'modules/libjar' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'uriloader'   Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'modules/libpref' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'modules/libimg' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'caps'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'rdf'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'parser/expat' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'parser/xml'  Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'parser/htmlparser' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'gfx'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'modules/libpr0n' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'sun-java'    Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'modules/plugin' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'dom'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'view'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'widget'      Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'content'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'layout'      Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'xpfe/components/shistory' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'docshell'    Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'webshell'    Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'embedding'   Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'editor'      Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'xpfe/appshell' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'NULL'        Text
+')'           Keyword
+'\n\n'        Text
+
+'ifdef MOZ_OJI\n' Comment.Preproc
+
+'tier_9_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'js/src/liveconnect' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'modules/oji' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'NULL'        Text
+')'           Keyword
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef ACCESSIBILITY\n' Comment.Preproc
+
+'tier_9_dirs' Name.Variable
+'    '        Text
+'+='          Operator
+' '           Text
+'accessible'  Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'# \n'        Comment
+
+'# tier 50 - xpfe & toolkit\n' Comment
+
+'#\n'         Comment
+
+'\n'          Text
+
+'ifdef MOZ_XUL\n' Comment.Preproc
+
+'ifdef MOZ_XUL_APP\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'chrome'      Text
+'\n'          Text
+
+'else\n'      Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'rdf/chrome'  Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'else\n'      Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'embedding/minimo/chromelite' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'tier_50_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'profile'     Text
+'\n'          Text
+
+'\n'          Text
+
+'# This must preceed xpfe\n' Comment
+
+'ifdef MOZ_JPROF\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+'        '    Text
+'+='          Operator
+' '           Text
+'tools/jprof' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifneq (,$(filter mac cocoa,$(MOZ_WIDGET_TOOLKIT)))\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'xpfe/bootstrap/appleevents' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'tier_50_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'xpfe'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'toolkit/components' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'$('          Keyword
+'NULL'        Text
+')'           Keyword
+'\n\n'        Text
+
+'ifndef MOZ_XUL_APP\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'themes'      Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_ENABLE_XREMOTE\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'widget/src/xremoteclient' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_XUL_APP\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'toolkit'     Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_PHOENIX\n' Comment.Preproc
+
+"#XXXBlake this shell path is a temp hack; toolkit shouldn't depend on browser\n" Comment
+
+'tier_50_dirs' Name.Variable
+'    '        Text
+'+='          Operator
+' '           Text
+'browser/components/shell/public' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_XPINSTALL\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+'     '       Text
+'+='          Operator
+'  '          Text
+'xpinstall'   Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'# JavaXPCOM JNI code is compiled into libXUL\n' Comment
+
+'ifdef MOZ_JAVAXPCOM\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'extensions/java/xpcom/src' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_ENABLE_LIBXUL\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'toolkit/library' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'xpcom/stub'  Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'NULL'        Text
+')'           Keyword
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef NS_TRACE_MALLOC\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'tools/trace-malloc' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_PSM\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'security/manager' Text
+'\n'          Text
+
+'else\n'      Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'security/manager/boot/public' Text
+' '           Text
+'security/manager/ssl/public' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_LDAP_XPCOM\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'directory/xpcom' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifndef MINIMO\n' Comment.Preproc
+
+'ifdef MOZ_XUL_APP\n' Comment.Preproc
+
+'ifdef MOZ_ENABLE_GTK2\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+'    '        Text
+'+='          Operator
+' '           Text
+'toolkit/components/gnome' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'endif\n'     Comment.Preproc
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_LEAKY\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+'        '    Text
+'+='          Operator
+' '           Text
+'tools/leaky' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_MAPINFO\n' Comment.Preproc
+
+'tier_50_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'tools/codesighs' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'#\n'         Comment
+
+'# tier 99 - application features\n' Comment
+
+'#\n'         Comment
+
+'\n'          Text
+
+'ifdef MOZ_MAIL_NEWS\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'mailnews'    Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_CALENDAR\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'calendar'    Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_EXTENSIONS\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'extensions'  Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_JAVAXPCOM\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'extensions/java' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'# axcontrol\n' Comment
+
+'ifeq ($(OS_ARCH),WINNT)\n' Comment.Preproc
+
+'ifndef MOZ_NO_ACTIVEX_SUPPORT\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'embedding/browser/activex/src/control' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'embedding/browser/activex/src/control_kicker' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'$('          Keyword
+'NULL'        Text
+')'           Keyword
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'# Java Embedding Plugin\n' Comment
+
+'ifneq (,$(filter mac cocoa,$(MOZ_WIDGET_TOOLKIT)))\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'plugin/oji/JEP' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifneq (,$(filter browser suite,$(MOZ_BUILD_APP)))\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'xpfe/components/search' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_BRANDING_DIRECTORY\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'$('          Keyword
+'MOZ_BRANDING_DIRECTORY' Text
+')'           Keyword
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_PHOENIX\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'browser'     Text
+' '           Text
+'xpfe/bootstrap/init.d' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_XULRUNNER\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'xulrunner'   Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_COMPOSER\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'editor/ui'   Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_THUNDERBIRD\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'mail'        Text
+' '           Text
+'xpfe/bootstrap/init.d' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_STANDALONE_COMPOSER\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'composer'    Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_SUNBIRD\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'calendar/sunbird' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_SUITE\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'suite'       Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MINIMO\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'minimo'      Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifdef MOZ_XUL_APP\n' Comment.Preproc
+
+'ifdef MOZ_INSTALLER\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'     '       Text
+'+='          Operator
+'  '          Text
+'toolkit/mozapps/installer' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'else\n'      Comment.Preproc
+
+'ifneq (,$(MOZ_XPFE_COMPONENTS)$(MOZ_XUL))\n' Comment.Preproc
+
+'ifndef MINIMO\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'xpfe/bootstrap' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'endif\n'     Comment.Preproc
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifneq (,$(MOZ_ENABLE_GTK)$(MOZ_ENABLE_GTK2))\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+'\t'          Text
+'+='          Operator
+' '           Text
+'embedding/browser/gtk' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'# viewer\n'  Comment
+
+'ifneq (,$(ENABLE_TESTS))\n' Comment.Preproc
+
+'ifndef MOZ_ENABLE_LIBXUL\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'webshell/tests' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'# winembed, mfcembed\n' Comment
+
+'ifeq ($(OS_ARCH),WINNT)\n' Comment.Preproc
+
+'ifneq (,$(ENABLE_TESTS)$(MOZILLA_OFFICIAL))\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'embedding/tests' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'# os2embed\n' Comment
+
+'ifeq ($(OS_ARCH),OS2)\n' Comment.Preproc
+
+'ifneq (,$(ENABLE_TESTS)$(MOZILLA_OFFICIAL))\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'embedding/tests' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ifeq ($(MOZ_BUILD_APP),macbrowser)\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'embedding/config' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'camino'      Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'$('          Keyword
+'NULL'        Text
+')'           Keyword
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'# test harnesses \n' Comment
+
+'ifdef ENABLE_TESTS\n' Comment.Preproc
+
+'tier_99_dirs' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'tools/test-harness' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'else\n'      Comment.Preproc
+
+'\n'          Text
+
+'# Standalone build\n' Comment
+
+'\n'          Text
+
+'DIRS'        Name.Variable
+'\t\t'        Text
+'='           Operator
+' '           Text
+'$('          Keyword
+'BUILD_MODULE_DIRS' Text
+')'           Keyword
+'\n'          Text
+
+'\n'          Text
+
+'# Hack to generate xpidl Makefile\n' Comment
+
+'ifneq ($(BUILD_MODULES),all)\n' Comment.Preproc
+
+'ifneq (,$(findstring xpcom, $(BUILD_MODULE_DIRS)))\n' Comment.Preproc
+
+'DIRS'        Name.Variable
+'\t\t'        Text
+':='          Operator
+' '           Text
+'xpcom/typelib' Text
+' '           Text
+'$('          Keyword
+'DIRS'        Text
+')'           Keyword
+'\n'          Text
+
+'SUBMAKEFILES' Name.Variable
+'\t'          Text
+':='          Operator
+' '           Text
+'xpcom/typelib/Makefile' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'default'     Name.Function
+'::'          Operator
+' '           Text
+'$('          Keyword
+'SUBMAKEFILES' Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'export'      Name.Builtin
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'libs'        Text
+'\n\n'        Text
+
+'endif # BUILD_MODULES == all\n' Comment.Preproc
+
+'\n'          Text
+
+'STATIC_MAKEFILES' Name.Variable
+' '           Text
+':='          Operator
+' '           Text
+'nsprpub'     Text
+' '           Text
+'directory/c-sdk' Text
+' '           Text
+'security/nss' Text
+'\n'          Text
+
+'\n'          Text
+
+'GARBAGE_DIRS' Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'dist'        Text
+'\n'          Text
+
+'DIST_GARBAGE' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'config.cache' Text
+' '           Text
+'config.log'  Text
+' '           Text
+'config.status' Text
+' '           Text
+'config-defs.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'   '         Text
+'dependencies.beos' Text
+' '           Text
+'config/autoconf.mk' Text
+' '           Text
+'config/myrules.mk' Text
+' '           Text
+'config/myconfig.mk' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'   '         Text
+'unallmakefiles' Text
+' '           Text
+'mozilla-config.h' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'   '         Text
+'$('          Keyword
+'topsrcdir'   Text
+')'           Keyword
+'/.mozconfig.mk' Text
+' '           Text
+'$('          Keyword
+'topsrcdir'   Text
+')'           Keyword
+'/.mozconfig.out' Text
+' \n\n'       Text
+
+'# Build pseudo-external modules first when export is explicitly called\n' Comment
+
+'export'      Name.Function
+'::'          Operator
+'\n'          Text
+
+'\t'          Text
+'$('          Keyword
+'RM'          Text
+')'           Keyword
+' '           Text
+'-rf'         Text
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+'/sdk'        Text
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'-C'          Text
+' '           Text
+'config'      Text
+' '           Text
+'export'      Name.Builtin
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'nspr'        Text
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'ldap'        Text
+'\n'          Text
+
+'ifneq ($(BUILD_MODULES),all)\n' Comment.Preproc
+
+'ifneq (,$(findstring xpcom, $(BUILD_MODULE_DIRS)))\n' Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'-C'          Text
+' '           Text
+'xpcom/typelib' Text
+'\n\t'        Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'export-idl'  Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'install'     Name.Function
+'::'          Operator
+'\n'          Text
+
+'ifndef MOZ_NATIVE_NSPR\n' Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'-C'          Text
+' '           Text
+'nsprpub'     Text
+' '           Text
+'real_install' Text
+' '           Text
+'DESTDIR'     Name.Variable
+'='           Operator
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+' '           Text
+'libdir'      Name.Variable
+'='           Operator
+'$('          Keyword
+'mozappdir'   Text
+')'           Keyword
+' '           Text
+'includedir'  Name.Variable
+'='           Operator
+'$('          Keyword
+'includedir'  Text
+')'           Keyword
+'/nspr'       Text
+'\n\t'        Text
+'$('          Keyword
+'RM'          Text
+')'           Keyword
+' '           Text
+'-f'          Text
+' '           Text
+'$('          Keyword
+'addprefix'   Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'mozappdir'   Text
+')'           Keyword
+'/'           Text
+'$('          Keyword
+'LIB_PREFIX'  Text
+')'           Keyword
+','           Text
+' '           Text
+'$('          Keyword
+'addsuffix'   Text
+' '           Text
+'.'           Text
+'$('          Keyword
+'LIB_SUFFIX'  Text
+')'           Keyword
+','           Text
+' '           Text
+'nspr4'       Text
+' '           Text
+'plds4'       Text
+' '           Text
+'plc4'        Text
+')'           Keyword
+')'           Keyword
+'\n\t'        Text
+'$('          Keyword
+'RM'          Text
+')'           Keyword
+' '           Text
+'-f'          Text
+' '           Text
+'$('          Keyword
+'addprefix'   Text
+' '           Text
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+'$('          Keyword
+'bindir'      Text
+')'           Keyword
+'/,nspr-config' Text
+' '           Text
+'compile-et.pl' Text
+' '           Text
+'prerr.properties' Text
+')'           Keyword
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'ifdef MOZ_LDAP_XPCOM\n' Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'-C'          Text
+' '           Text
+'directory/c-sdk' Text
+' '           Text
+'real_install' Text
+' '           Text
+'DESTDIR'     Name.Variable
+'='           Operator
+'$('          Keyword
+'DESTDIR'     Text
+')'           Keyword
+' '           Text
+'libdir'      Name.Variable
+'='           Operator
+'$('          Keyword
+'mozappdir'   Text
+')'           Keyword
+' '           Text
+'includedir'  Name.Variable
+'='           Operator
+'$('          Keyword
+'includedir'  Text
+')'           Keyword
+'/ldap'       Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'include $(topsrcdir)/config/rules.mk\n' Comment.Preproc
+
+'\n'          Text
+
+'# Clean up after pseudo-external modules\n' Comment
+
+'clean clobber realclean clobber_all distclean' Name.Function
+'::'          Operator
+'\n'          Text
+
+'ifndef MOZ_NATIVE_NSPR\n' Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'-C'          Text
+' '           Text
+'nsprpub'     Text
+' '           Text
+'$@'          Name.Variable
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'ifdef MOZ_LDAP_XPCOM\n' Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'-C'          Text
+' '           Text
+'directory/c-sdk' Text
+' '           Text
+'$@'          Name.Variable
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'# Map mozilla targets to standard automake target\n' Comment
+
+'ifdef MOZ_ENABLE_LIBXUL\n' Comment.Preproc
+
+'tier_50'     Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'addsuffix'   Name.Variable
+' /'          Text
+'Makefile'    Name.Variable
+', '          Text
+'$'           Keyword
+'('           Keyword
+'filter-out'  Name.Variable
+' '           Text
+'$'           Keyword
+'('           Keyword
+'STATIC_MAKEFILES' Name.Variable
+')'           Keyword
+', '          Text
+'$'           Keyword
+'('           Keyword
+'$'           Keyword
+'@'           Text
+'_dirs'       Name.Variable
+')'           Keyword
+')'           Keyword
+')'           Keyword
+'\n'          Text
+
+'\t'          Text
+'@echo'       Text
+' '           Text
+'"'           Literal.String.Double
+'tier_50: '   Literal.String.Double
+'$('          Keyword
+'tier_50_dirs' Text
+')'           Keyword
+'"'           Literal.String.Double
+'\n\t'        Text
+'@'           Text
+'$('          Keyword
+'EXIT_ON_ERROR' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'for'         Keyword
+' '           Text
+'d'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'tier_50_dirs' Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t    '      Text
+'$('          Keyword
+'UPDATE_TITLE' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t    if test ! -f $$d/Makefile; then \\\n' Comment.Preproc
+
+'\t      $(PERL) $(AUTOCONF_TOOLS)/make-makefile -t $(topsrcdir) -d $(DEPTH) $(CYGWIN_TOPSRCDIR) $$d/Makefile; \\\n' Comment.Preproc
+
+'\t    fi; \\\n' Comment.Preproc
+
+'\t    $(MAKE) -C $$d export; \\\n' Comment.Preproc
+
+'\tdone ; \\\n' Comment.Preproc
+
+'\tfor d in $(tier_50_dirs); do \\\n' Comment.Preproc
+
+'\t    $(UPDATE_TITLE) \\\n' Comment.Preproc
+
+'\t    $(MAKE) -C $$d libs; \\\n' Comment.Preproc
+
+'\tdone\n'    Comment.Preproc
+
+'\t'          Text
+'@echo'       Text
+' '           Text
+'"Building tools from tier 2/9/50"' Literal.String.Double
+'\n\t'        Text
+'@'           Text
+'$('          Keyword
+'EXIT_ON_ERROR' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'for'         Keyword
+' '           Text
+'d'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'tier_2_dirs' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'tier_9_dirs' Text
+')'           Keyword
+' '           Text
+'$('          Keyword
+'tier_50_dirs' Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t    '      Text
+'$('          Keyword
+'UPDATE_TITLE' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t    '      Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'-C'          Text
+' '           Text
+'$$'          Name.Variable
+'d'           Text
+' '           Text
+'tools'       Text
+';'           Punctuation
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'done'        Keyword
+';'           Punctuation
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'tier_%'      Name.Function
+':'           Operator
+'\n'          Text
+
+'\t'          Text
+'@echo'       Text
+' '           Text
+'"'           Literal.String.Double
+'$@'          Name.Variable
+': '          Literal.String.Double
+'$('          Keyword
+'$@'          Name.Variable
+'_dirs'       Text
+')'           Keyword
+'"'           Literal.String.Double
+'\n\t'        Text
+'@'           Text
+'$('          Keyword
+'EXIT_ON_ERROR' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t  '        Text
+'for'         Keyword
+' '           Text
+'d'           Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'$@'          Name.Variable
+'_dirs'       Text
+')'           Keyword
+';'           Punctuation
+' '           Text
+'do'          Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t    '      Text
+'$('          Keyword
+'UPDATE_TITLE' Text
+')'           Keyword
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t    if test ! -f $$d/Makefile; then \\\n' Comment.Preproc
+
+'\t      $(PERL) $(AUTOCONF_TOOLS)/make-makefile -t $(topsrcdir) -d $(DEPTH) $(CYGWIN_TOPSRCDIR) $$d/Makefile; \\\n' Comment.Preproc
+
+'\t    fi; \\\n' Comment.Preproc
+
+'\t    $(MAKE) -C $$d export; \\\n' Comment.Preproc
+
+'\t  done ; \\\n' Comment.Preproc
+
+'\t  for d in $($@_dirs); do $(UPDATE_TITLE) \\\n' Comment.Preproc
+
+'\t    $(MAKE) -C $$d libs; \\\n' Comment.Preproc
+
+'\t  done\n'  Comment.Preproc
+
+'\n'          Text
+
+'#\n'         Comment
+
+'# Individual modules\n' Comment
+
+'#\n'         Comment
+
+'boehm'       Name.Function
+':'           Operator
+'\n'          Text
+
+'ifdef GC_LEAK_DETECTOR\n' Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'-C'          Text
+' '           Text
+'gc/boehm'    Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'nspr'        Name.Function
+':'           Operator
+' '           Text
+'boehm'       Name
+'\n'          Text
+
+'ifndef MOZ_NATIVE_NSPR\n' Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'-C'          Text
+' '           Text
+'nsprpub'     Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'ldap'        Name.Function
+':'           Operator
+'\n'          Text
+
+'ifdef MOZ_LDAP_XPCOM\n' Comment.Preproc
+
+'\t'          Text
+'$('          Keyword
+'MAKE'        Text
+')'           Keyword
+' '           Text
+'-C'          Text
+' '           Text
+'directory/c-sdk' Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'distclean'   Name.Function
+'::'          Operator
+'\n'          Text
+
+'\t'          Text
+'cat'         Text
+' '           Text
+'unallmakefiles' Text
+' '           Text
+'|'           Punctuation
+' '           Text
+'$('          Keyword
+'XARGS'       Text
+')'           Keyword
+' '           Text
+'rm'          Text
+' '           Text
+'-f'          Text
+'\n\t'        Text
+'rm'          Text
+' '           Text
+'-f'          Text
+' '           Text
+'unallmakefiles' Text
+' '           Text
+'$('          Keyword
+'DIST_GARBAGE' Text
+')'           Keyword
+'\n\n'        Text
+
+'ifeq ($(OS_ARCH),WINNT)\n' Comment.Preproc
+
+'rebase'      Name.Function
+':'           Operator
+'\n'          Text
+
+'ifdef MOZILLA_OFFICIAL\n' Comment.Preproc
+
+'\t'          Text
+'echo'        Name.Builtin
+' '           Text
+'rebasing'    Text
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+'\n\t'        Text
+'/bin/find'   Text
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+' '           Text
+'-name'       Text
+' '           Text
+'"*.dll"'     Literal.String.Double
+' '           Text
+'>'           Text
+' '           Text
+'rebase.lst'  Text
+'\n\t'        Text
+'rebase'      Text
+' '           Text
+'-b'          Text
+' '           Text
+'60000000'    Literal.Number
+' '           Text
+'-R'          Text
+' '           Text
+'.'           Text
+' '           Text
+'-G'          Text
+' '           Text
+'rebase.lst'  Text
+'\n\t'        Text
+'rm'          Text
+' '           Text
+'rebase.lst'  Text
+'\n'          Text
+
+'endif\n'     Comment.Preproc
+
+'\n'          Text
+
+'splitsymbols' Name.Function
+':'           Operator
+'\n'          Text
+
+'ifdef MOZILLA_OFFICIAL\n' Comment.Preproc
+
+'ifdef MOZ_DEBUG_SYMBOLS\n' Comment.Preproc
+
+'\t'          Text
+'echo'        Name.Builtin
+' '           Text
+'finding'     Text
+' '           Text
+'pdb'         Text
+' '           Text
+'files'       Text
+'\n\t'        Text
+'mkdir'       Text
+' '           Text
+'-p'          Text
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+'/'           Text
+'$('          Keyword
+'BUILDID'     Text
+')'           Keyword
+'\n\t'        Text
+'-cp'         Text
+' '           Text
+'`'           Literal.String.Backtick
+'/bin/find'   Text
+' '           Text
+'.'           Text
+' '           Text
+'-path'       Text
+' '           Text
+'"./dist"'    Literal.String.Double
+' '           Text
+'-prune'      Text
+' '           Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'"*.dll"'     Literal.String.Double
+' '           Text
+'|'           Punctuation
+' '           Text
+'sed'         Text
+' '           Text
+'"'           Literal.String.Double
+'s/\\.dll'    Literal.String.Double
+'$$'          Name.Variable
+'/\\.pdb/'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'|'           Punctuation
+' '           Text
+'xargs'       Text
+'`'           Literal.String.Backtick
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+'/'           Text
+'$('          Keyword
+'BUILDID'     Text
+')'           Keyword
+'\n\t'        Text
+'-cp'         Text
+' '           Text
+'`'           Literal.String.Backtick
+'/bin/find'   Text
+' '           Text
+'.'           Text
+' '           Text
+'-path'       Text
+' '           Text
+'"./dist"'    Literal.String.Double
+' '           Text
+'-prune'      Text
+' '           Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'"*.exe"'     Literal.String.Double
+' '           Text
+'|'           Punctuation
+' '           Text
+'sed'         Text
+' '           Text
+'"'           Literal.String.Double
+'s/\\.exe'    Literal.String.Double
+'$$'          Name.Variable
+'/\\.pdb/'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'|'           Punctuation
+' '           Text
+'xargs'       Text
+'`'           Literal.String.Backtick
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+'/'           Text
+'$('          Keyword
+'BUILDID'     Text
+')'           Keyword
+'\n\t'        Text
+'-cp'         Text
+' '           Text
+'`'           Literal.String.Backtick
+'/bin/find'   Text
+' '           Text
+'.'           Text
+' '           Text
+'-path'       Text
+' '           Text
+'"./dist"'    Literal.String.Double
+' '           Text
+'-prune'      Text
+' '           Text
+'-o'          Text
+' '           Text
+'-name'       Text
+' '           Text
+'"*.EXE"'     Literal.String.Double
+' '           Text
+'|'           Punctuation
+' '           Text
+'sed'         Text
+' '           Text
+'"'           Literal.String.Double
+'s/\\.EXE'    Literal.String.Double
+'$$'          Name.Variable
+'/\\.pdb/'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'|'           Punctuation
+' '           Text
+'xargs'       Text
+'`'           Literal.String.Backtick
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+'/'           Text
+'$('          Keyword
+'BUILDID'     Text
+')'           Keyword
+'\n'          Text
+
+'endif # MOZ_DEBUG_SYMBOLS\n' Comment.Preproc
+
+'ifdef MOZ_PROFILE\n' Comment.Preproc
+
+'\t'          Text
+'echo'        Name.Builtin
+' '           Text
+'splitting'   Text
+' '           Text
+'symbols'     Text
+' '           Text
+'out'         Text
+' '           Text
+'of'          Text
+' '           Text
+'binaries'    Text
+'\n\t'        Text
+'/bin/find'   Text
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+' '           Text
+'-name'       Text
+' '           Text
+'"*.dll"'     Literal.String.Double
+' '           Text
+'-exec'       Text
+' '           Text
+'splitsym'    Text
+' '           Text
+'{'           Operator
+'}'           Operator
+' '           Text
+'\\;'         Literal.String.Escape
+'\n\t'        Text
+'/bin/find'   Text
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+' '           Text
+'-name'       Text
+' '           Text
+'"*.exe"'     Literal.String.Double
+' '           Text
+'-exec'       Text
+' '           Text
+'splitsym'    Text
+' '           Text
+'{'           Operator
+'}'           Operator
+' '           Text
+'\\;'         Literal.String.Escape
+'\n\t'        Text
+'/bin/find'   Text
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+' '           Text
+'-name'       Text
+' '           Text
+'"*.EXE"'     Literal.String.Double
+' '           Text
+'-exec'       Text
+' '           Text
+'splitsym'    Text
+' '           Text
+'{'           Operator
+'}'           Operator
+' '           Text
+'\\;'         Literal.String.Escape
+'\n\t'        Text
+'mkdir'       Text
+' '           Text
+'-p'          Text
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+'/'           Text
+'$('          Keyword
+'BUILDID'     Text
+')'           Keyword
+'\n\t'        Text
+'/bin/find'   Text
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+' '           Text
+'-name'       Text
+' '           Text
+'"*.dbg"'     Literal.String.Double
+' '           Text
+'-exec'       Text
+' '           Text
+'mv'          Text
+' '           Text
+'{'           Operator
+'}'           Operator
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+'/'           Text
+'$('          Keyword
+'BUILDID'     Text
+')'           Keyword
+' '           Text
+'\\;'         Literal.String.Escape
+'\n'          Text
+
+'endif # MOZ_PROFILE\n' Comment.Preproc
+
+'endif # MOZILLA_OFFICIAL\n' Comment.Preproc
+
+'\n'          Text
+
+'signnss'     Name.Function
+':'           Operator
+'\n'          Text
+
+'ifdef MOZILLA_OFFICIAL\n' Comment.Preproc
+
+'\t'          Text
+'echo'        Name.Builtin
+' '           Text
+'signing'     Text
+' '           Text
+'NSS'         Text
+' '           Text
+'libs'        Text
+'\n\t'        Text
+'cd'          Name.Builtin
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+'/bin'        Text
+';'           Punctuation
+' '           Text
+'./shlibsign.exe' Text
+' '           Text
+'-v'          Text
+' '           Text
+'-i'          Text
+' '           Text
+'softokn3.dll' Text
+'\n\t'        Text
+'cd'          Name.Builtin
+' '           Text
+'$('          Keyword
+'DIST'        Text
+')'           Keyword
+'/bin'        Text
+';'           Punctuation
+' '           Text
+'./shlibsign.exe' Text
+' '           Text
+'-v'          Text
+' '           Text
+'-i'          Text
+' '           Text
+'freebl3.dll' Text
+'\n'          Text
+
+'endif # MOZILLA_OFFICIAL\n' Comment.Preproc
+
+'\n'          Text
+
+'BUILDID'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$('          Keyword
+'shell'       Text
+' '           Text
+'cat'         Text
+' '           Text
+'$('          Keyword
+'DEPTH'       Text
+')'           Keyword
+'/config/build_number' Text
+')'           Keyword
+'\n'          Text
+
+'deliver'     Name.Function
+':'           Operator
+' '           Text
+'splitsymbols' Name
+' '           Text
+'rebase'      Name
+' '           Text
+'signnss'     Name
+'\n'          Text
+
+'\n'          Text
+
+'endif # WINNT\n' Comment.Preproc

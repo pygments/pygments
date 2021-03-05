@@ -1,0 +1,115 @@
+'>>'          Generic.Prompt
+'\n'          Text.Whitespace
+
+'>>'          Generic.Prompt
+'\n'          Text.Whitespace
+
+'>> '         Generic.Prompt
+'a'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+"okay'"       Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Generic.Output
+
+'a =\n'       Generic.Output
+
+'\n'          Generic.Output
+
+'okay\n'      Generic.Output
+
+'\n'          Generic.Output
+
+'>> '         Generic.Prompt
+'x'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'rand'        Name.Builtin
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+'    '        Text.Whitespace
+'% a matrix'  Comment
+'\n'          Text.Whitespace
+
+'\n'          Generic.Output
+
+'x =\n'       Generic.Output
+
+'\n'          Generic.Output
+
+'    0.8147    0.9134    0.2785\n' Generic.Output
+
+'    0.9058    0.6324    0.5469\n' Generic.Output
+
+'    0.1270    0.0975    0.9575\n' Generic.Output
+
+'\n'          Generic.Output
+
+'>> '         Generic.Prompt
+'1'           Literal.Number.Integer
+'/'           Operator
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Generic.Output
+
+'ans =\n'     Generic.Output
+
+'\n'          Generic.Output
+
+'   Inf\n'    Generic.Output
+
+'\n'          Generic.Output
+
+'>> '         Generic.Prompt
+'foo'         Name
+'\n'          Text.Whitespace
+
+"??? Undefined function or variable 'foo'.\n" Generic.Traceback
+
+'\n'          Generic.Output
+
+'>>'          Generic.Prompt
+'\n'          Text.Whitespace
+
+'>>'          Generic.Prompt
+'\n'          Text.Whitespace
+
+'>> '         Generic.Prompt
+'{'           Punctuation
+'cos'         Name.Builtin
+'('           Punctuation
+'2'           Literal.Number.Integer
+'*'           Operator
+'pi'          Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+"testing'"    Literal.String
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Generic.Output
+
+'ans =\n'     Generic.Output
+
+'\n'          Generic.Output
+
+"    [1]    'testing'\n" Generic.Output
+
+'\n'          Generic.Output
+
+'>>'          Generic.Prompt
+'\n'          Text.Whitespace
+
+'>>'          Generic.Prompt
+'\n'          Text.Whitespace
+
+'>>'          Generic.Prompt
+'\n'          Text.Whitespace

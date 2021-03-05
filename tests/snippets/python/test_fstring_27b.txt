@@ -1,0 +1,11 @@
+---input---
+f'{foo=}'
+
+---tokens---
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'{'           Literal.String.Interpol
+'foo'         Name
+'=}'          Literal.String.Interpol
+"'"           Literal.String.Single
+'\n'          Text

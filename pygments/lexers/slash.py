@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.slash
     ~~~~~~~~~~~~~~~~~~~~~
@@ -6,7 +5,7 @@
     Lexer for the `Slash <https://github.com/arturadib/Slash-A>`_ programming
     language.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -26,7 +25,7 @@ class SlashLanguageLexer(ExtendedRegexLexer):
     def right_angle_bracket(lexer, match, ctx):
         if len(ctx.stack) > 1 and ctx.stack[-2] == "string":
             ctx.stack.pop()
-        yield match.start(), String.Interpol, u"}"
+        yield match.start(), String.Interpol, '}'
         ctx.pos = match.end()
         pass
 
@@ -178,8 +177,8 @@ class SlashLexer(DelegatingLexer):
 
     name = 'Slash'
     aliases = ['slash']
-    filenames = ['*.sl']
+    filenames = ['*.sla']
 
     def __init__(self, **options):
         from pygments.lexers.web import HtmlLexer
-        super(SlashLexer, self).__init__(HtmlLexer, SlashLanguageLexer, **options)
+        super().__init__(HtmlLexer, SlashLanguageLexer, **options)

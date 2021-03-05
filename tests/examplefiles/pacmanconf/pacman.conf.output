@@ -1,0 +1,443 @@
+'#'           Comment.Single
+'\n'          Text
+
+'# /etc/pacman.conf' Comment.Single
+'\n'          Text
+
+'#'           Comment.Single
+'\n'          Text
+
+'# This example file has no relation to `pacman.ijs`' Comment.Single
+'\n'          Text
+
+"# but is of configuration of Arch Linux's package manager `pacman`." Comment.Single
+'\n'          Text
+
+'#'           Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'#'           Comment.Single
+'\n'          Text
+
+'# GENERAL OPTIONS' Comment.Single
+'\n'          Text
+
+'#'           Comment.Single
+'\n'          Text
+
+'[options]'   Keyword
+'\n'          Text
+
+'RootDir'     Name.Attribute
+'     '       Text
+'='           Operator
+' '           Text
+'/'           Text
+'o'           Text
+'p'           Text
+'t'           Text
+'/'           Text
+'l'           Text
+'o'           Text
+'c'           Text
+'a'           Text
+'l'           Text
+'/'           Text
+'s'           Text
+'i'           Text
+'t'           Text
+'e'           Text
+'-'           Text
+'p'           Text
+'r'           Text
+'i'           Text
+'v'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'\n'          Text
+
+'#DBPath      = /var/lib/pacman/' Comment.Single
+'\n'          Text
+
+'#CacheDir    = /var/cache/pacman/pkg/' Comment.Single
+'\n'          Text
+
+'LogFile'     Name.Attribute
+'     '       Text
+'='           Operator
+' '           Text
+'/'           Text
+'o'           Text
+'p'           Text
+'t'           Text
+'/'           Text
+'l'           Text
+'o'           Text
+'c'           Text
+'a'           Text
+'l'           Text
+'/'           Text
+'s'           Text
+'i'           Text
+'t'           Text
+'e'           Text
+'-'           Text
+'p'           Text
+'r'           Text
+'i'           Text
+'v'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'/'           Text
+'v'           Text
+'a'           Text
+'r'           Text
+'/'           Text
+'l'           Text
+'o'           Text
+'g'           Text
+'/'           Text
+'p'           Text
+'a'           Text
+'c'           Text
+'m'           Text
+'a'           Text
+'n'           Text
+'.'           Text
+'l'           Text
+'o'           Text
+'g'           Text
+'\n'          Text
+
+'#GPGDir      = /etc/pacman.d/gnupg/' Comment.Single
+'\n'          Text
+
+'HoldPkg'     Name.Attribute
+'      '      Text
+'='           Operator
+' '           Text
+'p'           Text
+'a'           Text
+'c'           Text
+'m'           Text
+'a'           Text
+'n'           Text
+'\n'          Text
+
+'#XferCommand = /usr/bin/curl -C - -f %u > %o' Comment.Single
+'\n'          Text
+
+'XferCommand' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'/'           Text
+'u'           Text
+'s'           Text
+'r'           Text
+'/'           Text
+'l'           Text
+'o'           Text
+'c'           Text
+'a'           Text
+'l'           Text
+'/'           Text
+'b'           Text
+'i'           Text
+'n'           Text
+'/'           Text
+'w'           Text
+'g'           Text
+'e'           Text
+'t'           Text
+' '           Text
+'-'           Text
+'-'           Text
+'p'           Text
+'a'           Text
+'s'           Text
+'s'           Text
+'i'           Text
+'v'           Text
+'e'           Text
+'-'           Text
+'f'           Text
+'t'           Text
+'p'           Text
+' '           Text
+'-'           Text
+'c'           Text
+' '           Text
+'-'           Text
+'O'           Text
+' '           Text
+'%o'          Name.Variable
+' '           Text
+'%u'          Name.Variable
+'\n'          Text
+
+'#CleanMethod = KeepInstalled' Comment.Single
+'\n'          Text
+
+'#UseDelta    = 0.7' Comment.Single
+'\n'          Text
+
+'Architecture' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'a'           Text
+'u'           Text
+'t'           Text
+'o'           Text
+'\n'          Text
+
+'\n'          Text
+
+'#IgnorePkg   =' Comment.Single
+'\n'          Text
+
+'#IgnoreGroup =' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'NoUpgrade'   Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'e'           Text
+'t'           Text
+'c'           Text
+'/'           Text
+'p'           Text
+'a'           Text
+'s'           Text
+'s'           Text
+'w'           Text
+'d'           Text
+' '           Text
+'e'           Text
+'t'           Text
+'c'           Text
+'/'           Text
+'g'           Text
+'r'           Text
+'o'           Text
+'u'           Text
+'p'           Text
+' '           Text
+'e'           Text
+'t'           Text
+'c'           Text
+'/'           Text
+'s'           Text
+'h'           Text
+'a'           Text
+'d'           Text
+'o'           Text
+'w'           Text
+'\n'          Text
+
+'NoUpgrade'   Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'e'           Text
+'t'           Text
+'c'           Text
+'/'           Text
+'f'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'\n'          Text
+
+'#NoExtract   =' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'#UseSyslog'  Comment.Single
+'\n'          Text
+
+'Color'       Name.Attribute
+'\n'          Text
+
+'#TotalDownload' Comment.Single
+'\n'          Text
+
+'CheckSpace'  Name.Attribute
+'\n'          Text
+
+'#VerbosePkgLists' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'#SigLevel = Never' Comment.Single
+'\n'          Text
+
+'SigLevel'    Name.Attribute
+'    '        Text
+'='           Operator
+' '           Text
+'R'           Text
+'e'           Text
+'q'           Text
+'u'           Text
+'i'           Text
+'r'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'D'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'a'           Text
+'s'           Text
+'e'           Text
+'O'           Text
+'p'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'a'           Text
+'l'           Text
+'\n'          Text
+
+'LocalFileSigLevel' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'O'           Text
+'p'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'a'           Text
+'l'           Text
+'\n'          Text
+
+'RemoteFileSigLevel' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'R'           Text
+'e'           Text
+'q'           Text
+'u'           Text
+'i'           Text
+'r'           Text
+'e'           Text
+'d'           Text
+'\n'          Text
+
+'\n'          Text
+
+'Server'      Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'f'           Text
+'t'           Text
+'p'           Text
+':'           Text
+'/'           Text
+'/'           Text
+'f'           Text
+'t'           Text
+'p'           Text
+'9'           Text
+'.'           Text
+'y'           Text
+'a'           Text
+'p'           Text
+'h'           Text
+'a'           Text
+'t'           Text
+'c'           Text
+'h'           Text
+'p'           Text
+'o'           Text
+'t'           Text
+'c'           Text
+'h'           Text
+'g'           Text
+'e'           Text
+'n'           Text
+'.'           Text
+'n'           Text
+'e'           Text
+'t'           Text
+'/'           Text
+'$repo'       Name.Variable
+'/'           Text
+'o'           Text
+'s'           Text
+'/'           Text
+'$arch'       Name.Variable
+'\n'          Text
+
+'\n[fubar32]' Keyword
+'\n'          Text
+
+'Include'     Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'/'           Text
+'e'           Text
+'t'           Text
+'c'           Text
+'/'           Text
+'p'           Text
+'a'           Text
+'c'           Text
+'m'           Text
+'a'           Text
+'n'           Text
+'.'           Text
+'d'           Text
+'/'           Text
+'m'           Text
+'i'           Text
+'r'           Text
+'r'           Text
+'o'           Text
+'r'           Text
+'l'           Text
+'i'           Text
+'s'           Text
+'t'           Text
+'.'           Text
+'f'           Text
+'u'           Text
+'b'           Text
+'a'           Text
+'r'           Text
+'3'           Text
+'2'           Text
+' '           Text
+'# comment is allowed here' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'#[custom]'   Comment.Single
+'\n'          Text
+
+'#SigLevel = Optional TrustAll' Comment.Single
+'\n'          Text
+
+'#Server = file:///home/custompkgs' Comment.Single
+'\n'          Text
