@@ -46,6 +46,7 @@ const wchar o = L'\'';
 const wstring p = L"Hello World\n\t\v\b\r\f\a\\\'\"\xff";
 
 const long expr = (4 * (2 + 6) / 2 - 7) % 6;
+const long expr2 = (~4 >> 8) << 2;
 
 const long id_with_number_4_in_it = 4;
 
