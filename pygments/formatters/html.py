@@ -272,7 +272,9 @@ class HtmlFormatter(Formatter):
         125%``).
 
     `hl_lines`
-        Specify a list of lines to be highlighted.
+        Specify a list of lines to be highlighted. The line numbers are always
+        relative to the input (i.e. the first line is line 1) and are
+        independent of `linenostart`.
 
         .. versionadded:: 0.11
 
