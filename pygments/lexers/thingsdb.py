@@ -20,6 +20,8 @@ __all__ = ['ThingsDBLexer']
 class ThingsDBLexer(RegexLexer):
     """
     Lexer for the ThingsDB programming language.
+
+    .. versionadded:: 2.9
     """
     name = 'ThingsDB'
     aliases = ['ti', 'thingsdb']
