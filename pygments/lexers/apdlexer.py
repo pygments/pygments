@@ -10,7 +10,8 @@
 """
 
 import re
-from pygments.lexer import RegexLexer, bygroups, include, words
+
+from pygments.lexer import RegexLexer, include, words
 from pygments.token import *
 
 __all__ = ['apdlexer']

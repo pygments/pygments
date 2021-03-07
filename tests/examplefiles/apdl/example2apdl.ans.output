@@ -1,0 +1,429 @@
+'! ANSYS command file to perform 2D Truss Tutorial (Chandrupatla p.123)\n' Comment
+
+'!\n'         Comment
+
+'/'           Operator
+'title'       Name.Variable
+','           Punctuation
+' '           Text
+'Bridge'      Name.Variable
+' '           Text
+'Truss'       Name.Variable
+' '           Text
+'Tutorial'    Name.Variable
+'\n'          Text
+
+'/'           Operator
+'PREP7'       Name.Variable
+'                  ' Text
+'! preprocessor phase\n' Comment
+
+'!\n'         Comment
+
+'! define parameters (mm)\n' Comment
+
+'height'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'3118'        Literal.Number.Integer
+'\n'          Text
+
+'width'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'3600'        Literal.Number.Integer
+'\n'          Text
+
+'!\n'         Comment
+
+'! define keypoints \n' Comment
+
+'!\n'         Comment
+
+'K'           Keyword
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'    '        Text
+'0'           Literal.Number.Integer
+','           Punctuation
+'   '         Text
+'0'           Literal.Number.Integer
+'               ' Text
+'! keypoint, #, x, y\n' Comment
+
+'K'           Keyword
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'   '         Text
+'width'       Name.Variable
+'/'           Operator
+'2'           Literal.Number.Integer
+','           Punctuation
+'height'      Name.Variable
+' \n'         Text
+
+'K'           Keyword
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'     '       Text
+'width'       Name.Variable
+','           Punctuation
+'  '          Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'K'           Keyword
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+'*'           Operator
+'width'       Name.Variable
+'/'           Operator
+'2'           Literal.Number.Integer
+','           Punctuation
+'  '          Text
+'height'      Name.Variable
+'\n'          Text
+
+'K'           Keyword
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'   '         Text
+'2'           Literal.Number.Integer
+'*'           Operator
+'width'       Name.Variable
+','           Punctuation
+'   '         Text
+'0'           Literal.Number.Integer
+' \n'         Text
+
+'K'           Keyword
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+'*'           Operator
+'width'       Name.Variable
+'/'           Operator
+'2'           Literal.Number.Integer
+','           Punctuation
+'  '          Text
+'height'      Name.Variable
+'\n'          Text
+
+'K'           Keyword
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'   '         Text
+'3'           Literal.Number.Integer
+'*'           Operator
+'width'       Name.Variable
+','           Punctuation
+'  '          Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'!\n'         Comment
+
+'! define lines\n' Comment
+
+'!\n'         Comment
+
+'L'           Keyword
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+'                   ' Text
+'! line connecting kpoint 1 and 2\n' Comment
+
+'L'           Keyword
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+'\n'          Text
+
+'L'           Keyword
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+'\n'          Text
+
+'L'           Keyword
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+'\n'          Text
+
+'L'           Keyword
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+'\n'          Text
+
+'L'           Keyword
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'L'           Keyword
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'L'           Keyword
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+'\n'          Text
+
+'L'           Keyword
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+'\n'          Text
+
+'L'           Keyword
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+'\n'          Text
+
+'L'           Keyword
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+'\n \n'       Text
+
+'!\n'         Comment
+
+'! element definition\n' Comment
+
+'!\n'         Comment
+
+'ET'          Keyword
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'LINK1'       Keyword
+'              ' Text
+'! element type      #1; spring element\n' Comment
+
+'R'           Keyword
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'3250'        Literal.Number.Integer
+'                ' Text
+'! real constant     #1; Xsect area: 3200 mm^2\n' Comment
+
+'MP'          Keyword
+','           Punctuation
+'EX'          Name.Variable
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'20'          Literal.Number.Integer
+'0e3'         Literal.Number.Float
+'          '  Text
+"! material property #1; Young's modulus: 200 GPa\n" Comment
+
+'\n'          Text
+
+'LESIZE'      Keyword
+','           Punctuation
+'ALL'         Name.Variable
+','           Punctuation
+' '           Text
+','           Punctuation
+' '           Text
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+'    '        Text
+'! specify divisions on unmeshed lines\n' Comment
+
+'LMESH'       Keyword
+','           Punctuation
+'all'         Name.Variable
+'               ' Text
+'! mesh all lines\n' Comment
+
+'!\n'         Comment
+
+'FINISH'      Keyword
+'                  ' Text
+'! finish pre-processor\n' Comment
+
+'!\n'         Comment
+
+'/'           Operator
+'SOLU'        Keyword
+'                   ' Text
+'! enter solution phase\n' Comment
+
+'!\n'         Comment
+
+'! apply some constraints\n' Comment
+
+'DK'          Keyword
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'ALL'         Name.Variable
+','           Punctuation
+'0'           Literal.Number.Integer
+'        '    Text
+'! define a DOF constraint at a keypoint\n' Comment
+
+'DK'          Keyword
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'UY'          Name.Variable
+','           Punctuation
+'0'           Literal.Number.Integer
+' \n'         Text
+
+'!\n'         Comment
+
+'! apply loads\n' Comment
+
+'!\n'         Comment
+
+'FK'          Keyword
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'FY'          Name.Variable
+','           Punctuation
+'-'           Operator
+'28'          Literal.Number.Integer
+'0e3'         Literal.Number.Float
+'          '  Text
+'! define a force load to a keypoint\n' Comment
+
+'FK'          Keyword
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'FY'          Name.Variable
+','           Punctuation
+'-'           Operator
+'21'          Literal.Number.Integer
+'0e3'         Literal.Number.Float
+'          \n' Text
+
+'FK'          Keyword
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'FY'          Name.Variable
+','           Punctuation
+'-'           Operator
+'28'          Literal.Number.Integer
+'0e3'         Literal.Number.Float
+'          \n' Text
+
+'FK'          Keyword
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'FY'          Name.Variable
+','           Punctuation
+'-'           Operator
+'36'          Literal.Number.Integer
+'0e3'         Literal.Number.Float
+'          \n' Text
+
+'!\n'         Comment
+
+'SOLVE'       Keyword
+'                   ' Text
+'! solve the resulting system of equations\n' Comment
+
+'FINISH'      Keyword
+'                  ' Text
+'! finish solution\n' Comment
+
+'\n'          Text
+
+'/'           Operator
+'POST1'       Name.Variable
+'\n'          Text
+
+'PRRSOL'      Keyword
+','           Punctuation
+'F'           Keyword
+'                ' Text
+'! List Reaction Forces\n' Comment
+
+'PLDISP'      Keyword
+','           Punctuation
+'2'           Literal.Number.Integer
+'                ' Text
+'! Plot Deformed shape\n' Comment
+
+'PLNSOL'      Keyword
+','           Punctuation
+'U'           Name.Variable
+','           Punctuation
+'SUM'         Name.Variable
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+'        '    Text
+'! Contour Plot of deflection\n' Comment
+
+'\n'          Text
+
+'ETABLE'      Keyword
+','           Punctuation
+'SAXL'        Name.Variable
+','           Punctuation
+'LS'          Name.Variable
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+'         '   Text
+'! Axial Stress\n' Comment
+
+'PRETAB'      Keyword
+','           Punctuation
+'SAXL'        Name.Variable
+'               ' Text
+'! List Element Table\n' Comment
+
+'PLETAB'      Keyword
+','           Punctuation
+'SAXL'        Name.Variable
+','           Punctuation
+'NOAV'        Name.Variable
+'          '  Text
+'! Plot Axial Stress\n' Comment
