@@ -354,7 +354,7 @@ class CppLexer(CFamilyLexer):
         ],
         'namespace': [
             (r'[;{]', Punctuation, ('#pop', 'root')),
-            (r'inline', Keyword),
+            (r'inline\b', Keyword.Reserved),
             (CFamilyLexer._ident, Name.Namespace),
             include('statement')
         ]
