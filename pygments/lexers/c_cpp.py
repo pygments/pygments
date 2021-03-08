@@ -255,7 +255,7 @@ class CLexer(CFamilyLexer):
     priority = 0.1
 
     tokens = {
-        'statements': [
+        'keywords': [
             (words((
                 '_Alignas', '_Alignof', '_Noreturn', '_Generic', '_Thread_local', 
                 '_Static_assert', '_Imaginary', 'noreturn', 'imaginary', 'complex'),
