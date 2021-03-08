@@ -81,7 +81,7 @@ class JavascriptLexer(RegexLexer):
             (r'[})\].]', Punctuation),
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
              r'throw|try|catch|finally|new|delete|typeof|instanceof|void|yield|await|async|'
-             r'this|of|static|export|import|debugger|extends|super)\b', Keyword, 'slashstartsregex'),
+             r'this|of|static|export|import|from|as|debugger|extends|super)\b', Keyword, 'slashstartsregex'),
             (r'(var|let|const|with|function|class)\b', Keyword.Declaration, 'slashstartsregex'),
             (r'(abstract|boolean|byte|char|double|enum|final|float|goto'
              r'implements|int|interface|long|native|package|private|protected'
@@ -486,7 +486,7 @@ class TypeScriptLexer(RegexLexer):
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
              r'throw|try|catch|finally|new|delete|typeof|instanceof|void|of|'
              r'this|async|await|debugger|yield|abstract|static|import|export|'
-             r'implements|super|extends|private|protected|public|readonly)\b',
+             r'from|implements|super|extends|private|protected|public|readonly)\b',
                 Keyword, 'slashstartsregex'),
             (r'(var|let|const|with|function|class|type|enum|interface)\b',
                 Keyword.Declaration, 'slashstartsregex'),
@@ -504,7 +504,7 @@ class TypeScriptLexer(RegexLexer):
             # Match variable type keywords
             (r'\b(string|bool|number)\b', Keyword.Type),
             # Match stuff like: constructor
-            (r'\b(constructor|declare|interface|as|AS)\b', Keyword.Reserved),
+            (r'\b(constructor|declare|interface|as)\b', Keyword.Reserved),
             # Match stuff like: super(argument, list)
             (r'(super)(\s*)(\([\w,?.$\s]+\s*\))',
              bygroups(Keyword.Reserved, Text), 'slashstartsregex'),
