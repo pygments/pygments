@@ -37,7 +37,7 @@ The above command could therefore also be given as::
 To create a full HTML document, including line numbers and stylesheet (using the
 "emacs" style), highlighting the Python file ``test.py`` to ``test.html``::
 
-    $ pygmentize -O full,style=emacs -o test.html test.py
+    $ pygmentize -O full,style=emacs,linenos=1 -o test.html test.py
 
 
 Options and filters
