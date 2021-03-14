@@ -455,6 +455,7 @@ LEXERS = {
     'TerraformLexer': ('pygments.lexers.configs', 'Terraform', ('terraform', 'tf'), ('*.tf',), ('application/x-tf', 'application/x-terraform')),
     'TexLexer': ('pygments.lexers.markup', 'TeX', ('tex', 'latex'), ('*.tex', '*.aux', '*.toc'), ('text/x-tex', 'text/x-latex')),
     'TextLexer': ('pygments.lexers.special', 'Text only', ('text',), ('*.txt',), ('text/plain',)),
+    'ThingsDBLexer': ('pygments.lexers.thingsdb', 'ThingsDB', ('ti', 'thingsdb'), ('*.ti',), ()),
     'ThriftLexer': ('pygments.lexers.dsls', 'Thrift', ('thrift',), ('*.thrift',), ('application/x-thrift',)),
     'TiddlyWiki5Lexer': ('pygments.lexers.markup', 'tiddler', ('tid',), ('*.tid',), ('text/vnd.tiddlywiki',)),
     'TodotxtLexer': ('pygments.lexers.textfmts', 'Todotxt', ('todotxt',), ('todo.txt', '*.todotxt'), ('text/x-todo',)),
