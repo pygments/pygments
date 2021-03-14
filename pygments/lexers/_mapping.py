@@ -505,6 +505,8 @@ LEXERS = {
     'ZeekLexer': ('pygments.lexers.dsls', 'Zeek', ('zeek', 'bro'), ('*.zeek', '*.bro'), ()),
     'ZephirLexer': ('pygments.lexers.php', 'Zephir', ('zephir',), ('*.zep',), ()),
     'ZigLexer': ('pygments.lexers.zig', 'Zig', ('zig',), ('*.zig',), ('text/zig',)),
+    'apdlexer': ('pygments.lexers.apdlexer', 'ANSYS parametric design language', ('ansys', 'apdl'), ('*.ans',), ()),
+    'gcodeLexer': ('pygments.lexers.gcodelexer', 'g-code', ('gcode',), ('*.gcode',), ()),
 }
 
 if __name__ == '__main__':  # pragma: no cover

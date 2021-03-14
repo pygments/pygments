@@ -42,9 +42,8 @@ class CFamilyLexer(RegexLexer):
     _intsuffix = r'(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?'
 
     # Identifier regex with C and C++ Universal Character Name (UCN) support.
-    chars = (r'[a-zA-Z_$]|\\u[0-9a-fA-F]{4}', r'\\U[0-9a-fA-F]{8})(?:[\w$]', r'\\u[0-9a-fA-F]{4}', r'\\U[0-9a-fA-F]{8}')
-    _ident = r'(?:' + "|".join(chars) + r')*'
-    _namespaced_ident = r'(?:' + "|".join(chars + (r"::",)) + r')*'
+    _ident = r'(?:[a-zA-Z_$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})*'
+    _namespaced_ident = r'(?:[a-zA-Z_$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|::)*'
 
     tokens = {
         'whitespace': [
@@ -67,8 +66,6 @@ class CFamilyLexer(RegexLexer):
         'statements': [
             include('keywords'),
             include('types'),
-            (r'(true|false|NULL)\b', Name.Builtin),
-            (r'(' + _ident + r')(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
             (r'([LuU]|u8)?(")', bygroups(String.Affix, String), 'string'),
             (r"([LuU]|u8)?(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
              bygroups(String.Affix, String.Char, String.Char, String.Char)),
@@ -89,10 +86,10 @@ class CFamilyLexer(RegexLexer):
             (_ident, Name)
         ],
         'types': [
-            (words(('int8', 'int16', 'int32', 'int64', 'wchar_t'), prefix=r'__', suffix=r'\b'),
-             Keyword.Reserved),
+            (words(('int8', 'int16', 'int32', 'int64', 'wchar_t'), prefix=r'__',
+                    suffix=r'\b'), Keyword.Reserved),
             (words(('bool', 'int', 'long', 'float', 'short', 'double', 'char',
-             'unsigned', 'signed', 'void'), suffix=r'\b'), Keyword.Type)
+                    'unsigned', 'signed', 'void'), suffix=r'\b'), Keyword.Type)
         ],
         'keywords': [
             (r'(struct|union)(\s+)', bygroups(Keyword, Text), 'classname'),
@@ -258,7 +255,7 @@ class CLexer(CFamilyLexer):
     priority = 0.1
 
     tokens = {
-        'statements': [
+        'keywords': [
             (words((
                 '_Alignas', '_Alignof', '_Noreturn', '_Generic', '_Thread_local', 
                 '_Static_assert', '_Imaginary', 'noreturn', 'imaginary', 'complex'),
@@ -357,7 +354,7 @@ class CppLexer(CFamilyLexer):
         ],
         'namespace': [
             (r'[;{]', Punctuation, ('#pop', 'root')),
-            (r'inline', Keyword),
+            (r'inline\b', Keyword.Reserved),
             (CFamilyLexer._ident, Name.Namespace),
             include('statement')
         ]

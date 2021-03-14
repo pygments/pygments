@@ -1,0 +1,53 @@
+finish
+/clear
+
+/title, Thermal Stress Example
+/prep7					! Enter preprocessor
+*VOPER,test
+
+k,1,0,0					! Keypoints
+k,2,1,0
+
+l,1,2					! Line connecting keypoints
+
+et,1,link33				! Element type
+r,1,4e-4,				! Area
+mp,kxx,1,60.5				! Thermal conductivity
+
+esize,0.1				! Element size
+lmesh,all				! Mesh line
+physics,write,thermal			! Write physics environment as thermal
+physics,clear				! Clear the environment
+
+
+etchg,tts				! Element type				
+mp,ex,1,200e9				! Young's modulus
+mp,prxy,1,0.3				! Poisson's ratio
+mp,alpx,1,12e-6				! Expansion coefficient
+physics,write,struct			! Write physics environment as struct
+physics,clear
+finish
+
+/solu					! Enter the solution phase
+antype,0				! Static analysis
+physics,read,thermal			! Read in the thermal environment
+dk,1,temp,348				! Apply a temp of 75 to keypoint 1
+
+solve
+finish
+
+/solu					! Re-enter the solution phase
+physics,read,struct			! Read in the struct environment
+
+ldread,temp,,,,,,rth			! Apply loads derived from thermal environment
+tref,273
+
+dk,1,all,0				! Apply structural constraints
+dk,2,UX,0
+
+solve
+finish
+
+/post1					! Enter postprocessor
+etable,CompStress,LS,1			! Create an element table for link stress
+PRETAB,CompStress			! Print the element table

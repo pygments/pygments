@@ -176,7 +176,7 @@
 '  '          Text
 'return'      Keyword
 ' '           Text
-'"\\n"'       Literal.String.Double
+'"\\n"'       Literal.String
 ' '           Text
 '// disguise space used to separate elements in array I/O\n' Comment.Single
 
@@ -195,7 +195,7 @@
 ' '           Text
 '+'           Operator
 ' '           Text
-'" on the wall, "' Literal.String.Double
+'" on the wall, "' Literal.String
 '\n'          Text
 
 '    '        Text
@@ -208,7 +208,7 @@
 ' '           Text
 '+'           Operator
 ' '           Text
-'".\\n"'      Literal.String.Double
+'".\\n"'      Literal.String
 '\n'          Text
 
 '    '        Text
@@ -230,7 +230,7 @@
 ' '           Text
 '+'           Operator
 ' '           Text
-'" on the wall.\\n"' Literal.String.Double
+'" on the wall.\\n"' Literal.String
 ';'           Punctuation
 '\n'          Text
 
@@ -289,16 +289,16 @@
 ' '           Text
 'then'        Keyword
 ' '           Text
-'"N"'         Literal.String.Double
+'"N"'         Literal.String
 ' \n            ' Text
 'else'        Keyword
 ' '           Text
-'"n"'         Literal.String.Double
+'"n"'         Literal.String
 ')'           Punctuation
 ' \n           ' Text
 '+'           Operator
 ' '           Text
-'"o more"'    Literal.String.Double
+'"o more"'    Literal.String
 ';'           Punctuation
 '\n'          Text
 
@@ -309,7 +309,7 @@
 ' \n    '     Text
 '+'           Operator
 ' '           Text
-'" bottle"'   Literal.String.Double
+'" bottle"'   Literal.String
 ' '           Text
 '+'           Operator
 ' '           Text
@@ -327,16 +327,16 @@
 ' '           Text
 'then'        Keyword
 ' '           Text
-'""'          Literal.String.Double
+'""'          Literal.String
 ' '           Text
 'else'        Keyword
 ' '           Text
-'"s"'         Literal.String.Double
+'"s"'         Literal.String
 ')'           Punctuation
 ' \n    '     Text
 '+'           Operator
 ' '           Text
-'" of beer"'  Literal.String.Double
+'" of beer"'  Literal.String
 ';'           Punctuation
 '\n'          Text
 
@@ -371,13 +371,13 @@
 ' '           Text
 'then'        Keyword
 ' '           Text
-'"Go to the store and buy some more, "' Literal.String.Double
+'"Go to the store and buy some more, "' Literal.String
 '\n'          Text
 
 '    '        Text
 'else'        Keyword
 ' '           Text
-'"Take one down and pass it around, "' Literal.String.Double
+'"Take one down and pass it around, "' Literal.String
 ';'           Punctuation
 '\n'          Text
 
@@ -468,7 +468,7 @@
 '    '        Text
 'writeln'     Name.Other
 '('           Punctuation
-'"M2 -> M1 -> x "' Literal.String.Double
+'"M2 -> M1 -> x "' Literal.String
 ' '           Text
 '+'           Operator
 ' '           Text
@@ -539,7 +539,7 @@
 
 'writeln'     Name.Other
 '('           Punctuation
-'"Distance from origin: "' Literal.String.Double
+'"Distance from origin: "' Literal.String
 ' '           Text
 '+'           Operator
 ' '           Text
@@ -573,7 +573,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'new'         Name.Other
+'new'         Keyword
 ' '           Text
 'Point'       Name.Other
 '('           Punctuation
@@ -587,7 +587,7 @@
 
 'writeln'     Name.Other
 '('           Punctuation
-'"Distance from origin: "' Literal.String.Double
+'"Distance from origin: "' Literal.String
 ' '           Text
 '+'           Operator
 ' '           Text
@@ -653,7 +653,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'new'         Name.Other
+'new'         Keyword
 ' '           Text
 'Circle'      Name.Other
 '('           Punctuation
@@ -689,7 +689,7 @@
 
 'writeln'     Name.Other
 '('           Punctuation
-'"Area of circle: "' Literal.String.Double
+'"Area of circle: "' Literal.String
 ' '           Text
 '+'           Operator
 ' '           Text
@@ -769,7 +769,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'new'         Name.Other
+'new'         Keyword
 ' '           Text
 'Oval'        Name.Other
 '('           Punctuation
@@ -787,7 +787,7 @@
 
 'writeln'     Name.Other
 '('           Punctuation
-'"Area of oval: "' Literal.String.Double
+'"Area of oval: "' Literal.String
 ' '           Text
 '+'           Operator
 ' '           Text
@@ -1116,11 +1116,11 @@
 ' '           Text
 '<~>'         Operator
 ' '           Text
-'new'         Name.Other
+'new'         Keyword
 ' '           Text
 'ioLiteral'   Name.Other
 '('           Punctuation
-'","'         Literal.String.Double
+'","'         Literal.String
 ')'           Punctuation
 ' '           Text
 '<~>'         Operator
@@ -1129,7 +1129,7 @@
 ' '           Text
 '<~>'         Operator
 ' '           Text
-'new'         Name.Other
+'new'         Keyword
 ' '           Text
 'ioNewline'   Name.Other
 '('           Punctuation
@@ -1150,7 +1150,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'new'         Name.Other
+'new'         Keyword
 ' '           Text
 'IntPair'     Name.Other
 '('           Punctuation
@@ -1400,7 +1400,7 @@
 '    '        Text
 'throw'       Keyword
 ' '           Text
-'new'         Name.Other
+'new'         Keyword
 ' '           Text
 'Error'       Name.Other
 '('           Punctuation
@@ -1460,7 +1460,7 @@
 '      '      Text
 'writeln'     Name.Other
 '('           Punctuation
-'"Caught "'   Literal.String.Double
+'"Caught "'   Literal.String
 ','           Punctuation
 ' '           Text
 'e'           Name.Other
@@ -1522,7 +1522,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'new'         Name.Other
+'new'         Keyword
 ' '           Text
 'borrowed'    Keyword
 ' '           Text
@@ -1539,7 +1539,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'new'         Name.Other
+'new'         Keyword
 ' '           Text
 'owned'       Keyword
 ' '           Text
@@ -1556,7 +1556,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'new'         Name.Other
+'new'         Keyword
 ' '           Text
 'shared'      Keyword
 ' '           Text
@@ -1569,7 +1569,7 @@
 '    '        Text
 'throw'       Keyword
 ' '           Text
-'new'         Name.Other
+'new'         Keyword
 ' '           Text
 'unmanaged'   Keyword
 ' '           Text

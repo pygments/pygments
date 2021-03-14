@@ -13,6 +13,7 @@ Version 2.9.0
 
 - Added lexers:
 
+  * APDL, gcode (#1714)
   * ThingsDB (#1295)
 
 - Updated lexers:
@@ -25,9 +26,10 @@ Version 2.9.0
   * Rust (#1061)
   * Scala: Rewrite to support Scala3 (#1694, #1035, #1121)
 
-- Added Pango formatter (#1727)
+- Add Pango formatter (#1727)
 
 - Fix links (#1716)
+- Fix issue with LaTeX formatter and ``minted`` (#1734, #1735, #1736, #1737)
 
 Version 2.8.0
 -------------
