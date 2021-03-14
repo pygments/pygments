@@ -1,0 +1,285 @@
+'finish'      Keyword
+'\n'          Text
+
+'/'           Operator
+'clear'       Name.Variable
+'\n\n'        Text
+
+'/'           Operator
+'title'       Name.Variable
+','           Punctuation
+' '           Text
+'Thermal'     Name.Variable
+' '           Text
+'Stress'      Name.Variable
+' '           Text
+'Example'     Name.Variable
+'\n'          Text
+
+'/'           Operator
+'prep7'       Name.Variable
+'\t\t\t\t\t'  Text
+'! Enter preprocessor\n' Comment
+
+'*'           Operator
+'VOPER'       Name.Variable
+','           Punctuation
+'test'        Name.Variable
+'\n\n'        Text
+
+'k'           Keyword
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+'\t\t\t\t\t'  Text
+'! Keypoints\n' Comment
+
+'k'           Keyword
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+'\n\n'        Text
+
+'l'           Keyword
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+'\t\t\t\t\t'  Text
+'! Line connecting keypoints\n' Comment
+
+'\n'          Text
+
+'et'          Keyword
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'link33'      Name.Variable
+'\t\t\t\t'    Text
+'! Element type\n' Comment
+
+'r'           Keyword
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'4e-4'        Literal.Number.Float
+','           Punctuation
+'\t\t\t\t'    Text
+'! Area\n'    Comment
+
+'mp'          Keyword
+','           Punctuation
+'kxx'         Name.Variable
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+'0.5'         Literal.Number.Float
+'\t\t\t\t'    Text
+'! Thermal conductivity\n' Comment
+
+'\n'          Text
+
+'esize'       Keyword
+','           Punctuation
+'0.1'         Literal.Number.Float
+'\t\t\t\t'    Text
+'! Element size\n' Comment
+
+'lmesh'       Keyword
+','           Punctuation
+'all'         Name.Variable
+'\t\t\t\t'    Text
+'! Mesh line\n' Comment
+
+'physics'     Keyword
+','           Punctuation
+'write'       Keyword
+','           Punctuation
+'thermal'     Name.Variable
+'\t\t\t'      Text
+'! Write physics environment as thermal\n' Comment
+
+'physics'     Keyword
+','           Punctuation
+'clear'       Name.Variable
+'\t\t\t\t'    Text
+'! Clear the environment\n' Comment
+
+'\n\n'        Text
+
+'etchg'       Keyword
+','           Punctuation
+'tts'         Name.Variable
+'\t\t\t\t'    Text
+'! Element type\t\t\t\t\n' Comment
+
+'mp'          Keyword
+','           Punctuation
+'ex'          Name.Variable
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'20'          Literal.Number.Integer
+'0e9'         Literal.Number.Float
+'\t\t\t\t'    Text
+"! Young's modulus\n" Comment
+
+'mp'          Keyword
+','           Punctuation
+'prxy'        Name.Variable
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0.3'         Literal.Number.Float
+'\t\t\t\t'    Text
+"! Poisson's ratio\n" Comment
+
+'mp'          Keyword
+','           Punctuation
+'alpx'        Name.Variable
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+'2e-6'        Literal.Number.Float
+'\t\t\t\t'    Text
+'! Expansion coefficient\n' Comment
+
+'physics'     Keyword
+','           Punctuation
+'write'       Keyword
+','           Punctuation
+'struct'      Name.Variable
+'\t\t\t'      Text
+'! Write physics environment as struct\n' Comment
+
+'physics'     Keyword
+','           Punctuation
+'clear'       Name.Variable
+'\n'          Text
+
+'finish'      Keyword
+'\n\n'        Text
+
+'/'           Operator
+'solu'        Keyword
+'\t\t\t\t\t'  Text
+'! Enter the solution phase\n' Comment
+
+'antype'      Keyword
+','           Punctuation
+'0'           Literal.Number.Integer
+'\t\t\t\t'    Text
+'! Static analysis\n' Comment
+
+'physics'     Keyword
+','           Punctuation
+'read'        Keyword
+','           Punctuation
+'thermal'     Name.Variable
+'\t\t\t'      Text
+'! Read in the thermal environment\n' Comment
+
+'dk'          Keyword
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'temp'        Name.Variable
+','           Punctuation
+'348'         Literal.Number.Integer
+'\t\t\t\t'    Text
+'! Apply a temp of 75 to keypoint 1\n' Comment
+
+'\n'          Text
+
+'solve'       Keyword
+'\n'          Text
+
+'finish'      Keyword
+'\n\n'        Text
+
+'/'           Operator
+'solu'        Keyword
+'\t\t\t\t\t'  Text
+'! Re-enter the solution phase\n' Comment
+
+'physics'     Keyword
+','           Punctuation
+'read'        Keyword
+','           Punctuation
+'struct'      Name.Variable
+'\t\t\t'      Text
+'! Read in the struct environment\n' Comment
+
+'\n'          Text
+
+'ldread'      Keyword
+','           Punctuation
+'temp'        Name.Variable
+','           Punctuation
+','           Punctuation
+','           Punctuation
+','           Punctuation
+','           Punctuation
+','           Punctuation
+'rth'         Name.Variable
+'\t\t\t'      Text
+'! Apply loads derived from thermal environment\n' Comment
+
+'tref'        Keyword
+','           Punctuation
+'273'         Literal.Number.Integer
+'\n\n'        Text
+
+'dk'          Keyword
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'all'         Name.Variable
+','           Punctuation
+'0'           Literal.Number.Integer
+'\t\t\t\t'    Text
+'! Apply structural constraints\n' Comment
+
+'dk'          Keyword
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'UX'          Name.Variable
+','           Punctuation
+'0'           Literal.Number.Integer
+'\n\n'        Text
+
+'solve'       Keyword
+'\n'          Text
+
+'finish'      Keyword
+'\n\n'        Text
+
+'/'           Operator
+'post1'       Name.Variable
+'\t\t\t\t\t'  Text
+'! Enter postprocessor\n' Comment
+
+'etable'      Keyword
+','           Punctuation
+'CompStress'  Name.Variable
+','           Punctuation
+'LS'          Name.Variable
+','           Punctuation
+'1'           Literal.Number.Integer
+'\t\t\t'      Text
+'! Create an element table for link stress\n' Comment
+
+'PRETAB'      Keyword
+','           Punctuation
+'CompStress'  Name.Variable
+'\t\t\t'      Text
+'! Print the element table\n' Comment
