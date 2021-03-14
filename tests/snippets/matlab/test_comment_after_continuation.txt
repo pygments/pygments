@@ -1,0 +1,25 @@
+# Test that text after the line continuation ellipses is marked as a comment.
+
+---input---
+set('T',300,... a comment
+'P',101325);
+
+---tokens---
+'set'         Name.Builtin
+'('           Punctuation
+"'"           Literal.String
+"T'"          Literal.String
+','           Punctuation
+'300'         Literal.Number.Integer
+','           Punctuation
+'...'         Keyword
+' a comment'  Comment
+'\n'          Text.Whitespace
+
+"'"           Literal.String
+"P'"          Literal.String
+','           Punctuation
+'101325'      Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

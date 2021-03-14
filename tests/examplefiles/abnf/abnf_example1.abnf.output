@@ -1,0 +1,200 @@
+'; This examples from WikiPedia <https://en.wikipedia.org/wiki/Augmented_Backus%E2%80%93Naur_Form>.' Comment.Single
+'\n\n    '    Text
+'postal-address' Name.Class
+'   '         Text
+'='           Operator
+' '           Text
+'name-part'   Name.Class
+' '           Text
+'street'      Name.Class
+' '           Text
+'zip-part'    Name.Class
+'\n\n    '    Text
+'name-part'   Name.Class
+'        '    Text
+'='           Operator
+' '           Text
+'*'           Operator
+'('           Punctuation
+'personal-part' Name.Class
+' '           Text
+'SP'          Keyword
+')'           Punctuation
+' '           Text
+'last-name'   Name.Class
+' '           Text
+'['           Punctuation
+'SP'          Keyword
+' '           Text
+'suffix'      Name.Class
+']'           Punctuation
+' '           Text
+'CRLF'        Keyword
+'\n    '      Text
+'name-part'   Name.Class
+'        '    Text
+'=/'          Operator
+' '           Text
+'personal-part' Name.Class
+' '           Text
+'CRLF'        Keyword
+'\n\n    '    Text
+'personal-part' Name.Class
+'    '        Text
+'='           Operator
+' '           Text
+'first-name'  Name.Class
+' '           Text
+'/'           Operator
+' '           Text
+'('           Punctuation
+'initial'     Name.Class
+' '           Text
+'"."'         Literal
+')'           Punctuation
+'\n    '      Text
+'first-name'  Name.Class
+'       '     Text
+'='           Operator
+' '           Text
+'*'           Operator
+'ALPHA'       Keyword
+'\n    '      Text
+'initial'     Name.Class
+'          '  Text
+'='           Operator
+' '           Text
+'ALPHA'       Keyword
+'\n    '      Text
+'last-name'   Name.Class
+'        '    Text
+'='           Operator
+' '           Text
+'*'           Operator
+'ALPHA'       Keyword
+'\n    '      Text
+'suffix'      Name.Class
+'           ' Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'"Jr."'       Literal
+' '           Text
+'/'           Operator
+' '           Text
+'"Sr."'       Literal
+' '           Text
+'/'           Operator
+' '           Text
+'1*'          Operator
+'('           Punctuation
+'"I"'         Literal
+' '           Text
+'/'           Operator
+' '           Text
+'"V"'         Literal
+' '           Text
+'/'           Operator
+' '           Text
+'"X"'         Literal
+')'           Punctuation
+')'           Punctuation
+'\n\n    '    Text
+'street'      Name.Class
+'           ' Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'apt'         Name.Class
+' '           Text
+'SP'          Keyword
+']'           Punctuation
+' '           Text
+'house-num'   Name.Class
+' '           Text
+'SP'          Keyword
+' '           Text
+'street-name' Name.Class
+' '           Text
+'CRLF'        Keyword
+'\n    '      Text
+'apt'         Name.Class
+'              ' Text
+'='           Operator
+' '           Text
+'1*4'         Operator
+'DIGIT'       Keyword
+'\n    '      Text
+'house-num'   Name.Class
+'        '    Text
+'='           Operator
+' '           Text
+'1*8'         Operator
+'('           Punctuation
+'DIGIT'       Keyword
+' '           Text
+'/'           Operator
+' '           Text
+'ALPHA'       Keyword
+')'           Punctuation
+'\n    '      Text
+'street-name' Name.Class
+'      '      Text
+'='           Operator
+' '           Text
+'1*'          Operator
+'VCHAR'       Keyword
+'\n\n    '    Text
+'zip-part'    Name.Class
+'         '   Text
+'='           Operator
+' '           Text
+'town-name'   Name.Class
+' '           Text
+'","'         Literal
+' '           Text
+'SP'          Keyword
+' '           Text
+'state'       Name.Class
+' '           Text
+'1*2'         Operator
+'SP'          Keyword
+' '           Text
+'zip-code'    Name.Class
+' '           Text
+'CRLF'        Keyword
+'\n    '      Text
+'town-name'   Name.Class
+'        '    Text
+'='           Operator
+' '           Text
+'1*'          Operator
+'('           Punctuation
+'ALPHA'       Keyword
+' '           Text
+'/'           Operator
+' '           Text
+'SP'          Keyword
+')'           Punctuation
+'\n    '      Text
+'state'       Name.Class
+'            ' Text
+'='           Operator
+' '           Text
+'2'           Operator
+'ALPHA'       Keyword
+'\n    '      Text
+'zip-code'    Name.Class
+'         '   Text
+'='           Operator
+' '           Text
+'5'           Operator
+'DIGIT'       Keyword
+' '           Text
+'['           Punctuation
+'"-"'         Literal
+' '           Text
+'4'           Operator
+'DIGIT'       Keyword
+']'           Punctuation
+'\n'          Text

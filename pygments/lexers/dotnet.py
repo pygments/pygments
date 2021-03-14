@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.dotnet
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for .net languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import re
@@ -14,7 +13,7 @@ from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, include, \
     using, this, default, words
 from pygments.token import Punctuation, \
     Text, Comment, Operator, Keyword, Name, String, Number, Literal, Other
-from pygments.util import get_choice_opt, iteritems
+from pygments.util import get_choice_opt
 from pygments import unistring as uni
 
 from pygments.lexers.html import XmlLexer
@@ -71,7 +70,7 @@ class CSharpLexer(RegexLexer):
     tokens = {}
     token_variants = True
 
-    for levelname, cs_ident in iteritems(levels):
+    for levelname, cs_ident in levels.items():
         tokens[levelname] = {
             'root': [
                 # method names
@@ -88,7 +87,7 @@ class CSharpLexer(RegexLexer):
                 (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
                 (r'[{}]', Punctuation),
                 (r'@"(""|[^"])*"', String),
-                (r'"(\\\\|\\"|[^"\n])*["\n]', String),
+                (r'"(\\\\|\\[^\\]|[^"\\\n])*["\n]', String),
                 (r"'\\.'|'[^\\]'", String.Char),
                 (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?"
                  r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
@@ -184,7 +183,7 @@ class NemerleLexer(RegexLexer):
     tokens = {}
     token_variants = True
 
-    for levelname, cs_ident in iteritems(levels):
+    for levelname, cs_ident in levels.items():
         tokens[levelname] = {
             'root': [
                 # method names
@@ -213,7 +212,7 @@ class NemerleLexer(RegexLexer):
                 (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
                 (r'[{}]', Punctuation),
                 (r'@"(""|[^"])*"', String),
-                (r'"(\\\\|\\"|[^"\n])*["\n]', String),
+                (r'"(\\\\|\\[^\\]|[^"\\\n])*["\n]', String),
                 (r"'\\.'|'[^\\]'", String.Char),
                 (r"0[xX][0-9a-fA-F]+[Ll]?", Number),
                 (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?[flFLdD]?", Number),
@@ -295,6 +294,16 @@ class NemerleLexer(RegexLexer):
 
         RegexLexer.__init__(self, **options)
 
+    def analyse_text(text):
+        """Nemerle is quite similar to Python, but @if is relatively uncommon
+        elsewhere."""
+        result = 0
+
+        if '@if' in text:
+            result += 0.1
+
+        return result
+
 
 class BooLexer(RegexLexer):
     """
@@ -315,8 +324,8 @@ class BooLexer(RegexLexer):
             (r'\\\n', Text),
             (r'\\', Text),
             (r'(in|is|and|or|not)\b', Operator.Word),
-            (r'/(\\\\|\\/|[^/\s])/', String.Regex),
-            (r'@/(\\\\|\\/|[^/])*/', String.Regex),
+            (r'/(\\\\|\\[^\\]|[^/\\\s])/', String.Regex),
+            (r'@/(\\\\|\\[^\\]|[^/\\])*/', String.Regex),
             (r'=~|!=|==|<<|>>|[-+/*%=<>&^|]', Operator),
             (r'(as|abstract|callable|constructor|destructor|do|import|'
              r'enum|event|final|get|interface|internal|of|override|'
@@ -335,8 +344,8 @@ class BooLexer(RegexLexer):
              r'rawArrayIndexing|required|typeof|unchecked|using|'
              r'yieldAll|zip)\b', Name.Builtin),
             (r'"""(\\\\|\\"|.*?)"""', String.Double),
-            (r'"(\\\\|\\"|[^"]*?)"', String.Double),
-            (r"'(\\\\|\\'|[^']*?)'", String.Single),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'[a-zA-Z_]\w*', Name),
             (r'(\d+\.\d*|\d*\.\d+)([fF][+-]?[0-9]+)?', Number.Float),
             (r'[0-9][0-9.]*(ms?|d|h|s)', Number),
@@ -507,8 +516,7 @@ class CSharpAspxLexer(DelegatingLexer):
     mimetypes = []
 
     def __init__(self, **options):
-        super(CSharpAspxLexer, self).__init__(CSharpLexer, GenericAspxLexer,
-                                              **options)
+        super().__init__(CSharpLexer, GenericAspxLexer, **options)
 
     def analyse_text(text):
         if re.search(r'Page\s*Language="C#"', text, re.I) is not None:
@@ -528,8 +536,7 @@ class VbNetAspxLexer(DelegatingLexer):
     mimetypes = []
 
     def __init__(self, **options):
-        super(VbNetAspxLexer, self).__init__(VbNetLexer, GenericAspxLexer,
-                                             **options)
+        super().__init__(VbNetLexer, GenericAspxLexer, **options)
 
     def analyse_text(text):
         if re.search(r'Page\s*Language="Vb"', text, re.I) is not None:
@@ -686,3 +693,14 @@ class FSharpLexer(RegexLexer):
             (r'"', String),
         ],
     }
+
+    def analyse_text(text):
+        """F# doesn't have that many unique features -- |> and <| are weak
+        indicators."""
+        result = 0
+        if '|>' in text:
+            result += 0.05
+        if '<|' in text:
+            result += 0.05
+
+        return result

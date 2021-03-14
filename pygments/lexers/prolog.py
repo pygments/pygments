@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.prolog
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Prolog and Prolog-like languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -55,22 +54,22 @@ class PrologLexer(RegexLexer):
             (r'(mod|div|not)\b', Operator),
             (r'_', Keyword),  # The don't-care variable
             (r'([a-z]+)(:)', bygroups(Name.Namespace, Punctuation)),
-            (u'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
-             u'[\\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
-             u'(\\s*)(:-|-->)',
+            (r'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
+             r'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
+             r'(\s*)(:-|-->)',
              bygroups(Name.Function, Text, Operator)),  # function defn
-            (u'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
-             u'[\\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
-             u'(\\s*)(\\()',
+            (r'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
+             r'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
+             r'(\s*)(\()',
              bygroups(Name.Function, Text, Punctuation)),
-            (u'[a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
-             u'[\\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*',
+            (r'[a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
+             r'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*',
              String.Atom),  # atom, characters
             # This one includes !
-            (u'[#&*+\\-./:<=>?@\\\\^~\u00a1-\u00bf\u2010-\u303f]+',
+            (r'[#&*+\-./:<=>?@\\^~\u00a1-\u00bf\u2010-\u303f]+',
              String.Atom),  # atom, graphics
             (r'[A-Z_]\w*', Name.Variable),
-            (u'\\s+|[\u2000-\u200f\ufff0-\ufffe\uffef]', Text),
+            (r'\s+|[\u2000-\u200f\ufff0-\ufffe\uffef]', Text),
         ],
         'nested-comment': [
             (r'\*/', Comment.Multiline, '#pop'),
@@ -227,7 +226,7 @@ class LogtalkLexer(RegexLexer):
             # Existential quantifier
             (r'\^', Operator),
             # Strings
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             # Punctuation
             (r'[()\[\],.|]', Text),
             # Atoms
@@ -277,7 +276,7 @@ class LogtalkLexer(RegexLexer):
             (r"[a-z][a-zA-Z0-9_]*", Text),
             (r"'", String, 'quoted_atom'),
             # Strings
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             # End of entity-opening directive
             (r'([)]\.)', Text, 'root'),
             # Scope operator

@@ -1,0 +1,101 @@
+'var'         Keyword.Declaration
+' '           Text
+'f'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'fun'         Keyword.Reserved
+'('           Punctuation
+'x'           Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'x'           Name.Other
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'// comment\n' Comment.Single
+
+'puts'        Name.Other
+'('           Punctuation
+'someFunc'    Name.Other
+'('           Punctuation
+'2'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'*'           Operator
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+'/'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text
+'x'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'str'         Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text
+
+'def'         Keyword.Reserved
+' '           Text
+'dosomething' Name.Other
+'('           Punctuation
+'lhs'         Name.Other
+','           Punctuation
+' '           Text
+'rhs'         Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'print'       Name.Other
+'('           Punctuation
+'"'           Literal.String.Double
+'lhs: '       Literal.String.Double
+'${lhs}'      Literal.String.Interpol
+', rhs: '     Literal.String.Double
+'${rhs}'      Literal.String.Interpol
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'callfunc'    Name.Other
+'('           Punctuation
+'`+`'         Name.Builtin
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text

@@ -1,0 +1,3104 @@
+'<?php'       Comment.Preproc
+'\n\n'        Text
+
+'$disapproval_ಠ_ಠ_of_php' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'unicode var'" Literal.String.Single
+';'           Punctuation
+'\n\n'        Text
+
+'$test'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'$a'          Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'$lambda'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'/**\n *  Zip class file\n *\n *  @package     fnord.bb\n *  @subpackage  archive\n */' Literal.String.Doc
+'\n\n'        Text
+
+'// Unlock?\n' Comment.Single
+
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'defined'     Name.Builtin
+'('           Punctuation
+"'UNLOCK'"    Literal.String.Single
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'!'           Operator
+'UNLOCK'      Name.Other
+')'           Punctuation
+'\n  '        Text
+'die'         Keyword
+'();'         Punctuation
+'\n  \n'      Text
+
+'// Load the parent archive class\n' Comment.Single
+
+'require_once' Keyword
+'('           Punctuation
+'ROOT_PATH'   Name.Other
+'.'           Operator
+"'/classes/archive.class.php'" Literal.String.Single
+');'          Punctuation
+'\n\n'        Text
+
+'class'       Keyword
+' '           Text
+'Zip\\Zippಠ_ಠ_' Name.Class
+' '           Text
+'{'           Punctuation
+'\n\n'        Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'/**\n *  Zip class\n *\n *  @author      Manni <manni@fnord.name>\n *  @copyright   Copyright (c) 2006, Manni\n *  @version     1.0\n *  @link        http://www.pkware.com/business_and_developers/developer/popups/appnote.txt\n *  @link        http://mannithedark.is-a-geek.net/\n *  @since       1.0\n *  @package     fnord.bb\n *  @subpackage  archive\n */' Literal.String.Doc
+'\n'          Text
+
+'class'       Keyword
+' '           Text
+'Zip'         Name.Class
+' '           Text
+'extends'     Keyword
+' '           Text
+'Archive'     Name.Other
+' '           Text
+'{'           Punctuation
+'\n '         Text
+"/**\n  *  Outputs the zip file\n  *\n  *  This function creates the zip file with the dirs and files given.\n  *  If the optional parameter $file is given, the zip file is will be\n  *  saved at that location. Otherwise the function returns the zip file's content.\n  *\n  *  @access                   public\n  *\n  *  @link                     http://www.pkware.com/business_and_developers/developer/popups/appnote.txt\n  *  @param  string $filename  The path where the zip file will be saved\n  *\n  *  @return bool|string       Returns either true if the fil is sucessfully created or the content of the zip file\n  */" Literal.String.Doc
+'\n  '        Text
+'function'    Keyword
+' '           Text
+'out'         Name.Function
+'('           Punctuation
+'$filename'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'// Empty output\n' Comment.Single
+
+'    '        Text
+'$file_data'  Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'array'       Keyword
+'();'         Punctuation
+' '           Text
+'// Data of the file part\n' Comment.Single
+
+'    '        Text
+'$cd_data'    Name.Variable
+'   '         Text
+'='           Operator
+' '           Text
+'array'       Keyword
+'();'         Punctuation
+' '           Text
+'// Data of the central directory\n' Comment.Single
+
+'\n    '      Text
+'// Sort dirs and files by path length\n' Comment.Single
+
+'    '        Text
+'uksort'      Name.Builtin
+'('           Punctuation
+'$this'       Name.Variable
+'->'          Operator
+'dirs'        Name.Attribute
+','           Punctuation
+'  '          Text
+"'sort_by_length'" Literal.String.Single
+');'          Punctuation
+'\n    '      Text
+'uksort'      Name.Builtin
+'('           Punctuation
+'$this'       Name.Variable
+'->'          Operator
+'files'       Name.Attribute
+','           Punctuation
+' '           Text
+"'sort_by_length'" Literal.String.Single
+');'          Punctuation
+'\n\n    '    Text
+'// Handle dirs\n' Comment.Single
+
+'    '        Text
+'foreach'     Keyword
+'('           Punctuation
+'$this'       Name.Variable
+'->'          Operator
+'dirs'        Name.Attribute
+' '           Text
+'as'          Keyword
+' '           Text
+'$dir'        Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'$dir'        Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+"'/'"         Literal.String.Single
+';'           Punctuation
+'\n      '    Text
+'// File part\n' Comment.Single
+
+'\n      '    Text
+'// Reset dir data\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'\n\n      '  Text
+'// Local file header\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'"'           Literal.String.Double
+'\\x50'       Literal.String.Escape
+'\\x4b'       Literal.String.Escape
+'\\x03'       Literal.String.Escape
+'\\x04'       Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'      '      Text
+'// Local file header signature\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+');'          Punctuation
+'           ' Text
+'// Version needed to extract\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// General purpose bit flag\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Compression method\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Last mod file time\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Last mod file date\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// crc-32\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Compressed size\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Uncompressed size\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'$dir'        Name.Variable
+'));'         Punctuation
+' '           Text
+'// File name length\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Extra field length\n' Comment.Single
+
+'\n      '    Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'$dir'        Name.Variable
+';'           Punctuation
+'                    ' Text
+'// File name\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'                      ' Text
+'// Extra field (is empty)\n' Comment.Single
+
+'\n      '    Text
+'// File data\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'                      ' Text
+'// Dirs have no file data\n' Comment.Single
+
+'\n      '    Text
+'// Data descriptor\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// crc-32\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Compressed size\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Uncompressed size\n' Comment.Single
+
+'\n      '    Text
+'// Save current offset\n' Comment.Single
+
+'      '      Text
+'$offset'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'implode'     Name.Builtin
+'('           Punctuation
+"''"          Literal.String.Single
+','           Punctuation
+' '           Text
+'$file_data'  Name.Variable
+'));'         Punctuation
+'\n\n      '  Text
+'// Append dir data to the file part\n' Comment.Single
+
+'      '      Text
+'$file_data'  Name.Variable
+'[]'          Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'$dir_data'   Name.Variable
+';'           Punctuation
+'\n\n      '  Text
+'// Central directory\n' Comment.Single
+
+'\n      '    Text
+'// Reset dir data\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'\n\n      '  Text
+'// File header\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'"'           Literal.String.Double
+'\\x50'       Literal.String.Escape
+'\\x4b'       Literal.String.Escape
+'\\x01'       Literal.String.Escape
+'\\x02'       Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'      '      Text
+'// Local file header signature\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Version made by\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'10'          Literal.Number.Integer
+');'          Punctuation
+'           ' Text
+'// Version needed to extract\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// General purpose bit flag\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Compression method\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Last mod file time\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Last mod file date\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// crc-32\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Compressed size\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Uncompressed size\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'$dir'        Name.Variable
+'));'         Punctuation
+' '           Text
+'// File name length\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Extra field length\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// File comment length\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Disk number start\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'            ' Text
+'// Internal file attributes\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'16'          Literal.Number.Integer
+');'          Punctuation
+'           ' Text
+'// External file attributes\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'$offset'     Name.Variable
+');'          Punctuation
+'      '      Text
+'// Relative offset of local header\n' Comment.Single
+
+'\n      '    Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'$dir'        Name.Variable
+';'           Punctuation
+'                    ' Text
+'// File name\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'                      ' Text
+'// Extra field (is empty)\n' Comment.Single
+
+'      '      Text
+'$dir_data'   Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'                      ' Text
+'// File comment (is empty)\n' Comment.Single
+
+'\n      '    Text
+'/*\n      // Data descriptor\n      $dir_data .= pack("V", 0);            // crc-32\n      $dir_data .= pack("V", 0);            // Compressed size\n      $dir_data .= pack("V", 0);            // Uncompressed size\n      */' Comment.Multiline
+'\n      \n      ' Text
+'// Append dir data to the central directory data\n' Comment.Single
+
+'      '      Text
+'$cd_data'    Name.Variable
+'[]'          Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'$dir_data'   Name.Variable
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'// Handle files\n' Comment.Single
+
+'    '        Text
+'foreach'     Keyword
+'('           Punctuation
+'$this'       Name.Variable
+'->'          Operator
+'files'       Name.Attribute
+' '           Text
+'as'          Keyword
+' '           Text
+'$name'       Name.Variable
+' '           Text
+'=>'          Operator
+' '           Text
+'$file'       Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'// Get values\n' Comment.Single
+
+'      '      Text
+'$content'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$file'       Name.Variable
+'['           Punctuation
+'0'           Literal.Number.Integer
+'];'          Punctuation
+'\n    \n      ' Text
+'// File part\n' Comment.Single
+
+'\n      '    Text
+'// Reset file data\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'\n      \n      ' Text
+'// Detect possible compressions\n' Comment.Single
+
+'      '      Text
+'// Use deflate\n' Comment.Single
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'function_exists' Name.Builtin
+'('           Punctuation
+"'gzdeflate'" Literal.String.Single
+'))'          Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'$method'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'8'           Literal.Number.Integer
+';'           Punctuation
+'\n\n        ' Text
+'// Compress file content\n' Comment.Single
+
+'        '    Text
+'$compressed_data' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'gzdeflate'   Name.Builtin
+'('           Punctuation
+'$content'    Name.Variable
+');'          Punctuation
+'\n\n      '  Text
+'// Use bzip2\n' Comment.Single
+
+'      '      Text
+'}'           Punctuation
+' '           Text
+'elseif'      Keyword
+'('           Punctuation
+'function_exists' Name.Builtin
+'('           Punctuation
+"'bzcompress'" Literal.String.Single
+'))'          Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'$method'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'12'          Literal.Number.Integer
+';'           Punctuation
+'\n\n        ' Text
+'// Compress file content\n' Comment.Single
+
+'        '    Text
+'$compressed_data' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'bzcompress'  Name.Builtin
+'('           Punctuation
+'$content'    Name.Variable
+');'          Punctuation
+'\n\n      '  Text
+'// No compression\n' Comment.Single
+
+'      '      Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'$method'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n\n        ' Text
+'// Do not compress the content :P\n' Comment.Single
+
+'        '    Text
+'$compressed_data' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$content'    Name.Variable
+';'           Punctuation
+'\n      '    Text
+'}'           Punctuation
+'\n\n      '  Text
+'// Local file header\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'"'           Literal.String.Double
+'\\x50'       Literal.String.Escape
+'\\x4b'       Literal.String.Escape
+'\\x03'       Literal.String.Escape
+'\\x04'       Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'                  ' Text
+'// Local file header signature\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'20'          Literal.Number.Integer
+');'          Punctuation
+'                       ' Text
+'// Version needed to extract\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                        ' Text
+'// General purpose bit flag\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'$method'     Name.Variable
+');'          Punctuation
+'                  ' Text
+'// Compression method\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                        ' Text
+'// Last mod file time\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                        ' Text
+'// Last mod file date\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'crc32'       Name.Builtin
+'('           Punctuation
+'$content'    Name.Variable
+'));'         Punctuation
+'          '  Text
+'// crc-32\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'$compressed_data' Name.Variable
+'));'         Punctuation
+' '           Text
+'// Compressed size\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'$content'    Name.Variable
+'));'         Punctuation
+'         '   Text
+'// Uncompressed size\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'$name'       Name.Variable
+'));'         Punctuation
+'            ' Text
+'// File name length\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                        ' Text
+'// Extra field length\n' Comment.Single
+
+'\n      '    Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'$name'       Name.Variable
+';'           Punctuation
+'                               ' Text
+'// File name\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'                                  ' Text
+'// Extra field (is empty)\n' Comment.Single
+
+'\n      '    Text
+'// File data\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'$compressed_data' Name.Variable
+';'           Punctuation
+'\n      \n      ' Text
+'// Data descriptor\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'crc32'       Name.Builtin
+'('           Punctuation
+'$content'    Name.Variable
+'));'         Punctuation
+'          '  Text
+'// crc-32\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'$compressed_data' Name.Variable
+'));'         Punctuation
+' '           Text
+'// Compressed size\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'$content'    Name.Variable
+'));'         Punctuation
+'         '   Text
+'// Uncompressed size\n' Comment.Single
+
+'\n      '    Text
+'// Save current offset\n' Comment.Single
+
+'      '      Text
+'$offset'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'implode'     Name.Builtin
+'('           Punctuation
+"''"          Literal.String.Single
+','           Punctuation
+' '           Text
+'$file_data'  Name.Variable
+'));'         Punctuation
+'\n\n      '  Text
+'// Append file data to the file part\n' Comment.Single
+
+'      '      Text
+'$file_data'  Name.Variable
+'[]'          Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'$fd'         Name.Variable
+';'           Punctuation
+'\n\n      '  Text
+'// Central directory\n' Comment.Single
+
+'\n      '    Text
+'// Reset file data\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'\n\n      '  Text
+'// File header\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'"'           Literal.String.Double
+'\\x50'       Literal.String.Escape
+'\\x4b'       Literal.String.Escape
+'\\x01'       Literal.String.Escape
+'\\x02'       Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'                  ' Text
+'// Local file header signature\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                        ' Text
+'// Version made by\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'20'          Literal.Number.Integer
+');'          Punctuation
+'                       ' Text
+'// Version needed to extract\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                        ' Text
+'// General purpose bit flag\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'$method'     Name.Variable
+');'          Punctuation
+'                  ' Text
+'// Compression method\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                        ' Text
+'// Last mod file time\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                        ' Text
+'// Last mod file date\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'crc32'       Name.Builtin
+'('           Punctuation
+'$content'    Name.Variable
+'));'         Punctuation
+'          '  Text
+'// crc-32\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'$compressed_data' Name.Variable
+'));'         Punctuation
+' '           Text
+'// Compressed size\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'$content'    Name.Variable
+'));'         Punctuation
+'         '   Text
+'// Uncompressed size\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'$name'       Name.Variable
+'));'         Punctuation
+'            ' Text
+'// File name length\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                        ' Text
+'// Extra field length\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                        ' Text
+'// File comment length\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                        ' Text
+'// Disk number start\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                        ' Text
+'// Internal file attributes\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'32'          Literal.Number.Integer
+');'          Punctuation
+'                       ' Text
+'// External file attributes\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'$offset'     Name.Variable
+');'          Punctuation
+'                  ' Text
+'// Relative offset of local header\n' Comment.Single
+
+'\n      '    Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'$name'       Name.Variable
+';'           Punctuation
+'                               ' Text
+'// File name\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'                                  ' Text
+'// Extra field (is empty)\n' Comment.Single
+
+'      '      Text
+'$fd'         Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'                                  ' Text
+'// File comment (is empty)\n' Comment.Single
+
+'\n      '    Text
+'/*\n      // Data descriptor\n      $fd .= pack("V", crc32($content));          // crc-32\n      $fd .= pack("V", strlen($compressed_data)); // Compressed size\n      $fd .= pack("V", strlen($content));         // Uncompressed size\n      */' Comment.Multiline
+'\n\n      '  Text
+'// Append file data to the central directory data\n' Comment.Single
+
+'      '      Text
+'$cd_data'    Name.Variable
+'[]'          Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'$fd'         Name.Variable
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'// Digital signature\n' Comment.Single
+
+'    '        Text
+'$digital_signature' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'\n    '      Text
+'$digital_signature' Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'"'           Literal.String.Double
+'\\x50'       Literal.String.Escape
+'\\x4b'       Literal.String.Escape
+'\\x05'       Literal.String.Escape
+'\\x05'       Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'  '          Text
+'// Header signature\n' Comment.Single
+
+'    '        Text
+'$digital_signature' Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'        '    Text
+'// Size of data\n' Comment.Single
+
+'    '        Text
+'$digital_signature' Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'                  ' Text
+'// Signature data (is empty)\n' Comment.Single
+
+'\n    '      Text
+'$tmp_file_data' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'implode'     Name.Builtin
+'('           Punctuation
+"''"          Literal.String.Single
+','           Punctuation
+' '           Text
+'$file_data'  Name.Variable
+');'          Punctuation
+'  '          Text
+'// File data\n' Comment.Single
+
+'    '        Text
+'$tmp_cd_data' Name.Variable
+'   '         Text
+'='           Operator
+' '           Text
+'implode'     Name.Builtin
+'('           Punctuation
+"''"          Literal.String.Single
+','           Punctuation
+' '           Text
+'$cd_data'    Name.Variable
+')'           Punctuation
+'.'           Operator
+'    '        Text
+'// Central directory\n' Comment.Single
+
+'                     ' Text
+'$digital_signature' Name.Variable
+';'           Punctuation
+'       '     Text
+'// Digital signature\n' Comment.Single
+
+'\n    '      Text
+'// End of central directory\n' Comment.Single
+
+'    '        Text
+'$eof_cd'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'\n    '      Text
+'$eof_cd'     Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'"'           Literal.String.Double
+'\\x50'       Literal.String.Escape
+'\\x4b'       Literal.String.Escape
+'\\x05'       Literal.String.Escape
+'\\x06'       Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'                ' Text
+'// End of central dir signature\n' Comment.Single
+
+'    '        Text
+'$eof_cd'     Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                      ' Text
+'// Number of this disk\n' Comment.Single
+
+'    '        Text
+'$eof_cd'     Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                      ' Text
+'// Number of the disk with the start of the central directory\n' Comment.Single
+
+'    '        Text
+'$eof_cd'     Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'count'       Name.Builtin
+'('           Punctuation
+'$cd_data'    Name.Variable
+'));'         Punctuation
+'        '    Text
+'// Total number of entries in the central directory on this disk\n' Comment.Single
+
+'    '        Text
+'$eof_cd'     Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'count'       Name.Builtin
+'('           Punctuation
+'$cd_data'    Name.Variable
+'));'         Punctuation
+'        '    Text
+'// Total number of entries in the central directory\n' Comment.Single
+
+'    '        Text
+'$eof_cd'     Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'$tmp_cd_data' Name.Variable
+'));'         Punctuation
+'   '         Text
+'// Size of the central directory\n' Comment.Single
+
+'    '        Text
+'$eof_cd'     Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'V'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'$tmp_file_data' Name.Variable
+'));'         Punctuation
+' '           Text
+'// Offset of start of central directory with respect to the starting disk number\n' Comment.Single
+
+'    '        Text
+'$eof_cd'     Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+'pack'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'v'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+');'          Punctuation
+'                      ' Text
+'// .ZIP file comment length\n' Comment.Single
+
+'    '        Text
+'$eof_cd'     Name.Variable
+' '           Text
+'.='          Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'                                ' Text
+'// .ZIP file comment (is empty)\n' Comment.Single
+
+'\n    '      Text
+'// Content of the zip file\n' Comment.Single
+
+'    '        Text
+'$data'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$tmp_file_data' Name.Variable
+'.'           Operator
+'\n            ' Text
+'// $extra_data_record.\n' Comment.Single
+
+'            ' Text
+'$tmp_cd_data' Name.Variable
+'.'           Operator
+'\n            ' Text
+'$eof_cd'     Name.Variable
+';'           Punctuation
+'\n\n    '    Text
+'// Return content?\n' Comment.Single
+
+'    '        Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'$filename'   Name.Variable
+')'           Punctuation
+'\n      '    Text
+'return'      Keyword
+' '           Text
+'$data'       Name.Variable
+';'           Punctuation
+'\n      \n    ' Text
+'// Write to file\n' Comment.Single
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'file_put_contents' Name.Builtin
+'('           Punctuation
+'$filename'   Name.Variable
+','           Punctuation
+' '           Text
+'$data'       Name.Variable
+');'          Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n  \n '     Text
+"/**\n  *  Load a zip file\n  *\n  *  This function loads the files and dirs from a zip file from the harddrive.\n  *\n  *  @access                public\n  *\n  *  @param  string $file   The path to the zip file\n  *  @param  bool   $reset  Reset the files and dirs before adding the zip file's content?\n  *\n  *  @return bool           Returns true if the file was loaded sucessfully\n  */" Literal.String.Doc
+'\n  '        Text
+'function'    Keyword
+' '           Text
+'load_file'   Name.Function
+'('           Punctuation
+'$file'       Name.Variable
+','           Punctuation
+' '           Text
+'$reset'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'// Check whether the file exists\n' Comment.Single
+
+'    '        Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'file_exists' Name.Builtin
+'('           Punctuation
+'$file'       Name.Variable
+'))'          Punctuation
+'\n      '    Text
+'return'      Keyword
+' '           Text
+'false'       Keyword
+';'           Punctuation
+'\n\n    '    Text
+'// Load the files content\n' Comment.Single
+
+'    '        Text
+'$content'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'@'           Operator
+'file_get_contents' Name.Builtin
+'('           Punctuation
+'$file'       Name.Variable
+');'          Punctuation
+'\n\n    '    Text
+'// Return false if the file cannot be opened\n' Comment.Single
+
+'    '        Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'$content'    Name.Variable
+')'           Punctuation
+'\n      '    Text
+'return'      Keyword
+' '           Text
+'false'       Keyword
+';'           Punctuation
+'\n\n    '    Text
+'// Read the zip\n' Comment.Single
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'$this'       Name.Variable
+'->'          Operator
+'load_string' Name.Attribute
+'('           Punctuation
+'$content'    Name.Variable
+','           Punctuation
+' '           Text
+'$reset'      Name.Variable
+');'          Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n  \n '     Text
+"/**\n  *  Load a zip string\n  *\n  *  This function loads the files and dirs from a string\n  *\n  *  @access                 public\n  *\n  *  @param  string $string  The string the zip is generated from\n  *  @param  bool   $reset   Reset the files and dirs before adding the zip file's content?\n  *\n  *  @return bool            Returns true if the string was loaded sucessfully\n  */" Literal.String.Doc
+'\n  '        Text
+'function'    Keyword
+' '           Text
+'load_string' Name.Function
+'('           Punctuation
+'$string'     Name.Variable
+','           Punctuation
+' '           Text
+'$reset'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'// Reset the zip?\n' Comment.Single
+
+'    '        Text
+'if'          Keyword
+'('           Punctuation
+'$reset'      Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'$this'       Name.Variable
+'->'          Operator
+'dirs'        Name.Attribute
+'  '          Text
+'='           Operator
+' '           Text
+'array'       Keyword
+'();'         Punctuation
+'\n      '    Text
+'$this'       Name.Variable
+'->'          Operator
+'files'       Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'array'       Keyword
+'();'         Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'// Get the starting position of the end of central directory record\n' Comment.Single
+
+'    '        Text
+'$start'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'strpos'      Name.Builtin
+'('           Punctuation
+'$string'     Name.Variable
+','           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'\\x50'       Literal.String.Escape
+'\\x4b'       Literal.String.Escape
+'\\x05'       Literal.String.Escape
+'\\x06'       Literal.String.Escape
+'"'           Literal.String.Double
+');'          Punctuation
+'\n\n    '    Text
+'// Error\n'  Comment.Single
+
+'    '        Text
+'if'          Keyword
+'('           Punctuation
+'$start'      Name.Variable
+' '           Text
+'==='         Operator
+' '           Text
+'false'       Keyword
+')'           Punctuation
+'\n      '    Text
+'die'         Keyword
+'('           Punctuation
+"'Could not find the end of central directory record'" Literal.String.Single
+');'          Punctuation
+'\n\n    '    Text
+'// Get the ecdr\n' Comment.Single
+
+'    '        Text
+'$eof_cd'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'substr'      Name.Builtin
+'('           Punctuation
+'$string'     Name.Variable
+','           Punctuation
+' '           Text
+'$start'      Name.Variable
+'+'           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'18'          Literal.Number.Integer
+');'          Punctuation
+'\n\n    '    Text
+'// Unpack the ecdr infos\n' Comment.Single
+
+'    '        Text
+'$eof_cd'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name.Builtin
+'('           Punctuation
+"'vdisc1/'"   Literal.String.Single
+'.'           Operator
+'\n                     ' Text
+"'vdisc2/'"   Literal.String.Single
+'.'           Operator
+'\n                     ' Text
+"'ventries1/'" Literal.String.Single
+'.'           Operator
+'\n                     ' Text
+"'ventries2/'" Literal.String.Single
+'.'           Operator
+'\n                     ' Text
+"'Vsize/'"    Literal.String.Single
+'.'           Operator
+'\n                     ' Text
+"'Voffset/'"  Literal.String.Single
+'.'           Operator
+'\n                     ' Text
+"'vcomment_lenght'" Literal.String.Single
+','           Punctuation
+' '           Text
+'$eof_cd'     Name.Variable
+');'          Punctuation
+'\n\n    '    Text
+'// Do not allow multi disc zips\n' Comment.Single
+
+'    '        Text
+'if'          Keyword
+'('           Punctuation
+'$eof_cd'     Name.Variable
+'['           Punctuation
+"'disc1'"     Literal.String.Single
+']'           Punctuation
+' '           Text
+'!='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n      '    Text
+'die'         Keyword
+'('           Punctuation
+"'multi disk stuff is not yet implemented :/'" Literal.String.Single
+');'          Punctuation
+'\n\n    '    Text
+'// Save the interesting values\n' Comment.Single
+
+'    '        Text
+'$cd_entries' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$eof_cd'     Name.Variable
+'['           Punctuation
+"'entries1'"  Literal.String.Single
+'];'          Punctuation
+'\n    '      Text
+'$cd_size'    Name.Variable
+'    '        Text
+'='           Operator
+' '           Text
+'$eof_cd'     Name.Variable
+'['           Punctuation
+"'size'"      Literal.String.Single
+'];'          Punctuation
+'\n    '      Text
+'$cd_offset'  Name.Variable
+'  '          Text
+'='           Operator
+' '           Text
+'$eof_cd'     Name.Variable
+'['           Punctuation
+"'offset'"    Literal.String.Single
+'];'          Punctuation
+'\n\n    '    Text
+'// Get the central directory record\n' Comment.Single
+
+'    '        Text
+'$cdr'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'substr'      Name.Builtin
+'('           Punctuation
+'$string'     Name.Variable
+','           Punctuation
+' '           Text
+'$cd_offset'  Name.Variable
+','           Punctuation
+' '           Text
+'$cd_size'    Name.Variable
+');'          Punctuation
+'\n\n    '    Text
+'// Reset the position and the list of the entries\n' Comment.Single
+
+'    '        Text
+'$pos'        Name.Variable
+'     '       Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text
+'$entries'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'array'       Keyword
+'();'         Punctuation
+'\n\n    '    Text
+'// Handle cdr\n' Comment.Single
+
+'    '        Text
+'while'       Keyword
+'('           Punctuation
+'$pos'        Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'strlen'      Name.Builtin
+'('           Punctuation
+'$cdr'        Name.Variable
+'))'          Punctuation
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'// Check header signature\n' Comment.Single
+
+'      '      Text
+'// Digital signature\n' Comment.Single
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'substr'      Name.Builtin
+'('           Punctuation
+'$cdr'        Name.Variable
+','           Punctuation
+' '           Text
+'$pos'        Name.Variable
+','           Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'"'           Literal.String.Double
+'\\x50'       Literal.String.Escape
+'\\x4b'       Literal.String.Escape
+'\\x05'       Literal.String.Escape
+'\\x05'       Literal.String.Escape
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'// Get digital signature size\n' Comment.Single
+
+'        '    Text
+'$tmp_info'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'unpack'      Name.Builtin
+'('           Punctuation
+"'vsize'"     Literal.String.Single
+','           Punctuation
+' '           Text
+'substr'      Name.Builtin
+'('           Punctuation
+'$cdr'        Name.Variable
+','           Punctuation
+' '           Text
+'$pos'        Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+'));'         Punctuation
+'\n\n        ' Text
+'// Read out the digital signature\n' Comment.Single
+
+'        '    Text
+'$digital_sig' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'substr'      Name.Builtin
+'('           Punctuation
+'$header'     Name.Variable
+','           Punctuation
+' '           Text
+'$pos'        Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'6'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'$tmp_info'   Name.Variable
+'['           Punctuation
+"'size'"      Literal.String.Single
+']);'         Punctuation
+'\n\n        ' Text
+'break'       Keyword
+';'           Punctuation
+'\n      '    Text
+'}'           Punctuation
+'\n\n      '  Text
+'// Get file header\n' Comment.Single
+
+'      '      Text
+'$header'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'substr'      Name.Builtin
+'('           Punctuation
+'$cdr'        Name.Variable
+','           Punctuation
+' '           Text
+'$pos'        Name.Variable
+','           Punctuation
+' '           Text
+'46'          Literal.Number.Integer
+');'          Punctuation
+'\n\n      '  Text
+'// Unpack the header information\n' Comment.Single
+
+'      '      Text
+'$header_info' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'@'           Operator
+'unpack'      Name.Builtin
+'('           Punctuation
+"'Vheader/'"  Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vversion_made_by/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vversion_needed/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vgeneral_purpose/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vcompression_method/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vlast_mod_time/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vlast_mod_date/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'Vcrc32/'"   Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'Vcompressed_size/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'Vuncompressed_size/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vname_length/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vextra_length/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vcomment_length/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vdisk_number/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vinternal_attributes/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'Vexternal_attributes/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'Voffset'"   Literal.String.Single
+','           Punctuation
+'\n                             ' Text
+'$header'     Name.Variable
+');'          Punctuation
+'\n\n      '  Text
+'// Valid header?\n' Comment.Single
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'$header_info' Name.Variable
+'['           Punctuation
+"'header'"    Literal.String.Single
+']'           Punctuation
+' '           Text
+'!='          Operator
+' '           Text
+'33639248'    Literal.Number.Integer
+')'           Punctuation
+'\n        '  Text
+'return'      Keyword
+' '           Text
+'false'       Keyword
+';'           Punctuation
+'\n\n      '  Text
+'// New position\n' Comment.Single
+
+'      '      Text
+'$pos'        Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'46'          Literal.Number.Integer
+';'           Punctuation
+'\n\n      '  Text
+'// Read out the file name\n' Comment.Single
+
+'      '      Text
+'$header_info' Name.Variable
+'['           Punctuation
+"'name'"      Literal.String.Single
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'substr'      Name.Builtin
+'('           Punctuation
+'$cdr'        Name.Variable
+','           Punctuation
+' '           Text
+'$pos'        Name.Variable
+','           Punctuation
+' '           Text
+'$header_info' Name.Variable
+'['           Punctuation
+"'name_length'" Literal.String.Single
+']);'         Punctuation
+'\n\n      '  Text
+'// New position\n' Comment.Single
+
+'      '      Text
+'$pos'        Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'$header_info' Name.Variable
+'['           Punctuation
+"'name_length'" Literal.String.Single
+'];'          Punctuation
+'\n\n      '  Text
+'// Read out the extra stuff\n' Comment.Single
+
+'      '      Text
+'$header_info' Name.Variable
+'['           Punctuation
+"'extra'"     Literal.String.Single
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'substr'      Name.Builtin
+'('           Punctuation
+'$cdr'        Name.Variable
+','           Punctuation
+' '           Text
+'$pos'        Name.Variable
+','           Punctuation
+' '           Text
+'$header_info' Name.Variable
+'['           Punctuation
+"'extra_length'" Literal.String.Single
+']);'         Punctuation
+'\n\n      '  Text
+'// New position\n' Comment.Single
+
+'      '      Text
+'$pos'        Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'$header_info' Name.Variable
+'['           Punctuation
+"'extra_length'" Literal.String.Single
+'];'          Punctuation
+'\n\n      '  Text
+'// Read out the comment\n' Comment.Single
+
+'      '      Text
+'$header_info' Name.Variable
+'['           Punctuation
+"'comment'"   Literal.String.Single
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'substr'      Name.Builtin
+'('           Punctuation
+'$cdr'        Name.Variable
+','           Punctuation
+' '           Text
+'$pos'        Name.Variable
+','           Punctuation
+' '           Text
+'$header_info' Name.Variable
+'['           Punctuation
+"'comment_length'" Literal.String.Single
+']);'         Punctuation
+'\n\n      '  Text
+'// New position\n' Comment.Single
+
+'      '      Text
+'$pos'        Name.Variable
+' '           Text
+'+='          Operator
+' '           Text
+'$header_info' Name.Variable
+'['           Punctuation
+"'comment_length'" Literal.String.Single
+'];'          Punctuation
+'\n\n      '  Text
+'// Append this file/dir to the entry list\n' Comment.Single
+
+'      '      Text
+'$entries'    Name.Variable
+'[]'          Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'$header_info' Name.Variable
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'// Check whether all entries where read sucessfully\n' Comment.Single
+
+'    '        Text
+'if'          Keyword
+'('           Punctuation
+'count'       Name.Builtin
+'('           Punctuation
+'$entries'    Name.Variable
+')'           Punctuation
+' '           Text
+'!='          Operator
+' '           Text
+'$cd_entries' Name.Variable
+')'           Punctuation
+'\n      '    Text
+'return'      Keyword
+' '           Text
+'false'       Keyword
+';'           Punctuation
+'\n\n    '    Text
+'// Handle files/dirs\n' Comment.Single
+
+'    '        Text
+'foreach'     Keyword
+'('           Punctuation
+'$entries'    Name.Variable
+' '           Text
+'as'          Keyword
+' '           Text
+'$entry'      Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n      '    Text
+'// Is a dir?\n' Comment.Single
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'$entry'      Name.Variable
+'['           Punctuation
+"'external_attributes'" Literal.String.Single
+']'           Punctuation
+' '           Text
+'&'           Operator
+' '           Text
+'16'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'$this'       Name.Variable
+'->'          Operator
+'add_dir'     Name.Attribute
+'('           Punctuation
+'$entry'      Name.Variable
+'['           Punctuation
+"'name'"      Literal.String.Single
+']);'         Punctuation
+'\n        '  Text
+'continue'    Keyword
+';'           Punctuation
+'\n      '    Text
+'}'           Punctuation
+'\n\n      '  Text
+'// Get local file header\n' Comment.Single
+
+'      '      Text
+'$header'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'substr'      Name.Builtin
+'('           Punctuation
+'$string'     Name.Variable
+','           Punctuation
+' '           Text
+'$entry'      Name.Variable
+'['           Punctuation
+"'offset'"    Literal.String.Single
+'],'          Punctuation
+' '           Text
+'30'          Literal.Number.Integer
+');'          Punctuation
+'\n\n      '  Text
+'// Unpack the header information\n' Comment.Single
+
+'      '      Text
+'$header_info' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'@'           Operator
+'unpack'      Name.Builtin
+'('           Punctuation
+"'Vheader/'"  Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vversion_needed/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vgeneral_purpose/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vcompression_method/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vlast_mod_time/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vlast_mod_date/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'Vcrc32/'"   Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'Vcompressed_size/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'Vuncompressed_size/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vname_length/'" Literal.String.Single
+'.'           Operator
+'\n                             ' Text
+"'vextra_length'" Literal.String.Single
+','           Punctuation
+'\n                             ' Text
+'$header'     Name.Variable
+');'          Punctuation
+'\n\n      '  Text
+'// Valid header?\n' Comment.Single
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'$header_info' Name.Variable
+'['           Punctuation
+"'header'"    Literal.String.Single
+']'           Punctuation
+' '           Text
+'!='          Operator
+' '           Text
+'67324752'    Literal.Number.Integer
+')'           Punctuation
+'\n        '  Text
+'return'      Keyword
+' '           Text
+'false'       Keyword
+';'           Punctuation
+'\n\n      '  Text
+'// Get content start position\n' Comment.Single
+
+'      '      Text
+'$start'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$entry'      Name.Variable
+'['           Punctuation
+"'offset'"    Literal.String.Single
+']'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'30'          Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'$header_info' Name.Variable
+'['           Punctuation
+"'name_length'" Literal.String.Single
+']'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'$header_info' Name.Variable
+'['           Punctuation
+"'extra_length'" Literal.String.Single
+'];'          Punctuation
+'\n\n      '  Text
+'// Get the compressed data\n' Comment.Single
+
+'      '      Text
+'$data'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'substr'      Name.Builtin
+'('           Punctuation
+'$string'     Name.Variable
+','           Punctuation
+' '           Text
+'$start'      Name.Variable
+','           Punctuation
+' '           Text
+'$header_info' Name.Variable
+'['           Punctuation
+"'compressed_size'" Literal.String.Single
+']);'         Punctuation
+'\n\n      '  Text
+'// Detect compression type\n' Comment.Single
+
+'      '      Text
+'switch'      Keyword
+'('           Punctuation
+'$header_info' Name.Variable
+'['           Punctuation
+"'compression_method'" Literal.String.Single
+'])'          Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'// No compression\n' Comment.Single
+
+'        '    Text
+'case'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+':'           Operator
+'\n          ' Text
+'// Ne decompression needed\n' Comment.Single
+
+'          '  Text
+'$content'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'$data'       Name.Variable
+';'           Punctuation
+'\n          ' Text
+'break'       Keyword
+';'           Punctuation
+'\n\n        ' Text
+'// Gzip\n'   Comment.Single
+
+'        '    Text
+'case'        Keyword
+' '           Text
+'8'           Literal.Number.Integer
+':'           Operator
+'\n          ' Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'function_exists' Name.Builtin
+'('           Punctuation
+"'gzinflate'" Literal.String.Single
+'))'          Punctuation
+'\n            ' Text
+'return'      Keyword
+' '           Text
+'false'       Keyword
+';'           Punctuation
+'\n\n          ' Text
+'// Uncompress data\n' Comment.Single
+
+'          '  Text
+'$content'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'gzinflate'   Name.Builtin
+'('           Punctuation
+'$data'       Name.Variable
+');'          Punctuation
+'\n          ' Text
+'break'       Keyword
+';'           Punctuation
+'\n\n        ' Text
+'// Bzip2\n'  Comment.Single
+
+'        '    Text
+'case'        Keyword
+' '           Text
+'12'          Literal.Number.Integer
+':'           Operator
+'\n          ' Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'function_exists' Name.Builtin
+'('           Punctuation
+"'bzdecompress'" Literal.String.Single
+'))'          Punctuation
+'\n            ' Text
+'return'      Keyword
+' '           Text
+'false'       Keyword
+';'           Punctuation
+'\n\n          ' Text
+'// Decompress data\n' Comment.Single
+
+'          '  Text
+'$content'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'bzdecompress' Name.Builtin
+'('           Punctuation
+'$data'       Name.Variable
+');'          Punctuation
+'\n          ' Text
+'break'       Keyword
+';'           Punctuation
+'\n\n        ' Text
+'// Compression not supported -> error\n' Comment.Single
+
+'        '    Text
+'default'     Keyword
+':'           Operator
+'\n          ' Text
+'return'      Keyword
+' '           Text
+'false'       Keyword
+';'           Punctuation
+'\n      '    Text
+'}'           Punctuation
+'\n\n      '  Text
+'// Try to add file\n' Comment.Single
+
+'      '      Text
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'$this'       Name.Variable
+'->'          Operator
+'add_file'    Name.Attribute
+'('           Punctuation
+'$entry'      Name.Variable
+'['           Punctuation
+"'name'"      Literal.String.Single
+'],'          Punctuation
+' '           Text
+'$content'    Name.Variable
+'))'          Punctuation
+'\n        '  Text
+'return'      Keyword
+' '           Text
+'false'       Keyword
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'return'      Keyword
+' '           Text
+'true'        Keyword
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'&'           Operator
+'byref'       Name.Function
+'()'          Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'$x'          Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'array'       Keyword
+'();'         Punctuation
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'$x'          Name.Variable
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'// Test highlighting of magic methods and variables\n' Comment.Single
+
+'class'       Keyword
+' '           Text
+'MagicClass'  Name.Class
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'public'      Keyword
+' '           Text
+'$magic_str'  Name.Variable
+';'           Punctuation
+'\n  '        Text
+'public'      Keyword
+' '           Text
+'$ordinary_str' Name.Variable
+';'           Punctuation
+'\n\n  '      Text
+'public'      Keyword
+' '           Text
+'function'    Keyword
+' '           Text
+'__construct' Name.Function.Magic
+'('           Punctuation
+'$some_var'   Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'$this'       Name.Variable
+'->'          Operator
+'magic_str'   Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'__FILE__'    Name.Constant
+';'           Punctuation
+'\n    '      Text
+'$this'       Name.Variable
+'->'          Operator
+'ordinary_str' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'$some_var'   Name.Variable
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n\n  '      Text
+'public'      Keyword
+' '           Text
+'function'    Keyword
+' '           Text
+'__toString'  Name.Function.Magic
+'()'          Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'$this'       Name.Variable
+'->'          Operator
+'magic_str'   Name.Attribute
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n\n  '      Text
+'public'      Keyword
+' '           Text
+'function'    Keyword
+' '           Text
+'nonMagic'    Name.Function
+'()'          Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'$this'       Name.Variable
+'->'          Operator
+'ordinary_str' Name.Attribute
+';'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'$magic'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'MagicClass'  Name.Other
+'('           Punctuation
+'__DIR__'     Name.Constant
+');'          Punctuation
+'\n'          Text
+
+'__toString'  Name.Other
+'();'         Punctuation
+'\n'          Text
+
+'$magic'      Name.Variable
+'->'          Operator
+'nonMagic'    Name.Attribute
+'();'         Punctuation
+'\n'          Text
+
+'$magic'      Name.Variable
+'->'          Operator
+'__toString'  Name.Attribute
+'();'         Punctuation
+'\n\n     '   Text
+'echo'        Keyword
+' '           Text
+'<<<'         Literal.String
+'EOF'         Literal.String.Delimiter
+'\n\n     Test the heredocs...\n\n     ' Literal.String
+'EOF'         Literal.String.Delimiter
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'echo'        Keyword
+' '           Text
+'<<<'         Literal.String
+'"'           Literal.String
+'some_delimiter' Literal.String.Delimiter
+'"\nmore heredoc testing\ncontinues on this line\n' Literal.String
+
+'some_delimiter' Literal.String.Delimiter
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'?>'          Comment.Preproc
+'\n'          Other

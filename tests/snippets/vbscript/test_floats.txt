@@ -1,0 +1,34 @@
+---input---
+1.
+1.e1
+.1
+1.2
+1.2e3
+1.2e+3
+1.2e-3
+1e2
+
+---tokens---
+'1.'          Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.e1'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'.1'          Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.2'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.2e3'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.2e+3'      Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.2e-3'      Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1e2'         Literal.Number.Float
+'\n'          Text.Whitespace

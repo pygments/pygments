@@ -1,0 +1,955 @@
+'<#'          Comment.Multiline
+'\n'          Comment.Multiline
+
+'.SYNOPSIS'   Literal.String.Doc
+'\nRuns a T-SQL Query and optional outputs results to a delimited file' Comment.Multiline
+'.'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'.DESCRIPTION' Literal.String.Doc
+'\nInvoke-Sql script will run a T-SQL query or stored procedure and optionally outputs a delimited file' Comment.Multiline
+'.'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'.EXAMPLE'    Literal.String.Doc
+'\nPowerShell' Comment.Multiline
+'.'           Comment.Multiline
+'exe -File "C:\\Scripts\\Invoke-Sql' Comment.Multiline
+'.'           Comment.Multiline
+'ps1" -ServerInstance "Z003\\sqlprod2" -Database orders -Query "EXEC usp_accounts \'12445678\'"\nThis example connects to Z003\\sqlprod2' Comment.Multiline
+'.'           Comment.Multiline
+'Orders and executes a stored procedure which does not return a result set\n' Comment.Multiline
+
+'.EXAMPLE'    Literal.String.Doc
+'\nPowerShell' Comment.Multiline
+'.'           Comment.Multiline
+'exe -File "C:\\Scripts\\Invoke-Sql' Comment.Multiline
+'.'           Comment.Multiline
+'ps1" -ServerInstance "Z003\\sqlprod2" -Database orders -Query "SELECT * FROM dbo' Comment.Multiline
+'.'           Comment.Multiline
+'accounts" -FilePath "C:\\Scripts\\accounts' Comment.Multiline
+'.'           Comment.Multiline
+'txt" -Delimiter ","\nThis example connects to Z003\\sqlprod2' Comment.Multiline
+'.'           Comment.Multiline
+'Orders and selects the records from the accounts tables, the data is outputed to a CSV file\n' Comment.Multiline
+
+'.NOTES'      Literal.String.Doc
+'\nVersion History\nv1' Comment.Multiline
+'.'           Comment.Multiline
+'0   - Chad Miller - 12/14/2010 - Initial release\nIMPORTANT!!! The EventLog source which is set to the application needs to be registered with\nthe Event log:\nNew-EventLog -LogName Application -Source  $Application\n' Comment.Multiline
+
+'#>'          Comment.Multiline
+'\n'          Text
+
+'param'       Keyword
+'('           Punctuation
+'\n'          Text
+
+'#ServerInstance is Mandatory!' Comment
+'\n'          Text
+
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'0'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[string]'    Name.Constant
+'$ServerInstance' Name.Variable
+','           Punctuation
+'\n'          Text
+
+'#Database is Mandatory!' Comment
+'\n'          Text
+
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'1'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[string]'    Name.Constant
+'$Database'   Name.Variable
+','           Punctuation
+'\n'          Text
+
+'#Query is Mandatory!' Comment
+'\n'          Text
+
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'2'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[string]'    Name.Constant
+'$Query'      Name.Variable
+','           Punctuation
+'\n'          Text
+
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'3'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[string]'    Name.Constant
+'$Application' Name.Variable
+'='           Punctuation
+'"'           Literal.String.Double
+'Invoke-Sql.ps1' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'\n'          Text
+
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'4'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[string]'    Name.Constant
+'$FilePath'   Name.Variable
+','           Punctuation
+'\n'          Text
+
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'7'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[string]'    Name.Constant
+'$Delimiter'  Name.Variable
+'='           Punctuation
+'"'           Literal.String.Double
+'|'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'\n'          Text
+
+"#If UserName isn't supplied a trusted connection will be used" Comment
+'\n'          Text
+
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'5'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[string]'    Name.Constant
+'$UserName'   Name.Variable
+','           Punctuation
+'\n'          Text
+
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'6'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[string]'    Name.Constant
+'$Password'   Name.Variable
+','           Punctuation
+'\n'          Text
+
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'8'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[Int32]'     Name.Constant
+'$QueryTimeout' Name.Variable
+'='           Punctuation
+'600'         Name
+','           Punctuation
+'\n'          Text
+
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'9'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[Int32]'     Name.Constant
+'$ConnectionTimeout' Name.Variable
+'='           Punctuation
+'15'          Name
+'\n'          Text
+
+')'           Punctuation
+'\n \n \n'    Text
+
+'#This must be run as administrator on Windows 2008 and higher!' Comment
+'\n'          Text
+
+'New-EventLog' Name.Builtin
+' '           Text
+'-LogName'    Name
+' '           Text
+'Application' Name
+' '           Text
+'-Source'     Name
+' '           Text
+'$Application' Name.Variable
+' '           Text
+'-EA'         Name
+' '           Text
+'SilentlyContinue' Name
+'\n'          Text
+
+'$Error'      Name.Variable
+'.'           Punctuation
+'Clear'       Name
+'('           Punctuation
+')'           Punctuation
+'\n \n'       Text
+
+'#######################' Comment
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'Invoke-SqlCmd2' Name.Builtin
+'\n'          Text
+
+'{'           Punctuation
+'\n    '      Text
+'param'       Keyword
+'('           Punctuation
+'\n    '      Text
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'0'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$true'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[string]'    Name.Constant
+'$ServerInstance' Name.Variable
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'1'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$true'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[string]'    Name.Constant
+'$Database'   Name.Variable
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'2'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$true'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[string]'    Name.Constant
+'$Query'      Name.Variable
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'3'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[string]'    Name.Constant
+'$UserName'   Name.Variable
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'4'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[string]'    Name.Constant
+'$Password'   Name.Variable
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'5'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[Int32]'     Name.Constant
+'$QueryTimeout' Name.Variable
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'Parameter'   Keyword
+'('           Punctuation
+'Position'    Keyword
+'='           Punctuation
+'6'           Name
+','           Punctuation
+' '           Text
+'Mandatory'   Keyword
+'='           Punctuation
+'$false'      Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'[Int32]'     Name.Constant
+'$ConnectionTimeout' Name.Variable
+'\n    '      Text
+')'           Punctuation
+'\n \n    '   Text
+'try'         Keyword
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$Username'   Name.Variable
+')'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'$ConnectionString' Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'Server={0};Database={1};User ID={2};Password={3};Trusted_Connection=False;Connect Timeout={4}' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'-f'          Operator
+' '           Text
+'$ServerInstance' Name.Variable
+','           Punctuation
+'$Database'   Name.Variable
+','           Punctuation
+'$Username'   Name.Variable
+','           Punctuation
+'$Password'   Name.Variable
+','           Punctuation
+'$ConnectionTimeout' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'else'        Keyword
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'$ConnectionString' Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'Server={0};Database={1};Integrated Security=True;Connect Timeout={2}' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'-f'          Operator
+' '           Text
+'$ServerInstance' Name.Variable
+','           Punctuation
+'$Database'   Name.Variable
+','           Punctuation
+'$ConnectionTimeout' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'$conn'       Name.Variable
+'='           Punctuation
+'new-object'  Name.Builtin
+' '           Text
+'System'      Name
+'.'           Punctuation
+'Data'        Name
+'.'           Punctuation
+'SqlClient'   Name
+'.'           Punctuation
+'SQLConnection' Name
+'\n        '  Text
+'$conn'       Name.Variable
+'.'           Punctuation
+'ConnectionString' Name
+'='           Punctuation
+'$ConnectionString' Name.Variable
+'\n        '  Text
+'$conn'       Name.Variable
+'.'           Punctuation
+'Open'        Name
+'('           Punctuation
+')'           Punctuation
+'\n        '  Text
+'$cmd'        Name.Variable
+'='           Punctuation
+'new-object'  Name.Builtin
+' '           Text
+'system'      Name
+'.'           Punctuation
+'Data'        Name
+'.'           Punctuation
+'SqlClient'   Name
+'.'           Punctuation
+'SqlCommand'  Name
+'('           Punctuation
+'$Query'      Name.Variable
+','           Punctuation
+'$conn'       Name.Variable
+')'           Punctuation
+'\n        '  Text
+'$cmd'        Name.Variable
+'.'           Punctuation
+'CommandTimeout' Name
+'='           Punctuation
+'$QueryTimeout' Name.Variable
+'\n        '  Text
+'$ds'         Name.Variable
+'='           Punctuation
+'New-Object'  Name.Builtin
+' '           Text
+'system'      Name
+'.'           Punctuation
+'Data'        Name
+'.'           Punctuation
+'DataSet'     Name
+'\n        '  Text
+'$da'         Name.Variable
+'='           Punctuation
+'New-Object'  Name.Builtin
+' '           Text
+'system'      Name
+'.'           Punctuation
+'Data'        Name
+'.'           Punctuation
+'SqlClient'   Name
+'.'           Punctuation
+'SqlDataAdapter' Name
+'('           Punctuation
+'$cmd'        Name.Variable
+')'           Punctuation
+'\n        '  Text
+'[void]'      Name.Constant
+'$da'         Name.Variable
+'.'           Punctuation
+'fill'        Name
+'('           Punctuation
+'$ds'         Name.Variable
+')'           Punctuation
+'\n        '  Text
+'Write-Output' Name.Builtin
+' '           Text
+'('           Punctuation
+'$ds'         Name.Variable
+'.'           Punctuation
+'Tables'      Name
+'['           Punctuation
+'0'           Name
+']'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'finally'     Keyword
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'$conn'       Name.Variable
+'.'           Punctuation
+'Dispose'     Name
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n \n'       Text
+
+'}'           Punctuation
+' '           Text
+'#Invoke-SqlCmd2' Comment
+'\n \n'       Text
+
+'#######################' Comment
+'\n'          Text
+
+'#       MAIN          #' Comment
+'\n'          Text
+
+'#######################' Comment
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$PSBoundParameters' Name.Variable
+'.'           Punctuation
+'Count'       Name
+' '           Text
+'-eq'         Operator
+' '           Text
+'0'           Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n '         Text
+'get-help'    Name.Builtin
+' '           Text
+'$myInvocation' Name.Variable
+'.'           Punctuation
+'MyCommand'   Name
+'.'           Punctuation
+'Path'        Name
+' '           Text
+'-full'       Name
+'\n '         Text
+'break'       Keyword
+'\n'          Text
+
+'}'           Punctuation
+'\n \n'       Text
+
+'try'         Keyword
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'$msg'        Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'$null'       Name.Variable
+'\n    '      Text
+'$msg'        Name.Variable
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'Application/Job Name: ' Literal.String.Double
+'$'           Literal.String.Double
+'Application' Literal.String.Double
+'`n'          Literal.String.Escape
+'"'           Literal.String.Double
+'\n    '      Text
+'$msg'        Name.Variable
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'Query: '     Literal.String.Double
+'$'           Literal.String.Double
+'Query'       Literal.String.Double
+'`n'          Literal.String.Escape
+'"'           Literal.String.Double
+'\n    '      Text
+'$msg'        Name.Variable
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'ServerInstance: ' Literal.String.Double
+'$'           Literal.String.Double
+'ServerInstance' Literal.String.Double
+'`n'          Literal.String.Escape
+'"'           Literal.String.Double
+'\n    '      Text
+'$msg'        Name.Variable
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'Database: '  Literal.String.Double
+'$'           Literal.String.Double
+'Database'    Literal.String.Double
+'`n'          Literal.String.Escape
+'"'           Literal.String.Double
+'\n    '      Text
+'$msg'        Name.Variable
+' '           Text
+'+'           Punctuation
+'='           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'FilePath: '  Literal.String.Double
+'$'           Literal.String.Double
+'FilePath'    Literal.String.Double
+'`n'          Literal.String.Escape
+'"'           Literal.String.Double
+'\n   \n    ' Text
+'Write-EventLog' Name.Builtin
+' '           Text
+'-LogName'    Name
+' '           Text
+'Application' Name
+' '           Text
+'-Source'     Name
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'Application' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'-EntryType'  Name
+' '           Text
+'Information' Name
+' '           Text
+'-EventId'    Name
+' '           Text
+'12345'       Name
+' '           Text
+'-Message'    Name
+' '           Text
+'"'           Literal.String.Double
+'Starting'    Literal.String.Double
+'`n'          Literal.String.Escape
+'$'           Literal.String.Double
+'msg'         Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text
+'$dt'         Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'Invoke-SqlCmd2' Name.Builtin
+' '           Text
+'-ServerInstance' Name
+' '           Text
+'$ServerInstance' Name.Variable
+' '           Text
+'-Database'   Name
+' '           Text
+'$Database'   Name.Variable
+' '           Text
+'-Query'      Name
+' '           Text
+'$Query'      Name.Variable
+' '           Text
+'-UserName'   Name
+' '           Text
+'$UserName'   Name.Variable
+' '           Text
+'-Password'   Name
+' '           Text
+'$Password'   Name.Variable
+' '           Text
+'-QueryTimeOut' Name
+' '           Text
+'$QueryTimeOut' Name.Variable
+' '           Text
+'-ConnectionTimeout' Name
+' '           Text
+'$ConnectionTimeout' Name.Variable
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$FilePath'   Name.Variable
+')'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$dt'         Name.Variable
+')'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'$dt'         Name.Variable
+' '           Text
+'|'           Punctuation
+' '           Text
+'export-csv'  Name.Builtin
+' '           Text
+'-Delimiter'  Name
+' '           Text
+'$Delimiter'  Name.Variable
+' '           Text
+'-Path'       Name
+' '           Text
+'$FilePath'   Name.Variable
+' '           Text
+'-NoTypeInformation' Name
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'else'        Keyword
+' '           Text
+'#Query Returned No Output!' Comment
+'\n        '  Text
+'{'           Punctuation
+'Write-EventLog' Name.Builtin
+' '           Text
+'-LogName'    Name
+' '           Text
+'Application' Name
+' '           Text
+'-Source'     Name
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'Application' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'-EntryType'  Name
+' '           Text
+'Warning'     Name
+' '           Text
+'-EventId'    Name
+' '           Text
+'12345'       Name
+' '           Text
+'-Message'    Name
+' '           Text
+'"'           Literal.String.Double
+'NoOutput'    Literal.String.Double
+'`n'          Literal.String.Escape
+'$'           Literal.String.Double
+'msg'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n \n    '   Text
+'Write-EventLog' Name.Builtin
+' '           Text
+'-LogName'    Name
+' '           Text
+'Application' Name
+' '           Text
+'-Source'     Name
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'Application' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'-EntryType'  Name
+' '           Text
+'Information' Name
+' '           Text
+'-EventId'    Name
+' '           Text
+'12345'       Name
+' '           Text
+'-Message'    Name
+' '           Text
+'"'           Literal.String.Double
+'Completed'   Literal.String.Double
+'`n'          Literal.String.Escape
+'$'           Literal.String.Double
+'msg'         Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'catch'       Keyword
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'$Exception'  Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'{0}, {1}'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'-f'          Operator
+'  '          Text
+'$_'          Name.Variable
+'.'           Punctuation
+'Exception'   Name
+'.'           Punctuation
+'GetType'     Name
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'FullName'    Name
+','           Punctuation
+'$'           Punctuation
+'('           Punctuation
+' '           Text
+'$_'          Name.Variable
+'.'           Punctuation
+'Exception'   Name
+'.'           Punctuation
+'Message'     Name
+' '           Text
+'-replace'    Operator
+' '           Text
+'"'           Literal.String.Double
+"'"           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+')'           Punctuation
+'\n    '      Text
+'Write-EventLog' Name.Builtin
+' '           Text
+'-LogName'    Name
+' '           Text
+'Application' Name
+' '           Text
+'-Source'     Name
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'Application' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'-EntryType'  Name
+' '           Text
+'Error'       Name
+' '           Text
+'-EventId'    Name
+' '           Text
+'12345'       Name
+' '           Text
+'-Message'    Name
+' '           Text
+'"'           Literal.String.Double
+'Error'       Literal.String.Double
+'`n'          Literal.String.Escape
+'$'           Literal.String.Double
+'msg'         Literal.String.Double
+'`n'          Literal.String.Escape
+'$'           Literal.String.Double
+'Exception'   Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text
+'throw'       Keyword
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

@@ -1,0 +1,1610 @@
+'# Example of a Riverbed TrafficScript (*.rts) file.' Comment
+'\n'          Text
+
+'\n'          Text
+
+'http.setHeader' Name.Function
+'('           Operator
+' '           Text
+'"'           Literal.String
+'H'           Literal.String
+'o'           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text
+'"'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'c'           Literal.String
+'u'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'.'           Literal.String
+'m'           Literal.String
+'y'           Literal.String
+'s'           Literal.String
+'i'           Literal.String
+'t'           Literal.String
+'e'           Literal.String
+'.'           Literal.String
+'c'           Literal.String
+'o'           Literal.String
+'m'           Literal.String
+'"'           Literal.String
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'$body'       Name.Variable
+' ='          Operator
+' '           Text
+'http.getBody' Name.Function
+'('           Operator
+' '           Text
+')'           Operator
+';'           Operator
+' '           Text
+'# get the POST data' Comment
+'\n'          Text
+
+'$single'     Name.Variable
+' ='          Operator
+' '           Text
+"'Hello \\\nworld'" Literal.String
+';'           Operator
+'\n'          Text
+
+'$double'     Name.Variable
+' ='          Operator
+' '           Text
+'"'           Literal.String
+'H'           Literal.String
+'e'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'\\'          Literal.String
+'\n'          Literal.String
+
+'w'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'l'           Literal.String
+'d'           Literal.String
+'"'           Literal.String
+';'           Operator
+'\n'          Text
+
+'$pi'         Name.Variable
+' ='          Operator
+' '           Text
+'3'           Literal.Number
+'.'           Operator
+'14157'       Literal.Number
+';'           Operator
+'\n'          Text
+
+'$message'    Name.Variable
+' ='          Operator
+' '           Text
+'"'           Literal.String
+'T'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'U'           Literal.String
+'R'           Literal.String
+'L'           Literal.String
+' '           Literal.String
+'p'           Literal.String
+'a'           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+' '           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Operator
+' '           Text
+'http.GetPath' Name.Function
+'('           Operator
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'$four'       Name.Variable
+' ='          Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number
+';'           Operator
+'\n'          Text
+
+'# Sets $ratio to "75%" (for example)' Comment
+'\n'          Text
+
+'$ratio'      Name.Variable
+' ='          Operator
+' '           Text
+'('           Operator
+' '           Text
+'$a'          Name.Variable
+' '           Text
+'/'           Operator
+' '           Text
+'('           Operator
+'$a'          Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'$b'          Name.Variable
+')'           Operator
+' '           Text
+'*'           Operator
+' '           Text
+'100'         Literal.Number
+' '           Text
+')'           Operator
+' '           Text
+'.'           Operator
+' '           Text
+'"'           Literal.String
+'%'           Literal.String
+'"'           Literal.String
+';'           Operator
+'\n'          Text
+
+'$contentLength' Name.Variable
+' ='          Operator
+' '           Text
+'http.getHeader' Name.Function
+'('           Operator
+' '           Text
+'"'           Literal.String
+'C'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'-'           Literal.String
+'L'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'"'           Literal.String
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'if'          Keyword
+'('           Operator
+' '           Text
+'$contentLength' Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'1024'        Literal.Number
+' '           Text
+'*'           Operator
+' '           Text
+'1024'        Literal.Number
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'  '          Text
+'log.warn'    Name.Function
+'('           Operator
+' '           Text
+'"'           Literal.String
+'L'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'g'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'q'           Literal.String
+'u'           Literal.String
+'e'           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'o'           Literal.String
+'d'           Literal.String
+'y'           Literal.String
+':'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+'.'           Operator
+'$contentLength' Name.Variable
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'4'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'7'           Literal.Number
+'.'           Operator
+'5'           Literal.Number
+' '           Text
+'*'           Operator
+' '           Text
+'$a'          Name.Variable
+'\n'          Text
+
+'-'           Operator
+'$b'          Name.Variable
+' '           Text
+'/'           Operator
+' '           Text
+'$c'          Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number
+'\n'          Text
+
+'7'           Literal.Number
+' '           Text
+'%'           Operator
+' '           Text
+'3'           Literal.Number
+'    '        Text
+'# Returns 1' Comment
+'\n'          Text
+
+'"'           Literal.String
+'f'           Literal.String
+'o'           Literal.String
+'o'           Literal.String
+'"'           Literal.String
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'!'           Operator
+'0'           Literal.Number
+' '           Text
+'# true'      Comment
+'\n'          Text
+
+'('           Operator
+' '           Text
+'1'           Literal.Number
+' '           Text
+'<'           Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+')'           Operator
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'('           Operator
+' '           Text
+'3'           Literal.Number
+' '           Text
+'<'           Operator
+' '           Text
+'4'           Literal.Number
+' '           Text
+')'           Operator
+' '           Text
+'# true'      Comment
+'\n'          Text
+
+'$a'          Name.Variable
+' '           Text
+'|'           Operator
+'|'           Operator
+' '           Text
+'$b'          Name.Variable
+' '           Text
+'# true if $a or $b is true' Comment
+'\n'          Text
+
+'0x1234'      Literal.Number
+' '           Text
+'&'           Operator
+' '           Text
+'255'         Literal.Number
+'         '   Text
+'# 0x34'      Comment
+'\n'          Text
+
+'1'           Literal.Number
+'|'           Operator
+'2'           Literal.Number
+'|'           Operator
+'4'           Literal.Number
+' '           Text
+'#7'          Comment
+'\n'          Text
+
+'1'           Literal.Number
+'^'           Operator
+'3'           Literal.Number
+' '           Text
+'#2'          Comment
+'\n'          Text
+
+'~'           Operator
+'1'           Literal.Number
+' '           Text
+'&'           Operator
+' '           Text
+'0xffff'      Literal.Number
+'          '  Text
+'# 65534'     Comment
+'\n'          Text
+
+'1'           Literal.Number
+' '           Text
+'<'           Operator
+'<'           Operator
+' '           Text
+'2'           Literal.Number
+'               ' Text
+'# 4'         Comment
+'\n'          Text
+
+'2'           Literal.Number
+' '           Text
+'>'           Operator
+'>'           Operator
+' '           Text
+'1'           Literal.Number
+'               ' Text
+'# 1'         Comment
+'\n'          Text
+
+'$foo'        Name.Variable
+' '           Text
+'*'           Operator
+'='           Operator
+' '           Text
+'5'           Literal.Number
+' '           Text
+'# Product equals ($foo = $foo * 5)' Comment
+'\n'          Text
+
+'$foo'        Name.Variable
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'# Quotient equals ($foo = $foo / 5)' Comment
+'\n'          Text
+
+'$foo'        Name.Variable
+' '           Text
+'%'           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'# Modulo equals ($foo = $foo % 5)' Comment
+'\n'          Text
+
+'$foo'        Name.Variable
+' '           Text
+'<'           Operator
+'<'           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'# Bit-shift left equals ($foo = $foo << 2)' Comment
+'\n'          Text
+
+'$foo'        Name.Variable
+' '           Text
+'>'           Operator
+'>'           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'# Bit-shift right equals ($foo = $foo >> 2)' Comment
+'\n'          Text
+
+'$foo'        Name.Variable
+' '           Text
+'&'           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'# Bitwise AND equals ($foo = $foo & 2)' Comment
+'\n'          Text
+
+'$foo'        Name.Variable
+' '           Text
+'|'           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'# Bitwise OR equals ($foo = $foo | 2)' Comment
+'\n'          Text
+
+'$foo'        Name.Variable
+' '           Text
+'^'           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number
+' '           Text
+'# Bitwise XOR equals ($foo = $foo ^ 2)' Comment
+'\n'          Text
+
+'$int'        Name.Variable
+' ='          Operator
+' '           Text
+'10'          Literal.Number
+';'           Operator
+'\n'          Text
+
+'$double'     Name.Variable
+' ='          Operator
+' '           Text
+'2'           Literal.Number
+'.'           Operator
+'71828'       Literal.Number
+';'           Operator
+'\n'          Text
+
+'string.len'  Name.Function
+'('           Operator
+' '           Text
+'$double'     Name.Variable
+' '           Text
+')'           Operator
+';'           Operator
+' '           Text
+'# casts to string, returns 7' Comment
+'\n'          Text
+
+'# Convert $string to a number, and add 4:' Comment
+'\n'          Text
+
+'$r'          Name.Variable
+' ='          Operator
+' '           Text
+'$string'     Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'4'           Literal.Number
+';'           Operator
+'  '          Text
+'# $r is 14'  Comment
+'\n'          Text
+
+'if'          Keyword
+'('           Operator
+' '           Text
+'string.startsWith' Name.Function
+'('           Operator
+' '           Text
+'$path'       Name.Variable
+','           Operator
+' '           Text
+'"'           Literal.String
+'/'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'c'           Literal.String
+'u'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'"'           Literal.String
+' '           Text
+')'           Operator
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'pool.use'    Name.Function
+'('           Operator
+' '           Text
+'"'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'c'           Literal.String
+'u'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'p'           Literal.String
+'o'           Literal.String
+'o'           Literal.String
+'l'           Literal.String
+'"'           Literal.String
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'}'           Operator
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'pool.use'    Name.Function
+'('           Operator
+' '           Text
+'"'           Literal.String
+'n'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'-'           Literal.String
+'s'           Literal.String
+'e'           Literal.String
+'c'           Literal.String
+'u'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'p'           Literal.String
+'o'           Literal.String
+'o'           Literal.String
+'l'           Literal.String
+'"'           Literal.String
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'for'         Keyword
+'('           Operator
+' '           Text
+'$count'      Name.Variable
+' ='          Operator
+' '           Text
+'0'           Literal.Number
+';'           Operator
+' '           Text
+'$count'      Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'10'          Literal.Number
+';'           Operator
+' '           Text
+'$count'      Name.Variable
+'+'           Operator
+'+'           Operator
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'log.info'    Name.Function
+'('           Operator
+' '           Text
+'"'           Literal.String
+'I'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'o'           Literal.String
+'p'           Literal.String
+','           Literal.String
+' '           Literal.String
+'c'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'='           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Operator
+' '           Text
+'$count'      Name.Variable
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'i'           Name.Function
+'$count'      Name.Variable
+' ='          Operator
+' '           Text
+'0'           Literal.Number
+';'           Operator
+'\n'          Text
+
+'while'       Keyword
+'('           Operator
+' '           Text
+'$count'      Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'10'          Literal.Number
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'log.info'    Name.Function
+'('           Operator
+' '           Text
+'"'           Literal.String
+'I'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'o'           Literal.String
+'p'           Literal.String
+','           Literal.String
+' '           Literal.String
+'c'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'='           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Operator
+' '           Text
+'$count'      Name.Variable
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'    '        Text
+'$count'      Name.Variable
+' ='          Operator
+' '           Text
+'$count'      Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number
+';'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'$count'      Name.Variable
+' ='          Operator
+' '           Text
+'0'           Literal.Number
+';'           Operator
+'\n'          Text
+
+'do'          Keyword
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'   '         Text
+'log.info'    Name.Function
+'('           Operator
+' '           Text
+'"'           Literal.String
+'I'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'o'           Literal.String
+'p'           Literal.String
+','           Literal.String
+' '           Literal.String
+'c'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'='           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Operator
+' '           Text
+'$count'      Name.Variable
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'   '         Text
+'$count'      Name.Variable
+' ='          Operator
+' '           Text
+'$count'      Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number
+';'           Operator
+'\n'          Text
+
+'}'           Operator
+' '           Text
+'while'       Keyword
+'('           Operator
+' '           Text
+'$count'      Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'10'          Literal.Number
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'$mime'       Name.Variable
+' ='          Operator
+' '           Text
+'http.getResponseHeader' Name.Function
+'('           Operator
+' '           Text
+'"'           Literal.String
+'C'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'-'           Literal.String
+'T'           Literal.String
+'y'           Literal.String
+'p'           Literal.String
+'e'           Literal.String
+'"'           Literal.String
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'if'          Keyword
+'('           Operator
+' '           Text
+'!'           Operator
+'string.startsWith' Name.Function
+'('           Operator
+' '           Text
+'$mime'       Name.Variable
+','           Operator
+' '           Text
+'"'           Literal.String
+'t'           Literal.String
+'e'           Literal.String
+'x'           Literal.String
+'t'           Literal.String
+'/'           Literal.String
+'h'           Literal.String
+'t'           Literal.String
+'m'           Literal.String
+'l'           Literal.String
+'"'           Literal.String
+' '           Text
+')'           Operator
+')'           Operator
+' '           Text
+'break'       Keyword
+';'           Operator
+'\n'          Text
+
+'$array'      Name.Variable
+' ='          Operator
+' '           Text
+'['           Operator
+' '           Text
+'"'           Literal.String
+'A'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'x'           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text
+'"'           Literal.String
+'M'           Literal.String
+'a'           Literal.String
+'t'           Literal.String
+'t'           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text
+'"'           Literal.String
+'O'           Literal.String
+'l'           Literal.String
+'i'           Literal.String
+'v'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text
+'"'           Literal.String
+'L'           Literal.String
+'a'           Literal.String
+'u'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'c'           Literal.String
+'e'           Literal.String
+'"'           Literal.String
+' '           Text
+']'           Operator
+';'           Operator
+'\n'          Text
+
+'$someone'    Name.Variable
+' ='          Operator
+' '           Text
+'$array'      Name.Variable
+'['           Operator
+'0'           Literal.Number
+']'           Operator
+';'           Operator
+'\n'          Text
+
+'$arraylen'   Name.Variable
+' ='          Operator
+' '           Text
+'array.length' Name.Function
+'('           Operator
+'$array'      Name.Variable
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'log.info'    Name.Function
+'('           Operator
+'"'           Literal.String
+'M'           Literal.String
+'y'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'r'           Literal.String
+'a'           Literal.String
+'y'           Literal.String
+' '           Literal.String
+'h'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Operator
+' '           Text
+'$arraylen'   Name.Variable
+' '           Text
+'.'           Operator
+' '           Text
+'"'           Literal.String
+' '           Literal.String
+'e'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'s'           Literal.String
+'.'           Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'for'         Keyword
+' '           Text
+'('           Operator
+' '           Text
+'$i'          Name.Variable
+' ='          Operator
+' '           Text
+'0'           Literal.Number
+';'           Operator
+' '           Text
+'$i'          Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'$arraylen'   Name.Variable
+';'           Operator
+' '           Text
+'$i'          Name.Variable
+'+'           Operator
+'+'           Operator
+' '           Text
+')'           Operator
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'log.info'    Name.Function
+' '           Text
+'('           Operator
+' '           Text
+'"'           Literal.String
+'E'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'#'           Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Operator
+' '           Text
+'$i'          Name.Variable
+' '           Text
+'.'           Operator
+' '           Text
+'"'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Operator
+' '           Text
+'$array'      Name.Variable
+'['           Operator
+'$i'          Name.Variable
+']'           Operator
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'$hash'       Name.Variable
+' ='          Operator
+' '           Text
+'['           Operator
+' '           Text
+'"'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'e'           Literal.String
+'"'           Literal.String
+' ='          Operator
+'>'           Operator
+' '           Text
+'"'           Literal.String
+'f'           Literal.String
+'r'           Literal.String
+'u'           Literal.String
+'i'           Literal.String
+'t'           Literal.String
+'"'           Literal.String
+','           Operator
+'\n'          Text
+
+'          '  Text
+'"'           Literal.String
+'a'           Literal.String
+'p'           Literal.String
+'p'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'"'           Literal.String
+' ='          Operator
+'>'           Operator
+' '           Text
+'"'           Literal.String
+'f'           Literal.String
+'r'           Literal.String
+'u'           Literal.String
+'i'           Literal.String
+'t'           Literal.String
+'"'           Literal.String
+','           Operator
+'\n'          Text
+
+'          '  Text
+'"'           Literal.String
+'c'           Literal.String
+'a'           Literal.String
+'b'           Literal.String
+'b'           Literal.String
+'a'           Literal.String
+'g'           Literal.String
+'e'           Literal.String
+'"'           Literal.String
+' ='          Operator
+'>'           Operator
+' '           Text
+'"'           Literal.String
+'v'           Literal.String
+'e'           Literal.String
+'g'           Literal.String
+'e'           Literal.String
+'t'           Literal.String
+'a'           Literal.String
+'b'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'"'           Literal.String
+','           Operator
+'\n'          Text
+
+'          '  Text
+'"'           Literal.String
+'p'           Literal.String
+'e'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
+' ='          Operator
+'>'           Operator
+' '           Text
+'"'           Literal.String
+'f'           Literal.String
+'r'           Literal.String
+'u'           Literal.String
+'i'           Literal.String
+'t'           Literal.String
+'"'           Literal.String
+' '           Text
+']'           Operator
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'foreach'     Keyword
+' '           Text
+'('           Operator
+' '           Text
+'$key'        Name.Variable
+' '           Text
+'in'          Keyword
+' '           Text
+'hash.keys'   Name.Function
+'('           Operator
+'$hash'       Name.Variable
+')'           Operator
+')'           Operator
+'{'           Operator
+'\n'          Text
+
+'   '         Text
+'log.info'    Name.Function
+'('           Operator
+'"'           Literal.String
+'K'           Literal.String
+'e'           Literal.String
+'y'           Literal.String
+':'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Operator
+' '           Text
+'$key'        Name.Variable
+' '           Text
+'.'           Operator
+' '           Text
+'"'           Literal.String
+';'           Literal.String
+' '           Literal.String
+'V'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'u'           Literal.String
+'e'           Literal.String
+':'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Operator
+' '           Text
+'$hash'       Name.Variable
+'['           Operator
+'$key'        Name.Variable
+']'           Operator
+' '           Text
+'.'           Operator
+'\n'          Text
+
+'"'           Literal.String
+';'           Literal.String
+'"'           Literal.String
+')'           Operator
+';'           Operator
+' '           Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'# Declare a subroutine to calculate factorials' Comment
+'\n'          Text
+
+'sub'         Keyword
+' '           Text
+'factorial'   Name.Function
+'('           Operator
+' '           Text
+'$n'          Name.Variable
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'if'          Keyword
+'('           Operator
+' '           Text
+'$n'          Name.Variable
+' ='          Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number
+' '           Text
+')'           Operator
+' '           Text
+'return'      Keyword
+' '           Text
+'1'           Literal.Number
+';'           Operator
+'\n'          Text
+
+'       '     Text
+'return'      Keyword
+' '           Text
+'$n'          Name.Variable
+'*'           Operator
+'factorial'   Name.Function
+'('           Operator
+' '           Text
+'$n'          Name.Variable
+'-'           Operator
+'1'           Literal.Number
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'# Put entries into the array' Comment
+'\n'          Text
+
+'$c'          Name.Variable
+' ='          Operator
+' '           Text
+'0'           Literal.Number
+';'           Operator
+'\n'          Text
+
+'while'       Keyword
+'('           Operator
+' '           Text
+'$c'          Name.Variable
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'10'          Literal.Number
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'   '         Text
+'$msg'        Name.Variable
+' ='          Operator
+' '           Text
+'"'           Literal.String
+'D'           Literal.String
+'i'           Literal.String
+'d'           Literal.String
+' '           Literal.String
+'y'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+' '           Literal.String
+'k'           Literal.String
+'n'           Literal.String
+'o'           Literal.String
+'w'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'a'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+'.'           Operator
+' '           Text
+'$c'          Name.Variable
+' '           Text
+'.'           Operator
+'"'           Literal.String
+'!'           Literal.String
+' '           Literal.String
+'i'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+'.'           Operator
+' '           Text
+'factorial'   Name.Function
+'('           Operator
+' '           Text
+'$c'          Name.Variable
+' '           Text
+')'           Operator
+'\n'          Text
+
+'.'           Operator
+'"'           Literal.String
+'?'           Literal.String
+'"'           Literal.String
+' '           Text
+';'           Operator
+'\n'          Text
+
+'   '         Text
+'data.set'    Name.Function
+'('           Operator
+' '           Text
+'"'           Literal.String
+'m'           Literal.String
+'y'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'r'           Literal.String
+'a'           Literal.String
+'y'           Literal.String
+'"'           Literal.String
+'.'           Operator
+'$c'          Name.Variable
+','           Operator
+' '           Text
+'$msg'        Name.Variable
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'$c'          Name.Variable
+'+'           Operator
+'+'           Operator
+';'           Operator
+' '           Text
+'}'           Operator
+'\n'          Text
+
+'# Look up several entries.  Note: the 1000th entry is empty' Comment
+'\n'          Text
+
+'$msg'        Name.Variable
+' ='          Operator
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+';'           Operator
+'\n'          Text
+
+'$msg'        Name.Variable
+' '           Text
+'.'           Operator
+'='           Operator
+' '           Text
+'"'           Literal.String
+'I'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+'e'           Literal.String
+'x'           Literal.String
+' '           Literal.String
+'1'           Literal.String
+'0'           Literal.String
+'0'           Literal.String
+'0'           Literal.String
+':'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+'.'           Operator
+'data.get'    Name.Function
+'('           Operator
+' '           Text
+'"'           Literal.String
+'m'           Literal.String
+'y'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'r'           Literal.String
+'a'           Literal.String
+'y'           Literal.String
+'1'           Literal.String
+'0'           Literal.String
+'0'           Literal.String
+'0'           Literal.String
+'"'           Literal.String
+' '           Text
+')'           Operator
+'.'           Operator
+'"'           Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+';'           Operator
+'\n'          Text
+
+'# delete the entire array (but no other data stored by data.set)' Comment
+'\n'          Text
+
+'data.reset'  Name.Function
+'('           Operator
+' '           Text
+'"'           Literal.String
+'m'           Literal.String
+'y'           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'r'           Literal.String
+'a'           Literal.String
+'y'           Literal.String
+'"'           Literal.String
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'http.sendResponse' Name.Function
+'('           Operator
+' '           Text
+'"'           Literal.String
+'2'           Literal.String
+'0'           Literal.String
+'0'           Literal.String
+' '           Literal.String
+'O'           Literal.String
+'K'           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text
+'"'           Literal.String
+'t'           Literal.String
+'e'           Literal.String
+'x'           Literal.String
+'t'           Literal.String
+'/'           Literal.String
+'p'           Literal.String
+'l'           Literal.String
+'a'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'"'           Literal.String
+','           Operator
+' '           Text
+'$msg'        Name.Variable
+','           Operator
+' '           Text
+'"'           Literal.String
+'"'           Literal.String
+' '           Text
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'sub'         Keyword
+' '           Text
+'headbug'     Name.Function
+'('           Operator
+')'           Operator
+'{'           Operator
+'\n'          Text
+
+'   '         Text
+'# Prints each header to the event log.' Comment
+'\n'          Text
+
+'   '         Text
+'$headers'    Name.Variable
+' ='          Operator
+' '           Text
+'http.listHeaderNames' Name.Function
+'('           Operator
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'   '         Text
+'foreach'     Keyword
+' '           Text
+'('           Operator
+'$header'     Name.Variable
+' '           Text
+'in'          Keyword
+' '           Text
+'$headers'    Name.Variable
+')'           Operator
+'{'           Operator
+'\n'          Text
+
+'      '      Text
+'log.info'    Name.Function
+'('           Operator
+' '           Text
+'$header'     Name.Variable
+' '           Text
+'.'           Operator
+' '           Text
+'"'           Literal.String
+':'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+' '           Text
+'.'           Operator
+' '           Text
+'http.getheader' Name.Function
+'('           Operator
+'$header'     Name.Variable
+')'           Operator
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'}'           Operator
+' '           Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'import'      Keyword
+' '           Text
+'foo'         Name.Function
+';'           Operator
+'\n'          Text
+
+'foo.headbug' Name.Function
+'('           Operator
+')'           Operator
+';'           Operator
+'\n'          Text
+
+'# Sets the regex string as ^192\\.168\\. ; the two examples' Comment
+'\n'          Text
+
+'# below have the same effect' Comment
+'\n'          Text
+
+'$regex'      Name.Variable
+' ='          Operator
+' '           Text
+'"'           Literal.String
+'^'           Literal.String
+'('           Literal.String
+'1'           Literal.String
+'9'           Literal.String
+'2'           Literal.String
+')'           Literal.String
+'\\'          Literal.String
+'\\'          Literal.String
+'.'           Literal.String
+'1'           Literal.String
+'6'           Literal.String
+'8'           Literal.String
+'\\'          Literal.String
+'\\'          Literal.String
+'.'           Literal.String
+'"'           Literal.String
+';'           Operator
+'\n'          Text
+
+'$regex'      Name.Variable
+' ='          Operator
+' '           Text
+"'^192\\.168\\.'" Literal.String
+';'           Operator
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'string.regexMatch' Name.Function
+'('           Operator
+' '           Text
+'$ip'         Name.Variable
+','           Operator
+' '           Text
+'$regex'      Name.Variable
+' '           Text
+')'           Operator
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'# IP is on 192.168.* network' Comment
+'\n'          Text
+
+'}'           Operator
+'\n'          Text

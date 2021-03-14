@@ -1,0 +1,219 @@
+'// Greeter example from\n' Comment.Single
+
+'// <http://www.dartlang.org/docs/getting-started/interface.html>\n' Comment.Single
+
+'class'       Keyword.Declaration
+' '           Text
+'Greeter'     Name.Class
+' '           Text
+'implements'  Keyword.Declaration
+' '           Text
+'Comparable'  Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'String'      Keyword.Type
+' '           Text
+'prefix'      Name
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'Hello,'      Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Greeter'     Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Greeter'     Name
+'.'           Punctuation
+'withPrefix'  Name
+'('           Punctuation
+'this'        Keyword
+'.'           Punctuation
+'prefix'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'greet'       Name
+'('           Punctuation
+'String'      Keyword.Type
+' '           Text
+'name'        Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'print'       Name
+'('           Punctuation
+"'"           Literal.String.Single
+'$'           Literal.String.Interpol
+'prefix'      Name
+' '           Literal.String.Single
+'$'           Literal.String.Interpol
+'name'        Name
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'int'         Keyword.Type
+' '           Text
+'compareTo'   Name
+'('           Punctuation
+'Greeter'     Name
+' '           Text
+'other'       Name
+')'           Punctuation
+' '           Text
+'='           Operator
+'>'           Operator
+' '           Text
+'prefix'      Name
+'.'           Punctuation
+'compareTo'   Name
+'('           Punctuation
+'other'       Name
+'.'           Punctuation
+'prefix'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'void'        Keyword.Type
+' '           Text
+'main'        Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Greeter'     Name
+' '           Text
+'greeter'     Name
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'Greeter'     Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Greeter'     Name
+' '           Text
+'greeter2'    Name
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'Greeter'     Name
+'.'           Punctuation
+'withPrefix'  Name
+'('           Punctuation
+"'"           Literal.String.Single
+'Hi,'         Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'num'         Keyword.Type
+' '           Text
+'result'      Name
+' '           Text
+'='           Operator
+' '           Text
+'greeter2'    Name
+'.'           Punctuation
+'compareTo'   Name
+'('           Punctuation
+'greeter'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'result'      Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'greeter2'    Name
+'.'           Punctuation
+'greet'       Name
+'('           Punctuation
+"'"           Literal.String.Single
+'you are the same.' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'greeter2'    Name
+'.'           Punctuation
+'greet'       Name
+'('           Punctuation
+"'"           Literal.String.Single
+'you are different.' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

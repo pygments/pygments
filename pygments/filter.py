@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.filter
     ~~~~~~~~~~~~~~~
 
     Module that implements the default filter.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -17,8 +16,7 @@ def apply_filters(stream, filters, lexer=None):
     filter, otherwise the filter receives `None`.
     """
     def _apply(filter_, stream):
-        for token in filter_.filter(lexer, stream):
-            yield token
+        yield from filter_.filter(lexer, stream)
     for filter_ in filters:
         stream = _apply(filter_, stream)
     return stream
@@ -40,7 +38,7 @@ def simplefilter(f):
     })
 
 
-class Filter(object):
+class Filter:
     """
     Default filter. Subclass this class or use the `simplefilter`
     decorator to create own filters.
@@ -70,5 +68,4 @@ class FunctionFilter(Filter):
 
     def filter(self, lexer, stream):
         # pylint: disable=not-callable
-        for ttype, value in self.function(lexer, stream, self.options):
-            yield ttype, value
+        yield from self.function(lexer, stream, self.options)

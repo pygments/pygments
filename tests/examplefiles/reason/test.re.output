@@ -1,0 +1,637 @@
+'// This is a single line comment.\n' Comment.Single
+
+'/*'          Comment.Multiline
+' A multi line comment, in a single line... ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'/*'          Comment.Multiline
+' This is a multi line comment\n   Second Line...\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text
+
+'/*'          Comment.Multiline
+' This is a nested comment\n  ' Comment.Multiline
+'/*'          Comment.Multiline
+' Nested Line... ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n\n'        Text
+
+'module'      Keyword
+' '           Text
+'Process_Bind_Without_Do' Name.Class
+' '           Text
+'='           Operator.Word
+'\n       '   Text
+'('           Operator.Word
+'W'           Name.Class
+':'           Operator.Word
+' '           Text
+'Monad_Bind'  Name.Class
+' '           Text
+'with'        Keyword
+' '           Text
+'type'        Keyword
+' '           Text
+'m'           Name
+'('           Operator.Word
+"'"           Keyword
+'a'           Name
+')'           Operator.Word
+' '           Text
+'='           Operator.Word
+' '           Text
+'writer'      Name
+'('           Operator.Word
+'string'      Keyword.Type
+','           Operator.Word
+' '           Text
+"'"           Keyword
+'a'           Name
+')'           Operator.Word
+')'           Operator.Word
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'{'           Operator.Word
+'\n  '        Text
+'let'         Keyword
+' '           Text
+'process'     Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'s'           Name
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'W'           Name.Namespace
+'.'           Punctuation
+'('           Operator.Word
+'up_case'     Name
+'('           Operator.Word
+'s'           Name
+')'           Operator.Word
+' '           Text
+'>'           Operator.Word
+'>'           Operator.Word
+'='           Operator.Word
+' '           Text
+'('           Operator.Word
+'up_str'      Name
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'to_words'    Name
+'('           Operator.Word
+'up_str'      Name
+')'           Operator.Word
+')'           Operator.Word
+')'           Operator.Word
+';'           Operator.Word
+'\n'          Text
+
+'}'           Operator.Word
+';'           Operator.Word
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'a'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'or'          Operator.Word
+' '           Text
+'2'           Literal.Number.Integer
+';'           Operator.Word
+'\n'          Text
+
+'let'         Keyword
+' '           Text
+'b'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'||'          Operator.Word
+' '           Text
+'2'           Literal.Number.Integer
+';'           Operator.Word
+'\n'          Text
+
+'let'         Keyword
+' '           Text
+'c'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'&&'          Operator.Word
+' '           Text
+'2'           Literal.Number.Integer
+';'           Operator.Word
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'str'         Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'"'           Literal.String.Double
+'Hello, Lexer!' Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator.Word
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'chr'         Name
+' '           Text
+'='           Operator.Word
+' '           Text
+"'a'"         Literal.String.Char
+';'           Operator.Word
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'test'        Name
+';'           Operator.Word
+'\n\n'        Text
+
+'open'        Keyword
+' '           Text
+'Belt'        Name.Class
+';'           Operator.Word
+'\n\n'        Text
+
+'include'     Keyword
+' '           Text
+'Pervasives'  Name.Class
+';'           Operator.Word
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'test'        Name
+':'           Operator.Word
+' '           Text
+'unit'        Keyword.Type
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'Map'         Name.Namespace
+'.'           Punctuation
+'String'      Name.Namespace
+'.'           Punctuation
+'t'           Name
+'('           Operator.Word
+'string'      Keyword.Type
+')'           Operator.Word
+' '           Text
+'='           Operator.Word
+' '           Text
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'Map'         Name.Namespace
+'.'           Punctuation
+'String'      Name.Namespace
+'.'           Punctuation
+'empty'       Name
+';'           Operator.Word
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'tup'         Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Operator.Word
+'1'           Literal.Number.Integer
+':'           Operator.Word
+' '           Text
+'int'         Keyword.Type
+','           Operator.Word
+' '           Text
+'2'           Literal.Number.Integer
+':'           Operator.Word
+' '           Text
+'int'         Keyword.Type
+')'           Operator.Word
+';'           Operator.Word
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'myRec'       Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'{'           Operator.Word
+'x'           Name
+':'           Operator.Word
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator.Word
+' '           Text
+'y'           Name
+':'           Operator.Word
+' '           Text
+'10'          Literal.Number.Integer
+'}'           Operator.Word
+';'           Operator.Word
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'myFuncs'     Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'{'           Operator.Word
+'\n  '        Text
+'myFun'       Name
+':'           Operator.Word
+' '           Text
+'('           Operator.Word
+'x'           Name
+')'           Operator.Word
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'x'           Name
+' '           Text
+'+'           Operator.Word
+' '           Text
+'1'           Literal.Number.Integer
+','           Operator.Word
+'\n  '        Text
+'your'        Name
+':'           Operator.Word
+' '           Text
+'('           Operator.Word
+'a'           Name
+','           Operator.Word
+' '           Text
+'b'           Name
+')'           Operator.Word
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'a'           Name
+' '           Text
+'+'           Operator.Word
+' '           Text
+'b'           Name
+'\n'          Text
+
+'}'           Operator.Word
+';'           Operator.Word
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'lst'         Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Operator.Word
+'1'           Literal.Number.Integer
+','           Operator.Word
+' '           Text
+'2'           Literal.Number.Integer
+','           Operator.Word
+' '           Text
+'3'           Literal.Number.Integer
+']'           Operator.Word
+';'           Operator.Word
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'logRest'     Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Operator.Word
+'lst'         Name
+')'           Operator.Word
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' \n  '       Text
+'switch'      Keyword
+' '           Text
+'('           Operator.Word
+'lst'         Name
+')'           Operator.Word
+' '           Text
+'{'           Operator.Word
+'\n    '      Text
+'|'           Operator.Word
+' '           Text
+'[]'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'Js'          Name.Namespace
+'.'           Punctuation
+'log'         Name
+'('           Operator.Word
+'"'           Literal.String.Double
+'no entry'    Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator.Word
+'\n    '      Text
+'|'           Operator.Word
+' '           Text
+'['           Operator.Word
+'hd'          Name
+','           Operator.Word
+' '           Text
+'...'         Operator.Word
+'rest'        Name
+']'           Operator.Word
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'Js'          Name.Namespace
+'.'           Punctuation
+'log2'        Name
+'('           Operator.Word
+'"'           Literal.String.Double
+'Rest: '      Literal.String.Double
+'"'           Literal.String.Double
+','           Operator.Word
+' '           Text
+'rest'        Name
+')'           Operator.Word
+';'           Operator.Word
+'\n  '        Text
+'}'           Operator.Word
+';'           Operator.Word
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'arr'         Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'[|'          Operator.Word
+'1'           Literal.Number.Integer
+','           Operator.Word
+' '           Text
+'2'           Literal.Number.Integer
+','           Operator.Word
+' '           Text
+'3'           Literal.Number.Integer
+'|]'          Operator.Word
+';'           Operator.Word
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'res'         Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Operator.Word
+'x'           Name
+')'           Operator.Word
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+'\n  '        Text
+'switch'      Keyword
+' '           Text
+'('           Operator.Word
+'x'           Name
+')'           Operator.Word
+' '           Text
+'{'           Operator.Word
+'\n  '        Text
+'|'           Operator.Word
+' '           Text
+'HasNothing'  Name.Class
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'0'           Literal.Number.Integer
+'\n  '        Text
+'|'           Operator.Word
+' '           Text
+'HasSingleInt' Name.Class
+'('           Operator.Word
+'x'           Name
+')'           Operator.Word
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'0'           Literal.Number.Integer
+'\n  '        Text
+'|'           Operator.Word
+' '           Text
+'HasSingleTuple' Name.Class
+'('           Operator.Word
+'('           Operator.Word
+'x'           Name
+','           Operator.Word
+' '           Text
+'y'           Name
+')'           Operator.Word
+')'           Operator.Word
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'0'           Literal.Number.Integer
+'\n  '        Text
+'|'           Operator.Word
+' '           Text
+'HasMultipleInts' Name.Class
+'('           Operator.Word
+'x'           Name
+','           Operator.Word
+' '           Text
+'y'           Name
+')'           Operator.Word
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'0'           Literal.Number.Integer
+'\n  '        Text
+'|'           Operator.Word
+' '           Text
+'HasMultipleTuples' Name.Class
+'('           Operator.Word
+'('           Operator.Word
+'x'           Name
+','           Operator.Word
+' '           Text
+'y'           Name
+')'           Operator.Word
+','           Operator.Word
+' '           Text
+'('           Operator.Word
+'q'           Name
+','           Operator.Word
+' '           Text
+'r'           Name
+')'           Operator.Word
+')'           Operator.Word
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'0'           Literal.Number.Integer
+'\n  '        Text
+'}'           Operator.Word
+';'           Operator.Word
+'\n\n'        Text
+
+'module'      Keyword
+' '           Text
+'View'        Name.Class
+' '           Text
+'='           Operator.Word
+' '           Text
+'{'           Operator.Word
+'\n  '        Text
+'['           Operator.Word
+'@'           Operator
+'react'       Name
+'.'           Operator.Word
+'component'   Name
+']'           Operator.Word
+'\n  '        Text
+'let'         Keyword
+' '           Text
+'make'        Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'()'          Name.Builtin.Pseudo
+' '           Text
+'='           Operator.Word
+'>'           Operator.Word
+' '           Text
+'{'           Operator.Word
+'\n    '      Text
+'<'           Operator.Word
+'div'         Name
+' '           Text
+'className'   Name
+'='           Operator.Word
+'"'           Literal.String.Double
+'view'        Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator.Word
+' \n      '   Text
+'<'           Operator.Word
+'ul'          Name
+'>'           Operator.Word
+'\n      '    Text
+'<'           Operator.Word
+'li'          Name
+'>'           Operator.Word
+' '           Text
+'React'       Name.Namespace
+'.'           Punctuation
+'string'      Name
+'('           Operator.Word
+'"'           Literal.String.Double
+'Hello, World!' Literal.String.Double
+'"'           Literal.String.Double
+')'           Operator.Word
+' '           Text
+'<'           Operator.Word
+'/'           Operator
+'li'          Name
+'>'           Operator.Word
+'\n      '    Text
+'<'           Operator.Word
+'li'          Name
+'>'           Operator.Word
+' '           Text
+'"'           Literal.String.Double
+'pipe'        Literal.String.Double
+'"'           Literal.String.Double
+'-'           Operator.Word
+'>'           Operator.Word
+'React'       Name.Namespace
+'.'           Punctuation
+'string'      Name
+' '           Text
+'<'           Operator.Word
+'/'           Operator
+'li'          Name
+'>'           Operator.Word
+'\n      '    Text
+'<'           Operator.Word
+'li'          Name
+'>'           Operator.Word
+' '           Text
+'<'           Operator.Word
+'span'        Name
+'>'           Operator.Word
+' '           Text
+'"'           Literal.String.Double
+'nested'      Literal.String.Double
+'"'           Literal.String.Double
+'-'           Operator.Word
+'>'           Operator.Word
+'React'       Name.Namespace
+'.'           Punctuation
+'string'      Name
+' '           Text
+'<'           Operator.Word
+'/'           Operator
+'span'        Name
+'>'           Operator.Word
+' '           Text
+'<'           Operator.Word
+'/'           Operator
+'li'          Name
+'>'           Operator.Word
+'\n      '    Text
+'<'           Operator.Word
+'/'           Operator
+'ul'          Name
+'>'           Operator.Word
+'\n    '      Text
+'<'           Operator.Word
+'/'           Operator
+'div'         Name
+'>'           Operator.Word
+'\n  '        Text
+'}'           Operator.Word
+'\n'          Text
+
+'}'           Operator.Word
+'\n'          Text

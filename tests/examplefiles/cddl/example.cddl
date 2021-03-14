@@ -1,0 +1,377 @@
+; Note: This CDDL does not make sense *semantically*.
+; These are various examples from the CDDL spec that
+; should cover most syntax cases, however.
+
+pii = (
+  age: int,
+  name: tstr,
+  employer: tstr,
+)
+
+person = {
+  pii
+}
+
+person = {(
+  age: int,
+  name: tstr,
+  employer: tstr,
+)}
+
+person = {
+  identity,
+  employer: tstr,
+}
+
+dog = {
+  identity,
+  leash-length: float,
+}
+
+identity = (
+  age: int,
+  name: tstr,
+)
+
+address = { delivery }
+
+delivery = (
+street: tstr, ? number: uint, city //
+po-box: uint, city //
+per-pickup: true )
+
+city = (
+name: tstr, zip-code: uint
+)
+
+attire /= "swimwear"
+
+delivery //= (
+lat: float, long: float, drone-type: tstr
+)
+
+device-address = bytefloat
+max-byte = 0b01001001
+max-oct = 0o014
+max-int = -123
+max-float = 23.5
+int-range = 0..10 ; only integers match
+float-range = 0.0..10.0 ; only floats match
+byte = 0..max-byte ; inclusive range
+first-non-byte = 256
+byte1 = 0...first-non-byte ; byte1 is equivalent to byte
+
+BAD-range1 = 0..10.0 ; NOT DEFINED
+BAD-range2 = 0.0..10 ; NOT DEFINED
+numeric-range = int-range / float-range
+
+terminal-color = &basecolors
+basecolors = (
+  black: 0, red: 1,  green: 2,  yellow: 3,
+  blue: 4,  magenta: 5,  cyan: 6,  white: 7,
+)
+extended-color = &(
+  basecolors,
+  orange: 8,  pink: 9,  purple: 10,  brown: 11,
+)
+
+foo = #
+
+my_breakfast = #6.55799(breakfast)   ; cbor-any is too general!
+breakfast = cereal / porridge
+cereal = #6.998(tstr)
+porridge = #6.999([liquid, solid])
+liquid = milk / water
+milk = 0
+water = 1
+solid = tstr
+
+; This is a comment
+person = { g }
+
+g = (
+  "name": tstr,
+  age: int,  ; "age" is a bareword
+)
+
+apartment = {
+  kitchen: size,
+  * bedroom: size,
+}
+size = float ; in m2
+
+unlimited-people = [* person]
+one-or-two-people = [1*2 person]
+at-least-two-people = [2* person]
+person = (
+    name: tstr,
+    age: uint,
+)
+
+Geography = [
+  city           : tstr,
+  gpsCoordinates : GpsCoordinates,
+]
+
+GpsCoordinates = {
+  longitude      : uint,            ; multiplied by 10^7
+  latitude       : uint,            ; multiplied by 10^7
+}
+located-samples = {
+  sample-point: int,
+  samples: [+ float],
+}
+
+proper-ints = 1 / 0
+;invalid-int = 01
+
+flt = 1.23
+flt = -1.23
+flt = 1.23e+10
+flt = 1.23e-10
+flt = 1.23e10
+val = 123
+
+located-samples = {
+  sample-point: int,
+  samples: [+ float],
+  * equipment-type => equipment-tolerances,
+}
+equipment-type = [name: tstr, manufacturer: tstr]
+equipment-tolerances = [+ [float, float]]
+
+PersonalData = {
+  ? displayName: tstr,
+  NameComponents,
+  ? age: uint,
+  * tstr => any
+}
+
+NameComponents = (
+  ? firstName: tstr,
+  ? familyName: tstr,
+)
+
+square-roots = {* x => y}
+x = int
+y = float
+
+extensible-map-example = {
+  ? "optional-key" ^ => int,
+  * tstr => any
+}
+
+extensible-map-example = {
+  ? "optional-key": int,
+  * tstr => any
+}
+
+extensible-map-example = {
+  ? optional-key: int,
+  * tstr => any
+}
+
+biguint = #6.2(bstr)
+buuid = #6.37(bstr)
+my_uri = #6.32(tstr) / tstr
+
+basic-header = [
+  field1: int,
+  field2: text,
+]
+
+advanced-header = [
+  ~basic-header,
+  field3: bytes,
+  field4: ~time,
+]
+
+hexfloat = 0xcafe.badp-9sdf
+hexfloat = 0xcafe.badp-9
+
+full-address = [[+ label], ip4, ip6]
+ip4 = bstr .size 4
+ip6 = bstr .size 16
+label = bstr .size (1..63)
+
+member-keys = {
+  bare-word: true,
+  "string": false,
+  4711: number,
+  0xdecafe: false,
+}
+
+audio_sample = uint .size 3 ; 24-bit, equivalent to 0...16777216
+
+tcpflagbytes = bstr .bits flags
+flags = &(
+  fin: 8,
+  syn: 9,
+  rst: 10,
+  psh: 11,
+  ack: 12,
+  urg: 13,
+  ece: 14,
+  cwr: 15,
+  ns: 0,
+) / (4..7) ; data offset bits
+
+rwxbits = uint .bits rwx
+rwx = &(r: 2, w: 1, x: 0)
+
+nai = tstr .regexp "[A-Za-z0-9]+@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)+"
+
+message = $message .within message-structure
+message-structure = [message_type, *message_option]
+message_type = 0..255
+message_option = any
+
+$message /= [3, dough: text, topping: [* text]]
+$message /= [4, noodles: text, sauce: text, parmesan: bool]
+
+speed = number .ge 0  ; unit: m/s
+
+timer = {
+  time: uint,
+  ? displayed-step: (number .gt 0) .default 1
+}
+
+tcp-header = {seq: uint, ack: uint, * $$tcp-option}
+
+; later, in a different file
+
+$$tcp-option //= (
+sack: [+(left: uint, right: uint)]
+)
+
+; and, maybe in another file
+
+$$tcp-option //= (
+sack-permitted: true
+)
+
+PersonalData = {
+  ? displayName: tstr,
+  NameComponents,
+  ? age: uint,
+  * $$personaldata-extensions
+}
+
+NameComponents = (
+  ? firstName: tstr,
+  ? familyName: tstr,
+)
+
+; The above already works as is.
+; But then, we can add later:
+
+$$personaldata-extensions //= (
+  favorite-salsa: tstr,
+)
+
+; and again, somewhere else:
+
+$$personaldata-extensions //= (
+  shoesize: uint,
+)
+
+messages = message<"reboot", "now"> / message<"sleep", 1..100>
+message<t, v> = {type: t, value: v}
+
+t = [group1]
+group1 = (a / b // c / d)
+a = 1 b = 2 c = 3 d = 4
+
+t = {group2}
+group2 = (? ab: a / b // cd: c / d)
+a = 1 b = 2 c = 3 d = 4
+
+t = [group3]
+group3 = (+ a / b / c)
+a = 1 b = 2 c = 3
+
+t = [group4]
+group4 = (+ a // b / c)
+a = 1 b = 2 c = 3
+
+t = [group4a]
+group4a = ((+ a) // (b / c))
+a = 1 b = 2 c = 3
+
+byte-strings = 'hello world' / h'68656c6c6f20776f726c64' / b64'Zm-9v_YmE='
+;byte-strings-w-errors = h'68656gc6c6f2077oops6f726c64' / b64'Zm+9vY/mE='
+oneline-bstr = '<?php print(\'hello world\');  // no comment … ?>'
+multiline-bstr = '
+  <?php
+    print(\'hello world\');  // no comment
+    … ?>
+'
+multiline-hex = h'
+   83        ; \'83\' means Array of length 3
+      01     ; 1
+      82     ; Array of length 2
+         02  ; 2
+         03  ; 3
+      82     ; Array of length 2
+         04  ; 4
+         05  ; 5
+'
+;multiline-hex-err = h'
+;   83         \'83\' means Array of length 3 (oops, missed the \';\')
+;      01     ; 1
+;'
+
+; THE STANDARD "POSTLUDE"
+any = #
+
+uint = #0
+nint = #1
+int = uint / nint
+
+bstr = #2
+bytes = bstr
+tstr = #3
+text = tstr
+
+tdate = #6.0(tstr)
+time = #6.1(number)
+number = int / float
+biguint = #6.0x02(bstr)
+biguint = #6.2(bstr)
+bignint = #6.3(bstr)
+bigint = biguint / bignint
+integer = int / bigint
+unsigned = uint / biguint
+decfrac = #6.4([e10: int, m: integer])
+bigfloat = #6.5([e2: int, m: integer])
+eb64url = #6.21(any)
+eb64legacy = #6.22(any)
+eb16 = #6.23(any)
+encoded-cbor = #6.24(bstr)
+uri = #6.32(tstr)
+b64url = #6.33(tstr)
+b64legacy = #6.34(tstr)
+regexp = #6.35(tstr)
+mime-message = #6.36(tstr)
+cbor-any = #6.55799(any)
+
+float16 = #7.25
+float32 = #7.26
+float64 = #7.27
+float16-32 = float16 / float32
+float32-64 = float32 / float64
+float = float16-32 / float64
+
+false = #7.20
+true = #7.21
+bool = false / true
+nil = #7.22
+null = nil
+undefined = #7.23
+
+
+; INVALID CDDL
+
+;invalid_identifier- = -another_invalid
+;untermindated-string = "sometimes I cannot finish my…
+;next-thought = { valid: true }

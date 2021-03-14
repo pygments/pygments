@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.configs
     ~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for configuration file formats.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer, default, words, bygroups, include, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Whitespace, Literal
+    Number, Punctuation, Whitespace, Literal, Generic
 from pygments.lexers.shell import BashLexer
 from pygments.lexers.data import JsonLexer
 
@@ -21,7 +20,8 @@ __all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
            'Cfengine3Lexer', 'ApacheConfLexer', 'SquidConfLexer',
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
            'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
-           'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer']
+           'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer',
+           'SingularityLexer']
 
 
 class IniLexer(RegexLexer):
@@ -39,7 +39,7 @@ class IniLexer(RegexLexer):
             (r'\s+', Text),
             (r'[;#].*', Comment.Single),
             (r'\[.*?\]$', Keyword),
-            (r'(.*?)([ \t]*)(=)([ \t]*)(.*(?:\n[ \t].+)*)',
+            (r'(.*?)([ \t]*)(=)([ \t]*)([^\t\n]*)',
              bygroups(Name.Attribute, Text, Operator, Text, String)),
             # standalone option, supported by some INI parsers
             (r'(.+?)$', Name.Attribute),
@@ -155,7 +155,7 @@ class KconfigLexer(RegexLexer):
     name = 'Kconfig'
     aliases = ['kconfig', 'menuconfig', 'linux-config', 'kernel-config']
     # Adjust this if new kconfig file names appear in your environment
-    filenames = ['Kconfig', '*Config.in*', 'external.in*',
+    filenames = ['Kconfig*', '*Config.in*', 'external.in*',
                  'standard-modules.in']
     mimetypes = ['text/x-kconfig']
     # No re.MULTILINE, indentation-aware help text needs line-by-line handling
@@ -301,10 +301,11 @@ class ApacheConfLexer(RegexLexer):
         'root': [
             (r'\s+', Text),
             (r'#(.*\\\n)+.*$|(#.*?)$', Comment),
-            (r'(<[^\s>]+)(?:(\s+)(.*))?(>)',
+            (r'(<[^\s>/][^\s>]*)(?:(\s+)(.*))?(>)',
              bygroups(Name.Tag, Text, String, Name.Tag)),
-            (r'([a-z]\w*)(\s+)',
-             bygroups(Name.Builtin, Text), 'value'),
+            (r'(</[^\s>]+)(>)',
+             bygroups(Name.Tag, Name.Tag)),
+            (r'[a-z]\w*', Name.Builtin, 'value'),
             (r'\.+', Text),
         ],
         'value': [
@@ -314,12 +315,12 @@ class ApacheConfLexer(RegexLexer):
             (r'[^\S\n]+', Text),
             (r'\d+\.\d+\.\d+\.\d+(?:/\d+)?', Number),
             (r'\d+', Number),
-            (r'/([a-z0-9][\w./-]+)', String.Other),
+            (r'/([*a-z0-9][*\w./-]+)', String.Other),
             (r'(on|off|none|any|all|double|email|dns|min|minimal|'
              r'os|productonly|full|emerg|alert|crit|error|warn|'
              r'notice|info|debug|registry|script|inetd|standalone|'
              r'user|group)\b', Keyword),
-            (r'"([^"\\]*(?:\\(.|[\n])[^"\\]*)*)"', String.Double),
+            (r'"([^"\\]*(?:\\(.|\n)[^"\\]*)*)"', String.Double),
             (r'[^\s"\\]+', Text)
         ],
     }
@@ -348,7 +349,7 @@ class SquidConfLexer(RegexLexer):
         "cache_effective_user", "cache_host", "cache_host_acl",
         "cache_host_domain", "cache_log", "cache_mem", "cache_mem_high",
         "cache_mem_low", "cache_mgr", "cachemgr_passwd", "cache_peer",
-        "cache_peer_access", "cahce_replacement_policy", "cache_stoplist",
+        "cache_peer_access", "cache_replacement_policy", "cache_stoplist",
         "cache_stoplist_pattern", "cache_store_log", "cache_swap",
         "cache_swap_high", "cache_swap_log", "cache_swap_low", "client_db",
         "client_lifetime", "client_netmask", "connect_timeout", "coredump_dir",
@@ -576,31 +577,35 @@ class TerraformLexer(RegexLexer):
     filenames = ['*.tf']
     mimetypes = ['application/x-tf', 'application/x-terraform']
 
-    embedded_keywords = ('ingress', 'egress', 'listener', 'default', 'connection', 'alias', 'tags', 'lifecycle', 'timeouts')
+    embedded_keywords = ('ingress', 'egress', 'listener', 'default',
+                         'connection', 'alias', 'terraform', 'tags', 'vars',
+                         'config', 'lifecycle', 'timeouts')
 
     tokens = {
         'root': [
-             include('string'),
-             include('punctuation'),
-             include('curly'),
-             include('basic'),
-             include('whitespace'),
-             (r'[0-9]+', Number),
+            include('string'),
+            include('punctuation'),
+            include('curly'),
+            include('basic'),
+            include('whitespace'),
+            (r'[0-9]+', Number),
         ],
         'basic': [
-             (words(('true', 'false'), prefix=r'\b', suffix=r'\b'), Keyword.Type),
-             (r'\s*/\*', Comment.Multiline, 'comment'),
-             (r'\s*#.*\n', Comment.Single),
-             (r'(.*?)(\s*)(=)', bygroups(Name.Attribute, Text, Operator)),
-             (words(('variable', 'resource', 'provider', 'provisioner', 'module'),
-                    prefix=r'\b', suffix=r'\b'), Keyword.Reserved, 'function'),
-             (words(embedded_keywords, prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
-             (r'\$\{', String.Interpol, 'var_builtin'),
+            (words(('true', 'false'), prefix=r'\b', suffix=r'\b'), Keyword.Type),
+            (r'\s*/\*', Comment.Multiline, 'comment'),
+            (r'\s*#.*\n', Comment.Single),
+            (r'(.*?)(\s*)(=)', bygroups(Name.Attribute, Text, Operator)),
+            (words(('variable', 'resource', 'provider', 'provisioner', 'module',
+                    'backend', 'data', 'output'), prefix=r'\b', suffix=r'\b'),
+             Keyword.Reserved, 'function'),
+            (words(embedded_keywords, prefix=r'\b', suffix=r'\b'),
+             Keyword.Declaration),
+            (r'\$\{', String.Interpol, 'var_builtin'),
         ],
         'function': [
-             (r'(\s+)(".*")(\s+)', bygroups(Text, String, Text)),
-             include('punctuation'),
-             include('curly'),
+            (r'(\s+)(".*")(\s+)', bygroups(Text, String, Text)),
+            include('punctuation'),
+            include('curly'),
         ],
         'var_builtin': [
             (r'\$\{', String.Interpol, '#push'),
@@ -896,7 +901,7 @@ class TOMLLexer(RegexLexer):
 
     name = 'TOML'
     aliases = ['toml']
-    filenames = ['*.toml']
+    filenames = ['*.toml', 'Pipfile', 'poetry.lock']
 
     tokens = {
         'root': [
@@ -905,7 +910,7 @@ class TOMLLexer(RegexLexer):
             (r'\s+', Text),
             (r'#.*?$', Comment.Single),
             # Basic string
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             # Literal string
             (r'\'\'\'(.*)\'\'\'', String),
             (r'\'[^\']*\'', String),
@@ -934,3 +939,47 @@ class TOMLLexer(RegexLexer):
 
         ]
     }
+
+
+class SingularityLexer(RegexLexer):
+    """
+    Lexer for `Singularity definition files
+    <https://www.sylabs.io/guides/3.0/user-guide/definition_files.html>`_.
+
+    .. versionadded:: 2.6
+    """
+
+    name = 'Singularity'
+    aliases = ['singularity']
+    filenames = ['*.def', 'Singularity']
+    flags = re.IGNORECASE | re.MULTILINE | re.DOTALL
+
+    _headers = r'^(\s*)(bootstrap|from|osversion|mirrorurl|include|registry|namespace|includecmd)(:)'
+    _section = r'^%(?:pre|post|setup|environment|help|labels|test|runscript|files|startscript)\b'
+    _appsect = r'^%app(?:install|help|run|labels|env|test|files)\b'
+
+    tokens = {
+        'root': [
+            (_section, Generic.Heading, 'script'),
+            (_appsect, Generic.Heading, 'script'),
+            (_headers, bygroups(Text, Keyword, Text)),
+            (r'\s*#.*?\n', Comment),
+            (r'\b(([0-9]+\.?[0-9]*)|(\.[0-9]+))\b', Number),
+            (r'(?!^\s*%).', Text),
+        ],
+        'script': [
+            (r'(.+?(?=^\s*%))|(.*)', using(BashLexer), '#pop'),
+        ],
+    }
+
+    def analyse_text(text):
+        """This is a quite simple script file, but there are a few keywords
+        which seem unique to this language."""
+        result = 0
+        if re.search(r'\b(?:osversion|includecmd|mirrorurl)\b', text, re.IGNORECASE):
+            result += 0.5
+
+        if re.search(SingularityLexer._section[1:], text):
+            result += 0.49
+
+        return result

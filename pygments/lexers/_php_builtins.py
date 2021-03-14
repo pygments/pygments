@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers._php_builtins
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -12,11 +11,9 @@
              internet connection. don't run that at home, use
              a server ;-)
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-
-from __future__ import print_function
 
 MODULES = {'.NET': ('dotnet_load',),
  'APC': ('apc_add',
@@ -4729,8 +4726,7 @@ if __name__ == '__main__':  # pragma: no cover
         download = urlretrieve(PHP_MANUAL_URL)
         with tarfile.open(download[0]) as tar:
             tar.extractall()
-        for file in glob.glob("%s%s" % (PHP_MANUAL_DIR, PHP_REFERENCE_GLOB)):
-            yield file
+        yield from glob.glob("%s%s" % (PHP_MANUAL_DIR, PHP_REFERENCE_GLOB))
         os.remove(download[0])
 
     def regenerate(filename, modules):

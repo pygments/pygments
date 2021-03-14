@@ -1,0 +1,199 @@
+'# To Recreate:\n' Comment
+
+'#\n'         Comment
+
+"# echo -e 'class hello {\\n  public static void main(String[] args) {\\n\n" Comment
+
+'# System.out.println("hi");\\n  }\\n}\\n\' > hello.java\n' Comment
+
+'# javac -target 1.4 -source 1.4 hello.java\n' Comment
+
+'# dx --dex --output=hello.dex hello.class\n' Comment
+
+'# baksmali hello.dex\n' Comment
+
+'# cat out/hello.smali\n' Comment
+
+'\n'          Text
+
+'.class'      Keyword
+' '           Text
+'L'           Keyword.Type
+'hello'       Name.Class
+';'           Text
+'\n'          Text
+
+'.super'      Keyword
+' '           Text
+'L'           Keyword.Type
+'java/lang/'  Text
+'Object'      Name.Class
+';'           Text
+'\n'          Text
+
+'.source'     Keyword
+' '           Text
+'"hello.java"' Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'# direct methods\n' Comment
+
+'.method'     Keyword
+' '           Text
+'constructor' Keyword
+' '           Text
+'<init>'      Name.Function
+'('           Punctuation
+')'           Punctuation
+'V'           Keyword.Type
+'\n'          Text
+
+'    .registers' Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'    .prologue' Keyword
+'\n'          Text
+
+'    .line'   Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'invoke-direct ' Text
+'{'           Punctuation
+'p0'          Name.Builtin
+'}'           Punctuation
+','           Punctuation
+' '           Text
+'L'           Keyword.Type
+'java/lang/'  Text
+'Object'      Name.Class
+';'           Text
+'->'          Punctuation
+'<init>'      Name.Function
+'('           Punctuation
+')'           Punctuation
+'V'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'return-void\n' Text
+
+'.end method' Keyword
+'\n'          Text
+
+'\n'          Text
+
+'.method'     Keyword
+' '           Text
+'public'      Keyword
+' '           Text
+'static'      Keyword
+' '           Text
+'main'        Name.Function
+'('           Punctuation
+'['           Keyword.Type
+'L'           Keyword.Type
+'java/lang/'  Text
+'String'      Name.Class
+';'           Text
+')'           Punctuation
+'V'           Keyword.Type
+'\n'          Text
+
+'    .registers' Keyword
+' '           Text
+'3'           Literal.Number.Integer
+'\n'          Text
+
+'    .parameter' Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    .prologue' Keyword
+'\n'          Text
+
+'    .line'   Keyword
+' '           Text
+'3'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'sget-object ' Text
+'v0'          Name.Builtin
+','           Punctuation
+' '           Text
+'L'           Keyword.Type
+'java/lang/'  Text
+'System'      Name.Class
+';'           Text
+'->'          Punctuation
+'out'         Name.Variable
+':'           Punctuation
+'L'           Keyword.Type
+'java/io/'    Text
+'PrintStream' Name.Class
+';'           Text
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'const-string ' Text
+'v1'          Name.Builtin
+','           Punctuation
+' '           Text
+'"hi"'        Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'invoke-virtual ' Text
+'{'           Punctuation
+'v0'          Name.Builtin
+','           Punctuation
+' '           Text
+'v1'          Name.Builtin
+'}'           Punctuation
+','           Punctuation
+' '           Text
+'L'           Keyword.Type
+'java/io/'    Text
+'PrintStream' Name.Class
+';'           Text
+'->'          Punctuation
+'println'     Name.Function
+'('           Punctuation
+'L'           Keyword.Type
+'java/lang/'  Text
+'String'      Name.Class
+';'           Text
+')'           Punctuation
+'V'           Keyword.Type
+'\n'          Text
+
+'\n'          Text
+
+'    .line'   Keyword
+' '           Text
+'4'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'return-void\n' Text
+
+'.end method' Keyword
+'\n'          Text

@@ -1,0 +1,519 @@
+'/*\n * comment\n */' Comment.Multiline
+'\n'          Text
+
+'; comment'   Comment.Single
+'\n'          Text
+
+'// comment'  Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'instr'       Keyword.Declaration
+'/**/'        Comment.Multiline
+'1'           Name.Function
+','           Punctuation
+'/**/'        Comment.Multiline
+'N_a_M_e_'    Name.Function
+','           Punctuation
+'/**/'        Comment.Multiline
+'+'           Punctuation
+'Name'        Name.Function
+'/**/'        Comment.Multiline
+'//'          Comment.Single
+'\n'          Text
+
+'  '          Text
+'i'           Keyword.Type
+'Duration'    Name
+' '           Text
+'='           Operator
+' '           Text
+'p3'          Name.Variable.Instance
+'\n'          Text
+
+'  '          Text
+'outc'        Name.Builtin
+':'           Punctuation
+'a'           Keyword.Type
+'('           Punctuation
+'a'           Keyword.Type
+'Signal'      Name
+')'           Punctuation
+'\n'          Text
+
+'endin'       Keyword.Declaration
+'\n'          Text
+
+'\n'          Text
+
+'opcode'      Keyword.Declaration
+'/**/'        Comment.Multiline
+'aUDO'        Name.Function
+','           Punctuation
+'/**/'        Comment.Multiline
+'i[]'         Keyword.Type
+','           Punctuation
+'/**/'        Comment.Multiline
+'aik'         Keyword.Type
+'//'          Comment.Single
+'\n'          Text
+
+'  '          Text
+'aUDO'        Name.Function
+'\n'          Text
+
+'endop'       Keyword.Declaration
+'\n'          Text
+
+'\n'          Text
+
+'123'         Literal.Number.Integer
+' '           Text
+'0123456789'  Literal.Number.Integer
+'\n'          Text
+
+'0x'          Keyword.Type
+'abcdef0123456789' Literal.Number.Hex
+' '           Text
+'0X'          Keyword.Type
+'ABCDEF'      Literal.Number.Hex
+'\n'          Text
+
+'1e2'         Literal.Number.Float
+' '           Text
+'3e+4'        Literal.Number.Float
+' '           Text
+'5e-6'        Literal.Number.Float
+' '           Text
+'7E8'         Literal.Number.Float
+' '           Text
+'9E+0'        Literal.Number.Float
+' '           Text
+'1E-2'        Literal.Number.Float
+' '           Text
+'3.'          Literal.Number.Float
+' '           Text
+'4.56'        Literal.Number.Float
+' '           Text
+'.789'        Literal.Number.Float
+'\n'          Text
+
+'\n'          Text
+
+'"'           Literal.String
+'characters'  Literal.String
+'$MACRO.'     Comment.Preproc
+'"'           Literal.String
+'\n'          Text
+
+'"'           Literal.String
+'\\\\'        Literal.String.Escape
+'\\a'         Literal.String.Escape
+'\\b'         Literal.String.Escape
+'\\n'         Literal.String.Escape
+'\\r'         Literal.String.Escape
+'\\t'         Literal.String.Escape
+'\\012'       Literal.String.Escape
+'\\345'       Literal.String.Escape
+'\\67'        Literal.String.Escape
+'\\"'         Literal.String.Escape
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'{{'          Literal.String
+'\ncharacters$MACRO.\n' Literal.String
+
+'}}'          Literal.String
+'\n'          Text
+
+'{{'          Literal.String
+'\\\\'        Literal.String.Escape
+'\\a'         Literal.String.Escape
+'\\b'         Literal.String.Escape
+'\\n'         Literal.String.Escape
+'\\r'         Literal.String.Escape
+'\\t'         Literal.String.Escape
+'\\"'         Literal.String.Escape
+'\\012'       Literal.String.Escape
+'\\345'       Literal.String.Escape
+'\\67'        Literal.String.Escape
+'}}'          Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'+'           Operator
+' '           Text
+'-'           Operator
+' '           Text
+'~'           Operator
+' '           Text
+'¬'           Operator
+' '           Text
+'!'           Operator
+' '           Text
+'*'           Operator
+' '           Text
+'/'           Operator
+' '           Text
+'^'           Operator
+' '           Text
+'%'           Operator
+' '           Text
+'<<'          Operator
+' '           Text
+'>>'          Operator
+' '           Text
+'<'           Operator
+' '           Text
+'>'           Operator
+' '           Text
+'<='          Operator
+' '           Text
+'>='          Operator
+' '           Text
+'=='          Operator
+' '           Text
+'!='          Operator
+' '           Text
+'&'           Operator
+' '           Text
+'#'           Operator
+' '           Text
+'|'           Operator
+' '           Text
+'&&'          Operator
+' '           Text
+'||'          Operator
+' '           Text
+'?'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'+='          Operator
+' '           Text
+'-='          Operator
+' '           Text
+'*='          Operator
+' '           Text
+'/='          Operator
+'\n'          Text
+
+'\n'          Text
+
+'0dbfs'       Name.Variable.Global
+' '           Text
+'A4'          Name.Variable.Global
+' '           Text
+'kr'          Name.Variable.Global
+' '           Text
+'ksmps'       Name.Variable.Global
+' '           Text
+'nchnls'      Name.Variable.Global
+' '           Text
+'nchnls_i'    Name.Variable.Global
+' '           Text
+'sr'          Name.Variable.Global
+'\n'          Text
+
+'\n'          Text
+
+'do'          Keyword
+' '           Text
+'else'        Keyword
+' '           Text
+'elseif'      Keyword
+' '           Text
+'endif'       Keyword
+' '           Text
+'enduntil'    Keyword
+' '           Text
+'fi'          Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'ithen'       Keyword
+' '           Text
+'kthen'       Keyword
+' '           Text
+'od'          Keyword
+' '           Text
+'then'        Keyword
+' '           Text
+'until'       Keyword
+' '           Text
+'while'       Keyword
+'\n'          Text
+
+'return'      Keyword.Pseudo
+' '           Text
+'rireturn'    Keyword.Pseudo
+'\n'          Text
+
+'\n'          Text
+
+'aLabel'      Name.Label
+':'           Punctuation
+'\n'          Text
+
+' '           Text
+'label2'      Name.Label
+':'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'goto'        Keyword
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
+
+'reinit'      Keyword.Pseudo
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
+
+'cggoto'      Keyword.Pseudo
+' '           Text
+'1'           Literal.Number.Integer
+'=='          Operator
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
+
+'timout'      Keyword.Pseudo
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
+
+'loop_ge'     Keyword.Pseudo
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
+
+'\n'          Text
+
+'prints'      Name.Builtin
+' '           Text
+'"'           Literal.String
+'%!'          Literal.String.Escape
+' '           Literal.String
+'%%'          Literal.String.Escape
+' '           Literal.String
+'%n'          Literal.String.Escape
+'%N'          Literal.String.Escape
+' '           Literal.String
+'%r'          Literal.String.Escape
+'%R'          Literal.String.Escape
+' '           Literal.String
+'%t'          Literal.String.Escape
+'%T'          Literal.String.Escape
+' '           Literal.String
+'\\\\a'       Literal.String.Escape
+'\\\\A'       Literal.String.Escape
+' '           Literal.String
+'\\\\b'       Literal.String.Escape
+'\\\\B'       Literal.String.Escape
+' '           Literal.String
+'\\\\n'       Literal.String.Escape
+'\\\\N'       Literal.String.Escape
+' '           Literal.String
+'\\\\r'       Literal.String.Escape
+'\\\\R'       Literal.String.Escape
+' '           Literal.String
+'\\\\t'       Literal.String.Escape
+'\\\\T'       Literal.String.Escape
+'"'           Literal.String
+'\n'          Text
+
+'prints'      Name.Builtin
+' '           Text
+'S'           Keyword.Type
+'output'      Name
+'\n'          Text
+
+'\n'          Text
+
+'readscore'   Name.Builtin
+' '           Text
+'{{'          Literal.String
+'\n'          Text
+
+'i'           Keyword
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'}}'          Literal.String
+'\n'          Text
+
+'pyrun'       Name.Builtin
+' '           Text
+'{{'          Literal.String
+'\n'          Text
+
+'# Python'    Comment.Single
+'\n'          Text
+
+'}}'          Literal.String
+'\n'          Text
+
+'lua_exec'    Name.Builtin
+' '           Text
+'{{'          Literal.String
+'\n'          Text
+
+'-- Lua'      Comment.Single
+'\n'          Text
+
+'}}'          Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'#include'    Comment.Preproc
+'/**/'        Comment.Multiline
+'"file.udo"'  Literal.String
+'\n'          Text
+
+'#include'    Comment.Preproc
+'/**/'        Comment.Multiline
+'|file.udo|'  Literal.String
+'\n'          Text
+
+'#includestr' Comment.Preproc
+'/**/'        Comment.Multiline
+'"'           Literal.String
+'$MACRO.'     Comment.Preproc
+'.udo'        Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'#ifdef'      Comment.Preproc
+' '           Text
+'MACRO'       Comment.Preproc
+'\n'          Text
+
+'#else'       Comment.Preproc
+'\n'          Text
+
+'#ifndef'     Comment.Preproc
+' '           Text
+'MACRO'       Comment.Preproc
+'\n'          Text
+
+'#endif'      Comment.Preproc
+'\n'          Text
+
+'#undef'      Comment.Preproc
+' '           Text
+'MACRO'       Comment.Preproc
+'\n'          Text
+
+'\n'          Text
+
+'#   define'  Comment.Preproc
+' '           Text
+'MACRO'       Comment.Preproc
+'#'           Punctuation
+'macro_body'  Comment.Preproc
+'#'           Punctuation
+'\n'          Text
+
+'#define'     Comment.Preproc
+'/**/'        Comment.Multiline
+'\n'          Text
+
+'MACRO'       Comment.Preproc
+'/**/'        Comment.Multiline
+'\n'          Text
+
+'#'           Punctuation
+'\\#'         Comment.Preproc
+'macro\nbody' Comment.Preproc
+'\\#'         Comment.Preproc
+'#'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'#define'     Comment.Preproc
+' '           Text
+'MACRO'       Comment.Preproc
+'('           Punctuation
+'ARG1'        Comment.Preproc
+'#'           Punctuation
+'ARG2'        Comment.Preproc
+')'           Punctuation
+' '           Text
+'#'           Punctuation
+'macro_body'  Comment.Preproc
+'#'           Punctuation
+'\n'          Text
+
+'#define'     Comment.Preproc
+'/**/'        Comment.Multiline
+'\n'          Text
+
+'MACRO'       Comment.Preproc
+'('           Punctuation
+'ARG1'        Comment.Preproc
+"'"           Punctuation
+'ARG2'        Comment.Preproc
+"'"           Punctuation
+'ARG3'        Comment.Preproc
+')'           Punctuation
+'/**/'        Comment.Multiline
+'\n'          Text
+
+'#'           Punctuation
+'\\#'         Comment.Preproc
+'macro\nbody' Comment.Preproc
+'\\#'         Comment.Preproc
+'#'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'$MACRO'      Comment.Preproc
+' '           Text
+'$MACRO.'     Comment.Preproc
+'\n'          Text
+
+'$MACRO'      Comment.Preproc
+'('           Punctuation
+'x'           Comment.Preproc
+')'           Punctuation
+'\n'          Text
+
+'@0'          Comment.Preproc
+'\n'          Text
+
+'@@ 1'        Comment.Preproc
+'\n'          Text

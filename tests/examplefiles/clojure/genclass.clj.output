@@ -1,0 +1,3974 @@
+';   Copyright (c) Rich Hickey. All rights reserved.' Comment.Single
+'\n'          Text
+
+';   The use and distribution terms for this software are covered by the' Comment.Single
+'\n'          Text
+
+';   Common Public License 1.0 (http://opensource.org/licenses/cpl.php)' Comment.Single
+'\n'          Text
+
+';   which can be found in the file CPL.TXT at the root of this distribution.' Comment.Single
+'\n'          Text
+
+';   By using this software in any fashion, you are agreeing to be bound by' Comment.Single
+'\n'          Text
+
+';   the terms of this license.' Comment.Single
+'\n'          Text
+
+';   You must not remove this notice, or any other, from this software.' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'in-ns '      Name.Builtin
+"'clojure"    Literal.String.Symbol
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'import '     Name.Builtin
+"'"           Operator
+'('           Punctuation
+'java.lang.reflect' Name.Function
+' '           Text
+'Modifier'    Name.Variable
+' '           Text
+'Constructor' Name.Variable
+')'           Punctuation
+'\n        '  Text
+"'"           Operator
+'('           Punctuation
+'clojure.asm' Name.Function
+' '           Text
+'ClassWriter' Name.Variable
+' '           Text
+'ClassVisitor' Name.Variable
+' '           Text
+'Opcodes'     Name.Variable
+' '           Text
+'Type'        Name.Variable
+')'           Punctuation
+'\n        '  Text
+"'"           Operator
+'('           Punctuation
+'clojure.asm.commons' Name.Function
+' '           Text
+'Method'      Name.Variable
+' '           Text
+'GeneratorAdapter' Name.Variable
+')'           Punctuation
+'\n        '  Text
+"'"           Operator
+'('           Punctuation
+'clojure.lang' Name.Function
+' '           Text
+'IPersistentMap' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';(defn method-sig [#^java.lang.reflect.Method meth]' Comment.Single
+'\n'          Text
+
+';  [(. meth (getName)) (seq (. meth (getParameterTypes)))])' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'defn- '      Keyword.Declaration
+'non-private-methods' Name.Variable
+' '           Text
+'['           Punctuation
+'#'           Operator
+'^'           Operator
+'Class'       Name.Variable
+' '           Text
+'c'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'loop '       Keyword
+'['           Punctuation
+'mm'          Name.Variable
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n         ' Text
+'considered'  Name.Variable
+' '           Text
+'#'           Operator
+'{'           Punctuation
+'}'           Punctuation
+'\n         ' Text
+'c'           Name.Variable
+' '           Text
+'c'           Name.Variable
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'if '         Keyword
+'c'           Name.Variable
+'\n      '    Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'['           Punctuation
+'mm'          Name.Variable
+' '           Text
+'considered'  Name.Variable
+']'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'loop '       Keyword
+'['           Punctuation
+'mm'          Name.Variable
+' '           Text
+'mm'          Name.Variable
+'\n                   ' Text
+'considered'  Name.Variable
+' '           Text
+'considered'  Name.Variable
+'\n                   ' Text
+'meths'       Name.Variable
+' '           Text
+'('           Punctuation
+'concat'      Name.Function
+'\n                          ' Text
+'('           Punctuation
+'seq '        Name.Builtin
+'('           Punctuation
+'. '          Keyword
+'c'           Name.Variable
+' '           Text
+'('           Punctuation
+'getDeclaredMethods' Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'seq '        Name.Builtin
+'('           Punctuation
+'. '          Keyword
+'c'           Name.Variable
+' '           Text
+'('           Punctuation
+'getMethods'  Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'if '         Keyword
+'meths'       Name.Variable
+'\n                ' Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'#'           Operator
+'^'           Operator
+'Method'      Name.Variable
+' '           Text
+'meth'        Name.Variable
+' '           Text
+'('           Punctuation
+'first '      Name.Builtin
+'meths'       Name.Variable
+')'           Punctuation
+'\n                      ' Text
+'mods'        Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'meth'        Name.Variable
+' '           Text
+'('           Punctuation
+'getModifiers' Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                      ' Text
+'mk'          Name.Variable
+' '           Text
+'('           Punctuation
+'method-sig'  Name.Function
+' '           Text
+'meth'        Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n                  ' Text
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'or '         Name.Builtin
+'('           Punctuation
+'considered'  Name.Function
+' '           Text
+'mk'          Name.Variable
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'. '          Keyword
+'Modifier'    Name.Variable
+' '           Text
+'('           Punctuation
+'isPrivate'   Name.Function
+' '           Text
+'mods'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'. '          Keyword
+'Modifier'    Name.Variable
+' '           Text
+'('           Punctuation
+'isStatic'    Name.Function
+' '           Text
+'mods'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                          ' Text
+'('           Punctuation
+'. '          Keyword
+'Modifier'    Name.Variable
+' '           Text
+'('           Punctuation
+'isFinal'     Name.Function
+' '           Text
+'mods'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'recur'       Name.Function
+' '           Text
+'mm'          Name.Variable
+' '           Text
+'('           Punctuation
+'conj '       Name.Builtin
+'considered'  Name.Variable
+' '           Text
+'mk'          Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'rest '       Name.Builtin
+'meths'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                    ' Text
+'('           Punctuation
+'recur'       Name.Function
+' '           Text
+'('           Punctuation
+'assoc '      Name.Builtin
+'mm'          Name.Variable
+' '           Text
+'mk'          Name.Variable
+' '           Text
+'meth'        Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'conj '       Name.Builtin
+'considered'  Name.Variable
+' '           Text
+'mk'          Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'rest '       Name.Builtin
+'meths'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'['           Punctuation
+'mm'          Name.Variable
+' '           Text
+'considered'  Name.Variable
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'recur'       Name.Function
+' '           Text
+'mm'          Name.Variable
+' '           Text
+'considered'  Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'c'           Name.Variable
+' '           Text
+'('           Punctuation
+'getSuperclass' Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'mm'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn- '      Keyword.Declaration
+'ctor-sigs'   Name.Variable
+' '           Text
+'['           Punctuation
+'super'       Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'for '        Name.Builtin
+'['           Punctuation
+'#'           Operator
+'^'           Operator
+'Constructor' Name.Variable
+' '           Text
+'ctor'        Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'super'       Name.Variable
+' '           Text
+'('           Punctuation
+'getDeclaredConstructors' Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+':when'       Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'not '        Name.Builtin
+'('           Punctuation
+'. '          Keyword
+'Modifier'    Name.Variable
+' '           Text
+'('           Punctuation
+'isPrivate'   Name.Function
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'ctor'        Name.Variable
+' '           Text
+'('           Punctuation
+'getModifiers' Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'apply '      Name.Builtin
+'vector '     Name.Builtin
+'('           Punctuation
+'. '          Keyword
+'ctor'        Name.Variable
+' '           Text
+'('           Punctuation
+'getParameterTypes' Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn- '      Keyword.Declaration
+'escape-class-name' Name.Variable
+' '           Text
+'['           Punctuation
+'c'           Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'.. '         Name.Builtin
+'('           Punctuation
+'.getSimpleName' Name.Function
+' '           Text
+'c'           Name.Variable
+')'           Punctuation
+' \n      '   Text
+'('           Punctuation
+'replace '    Name.Builtin
+'"[]"'        Literal.String
+' '           Text
+'"<>"'        Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn- '      Keyword.Declaration
+'overload-name' Name.Variable
+' '           Text
+'['           Punctuation
+'mname'       Name.Variable
+' '           Text
+'pclasses'    Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'seq '        Name.Builtin
+'pclasses'    Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'apply '      Name.Builtin
+'str '        Name.Builtin
+'mname'       Name.Variable
+' '           Text
+'('           Punctuation
+'interleave ' Name.Builtin
+'('           Punctuation
+'repeat '     Name.Builtin
+'\\-'         Literal.String.Char
+')'           Punctuation
+' \n                                 ' Text
+'('           Punctuation
+'map '        Name.Builtin
+'escape-class-name' Name.Variable
+' '           Text
+'pclasses'    Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'str '        Name.Builtin
+'mname'       Name.Variable
+' '           Text
+'"-void"'     Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+';(distinct (map first(keys (mapcat non-private-methods [Object IPersistentMap]))))' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'gen-class'   Name.Variable
+' \n  '       Text
+'"Generates compiled bytecode for a class with the given\n  package-qualified cname (which, as all names in these parameters, can\n  be a string or symbol). The gen-class construct contains no\n  implementation, as the implementation will be dynamically sought by\n  the generated class in functions in a corresponding Clojure\n  namespace. Given a generated class org.mydomain.MyClass, methods\n  will be implemented that look for same-named functions in a Clojure\n  namespace called org.domain.MyClass. The init and main\n  functions (see below) will be found similarly. The static\n  initializer for the generated class will attempt to load the Clojure\n  support code for the class as a resource from the claspath, e.g. in\n  the example case, org/mydomain/MyClass.clj\n\n  Returns a map containing :name and :bytecode. Most uses will be\n  satisfied by the higher-level gen-and-load-class and\n  gen-and-store-class functions, which generate and immediately load,\n  or generate and store to disk, respectively.\n\n  Options should be a set of key/value pairs, all of which are optional:\n\n  :extends aclass\n\n  Specifies the superclass, the non-private methods of which will be\n  overridden by the class. If not provided, defaults to Object.\n\n  :implements [interface ...]\n\n  One or more interfaces, the methods of which will be implemented by the class.\n\n  :init name\n\n  If supplied, names a function that will be called with the arguments\n  to the constructor. Must return [[superclass-constructor-args] state] \n  If not supplied, the constructor args are passed directly to\n  the superclass constructor and the state will be nil\n\n  :constructors {[param-types] [super-param-types], ...}\n\n  By default, constructors are created for the generated class which\n  match the signature(s) of the constructors for the superclass. This\n  parameter may be used to explicitly specify constructors, each entry\n  providing a mapping from a constructor signature to a superclass\n  constructor signature. When you supply this, you must supply an :init\n  specifier.\n\n  :methods [[name [param-types] return-type], ...]\n\n  The generated class automatically defines all of the non-private\n  methods of its superclasses/interfaces. This parameter can be used\n  to specify the signatures of additional methods of the generated\n  class. Do not repeat superclass/interface signatures here.\n\n  :main boolean\n\n  If supplied and true, a static public main function will be\n  generated. It will pass each string of the String[] argument as a\n  separate argument to a function called \'main.\n\n  :factory name\n\n  If supplied, a (set of) public static factory function(s) will be\n  created with the given name, and the same signature(s) as the\n  constructor(s).\n  \n  :state name\n\n  If supplied, a public final instance field with the given name will be\n  created. You must supply an :init function in order to provide a\n  value for the state. Note that, though final, the state can be a ref\n  or agent, supporting the creation of Java objects with transactional\n  or asynchronous mutation semantics.\n\n  :exposes {protected-field-name {:get name :set name}, ...}\n\n  Since the implementations of the methods of the generated class\n  occur in Clojure functions, they have no access to the inherited\n  protected fields of the superclass. This parameter can be used to\n  generate public getter/setter methods exposing the protected field(s)\n  for use in the implementation."' Literal.String
+'\n\n  '      Text
+'['           Punctuation
+'cname'       Name.Variable
+' '           Text
+'&'           Operator
+' '           Text
+'options'     Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'name '       Name.Builtin
+'('           Punctuation
+'str '        Name.Builtin
+'cname'       Name.Variable
+')'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+':keys'       Literal.String.Symbol
+' '           Text
+'['           Punctuation
+'extends'     Name.Variable
+' '           Text
+'implements'  Name.Variable
+' '           Text
+'constructors' Name.Variable
+' '           Text
+'methods'     Name.Variable
+' '           Text
+'main'        Name.Variable
+' '           Text
+'factory'     Name.Variable
+' '           Text
+'state'       Name.Variable
+' '           Text
+'init'        Name.Variable
+' '           Text
+'exposes'     Name.Variable
+']'           Punctuation
+'}'           Punctuation
+' '           Text
+'('           Punctuation
+'apply '      Name.Builtin
+'hash-map '   Name.Builtin
+'options'     Name.Variable
+')'           Punctuation
+'\n        '  Text
+'super'       Name.Variable
+' '           Text
+'('           Punctuation
+'or '         Name.Builtin
+'extends'     Name.Variable
+' '           Text
+'Object'      Name.Variable
+')'           Punctuation
+'\n        '  Text
+'interfaces'  Name.Variable
+' '           Text
+'implements'  Name.Variable
+'\n        '  Text
+'supers'      Name.Variable
+' '           Text
+'('           Punctuation
+'cons '       Name.Builtin
+'super'       Name.Variable
+' '           Text
+'('           Punctuation
+'seq '        Name.Builtin
+'interfaces'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'ctor-sig-map' Name.Variable
+' '           Text
+'('           Punctuation
+'or '         Name.Builtin
+'constructors' Name.Variable
+' '           Text
+'('           Punctuation
+'zipmap '     Name.Builtin
+'('           Punctuation
+'ctor-sigs'   Name.Function
+' '           Text
+'super'       Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'ctor-sigs'   Name.Function
+' '           Text
+'super'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'cv'          Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'ClassWriter' Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'ClassWriter' Name.Variable
+' '           Text
+'COMPUTE_MAXS' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'cname'       Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'name '       Name.Builtin
+'('           Punctuation
+'replace '    Name.Builtin
+'"."'         Literal.String
+' '           Text
+'"/"'         Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'ctype'       Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Type'        Name.Variable
+' '           Text
+'('           Punctuation
+'getObjectType' Name.Function
+' '           Text
+'cname'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'iname'       Name.Variable
+' '           Text
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'c'           Name.Variable
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'.. '         Name.Builtin
+'Type'        Name.Variable
+' '           Text
+'('           Punctuation
+'getType'     Name.Function
+' '           Text
+'c'           Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'getInternalName' Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'totype'      Name.Variable
+' '           Text
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'c'           Name.Variable
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Type'        Name.Variable
+' '           Text
+'('           Punctuation
+'getType'     Name.Function
+' '           Text
+'c'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'to-types'    Name.Variable
+' '           Text
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'cs'          Name.Variable
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'pos? '       Name.Builtin
+'('           Punctuation
+'count '      Name.Builtin
+'cs'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                            ' Text
+'('           Punctuation
+'into-array ' Name.Builtin
+'('           Punctuation
+'map '        Name.Builtin
+'totype'      Name.Variable
+' '           Text
+'cs'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                            ' Text
+'('           Punctuation
+'make-array ' Name.Builtin
+'Type'        Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'obj-type'    Name.Variable
+' '           Text
+'('           Punctuation
+'totype'      Name.Function
+' '           Text
+'Object'      Name.Variable
+')'           Punctuation
+'\n        '  Text
+'arg-types'   Name.Variable
+' '           Text
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'n'           Name.Variable
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'pos? '       Name.Builtin
+'n'           Name.Variable
+')'           Punctuation
+'\n                            ' Text
+'('           Punctuation
+'into-array ' Name.Builtin
+'('           Punctuation
+'replicate '  Name.Builtin
+'n'           Name.Variable
+' '           Text
+'obj-type'    Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                            ' Text
+'('           Punctuation
+'make-array ' Name.Builtin
+'Type'        Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'super-type'  Name.Variable
+' '           Text
+'('           Punctuation
+'totype'      Name.Function
+' '           Text
+'super'       Name.Variable
+')'           Punctuation
+'\n        '  Text
+'init-name'   Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'init'        Name.Variable
+')'           Punctuation
+'\n        '  Text
+'factory-name' Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'factory'     Name.Variable
+')'           Punctuation
+'\n        '  Text
+'state-name'  Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'state'       Name.Variable
+')'           Punctuation
+'\n        '  Text
+'main-name'   Name.Variable
+' '           Text
+'"main"'      Literal.String
+'\n        '  Text
+'var-name'    Name.Variable
+' '           Text
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'s'           Name.Variable
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'s'           Name.Variable
+' '           Text
+'"__var"'     Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'rt-type'     Name.Variable
+'  '          Text
+'('           Punctuation
+'totype'      Name.Function
+' '           Text
+'clojure.lang.RT' Name.Variable
+')'           Punctuation
+'\n        '  Text
+'var-type'    Name.Variable
+'  '          Text
+'('           Punctuation
+'totype'      Name.Function
+' '           Text
+'clojure.lang.Var' Name.Variable
+')'           Punctuation
+'\n        '  Text
+'ifn-type'    Name.Variable
+' '           Text
+'('           Punctuation
+'totype'      Name.Function
+' '           Text
+'clojure.lang.IFn' Name.Variable
+')'           Punctuation
+'\n        '  Text
+'iseq-type'   Name.Variable
+' '           Text
+'('           Punctuation
+'totype'      Name.Function
+' '           Text
+'clojure.lang.ISeq' Name.Variable
+')'           Punctuation
+'\n        '  Text
+'ex-type'     Name.Variable
+'  '          Text
+'('           Punctuation
+'totype'      Name.Function
+' '           Text
+'java.lang.UnsupportedOperationException' Name.Variable
+')'           Punctuation
+'\n        '  Text
+'all-sigs'    Name.Variable
+' '           Text
+'('           Punctuation
+'distinct '   Name.Builtin
+'('           Punctuation
+'concat '     Name.Builtin
+'('           Punctuation
+'map '        Name.Builtin
+'#'           Operator
+'('           Punctuation
+'let'         Name.Function
+'['           Punctuation
+'['           Punctuation
+'m'           Name.Variable
+' '           Text
+'p'           Name.Variable
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'key '        Name.Builtin
+'%'           Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'{'           Punctuation
+'m'           Name.Variable
+' '           Text
+'['           Punctuation
+'p'           Name.Variable
+']'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'mapcat '     Name.Builtin
+'non-private-methods' Name.Variable
+' '           Text
+'supers'      Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                                   ' Text
+'('           Punctuation
+'map '        Name.Builtin
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'['           Punctuation
+'m'           Name.Variable
+' '           Text
+'p'           Name.Variable
+']'           Punctuation
+']'           Punctuation
+' '           Text
+'{'           Punctuation
+'('           Punctuation
+'str '        Name.Builtin
+'m'           Name.Variable
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p'           Name.Variable
+']'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+' '           Text
+'methods'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'sigs-by-name' Name.Variable
+' '           Text
+'('           Punctuation
+'apply '      Name.Builtin
+'merge-with ' Name.Builtin
+'concat '     Name.Builtin
+'{'           Punctuation
+'}'           Punctuation
+' '           Text
+'all-sigs'    Name.Variable
+')'           Punctuation
+'\n        '  Text
+'overloads'   Name.Variable
+' '           Text
+'('           Punctuation
+'into '       Name.Builtin
+'{'           Punctuation
+'}'           Punctuation
+' '           Text
+'('           Punctuation
+'filter '     Name.Builtin
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'['           Punctuation
+'m'           Name.Variable
+' '           Text
+'s'           Name.Variable
+']'           Punctuation
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'rest '       Name.Builtin
+'s'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'sigs-by-name' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'var-fields'  Name.Variable
+' '           Text
+'('           Punctuation
+'concat '     Name.Builtin
+'('           Punctuation
+'and '        Name.Builtin
+'init'        Name.Variable
+' '           Text
+'['           Punctuation
+'init-name'   Name.Variable
+']'           Punctuation
+')'           Punctuation
+' \n                           ' Text
+'('           Punctuation
+'and '        Name.Builtin
+'main'        Name.Variable
+' '           Text
+'['           Punctuation
+'main-name'   Name.Variable
+']'           Punctuation
+')'           Punctuation
+'\n                           ' Text
+'('           Punctuation
+'distinct '   Name.Builtin
+'('           Punctuation
+'concat '     Name.Builtin
+'('           Punctuation
+'keys '       Name.Builtin
+'sigs-by-name' Name.Variable
+')'           Punctuation
+'\n                                             ' Text
+'('           Punctuation
+'mapcat '     Name.Builtin
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'['           Punctuation
+'m'           Name.Variable
+' '           Text
+'s'           Name.Variable
+']'           Punctuation
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'map '        Name.Builtin
+'#'           Operator
+'('           Punctuation
+'overload-name' Name.Function
+' '           Text
+'m'           Name.Variable
+' '           Text
+'%'           Name.Variable
+')'           Punctuation
+' '           Text
+'s'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'overloads'   Name.Variable
+')'           Punctuation
+'\n                                             ' Text
+'('           Punctuation
+'mapcat '     Name.Builtin
+'('           Punctuation
+'comp '       Name.Builtin
+'('           Punctuation
+'partial '    Name.Builtin
+'map '        Name.Builtin
+'str'         Name.Variable
+')'           Punctuation
+' '           Text
+'vals '       Name.Builtin
+'val'         Name.Variable
+')'           Punctuation
+' '           Text
+'exposes'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'emit-get-var' Name.Variable
+' '           Text
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'gen'         Name.Variable
+' '           Text
+'v'           Name.Variable
+']'           Punctuation
+'\n                       ' Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'false-label' Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'newLabel'    Name.Variable
+')'           Punctuation
+'\n                             ' Text
+'end-label'   Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'newLabel'    Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'getStatic'   Name.Variable
+' '           Text
+'ctype'       Name.Variable
+' '           Text
+'('           Punctuation
+'var-name'    Name.Function
+' '           Text
+'v'           Name.Variable
+')'           Punctuation
+' '           Text
+'var-type'    Name.Variable
+')'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'dup'         Name.Variable
+')'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'invokeVirtual' Name.Variable
+' '           Text
+'var-type'    Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Method'      Name.Variable
+' '           Text
+'('           Punctuation
+'getMethod'   Name.Function
+' '           Text
+'"boolean isBound()"' Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'ifZCmp'      Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'GeneratorAdapter' Name.Variable
+' '           Text
+'EQ'          Name.Variable
+')'           Punctuation
+' '           Text
+'false-label' Name.Variable
+')'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'invokeVirtual' Name.Variable
+' '           Text
+'var-type'    Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Method'      Name.Variable
+' '           Text
+'('           Punctuation
+'getMethod'   Name.Function
+' '           Text
+'"Object get()"' Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'goTo'        Name.Variable
+' '           Text
+'end-label'   Name.Variable
+')'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'mark'        Name.Variable
+' '           Text
+'false-label' Name.Variable
+')'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'pop'         Name.Variable
+')'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'visitInsn'   Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACONST_NULL' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                         ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'mark'        Name.Variable
+' '           Text
+'end-label'   Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'emit-forwarding-method' Name.Variable
+'\n        '  Text
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'mname'       Name.Variable
+' '           Text
+'pclasses'    Name.Variable
+' '           Text
+'rclass'      Name.Variable
+' '           Text
+'else-gen'    Name.Variable
+']'           Punctuation
+'\n          ' Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'ptypes'      Name.Variable
+' '           Text
+'('           Punctuation
+'to-types'    Name.Function
+' '           Text
+'pclasses'    Name.Variable
+')'           Punctuation
+'\n                ' Text
+'rtype'       Name.Variable
+' '           Text
+'('           Punctuation
+'totype'      Name.Function
+' '           Text
+'rclass'      Name.Variable
+')'           Punctuation
+'\n                ' Text
+'m'           Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'Method'      Name.Variable
+' '           Text
+'mname'       Name.Variable
+' '           Text
+'rtype'       Name.Variable
+' '           Text
+'ptypes'      Name.Variable
+')'           Punctuation
+'\n                ' Text
+'is-overload' Name.Variable
+' '           Text
+'('           Punctuation
+'overloads'   Name.Function
+' '           Text
+'mname'       Name.Variable
+')'           Punctuation
+'\n                ' Text
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'GeneratorAdapter' Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_PUBLIC'  Name.Variable
+')'           Punctuation
+' '           Text
+'m'           Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'cv'          Name.Variable
+')'           Punctuation
+'\n                ' Text
+'found-label' Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'newLabel'    Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'else-label'  Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'newLabel'    Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'end-label'   Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'newLabel'    Name.Function
+')'           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'visitCode'   Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'when '       Name.Builtin
+'is-overload' Name.Variable
+'\n              ' Text
+'('           Punctuation
+'emit-get-var' Name.Function
+' '           Text
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'overload-name' Name.Function
+' '           Text
+'mname'       Name.Variable
+' '           Text
+'pclasses'    Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'dup'         Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'ifNonNull'   Name.Function
+' '           Text
+'found-label' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'pop'         Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'emit-get-var' Name.Function
+' '           Text
+'gen'         Name.Variable
+' '           Text
+'mname'       Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'dup'         Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'ifNull'      Name.Function
+' '           Text
+'else-label'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'when '       Name.Builtin
+'is-overload' Name.Variable
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'mark'        Name.Function
+' '           Text
+'found-label' Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                                        ' Text
+';if found'   Comment.Single
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'loadThis'    Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                                        ' Text
+';box args'   Comment.Single
+'\n            ' Text
+'('           Punctuation
+'dotimes '    Name.Builtin
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'count '      Name.Builtin
+'ptypes'      Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'loadArg'     Name.Function
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'clojure.lang.Compiler$HostExpr' Name.Variable
+' '           Text
+'('           Punctuation
+'emitBoxReturn' Name.Function
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'nth '        Name.Builtin
+'pclasses'    Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                                        ' Text
+';call fn'    Comment.Single
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'invokeInterface' Name.Function
+' '           Text
+'ifn-type'    Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'Method'      Name.Variable
+' '           Text
+'"invoke"'    Literal.String
+' '           Text
+'obj-type'    Name.Variable
+' \n                                                  ' Text
+'('           Punctuation
+'into-array ' Name.Builtin
+'('           Punctuation
+'cons '       Name.Builtin
+'obj-type'    Name.Variable
+' \n                                                                    ' Text
+'('           Punctuation
+'replicate '  Name.Builtin
+'('           Punctuation
+'count '      Name.Builtin
+'ptypes'      Name.Variable
+')'           Punctuation
+' '           Text
+'obj-type'    Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                                        ' Text
+';unbox return' Comment.Single
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'unbox'       Name.Function
+' '           Text
+'rtype'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'when '       Name.Builtin
+'('           Punctuation
+'= '          Name.Builtin
+'('           Punctuation
+'. '          Keyword
+'rtype'       Name.Variable
+' '           Text
+'('           Punctuation
+'getSort'     Name.Function
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Type'        Name.Variable
+' '           Text
+'VOID'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'pop'         Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'goTo'        Name.Function
+' '           Text
+'end-label'   Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n            \n                                        ' Text
+';else call supplied alternative generator' Comment.Single
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'mark'        Name.Function
+' '           Text
+'else-label'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'pop'         Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n            \n            ' Text
+'('           Punctuation
+'else-gen'    Name.Function
+' '           Text
+'gen'         Name.Variable
+' '           Text
+'m'           Name.Variable
+')'           Punctuation
+'\n            \n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'mark'        Name.Function
+' '           Text
+'end-label'   Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'returnValue' Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'endMethod'   Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+']'           Punctuation
+'\n                                        ' Text
+';start class definition' Comment.Single
+'\n    '      Text
+'('           Punctuation
+'. '          Keyword
+'cv'          Name.Variable
+' '           Text
+'('           Punctuation
+'visit'       Name.Function
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'V1_5'        Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_PUBLIC'  Name.Variable
+')'           Punctuation
+'\n                 ' Text
+'cname'       Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'('           Punctuation
+'iname'       Name.Function
+' '           Text
+'super'       Name.Variable
+')'           Punctuation
+'\n                 ' Text
+'('           Punctuation
+'when '       Name.Builtin
+'interfaces'  Name.Variable
+'\n                   ' Text
+'('           Punctuation
+'into-array ' Name.Builtin
+'('           Punctuation
+'map '        Name.Builtin
+'iname'       Name.Variable
+' '           Text
+'interfaces'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    \n                                        ' Text
+';static fields for vars' Comment.Single
+'\n    '      Text
+'('           Punctuation
+'doseq '      Name.Builtin
+'v'           Name.Variable
+' '           Text
+'var-fields'  Name.Variable
+'\n      '    Text
+'('           Punctuation
+'. '          Keyword
+'cv'          Name.Variable
+' '           Text
+'('           Punctuation
+'visitField'  Name.Function
+' '           Text
+'('           Punctuation
+'+ '          Name.Builtin
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_PUBLIC'  Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_FINAL'   Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_STATIC'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                        ' Text
+'('           Punctuation
+'var-name'    Name.Function
+' '           Text
+'v'           Name.Variable
+')'           Punctuation
+' \n                        ' Text
+'('           Punctuation
+'. '          Keyword
+'var-type'    Name.Variable
+' '           Text
+'getDescriptor' Name.Variable
+')'           Punctuation
+'\n                        ' Text
+'nil'         Name.Variable
+' '           Text
+'nil'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    \n                                        ' Text
+';instance field for state' Comment.Single
+'\n    '      Text
+'('           Punctuation
+'when '       Name.Builtin
+'state'       Name.Variable
+'\n      '    Text
+'('           Punctuation
+'. '          Keyword
+'cv'          Name.Variable
+' '           Text
+'('           Punctuation
+'visitField'  Name.Function
+' '           Text
+'('           Punctuation
+'+ '          Name.Builtin
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_PUBLIC'  Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_FINAL'   Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                        ' Text
+'state-name'  Name.Variable
+' \n                        ' Text
+'('           Punctuation
+'. '          Keyword
+'obj-type'    Name.Variable
+' '           Text
+'getDescriptor' Name.Variable
+')'           Punctuation
+'\n                        ' Text
+'nil'         Name.Variable
+' '           Text
+'nil'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    \n                                        ' Text
+';static init to set up var fields and load clj' Comment.Single
+'\n    '      Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'GeneratorAdapter' Name.Variable
+' '           Text
+'('           Punctuation
+'+ '          Name.Builtin
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_PUBLIC'  Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_STATIC'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+' \n                   ' Text
+'('           Punctuation
+'. '          Keyword
+'Method'      Name.Variable
+' '           Text
+'getMethod'   Name.Variable
+' '           Text
+'"void <clinit> ()"' Literal.String
+')'           Punctuation
+'\n                   ' Text
+'nil'         Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'cv'          Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'visitCode'   Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'doseq '      Name.Builtin
+'v'           Name.Variable
+' '           Text
+'var-fields'  Name.Variable
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'push'        Name.Variable
+' '           Text
+'name'        Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'push'        Name.Variable
+' '           Text
+'v'           Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'invokeStatic' Name.Function
+' '           Text
+'rt-type'     Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Method'      Name.Variable
+' '           Text
+'('           Punctuation
+'getMethod'   Name.Function
+' '           Text
+'"clojure.lang.Var var(String,String)"' Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'putStatic'   Name.Variable
+' '           Text
+'ctype'       Name.Variable
+' '           Text
+'('           Punctuation
+'var-name'    Name.Function
+' '           Text
+'v'           Name.Variable
+')'           Punctuation
+' '           Text
+'var-type'    Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n      \n      ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'push'        Name.Variable
+' '           Text
+'ctype'       Name.Variable
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'push'        Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'('           Punctuation
+'. '          Keyword
+'name '       Name.Builtin
+'replace '    Name.Builtin
+'\\.'         Literal.String.Char
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'java.io.File' Name.Variable
+' '           Text
+'separatorChar' Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'".clj"'      Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'invokeStatic' Name.Function
+' '           Text
+'rt-type'     Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Method'      Name.Variable
+' '           Text
+'('           Punctuation
+'getMethod'   Name.Function
+' '           Text
+'"void loadResourceScript(Class,String)"' Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n      \n      ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'returnValue' Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'endMethod'   Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    \n                                        ' Text
+';ctors'      Comment.Single
+'\n    '      Text
+'('           Punctuation
+'doseq '      Name.Builtin
+'['           Punctuation
+'pclasses'    Name.Variable
+' '           Text
+'super-pclasses' Name.Variable
+']'           Punctuation
+' '           Text
+'ctor-sig-map' Name.Variable
+'\n      '    Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'ptypes'      Name.Variable
+' '           Text
+'('           Punctuation
+'to-types'    Name.Function
+' '           Text
+'pclasses'    Name.Variable
+')'           Punctuation
+'\n            ' Text
+'super-ptypes' Name.Variable
+' '           Text
+'('           Punctuation
+'to-types'    Name.Function
+' '           Text
+'super-pclasses' Name.Variable
+')'           Punctuation
+'\n            ' Text
+'m'           Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'Method'      Name.Variable
+' '           Text
+'"<init>"'    Literal.String
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Type'        Name.Variable
+' '           Text
+'VOID_TYPE'   Name.Variable
+')'           Punctuation
+' '           Text
+'ptypes'      Name.Variable
+')'           Punctuation
+'\n            ' Text
+'super-m'     Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'Method'      Name.Variable
+' '           Text
+'"<init>"'    Literal.String
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Type'        Name.Variable
+' '           Text
+'VOID_TYPE'   Name.Variable
+')'           Punctuation
+' '           Text
+'super-ptypes' Name.Variable
+')'           Punctuation
+'\n            ' Text
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'GeneratorAdapter' Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_PUBLIC'  Name.Variable
+')'           Punctuation
+' '           Text
+'m'           Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'cv'          Name.Variable
+')'           Punctuation
+'\n            ' Text
+'no-init-label' Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'newLabel'    Name.Variable
+')'           Punctuation
+'\n            ' Text
+'end-label'   Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'newLabel'    Name.Variable
+')'           Punctuation
+'\n            ' Text
+'nth-method'  Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Method'      Name.Variable
+' '           Text
+'('           Punctuation
+'getMethod'   Name.Function
+' '           Text
+'"Object nth(Object,int)"' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'local'       Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'newLocal'    Name.Variable
+' '           Text
+'obj-type'    Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'visitCode'   Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n        \n        ' Text
+'('           Punctuation
+'if '         Keyword
+'init'        Name.Variable
+'\n          ' Text
+'('           Punctuation
+'do'          Name.Function
+'\n            ' Text
+'('           Punctuation
+'emit-get-var' Name.Function
+' '           Text
+'gen'         Name.Variable
+' '           Text
+'init-name'   Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'dup'         Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'ifNull'      Name.Variable
+' '           Text
+'no-init-label' Name.Variable
+')'           Punctuation
+'\n                                        ' Text
+';box init args' Comment.Single
+'\n            ' Text
+'('           Punctuation
+'dotimes '    Name.Builtin
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'count '      Name.Builtin
+'pclasses'    Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'loadArg'     Name.Function
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'clojure.lang.Compiler$HostExpr' Name.Variable
+' '           Text
+'('           Punctuation
+'emitBoxReturn' Name.Function
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'nth '        Name.Builtin
+'pclasses'    Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                                        ' Text
+';call init fn' Comment.Single
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'invokeInterface' Name.Function
+' '           Text
+'ifn-type'    Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'Method'      Name.Variable
+' '           Text
+'"invoke"'    Literal.String
+' '           Text
+'obj-type'    Name.Variable
+' \n                                                  ' Text
+'('           Punctuation
+'arg-types'   Name.Function
+' '           Text
+'('           Punctuation
+'count '      Name.Builtin
+'ptypes'      Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                                        ' Text
+';expecting [[super-ctor-args] state] returned' Comment.Single
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'dup'         Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'push'        Name.Variable
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'invokeStatic' Name.Function
+' '           Text
+'rt-type'     Name.Variable
+' '           Text
+'nth-method'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'storeLocal'  Name.Variable
+' '           Text
+'local'       Name.Variable
+')'           Punctuation
+'\n            \n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'loadThis'    Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'dupX1'       Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'dotimes '    Name.Builtin
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'count '      Name.Builtin
+'super-pclasses' Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'loadLocal'   Name.Variable
+' '           Text
+'local'       Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'push'        Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'invokeStatic' Name.Function
+' '           Text
+'rt-type'     Name.Variable
+' '           Text
+'nth-method'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'clojure.lang.Compiler$HostExpr' Name.Variable
+' '           Text
+'('           Punctuation
+'emitUnboxArg' Name.Function
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'nth '        Name.Builtin
+'super-pclasses' Name.Variable
+' '           Text
+'i'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'invokeConstructor' Name.Function
+' '           Text
+'super-type'  Name.Variable
+' '           Text
+'super-m'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n            \n            ' Text
+'('           Punctuation
+'if '         Keyword
+'state'       Name.Variable
+'\n              ' Text
+'('           Punctuation
+'do'          Name.Function
+'\n                ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'push'        Name.Variable
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'invokeStatic' Name.Function
+' '           Text
+'rt-type'     Name.Variable
+' '           Text
+'nth-method'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'putField'    Name.Function
+' '           Text
+'ctype'       Name.Variable
+' '           Text
+'state-name'  Name.Variable
+' '           Text
+'obj-type'    Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'pop'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n            \n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'goTo'        Name.Variable
+' '           Text
+'end-label'   Name.Variable
+')'           Punctuation
+'\n                                        ' Text
+';no init found' Comment.Single
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'mark'        Name.Variable
+' '           Text
+'no-init-label' Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'throwException' Name.Function
+' '           Text
+'ex-type'     Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'init-name'   Name.Variable
+' '           Text
+'" not defined"' Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'mark'        Name.Variable
+' '           Text
+'end-label'   Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n          ' Text
+'('           Punctuation
+'if '         Keyword
+'('           Punctuation
+'= '          Name.Builtin
+'pclasses'    Name.Variable
+' '           Text
+'super-pclasses' Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'do'          Name.Function
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'loadThis'    Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'loadArgs'    Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'invokeConstructor' Name.Function
+' '           Text
+'super-type'  Name.Variable
+' '           Text
+'super-m'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'throw'       Name.Function
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'Exception'   Name.Variable
+' '           Text
+'":init not specified, but ctor and super ctor args differ"' Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n        ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'returnValue' Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'endMethod'   Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                                        ' Text
+';factory'    Comment.Single
+'\n        '  Text
+'('           Punctuation
+'when '       Name.Builtin
+'factory'     Name.Variable
+'\n          ' Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'fm'          Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'Method'      Name.Variable
+' '           Text
+'factory-name' Name.Variable
+' '           Text
+'ctype'       Name.Variable
+' '           Text
+'ptypes'      Name.Variable
+')'           Punctuation
+'\n                ' Text
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'GeneratorAdapter' Name.Variable
+' '           Text
+'('           Punctuation
+'+ '          Name.Builtin
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_PUBLIC'  Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_STATIC'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+' \n                         ' Text
+'fm'          Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'cv'          Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'visitCode'   Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'newInstance' Name.Variable
+' '           Text
+'ctype'       Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'dup'         Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'loadArgs'    Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'invokeConstructor' Name.Function
+' '           Text
+'ctype'       Name.Variable
+' '           Text
+'m'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'            \n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'returnValue' Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'endMethod'   Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n    \n                                        ' Text
+";add methods matching supers', if no fn -> call super" Comment.Single
+'\n    '      Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'mm'          Name.Variable
+' '           Text
+'('           Punctuation
+'non-private-methods' Name.Function
+' '           Text
+'super'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'doseq '      Name.Builtin
+'#'           Operator
+'^'           Operator
+'java.lang.reflect.Method' Name.Variable
+' '           Text
+'meth'        Name.Variable
+' '           Text
+'('           Punctuation
+'vals '       Name.Builtin
+'mm'          Name.Variable
+')'           Punctuation
+'\n             ' Text
+'('           Punctuation
+'emit-forwarding-method' Name.Function
+' '           Text
+'('           Punctuation
+'.getName'    Name.Function
+' '           Text
+'meth'        Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'.getParameterTypes' Name.Function
+' '           Text
+'meth'        Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'.getReturnType' Name.Function
+' '           Text
+'meth'        Name.Variable
+')'           Punctuation
+' \n                                     ' Text
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'gen'         Name.Variable
+' '           Text
+'m'           Name.Variable
+']'           Punctuation
+'\n                                       ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'loadThis'    Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                                        ' Text
+';push args'  Comment.Single
+'\n                                       ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'loadArgs'    Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                                        ' Text
+';call super' Comment.Single
+'\n                                       ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'visitMethodInsn' Name.Function
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'INVOKESPECIAL' Name.Variable
+')'           Punctuation
+' \n                                                               ' Text
+'('           Punctuation
+'. '          Keyword
+'super-type'  Name.Variable
+' '           Text
+'('           Punctuation
+'getInternalName' Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                                                               ' Text
+'('           Punctuation
+'. '          Keyword
+'m'           Name.Variable
+' '           Text
+'('           Punctuation
+'getName'     Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                                                               ' Text
+'('           Punctuation
+'. '          Keyword
+'m'           Name.Variable
+' '           Text
+'('           Punctuation
+'getDescriptor' Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                                        ' Text
+";add methods matching interfaces', if no fn -> throw" Comment.Single
+'\n       '   Text
+'('           Punctuation
+'doseq '      Name.Builtin
+'#'           Operator
+'^'           Operator
+'Class'       Name.Variable
+' '           Text
+'iface'       Name.Variable
+' '           Text
+'interfaces'  Name.Variable
+'\n              ' Text
+'('           Punctuation
+'doseq '      Name.Builtin
+'#'           Operator
+'^'           Operator
+'java.lang.reflect.Method' Name.Variable
+' '           Text
+'meth'        Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'iface'       Name.Variable
+' '           Text
+'('           Punctuation
+'getMethods'  Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n                     ' Text
+'('           Punctuation
+'when-not '   Name.Builtin
+'('           Punctuation
+'contains? '  Name.Builtin
+'mm'          Name.Variable
+' '           Text
+'('           Punctuation
+'method-sig'  Name.Function
+' '           Text
+'meth'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n                       ' Text
+'('           Punctuation
+'emit-forwarding-method' Name.Function
+' '           Text
+'('           Punctuation
+'.getName'    Name.Function
+' '           Text
+'meth'        Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'.getParameterTypes' Name.Function
+' '           Text
+'meth'        Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'.getReturnType' Name.Function
+' '           Text
+'meth'        Name.Variable
+')'           Punctuation
+' \n                                               ' Text
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'gen'         Name.Variable
+' '           Text
+'m'           Name.Variable
+']'           Punctuation
+'\n                                                 ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'throwException' Name.Function
+' '           Text
+'ex-type'     Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'m'           Name.Variable
+' '           Text
+'('           Punctuation
+'getName'     Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                                        ' Text
+';extra methods' Comment.Single
+'\n       '   Text
+'('           Punctuation
+'doseq '      Name.Builtin
+'['           Punctuation
+'mname'       Name.Variable
+' '           Text
+'pclasses'    Name.Variable
+' '           Text
+'rclass'      Name.Variable
+' '           Text
+':as'         Literal.String.Symbol
+' '           Text
+'msig'        Name.Variable
+']'           Punctuation
+' '           Text
+'methods'     Name.Variable
+'\n         ' Text
+'('           Punctuation
+'emit-forwarding-method' Name.Function
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'mname'       Name.Variable
+')'           Punctuation
+' '           Text
+'pclasses'    Name.Variable
+' '           Text
+'rclass'      Name.Variable
+' \n                                 ' Text
+'('           Punctuation
+'fn '         Keyword
+'['           Punctuation
+'gen'         Name.Variable
+' '           Text
+'m'           Name.Variable
+']'           Punctuation
+'\n                                     ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'throwException' Name.Function
+' '           Text
+'ex-type'     Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'m'           Name.Variable
+' '           Text
+'('           Punctuation
+'getName'     Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n                                        ' Text
+';main'       Comment.Single
+'\n    '      Text
+'('           Punctuation
+'when '       Name.Builtin
+'main'        Name.Variable
+'\n      '    Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'m'           Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Method'      Name.Variable
+' '           Text
+'getMethod'   Name.Variable
+' '           Text
+'"void main (String[])"' Literal.String
+')'           Punctuation
+'\n            ' Text
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'GeneratorAdapter' Name.Variable
+' '           Text
+'('           Punctuation
+'+ '          Name.Builtin
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_PUBLIC'  Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_STATIC'  Name.Variable
+')'           Punctuation
+')'           Punctuation
+' \n                     ' Text
+'m'           Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'cv'          Name.Variable
+')'           Punctuation
+'\n            ' Text
+'no-main-label' Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'newLabel'    Name.Variable
+')'           Punctuation
+'\n            ' Text
+'end-label'   Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'newLabel'    Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'visitCode'   Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n\n        ' Text
+'('           Punctuation
+'emit-get-var' Name.Function
+' '           Text
+'gen'         Name.Variable
+' '           Text
+'main-name'   Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'dup'         Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'ifNull'      Name.Variable
+' '           Text
+'no-main-label' Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'loadArgs'    Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'invokeStatic' Name.Function
+' '           Text
+'rt-type'     Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Method'      Name.Variable
+' '           Text
+'('           Punctuation
+'getMethod'   Name.Function
+' '           Text
+'"clojure.lang.ISeq seq(Object)"' Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'invokeInterface' Name.Function
+' '           Text
+'ifn-type'    Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'Method'      Name.Variable
+' '           Text
+'"applyTo"'   Literal.String
+' '           Text
+'obj-type'    Name.Variable
+' \n                                              ' Text
+'('           Punctuation
+'into-array ' Name.Builtin
+'['           Punctuation
+'iseq-type'   Name.Variable
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'pop'         Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'goTo'        Name.Variable
+' '           Text
+'end-label'   Name.Variable
+')'           Punctuation
+'\n                                        ' Text
+';no main found' Comment.Single
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'mark'        Name.Variable
+' '           Text
+'no-main-label' Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'throwException' Name.Function
+' '           Text
+'ex-type'     Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'main-name'   Name.Variable
+' '           Text
+'" not defined"' Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'mark'        Name.Variable
+' '           Text
+'end-label'   Name.Variable
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'returnValue' Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'endMethod'   Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                                        ' Text
+';field exposers' Comment.Single
+'\n    '      Text
+'('           Punctuation
+'doseq '      Name.Builtin
+'['           Punctuation
+'f'           Name.Variable
+' '           Text
+'{'           Punctuation
+'getter'      Name.Variable
+' '           Text
+':get'        Literal.String.Symbol
+' '           Text
+'setter'      Name.Variable
+' '           Text
+':set'        Literal.String.Symbol
+'}'           Punctuation
+']'           Punctuation
+' '           Text
+'exposes'     Name.Variable
+'\n      '    Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'fld'         Name.Variable
+' '           Text
+'('           Punctuation
+'.getField'   Name.Function
+' '           Text
+'super'       Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'f'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'ftype'       Name.Variable
+' '           Text
+'('           Punctuation
+'totype'      Name.Function
+' '           Text
+'('           Punctuation
+'.getType'    Name.Function
+' '           Text
+'fld'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'when '       Name.Builtin
+'getter'      Name.Variable
+'\n          ' Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'m'           Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'Method'      Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'getter'      Name.Variable
+')'           Punctuation
+' '           Text
+'ftype'       Name.Variable
+' '           Text
+'('           Punctuation
+'to-types'    Name.Function
+' '           Text
+'['           Punctuation
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'GeneratorAdapter' Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_PUBLIC'  Name.Variable
+')'           Punctuation
+' '           Text
+'m'           Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'cv'          Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'visitCode'   Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'loadThis'    Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'getField'    Name.Variable
+' '           Text
+'ctype'       Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'f'           Name.Variable
+')'           Punctuation
+' '           Text
+'ftype'       Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'returnValue' Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'endMethod'   Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'when '       Name.Builtin
+'setter'      Name.Variable
+'\n          ' Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'m'           Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'Method'      Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'setter'      Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Type'        Name.Variable
+' '           Text
+'VOID_TYPE'   Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'into-array ' Name.Builtin
+'['           Punctuation
+'ftype'       Name.Variable
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                ' Text
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'GeneratorAdapter' Name.Variable
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'Opcodes'     Name.Variable
+' '           Text
+'ACC_PUBLIC'  Name.Variable
+')'           Punctuation
+' '           Text
+'m'           Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'nil'         Name.Variable
+' '           Text
+'cv'          Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'visitCode'   Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'loadThis'    Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'loadArgs'    Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'putField'    Name.Variable
+' '           Text
+'ctype'       Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'f'           Name.Variable
+')'           Punctuation
+' '           Text
+'ftype'       Name.Variable
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'returnValue' Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'. '          Keyword
+'gen'         Name.Variable
+' '           Text
+'('           Punctuation
+'endMethod'   Name.Function
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n                                        ' Text
+';finish class def' Comment.Single
+'\n    '      Text
+'('           Punctuation
+'. '          Keyword
+'cv'          Name.Variable
+' '           Text
+'('           Punctuation
+'visitEnd'    Name.Function
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+':name'       Literal.String.Symbol
+' '           Text
+'name '       Name.Builtin
+':bytecode'   Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'cv'          Name.Variable
+' '           Text
+'('           Punctuation
+'toByteArray' Name.Function
+')'           Punctuation
+')'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'gen-and-load-class' Name.Variable
+' \n  '       Text
+'"Generates and immediately loads the bytecode for the specified\n  class. Note that a class generated this way can be loaded only once\n  - the JVM supports only one class with a given name per\n  classloader. Subsequent to generation you can import it into any\n  desired namespaces just like any other class. See gen-class for a\n  description of the options."' Literal.String
+'\n\n  '      Text
+'['           Punctuation
+'name '       Name.Builtin
+'&'           Operator
+' '           Text
+'options'     Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'{'           Punctuation
+':keys'       Literal.String.Symbol
+' '           Text
+'['           Punctuation
+'name '       Name.Builtin
+'bytecode'    Name.Variable
+']'           Punctuation
+'}'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'apply '      Name.Builtin
+'gen-class'   Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'name'        Name.Variable
+')'           Punctuation
+' '           Text
+'options'     Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'.. '         Name.Builtin
+'clojure.lang.RT' Name.Variable
+' '           Text
+'ROOT_CLASSLOADER' Name.Variable
+' '           Text
+'('           Punctuation
+'defineClass' Name.Function
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'name'        Name.Variable
+')'           Punctuation
+' '           Text
+'bytecode'    Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'gen-and-save-class' Name.Variable
+' \n  '       Text
+'"Generates the bytecode for the named class and stores in a .class\n  file in a subpath of the supplied path, the directories for which\n  must already exist. See gen-class for a description of the options"' Literal.String
+'\n\n  '      Text
+'['           Punctuation
+'path '       Name.Builtin
+'name '       Name.Builtin
+'&'           Operator
+' '           Text
+'options'     Name.Variable
+']'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'let '        Keyword
+'['           Punctuation
+'{'           Punctuation
+':keys'       Literal.String.Symbol
+' '           Text
+'['           Punctuation
+'name '       Name.Builtin
+'bytecode'    Name.Variable
+']'           Punctuation
+'}'           Punctuation
+' '           Text
+'('           Punctuation
+'apply '      Name.Builtin
+'gen-class'   Name.Variable
+' '           Text
+'('           Punctuation
+'str '        Name.Builtin
+'name'        Name.Variable
+')'           Punctuation
+' '           Text
+'options'     Name.Variable
+')'           Punctuation
+'\n        '  Text
+'file'        Name.Variable
+' '           Text
+'('           Punctuation
+'java.io.File.' Name.Function
+' '           Text
+'path '       Name.Builtin
+'('           Punctuation
+'str '        Name.Builtin
+'('           Punctuation
+'. '          Keyword
+'name '       Name.Builtin
+'replace '    Name.Builtin
+'\\.'         Literal.String.Char
+' '           Text
+'('           Punctuation
+'. '          Keyword
+'java.io.File' Name.Variable
+' '           Text
+'separatorChar' Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'".class"'    Literal.String
+')'           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'.createNewFile' Name.Function
+' '           Text
+'file'        Name.Variable
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'with-open '  Name.Builtin
+'f'           Name.Variable
+' '           Text
+'('           Punctuation
+'java.io.FileOutputStream.' Name.Function
+' '           Text
+'file'        Name.Variable
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'.write'      Name.Function
+' '           Text
+'f'           Name.Variable
+' '           Text
+'bytecode'    Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'comment'     Name.Function
+'\n'          Text
+
+';usage'      Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'gen-class'   Name.Function
+' \n '        Text
+'package-qualified-name' Name.Variable
+'\n  '        Text
+';all below are optional' Comment.Single
+'\n '         Text
+':extends'    Literal.String.Symbol
+' '           Text
+'aclass'      Name.Variable
+'\n '         Text
+':implements' Literal.String.Symbol
+' '           Text
+'['           Punctuation
+'interface'   Name.Variable
+' '           Text
+'...'         Name.Variable
+']'           Punctuation
+'\n '         Text
+':constructors' Literal.String.Symbol
+' '           Text
+'{'           Punctuation
+'['           Punctuation
+'param-types' Name.Variable
+']'           Punctuation
+' '           Text
+'['           Punctuation
+'super-param-types' Name.Variable
+']'           Punctuation
+', '          Text
+'}'           Punctuation
+'\n '         Text
+':methods'    Literal.String.Symbol
+' '           Text
+'['           Punctuation
+'['           Punctuation
+'name '       Name.Builtin
+'['           Punctuation
+'param-types' Name.Variable
+']'           Punctuation
+' '           Text
+'return-type' Name.Variable
+']'           Punctuation
+', '          Text
+']'           Punctuation
+'\n '         Text
+':main'       Literal.String.Symbol
+' '           Text
+'boolean'     Name.Variable
+'\n '         Text
+':factory'    Literal.String.Symbol
+' '           Text
+'name'        Name.Variable
+'\n '         Text
+':state'      Literal.String.Symbol
+' '           Text
+'name'        Name.Variable
+'\n '         Text
+':init'       Literal.String.Symbol
+' '           Text
+'name'        Name.Variable
+'\n '         Text
+':exposes'    Literal.String.Symbol
+' '           Text
+'{'           Punctuation
+'protected-field' Name.Variable
+' '           Text
+'{'           Punctuation
+':get'        Literal.String.Symbol
+' '           Text
+'name '       Name.Builtin
+':set'        Literal.String.Symbol
+' '           Text
+'name'        Name.Variable
+'}'           Punctuation
+', '          Text
+'}'           Punctuation
+')'           Punctuation
+'\n \n'       Text
+
+';(gen-and-load-class ' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'clojure/gen-and-save-class' Name.Function
+' \n '        Text
+'"/Users/rich/Downloads"' Literal.String
+'\n '         Text
+"'fred.lucy.Ethel" Literal.String.Symbol
+' \n '        Text
+':extends'    Literal.String.Symbol
+' '           Text
+'clojure.lang.Box' Name.Variable
+' '           Text
+';APersistentMap' Comment.Single
+'\n '         Text
+':implements' Literal.String.Symbol
+' '           Text
+'['           Punctuation
+'clojure.lang.IPersistentMap' Name.Variable
+']'           Punctuation
+'\n '         Text
+':state'      Literal.String.Symbol
+' '           Text
+"'state"      Literal.String.Symbol
+'\n                                        ' Text
+';:constructors {[Object] [Object]}' Comment.Single
+'\n                                        ' Text
+";:init 'init" Comment.Single
+'\n '         Text
+':main'       Literal.String.Symbol
+' '           Text
+'true'        Name.Variable
+'\n '         Text
+':factory'    Literal.String.Symbol
+' '           Text
+"'create"     Literal.String.Symbol
+'\n '         Text
+':methods'    Literal.String.Symbol
+' '           Text
+'['           Punctuation
+'['           Punctuation
+"'foo"        Literal.String.Symbol
+' '           Text
+'['           Punctuation
+'Object'      Name.Variable
+']'           Punctuation
+' '           Text
+'Object'      Name.Variable
+']'           Punctuation
+'\n           ' Text
+'['           Punctuation
+"'foo"        Literal.String.Symbol
+' '           Text
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'Object'      Name.Variable
+']'           Punctuation
+']'           Punctuation
+'\n '         Text
+':exposes'    Literal.String.Symbol
+' '           Text
+'{'           Punctuation
+"'val"        Literal.String.Symbol
+' '           Text
+'{'           Punctuation
+':get'        Literal.String.Symbol
+' '           Text
+"'getVal"     Literal.String.Symbol
+' '           Text
+':set'        Literal.String.Symbol
+' '           Text
+"'setVal"     Literal.String.Symbol
+'}'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'in-ns '      Name.Builtin
+"'fred.lucy.Ethel__2276" Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'clojure/refer' Name.Function
+' '           Text
+"'clojure"    Literal.String.Symbol
+' '           Text
+':exclude'    Literal.String.Symbol
+' '           Text
+"'"           Operator
+'('           Punctuation
+'assoc '      Name.Builtin
+'seq '        Name.Builtin
+'count '      Name.Builtin
+'cons'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'init'        Name.Variable
+' '           Text
+'['           Punctuation
+'n'           Name.Variable
+']'           Punctuation
+' '           Text
+'['           Punctuation
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'n'           Name.Variable
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'foo'         Name.Variable
+' \n  '       Text
+'('           Punctuation
+'['           Punctuation
+'this'        Name.Variable
+']'           Punctuation
+' '           Text
+':foo'        Literal.String.Symbol
+')'           Punctuation
+' \n  '       Text
+'('           Punctuation
+'['           Punctuation
+'this'        Name.Variable
+' '           Text
+'x'           Name.Variable
+']'           Punctuation
+' '           Text
+'x'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'main'        Name.Variable
+' '           Text
+'['           Punctuation
+'x'           Name.Variable
+' '           Text
+'y'           Name.Variable
+']'           Punctuation
+' '           Text
+'('           Punctuation
+'println '    Name.Builtin
+'x'           Name.Variable
+' '           Text
+'y'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'in-ns '      Name.Builtin
+"'user"       Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'def '        Keyword
+'ethel'       Name.Variable
+' '           Text
+'('           Punctuation
+'new '        Keyword
+'fred.lucy.Ethel__2276' Name.Variable
+' '           Text
+'42'          Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'def '        Keyword
+'ethel'       Name.Variable
+' '           Text
+'('           Punctuation
+'fred.lucy.Ethel__2276.create' Name.Function
+' '           Text
+'21'          Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'fred.lucy.Ethel__2276.main' Name.Function
+' '           Text
+'('           Punctuation
+'into-array ' Name.Builtin
+'['           Punctuation
+'"lucy"'      Literal.String
+' '           Text
+'"ricky"'     Literal.String
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'.state'      Name.Function
+' '           Text
+'ethel'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'.foo'        Name.Function
+' '           Text
+'ethel'       Name.Variable
+' '           Text
+'7'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'.foo'        Name.Function
+' '           Text
+'ethel'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'.getVal'     Name.Function
+' '           Text
+'ethel'       Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'.setVal'     Name.Function
+' '           Text
+'ethel'       Name.Variable
+' '           Text
+'12'          Literal.Number.Integer
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'gen-class'   Name.Function
+' '           Text
+'org.clojure.MyComparator' Name.Variable
+' '           Text
+':implements' Literal.String.Symbol
+' '           Text
+'['           Punctuation
+'Comparator'  Name.Variable
+']'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'in-ns '      Name.Builtin
+"'org.clojure.MyComparator" Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'defn '       Keyword.Declaration
+'compare'     Name.Variable
+' '           Text
+'['           Punctuation
+'this'        Name.Variable
+' '           Text
+'x'           Name.Variable
+' '           Text
+'y'           Name.Variable
+']'           Punctuation
+' '           Text
+'...'         Name.Variable
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'load-file '  Name.Builtin
+'"/Users/rich/dev/clojure/src/genclass.clj"' Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'clojure/gen-and-save-class' Name.Function
+' '           Text
+'"/Users/rich/dev/clojure/gen/"' Literal.String
+' \n '        Text
+"'org.clojure.ClojureServlet" Literal.String.Symbol
+' \n '        Text
+':extends'    Literal.String.Symbol
+' '           Text
+'javax.servlet.http.HttpServlet' Name.Variable
+')'           Punctuation
+'\n\n'        Text
+
+')'           Punctuation
+'\n'          Text

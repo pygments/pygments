@@ -1,0 +1,51 @@
+'// Comments\n' Comment.Single
+
+'/*'          Comment.Multiline
+' Comment block ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'/*'          Comment.Multiline
+' Multi-line \n ' Comment.Multiline
+'*'           Comment.Multiline
+' comment block\n ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'/*'          Comment.Multiline
+'  '          Comment.Multiline
+'/*'          Comment.Multiline
+'*/'          Comment.Multiline
+' '           Comment.Multiline
+'/*'          Comment.Multiline
+'*'           Comment.Multiline
+' '           Comment.Multiline
+'*/'          Comment.Multiline
+' '           Comment.Multiline
+'/*'          Comment.Multiline
+' comments within comments ' Comment.Multiline
+'*/'          Comment.Multiline
+' '           Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'/*'          Comment.Multiline
+'*'           Comment.Multiline
+'   '         Comment.Multiline
+'/*'          Comment.Multiline
+' '           Comment.Multiline
+'*/'          Comment.Multiline
+' '           Comment.Multiline
+'/*'          Comment.Multiline
+'*'           Comment.Multiline
+' '           Comment.Multiline
+'*'           Comment.Multiline
+'*/'          Comment.Multiline
+' '           Comment.Multiline
+'*'           Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'// /* Commented-out comment block\n' Comment.Single
+
+'// Line comment\n' Comment.Single

@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.qvt
     ~~~~~~~~~~~~~~~~~~~
 
     Lexer for QVT Operational language.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -18,7 +17,7 @@ __all__ = ['QVToLexer']
 
 
 class QVToLexer(RegexLexer):
-    u"""
+    """
     For the `QVT Operational Mapping language <http://www.omg.org/spec/QVT/1.1/>`_.
 
     Reference for implementing this: «Meta Object Facility (MOF) 2.0

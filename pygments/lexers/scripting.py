@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.scripting
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for scripting and embedded languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -15,11 +14,11 @@ from pygments.lexer import RegexLexer, include, bygroups, default, combined, \
     words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error, Whitespace, Other
-from pygments.util import get_bool_opt, get_list_opt, iteritems
+from pygments.util import get_bool_opt, get_list_opt
 
 __all__ = ['LuaLexer', 'MoonScriptLexer', 'ChaiscriptLexer', 'LSLLexer',
            'AppleScriptLexer', 'RexxLexer', 'MOOCodeLexer', 'HybrisLexer',
-           'EasytrieveLexer', 'JclLexer']
+           'EasytrieveLexer', 'JclLexer', 'MiniScriptLexer']
 
 
 class LuaLexer(RegexLexer):
@@ -142,7 +141,7 @@ class LuaLexer(RegexLexer):
         self._functions = set()
         if self.func_name_highlighting:
             from pygments.lexers._lua_builtins import MODULES
-            for mod, func in iteritems(MODULES):
+            for mod, func in MODULES.items():
                 if mod not in self.disabled_modules:
                     self._functions.update(func)
         RegexLexer.__init__(self, **options)
@@ -157,11 +156,10 @@ class LuaLexer(RegexLexer):
                 elif '.' in value:
                     a, b = value.split('.')
                     yield index, Name, a
-                    yield index + len(a), Punctuation, u'.'
+                    yield index + len(a), Punctuation, '.'
                     yield index + len(a) + 1, Name, b
                     continue
             yield index, token, value
-
 
 class MoonScriptLexer(LuaLexer):
     """
@@ -284,7 +282,7 @@ class ChaiscriptLexer(RegexLexer):
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
             (r'"', String.Double, 'dqstring'),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
         ],
         'dqstring': [
             (r'\$\{[^"}]+?\}', String.Interpol),
@@ -660,18 +658,18 @@ class AppleScriptLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (u'¬\\n', String.Escape),
+            (r'¬\n', String.Escape),
             (r"'s\s+", Text),  # This is a possessive, consider moving
             (r'(--|#).*?$', Comment),
             (r'\(\*', Comment.Multiline, 'comment'),
             (r'[(){}!,.:]', Punctuation),
-            (u'(«)([^»]+)(»)',
+            (r'(«)([^»]+)(»)',
              bygroups(Text, Name.Builtin, Text)),
             (r'\b((?:considering|ignoring)\s*)'
              r'(application responses|case|diacriticals|hyphens|'
              r'numeric strings|punctuation|white space)',
              bygroups(Keyword, Name.Builtin)),
-            (u'(-|\\*|\\+|&|≠|>=?|<=?|=|≥|≤|/|÷|\\^)', Operator),
+            (r'(-|\*|\+|&|≠|>=?|<=?|=|≥|≤|/|÷|\^)', Operator),
             (r"\b(%s)\b" % '|'.join(Operators), Operator.Word),
             (r'^(\s*(?:on|end)\s+)'
              r'(%s)' % '|'.join(StudioEvents[::-1]),
@@ -690,7 +688,7 @@ class AppleScriptLexer(RegexLexer):
             (r'\b(%s)s?\b' % '|'.join(StudioClasses), Name.Builtin),
             (r'\b(%s)\b' % '|'.join(StudioCommands), Name.Builtin),
             (r'\b(%s)\b' % '|'.join(References), Name.Builtin),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r'\b(%s)\b' % Identifiers, Name.Variable),
             (r'[-+]?(\d+\.\d*|\d*\.\d+)(E[-+][0-9]+)?', Number.Float),
             (r'[-+]?\d+', Number.Integer),
@@ -834,7 +832,7 @@ class MOOCodeLexer(RegexLexer):
             # Numbers
             (r'(0|[1-9][0-9_]*)', Number.Integer),
             # Strings
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             # exceptions
             (r'(E_PERM|E_DIV)', Name.Exception),
             # db-refs
@@ -925,7 +923,7 @@ class HybrisLexer(RegexLexer):
                 'Runnable', 'CGI', 'ClientSocket', 'Socket', 'ServerSocket',
                 'File', 'Console', 'Directory', 'Exception'), suffix=r'\b'),
              Keyword.Type),
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
             (r'(\.)([a-zA-Z_]\w*)',
              bygroups(Operator, Name.Attribute)),
@@ -944,6 +942,15 @@ class HybrisLexer(RegexLexer):
             (r'[\w.]+\*?', Name.Namespace, '#pop')
         ],
     }
+
+    def analyse_text(text):
+        """public method and private method don't seem to be quite common
+        elsewhere."""
+        result = 0
+        if re.search(r'\b(?:public|private)\s+method\b', text):
+            result += 0.01
+        return result
+
 
 
 class EasytrieveLexer(RegexLexer):
@@ -977,7 +984,7 @@ class EasytrieveLexer(RegexLexer):
     _DELIMITER_PATTERN = '[' + _DELIMITERS + ']'
     _DELIMITER_PATTERN_CAPTURE = '(' + _DELIMITER_PATTERN + ')'
     _NON_DELIMITER_OR_COMMENT_PATTERN = '[^' + _DELIMITERS_OR_COMENT + ']'
-    _OPERATORS_PATTERN = u'[.+\\-/=\\[\\](){}<>;,&%¬]'
+    _OPERATORS_PATTERN = '[.+\\-/=\\[\\](){}<>;,&%¬]'
     _KEYWORDS = [
         'AFTER-BREAK', 'AFTER-LINE', 'AFTER-SCREEN', 'AIM', 'AND', 'ATTR',
         'BEFORE', 'BEFORE-BREAK', 'BEFORE-LINE', 'BEFORE-SCREEN', 'BUSHU',
@@ -1220,3 +1227,57 @@ class JclLexer(RegexLexer):
                 result = 1.0
         assert 0.0 <= result <= 1.0
         return result
+
+
+class MiniScriptLexer(RegexLexer):
+    """
+    For `MiniScript <https://miniscript.org>`_ source code.
+
+    .. versionadded:: 2.6
+    """
+
+    name = "MiniScript"
+    aliases = ["ms", "miniscript"]
+    filenames = ["*.ms"]
+    mimetypes = ['text/x-minicript', 'application/x-miniscript']
+
+    tokens = {
+        'root': [
+            (r'#!(.*?)$', Comment.Preproc),
+            default('base'),
+        ],
+        'base': [
+            ('//.*$', Comment.Single),
+            (r'(?i)(\d*\.\d+|\d+\.\d*)(e[+-]?\d+)?', Number),
+            (r'(?i)\d+e[+-]?\d+', Number),
+            (r'\d+', Number),
+            (r'\n', Text),
+            (r'[^\S\n]+', Text),
+            (r'"', String, 'string_double'),
+            (r'(==|!=|<=|>=|[=+\-*/%^<>.:])', Operator),
+            (r'[;,\[\]{}()]', Punctuation),
+            (words((
+                'break', 'continue', 'else', 'end', 'for', 'function', 'if',
+                'in', 'isa', 'then', 'repeat', 'return', 'while'), suffix=r'\b'),
+             Keyword),
+            (words((
+                'abs', 'acos', 'asin', 'atan', 'ceil', 'char', 'cos', 'floor',
+                'log', 'round', 'rnd', 'pi', 'sign', 'sin', 'sqrt', 'str', 'tan',
+                'hasIndex', 'indexOf', 'len', 'val', 'code', 'remove', 'lower',
+                'upper', 'replace', 'split', 'indexes', 'values', 'join', 'sum',
+                'sort', 'shuffle', 'push', 'pop', 'pull', 'range',
+                'print', 'input', 'time', 'wait', 'locals', 'globals', 'outer',
+                'yield'), suffix=r'\b'),
+             Name.Builtin),
+            (r'(true|false|null)\b', Keyword.Constant),
+            (r'(and|or|not|new)\b', Operator.Word),
+            (r'(self|super|__isa)\b', Name.Builtin.Pseudo),
+            (r'[a-zA-Z_]\w*', Name.Variable)
+        ],
+        'string_double': [
+            (r'[^"\n]+', String),
+            (r'""', String),
+            (r'"', String, '#pop'),
+            (r'\n', Text, '#pop'),  # Stray linefeed also terminates strings.
+        ]
+    }

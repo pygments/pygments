@@ -1,0 +1,4207 @@
+'#'           Comment
+'\n'          Text
+
+'# $Id: complete.tcsh,v 1.2 1998/05/11 10:40:54 luisgh Exp $' Comment
+'\n'          Text
+
+'# example file using the new completion code' Comment
+'\n'          Text
+
+'#'           Comment
+'\n\n'        Text
+
+'# Debian GNU/Linux' Comment
+'\n'          Text
+
+'# file: /usr/share/doc/examples/tcsh/complete.tcsh' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+"# This file may be read from user's .cshrc file by decompressing it into" Comment
+'\n'          Text
+
+'# the home directory as ~/.complete and then adding the line' Comment
+'\n'          Text
+
+'# "source ${HOME}/.complete" and maybe defining some of' Comment
+'\n'          Text
+
+'# the shell variables described below.' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'# Debian enhancements by Vadim Vygonets <vadik@cs.huji.ac.il>:' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'# Added two Debian-specific completions: dpkg and dpkg-deb (who wrote' Comment
+'\n'          Text
+
+'# them?).  To turn it off, define no_debian_complete before loading' Comment
+'\n'          Text
+
+'# this file.' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'# Added some new completions.  To turn them off, define' Comment
+'\n'          Text
+
+'# no_new_complete before loading this file.' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'# Changed completions of several commands.  The ones are evaluated if' Comment
+'\n'          Text
+
+'# the following shell variables are defined:' Comment
+'\n'          Text
+
+'#'           Comment
+'\n'          Text
+
+'# traditional_cp_mv_complete' Comment
+'\n'          Text
+
+'#\tfor traditional completion of cp and mv commands' Comment
+'\n'          Text
+
+'# traditional_zcat_complete' Comment
+'\n'          Text
+
+'#\tfor traditional completion of zcat command' Comment
+'\n'          Text
+
+'# traditional_nm_complete' Comment
+'\n'          Text
+
+'#\tfor traditional completion of nm command' Comment
+'\n'          Text
+
+'# traditilnal_tex_complete' Comment
+'\n'          Text
+
+'#\tfor traditional completion of tex command' Comment
+'\n'          Text
+
+'# traditional_find_complete' Comment
+'\n'          Text
+
+'#\tfor traditional completion of find command' Comment
+'\n'          Text
+
+'# traditional_configure_complete' Comment
+'\n'          Text
+
+'#\tfor traditional completion of ./configure command' Comment
+'\n'          Text
+
+'# foolproof_rm_complete or traditional_rm_complete' Comment
+'\n'          Text
+
+'#\tfor traditional completion of rm command' Comment
+'\n'          Text
+
+'# traditional_complete' Comment
+'\n'          Text
+
+'#\tall of the above' Comment
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'$?'          Name.Variable
+'traditional_complete' Text
+')'           Operator
+' '           Text
+'then\n\t'    Keyword
+'set '        Name.Builtin
+'traditional_cp_mv_complete' Text
+'\n\t'        Text
+'set '        Name.Builtin
+'traditional_zcat_complete' Text
+'\n\t'        Text
+'set '        Name.Builtin
+'traditional_nm_complete' Text
+'\n\t'        Text
+'set '        Name.Builtin
+'traditilnal_tex_complete' Text
+'\n\t'        Text
+'set '        Name.Builtin
+'traditional_find_complete' Text
+'\n\t'        Text
+'set '        Name.Builtin
+'traditional_configure_complete' Text
+'\n\t'        Text
+'set '        Name.Builtin
+'foolproof_rm_complete' Text
+'\n'          Text
+
+'endif\n\n'   Keyword
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'$?'          Name.Variable
+'traditional_rm_complete' Text
+')'           Operator
+' '           Text
+'then\n\t'    Keyword
+'set '        Name.Builtin
+'foolproof_rm_complete' Text
+'\n'          Text
+
+'endif\n\n'   Keyword
+
+'onintr'      Name.Builtin
+' '           Text
+'-'           Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'!'           Text
+' '           Text
+'$?'          Name.Variable
+'prompt'      Text
+')'           Operator
+' '           Text
+'goto '       Keyword
+'end\n\n'     Keyword
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'$?'          Name.Variable
+'tcsh'        Text
+')'           Operator
+' '           Text
+'then\n    '  Keyword
+'if'          Keyword
+' '           Text
+'('           Operator
+'$tcsh'       Name.Variable
+' '           Text
+'!'           Text
+'='           Operator
+' '           Text
+'1'           Text
+')'           Operator
+' '           Text
+'then\n   \t' Keyword
+'set '        Name.Builtin
+'rev'         Name.Variable
+'='           Operator
+'$tcsh'       Name.Variable
+':r'          Text
+'\n\t'        Text
+'set '        Name.Builtin
+'rel'         Name.Variable
+'='           Operator
+'$rev'        Name.Variable
+':e'          Text
+'\n\t'        Text
+'set '        Name.Builtin
+'pat'         Name.Variable
+'='           Operator
+'$tcsh'       Name.Variable
+':e'          Text
+'\n\t'        Text
+'set '        Name.Builtin
+'rev'         Name.Variable
+'='           Operator
+'$rev'        Name.Variable
+':r'          Text
+'\n    '      Text
+'endif\n    ' Keyword
+'if'          Keyword
+' '           Text
+'('           Operator
+'$rev'        Name.Variable
+' '           Text
+'>'           Text
+' '           Text
+'5'           Text
+' '           Text
+'&&'          Text
+' '           Text
+'$rel'        Name.Variable
+' '           Text
+'>'           Text
+' '           Text
+'1'           Text
+')'           Operator
+' '           Text
+'then\n\t'    Keyword
+'set '        Name.Builtin
+'complete'    Name.Builtin
+'='           Operator
+'1'           Text
+'\n    '      Text
+'endif\n    ' Keyword
+'unset '      Name.Builtin
+'rev'         Text
+' '           Text
+'rel'         Text
+' '           Text
+'pat'         Text
+'\n'          Text
+
+'endif\n\n'   Keyword
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'$?'          Name.Variable
+'complete'    Name.Builtin
+')'           Operator
+' '           Text
+'then\n    '  Keyword
+'set '        Name.Builtin
+'noglob'      Text
+'\n    '      Text
+'set '        Name.Builtin
+'hosts'       Text
+'\n    '      Text
+'foreach '    Keyword
+'f'           Text
+' '           Text
+'('           Operator
+'$HOME'       Name.Variable
+'/.hosts'     Text
+' '           Text
+'/usr/local/etc/csh.hosts' Text
+' '           Text
+'$HOME'       Name.Variable
+'/.rhosts'    Text
+' '           Text
+'/etc/hosts.equiv' Text
+')'           Operator
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'-r'          Text
+' '           Text
+'$f'          Name.Variable
+' '           Text
+')'           Operator
+' '           Text
+'then\n\t    ' Keyword
+'set '        Name.Builtin
+'hosts'       Name.Variable
+'='           Operator
+'('           Operator
+'$hosts'      Name.Variable
+' '           Text
+'`'           Literal.String.Backtick
+'cut'         Text
+' '           Text
+'-d'          Text
+' '           Text
+'" "'         Literal.String.Double
+' '           Text
+'-f'          Text
+' '           Text
+'1'           Text
+' '           Text
+'$f'          Name.Variable
+' '           Text
+'|'           Text
+' '           Text
+'grep'        Text
+' '           Text
+'-v'          Text
+' '           Text
+'+'           Text
+'`'           Literal.String.Backtick
+')'           Operator
+'\n\t'        Text
+'endif\n    ' Keyword
+'end\n    '   Keyword
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'-r'          Text
+' '           Text
+'$HOME'       Name.Variable
+'/.netrc'     Text
+' '           Text
+')'           Operator
+' '           Text
+'then\n\t'    Keyword
+'set '        Name.Builtin
+'f'           Name.Variable
+'='           Operator
+'`'           Literal.String.Backtick
+'awk'         Text
+' '           Text
+"'/machine/ { print $2 }'" Literal.String.Single
+' '           Text
+'<'           Text
+' '           Text
+'$HOME'       Name.Variable
+'/.netrc'     Text
+'`'           Literal.String.Backtick
+' '           Text
+'>&'          Text
+' '           Text
+'/dev/null'   Text
+'\n\t'        Text
+'set '        Name.Builtin
+'hosts'       Name.Variable
+'='           Operator
+'('           Operator
+'$hosts'      Name.Variable
+' '           Text
+'$f'          Name.Variable
+')'           Operator
+'\n    '      Text
+'endif\n    ' Keyword
+'unset '      Name.Builtin
+'f'           Text
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'!'           Text
+' '           Text
+'$?'          Name.Variable
+'hosts'       Text
+' '           Text
+')'           Operator
+' '           Text
+'then\n\t'    Keyword
+'set '        Name.Builtin
+'hosts'       Name.Variable
+'='           Operator
+'('           Operator
+'hyperion.ee.cornell.edu' Text
+' '           Text
+'phaeton.ee.cornell.edu' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t   '     Text
+'guillemin.ee.cornell.edu' Text
+' '           Text
+'vangogh.cs.berkeley.edu' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t   '     Text
+'ftp.uu.net'  Text
+' '           Text
+'prep.ai.mit.edu' Text
+' '           Text
+'export.lcs.mit.edu' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t   '     Text
+'labrea.stanford.edu' Text
+' '           Text
+'sumex-aim.stanford.edu' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t   '     Text
+'tut.cis.ohio-state.edu' Text
+')'           Operator
+'\n    '      Text
+'endif\n\n    ' Keyword
+'complete '   Name.Builtin
+'ywho'        Text
+'  \t'        Text
+'n/*/'        Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+'\t'          Text
+'# argument from list in $hosts' Comment
+'\n    '      Text
+'complete '   Name.Builtin
+'rsh'         Text
+'\t'          Text
+'p/1/'        Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+' '           Text
+'c/-/'        Text
+'"(l n)"'     Literal.String.Double
+'/'           Text
+'   '         Text
+'n/-l/u/'     Text
+' '           Text
+'N/-l/c/'     Text
+' '           Text
+'n/-/c/'      Text
+' '           Text
+'p/2/c/'      Text
+' '           Text
+'p/*/f/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'xrsh'        Text
+'\t'          Text
+'p/1/'        Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+' '           Text
+'c/-/'        Text
+'"(l 8 e)"'   Literal.String.Double
+'/'           Text
+' '           Text
+'n/-l/u/'     Text
+' '           Text
+'N/-l/c/'     Text
+' '           Text
+'n/-/c/'      Text
+' '           Text
+'p/2/c/'      Text
+' '           Text
+'p/*/f/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'rlogin'      Text
+' \t'         Text
+'p/1/'        Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+' '           Text
+'c/-/'        Text
+'"(l 8 e)"'   Literal.String.Double
+'/'           Text
+' '           Text
+'n/-l/u/'     Text
+'\n    '      Text
+'complete '   Name.Builtin
+'telnet'      Text
+' \t'         Text
+'p/1/'        Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+' '           Text
+'p/2/x:'      Text
+"'<port>'"    Literal.String.Single
+'/'           Text
+' '           Text
+'n/*/n/'      Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'cd  \t'      Name.Builtin
+'p/1/d/'      Text
+'\t\t'        Text
+'# Directories only' Comment
+'\n    '      Text
+'complete '   Name.Builtin
+'chdir \t'    Name.Builtin
+'p/1/d/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'pushd \t'    Name.Builtin
+'p/1/d/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'popd \t'     Name.Builtin
+'p/1/d/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'pu'          Text
+' \t'         Text
+'p/1/d/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'po'          Text
+' \t'         Text
+'p/1/d/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'complete \t' Name.Builtin
+'p/1/X/'      Text
+'\t\t'        Text
+'# Completions only' Comment
+'\n    '      Text
+'complete '   Name.Builtin
+'uncomplete\t' Name.Builtin
+'n/*/X/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'exec \t'     Name.Builtin
+'p/1/c/'      Text
+'\t\t'        Text
+'# Commands only' Comment
+'\n    '      Text
+'complete '   Name.Builtin
+'trace'       Text
+' \t'         Text
+'p/1/c/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'strace'      Text
+' \t'         Text
+'p/1/c/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'which\t'     Name.Builtin
+'n/*/c/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'where\t'     Name.Builtin
+'n/*/c/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'skill'       Text
+' \t'         Text
+'p/1/c/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'dde'         Text
+'\t'          Text
+'p/1/c/'      Text
+' \n    '     Text
+'complete '   Name.Builtin
+'adb'         Text
+'\t'          Text
+'c/-I/d/'     Text
+' '           Text
+'n/-/c/'      Text
+' '           Text
+'N/-/'        Text
+'"(core)"'    Literal.String.Double
+'/'           Text
+' '           Text
+'p/1/c/'      Text
+' '           Text
+'p/2/'        Text
+'"(core)"'    Literal.String.Double
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'sdb'         Text
+'\t'          Text
+'p/1/c/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'dbx'         Text
+'\t'          Text
+'c/-I/d/'     Text
+' '           Text
+'n/-/c/'      Text
+' '           Text
+'N/-/'        Text
+'"(core)"'    Literal.String.Double
+'/'           Text
+' '           Text
+'p/1/c/'      Text
+' '           Text
+'p/2/'        Text
+'"(core)"'    Literal.String.Double
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'xdb'         Text
+'\t'          Text
+'p/1/c/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'gdb'         Text
+'\t'          Text
+'n/-d/d/'     Text
+' '           Text
+'n/*/c/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'ups'         Text
+'\t'          Text
+'p/1/c/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'set'         Name.Builtin
+'\t'          Text
+"'c/*=/f/'"   Literal.String.Single
+' '           Text
+"'p/1/s/='"   Literal.String.Single
+' '           Text
+"'n/=/f/'"    Literal.String.Single
+'\n    '      Text
+'complete '   Name.Builtin
+'unset\t'     Name.Builtin
+'n/*/s/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'alias \t'    Name.Builtin
+'p/1/a/'      Text
+'\t\t'        Text
+'# only aliases are valid' Comment
+'\n    '      Text
+'complete '   Name.Builtin
+'unalias\t'   Name.Builtin
+'n/*/a/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'xdvi'        Text
+' \t'         Text
+'n/*/f:*.dvi/' Text
+'\t'          Text
+'# Only files that match *.dvi' Comment
+'\n    '      Text
+'complete '   Name.Builtin
+'dvips'       Text
+' \t'         Text
+'n/*/f:*.dvi/' Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'$?'          Name.Variable
+'traditilnal_tex_complete' Text
+')'           Operator
+' '           Text
+'then\n    '  Keyword
+'complete '   Name.Builtin
+'tex'         Text
+' \t'         Text
+'n/*/f:*.tex/' Text
+'\t'          Text
+'# Only files that match *.tex' Comment
+'\n'          Text
+
+'else\n    '  Keyword
+'complete '   Name.Builtin
+'tex'         Text
+' \t'         Text
+'n/*/f:*.'    Text
+'{'           Operator
+'tex,texi'    Text
+'}'           Operator
+'/'           Text
+'\t'          Text
+'# Files that match *.tex and *.texi' Comment
+'\n'          Text
+
+'endif\n    ' Keyword
+'complete '   Name.Builtin
+'latex'       Text
+' \t'         Text
+'n/*/f:*.'    Text
+'{'           Operator
+'tex,ltx'     Text
+'}'           Operator
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'su'          Text
+'\t\t'        Text
+'c/--/'       Text
+'"(login fast preserve-environment command shell \\\n\t\t\thelp version)"' Literal.String.Double
+'/'           Text
+'\t'          Text
+'c/-/'        Text
+'"(f l m p c s -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-c,--command' Text
+'}'           Operator
+'/c/'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n@'          Text
+'{'           Operator
+'-s,--shell'  Text
+'}'           Operator
+'@'           Text
+"'`cat /etc/shells`'" Literal.String.Single
+'@'           Text
+' '           Text
+'n/*/u/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'cc'          Text
+' \t'         Text
+'c/-'         Text
+'['           Operator
+'IL'          Text
+']'           Operator
+'/d/'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'              ' Text
+'c@-l@'       Text
+"'`\\ls -1 /usr/lib/lib*.a | sed s%^.\\*/lib%%\\;s%\\\\.a\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(o l c g L I D U)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/*/f:*.'    Text
+'['           Operator
+'coasi'       Text
+']'           Operator
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'acc'         Text
+' \t'         Text
+'c/-'         Text
+'['           Operator
+'IL'          Text
+']'           Operator
+'/d/'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'       '     Text
+'c@-l@'       Text
+"'`\\ls -1 /usr/lang/SC1.0/lib*.a | sed s%^.\\*/lib%%\\;s%\\\\.a\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(o l c g L I D U)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/*/f:*.'    Text
+'['           Operator
+'coasi'       Text
+']'           Operator
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'gcc'         Text
+' \t'         Text
+'c/-'         Text
+'['           Operator
+'IL'          Text
+']'           Operator
+'/d/'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t \t'     Text
+'c/-f/'       Text
+'"(caller-saves cse-follow-jumps delayed-branch \\\n\t\t               elide-constructors expensive-optimizations \\\n\t\t\t       float-store force-addr force-mem inline \\\n\t\t\t       inline-functions keep-inline-functions \\\n\t\t\t       memoize-lookups no-default-inline \\\n\t\t\t       no-defer-pop no-function-cse omit-frame-pointer \\\n\t\t\t       rerun-cse-after-loop schedule-insns \\\n\t\t\t       schedule-insns2 strength-reduce \\\n\t\t\t       thread-jumps unroll-all-loops \\\n\t\t\t       unroll-loops syntax-only all-virtual \\\n\t\t\t       cond-mismatch dollars-in-identifiers \\\n\t\t\t       enum-int-equiv no-asm no-builtin \\\n\t\t\t       no-strict-prototype signed-bitfields \\\n\t\t\t       signed-char this-is-variable unsigned-bitfields \\\n\t\t\t       unsigned-char writable-strings call-saved-reg \\\n\t\t\t       call-used-reg fixed-reg no-common \\\n\t\t\t       no-gnu-binutils nonnull-objects \\\n\t\t\t       pcc-struct-return pic PIC shared-data \\\n\t\t\t       short-enums short-double volatile)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t \t'     Text
+'c/-W/'       Text
+'"(all aggregate-return cast-align cast-qual \\\n\t\t      \t       comment conversion enum-clash error format \\\n\t\t      \t       id-clash-len implicit missing-prototypes \\\n\t\t      \t       no-parentheses pointer-arith return-type shadow \\\n\t\t      \t       strict-prototypes switch uninitialized unused \\\n\t\t      \t       write-strings)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t \t'     Text
+'c/-m/'       Text
+'"(68000 68020 68881 bitfield fpa nobitfield rtd \\\n\t\t\t       short c68000 c68020 soft-float g gnu unix fpu \\\n\t\t\t       no-epilogue)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t \t'     Text
+'c/-d/'       Text
+'"(D M N)"'   Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t \t'     Text
+'c/-/'        Text
+'"(f W vspec v vpath ansi traditional \\\n\t\t\t      traditional-cpp trigraphs pedantic x o l c g L \\\n\t\t\t      I D U O O2 C E H B b V M MD MM i dynamic \\\n\t\t\t      nodtdlib static nostdinc undef)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t \t'     Text
+'c/-l/f:*.a/' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t \t'     Text
+'n/*/f:*.'    Text
+'{'           Operator
+'c,C,cc,o,a,s,i' Text
+'}'           Operator
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'g++'         Text
+' \t'         Text
+'n/*/f:*.'    Text
+'{'           Operator
+'C,cc,o,s,i'  Text
+'}'           Operator
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'CC'          Text
+' \t'         Text
+'n/*/f:*.'    Text
+'{'           Operator
+'C,cc,o,s,i'  Text
+'}'           Operator
+'/'           Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'$?'          Name.Variable
+'foolproof_rm_complete' Text
+')'           Operator
+' '           Text
+'then\n    '  Keyword
+'complete '   Name.Builtin
+'rm'          Text
+' \t'         Text
+'c/--/'       Text
+'"(directory force interactive verbose \\\n\t\t\trecursive help version)"' Literal.String.Double
+'/'           Text
+' '           Text
+'c/-/'        Text
+'"(d f i v r R -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/*/f:^*.'   Text
+'{'           Operator
+'c,cc,C,h,in' Text
+'}'           Operator
+'/'           Text
+'\t'          Text
+'# Protect precious files' Comment
+'\n'          Text
+
+'else\n    '  Keyword
+'complete '   Name.Builtin
+'rm'          Text
+' \t'         Text
+'c/--/'       Text
+'"(directory force interactive verbose \\\n\t\t\trecursive help version)"' Literal.String.Double
+'/'           Text
+' '           Text
+'c/-/'        Text
+'"(d f i v r R -)"' Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'endif\n    ' Keyword
+'complete '   Name.Builtin
+'vi'          Text
+' \t'         Text
+'n/*/f:^*.'   Text
+'['           Operator
+'oa'          Text
+']'           Operator
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'bindkey    ' Name.Builtin
+'N/-a/b/'     Text
+' '           Text
+'N/-c/c/'     Text
+' '           Text
+'n/-'         Text
+'['           Operator
+'ascr'        Text
+']'           Operator
+'/'           Text
+"'x:<key-sequence>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-'         Text
+'['           Operator
+'svedlr'      Text
+']'           Operator
+'/n/'         Text
+' '           Text
+'c/-'         Text
+'['           Operator
+'vedl'        Text
+']'           Operator
+'/n/'         Text
+' '           Text
+'c/-/'        Text
+'"(a s k c v e d l r)"' Literal.String.Double
+'/'           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-k/'       Text
+'"(left right up down)"' Literal.String.Double
+'/'           Text
+' '           Text
+'p/2-/b/'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'p/1/'        Text
+"'x:<key-sequence or option>'" Literal.String.Single
+'/'           Text
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'$?'          Name.Variable
+'traditional_find_complete' Text
+')'           Operator
+' '           Text
+'then\n    '  Keyword
+'complete '   Name.Builtin
+'find'        Text
+' \t'         Text
+'n/-fstype/'  Text
+'"(nfs 4.2)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/-name/f/'  Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t  \t'    Text
+'n/-type/'    Text
+'"(c b d f p l s)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/-user/u/'  Text
+' '           Text
+'n/-group/g/' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-exec/c/'  Text
+' '           Text
+'n/-ok/c/'    Text
+' '           Text
+'n/-cpio/f/'  Text
+' '           Text
+'n/-ncpio/f/' Text
+' '           Text
+'n/-newer/f/' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t  \t'    Text
+'c/-/'        Text
+'"(fstype name perm prune type user nouser \\\n\t\t  \t     group nogroup size inum atime mtime ctime exec \\\n\t\t\t     ok print ls cpio ncpio newer xdev depth \\\n\t\t\t     daystart follow maxdepth mindepth noleaf version \\\n\t\t\t     anewer cnewer amin cmin mmin true false uid gid \\\n\t\t\t     ilname iname ipath iregex links lname empty path \\\n\t\t\t     regex used xtype fprint fprint0 fprintf \\\n\t\t\t     print0 printf not a and o or)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t     ' Text
+'n/*/d/'      Text
+'\n'          Text
+
+'else\n    '  Keyword
+'complete '   Name.Builtin
+'find'        Text
+' \t'         Text
+'n/-fstype/'  Text
+'"(ufs nfs tmp mfs minix ext2 msdos umsdos vfat proc iso9660 4.2 4.3 local)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-name/f/'  Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t  \t'    Text
+'n/-type/'    Text
+'"(c b d f p l s)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/-user/u/'  Text
+' '           Text
+'n/-group/g/' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-exec/c/'  Text
+' '           Text
+'n/-ok/c/'    Text
+' '           Text
+'n/-cpio/f/'  Text
+' '           Text
+'n/-ncpio/f/' Text
+' '           Text
+'n/-newer/f/' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t  \t'    Text
+'c/-/'        Text
+'"(fstype name perm prune type user nouser \\\n\t\t  \t     group nogroup size inum atime mtime ctime exec \\\n\t\t\t     ok print ls cpio ncpio newer xdev depth \\\n\t\t\t     daystart follow maxdepth mindepth noleaf version \\\n\t\t\t     anewer cnewer amin cmin mmin true false uid gid \\\n\t\t\t     ilname iname ipath iregex links lname empty path \\\n\t\t\t     regex used xtype fprint fprint0 fprintf \\\n\t\t\t     print0 printf not a and o or)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t     ' Text
+'n/*/d/'      Text
+'\n'          Text
+
+'endif\n    ' Keyword
+'complete'    Name.Builtin
+' '           Text
+'-%*'         Text
+'\t'          Text
+'c/%/j/'      Text
+'\t\t\t'      Text
+'# fill in the jobs builtin' Comment
+'\n    '      Text
+'complete'    Name.Builtin
+' '           Text
+'{'           Operator
+'fg'          Name.Builtin
+',bg,stop'    Text
+'}'           Operator
+'\t'          Text
+'c/%/j/'      Text
+' '           Text
+'p/1/'        Text
+'"(%)"'       Literal.String.Double
+'//'          Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'limit\t'     Name.Builtin
+'c/-/'        Text
+'"(h)"'       Literal.String.Double
+'/'           Text
+' '           Text
+'n/*/l/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'unlimit\t'   Name.Builtin
+'c/-/'        Text
+'"(h)"'       Literal.String.Double
+'/'           Text
+' '           Text
+'n/*/l/'      Text
+'\n\n    '    Text
+'complete'    Name.Builtin
+' '           Text
+'-co*'        Text
+'\t'          Text
+'p/0/'        Text
+'"(compress)"' Literal.String.Double
+'/'           Text
+'\t'          Text
+'# make compress completion' Comment
+'\n\t\t\t\t\t\t' Text
+'# not ambiguous' Comment
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'$?'          Name.Variable
+'traditional_zcat_complete' Text
+')'           Operator
+' '           Text
+'then\n    '  Keyword
+'complete '   Name.Builtin
+'zcat'        Text
+'\t'          Text
+'n/*/f:*.Z/'  Text
+'\n'          Text
+
+'else\n    '  Keyword
+'complete '   Name.Builtin
+'zcat'        Text
+'\t'          Text
+'c/--/'       Text
+'"(force help license quiet version)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(f h L q V -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/*/f:*.'    Text
+'{'           Operator
+'gz,Z,z,zip'  Text
+'}'           Operator
+'/'           Text
+'\n'          Text
+
+'endif\n'     Keyword
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'$?'          Name.Variable
+'traditional_nm_complete' Text
+')'           Operator
+' '           Text
+'then\n    '  Keyword
+'complete '   Name.Builtin
+'nm'          Text
+'\t\t'        Text
+'n/*/f:^*.'   Text
+'{'           Operator
+'h,C,c,cc'    Text
+'}'           Operator
+'/'           Text
+'\n'          Text
+
+'else\n'      Keyword
+
+'complete '   Name.Builtin
+'nm'          Text
+'\t'          Text
+"'c/--radix=/x:<radix: _o_ctal _d_ecimal he_x_adecimal>/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+"'c/--target=/x:<bfdname>/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+"'c/--format=/(bsd sysv posix)/n/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+"'c/--/(debugsyms extern-only demangle dynamic print-armap \\\n\t\t\tprint-file-name numeric-sort no-sort reverse-sort \\\n\t\t\tsize-sort undefined-only portability target= radix= \\\n\t\t\tformat= defined-only\\ line-numbers no-demangle version \\\n\t\t\thelp)//'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+"'n/*/f:^*.{h,c,cc,s,S}/'" Literal.String.Single
+'\n'          Text
+
+'endif\n\n    ' Keyword
+'complete '   Name.Builtin
+'finger'      Text
+'\t'          Text
+'c/*@/'       Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+' '           Text
+'n/*/u/@'     Text
+' \n    '     Text
+'complete '   Name.Builtin
+'ping'        Text
+'\t'          Text
+'p/1/'        Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'traceroute'  Text
+'\t'          Text
+'p/1/'        Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+'\n\n    '    Text
+'complete'    Name.Builtin
+' '           Text
+'{'           Operator
+'talk,ntalk,phone' Text
+'}'           Operator
+'\t'          Text
+'p/1/'        Text
+'\'`users | tr " " "\\012" | uniq`\'' Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'n/*/'        Text
+'\\`'         Literal.String.Escape
+'who'         Text
+'\\ '         Literal.String.Escape
+'\\|'         Literal.String.Escape
+'\\ '         Literal.String.Escape
+'grep'        Text
+'\\ '         Literal.String.Escape
+'\\$'         Literal.String.Escape
+':1'          Text
+'\\ '         Literal.String.Escape
+'\\|'         Literal.String.Escape
+'\\ '         Literal.String.Escape
+'awk'         Text
+'\\ '         Literal.String.Escape
+"\\'"         Literal.String.Escape
+'\\{'         Literal.String.Escape
+'\\ '         Literal.String.Escape
+'print'       Text
+'\\ '         Literal.String.Escape
+'\\$'         Literal.String.Escape
+'2'           Text
+'\\ '         Literal.String.Escape
+'\\}'         Literal.String.Escape
+"\\'"         Literal.String.Escape
+'\\`'         Literal.String.Escape
+'/'           Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'ftp'         Text
+'\t'          Text
+'c/-/'        Text
+'"(d i g n v)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/-/'        Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+' '           Text
+'p/1/'        Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+' '           Text
+'n/*/n/'      Text
+'\n\n    '    Text
+'# this one is simple...' Comment
+'\n    '      Text
+'#complete rcp c/*:/f/ C@[./\\$~]*@f@ n/*/\\$hosts/:' Comment
+'\n    '      Text
+'# From Michael Schroeder <mlschroe@immd4.informatik.uni-erlangen.de> ' Comment
+'\n    '      Text
+'# This one will rsh to the file to fetch the list of files!' Comment
+'\n    '      Text
+'complete '   Name.Builtin
+'rcp'         Text
+' '           Text
+'\'c%*@*:%`set q=$:-0;set q="$q:s/@/ /";set q="$q:s/:/ /";set q=($q " ");rsh $q[2] -l $q[1] ls -dp $q[3]\\*`%\'' Literal.String.Single
+' '           Text
+'\'c%*:%`set q=$:-0;set q="$q:s/:/ /";set q=($q " ");rsh $q[1] ls -dp $q[2]\\*`%\'' Literal.String.Single
+' '           Text
+"'c%*@%$hosts%:'" Literal.String.Single
+' '           Text
+"'C@[./$~]*@f@'" Literal.String.Single
+'  '          Text
+"'n/*/$hosts/:'" Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'dd'          Text
+' '           Text
+'c/--/'       Text
+'"(help version)"' Literal.String.Double
+'/'           Text
+' '           Text
+'c/'          Text
+'['           Operator
+'io'          Text
+']'           Operator
+'f'           Name.Variable
+'='           Operator
+'/f/'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'c/conv'      Text
+'='           Operator
+'*,/'         Text
+'"(ascii ebcdic ibm block unblock \\\n\t\t\t    lcase ucase swab noerror sync)"' Literal.String.Double
+'/,'          Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'c/conv'      Text
+'='           Operator
+'/'           Text
+'"(ascii ebcdic ibm block unblock \\\n\t\t\t  lcase ucase swab noerror sync)"' Literal.String.Double
+'/,'          Text
+'\\\n'        Literal.String.Escape
+
+'\t        '  Text
+'c/*'         Text
+'='           Operator
+'/x:'         Text
+"'<number>'"  Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'n/*/'        Text
+'"(if of conv ibs obs bs cbs files skip file seek count)"' Literal.String.Double
+'/'           Text
+'='           Operator
+'\n\n    '    Text
+'complete '   Name.Builtin
+'nslookup'    Text
+'   '         Text
+'p/1/x:'      Text
+"'<host>'"    Literal.String.Single
+'/'           Text
+' '           Text
+'p/2/'        Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'ar'          Text
+' '           Text
+'c/'          Text
+'['           Operator
+'dmpqrtx'     Text
+']'           Operator
+'/'           Text
+'"(c l o u v a b i)"' Literal.String.Double
+'/'           Text
+' '           Text
+'p/1/'        Text
+'"(d m p q r t x)"' Literal.String.Double
+'//'          Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'p/2/f:*.a/'  Text
+' '           Text
+'p/*/f:*.o/'  Text
+'\n\n    '    Text
+'complete'    Name.Builtin
+' '           Text
+'{'           Operator
+'refile,sprev,snext,scan,pick,rmm,inc,folder,show' Text
+'}'           Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'c@+@F:'      Text
+'$HOME'       Name.Variable
+'/Mail/@'     Text
+'\n\n    '    Text
+'# these and interrupt handling from Jaap Vermeulen <jaap@sequent.com>' Comment
+'\n    '      Text
+'complete'    Name.Builtin
+' '           Text
+'{'           Operator
+'rexec,rxexec,rxterm,rmterm' Text
+'}'           Operator
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+"'p/1/$hosts/'" Literal.String.Single
+' '           Text
+"'c/-/(l L E)/'" Literal.String.Single
+' '           Text
+"'n/-l/u/'"   Literal.String.Single
+' '           Text
+"'n/-L/f/'"   Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+"'n/-E/e/'"   Literal.String.Single
+' '           Text
+"'n/*/c/'"    Literal.String.Single
+'\n    '      Text
+'complete '   Name.Builtin
+'kill'        Name.Builtin
+'\t'          Text
+"'c/-/S/'"    Literal.String.Single
+' '           Text
+"'c/%/j/'"    Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+"'n/*/`ps -u $LOGNAME | awk '" Literal.String.Single
+'"\'"'        Literal.String.Double
+"'{print $1}'" Literal.String.Single
+'"\'"'        Literal.String.Double
+"'`/'"        Literal.String.Single
+'\n\n    '    Text
+'# these from Marc Horowitz <marc@cam.ov.com>' Comment
+'\n    '      Text
+'complete '   Name.Builtin
+'attach'      Text
+' '           Text
+"'n/-mountpoint/d/'" Literal.String.Single
+' '           Text
+"'n/-m/d/'"   Literal.String.Single
+' '           Text
+"'n/-type/(afs nfs rvd ufs)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t    '    Text
+"'n/-t/(afs nfs rvd ufs)/'" Literal.String.Single
+' '           Text
+"'n/-user/u/'" Literal.String.Single
+' '           Text
+"'n/-U/u/'"   Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t    '    Text
+"'c/-/(verbose quiet force printpath lookup debug map \\\n\t\t\t  nomap remap zephyr nozephyr readonly write \\\n\t\t\t  mountpoint noexplicit explicit type mountoptions \\\n\t\t\t  nosetuid setuid override skipfsck lock user host)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t    '    Text
+"'n/-e/f/'"   Literal.String.Single
+' '           Text
+"'n/*/()/'"   Literal.String.Single
+'\n    '      Text
+'complete '   Name.Builtin
+'hesinfo'     Text
+'\t'          Text
+"'p/1/u/'"    Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+"'p/2/(passwd group uid grplist pcap pobox cluster \\\n\t\t\t      filsys sloc service)/'" Literal.String.Single
+'\n\n    '    Text
+'# these from E. Jay Berkenbilt <ejb@ERA.COM>' Comment
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'$?'          Name.Variable
+'traditional_configure_complete' Text
+')'           Operator
+' '           Text
+'then\n    '  Keyword
+'complete'    Name.Builtin
+' '           Text
+'./configure' Text
+' '           Text
+"'c/--*=/f/'" Literal.String.Single
+' '           Text
+"'c/--{cache-file,prefix,srcdir}/(=)//'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t '     Text
+"'c/--/(cache-file verbose prefix srcdir)//'" Literal.String.Single
+'\n'          Text
+
+'else\n'      Keyword
+
+'complete'    Name.Builtin
+' '           Text
+'./configure' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+"'c@--{prefix,exec-prefix,bindir,sbindir,libexecdir,datadir,sysconfdir,sharedstatedir,localstatedir,infodir,mandir,srcdir,x-includes,x-libraries}=*@x:<directory e.g. /usr/local>'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+"'c/--cachefile=*/x:<filename>/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+"'c/--{enable,disable,with}-*/x:<feature>//'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+"'c/--*=/x:<directory>/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+"'c/--/(prefix= exec-prefix= bindir= sbindir= \\\n\t\t\t\tlibexecdir= datadir= sysconfdir= \\\n\t\t\t\tsharedstatedir= localstatedir= infodir= \\\n\t\t\t\tmandir= srcdir= x-includes= x-libraries= \\\n\t\t\t\tenable- disable- with- )//'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+"'c/--(help no-create quiet silent version \\\n\t\t\t\tverbose)/'" Literal.String.Single
+'\n'          Text
+
+'endif\n    ' Keyword
+'complete '   Name.Builtin
+'gs'          Text
+' '           Text
+"'c/-sDEVICE=/(x11 cdjmono cdj550 epson eps9high epsonc \\\n\t\t\t      dfaxhigh dfaxlow laserjet ljet4 sparc pbm \\\n\t\t\t      pbmraw pgm pgmraw ppm ppmraw bit)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+"'c/-sOutputFile=/f/'" Literal.String.Single
+' '           Text
+"'c/-s/(DEVICE OutputFile)/='" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+"'c/-d/(NODISPLAY NOPLATFONTS NOPAUSE)/'" Literal.String.Single
+' '           Text
+"'n/*/f/'"    Literal.String.Single
+'\n    '      Text
+'complete '   Name.Builtin
+'perl'        Text
+'\t'          Text
+"'n/-S/c/'"   Literal.String.Single
+'\n    '      Text
+'complete '   Name.Builtin
+'printenv'    Name.Builtin
+'\t'          Text
+"'n/*/e/'"    Literal.String.Single
+'\n    '      Text
+'complete '   Name.Builtin
+'sccs'        Text
+'\t'          Text
+'p/1/'        Text
+'"(admin cdc check clean comb deledit delget \\\n\t\t\tdelta diffs edit enter fix get help info \\\n\t\t\tprint prs prt rmdel sccsdiff tell unedit \\\n\t\t\tunget val what)"' Literal.String.Double
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'setenv'      Name.Builtin
+'\t'          Text
+"'p/1/e/'"    Literal.String.Single
+' '           Text
+"'c/*:/f/'"   Literal.String.Single
+'\n\n    '    Text
+'# these and method of setting hosts from Kimmo Suominen <kim@tac.nyc.ny.us>' Comment
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'-f'          Text
+' '           Text
+'$HOME'       Name.Variable
+'/.mh_profile' Text
+' '           Text
+'&&'          Text
+' '           Text
+'-x'          Text
+' '           Text
+'"`which folders`"' Literal.String.Double
+' '           Text
+')'           Operator
+' '           Text
+'then \n\n    ' Keyword
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'!'           Text
+' '           Text
+'$?'          Name.Variable
+'FOLDERS'     Text
+' '           Text
+')'           Operator
+' '           Text
+'setenv '     Name.Builtin
+'FOLDERS'     Text
+' '           Text
+'"`folders -fast -recurse`"' Literal.String.Double
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'!'           Text
+' '           Text
+'$?'          Name.Variable
+'MHA'         Text
+' '           Text
+')'           Operator
+'     '       Text
+'setenv '     Name.Builtin
+'MHA'         Text
+'     '       Text
+'"`ali | sed -e \'/^ /d\' -e \'s/:.*//\'`"' Literal.String.Double
+'\n\n    '    Text
+'set '        Name.Builtin
+'folders'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Operator
+' '           Text
+'$FOLDERS'    Name.Variable
+' '           Text
+')'           Operator
+'\n    '      Text
+'set '        Name.Builtin
+'mha'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Operator
+' '           Text
+'$MHA'        Name.Variable
+' '           Text
+')'           Operator
+'\n\n    '    Text
+'complete '   Name.Builtin
+'ali'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(alias nolist list nonormalize normalize nouser user help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-alias,f,'" Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'anno'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(component noinplace inplace nodate date text help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'burst'       Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(noinplace inplace noquiet quiet noverbose verbose help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'comp'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(draftfolder draftmessage nodraftfolder editor noedit file form nouse use whatnowproc nowhatnowproc help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-whatnowproc,c,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-file,f,'" Literal.String.Single
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-form,f,'" Literal.String.Single
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'dist'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(noannotate annotate draftfolder draftmessage nodraftfolder editor noedit form noinplace inplace whatnowproc nowhatnowproc help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-whatnowproc,c,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-form,f,'" Literal.String.Single
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'folder'      Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(all nofast fast noheader header nopack pack noverbose verbose norecurse recurse nototal total noprint print nolist list push pop help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'folders'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(all nofast fast noheader header nopack pack noverbose verbose norecurse recurse nototal total noprint print nolist list push pop help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'forw'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(noannotate annotate draftfolder draftmessage nodraftfolder editor noedit filter form noformat format noinplace inplace digest issue volume whatnowproc nowhatnowproc help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-whatnowproc,c,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-filter,f,'" Literal.String.Single
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-form,f,'" Literal.String.Single
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'inc'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(audit file noaudit nochangecur changecur file form format nosilent silent notruncate truncate width help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-audit,f,'" Literal.String.Single
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-form,f,'" Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'mark'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(add delete list sequence nopublic public nozero zero help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'mhmail'      Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(body cc from subject help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-cc,$mha,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-from,$mha,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n/*/$mha/'" Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'mhpath'      Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'msgchk'      Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(nodate date nonotify notify help)/'" Literal.String.Single
+' \n\n    '   Text
+'complete '   Name.Builtin
+'msh'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(prompt noscan scan notopcur topcur help)/'" Literal.String.Single
+' \n\n    '   Text
+'complete '   Name.Builtin
+'next'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(draft form moreproc nomoreproc length width showproc noshowproc header noheader help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-moreproc,c,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-showproc,c,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-form,f,'" Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'packf'       Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(file help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'pick'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(and or not lbrace rbrace cc date from search subject to othercomponent after before datefield sequence nopublic public nozero zero nolist list help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'prev'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(draft form moreproc nomoreproc length width showproc noshowproc header noheader help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-moreproc,c,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-showproc,c,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-form,f,'" Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'prompter'    Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(erase kill noprepend prepend norapid rapid nodoteof doteof help)/'" Literal.String.Single
+' \n\n    '   Text
+'complete '   Name.Builtin
+'refile'      Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(draft nolink link nopreserve preserve src file help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-file,f,'" Literal.String.Single
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'rmf'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(nointeractive interactive help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  \n\n    '  Text
+'complete '   Name.Builtin
+'rmm'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'scan'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(noclear clear form format noheader header width noreverse reverse file help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-form,f,'" Literal.String.Single
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-file,f,'" Literal.String.Single
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'send'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(alias draft draftfolder draftmessage nodraftfolder filter nofilter noformat format noforward forward nomsgid msgid nopush push noverbose verbose nowatch watch width help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-alias,f,'" Literal.String.Single
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-filter,f,'" Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'show'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(draft form moreproc nomoreproc length width showproc noshowproc header noheader help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-moreproc,c,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-showproc,c,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-form,f,'" Literal.String.Single
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'sortm'       Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(datefield textfield notextfield limit nolimit noverbose verbose help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'vmh'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(prompt vmhproc novmhproc help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-vmhproc,c,'" Literal.String.Single
+'  \n\n    '  Text
+'complete '   Name.Builtin
+'whatnow'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(draftfolder draftmessage nodraftfolder editor noedit prompt help)/'" Literal.String.Single
+' \n\n    '   Text
+'complete '   Name.Builtin
+'whom'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/(alias nocheck check draft draftfolder draftmessage nodraftfolder help)/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n,-alias,f,'" Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'plum'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/()/'"   Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c,+,$folders,'" Literal.String.Single
+'  '          Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'\'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\\12" | sort -u`,\'' Literal.String.Single
+'\n\n    '    Text
+'complete '   Name.Builtin
+'mail'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'c/-/()/'"   Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+"'n/*/$mha/'" Literal.String.Single
+'\n\n    '    Text
+'endif'       Keyword
+'\n\n    '    Text
+'# these from Tom Warzeka <waz@quahog.nl.nuwc.navy.mil>' Comment
+'\n    '      Text
+'# you may need to set the following variables for your host' Comment
+'\n    '      Text
+'set '        Name.Builtin
+'_elispdir'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'/usr/lib/emacs/19.34/lisp' Text
+'  '          Text
+'# GNU Emacs lisp directory' Comment
+'\n    '      Text
+'set '        Name.Builtin
+'_maildir'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'/var/spool/mail' Text
+'  '          Text
+'# Post Office: /var/spool/mail or /usr/mail' Comment
+'\n    '      Text
+'set '        Name.Builtin
+'_ypdir'      Name.Variable
+'  '          Text
+'='           Operator
+' '           Text
+'/var/yp'     Text
+'\t'          Text
+'# directory where NIS (YP) maps are kept' Comment
+'\n    '      Text
+'set '        Name.Builtin
+'_domain'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"`dnsdomainname`"' Literal.String.Double
+'\n\n    '    Text
+"# this one works but is slow and doesn't descend into subdirectories" Comment
+'\n    '      Text
+'# complete\tcd\tC@[./\\$~]*@d@ \\' Comment
+'\n    '      Text
+"#\t\t\tp@1@'`\\ls -1F . $cdpath | grep /\\$ | sort -u`'@ n@*@n@" Comment
+'\n\n    '    Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'-r'          Text
+' '           Text
+'/etc/shells' Text
+' '           Text
+')'           Operator
+' '           Text
+'then\n        ' Keyword
+'complete '   Name.Builtin
+'setenv\t'    Name.Builtin
+'p@1@e@'      Text
+' '           Text
+'n@DISPLAY@'  Text
+'\\$'         Literal.String.Escape
+'hosts@:'     Text
+' '           Text
+'n@SHELL@'    Text
+"'`cat /etc/shells`'" Literal.String.Single
+'@'           Text
+'\n    '      Text
+'else\n\t'    Keyword
+'complete '   Name.Builtin
+'setenv\t'    Name.Builtin
+'p@1@e@'      Text
+' '           Text
+'n@DISPLAY@'  Text
+'\\$'         Literal.String.Escape
+'hosts@:'     Text
+'\n    '      Text
+'endif\n    ' Keyword
+'complete '   Name.Builtin
+'unsetenv\t'  Name.Builtin
+'n/*/e/'      Text
+'\n\n    '    Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'-r'          Text
+' '           Text
+'$HOME'       Name.Variable
+'/.mailrc'    Text
+')'           Operator
+' '           Text
+'then\n        ' Keyword
+'complete '   Name.Builtin
+'mail'        Text
+'\t'          Text
+'c/-/'        Text
+'"(e i f n s u v)"' Literal.String.Double
+'/'           Text
+' '           Text
+'c/*@/'       Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c@+@F:'      Text
+'$HOME'       Name.Variable
+'/Mail@'      Text
+' '           Text
+'C@'          Text
+'['           Operator
+'./'          Text
+'\\$'         Literal.String.Escape
+'~'           Text
+']'           Operator
+'@f@'         Text
+' '           Text
+'n/-s/x:'     Text
+"'<subject>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n@-u@T:'     Text
+'$_maildir'   Name.Variable
+'@'           Text
+' '           Text
+'n/-f/f/'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n@*@'        Text
+'\'`sed -n s/alias//p $HOME/.mailrc | tr -s " " "\t" | cut -f 2`\'' Literal.String.Single
+'@'           Text
+'\n    '      Text
+'else\n        ' Keyword
+'complete '   Name.Builtin
+'mail'        Text
+'\t'          Text
+'c/-/'        Text
+'"(e i f n s u v)"' Literal.String.Double
+'/'           Text
+' '           Text
+'c/*@/'       Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c@+@F:'      Text
+'$HOME'       Name.Variable
+'/Mail@'      Text
+' '           Text
+'C@'          Text
+'['           Operator
+'./'          Text
+'\\$'         Literal.String.Escape
+'~'           Text
+']'           Operator
+'@f@'         Text
+' '           Text
+'n/-s/x:'     Text
+"'<subject>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n@-u@T:'     Text
+'$_maildir'   Name.Variable
+'@'           Text
+' '           Text
+'n/-f/f/'     Text
+' '           Text
+'n/*/u/'      Text
+'\n    '      Text
+'endif\n\n    ' Keyword
+'complete '   Name.Builtin
+'man'         Text
+'\t    '      Text
+'n@1@'        Text
+"'`\\ls -1 /usr/man/man1 | sed s%\\\\.1.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t    '  Text
+'n@2@'        Text
+"'`\\ls -1 /usr/man/man2 | sed s%\\\\.2.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t    '  Text
+'n@3@'        Text
+"'`\\ls -1 /usr/man/man3 | sed s%\\\\.3.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t    '  Text
+'n@4@'        Text
+"'`\\ls -1 /usr/man/man4 | sed s%\\\\.4.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t    '  Text
+'n@5@'        Text
+"'`\\ls -1 /usr/man/man5 | sed s%\\\\.5.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t    '  Text
+'n@6@'        Text
+"'`\\ls -1 /usr/man/man6 | sed s%\\\\.6.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t    '  Text
+'n@7@'        Text
+"'`\\ls -1 /usr/man/man7 | sed s%\\\\.7.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t    '  Text
+'n@8@'        Text
+"'`\\ls -1 /usr/man/man8 | sed s%\\\\.8.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'    '        Text
+'n@9@'        Text
+"'`[ -r /usr/man/man9 ] && \\ls -1 /usr/man/man9 | sed s%\\\\.9.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'    '        Text
+'n@0@'        Text
+"'`[ -r /usr/man/man0 ] && \\ls -1 /usr/man/man0 | sed s%\\\\.0.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'  '          Text
+'n@new@'      Text
+"'`[ -r /usr/man/mann ] && \\ls -1 /usr/man/mann | sed s%\\\\.n.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'  '          Text
+'n@old@'      Text
+"'`[ -r /usr/man/mano ] && \\ls -1 /usr/man/mano | sed s%\\\\.o.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'n@local@'    Text
+"'`[ -r /usr/man/manl ] && \\ls -1 /usr/man/manl | sed s%\\\\.l.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'n@public@'   Text
+"'`[ -r /usr/man/manp ]&& \\ls -1 /usr/man/manp | sed s%\\\\.p.\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'c/-/'        Text
+'"(- f k P s t)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/-f/c/'     Text
+' '           Text
+'n/-k/x:'     Text
+"'<keyword>'" Literal.String.Single
+'/'           Text
+' '           Text
+'n/-P/d/'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+'N@-P@'       Text
+"'`\\ls -1 $:-1/man? | sed s%\\\\..\\*\\$%%`'" Literal.String.Single
+'@'           Text
+' '           Text
+'n/*/c/'      Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'ps'          Text
+'\t        '  Text
+'c/-t/x:'     Text
+"'<tty>'"     Literal.String.Single
+'/'           Text
+' '           Text
+'c/-/'        Text
+'"(a c C e g k l S t u v w x)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-k/x:'     Text
+"'<kernel>'"  Literal.String.Single
+'/'           Text
+' '           Text
+'N/-k/x:'     Text
+"'<core_file>'" Literal.String.Single
+'/'           Text
+' '           Text
+'n/*/x:'      Text
+"'<PID>'"     Literal.String.Single
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'compress'    Text
+'\t'          Text
+'c/-/'        Text
+'"(c f v b)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/-b/x:'     Text
+"'<max_bits>'" Literal.String.Single
+'/'           Text
+' '           Text
+'n/*/f:^*.Z/' Text
+'\n    '      Text
+'complete '   Name.Builtin
+'uncompress'  Text
+'\t'          Text
+'c/-/'        Text
+'"(c f v)"'   Literal.String.Double
+'/'           Text
+'                        ' Text
+'n/*/f:*.Z/'  Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'xhost'       Text
+'\t'          Text
+'c/'          Text
+'['           Operator
+'+-'          Text
+']'           Operator
+'/'           Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+' '           Text
+'n/*/'        Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+'\n\n    '    Text
+'# these conform to the latest GNU versions available at press time ...' Comment
+'\n\n    '    Text
+'complete '   Name.Builtin
+'emacs'       Text
+'\t'          Text
+'c/-/'        Text
+'"(batch d f funcall i insert kill l load \\\n\t\t\tno-init-file nw q t u user)"' Literal.String.Double
+'/'           Text
+' '           Text
+'c/+/x:'      Text
+"'<line_number>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-d/x:'     Text
+"'<display>'" Literal.String.Single
+'/'           Text
+' '           Text
+'n/-f/x:'     Text
+"'<lisp_function>'" Literal.String.Single
+'/'           Text
+' '           Text
+'n/-i/f/'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n@-l@F:'     Text
+'$_elispdir'  Name.Variable
+'@'           Text
+' '           Text
+'n/-t/x:'     Text
+"'<terminal>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-u/u/'     Text
+' '           Text
+'n/*/f:^*'    Text
+'['           Operator
+'\\#'         Literal.String.Escape
+'~'           Text
+']'           Operator
+'/'           Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'gzcat'       Text
+'\t'          Text
+'c/--/'       Text
+'"(force help license quiet version)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(f h L q V -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/*/f:*.'    Text
+'{'           Operator
+'gz,Z,z,zip'  Text
+'}'           Operator
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'gzip'        Text
+'\t'          Text
+'c/--/'       Text
+'"(stdout to-stdout decompress uncompress \\\n\t\t\tforce help list license no-name quiet recurse \\\n\t\t\tsuffix test verbose version fast best)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(c d f h l L n q r S t v V 1 2 3 4 5 6 7 8 9 -)"' Literal.String.Double
+'/'           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-S,--suffix' Text
+'}'           Operator
+'/x:'         Text
+"'<file_name_suffix>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-d,--'       Text
+'{'           Operator
+'de,un'       Text
+'}'           Operator
+'compress'    Text
+'}'           Operator
+'/f:*.'       Text
+'{'           Operator
+'gz,Z,z,zip,taz,tgz' Text
+'}'           Operator
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'N/'          Text
+'{'           Operator
+'-d,--'       Text
+'{'           Operator
+'de,un'       Text
+'}'           Operator
+'compress'    Text
+'}'           Operator
+'/f:*.'       Text
+'{'           Operator
+'gz,Z,z,zip,taz,tgz' Text
+'}'           Operator
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/*/f:^*.'   Text
+'{'           Operator
+'gz,Z,z,zip,taz,tgz' Text
+'}'           Operator
+'/'           Text
+'\n    '      Text
+'complete'    Name.Builtin
+' '           Text
+'{'           Operator
+'gunzip,ungzip' Text
+'}'           Operator
+' '           Text
+'c/--/'       Text
+'"(stdout to-stdout force help list license \\\n\t\t\tno-name quiet recurse suffix test verbose version)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(c f h l L n q r S t v V -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-S,--suffix' Text
+'}'           Operator
+'/x:'         Text
+"'<file_name_suffix>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/*/f:*.'    Text
+'{'           Operator
+'gz,Z,z,zip,taz,tgz' Text
+'}'           Operator
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'zgrep'       Text
+'\t'          Text
+'c/-*A/x:'    Text
+"'<#_lines_after>'" Literal.String.Single
+'/'           Text
+' '           Text
+'c/-*B/x:'    Text
+"'<#_lines_before>'" Literal.String.Single
+'/'           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(A b B c C e f h i l n s v V w x)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'p/1/x:'      Text
+"'<limited_regular_expression>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-*e/x:'    Text
+"'<limited_regular_expression>'" Literal.String.Single
+'/'           Text
+' '           Text
+'n/-*f/f/'    Text
+' '           Text
+'n/*/f/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'zegrep'      Text
+'\t'          Text
+'c/-*A/x:'    Text
+"'<#_lines_after>'" Literal.String.Single
+'/'           Text
+' '           Text
+'c/-*B/x:'    Text
+"'<#_lines_before>'" Literal.String.Single
+'/'           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(A b B c C e f h i l n s v V w x)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'p/1/x:'      Text
+"'<full_regular_expression>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-*e/x:'    Text
+"'<full_regular_expression>'" Literal.String.Single
+'/'           Text
+' '           Text
+'n/-*f/f/'    Text
+' '           Text
+'n/*/f/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'zfgrep'      Text
+'\t'          Text
+'c/-*A/x:'    Text
+"'<#_lines_after>'" Literal.String.Single
+'/'           Text
+' '           Text
+'c/-*B/x:'    Text
+"'<#_lines_before>'" Literal.String.Single
+'/'           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(A b B c C e f h i l n s v V w x)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'p/1/x:'      Text
+"'<fixed_string>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-*e/x:'    Text
+"'<fixed_string>'" Literal.String.Single
+'/'           Text
+' '           Text
+'n/-*f/f/'    Text
+' '           Text
+'n/*/f/'      Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'znew'        Text
+'\t'          Text
+'c/-/'        Text
+'"(f t v 9 P K)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/*/f:*.Z/'  Text
+'\n    '      Text
+'complete '   Name.Builtin
+'zmore'       Text
+'\t'          Text
+'n/*/f:*.'    Text
+'{'           Operator
+'gz,Z,z,zip'  Text
+'}'           Operator
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'zfile'       Text
+'\t'          Text
+'n/*/f:*.'    Text
+'{'           Operator
+'gz,Z,z,zip,taz,tgz' Text
+'}'           Operator
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'ztouch'      Text
+'\t'          Text
+'n/*/f:*.'    Text
+'{'           Operator
+'gz,Z,z,zip,taz,tgz' Text
+'}'           Operator
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'zforce'      Text
+'\t'          Text
+'n/*/f:^*.'   Text
+'{'           Operator
+'gz,tgz'      Text
+'}'           Operator
+'/'           Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'grep'        Text
+'\t'          Text
+'c/-*A/x:'    Text
+"'<#_lines_after>'" Literal.String.Single
+'/'           Text
+' '           Text
+'c/-*B/x:'    Text
+"'<#_lines_before>'" Literal.String.Single
+'/'           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(A b B c C e f h i l n s v V w x)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'p/1/x:'      Text
+"'<limited_regular_expression>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-*e/x:'    Text
+"'<limited_regular_expression>'" Literal.String.Single
+'/'           Text
+' '           Text
+'n/-*f/f/'    Text
+' '           Text
+'n/*/f/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'egrep'       Text
+'\t'          Text
+'c/-*A/x:'    Text
+"'<#_lines_after>'" Literal.String.Single
+'/'           Text
+' '           Text
+'c/-*B/x:'    Text
+"'<#_lines_before>'" Literal.String.Single
+'/'           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(A b B c C e f h i l n s v V w x)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'p/1/x:'      Text
+"'<full_regular_expression>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-*e/x:'    Text
+"'<full_regular_expression>'" Literal.String.Single
+'/'           Text
+' '           Text
+'n/-*f/f/'    Text
+' '           Text
+'n/*/f/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'fgrep'       Text
+'\t'          Text
+'c/-*A/x:'    Text
+"'<#_lines_after>'" Literal.String.Single
+'/'           Text
+' '           Text
+'c/-*B/x:'    Text
+"'<#_lines_before>'" Literal.String.Single
+'/'           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(A b B c C e f h i l n s v V w x)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'p/1/x:'      Text
+"'<fixed_string>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-*e/x:'    Text
+"'<fixed_string>'" Literal.String.Single
+'/'           Text
+' '           Text
+'n/-*f/f/'    Text
+' '           Text
+'n/*/f/'      Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'users'       Text
+'\t'          Text
+'c/--/'       Text
+'"(help version)"' Literal.String.Double
+'/'           Text
+' '           Text
+'p/1/x:'      Text
+"'<accounting_file>'" Literal.String.Single
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'who'         Text
+'\t'          Text
+'c/--/'       Text
+'"(heading mesg idle count help message version \\\n\t\t\twritable)"' Literal.String.Double
+'/'           Text
+' '           Text
+'c/-/'        Text
+'"(H T w i u m q s -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'p/1/x:'      Text
+"'<accounting_file>'" Literal.String.Single
+'/'           Text
+' '           Text
+'n/am/'       Text
+'"(i)"'       Literal.String.Double
+'/'           Text
+' '           Text
+'n/are/'      Text
+'"(you)"'     Literal.String.Double
+'/'           Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'chown'       Text
+'\t'          Text
+'c/--/'       Text
+'"(changes silent quiet verbose recursive help \\\n\t\t\tversion)"' Literal.String.Double
+'/'           Text
+' '           Text
+'c/-/'        Text
+'"(c f v R -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'C@'          Text
+'['           Operator
+'./'          Text
+'\\$'         Literal.String.Escape
+'~'           Text
+']'           Operator
+'@f@'         Text
+' '           Text
+'c/*'         Text
+'['           Operator
+'.:'          Text
+']'           Operator
+'/g/'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-/u/.'     Text
+' '           Text
+'p/1/u/.'     Text
+' '           Text
+'n/*/f/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'chgrp'       Text
+'\t'          Text
+'c/--/'       Text
+'"(changes silent quiet verbose recursive help \\\n\t\t\tversion)"' Literal.String.Double
+'/'           Text
+' '           Text
+'c/-/'        Text
+'"(c f v R -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/-/g/'      Text
+' '           Text
+'p/1/g/'      Text
+' '           Text
+'n/*/f/'      Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'cat'         Text
+'\t'          Text
+'c/--/'       Text
+'"(number-nonblank number squeeze-blank show-all \\\n\t\t\tshow-nonprinting show-ends show-tabs help version)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(b e n s t u v A E T -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/*/f/'      Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'$?'          Name.Variable
+'traditional_cp_mv_complete' Text
+')'           Operator
+' '           Text
+'then\n    '  Keyword
+'complete '   Name.Builtin
+'mv'          Text
+'\t\t'        Text
+'c/--/'       Text
+'"(backup force interactive update verbose suffix \\\n\t\t\tversion-control help version)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(b f i u v S V -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-S,--suffix' Text
+'}'           Operator
+'/x:'         Text
+"'<suffix>'"  Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-V,--version-control' Text
+'}'           Operator
+'/'           Text
+'"(t numbered nil existing \\\n\t\t\tnever simple)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/-/f/'      Text
+' '           Text
+'N/-/d/'      Text
+' '           Text
+'p/1/f/'      Text
+' '           Text
+'p/2/d/'      Text
+' '           Text
+'n/*/f/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'cp'          Text
+'\t\t'        Text
+'c/--/'       Text
+'"(archive backup no-dereference force interactive \\\n\t\t\tlink preserve symbolic-link update verbose parents \\\n\t\t\tone-file-system recursive suffix version-control help \\\n\t\t\tversion)"' Literal.String.Double
+'/'           Text
+' '           Text
+'c/-/'        Text
+'"(a b d f i l p r s u v x P R S V -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-*r/d/'    Text
+' '           Text
+'n/'          Text
+'{'           Operator
+'-S,--suffix' Text
+'}'           Operator
+'/x:'         Text
+"'<suffix>'"  Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-V,--version-control' Text
+'}'           Operator
+'/'           Text
+'"(t numbered nil existing \\\n\t\t\tnever simple)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/-/f/'      Text
+' '           Text
+'N/-/d/'      Text
+' '           Text
+'p/1/f/'      Text
+' '           Text
+'p/2/d/'      Text
+' '           Text
+'n/*/f/'      Text
+'\n'          Text
+
+'else\n    '  Keyword
+'complete '   Name.Builtin
+'mv'          Text
+'\t\t'        Text
+'c/--/'       Text
+'"(backup force interactive update verbose suffix \\\n\t\t\tversion-control help version)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(b f i u v S V -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-S,--suffix' Text
+'}'           Operator
+'/x:'         Text
+"'<suffix>'"  Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-V,--version-control' Text
+'}'           Operator
+'/'           Text
+'"(t numbered nil existing \\\n\t\t\tnever simple)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/-/f/'      Text
+' '           Text
+'N/-/d/'      Text
+' '           Text
+'n/*/f/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'cp'          Text
+'\t\t'        Text
+'c/--/'       Text
+'"(archive backup no-dereference force interactive \\\n\t\t\tlink preserve symbolic-link update verbose parents \\\n\t\t\tone-file-system recursive suffix version-control help \\\n\t\t\tversion)"' Literal.String.Double
+'/'           Text
+' '           Text
+'c/-/'        Text
+'"(a b d f i l p r s u v x P R S V -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-*r/d/'    Text
+' '           Text
+'n/'          Text
+'{'           Operator
+'-S,--suffix' Text
+'}'           Operator
+'/x:'         Text
+"'<suffix>'"  Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-V,--version-control' Text
+'}'           Operator
+'/'           Text
+'"(t numbered nil existing \\\n\t\t\tnever simple)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/-/f/'      Text
+' '           Text
+'N/-/d/'      Text
+' '           Text
+'n/*/f/'      Text
+'\n'          Text
+
+'endif\n    ' Keyword
+'complete '   Name.Builtin
+'ln'          Text
+'\t\t'        Text
+'c/--/'       Text
+'"(backup directory force interactive symbolic \\\n\t\t\tverbose suffix version-control help version)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(b d F f i s v S V -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-S,--suffix' Text
+'}'           Operator
+'/x:'         Text
+"'<suffix>'"  Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-V,--version-control' Text
+'}'           Operator
+'/'           Text
+'"(t numbered nil existing \\\n\t\t\tnever simple)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/-/f/'      Text
+' '           Text
+'N/-/x:'      Text
+"'<link_name>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'p/1/f/'      Text
+' '           Text
+'p/2/x:'      Text
+"'<link_name>'" Literal.String.Single
+'/'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'touch'       Text
+'\t'          Text
+'c/--/'       Text
+'"(date file help time version)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(a c d f m r t -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-d,--date'   Text
+'}'           Operator
+'/x:'         Text
+"'<date_string>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/--time/'   Text
+'"(access atime mtime modify use)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-r,--file'   Text
+'}'           Operator
+'/f/'         Text
+' '           Text
+'n/-t/x:'     Text
+"'<time_stamp>'" Literal.String.Single
+'/'           Text
+' '           Text
+'n/*/f/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'mkdir'       Text
+'\t'          Text
+'c/--/'       Text
+'"(parents help version mode)"' Literal.String.Double
+'/'           Text
+' '           Text
+'c/-/'        Text
+'"(p m -)"'   Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-m,--mode'   Text
+'}'           Operator
+'/x:'         Text
+"'<mode>'"    Literal.String.Single
+'/'           Text
+' '           Text
+'n/*/d/'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'rmdir'       Text
+'\t'          Text
+'c/--/'       Text
+'"(parents help version)"' Literal.String.Double
+'/'           Text
+' '           Text
+'c/-/'        Text
+'"(p -)"'     Literal.String.Double
+'/'           Text
+' '           Text
+'n/*/d/'      Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'tar'         Text
+'\t'          Text
+'c/-'         Text
+'['           Operator
+'Acru'        Text
+']'           Operator
+'*/'          Text
+'"(b B C f F g G h i l L M N o P \\\n\t\t\tR S T v V w W X z Z)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-'         Text
+'['           Operator
+'dtx'         Text
+']'           Operator
+'*/'          Text
+'"( B C f F g G i k K m M O p P \\\n\t\t\tR s S T v w x X z Z)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'p/1/'        Text
+'"(A c d r t u x -A -c -d -r -t -u -x \\\n\t\t\t--catenate --concatenate --create --diff --compare \\\n\t\t\t--delete --append --list --update --extract --get)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/--/'       Text
+'"(catenate concatenate create diff compare \\\n\t\t\tdelete append list update extract get atime-preserve \\\n\t\t\tblock-size read-full-blocks directory checkpoint file \\\n\t\t\tforce-local info-script new-volume-script incremental \\\n\t\t\tlisted-incremental dereference ignore-zeros \\\n\t\t\tignore-failed-read keep-old-files starting-file \\\n\t\t\tone-file-system tape-length modification-time \\\n\t\t\tmulti-volume after-date newer old-archive portability \\\n\t\t\tto-stdout same-permissions preserve-permissions \\\n\t\t\tabsolute-paths preserve record-number remove-files \\\n\t\t\tsame-order preserve-order same-owner sparse \\\n\t\t\tfiles-from null totals verbose label version \\\n\t\t\tinteractive confirmation verify exclude exclude-from \\\n\t\t\tcompress uncompress gzip ungzip use-compress-program \\\n\t\t\tblock-compress)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'c/-/'        Text
+'"(b B C f F g G h i k K l L m M N o O p P R s S \\\n\t\t\tT v V w W X z Z 0 1 2 3 4 5 6 7 -)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-c*f/x:'   Text
+'\'<new_tar_file, device_file, or "-">\'' Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-'           Text
+'['           Operator
+'Adrtux'      Text
+']'           Operator
+'*f,--file'   Text
+'}'           Operator
+'/f:*.tar/'   Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'N/'          Text
+'{'           Operator
+'-x*f,--file' Text
+'}'           Operator
+'/'           Text
+"'`tar -tf $:-1`'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/--use-compress-program/c/' Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-b,--block-size' Text
+'}'           Operator
+'/x:'         Text
+"'<block_size>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-V,--label'  Text
+'}'           Operator
+'/x:'         Text
+"'<volume_label>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-N,--'       Text
+'{'           Operator
+'after-date,newer' Text
+'}}'          Operator
+'/x:'         Text
+"'<date>'"    Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-L,--tape-length' Text
+'}'           Operator
+'/x:'         Text
+"'<tape_length_in_kB>'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/'          Text
+'{'           Operator
+'-C,--directory' Text
+'}'           Operator
+'/d/'         Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'N/'          Text
+'{'           Operator
+'-C,--directory' Text
+'}'           Operator
+'/'           Text
+"'`\\ls $:-1`'" Literal.String.Single
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/-'         Text
+'['           Operator
+'0-7'         Text
+']'           Operator
+'/'           Text
+'"(l m h)"'   Literal.String.Double
+'/'           Text
+'\n\n    '    Text
+'# BSD 4.3 filesystems' Comment
+'\n    '      Text
+'complete  '  Name.Builtin
+'mount'       Text
+'\t'          Text
+'c/-/'        Text
+'"(a h v t r)"' Literal.String.Double
+'/'           Text
+' '           Text
+'n/-h/'       Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+' '           Text
+'n/-t/'       Text
+'"(4.2 nfs)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n@*@'        Text
+'\'`cut -d " " -f 2 /etc/fstab`\'' Literal.String.Single
+'@'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'umount'      Text
+'\t'          Text
+'c/-/'        Text
+'"(a h v t)"' Literal.String.Double
+'/'           Text
+'   '         Text
+'n/-h/'       Text
+'\\$'         Literal.String.Escape
+'hosts/'      Text
+' '           Text
+'n/-t/'       Text
+'"(4.2 nfs)"' Literal.String.Double
+'/'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'n/*/'        Text
+'\'`mount | cut -d " " -f 3`\'' Literal.String.Single
+'/'           Text
+'\n    '      Text
+'# BSD 4.2 filesystems' Comment
+'\n    '      Text
+'#complete  mount\tc/-/"(a h v t r)"/ n/-h/\\$hosts/ n/-t/"(ufs nfs)"/ \\' Comment
+'\n    '      Text
+'#\t\t\tn@*@\'`cut -d ":" -f 2 /etc/fstab`\'@' Comment
+'\n    '      Text
+'#complete umount\tc/-/"(a h v t)"/   n/-h/\\$hosts/ n/-t/"(ufs nfs)"/ \\' Comment
+'\n    '      Text
+'#\t\t\tn/*/\'`mount | cut -d " " -f 3`\'/' Comment
+'\n\n    '    Text
+"# these deal with NIS (formerly YP); if it's not running you don't need 'em" Comment
+'\n    '      Text
+'complete '   Name.Builtin
+'domainname'  Text
+'\t'          Text
+'p@1@D:'      Text
+'$_ypdir'     Name.Variable
+'@'           Text
+'" "'         Literal.String.Double
+' '           Text
+'n@*@n@'      Text
+'\n    '      Text
+'complete '   Name.Builtin
+'ypcat'       Text
+'\t'          Text
+'c@-@'        Text
+'"(d k t x)"' Literal.String.Double
+'@'           Text
+' '           Text
+'n@-x@n@'     Text
+' '           Text
+'n@-d@D:'     Text
+'$_ypdir'     Name.Variable
+'@'           Text
+'" "'         Literal.String.Double
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t    '      Text
+'N@-d@'       Text
+'\\`'         Literal.String.Escape
+'\\\\'        Literal.String.Escape
+'ls'          Text
+'\\ '         Literal.String.Escape
+'-1'          Text
+'\\ '         Literal.String.Escape
+'$_ypdir'     Name.Variable
+'/'           Text
+'\\$'         Literal.String.Escape
+':-1'         Text
+'\\ '         Literal.String.Escape
+'\\|'         Literal.String.Escape
+'\\ '         Literal.String.Escape
+'sed'         Text
+'\\ '         Literal.String.Escape
+'-n'          Text
+'\\ '         Literal.String.Escape
+'s%'          Text
+'\\\\'        Literal.String.Escape
+'\\\\'        Literal.String.Escape
+'.pag'        Text
+'\\\\'        Literal.String.Escape
+'\\$'         Literal.String.Escape
+'%%p'         Text
+'\\`'         Literal.String.Escape
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t  '        Text
+'n@*@'        Text
+'\\`'         Literal.String.Escape
+'\\\\'        Literal.String.Escape
+'ls'          Text
+'\\ '         Literal.String.Escape
+'-1'          Text
+'\\ '         Literal.String.Escape
+'$_ypdir'     Name.Variable
+'/'           Text
+'$_domain'    Name.Variable
+'\\ '         Literal.String.Escape
+'\\|'         Literal.String.Escape
+'\\ '         Literal.String.Escape
+'sed'         Text
+'\\ '         Literal.String.Escape
+'-n'          Text
+'\\ '         Literal.String.Escape
+'s%'          Text
+'\\\\'        Literal.String.Escape
+'\\\\'        Literal.String.Escape
+'.pag'        Text
+'\\\\'        Literal.String.Escape
+'\\$'         Literal.String.Escape
+'%%p'         Text
+'\\`'         Literal.String.Escape
+'@'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'ypmatch'     Text
+'\t'          Text
+'c@-@'        Text
+'"(d k t x)"' Literal.String.Double
+'@'           Text
+' '           Text
+'n@-x@n@'     Text
+' '           Text
+'n@-d@D:'     Text
+'$_ypdir'     Name.Variable
+'@'           Text
+'" "'         Literal.String.Double
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t            ' Text
+'N@-d@x:'     Text
+"'<key ...>'" Literal.String.Single
+'@'           Text
+' '           Text
+'n@-@x:'      Text
+"'<key ...>'" Literal.String.Single
+'@'           Text
+' '           Text
+'p@1@x:'      Text
+"'<key ...>'" Literal.String.Single
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t  '        Text
+'n@*@'        Text
+'\\`'         Literal.String.Escape
+'\\\\'        Literal.String.Escape
+'ls'          Text
+'\\ '         Literal.String.Escape
+'-1'          Text
+'\\ '         Literal.String.Escape
+'$_ypdir'     Name.Variable
+'/'           Text
+'$_domain'    Name.Variable
+'\\ '         Literal.String.Escape
+'\\|'         Literal.String.Escape
+'\\ '         Literal.String.Escape
+'sed'         Text
+'\\ '         Literal.String.Escape
+'-n'          Text
+'\\ '         Literal.String.Escape
+'s%'          Text
+'\\\\'        Literal.String.Escape
+'\\\\'        Literal.String.Escape
+'.pag'        Text
+'\\\\'        Literal.String.Escape
+'\\$'         Literal.String.Escape
+'%%p'         Text
+'\\`'         Literal.String.Escape
+'@'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'ypwhich'     Text
+'\t'          Text
+'c@-@'        Text
+'"(d m t x V1 V2)"' Literal.String.Double
+'@'           Text
+' '           Text
+'n@-x@n@'     Text
+' '           Text
+'n@-d@D:'     Text
+'$_ypdir'     Name.Variable
+'@'           Text
+'" "'         Literal.String.Double
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t '         Text
+'n@-m@'       Text
+'\\`'         Literal.String.Escape
+'\\\\'        Literal.String.Escape
+'ls'          Text
+'\\ '         Literal.String.Escape
+'-1'          Text
+'\\ '         Literal.String.Escape
+'$_ypdir'     Name.Variable
+'/'           Text
+'$_domain'    Name.Variable
+'\\ '         Literal.String.Escape
+'\\|'         Literal.String.Escape
+'\\ '         Literal.String.Escape
+'sed'         Text
+'\\ '         Literal.String.Escape
+'-n'          Text
+'\\ '         Literal.String.Escape
+'s%'          Text
+'\\\\'        Literal.String.Escape
+'\\\\'        Literal.String.Escape
+'.pag'        Text
+'\\\\'        Literal.String.Escape
+'\\$'         Literal.String.Escape
+'%%p'         Text
+'\\`'         Literal.String.Escape
+'@'           Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'N@-m@n@'     Text
+' '           Text
+'n@*@'        Text
+'\\$'         Literal.String.Escape
+'hosts@'      Text
+'\n\n    '    Text
+"# there's no need to clutter the user's shell with these" Comment
+'\n    '      Text
+'unset '      Name.Builtin
+'_elispdir'   Text
+' '           Text
+'_maildir'    Text
+' '           Text
+'_ypdir'      Text
+' '           Text
+'_domain'     Text
+'\n\n    '    Text
+'complete '   Name.Builtin
+'make'        Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+"'n/-f/f/'"   Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'      \t'    Text
+"'c/*=/f/'"   Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t'          Text
+'\'n@*@`cat -s GNUmakefile Makefile makefile |& sed -n -e "/No such file/d" -e "/^[^     #].*:/s/:.*//p"`@\'' Literal.String.Single
+'\n\n    '    Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'-f'          Text
+' '           Text
+'/etc/printcap' Text
+' '           Text
+')'           Operator
+' '           Text
+'then\n\t'    Keyword
+'set '        Name.Builtin
+'printers'    Name.Variable
+'='           Operator
+'('           Operator
+'`'           Literal.String.Backtick
+'sed'         Text
+' '           Text
+'-n'          Text
+' '           Text
+'-e'          Text
+' '           Text
+'"/^[^     #].*:/s/:.*//p"' Literal.String.Double
+' '           Text
+'/etc/printcap' Text
+'`'           Literal.String.Backtick
+')'           Operator
+'\n\n\t'      Text
+'complete '   Name.Builtin
+'lpr'         Text
+'    '        Text
+"'c/-P/$printers/'" Literal.String.Single
+'\n\t'        Text
+'complete '   Name.Builtin
+'lpq'         Text
+'    '        Text
+"'c/-P/$printers/'" Literal.String.Single
+'\n\t'        Text
+'complete '   Name.Builtin
+'lprm'        Text
+'   '         Text
+"'c/-P/$printers/'" Literal.String.Single
+'\n\t'        Text
+'complete '   Name.Builtin
+'lpquota'     Text
+'        '    Text
+"'p/1/(-Qprlogger)/'" Literal.String.Single
+' '           Text
+"'c/-P/$printers/'" Literal.String.Single
+'\n\t'        Text
+'complete '   Name.Builtin
+'dvips'       Text
+'  '          Text
+"'c/-P/$printers/'" Literal.String.Single
+' '           Text
+"'n/-o/f:*.{ps,PS}/'" Literal.String.Single
+' '           Text
+"'n/*/f:*.dvi/'" Literal.String.Single
+'\n    '      Text
+'endif'       Keyword
+'\n\n'        Text
+
+'# New'       Comment
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'!'           Text
+' '           Text
+'$?'          Name.Variable
+'no_new_complete' Text
+')'           Operator
+' '           Text
+'then\n  '    Keyword
+'uncomplete ' Name.Builtin
+'vi'          Text
+'\n    '      Text
+'complete'    Name.Builtin
+' '           Text
+'{'           Operator
+'vi,vim,gvim,nvi,elvis' Text
+'}'           Operator
+' \t'         Text
+'n/*/f:^*.'   Text
+'{'           Operator
+'o,a,so,sa,aux,dvi,log,fig,bbl,blg,bst,idx,ilg,ind,toc' Text
+'}'           Operator
+'/'           Text
+'\n    '      Text
+'complete'    Name.Builtin
+' '           Text
+'{'           Operator
+'ispell,spell,spellword' Text
+'}'           Operator
+'\t'          Text
+'\'n@-d@`ls /usr/lib/ispell/*.aff | sed -e "s/\\.aff//" `@\'' Literal.String.Single
+' '           Text
+"'n/*/f:^*.{o,a,so,sa,aux,dvi,log,fig,bbl,blg,bst,idx,ilg,ind,toc}/'" Literal.String.Single
+'\n    '      Text
+'complete '   Name.Builtin
+'mutt'        Text
+'\t'          Text
+"'n/-[ai]/f/'" Literal.String.Single
+' '           Text
+"'n/-c/u/'"   Literal.String.Single
+' '           Text
+'c@'          Text
+'='           Operator
+'@F:'         Text
+'$HOME'       Name.Variable
+'/Mail/@'     Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+"'n/-s/x:\\<subject\\>/'" Literal.String.Single
+' '           Text
+"'n/[^-]/u/'" Literal.String.Single
+'\n    '      Text
+'complete '   Name.Builtin
+'elm'         Text
+'\t'          Text
+"'n/-[Ai]/f/'" Literal.String.Single
+' '           Text
+"'c@=@F:$HOME/Mail/@'" Literal.String.Single
+' '           Text
+"'n/-s/x:\\<subject\\>/'" Literal.String.Single
+'\n    '      Text
+'complete '   Name.Builtin
+'ncftp'       Text
+'\t'          Text
+"'n@*@`sed -e '" Literal.String.Single
+'1,2d'        Text
+'\' $HOME/.ncftp/bookmarks | cut -f 1,2 -d "," | tr "," "\\012" | sort | uniq ` \'' Literal.String.Single
+'@'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'bibtex'      Text
+'\t'          Text
+'\'n@*@`ls *.aux | sed -e "s/\\.aux//"`\'' Literal.String.Single
+'@'           Text
+'\n    '      Text
+'complete '   Name.Builtin
+'dvi2tty'     Text
+' \t'         Text
+'n/*/f:*.dvi/' Text
+'\t'          Text
+'# Only files that match *.dvi' Comment
+'\n    '      Text
+'complete'    Name.Builtin
+' '           Text
+'{'           Operator
+'xpdf,acroread' Text
+'}'           Operator
+'\t'          Text
+"'n/*/f:*.pdf/'" Literal.String.Single
+'\n    '      Text
+'complete'    Name.Builtin
+' '           Text
+'{'           Operator
+'gv,ghostview' Text
+'}'           Operator
+'\t'          Text
+"'n/*/f:*.{ps,eps,epsi}/'" Literal.String.Single
+'\n    '      Text
+'complete '   Name.Builtin
+'enscript'    Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+"'c/--/(columns= pages= header= no-header truncate-lines \\\n\t\t\tline-numbers setpagedevice= escapes font= \\\n\t\t\theader-font= fancy-header no-job-header \\\n\t\t\thighlight-bars indent= filter= borders page-prefeed \\\n\t\t\tno-page-prefeed lineprinter lines-per-page= mail \\\n\t\t\tmedia= copies= newline= output= missing-characters \\\n\t\t\tprinter= quiet silent landscape portrait \\\n\t\t\tbaselineskip= statusdict= title= tabsize= underlay= \\\n\t\t\tverbose version encoding pass-through download-font= \\\n\t\t\tfilter-stdin= help highlight-bar-gray= list-media \\\n\t\t\tlist-options non-printable-format= page-label-format= \\\n\t\t\tprinter-options= ul-angle= ul-font= ul-gray= \\\n\t\t\tul-position= ul-style= \\\n\t\t     )/'" Literal.String.Single
+'\n'          Text
+
+'endif'       Keyword
+'\t'          Text
+'# ! $?no_new_complete' Comment
+'\n\n'        Text
+
+'# Debian specific' Comment
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'('           Operator
+'!'           Text
+' '           Text
+'$?'          Name.Variable
+'no_debian_complete' Text
+')'           Operator
+' '           Text
+'then\n'      Keyword
+
+'complete '   Name.Builtin
+'dpkg'        Text
+'\t'          Text
+"'c/--{admindir,instdir,root}=/d/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+"'c/--debug=/n/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+"'c/--{admindir,debug,instdir,root}/(=)//'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+"'c/--/(admindir= debug= instdir= root= \\\n\t\t\tassert-support-predepends assert-working-epoch \\\n\t\t\taudit auto-deconfigure clear-avail \\\n\t\t\tcompare-versions configure contents control \\\n\t\t\textract force-bad-path field \\\n\t\t\tforce-configure-any force-conflicts \\\n\t\t\tforce-depends force-depends-version force-help \\\n\t\t\tforce-hold force-non-root \\\n\t\t\tforce-overwrite-diverted \\\n\t\t\tforce-remove-essential force-remove-reinstreq \\\n\t\t\tforget-old-unavail fsys-tarfile get-selections \\\n\t\t\thelp ignore-depends info install largemem \\\n\t\t\tlicense list listfiles merge-avail no-act \\\n\t\t\tpending predep-package print-architecture \\\n\t\t\tprint-gnu-build-architecture \\\n\t\t\tprint-installation-architecture print-avail \\\n\t\t\tpurge record-avail recursive refuse-downgrade \\\n\t\t\tremove search set-selections selected-only \\\n\t\t\tskip-same-version smallmem status unpack \\\n\t\t\tupdate-avail version vextract \\\n\t\t      )//'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t'        Text
+"'n/*/f:*.deb'" Literal.String.Single
+'/'           Text
+'\n'          Text
+
+'complete '   Name.Builtin
+'dpkg-deb'    Text
+'\t'          Text
+"'c/--{build}=/d/'" Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+'\'c/--/"( build contents info field control extract \\\n\t\t\t\t vextract fsys-tarfile help version \\\n\t\t\t\t license )"\'' Literal.String.Single
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'\t\t\t'      Text
+"'n/*/f:*.deb/'" Literal.String.Single
+'\n'          Text
+
+'endif'       Keyword
+'\t'          Text
+'# ! $?no_debian_complete' Comment
+'\n\n    '    Text
+'unset '      Name.Builtin
+'noglob'      Text
+'\n    '      Text
+'unset '      Name.Builtin
+'complete\n    ' Name.Builtin
+'unset '      Name.Builtin
+'traditional_complete' Text
+'\n    '      Text
+'unset '      Name.Builtin
+'traditional_cp_mv_complete' Text
+'\n    '      Text
+'unset '      Name.Builtin
+'traditional_zcat_complete' Text
+'\n    '      Text
+'unset '      Name.Builtin
+'traditional_nm_complete' Text
+'\n    '      Text
+'unset '      Name.Builtin
+'traditilnal_tex_complete' Text
+'\n    '      Text
+'unset '      Name.Builtin
+'traditional_find_complete' Text
+'\n    '      Text
+'unset '      Name.Builtin
+'traditional_configure_complete' Text
+'\n    '      Text
+'unset '      Name.Builtin
+'traditional_rm_complete' Text
+'\n    '      Text
+'unset '      Name.Builtin
+'foolproof_rm_complete' Text
+'\n    '      Text
+'unset '      Name.Builtin
+'no_new_complete' Text
+'\n    '      Text
+'unset '      Name.Builtin
+'no_debian_complete' Text
+'\n'          Text
+
+'endif\n\n'   Keyword
+
+'end'         Keyword
+':'           Text
+'\n\t'        Text
+'onintr'      Name.Builtin
+'\n'          Text

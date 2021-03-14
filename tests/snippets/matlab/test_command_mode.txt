@@ -1,0 +1,12 @@
+# MATLAB allows char function arguments to not be enclosed by parentheses
+# or contain quote characters, as long as they are space separated. Test
+# that one common such function is formatted appropriately.
+
+---input---
+help sin
+
+---tokens---
+'help'        Name.Builtin
+' '           Text.Whitespace
+'sin'         Name.Builtin
+'\n'          Text.Whitespace

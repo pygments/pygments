@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers._sourcemod_builtins
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -8,11 +7,9 @@
 
     Do not edit the FUNCTIONS list by hand.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-
-from __future__ import print_function
 
 FUNCTIONS = (
     'OnEntityCreated',

@@ -1,0 +1,94 @@
+'#############################################################################' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'#W  example.gd' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'##  This file contains a sample of a GAP declaration file.' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'DeclareProperty' Name.Builtin
+'('           Punctuation
+' '           Text
+'"SomeProperty"' Literal.String
+','           Operator
+' '           Text
+'IsLeftModule' Name.Variable
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'DeclareGlobalFunction' Name.Builtin
+'('           Punctuation
+' '           Text
+'"SomeGlobalFunction"' Literal.String
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'#############################################################################' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'#C  IsQuuxFrobnicator(<R>)' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'##  <ManSection>' Comment.Single
+'\n'          Text
+
+'##  <Filt Name="IsQuuxFrobnicator" Arg=\'R\' Type=\'Category\'/>' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'##  <Description>' Comment.Single
+'\n'          Text
+
+'##  Tests whether R is a quux frobnicator.' Comment.Single
+'\n'          Text
+
+'##  </Description>' Comment.Single
+'\n'          Text
+
+'##  </ManSection>' Comment.Single
+'\n'          Text
+
+'##'          Comment.Single
+'\n'          Text
+
+'DeclareSynonym' Name.Builtin
+'('           Punctuation
+' '           Text
+'"IsQuuxFrobnicator"' Literal.String
+','           Operator
+' '           Text
+'IsField'     Name.Variable
+' '           Text
+'and'         Operator.Word
+' '           Text
+'IsGroup'     Name.Variable
+' '           Text
+')'           Punctuation
+';'           Operator
+'\n'          Text

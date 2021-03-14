@@ -1,0 +1,221 @@
+'*** Settings ***' Generic.Heading
+'\n'          Punctuation
+
+'Documentation' Keyword.Namespace
+'    '        Punctuation
+'Simple example demonstrating syntax highlighting.' Literal.String
+'\n'          Punctuation
+
+'Library'     Keyword.Namespace
+'          '  Punctuation
+'ExampleLibrary' Name.Namespace
+'\n'          Punctuation
+
+'Test Setup'  Keyword.Namespace
+'       '     Punctuation
+'Keyword'     Name.Function
+'    '        Punctuation
+'argument'    Literal.String
+'   '         Punctuation
+'argument with ' Literal.String
+'${'          Punctuation
+'VARIABLE'    Name.Variable
+'}'           Punctuation
+'\n'          Punctuation
+
+'\n'          Punctuation
+
+'*** Variables ***' Generic.Heading
+'\n'          Punctuation
+
+'${'          Punctuation
+'VARIABLE'    Name.Variable
+'}'           Punctuation
+'      '      Punctuation
+'Variable value' Literal.String
+'\n'          Punctuation
+
+'@{'          Punctuation
+'LIST'        Name.Variable
+'}'           Punctuation
+'          '  Punctuation
+'List'        Literal.String
+'    '        Punctuation
+'variable'    Literal.String
+'    '        Punctuation
+'here'        Literal.String
+'\n'          Punctuation
+
+'&{'          Punctuation
+'DICT'        Name.Variable
+'}'           Punctuation
+'          '  Punctuation
+'Key1=Value1' Literal.String
+'    '        Punctuation
+'Key2=Value2' Literal.String
+'\n'          Punctuation
+
+'\n'          Punctuation
+
+'*** Test Cases ***' Generic.Heading
+'\n'          Punctuation
+
+'Keyword-driven example' Generic.Subheading
+'\n'          Punctuation
+
+'    '        Punctuation
+'Initialize System' Name.Function
+'\n'          Punctuation
+
+'    '        Punctuation
+'Do Something' Name.Function
+'\n'          Punctuation
+
+'    '        Punctuation
+'Result Should Be' Name.Function
+'    '        Punctuation
+'42'          Literal.String
+'\n'          Punctuation
+
+'    '        Punctuation
+'['           Punctuation
+'Teardown'    Keyword.Namespace
+']'           Punctuation
+'    '        Punctuation
+'Cleanup System' Name.Function
+'\n'          Punctuation
+
+'\n'          Punctuation
+
+'Data-driven example' Generic.Subheading
+'\n'          Punctuation
+
+'    '        Punctuation
+'['           Punctuation
+'Template'    Keyword.Namespace
+']'           Punctuation
+'    '        Punctuation
+'Keyword'     Name.Function
+'\n'          Punctuation
+
+'    '        Punctuation
+'argument1'   Literal.String
+'   '         Punctuation
+'argument2'   Literal.String
+'\n'          Punctuation
+
+'    '        Punctuation
+'argument'    Literal.String
+'    '        Punctuation
+'${'          Punctuation
+'VARIABLE'    Name.Variable
+'}'           Punctuation
+'\n'          Punctuation
+
+'    '        Punctuation
+'@{'          Punctuation
+'LIST'        Name.Variable
+'}'           Punctuation
+'\n'          Punctuation
+
+'\n'          Punctuation
+
+'Gherkin'     Generic.Subheading
+'\n'          Punctuation
+
+'    '        Punctuation
+'Given '      Generic.Emph
+'system is initialized' Name.Function
+'\n'          Punctuation
+
+'    '        Punctuation
+'When '       Generic.Emph
+'something is done' Name.Function
+'\n'          Punctuation
+
+'    '        Punctuation
+'Then '       Generic.Emph
+'result should be "42"' Name.Function
+'\n'          Punctuation
+
+'\n'          Punctuation
+
+'| '          Punctuation
+'Pipes'       Generic.Subheading
+' |'          Punctuation
+'\n'          Punctuation
+
+'|  '         Punctuation
+'| '          Punctuation
+'['           Punctuation
+'Documentation' Keyword.Namespace
+']'           Punctuation
+' | '         Punctuation
+'Also pipe separated format is supported.' Literal.String
+' |'          Punctuation
+'\n'          Punctuation
+
+'|  '         Punctuation
+'| '          Punctuation
+'Log'         Name.Function
+' | '         Punctuation
+'As this example demonstrates.' Literal.String
+' |'          Punctuation
+'\n'          Punctuation
+
+'\n'          Punctuation
+
+'*** Keywords ***' Generic.Heading
+'\n'          Punctuation
+
+'Result Should Be' Generic.Subheading
+'\n'          Punctuation
+
+'    '        Punctuation
+'['           Punctuation
+'Arguments'   Keyword.Namespace
+']'           Punctuation
+'    '        Punctuation
+'${'          Punctuation
+'expected'    Name.Variable
+'}'           Punctuation
+'\n'          Punctuation
+
+'    '        Punctuation
+'${'          Punctuation
+'actual'      Name.Variable
+'}'           Punctuation
+' ='          Punctuation
+'    '        Punctuation
+'Get Value'   Name.Function
+'\n'          Punctuation
+
+'    '        Punctuation
+'Should be Equal' Name.Function
+'    '        Punctuation
+'${'          Punctuation
+'actual'      Name.Variable
+'}'           Punctuation
+'    '        Punctuation
+'${'          Punctuation
+'expected'    Name.Variable
+'}'           Punctuation
+'\n'          Punctuation
+
+'\n'          Punctuation
+
+'Then '       Generic.Emph
+'result should be "' Generic.Subheading
+'${'          Punctuation
+'expected'    Name.Variable
+'}'           Punctuation
+'"'           Generic.Subheading
+'\n'          Punctuation
+
+'    '        Punctuation
+'Result Should Be' Name.Function
+'    '        Punctuation
+'${'          Punctuation
+'expected'    Name.Variable
+'}'           Punctuation
+'\n'          Punctuation

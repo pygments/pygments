@@ -1,0 +1,1714 @@
+'<!DOCTYPE html\n    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"\n    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">' Comment.Preproc
+'\n'          Text
+
+'<html'       Name.Tag
+' '           Text
+'xmlns='      Name.Attribute
+'"'           Literal.String
+'http://www.w3.org/1999/xhtml' Literal.String
+'"'           Literal.String
+''            Literal.String
+'\n      '    Text
+'xmlns:py='   Name.Attribute
+'"'           Literal.String
+'http://genshi.edgewall.org/' Literal.String
+'"'           Literal.String
+''            Literal.String
+'\n      '    Text
+'xmlns:xi='   Name.Attribute
+'"'           Literal.String
+'http://www.w3.org/2001/XInclude' Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n  '        Text
+'<xi:include' Name.Tag
+' '           Text
+'href='       Name.Attribute
+'"'           Literal.String
+'layout.html' Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n  '        Text
+'<head'       Name.Tag
+'>'           Name.Tag
+'\n    '      Text
+'<title'      Name.Tag
+'>'           Name.Tag
+'$title'      Name.Variable
+'</title>'    Name.Tag
+'\n    '      Text
+'<script'     Name.Tag
+' '           Text
+'type='       Name.Attribute
+'"text/javascript"' Literal.String
+'>'           Name.Tag
+'\n      $(document).ready(function() {\n        $("#group").change(function() {\n          $("#groupdesc").enable(this.selectedIndex != 0)\n        }).change();\n      });\n    ' Text
+'</script>'   Name.Tag
+'\n  '        Text
+'</head>'     Name.Tag
+'\n\n  '      Text
+'<body'       Name.Tag
+'>'           Name.Tag
+'\n    '      Text
+'<div'        Name.Tag
+' '           Text
+'id='         Name.Attribute
+'"'           Literal.String
+'ctxtnav'     Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'nav'         Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n      '    Text
+'<ul'         Name.Tag
+' '           Text
+'py:if='      Name.Attribute
+'"'           Literal.String
+'report_href' Name
+'"'           Literal.String
+'>'           Name.Tag
+'\n        '  Text
+'<li'         Name.Tag
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'first'       Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'<a'          Name.Tag
+' '           Text
+'href='       Name.Attribute
+'"'           Literal.String
+'$report_href' Name.Variable
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'Available Reports' Text
+'</a>'        Name.Tag
+'</li>'       Name.Tag
+'\n        '  Text
+'<li'         Name.Tag
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'last'        Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'Custom Query' Text
+'</li>'       Name.Tag
+'\n      '    Text
+'</ul>'       Name.Tag
+'\n    '      Text
+'</div>'      Name.Tag
+'\n\n    '    Text
+'<py:def'     Name.Tag
+' '           Text
+'function='   Name.Attribute
+'"'           Literal.String
+'num_matches' Name
+'('           Punctuation
+'v'           Name
+')'           Punctuation
+'"'           Literal.String
+'>'           Name.Tag
+'\n      '    Text
+'<span'       Name.Tag
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'numrows'     Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'('           Text
+'${'          Comment.Preproc
+'v'           Name
+' '           Text
+'or'          Operator.Word
+' '           Text
+"'"           Literal.String.Single
+'No'          Literal.String.Single
+"'"           Literal.String.Single
+'}'           Comment.Preproc
+' match'      Text
+'${'          Comment.Preproc
+'v'           Name
+' '           Text
+'!='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'and'         Operator.Word
+' '           Text
+"'"           Literal.String.Single
+'es'          Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'or'          Operator.Word
+' '           Text
+"'"           Literal.String.Single
+"'"           Literal.String.Single
+'}'           Comment.Preproc
+')'           Text
+'</span>'     Name.Tag
+'\n    '      Text
+'</py:def>'   Name.Tag
+'\n\n    '    Text
+'<div'        Name.Tag
+' '           Text
+'id='         Name.Attribute
+'"'           Literal.String
+'content'     Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'query'       Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n      '    Text
+'<h1'         Name.Tag
+'>'           Name.Tag
+'$title'      Name.Variable
+' '           Text
+'${'          Comment.Preproc
+'num_matches' Name
+'('           Punctuation
+'len'         Name.Builtin
+'('           Punctuation
+'tickets'     Name
+')'           Punctuation
+')'           Punctuation
+'}'           Comment.Preproc
+'</h1>'       Name.Tag
+'\n\n      '  Text
+'<form'       Name.Tag
+' '           Text
+'id='         Name.Attribute
+'"'           Literal.String
+'query'       Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'method='     Name.Attribute
+'"'           Literal.String
+'post'        Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'action='     Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'href'        Name
+'.'           Operator
+'query'       Name
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n        '  Text
+'<fieldset'   Name.Tag
+' '           Text
+'id='         Name.Attribute
+'"'           Literal.String
+'filters'     Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n          ' Text
+'<legend'     Name.Tag
+'>'           Name.Tag
+'Filters'     Text
+'</legend>'   Name.Tag
+'\n          ' Text
+'<table'      Name.Tag
+' '           Text
+'summary='    Name.Attribute
+'"'           Literal.String
+'Query filters' Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n            ' Text
+'<tbody'      Name.Tag
+'>'           Name.Tag
+'\n              ' Text
+'<tr'         Name.Tag
+' '           Text
+'style='      Name.Attribute
+'"'           Literal.String
+'height: 1px' Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'<td'         Name.Tag
+' '           Text
+'colspan='    Name.Attribute
+'"'           Literal.String
+'4'           Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'</td>'       Name.Tag
+'</tr>'       Name.Tag
+'\n            ' Text
+'</tbody>'    Name.Tag
+'\n            ' Text
+'<py:for'     Name.Tag
+' '           Text
+'each='       Name.Attribute
+'"'           Literal.String
+'field_name'  Name
+','           Punctuation
+' '           Text
+'field'       Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'fields'      Name
+'.'           Operator
+'iteritems'   Name
+'('           Punctuation
+')'           Punctuation
+'"'           Literal.String
+'>'           Name.Tag
+'\n              ' Text
+'<py:for'     Name.Tag
+' '           Text
+'each='       Name.Attribute
+'"'           Literal.String
+'constraint_name' Name
+','           Punctuation
+' '           Text
+'constraint'  Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'constraints' Name
+'.'           Operator
+'iteritems'   Name
+'('           Punctuation
+')'           Punctuation
+'"'           Literal.String
+'>'           Name.Tag
+'\n                ' Text
+'<tbody'      Name.Tag
+' '           Text
+'py:if='      Name.Attribute
+'"'           Literal.String
+'field_name'  Name
+' '           Text
+'=='          Operator
+' '           Text
+'constraint_name' Name
+'"'           Literal.String
+'\n                  ' Text
+'py:with='    Name.Attribute
+'"'           Literal.String
+'multiline'   Name
+' '           Text
+'='           Operator
+' '           Text
+'field'       Name
+'.'           Operator
+'type'        Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'('           Punctuation
+"'"           Literal.String.Single
+'select'      Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'text'        Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'"'           Literal.String
+'>'           Name.Tag
+'\n                  ' Text
+'<py:for'     Name.Tag
+' '           Text
+'each='       Name.Attribute
+'"'           Literal.String
+'constraint_idx' Name
+','           Punctuation
+' '           Text
+'constraint_value' Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'enumerate'   Name.Builtin
+'('           Punctuation
+'constraint'  Name
+'['           Punctuation
+"'"           Literal.String.Single
+'values'      Literal.String.Single
+"'"           Literal.String.Single
+']'           Punctuation
+')'           Punctuation
+'"'           Literal.String
+'>'           Name.Tag
+'\n                    ' Text
+'<tr'         Name.Tag
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'field_name'  Name
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'py:if='      Name.Attribute
+'"'           Literal.String
+'multiline'   Name
+' '           Text
+'or'          Operator.Word
+' '           Text
+'constraint_idx' Name
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'"'           Literal.String
+'>'           Name.Tag
+'\n                      ' Text
+'<py:choose'  Name.Tag
+' '           Text
+'test='       Name.Attribute
+'"'           Literal.String
+'constraint_idx' Name
+'"'           Literal.String
+'>'           Name.Tag
+'\n                        ' Text
+'<py:when'    Name.Tag
+' '           Text
+'test='       Name.Attribute
+'"'           Literal.String
+'0'           Literal.Number.Integer
+'"'           Literal.String
+'>'           Name.Tag
+'\n                          ' Text
+'<th'         Name.Tag
+' '           Text
+'scope='      Name.Attribute
+'"'           Literal.String
+'row'         Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'<label'      Name.Tag
+'>'           Name.Tag
+'$field.label' Name.Variable
+'</label>'    Name.Tag
+'</th>'       Name.Tag
+'\n                          ' Text
+'<td'         Name.Tag
+' '           Text
+'py:if='      Name.Attribute
+'"'           Literal.String
+'field'       Name
+'.'           Operator
+'type'        Name
+' '           Text
+'not'         Operator.Word
+' '           Text
+'in'          Operator.Word
+' '           Text
+'('           Punctuation
+"'"           Literal.String.Single
+'radio'       Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'checkbox'    Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'"'           Literal.String
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'mode'        Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n                            ' Text
+'<select'     Name.Tag
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'field_name'  Name
+'}'           Comment.Preproc
+'_mode'       Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n                              ' Text
+'<option'     Name.Tag
+' '           Text
+'py:for='     Name.Attribute
+'"'           Literal.String
+'mode'        Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'modes'       Name
+'['           Punctuation
+'field'       Name
+'.'           Operator
+'type'        Name
+']'           Punctuation
+'"'           Literal.String
+' '           Text
+'value='      Name.Attribute
+'"'           Literal.String
+'$mode.value' Name.Variable
+'"'           Literal.String
+''            Literal.String
+'\n                                ' Text
+'selected='   Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'mode'        Name
+'.'           Operator
+'value'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'constraint'  Name
+'.'           Operator
+'mode'        Name
+' '           Text
+'and'         Operator.Word
+' '           Text
+"'"           Literal.String.Single
+'selected'    Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'or'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'$mode.name'  Name.Variable
+'\n                              ' Text
+'</option>'   Name.Tag
+'\n                            ' Text
+'</select>'   Name.Tag
+'\n                          ' Text
+'</td>'       Name.Tag
+'\n                        ' Text
+'</py:when>'  Name.Tag
+'\n                        ' Text
+'<py:otherwise' Name.Tag
+'>'           Name.Tag
+'<!--'        Comment
+'! not the first line of a multiline constraint ' Comment
+'-->'         Comment
+'\n                          ' Text
+'<th'         Name.Tag
+' '           Text
+'colspan='    Name.Attribute
+'"'           Literal.String
+'2'           Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'<label'      Name.Tag
+'>'           Name.Tag
+'or'          Text
+'</label>'    Name.Tag
+'</th>'       Name.Tag
+'\n                        ' Text
+'</py:otherwise>' Name.Tag
+'\n                      ' Text
+'</py:choose>' Name.Tag
+'\n\n                      ' Text
+'<td'         Name.Tag
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'filter'      Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'colspan='    Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'field'       Name
+'.'           Operator
+'type'        Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'('           Punctuation
+"'"           Literal.String.Single
+'radio'       Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'checkbox'    Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'and'         Operator.Word
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'or'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+'\n                        ' Text
+'py:choose='  Name.Attribute
+'"'           Literal.String
+'field'       Name
+'.'           Operator
+'type'        Name
+'"'           Literal.String
+'>'           Name.Tag
+'\n\n                        ' Text
+'<py:when'    Name.Tag
+' '           Text
+'test='       Name.Attribute
+'"'           Literal.String
+"'"           Literal.String.Single
+'select'      Literal.String.Single
+"'"           Literal.String.Single
+'"'           Literal.String
+'>'           Name.Tag
+'\n                          ' Text
+'<select'     Name.Tag
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'constraint_name' Name
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n                            ' Text
+'<option'     Name.Tag
+'>'           Name.Tag
+'</option>'   Name.Tag
+'\n                            ' Text
+'<option'     Name.Tag
+' '           Text
+'py:for='     Name.Attribute
+'"'           Literal.String
+'option'      Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'field'       Name
+'.'           Operator
+'options'     Name
+'"'           Literal.String
+'\n                              ' Text
+'selected='   Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'option'      Name
+' '           Text
+'=='          Operator
+' '           Text
+'constraint_value' Name
+' '           Text
+'and'         Operator.Word
+' '           Text
+"'"           Literal.String.Single
+'selected'    Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'or'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'$option'     Name.Variable
+'\n                            ' Text
+'</option>'   Name.Tag
+'\n                          ' Text
+'</select>'   Name.Tag
+'\n                        ' Text
+'</py:when>'  Name.Tag
+'\n\n\n                        ' Text
+'<py:when'    Name.Tag
+' '           Text
+'test='       Name.Attribute
+'"'           Literal.String
+"'"           Literal.String.Single
+'radio'       Literal.String.Single
+"'"           Literal.String.Single
+'"'           Literal.String
+'>'           Name.Tag
+'\n                          ' Text
+'<py:for'     Name.Tag
+' '           Text
+'each='       Name.Attribute
+'"'           Literal.String
+'option'      Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'field'       Name
+'.'           Operator
+'options'     Name
+'"'           Literal.String
+'>'           Name.Tag
+'\n                            ' Text
+'<input'      Name.Tag
+' '           Text
+'type='       Name.Attribute
+'"'           Literal.String
+'checkbox'    Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'id='         Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'field_name'  Name
+'}'           Comment.Preproc
+'_'           Literal.String
+'$option'     Name.Variable
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'field_name'  Name
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+'\n                              ' Text
+'value='      Name.Attribute
+'"'           Literal.String
+'$option'     Name.Variable
+'"'           Literal.String
+''            Literal.String
+'\n                              ' Text
+'checked='    Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'any'         Name.Builtin
+'('           Punctuation
+'['           Punctuation
+'('           Punctuation
+'value'       Name
+' '           Text
+'=='          Operator
+' '           Text
+'option'      Name
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'('           Punctuation
+'constraint'  Name
+'.'           Operator
+'mode'        Name
+' '           Text
+'=='          Operator
+' '           Text
+"'"           Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'                                              ' Text
+'for'         Keyword
+' '           Text
+'value'       Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'constraint'  Name
+'['           Punctuation
+"'"           Literal.String.Single
+'values'      Literal.String.Single
+"'"           Literal.String.Single
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'and'         Operator.Word
+' '           Text
+"'"           Literal.String.Single
+'checked'     Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'or'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n                            ' Text
+'<label'      Name.Tag
+' '           Text
+'for='        Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'field_name'  Name
+'}'           Comment.Preproc
+'_'           Literal.String
+'$option'     Name.Variable
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'${'          Comment.Preproc
+'option'      Name
+' '           Text
+'or'          Operator.Word
+' '           Text
+"'"           Literal.String.Single
+'none'        Literal.String.Single
+"'"           Literal.String.Single
+'}'           Comment.Preproc
+'</label>'    Name.Tag
+'\n                          ' Text
+'</py:for>'   Name.Tag
+'\n                        ' Text
+'</py:when>'  Name.Tag
+'\n\n                        ' Text
+'<py:when'    Name.Tag
+' '           Text
+'test='       Name.Attribute
+'"'           Literal.String
+"'"           Literal.String.Single
+'checkbox'    Literal.String.Single
+"'"           Literal.String.Single
+'"'           Literal.String
+'>'           Name.Tag
+'\n                          ' Text
+'<input'      Name.Tag
+' '           Text
+'type='       Name.Attribute
+'"'           Literal.String
+'radio'       Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'id='         Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'field_name'  Name
+'}'           Comment.Preproc
+'_on'         Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'$field_name' Name.Variable
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'value='      Name.Attribute
+'"'           Literal.String
+'1'           Literal.String
+'"'           Literal.String
+''            Literal.String
+'\n                                 ' Text
+'checked='    Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'constraint'  Name
+'.'           Operator
+'mode'        Name
+' '           Text
+'!='          Operator
+' '           Text
+"'"           Literal.String.Single
+'!'           Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'or'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n                          ' Text
+'<label'      Name.Tag
+' '           Text
+'for='        Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'field_name'  Name
+'}'           Comment.Preproc
+'_on'         Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'yes'         Text
+'</label>'    Name.Tag
+'\n                          ' Text
+'<input'      Name.Tag
+' '           Text
+'type='       Name.Attribute
+'"'           Literal.String
+'radio'       Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'id='         Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'field_name'  Name
+'}'           Comment.Preproc
+'_off'        Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'$field_name' Name.Variable
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'value='      Name.Attribute
+'"'           Literal.String
+'0'           Literal.String
+'"'           Literal.String
+''            Literal.String
+'\n                                 ' Text
+'checked='    Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'constraint'  Name
+'.'           Operator
+'mode'        Name
+' '           Text
+'=='          Operator
+' '           Text
+"'"           Literal.String.Single
+'!'           Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'or'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n                          ' Text
+'<label'      Name.Tag
+' '           Text
+'for='        Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'field_name'  Name
+'}'           Comment.Preproc
+'_off'        Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'no'          Text
+'</label>'    Name.Tag
+'\n                        ' Text
+'</py:when>'  Name.Tag
+'\n\n                        ' Text
+'<py:when'    Name.Tag
+' '           Text
+'test='       Name.Attribute
+'"'           Literal.String
+"'"           Literal.String.Single
+'text'        Literal.String.Single
+"'"           Literal.String.Single
+'"'           Literal.String
+'>'           Name.Tag
+'\n                          ' Text
+'<input'      Name.Tag
+' '           Text
+'type='       Name.Attribute
+'"'           Literal.String
+'text'        Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'field_name'  Name
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'value='      Name.Attribute
+'"'           Literal.String
+'$constraint_value' Name.Variable
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'size='       Name.Attribute
+'"'           Literal.String
+'42'          Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n                        ' Text
+'</py:when>'  Name.Tag
+'\n\n                      ' Text
+'</td>'       Name.Tag
+'\n                      ' Text
+'<td'         Name.Tag
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'actions'     Literal.String
+'"'           Literal.String
+''            Literal.String
+'\n                        ' Text
+'py:with='    Name.Attribute
+'"'           Literal.String
+'rm_idx'      Name
+' '           Text
+'='           Operator
+' '           Text
+'multiline'   Name
+' '           Text
+'and'         Operator.Word
+' '           Text
+'idx'         Name
+' '           Text
+'or'          Operator.Word
+' '           Text
+'len'         Name.Builtin
+'('           Punctuation
+'constraint'  Name
+'['           Punctuation
+"'"           Literal.String.Single
+'values'      Literal.String.Single
+"'"           Literal.String.Single
+']'           Punctuation
+')'           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+'"'           Literal.String
+'>'           Name.Tag
+'\n                        ' Text
+'<input'      Name.Tag
+' '           Text
+'type='       Name.Attribute
+'"'           Literal.String
+'submit'      Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'rm_filter_'  Literal.String
+'${'          Comment.Preproc
+'field_name'  Name
+'}'           Comment.Preproc
+'${'          Comment.Preproc
+'\n'          Text
+
+'                          ' Text
+'field'       Name
+'.'           Operator
+'type'        Name
+' '           Text
+'!='          Operator
+' '           Text
+"'"           Literal.String.Single
+'radio'       Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'and'         Operator.Word
+' '           Text
+"'"           Literal.String.Single
+'_'           Literal.String.Single
+'%d'          Literal.String.Interpol
+"'"           Literal.String.Single
+' '           Text
+'%'           Operator
+' '           Text
+'rm_idx'      Name
+' '           Text
+'or'          Operator.Word
+' '           Text
+"'"           Literal.String.Single
+"'"           Literal.String.Single
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'value='      Name.Attribute
+'"'           Literal.String
+'-'           Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n                      ' Text
+'</td>'       Name.Tag
+'\n                    ' Text
+'</tr>'       Name.Tag
+'\n                  ' Text
+'</py:for>'   Name.Tag
+'\n                ' Text
+'</tbody>'    Name.Tag
+'\n              ' Text
+'</py:for>'   Name.Tag
+'\n            ' Text
+'</py:for>'   Name.Tag
+'\n\n            ' Text
+'<tbody'      Name.Tag
+'>'           Name.Tag
+'\n              ' Text
+'<tr'         Name.Tag
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'actions'     Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n                ' Text
+'<td'         Name.Tag
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'actions'     Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'colspan='    Name.Attribute
+'"'           Literal.String
+'4'           Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'style='      Name.Attribute
+'"'           Literal.String
+'text-align: right' Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n                  ' Text
+'<label'      Name.Tag
+' '           Text
+'for='        Name.Attribute
+'"'           Literal.String
+'add_filter'  Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'Add filter'  Text
+'</label>'    Name.Tag
+'&nbsp;'      Name.Entity
+'\n                  ' Text
+'<select'     Name.Tag
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'add_filter'  Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'id='         Name.Attribute
+'"'           Literal.String
+'add_filter'  Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n                    ' Text
+'<option'     Name.Tag
+'>'           Name.Tag
+'</option>'   Name.Tag
+'\n                    ' Text
+'<option'     Name.Tag
+' '           Text
+'py:for='     Name.Attribute
+'"'           Literal.String
+'field_name'  Name
+','           Punctuation
+' '           Text
+'field'       Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'fields'      Name
+'.'           Operator
+'iteritems'   Name
+'('           Punctuation
+')'           Punctuation
+'"'           Literal.String
+'\n                            ' Text
+'value='      Name.Attribute
+'"'           Literal.String
+'$field_name' Name.Variable
+'"'           Literal.String
+''            Literal.String
+'\n                            ' Text
+'disabled='   Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'('           Punctuation
+'field'       Name
+'.'           Operator
+'type'        Name
+' '           Text
+'=='          Operator
+' '           Text
+"'"           Literal.String.Single
+'radio'       Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'and'         Operator.Word
+'\n'          Text
+
+'                                         ' Text
+'constraints' Name
+'['           Punctuation
+'field_name'  Name
+']'           Punctuation
+' '           Text
+'and'         Operator.Word
+'\n'          Text
+
+'                                         ' Text
+'len'         Name.Builtin
+'('           Punctuation
+'constraints' Name
+'['           Punctuation
+'field_name'  Name
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'or'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n                      ' Text
+'${'          Comment.Preproc
+'field'       Name
+'.'           Operator
+'label'       Name
+'}'           Comment.Preproc
+'\n                    ' Text
+'</option>'   Name.Tag
+'\n                  ' Text
+'</select>'   Name.Tag
+'\n                  ' Text
+'<input'      Name.Tag
+' '           Text
+'type='       Name.Attribute
+'"'           Literal.String
+'submit'      Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'add'         Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'value='      Name.Attribute
+'"'           Literal.String
+'+'           Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n                ' Text
+'</td>'       Name.Tag
+'\n              ' Text
+'</tr>'       Name.Tag
+'\n            ' Text
+'</tbody>'    Name.Tag
+'\n          ' Text
+'</table>'    Name.Tag
+'\n        '  Text
+'</fieldset>' Name.Tag
+'\n\n        ' Text
+'<p'          Name.Tag
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'option'      Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n          ' Text
+'<label'      Name.Tag
+' '           Text
+'for='        Name.Attribute
+'"'           Literal.String
+'group'       Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'Group results by' Text
+'</label>'    Name.Tag
+'\n          ' Text
+'<select'     Name.Tag
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'group'       Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'id='         Name.Attribute
+'"'           Literal.String
+'group'       Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n            ' Text
+'<option'     Name.Tag
+'>'           Name.Tag
+'</option>'   Name.Tag
+'\n            ' Text
+'<option'     Name.Tag
+' '           Text
+'py:for='     Name.Attribute
+'"'           Literal.String
+'field_name'  Name
+','           Punctuation
+' '           Text
+'field'       Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'fields'      Name
+'.'           Operator
+'iteritems'   Name
+'('           Punctuation
+')'           Punctuation
+'"'           Literal.String
+'\n                    ' Text
+'py:if='      Name.Attribute
+'"'           Literal.String
+'field'       Name
+'.'           Operator
+'type'        Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'('           Punctuation
+"'"           Literal.String.Single
+'select'      Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'radio'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'or'          Operator.Word
+' '           Text
+'field_name'  Name
+' '           Text
+'=='          Operator
+' '           Text
+"'"           Literal.String.Single
+'owner'       Literal.String.Single
+"'"           Literal.String.Single
+'"'           Literal.String
+'\n                    ' Text
+'selected='   Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'field_name'  Name
+' '           Text
+'=='          Operator
+' '           Text
+'query'       Name
+'.'           Operator
+'group'       Name
+' '           Text
+'or'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+'\n                    ' Text
+'value='      Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'field_name'  Name
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'${'          Comment.Preproc
+'field'       Name
+'.'           Operator
+'label'       Name
+'}'           Comment.Preproc
+'</option>'   Name.Tag
+'\n          ' Text
+'</select>'   Name.Tag
+'\n          ' Text
+'<input'      Name.Tag
+' '           Text
+'type='       Name.Attribute
+'"'           Literal.String
+'checkbox'    Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'groupdesc'   Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'id='         Name.Attribute
+'"'           Literal.String
+'groupdesc'   Literal.String
+'"'           Literal.String
+''            Literal.String
+'\n                 ' Text
+'checked='    Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'query'       Name
+'.'           Operator
+'groupdesc'   Name
+' '           Text
+'or'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n          ' Text
+'<label'      Name.Tag
+' '           Text
+'for='        Name.Attribute
+'"'           Literal.String
+'groupdesc'   Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'descending'  Text
+'</label>'    Name.Tag
+'\n        '  Text
+'</p>'        Name.Tag
+'\n\n        ' Text
+'<p'          Name.Tag
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'option'      Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n          ' Text
+'<input'      Name.Tag
+' '           Text
+'type='       Name.Attribute
+'"'           Literal.String
+'checkbox'    Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'verbose'     Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'id='         Name.Attribute
+'"'           Literal.String
+'verbose'     Literal.String
+'"'           Literal.String
+''            Literal.String
+'\n                 ' Text
+'checked='    Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'query'       Name
+'.'           Operator
+'verbose'     Name
+' '           Text
+'or'          Operator.Word
+' '           Text
+'None'        Keyword.Constant
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n          ' Text
+'<label'      Name.Tag
+' '           Text
+'for='        Name.Attribute
+'"'           Literal.String
+'verbose'     Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'Show full description under each result' Text
+'</label>'    Name.Tag
+'\n        '  Text
+'</p>'        Name.Tag
+'\n\n        ' Text
+'<div'        Name.Tag
+' '           Text
+'class='      Name.Attribute
+'"'           Literal.String
+'buttons'     Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n          ' Text
+'<input'      Name.Tag
+' '           Text
+'type='       Name.Attribute
+'"'           Literal.String
+'hidden'      Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'order'       Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'value='      Name.Attribute
+'"'           Literal.String
+'$query.order' Name.Variable
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n          ' Text
+'<input'      Name.Tag
+' '           Text
+'py:if='      Name.Attribute
+'"'           Literal.String
+'desc'        Name
+'"'           Literal.String
+' '           Text
+'type='       Name.Attribute
+'"'           Literal.String
+'hidden'      Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'desc'        Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'value='      Name.Attribute
+'"'           Literal.String
+'1'           Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n          ' Text
+'<input'      Name.Tag
+' '           Text
+'type='       Name.Attribute
+'"'           Literal.String
+'submit'      Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'name='       Name.Attribute
+'"'           Literal.String
+'update'      Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'value='      Name.Attribute
+'"'           Literal.String
+'Update'      Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n        '  Text
+'</div>'      Name.Tag
+'\n        '  Text
+'<hr'         Name.Tag
+' '           Text
+'/>'          Name.Tag
+'\n      '    Text
+'</form>'     Name.Tag
+'\n\n      '  Text
+'<script'     Name.Tag
+' '           Text
+'type='       Name.Attribute
+'"text/javascript"' Literal.String
+'>'           Name.Tag
+'\n        var properties={\n        ' Text
+'<py:for'     Name.Tag
+' '           Text
+'each='       Name.Attribute
+'"idx, (field_name, field) in enumerate(fields.items())"' Literal.String
+'>'           Name.Tag
+'\n          $field_name: { type: "$field.type", label: "$field.label"\n          ' Text
+'<py:if'      Name.Tag
+' '           Text
+'test='       Name.Attribute
+'"field.options"' Literal.String
+'>'           Name.Tag
+', options: [\n            ' Text
+'<py:for'     Name.Tag
+' '           Text
+'each='       Name.Attribute
+'"idx, option in enumerate(field.options)"' Literal.String
+'>'           Name.Tag
+'"$option"'   Text
+'<py:if'      Name.Tag
+'\n                ' Text
+'test='       Name.Attribute
+'"idx &lt; len(field.options)-1"' Literal.String
+'>'           Name.Tag
+','           Text
+'</py:if>'    Name.Tag
+'\n            ' Text
+'</py:for>'   Name.Tag
+']\n          ' Text
+'</py:if>'    Name.Tag
+'}'           Text
+'<py:if'      Name.Tag
+' '           Text
+'test='       Name.Attribute
+'"idx &lt; len(fields)-1"' Literal.String
+'>'           Name.Tag
+','           Text
+'</py:if>'    Name.Tag
+'\n        '  Text
+'</py:for>'   Name.Tag
+'\n        };\n        var modes = {\n        ' Text
+'<py:for'     Name.Tag
+' '           Text
+'each='       Name.Attribute
+'"idx, (type_name, type_modes) in enumerate(modes.items())"' Literal.String
+'>'           Name.Tag
+'\n          $type_name: [\n          ' Text
+'<py:for'     Name.Tag
+' '           Text
+'each='       Name.Attribute
+'"idx, mode in enumerate(type_modes)"' Literal.String
+'>'           Name.Tag
+'\n            {text: "$mode.name", value: "$mode.value" }' Text
+'<py:if'      Name.Tag
+'\n              ' Text
+'test='       Name.Attribute
+'"idx &lt; len(type_modes)-1"' Literal.String
+'>'           Name.Tag
+','           Text
+'</py:if>'    Name.Tag
+'\n          ' Text
+'</py:for>'   Name.Tag
+'\n            ]' Text
+'<py:if'      Name.Tag
+' '           Text
+'test='       Name.Attribute
+'"idx &lt; len(modes)-1"' Literal.String
+'>'           Name.Tag
+','           Text
+'</py:if>'    Name.Tag
+'\n        '  Text
+'</py:for>'   Name.Tag
+'\n        };\n        initializeFilters();\n      ' Text
+'</script>'   Name.Tag
+'\n\n      '  Text
+'<xi:include' Name.Tag
+' '           Text
+'href='       Name.Attribute
+'"'           Literal.String
+'query_div.html' Literal.String
+'"'           Literal.String
+''            Literal.String
+' '           Text
+'/>'          Name.Tag
+'\n\n      '  Text
+'<div'        Name.Tag
+' '           Text
+'id='         Name.Attribute
+'"'           Literal.String
+'help'        Literal.String
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'\n        '  Text
+'<strong'     Name.Tag
+'>'           Name.Tag
+'Note:'       Text
+'</strong>'   Name.Tag
+' See '       Text
+'<a'          Name.Tag
+' '           Text
+'href='       Name.Attribute
+'"'           Literal.String
+'${'          Comment.Preproc
+'href'        Name
+'.'           Operator
+'wiki'        Name
+'('           Punctuation
+"'"           Literal.String.Single
+'TracQuery'   Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'}'           Comment.Preproc
+'"'           Literal.String
+''            Literal.String
+'>'           Name.Tag
+'TracQuery'   Text
+'</a>'        Name.Tag
+'\n        for help on using queries.\n      ' Text
+'</div>'      Name.Tag
+'\n\n    '    Text
+'</div>'      Name.Tag
+'\n  '        Text
+'</body>'     Name.Tag
+'\n'          Text
+
+'</html>'     Name.Tag
+'\n'          Text

@@ -1,0 +1,51 @@
+Tests separating Julia's commands from output in REPL-like code blocks
+
+---input---
+julia> f(x) = sin(π/2x)
+f (generic function with 1 method)
+
+julia> @. f(1:2)
+2-element Vector{Float64}:
+ 1.0
+ 0.7071067811865475
+
+---tokens---
+'julia>'      Generic.Prompt
+' '           Text
+'f'           Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'sin'         Name
+'('           Punctuation
+'π'           Name.Builtin
+'/'           Operator
+'2'           Literal.Number.Integer
+'x'           Name
+')'           Punctuation
+'\n'          Text
+
+'f (generic function with 1 method)\n' Generic.Output
+
+'\n'          Generic.Output
+
+'julia>'      Generic.Prompt
+' '           Text
+'@.'          Name.Decorator
+' '           Text
+'f'           Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+':'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'2-element Vector{Float64}:\n' Generic.Output
+
+' 1.0\n'      Generic.Output
+
+' 0.7071067811865475\n' Generic.Output

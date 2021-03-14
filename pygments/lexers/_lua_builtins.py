@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers._lua_builtins
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -9,11 +8,9 @@
 
     Do not edit the MODULES dict by hand.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-
-from __future__ import print_function
 
 MODULES = {'basic': ('_G',
            '_VERSION',
@@ -288,7 +285,7 @@ if __name__ == '__main__':  # pragma: no cover
             print('>> %s' % full_function_name)
             m = get_function_module(full_function_name)
             modules.setdefault(m, []).append(full_function_name)
-        modules = {k: tuple(v) for k, v in modules.iteritems()}
+        modules = {k: tuple(v) for k, v in modules.items()}
 
         regenerate(__file__, modules)
 

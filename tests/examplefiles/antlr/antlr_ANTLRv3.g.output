@@ -1,0 +1,3218 @@
+'/*\n [The "BSD licence"]\n Copyright (c) 2005-2007 Terence Parr\n All rights reserved.\n\n Redistribution and use in source and binary forms, with or without\n modification, are permitted provided that the following conditions\n are met:\n 1. Redistributions of source code must retain the above copyright\n    notice, this list of conditions and the following disclaimer.\n 2. Redistributions in binary form must reproduce the above copyright\n    notice, this list of conditions and the following disclaimer in the\n    documentation and/or other materials provided with the distribution.\n 3. The name of the author may not be used to endorse or promote products\n    derived from this software without specific prior written permission.\n\n THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS\'\' AND ANY EXPRESS OR\n IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES\n OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.\n IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,\n INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT\n NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,\n DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY\n THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF\n THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n*/' Comment
+'\n\n'        Text.Whitespace
+
+'/** ANTLR v3 grammar written in ANTLR v3 with AST construction */' Comment
+'\n'          Text.Whitespace
+
+'grammar'     Keyword
+' '           Text.Whitespace
+'ANTLRv3'     Name.Class
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'options'     Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'output'      Name.Variable
+'='           Punctuation
+'AST'         Text
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'ASTLabelType' Name.Variable
+'='           Punctuation
+'CommonTree'  Text
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'tokens'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'DOC_COMMENT' Name.Label
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'PARSER'      Name.Label
+';'           Punctuation
+'\t\n    '    Text.Whitespace
+'LEXER'       Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'RULE'        Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'BLOCK'       Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'OPTIONAL'    Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'CLOSURE'     Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'POSITIVE_CLOSURE' Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'SYNPRED'     Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'RANGE'       Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'CHAR_RANGE'  Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'EPSILON'     Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'ALT'         Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'EOR'         Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'EOB'         Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'EOA'         Name.Label
+';'           Punctuation
+' '           Text.Whitespace
+'// end of alt' Comment
+'\n    '      Text.Whitespace
+'ID'          Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'ARG'         Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'ARGLIST'     Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'RET'         Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'LEXER_GRAMMAR' Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'PARSER_GRAMMAR' Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'TREE_GRAMMAR' Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'COMBINED_GRAMMAR' Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'INITACTION'  Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'LABEL'       Name.Label
+';'           Punctuation
+' '           Text.Whitespace
+'// $x used in rewrite rules' Comment
+'\n    '      Text.Whitespace
+'TEMPLATE'    Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'SCOPE'       Name.Label
+'='           Punctuation
+"'scope'"     Literal.String
+';'           Punctuation
+'\n    '      Text.Whitespace
+'SEMPRED'     Name.Label
+';'           Punctuation
+'\n    '      Text.Whitespace
+'GATED_SEMPRED' Name.Label
+';'           Punctuation
+' '           Text.Whitespace
+'// {p}? =>'  Comment
+'\n    '      Text.Whitespace
+'SYN_SEMPRED' Name.Label
+';'           Punctuation
+' '           Text.Whitespace
+"// (...) =>   it's a manually-specified synpred converted to sempred" Comment
+'\n    '      Text.Whitespace
+'BACKTRACK_SEMPRED' Name.Label
+';'           Punctuation
+' '           Text.Whitespace
+'// auto backtracking mode syn pred converted to sempred' Comment
+'\n    '      Text.Whitespace
+'FRAGMENT'    Name.Label
+'='           Punctuation
+"'fragment'"  Literal.String
+';'           Punctuation
+'\n    '      Text.Whitespace
+'TREE_BEGIN'  Name.Label
+'='           Punctuation
+"'^('"        Literal.String
+';'           Punctuation
+'\n    '      Text.Whitespace
+'ROOT'        Name.Label
+'='           Punctuation
+"'^'"         Literal.String
+';'           Punctuation
+'\n    '      Text.Whitespace
+'BANG'        Name.Label
+'='           Punctuation
+"'!'"         Literal.String
+';'           Punctuation
+'\n    '      Text.Whitespace
+'RANGE'       Name.Label
+'='           Punctuation
+"'..'"        Literal.String
+';'           Punctuation
+'\n    '      Text.Whitespace
+'REWRITE'     Name.Label
+'='           Punctuation
+"'->'"        Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'@member'     Name.Label
+'s'           Name.Label
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\tint gtype;\n' Other
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'grammarDef'  Name.Label
+'\n    '      Text.Whitespace
+':'           Punctuation
+'   '         Text.Whitespace
+'DOC_COMMENT' Name.Constant
+'?'           Operator
+'\n    \t'    Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+"'lexer'"     Literal.String.Single
+'  '          Text.Whitespace
+'{'           Punctuation
+'gtype=LEXER_GRAMMAR;' Other
+'}'           Punctuation
+'    '        Text.Whitespace
+'// pure lexer' Comment
+'\n    \t'    Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+"'parser'"    Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+'gtype=PARSER_GRAMMAR;' Other
+'}'           Punctuation
+'   '         Text.Whitespace
+'// pure parser' Comment
+'\n    \t'    Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+"'tree'"      Literal.String.Single
+'   '         Text.Whitespace
+'{'           Punctuation
+'gtype=TREE_GRAMMAR;' Other
+'}'           Punctuation
+'     '       Text.Whitespace
+'// a tree parser' Comment
+'\n    \t'    Text.Whitespace
+'|'           Operator
+'\t\t     '   Text.Whitespace
+'{'           Punctuation
+'gtype=COMBINED_GRAMMAR;' Other
+'}'           Punctuation
+' '           Text.Whitespace
+'// merged parser/lexer' Comment
+'\n    \t'    Text.Whitespace
+')'           Operator
+'\n    \t'    Text.Whitespace
+'g'           Name.Variable
+'='           Operator
+"'grammar'"   Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+"';'"         Literal.String.Single
+' '           Text.Whitespace
+'optionsSpec' Name.Variable
+'?'           Operator
+' '           Text.Whitespace
+'tokensSpec'  Name.Variable
+'?'           Operator
+' '           Text.Whitespace
+'attrScope'   Name.Variable
+'*'           Operator
+' '           Text.Whitespace
+'action'      Name.Variable
+'*'           Operator
+'\n    \t'    Text.Whitespace
+'rule'        Name.Variable
+'+'           Operator
+'\n    \t'    Text.Whitespace
+'EOF'         Name.Constant
+'\n    \t'    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'adaptor.create(gtype,' Other
+'$g'          Name.Variable
+')'           Other
+'}'           Punctuation
+'\n    \t\t  ' Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'DOC_COMMENT' Name.Constant
+'?'           Operator
+' '           Text.Whitespace
+'optionsSpec' Name.Variable
+'?'           Operator
+' '           Text.Whitespace
+'tokensSpec'  Name.Variable
+'?'           Operator
+' '           Text.Whitespace
+'attrScope'   Name.Variable
+'*'           Operator
+' '           Text.Whitespace
+'action'      Name.Variable
+'*'           Operator
+' '           Text.Whitespace
+'rule'        Name.Variable
+'+'           Operator
+'\n    \t\t'  Text.Whitespace
+')'           Operator
+'\n    '      Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'tokensSpec'  Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'TOKENS'      Name.Constant
+' '           Text.Whitespace
+'tokenSpec'   Name.Variable
+'+'           Operator
+' '           Text.Whitespace
+"'}'"         Literal.String.Single
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'TOKENS'      Name.Constant
+' '           Text.Whitespace
+'tokenSpec'   Name.Variable
+'+'           Operator
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'tokenSpec'   Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'TOKEN_REF'   Name.Constant
+'\n\t\t'      Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+"'='"         Literal.String.Single
+' '           Text.Whitespace
+'('           Operator
+'lit'         Name.Variable
+'='           Operator
+'STRING_LITERAL' Name.Constant
+'|'           Operator
+'lit'         Name.Variable
+'='           Operator
+'CHAR_LITERAL' Name.Constant
+')'           Operator
+'\t'          Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'='"         Literal.String.Single
+' '           Text.Whitespace
+'TOKEN_REF'   Name.Constant
+' '           Text.Whitespace
+'$lit'        Name.Variable
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t\t\t\t\t\t\t\t\t\t\t\t' Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'TOKEN_REF'   Name.Constant
+'\n\t\t'      Text.Whitespace
+')'           Operator
+'\n\t\t'      Text.Whitespace
+"';'"         Literal.String.Single
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'attrScope'   Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'scope'"     Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'scope'"     Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/** Match stuff like @parser::members {int i;} */' Comment
+'\n'          Text.Whitespace
+
+'action'      Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'@'"         Literal.String.Single
+' '           Text.Whitespace
+'('           Operator
+'actionScopeName' Name.Variable
+' '           Text.Whitespace
+"'::'"        Literal.String.Single
+')'           Operator
+'?'           Operator
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'@'"         Literal.String.Single
+' '           Text.Whitespace
+'actionScopeName' Name.Variable
+'?'           Operator
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/** Sometimes the scope names will collide with keywords; allow them as\n *  ids for action scopes.\n */' Comment
+'\n'          Text.Whitespace
+
+'actionScopeName' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'id'          Name.Variable
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'l'           Name.Variable
+'='           Operator
+"'lexer'"     Literal.String.Single
+'\t'          Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'ID'          Name.Constant
+'['           Punctuation
+'$l'          Name.Variable
+']'           Punctuation
+'\n    '      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'p'           Name.Variable
+'='           Operator
+"'parser'"    Literal.String.Single
+'\t'          Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'ID'          Name.Constant
+'['           Punctuation
+'$p'          Name.Variable
+']'           Punctuation
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'optionsSpec' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'OPTIONS'     Name.Constant
+' '           Text.Whitespace
+'('           Operator
+'option'      Name.Variable
+' '           Text.Whitespace
+"';'"         Literal.String.Single
+')'           Operator
+'+'           Operator
+' '           Text.Whitespace
+"'}'"         Literal.String.Single
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'OPTIONS'     Name.Constant
+' '           Text.Whitespace
+'option'      Name.Variable
+'+'           Operator
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'option'      Name.Label
+'\n    '      Text.Whitespace
+':'           Punctuation
+'   '         Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+"'='"         Literal.String.Single
+' '           Text.Whitespace
+'optionValue' Name.Variable
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'='"         Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'optionValue' Name.Variable
+')'           Operator
+'\n \t'       Text.Whitespace
+';'           Punctuation
+'\n \t\n'     Text.Whitespace
+
+'optionValue' Name.Label
+'\n    '      Text.Whitespace
+':'           Punctuation
+'   '         Text.Whitespace
+'id'          Name.Variable
+'\n    '      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'STRING_LITERAL' Name.Constant
+'\n    '      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'CHAR_LITERAL' Name.Constant
+'\n    '      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'INT'         Name.Constant
+'\n    '      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'s'           Name.Variable
+'='           Operator
+"'*'"         Literal.String.Single
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'STRING_LITERAL' Name.Constant
+'['           Punctuation
+'$s'          Name.Variable
+']'           Punctuation
+'  '          Text.Whitespace
+'// used for k=*' Comment
+'\n    '      Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'rule'        Name.Label
+'\n'          Text.Whitespace
+
+'scope'       Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\tString name;\n' Other
+
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'DOC_COMMENT' Name.Constant
+'?'           Operator
+'\n\t\t'      Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+'modifier'    Name.Variable
+'='           Operator
+'('           Operator
+"'protected'" Literal.String.Single
+'|'           Operator
+"'public'"    Literal.String.Single
+'|'           Operator
+"'private'"   Literal.String.Single
+'|'           Operator
+"'fragment'"  Literal.String.Single
+')'           Operator
+' '           Text.Whitespace
+')'           Operator
+'?'           Operator
+'\n\t\t'      Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'$rule'       Name.Variable
+'::name = '   Other
+'$id'         Name.Variable
+'.'           Punctuation
+'text'        Name.Property
+';'           Other
+'}'           Punctuation
+'\n\t\t'      Text.Whitespace
+"'!'"         Literal.String.Single
+'?'           Operator
+'\n\t\t'      Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+'arg'         Name.Variable
+'='           Operator
+'ARG_ACTION'  Name.Constant
+' '           Text.Whitespace
+')'           Operator
+'?'           Operator
+'\n\t\t'      Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+"'returns'"   Literal.String.Single
+' '           Text.Whitespace
+'rt'          Name.Variable
+'='           Operator
+'ARG_ACTION'  Name.Constant
+'  '          Text.Whitespace
+')'           Operator
+'?'           Operator
+'\n\t\t'      Text.Whitespace
+'throwsSpec'  Name.Variable
+'?'           Operator
+' '           Text.Whitespace
+'optionsSpec' Name.Variable
+'?'           Operator
+' '           Text.Whitespace
+'ruleScopeSpec' Name.Variable
+'?'           Operator
+' '           Text.Whitespace
+'ruleAction'  Name.Variable
+'*'           Operator
+'\n\t\t'      Text.Whitespace
+"':'"         Literal.String.Single
+'\t'          Text.Whitespace
+'altList'     Name.Variable
+'\t'          Text.Whitespace
+"';'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'exceptionGroup' Name.Variable
+'?'           Operator
+'\n\t    '    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+' '           Text.Whitespace
+'RULE'        Name.Constant
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'modifier!=null?adaptor.create(modifier):null' Other
+'}'           Punctuation
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'ARG'         Name.Constant
+' '           Text.Whitespace
+'$arg'        Name.Variable
+')'           Operator
+'?'           Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'RET'         Name.Constant
+' '           Text.Whitespace
+'$rt'         Name.Variable
+')'           Operator
+'?'           Operator
+'\n\t    \t  ' Text.Whitespace
+'optionsSpec' Name.Variable
+'?'           Operator
+' '           Text.Whitespace
+'ruleScopeSpec' Name.Variable
+'?'           Operator
+' '           Text.Whitespace
+'ruleAction'  Name.Variable
+'*'           Operator
+'\n\t    \t  ' Text.Whitespace
+'altList'     Name.Variable
+'\n\t    \t  ' Text.Whitespace
+'exceptionGroup' Name.Variable
+'?'           Operator
+'\n\t    \t  ' Text.Whitespace
+'EOR'         Name.Constant
+'['           Punctuation
+'"EOR"'       Other
+']'           Punctuation
+'\n\t    \t'  Text.Whitespace
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/** Match stuff like @init {int i;} */' Comment
+'\n'          Text.Whitespace
+
+'ruleAction'  Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'@'"         Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'@'"         Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'throwsSpec'  Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'throws'"    Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+"','"         Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+')'           Operator
+'*'           Operator
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'throws'"    Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+'+'           Operator
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'ruleScopeSpec' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'scope'"     Literal.String.Single
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'scope'"     Literal.String.Single
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+')'           Operator
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'scope'"     Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'('           Operator
+"','"         Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+')'           Operator
+'*'           Operator
+' '           Text.Whitespace
+"';'"         Literal.String.Single
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'scope'"     Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+'+'           Operator
+')'           Operator
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'scope'"     Literal.String.Single
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+'\n\t\t'      Text.Whitespace
+"'scope'"     Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'('           Operator
+"','"         Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+')'           Operator
+'*'           Operator
+' '           Text.Whitespace
+"';'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'scope'"     Literal.String.Single
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+' '           Text.Whitespace
+'id'          Name.Variable
+'+'           Operator
+' '           Text.Whitespace
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'block'       Name.Label
+'\n    '      Text.Whitespace
+':'           Punctuation
+'   '         Text.Whitespace
+'lp'          Name.Variable
+'='           Operator
+"'('"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+'('           Operator
+'opts'        Name.Variable
+'='           Operator
+'optionsSpec' Name.Variable
+')'           Operator
+'?'           Operator
+' '           Text.Whitespace
+"':'"         Literal.String.Single
+' '           Text.Whitespace
+')'           Operator
+'?'           Operator
+'\n\t\t'      Text.Whitespace
+'a1'          Name.Variable
+'='           Operator
+'alternative' Name.Variable
+' '           Text.Whitespace
+'rewrite'     Name.Variable
+' '           Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+"'|'"         Literal.String.Single
+' '           Text.Whitespace
+'a2'          Name.Variable
+'='           Operator
+'alternative' Name.Variable
+' '           Text.Whitespace
+'rewrite'     Name.Variable
+' '           Text.Whitespace
+')'           Operator
+'*'           Operator
+'\n        '  Text.Whitespace
+'rp'          Name.Variable
+'='           Operator
+"')'"         Literal.String.Single
+'\n        '  Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+' '           Text.Whitespace
+'BLOCK'       Name.Constant
+'['           Punctuation
+'$lp'         Name.Variable
+',"BLOCK"'    Other
+']'           Punctuation
+' '           Text.Whitespace
+'optionsSpec' Name.Variable
+'?'           Operator
+' '           Text.Whitespace
+'alternative' Name.Variable
+'+'           Operator
+' '           Text.Whitespace
+'EOB'         Name.Constant
+'['           Punctuation
+'$rp'         Name.Variable
+',"EOB"'      Other
+']'           Punctuation
+' '           Text.Whitespace
+')'           Operator
+'\n    '      Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'altList'     Name.Label
+'\n'          Text.Whitespace
+
+'@init'       Name.Label
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t// must create root manually as it\'s used by invoked rules in real antlr tool.\n\t// leave here to demonstrate use of {...} in rewrite rule\n\t// it\'s really BLOCK[firstToken,"BLOCK"]; set line/col to previous ( or : token.\n    CommonTree blkRoot = (CommonTree)adaptor.create(BLOCK,input.LT(-1),"BLOCK");\n' Other
+
+'}'           Punctuation
+'\n    '      Text.Whitespace
+':'           Punctuation
+'   '         Text.Whitespace
+'a1'          Name.Variable
+'='           Operator
+'alternative' Name.Variable
+' '           Text.Whitespace
+'rewrite'     Name.Variable
+' '           Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+"'|'"         Literal.String.Single
+' '           Text.Whitespace
+'a2'          Name.Variable
+'='           Operator
+'alternative' Name.Variable
+' '           Text.Whitespace
+'rewrite'     Name.Variable
+' '           Text.Whitespace
+')'           Operator
+'*'           Operator
+'\n\t\t'      Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'blkRoot'     Other
+'}'           Punctuation
+' '           Text.Whitespace
+'('           Operator
+'alternative' Name.Variable
+' '           Text.Whitespace
+'rewrite'     Name.Variable
+'?'           Operator
+')'           Operator
+'+'           Operator
+' '           Text.Whitespace
+'EOB'         Name.Constant
+'['           Punctuation
+'"EOB"'       Other
+']'           Punctuation
+' '           Text.Whitespace
+')'           Operator
+'\n    '      Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'alternative' Name.Label
+'\n'          Text.Whitespace
+
+'@init'       Name.Label
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\tToken firstToken = input.LT(1);\n\tToken prevToken = input.LT(-1); // either : or | I think\n' Other
+
+'}'           Punctuation
+'\n    '      Text.Whitespace
+':'           Punctuation
+'   '         Text.Whitespace
+'element'     Name.Variable
+'+'           Operator
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'ALT'         Name.Constant
+'['           Punctuation
+'firstToken,"ALT"' Other
+']'           Punctuation
+' '           Text.Whitespace
+'element'     Name.Variable
+'+'           Operator
+' '           Text.Whitespace
+'EOA'         Name.Constant
+'['           Punctuation
+'"EOA"'       Other
+']'           Punctuation
+')'           Operator
+'\n    '      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'ALT'         Name.Constant
+'['           Punctuation
+'prevToken,"ALT"' Other
+']'           Punctuation
+' '           Text.Whitespace
+'EPSILON'     Name.Constant
+'['           Punctuation
+'prevToken,"EPSILON"' Other
+']'           Punctuation
+' '           Text.Whitespace
+'EOA'         Name.Constant
+'['           Punctuation
+'"EOA"'       Other
+']'           Punctuation
+')'           Operator
+'\n    '      Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'exceptionGroup' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+'exceptionHandler' Name.Variable
+' '           Text.Whitespace
+')'           Operator
+'+'           Operator
+' '           Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+'finallyClause' Name.Variable
+' '           Text.Whitespace
+')'           Operator
+'?'           Operator
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'finallyClause' Name.Variable
+'\n    '      Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'exceptionHandler' Name.Label
+'\n    '      Text.Whitespace
+':'           Punctuation
+'    '        Text.Whitespace
+"'catch'"     Literal.String.Single
+' '           Text.Whitespace
+'ARG_ACTION'  Name.Constant
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'catch'"     Literal.String.Single
+' '           Text.Whitespace
+'ARG_ACTION'  Name.Constant
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+')'           Operator
+'\n    '      Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'finallyClause' Name.Label
+'\n    '      Text.Whitespace
+':'           Punctuation
+'    '        Text.Whitespace
+"'finally'"   Literal.String.Single
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'finally'"   Literal.String.Single
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+')'           Operator
+'\n    '      Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'element'     Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'elementNoOptionSpec' Name.Variable
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'elementNoOptionSpec' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'labelOp'     Name.Variable
+'='           Operator
+"'='"         Literal.String.Single
+'|'           Operator
+'labelOp'     Name.Variable
+'='           Operator
+"'+='"        Literal.String.Single
+')'           Operator
+' '           Text.Whitespace
+'atom'        Name.Variable
+'\n\t\t'      Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+'ebnfSuffix'  Name.Variable
+'\t'          Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+' '           Text.Whitespace
+'ebnfSuffix'  Name.Variable
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'BLOCK'       Name.Constant
+'['           Punctuation
+'"BLOCK"'     Other
+']'           Punctuation
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'ALT'         Name.Constant
+'['           Punctuation
+'"ALT"'       Other
+']'           Punctuation
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'$labelOp'    Name.Variable
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'atom'        Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'EOA'         Name.Constant
+'['           Punctuation
+'"EOA"'       Other
+']'           Punctuation
+')'           Operator
+' '           Text.Whitespace
+'EOB'         Name.Constant
+'['           Punctuation
+'"EOB"'       Other
+']'           Punctuation
+')'           Operator
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t\t\t\t'    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'$labelOp'    Name.Variable
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'atom'        Name.Variable
+')'           Operator
+'\n\t\t'      Text.Whitespace
+')'           Operator
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'('           Operator
+'labelOp'     Name.Variable
+'='           Operator
+"'='"         Literal.String.Single
+'|'           Operator
+'labelOp'     Name.Variable
+'='           Operator
+"'+='"        Literal.String.Single
+')'           Operator
+' '           Text.Whitespace
+'block'       Name.Variable
+'\n\t\t'      Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+'ebnfSuffix'  Name.Variable
+'\t'          Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+' '           Text.Whitespace
+'ebnfSuffix'  Name.Variable
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'BLOCK'       Name.Constant
+'['           Punctuation
+'"BLOCK"'     Other
+']'           Punctuation
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'ALT'         Name.Constant
+'['           Punctuation
+'"ALT"'       Other
+']'           Punctuation
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'$labelOp'    Name.Variable
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'block'       Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'EOA'         Name.Constant
+'['           Punctuation
+'"EOA"'       Other
+']'           Punctuation
+')'           Operator
+' '           Text.Whitespace
+'EOB'         Name.Constant
+'['           Punctuation
+'"EOB"'       Other
+']'           Punctuation
+')'           Operator
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t\t\t\t'    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'$labelOp'    Name.Variable
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'block'       Name.Variable
+')'           Operator
+'\n\t\t'      Text.Whitespace
+')'           Operator
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'atom'        Name.Variable
+'\n\t\t'      Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+'ebnfSuffix'  Name.Variable
+'\t'          Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'BLOCK'       Name.Constant
+'['           Punctuation
+'"BLOCK"'     Other
+']'           Punctuation
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'ALT'         Name.Constant
+'['           Punctuation
+'"ALT"'       Other
+']'           Punctuation
+' '           Text.Whitespace
+'atom'        Name.Variable
+' '           Text.Whitespace
+'EOA'         Name.Constant
+'['           Punctuation
+'"EOA"'       Other
+']'           Punctuation
+')'           Operator
+' '           Text.Whitespace
+'EOB'         Name.Constant
+'['           Punctuation
+'"EOB"'       Other
+']'           Punctuation
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t\t\t\t'    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'atom'        Name.Variable
+'\n\t\t'      Text.Whitespace
+')'           Operator
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'ebnf'        Name.Variable
+'\n\t'        Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'ACTION'      Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'SEMPRED'     Name.Constant
+' '           Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+"'=>'"        Literal.String.Single
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'GATED_SEMPRED' Name.Constant
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'SEMPRED'     Name.Constant
+' '           Text.Whitespace
+')'           Operator
+'\n\t'        Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'treeSpec'    Name.Variable
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'atom'        Name.Label
+':'           Punctuation
+'   '         Text.Whitespace
+'range'       Name.Variable
+' '           Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+'('           Operator
+'op'          Name.Variable
+'='           Operator
+"'^'"         Literal.String.Single
+'|'           Operator
+'op'          Name.Variable
+'='           Operator
+"'!'"         Literal.String.Single
+')'           Operator
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'$op'         Name.Variable
+' '           Text.Whitespace
+'range'       Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'range'       Name.Variable
+' '           Text.Whitespace
+')'           Operator
+'\n    '      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'terminal'    Name.Variable
+'\n    '      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'notSet'      Name.Variable
+' '           Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+'('           Operator
+'op'          Name.Variable
+'='           Operator
+"'^'"         Literal.String.Single
+'|'           Operator
+'op'          Name.Variable
+'='           Operator
+"'!'"         Literal.String.Single
+')'           Operator
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'$op'         Name.Variable
+' '           Text.Whitespace
+'notSet'      Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'notSet'      Name.Variable
+' '           Text.Whitespace
+')'           Operator
+'\n    '      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'RULE_REF'    Name.Constant
+' '           Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+'arg'         Name.Variable
+'='           Operator
+'ARG_ACTION'  Name.Constant
+' '           Text.Whitespace
+')'           Operator
+'?'           Operator
+' '           Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+'('           Operator
+'op'          Name.Variable
+'='           Operator
+"'^'"         Literal.String.Single
+'|'           Operator
+'op'          Name.Variable
+'='           Operator
+"'!'"         Literal.String.Single
+')'           Operator
+' '           Text.Whitespace
+')'           Operator
+'?'           Operator
+'\n    \t'    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'$arg'        Name.Variable
+'!=null&&op!=null' Other
+'}'           Punctuation
+'?'           Operator
+'\t'          Text.Whitespace
+'^'           Operator
+'('           Operator
+'$op'         Name.Variable
+' '           Text.Whitespace
+'RULE_REF'    Name.Constant
+' '           Text.Whitespace
+'$arg'        Name.Variable
+')'           Operator
+'\n    \t'    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'$arg'        Name.Variable
+'!=null'      Other
+'}'           Punctuation
+'?'           Operator
+'\t\t\t'      Text.Whitespace
+'^'           Operator
+'('           Operator
+'RULE_REF'    Name.Constant
+' '           Text.Whitespace
+'$arg'        Name.Variable
+')'           Operator
+'\n    \t'    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'$op'         Name.Variable
+'!=null'      Other
+'}'           Punctuation
+'?'           Operator
+'\t\t\t\t'    Text.Whitespace
+'^'           Operator
+'('           Operator
+'$op'         Name.Variable
+' '           Text.Whitespace
+'RULE_REF'    Name.Constant
+')'           Operator
+'\n    \t'    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'RULE_REF'    Name.Constant
+'\n    '      Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'notSet'      Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'~'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+'notTerminal' Name.Variable
+'\t'          Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'~'"         Literal.String.Single
+' '           Text.Whitespace
+'notTerminal' Name.Variable
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'block'       Name.Variable
+'\t\t'        Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'~'"         Literal.String.Single
+' '           Text.Whitespace
+'block'       Name.Variable
+')'           Operator
+'\n\t\t'      Text.Whitespace
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'treeSpec'    Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'^('"        Literal.String.Single
+' '           Text.Whitespace
+'element'     Name.Variable
+' '           Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+'element'     Name.Variable
+' '           Text.Whitespace
+')'           Operator
+'+'           Operator
+' '           Text.Whitespace
+"')'"         Literal.String.Single
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'TREE_BEGIN'  Name.Constant
+' '           Text.Whitespace
+'element'     Name.Variable
+'+'           Operator
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/** Matches ENBF blocks (and token sets via block rule) */' Comment
+'\n'          Text.Whitespace
+
+'ebnf'        Name.Label
+'\n'          Text.Whitespace
+
+'@init'       Name.Label
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    Token firstToken = input.LT(1);\n' Other
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'@after'      Name.Label
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Other
+'$ebnf'       Name.Variable
+'.'           Punctuation
+'tree.getToken().setLine(firstToken.getLine());\n\t' Other
+'$ebnf'       Name.Variable
+'.'           Punctuation
+'tree.getToken().setCharPositionInLine(firstToken.getCharPositionInLine());\n' Other
+
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'block'       Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'Token op=input.LT(1);' Other
+'}'           Punctuation
+'\n\t\t'      Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+"'?'"         Literal.String.Single
+'\t\t'        Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'OPTIONAL'    Name.Constant
+'['           Punctuation
+'op'          Other
+']'           Punctuation
+' '           Text.Whitespace
+'block'       Name.Variable
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'*'"         Literal.String.Single
+'\t\t'        Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'CLOSURE'     Name.Constant
+'['           Punctuation
+'op'          Other
+']'           Punctuation
+' '           Text.Whitespace
+'block'       Name.Variable
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'+'"         Literal.String.Single
+'\t\t'        Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'POSITIVE_CLOSURE' Name.Constant
+'['           Punctuation
+'op'          Other
+']'           Punctuation
+' '           Text.Whitespace
+'block'       Name.Variable
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+"'^'"         Literal.String.Single
+'\t\t'        Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'^'"         Literal.String.Single
+' '           Text.Whitespace
+'block'       Name.Variable
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+"'!'"         Literal.String.Single
+'\t\t'        Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'!'"         Literal.String.Single
+' '           Text.Whitespace
+'block'       Name.Variable
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+"'=>'"        Literal.String.Single
+'\t'          Text.Whitespace
+'// syntactic predicate' Comment
+'\n\t\t\t\t\t' Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'gtype==COMBINED_GRAMMAR &&\n\t\t\t\t\t    Character.isUpperCase(' Other
+'$rule'       Name.Variable
+'::name.charAt(0))' Other
+'}'           Punctuation
+'?'           Operator
+'\n\t\t\t\t\t   ' Text.Whitespace
+'// if lexer rule in combined, leave as pred for lexer' Comment
+'\n\t\t\t\t\t   ' Text.Whitespace
+'^'           Operator
+'('           Operator
+'SYNPRED'     Name.Constant
+'['           Punctuation
+'"=>"'        Other
+']'           Punctuation
+' '           Text.Whitespace
+'block'       Name.Variable
+')'           Operator
+'\n\t\t\t\t\t' Text.Whitespace
+'// in real antlr tool, text for SYN_SEMPRED is predname' Comment
+'\n\t\t\t\t\t' Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'SYN_SEMPRED' Name.Constant
+'\n        '  Text.Whitespace
+'|'           Operator
+'\t\t\t'      Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'block'       Name.Variable
+'\n\t\t'      Text.Whitespace
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'range'       Name.Label
+'!'           Punctuation
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'c1'          Name.Variable
+'='           Operator
+'CHAR_LITERAL' Name.Constant
+' '           Text.Whitespace
+'RANGE'       Name.Constant
+' '           Text.Whitespace
+'c2'          Name.Variable
+'='           Operator
+'CHAR_LITERAL' Name.Constant
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'CHAR_RANGE'  Name.Constant
+'['           Punctuation
+'$c'          Name.Variable
+'1,".."'      Other
+']'           Punctuation
+' '           Text.Whitespace
+'$c1'         Name.Variable
+' '           Text.Whitespace
+'$c2'         Name.Variable
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'terminal'    Name.Label
+'\n    '      Text.Whitespace
+':'           Punctuation
+'   '         Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+'CHAR_LITERAL' Name.Constant
+'\t\t\t\t'    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'CHAR_LITERAL' Name.Constant
+'\n    \t\t'  Text.Whitespace
+'// Args are only valid for lexer rules' Comment
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'TOKEN_REF'   Name.Constant
+'\n\t\t\t'    Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+'ARG_ACTION'  Name.Constant
+'\t\t\t\t'    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'TOKEN_REF'   Name.Constant
+' '           Text.Whitespace
+'ARG_ACTION'  Name.Constant
+')'           Operator
+'\n\t\t\t'    Text.Whitespace
+'|'           Operator
+'\t\t\t\t\t\t\t' Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'TOKEN_REF'   Name.Constant
+'\n\t\t\t'    Text.Whitespace
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'STRING_LITERAL' Name.Constant
+'\t\t\t\t'    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'STRING_LITERAL' Name.Constant
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+"'.'"         Literal.String.Single
+'\t\t\t\t\t\t\t' Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+"'.'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+')'           Operator
+'\t\n\t\t'    Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+"'^'"         Literal.String.Single
+'\t\t\t\t\t\t\t' Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'^'"         Literal.String.Single
+' '           Text.Whitespace
+'$terminal'   Name.Variable
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'!'"         Literal.String.Single
+' \t\t\t\t\t\t' Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+"'!'"         Literal.String.Single
+' '           Text.Whitespace
+'$terminal'   Name.Variable
+')'           Operator
+'\n\t\t'      Text.Whitespace
+')'           Operator
+'?'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'notTerminal' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'   '         Text.Whitespace
+'CHAR_LITERAL' Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'TOKEN_REF'   Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'STRING_LITERAL' Name.Constant
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\t\n'      Text.Whitespace
+
+'ebnfSuffix'  Name.Label
+'\n'          Text.Whitespace
+
+'@init'       Name.Label
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\tToken op = input.LT(1);\n' Other
+
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'?'"         Literal.String.Single
+'\t'          Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'OPTIONAL'    Name.Constant
+'['           Punctuation
+'op'          Other
+']'           Punctuation
+'\n  \t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'*'"         Literal.String.Single
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'CLOSURE'     Name.Constant
+'['           Punctuation
+'op'          Other
+']'           Punctuation
+'\n   \t'     Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'+'"         Literal.String.Single
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'POSITIVE_CLOSURE' Name.Constant
+'['           Punctuation
+'op'          Other
+']'           Punctuation
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\t\n\n\n'  Text.Whitespace
+
+'// R E W R I T E  S Y N T A X' Comment
+'\n\n'        Text.Whitespace
+
+'rewrite'     Name.Label
+'\n'          Text.Whitespace
+
+'@init'       Name.Label
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\tToken firstToken = input.LT(1);\n' Other
+
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'('           Operator
+'rew'         Name.Variable
+'+'           Operator
+'='           Operator
+"'->'"        Literal.String.Single
+' '           Text.Whitespace
+'preds'       Name.Variable
+'+'           Operator
+'='           Operator
+'SEMPRED'     Name.Constant
+' '           Text.Whitespace
+'predicated'  Name.Variable
+'+'           Operator
+'='           Operator
+'rewrite_alternative' Name.Variable
+')'           Operator
+'*'           Operator
+'\n\t\t'      Text.Whitespace
+'rew2'        Name.Variable
+'='           Operator
+"'->'"        Literal.String.Single
+' '           Text.Whitespace
+'last'        Name.Variable
+'='           Operator
+'rewrite_alternative' Name.Variable
+'\n        '  Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'$rew'        Name.Variable
+' '           Text.Whitespace
+'$preds'      Name.Variable
+' '           Text.Whitespace
+'$predicated' Name.Variable
+')'           Operator
+'*'           Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'$rew2'       Name.Variable
+' '           Text.Whitespace
+'$last'       Name.Variable
+')'           Operator
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'rewrite_alternative' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'rewrite_template' Name.Variable
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'rewrite_tree_alternative' Name.Variable
+'\n   \t'     Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'/* empty rewrite */' Comment
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'ALT'         Name.Constant
+'['           Punctuation
+'"ALT"'       Other
+']'           Punctuation
+' '           Text.Whitespace
+'EPSILON'     Name.Constant
+'['           Punctuation
+'"EPSILON"'   Other
+']'           Punctuation
+' '           Text.Whitespace
+'EOA'         Name.Constant
+'['           Punctuation
+'"EOA"'       Other
+']'           Punctuation
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\t\n'      Text.Whitespace
+
+'rewrite_template_block' Name.Label
+'\n    '      Text.Whitespace
+':'           Punctuation
+'   '         Text.Whitespace
+'lp'          Name.Variable
+'='           Operator
+"'('"         Literal.String.Single
+' '           Text.Whitespace
+'rewrite_template' Name.Variable
+' '           Text.Whitespace
+"')'"         Literal.String.Single
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'BLOCK'       Name.Constant
+'['           Punctuation
+'$lp'         Name.Variable
+',"BLOCK"'    Other
+']'           Punctuation
+' '           Text.Whitespace
+'rewrite_template' Name.Variable
+' '           Text.Whitespace
+'EOB'         Name.Constant
+'['           Punctuation
+'$lp'         Name.Variable
+',"EOB"'      Other
+']'           Punctuation
+')'           Operator
+'\n    '      Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'rewrite_tree_block' Name.Label
+'\n    '      Text.Whitespace
+':'           Punctuation
+'   '         Text.Whitespace
+'lp'          Name.Variable
+'='           Operator
+"'('"         Literal.String.Single
+' '           Text.Whitespace
+'rewrite_tree_alternative' Name.Variable
+' '           Text.Whitespace
+"')'"         Literal.String.Single
+'\n    \t'    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'BLOCK'       Name.Constant
+'['           Punctuation
+'$lp'         Name.Variable
+',"BLOCK"'    Other
+']'           Punctuation
+' '           Text.Whitespace
+'rewrite_tree_alternative' Name.Variable
+' '           Text.Whitespace
+'EOB'         Name.Constant
+'['           Punctuation
+'$lp'         Name.Variable
+',"EOB"'      Other
+']'           Punctuation
+')'           Operator
+'\n    '      Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'rewrite_tree_alternative' Name.Label
+'\n    '      Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'rewrite_tree_element' Name.Variable
+'+'           Operator
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'ALT'         Name.Constant
+'['           Punctuation
+'"ALT"'       Other
+']'           Punctuation
+' '           Text.Whitespace
+'rewrite_tree_element' Name.Variable
+'+'           Operator
+' '           Text.Whitespace
+'EOA'         Name.Constant
+'['           Punctuation
+'"EOA"'       Other
+']'           Punctuation
+')'           Operator
+'\n    '      Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'rewrite_tree_element' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'rewrite_tree_atom' Name.Variable
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'rewrite_tree_atom' Name.Variable
+' '           Text.Whitespace
+'ebnfSuffix'  Name.Variable
+'\n\t\t'      Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+' '           Text.Whitespace
+'ebnfSuffix'  Name.Variable
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'BLOCK'       Name.Constant
+'['           Punctuation
+'"BLOCK"'     Other
+']'           Punctuation
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'ALT'         Name.Constant
+'['           Punctuation
+'"ALT"'       Other
+']'           Punctuation
+' '           Text.Whitespace
+'rewrite_tree_atom' Name.Variable
+' '           Text.Whitespace
+'EOA'         Name.Constant
+'['           Punctuation
+'"EOA"'       Other
+']'           Punctuation
+')'           Operator
+' '           Text.Whitespace
+'EOB'         Name.Constant
+'['           Punctuation
+'"EOB"'       Other
+']'           Punctuation
+')'           Operator
+')'           Operator
+'\n\t'        Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'rewrite_tree' Name.Variable
+'\n\t\t'      Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+'ebnfSuffix'  Name.Variable
+'\n\t\t\t'    Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'BLOCK'       Name.Constant
+'['           Punctuation
+'"BLOCK"'     Other
+']'           Punctuation
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'ALT'         Name.Constant
+'['           Punctuation
+'"ALT"'       Other
+']'           Punctuation
+' '           Text.Whitespace
+'rewrite_tree' Name.Variable
+' '           Text.Whitespace
+'EOA'         Name.Constant
+'['           Punctuation
+'"EOA"'       Other
+']'           Punctuation
+')'           Operator
+' '           Text.Whitespace
+'EOB'         Name.Constant
+'['           Punctuation
+'"EOB"'       Other
+']'           Punctuation
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'rewrite_tree' Name.Variable
+'\n\t\t'      Text.Whitespace
+')'           Operator
+'\n\t'        Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'rewrite_tree_ebnf' Name.Variable
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'rewrite_tree_atom' Name.Label
+'\n    '      Text.Whitespace
+':'           Punctuation
+'   '         Text.Whitespace
+'CHAR_LITERAL' Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'TOKEN_REF'   Name.Constant
+' '           Text.Whitespace
+'ARG_ACTION'  Name.Constant
+'?'           Operator
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'TOKEN_REF'   Name.Constant
+' '           Text.Whitespace
+'ARG_ACTION'  Name.Constant
+'?'           Operator
+')'           Operator
+' '           Text.Whitespace
+'// for imaginary nodes' Comment
+'\n    '      Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'RULE_REF'    Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'STRING_LITERAL' Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'   '         Text.Whitespace
+'d'           Name.Variable
+'='           Operator
+"'$'"         Literal.String.Single
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'LABEL'       Name.Constant
+'['           Punctuation
+'$d'          Name.Variable
+','           Other
+'$id'         Name.Variable
+'.'           Punctuation
+'text'        Name.Property
+']'           Punctuation
+' '           Text.Whitespace
+'// reference to a label in a rewrite rule' Comment
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'ACTION'      Name.Constant
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'rewrite_tree_ebnf' Name.Label
+'\n'          Text.Whitespace
+
+'@init'       Name.Label
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    Token firstToken = input.LT(1);\n' Other
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'@after'      Name.Label
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Other
+'$rewrite'    Name.Variable
+'_tree_ebnf.tree.getToken().setLine(firstToken.getLine());\n\t' Other
+'$rewrite'    Name.Variable
+'_tree_ebnf.tree.getToken().setCharPositionInLine(firstToken.getCharPositionInLine());\n' Other
+
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'rewrite_tree_block' Name.Variable
+' '           Text.Whitespace
+'ebnfSuffix'  Name.Variable
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'ebnfSuffix'  Name.Variable
+' '           Text.Whitespace
+'rewrite_tree_block' Name.Variable
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\t\n'      Text.Whitespace
+
+'rewrite_tree' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'^('"        Literal.String.Single
+' '           Text.Whitespace
+'rewrite_tree_atom' Name.Variable
+' '           Text.Whitespace
+'rewrite_tree_element' Name.Variable
+'*'           Operator
+' '           Text.Whitespace
+"')'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'TREE_BEGIN'  Name.Constant
+' '           Text.Whitespace
+'rewrite_tree_atom' Name.Variable
+' '           Text.Whitespace
+'rewrite_tree_element' Name.Variable
+'*'           Operator
+' '           Text.Whitespace
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/** Build a tree for a template rewrite:\n      ^(TEMPLATE (ID|ACTION) ^(ARGLIST ^(ARG ID ACTION) ...) )\n    where ARGLIST is always there even if no args exist.\n    ID can be "template" keyword.  If first child is ACTION then it\'s\n    an indirect template ref\n\n    -> foo(a={...}, b={...})\n    -> ({string-e})(a={...}, b={...})  // e evaluates to template name\n    -> {%{$ID.text}} // create literal template from string (done in ActionTranslator)\n\t-> {st-expr} // st-expr evaluates to ST\n */' Comment
+'\n'          Text.Whitespace
+
+'rewrite_template' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'   '         Text.Whitespace
+'// -> template(a={...},...) "..."    inline template' Comment
+'\n\t\t'      Text.Whitespace
+'{'           Punctuation
+'input.LT(1).getText().equals("template")' Other
+'}'           Punctuation
+'?'           Operator
+'\n\t\t'      Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'lp'          Name.Variable
+'='           Operator
+"'('"         Literal.String.Single
+' '           Text.Whitespace
+'rewrite_template_args' Name.Variable
+'\t'          Text.Whitespace
+"')'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'st'          Name.Variable
+'='           Operator
+'('           Operator
+' '           Text.Whitespace
+'DOUBLE_QUOTE_STRING_LITERAL' Name.Constant
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'DOUBLE_ANGLE_STRING_LITERAL' Name.Constant
+' '           Text.Whitespace
+')'           Operator
+'\n\t\t'      Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'TEMPLATE'    Name.Constant
+'['           Punctuation
+'$lp'         Name.Variable
+',"TEMPLATE"' Other
+']'           Punctuation
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'rewrite_template_args' Name.Variable
+' '           Text.Whitespace
+'$st'         Name.Variable
+')'           Operator
+'\n\n\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'// -> foo(a={...}, ...)' Comment
+'\n\t\t'      Text.Whitespace
+'rewrite_template_ref' Name.Variable
+'\n\n\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'// -> ({expr})(a={...}, ...)' Comment
+'\n\t\t'      Text.Whitespace
+'rewrite_indirect_template_head' Name.Variable
+'\n\n\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'// -> {...}' Comment
+'\n\t\t'      Text.Whitespace
+'ACTION'      Name.Constant
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/** -> foo(a={...}, ...) */' Comment
+'\n'          Text.Whitespace
+
+'rewrite_template_ref' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'lp'          Name.Variable
+'='           Operator
+"'('"         Literal.String.Single
+' '           Text.Whitespace
+'rewrite_template_args' Name.Variable
+'\t'          Text.Whitespace
+"')'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'TEMPLATE'    Name.Constant
+'['           Punctuation
+'$lp'         Name.Variable
+',"TEMPLATE"' Other
+']'           Punctuation
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'rewrite_template_args' Name.Variable
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/** -> ({expr})(a={...}, ...) */' Comment
+'\n'          Text.Whitespace
+
+'rewrite_indirect_template_head' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'lp'          Name.Variable
+'='           Operator
+"'('"         Literal.String.Single
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+' '           Text.Whitespace
+"')'"         Literal.String.Single
+' '           Text.Whitespace
+"'('"         Literal.String.Single
+' '           Text.Whitespace
+'rewrite_template_args' Name.Variable
+' '           Text.Whitespace
+"')'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'TEMPLATE'    Name.Constant
+'['           Punctuation
+'$lp'         Name.Variable
+',"TEMPLATE"' Other
+']'           Punctuation
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+' '           Text.Whitespace
+'rewrite_template_args' Name.Variable
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'rewrite_template_args' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'rewrite_template_arg' Name.Variable
+' '           Text.Whitespace
+'('           Operator
+"','"         Literal.String.Single
+' '           Text.Whitespace
+'rewrite_template_arg' Name.Variable
+')'           Operator
+'*'           Operator
+'\n\t\t'      Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'ARGLIST'     Name.Constant
+' '           Text.Whitespace
+'rewrite_template_arg' Name.Variable
+'+'           Operator
+')'           Operator
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'ARGLIST'     Name.Constant
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'rewrite_template_arg' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'   '         Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+"'='"         Literal.String.Single
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'^'           Operator
+'('           Operator
+'ARG'         Name.Constant
+'['           Punctuation
+'$id'         Name.Variable
+'.'           Punctuation
+'start'       Other
+']'           Punctuation
+' '           Text.Whitespace
+'id'          Name.Variable
+' '           Text.Whitespace
+'ACTION'      Name.Constant
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id'          Name.Label
+'\t'          Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'TOKEN_REF'   Name.Constant
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'ID'          Name.Constant
+'['           Punctuation
+'$TOKEN'      Name.Variable
+'_REF'        Other
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'RULE_REF'    Name.Constant
+'  '          Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'ID'          Name.Constant
+'['           Punctuation
+'$RULE'       Name.Variable
+'_REF'        Other
+']'           Punctuation
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// L E X I C A L   R U L E S' Comment
+'\n\n'        Text.Whitespace
+
+'SL_COMMENT'  Name.Label
+'\n \t'       Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'//'"        Literal.String.Single
+'\n \t \t'    Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+"' $ANTLR '"  Literal.String.Single
+' '           Text.Whitespace
+'SRC'         Name.Constant
+' '           Text.Whitespace
+'// src directive' Comment
+'\n \t\t'     Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'~'           Operator
+'('           Operator
+"'\\r'"       Literal.String.Single
+'|'           Operator
+"'\\n'"       Literal.String.Single
+')'           Operator
+'*'           Operator
+'\n\t\t'      Text.Whitespace
+')'           Operator
+'\n\t\t'      Text.Whitespace
+"'\\r'"       Literal.String.Single
+'?'           Operator
+' '           Text.Whitespace
+"'\\n'"       Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'{'           Punctuation
+'$channel'    Name.Variable
+'=HIDDEN;'    Other
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'ML_COMMENT'  Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'/*'"        Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+"if (input.LA(1)=='*') " Other
+'$type'       Name.Variable
+'=DOC_COMMENT; else ' Other
+'$channel'    Name.Variable
+'=HIDDEN;'    Other
+'}'           Punctuation
+' '           Text.Whitespace
+'.'           Operator
+'*'           Operator
+' '           Text.Whitespace
+"'*/'"        Literal.String.Single
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'CHAR_LITERAL' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'\\''"       Literal.String.Single
+' '           Text.Whitespace
+'LITERAL_CHAR' Name.Constant
+' '           Text.Whitespace
+"'\\''"       Literal.String.Single
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'STRING_LITERAL' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'\\''"       Literal.String.Single
+' '           Text.Whitespace
+'LITERAL_CHAR' Name.Constant
+' '           Text.Whitespace
+'LITERAL_CHAR' Name.Constant
+'*'           Operator
+' '           Text.Whitespace
+"'\\''"       Literal.String.Single
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fragment'    Keyword
+'\n'          Text.Whitespace
+
+'LITERAL_CHAR' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'ESC'         Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'~'           Operator
+'('           Operator
+"'\\''"       Literal.String.Single
+'|'           Operator
+"'\\\\'"      Literal.String.Single
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'DOUBLE_QUOTE_STRING_LITERAL' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'\'"\''       Literal.String.Single
+' '           Text.Whitespace
+'LITERAL_CHAR' Name.Constant
+'*'           Operator
+' '           Text.Whitespace
+'\'"\''       Literal.String.Single
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'DOUBLE_ANGLE_STRING_LITERAL' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'<<'"        Literal.String.Single
+' '           Text.Whitespace
+'.'           Operator
+'*'           Operator
+' '           Text.Whitespace
+"'>>'"        Literal.String.Single
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fragment'    Keyword
+'\n'          Text.Whitespace
+
+'ESC'         Name.Label
+'\t'          Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'\\\\'"      Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+"'n'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'r'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'t'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'b'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'f'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'\'"\''       Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'\\''"       Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'\\\\'"      Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'>'"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'u'"         Literal.String.Single
+' '           Text.Whitespace
+'XDIGIT'      Name.Constant
+' '           Text.Whitespace
+'XDIGIT'      Name.Constant
+' '           Text.Whitespace
+'XDIGIT'      Name.Constant
+' '           Text.Whitespace
+'XDIGIT'      Name.Constant
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'.'           Operator
+' '           Text.Whitespace
+'// unknown, leave as it is' Comment
+'\n\t\t'      Text.Whitespace
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fragment'    Keyword
+'\n'          Text.Whitespace
+
+'XDIGIT'      Name.Label
+' '           Text.Whitespace
+':'           Punctuation
+'\n\t\t'      Text.Whitespace
+"'0'"         Literal.String.Single
+' '           Text.Whitespace
+'..'          Operator
+' '           Text.Whitespace
+"'9'"         Literal.String.Single
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'a'"         Literal.String.Single
+' '           Text.Whitespace
+'..'          Operator
+' '           Text.Whitespace
+"'f'"         Literal.String.Single
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'A'"         Literal.String.Single
+' '           Text.Whitespace
+'..'          Operator
+' '           Text.Whitespace
+"'F'"         Literal.String.Single
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'INT'         Name.Label
+'\t'          Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'0'"         Literal.String.Single
+'..'          Operator
+"'9'"         Literal.String.Single
+'+'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'ARG_ACTION'  Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'NESTED_ARG_ACTION' Name.Constant
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fragment'    Keyword
+'\n'          Text.Whitespace
+
+'NESTED_ARG_ACTION' Name.Label
+' '           Text.Whitespace
+':'           Punctuation
+'\n\t'        Text.Whitespace
+"'['"         Literal.String.Single
+'\n\t'        Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+'options'     Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'greedy'      Name.Variable
+'='           Punctuation
+'false'       Text
+';'           Punctuation
+' '           Text.Whitespace
+'k'           Name.Variable
+'='           Punctuation
+'1'           Text
+';'           Punctuation
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'NESTED_ARG_ACTION' Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'ACTION_STRING_LITERAL' Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'ACTION_CHAR_LITERAL' Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'.'           Operator
+'\n\t'        Text.Whitespace
+')'           Operator
+'*'           Operator
+'\n\t'        Text.Whitespace
+"']'"         Literal.String.Single
+'\n\t'        Text.Whitespace
+'{'           Punctuation
+'setText(getText().substring(1, getText().length()-1));' Other
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'ACTION'      Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'NESTED_ACTION' Name.Constant
+' '           Text.Whitespace
+'('           Operator
+' '           Text.Whitespace
+"'?'"         Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+'$type'       Name.Variable
+' = SEMPRED;' Other
+'}'           Punctuation
+' '           Text.Whitespace
+')'           Operator
+'?'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fragment'    Keyword
+'\n'          Text.Whitespace
+
+'NESTED_ACTION' Name.Label
+' '           Text.Whitespace
+':'           Punctuation
+'\n\t'        Text.Whitespace
+"'{'"         Literal.String.Single
+'\n\t'        Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+'options'     Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'greedy'      Name.Variable
+'='           Punctuation
+'false'       Text
+';'           Punctuation
+' '           Text.Whitespace
+'k'           Name.Variable
+'='           Punctuation
+'3'           Text
+';'           Punctuation
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'NESTED_ACTION' Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'SL_COMMENT'  Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'ML_COMMENT'  Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'ACTION_STRING_LITERAL' Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'ACTION_CHAR_LITERAL' Name.Constant
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'.'           Operator
+'\n\t'        Text.Whitespace
+')'           Operator
+'*'           Operator
+'\n\t'        Text.Whitespace
+"'}'"         Literal.String.Single
+'\n\t'        Text.Whitespace
+'{'           Punctuation
+'$channel'    Name.Variable
+' = DEFAULT_TOKEN_CHANNEL;' Other
+'}'           Punctuation
+'\n   '       Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fragment'    Keyword
+'\n'          Text.Whitespace
+
+'ACTION_CHAR_LITERAL' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'\\''"       Literal.String.Single
+' '           Text.Whitespace
+'('           Operator
+'ACTION_ESC'  Name.Constant
+'|'           Operator
+'~'           Operator
+'('           Operator
+"'\\\\'"      Literal.String.Single
+'|'           Operator
+"'\\''"       Literal.String.Single
+')'           Operator
+')'           Operator
+' '           Text.Whitespace
+"'\\''"       Literal.String.Single
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fragment'    Keyword
+'\n'          Text.Whitespace
+
+'ACTION_STRING_LITERAL' Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'\'"\''       Literal.String.Single
+' '           Text.Whitespace
+'('           Operator
+'ACTION_ESC'  Name.Constant
+'|'           Operator
+'~'           Operator
+'('           Operator
+"'\\\\'"      Literal.String.Single
+'|'           Operator
+'\'"\''       Literal.String.Single
+')'           Operator
+')'           Operator
+'+'           Operator
+' '           Text.Whitespace
+'\'"\''       Literal.String.Single
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fragment'    Keyword
+'\n'          Text.Whitespace
+
+'ACTION_ESC'  Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'\\\\\\''"   Literal.String.Single
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'\'\\\\"\''   Literal.String.Single
+'\n\t'        Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'\\\\'"      Literal.String.Single
+' '           Text.Whitespace
+'~'           Operator
+'('           Operator
+"'\\''"       Literal.String.Single
+'|'           Operator
+'\'"\''       Literal.String.Single
+')'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'TOKEN_REF'   Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'A'"         Literal.String.Single
+'..'          Operator
+"'Z'"         Literal.String.Single
+' '           Text.Whitespace
+'('           Operator
+"'a'"         Literal.String.Single
+'..'          Operator
+"'z'"         Literal.String.Single
+'|'           Operator
+"'A'"         Literal.String.Single
+'..'          Operator
+"'Z'"         Literal.String.Single
+'|'           Operator
+"'_'"         Literal.String.Single
+'|'           Operator
+"'0'"         Literal.String.Single
+'..'          Operator
+"'9'"         Literal.String.Single
+')'           Operator
+'*'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'RULE_REF'    Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'a'"         Literal.String.Single
+'..'          Operator
+"'z'"         Literal.String.Single
+' '           Text.Whitespace
+'('           Operator
+"'a'"         Literal.String.Single
+'..'          Operator
+"'z'"         Literal.String.Single
+'|'           Operator
+"'A'"         Literal.String.Single
+'..'          Operator
+"'Z'"         Literal.String.Single
+'|'           Operator
+"'_'"         Literal.String.Single
+'|'           Operator
+"'0'"         Literal.String.Single
+'..'          Operator
+"'9'"         Literal.String.Single
+')'           Operator
+'*'           Operator
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+"/** Match the start of an options section.  Don't allow normal\n *  action processing on the {...} as it's not a action.\n */" Comment
+'\n'          Text.Whitespace
+
+'OPTIONS'     Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'options'"   Literal.String.Single
+' '           Text.Whitespace
+'WS_LOOP'     Name.Constant
+' '           Text.Whitespace
+"'{'"         Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+'$channel'    Name.Variable
+'=DEFAULT_TOKEN_CHANNEL;' Other
+'}'           Punctuation
+' '           Text.Whitespace
+'// WS_LOOP sets channel' Comment
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\t\n'      Text.Whitespace
+
+'TOKENS'      Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'tokens'"    Literal.String.Single
+' '           Text.Whitespace
+'WS_LOOP'     Name.Constant
+' '           Text.Whitespace
+"'{'"         Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+'$channel'    Name.Variable
+'=DEFAULT_TOKEN_CHANNEL;' Other
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/** Reset the file and line information; useful when the grammar\n *  has been generated so that errors are shown relative to the\n *  original file like the old C preprocessor used to do.\n */' Comment
+'\n'          Text.Whitespace
+
+'fragment'    Keyword
+'\n'          Text.Whitespace
+
+'SRC'         Name.Label
+'\t'          Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+"'src'"       Literal.String.Single
+' '           Text.Whitespace
+"' '"         Literal.String.Single
+' '           Text.Whitespace
+'file'        Name.Variable
+'='           Operator
+'ACTION_STRING_LITERAL' Name.Constant
+' '           Text.Whitespace
+"' '"         Literal.String.Single
+' '           Text.Whitespace
+'line'        Name.Variable
+'='           Operator
+'INT'         Name.Constant
+' '           Text.Whitespace
+'{'           Punctuation
+'$channel'    Name.Variable
+'=HIDDEN;'    Other
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'WS'          Name.Label
+'\t'          Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+"' '"         Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'\\t'"       Literal.String.Single
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+"'\\r'"       Literal.String.Single
+'?'           Operator
+' '           Text.Whitespace
+"'\\n'"       Literal.String.Single
+'\n\t\t'      Text.Whitespace
+')'           Operator
+'+'           Operator
+'\n\t\t'      Text.Whitespace
+'{'           Punctuation
+'$channel'    Name.Variable
+'=HIDDEN;'    Other
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fragment'    Keyword
+'\n'          Text.Whitespace
+
+'WS_LOOP'     Name.Label
+'\n\t'        Text.Whitespace
+':'           Punctuation
+'\t'          Text.Whitespace
+'('           Operator
+'\t'          Text.Whitespace
+'WS'          Name.Constant
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'SL_COMMENT'  Name.Constant
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+'\t'          Text.Whitespace
+'ML_COMMENT'  Name.Constant
+'\n\t\t'      Text.Whitespace
+')'           Operator
+'*'           Operator
+'\n\t\t'      Text.Whitespace
+'{'           Punctuation
+'$channel'    Name.Variable
+'=HIDDEN;'    Other
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n'          Text.Whitespace

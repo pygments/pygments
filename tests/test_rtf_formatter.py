@@ -1,13 +1,13 @@
-# -*- coding: utf-8 -*-
 """
     Pygments RTF formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.util import StringIO
+from io import StringIO
+
 from pygments.formatters import RtfFormatter
 from pygments.lexers.special import TextLexer
 
@@ -26,10 +26,10 @@ def _build_message(*args, **kwargs):
     result = _escape(kwargs.get('result', ''))
 
     if string is None:
-        string = (u"The expected output of '{t}'\n"
-                  u"\t\tShould be '{expected}'\n"
-                  u"\t\tActually outputs '{result}'\n"
-                  u"\t(WARNING: Partial Output of Result!)")
+        string = ("The expected output of '{t}'\n"
+                  "\t\tShould be '{expected}'\n"
+                  "\t\tActually outputs '{result}'\n"
+                  "\t(WARNING: Partial Output of Result!)")
 
     end = -len(_escape(foot))
     start = end - len(expected)
@@ -50,31 +50,31 @@ def format_rtf(t):
 
 
 def test_rtf_header():
-    t = u''
+    t = ''
     result = format_rtf(t)
     expected = r'{\rtf1\ansi\uc0'
-    msg = (u"RTF documents are expected to start with '{expected}'\n"
-           u"\t\tStarts intead with '{result}'\n"
-           u"\t(WARNING: Partial Output of Result!)".format(
+    msg = ("RTF documents are expected to start with '{expected}'\n"
+           "\t\tStarts intead with '{result}'\n"
+           "\t(WARNING: Partial Output of Result!)".format(
                expected=expected,
                result=result[:len(expected)]))
     assert result.startswith(expected), msg
 
 
 def test_rtf_footer():
-    t = u''
+    t = ''
     result = format_rtf(t)
     expected = ''
-    msg = (u"RTF documents are expected to end with '{expected}'\n"
-           u"\t\tEnds intead with '{result}'\n"
-           u"\t(WARNING: Partial Output of Result!)".format(
+    msg = ("RTF documents are expected to end with '{expected}'\n"
+           "\t\tEnds intead with '{result}'\n"
+           "\t(WARNING: Partial Output of Result!)".format(
                expected=_escape(expected),
                result=_escape(result[-len(expected):])))
     assert result.endswith(expected+foot), msg
 
 
 def test_ascii_characters():
-    t = u'a b c d ~'
+    t = 'a b c d ~'
     result = format_rtf(t)
     expected = (r'a b c d ~')
     msg = _build_message(t=t, result=result, expected=expected)
@@ -82,7 +82,7 @@ def test_ascii_characters():
 
 
 def test_escape_characters():
-    t = u'\\ {{'
+    t = '\\ {{'
     result = format_rtf(t)
     expected = r'\\ \{\{'
     msg = _build_message(t=t, result=result, expected=expected)
@@ -90,7 +90,7 @@ def test_escape_characters():
 
 
 def test_single_characters():
-    t = u'â € ¤ каждой'
+    t = 'â € ¤ каждой'
     result = format_rtf(t)
     expected = (r'{\u226} {\u8364} {\u164} '
                 r'{\u1082}{\u1072}{\u1078}{\u1076}{\u1086}{\u1081}')
@@ -99,7 +99,7 @@ def test_single_characters():
 
 
 def test_double_characters():
-    t = u'က 힣 ↕ ↕︎ 鼖'
+    t = 'က 힣 ↕ ↕︎ 鼖'
     result = format_rtf(t)
     expected = (r'{\u4096} {\u55203} {\u8597} '
                 r'{\u8597}{\u65038} {\u55422}{\u56859}')

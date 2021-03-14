@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.teraterm
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for Tera Term macro files.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -40,7 +39,7 @@ class TeraTermLexer(RegexLexer):
             include('numeric-literals'),
             include('string-literals'),
             include('all-whitespace'),
-            (r'[^\s]', Text),
+            (r'\S', Text),
         ],
         'comments': [
             (r';[^\r\n]*', Comment.Single),
@@ -52,71 +51,250 @@ class TeraTermLexer(RegexLexer):
             (r'[*/]', Comment.Multiline)
         ],
         'labels': [
-            (r'(?i)^(\s*)(:[0-9a-z_]+)', bygroups(Text, Name.Label)),
+            (r'(?i)^(\s*)(:[a-z0-9_]+)', bygroups(Text, Name.Label)),
         ],
         'commands': [
             (
                 r'(?i)\b('
-                r'basename|beep|bplusrecv|bplussend|break|bringupbox|'
-                r'callmenu|changedir|checksum16|checksum16file|'
-                r'checksum32|checksum32file|checksum8|checksum8file|'
-                r'clearscreen|clipb2var|closesbox|closett|code2str|'
-                r'connect|continue|crc16|crc16file|crc32|crc32file|'
-                r'cygconnect|delpassword|dirname|dirnamebox|disconnect|'
-                r'dispstr|do|else|elseif|enablekeyb|end|endif|enduntil|'
-                r'endwhile|exec|execcmnd|exit|expandenv|fileclose|'
-                r'fileconcat|filecopy|filecreate|filedelete|filelock|'
-                r'filemarkptr|filenamebox|fileopen|fileread|filereadln|'
-                r'filerename|filesearch|fileseek|fileseekback|filestat|'
-                r'filestrseek|filestrseek2|filetruncate|fileunlock|'
-                r'filewrite|filewriteln|findclose|findfirst|findnext|'
-                r'flushrecv|foldercreate|folderdelete|foldersearch|for|'
-                r'getdate|getdir|getenv|getfileattr|gethostname|'
-                r'getipv4addr|getipv6addr|getmodemstatus|getpassword|'
-                r'getspecialfolder|gettime|gettitle|getttdir|getver|'
-                r'if|ifdefined|include|inputbox|int2str|intdim|'
-                r'ispassword|kmtfinish|kmtget|kmtrecv|kmtsend|listbox|'
-                r'loadkeymap|logautoclosemode|logclose|loginfo|logopen|'
-                r'logpause|logrotate|logstart|logwrite|loop|makepath|'
-                r'messagebox|mpause|next|passwordbox|pause|quickvanrecv|'
-                r'quickvansend|random|recvln|regexoption|restoresetup|'
-                r'return|rotateleft|rotateright|scprecv|scpsend|send|'
-                r'sendbreak|sendbroadcast|sendfile|sendkcode|sendln|'
-                r'sendlnbroadcast|sendlnmulticast|sendmulticast|setbaud|'
-                r'setdate|setdebug|setdir|setdlgpos|setdtr|setecho|'
-                r'setenv|setexitcode|setfileattr|setflowctrl|'
-                r'setmulticastname|setpassword|setrts|setsync|settime|'
-                r'settitle|show|showtt|sprintf|sprintf2|statusbox|'
-                r'str2code|str2int|strcompare|strconcat|strcopy|strdim|'
-                r'strinsert|strjoin|strlen|strmatch|strremove|'
-                r'strreplace|strscan|strspecial|strsplit|strtrim|'
-                r'testlink|then|tolower|toupper|unlink|until|uptime|'
-                r'var2clipb|wait|wait4all|waitevent|waitln|waitn|'
-                r'waitrecv|waitregex|while|xmodemrecv|xmodemsend|'
-                r'yesnobox|ymodemrecv|ymodemsend|zmodemrecv|zmodemsend'
+                r'basename|'
+                r'beep|'
+                r'bplusrecv|'
+                r'bplussend|'
+                r'break|'
+                r'bringupbox|'
+                # 'call' is handled separately.
+                r'callmenu|'
+                r'changedir|'
+                r'checksum16|'
+                r'checksum16file|'
+                r'checksum32|'
+                r'checksum32file|'
+                r'checksum8|'
+                r'checksum8file|'
+                r'clearscreen|'
+                r'clipb2var|'
+                r'closesbox|'
+                r'closett|'
+                r'code2str|'
+                r'connect|'
+                r'continue|'
+                r'crc16|'
+                r'crc16file|'
+                r'crc32|'
+                r'crc32file|'
+                r'cygconnect|'
+                r'delpassword|'
+                r'dirname|'
+                r'dirnamebox|'
+                r'disconnect|'
+                r'dispstr|'
+                r'do|'
+                r'else|'
+                r'elseif|'
+                r'enablekeyb|'
+                r'end|'
+                r'endif|'
+                r'enduntil|'
+                r'endwhile|'
+                r'exec|'
+                r'execcmnd|'
+                r'exit|'
+                r'expandenv|'
+                r'fileclose|'
+                r'fileconcat|'
+                r'filecopy|'
+                r'filecreate|'
+                r'filedelete|'
+                r'filelock|'
+                r'filemarkptr|'
+                r'filenamebox|'
+                r'fileopen|'
+                r'fileread|'
+                r'filereadln|'
+                r'filerename|'
+                r'filesearch|'
+                r'fileseek|'
+                r'fileseekback|'
+                r'filestat|'
+                r'filestrseek|'
+                r'filestrseek2|'
+                r'filetruncate|'
+                r'fileunlock|'
+                r'filewrite|'
+                r'filewriteln|'
+                r'findclose|'
+                r'findfirst|'
+                r'findnext|'
+                r'flushrecv|'
+                r'foldercreate|'
+                r'folderdelete|'
+                r'foldersearch|'
+                r'for|'
+                r'getdate|'
+                r'getdir|'
+                r'getenv|'
+                r'getfileattr|'
+                r'gethostname|'
+                r'getipv4addr|'
+                r'getipv6addr|'
+                r'getmodemstatus|'
+                r'getpassword|'
+                r'getspecialfolder|'
+                r'gettime|'
+                r'gettitle|'
+                r'getttdir|'
+                r'getver|'
+                # 'goto' is handled separately.
+                r'if|'
+                r'ifdefined|'
+                r'include|'
+                r'inputbox|'
+                r'int2str|'
+                r'intdim|'
+                r'ispassword|'
+                r'kmtfinish|'
+                r'kmtget|'
+                r'kmtrecv|'
+                r'kmtsend|'
+                r'listbox|'
+                r'loadkeymap|'
+                r'logautoclosemode|'
+                r'logclose|'
+                r'loginfo|'
+                r'logopen|'
+                r'logpause|'
+                r'logrotate|'
+                r'logstart|'
+                r'logwrite|'
+                r'loop|'
+                r'makepath|'
+                r'messagebox|'
+                r'mpause|'
+                r'next|'
+                r'passwordbox|'
+                r'pause|'
+                r'quickvanrecv|'
+                r'quickvansend|'
+                r'random|'
+                r'recvln|'
+                r'regexoption|'
+                r'restoresetup|'
+                r'return|'
+                r'rotateleft|'
+                r'rotateright|'
+                r'scprecv|'
+                r'scpsend|'
+                r'send|'
+                r'sendbreak|'
+                r'sendbroadcast|'
+                r'sendfile|'
+                r'sendkcode|'
+                r'sendln|'
+                r'sendlnbroadcast|'
+                r'sendlnmulticast|'
+                r'sendmulticast|'
+                r'setbaud|'
+                r'setdate|'
+                r'setdebug|'
+                r'setdir|'
+                r'setdlgpos|'
+                r'setdtr|'
+                r'setecho|'
+                r'setenv|'
+                r'setexitcode|'
+                r'setfileattr|'
+                r'setflowctrl|'
+                r'setmulticastname|'
+                r'setpassword|'
+                r'setrts|'
+                r'setspeed|'
+                r'setsync|'
+                r'settime|'
+                r'settitle|'
+                r'show|'
+                r'showtt|'
+                r'sprintf|'
+                r'sprintf2|'
+                r'statusbox|'
+                r'str2code|'
+                r'str2int|'
+                r'strcompare|'
+                r'strconcat|'
+                r'strcopy|'
+                r'strdim|'
+                r'strinsert|'
+                r'strjoin|'
+                r'strlen|'
+                r'strmatch|'
+                r'strremove|'
+                r'strreplace|'
+                r'strscan|'
+                r'strspecial|'
+                r'strsplit|'
+                r'strtrim|'
+                r'testlink|'
+                r'then|'
+                r'tolower|'
+                r'toupper|'
+                r'unlink|'
+                r'until|'
+                r'uptime|'
+                r'var2clipb|'
+                r'wait|'
+                r'wait4all|'
+                r'waitevent|'
+                r'waitln|'
+                r'waitn|'
+                r'waitrecv|'
+                r'waitregex|'
+                r'while|'
+                r'xmodemrecv|'
+                r'xmodemsend|'
+                r'yesnobox|'
+                r'ymodemrecv|'
+                r'ymodemsend|'
+                r'zmodemrecv|'
+                r'zmodemsend'
                 r')\b',
                 Keyword,
             ),
-            (
-                r'(?i)(call|goto)([ \t]+)([0-9a-z_]+)',
-                bygroups(Keyword, Text, Name.Label),
-            )
+            (r'(?i)(call|goto)([ \t]+)([a-z0-9_]+)',
+             bygroups(Keyword, Text, Name.Label)),
         ],
         'builtin-variables': [
             (
                 r'(?i)('
-                r'groupmatchstr1|groupmatchstr2|groupmatchstr3|'
-                r'groupmatchstr4|groupmatchstr5|groupmatchstr6|'
-                r'groupmatchstr7|groupmatchstr8|groupmatchstr9|'
-                r'param1|param2|param3|param4|param5|param6|'
-                r'param7|param8|param9|paramcnt|params|'
-                r'inputstr|matchstr|mtimeout|result|timeout'
+                r'groupmatchstr1|'
+                r'groupmatchstr2|'
+                r'groupmatchstr3|'
+                r'groupmatchstr4|'
+                r'groupmatchstr5|'
+                r'groupmatchstr6|'
+                r'groupmatchstr7|'
+                r'groupmatchstr8|'
+                r'groupmatchstr9|'
+                r'inputstr|'
+                r'matchstr|'
+                r'mtimeout|'
+                r'param1|'
+                r'param2|'
+                r'param3|'
+                r'param4|'
+                r'param5|'
+                r'param6|'
+                r'param7|'
+                r'param8|'
+                r'param9|'
+                r'paramcnt|'
+                r'params|'
+                r'result|'
+                r'timeout'
                 r')\b',
                 Name.Builtin
             ),
         ],
         'user-variables': [
-            (r'(?i)[A-Z_][A-Z0-9_]*', Name.Variable),
+            (r'(?i)[a-z_][a-z0-9_]*', Name.Variable),
         ],
         'numeric-literals': [
             (r'(-?)([0-9]+)', bygroups(Operator, Number.Integer)),
@@ -128,7 +306,7 @@ class TeraTermLexer(RegexLexer):
             (r'"', String.Double, 'in-double-string'),
         ],
         'in-general-string': [
-            (r'[\\][\\nt]', String.Escape),  # Only three escapes are supported.
+            (r'\\[\\nt]', String.Escape),  # Only three escapes are supported.
             (r'.', String),
         ],
         'in-single-string': [
@@ -145,14 +323,12 @@ class TeraTermLexer(RegexLexer):
             (r'[()]', String.Symbol),
         ],
         'all-whitespace': [
-            (r'[\s]+', Text),
+            (r'\s+', Text),
         ],
     }
 
     # Turtle and Tera Term macro files share the same file extension
     # but each has a recognizable and distinct syntax.
     def analyse_text(text):
-        result = 0.0
         if re.search(TeraTermLexer.tokens['commands'][0][0], text):
-            result += 0.01
-        return result
+            return 0.01

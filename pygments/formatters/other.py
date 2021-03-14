@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.formatters.other
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Other formatters: NullFormatter, RawTokenFormatter.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -88,43 +87,41 @@ class RawTokenFormatter(Formatter):
             import gzip
             outfile = gzip.GzipFile('', 'wb', 9, outfile)
 
-            def write(text):
-                outfile.write(text.encode())
-            flush = outfile.flush
+            write = outfile.write
+            flush = outfile.close
         elif self.compress == 'bz2':
             import bz2
             compressor = bz2.BZ2Compressor(9)
 
             def write(text):
-                outfile.write(compressor.compress(text.encode()))
+                outfile.write(compressor.compress(text))
 
             def flush():
                 outfile.write(compressor.flush())
                 outfile.flush()
         else:
-            def write(text):
-                outfile.write(text.encode())
+            write = outfile.write
             flush = outfile.flush
 
         if self.error_color:
             for ttype, value in tokensource:
-                line = "%s\t%r\n" % (ttype, value)
+                line = b"%r\t%r\n" % (ttype, value)
                 if ttype is Token.Error:
                     write(colorize(self.error_color, line))
                 else:
                     write(line)
         else:
             for ttype, value in tokensource:
-                write("%s\t%r\n" % (ttype, value))
+                write(b"%r\t%r\n" % (ttype, value))
         flush()
 
 
-TESTCASE_BEFORE = u'''\
+TESTCASE_BEFORE = '''\
     def testNeedsName(lexer):
         fragment = %r
         tokens = [
 '''
-TESTCASE_AFTER = u'''\
+TESTCASE_AFTER = '''\
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 '''
@@ -152,8 +149,8 @@ class TestcaseFormatter(Formatter):
             rawbuf.append(value)
             outbuf.append('%s(%s, %r),\n' % (indentation, ttype, value))
 
-        before = TESTCASE_BEFORE % (u''.join(rawbuf),)
-        during = u''.join(outbuf)
+        before = TESTCASE_BEFORE % (''.join(rawbuf),)
+        during = ''.join(outbuf)
         after = TESTCASE_AFTER
         if self.encoding is None:
             outfile.write(before + during + after)

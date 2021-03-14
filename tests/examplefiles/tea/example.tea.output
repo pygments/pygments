@@ -1,0 +1,228 @@
+'<%'          Keyword
+' '           Text
+'template'    Keyword.Declaration
+' '           Text
+'example'     Name.Function
+'('           Operator
+')'           Operator
+' '           Text
+'{'           Operator
+'...'         Operator
+'}'           Operator
+'\n'          Text
+
+'a'           Name
+' '           Text
+'='           Operator
+' '           Text
+'123'         Literal.Number.Integer
+'\n'          Text
+
+'b'           Name
+' '           Text
+'='           Operator
+' '           Text
+'"test"'      Literal.String.Double
+';'           Operator
+'\n'          Text
+
+'c'           Name
+' '           Text
+'='           Operator
+' '           Text
+'4.5'         Literal.Number.Float
+'\n'          Text
+
+'d'           Name
+' '           Text
+'='           Operator
+' '           Text
+'call'        Keyword.Declaration
+' '           Text
+'other'       Name
+'('           Operator
+')'           Operator
+'\n'          Text
+
+'f'           Name
+' '           Text
+'='           Operator
+' '           Text
+'other2'      Name
+'('           Operator
+')'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'define'      Keyword.Declaration
+' '           Text
+'g'           Name
+' '           Text
+'as'          Keyword.Declaration
+' '           Text
+'String'      Name
+'\n'          Text
+
+'\n'          Text
+
+'h'           Name
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+'\n'          Text
+
+'j'           Name
+' '           Text
+'='           Operator
+' '           Text
+'null'        Keyword.Constant
+'\n'          Text
+
+'%>'          Keyword
+'\n'          Text
+
+'<html'       Name.Tag
+'>'           Name.Tag
+'\n'          Text
+
+'<head'       Name.Tag
+'>'           Name.Tag
+'\n'          Text
+
+'<title'      Name.Tag
+'>'           Name.Tag
+'Example'     Text
+'<title'      Name.Tag
+'>'           Name.Tag
+'\n'          Text
+
+'<body'       Name.Tag
+'>'           Name.Tag
+'\n'          Text
+
+'<a'          Name.Tag
+' '           Text
+'href='       Name.Attribute
+'"http://example.com"' Literal.String
+'>'           Name.Tag
+'Test link'   Text
+'</a>'        Name.Tag
+'\n'          Text
+
+'<%'          Keyword
+' '           Text
+'// Second block\n' Comment.Single
+
+'if'          Keyword
+'('           Operator
+'a'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'123'         Literal.Number.Integer
+' '           Text
+'and'         Keyword
+' '           Text
+'b'           Name
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'"test"'      Literal.String.Double
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+"'yes'"       Literal.String.Single
+'\n'          Text
+
+'}'           Operator
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+"'no'"        Literal.String.Single
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'foreach'     Keyword
+'('           Operator
+'i'           Name
+' '           Text
+'in'          Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'..'          Operator
+'10'          Literal.Number.Integer
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'i'           Name
+' '           Text
+'&'           Operator
+' '           Text
+'","'         Literal.String.Double
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'foreach'     Keyword
+'('           Operator
+'i'           Name
+' '           Text
+'in'          Keyword
+' '           Text
+'#'           Operator
+'('           Operator
+'1'           Literal.Number.Integer
+','           Operator
+'2'           Literal.Number.Integer
+','           Operator
+'3'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'reverse'     Keyword
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'i'           Name
+' '           Text
+'&'           Operator
+' '           Text
+'";"'         Literal.String.Double
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'%>'          Keyword
+'\n'          Text

@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.diff
     ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for diff/patch formats.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -114,9 +113,9 @@ class WDiffLexer(RegexLexer):
 
     Note that:
 
-    * only to normal output (without option like -l).
-    * if target files of wdiff contain "[-", "-]", "{+", "+}",
-      especially they are unbalanced, this lexer will get confusing.
+    * It only works with normal output (without options like ``-l``).
+    * If the target files contain "[-", "-]", "{+", or "+}",
+      especially they are unbalanced, the lexer will get confused.
 
     .. versionadded:: 2.2
     """

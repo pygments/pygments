@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.sql
     ~~~~~~~~~~~~~~~~~~~
@@ -34,7 +33,7 @@
     The ``tests/examplefiles`` contains a few test files with data to be
     parsed by these lexers.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -42,12 +41,18 @@ import re
 
 from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, words
 from pygments.token import Punctuation, Whitespace, Text, Comment, Operator, \
-    Keyword, Name, String, Number, Generic
+    Keyword, Name, String, Number, Generic, Literal
 from pygments.lexers import get_lexer_by_name, ClassNotFound
-from pygments.util import iteritems
 
 from pygments.lexers._postgres_builtins import KEYWORDS, DATATYPES, \
     PSEUDO_TYPES, PLPGSQL_KEYWORDS
+from pygments.lexers._mysql_builtins import \
+    MYSQL_CONSTANTS, \
+    MYSQL_DATATYPES, \
+    MYSQL_FUNCTIONS, \
+    MYSQL_KEYWORDS, \
+    MYSQL_OPTIMIZER_HINTS
+
 from pygments.lexers import _tsql_builtins
 
 
@@ -96,8 +101,7 @@ def language_callback(lexer, match):
     yield (match.start(3), String, match.group(3))
     # 4 = string contents
     if lx:
-        for x in lx.get_tokens_unprocessed(match.group(4)):
-            yield x
+        yield from lx.get_tokens_unprocessed(match.group(4))
     else:
         yield (match.start(4), String, match.group(4))
     # 5 = $, 6 = delimiter, 7 = $
@@ -106,7 +110,7 @@ def language_callback(lexer, match):
     yield (match.start(7), String, match.group(7))
 
 
-class PostgresBase(object):
+class PostgresBase:
     """Base class for Postgres-related lexers.
 
     This is implemented as a mixin to avoid the Lexer metaclass kicking in.
@@ -118,9 +122,7 @@ class PostgresBase(object):
     def get_tokens_unprocessed(self, text, *args):
         # Have a copy of the entire text to be used by `language_callback`.
         self.text = text
-        for x in super(PostgresBase, self).get_tokens_unprocessed(
-                text, *args):
-            yield x
+        yield from super().get_tokens_unprocessed(text, *args)
 
     def _get_lexer(self, lang):
         if lang.lower() == 'sql':
@@ -212,7 +214,7 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
     mimetypes = ['text/x-plpgsql']
 
     flags = re.IGNORECASE
-    tokens = {k: l[:] for (k, l) in iteritems(PostgresLexer.tokens)}
+    tokens = {k: l[:] for (k, l) in PostgresLexer.tokens.items()}
 
     # extend the keywords list
     for i, pattern in enumerate(tokens['root']):
@@ -246,7 +248,7 @@ class PsqlRegexLexer(PostgresBase, RegexLexer):
     aliases = []    # not public
 
     flags = re.IGNORECASE
-    tokens = {k: l[:] for (k, l) in iteritems(PostgresLexer.tokens)}
+    tokens = {k: l[:] for (k, l) in PostgresLexer.tokens.items()}
 
     tokens['root'].append(
         (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'))
@@ -271,7 +273,7 @@ re_message = re.compile(
     r'FATAL|HINT|DETAIL|CONTEXT|LINE [0-9]+):)(.*?\n)')
 
 
-class lookahead(object):
+class lookahead:
     """Wrap an iterator and allow pushing back an item."""
     def __init__(self, x):
         self.iter = iter(x)
@@ -320,8 +322,7 @@ class PostgresConsoleLexer(Lexer):
                 # Identify a shell prompt in case of psql commandline example
                 if line.startswith('$') and not curcode:
                     lexer = get_lexer_by_name('console', **self.options)
-                    for x in lexer.get_tokens_unprocessed(line):
-                        yield x
+                    yield from lexer.get_tokens_unprocessed(line)
                     break
 
                 # Identify a psql prompt
@@ -341,9 +342,8 @@ class PostgresConsoleLexer(Lexer):
                     break
 
             # Emit the combined stream of command and prompt(s)
-            for item in do_insertions(insertions,
-                                      sql.get_tokens_unprocessed(curcode)):
-                yield item
+            yield from do_insertions(insertions,
+                                     sql.get_tokens_unprocessed(curcode))
 
             # Emit the output lines
             out_token = Generic.Output
@@ -395,14 +395,14 @@ class SqlLexer(RegexLexer):
                 'CHARACTERISTICS', 'CHARACTER_LENGTH', 'CHARACTER_SET_CATALOG',
                 'CHARACTER_SET_NAME', 'CHARACTER_SET_SCHEMA', 'CHAR_LENGTH', 'CHECK',
                 'CHECKED', 'CHECKPOINT', 'CLASS', 'CLASS_ORIGIN', 'CLOB', 'CLOSE',
-                'CLUSTER', 'COALSECE', 'COBOL', 'COLLATE', 'COLLATION',
+                'CLUSTER', 'COALESCE', 'COBOL', 'COLLATE', 'COLLATION',
                 'COLLATION_CATALOG', 'COLLATION_NAME', 'COLLATION_SCHEMA', 'COLUMN',
                 'COLUMN_NAME', 'COMMAND_FUNCTION', 'COMMAND_FUNCTION_CODE', 'COMMENT',
                 'COMMIT', 'COMMITTED', 'COMPLETION', 'CONDITION_NUMBER', 'CONNECT',
                 'CONNECTION', 'CONNECTION_NAME', 'CONSTRAINT', 'CONSTRAINTS',
                 'CONSTRAINT_CATALOG', 'CONSTRAINT_NAME', 'CONSTRAINT_SCHEMA',
                 'CONSTRUCTOR', 'CONTAINS', 'CONTINUE', 'CONVERSION', 'CONVERT',
-                'COPY', 'CORRESPONTING', 'COUNT', 'CREATE', 'CREATEDB', 'CREATEUSER',
+                'COPY', 'CORRESPONDING', 'COUNT', 'CREATE', 'CREATEDB', 'CREATEUSER',
                 'CROSS', 'CUBE', 'CURRENT', 'CURRENT_DATE', 'CURRENT_PATH',
                 'CURRENT_ROLE', 'CURRENT_TIME', 'CURRENT_TIMESTAMP', 'CURRENT_USER',
                 'CURSOR', 'CURSOR_NAME', 'CYCLE', 'DATA', 'DATABASE',
@@ -420,7 +420,7 @@ class SqlLexer(RegexLexer):
                 'FREEZE', 'FROM', 'FULL', 'FUNCTION', 'G', 'GENERAL', 'GENERATED', 'GET',
                 'GLOBAL', 'GO', 'GOTO', 'GRANT', 'GRANTED', 'GROUP', 'GROUPING',
                 'HANDLER', 'HAVING', 'HIERARCHY', 'HOLD', 'HOST', 'IDENTITY', 'IF',
-                'IGNORE', 'ILIKE', 'IMMEDIATE', 'IMMUTABLE', 'IMPLEMENTATION', 'IMPLICIT',
+                'IGNORE', 'ILIKE', 'IMMEDIATE', 'IMMEDIATELY', 'IMMUTABLE', 'IMPLEMENTATION', 'IMPLICIT',
                 'IN', 'INCLUDING', 'INCREMENT', 'INDEX', 'INDITCATOR', 'INFIX',
                 'INHERITS', 'INITIALIZE', 'INITIALLY', 'INNER', 'INOUT', 'INPUT',
                 'INSENSITIVE', 'INSERT', 'INSTANTIABLE', 'INSTEAD', 'INTERSECT', 'INTO',
@@ -438,10 +438,10 @@ class SqlLexer(RegexLexer):
                 'OPEN', 'OPERATION', 'OPERATOR', 'OPTION', 'OPTIONS', 'OR', 'ORDER',
                 'ORDINALITY', 'OUT', 'OUTER', 'OUTPUT', 'OVERLAPS', 'OVERLAY',
                 'OVERRIDING', 'OWNER', 'PAD', 'PARAMETER', 'PARAMETERS', 'PARAMETER_MODE',
-                'PARAMATER_NAME', 'PARAMATER_ORDINAL_POSITION',
+                'PARAMETER_NAME', 'PARAMETER_ORDINAL_POSITION',
                 'PARAMETER_SPECIFIC_CATALOG', 'PARAMETER_SPECIFIC_NAME',
-                'PARAMATER_SPECIFIC_SCHEMA', 'PARTIAL', 'PASCAL', 'PENDANT', 'PLACING',
-                'PLI', 'POSITION', 'POSTFIX', 'PRECISION', 'PREFIX', 'PREORDER',
+                'PARAMETER_SPECIFIC_SCHEMA', 'PARTIAL', 'PASCAL', 'PENDANT', 'PERIOD', 'PLACING',
+                'PLI', 'POSITION', 'POSTFIX', 'PRECEEDS', 'PRECISION', 'PREFIX', 'PREORDER',
                 'PREPARE', 'PRESERVE', 'PRIMARY', 'PRIOR', 'PRIVILEGES', 'PROCEDURAL',
                 'PROCEDURE', 'PUBLIC', 'READ', 'READS', 'RECHECK', 'RECURSIVE', 'REF',
                 'REFERENCES', 'REFERENCING', 'REINDEX', 'RELATIVE', 'RENAME',
@@ -457,18 +457,19 @@ class SqlLexer(RegexLexer):
                 'SQL', 'SQLCODE', 'SQLERROR', 'SQLEXCEPTION', 'SQLSTATE', 'SQLWARNINIG',
                 'STABLE', 'START', 'STATE', 'STATEMENT', 'STATIC', 'STATISTICS', 'STDIN',
                 'STDOUT', 'STORAGE', 'STRICT', 'STRUCTURE', 'STYPE', 'SUBCLASS_ORIGIN',
-                'SUBLIST', 'SUBSTRING', 'SUM', 'SYMMETRIC', 'SYSID', 'SYSTEM',
+                'SUBLIST', 'SUBSTRING', 'SUCCEEDS', 'SUM', 'SYMMETRIC', 'SYSID', 'SYSTEM',
                 'SYSTEM_USER', 'TABLE', 'TABLE_NAME', ' TEMP', 'TEMPLATE', 'TEMPORARY',
-                'TERMINATE', 'THAN', 'THEN', 'TIMESTAMP', 'TIMEZONE_HOUR',
-                'TIMEZONE_MINUTE', 'TO', 'TOAST', 'TRAILING', 'TRANSATION',
-                'TRANSACTIONS_COMMITTED', 'TRANSACTIONS_ROLLED_BACK', 'TRANSATION_ACTIVE',
+                'TERMINATE', 'THAN', 'THEN', 'TIME', 'TIMESTAMP', 'TIMEZONE_HOUR',
+                'TIMEZONE_MINUTE', 'TO', 'TOAST', 'TRAILING', 'TRANSACTION',
+                'TRANSACTIONS_COMMITTED', 'TRANSACTIONS_ROLLED_BACK', 'TRANSACTION_ACTIVE',
                 'TRANSFORM', 'TRANSFORMS', 'TRANSLATE', 'TRANSLATION', 'TREAT', 'TRIGGER',
                 'TRIGGER_CATALOG', 'TRIGGER_NAME', 'TRIGGER_SCHEMA', 'TRIM', 'TRUE',
                 'TRUNCATE', 'TRUSTED', 'TYPE', 'UNCOMMITTED', 'UNDER', 'UNENCRYPTED',
                 'UNION', 'UNIQUE', 'UNKNOWN', 'UNLISTEN', 'UNNAMED', 'UNNEST', 'UNTIL',
                 'UPDATE', 'UPPER', 'USAGE', 'USER', 'USER_DEFINED_TYPE_CATALOG',
                 'USER_DEFINED_TYPE_NAME', 'USER_DEFINED_TYPE_SCHEMA', 'USING', 'VACUUM',
-                'VALID', 'VALIDATOR', 'VALUES', 'VARIABLE', 'VERBOSE', 'VERSION', 'VIEW',
+                'VALID', 'VALIDATOR', 'VALUES', 'VARIABLE', 'VERBOSE',
+                'VERSION', 'VERSIONS', 'VERSIONING', 'VIEW',
                 'VOLATILE', 'WHEN', 'WHENEVER', 'WHERE', 'WITH', 'WITHOUT', 'WORK',
                 'WRITE', 'YEAR', 'ZONE'), suffix=r'\b'),
              Keyword),
@@ -494,9 +495,6 @@ class SqlLexer(RegexLexer):
         ]
     }
 
-    def analyse_text(text):
-        return 0.01
-
 
 class TransactSqlLexer(RegexLexer):
     """
@@ -516,7 +514,7 @@ class TransactSqlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Whitespace),
-            (r'(?m)--.*?$\n?', Comment.Single),
+            (r'--.*?$\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (words(_tsql_builtins.OPERATORS), Operator),
             (words(_tsql_builtins.OPERATOR_WORDS, suffix=r'\b'), Operator.Word),
@@ -583,8 +581,12 @@ class TransactSqlLexer(RegexLexer):
 
 
 class MySqlLexer(RegexLexer):
-    """
-    Special lexer for MySQL.
+    """The Oracle MySQL lexer.
+
+    This lexer does not attempt to maintain strict compatibility with
+    MariaDB syntax or keywords. Although MySQL and MariaDB's common code
+    history suggests there may be significant overlap between the two,
+    compatibility between the two is not a target for this lexer.
     """
 
     name = 'MySQL'
@@ -595,63 +597,151 @@ class MySqlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(#|--\s+).*\n?', Comment.Single),
-            (r'/\*', Comment.Multiline, 'multiline-comments'),
-            (r'[0-9]+', Number.Integer),
-            (r'[0-9]*\.[0-9]+(e[+-][0-9]+)', Number.Float),
-            (r"'(\\\\|\\'|''|[^'])*'", String.Single),
-            (r'"(\\\\|\\"|""|[^"])*"', String.Double),
-            (r"`(\\\\|\\`|``|[^`])*`", String.Symbol),
-            (r'[+*/<>=~!@#%^&|`?-]', Operator),
-            (r'\b(tinyint|smallint|mediumint|int|integer|bigint|date|'
-             r'datetime|time|bit|bool|tinytext|mediumtext|longtext|text|'
-             r'tinyblob|mediumblob|longblob|blob|float|double|double\s+'
-             r'precision|real|numeric|dec|decimal|timestamp|year|char|'
-             r'varchar|varbinary|varcharacter|enum|set)(\b\s*)(\()?',
-             bygroups(Keyword.Type, Text, Punctuation)),
-            (r'\b(add|all|alter|analyze|and|as|asc|asensitive|before|between|'
-             r'bigint|binary|blob|both|by|call|cascade|case|change|char|'
-             r'character|check|collate|column|condition|constraint|continue|'
-             r'convert|create|cross|current_date|current_time|'
-             r'current_timestamp|current_user|cursor|database|databases|'
-             r'day_hour|day_microsecond|day_minute|day_second|dec|decimal|'
-             r'declare|default|delayed|delete|desc|describe|deterministic|'
-             r'distinct|distinctrow|div|double|drop|dual|each|else|elseif|'
-             r'enclosed|escaped|exists|exit|explain|fetch|flush|float|float4|'
-             r'float8|for|force|foreign|from|fulltext|grant|group|having|'
-             r'high_priority|hour_microsecond|hour_minute|hour_second|if|'
-             r'ignore|in|index|infile|inner|inout|insensitive|insert|int|'
-             r'int1|int2|int3|int4|int8|integer|interval|into|is|iterate|'
-             r'join|key|keys|kill|leading|leave|left|like|limit|lines|load|'
-             r'localtime|localtimestamp|lock|long|loop|low_priority|match|'
-             r'minute_microsecond|minute_second|mod|modifies|natural|'
-             r'no_write_to_binlog|not|numeric|on|optimize|option|optionally|'
-             r'or|order|out|outer|outfile|precision|primary|procedure|purge|'
-             r'raid0|read|reads|real|references|regexp|release|rename|repeat|'
-             r'replace|require|restrict|return|revoke|right|rlike|schema|'
-             r'schemas|second_microsecond|select|sensitive|separator|set|'
-             r'show|smallint|soname|spatial|specific|sql|sql_big_result|'
-             r'sql_calc_found_rows|sql_small_result|sqlexception|sqlstate|'
-             r'sqlwarning|ssl|starting|straight_join|table|terminated|then|'
-             r'to|trailing|trigger|undo|union|unique|unlock|unsigned|update|'
-             r'usage|use|using|utc_date|utc_time|utc_timestamp|values|'
-             r'varying|when|where|while|with|write|x509|xor|year_month|'
-             r'zerofill)\b', Keyword),
-            # TODO: this list is not complete
-            (r'\b(auto_increment|engine|charset|tables)\b', Keyword.Pseudo),
-            (r'(true|false|null)', Name.Constant),
-            (r'([a-z_]\w*)(\s*)(\()',
+
+            # Comments
+            (r'(?:#|--\s+).*', Comment.Single),
+            (r'/\*\+', Comment.Special, 'optimizer-hints'),
+            (r'/\*', Comment.Multiline, 'multiline-comment'),
+
+            # Hexadecimal literals
+            (r"x'([0-9a-f]{2})+'", Number.Hex),  # MySQL requires paired hex characters in this form.
+            (r'0x[0-9a-f]+', Number.Hex),
+
+            # Binary literals
+            (r"b'[01]+'", Number.Bin),
+            (r'0b[01]+', Number.Bin),
+
+            # Numeric literals
+            (r'[0-9]+\.[0-9]*(e[+-]?[0-9]+)?', Number.Float),  # Mandatory integer, optional fraction and exponent
+            (r'[0-9]*\.[0-9]+(e[+-]?[0-9]+)?', Number.Float),  # Mandatory fraction, optional integer and exponent
+            (r'[0-9]+e[+-]?[0-9]+', Number.Float),  # Exponents with integer significands are still floats
+            (r'[0-9]+(?=[^0-9a-z$_\u0080-\uffff])', Number.Integer),  # Integers that are not in a schema object name
+
+            # Date literals
+            (r"\{\s*d\s*(?P<quote>['\"])\s*\d{2}(\d{2})?.?\d{2}.?\d{2}\s*(?P=quote)\s*\}",
+             Literal.Date),
+
+            # Time literals
+            (r"\{\s*t\s*(?P<quote>['\"])\s*(?:\d+\s+)?\d{1,2}.?\d{1,2}.?\d{1,2}(\.\d*)?\s*(?P=quote)\s*\}",
+             Literal.Date),
+
+            # Timestamp literals
+            (
+                r"\{\s*ts\s*(?P<quote>['\"])\s*"
+                r"\d{2}(?:\d{2})?.?\d{2}.?\d{2}"  # Date part
+                r"\s+"  # Whitespace between date and time
+                r"\d{1,2}.?\d{1,2}.?\d{1,2}(\.\d*)?"  # Time part
+                r"\s*(?P=quote)\s*\}",
+                Literal.Date
+            ),
+
+            # String literals
+            (r"'", String.Single, 'single-quoted-string'),
+            (r'"', String.Double, 'double-quoted-string'),
+
+            # Variables
+            (r'@@(?:global\.|persist\.|persist_only\.|session\.)?[a-z_]+', Name.Variable),
+            (r'@[a-z0-9_$.]+', Name.Variable),
+            (r"@'", Name.Variable, 'single-quoted-variable'),
+            (r'@"', Name.Variable, 'double-quoted-variable'),
+            (r"@`", Name.Variable, 'backtick-quoted-variable'),
+            (r'\?', Name.Variable),  # For demonstrating prepared statements
+
+            # Operators
+            (r'[!%&*+/:<=>^|~-]+', Operator),
+
+            # Exceptions; these words tokenize differently in different contexts.
+            (r'\b(set)(?!\s*\()', Keyword),
+            (r'\b(character)(\s+)(set)\b', bygroups(Keyword, Text, Keyword)),
+            # In all other known cases, "SET" is tokenized by MYSQL_DATATYPES.
+
+            (words(MYSQL_CONSTANTS, prefix=r'\b', suffix=r'\b'), Name.Constant),
+            (words(MYSQL_DATATYPES, prefix=r'\b', suffix=r'\b'), Keyword.Type),
+            (words(MYSQL_KEYWORDS, prefix=r'\b', suffix=r'\b'), Keyword),
+            (words(MYSQL_FUNCTIONS, prefix=r'\b', suffix=r'\b(\s*)(\()'),
              bygroups(Name.Function, Text, Punctuation)),
-            (r'[a-z_]\w*', Name),
-            (r'@[a-z0-9]*[._]*[a-z0-9]*', Name.Variable),
-            (r'[;:()\[\],.]', Punctuation)
+
+            # Schema object names
+            #
+            # Note: Although the first regex supports unquoted all-numeric
+            # identifiers, this will not be a problem in practice because
+            # numeric literals have already been handled above.
+            #
+            ('[0-9a-z$_\u0080-\uffff]+', Name),
+            (r'`', Name.Quoted, 'schema-object-name'),
+
+            # Punctuation
+            (r'[(),.;]', Punctuation),
         ],
-        'multiline-comments': [
-            (r'/\*', Comment.Multiline, 'multiline-comments'),
+
+        # Multiline comment substates
+        # ---------------------------
+
+        'optimizer-hints': [
+            (r'[^*a-z]+', Comment.Special),
+            (r'\*/', Comment.Special, '#pop'),
+            (words(MYSQL_OPTIMIZER_HINTS, suffix=r'\b'), Comment.Preproc),
+            ('[a-z]+', Comment.Special),
+            (r'\*', Comment.Special),
+        ],
+
+        'multiline-comment': [
+            (r'[^*]+', Comment.Multiline),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'[^/*]+', Comment.Multiline),
-            (r'[/*]', Comment.Multiline)
-        ]
+            (r'\*', Comment.Multiline),
+        ],
+
+        # String substates
+        # ----------------
+
+        'single-quoted-string': [
+            (r"[^'\\]+", String.Single),
+            (r"''", String.Escape),
+            (r"""\\[0'"bnrtZ\\%_]""", String.Escape),
+            (r"'", String.Single, '#pop'),
+        ],
+
+        'double-quoted-string': [
+            (r'[^"\\]+', String.Double),
+            (r'""', String.Escape),
+            (r"""\\[0'"bnrtZ\\%_]""", String.Escape),
+            (r'"', String.Double, '#pop'),
+        ],
+
+        # Variable substates
+        # ------------------
+
+        'single-quoted-variable': [
+            (r"[^']+", Name.Variable),
+            (r"''", Name.Variable),
+            (r"'", Name.Variable, '#pop'),
+        ],
+
+        'double-quoted-variable': [
+            (r'[^"]+', Name.Variable),
+            (r'""', Name.Variable),
+            (r'"', Name.Variable, '#pop'),
+        ],
+
+        'backtick-quoted-variable': [
+            (r'[^`]+', Name.Variable),
+            (r'``', Name.Variable),
+            (r'`', Name.Variable, '#pop'),
+        ],
+
+        # Schema object name substates
+        # ----------------------------
+        #
+        # "Name.Quoted" and "Name.Quoted.Escape" are non-standard but
+        # formatters will style them as "Name" by default but add
+        # additional styles based on the token name. This gives users
+        # flexibility to add custom styles as desired.
+        #
+        'schema-object-name': [
+            (r'[^`]+', Name.Quoted),
+            (r'``', Name.Quoted.Escape),
+            (r'`', Name.Quoted, '#pop'),
+        ],
     }
 
     def analyse_text(text):
@@ -698,9 +788,8 @@ class SqliteConsoleLexer(Lexer):
                 curcode += line[8:]
             else:
                 if curcode:
-                    for item in do_insertions(insertions,
-                                              sql.get_tokens_unprocessed(curcode)):
-                        yield item
+                    yield from do_insertions(insertions,
+                                             sql.get_tokens_unprocessed(curcode))
                     curcode = ''
                     insertions = []
                 if line.startswith('SQL error: '):
@@ -708,9 +797,8 @@ class SqliteConsoleLexer(Lexer):
                 else:
                     yield (match.start(), Generic.Output, line)
         if curcode:
-            for item in do_insertions(insertions,
-                                      sql.get_tokens_unprocessed(curcode)):
-                yield item
+            yield from do_insertions(insertions,
+                                     sql.get_tokens_unprocessed(curcode))
 
 
 class RqlLexer(RegexLexer):

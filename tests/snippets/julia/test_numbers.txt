@@ -1,0 +1,261 @@
+# Tests identification of number forms
+
+---input---
+# floats
+  1e1   1e+1   1e-1
+1.1e1 1.1e+1 1.1e-1 .1e1 .1_1e1 1_1.1e1 1.1_1e1 1.1_11e1
+1.1E1 1.1E+1 1.1E-1 .1E1 .1_1E1 1_1.1E1 1.1_1E1 1.1_11E1
+1.1f1 1.1f+1 1.1f-1 .1f1 .1_1f1 1_1.1f1 1.1_1f1 1.1_11f1
+1E1   1E+1   1E-1
+1f1   1f+1   1f-1
+.1  1.  1.1  1.1_1  1.1_11  .1_1  .1_11 1_1.1_1
+# hex floats
+0x1p1 0xa_bp10 0x01_ap11 0x01_abp1
+0x1.1p1 0xA.Bp10 0x0.1_Ap9 0x0_1.Ap1 0x0_1.A_Bp9
+
+# integers
+1 01 10_1 10_11
+
+# non-decimal
+0xf 0xf_0 0xfff_000
+0o7 0o7_0 0o777_000
+0b1 0b1_0 0b111_000
+
+# invalid in Julia - out of range values
+0xg 0o8 0b2 0x1pA
+# invalid in Julia - no trailing underscores
+1_ 1.1_ 0xf_ 0o7_ 0b1_ 0xF_p1
+# parsed as juxtaposed numeral + variable in Julia (no underscores in exponents)
+1e1_1 1E1_1 1f1_1 0xfp1_1
+
+# not floats -- range-like expression parts
+1..1  ..1  1..
+
+---tokens---
+'# floats'    Comment
+'\n'          Text
+
+'  '          Text
+'1e1'         Literal.Number.Float
+'   '         Text
+'1e+1'        Literal.Number.Float
+'   '         Text
+'1e-1'        Literal.Number.Float
+'\n'          Text
+
+'1.1e1'       Literal.Number.Float
+' '           Text
+'1.1e+1'      Literal.Number.Float
+' '           Text
+'1.1e-1'      Literal.Number.Float
+' '           Text
+'.1e1'        Literal.Number.Float
+' '           Text
+'.1_1e1'      Literal.Number.Float
+' '           Text
+'1_1.1e1'     Literal.Number.Float
+' '           Text
+'1.1_1e1'     Literal.Number.Float
+' '           Text
+'1.1_11e1'    Literal.Number.Float
+'\n'          Text
+
+'1.1E1'       Literal.Number.Float
+' '           Text
+'1.1E+1'      Literal.Number.Float
+' '           Text
+'1.1E-1'      Literal.Number.Float
+' '           Text
+'.1E1'        Literal.Number.Float
+' '           Text
+'.1_1E1'      Literal.Number.Float
+' '           Text
+'1_1.1E1'     Literal.Number.Float
+' '           Text
+'1.1_1E1'     Literal.Number.Float
+' '           Text
+'1.1_11E1'    Literal.Number.Float
+'\n'          Text
+
+'1.1f1'       Literal.Number.Float
+' '           Text
+'1.1f+1'      Literal.Number.Float
+' '           Text
+'1.1f-1'      Literal.Number.Float
+' '           Text
+'.1f1'        Literal.Number.Float
+' '           Text
+'.1_1f1'      Literal.Number.Float
+' '           Text
+'1_1.1f1'     Literal.Number.Float
+' '           Text
+'1.1_1f1'     Literal.Number.Float
+' '           Text
+'1.1_11f1'    Literal.Number.Float
+'\n'          Text
+
+'1E1'         Literal.Number.Float
+'   '         Text
+'1E+1'        Literal.Number.Float
+'   '         Text
+'1E-1'        Literal.Number.Float
+'\n'          Text
+
+'1f1'         Literal.Number.Float
+'   '         Text
+'1f+1'        Literal.Number.Float
+'   '         Text
+'1f-1'        Literal.Number.Float
+'\n'          Text
+
+'.1'          Literal.Number.Float
+'  '          Text
+'1.'          Literal.Number.Float
+'  '          Text
+'1.1'         Literal.Number.Float
+'  '          Text
+'1.1_1'       Literal.Number.Float
+'  '          Text
+'1.1_11'      Literal.Number.Float
+'  '          Text
+'.1_1'        Literal.Number.Float
+'  '          Text
+'.1_11'       Literal.Number.Float
+' '           Text
+'1_1.1_1'     Literal.Number.Float
+'\n'          Text
+
+'# hex floats' Comment
+'\n'          Text
+
+'0x1p1'       Literal.Number.Float
+' '           Text
+'0xa_bp10'    Literal.Number.Float
+' '           Text
+'0x01_ap11'   Literal.Number.Float
+' '           Text
+'0x01_abp1'   Literal.Number.Float
+'\n'          Text
+
+'0x1.1p1'     Literal.Number.Float
+' '           Text
+'0xA.Bp10'    Literal.Number.Float
+' '           Text
+'0x0.1_Ap9'   Literal.Number.Float
+' '           Text
+'0x0_1.Ap1'   Literal.Number.Float
+' '           Text
+'0x0_1.A_Bp9' Literal.Number.Float
+'\n'          Text
+
+'\n'          Text
+
+'# integers'  Comment
+'\n'          Text
+
+'1'           Literal.Number.Integer
+' '           Text
+'01'          Literal.Number.Integer
+' '           Text
+'10_1'        Literal.Number.Integer
+' '           Text
+'10_11'       Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'# non-decimal' Comment
+'\n'          Text
+
+'0xf'         Literal.Number.Hex
+' '           Text
+'0xf_0'       Literal.Number.Hex
+' '           Text
+'0xfff_000'   Literal.Number.Hex
+'\n'          Text
+
+'0o7'         Literal.Number.Oct
+' '           Text
+'0o7_0'       Literal.Number.Oct
+' '           Text
+'0o777_000'   Literal.Number.Oct
+'\n'          Text
+
+'0b1'         Literal.Number.Bin
+' '           Text
+'0b1_0'       Literal.Number.Bin
+' '           Text
+'0b111_000'   Literal.Number.Bin
+'\n'          Text
+
+'\n'          Text
+
+'# invalid in Julia - out of range values' Comment
+'\n'          Text
+
+'0'           Literal.Number.Integer
+'xg'          Name
+' '           Text
+'0'           Literal.Number.Integer
+'o8'          Name
+' '           Text
+'0'           Literal.Number.Integer
+'b2'          Name
+' '           Text
+'0x1'         Literal.Number.Hex
+'pA'          Name
+'\n'          Text
+
+'# invalid in Julia - no trailing underscores' Comment
+'\n'          Text
+
+'1'           Literal.Number.Integer
+'_'           Name
+' '           Text
+'1.1'         Literal.Number.Float
+'_'           Name
+' '           Text
+'0xf'         Literal.Number.Hex
+'_'           Name
+' '           Text
+'0o7'         Literal.Number.Oct
+'_'           Name
+' '           Text
+'0b1'         Literal.Number.Bin
+'_'           Name
+' '           Text
+'0xF'         Literal.Number.Hex
+'_p1'         Name
+'\n'          Text
+
+'# parsed as juxtaposed numeral + variable in Julia (no underscores in exponents)' Comment
+'\n'          Text
+
+'1e1'         Literal.Number.Float
+'_1'          Name
+' '           Text
+'1E1'         Literal.Number.Float
+'_1'          Name
+' '           Text
+'1f1'         Literal.Number.Float
+'_1'          Name
+' '           Text
+'0xfp1'       Literal.Number.Float
+'_1'          Name
+'\n'          Text
+
+'\n'          Text
+
+'# not floats -- range-like expression parts' Comment
+'\n'          Text
+
+'1'           Literal.Number.Integer
+'..'          Operator
+'1'           Literal.Number.Integer
+'  '          Text
+'..'          Operator
+'1'           Literal.Number.Integer
+'  '          Text
+'1'           Literal.Number.Integer
+'..'          Operator
+'\n'          Text

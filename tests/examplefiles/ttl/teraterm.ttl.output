@@ -1,0 +1,388 @@
+'messagebox'  Keyword
+' '           Text
+'"'           Literal.String.Double
+'t'           Literal.String
+'e'           Literal.String
+'x'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'\\\\'        Literal.String.Escape
+'n'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'e'           Literal.String
+'s'           Literal.String
+'c'           Literal.String
+'a'           Literal.String
+'p'           Literal.String
+'e'           Literal.String
+'d'           Literal.String
+' '           Literal.String
+'\\n'         Literal.String.Escape
+'e'           Literal.String
+'s'           Literal.String
+'c'           Literal.String
+'a'           Literal.String
+'p'           Literal.String
+'e'           Literal.String
+'d'           Literal.String
+' '           Literal.String
+'n'           Literal.String
+'"'           Literal.String.Double
+' '           Text
+'"'           Literal.String.Double
+'o'           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'\\n'         Literal.String.Escape
+'\\'          Literal.String
+'r'           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'messagebox'  Keyword
+' '           Text
+'"'           Literal.String.Double
+'g'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'l'           Literal.String
+'a'           Literal.String
+'b'           Literal.String
+'e'           Literal.String
+'l'           Literal.String
+' '           Literal.String
+'/'           Literal.String
+'*'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+' '           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+' '           Literal.String
+'*'           Literal.String
+'/'           Literal.String
+' '           Literal.String
+';'           Literal.String
+' '           Literal.String
+'s'           Literal.String
+'a'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+'r'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'a'           Name.Variable
+'='           Operator
+'10'          Literal.Number.Integer
+'\n'          Text
+
+'b'           Name.Variable
+'='           Operator
+'  '          Text
+"'"           Literal.String.Single
+'a'           Literal.String
+'b'           Literal.String
+'c'           Literal.String
+"'"           Literal.String.Single
+'#$41'        Literal.String.Char
+"'"           Literal.String.Single
+'d'           Literal.String
+'e'           Literal.String
+'f'           Literal.String
+"'"           Literal.String.Single
+'\n'          Text
+
+'c'           Name.Variable
+' '           Text
+'='           Operator
+'#65'         Literal.String.Char
+'   '         Text
+'/*'          Comment.Multiline
+' multiline comment ' Comment.Multiline
+'*'           Comment.Multiline
+' '           Comment.Multiline
+'/'           Comment.Multiline
+' '           Comment.Multiline
+'*'           Comment.Multiline
+' '           Comment.Multiline
+'/'           Comment.Multiline
+' '           Comment.Multiline
+'*/'          Comment.Multiline
+'/*'          Comment.Multiline
+'\ncomment '  Comment.Multiline
+'*/'          Comment.Multiline
+' '           Text
+'d'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'10'          Literal.Number.Integer
+'   '         Text
+'; inline comment /* still inline */' Comment.Single
+'\n'          Text
+
+'e'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'d'           Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'20'          Literal.Number.Integer
+' '           Text
+'-'           Operator
+' '           Text
+'('           Literal.String.Symbol
+'('           Literal.String.Symbol
+'$a'          Literal.Number.Hex
+' '           Text
+'*'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Literal.String.Symbol
+' '           Text
+'/'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+')'           Literal.String.Symbol
+' '           Text
+'<<'          Operator
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'%'           Operator
+' '           Text
+'('           Literal.String.Symbol
+'2'           Literal.Number.Integer
+' '           Text
+'>>'          Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Literal.String.Symbol
+' '           Text
+'+'           Operator
+' '           Text
+'result'      Name.Builtin
+'\n\n\n'      Text
+
+':thing'      Name.Label
+'\n\n'        Text
+
+'strcompare'  Keyword
+' '           Text
+'c'           Name.Variable
+' '           Text
+'"'           Literal.String.Double
+'t'           Literal.String
+'h'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'result'      Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'goto'        Keyword
+' '           Text
+'label_'      Name.Label
+'\n'          Text
+
+'elseif'      Keyword
+' '           Text
+'result'      Name.Builtin
+' '           Text
+'>'           Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'goto'        Keyword
+' '           Text
+'10'          Name.Label
+'\n'          Text
+
+'elseif'      Keyword
+' '           Text
+'d'           Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'('           Literal.String.Symbol
+'1'           Literal.Number.Integer
+'+'           Operator
+'2'           Literal.Number.Integer
+'*'           Operator
+'3'           Literal.Number.Integer
+')'           Literal.String.Symbol
+'/'           Operator
+'7'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'messagebox'  Keyword
+' '           Text
+'"'           Literal.String.Double
+'t'           Literal.String
+'h'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'else'        Keyword
+'\n    '      Text
+'messagebox'  Keyword
+' '           Text
+'"'           Literal.String.Double
+'d'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text
+
+'endif'       Keyword
+'\n\n'        Text
+
+'if'          Keyword
+' '           Text
+'abc'         Name.Variable
+' '           Text
+'messagebox'  Keyword
+' '           Text
+'"'           Literal.String.Double
+'t'           Literal.String
+'h'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'1'           Literal.String
+'"'           Literal.String.Double
+' '           Text
+'"'           Literal.String.Double
+'t'           Literal.String
+'i'           Literal.String
+'t'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'"'           Literal.String.Double
+'\n\n\n'      Text
+
+'; Invalid syntax' Comment.Single
+'\n'          Text
+
+'bad'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'n'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'c'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'s'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+' '           Literal.String
+'d'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'b'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'q'           Literal.String
+'u'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'e'           Literal.String
+'\n'          Text
+
+'bad'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String.Single
+'n'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'c'           Literal.String
+'l'           Literal.String
+'o'           Literal.String
+'s'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+' '           Literal.String
+'s'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'q'           Literal.String
+'u'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'e'           Literal.String
+'\n'          Text
+
+'garbage'     Name.Variable
+'\n'          Text
+
+'.'           Text
+'.'           Text
+'.'           Text
+'\n'          Text
+
+'.'           Text
+'.'           Text
+'.'           Text
+'\n'          Text
+
+'.'           Text
+'.'           Text
+'.'           Text
+'\n\n'        Text
+
+'endgarbage'  Name.Variable
+'\n'          Text

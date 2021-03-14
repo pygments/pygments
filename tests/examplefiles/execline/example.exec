@@ -1,0 +1,37 @@
+#!/usr/bin/execlineb
+
+importas -iu SPEC 1
+shift
+elgetpositionals
+
+ifelse -nX {
+    heredoc -d 0 ${SPEC}
+    s6-grep -qE "^([[:alpha:]]+(_[[:digit:]]+)?/)*([[:alpha:]]+(_[[:digit:]]+)?):[[:digit:]]+$"
+} {
+    foreground {
+        fdmove 1 2
+        echo "Bad argument"
+    }
+    exit 1
+}
+
+multidefine -0d: ${SPEC} { QUEUESPEC THREADSPEC }
+
+define -s -d/ QUEUELIST ${QUEUESPEC}
+backtick -ni CMDLINE {
+    forx -o0 QUEUEPAT { ${QUEUELIST} }
+    importas -i Q QUEUEPAT
+    ifelse -X {
+        heredoc -d 0 ${Q}
+        s6-grep -qE "^[[:alpha:]]+_[[:digit:]]+$"
+    } {
+        multidefine -0d_ ${Q} { QNAM QPRIO }
+        echo -n "-q ${QNAM},${QPRIO} "
+    }
+    echo -n "-q ${Q} "
+}
+
+importas -ui CMDLINE CMDLINE
+define -s -d" " ARGS ${CMDLINE}
+${@} ${ARGS} -c ${THREADSPEC}
+

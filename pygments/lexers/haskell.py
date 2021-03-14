@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.haskell
     ~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Haskell and related languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -66,6 +65,7 @@ class HaskellLexer(RegexLexer):
             (r"(')[" + uni.Lu + r"][\w\']*", Keyword.Type),
             (r"(')\[[^\]]*\]", Keyword.Type),  # tuples and lists get special treatment in GHC
             (r"(')\([^)]*\)", Keyword.Type),  # ..
+            (r"(')[:!#$%&*+.\\/<=>?@^|~-]+", Keyword.Type),  # promoted type operators
             #  Operators
             (r'\\(?![:!#$%&*+.\\/<=>?@^|~-]+)', Name.Function),  # lambda operator
             (r'(<-|::|->|=>|=)(?![:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word),  # specials
@@ -197,6 +197,7 @@ class IdrisLexer(RegexLexer):
                 'if', 'in', 'infix[lr]?', 'instance', 'rewrite', 'auto',
                 'namespace', 'codata', 'mutual', 'private', 'public', 'abstract',
                 'total', 'partial',
+                'interface', 'implementation', 'export', 'covering', 'constructor',
                 'let', 'proof', 'of', 'then', 'static', 'where', '_', 'with',
                 'pattern',  'term',  'syntax', 'prefix',
                 'postulate', 'parameters', 'record', 'dsl', 'impossible', 'implicit',
@@ -213,7 +214,7 @@ class IdrisLexer(RegexLexer):
     tokens = {
         'root': [
             # Comments
-            (r'^(\s*)(%%%s)' % '|'.join(directives),
+            (r'^(\s*)(%%(%s))' % '|'.join(directives),
              bygroups(Text, Keyword.Reserved)),
             (r'(\s*)(--(?![!#$%&*+./<=>?@^|_~:\\]).*?)$', bygroups(Text, Comment.Single)),
             (r'(\s*)(\|{3}.*?)$', bygroups(Text, Comment.Single)),
@@ -325,10 +326,10 @@ class AgdaLexer(RegexLexer):
             #  Identifiers
             (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
             (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Text), 'module'),
-            (u'\\b(Set|Prop)[\u2080-\u2089]*\\b', Keyword.Type),
+            (r'\b(Set|Prop)[\u2080-\u2089]*\b', Keyword.Type),
             #  Special Symbols
             (r'(\(|\)|\{|\})', Operator),
-            (u'(\\.{1,3}|\\||\u03BB|\u2200|\u2192|:|=|->)', Operator.Word),
+            (r'(\.{1,3}|\||\u03BB|\u2200|\u2192|:|=|->)', Operator.Word),
             #  Numbers
             (r'\d+[eE][+-]?\d+', Number.Float),
             (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
@@ -557,8 +558,7 @@ class LiterateLexer(Lexer):
                     latex += line
             insertions.append((len(code),
                                list(lxlexer.get_tokens_unprocessed(latex))))
-        for item in do_insertions(insertions, self.baselexer.get_tokens_unprocessed(code)):
-            yield item
+        yield from do_insertions(insertions, self.baselexer.get_tokens_unprocessed(code))
 
 
 class LiterateHaskellLexer(LiterateLexer):

@@ -12,7 +12,7 @@ that uses Pygments to render source code in
 :file:`external/markdown-processor.py`.  You can copy and adapt it to your
 liking.
 
-.. _Markdown: http://www.freewisdom.org/projects/python-markdown/
+.. _Markdown: https://pypi.org/project/Markdown/
 
 TextMate
 --------
@@ -20,7 +20,7 @@ TextMate
 Antonio Cangiano has created a Pygments bundle for TextMate that allows to
 colorize code via a simple menu option.  It can be found here_.
 
-.. _here: http://antoniocangiano.com/2008/10/28/pygments-textmate-bundle/
+.. _here: https://programmingzen.com/pygments-textmate-bundle/
 
 Bash completion
 ---------------
@@ -34,7 +34,7 @@ Wrappers for other languages
 These libraries provide Pygments highlighting for users of other languages
 than Python:
 
-* `pygments.rb <https://github.com/tmm1/pygments.rb>`_, a pygments wrapper for Ruby
+* `pygments.rb <https://github.com/pygments/pygments.rb>`_, a pygments wrapper for Ruby
 * `Clygments <https://github.com/bfontaine/clygments>`_, a pygments wrapper for
   Clojure
 * `PHPygments <https://github.com/capynet/PHPygments>`_, a pygments wrapper for PHP

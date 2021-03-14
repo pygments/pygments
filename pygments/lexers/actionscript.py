@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.actionscript
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for ActionScript and MXML.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -37,7 +36,7 @@ class ActionScriptLexer(RegexLexer):
             (r'\s+', Text),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex),
+            (r'/(\\\\|\\[^\\]|[^/\\\n])*/[gim]*', String.Regex),
             (r'[~^*!%&<>|+=:;,/?\\-]+', Operator),
             (r'[{}\[\]();.]+', Punctuation),
             (words((
@@ -105,11 +104,16 @@ class ActionScriptLexer(RegexLexer):
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-f]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
         ]
     }
 
+    def analyse_text(text):
+        """This is only used to disambiguate between ActionScript and
+        ActionScript3. We return 0 here; the ActionScript3 lexer will match
+        AS3 variable definitions and that will hopefully suffice."""
+        return 0
 
 class ActionScript3Lexer(RegexLexer):
     """
@@ -144,7 +148,7 @@ class ActionScript3Lexer(RegexLexer):
              bygroups(Keyword, Text, Keyword.Type, Text, Operator)),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'/(\\\\|\\/|[^\n])*/[gisx]*', String.Regex),
+            (r'/(\\\\|\\[^\\]|[^\\\n])*/[gisx]*', String.Regex),
             (r'(\.)(' + identifier + r')', bygroups(Operator, Name.Attribute)),
             (r'(case|default|for|each|in|while|do|break|return|continue|if|else|'
              r'throw|try|catch|with|new|typeof|arguments|instanceof|this|'
@@ -164,8 +168,8 @@ class ActionScript3Lexer(RegexLexer):
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-f]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'[~^*!%&<>|+=:;,/?\\{}\[\]().-]+', Operator),
         ],
         'funcparams': [

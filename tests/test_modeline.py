@@ -1,13 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     Tests for the vim modeline feature
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-
-from __future__ import print_function
 
 from pygments import modeline
 

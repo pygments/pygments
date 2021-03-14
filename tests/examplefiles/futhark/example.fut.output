@@ -1,0 +1,239 @@
+'module'      Keyword.Reserved
+' '           Text.Whitespace
+'matmul'      Name
+' '           Text.Whitespace
+'('           Punctuation
+'F'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'numeric'     Name
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'type'        Keyword.Reserved
+' '           Text.Whitespace
+'t'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'F.t'         Name
+'\n  '        Text.Whitespace
+'open'        Keyword.Reserved
+' '           Text.Whitespace
+'F'           Name
+'\n\n  '      Text.Whitespace
+'local'       Keyword.Reserved
+' '           Text.Whitespace
+'let'         Keyword.Reserved
+' '           Text.Whitespace
+'dotprod'     Name
+' '           Text.Whitespace
+'['           Punctuation
+'n'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'n'           Name
+']'           Punctuation
+'t'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'b'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'n'           Name
+']'           Punctuation
+'t'           Name
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'t'           Name
+' '           Text.Whitespace
+'='           Operator
+'\n  '        Text.Whitespace
+'map2'        Name
+' '           Text.Whitespace
+'('           Punctuation
+'*'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'|>'          Operator
+' '           Text.Whitespace
+'reduce'      Name
+' '           Text.Whitespace
+'('           Punctuation
+'+'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'i32'         Keyword.Type
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n\n\n  '    Text.Whitespace
+'let'         Keyword.Reserved
+' '           Text.Whitespace
+'matmul'      Name
+' '           Text.Whitespace
+'['           Punctuation
+'n1'          Name
+']'           Punctuation
+'['           Punctuation
+'n2'          Name
+']'           Punctuation
+'['           Punctuation
+'m'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'xss'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'n1'          Name
+']'           Punctuation
+'['           Punctuation
+'m'           Name
+']'           Punctuation
+'t'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'yss'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'m'           Name
+']'           Punctuation
+'['           Punctuation
+'n2'          Name
+']'           Punctuation
+'t'           Name
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'n1'          Name
+']'           Punctuation
+'['           Punctuation
+'n2'          Name
+']'           Punctuation
+'t'           Name
+' '           Text.Whitespace
+'='           Operator
+'\n    '      Text.Whitespace
+'map'         Name
+' '           Text.Whitespace
+'('           Punctuation
+'\\'          Operator
+'xs'          Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'map'         Name
+' '           Text.Whitespace
+'('           Punctuation
+'\\'          Operator
+'ys'          Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'dotprod'     Name
+' '           Text.Whitespace
+'xs'          Name
+' '           Text.Whitespace
+'ys'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'<|'          Operator
+' '           Text.Whitespace
+'transpose'   Name
+' '           Text.Whitespace
+'yss'         Name
+')'           Punctuation
+' '           Text.Whitespace
+'xss'         Name
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'module'      Keyword.Reserved
+' '           Text.Whitespace
+'matmul32'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'matmul'      Name
+' '           Text.Whitespace
+'f32'         Keyword.Type
+'\n\n'        Text.Whitespace
+
+'let'         Keyword.Reserved
+' '           Text.Whitespace
+'main'        Name
+' '           Text.Whitespace
+'['           Punctuation
+'n'           Name
+']'           Punctuation
+'['           Punctuation
+'m'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'xss'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'n'           Name
+']'           Punctuation
+'['           Punctuation
+'m'           Name
+']'           Punctuation
+'f32'         Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'yss'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'m'           Name
+']'           Punctuation
+'['           Punctuation
+'n'           Name
+']'           Punctuation
+'f32'         Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'*'           Operator
+'['           Punctuation
+'n'           Name
+']'           Punctuation
+'['           Punctuation
+'n'           Name
+']'           Punctuation
+'f32'         Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+'\n  '        Text.Whitespace
+'matmul32.matmul' Name
+' '           Text.Whitespace
+'xss'         Name
+' '           Text.Whitespace
+'yss'         Name
+'\n'          Text.Whitespace

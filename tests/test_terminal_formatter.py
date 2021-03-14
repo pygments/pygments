@@ -1,17 +1,14 @@
-# -*- coding: utf-8 -*-
 """
     Pygments terminal formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
-
 import re
+from io import StringIO
 
-from pygments.util import StringIO
 from pygments.lexers.sql import PlPgsqlLexer
 from pygments.formatters import TerminalFormatter, Terminal256Formatter, \
     HtmlFormatter, LatexFormatter

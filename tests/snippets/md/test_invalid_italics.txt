@@ -1,0 +1,31 @@
+---input---
+*no italics_
+
+_no italics*
+
+**no italics**
+
+__no italics__
+
+---tokens---
+'*no'         Text
+' '           Text
+'italics_'    Text
+'\n'          Text
+
+'\n'          Text
+
+'_no'         Text
+' '           Text
+'italics*'    Text
+'\n'          Text
+
+'\n'          Text
+
+'**no italics**' Generic.Strong
+'\n'          Text
+
+'\n'          Text
+
+'__no italics__' Generic.Strong
+'\n'          Text

@@ -1,0 +1,544 @@
+'/*\n * "Copyright (c) 2008-2011 The Regents of the University  of California.\n * All rights reserved."\n *\n * Permission to use, copy, modify, and distribute this software and its\n * documentation for any purpose, without fee, and without written agreement is\n * hereby granted, provided that the above copyright notice, the following\n * two paragraphs and the author appear in all copies of this software.\n *\n * IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY FOR\n * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT\n * OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF THE UNIVERSITY OF\n * CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n *\n * THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES,\n * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY\n * AND FITNESS FOR A PARTICULAR PURPOSE.  THE SOFTWARE PROVIDED HEREUNDER IS\n * ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO\n * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."\n *\n */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'/**\n * \n *\n */' Comment.Multiline
+'\n'          Text
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'"IPDispatch.h"' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text
+'"BlipStatistics.h"' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'configuration' Keyword
+' '           Text
+'IPDispatchC' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'provides'    Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'SplitControl' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'IPLower'     Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'interface'   Keyword
+' '           Text
+'BlipStatistics' Name
+'<'           Operator
+'ip_statistics_t' Name
+'>'           Operator
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+' '           Text
+'implementation' Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  \n  '      Text
+'components'  Keyword
+' '           Text
+'MainC'       Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'components'  Keyword
+' '           Text
+'NoLedsC'     Name
+' '           Text
+'as'          Keyword
+' '           Text
+'LedsC'       Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'/* IPDispatchP wiring -- fragment rassembly and lib6lowpan bindings */' Comment.Multiline
+'\n'          Text
+
+'  '          Text
+'components'  Keyword
+' '           Text
+'IPDispatchP' Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'components'  Keyword
+' '           Text
+'CC2420RadioC' Name
+' '           Text
+'as'          Keyword
+' '           Text
+'MessageC'    Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'components'  Keyword
+' '           Text
+'ReadLqiC'    Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'components'  Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'TimerMilliC' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'SplitControl' Name
+' '           Text
+'='           Operator
+' '           Text
+'IPDispatchP' Name
+'.'           Punctuation
+'SplitControl' Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IPLower'     Name
+' '           Text
+'='           Operator
+' '           Text
+'IPDispatchP' Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'BlipStatistics' Name
+'    '        Text
+'='           Operator
+' '           Text
+'IPDispatchP' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'IPDispatchP' Name
+'.'           Punctuation
+'Boot'        Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'MainC'       Name
+';'           Punctuation
+'\n'          Text
+
+'/* #else */' Comment.Multiline
+'\n'          Text
+
+'/*   components ResourceSendP; */' Comment.Multiline
+'\n'          Text
+
+'/*   ResourceSendP.SubSend -> MessageC; */' Comment.Multiline
+'\n'          Text
+
+'/*   ResourceSendP.Resource -> MessageC.SendResource[unique("RADIO_SEND_RESOURCE")]; */' Comment.Multiline
+'\n'          Text
+
+'/*   IPDispatchP.Ieee154Send -> ResourceSendP.Ieee154Send; */' Comment.Multiline
+'\n'          Text
+
+'/* #endif */' Comment.Multiline
+'\n'          Text
+
+'  '          Text
+'IPDispatchP' Name
+'.'           Punctuation
+'RadioControl' Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'MessageC'    Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'IPDispatchP' Name
+'.'           Punctuation
+'BarePacket'  Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'MessageC'    Name
+'.'           Punctuation
+'BarePacket'  Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IPDispatchP' Name
+'.'           Punctuation
+'Ieee154Send' Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'MessageC'    Name
+'.'           Punctuation
+'BareSend'    Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IPDispatchP' Name
+'.'           Punctuation
+'Ieee154Receive' Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'MessageC'    Name
+'.'           Punctuation
+'BareReceive' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'#'           Comment.Preproc
+'ifdef LOW_POWER_LISTENING' Comment.Preproc
+'\n'          Comment.Preproc
+
+'   '         Text
+'IPDispatchP' Name
+'.'           Punctuation
+'LowPowerListening' Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'MessageC'    Name
+';'           Punctuation
+'\n'          Text
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'  '          Text
+'MainC'       Name
+'.'           Punctuation
+'SoftwareInit' Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'IPDispatchP' Name
+'.'           Punctuation
+'Init'        Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'IPDispatchP' Name
+'.'           Punctuation
+'PacketLink'  Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'MessageC'    Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IPDispatchP' Name
+'.'           Punctuation
+'ReadLqi'     Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'ReadLqiC'    Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IPDispatchP' Name
+'.'           Punctuation
+'Leds'        Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'LedsC'       Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IPDispatchP' Name
+'.'           Punctuation
+'ExpireTimer' Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'TimerMilliC' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'components'  Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'PoolC'       Name
+'('           Punctuation
+'message_t'   Name
+','           Punctuation
+' '           Text
+'N_FRAGMENTS' Name
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'FragPool'    Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'components'  Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'PoolC'       Name
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'send_entry'  Name.Class
+','           Punctuation
+' '           Text
+'N_FRAGMENTS' Name
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'SendEntryPool' Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'components'  Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'QueueC'      Name
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'send_entry'  Name.Class
+' '           Text
+'*'           Operator
+','           Punctuation
+' '           Text
+'N_FRAGMENTS' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'components'  Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'PoolC'       Name
+'('           Punctuation
+'struct'      Keyword
+' '           Text
+'send_info'   Name.Class
+','           Punctuation
+' '           Text
+'N_CONCURRENT_SENDS' Name
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'SendInfoPool' Name
+';'           Punctuation
+'\n'          Text
+
+'  \n  '      Text
+'IPDispatchP' Name
+'.'           Punctuation
+'FragPool'    Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'FragPool'    Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IPDispatchP' Name
+'.'           Punctuation
+'SendEntryPool' Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'SendEntryPool' Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IPDispatchP' Name
+'.'           Punctuation
+'SendInfoPool' Name
+'  '          Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'SendInfoPool' Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IPDispatchP' Name
+'.'           Punctuation
+'SendQueue'   Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'QueueC'      Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'components'  Keyword
+' '           Text
+'IPNeighborDiscoveryP' Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IPDispatchP' Name
+'.'           Punctuation
+'NeighborDiscovery' Name
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'IPNeighborDiscoveryP' Name
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'/*   components ICMPResponderC; */' Comment.Multiline
+'\n'          Text
+
+'/* #ifdef BLIP_MULTICAST */' Comment.Multiline
+'\n'          Text
+
+'/*   components MulticastP; */' Comment.Multiline
+'\n'          Text
+
+'/*   components new TrickleTimerMilliC(2, 30, 2, 1); */' Comment.Multiline
+'\n'          Text
+
+'/*   IP = MulticastP.IP; */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'/*   MainC.SoftwareInit -> MulticastP.Init; */' Comment.Multiline
+'\n'          Text
+
+'/*   MulticastP.MulticastRx -> IPDispatchP.Multicast; */' Comment.Multiline
+'\n'          Text
+
+'/*   MulticastP.HopHeader -> IPExtensionP.HopByHopExt[0]; */' Comment.Multiline
+'\n'          Text
+
+'/*   MulticastP.TrickleTimer -> TrickleTimerMilliC.TrickleTimer[0]; */' Comment.Multiline
+'\n'          Text
+
+'/*   MulticastP.IPExtensions -> IPDispatchP; */' Comment.Multiline
+'\n'          Text
+
+'/* #endif */' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'#'           Comment.Preproc
+'ifdef DELUGE' Comment.Preproc
+'\n'          Comment.Preproc
+
+'  '          Text
+'components'  Keyword
+' '           Text
+'NWProgC'     Name
+';'           Punctuation
+'\n'          Text
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

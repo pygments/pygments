@@ -1,0 +1,47 @@
+>>> (int) 10.88
+=> 10
+>>> (string) 10.88
+=> "10.88"
+>>> (bool) 10.88
+=> true
+>>> (array) 10.88
+=> [
+     10.88,
+   ]
+>>> $object = (object) 10.88
+=> {#2373
+     +"scalar": 10.88,
+   }
+>>> $object->scalar
+=> 10.88
+>>> $fileHandle = fopen('hello.txt', 'w');
+=> stream resource #400
+>>> (int) $fileHandle
+=> 400
+>>> (string) $fileHandle
+=> "Resource id #400"
+>>> $greeting = 'Hello!';
+=> "Hello!"
+>>> $_greeting = 'Hello!';
+=> "Hello!"
+>>> $gruß = 'Hallo!';
+=> "Hallo!"
+>>> namespace Foo\Bar;
+>>> class Baz {
+...     public function getBaz(): string {
+...         return 'baz';
+...     }
+... }
+>>> $baz = new Foo\Bar\Baz();
+PHP Fatal error:  Class 'Foo/Bar/Foo/Bar/Baz' not
+    found in Psy Shell code on line 1
+>>> $baz = new Baz();
+=> Foo\Bar\Baz {#2382}
+>>> $baz->getBaz();
+=> "baz"
+>>> $greeting = function($name): string {
+...     return "Hello, {$name}";
+... };
+=> Closure($name): string {#2371 …3}
+>>> $greeting('World')
+=> "Hello, World"

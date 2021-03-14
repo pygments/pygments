@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.pascal
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Pascal family languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -563,9 +562,9 @@ class AdaLexer(RegexLexer):
                 'exception', 'exit', 'interface', 'for', 'goto', 'if', 'is', 'limited',
                 'loop', 'new', 'null', 'of', 'or', 'others', 'out', 'overriding',
                 'pragma', 'protected', 'raise', 'range', 'record', 'renames', 'requeue',
-                'return', 'reverse', 'select', 'separate', 'subtype', 'synchronized',
-                'task', 'tagged', 'terminate', 'then', 'type', 'until', 'when',
-                'while', 'xor'), prefix=r'\b', suffix=r'\b'),
+                'return', 'reverse', 'select', 'separate', 'some', 'subtype',
+                'synchronized', 'task', 'tagged', 'terminate', 'then', 'type', 'until',
+                'when', 'while', 'xor'), prefix=r'\b', suffix=r'\b'),
              Keyword.Reserved),
             (r'"[^"]*"', String),
             include('attribute'),
@@ -577,7 +576,7 @@ class AdaLexer(RegexLexer):
             (r'\n+', Text),
         ],
         'numbers': [
-            (r'[0-9_]+#[0-9a-f]+#', Number.Hex),
+            (r'[0-9_]+#[0-9a-f_\.]+#', Number.Hex),
             (r'[0-9_]+\.[0-9_]*', Number.Float),
             (r'[0-9_]+', Number.Integer),
         ],

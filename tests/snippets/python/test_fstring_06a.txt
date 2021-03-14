@@ -1,0 +1,16 @@
+# SyntaxError: f-string expression part cannot include a backslash
+
+---input---
+f'{\'quoted string\'}'
+
+---tokens---
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'{'           Literal.String.Interpol
+'\\'          Error
+"'"           Literal.String.Single
+'quoted string' Literal.String.Single
+"\\'"         Literal.String.Escape
+'}'           Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text

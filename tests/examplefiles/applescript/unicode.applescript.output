@@ -1,0 +1,30 @@
+'set'         Keyword
+' '           Text
+'jp'          Name.Variable
+' '           Text
+'to'          Keyword
+' '           Text
+'"日本語"'       Literal.String.Double
+'\n\n'        Text
+
+'set'         Keyword
+' '           Text
+'ru'          Name.Variable
+' '           Text
+'to'          Keyword
+' '           Text
+'"Русский"'   Literal.String.Double
+'\n\n'        Text
+
+'jp'          Name.Variable
+' '           Text
+'&'           Operator
+' '           Text
+'" and "'     Literal.String.Double
+' '           Text
+'&'           Operator
+' '           Text
+'ru'          Name.Variable
+' '           Text
+'-- returns "日本語 and Русский"' Comment
+'\n'          Text

@@ -1,0 +1,433 @@
+'<%@'         Name.Tag
+''            Text
+' '           Text
+'Control'     Name.Other
+' '           Text
+'Name'        Name.Other
+'='           Operator
+'"Foo.MyZebraList"' Literal.String.Double
+' '           Text
+'Language'    Name.Other
+'='           Operator
+'"JavaScript"' Literal.String.Double
+' '           Text
+'%>'          Name.Tag
+'\n\n'        Text
+
+'<'           Punctuation
+'script'      Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"text/javascript"' Literal.String
+'>'           Punctuation
+''            Text
+'\n\n\t'      Text
+'/* private members ------------------------------------------ */' Comment.Multiline
+'\n\n\t'      Text
+'/*int*/'     Comment.Multiline
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'digits'      Name.Other
+'('           Punctuation
+'/*int*/'     Comment.Multiline
+' '           Text
+'n'           Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t\t'      Text
+'return'      Keyword
+' '           Text
+'('           Punctuation
+'n'           Name.Other
+' '           Text
+'<'           Operator
+' '           Text
+'10'          Literal.Number.Float
+')'           Punctuation
+' '           Text
+'?'           Operator
+' '           Text
+"'0'"         Literal.String.Single
+' '           Text
+'+'           Operator
+' '           Text
+'n'           Name.Other
+' '           Text
+':'           Operator
+' '           Text
+'n'           Name.Other
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n\n\t'      Text
+'/* public members ------------------------------------------- */' Comment.Multiline
+'\n\n\t'      Text
+'// use the item index to alternate colors and highlight\n' Comment.Single
+
+''            Text
+'\t'          Text
+'/*string*/'  Comment.Multiline
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'zebraStripe' Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword.Declaration
+'('           Punctuation
+'/*bool*/'    Comment.Multiline
+' '           Text
+'selected'    Name.Other
+','           Punctuation
+' '           Text
+'/*int*/'     Comment.Multiline
+' '           Text
+'index'       Name.Other
+','           Punctuation
+' '           Text
+'/*int*/'     Comment.Multiline
+' '           Text
+'count'       Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t\t'      Text
+'var'         Keyword.Declaration
+' '           Text
+'css'         Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+' '           Text
+'"item"'      Literal.String.Double
+' '           Text
+']'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'index'       Name.Other
+' '           Text
+'%'           Operator
+' '           Text
+'2'           Literal.Number.Float
+' '           Text
+'==='         Operator
+' '           Text
+'0'           Literal.Number.Float
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t\t\t'    Text
+'css'         Name.Other
+'.'           Punctuation
+'push'        Name.Other
+'('           Punctuation
+'"item-alt"'  Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'}'           Punctuation
+'\n\t\t'      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'selected'    Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t\t\t'    Text
+'css'         Name.Other
+'.'           Punctuation
+'push'        Name.Other
+'('           Punctuation
+'"item-selected"' Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'}'           Punctuation
+'\n\t\t'      Text
+'return'      Keyword
+' '           Text
+'css'         Name.Other
+'.'           Punctuation
+'join'        Name.Other
+'('           Punctuation
+'" "'         Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+';'           Punctuation
+'\n\n\t'      Text
+'/*string*/'  Comment.Multiline
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'formatTime'  Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword.Declaration
+'('           Punctuation
+'/*Date*/'    Comment.Multiline
+' '           Text
+'time'        Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t\t'      Text
+'return'      Keyword
+' '           Text
+'time'        Name.Other
+'.'           Punctuation
+'getHours'    Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+"':'"         Literal.String.Single
+' '           Text
+'+'           Operator
+' '           Text
+'digits'      Name.Other
+'('           Punctuation
+'time'        Name.Other
+'.'           Punctuation
+'getMinutes'  Name.Other
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+"':'"         Literal.String.Single
+' '           Text
+'+'           Operator
+' '           Text
+'digits'      Name.Other
+'('           Punctuation
+'time'        Name.Other
+'.'           Punctuation
+'getSeconds'  Name.Other
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'/'           Punctuation
+'script'      Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"example"'   Literal.String
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'<%='         Name.Tag
+''            Text
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'data'        Name.Other
+'.'           Punctuation
+'title'       Name.Other
+' '           Text
+'%>'          Name.Tag
+' as of '     Text
+'<%='         Name.Tag
+''            Text
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'formatTime'  Name.Other
+'('           Punctuation
+'this'        Keyword
+'.'           Punctuation
+'data'        Name.Other
+'.'           Punctuation
+'timestamp'   Name.Other
+')'           Punctuation
+' '           Text
+'%>'          Name.Tag
+'!'           Text
+'<'           Punctuation
+'/'           Punctuation
+'h2'          Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'<%='         Name.Tag
+''            Text
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'data'        Name.Other
+'.'           Punctuation
+'description' Name.Other
+' '           Text
+'%>'          Name.Tag
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n\t'        Text
+'<'           Punctuation
+'ul'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"items"'     Literal.String
+' '           Text
+'jbst:visible' Name.Attribute
+'='           Operator
+'"'           Literal.String
+'<%='         Name.Tag
+''            Text
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'data'        Name.Other
+'.'           Punctuation
+'children'    Name.Other
+'.'           Punctuation
+'length'      Name.Other
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Float
+' '           Text
+'%>'          Name.Tag
+'">\n\n\t\t'  Text
+'<!--'        Comment
+' anonymous inner template ' Comment
+'-->'         Comment
+'\n\t\t'      Text
+'<'           Punctuation
+'jbst:control' Name.Tag
+' '           Text
+'data'        Name.Attribute
+'='           Operator
+'"'           Literal.String
+'<%='         Name.Tag
+''            Text
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'data'        Name.Other
+'.'           Punctuation
+'children'    Name.Other
+' '           Text
+'%>'          Name.Tag
+'">\n\t\t\t'  Text
+'<!--'        Comment
+" populate list item for each item of the parent's children property " Comment
+'-->'         Comment
+'\n\t\t\t'    Text
+'<'           Punctuation
+'li'          Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"'           Literal.String
+'<%='         Name.Tag
+''            Text
+' '           Text
+'Foo'         Name.Other
+'.'           Punctuation
+'MyZebraList' Name.Other
+'.'           Punctuation
+'zebraStripe' Name.Other
+'('           Punctuation
+'this'        Keyword
+'.'           Punctuation
+'data'        Name.Other
+'.'           Punctuation
+'selected'    Name.Other
+','           Punctuation
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'index'       Name.Other
+','           Punctuation
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'count'       Name.Other
+')'           Punctuation
+' '           Text
+'%>'          Name.Tag
+'">\n\t\t\t\t' Text
+'<%='         Name.Tag
+''            Text
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'data'        Name.Other
+'.'           Punctuation
+'label'       Name.Other
+' '           Text
+'%>'          Name.Tag
+' ('          Text
+'<%='         Name.Tag
+''            Text
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'index'       Name.Other
+'+'           Operator
+'1'           Literal.Number.Float
+' '           Text
+'%>'          Name.Tag
+' of '        Text
+'<%='         Name.Tag
+''            Text
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'count'       Name.Other
+' '           Text
+'%>'          Name.Tag
+')\n\t\t\t'   Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n\t\t'      Text
+'<'           Punctuation
+'/'           Punctuation
+'jbst:control' Name.Tag
+'>'           Punctuation
+'\n\n\t'      Text
+'<'           Punctuation
+'/'           Punctuation
+'ul'          Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n'          Text

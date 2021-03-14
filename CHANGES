@@ -6,13 +6,332 @@ Since 2.5.0, issue numbers refer to the tracker at
 pull request numbers to the requests at
 <https://github.com/pygments/pygments/pulls>.
 
-Version 2.5.2
+
+Version 2.9.0
 -------------
 (not released yet)
+
+- Updated lexers:
+
+  * C/C++: Improve namespace handling (#1722, #1561, #1719)
+  * Coq (#1721)
+  * Cython (#853)
+  * Julia (#1715)
+  * Octave: Allow multiline and block-percent comments (#1726)
+  * Rust (#1061)
+  * Scala: Rewrite to support Scala3 (#1694, #1035, #1121)
+
+- Add Pango formatter (#1727)
+
+- Fix links (#1716)
+- Fix issue with LaTeX formatter and ``minted`` (#1734, #1735, #1736, #1737)
+
+Version 2.8.0
+-------------
+(released February 14, 2021)
+
+- Added lexers:
+
+  * AMDGPU (#1626)
+  * CDDL (#1379, #1239)
+  * Futhark (#1691)
+  * Graphviz/DOT (#1657, #731)
+
+- Updated lexers:
+
+  * AutoIt: Support single quoted strings (#1667, #1663)
+  * C/C++ & related: Fix mishandling '*/' (#1695)
+  * Cocoa: Add builtin types (#1703)
+  * Console (#1672)
+  * Eiffel: Fix performance issues (#1658)
+  * Fortran: Improve combined keyword detection (#1677, #1188)
+  * J: Fix operator ``?`` lexing (#1700, #1149)
+  * JavaScript/TypeScript: Fix escapes in backtick strings (#1679, #1686)
+  * Kotlin: Improve string interpolation, modifier keyword handling, and various small issues (#1699)
+  * LESS: Support single-line comments (#1046)
+  * Matlab:
+
+    - Add support for class properties (#1466)
+    - Update builtin functions (#1705)
+    - Various cleanups (#1673)
+
+  * Python: Improve handling of raw f-strings (#1681, #1683)
+  * Ruby: Better method name handling (#1531)
+  * Stata: Updated keywords (#1470)
+
+- Added styles:
+
+  * Material (#1662)
+  * Zenburn (#1659)
+
+- The `pygmentize` script now uses `argparse`, all options should work
+  as before
+
+- Add `pygmentize -C` option to guess a lexer from content
+
+- With this release, Pygments moves to a new internal testing system (#1649.)
+  See ``Contributing.md`` for details. The main advantage of this new change
+  is a much better test coverage of all existing example lexers. It also makes
+  it much easier to add new test snippets.
+- Make guessing prefer Python 3 lexer
+- Do not guess MIME or SQL without reason
+- Changed setuptools to use a declarative config through ``setup.cfg``.
+  Building Pygments now requires setuptools 39.2+.
+- Add markdown to MarkdownLexer aliases (#1687)
+- Change line number handling
+
+  * In ``<table>`` based output, the ``td.linenos`` element will have either a
+    ``normal`` or ``special`` class attached. Previously, only ``special`` line
+    numbers got a class. This prevents styles from getting applied twice -
+    once via ``<pre>``, once via ``<span class="special">``. This also means
+    that ``td.linenos pre`` is no longer styled, instead, use
+    ``td.linenos .normal`` and ``td.linenos .special``.
+  * In the "inline" style, the DOM element order was changed. The line number
+    is added first, then the line is wrapped is wrapped by the highlighter.
+    This fixes lines not being fully highlighted.
+  * The visual output for inline and non-inline line numbers & highlighting,
+    as well as class-based and inline styling is now consistent.
+  * Line number styles are set to ``background-color: transparent`` and
+    ``color: inherit`` by default. This works much better with dark styles
+    which don't have colors set for line numbers.
+
+- Remove "raw" alias from RawTokenLexer, so that it cannot be
+  selected by alias.
+- Fix RawTokenLexer to work in Python 3 and handle exceptions.
+- Add prompt colors to the Solarized theme (#1529)
+- Image formatter supports background colors now (#1374)
+- Add support for anchors in conjunction with inline line numbers (#1591)
+- Modernize the codebase using ``pyupgrade`` (#1622)
+- Add support for line numbers to the ``terminal256`` formatter (#1674, #1653)
+- Improve ``analyze_text`` logic for ``ECL`` (#1610)
+- Improve ``analyze_text`` logic for ``CBM Basic V2`` (#1607)
+- Improve LaTeX formatter (#1708, #1709)
+
+Version 2.7.4
+-------------
+(released January 12, 2021)
+
+- Updated lexers:
+
+  - Apache configurations: Improve handling of malformed tags (#1656)
+  - CSS: Add support for variables (#1633, #1666)
+  - Crystal (#1650, #1670)
+  - Coq (#1648)
+  - Fortran: Add missing keywords (#1635, #1665)
+  - Ini (#1624)
+  - JavaScript and variants (#1647 -- missing regex flags, #1651)
+  - Markdown (#1623, #1617)
+  - Shell
+
+    - Lex trailing whitespace as part of the prompt (#1645)
+    - Add missing ``in`` keyword (#1652)
+
+  - SQL - Fix keywords (#1668)
+  - Typescript: Fix incorrect punctuation handling (#1510, #1511)
+
+- Fix infinite loop in SML lexer (#1625)
+- Fix backtracking string regexes in JavaScript/TypeScript, Modula2
+  and many other lexers (#1637)
+- Limit recursion with nesting Ruby heredocs (#1638)
+- Fix a few inefficient regexes for guessing lexers
+- Fix the raw token lexer handling of Unicode (#1616)
+- Revert a private API change in the HTML formatter (#1655) --
+  please note that private APIs remain subject to change!
+- Fix several exponential/cubic-complexity regexes found by
+  Ben Caller/Doyensec (#1675)
+- Fix incorrect MATLAB example (#1582)
+
+Thanks to Google's OSS-Fuzz project for finding many of these bugs.
+
+Version 2.7.3
+-------------
+(released December 6, 2020)
+
+- Updated lexers:
+
+  * Ada (#1581)
+  * HTML (#1615, #1614)
+  * Java (#1594, #1586)
+  * JavaScript (#1605, #1589, #1588)
+  * JSON (#1569 -- this is a complete rewrite)
+  * Lean (#1601)
+  * LLVM (#1612)
+  * Mason (#1592)
+  * MySQL (#1555, #1551)
+  * Rust (#1608)
+  * Turtle (#1590, #1553)
+
+- Deprecated JsonBareObjectLexer, which is now identical to JsonLexer (#1600)
+- The ``ImgFormatter`` now calculates the exact character width, which fixes some issues with overlapping text (#1213, #1611)
+- Documentation fixes (#1609, #1599, #1598)
+- Fixed duplicated Juttle language alias (#1604, #1606)
+- Added support for Kotlin scripts (#1587)
+- Removed CSS rule which forced margin to 0
+
+
+Version 2.7.2
+-------------
+(released October 24, 2020)
+
+- Updated lexers:
+
+  * Latex (#1517, #1516)
+  * LLVM (#1565)
+  * SPARQL (#1559)
+
+- Fix Python console/traceback lexer problems with custom exceptions without messages (#1548)
+- Allow loading ttc fonts on Mac/image formatter (#1223)
+- Improve ``analyze_text`` across a variety of lexers (#1549)
+- Remove CSS rule which forced the vertical padding to 0 for line numbers (#1583, #1579)
+- Fix ``TNTLexer`` crashing on unexpected EOL (#1568, #1570)
+- ``regexlint`` can be now run locally as part of ``tox`` tests (#1557)
+- Fix typos (#1550, #1562)
+- Add Python 3.9 as a supported version (#1554)
+
+
+Version 2.7.1
+-------------
+(released September 16, 2020)
+
+- Fixed a regression in the JSON lexer (#1544)
+
+
+Version 2.7.0
+-------------
+(released September 12, 2020)
+
+- Added lexers:
+
+  * Arrow (#1481, #1499)
+  * BARE (#1488)
+  * Devicetree (#1434)
+  * F* (#1409)
+  * GDScript (#1457)
+  * Pointless (#1494)
+  * PromQL (#1506)
+  * PsySH (#1438)
+  * Singularity (#1285)
+  * TiddlyWiki5 (#1390)
+  * TNT (#1414)
+  * YANG (#1408, #1428)
+
+- Updated lexers:
+
+  * APL (#1503)
+  * C++ (#1350, which also fixes: #1222, #996, #906, #828, #1162, #1166,
+    #1396)
+  * Chapel (#1423)
+  * CMake (#1491)
+  * CSound (#1509)
+  * Cython (#1507)
+  * Dart (#1449)
+  * Fennel (#1535)
+  * Fortran (#1442)
+  * GAS (#1530)
+  * HTTP (#1432, #1520, #1521)
+  * Inform 6 (#1461)
+  * Javascript (#1533)
+  * JSON (#1065, #1528)
+  * Lean (#1415)
+  * Matlab (#1399)
+  * Markdown (#1492, #1495)
+  * MySQL (#975, #1063, #1453, #1527)
+  * NASM (#1465)
+  * Nim (#1426)
+  * PostgreSQL (#1513)
+  * PowerShell (#1398, #1497)
+  * Protobuf (#1505)
+  * Robot (#1480)
+  * SQL (#1402)
+  * SystemVerilog (#1436, #1452, #1454, #1460, #1462, #1463, #1464, #1471, #1496, #1504)
+  * TeraTerm (#1337)
+  * XML (#1502)
+
+- Added a new filter for math symbols (#1406)
+- The Kconfig lexer will match Kconfig derivative names now (#1458)
+- Improved HTML formatter output (#1500)
+- ``.markdown`` is now recognized as an extension for Markdown files (#1476)
+- Fixed line number colors for Solarized (#1477, #1356)
+- Improvements to exception handling (#1478)
+- Improvements to tests (#1532, #1533, #1539)
+- Various code cleanups (#1536, #1537, #1538)
+
+
+Version 2.6.1
+-------------
+(released March 8, 2020)
+
+- This release fixes a packaging issue. No functional changes.
+
+
+Version 2.6
+-----------
+(released March 8, 2020)
+
+- Running Pygments on Python 2.x is no longer supported.
+  (The Python 2 lexer still exists.)
+
+- Added lexers:
+
+  * Linux kernel logs (#1310)
+  * LLVM MIR (#1361)
+  * MiniScript (#1397)
+  * Mosel (#1287, #1326)
+  * Parsing Expression Grammar (#1336)
+  * ReasonML (#1386)
+  * Ride (#1319, #1321)
+  * Sieve (#1257)
+  * USD (#1290)
+  * WebIDL (#1309)
+
+- Updated lexers:
+
+  * Apache2 (#1378)
+  * Chapel (#1357)
+  * CSound (#1383)
+  * D (#1375, #1362)
+  * Haskell (#1347, #1177)
+  * Idris (#1360)
+  * Perl6/Raku lexer (#1344)
+  * Python3 (#1382, #1385)
+  * Rust: Updated lexer to cover more builtins (mostly macros) and miscellaneous
+    new syntax (#1320)
+  * SQL: Add temporal support keywords (#1402)
+
+- The 256-color/true-color terminal formatters now support the italic attribute
+  in styles (#1288)
+- Support HTTP 2/3 header (#1308)
+- Support missing reason in HTTP header (#1322)
+- Boogie/Silver: support line continuations and triggers, move contract keywords
+  to separate category (#1299)
+- GAS: support C-style comments (#1291)
+- Fix names in S lexer (#1330, #1333)
+- Fix numeric literals in Ada (#1334)
+- Recognize ``.mjs`` files as Javascript (#1392)
+- Recognize ``.eex`` files as Elixir (#1387)
+- Fix ``re.MULTILINE`` usage (#1388)
+- Recognize ``pipenv`` and ``poetry`` dependency & lock files (PR#1376)
+- Improve font search on Windows (#1247)
+- Remove unused script block (#1401)
+
+
+Version 2.5.2
+-------------
+(released November 29, 2019)
+
+- Fix incompatibility with some setuptools versions (PR#1316)
 
 - Fix lexing of ReST field lists (PR#1279)
 - Fix lexing of Matlab keywords as field names (PR#1282)
 - Recognize double-quoted strings in Matlab (PR#1278)
+- Avoid slow backtracking in Vim lexer (PR#1312)
+- Fix Scala highlighting of types (PR#1315)
+- Highlight field lists more consistently in ReST (PR#1279)
+- Fix highlighting Matlab keywords in field names (PR#1282)
+- Recognize Matlab double quoted strings (PR#1278)
+- Add some Terraform keywords
+- Update Modelica lexer to 3.4
+- Update Crystal examples
 
 
 Version 2.5.1
@@ -29,7 +348,7 @@ Version 2.5.0
 - Added lexers:
 
   * Email (PR#1246)
-  * Erlang, Elxir shells (PR#823, #1521)
+  * Erlang, Elixir shells (PR#823, #1521)
   * Notmuch (PR#1264)
   * `Scdoc <https://git.sr.ht/~sircmpwn/scdoc>`_ (PR#1268)
   * `Solidity <https://solidity.readthedocs.io/>`_ (#1214)
@@ -49,7 +368,7 @@ Version 2.5.0
   * Logtalk (PR#1261)
   * Matlab (PR#1271)
   * Praat (PR#1277)
-  * Python3 (PR#1255)
+  * Python3 (PR#1255, PR#1400)
   * Ruby
   * YAML (#1528)
   * Velocity
@@ -773,7 +1092,7 @@ Version 1.4
 
 - Support ``application/javascript`` as a JavaScript mime type (#504).
 
-- Support `Offload <http://offload.codeplay.com>`_ C++ Extensions as
+- Support `Offload <https://offload.codeplay.com/>`_ C++ Extensions as
   keywords in the C++ lexer (#484).
 
 - Escape more characters in LaTeX output (#505).

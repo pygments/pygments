@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
     Pygments SQL lexers tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -11,7 +10,7 @@ import pytest
 
 from pygments.lexers.sql import name_between_bracket_re, \
     name_between_backtick_re, tsql_go_re, tsql_declare_re, \
-    tsql_variable_re, MySqlLexer, SqlLexer, TransactSqlLexer
+    tsql_variable_re, MySqlLexer, TransactSqlLexer
 
 from pygments.token import Comment, Name, Number, Punctuation, Whitespace
 
@@ -61,9 +60,10 @@ def test_can_lex_integer(lexer):
 
 
 def test_can_lex_names(lexer):
-    _assert_are_tokens_of_type(lexer,
-                               u'thingy thingy123 _thingy _ _123 Ähnliches Müll #temp1 ##temp2',
-                               Name)
+    _assert_are_tokens_of_type(
+        lexer,
+        'thingy thingy123 _thingy _ _123 Ähnliches Müll #temp1 ##temp2',
+        Name)
 
 
 def test_can_lex_comments(lexer):
@@ -91,11 +91,9 @@ def test_can_match_analyze_text_res():
 
 def test_can_analyze_text():
     mysql_lexer = MySqlLexer()
-    sql_lexer = SqlLexer()
     tsql_lexer = TransactSqlLexer()
     code_to_expected_lexer_map = {
         'select `a`, `bc` from some': mysql_lexer,
-        'select a, bc from some': sql_lexer,
         'select [a], [bc] from some': tsql_lexer,
         '-- `a`, `bc`\nselect [a], [bc] from some': tsql_lexer,
         '-- `a`, `bc`\nselect [a], [bc] from some; go': tsql_lexer,
