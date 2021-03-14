@@ -243,7 +243,7 @@ LEXERS = {
     'KernelLogLexer': ('pygments.lexers.textfmts', 'Kernel log', ('kmsg', 'dmesg'), ('*.kmsg', '*.dmesg'), ()),
     'KokaLexer': ('pygments.lexers.haskell', 'Koka', ('koka',), ('*.kk', '*.kki'), ('text/x-koka',)),
     'KotlinLexer': ('pygments.lexers.jvm', 'Kotlin', ('kotlin',), ('*.kt', '*.kts'), ('text/x-kotlin',)),
-    'KuinLexer': ('pygments.lexers.kuin', 'Kuin', ('kuin',), ('*.kn',), ('text/x-kuin',)),
+    'KuinLexer': ('pygments.lexers.kuin', 'Kuin', ('kuin',), ('*.kn',), ()),
     'LSLLexer': ('pygments.lexers.scripting', 'LSL', ('lsl',), ('*.lsl',), ('text/x-lsl',)),
     'LassoCssLexer': ('pygments.lexers.templates', 'CSS+Lasso', ('css+lasso',), (), ('text/css+lasso',)),
     'LassoHtmlLexer': ('pygments.lexers.templates', 'HTML+Lasso', ('html+lasso',), (), ('text/html+lasso', 'application/x-httpd-lasso', 'application/x-httpd-lasso[89]')),
