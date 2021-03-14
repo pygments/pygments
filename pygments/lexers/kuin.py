@@ -58,13 +58,13 @@ class KuinLexer(RegexLexer):
         'whitespace': [
             (r'^[ \t]*;.*', Comment.Single),
             (r'[ \t]+(?![; \t])', Text),
-            (r'{', Comment.Multiline, 'multiline_comment'),
+            (r'\{', Comment.Multiline, 'multiline_comment'),
         ],
         'multiline_comment': [
-            (r'{', Comment.Multiline, 'multiline_comment'),
+            (r'\{', Comment.Multiline, 'multiline_comment'),
             (r'(?:\s*;.*|[^{}\n]+)', Comment.Multiline),
             (r'\n', Comment.Multiline),
-            (r'}', Comment.Multiline, '#pop'),
+            (r'\}', Comment.Multiline, '#pop'),
         ],
 
         # Block-statement
@@ -289,11 +289,11 @@ class KuinLexer(RegexLexer):
         # String
         'string': [
             (r'(?:\\[^{\n]|[^"\\])+', String.Double),
-            (r'\\{', String.Double, 'toStrInString'),
+            (r'\\\{', String.Double, 'toStrInString'),
             (r'"', String.Double, '#pop'),
         ],
         'toStrInString': [
             include('expr'),
-            (r'}', String.Double, '#pop'),
+            (r'\}', String.Double, '#pop'),
         ],
     }
