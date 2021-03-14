@@ -13,7 +13,9 @@ __all__ = ['KuinLexer']
 
 class KuinLexer(RegexLexer):
     """
-    For `Kuin <http://kuina.ch/kuin/1>`_ source code
+    For `Kuin <https://github.com/kuina/Kuin>`_ source code
+
+    .. versionadded:: 2.9
     """
     name = 'Kuin'
     aliases = ['kuin']
