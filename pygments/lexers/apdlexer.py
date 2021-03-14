@@ -21,7 +21,7 @@ class apdlexer(RegexLexer):
     """
     For APDL source code.
 
-    .. versionadded:: 2.80
+    .. versionadded:: 2.9
     """
     name = 'ANSYS parametric design language'
     aliases = ['ansys', 'apdl']

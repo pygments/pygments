@@ -16,7 +16,7 @@ class gcodeLexer(RegexLexer):
     """
     For gcode source code.
     
-    .. versionadded:: 2.80
+    .. versionadded:: 2.9
     """
     name = 'g-code'
     aliases = ['gcode']
