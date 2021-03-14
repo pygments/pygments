@@ -51,9 +51,8 @@ class apdlexer(RegexLexer):
                "SOLID278", "SOLID279", "SHELL281", "SOLID285",
                "PIPE288", "PIPE289", "ELBOW290", "USER300", "BEAM3",
                "BEAM4", "BEAM23", "BEAM24", "BEAM44", "BEAM54",
-               "CONTAC12", "CONTAC52", "COMBIN7", "FLUID79",
-               "FLUID80", "FLUID81", "FLUID141", "FLUID142", "INFIN9",
-               "INFIN47", "PIPE16", "PIPE18", "PLANE13", "PLANE25",
+               "COMBIN7", "FLUID79", "FLUID80", "FLUID81", "FLUID141",
+               "FLUID142", "INFIN9", "INFIN47", "PLANE13", "PLANE25",
                "PLANE42", "PLANE53", "PLANE67", "PLANE82", "PLANE83",
                "PLANE145", "PLANE146", "CONTAC12", "CONTAC52",
                "LINK1", "LINK8", "LINK10", "LINK32", "PIPE16",
@@ -419,21 +418,20 @@ class apdlexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'!.*\n',Comment),
+            (r'!.*\n', Comment),
             include('strings'),
             include('core'),
             include('nums'),
-            (words((elafunb+elafunc+elafund+elafune+elafunh),suffix=r'\b'),Keyword),
-            (words((elafunf+elafung),suffix=r'\b'),Name.Builtin),
+            (words((elafunb+elafunc+elafund+elafune+elafunh), suffix=r'\b'),Keyword),
+            (words((elafunf+elafung), suffix=r'\b'), Name.Builtin),
             (r'AR[0-9]+', Name.Variable.Instance),
-            (r'[a-z][a-z0-9_]*',Name.Variable),
+            (r'[a-z][a-z0-9_]*', Name.Variable),
             (r'[\s]+', Text),],
         'core': [
             # Operators
             (r'(\*\*|\*|\+|-|\/|<|>|<=|>=|==|\/=|=)', Operator),
             (r'/EOF', Generic.Emph),
             (r'[(),:&;]', Punctuation),
-
         ],
         'strings': [
             (r'(?s)"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
@@ -446,4 +444,3 @@ class apdlexer(RegexLexer):
             (r'[+-]?\d+\.?\d*([ef][-+]?\d+)?', Number.Float),
         ]
     }
-    
