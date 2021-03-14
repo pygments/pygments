@@ -449,7 +449,7 @@ LEXERS = {
     'TcshLexer': ('pygments.lexers.shell', 'Tcsh', ('tcsh', 'csh'), ('*.tcsh', '*.csh'), ('application/x-csh',)),
     'TcshSessionLexer': ('pygments.lexers.shell', 'Tcsh Session', ('tcshcon',), (), ()),
     'TeaTemplateLexer': ('pygments.lexers.templates', 'Tea', ('tea',), ('*.tea',), ('text/x-tea',)),
-   'TealLexer': ('pygments.lexers.teal', 'teal', ('teal',), ('*.teal',), ()),
+    'TealLexer': ('pygments.lexers.teal', 'teal', ('teal',), ('*.teal',), ()),
     'TeraTermLexer': ('pygments.lexers.teraterm', 'Tera Term macro', ('ttl', 'teraterm', 'teratermmacro'), ('*.ttl',), ('text/x-teratermmacro',)),
     'TermcapLexer': ('pygments.lexers.configs', 'Termcap', ('termcap',), ('termcap', 'termcap.src'), ()),
     'TerminfoLexer': ('pygments.lexers.configs', 'Terminfo', ('terminfo',), ('terminfo', 'terminfo.src'), ()),
