@@ -1,0 +1,366 @@
+'{'           Comment.Multiline
+' Quine in Kuin. @tatt61880 ' Comment.Multiline
+'}'           Comment.Multiline
+'\n'          Text
+
+'func'        Keyword
+' '           Text
+'main'        Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'func'        Keyword
+' '           Text
+'quine'       Name.Function
+'('           Punctuation
+'str'         Name.Variable
+':'           Operator
+' '           Text
+'['           Punctuation
+']'           Punctuation
+'char'        Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'        '    Text
+'var'         Keyword
+' '           Text
+'s'           Name.Variable
+':'           Operator
+' '           Text
+'['           Punctuation
+']'           Punctuation
+'char'        Keyword.Type
+' '           Text
+'::'          Operator
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'        '    Text
+'foreach'     Keyword
+' '           Text
+'c'           Name.Other
+'('           Punctuation
+'str'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'switch'      Keyword
+'('           Punctuation
+'c'           Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'case'        Keyword
+' '           Text
+"'\\n'"       Literal.String.Char
+'\n'          Text
+
+'                ' Text
+'do'          Keyword
+' '           Text
+'s'           Name.Variable
+' '           Text
+':~'          Operator
+' '           Text
+'"'           Literal.String.Double
+'\\\\n\\" ~\\n    | \\"' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'            ' Text
+'case'        Keyword
+' '           Text
+"'\\\\'"      Literal.String.Char
+','           Punctuation
+' '           Text
+'\'"\''       Literal.String.Char
+'\n'          Text
+
+'                ' Text
+'do'          Keyword
+' '           Text
+'s'           Name.Variable
+' '           Text
+':~'          Operator
+' '           Text
+'"'           Literal.String.Double
+'\\\\'        Literal.String.Double
+'\\{'         Literal.String.Double
+'c'           Name.Variable
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'            ' Text
+'default'     Keyword
+'\n'          Text
+
+'                ' Text
+'do'          Keyword
+' '           Text
+'s'           Name.Variable
+' '           Text
+':~'          Operator
+' '           Text
+'c'           Name.Variable
+'.'           Operator
+'toStr'       Name.Variable
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'            ' Text
+'end'         Keyword
+' '           Text
+'switch'      Keyword
+'\n'          Text
+
+'        '    Text
+'end'         Keyword
+' '           Text
+'foreach'     Keyword
+'\n'          Text
+
+'        '    Text
+'do'          Keyword
+' '           Text
+'cui'         Name
+'@'           Name.Other
+'print'       Name.Variable
+'('           Punctuation
+'str'         Name.Variable
+' '           Text
+'~'           Operator
+' '           Text
+'s'           Name.Variable
+' '           Text
+'~'           Operator
+' '           Text
+'"'           Literal.String.Double
+'\\"\\n    do quine(str)\\nend func\\n' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'end'         Keyword
+' '           Text
+'func'        Keyword
+'\n'          Text
+
+'    '        Text
+'const'       Keyword
+' '           Text
+'str'         Name.Variable
+':'           Operator
+' '           Text
+'['           Punctuation
+']'           Punctuation
+'char'        Keyword.Type
+' '           Text
+'::'          Operator
+' '           Text
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'{ Quine in Kuin. @tatt61880 }\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'func main()\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'    func quine(str: []char)\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'        var s: []char :: \\"\\"\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'        foreach c(str)\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'            switch(c)\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+"            case '\\\\n'\\n" Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'                do s :~ \\"\\\\\\\\n\\\\\\" ~\\\\n    | \\\\\\"\\"\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'            case \'\\\\\\\\\', \'\\"\'\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'                do s :~ \\"\\\\\\\\\\\\{c}\\"\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'            default\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'                do s :~ c.toStr()\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'            end switch\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'        end foreach\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'        do cui@print(str ~ s ~ \\"\\\\\\"\\\\n    do quine(str)\\\\nend func\\\\n\\")\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'    end func\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'    const str: []char :: \\"\\" ~\\n' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'~'           Operator
+'\n'          Text
+
+'    '        Text
+'|'           Text
+' '           Text
+'"'           Literal.String.Double
+'    | \\"'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'do'          Keyword
+' '           Text
+'quine'       Name.Variable
+'('           Punctuation
+'str'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'func'        Keyword
+'\n'          Text
