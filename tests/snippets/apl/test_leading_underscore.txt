@@ -1,0 +1,26 @@
+---input---
+_op_←{_←⍺ ⍵⋄(⍺⍺ ⍺)+⍵⍵ ⍵}
+
+---tokens---
+'_op_'        Name.Variable
+'←'           Keyword.Declaration
+'{'           Keyword.Type
+'_'           Name.Variable
+'←'           Keyword.Declaration
+'⍺'           Name.Builtin.Pseudo
+' '           Text
+'⍵'           Name.Builtin.Pseudo
+'⋄'           Punctuation
+'('           Punctuation
+'⍺'           Name.Builtin.Pseudo
+'⍺'           Name.Builtin.Pseudo
+' '           Text
+'⍺'           Name.Builtin.Pseudo
+')'           Punctuation
+'+'           Operator
+'⍵'           Name.Builtin.Pseudo
+'⍵'           Name.Builtin.Pseudo
+' '           Text
+'⍵'           Name.Builtin.Pseudo
+'}'           Keyword.Type
+'\n'          Text
