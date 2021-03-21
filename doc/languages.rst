@@ -255,6 +255,7 @@ Other markup
 * MQL
 * MySQL
 * NCAR command language
+* `NestedText <https://nestedtext.org/>`_
 * Nginx config files
 * `Nix language <https://nixos.org/nix/>`_
 * NSIS scripts

@@ -1,0 +1,32 @@
+# comment
+#
+  # indented comment
+
+dict:
+  key1: dict-like: value
+  key2: - list-like value
+  key3: > str-like value
+  key4: no trailing whitespace
+  key5: trailing whitespace    
+  'key: single-quoted': value
+  "key: double-quoted": value
+  empty:
+
+list:
+  - dict-like: value
+  - - list-like value
+  - > str-like value
+  - no trailing whitespace
+  - trailing whitespace    
+
+empty list:
+  -
+
+string:
+  > dict-like: value
+  > - list-like value
+  > > str-like value
+  > no trailing whitespace
+  > trailing whitespace    
+  >
+

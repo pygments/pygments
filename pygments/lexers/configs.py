@@ -21,7 +21,7 @@ __all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
            'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
            'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer',
-           'SingularityLexer']
+           'NestedTextLexer', 'SingularityLexer']
 
 
 class IniLexer(RegexLexer):
@@ -940,6 +940,29 @@ class TOMLLexer(RegexLexer):
         ]
     }
 
+class NestedTextLexer(RegexLexer):
+    """
+    Lexer for `NextedText <https://nestedtext.org>`_, a human-friendly data 
+    format.
+    """
+
+    name = 'NestedText'
+    aliases = ['nestedtext', 'nt']
+    filenames = ['*.nt']
+
+    _quoted_dict_item = r'^(\s*)({0})(.*?)({0}: ?)(.*?)(\s*)$'
+
+    tokens = {
+        'root': [
+            (r'^(\s*)(#.*?)$', bygroups(Text, Comment)),
+            (r'^(\s*)(> ?)(.*?)(\s*)$', bygroups(Text, Punctuation, String, Whitespace)),
+            (r'^(\s*)(- ?)(.*?)(\s*)$', bygroups(Text, Punctuation, String, Whitespace)),
+            (_quoted_dict_item.format("'"), bygroups(Text, Punctuation, Name, Punctuation, String, Whitespace)),
+            (_quoted_dict_item.format('"'), bygroups(Text, Punctuation, Name, Punctuation, String, Whitespace)),
+            (r'^(\s*)(.*?)(: ?)(.*?)(\s*)$', bygroups(Text, Name, Punctuation, String, Whitespace)),
+        ],
+    }
+        
 
 class SingularityLexer(RegexLexer):
     """
