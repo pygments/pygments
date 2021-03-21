@@ -944,6 +944,8 @@ class NestedTextLexer(RegexLexer):
     """
     Lexer for `NextedText <https://nestedtext.org>`_, a human-friendly data 
     format.
+    
+    .. versionadded:: 2.9
     """
 
     name = 'NestedText'
