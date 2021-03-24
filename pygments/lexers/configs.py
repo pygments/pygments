@@ -659,7 +659,7 @@ class TerraformLexer(RegexLexer):
 
             # Assignment with environment variables and similar, e.g. "something" = ...
             # or key value assignment, e.g. "SlotName" : ...
-            (r'(\s*)("[^\s]+")(\s*)([=:])(\s*)',
+            (r'(\s*)("\S+")(\s*)([=:])(\s*)',
              bygroups(Text, Literal.String.Double, Text, Operator, Text)),
 
             # Functions, e.g. jsonencode(element("value"))
