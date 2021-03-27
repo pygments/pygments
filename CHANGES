@@ -36,6 +36,22 @@ Version 2.9.0
 - Fix links (#1716)
 - Fix issue with LaTeX formatter and ``minted`` (#1734, #1735, #1736, #1737)
 
+- Updated `filename` handling in HTML formatter if `linenos='table'` (#1757)
+
+  * Previously the filename would be emitted within the `<td>` holding the
+    code, but outside the `<pre>`. This would invariably break the alignment
+    with line numbers.
+  * Now if `filename` is specified, a separate `<tr>` is emitted before the
+    table content which contains a single `<th>` with `colspan=2` so it
+    spans both the line number and code columns. The filename is still
+    within `<span class="filename">...</span>` so any existing styles
+    should still apply, although the CSS path may need to change.
+  * For an example of the new output format see
+    `table_cls_step_1_start_1_special_0_noanchor_filename.html`
+    in the `tests/html_linenos_expected_output/` directory.
+  * For more details and discussion see the issue
+    https://github.com/pygments/pygments/issues/1757
+
 Version 2.8.0
 -------------
 (released February 14, 2021)
