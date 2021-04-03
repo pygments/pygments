@@ -1,0 +1,4307 @@
+'%define\t\t_myadminpath\t/var/www/myadmin\n' Comment.Preproc
+
+'%define\t\tpkgrelease\trc1\n' Comment.Preproc
+
+'%define\t\tmicrorelease\t1\n' Comment.Preproc
+
+'\n'          Text
+
+'Name'        Generic.Heading
+':'           Punctuation
+'\t'          Text
+'\t'          Text
+'p'           Text
+'h'           Text
+'p'           Text
+'M'           Text
+'y'           Text
+'A'           Text
+'d'           Text
+'m'           Text
+'i'           Text
+'n'           Text
+'\n'          Text
+
+'Version'     Generic.Heading
+':'           Punctuation
+'\t'          Text
+'3'           Text
+'.'           Text
+'1'           Text
+'.'           Text
+'1'           Text
+'\n'          Text
+
+'Release'     Generic.Heading
+':'           Punctuation
+'\t'          Text
+'%{pkgrelease}' Keyword.Constant
+'.'           Text
+'%{microrelease}' Keyword.Constant
+'\n'          Text
+
+'License'     Generic.Heading
+':'           Punctuation
+'\t'          Text
+'G'           Text
+'P'           Text
+'L'           Text
+'\n'          Text
+
+'Group'       Generic.Heading
+':'           Punctuation
+'\t'          Text
+'\t'          Text
+'A'           Text
+'p'           Text
+'p'           Text
+'l'           Text
+'i'           Text
+'c'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'/'           Text
+'D'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'a'           Text
+'s'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'I'           Text
+'n'           Text
+'t'           Text
+'e'           Text
+'r'           Text
+'f'           Text
+'a'           Text
+'c'           Text
+'e'           Text
+'s'           Text
+'\n'          Text
+
+'Source0'     Generic.Heading
+':'           Punctuation
+'\t'          Text
+'h'           Text
+'t'           Text
+'t'           Text
+'p'           Text
+':'           Text
+'/'           Text
+'/'           Text
+'p'           Text
+'r'           Text
+'d'           Text
+'o'           Text
+'w'           Text
+'n'           Text
+'l'           Text
+'o'           Text
+'a'           Text
+'d'           Text
+'s'           Text
+'.'           Text
+'s'           Text
+'o'           Text
+'u'           Text
+'r'           Text
+'c'           Text
+'e'           Text
+'f'           Text
+'o'           Text
+'r'           Text
+'g'           Text
+'e'           Text
+'.'           Text
+'n'           Text
+'e'           Text
+'t'           Text
+'/'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+'m'           Text
+'y'           Text
+'a'           Text
+'d'           Text
+'m'           Text
+'i'           Text
+'n'           Text
+'/'           Text
+'%{name}'     Keyword.Constant
+'-'           Text
+'%{version}'  Keyword.Constant
+'-'           Text
+'%{pkgrelease}' Keyword.Constant
+'.'           Text
+'t'           Text
+'a'           Text
+'r'           Text
+'.'           Text
+'b'           Text
+'z'           Text
+'2'           Text
+'\n'          Text
+
+'Source1'     Generic.Heading
+':'           Punctuation
+'\t'          Text
+'p'           Text
+'h'           Text
+'p'           Text
+'M'           Text
+'y'           Text
+'A'           Text
+'d'           Text
+'m'           Text
+'i'           Text
+'n'           Text
+'-'           Text
+'h'           Text
+'t'           Text
+'t'           Text
+'p'           Text
+'.'           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'f'           Text
+'\n'          Text
+
+'URL'         Generic.Heading
+':'           Punctuation
+'\t'          Text
+'\t'          Text
+'h'           Text
+'t'           Text
+'t'           Text
+'p'           Text
+':'           Text
+'/'           Text
+'/'           Text
+'s'           Text
+'o'           Text
+'u'           Text
+'r'           Text
+'c'           Text
+'e'           Text
+'f'           Text
+'o'           Text
+'r'           Text
+'g'           Text
+'e'           Text
+'.'           Text
+'n'           Text
+'e'           Text
+'t'           Text
+'/'           Text
+'p'           Text
+'r'           Text
+'o'           Text
+'j'           Text
+'e'           Text
+'c'           Text
+'t'           Text
+'s'           Text
+'/'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+'m'           Text
+'y'           Text
+'a'           Text
+'d'           Text
+'m'           Text
+'i'           Text
+'n'           Text
+'/'           Text
+'\n'          Text
+
+'Requires'    Generic.Heading
+':'           Punctuation
+'\t'          Text
+'m'           Text
+'y'           Text
+'s'           Text
+'q'           Text
+'l'           Text
+'\n'          Text
+
+'Requires'    Generic.Heading
+':'           Punctuation
+'\t'          Text
+'p'           Text
+'h'           Text
+'p'           Text
+'-'           Text
+'m'           Text
+'y'           Text
+'s'           Text
+'q'           Text
+'l'           Text
+'\n'          Text
+
+'Buildarch'   Generic.Heading
+':'           Punctuation
+'\t'          Text
+'n'           Text
+'o'           Text
+'a'           Text
+'r'           Text
+'c'           Text
+'h'           Text
+'\n'          Text
+
+'#BuildRoot:\t%{_tmppath}/%{name}-root\n' Comment
+
+'\n'          Text
+
+'Summary'     Generic.Heading
+':'           Punctuation
+'\t'          Text
+'p'           Text
+'h'           Text
+'p'           Text
+'M'           Text
+'y'           Text
+'A'           Text
+'d'           Text
+'m'           Text
+'i'           Text
+'n'           Text
+' '           Text
+'-'           Text
+' '           Text
+'w'           Text
+'e'           Text
+'b'           Text
+'-'           Text
+'b'           Text
+'a'           Text
+'s'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'M'           Text
+'y'           Text
+'S'           Text
+'Q'           Text
+'L'           Text
+' '           Text
+'a'           Text
+'d'           Text
+'m'           Text
+'i'           Text
+'n'           Text
+'i'           Text
+'s'           Text
+'t'           Text
+'r'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'\n'          Text
+
+'\n'          Text
+
+'%description' Name.Decorator
+'\n'          Text
+
+'p'           Text
+'h'           Text
+'p'           Text
+'M'           Text
+'y'           Text
+'A'           Text
+'d'           Text
+'m'           Text
+'i'           Text
+'n'           Text
+' '           Text
+'c'           Text
+'a'           Text
+'n'           Text
+' '           Text
+'m'           Text
+'a'           Text
+'n'           Text
+'a'           Text
+'g'           Text
+'e'           Text
+' '           Text
+'a'           Text
+' '           Text
+'w'           Text
+'h'           Text
+'o'           Text
+'l'           Text
+'e'           Text
+' '           Text
+'M'           Text
+'y'           Text
+'S'           Text
+'Q'           Text
+'L'           Text
+'-'           Text
+'s'           Text
+'e'           Text
+'r'           Text
+'v'           Text
+'e'           Text
+'r'           Text
+' '           Text
+'('           Text
+'n'           Text
+'e'           Text
+'e'           Text
+'d'           Text
+'s'           Text
+' '           Text
+'a'           Text
+' '           Text
+'s'           Text
+'u'           Text
+'p'           Text
+'e'           Text
+'r'           Text
+'-'           Text
+'u'           Text
+'s'           Text
+'e'           Text
+'r'           Text
+')'           Text
+' '           Text
+'b'           Text
+'u'           Text
+'t'           Text
+'\n'          Text
+
+'a'           Text
+'l'           Text
+'s'           Text
+'o'           Text
+' '           Text
+'a'           Text
+' '           Text
+'s'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+'l'           Text
+'e'           Text
+' '           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'a'           Text
+'s'           Text
+'e'           Text
+'.'           Text
+' '           Text
+'T'           Text
+'o'           Text
+' '           Text
+'a'           Text
+'c'           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'l'           Text
+'i'           Text
+'s'           Text
+'h'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'l'           Text
+'a'           Text
+'t'           Text
+'t'           Text
+'e'           Text
+'r'           Text
+' '           Text
+'y'           Text
+'o'           Text
+'u'           Text
+"'"           Text
+'l'           Text
+'l'           Text
+' '           Text
+'n'           Text
+'e'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'a'           Text
+'\n'          Text
+
+'p'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+'e'           Text
+'r'           Text
+'l'           Text
+'y'           Text
+' '           Text
+'s'           Text
+'e'           Text
+'t'           Text
+' '           Text
+'u'           Text
+'p'           Text
+' '           Text
+'M'           Text
+'y'           Text
+'S'           Text
+'Q'           Text
+'L'           Text
+'-'           Text
+'u'           Text
+'s'           Text
+'e'           Text
+'r'           Text
+' '           Text
+'w'           Text
+'h'           Text
+'i'           Text
+'c'           Text
+'h'           Text
+' '           Text
+'c'           Text
+'a'           Text
+'n'           Text
+' '           Text
+'r'           Text
+'e'           Text
+'a'           Text
+'d'           Text
+'/'           Text
+'w'           Text
+'r'           Text
+'i'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'o'           Text
+'n'           Text
+'l'           Text
+'y'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'d'           Text
+'e'           Text
+'s'           Text
+'i'           Text
+'r'           Text
+'e'           Text
+'d'           Text
+'\n'          Text
+
+'d'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'a'           Text
+'s'           Text
+'e'           Text
+'.'           Text
+' '           Text
+'I'           Text
+'t'           Text
+"'"           Text
+'s'           Text
+' '           Text
+'u'           Text
+'p'           Text
+' '           Text
+'t'           Text
+'o'           Text
+' '           Text
+'y'           Text
+'o'           Text
+'u'           Text
+' '           Text
+'t'           Text
+'o'           Text
+' '           Text
+'l'           Text
+'o'           Text
+'o'           Text
+'k'           Text
+' '           Text
+'u'           Text
+'p'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'a'           Text
+'p'           Text
+'p'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+'i'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'p'           Text
+'a'           Text
+'r'           Text
+'t'           Text
+' '           Text
+'i'           Text
+'n'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'M'           Text
+'y'           Text
+'S'           Text
+'Q'           Text
+'L'           Text
+'\n'          Text
+
+'m'           Text
+'a'           Text
+'n'           Text
+'u'           Text
+'a'           Text
+'l'           Text
+'.'           Text
+' '           Text
+'C'           Text
+'u'           Text
+'r'           Text
+'r'           Text
+'e'           Text
+'n'           Text
+'t'           Text
+'l'           Text
+'y'           Text
+' '           Text
+'p'           Text
+'h'           Text
+'p'           Text
+'M'           Text
+'y'           Text
+'A'           Text
+'d'           Text
+'m'           Text
+'i'           Text
+'n'           Text
+' '           Text
+'c'           Text
+'a'           Text
+'n'           Text
+':'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'-'           Text
+' '           Text
+'c'           Text
+'r'           Text
+'e'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'a'           Text
+'n'           Text
+'d'           Text
+' '           Text
+'d'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+' '           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'a'           Text
+'s'           Text
+'e'           Text
+'s'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'-'           Text
+' '           Text
+'c'           Text
+'r'           Text
+'e'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+','           Text
+' '           Text
+'c'           Text
+'o'           Text
+'p'           Text
+'y'           Text
+','           Text
+' '           Text
+'d'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+' '           Text
+'a'           Text
+'n'           Text
+'d'           Text
+' '           Text
+'a'           Text
+'l'           Text
+'t'           Text
+'e'           Text
+'r'           Text
+' '           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'l'           Text
+'e'           Text
+'s'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'-'           Text
+' '           Text
+'d'           Text
+'e'           Text
+'l'           Text
+'e'           Text
+'t'           Text
+'e'           Text
+','           Text
+' '           Text
+'e'           Text
+'d'           Text
+'i'           Text
+'t'           Text
+' '           Text
+'a'           Text
+'n'           Text
+'d'           Text
+' '           Text
+'a'           Text
+'d'           Text
+'d'           Text
+' '           Text
+'f'           Text
+'i'           Text
+'e'           Text
+'l'           Text
+'d'           Text
+'s'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'-'           Text
+' '           Text
+'e'           Text
+'x'           Text
+'e'           Text
+'c'           Text
+'u'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'a'           Text
+'n'           Text
+'y'           Text
+' '           Text
+'S'           Text
+'Q'           Text
+'L'           Text
+'-'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+'m'           Text
+'e'           Text
+'n'           Text
+'t'           Text
+','           Text
+' '           Text
+'e'           Text
+'v'           Text
+'e'           Text
+'n'           Text
+' '           Text
+'b'           Text
+'a'           Text
+'t'           Text
+'c'           Text
+'h'           Text
+'-'           Text
+'q'           Text
+'u'           Text
+'e'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'-'           Text
+' '           Text
+'m'           Text
+'a'           Text
+'n'           Text
+'a'           Text
+'g'           Text
+'e'           Text
+' '           Text
+'k'           Text
+'e'           Text
+'y'           Text
+'s'           Text
+' '           Text
+'o'           Text
+'n'           Text
+' '           Text
+'f'           Text
+'i'           Text
+'e'           Text
+'l'           Text
+'d'           Text
+'s'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'-'           Text
+' '           Text
+'l'           Text
+'o'           Text
+'a'           Text
+'d'           Text
+' '           Text
+'t'           Text
+'e'           Text
+'x'           Text
+'t'           Text
+' '           Text
+'f'           Text
+'i'           Text
+'l'           Text
+'e'           Text
+'s'           Text
+' '           Text
+'i'           Text
+'n'           Text
+'t'           Text
+'o'           Text
+' '           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'l'           Text
+'e'           Text
+'s'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'-'           Text
+' '           Text
+'c'           Text
+'r'           Text
+'e'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'('           Text
+'*'           Text
+')'           Text
+' '           Text
+'a'           Text
+'n'           Text
+'d'           Text
+' '           Text
+'r'           Text
+'e'           Text
+'a'           Text
+'d'           Text
+' '           Text
+'d'           Text
+'u'           Text
+'m'           Text
+'p'           Text
+'s'           Text
+' '           Text
+'o'           Text
+'f'           Text
+' '           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'l'           Text
+'e'           Text
+'s'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'-'           Text
+' '           Text
+'e'           Text
+'x'           Text
+'p'           Text
+'o'           Text
+'r'           Text
+'t'           Text
+' '           Text
+'('           Text
+'*'           Text
+')'           Text
+' '           Text
+'a'           Text
+'n'           Text
+'d'           Text
+' '           Text
+'i'           Text
+'m'           Text
+'p'           Text
+'o'           Text
+'r'           Text
+'t'           Text
+' '           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+' '           Text
+'t'           Text
+'o'           Text
+' '           Text
+'C'           Text
+'S'           Text
+'V'           Text
+' '           Text
+'v'           Text
+'a'           Text
+'l'           Text
+'u'           Text
+'e'           Text
+'s'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'-'           Text
+' '           Text
+'a'           Text
+'d'           Text
+'m'           Text
+'i'           Text
+'n'           Text
+'i'           Text
+'s'           Text
+'t'           Text
+'e'           Text
+'r'           Text
+' '           Text
+'m'           Text
+'u'           Text
+'l'           Text
+'t'           Text
+'i'           Text
+'p'           Text
+'l'           Text
+'e'           Text
+' '           Text
+'s'           Text
+'e'           Text
+'r'           Text
+'v'           Text
+'e'           Text
+'r'           Text
+'s'           Text
+' '           Text
+'a'           Text
+'n'           Text
+'d'           Text
+' '           Text
+'s'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+'l'           Text
+'e'           Text
+' '           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'a'           Text
+'s'           Text
+'e'           Text
+'s'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'-'           Text
+' '           Text
+'c'           Text
+'h'           Text
+'e'           Text
+'c'           Text
+'k'           Text
+' '           Text
+'r'           Text
+'e'           Text
+'f'           Text
+'e'           Text
+'r'           Text
+'e'           Text
+'n'           Text
+'c'           Text
+'i'           Text
+'a'           Text
+'l'           Text
+' '           Text
+'i'           Text
+'n'           Text
+'t'           Text
+'e'           Text
+'g'           Text
+'r'           Text
+'i'           Text
+'t'           Text
+'y'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'-'           Text
+' '           Text
+'c'           Text
+'r'           Text
+'e'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'p'           Text
+'l'           Text
+'e'           Text
+'x'           Text
+' '           Text
+'q'           Text
+'u'           Text
+'e'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+' '           Text
+'a'           Text
+'u'           Text
+'t'           Text
+'o'           Text
+'m'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'c'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+'y'           Text
+' '           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'n'           Text
+'e'           Text
+'c'           Text
+'t'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+' '           Text
+'r'           Text
+'e'           Text
+'q'           Text
+'u'           Text
+'i'           Text
+'r'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'l'           Text
+'e'           Text
+'s'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'-'           Text
+' '           Text
+'c'           Text
+'r'           Text
+'e'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'P'           Text
+'D'           Text
+'F'           Text
+' '           Text
+'g'           Text
+'r'           Text
+'a'           Text
+'p'           Text
+'h'           Text
+'i'           Text
+'c'           Text
+'s'           Text
+' '           Text
+'o'           Text
+'f'           Text
+' '           Text
+'y'           Text
+'o'           Text
+'u'           Text
+'r'           Text
+' '           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'a'           Text
+'s'           Text
+'e'           Text
+' '           Text
+'l'           Text
+'a'           Text
+'y'           Text
+'o'           Text
+'u'           Text
+'t'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'-'           Text
+' '           Text
+'c'           Text
+'o'           Text
+'m'           Text
+'m'           Text
+'u'           Text
+'n'           Text
+'i'           Text
+'c'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'i'           Text
+'n'           Text
+' '           Text
+'m'           Text
+'o'           Text
+'r'           Text
+'e'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'a'           Text
+'n'           Text
+' '           Text
+'3'           Text
+'8'           Text
+' '           Text
+'d'           Text
+'i'           Text
+'f'           Text
+'f'           Text
+'e'           Text
+'r'           Text
+'e'           Text
+'n'           Text
+'t'           Text
+' '           Text
+'l'           Text
+'a'           Text
+'n'           Text
+'g'           Text
+'u'           Text
+'a'           Text
+'g'           Text
+'e'           Text
+'s'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'%prep'       Name.Decorator
+'\n'          Text
+
+'%setup'      Keyword
+' '           Text
+'-'           Text
+'q'           Text
+' '           Text
+'-'           Text
+'n'           Text
+' '           Text
+'%{name}'     Keyword.Constant
+'-'           Text
+'%{version}'  Keyword.Constant
+'-'           Text
+'%{pkgrelease}' Keyword.Constant
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'%build'      Name.Decorator
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'%install'    Name.Decorator
+'\n'          Text
+
+'['           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'"'           Literal.String.Double
+' '           Text
+'!'           Text
+'='           Text
+' '           Text
+'"'           Literal.String.Double
+'/'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+']'           Text
+' '           Text
+'&'           Text
+'&'           Text
+' '           Text
+'['           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'"'           Literal.String.Double
+' '           Text
+']'           Text
+' '           Text
+'&'           Text
+'&'           Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'r'           Text
+'m'           Text
+' '           Text
+'-'           Text
+'r'           Text
+'f'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'#\tCreate directories.\n' Comment
+
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'"'           Literal.String.Double
+'/'           Text
+'{'           Text
+'c'           Text
+'s'           Text
+'s'           Text
+','           Text
+'j'           Text
+'s'           Text
+','           Text
+'l'           Text
+'a'           Text
+'n'           Text
+'g'           Text
+','           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+','           Text
+'t'           Text
+'h'           Text
+'e'           Text
+'m'           Text
+'e'           Text
+'s'           Text
+'}'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'"'           Literal.String.Double
+'/'           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'{'           Text
+'a'           Text
+'u'           Text
+'t'           Text
+'h'           Text
+','           Text
+'d'           Text
+'b'           Text
+'g'           Text
+','           Text
+'d'           Text
+'b'           Text
+'i'           Text
+','           Text
+'e'           Text
+'n'           Text
+'g'           Text
+'i'           Text
+'n'           Text
+'e'           Text
+'s'           Text
+'}'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'"'           Literal.String.Double
+'/'           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'{'           Text
+'e'           Text
+'x'           Text
+'p'           Text
+'o'           Text
+'r'           Text
+'t'           Text
+','           Text
+'t'           Text
+'c'           Text
+'p'           Text
+'d'           Text
+'f'           Text
+','           Text
+'i'           Text
+'m'           Text
+'p'           Text
+'o'           Text
+'r'           Text
+'t'           Text
+'}'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'"'           Literal.String.Double
+'/'           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'t'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'s'           Text
+'f'           Text
+'o'           Text
+'r'           Text
+'m'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'"'           Literal.String.Double
+'/'           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'t'           Text
+'c'           Text
+'p'           Text
+'d'           Text
+'f'           Text
+'/'           Text
+'f'           Text
+'o'           Text
+'n'           Text
+'t'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'"'           Literal.String.Double
+'/'           Text
+'t'           Text
+'h'           Text
+'e'           Text
+'m'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'{'           Text
+'d'           Text
+'a'           Text
+'r'           Text
+'k'           Text
+'b'           Text
+'l'           Text
+'u'           Text
+'e'           Text
+'_'           Text
+'o'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'g'           Text
+'e'           Text
+','           Text
+'o'           Text
+'r'           Text
+'i'           Text
+'g'           Text
+'i'           Text
+'n'           Text
+'a'           Text
+'l'           Text
+'}'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'"'           Literal.String.Double
+'/'           Text
+'t'           Text
+'h'           Text
+'e'           Text
+'m'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'d'           Text
+'a'           Text
+'r'           Text
+'k'           Text
+'b'           Text
+'l'           Text
+'u'           Text
+'e'           Text
+'_'           Text
+'o'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'g'           Text
+'e'           Text
+'/'           Text
+'{'           Text
+'c'           Text
+'s'           Text
+'s'           Text
+','           Text
+'i'           Text
+'m'           Text
+'g'           Text
+'}'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'"'           Literal.String.Double
+'/'           Text
+'t'           Text
+'h'           Text
+'e'           Text
+'m'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'o'           Text
+'r'           Text
+'i'           Text
+'g'           Text
+'i'           Text
+'n'           Text
+'a'           Text
+'l'           Text
+'/'           Text
+'{'           Text
+'c'           Text
+'s'           Text
+'s'           Text
+','           Text
+'i'           Text
+'m'           Text
+'g'           Text
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+'#\tInstall files.\n' Comment
+
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'f'           Text
+'i'           Text
+'g'           Text
+'.'           Text
+'d'           Text
+'e'           Text
+'f'           Text
+'a'           Text
+'u'           Text
+'l'           Text
+'t'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'"'           Literal.String.Double
+'/'           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'f'           Text
+'i'           Text
+'g'           Text
+'.'           Text
+'i'           Text
+'n'           Text
+'c'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'*'           Text
+'.'           Text
+'{'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+','           Text
+'i'           Text
+'c'           Text
+'o'           Text
+'}'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'C'           Text
+'h'           Text
+'a'           Text
+'n'           Text
+'g'           Text
+'e'           Text
+'L'           Text
+'o'           Text
+'g'           Text
+' '           Text
+'L'           Text
+'I'           Text
+'C'           Text
+'E'           Text
+'N'           Text
+'S'           Text
+'E'           Text
+' '           Text
+'R'           Text
+'E'           Text
+'A'           Text
+'D'           Text
+'M'           Text
+'E'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'D'           Text
+'o'           Text
+'c'           Text
+'u'           Text
+'m'           Text
+'e'           Text
+'n'           Text
+'t'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'.'           Text
+'h'           Text
+'t'           Text
+'m'           Text
+'l'           Text
+' '           Text
+'d'           Text
+'o'           Text
+'c'           Text
+'s'           Text
+'.'           Text
+'c'           Text
+'s'           Text
+'s'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'c'           Text
+'s'           Text
+'s'           Text
+'/'           Text
+'*'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'c'           Literal.String.Double
+'s'           Literal.String.Double
+'s'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'j'           Text
+'s'           Text
+'/'           Text
+'*'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'j'           Literal.String.Double
+'s'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'a'           Text
+'n'           Text
+'g'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'l'           Literal.String.Double
+'a'           Literal.String.Double
+'n'           Literal.String.Double
+'g'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'a'           Text
+'u'           Text
+'t'           Text
+'h'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'a'           Literal.String.Double
+'u'           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'d'           Text
+'b'           Text
+'g'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'d'           Literal.String.Double
+'b'           Literal.String.Double
+'g'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'d'           Text
+'b'           Text
+'i'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'d'           Literal.String.Double
+'b'           Literal.String.Double
+'i'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'e'           Text
+'n'           Text
+'g'           Text
+'i'           Text
+'n'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'e'           Literal.String.Double
+'n'           Literal.String.Double
+'g'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'e'           Text
+'x'           Text
+'p'           Text
+'o'           Text
+'r'           Text
+'t'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'e'           Literal.String.Double
+'x'           Literal.String.Double
+'p'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'t'           Text
+'c'           Text
+'p'           Text
+'d'           Text
+'f'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'t'           Literal.String.Double
+'c'           Literal.String.Double
+'p'           Literal.String.Double
+'d'           Literal.String.Double
+'f'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'t'           Text
+'c'           Text
+'p'           Text
+'d'           Text
+'f'           Text
+'/'           Text
+'f'           Text
+'o'           Text
+'n'           Text
+'t'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'{'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+','           Text
+'z'           Text
+'}'           Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'t'           Literal.String.Double
+'c'           Literal.String.Double
+'p'           Literal.String.Double
+'d'           Literal.String.Double
+'f'           Literal.String.Double
+'/'           Literal.String.Double
+'f'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'i'           Text
+'m'           Text
+'p'           Text
+'o'           Text
+'r'           Text
+'t'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'i'           Literal.String.Double
+'m'           Literal.String.Double
+'p'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'t'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'t'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'s'           Text
+'f'           Text
+'o'           Text
+'r'           Text
+'m'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'l'           Literal.String.Double
+'i'           Literal.String.Double
+'b'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'t'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'f'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'m'           Literal.String.Double
+'a'           Literal.String.Double
+'t'           Literal.String.Double
+'i'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'s'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+'m'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'d'           Text
+'a'           Text
+'r'           Text
+'k'           Text
+'b'           Text
+'l'           Text
+'u'           Text
+'e'           Text
+'_'           Text
+'o'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'g'           Text
+'e'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'{'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+','           Text
+'p'           Text
+'n'           Text
+'g'           Text
+'}'           Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+'m'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'d'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'k'           Literal.String.Double
+'b'           Literal.String.Double
+'l'           Literal.String.Double
+'u'           Literal.String.Double
+'e'           Literal.String.Double
+'_'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'n'           Literal.String.Double
+'g'           Literal.String.Double
+'e'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+'m'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'d'           Text
+'a'           Text
+'r'           Text
+'k'           Text
+'b'           Text
+'l'           Text
+'u'           Text
+'e'           Text
+'_'           Text
+'o'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'g'           Text
+'e'           Text
+'/'           Text
+'c'           Text
+'s'           Text
+'s'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+'m'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'d'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'k'           Literal.String.Double
+'b'           Literal.String.Double
+'l'           Literal.String.Double
+'u'           Literal.String.Double
+'e'           Literal.String.Double
+'_'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'n'           Literal.String.Double
+'g'           Literal.String.Double
+'e'           Literal.String.Double
+'/'           Literal.String.Double
+'c'           Literal.String.Double
+'s'           Literal.String.Double
+'s'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+'m'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'d'           Text
+'a'           Text
+'r'           Text
+'k'           Text
+'b'           Text
+'l'           Text
+'u'           Text
+'e'           Text
+'_'           Text
+'o'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'g'           Text
+'e'           Text
+'/'           Text
+'i'           Text
+'m'           Text
+'g'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'{'           Text
+'p'           Text
+'n'           Text
+'g'           Text
+','           Text
+'i'           Text
+'c'           Text
+'o'           Text
+'}'           Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+'m'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'d'           Literal.String.Double
+'a'           Literal.String.Double
+'r'           Literal.String.Double
+'k'           Literal.String.Double
+'b'           Literal.String.Double
+'l'           Literal.String.Double
+'u'           Literal.String.Double
+'e'           Literal.String.Double
+'_'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'a'           Literal.String.Double
+'n'           Literal.String.Double
+'g'           Literal.String.Double
+'e'           Literal.String.Double
+'/'           Literal.String.Double
+'i'           Literal.String.Double
+'m'           Literal.String.Double
+'g'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+'m'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'o'           Text
+'r'           Text
+'i'           Text
+'g'           Text
+'i'           Text
+'n'           Text
+'a'           Text
+'l'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'{'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+','           Text
+'p'           Text
+'n'           Text
+'g'           Text
+'}'           Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+'m'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+'m'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'o'           Text
+'r'           Text
+'i'           Text
+'g'           Text
+'i'           Text
+'n'           Text
+'a'           Text
+'l'           Text
+'/'           Text
+'c'           Text
+'s'           Text
+'s'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+'m'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'/'           Literal.String.Double
+'c'           Literal.String.Double
+'s'           Literal.String.Double
+'s'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+'m'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'o'           Text
+'r'           Text
+'i'           Text
+'g'           Text
+'i'           Text
+'n'           Text
+'a'           Text
+'l'           Text
+'/'           Text
+'i'           Text
+'m'           Text
+'g'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'{'           Text
+'p'           Text
+'n'           Text
+'g'           Text
+','           Text
+'i'           Text
+'c'           Text
+'o'           Text
+'}'           Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Literal.String.Double
+'t'           Literal.String.Double
+'h'           Literal.String.Double
+'e'           Literal.String.Double
+'m'           Literal.String.Double
+'e'           Literal.String.Double
+'s'           Literal.String.Double
+'/'           Literal.String.Double
+'o'           Literal.String.Double
+'r'           Literal.String.Double
+'i'           Literal.String.Double
+'g'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'a'           Literal.String.Double
+'l'           Literal.String.Double
+'/'           Literal.String.Double
+'i'           Literal.String.Double
+'m'           Literal.String.Double
+'g'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'\n'          Text
+
+'#\tCreate documentation directories.\n' Comment
+
+'\n'          Text
+
+'D'           Text
+'O'           Text
+'C'           Text
+'R'           Text
+'O'           Text
+'O'           Text
+'T'           Text
+'='           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_docdir}'  Keyword.Pseudo
+'/'           Literal.String.Double
+'%{name}'     Keyword.Constant
+'-'           Literal.String.Double
+'%{version}'  Keyword.Constant
+'"'           Literal.String.Double
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'{'           Text
+'l'           Text
+'a'           Text
+'n'           Text
+'g'           Text
+','           Text
+'s'           Text
+'c'           Text
+'r'           Text
+'i'           Text
+'p'           Text
+'t'           Text
+'s'           Text
+','           Text
+'t'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'s'           Text
+'f'           Text
+'o'           Text
+'r'           Text
+'m'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'}'           Text
+'\n'          Text
+
+'\n'          Text
+
+'#\tInstall documentation files.\n' Comment
+
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'R'           Text
+'E'           Text
+'L'           Text
+'E'           Text
+'A'           Text
+'S'           Text
+'E'           Text
+'-'           Text
+'D'           Text
+'A'           Text
+'T'           Text
+'E'           Text
+'-'           Text
+'*'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'C'           Text
+'R'           Text
+'E'           Text
+'D'           Text
+'I'           Text
+'T'           Text
+'S'           Text
+' '           Text
+'C'           Text
+'h'           Text
+'a'           Text
+'n'           Text
+'g'           Text
+'e'           Text
+'L'           Text
+'o'           Text
+'g'           Text
+' '           Text
+'I'           Text
+'N'           Text
+'S'           Text
+'T'           Text
+'A'           Text
+'L'           Text
+'L'           Text
+' '           Text
+'L'           Text
+'I'           Text
+'C'           Text
+'E'           Text
+'N'           Text
+'S'           Text
+'E'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'R'           Text
+'E'           Text
+'A'           Text
+'D'           Text
+'M'           Text
+'E'           Text
+' '           Text
+'T'           Text
+'O'           Text
+'D'           Text
+'O'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'D'           Text
+'o'           Text
+'c'           Text
+'u'           Text
+'m'           Text
+'e'           Text
+'n'           Text
+'t'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'.'           Text
+'*'           Text
+' '           Text
+'d'           Text
+'o'           Text
+'c'           Text
+'s'           Text
+'.'           Text
+'c'           Text
+'s'           Text
+'s'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'t'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'s'           Text
+'l'           Text
+'a'           Text
+'t'           Text
+'o'           Text
+'r'           Text
+'s'           Text
+'.'           Text
+'h'           Text
+'t'           Text
+'m'           Text
+'l'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'a'           Text
+'n'           Text
+'g'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'s'           Text
+'h'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'l'           Text
+'a'           Text
+'n'           Text
+'g'           Text
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'s'           Text
+'c'           Text
+'r'           Text
+'i'           Text
+'p'           Text
+'t'           Text
+'s'           Text
+'/'           Text
+'*'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'s'           Text
+'c'           Text
+'r'           Text
+'i'           Text
+'p'           Text
+'t'           Text
+'s'           Text
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'t'           Text
+'c'           Text
+'p'           Text
+'d'           Text
+'f'           Text
+'/'           Text
+'R'           Text
+'E'           Text
+'A'           Text
+'D'           Text
+'M'           Text
+'E'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'R'           Text
+'E'           Text
+'A'           Text
+'D'           Text
+'M'           Text
+'E'           Text
+'.'           Text
+'t'           Text
+'c'           Text
+'p'           Text
+'d'           Text
+'f'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'i'           Text
+'m'           Text
+'p'           Text
+'o'           Text
+'r'           Text
+'t'           Text
+'/'           Text
+'R'           Text
+'E'           Text
+'A'           Text
+'D'           Text
+'M'           Text
+'E'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'R'           Text
+'E'           Text
+'A'           Text
+'D'           Text
+'M'           Text
+'E'           Text
+'.'           Text
+'i'           Text
+'m'           Text
+'p'           Text
+'o'           Text
+'r'           Text
+'t'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'t'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'s'           Text
+'f'           Text
+'o'           Text
+'r'           Text
+'m'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'/'           Text
+'R'           Text
+'E'           Text
+'A'           Text
+'D'           Text
+'M'           Text
+'E'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'t'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'s'           Text
+'f'           Text
+'o'           Text
+'r'           Text
+'m'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'t'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'s'           Text
+'f'           Text
+'o'           Text
+'r'           Text
+'m'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'/'           Text
+'T'           Text
+'E'           Text
+'M'           Text
+'P'           Text
+'L'           Text
+'A'           Text
+'T'           Text
+'E'           Text
+'*'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'t'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'s'           Text
+'f'           Text
+'o'           Text
+'r'           Text
+'m'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'/'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'b'           Text
+'r'           Text
+'a'           Text
+'r'           Text
+'i'           Text
+'e'           Text
+'s'           Text
+'/'           Text
+'t'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'s'           Text
+'f'           Text
+'o'           Text
+'r'           Text
+'m'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'/'           Text
+'*'           Text
+'.'           Text
+'s'           Text
+'h'           Text
+' '           Text
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'{'           Literal.String.Double
+'D'           Literal.String.Double
+'O'           Literal.String.Double
+'C'           Literal.String.Double
+'R'           Literal.String.Double
+'O'           Literal.String.Double
+'O'           Literal.String.Double
+'T'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+'/'           Text
+'t'           Text
+'r'           Text
+'a'           Text
+'n'           Text
+'s'           Text
+'f'           Text
+'o'           Text
+'r'           Text
+'m'           Text
+'a'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'/'           Text
+'\n'          Text
+
+'\n'          Text
+
+'#\tInstall configuration file for Apache.\n' Comment
+
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_sysconfdir}' Keyword.Pseudo
+'/'           Literal.String.Double
+'h'           Literal.String.Double
+'t'           Literal.String.Double
+'t'           Literal.String.Double
+'p'           Literal.String.Double
+'d'           Literal.String.Double
+'/'           Literal.String.Double
+'c'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'f'           Literal.String.Double
+'.'           Literal.String.Double
+'d'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+'a'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'"'           Literal.String.Double
+'%{SOURCE1}'  Keyword.Constant
+'"'           Literal.String.Double
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'%{_sysconfdir}' Keyword.Pseudo
+'/'           Literal.String.Double
+'h'           Literal.String.Double
+'t'           Literal.String.Double
+'t'           Literal.String.Double
+'p'           Literal.String.Double
+'d'           Literal.String.Double
+'/'           Literal.String.Double
+'c'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'f'           Literal.String.Double
+'.'           Literal.String.Double
+'d'           Literal.String.Double
+'/'           Literal.String.Double
+'p'           Literal.String.Double
+'h'           Literal.String.Double
+'p'           Literal.String.Double
+'M'           Literal.String.Double
+'y'           Literal.String.Double
+'A'           Literal.String.Double
+'d'           Literal.String.Double
+'m'           Literal.String.Double
+'i'           Literal.String.Double
+'n'           Literal.String.Double
+'.'           Literal.String.Double
+'c'           Literal.String.Double
+'o'           Literal.String.Double
+'n'           Literal.String.Double
+'f'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'#\tGenerate non-configuration file list.\n' Comment
+
+'\n'          Text
+
+'('           Text
+'c'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'"'           Literal.String.Double
+';'           Text
+' '           Text
+'l'           Text
+'s'           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'.'           Text
+'"'           Literal.String.Double
+'%{_myadminpath}' Keyword.Pseudo
+'"'           Literal.String.Double
+'/'           Text
+'*'           Text
+')'           Text
+' '           Text
+'|'           Text
+'\n'          Text
+
+'\t'          Text
+'s'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'-'           Text
+'e'           Text
+' '           Text
+"'/\\/config\\.inc\\.php$/d'" Literal.String.Single
+' '           Text
+'-'           Text
+'e'           Text
+' '           Text
+"'s/^.//'"    Literal.String.Single
+' '           Text
+'>'           Text
+' '           Text
+'f'           Text
+'i'           Text
+'l'           Text
+'e'           Text
+'s'           Text
+'.'           Text
+'l'           Text
+'i'           Text
+'s'           Text
+'t'           Text
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'%clean'      Name.Decorator
+'\n'          Text
+
+'['           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'"'           Literal.String.Double
+' '           Text
+'!'           Text
+'='           Text
+' '           Text
+'"'           Literal.String.Double
+'/'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+']'           Text
+' '           Text
+'&'           Text
+'&'           Text
+' '           Text
+'['           Text
+' '           Text
+'-'           Text
+'d'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'"'           Literal.String.Double
+' '           Text
+']'           Text
+' '           Text
+'&'           Text
+'&'           Text
+'\t'          Text
+'\\'          Text
+'\n'          Text
+
+'\t'          Text
+'\t'          Text
+'r'           Text
+'m'           Text
+' '           Text
+'-'           Text
+'r'           Text
+'f'           Text
+' '           Text
+'"'           Literal.String.Double
+'${RPM_BUILD_ROOT}' Name.Variable.Global
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'%files'      Name.Decorator
+' -f files.list' Text
+'\n'          Text
+
+'%defattr'    Keyword
+'('           Text
+'6'           Text
+'4'           Text
+'4'           Text
+','           Text
+' '           Text
+'r'           Text
+'o'           Text
+'o'           Text
+'t'           Text
+','           Text
+' '           Text
+'r'           Text
+'o'           Text
+'o'           Text
+'t'           Text
+','           Text
+' '           Text
+'7'           Text
+'5'           Text
+'5'           Text
+')'           Text
+'\n'          Text
+
+'%doc'        Keyword
+' '           Text
+'%{_docdir}'  Keyword.Pseudo
+'/'           Text
+'%{name}'     Keyword.Constant
+'-'           Text
+'%{version}'  Keyword.Constant
+'\n'          Text
+
+'%dir'        Keyword
+' '           Text
+'%{_myadminpath}' Keyword.Pseudo
+'\n'          Text
+
+'%attr'       Keyword
+'('           Text
+'6'           Text
+'4'           Text
+'0'           Text
+','           Text
+'r'           Text
+'o'           Text
+'o'           Text
+'t'           Text
+','           Text
+'a'           Text
+'p'           Text
+'a'           Text
+'c'           Text
+'h'           Text
+'e'           Text
+')'           Text
+' '           Text
+'%config'     Keyword
+'('           Text
+'n'           Text
+'o'           Text
+'r'           Text
+'e'           Text
+'p'           Text
+'l'           Text
+'a'           Text
+'c'           Text
+'e'           Text
+')'           Text
+' '           Text
+'%verify'     Keyword
+'('           Text
+'n'           Text
+'o'           Text
+'t'           Text
+' '           Text
+'s'           Text
+'i'           Text
+'z'           Text
+'e'           Text
+' '           Text
+'m'           Text
+'t'           Text
+'i'           Text
+'m'           Text
+'e'           Text
+' '           Text
+'m'           Text
+'d'           Text
+'5'           Text
+')'           Text
+' '           Text
+'%{_myadminpath}' Keyword.Pseudo
+'/'           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'f'           Text
+'i'           Text
+'g'           Text
+'.'           Text
+'i'           Text
+'n'           Text
+'c'           Text
+'.'           Text
+'p'           Text
+'h'           Text
+'p'           Text
+'\n'          Text
+
+'%config'     Keyword
+'('           Text
+'n'           Text
+'o'           Text
+'r'           Text
+'e'           Text
+'p'           Text
+'l'           Text
+'a'           Text
+'c'           Text
+'e'           Text
+')'           Text
+' '           Text
+'%verify'     Keyword
+'('           Text
+'n'           Text
+'o'           Text
+'t'           Text
+' '           Text
+'s'           Text
+'i'           Text
+'z'           Text
+'e'           Text
+' '           Text
+'m'           Text
+'t'           Text
+'i'           Text
+'m'           Text
+'e'           Text
+' '           Text
+'m'           Text
+'d'           Text
+'5'           Text
+')'           Text
+' '           Text
+'%{_sysconfdir}' Keyword.Pseudo
+'/'           Text
+'h'           Text
+'t'           Text
+'t'           Text
+'p'           Text
+'d'           Text
+'/'           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'f'           Text
+'.'           Text
+'d'           Text
+'/'           Text
+'*'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'%changelog'  Name.Decorator
+'\n'          Text
+
+'* Thu Feb 23 2006 Patrick Monnerat <pm@datasphere.ch>\n' Generic.Subheading
+
+'-'           Text
+' '           Text
+'V'           Text
+'e'           Text
+'r'           Text
+'s'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+' '           Text
+'2'           Text
+'.'           Text
+'8'           Text
+'.'           Text
+'0'           Text
+'-'           Text
+'r'           Text
+'c'           Text
+'1'           Text
+'.'           Text
+'1'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'* Thu Dec 22 2005 Patrick Monnerat <patrick.monnerat@econophone.ch>\n' Generic.Subheading
+
+'-'           Text
+' '           Text
+'P'           Text
+'a'           Text
+'t'           Text
+'h'           Text
+' '           Text
+'"'           Text
+'n'           Text
+'u'           Text
+'l'           Text
+'l'           Text
+'p'           Text
+'w'           Text
+'"'           Text
+' '           Text
+'t'           Text
+'o'           Text
+' '           Text
+'a'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'w'           Text
+' '           Text
+'t'           Text
+'r'           Text
+'y'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+' '           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'n'           Text
+'e'           Text
+'c'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+' '           Text
+'w'           Text
+'i'           Text
+'t'           Text
+'h'           Text
+' '           Text
+'n'           Text
+'u'           Text
+'l'           Text
+'l'           Text
+' '           Text
+'p'           Text
+'a'           Text
+'s'           Text
+'s'           Text
+'w'           Text
+'o'           Text
+'r'           Text
+'d'           Text
+' '           Text
+'a'           Text
+'f'           Text
+'t'           Text
+'e'           Text
+'r'           Text
+' '           Text
+'f'           Text
+'a'           Text
+'i'           Text
+'l'           Text
+'u'           Text
+'r'           Text
+'e'           Text
+'.'           Text
+'\n'          Text
+
+'-'           Text
+' '           Text
+'V'           Text
+'e'           Text
+'r'           Text
+'s'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+' '           Text
+'2'           Text
+'.'           Text
+'7'           Text
+'.'           Text
+'0'           Text
+'-'           Text
+'p'           Text
+'l'           Text
+'1'           Text
+'.'           Text
+'1'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'* Mon Aug 22 2005 Patrick Monnerat <patrick.monnerat@econophone.ch>\n' Generic.Subheading
+
+'-'           Text
+' '           Text
+'V'           Text
+'e'           Text
+'r'           Text
+'s'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+' '           Text
+'2'           Text
+'.'           Text
+'6'           Text
+'.'           Text
+'3'           Text
+'-'           Text
+'p'           Text
+'l'           Text
+'1'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'* Wed Jul 21 2004 Patrick Monnerat <patrick.monnerat@econophone.ch>\n' Generic.Subheading
+
+'-'           Text
+' '           Text
+'V'           Text
+'e'           Text
+'r'           Text
+'s'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+' '           Text
+'2'           Text
+'.'           Text
+'5'           Text
+'.'           Text
+'7'           Text
+'-'           Text
+'p'           Text
+'l'           Text
+'1'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'* Fri Nov 22 2002 Patrick Monnerat <patrick.monnerat@econophone.ch>\n' Generic.Subheading
+
+'-'           Text
+' '           Text
+'V'           Text
+'e'           Text
+'r'           Text
+'s'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+' '           Text
+'2'           Text
+'.'           Text
+'3'           Text
+'.'           Text
+'0'           Text
+'-'           Text
+'r'           Text
+'c'           Text
+'1'           Text
+'.'           Text
+'\n'          Text

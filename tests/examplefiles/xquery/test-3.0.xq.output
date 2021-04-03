@@ -1,0 +1,2106 @@
+'xquery'      Keyword.Pseudo
+' '           Text
+'version'     Keyword.Pseudo
+' '           Text
+'"3.0"'       Literal.String.Double
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'namespace'   Keyword.Declaration
+' '           Text
+'other'       Name.Namespace
+' '           Text
+'='           Operator
+' '           Text
+'"http://other"' Literal.String.Double
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'variable'    Keyword.Declaration
+' '           Text
+'$'           Name.Variable
+'local:straight-var1' Name
+' '           Text
+':='          Operator
+' '           Text
+"'one'"       Literal.String.Single
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'%'           Name.Decorator
+'private'     Name.Decorator
+' '           Text
+'variable'    Keyword.Declaration
+' '           Text
+'$'           Name.Variable
+'local:private-var' Name
+' '           Text
+':='          Operator
+' '           Text
+"'secret'"    Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'%'           Name.Decorator
+'public'      Name.Decorator
+' '           Text
+'variable'    Keyword.Declaration
+' '           Text
+'$'           Name.Variable
+'local:public-var' Name
+' '           Text
+':='          Operator
+' '           Text
+"'not-secret'" Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'%'           Name.Decorator
+'other:annotation' Name.Decorator
+'('           Punctuation
+"'param1'"    Literal.String.Single
+','           Punctuation
+' '           Text
+'"param2"'    Literal.String.Double
+')'           Punctuation
+' '           Text
+'variable'    Keyword.Declaration
+' '           Text
+'$'           Name.Variable
+'local:some-var' Name
+' '           Text
+':='          Operator
+' '           Text
+"'anything'"  Literal.String.Single
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'variable'    Keyword.Declaration
+' '           Text
+'$'           Name.Variable
+'local:straight-var2' Name
+' '           Text
+':='          Operator
+' '           Text
+"'two'"       Literal.String.Single
+';'           Punctuation
+'\n\n\n'      Text
+
+'(:'          Comment
+' '           Comment
+'S'           Comment
+'i'           Comment
+'m'           Comment
+'p'           Comment
+'l'           Comment
+'e'           Comment
+' '           Comment
+'M'           Comment
+'a'           Comment
+'p'           Comment
+' '           Comment
+'O'           Comment
+'p'           Comment
+'e'           Comment
+'r'           Comment
+'a'           Comment
+'t'           Comment
+'o'           Comment
+'r'           Comment
+' '           Comment
+'e'           Comment
+'x'           Comment
+'a'           Comment
+'m'           Comment
+'p'           Comment
+'l'           Comment
+'e'           Comment
+' '           Comment
+':)'          Comment
+'\n'          Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:word-count' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'elms'        Name
+' '           Text
+'as'          Keyword
+' '           Text
+'element'     Name.Tag
+''            Text
+'('           Punctuation
+')'           Punctuation
+'*'           Punctuation
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'xs:integer'  Keyword.Type
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'sum'         Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'elms'        Name
+' '           Text
+'!'           Operator
+' '           Text
+'count'       Name.Function
+'('           Punctuation
+'tokenize'    Name.Function
+'('           Punctuation
+'.'           Punctuation
+','           Punctuation
+' '           Text
+"'\\s+'"      Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:add'   Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'a'           Name
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'b'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'$'           Name.Variable
+'a'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'$'           Name.Variable
+'b'           Name
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:dispatch' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'node'        Name
+' '           Text
+'as'          Keyword
+' '           Text
+'node'        Name.Tag
+''            Text
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'item'        Keyword
+'('           Punctuation
+')'           Punctuation
+'*'           Operator
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'typeswitch'  Keyword
+'('           Punctuation
+'$'           Name.Variable
+'node'        Name
+')'           Punctuation
+'\n        '  Text
+'case'        Keyword
+' '           Text
+'text'        Name.Tag
+''            Text
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'$'           Name.Variable
+'node'        Name
+'\n        '  Text
+'case'        Keyword
+' '           Text
+'comment'     Name.Tag
+''            Text
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'$'           Name.Variable
+'node'        Name
+'\n        '  Text
+'case'        Keyword
+' '           Text
+'element'     Name.Tag
+''            Text
+'('           Punctuation
+'bill'        Name
+')'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'local:bill'  Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'node'        Name
+')'           Punctuation
+'\n        '  Text
+'case'        Keyword
+' '           Text
+'element'     Name.Tag
+''            Text
+'('           Punctuation
+'btitle'      Name
+')'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'local:btitle' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'node'        Name
+')'           Punctuation
+'\n        '  Text
+'case'        Keyword
+' '           Text
+'element'     Name.Tag
+''            Text
+'('           Punctuation
+'section-id'  Name
+')'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'local:section-id' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'node'        Name
+')'           Punctuation
+'\n        '  Text
+'case'        Keyword
+' '           Text
+'element'     Name.Tag
+''            Text
+'('           Punctuation
+'bill-text'   Name
+')'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'local:bill-text' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'node'        Name
+')'           Punctuation
+'\n        '  Text
+'case'        Keyword
+' '           Text
+'element'     Name.Tag
+''            Text
+'('           Punctuation
+'strike'      Name
+')'           Punctuation
+' '           Text
+'return'      Keyword
+' '           Text
+'local:strike' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'node'        Name
+')'           Punctuation
+'\n        '  Text
+'default'     Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'local:passthru' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'node'        Name
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'(:'          Comment
+' '           Comment
+'`'           Comment
+'s'           Comment
+'w'           Comment
+'i'           Comment
+'t'           Comment
+'c'           Comment
+'h'           Comment
+'`'           Comment
+' '           Comment
+'e'           Comment
+'x'           Comment
+'p'           Comment
+'r'           Comment
+'e'           Comment
+'s'           Comment
+'s'           Comment
+'i'           Comment
+'o'           Comment
+'n'           Comment
+' '           Comment
+'e'           Comment
+'x'           Comment
+'a'           Comment
+'m'           Comment
+'p'           Comment
+'l'           Comment
+'e'           Comment
+' '           Comment
+':)'          Comment
+'\n'          Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:noise' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'animal'      Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'duck'        Name
+' '           Text
+':='          Operator
+' '           Text
+'"Duck"'      Literal.String.Double
+','           Punctuation
+'\n\t'        Text
+'$'           Name.Variable
+'quack'       Name
+' '           Text
+':='          Operator
+' '           Text
+'"Quack"'     Literal.String.Double
+'\n\t'        Text
+'return'      Keyword
+'\n\t\t'      Text
+'switch'      Keyword
+' '           Text
+'('           Punctuation
+'$'           Name.Variable
+'animal'      Name
+')'           Punctuation
+'\n\t\t\t'    Text
+'case'        Keyword
+' '           Text
+'"Cow"'       Literal.String.Double
+' '           Text
+'return'      Keyword
+' '           Text
+'"Moo"'       Literal.String.Double
+'\n\t\t\t'    Text
+'case'        Keyword
+' '           Text
+"'Cat'"       Literal.String.Single
+' '           Text
+'return'      Keyword
+' '           Text
+"'Meow'"      Literal.String.Single
+'\n\t\t\t'    Text
+'case'        Keyword
+' '           Text
+'$'           Name.Variable
+'duck'        Name
+' '           Text
+'return'      Keyword
+' '           Text
+'$'           Name.Variable
+'quack'       Name
+'\n\t\t\t'    Text
+'default'     Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'"What\'s that odd noise?"' Literal.String.Double
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'(:'          Comment
+' '           Comment
+'`'           Comment
+'g'           Comment
+'r'           Comment
+'o'           Comment
+'u'           Comment
+'p'           Comment
+' '           Comment
+'b'           Comment
+'y'           Comment
+'`'           Comment
+' '           Comment
+'e'           Comment
+'x'           Comment
+'p'           Comment
+'r'           Comment
+'e'           Comment
+'s'           Comment
+'s'           Comment
+'i'           Comment
+'o'           Comment
+'n'           Comment
+' '           Comment
+'w'           Comment
+'i'           Comment
+'t'           Comment
+'h'           Comment
+' '           Comment
+'b'           Comment
+'i'           Comment
+'n'           Comment
+'d'           Comment
+'i'           Comment
+'n'           Comment
+'g'           Comment
+' '           Comment
+'e'           Comment
+'x'           Comment
+'a'           Comment
+'m'           Comment
+'p'           Comment
+'l'           Comment
+'e'           Comment
+' '           Comment
+':)'          Comment
+'\n'          Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:a-to-z' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'data'        Name
+' '           Text
+'as'          Keyword
+' '           Text
+'element'     Name.Tag
+''            Text
+'('           Punctuation
+')'           Punctuation
+'*'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'('           Punctuation
+'\n\t\t'      Text
+'<'           Name.Tag
+'item'        Name.Tag
+'>'           Name.Tag
+'A'           Literal
+'p'           Literal
+'p'           Literal
+'l'           Literal
+'e'           Literal
+'s'           Literal
+'</'          Name.Tag
+'item'        Name.Tag
+'>'           Name.Tag
+','           Punctuation
+'\n\t\t'      Text
+'<'           Name.Tag
+'item'        Name.Tag
+'>'           Name.Tag
+'B'           Literal
+'a'           Literal
+'n'           Literal
+'a'           Literal
+'n'           Literal
+'a'           Literal
+'s'           Literal
+'</'          Name.Tag
+'item'        Name.Tag
+'>'           Name.Tag
+','           Punctuation
+'\n\t\t'      Text
+'<'           Name.Tag
+'item'        Name.Tag
+'>'           Name.Tag
+'A'           Literal
+'p'           Literal
+'r'           Literal
+'i'           Literal
+'c'           Literal
+'o'           Literal
+'t'           Literal
+'s'           Literal
+'</'          Name.Tag
+'item'        Name.Tag
+'>'           Name.Tag
+','           Punctuation
+'\n\t\t'      Text
+'<'           Name.Tag
+'item'        Name.Tag
+'>'           Name.Tag
+'P'           Literal
+'e'           Literal
+'a'           Literal
+'r'           Literal
+'s'           Literal
+'</'          Name.Tag
+'item'        Name.Tag
+'>'           Name.Tag
+','           Punctuation
+'\n\t\t'      Text
+'<'           Name.Tag
+'item'        Name.Tag
+'>'           Name.Tag
+'B'           Literal
+'r'           Literal
+'a'           Literal
+'m'           Literal
+'b'           Literal
+'l'           Literal
+'e'           Literal
+'s'           Literal
+'</'          Name.Tag
+'item'        Name.Tag
+'>'           Name.Tag
+'\n\t'        Text
+')'           Punctuation
+' '           Text
+'return'      Keyword
+'\n\t\t'      Text
+'<'           Name.Tag
+'GroupedItems' Name.Tag
+'>'           Name.Tag
+'{'           Punctuation
+'\n\t\t\t'    Text
+'for'         Keyword
+' '           Text
+'$'           Name.Variable
+'item'        Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'$'           Name.Variable
+'data'        Name
+'\n\t\t\t'    Text
+'group by'    Keyword
+' '           Text
+'$'           Name.Variable
+'key'         Name
+' '           Text
+':='          Operator
+' '           Text
+'upper-case'  Name.Function
+'('           Punctuation
+'substring'   Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'item'        Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\t\t\t'    Text
+'order by'    Keyword
+' '           Text
+'$'           Name.Variable
+'key'         Name
+'\n\t\t\t'    Text
+'return'      Keyword
+'\n\t\t\t\t'  Text
+'<'           Name.Tag
+'Group'       Name.Tag
+' '           Text
+'key'         Name.Tag
+'='           Operator
+'"'           Punctuation
+'{'           Punctuation
+'$'           Name.Variable
+'key'         Name
+'}'           Punctuation
+'"'           Punctuation
+'>'           Name.Tag
+'{'           Punctuation
+'$'           Name.Variable
+'item'        Name
+'}'           Punctuation
+'</'          Name.Tag
+'Group'       Name.Tag
+'>'           Name.Tag
+'\n\t\t'      Text
+'}'           Punctuation
+'</'          Name.Tag
+'GroupedItems' Name.Tag
+'>'           Name.Tag
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'(:'          Comment
+' '           Comment
+'`'           Comment
+'g'           Comment
+'r'           Comment
+'o'           Comment
+'u'           Comment
+'p'           Comment
+' '           Comment
+'b'           Comment
+'y'           Comment
+'`'           Comment
+' '           Comment
+'e'           Comment
+'x'           Comment
+'p'           Comment
+'r'           Comment
+'e'           Comment
+'s'           Comment
+'s'           Comment
+'i'           Comment
+'o'           Comment
+'n'           Comment
+' '           Comment
+'e'           Comment
+'x'           Comment
+'a'           Comment
+'m'           Comment
+'p'           Comment
+'l'           Comment
+'e'           Comment
+' '           Comment
+':)'          Comment
+'\n'          Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:plays-by-character' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'plays'       Name
+' '           Text
+':='          Operator
+' '           Text
+'('           Punctuation
+'\n\t\t'      Text
+'document'    Keyword
+' '           Text
+'{'           Punctuation
+'\n\t\t\t'    Text
+'<'           Name.Tag
+'play'        Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'title'       Name.Tag
+'>'           Name.Tag
+'H'           Literal
+'a'           Literal
+'m'           Literal
+'l'           Literal
+'e'           Literal
+'t'           Literal
+'</'          Name.Tag
+'title'       Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'characters'  Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'H'           Literal
+'a'           Literal
+'m'           Literal
+'l'           Literal
+'e'           Literal
+'t'           Literal
+'</'          Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+' '           Literal
+' '           Literal
+' '           Literal
+' '           Literal
+' '           Literal
+' '           Literal
+' '           Literal
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'C'           Literal
+'l'           Literal
+'a'           Literal
+'u'           Literal
+'d'           Literal
+'i'           Literal
+'u'           Literal
+'s'           Literal
+'</'          Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'P'           Literal
+'o'           Literal
+'l'           Literal
+'o'           Literal
+'n'           Literal
+'i'           Literal
+'u'           Literal
+'s'           Literal
+'</'          Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'R'           Literal
+'o'           Literal
+'s'           Literal
+'e'           Literal
+'n'           Literal
+'c'           Literal
+'r'           Literal
+'a'           Literal
+'n'           Literal
+'t'           Literal
+'z'           Literal
+'</'          Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'G'           Literal
+'u'           Literal
+'i'           Literal
+'l'           Literal
+'d'           Literal
+'e'           Literal
+'n'           Literal
+'s'           Literal
+'t'           Literal
+'e'           Literal
+'r'           Literal
+'n'           Literal
+'</'          Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'F'           Literal
+'r'           Literal
+'a'           Literal
+'n'           Literal
+'c'           Literal
+'i'           Literal
+'s'           Literal
+'c'           Literal
+'o'           Literal
+'</'          Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'R'           Literal
+'e'           Literal
+'y'           Literal
+'n'           Literal
+'a'           Literal
+'l'           Literal
+'d'           Literal
+'o'           Literal
+'</'          Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+' '           Literal
+' '           Literal
+' '           Literal
+' '           Literal
+' '           Literal
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'</'          Name.Tag
+'characters'  Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'</'          Name.Tag
+'play'        Name.Tag
+'>'           Name.Tag
+'\n\t\t'      Text
+'}'           Punctuation
+','           Punctuation
+'\n\t\t'      Text
+'document'    Keyword
+' '           Text
+'{'           Punctuation
+'\n\t\t\t'    Text
+'<'           Name.Tag
+'play'        Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'title'       Name.Tag
+'>'           Name.Tag
+'R'           Literal
+'o'           Literal
+'s'           Literal
+'e'           Literal
+'n'           Literal
+'k'           Literal
+'r'           Literal
+'a'           Literal
+'n'           Literal
+'t'           Literal
+'z'           Literal
+' '           Literal
+'a'           Literal
+'n'           Literal
+'d'           Literal
+' '           Literal
+'G'           Literal
+'u'           Literal
+'i'           Literal
+'l'           Literal
+'d'           Literal
+'e'           Literal
+'n'           Literal
+'s'           Literal
+'t'           Literal
+'e'           Literal
+'r'           Literal
+'n'           Literal
+' '           Literal
+'a'           Literal
+'r'           Literal
+'e'           Literal
+' '           Literal
+'D'           Literal
+'e'           Literal
+'a'           Literal
+'d'           Literal
+'</'          Name.Tag
+'title'       Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'characters'  Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'A'           Literal
+'l'           Literal
+'f'           Literal
+'r'           Literal
+'e'           Literal
+'d'           Literal
+'</'          Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'R'           Literal
+'o'           Literal
+'s'           Literal
+'e'           Literal
+'n'           Literal
+'c'           Literal
+'r'           Literal
+'a'           Literal
+'n'           Literal
+'t'           Literal
+'z'           Literal
+'</'          Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'G'           Literal
+'u'           Literal
+'i'           Literal
+'l'           Literal
+'d'           Literal
+'e'           Literal
+'n'           Literal
+'s'           Literal
+'t'           Literal
+'e'           Literal
+'r'           Literal
+'n'           Literal
+'</'          Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'H'           Literal
+'a'           Literal
+'m'           Literal
+'l'           Literal
+'e'           Literal
+'t'           Literal
+'</'          Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'<'           Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'C'           Literal
+'l'           Literal
+'a'           Literal
+'u'           Literal
+'d'           Literal
+'i'           Literal
+'u'           Literal
+'s'           Literal
+'</'          Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'</'          Name.Tag
+'characters'  Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'</'          Name.Tag
+'play'        Name.Tag
+'>'           Name.Tag
+'\n\t\t'      Text
+'}'           Punctuation
+'\n\t'        Text
+')'           Punctuation
+' '           Text
+'return'      Keyword
+'\n\n\t\t'    Text
+'for'         Keyword
+' '           Text
+'$'           Name.Variable
+'play'        Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'$'           Name.Variable
+'plays'       Name
+'/'           Punctuation
+'play'        Name.Tag
+'\n\t\t'      Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'title'       Name
+' '           Text
+':='          Operator
+' '           Text
+'$'           Name.Variable
+'play'        Name
+'/'           Punctuation
+'title'       Name.Tag
+'\n\t\t'      Text
+'for'         Keyword
+' '           Text
+'$'           Name.Variable
+'character'   Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'$'           Name.Variable
+'play'        Name
+'/'           Punctuation
+'characters'  Name.Tag
+'/'           Punctuation
+'character'   Name.Tag
+'\n\t\t'      Text
+'group by'    Keyword
+' '           Text
+'$'           Name.Variable
+'character'   Name
+'\n\t\t'      Text
+'return'      Keyword
+'\n\t\t\t'    Text
+'<'           Name.Tag
+'character'   Name.Tag
+' '           Text
+'name'        Name.Tag
+'='           Operator
+'"'           Punctuation
+'{'           Punctuation
+'$'           Name.Variable
+'character'   Name
+'}'           Punctuation
+'"'           Punctuation
+'>'           Name.Tag
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'{'           Punctuation
+'\n\t\t\t\t'  Text
+'$'           Name.Variable
+'title'       Name
+' '           Text
+'!'           Operator
+' '           Text
+'<'           Name.Tag
+'play'        Name.Tag
+'>'           Name.Tag
+'{'           Punctuation
+' '           Text
+'.'           Punctuation
+' '           Text
+'}'           Punctuation
+'</'          Name.Tag
+'play'        Name.Tag
+'>'           Name.Tag
+'\n     \t\t' Text
+'}'           Punctuation
+'\n'          Literal
+
+'\t'          Literal
+'\t'          Literal
+'\t'          Literal
+'</'          Name.Tag
+'character'   Name.Tag
+'>'           Name.Tag
+'\t\n'        Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+'\n\t'        Text
+'%'           Name.Decorator
+'other:a'     Name.Decorator
+'\n\t'        Text
+'%'           Name.Decorator
+'private'     Name.Decorator
+'\n\t'        Text
+'%'           Name.Decorator
+'other:b'     Name.Decorator
+'('           Punctuation
+"'1'"         Literal.String.Single
+')'           Punctuation
+'\n\t'        Text
+'%'           Name.Decorator
+'other:c'     Name.Decorator
+'('           Punctuation
+'"1"'         Literal.String.Double
+','           Punctuation
+' '           Text
+'"2"'         Literal.String.Double
+','           Punctuation
+' '           Text
+'"3"'         Literal.String.Double
+','           Punctuation
+' '           Text
+'"4"'         Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'function'    Keyword.Declaration
+' '           Text
+'local:very-annotated' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'thing'       Name
+' '           Text
+':='          Operator
+' '           Text
+'"thing"'     Literal.String.Double
+'\n\t'        Text
+'return'      Keyword
+'\n\t\t'      Text
+'$'           Name.Variable
+'thing'       Name
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'%'           Name.Decorator
+'public'      Name.Decorator
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:slightly-annotated' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'nothing'     Name
+' '           Text
+':='          Operator
+' '           Text
+'('           Punctuation
+')'           Punctuation
+'\n\t'        Text
+'return'      Keyword
+'\n\t\t'      Text
+'$'           Name.Variable
+'nothing'     Name
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:ordered' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'for'         Keyword
+' '           Text
+'$'           Name.Variable
+'hit'         Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'doc'         Name.Function
+'('           Punctuation
+'"/db/doc-with-indexes.xml"' Literal.String.Double
+')'           Punctuation
+'//'          Punctuation
+'tei:p'       Name.Tag
+'['           Punctuation
+'other:query' Name.Function
+'('           Punctuation
+'.'           Punctuation
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'search-expression' Name
+')'           Punctuation
+']'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'score'       Name
+' '           Text
+'as'          Keyword
+' '           Text
+'xs:float'    Keyword.Type
+' '           Text
+':='          Operator
+' '           Text
+'other:score' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'hit'         Name
+')'           Punctuation
+'\n\t'        Text
+'order by'    Keyword
+' '           Text
+'$'           Name.Variable
+'score'       Name
+' '           Text
+'descending'  Keyword
+'\n\t'        Text
+'return'      Keyword
+' '           Text
+'('           Punctuation
+'\n\t\t'      Text
+'<'           Name.Tag
+'p'           Name.Tag
+'>'           Name.Tag
+'S'           Literal
+'c'           Literal
+'o'           Literal
+'r'           Literal
+'e'           Literal
+':'           Literal
+' '           Literal
+'{'           Punctuation
+'$'           Name.Variable
+'score'       Name
+'}'           Punctuation
+':'           Literal
+'</'          Name.Tag
+'p'           Name.Tag
+'>'           Name.Tag
+','           Punctuation
+'\n\t\t'      Text
+'other:summarize' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'hit'         Name
+','           Punctuation
+' '           Text
+'<'           Name.Tag
+'config'      Name.Tag
+' '           Text
+'width'       Name.Tag
+'='           Operator
+'"'           Punctuation
+'4'           Name.Attribute
+'0'           Name.Attribute
+'"'           Punctuation
+'/>'          Name.Tag
+')'           Punctuation
+'\n\t'        Text
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:concat-expr' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'postfix'     Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\n\t'      Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'concatenated' Name
+' '           Text
+':='          Operator
+' '           Text
+'other:uri'   Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'"/"'         Literal.String.Double
+' '           Text
+'||'          Operator
+' '           Text
+'$'           Name.Variable
+'postfix'     Name
+'\n\t'        Text
+'return'      Keyword
+'\n\t\t'      Text
+'$'           Name.Variable
+'concatenated' Name
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:human-units' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'bytes'       Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'unit'        Name
+' '           Text
+':='          Operator
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'$'           Name.Variable
+'bytes'       Name
+' '           Text
+'>'           Operator
+' '           Text
+'math:pow'    Name.Function
+'('           Punctuation
+'1024'        Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n\t\t'      Text
+'('           Punctuation
+'math:pow'    Name.Function
+'('           Punctuation
+'1024'        Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'"GB"'        Literal.String.Double
+')'           Punctuation
+'\n\t'        Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'$'           Name.Variable
+'bytes'       Name
+' '           Text
+'>'           Operator
+' '           Text
+'math:pow'    Name.Function
+'('           Punctuation
+'1024'        Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n\t\t'      Text
+'('           Punctuation
+'math:pow'    Name.Function
+'('           Punctuation
+'1024'        Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'"MB"'        Literal.String.Double
+')'           Punctuation
+'\n\t'        Text
+'else'        Keyword
+'\n\t\t'      Text
+'('           Punctuation
+'1024'        Literal.Number.Integer
+','           Punctuation
+' '           Text
+'"KB"'        Literal.String.Double
+')'           Punctuation
+'\n\t'        Text
+'return'      Keyword
+'\n\t\t'      Text
+'format-number' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'bytes'       Name
+' '           Text
+'div'         Keyword
+' '           Text
+'$'           Name.Variable
+'unit'        Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text
+'".00"'       Literal.String.Double
+')'           Punctuation
+' '           Text
+'||'          Operator
+' '           Text
+'" "'         Literal.String.Double
+' '           Text
+'||'          Operator
+' '           Text
+'$'           Name.Variable
+'unit'        Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:merge-simple' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'a'           Name
+' '           Text
+'as'          Keyword
+' '           Text
+'xs:string'   Keyword.Type
+'+'           Operator
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'b'           Name
+' '           Text
+'as'          Keyword
+' '           Text
+'xs:string'   Keyword.Type
+'+'           Operator
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'xs:string'   Keyword.Type
+'+'           Operator
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'('           Punctuation
+'$'           Name.Variable
+'a'           Name
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'b'           Name
+')'           Punctuation
+'\t\n'        Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'(:'          Comment
+' '           Comment
+'h'           Comment
+'i'           Comment
+'g'           Comment
+'h'           Comment
+'e'           Comment
+'r'           Comment
+' '           Comment
+'o'           Comment
+'r'           Comment
+'d'           Comment
+'e'           Comment
+'r'           Comment
+' '           Comment
+'f'           Comment
+'u'           Comment
+'n'           Comment
+'c'           Comment
+'t'           Comment
+'i'           Comment
+'o'           Comment
+'n'           Comment
+' '           Comment
+'e'           Comment
+'x'           Comment
+'a'           Comment
+'m'           Comment
+'p'           Comment
+'l'           Comment
+'e'           Comment
+' '           Comment
+'1'           Comment
+' '           Comment
+':)'          Comment
+'\n'          Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:apply' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'func'        Name
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'value'       Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'$'           Name.Variable
+'func'        Name
+'('           Punctuation
+'$'           Name.Variable
+'value'       Name
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'(:'          Comment
+' '           Comment
+'h'           Comment
+'i'           Comment
+'g'           Comment
+'h'           Comment
+'e'           Comment
+'r'           Comment
+' '           Comment
+'o'           Comment
+'r'           Comment
+'d'           Comment
+'e'           Comment
+'r'           Comment
+' '           Comment
+'f'           Comment
+'u'           Comment
+'n'           Comment
+'c'           Comment
+'t'           Comment
+'i'           Comment
+'o'           Comment
+'n'           Comment
+' '           Comment
+'e'           Comment
+'x'           Comment
+'a'           Comment
+'m'           Comment
+'p'           Comment
+'l'           Comment
+'e'           Comment
+' '           Comment
+'2'           Comment
+' '           Comment
+':)'          Comment
+'\n'          Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:apply-all' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'func'        Name
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'list'        Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'$'           Name.Variable
+'list'        Name
+' '           Text
+'!'           Operator
+' '           Text
+'$'           Name.Variable
+'func'        Name
+'('           Punctuation
+'.'           Operator
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'(:'          Comment
+' '           Comment
+'h'           Comment
+'i'           Comment
+'g'           Comment
+'h'           Comment
+'e'           Comment
+'r'           Comment
+' '           Comment
+'o'           Comment
+'r'           Comment
+'d'           Comment
+'e'           Comment
+'r'           Comment
+' '           Comment
+'f'           Comment
+'u'           Comment
+'n'           Comment
+'c'           Comment
+'t'           Comment
+'i'           Comment
+'o'           Comment
+'n'           Comment
+' '           Comment
+'e'           Comment
+'x'           Comment
+'a'           Comment
+'m'           Comment
+'p'           Comment
+'l'           Comment
+'e'           Comment
+' '           Comment
+'3'           Comment
+' '           Comment
+':)'          Comment
+'\n'          Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:apply-all-long' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'func'        Name
+' '           Text
+'as'          Keyword
+' '           Text
+'function'    Keyword.Type
+'('           Punctuation
+'xs:string'   Keyword.Type
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'xs:string'   Keyword.Type
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'list'        Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'$'           Name.Variable
+'list'        Name
+' '           Text
+'!'           Operator
+' '           Text
+'$'           Name.Variable
+'func'        Name
+'('           Punctuation
+'.'           Operator
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'(:'          Comment
+' '           Comment
+'h'           Comment
+'i'           Comment
+'g'           Comment
+'h'           Comment
+'e'           Comment
+'r'           Comment
+' '           Comment
+'o'           Comment
+'r'           Comment
+'d'           Comment
+'e'           Comment
+'r'           Comment
+' '           Comment
+'f'           Comment
+'u'           Comment
+'n'           Comment
+'c'           Comment
+'t'           Comment
+'i'           Comment
+'o'           Comment
+'n'           Comment
+' '           Comment
+'e'           Comment
+'x'           Comment
+'a'           Comment
+'m'           Comment
+'p'           Comment
+'l'           Comment
+'e'           Comment
+' '           Comment
+'4'           Comment
+' '           Comment
+':)'          Comment
+'\n'          Text
+
+'declare'     Keyword.Declaration
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'local:merge' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'func'        Name
+' '           Text
+'as'          Keyword
+' '           Text
+'function'    Keyword.Type
+'('           Punctuation
+'xs:string'   Keyword.Type
+'+'           Operator
+','           Punctuation
+' '           Text
+'xs:string'   Name.Tag
+'+'           Operator
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'xs:string'   Keyword.Type
+'+'           Operator
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'a'           Name
+' '           Text
+'as'          Keyword
+' '           Text
+'xs:string'   Keyword.Type
+'+'           Operator
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'b'           Name
+' '           Text
+'as'          Keyword
+' '           Text
+'xs:string'   Keyword.Type
+'+'           Operator
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'xs:string'   Keyword.Type
+'+'           Operator
+' '           Text
+'{'           Punctuation
+'\n\t'        Text
+'$'           Name.Variable
+'func'        Name
+'('           Punctuation
+'$'           Name.Variable
+'a'           Name
+','           Punctuation
+' '           Text
+'$'           Name.Variable
+'b'           Name
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'to-upper'    Name
+' '           Text
+':='          Operator
+' '           Text
+'upper-case'  Name.Function
+'#'           Keyword.Type
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'let'         Keyword
+' '           Text
+'$'           Name.Variable
+'to-upper-long' Name
+' '           Text
+'as'          Keyword
+' '           Text
+'function'    Keyword.Type
+'('           Punctuation
+'xs:string'   Keyword.Type
+')'           Punctuation
+' '           Text
+'as'          Keyword
+' '           Text
+'xs:string'   Keyword.Type
+' '           Text
+':='          Operator
+' '           Text
+'upper-case'  Name.Function
+'#'           Keyword.Type
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'return'      Keyword
+'\n    '      Text
+'<'           Name.Tag
+'case'        Name.Tag
+'>'           Name.Tag
+'\n'          Literal
+
+' '           Literal
+' '           Literal
+' '           Literal
+' '           Literal
+'{'           Punctuation
+'\n        '  Text
+'local:apply-all' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'to-upper'    Name
+','           Punctuation
+' '           Text
+'('           Punctuation
+'"Hello"'     Literal.String.Double
+','           Punctuation
+' '           Text
+'"world!"'    Literal.String.Double
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'!'           Operator
+' '           Text
+'<'           Name.Tag
+'upper'       Name.Tag
+'>'           Name.Tag
+'{'           Punctuation
+'.'           Punctuation
+'}'           Punctuation
+'</'          Name.Tag
+'upper'       Name.Tag
+'>'           Name.Tag
+','           Punctuation
+'\n        '  Text
+'local:apply-all-long' Name.Function
+'('           Punctuation
+'lower-case'  Name.Function
+'#'           Keyword.Type
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'('           Punctuation
+'"Hello"'     Literal.String.Double
+','           Punctuation
+' '           Text
+'"world!"'    Literal.String.Double
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'!'           Operator
+' '           Text
+'<'           Name.Tag
+'lower'       Name.Tag
+'>'           Name.Tag
+'{'           Punctuation
+'.'           Punctuation
+'}'           Punctuation
+'</'          Name.Tag
+'lower'       Name.Tag
+'>'           Name.Tag
+'\n    '      Text
+'}'           Punctuation
+'\n'          Literal
+
+' '           Literal
+' '           Literal
+' '           Literal
+' '           Literal
+'</'          Name.Tag
+'case'        Name.Tag
+'>'           Name.Tag
+'\n'          Text

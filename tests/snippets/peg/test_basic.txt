@@ -1,0 +1,17 @@
+---input---
+rule<-("terminal"/nonterminal/[cls])*
+
+---tokens---
+'rule'        Name.Class
+'<-'          Operator
+'('           Punctuation
+'"terminal"'  Literal.String.Double
+'/'           Operator
+'nonterminal' Name.Class
+'/'           Operator
+'['           Punctuation
+'cls'         Literal.String
+']'           Punctuation
+')'           Punctuation
+'*'           Operator
+'\n'          Text

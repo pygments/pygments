@@ -1,0 +1,800 @@
+'#! /usr/bin/env perl' Comment.Hashbang
+'\n\n'        Text
+
+'use'         Keyword
+' '           Text
+'strict'      Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'use'         Keyword
+' '           Text
+'warnings'    Name.Namespace
+';'           Punctuation
+'\n\n'        Text
+
+'# common delimiters' Comment.Single
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'"a: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'a'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'a'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'a'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s/foo/bar/'  Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'a'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"b: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'b'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'b'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'b'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s!foo!bar!'  Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'b'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"c: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'c'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'c'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'c'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s@foo@bar@'  Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'c'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"d: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'d'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'d'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'d'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s\\foo\\bar\\' Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'d'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'# balanced delimiters' Comment.Single
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'"e: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'e'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'e'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'e'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s{foo}'      Literal.String.Regex
+'{bar}'       Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'e'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"f: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'f'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'f'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'f'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s(foo)'      Literal.String.Regex
+'(bar)'       Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'f'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"g: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'g'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'g'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'g'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s<foo>'      Literal.String.Regex
+'<bar>'       Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'g'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"h: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'h'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'h'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'h'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s[foo]'      Literal.String.Regex
+'[bar]'       Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'h'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'# balanced delimiters with whitespace' Comment.Single
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'"i: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'i'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'i'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'i'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s{foo} '     Literal.String.Regex
+'{bar}'       Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'i'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"j: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'j'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'j'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'j'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s<foo>\t\t'  Literal.String.Regex
+'<bar>'       Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'j'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"k: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'k'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'k'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'k'           Name.Variable
+' '           Text
+'=~'          Operator
+'\n\t'        Text
+'s(foo)\n\n\t' Literal.String.Regex
+'(bar)'       Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'k'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'# mixed delimiters' Comment.Single
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'"l: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'l'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'l'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'l'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s{foo} '     Literal.String.Regex
+'<bar>'       Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'l'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"m: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'m'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'m'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'m'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s(foo) '     Literal.String.Regex
+'!bar!'       Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'m'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"n: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'n'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'n'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s[foo] '     Literal.String.Regex
+'$bar$'       Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'n'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'# /x modifier' Comment.Single
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'"o: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'o'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'o'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'o'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s{\n\t\t\t\tfoo\n\t\t\t } ' Literal.String.Regex
+'{bar}x'      Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'o'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword
+' '           Text
+'"p: "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'my'          Keyword
+' '           Text
+'$'           Name.Variable
+'p'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"foo"'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'p'           Name.Variable
+','           Punctuation
+' '           Text
+'" - "'       Literal.String
+';'           Punctuation
+'\n'          Text
+
+'$'           Name.Variable
+'p'           Name.Variable
+' '           Text
+'=~'          Operator
+' '           Text
+'s%\n  foo\n  %bar%x' Literal.String.Regex
+';'           Punctuation
+'\n'          Text
+
+'print'       Keyword
+' '           Text
+'$'           Name.Variable
+'p'           Name.Variable
+','           Punctuation
+' '           Text
+'"\\n"'       Literal.String
+';'           Punctuation
+'\n'          Text

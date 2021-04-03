@@ -1,0 +1,21 @@
+# Tests that ':=' is recognized as an Operator
+
+---input---
+if (a := 2) > 4:
+
+---tokens---
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'a'           Name
+' '           Text
+':='          Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+':'           Punctuation
+'\n'          Text

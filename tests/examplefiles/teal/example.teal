@@ -1,0 +1,26 @@
+//example teal code taken from https://developer.algorand.org/tutorials/writing-simple-smart-contract/
+// Check the Fee is resonable 
+// In this case 10,000 microalgos
+txn Fee
+int 10000
+<=
+
+// Check the length of the passphrase is correct 
+arg 0
+len 
+int 73
+==
+&&
+
+// The sha256 value of the passphrase
+arg 0
+sha256
+byte base64 30AT2gOReDBdJmLBO/DgvjC6hIXgACecTpFDcP1bJHU=
+==
+&&
+
+// Make sure the CloseRemainderTo is not set
+txn CloseRemainderTo
+txn Receiver 
+==
+&&

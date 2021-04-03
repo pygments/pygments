@@ -1,0 +1,552 @@
+'<!DOCTYPE'   Keyword
+' '           Text
+'html'        Name.Tag
+'>'           Keyword
+'\n\n'        Text
+
+'<!DOCTYPE'   Keyword
+' '           Text
+'html'        Name.Tag
+' '           Text
+'PUBLIC'      Keyword.Constant
+' '           Text
+'"-//W3C//DTD XHTML 1.0 Transitional//EN"' Literal.String.Double
+'\n'          Text
+
+'"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"' Literal.String.Double
+'>'           Keyword
+'\n\n\n'      Text
+
+'<!DOCTYPE'   Keyword
+' '           Text
+'html'        Name.Tag
+' '           Text
+'PUBLIC'      Keyword.Constant
+' '           Text
+'"-//W3C//DTD XHTML 1.0 Transitional//EN"' Literal.String.Double
+'\n'          Text
+
+'"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"' Literal.String.Double
+' '           Text
+'['           Keyword
+'\n  '        Text
+'<!--'        Comment
+' an internal subset can be embedded here ' Comment
+'-->'         Comment
+'\n'          Text
+
+']'           Keyword
+'>'           Keyword
+'\n\n'        Text
+
+'<!DOCTYPE'   Keyword
+' '           Text
+'greeting'    Name.Tag
+' '           Text
+'SYSTEM'      Keyword.Constant
+' '           Text
+'"hello.dtd"' Literal.String.Double
+'>'           Keyword
+'\n\n'        Text
+
+'<!DOCTYPE'   Keyword
+' '           Text
+'greeting'    Name.Tag
+' '           Text
+'['           Keyword
+'\n  '        Text
+'<!ELEMENT'   Keyword
+' '           Text
+'greeting'    Name.Tag
+' '           Text
+'('           Operator
+'#PCDATA'     Keyword.Constant
+')'           Operator
+'>'           Keyword
+'\n\n'        Text
+
+'<!--'        Comment
+' examples from XML spec ' Comment
+'-->'         Comment
+'\n\n'        Text
+
+'<!ELEMENT'   Keyword
+' '           Text
+'br'          Name.Tag
+' '           Text
+'EMPTY'       Keyword.Constant
+'>'           Keyword
+'\n'          Text
+
+'<!ELEMENT'   Keyword
+' '           Text
+'p'           Name.Tag
+' '           Text
+'('           Operator
+'#PCDATA'     Keyword.Constant
+'|'           Operator
+'emph'        Name.Tag
+')'           Operator
+'*'           Operator
+' '           Text
+'>'           Keyword
+'\n'          Text
+
+'<!ELEMENT'   Keyword
+' '           Text
+'%name.para;' Name.Tag
+' '           Text
+'%content.para;' Name.Entity
+' '           Text
+'>'           Keyword
+'\n'          Text
+
+'<!ELEMENT'   Keyword
+' '           Text
+'container'   Name.Tag
+' '           Text
+'ANY'         Keyword.Constant
+'>'           Keyword
+'\n\n'        Text
+
+'<!ELEMENT'   Keyword
+' '           Text
+'spec'        Name.Tag
+' '           Text
+'('           Operator
+'front'       Name.Tag
+','           Operator
+' '           Text
+'body'        Name.Tag
+','           Operator
+' '           Text
+'back'        Name.Tag
+'?'           Operator
+')'           Operator
+'>'           Keyword
+'\n'          Text
+
+'<!ELEMENT'   Keyword
+' '           Text
+'div1'        Name.Tag
+' '           Text
+'('           Operator
+'head'        Name.Tag
+','           Operator
+' '           Text
+'('           Operator
+'p'           Name.Tag
+' '           Text
+'|'           Operator
+' '           Text
+'list'        Name.Tag
+' '           Text
+'|'           Operator
+' '           Text
+'note'        Name.Tag
+')'           Operator
+'*'           Operator
+','           Operator
+' '           Text
+'div2'        Name.Tag
+'*'           Operator
+')'           Operator
+'>'           Keyword
+'\n'          Text
+
+'<!ELEMENT'   Keyword
+' '           Text
+'dictionary-body' Name.Tag
+' '           Text
+'('           Operator
+'%div.mix;'   Name.Entity
+' '           Text
+'|'           Operator
+' '           Text
+'%dict.mix;'  Name.Entity
+')'           Operator
+'*'           Operator
+'>'           Keyword
+'\n\n'        Text
+
+'<!ELEMENT'   Keyword
+' '           Text
+'p'           Name.Tag
+' '           Text
+'('           Operator
+'#PCDATA'     Keyword.Constant
+'|'           Operator
+'a'           Name.Tag
+'|'           Operator
+'ul'          Name.Tag
+'|'           Operator
+'b'           Name.Tag
+'|'           Operator
+'i'           Name.Tag
+'|'           Operator
+'em'          Name.Tag
+')'           Operator
+'*'           Operator
+'>'           Keyword
+'\n'          Text
+
+'<!ELEMENT'   Keyword
+' '           Text
+'p'           Name.Tag
+' '           Text
+'('           Operator
+'#PCDATA'     Keyword.Constant
+' '           Text
+'|'           Operator
+' '           Text
+'%font;'      Name.Entity
+' '           Text
+'|'           Operator
+' '           Text
+'%phrase;'    Name.Entity
+' '           Text
+'|'           Operator
+' '           Text
+'%special;'   Name.Entity
+' '           Text
+'|'           Operator
+' '           Text
+'%form;'      Name.Entity
+')'           Operator
+'*'           Operator
+' '           Text
+'>'           Keyword
+'\n'          Text
+
+'<!ELEMENT'   Keyword
+' '           Text
+'b'           Name.Tag
+' '           Text
+'('           Operator
+'#PCDATA'     Keyword.Constant
+')'           Operator
+'>'           Keyword
+'\n\n'        Text
+
+'<!ATTLIST'   Keyword
+' '           Text
+'termdef'     Name.Tag
+'\n          ' Text
+'id'          Name.Attribute
+'      '      Text
+'ID'          Keyword.Constant
+'      '      Text
+'#REQUIRED'   Keyword.Constant
+'\n          ' Text
+'name'        Name.Attribute
+'    '        Text
+'CDATA'       Keyword.Constant
+'   '         Text
+'#IMPLIED'    Keyword.Constant
+'>'           Keyword
+'\n'          Text
+
+'<!ATTLIST'   Keyword
+' '           Text
+'list'        Name.Tag
+'\n          ' Text
+'type'        Name.Attribute
+'    '        Text
+'('           Operator
+'bullets'     Name.Attribute
+'|'           Operator
+'ordered'     Name.Attribute
+'|'           Operator
+'glossary'    Name.Attribute
+')'           Operator
+'  '          Text
+'"ordered"'   Literal.String.Double
+'>'           Keyword
+'\n'          Text
+
+'<!ATTLIST'   Keyword
+' '           Text
+'form'        Name.Tag
+'\n          ' Text
+'method'      Name.Attribute
+'  '          Text
+'CDATA'       Keyword.Constant
+'   '         Text
+'#FIXED'      Keyword.Constant
+' '           Text
+'"POST"'      Literal.String.Double
+'>'           Keyword
+'\n\n'        Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'d'           Name.Entity
+' '           Text
+'"&#xD;"'     Literal.String.Double
+'>'           Keyword
+'\n'          Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'a'           Name.Entity
+' '           Text
+'"&#xA;"'     Literal.String.Double
+'>'           Keyword
+'\n'          Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'da'          Name.Entity
+' '           Text
+'"&#xD;&#xA;"' Literal.String.Double
+'>'           Keyword
+'\n\n'        Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'%'           Name.Entity
+' '           Text
+'ISOLat2'     Name.Entity
+'\n         ' Text
+'SYSTEM'      Keyword.Constant
+' '           Text
+'"http://www.xml.com/iso/isolat2-xml.entities"' Literal.String.Double
+' '           Text
+'>'           Keyword
+'\n\n'        Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'Pub-Status'  Name.Entity
+' '           Text
+'"This is a pre-release of the\n specification."' Literal.String.Double
+'>'           Keyword
+'\n \n '      Text
+'<!ENTITY'    Keyword
+' '           Text
+'open-hatch'  Name.Entity
+'\n         ' Text
+'SYSTEM'      Keyword.Constant
+' '           Text
+'"http://www.textuality.com/boilerplate/OpenHatch.xml"' Literal.String.Double
+'>'           Keyword
+'\n'          Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'open-hatch'  Name.Entity
+'\n         ' Text
+'PUBLIC'      Keyword.Constant
+' '           Text
+'"-//Textuality//TEXT Standard open-hatch boilerplate//EN"' Literal.String.Double
+'\n         ' Text
+'"http://www.textuality.com/boilerplate/OpenHatch.xml"' Literal.String.Double
+'>'           Keyword
+'\n'          Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'hatch-pic'   Name.Entity
+'\n         ' Text
+'SYSTEM'      Keyword.Constant
+' '           Text
+'"../grafix/OpenHatch.gif"' Literal.String.Double
+'\n         ' Text
+'NDATA'       Keyword.Constant
+' '           Text
+'gif'         Name.Entity
+' '           Text
+'>'           Keyword
+'\n         \n' Text
+
+'<!NOTATION'  Keyword
+' '           Text
+'gif'         Name.Tag
+' '           Text
+'PUBLIC'      Keyword.Constant
+' '           Text
+'"gif viewer"' Literal.String.Double
+'>'           Keyword
+'\n\n'        Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'%'           Name.Entity
+' '           Text
+'YN'          Name.Entity
+' '           Text
+'\'"Yes"\''   Literal.String.Single
+' '           Text
+'>'           Keyword
+'\n'          Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'WhatHeSaid'  Name.Entity
+' '           Text
+'"He said %YN;"' Literal.String.Double
+' '           Text
+'>'           Keyword
+'\n\n'        Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'EndAttr'     Name.Entity
+' '           Text
+'"27\'"'      Literal.String.Double
+' '           Text
+'>'           Keyword
+'\n\n'        Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'%'           Name.Entity
+' '           Text
+'pub'         Name.Entity
+'    '        Text
+'"&#xc9;ditions Gallimard"' Literal.String.Double
+' '           Text
+'>'           Keyword
+'\n'          Text
+
+'<!ENTITY'    Keyword
+'   '         Text
+'rights'      Name.Entity
+' '           Text
+'"All rights reserved"' Literal.String.Double
+' '           Text
+'>'           Keyword
+'\n'          Text
+
+'<!ENTITY'    Keyword
+'   '         Text
+'book'        Name.Entity
+'   '         Text
+'"La Peste: Albert Camus,\n&#xA9; 1947 %pub;. &rights;"' Literal.String.Double
+' '           Text
+'>'           Keyword
+'\n\n'        Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'lt'          Name.Entity
+'     '       Text
+'"&#38;#60;"' Literal.String.Double
+'>'           Keyword
+'\n'          Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'gt'          Name.Entity
+'     '       Text
+'"&#62;"'     Literal.String.Double
+'>'           Keyword
+'\n'          Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'amp'         Name.Entity
+'    '        Text
+'"&#38;#38;"' Literal.String.Double
+'>'           Keyword
+'\n'          Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'apos'        Name.Entity
+'   '         Text
+'"&#39;"'     Literal.String.Double
+'>'           Keyword
+'\n'          Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'quot'        Name.Entity
+'   '         Text
+'"&#34;"'     Literal.String.Double
+'>'           Keyword
+'\n\n'        Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'%'           Name.Entity
+' '           Text
+'draft'       Name.Entity
+' '           Text
+"'INCLUDE'"   Literal.String.Single
+' '           Text
+'>'           Keyword
+'\n'          Text
+
+'<!ENTITY'    Keyword
+' '           Text
+'%'           Name.Entity
+' '           Text
+'final'       Name.Entity
+' '           Text
+"'IGNORE'"    Literal.String.Single
+' '           Text
+'>'           Keyword
+'\n\n'        Text
+
+'<!['         Keyword
+'%draft;'     Name.Entity
+'['           Keyword
+'\n'          Text
+
+'<!ELEMENT'   Keyword
+' '           Text
+'book'        Name.Tag
+' '           Text
+'('           Operator
+'comments'    Name.Tag
+'*'           Operator
+','           Operator
+' '           Text
+'title'       Name.Tag
+','           Operator
+' '           Text
+'body'        Name.Tag
+','           Operator
+' '           Text
+'supplements' Name.Tag
+'?'           Operator
+')'           Operator
+'>'           Keyword
+'\n'          Text
+
+']'           Keyword
+']'           Keyword
+'>'           Keyword
+'\n'          Text
+
+'<!['         Keyword
+'%final;'     Name.Entity
+'['           Keyword
+'\n'          Text
+
+'<!ELEMENT'   Keyword
+' '           Text
+'book'        Name.Tag
+' '           Text
+'('           Operator
+'title'       Name.Tag
+','           Operator
+' '           Text
+'body'        Name.Tag
+','           Operator
+' '           Text
+'supplements' Name.Tag
+'?'           Operator
+')'           Operator
+'>'           Keyword
+'\n'          Text
+
+']'           Keyword
+']'           Keyword
+'>'           Keyword
+'\n\n'        Text
+
+']'           Keyword
+'>'           Keyword
+'\n'          Text

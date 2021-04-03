@@ -1,0 +1,25 @@
+# Test that line continuation by ellipses does not produce generic
+# output on the second line.
+
+---input---
+set('T',300,...
+'P',101325);
+
+---tokens---
+'set'         Name.Builtin
+'('           Punctuation
+"'"           Literal.String
+"T'"          Literal.String
+','           Punctuation
+'300'         Literal.Number.Integer
+','           Punctuation
+'...'         Keyword
+'\n'          Text.Whitespace
+
+"'"           Literal.String
+"P'"          Literal.String
+','           Punctuation
+'101325'      Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

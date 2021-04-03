@@ -1,0 +1,296 @@
+'  | | |\n'   Text
+
+'"'           Generic.Heading
+'Informal by Nature' Generic.Heading
+'"'           Generic.Heading
+'\n'          Generic.Heading
+
+'['           Comment.Multiline
+' * * * '     Comment.Multiline
+']'           Comment.Multiline
+'\n'          Generic.Heading
+
+'by'          Generic.Heading
+'\n'          Generic.Heading
+
+'['           Comment.Multiline
+' * * * '     Comment.Multiline
+']'           Comment.Multiline
+'\n'          Generic.Heading
+
+'David Corbett' Generic.Heading
+'\n\n'        Text
+
+'['           Comment.Multiline
+'This is a '  Comment.Multiline
+'['           Comment.Multiline
+'nested'      Comment.Multiline
+']'           Comment.Multiline
+' comment.'   Comment.Multiline
+']'           Comment.Multiline
+'\n\n'        Text
+
+'Section 1 - Use option translation' Generic.Heading
+'\n\n'        Text
+
+'Use m'       Text
+'a'           Text
+'ximum tests of ' Text
+'a'           Text
+'t le'        Text
+'a'           Text
+'st 100 tr'   Text
+'a'           Text
+'nsl'         Text
+'a'           Text
+'tes '        Text
+'as'          Text
+' '           Text
+'(-'          Punctuation
+'\n'          Text
+
+'@c\n'        Comment.Preproc
+
+'Constant'    Keyword
+' '           Text
+'MAX_TESTS'   Name.Constant
+' '           Text
+'='           Operator
+' '           Text
+''            Text
+'{'           Punctuation
+'N'           Text
+'}'           Punctuation
+''            Punctuation
+';'           Punctuation
+' '           Text
+'—)'          Punctuation
+'. '          Text
+'| '          Text
+'Section 2'   Generic.Heading
+'\n\n'        Text
+
+'A'           Text
+' room h'     Text
+'a'           Text
+'s '          Text
+'a'           Text
+' number c'   Text
+'a'           Text
+'lled size.'  Text
+'\n\n'        Text
+
+'The Kitchen is ' Text
+'a'           Text
+' room. '     Text
+'"'           Literal.String.Double
+'A nondescript kitchen.' Literal.String.Double
+'“'           Literal.String.Double
+' The Kitchen h' Text
+'a'           Text
+'s size 2.'   Text
+'\n\n'        Text
+
+'When pl'     Text
+'a'           Text
+'y begins'    Text
+':'           Text
+'\n\t'        Text
+'s'           Text
+'a'           Text
+'y '          Text
+'"'           Literal.String.Double
+'Testing:'    Literal.String.Double
+'[line break]' Literal.String.Interpol
+'"'           Literal.String.Double
+';'           Text
+'\n'          Text
+
+'\ttest 0.'   Text
+'\n\n'        Text
+
+'To test '    Text
+'('           Text
+'N — number)' Text
+':'           Text
+' '           Text
+'(—'          Punctuation
+'\n\t'        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+''            Text
+'Test'        Name
+'('           Punctuation
+''            Text
+'{'           Punctuation
+'N'           Text
+'}'           Punctuation
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+''            Text
+'(+'          Punctuation
+'size of the Kitchen ' Text
+'['           Comment.Multiline
+'this should succeed' Comment.Multiline
+']'           Comment.Multiline
+'+)'          Punctuation
+')'           Punctuation
+' '           Text
+'{-'          Punctuation
+'open—brace'  Keyword
+'}'           Punctuation
+'\n\t\t'      Text
+'print'       Keyword
+' '           Text
+''            Text
+'”'           Literal.String.Double
+'Success.'    Literal.String.Double
+'^'           Literal.String.Escape
+'”'           Literal.String.Double
+';'           Punctuation
+'\n\t'        Text
+'{-'          Punctuation
+'close-brace' Keyword
+'}'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Punctuation
+'\n\t\t'      Text
+'print'       Keyword
+' '           Text
+''            Text
+'“'           Literal.String.Double
+'Failure.'    Literal.String.Double
+'^'           Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+']'           Punctuation
+''            Punctuation
+';'           Punctuation
+' '           Text
+"! You shouldn't end a routine within a phrase definition, but it works." Comment.Single
+'\n'          Text
+
+'['           Punctuation
+' '           Text
+'Unused'      Name.Function
+';'           Punctuation
+'\n\t'        Text
+'#'           Punctuation
+'Include'     Keyword
+' '           Text
+'"'           Literal.String.Double
+'\\'          Literal.String.Escape
+'\n@p '       Literal.String.Double
+'\\'          Literal.String.Escape
+'\n'          Literal.String.Double
+
+'"'           Literal.String.Double
+''            Punctuation
+';'           Punctuation
+' '           Text
+'! At signs hold no power here.' Comment.Single
+'\n'          Text
+
+'! Of course, the file "@p .h" must exist.' Comment.Single
+'\n'          Text
+
+'-)'          Punctuation
+'.'           Text
+'\n\n'        Text
+
+'Include '    Text
+'(-'          Punctuation
+'!% This is not ICL.' Comment.Single
+'\n\n'        Text
+
+'['           Punctuation
+' '           Text
+'Test'        Name.Function
+' '           Text
+'x'           Name.Variable
+';'           Punctuation
+'\n\t'        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+''            Text
+'x'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+''            Text
+'x'           Name
+'++'          Operator
+''            Punctuation
+';'           Punctuation
+'}'           Punctuation
+'\n\t'        Text
+'{–'          Punctuation
+'! Single line comment.' Comment.Single
+'}'           Punctuation
+'\n'          Text
+
+'@'           Keyword
+'inc'         Keyword
+' '           Text
+''            Text
+'x'           Name
+';'           Punctuation
+'\n'          Text
+
+'@p At signs.\n' Generic.Heading
+
+'...\n'       Comment.Preproc
+
+'@Purpose:'   Comment.Preproc
+' ...\n...\n' Comment.Preproc
+
+'@-'          Comment.Preproc
+'...\n'       Comment.Preproc
+
+'@c ...\n'    Comment.Preproc
+
+'@'           Keyword
+'inc'         Keyword
+' '           Text
+''            Text
+'x'           Name
+';'           Punctuation
+'\n'          Text
+
+'@c\n'        Comment.Preproc
+
+'@c\n'        Comment.Preproc
+
+'\t'          Text
+'return'      Keyword
+' '           Text
+''            Text
+'x'           Name
+''            Punctuation
+';'           Punctuation
+'\n'          Text
+
+']'           Punctuation
+''            Punctuation
+';'           Punctuation
+'\n'          Text
+
+'@Purpose: ...' Comment.Preproc
+'\n'          Text
+
+'@-------------------------------------------------------------------------------' Comment.Preproc
+'\n'          Text
+
+'-)'          Punctuation
+'.'           Text
+'\n'          Text

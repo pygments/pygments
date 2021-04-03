@@ -1,0 +1,464 @@
+'-'           Operator
+'-'           Operator
+' '           Text.Whitespace
+'Example'     Name
+' '           Text.Whitespace
+'Transact'    Name
+'-'           Operator
+'SQL'         Keyword
+' '           Text.Whitespace
+'file'        Keyword
+'.'           Punctuation
+'\n\n'        Text.Whitespace
+
+'-'           Operator
+'-'           Operator
+' '           Text.Whitespace
+'Single'      Name
+' '           Text.Whitespace
+'line'        Name
+' '           Text.Whitespace
+'comment'     Name
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+' A comment \n ' Comment.Multiline
+'*'           Comment.Multiline
+' spawning two lines. ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n                         ' Text.Whitespace
+'/*'          Comment.Multiline
+' An indented comment\n                          ' Comment.Multiline
+'*'           Comment.Multiline
+' spawning multiple\n                          ' Comment.Multiline
+'*'           Comment.Multiline
+' lines. '    Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+' A '         Comment.Multiline
+'/*'          Comment.Multiline
+' nested '    Comment.Multiline
+'*/'          Comment.Multiline
+' comment. '  Comment.Multiline
+'*/'          Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'select'      Keyword
+'\n    '      Text.Whitespace
+'left'        Name.Function
+'('           Punctuation
+'emp'         Name
+'.'           Punctuation
+'firstname'   Name
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+"'.'"         Literal.String.Single
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'['           Operator
+'emp.surname' Name
+']'           Operator
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"Name"'      Literal.String.Symbol
+','           Punctuation
+'\n    '      Text.Whitespace
+'dep'         Name
+'.'           Punctuation
+'name'        Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'['           Operator
+'Department'  Name
+']'           Operator
+'\n'          Text.Whitespace
+
+'into'        Keyword
+'\n    '      Text.Whitespace
+'#temp_employee' Name
+'\n'          Text.Whitespace
+
+'from'        Keyword
+'\n    '      Text.Whitespace
+'employee'    Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'emp'         Name
+'\n    '      Text.Whitespace
+'inner'       Keyword
+' '           Text.Whitespace
+'join'        Keyword
+' '           Text.Whitespace
+'department'  Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'dep'         Name
+' '           Text.Whitespace
+'on'          Keyword
+'\n       '   Text.Whitespace
+'dep'         Name
+'.'           Punctuation
+'ident_code'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'emp'         Name
+'.'           Punctuation
+'department_id' Name
+'\n'          Text.Whitespace
+
+'where'       Keyword
+'\n    '      Text.Whitespace
+'emp'         Name
+'.'           Punctuation
+'date_of_birth' Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+"'1990-01-01'" Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'go'          Keyword
+'\n\n'        Text.Whitespace
+
+'declare'     Keyword
+' '           Text.Whitespace
+'@TextToFind' Name.Variable
+' '           Text.Whitespace
+'nvarchar'    Name.Class
+'('           Punctuation
+'100'         Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'N'           Name
+"'some\ntext across\nmultiple lines'" Literal.String.Single
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'set'         Keyword
+' '           Text.Whitespace
+'@TextToFind' Name.Variable
+' '           Text.Whitespace
+'varchar'     Name.Class
+'('           Punctuation
+'32'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'hello'"     Literal.String.Single
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+"' world'"    Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'set'         Keyword
+' '           Text.Whitespace
+'@TextTiFind' Name.Variable
+' '           Text.Whitespace
+'+='          Operator
+' '           Text.Whitespace
+"'!'"         Literal.String.Single
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'declare'     Keyword
+' '           Text.Whitespace
+'@Count'      Name.Variable
+' '           Text.Whitespace
+'int'         Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'17'          Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'delete'      Keyword
+' '           Text.Whitespace
+'from'        Keyword
+'\n    '      Text.Whitespace
+'['           Operator
+'server'      Name
+']'           Operator
+'.'           Punctuation
+'['           Operator
+'database'    Name
+']'           Operator
+'.'           Punctuation
+'['           Operator
+'schema'      Name
+']'           Operator
+'.'           Punctuation
+'['           Operator
+'table'       Name
+']'           Operator
+'\n'          Text.Whitespace
+
+'where'       Keyword
+'\n    '      Text.Whitespace
+'['           Operator
+'Text'        Name
+']'           Operator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'@TextToFind' Name.Variable
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'author'      Name
+' '           Text.Whitespace
+'Not'         Operator.Word
+' '           Text.Whitespace
+'LIKE'        Operator.Word
+' '           Text.Whitespace
+"'%some%'"    Literal.String.Single
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'goto'        Keyword
+' '           Text.Whitespace
+'overthere'   Name.Label
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'overthere'   Name.Label
+':'           Punctuation
+'\n\n'        Text.Whitespace
+
+'select'      Keyword
+'\n    '      Text.Whitespace
+'123'         Literal.Number.Integer
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"int 1"'     Literal.String.Symbol
+','           Punctuation
+'\n    '      Text.Whitespace
+'+'           Operator
+'123'         Literal.Number.Integer
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"int 2"'     Literal.String.Symbol
+','           Punctuation
+'\n    '      Text.Whitespace
+'-'           Operator
+'123'         Literal.Number.Integer
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"int 3"'     Literal.String.Symbol
+','           Punctuation
+'\n    '      Text.Whitespace
+'0x20'        Literal.Number.Hex
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"hex int"'   Literal.String.Symbol
+','           Punctuation
+'\n    '      Text.Whitespace
+'123.45'      Literal.Number.Float
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"float 1"'   Literal.String.Symbol
+','           Punctuation
+'\n    '      Text.Whitespace
+'-'           Operator
+'1.23e45'     Literal.Number.Float
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"float 2"'   Literal.String.Symbol
+'\n    '      Text.Whitespace
+'+'           Operator
+'1.23E+45'    Literal.Number.Float
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"float 3"'   Literal.String.Symbol
+','           Punctuation
+'\n    '      Text.Whitespace
+'-'           Operator
+'1.23e-45'    Literal.Number.Float
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"float 4"'   Literal.String.Symbol
+','           Punctuation
+'\n    '      Text.Whitespace
+'1.'          Literal.Number.Float
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"float 5"'   Literal.String.Symbol
+','           Punctuation
+'\n    '      Text.Whitespace
+'.1'          Literal.Number.Float
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"float 6"'   Literal.String.Symbol
+','           Punctuation
+'\n    '      Text.Whitespace
+'1.e2'        Literal.Number.Float
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"float 7"'   Literal.String.Symbol
+','           Punctuation
+'\n    '      Text.Whitespace
+'.1e2'        Literal.Number.Float
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"float 8"'   Literal.String.Symbol
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'Select'      Keyword
+' '           Text.Whitespace
+'@@Error'     Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'$PARTITion'  Name.Function
+'.'           Punctuation
+'RangePF1'    Name
+'('           Punctuation
+'10'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'select'      Keyword
+' '           Text.Whitespace
+'top'         Keyword
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'Ähnliches'   Name
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'Müll'        Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'-'           Operator
+'-'           Operator
+' '           Text.Whitespace
+'Example'     Name
+' '           Text.Whitespace
+'transaction' Keyword
+'\n'          Text.Whitespace
+
+'BEGIN'       Keyword
+' '           Text.Whitespace
+'TRAN'        Keyword
+'\n\n'        Text.Whitespace
+
+'BEGIN'       Keyword
+' '           Text.Whitespace
+'TRY'         Keyword
+'\n   '       Text.Whitespace
+'INSERT'      Keyword
+' '           Text.Whitespace
+'INTO'        Keyword
+' '           Text.Whitespace
+'#temp_employe' Name
+'('           Punctuation
+'Name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'Department'  Name
+')'           Punctuation
+' '           Text.Whitespace
+'VALUES'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+"'L. Miller'" Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+"'Sales'"     Literal.String.Single
+')'           Punctuation
+'\n   '       Text.Whitespace
+'iNsErT'      Keyword
+' '           Text.Whitespace
+'inTO'        Keyword
+' '           Text.Whitespace
+'#temp_employe' Name
+'('           Punctuation
+'Name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'Department'  Name
+')'           Punctuation
+' '           Text.Whitespace
+'VaLuEs'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+"'M. Webster'" Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+"'Helpdesk'"  Literal.String.Single
+')'           Punctuation
+'\n   '       Text.Whitespace
+'COMMIT'      Keyword
+' '           Text.Whitespace
+'TRAN'        Keyword
+'\n'          Text.Whitespace
+
+'END'         Keyword
+' '           Text.Whitespace
+'TRY'         Keyword
+'\n'          Text.Whitespace
+
+'BEGIN'       Keyword
+' '           Text.Whitespace
+'CATCH'       Keyword
+'\n   '       Text.Whitespace
+'print'       Keyword
+' '           Text.Whitespace
+"'cannot perform transaction; rolling back'" Literal.String.Single
+';'           Punctuation
+'\n   '       Text.Whitespace
+'ROLLBACK'    Keyword
+' '           Text.Whitespace
+'TRAN'        Keyword
+'\n'          Text.Whitespace
+
+'END'         Keyword
+' '           Text.Whitespace
+'CATCH'       Keyword
+'\n\n'        Text.Whitespace
+
+'-- Comment at end without newline.\n' Comment.Single

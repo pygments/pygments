@@ -1,0 +1,73 @@
+'<%!-- defined in example/PersonCSVTemplate.gst --%>' Comment.Multiline
+'\n'          Literal.String
+
+'\n'          Literal.String
+
+'<%@ '        Operator
+'params'      Name.Decorator
+'('           Operator
+' '           Text
+'users'       Name
+' '           Text
+':'           Operator
+' '           Text
+'Collection'  Name
+' '           Text
+'<'           Operator
+'User'        Name
+'>'           Operator
+' '           Text
+')'           Operator
+' '           Text
+'%>'          Operator
+'\n'          Literal.String
+
+'\n'          Literal.String
+
+'<%'          Operator
+'  '          Text
+'for'         Keyword
+'('           Operator
+' '           Text
+'user'        Name
+' '           Text
+'in'          Keyword
+' '           Text
+'users'       Name
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+' '           Text
+'%>'          Operator
+'\n'          Literal.String
+
+'\n'          Literal.String
+
+'${'          Operator
+'user'        Name
+'.'           Operator
+'LastName'    Name.Attribute
+'}'           Operator
+','           Literal.String
+' '           Literal.String
+'${'          Operator
+'user'        Name
+'.'           Operator
+'FirstName'   Name.Attribute
+'}'           Operator
+','           Literal.String
+' '           Literal.String
+'${'          Operator
+'user'        Name
+'.'           Operator
+'Department'  Name.Attribute
+'}'           Operator
+' '           Literal.String
+' '           Literal.String
+'<%'          Operator
+'  '          Text
+'}'           Operator
+' '           Text
+'%>'          Operator
+'\n'          Literal.String

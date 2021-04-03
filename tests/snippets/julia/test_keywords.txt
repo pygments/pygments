@@ -1,0 +1,89 @@
+# Test keywords are identified
+
+---input---
+mutable struct MutableType end
+struct ImmutableType end
+abstract type AbstractMyType end
+primitive type MyPrimitive 32 end
+(abstract, mutable, type) = true, π, missing
+
+abstract    type AbstractMyType end
+primitive 	type MyPrimitive 32 end
+mutable     struct MutableType end
+
+---tokens---
+'mutable struct' Keyword
+' '           Text
+'MutableType' Keyword.Type
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+'struct'      Keyword
+' '           Text
+'ImmutableType' Keyword.Type
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+'abstract type' Keyword
+' '           Text
+'AbstractMyType' Keyword.Type
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+'primitive type' Keyword
+' '           Text
+'MyPrimitive' Keyword.Type
+' '           Text
+'32'          Literal.Number.Integer
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+'('           Punctuation
+'abstract'    Name
+','           Punctuation
+' '           Text
+'mutable'     Name
+','           Punctuation
+' '           Text
+'type'        Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Builtin
+','           Punctuation
+' '           Text
+'π'           Name.Builtin
+','           Punctuation
+' '           Text
+'missing'     Name.Builtin
+'\n'          Text
+
+'\n'          Text
+
+'abstract    type' Keyword
+' '           Text
+'AbstractMyType' Keyword.Type
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+'primitive \ttype' Keyword
+' '           Text
+'MyPrimitive' Keyword.Type
+' '           Text
+'32'          Literal.Number.Integer
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+'mutable     struct' Keyword
+' '           Text
+'MutableType' Keyword.Type
+' '           Text
+'end'         Keyword
+'\n'          Text

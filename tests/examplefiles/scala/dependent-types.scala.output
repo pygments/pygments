@@ -1,0 +1,102 @@
+'trait'       Keyword
+' '           Text
+'Entry'       Name.Class
+' '           Text
+'{'           Punctuation
+' '           Text
+'type'        Keyword
+' '           Text
+'Key'         Name.Class
+';'           Punctuation
+' '           Text
+'val'         Keyword.Declaration
+' '           Text
+'key'         Name
+':'           Punctuation
+' '           Text
+'Key'         Name.Class
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'def'         Keyword
+' '           Text
+'extractKey'  Name.Function
+'('           Punctuation
+'e'           Name
+':'           Punctuation
+' '           Text
+'Entry'       Name.Class
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'e'           Name
+'.'           Punctuation
+'Key'         Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'e'           Name
+'.'           Punctuation
+'key'         Name
+'\n'          Text
+
+'val'         Keyword.Declaration
+' '           Text
+'extractor'   Name
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'e'           Name
+':'           Punctuation
+' '           Text
+'Entry'       Name.Class
+')'           Punctuation
+' '           Text
+'=>'          Operator
+' '           Text
+'e'           Name
+'.'           Punctuation
+'Key'         Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'extractKey'  Name
+'\n'          Text
+
+'type'        Keyword
+' '           Text
+'Extractor'   Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'Function1'   Name.Class
+'['           Punctuation
+'Entry'       Name.Class
+','           Punctuation
+' '           Text
+'Entry'       Name.Class
+'#'           Name
+'Key'         Name.Class
+']'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'def'         Keyword
+' '           Text
+'apply'       Name.Function
+'('           Punctuation
+'e'           Name
+':'           Punctuation
+' '           Text
+'Entry'       Name.Class
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'e'           Name
+'.'           Punctuation
+'Key'         Name.Class
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

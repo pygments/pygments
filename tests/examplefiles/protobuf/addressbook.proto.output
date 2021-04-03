@@ -1,0 +1,214 @@
+'// See README.txt for information and build instructions.\n' Comment.Single
+
+'\n'          Text
+
+'package'     Keyword.Namespace
+' '           Text
+'tutorial'    Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'option'      Keyword
+' '           Text
+'java_package' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"com.example.tutorial"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'option'      Keyword
+' '           Text
+'java_outer_classname' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"AddressBookProtos"' Literal.String
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'message'     Keyword.Declaration
+' '           Text
+'Person'      Name.Class
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'required'    Keyword
+' '           Text
+'string'      Keyword.Type
+' '           Text
+'name'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'required'    Keyword
+' '           Text
+'int32'       Keyword.Type
+' '           Text
+'id'          Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+'        '    Text
+'// Unique ID number for this person.\n' Comment.Single
+
+'  '          Text
+'optional'    Keyword
+' '           Text
+'string'      Keyword.Type
+' '           Text
+'email'       Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'3'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'enum'        Keyword.Declaration
+' '           Text
+'PhoneType'   Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'MOBILE'      Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'HOME'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'WORK'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'message'     Keyword.Declaration
+' '           Text
+'PhoneNumber' Name.Class
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'required'    Keyword
+' '           Text
+'string'      Keyword.Type
+' '           Text
+'number'      Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'optional'    Keyword
+' '           Text
+'PhoneType'   Name
+' '           Text
+'type'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'['           Punctuation
+'default'     Keyword
+' '           Text
+'='           Operator
+' '           Text
+'HOME'        Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'repeated'    Keyword
+' '           Text
+'PhoneNumber' Name
+' '           Text
+'phone'       Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'4'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'// Our address book file is just one of these.\n' Comment.Single
+
+'message'     Keyword.Declaration
+' '           Text
+'AddressBook' Name.Class
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'repeated'    Keyword
+' '           Text
+'Person'      Name
+' '           Text
+'person'      Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

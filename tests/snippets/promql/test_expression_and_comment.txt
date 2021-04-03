@@ -1,0 +1,15 @@
+---input---
+go_gc_duration_seconds{instance="localhost:9090"} # single comment
+
+---tokens---
+'go_gc_duration_seconds' Name.Variable
+'{'           Punctuation
+'instance'    Name.Label
+'='           Operator
+'"'           Punctuation
+'localhost:9090' Literal.String
+'"'           Punctuation
+'}'           Punctuation
+' '           Text.Whitespace
+'# single comment' Comment.Single
+'\n'          Text.Whitespace

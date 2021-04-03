@@ -1,0 +1,245 @@
+'class'       Keyword.Declaration
+' '           Text
+'Animal'      Name.Other
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'constructor' Keyword.Reserved
+'('           Punctuation
+'public'      Keyword
+' '           Text
+'name'        Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'move'        Name.Other
+'('           Punctuation
+'meters'      Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'alert'       Name.Other
+'('           Punctuation
+'this'        Keyword
+'.'           Punctuation
+'name'        Name.Other
+' '           Text
+'+'           Operator
+' '           Text
+'" moved "'   Literal.String.Double
+' '           Text
+'+'           Operator
+' '           Text
+'meters'      Name.Other
+' '           Text
+'+'           Operator
+' '           Text
+'"m."'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword.Declaration
+' '           Text
+'Snake'       Name.Other
+' '           Text
+'extends'     Keyword
+' '           Text
+'Animal'      Name.Other
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'constructor' Keyword.Reserved
+'('           Punctuation
+'name'        Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'super'       Keyword
+'('           Punctuation
+'name'        Name.Other
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'move'        Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'alert'       Name.Other
+'('           Punctuation
+'"Slithering..."' Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n        '  Text
+'super'       Keyword
+'.'           Punctuation
+'move'        Name.Other
+'('           Punctuation
+'5'           Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword.Declaration
+' '           Text
+'Horse'       Name.Other
+' '           Text
+'extends'     Keyword
+' '           Text
+'Animal'      Name.Other
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'constructor' Keyword.Reserved
+'('           Punctuation
+'name'        Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'super'       Keyword
+'('           Punctuation
+'name'        Name.Other
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'move'        Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'alert'       Name.Other
+'('           Punctuation
+'"Galloping..."' Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n        '  Text
+'super'       Keyword
+'.'           Punctuation
+'move'        Name.Other
+'('           Punctuation
+'45'          Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'@View'       Keyword.Declaration
+'('           Punctuation
+'{'           Punctuation
+'\n    '      Text
+'templateUrl' Name.Other
+':'           Operator
+' '           Text
+'"app/components/LoginForm.html"' Literal.String.Double
+','           Punctuation
+'\n    '      Text
+'directives'  Name.Other
+':'           Operator
+' '           Text
+'['           Punctuation
+'FORM_DIRECTIVES' Name.Other
+','           Punctuation
+' '           Text
+'NgIf'        Name.Other
+']'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'@Component'  Keyword.Declaration
+'('           Punctuation
+'{'           Punctuation
+'\n    '      Text
+'selector'    Name.Other
+':'           Operator
+' '           Text
+'"login-form"' Literal.String.Double
+'\n'          Text
+
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'class'       Keyword.Declaration
+' '           Text
+'LoginForm'   Name.Other
+' '           Text
+'{'           Punctuation
+'\n\n'        Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'var'         Keyword.Declaration
+' '           Text
+'sam'         Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'Snake'       Name.Other
+'('           Punctuation
+'"Sammy the Python"' Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text
+'tom'         Name.Other
+': '          Text
+'Animal'      Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'Horse'       Name.Other
+'('           Punctuation
+'"Tommy the Palomino"' Literal.String.Double
+')'           Punctuation
+'\n\n'        Text
+
+'sam'         Name.Other
+'.'           Punctuation
+'move'        Name.Other
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'tom'         Name.Other
+'.'           Punctuation
+'move'        Name.Other
+'('           Punctuation
+'34'          Literal.Number.Float
+')'           Punctuation
+'\n'          Text

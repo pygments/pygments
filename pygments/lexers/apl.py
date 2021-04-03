@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.apl
     ~~~~~~~~~~~~~~~~~~~
 
     Lexers for APL.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -24,7 +23,10 @@ class APLLexer(RegexLexer):
     """
     name = 'APL'
     aliases = ['apl']
-    filenames = ['*.apl']
+    filenames = [
+        '*.apl', '*.aplf', '*.aplo', '*.apln',  
+        '*.aplc', '*.apli', '*.dyalog',
+    ]
 
     tokens = {
         'root': [
@@ -66,8 +68,8 @@ class APLLexer(RegexLexer):
             #
             # Variables
             # =========
-            # following IBM APL2 standard
-            (r'[A-Za-zΔ∆⍙][A-Za-zΔ∆⍙_¯0-9]*', Name.Variable),
+            # following IBM APL2 standard (with a leading _ ok for GNU APL and Dyalog)
+            (r'[A-Za-zΔ∆⍙_][A-Za-zΔ∆⍙_¯0-9]*', Name.Variable),     
             #
             # Numbers
             # =======

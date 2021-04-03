@@ -1,0 +1,4351 @@
+'% Copyright 2005 Brian Alliet\n' Comment
+
+'\n'          Text
+
+'\\documentclass' Keyword
+'[11pt]'      Name.Attribute
+'{'           Name.Builtin
+'article'     Text
+'}'           Name.Builtin
+'\n'          Text
+
+'\\usepackage' Keyword
+'{'           Name.Builtin
+'palatino'    Text
+'}'           Name.Builtin
+'\n'          Text
+
+'\\usepackage' Keyword
+'{'           Name.Builtin
+'fullpage'    Text
+'}'           Name.Builtin
+'\n'          Text
+
+'\\usepackage' Keyword
+'{'           Name.Builtin
+'parskip'     Text
+'}'           Name.Builtin
+'\n'          Text
+
+'\\usepackage' Keyword
+'{'           Name.Builtin
+'lhs'         Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'document'    Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'\\title'     Keyword
+'{'           Name.Builtin
+'Sudoku Solver' Text
+'}'           Name.Builtin
+'\n'          Text
+
+'\\author'    Keyword
+'{'           Name.Builtin
+'Brian Alliet' Text
+'}'           Name.Builtin
+'\n'          Text
+
+'\\maketitle' Keyword
+'\n\n'        Text
+
+'\\ignore'    Keyword
+'{'           Name.Builtin
+'\n'          Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'module'      Keyword.Reserved
+' '           Text
+'Sudoku'      Name.Namespace
+' '           Text
+'('           Punctuation
+'\n    '      Text
+'Sudoku'      Keyword.Type
+','           Punctuation
+'\n    '      Text
+'makeSudoku'  Name.Function
+','           Punctuation
+' '           Text
+'solve'       Name.Function
+','           Punctuation
+' '           Text
+'eliminate'   Name.Function
+','           Punctuation
+' '           Text
+'analyze'     Name.Function
+','           Punctuation
+' '           Text
+'backtrack'   Name.Function
+','           Punctuation
+'\n    '      Text
+'main'        Name.Function
+'\n    '      Text
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+'\n\n'        Text
+
+'import'      Keyword.Reserved
+' '           Text
+'Array'       Name.Namespace
+'\n'          Text
+
+'import'      Keyword.Reserved
+' '           Text
+'Monad'       Name.Namespace
+'\n'          Text
+
+'import'      Keyword.Reserved
+' '           Text
+'List'        Name.Namespace
+' '           Text
+'('           Punctuation
+'union'       Name.Function
+','           Punctuation
+'intersperse' Name.Function
+','           Punctuation
+'transpose'   Name.Function
+','           Punctuation
+'('           Punctuation
+'\\\\'        Operator
+')'           Punctuation
+','           Punctuation
+'nub'         Name.Function
+','           Punctuation
+'nubBy'       Name.Function
+')'           Punctuation
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'}'           Name.Builtin
+'\n\n'        Text
+
+'\\section'   Keyword
+'{'           Name.Builtin
+'Introduction' Text
+'}'           Name.Builtin
+'\n\nThis Haskell module implements a solver for Sudoku~' Text
+'\\footnote'  Keyword
+'{'           Name.Builtin
+'http://en.wikipedia.org/wiki/Sudoku' Text
+'}'           Name.Builtin
+' puzzles. It can solve\nany Sudoku puzzle, even those that require backtracking.\n\n' Text
+
+'\\section'   Keyword
+'{'           Name.Builtin
+'Data Types'  Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'data'        Keyword.Reserved
+' '           Text
+'CellState'   Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'Known'       Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'Unknown'     Keyword.Type
+' '           Text
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'Impossible'  Keyword.Type
+' '           Text
+'deriving'    Keyword.Reserved
+' '           Text
+'Eq'          Keyword.Type
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+"\n\nEach cell in a Sudoku grid can be in one of three states: ``Known'' if it has a known correct value~" Text
+'\\footnote'  Keyword
+'{'           Name.Builtin
+"Actually\nthis doesn't always means it is correct. While we are in the backtracking stage we make our guesses ``Known''." Text
+'}'           Name.Builtin
+",\n``Unknown'' if there is still more than one possible correct value, or ``Impossible'' if there is no value that can\npossibly fit the cell. Sudoku grids with ``Impossible'' cells are quickly discarded by the " Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' solve'      Text
+'}'           Name.Builtin
+' function.\n\n' Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'type'        Keyword.Reserved
+' '           Text
+'Coords'      Keyword.Type
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Punctuation
+'Int'         Keyword.Type
+','           Punctuation
+'Int'         Keyword.Type
+')'           Punctuation
+'\n'          Text
+
+'type'        Keyword.Reserved
+' '           Text
+'Grid'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'Array'       Keyword.Type
+' '           Text
+'Coords'      Keyword.Type
+' '           Text
+'('           Punctuation
+'CellState'   Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+'\n'          Text
+
+'newtype'     Keyword.Reserved
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'{'           Punctuation
+' '           Text
+'unSudoku'    Name
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Grid'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'}'           Punctuation
+' '           Text
+'deriving'    Keyword.Reserved
+' '           Text
+'Eq'          Keyword.Type
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\nWe represent a Sudoku grid as an Array indexed by integer coordinates. We additionally define a newtype wrapper for the\ngrid. The smart constructor, ' Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' makeSudoku' Text
+'}'           Name.Builtin
+' verifies some invariants before creating the Sudoku value. All the public\nAPI functions operate on the Sudoku type.\n\n' Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Show'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Show'        Keyword.Type
+' '           Text
+'('           Punctuation
+'Sudoku'      Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+' '           Text
+'showsPrec'   Name
+' '           Text
+'p'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'showParen'   Name
+' '           Text
+'('           Punctuation
+'p'           Name
+'>'           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'.'           Operator
+' '           Text
+'showsGrid'   Name
+' '           Text
+'.'           Operator
+' '           Text
+'unSudoku'    Name
+'\n'          Text
+
+'instance'    Keyword.Reserved
+' '           Text
+'Show'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Show'        Keyword.Type
+' '           Text
+'('           Punctuation
+'CellState'   Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+' '           Text
+'where'       Keyword.Reserved
+' '           Text
+'showsPrec'   Name
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'='           Operator.Word
+' '           Text
+'showsCell'   Name
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\nWe define ' Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' Show'       Text
+'}'           Name.Builtin
+' instances for the above types.\n\n' Text
+
+'\\section'   Keyword
+'{'           Name.Builtin
+'Internal Functions' Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'size'        Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Grid'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'size'        Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Punctuation
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'.'           Operator
+'fst'         Name
+'.'           Operator
+'snd'         Name
+'.'           Operator
+'bounds'      Name
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'{'           Name.Builtin
+'\\tt'        Keyword
+' size'       Text
+'}'           Name.Builtin
+" returns the size (the width, height, and number of subboxes) for a Sudoku grid. We ensure Grid's are always\nsquare and indexed starting at " Text
+'$'           Literal.String
+'('           Operator
+'0'           Literal.Number
+','           Name.Builtin
+'0'           Literal.Number
+')'           Operator
+'$'           Literal.String
+" so simply incrementing either of the array's upper bounds is correct.\n\n" Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'getRow'      Name.Function
+','           Punctuation
+'getCol'      Name
+','           Punctuation
+'getBox'      Name
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Grid'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Int'         Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'Coords'      Keyword.Type
+','           Punctuation
+'CellState'   Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'getRow'      Name.Function
+' '           Text
+'grid'        Name
+' '           Text
+'r'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+'let'         Keyword.Reserved
+' '           Text
+'l'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Punctuation
+'r'           Name
+','           Punctuation
+'c'           Name
+')'           Punctuation
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'l'           Name
+','           Punctuation
+'grid'        Name
+'!'           Operator
+'l'           Name
+')'           Punctuation
+'|'           Operator
+'c'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'size'        Name
+' '           Text
+'grid'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'getCol'      Name.Function
+' '           Text
+'grid'        Name
+' '           Text
+'c'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+'let'         Keyword.Reserved
+' '           Text
+'l'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Punctuation
+'r'           Name
+','           Punctuation
+'c'           Name
+')'           Punctuation
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'l'           Name
+','           Punctuation
+'grid'        Name
+'!'           Operator
+'l'           Name
+')'           Punctuation
+'|'           Operator
+'r'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'size'        Name
+' '           Text
+'grid'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'getBox'      Name.Function
+' '           Text
+'grid'        Name
+' '           Text
+'b'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'['           Punctuation
+'let'         Keyword.Reserved
+' '           Text
+'l'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Punctuation
+'r'           Name
+','           Punctuation
+'c'           Name
+')'           Punctuation
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'l'           Name
+','           Punctuation
+'grid'        Name
+'!'           Operator
+'l'           Name
+')'           Punctuation
+'|'           Operator
+'r'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'['           Punctuation
+'boxR'        Name
+'..'          Operator
+'boxR'        Name
+'+'           Operator
+'boxN'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'c'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'['           Punctuation
+'boxC'        Name
+'..'          Operator
+'boxC'        Name
+'+'           Operator
+'boxN'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'where'       Keyword.Reserved
+'\n        '  Text
+'boxN'        Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'intSqrt'     Name
+' '           Text
+'('           Punctuation
+'size'        Name
+' '           Text
+'grid'        Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'boxR'        Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'b'           Name
+' '           Text
+'`'           Punctuation
+'quot'        Name
+'`'           Punctuation
+' '           Text
+'boxN'        Name
+' '           Text
+'*'           Operator
+' '           Text
+'boxN'        Name
+';'           Punctuation
+' '           Text
+'boxC'        Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'b'           Name
+' '           Text
+'`'           Punctuation
+'rem'         Name
+'`'           Punctuation
+'  '          Text
+'boxN'        Name
+' '           Text
+'*'           Operator
+' '           Text
+'boxN'        Name
+'\n\n'        Text
+
+'getBoxOf'    Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Grid'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Coords'      Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'Coords'      Keyword.Type
+','           Punctuation
+'CellState'   Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'getBoxOf'    Name.Function
+' '           Text
+'grid'        Name
+' '           Text
+'('           Punctuation
+'r'           Name
+','           Punctuation
+'c'           Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'grid'        Name
+' '           Text
+'`'           Punctuation
+'getBox'      Name
+'`'           Punctuation
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'r'           Name
+' '           Text
+'`'           Punctuation
+'quot'        Name
+'`'           Punctuation
+' '           Text
+'boxN'        Name
+' '           Text
+'*'           Operator
+' '           Text
+'boxN'        Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'c'           Name
+' '           Text
+'`'           Punctuation
+'quot'        Name
+'`'           Punctuation
+' '           Text
+'boxN'        Name
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'where'       Keyword.Reserved
+' '           Text
+'boxN'        Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'intSqrt'     Name
+' '           Text
+'('           Punctuation
+'size'        Name
+' '           Text
+'grid'        Name
+')'           Punctuation
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'{'           Name.Builtin
+'\\tt'        Keyword
+' getRow'     Text
+'}'           Name.Builtin
+', '          Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' getCol'     Text
+'}'           Name.Builtin
+', and '      Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' getBox'     Text
+'}'           Name.Builtin
+' return the coordinates and values of the cell in row, column, or box\nnumber ' Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' n'          Text
+'}'           Name.Builtin
+', '          Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' r'          Text
+'}'           Name.Builtin
+', or '       Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' b'          Text
+'}'           Name.Builtin
+'.\n\n'       Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'getNeighbors' Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Eq'          Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Grid'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Coords'      Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'Coords'      Keyword.Type
+','           Punctuation
+'CellState'   Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'getNeighbors' Name.Function
+' '           Text
+'grid'        Name
+' '           Text
+'l'           Name
+'@'           Operator
+'('           Punctuation
+'r'           Name
+','           Punctuation
+'c'           Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'filter'      Name
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'/='          Operator
+'l'           Name
+')'           Punctuation
+'.'           Operator
+'fst'         Name
+')'           Punctuation
+' \n                          ' Text
+'$'           Operator
+' '           Text
+'foldr'       Name
+' '           Text
+'('           Punctuation
+'union'       Name
+'.'           Operator
+'('           Punctuation
+'$'           Operator
+'grid'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'[]'          Keyword.Type
+' \n                          ' Text
+'['           Punctuation
+'('           Punctuation
+'`'           Punctuation
+'getRow'      Name
+'`'           Punctuation
+'r'           Name
+')'           Punctuation
+','           Punctuation
+'('           Punctuation
+'`'           Punctuation
+'getCol'      Name
+'`'           Punctuation
+'c'           Name
+')'           Punctuation
+','           Punctuation
+'('           Punctuation
+'`'           Punctuation
+'getBoxOf'    Name
+'`'           Punctuation
+'l'           Name
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'{'           Name.Builtin
+'\\tt'        Keyword
+' getNeighbors' Text
+'}'           Name.Builtin
+' returns the coordinates and values of all the neighbors of this cell.\n\n' Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'impossible'  Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Eq'          Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Grid'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Coords'      Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+'\n'          Text
+
+'impossible'  Name.Function
+' '           Text
+'grid'        Name
+' '           Text
+'l'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'map'         Name
+' '           Text
+'snd'         Name
+' '           Text
+'$'           Operator
+' '           Text
+'justKnowns'  Name
+' '           Text
+'$'           Operator
+' '           Text
+'grid'        Name
+' '           Text
+'`'           Punctuation
+'getNeighbors' Name
+'`'           Punctuation
+' '           Text
+'l'           Name
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'{'           Name.Builtin
+'\\tt'        Keyword
+' impossible' Text
+'}'           Name.Builtin
+" returns a list of impossible values for a given cell. The impossible values consist of the values any\n``Known'' neighbors.\n\n" Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'justUnknowns' Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'Coords'      Keyword.Type
+','           Punctuation
+'CellState'   Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'Coords'      Keyword.Type
+','           Punctuation
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'justUnknowns' Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'foldr'       Name
+' '           Text
+'('           Punctuation
+'\\'          Name.Function
+'c'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'case'        Keyword.Reserved
+' '           Text
+'c'           Name
+' '           Text
+'of'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'p'           Name
+','           Punctuation
+'Unknown'     Keyword.Type
+' '           Text
+'xs'          Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'p'           Name
+','           Punctuation
+'xs'          Name
+')'           Punctuation
+':'           Keyword.Type
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'->'          Operator.Word
+' '           Text
+'id'          Name
+')'           Punctuation
+' '           Text
+'[]'          Keyword.Type
+'\n\n'        Text
+
+'justKnowns'  Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'Coords'      Keyword.Type
+','           Punctuation
+'CellState'   Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'Coords'      Keyword.Type
+','           Punctuation
+'a'           Name
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'justKnowns'  Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'foldr'       Name
+' '           Text
+'('           Punctuation
+'\\'          Name.Function
+'c'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'case'        Keyword.Reserved
+' '           Text
+'c'           Name
+' '           Text
+'of'          Keyword.Reserved
+' '           Text
+'('           Punctuation
+'p'           Name
+','           Punctuation
+'Known'       Keyword.Type
+' '           Text
+'x'           Name
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'p'           Name
+','           Punctuation
+'x'           Name
+')'           Punctuation
+':'           Keyword.Type
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'->'          Operator.Word
+' '           Text
+'id'          Name
+')'           Punctuation
+' '           Text
+'[]'          Keyword.Type
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'{'           Name.Builtin
+'\\tt'        Keyword
+' justUnknowns' Text
+'}'           Name.Builtin
+' and '       Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' justKnowns' Text
+'}'           Name.Builtin
+' return only the Known or Unknown values (with the constructor stripped off)\nfrom a list of cells.\n\n' Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'updateGrid'  Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Grid'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'Coords'      Keyword.Type
+','           Punctuation
+'CellState'   Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Maybe'       Keyword.Type
+' '           Text
+'('           Punctuation
+'Grid'        Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+'\n'          Text
+
+'updateGrid'  Name.Function
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'[]'          Keyword.Type
+' '           Text
+'='           Operator.Word
+' '           Text
+'Nothing'     Keyword.Type
+'\n'          Text
+
+'updateGrid'  Name.Function
+' '           Text
+'grid'        Name
+' '           Text
+'xs'          Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'Just'        Keyword.Type
+' '           Text
+'$'           Operator
+' '           Text
+'grid'        Name
+' '           Text
+'//'          Operator
+' '           Text
+'nubBy'       Name
+' '           Text
+'('           Punctuation
+'\\'          Name.Function
+'('           Punctuation
+'x'           Name
+','           Punctuation
+'_'           Keyword.Reserved
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'y'           Name
+','           Punctuation
+'_'           Keyword.Reserved
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'x'           Name
+'=='          Operator
+'y'           Name
+')'           Punctuation
+' '           Text
+'xs'          Name
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'{'           Name.Builtin
+'\\tt'        Keyword
+' updateGrid' Text
+'}'           Name.Builtin
+' applies a set of updates to a grid and returns the new grid only if it was updated.\n\n' Text
+
+'\\section'   Keyword
+'{'           Name.Builtin
+'Public API'  Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'makeSudoku'  Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'('           Punctuation
+'Num'         Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Ord'         Keyword.Type
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'Enum'        Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'['           Punctuation
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+']'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'a'           Name
+'\n'          Text
+
+'makeSudoku'  Name.Function
+' '           Text
+'xs'          Name
+'\n    '      Text
+'|'           Operator
+' '           Text
+'not'         Name
+' '           Text
+'('           Punctuation
+'all'         Name
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'=='          Operator
+'size'        Name
+')'           Punctuation
+'.'           Operator
+'length'      Name
+')'           Punctuation
+' '           Text
+'xs'          Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'error'       Name.Exception
+' '           Text
+'"'           Literal.String
+'error not a square' Literal.String
+'"'           Literal.String
+'\n    '      Text
+'|'           Operator
+' '           Text
+'('           Punctuation
+'intSqrt'     Name
+' '           Text
+'size'        Name
+')'           Punctuation
+'^'           Operator
+'('           Punctuation
+'2'           Literal.Number.Integer
+'::'          Operator.Word
+'Int'         Keyword.Type
+')'           Punctuation
+' '           Text
+'/='          Operator
+' '           Text
+'size'        Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'error'       Name.Exception
+' '           Text
+'"'           Literal.String
+"error dims aren't perfect squares" Literal.String
+'"'           Literal.String
+'\n    '      Text
+'|'           Operator
+' '           Text
+'any'         Name
+' '           Text
+'('           Punctuation
+'\\'          Name.Function
+'x'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'x'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'||'          Operator
+' '           Text
+'x'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'fromIntegral' Name
+' '           Text
+'size'        Name
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'concat'      Name
+' '           Text
+'xs'          Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'error'       Name.Exception
+' '           Text
+'"'           Literal.String
+'value out of range' Literal.String
+'"'           Literal.String
+'\n    '      Text
+'|'           Operator
+' '           Text
+'otherwise'   Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'('           Punctuation
+'listArray'   Name
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'('           Punctuation
+'size'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
+'size'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'states'      Name
+')'           Punctuation
+'\n    '      Text
+'where'       Keyword.Reserved
+'\n        '  Text
+'size'        Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'length'      Name
+' '           Text
+'xs'          Name
+'\n        '  Text
+'states'      Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'map'         Name
+' '           Text
+'f'           Name
+' '           Text
+'('           Punctuation
+'concat'      Name
+' '           Text
+'xs'          Name
+')'           Punctuation
+'\n        '  Text
+'f'           Name
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'='           Operator.Word
+' '           Text
+'Unknown'     Keyword.Type
+' '           Text
+'['           Punctuation
+'1'           Literal.Number.Integer
+'..'          Operator
+'fromIntegral' Name
+' '           Text
+'size'        Name
+']'           Punctuation
+'\n        '  Text
+'f'           Name
+' '           Text
+'x'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'Known'       Keyword.Type
+' '           Text
+'x'           Name
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'{'           Name.Builtin
+'\\tt'        Keyword
+' makeSudoku' Text
+'}'           Name.Builtin
+' makes a '   Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' Sudoku'     Text
+'}'           Name.Builtin
+" value from a list of numbers. The given matrix must be square and have dimensions\nthat are a perfect square. The possible values for each cell range from 1 to the dimension of the square with ``0''\nrepresenting unknown values." Text
+'\\footnote'  Keyword
+'{'           Name.Builtin
+"The rest of the code doesn't depend on any of this weird ``0'' is unknown\nrepresentation. In fact, it doesn't depend on numeric values at all. ``0'' is just used here because it makes\nrepresenting grids in Haskell source code easier." Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'eliminate'   Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Eq'          Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Maybe'       Keyword.Type
+' '           Text
+'('           Punctuation
+'Sudoku'      Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+'\n'          Text
+
+'eliminate'   Name.Function
+' '           Text
+'('           Punctuation
+'Sudoku'      Keyword.Type
+' '           Text
+'grid'        Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'fmap'        Name
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'$'           Operator
+' '           Text
+'updateGrid'  Name
+' '           Text
+'grid'        Name
+' '           Text
+'changes'     Name
+' '           Text
+'>>='         Operator
+' '           Text
+'sanitize'    Name
+'\n    '      Text
+'where'       Keyword.Reserved
+'\n        '  Text
+'changes'     Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'concatMap'   Name
+' '           Text
+'findChange'  Name
+' '           Text
+'$'           Operator
+' '           Text
+'assocs'      Name
+' '           Text
+'grid'        Name
+'\n        '  Text
+'findChange'  Name
+' '           Text
+'('           Punctuation
+'l'           Name
+','           Punctuation
+'Unknown'     Keyword.Type
+' '           Text
+'xs'          Name
+')'           Punctuation
+' \n            ' Text
+'='           Operator.Word
+' '           Text
+'map'         Name
+' '           Text
+'('           Punctuation
+'('           Punctuation
+','           Punctuation
+')'           Punctuation
+' '           Text
+'l'           Name
+')'           Punctuation
+' \n            ' Text
+'$'           Operator
+' '           Text
+'case'        Keyword.Reserved
+' '           Text
+'filter'      Name
+' '           Text
+'('           Punctuation
+'not'         Name
+'.'           Operator
+'('           Punctuation
+'`'           Punctuation
+'elem'        Name
+'`'           Punctuation
+'impossible'  Name
+' '           Text
+'grid'        Name
+' '           Text
+'l'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'xs'          Name
+' '           Text
+'of'          Keyword.Reserved
+'\n                ' Text
+'[]'          Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'return'      Name
+' '           Text
+'Impossible'  Keyword.Type
+'\n                ' Text
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'return'      Name
+' '           Text
+'$'           Operator
+' '           Text
+'Known'       Keyword.Type
+' '           Text
+'x'           Name
+'\n                ' Text
+"xs'"         Name
+'\n                    ' Text
+'|'           Operator
+' '           Text
+"xs'"         Name
+' '           Text
+'/='          Operator
+' '           Text
+'xs'          Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'return'      Name
+' '           Text
+'$'           Operator
+' '           Text
+'Unknown'     Keyword.Type
+' '           Text
+"xs'"         Name
+'\n                    ' Text
+'|'           Operator
+' '           Text
+'otherwise'   Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'mzero'       Name
+'\n        '  Text
+'findChange'  Name
+' '           Text
+'_'           Keyword.Reserved
+' '           Text
+'='           Operator.Word
+' '           Text
+'mzero'       Name
+'\n        '  Text
+'sanitize'    Name
+' '           Text
+'grid'        Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'return'      Name
+' '           Text
+'$'           Operator
+' '           Text
+'grid'        Name
+' '           Text
+'//'          Operator
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'l'           Name
+','           Punctuation
+'Impossible'  Keyword.Type
+')'           Punctuation
+' '           Text
+'|'           Operator
+' \n            ' Text
+'('           Punctuation
+'l'           Name
+','           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'justKnowns'  Name
+' '           Text
+'changes'     Name
+','           Punctuation
+' '           Text
+'x'           Name
+' '           Text
+'`'           Punctuation
+'elem'        Name
+'`'           Punctuation
+' '           Text
+'impossible'  Name
+' '           Text
+'grid'        Name
+' '           Text
+'l'           Name
+']'           Punctuation
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\nThe '    Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' eliminate'  Text
+'}'           Name.Builtin
+" phase tries to remove possible choices for ``Unknowns'' based on ``Known'' values in the same row,\ncolumn, or box as the ``Unknown'' value. For each cell on the grid we find its ``neighbors'', that is, cells in the\nsame row, column, or box. Out of those neighbors we get a list of all the ``Known'' values. We can eliminate all of\nthese from our list of candidates for this cell. If we're lucky enough to eliminate all the candidates but one we have\na new ``Known'' value. If we're unlucky enough to have eliminates " Text
+'{'           Name.Builtin
+'\\bf'        Keyword
+' all'        Text
+'}'           Name.Builtin
+" the possible candidates we have a new\n``Impossible'' value.\n\nAfter iterating though every cell we make one more pass looking for conflicting changes. " Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' sanitize'   Text
+'}'           Name.Builtin
+" marks cells as\n``Impossible'' if we have conflicting ``Known'' values.\n\n" Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'analyze'     Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Eq'          Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'Maybe'       Keyword.Type
+' '           Text
+'('           Punctuation
+'Sudoku'      Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+'\n'          Text
+
+'analyze'     Name.Function
+' '           Text
+'('           Punctuation
+'Sudoku'      Keyword.Type
+' '           Text
+'grid'        Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'fmap'        Name
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'$'           Operator
+' '           Text
+'updateGrid'  Name
+' '           Text
+'grid'        Name
+' '           Text
+'$'           Operator
+' '           Text
+'nub'         Name
+' '           Text
+'['           Punctuation
+'u'           Name
+' '           Text
+'|'           Operator
+'\n            ' Text
+'f'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'map'         Name
+' '           Text
+'('           Punctuation
+'$'           Operator
+'grid'        Name
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'getRow'      Name
+','           Punctuation
+'getCol'      Name
+','           Punctuation
+'getBox'      Name
+']'           Punctuation
+','           Punctuation
+'\n            ' Text
+'n'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'size'        Name
+' '           Text
+'grid'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n            ' Text
+'u'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'unique'      Name
+' '           Text
+'('           Punctuation
+'f'           Name
+' '           Text
+'n'           Name
+')'           Punctuation
+']'           Punctuation
+'\n    '      Text
+'where'       Keyword.Reserved
+'\n        '  Text
+'unique'      Name
+' '           Text
+'xs'          Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'foldr'       Name
+' '           Text
+'f'           Name
+' '           Text
+'[]'          Keyword.Type
+' '           Text
+'$'           Operator
+' '           Text
+'foldr'       Name
+' '           Text
+'('           Punctuation
+'union'       Name
+'.'           Operator
+'snd'         Name
+')'           Punctuation
+' '           Text
+'[]'          Keyword.Type
+' '           Text
+'unknowns'    Name
+' '           Text
+'\\\\'        Operator
+' '           Text
+'map'         Name
+' '           Text
+'snd'         Name
+' '           Text
+'('           Punctuation
+'justKnowns'  Name
+' '           Text
+'xs'          Name
+')'           Punctuation
+'\n            ' Text
+'where'       Keyword.Reserved
+'\n                ' Text
+'unknowns'    Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'justUnknowns' Name
+' '           Text
+'xs'          Name
+'\n                ' Text
+'f'           Name
+' '           Text
+'c'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'case'        Keyword.Reserved
+' '           Text
+'filter'      Name
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'c'           Name
+'`'           Punctuation
+'elem'        Name
+'`'           Punctuation
+')'           Punctuation
+'.'           Operator
+'snd'         Name
+')'           Punctuation
+' '           Text
+'unknowns'    Name
+' '           Text
+'of'          Keyword.Reserved
+'\n                    ' Text
+'['           Punctuation
+'('           Punctuation
+'p'           Name
+','           Punctuation
+'_'           Keyword.Reserved
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'p'           Name
+','           Punctuation
+'Known'       Keyword.Type
+' '           Text
+'c'           Name
+')'           Punctuation
+':'           Keyword.Type
+')'           Punctuation
+'\n                    ' Text
+'_'           Keyword.Reserved
+' '           Text
+'->'          Operator.Word
+' '           Text
+'id'          Name
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\nThe '    Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' analyze'    Text
+'}'           Name.Builtin
+" phase tries to turn ``Unknowns'' into ``Knowns'' when a certain ``Unknown'' is the only cell that\ncontains a value needed in a given row, column, or box. We apply each of the functions " Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' getRow'     Text
+'}'           Name.Builtin
+', '          Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' getCol'     Text
+'}'           Name.Builtin
+', and\n'     Text
+
+'{'           Name.Builtin
+'\\tt'        Keyword
+' getBox'     Text
+'}'           Name.Builtin
+' to all the indices on the grid, apply ' Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' unique'     Text
+'}'           Name.Builtin
+' to each group, and update the array with the\nresults. ' Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' unique'     Text
+'}'           Name.Builtin
+'  gets a list of all  the unknown cells in the group and finds all the unknown values in each of\nthose cells. Each of these values are iterated though looking for a value that is only contained in one cell. If such a\nvalue is found the cell containing it must be that value.\n\n' Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'backtrack'   Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'('           Punctuation
+'MonadPlus'   Keyword.Type
+' '           Text
+'m'           Name
+','           Punctuation
+' '           Text
+'Eq'          Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'m'           Name
+' '           Text
+'('           Punctuation
+'Sudoku'      Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+'\n'          Text
+
+'backtrack'   Name.Function
+' '           Text
+'('           Punctuation
+'Sudoku'      Keyword.Type
+' '           Text
+'grid'        Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'case'        Keyword.Reserved
+' '           Text
+'('           Punctuation
+'justUnknowns' Name
+' '           Text
+'('           Punctuation
+'assocs'      Name
+' '           Text
+'grid'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'of'          Keyword.Reserved
+'\n    '      Text
+'[]'          Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'return'      Name
+' '           Text
+'$'           Operator
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'grid'        Name
+'\n    '      Text
+'('           Punctuation
+'('           Punctuation
+'p'           Name
+','           Punctuation
+'xs'          Name
+')'           Punctuation
+':'           Keyword.Type
+'_'           Keyword.Reserved
+')'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'msum'        Name
+' '           Text
+'$'           Operator
+' '           Text
+'map'         Name
+' '           Text
+'('           Punctuation
+'\\'          Name.Function
+'x'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'solve'       Name
+' '           Text
+'$'           Operator
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'$'           Operator
+' '           Text
+'grid'        Name
+' '           Text
+'//'          Operator
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'p'           Name
+','           Punctuation
+'Known'       Keyword.Type
+' '           Text
+'x'           Name
+')'           Punctuation
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'xs'          Name
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+"\n\nSometimes the above two phases still aren't enough to solve a puzzle. For these rare puzzles backtracking is required.\nWe attempt to solve the puzzle by replacing the first ``Unknown'' value with each of the candidate values and solving\nthe resulting puzzles. Hopefully at least one of our choices will result in a solvable puzzle.\n\nWe could actually solve any puzzle using backtracking alone, although this would be very inefficient. The above\nfunctions simplify most puzzles enough that the backtracking phase has to do hardly any work.\n\n" Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'solve'       Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'('           Punctuation
+'MonadPlus'   Keyword.Type
+' '           Text
+'m'           Name
+','           Punctuation
+' '           Text
+'Eq'          Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'m'           Name
+' '           Text
+'('           Punctuation
+'Sudoku'      Keyword.Type
+' '           Text
+'a'           Name
+')'           Punctuation
+'\n'          Text
+
+'solve'       Name.Function
+' '           Text
+'sudoku'      Name
+' '           Text
+'='           Operator.Word
+' \n    '     Text
+'case'        Keyword.Reserved
+' '           Text
+'eliminate'   Name
+' '           Text
+'sudoku'      Name
+' '           Text
+'of'          Keyword.Reserved
+'\n        '  Text
+'Just'        Keyword.Type
+' '           Text
+'new'         Name
+' \n            ' Text
+'|'           Operator
+' '           Text
+'any'         Name
+' '           Text
+'('           Punctuation
+'=='          Operator
+'Impossible'  Keyword.Type
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'elems'       Name
+' '           Text
+'('           Punctuation
+'unSudoku'    Name
+' '           Text
+'new'         Name
+')'           Punctuation
+')'           Punctuation
+'->'          Operator.Word
+' '           Text
+'mzero'       Name
+'\n            ' Text
+'|'           Operator
+' '           Text
+'otherwise'   Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'solve'       Name
+' '           Text
+'new'         Name
+'\n        '  Text
+'Nothing'     Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'case'        Keyword.Reserved
+' '           Text
+'analyze'     Name
+' '           Text
+'sudoku'      Name
+' '           Text
+'of'          Keyword.Reserved
+'\n            ' Text
+'Just'        Keyword.Type
+' '           Text
+'new'         Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'solve'       Name
+' '           Text
+'new'         Name
+'\n            ' Text
+'Nothing'     Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'backtrack'   Name
+' '           Text
+'sudoku'      Name
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'{'           Name.Builtin
+'\\tt'        Keyword
+' solve'      Text
+'}'           Name.Builtin
+' glues all the above phases together. First we run the ' Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' eliminate'  Text
+'}'           Name.Builtin
+' phase. If that found the puzzle  to\nbe unsolvable we abort immediately. If ' Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' eliminate'  Text
+'}'           Name.Builtin
+' changed the grid we go though the ' Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' eliminate'  Text
+'}'           Name.Builtin
+' phase again\nhoping to eliminate more. Once ' Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' eliminate'  Text
+'}'           Name.Builtin
+' can do no more work we move on to the ' Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' analyze'    Text
+'}'           Name.Builtin
+' phase. If this\nsucceeds in doing some work we start over again with the ' Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' eliminate'  Text
+'}'           Name.Builtin
+' phase. Once ' Text
+'{'           Name.Builtin
+'\\tt'        Keyword
+' analyze'    Text
+'}'           Name.Builtin
+" can do no more work\nwe have no choice but to resort to backtracking. (However in most cases backtracking won't actually do anything because\nthe puzzle is already solved.)\n\n" Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'showsCell'   Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Show'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'CellState'   Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'ShowS'       Keyword.Type
+'\n'          Text
+
+'showsCell'   Name.Function
+' '           Text
+'('           Punctuation
+'Known'       Keyword.Type
+' '           Text
+'x'           Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'shows'       Name
+' '           Text
+'x'           Name
+'\n'          Text
+
+'showsCell'   Name.Function
+' '           Text
+'('           Punctuation
+'Impossible'  Keyword.Type
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'showChar'    Name
+' '           Text
+"'X'"         Literal.String.Char
+'\n'          Text
+
+'showsCell'   Name.Function
+' '           Text
+'('           Punctuation
+'Unknown'     Keyword.Type
+' '           Text
+'xs'          Name
+')'           Punctuation
+' '           Text
+'='           Operator.Word
+' '           Text
+'\\'          Name.Function
+'rest'        Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'('           Punctuation
+"'('"         Literal.String.Char
+':'           Keyword.Type
+')'           Punctuation
+' \n                       ' Text
+'$'           Operator
+' '           Text
+'foldr'       Name
+' '           Text
+'id'          Name
+' '           Text
+'('           Punctuation
+"')'"         Literal.String.Char
+':'           Keyword.Type
+'rest'        Name
+')'           Punctuation
+'\n                       ' Text
+'$'           Operator
+' '           Text
+'intersperse' Name
+' '           Text
+'('           Punctuation
+'showChar'    Name
+' '           Text
+"' '"         Literal.String.Char
+')'           Punctuation
+'\n                       ' Text
+'$'           Operator
+' '           Text
+'map'         Name
+' '           Text
+'shows'       Name
+' '           Text
+'xs'          Name
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'{'           Name.Builtin
+'\\tt'        Keyword
+' showCell'   Text
+'}'           Name.Builtin
+' shows a cell.\n\n' Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'showsGrid'   Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Show'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'Grid'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'ShowS'       Keyword.Type
+'\n'          Text
+
+'showsGrid'   Name.Function
+' '           Text
+'grid'        Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'showsTable'  Name
+' '           Text
+'['           Punctuation
+'['           Punctuation
+'grid'        Name
+'!'           Operator
+'('           Punctuation
+'r'           Name
+','           Punctuation
+'c'           Name
+')'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'c'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'size'        Name
+' '           Text
+'grid'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+' '           Text
+'|'           Operator
+' '           Text
+'r'           Name
+' '           Text
+'<-'          Operator.Word
+' '           Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'size'        Name
+' '           Text
+'grid'        Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'{'           Name.Builtin
+'\\tt'        Keyword
+' showGrid'   Text
+'}'           Name.Builtin
+' show a grid.\n\n' Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'-- FEATURE: This is pretty inefficient' Comment.Single
+'\n'          Text
+
+'showsTable'  Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Show'        Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'['           Punctuation
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+']'           Punctuation
+' '           Text
+'->'          Operator.Word
+' '           Text
+'ShowS'       Keyword.Type
+'\n'          Text
+
+'showsTable'  Name.Function
+' '           Text
+'xs'          Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Punctuation
+'showChar'    Name
+' '           Text
+"'\\"         Keyword.Type
+"n'"          Name
+' '           Text
+'.'           Operator
+')'           Punctuation
+' '           Text
+'$'           Operator
+' '           Text
+'showString'  Name
+' '           Text
+'$'           Operator
+' '           Text
+'unlines'     Name
+' '           Text
+'$'           Operator
+' '           Text
+'map'         Name
+' '           Text
+'('           Punctuation
+'concat'      Name
+' '           Text
+'.'           Operator
+' '           Text
+'intersperse' Name
+' '           Text
+'"'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+"xs''"        Name
+'\n    '      Text
+'where'       Keyword.Reserved
+'\n        '  Text
+"xs'"         Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Punctuation
+'map'         Name
+'.'           Operator
+'map'         Name
+')'           Punctuation
+' '           Text
+'show'        Name
+' '           Text
+'xs'          Name
+'\n        '  Text
+'colWidths'   Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'map'         Name
+' '           Text
+'('           Punctuation
+'max'         Name
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'.'           Operator
+' '           Text
+'maximum'     Name
+' '           Text
+'.'           Operator
+' '           Text
+'map'         Name
+' '           Text
+'length'      Name
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'transpose'   Name
+' '           Text
+"xs'"         Name
+')'           Punctuation
+'\n        '  Text
+"xs''"        Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'map'         Name
+' '           Text
+'('           Punctuation
+'zipWith'     Name
+' '           Text
+'('           Punctuation
+'\\'          Name.Function
+'n'           Name
+' '           Text
+'s'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'s'           Name
+' '           Text
+'++'          Operator
+' '           Text
+'('           Punctuation
+'replicate'   Name
+' '           Text
+'('           Punctuation
+'n'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'length'      Name
+' '           Text
+'s'           Name
+')'           Punctuation
+' '           Text
+"' '"         Literal.String.Char
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'colWidths'   Name
+')'           Punctuation
+' '           Text
+"xs'"         Name
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'{'           Name.Builtin
+'\\tt'        Keyword
+' showsTable' Text
+'}'           Name.Builtin
+' shows a table (or matrix). Every column has the same width so things line up.\n\n' Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'intSqrt'     Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Integral'    Keyword.Type
+' '           Text
+'a'           Name
+' '           Text
+'=>'          Operator.Word
+' '           Text
+'a'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'a'           Name
+'\n'          Text
+
+'intSqrt'     Name.Function
+' '           Text
+'n'           Name
+'\n    '      Text
+'|'           Operator
+' '           Text
+'n'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'='           Operator.Word
+' '           Text
+'error'       Name.Exception
+' '           Text
+'"'           Literal.String
+'intSqrt: negative n' Literal.String
+'"'           Literal.String
+'\n    '      Text
+'|'           Operator
+' '           Text
+'otherwise'   Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'f'           Name
+' '           Text
+'n'           Name
+'\n    '      Text
+'where'       Keyword.Reserved
+'\n        '  Text
+'f'           Name
+' '           Text
+'x'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'if'          Keyword.Reserved
+' '           Text
+'y'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'then'        Keyword.Reserved
+' '           Text
+'f'           Name
+' '           Text
+'y'           Name
+' '           Text
+'else'        Keyword.Reserved
+' '           Text
+'x'           Name
+'\n            ' Text
+'where'       Keyword.Reserved
+' '           Text
+'y'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'('           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'n'           Name
+' '           Text
+'`'           Punctuation
+'quot'        Name
+'`'           Punctuation
+' '           Text
+'x'           Name
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'`'           Punctuation
+'quot'        Name
+'`'           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'{'           Name.Builtin
+'\\tt'        Keyword
+' intSqrt'    Text
+'}'           Name.Builtin
+' is Newton`s Iteration for finding integral square roots.\n\n' Text
+
+'\\ignore'    Keyword
+'{'           Name.Builtin
+'\n'          Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'test'        Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'test'        Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'makeSudoku'  Name
+' '           Text
+'['           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+'\n\n'        Text
+
+'test2'       Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'test2'       Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'makeSudoku'  Name
+' '           Text
+'['           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+'\n\n'        Text
+
+'testSmall'   Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'testSmall'   Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'makeSudoku'  Name
+' '           Text
+'['           Punctuation
+'\n    '      Text
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+'\n\n'        Text
+
+'testHard'    Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'testHard'    Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'makeSudoku'  Name
+' '           Text
+'['           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+'\n\n'        Text
+
+'testHard2'   Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'testHard2'   Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'makeSudoku'  Name
+' '           Text
+'['           Punctuation
+'\n    '      Text
+'['           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+'\n\n'        Text
+
+'testHW'      Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'testHW'      Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'makeSudoku'  Name
+' '           Text
+'['           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'    \n    '  Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'8'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text
+'['           Punctuation
+'6'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'9'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+'\n\n'        Text
+
+'testTough'   Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'Int'         Keyword.Type
+'\n'          Text
+
+'testTough'   Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'makeSudoku'  Name
+' '           Text
+'$'           Operator
+' '           Text
+'map'         Name
+' '           Text
+'('           Punctuation
+'map'         Name
+' '           Text
+'read'        Name
+' '           Text
+'.'           Operator
+' '           Text
+'words'       Name
+')'           Punctuation
+' '           Text
+'$'           Operator
+' '           Text
+'lines'       Name
+' '           Text
+'$'           Operator
+'\n '         Text
+'"'           Literal.String
+'8 3 0  0 0 0  0 4 6' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n '         Text
+'"'           Literal.String
+'0 2 0  1 0 4  0 3 0' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n '         Text
+'"'           Literal.String
+'0 0 0  0 0 0  0 0 0' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n '         Text
+'"'           Literal.String
+'0 0 2  9 0 6  5 0 0' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n '         Text
+'"'           Literal.String
+'1 4 0  0 0 0  0 2 3' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n '         Text
+'"'           Literal.String
+'0 0 5  4 0 3  1 0 0' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n '         Text
+'"'           Literal.String
+'0 0 0  0 0 0  0 0 0' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n '         Text
+'"'           Literal.String
+'0 6 0  3 0 8  0 7 0' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n '         Text
+'"'           Literal.String
+'9 5 0  0 0 0  0 6 2' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'\n\n'        Text
+
+'testDiabolical' Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'Sudoku'      Keyword.Type
+' '           Text
+'Int'         Keyword.Type
+' \n'         Text
+
+'testDiabolical' Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'makeSudoku'  Name
+' '           Text
+'$'           Operator
+' '           Text
+'map'         Name
+' '           Text
+'('           Punctuation
+'map'         Name
+' '           Text
+'read'        Name
+' '           Text
+'.'           Operator
+' '           Text
+'words'       Name
+')'           Punctuation
+' '           Text
+'$'           Operator
+' '           Text
+'lines'       Name
+' '           Text
+'$'           Operator
+'\n  '        Text
+'"'           Literal.String
+'8 0 0  7 0 1  0 0 2' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n  '        Text
+'"'           Literal.String
+'0 0 6  0 0 0  7 0 0' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n  '        Text
+'"'           Literal.String
+'0 1 7  0 0 0  8 9 0' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n  '        Text
+'"'           Literal.String
+'0 0 0  1 7 3  0 0 0' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n  '        Text
+'"'           Literal.String
+'7 0 0  0 0 0  0 0 6' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n  '        Text
+'"'           Literal.String
+'0 0 0  9 5 6  0 0 0' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n  '        Text
+'"'           Literal.String
+'0 9 5  0 0 0  4 1 0' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n  '        Text
+'"'           Literal.String
+'0 0 8  0 0 0  5 0 0' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'++'          Operator
+'\n  '        Text
+'"'           Literal.String
+'3 0 0  6 0 5  0 0 7' Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'"'           Literal.String
+'\n\n'        Text
+
+'main'        Name.Function
+' '           Text
+'::'          Operator.Word
+' '           Text
+'IO'          Keyword.Type
+' '           Text
+'()'          Name.Builtin
+'\n'          Text
+
+'main'        Name.Function
+' '           Text
+'='           Operator.Word
+' '           Text
+'do'          Keyword.Reserved
+'\n    '      Text
+'let'         Keyword.Reserved
+'\n        '  Text
+"solve'"      Name
+' '           Text
+'p'           Name
+' '           Text
+'='           Operator.Word
+' '           Text
+'case'        Keyword.Reserved
+' '           Text
+'solve'       Name
+' '           Text
+'p'           Name
+' '           Text
+'of'          Keyword.Reserved
+'\n            ' Text
+'[]'          Keyword.Type
+' '           Text
+'->'          Operator.Word
+' '           Text
+'fail'        Name
+' '           Text
+'$'           Operator
+' '           Text
+'"'           Literal.String
+"couldn't solve: " Literal.String
+'"'           Literal.String
+' '           Text
+'++'          Operator
+' '           Text
+'show'        Name
+' '           Text
+'p'           Name
+'\n            ' Text
+'sols'        Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+'return'      Name
+' '           Text
+'sols'        Name
+'\n    '      Text
+'mapM_'       Name
+' '           Text
+'('           Punctuation
+'\\'          Name.Function
+'p'           Name
+' '           Text
+'->'          Operator.Word
+' '           Text
+"solve'"      Name
+' '           Text
+'p'           Name
+' '           Text
+'>>='         Operator
+' '           Text
+'putStrLn'    Name
+'.'           Operator
+'show'        Name
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'test'        Name
+','           Punctuation
+'test2'       Name
+','           Punctuation
+'testSmall'   Name
+','           Punctuation
+'testHard'    Name
+','           Punctuation
+'testHard2'   Name
+','           Punctuation
+'testHW'      Name
+','           Punctuation
+'testTough'   Name
+','           Punctuation
+'testDiabolical' Name
+']'           Punctuation
+'\n    '      Text
+'return'      Name
+' '           Text
+'()'          Name.Builtin
+'\n\n'        Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'}'           Name.Builtin
+'\n\n'        Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'document'    Text
+'}'           Name.Builtin
+'\n'          Text

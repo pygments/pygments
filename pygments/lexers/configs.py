@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.configs
     ~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for configuration file formats.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,7 +21,7 @@ __all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
            'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
            'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer',
-           'SingularityLexer']
+           'NestedTextLexer', 'SingularityLexer']
 
 
 class IniLexer(RegexLexer):
@@ -40,7 +39,7 @@ class IniLexer(RegexLexer):
             (r'\s+', Text),
             (r'[;#].*', Comment.Single),
             (r'\[.*?\]$', Keyword),
-            (r'(.*?)([ \t]*)(=)([ \t]*)(.*(?:\n[ \t].+)*)',
+            (r'(.*?)([ \t]*)(=)([ \t]*)([^\t\n]*)',
              bygroups(Name.Attribute, Text, Operator, Text, String)),
             # standalone option, supported by some INI parsers
             (r'(.+?)$', Name.Attribute),
@@ -302,8 +301,10 @@ class ApacheConfLexer(RegexLexer):
         'root': [
             (r'\s+', Text),
             (r'#(.*\\\n)+.*$|(#.*?)$', Comment),
-            (r'(<[^\s>]+)(?:(\s+)(.*))?(>)',
+            (r'(<[^\s>/][^\s>]*)(?:(\s+)(.*))?(>)',
              bygroups(Name.Tag, Text, String, Name.Tag)),
+            (r'(</[^\s>]+)(>)',
+             bygroups(Name.Tag, Name.Tag)),
             (r'[a-z]\w*', Name.Builtin, 'value'),
             (r'\.+', Text),
         ],
@@ -348,7 +349,7 @@ class SquidConfLexer(RegexLexer):
         "cache_effective_user", "cache_host", "cache_host_acl",
         "cache_host_domain", "cache_log", "cache_mem", "cache_mem_high",
         "cache_mem_low", "cache_mgr", "cachemgr_passwd", "cache_peer",
-        "cache_peer_access", "cahce_replacement_policy", "cache_stoplist",
+        "cache_peer_access", "cache_replacement_policy", "cache_stoplist",
         "cache_stoplist_pattern", "cache_store_log", "cache_swap",
         "cache_swap_high", "cache_swap_log", "cache_swap_low", "client_db",
         "client_lifetime", "client_netmask", "connect_timeout", "coredump_dir",
@@ -909,7 +910,7 @@ class TOMLLexer(RegexLexer):
             (r'\s+', Text),
             (r'#.*?$', Comment.Single),
             # Basic string
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             # Literal string
             (r'\'\'\'(.*)\'\'\'', String),
             (r'\'[^\']*\'', String),
@@ -939,6 +940,31 @@ class TOMLLexer(RegexLexer):
         ]
     }
 
+class NestedTextLexer(RegexLexer):
+    """
+    Lexer for `NextedText <https://nestedtext.org>`_, a human-friendly data 
+    format.
+    
+    .. versionadded:: 2.9
+    """
+
+    name = 'NestedText'
+    aliases = ['nestedtext', 'nt']
+    filenames = ['*.nt']
+
+    _quoted_dict_item = r'^(\s*)({0})(.*?)({0}: ?)(.*?)(\s*)$'
+
+    tokens = {
+        'root': [
+            (r'^(\s*)(#.*?)$', bygroups(Text, Comment)),
+            (r'^(\s*)(> ?)(.*?)(\s*)$', bygroups(Text, Punctuation, String, Whitespace)),
+            (r'^(\s*)(- ?)(.*?)(\s*)$', bygroups(Text, Punctuation, String, Whitespace)),
+            (_quoted_dict_item.format("'"), bygroups(Text, Punctuation, Name, Punctuation, String, Whitespace)),
+            (_quoted_dict_item.format('"'), bygroups(Text, Punctuation, Name, Punctuation, String, Whitespace)),
+            (r'^(\s*)(.*?)(: ?)(.*?)(\s*)$', bygroups(Text, Name, Punctuation, String, Whitespace)),
+        ],
+    }
+        
 
 class SingularityLexer(RegexLexer):
     """

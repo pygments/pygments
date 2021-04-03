@@ -1,0 +1,478 @@
+'package'     Keyword.Namespace
+' '           Text
+'beer'        Name
+'\n'          Text
+
+'\n'          Text
+
+'import'      Keyword.Namespace
+' '           Text
+'static'      Name.Namespace
+' '           Text
+'extension'   Name
+' '           Text
+'beer'        Name
+'.'           Operator
+'BottleSupport' Name
+'.'           Operator
+'*'           Operator
+'\n'          Text
+
+'import'      Keyword.Namespace
+' '           Text
+'org.junit.Test' Name.Namespace
+'\n'          Text
+
+'\n'          Text
+
+'class'       Keyword.Declaration
+' '           Text
+'BottleSong'  Name.Class
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'@Test'       Name.Decorator
+'\n'          Text
+
+'\t'          Text
+'def'         Keyword.Declaration
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'singIt'      Name.Function
+'('           Operator
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'println'     Name
+'('           Operator
+'singTheSong' Name
+'('           Operator
+'99'          Literal.Number.Integer
+')'           Operator
+')'           Operator
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
+'def'         Keyword.Declaration
+' '           Text
+'singTheSong' Name.Function
+'('           Operator
+'int'         Keyword.Type
+' '           Text
+'all'         Name
+')'           Operator
+' '           Text
+"'''"         Literal.String
+'\n'          Literal.String
+
+'\t'          Literal.String
+'\t'          Literal.String
+'«'           Literal.String
+'FOR'         Keyword
+' '           Text
+'i'           Name
+' '           Text
+':'           Operator
+' '           Text
+'all'         Name
+' '           Text
+'.'           Operator
+'.'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'»'           Literal.String
+'\n'          Literal.String
+
+'\t'          Literal.String
+'\t'          Literal.String
+'\t'          Literal.String
+'«'           Literal.String
+'i'           Name
+'.'           Operator
+'Bottles'     Name
+'»'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'f'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'e'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'w'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+','           Literal.String
+' '           Literal.String
+'«'           Literal.String
+'i'           Name
+'.'           Operator
+'bottles'     Name
+'»'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'f'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'e'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'.'           Literal.String
+'\n'          Literal.String
+
+'\t'          Literal.String
+'\t'          Literal.String
+'\t'          Literal.String
+'T'           Literal.String
+'a'           Literal.String
+'k'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'d'           Literal.String
+'o'           Literal.String
+'w'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+' '           Literal.String
+'p'           Literal.String
+'a'           Literal.String
+'s'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'i'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+'r'           Literal.String
+'o'           Literal.String
+'u'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+','           Literal.String
+' '           Literal.String
+'«'           Literal.String
+'('           Operator
+'i'           Name
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Operator
+'.'           Operator
+'bottles'     Name
+'»'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'f'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'e'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'w'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'.'           Literal.String
+'\n'          Literal.String
+
+'\t'          Literal.String
+'\t'          Literal.String
+'\t'          Literal.String
+'\n'          Literal.String
+
+'\t'          Literal.String
+'\t'          Literal.String
+'«'           Literal.String
+'ENDFOR'      Keyword
+'»'           Literal.String
+'\n'          Literal.String
+
+'\t'          Literal.String
+'\t'          Literal.String
+'N'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'t'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'f'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'e'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'w'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+','           Literal.String
+' '           Literal.String
+'n'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'t'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'s'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'f'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'e'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+'.'           Literal.String
+'\n'          Literal.String
+
+'\t'          Literal.String
+'\t'          Literal.String
+'G'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'o'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'a'           Literal.String
+'n'           Literal.String
+'d'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'u'           Literal.String
+'y'           Literal.String
+' '           Literal.String
+'s'           Literal.String
+'o'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'e'           Literal.String
+','           Literal.String
+' '           Literal.String
+'«'           Literal.String
+'all'         Name
+'.'           Operator
+'bottles'     Name
+'»'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'f'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'e'           Literal.String
+'e'           Literal.String
+'r'           Literal.String
+' '           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'h'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'w'           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'l'           Literal.String
+'.'           Literal.String
+'\n'          Literal.String
+
+'\t'          Literal.String
+"'''"         Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'def'         Keyword.Declaration
+' '           Text
+'private'     Keyword.Declaration
+' '           Text
+'java'        Name
+'.'           Operator
+'lang'        Name
+'.'           Operator
+'String'      Name
+' '           Text
+'bottles'     Name.Function
+'('           Operator
+'int'         Keyword.Type
+' '           Text
+'i'           Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'switch'      Keyword
+' '           Text
+'i'           Name
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t\t'      Text
+'case'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+':'           Operator
+' '           Text
+"'no more bottles'" Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'case'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+':'           Operator
+' '           Text
+"'one bottle'" Literal.String.Single
+'\n'          Text
+
+'\t\t\t'      Text
+'default'     Keyword
+' '           Text
+':'           Operator
+' '           Text
+"'''"         Literal.String
+'«'           Literal.String
+'i'           Name
+'»'           Literal.String
+' '           Literal.String
+'b'           Literal.String
+'o'           Literal.String
+'t'           Literal.String
+'t'           Literal.String
+'l'           Literal.String
+'e'           Literal.String
+'s'           Literal.String
+"'''"         Literal.String
+'\n'          Text
+
+'\t\t'        Text
+'}'           Operator
+'.'           Operator
+'toString'    Name
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
+'def'         Keyword.Declaration
+' '           Text
+'String'      Name
+' '           Text
+'Bottles'     Name.Function
+'('           Operator
+'int'         Keyword.Type
+' '           Text
+'i'           Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'bottles'     Name
+'('           Operator
+'i'           Name
+')'           Operator
+'.'           Operator
+'toFirstUpper' Name
+'\n'          Text
+
+'\t'          Text
+'}'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text

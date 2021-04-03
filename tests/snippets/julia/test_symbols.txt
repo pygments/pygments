@@ -1,0 +1,78 @@
+# Tests that symbols are parsed as special literals
+
+---input---
+:abc_123
+:abc_def
+:α
+Val{:mysymbol}
+
+# non-symbols
+a:b
+1:b
+1.:b
+a::T
+a<:T
+a>:T
+UInt(1):UInt(2)
+
+---tokens---
+':abc_123'    Literal.String.Symbol
+'\n'          Text
+
+':abc_def'    Literal.String.Symbol
+'\n'          Text
+
+':α'          Literal.String.Symbol
+'\n'          Text
+
+'Val'         Keyword.Type
+'{'           Punctuation
+':mysymbol'   Literal.String.Symbol
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'# non-symbols' Comment
+'\n'          Text
+
+'a'           Name
+':'           Operator
+'b'           Name
+'\n'          Text
+
+'1'           Literal.Number.Integer
+':'           Operator
+'b'           Name
+'\n'          Text
+
+'1.'          Literal.Number.Float
+':'           Operator
+'b'           Name
+'\n'          Text
+
+'a'           Name
+'::'          Operator
+'T'           Keyword.Type
+'\n'          Text
+
+'a'           Keyword.Type
+'<:'          Operator
+'T'           Keyword.Type
+'\n'          Text
+
+'a'           Keyword.Type
+'>:'          Operator
+'T'           Keyword.Type
+'\n'          Text
+
+'UInt'        Keyword.Type
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+':'           Operator
+'UInt'        Keyword.Type
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text

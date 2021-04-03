@@ -1,0 +1,2052 @@
+'[2f1dd6c3b8b7] {jit-log-opt-loop' Keyword
+'\n'          Text
+
+'# Loop 0 (<Function object at 0xb720e550> ds1dr4 dsdr3 ds1dr4) : loop with 115 ops' Comment
+'\n'          Text
+
+'['           Punctuation
+'p0'          Name
+','           Punctuation
+' '           Text
+'p1'          Name
+']'           Punctuation
+'\n'          Text
+
+'+33: '       Comment
+'label'       Name.Class
+'('           Punctuation
+'p0'          Name
+','           Punctuation
+' '           Text
+'p1'          Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'TargetToken' Name
+'('           Punctuation
+'-1223434224' Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'<Function object at 0xb710b120> ds1dr4 dsdr3 ds1dr4'" Literal.String
+')'           Punctuation
+'\n'          Text
+
+'+33: '       Comment
+'guard_nonnull_class' Name.Builtin
+'('           Punctuation
+'p1'          Name
+','           Punctuation
+' '           Text
+'138371488'   Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard2>'    Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p1'          Name
+','           Punctuation
+' '           Text
+'p0'          Name
+']'           Punctuation
+'\n'          Text
+
+'+54: '       Comment
+'p3'          Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc_pure' Name.Builtin
+'('           Punctuation
+'p1'          Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Substitution.inst_rhs 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+57: '       Comment
+'guard_value' Name.Builtin
+'('           Punctuation
+'p3'          Name
+','           Punctuation
+' '           Text
+'ConstPtr'    Name
+'('           Punctuation
+'ptr4'        Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard3>'    Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p1'          Name
+','           Punctuation
+' '           Text
+'p0'          Name
+','           Punctuation
+' '           Text
+'p3'          Name
+']'           Punctuation
+'\n'          Text
+
+'+69: '       Comment
+'p5'          Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc_pure' Name.Builtin
+'('           Punctuation
+'p1'          Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Substitution.inst_subst 12>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+72: '       Comment
+'p7'          Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getarrayitem_gc' Name.Builtin
+'('           Punctuation
+'p5'          Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<ArrayP 4>'  Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+75: '       Comment
+'guard_class' Name.Builtin
+'('           Punctuation
+'p7'          Name
+','           Punctuation
+' '           Text
+'138371552'   Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard4>'    Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p0'          Name
+','           Punctuation
+' '           Text
+'p5'          Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'+88: '       Comment
+'p9'          Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc' Name.Builtin
+'('           Punctuation
+'p7'          Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Thunk.inst_application 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+91: '       Comment
+'guard_nonnull_class' Name.Builtin
+'('           Punctuation
+'p9'          Name
+','           Punctuation
+' '           Text
+'138373024'   Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard5>'    Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p0'          Name
+','           Punctuation
+' '           Text
+'p5'          Name
+','           Punctuation
+' '           Text
+'p7'          Name
+','           Punctuation
+' '           Text
+'p9'          Name
+']'           Punctuation
+'\n'          Text
+
+'+109: '      Comment
+'p12'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getarrayitem_gc' Name.Builtin
+'('           Punctuation
+'p5'          Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<ArrayP 4>'  Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+112: '      Comment
+'guard_class' Name.Builtin
+'('           Punctuation
+'p12'         Name
+','           Punctuation
+' '           Text
+'138371552'   Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard6>'    Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p0'          Name
+','           Punctuation
+' '           Text
+'p5'          Name
+','           Punctuation
+' '           Text
+'p12'         Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'+125: '      Comment
+'p14'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc' Name.Builtin
+'('           Punctuation
+'p12'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Thunk.inst_application 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+128: '      Comment
+'guard_nonnull_class' Name.Builtin
+'('           Punctuation
+'p14'         Name
+','           Punctuation
+' '           Text
+'138373024'   Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard7>'    Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p0'          Name
+','           Punctuation
+' '           Text
+'p5'          Name
+','           Punctuation
+' '           Text
+'p12'         Name
+','           Punctuation
+' '           Text
+'p14'         Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'+146: '      Comment
+'p16'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc_pure' Name.Builtin
+'('           Punctuation
+'p9'          Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application.inst_function 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+149: '      Comment
+'guard_value' Name.Builtin
+'('           Punctuation
+'p16'         Name
+','           Punctuation
+' '           Text
+'ConstPtr'    Name
+'('           Punctuation
+'ptr17'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard8>'    Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p16'         Name
+','           Punctuation
+' '           Text
+'p9'          Name
+','           Punctuation
+' '           Text
+'p0'          Name
+','           Punctuation
+' '           Text
+'p12'         Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'+161: '      Comment
+'p18'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc_pure' Name.Builtin
+'('           Punctuation
+'p9'          Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application3.inst_arg0 12>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+164: '      Comment
+'guard_class' Name.Builtin
+'('           Punctuation
+'p18'         Name
+','           Punctuation
+' '           Text
+'138371648'   Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard9>'    Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p18'         Name
+','           Punctuation
+' '           Text
+'p9'          Name
+','           Punctuation
+' '           Text
+'p0'          Name
+','           Punctuation
+' '           Text
+'p12'         Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'+177: '      Comment
+'p20'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc_pure' Name.Builtin
+'('           Punctuation
+'p9'          Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application3.inst_arg1 16>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+180: '      Comment
+'guard_class' Name.Builtin
+'('           Punctuation
+'p20'         Name
+','           Punctuation
+' '           Text
+'138371648'   Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard10>'   Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p20'         Name
+','           Punctuation
+' '           Text
+'p9'          Name
+','           Punctuation
+' '           Text
+'p18'         Name
+','           Punctuation
+' '           Text
+'p0'          Name
+','           Punctuation
+' '           Text
+'p12'         Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'+193: '      Comment
+'p22'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc_pure' Name.Builtin
+'('           Punctuation
+'p9'          Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application3.inst_arg2 20>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+196: '      Comment
+'guard_class' Name.Builtin
+'('           Punctuation
+'p22'         Name
+','           Punctuation
+' '           Text
+'138371936'   Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard11>'   Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p22'         Name
+','           Punctuation
+' '           Text
+'p9'          Name
+','           Punctuation
+' '           Text
+'p20'         Name
+','           Punctuation
+' '           Text
+'p18'         Name
+','           Punctuation
+' '           Text
+'p0'          Name
+','           Punctuation
+' '           Text
+'p12'         Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'+209: '      Comment
+'p24'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc_pure' Name.Builtin
+'('           Punctuation
+'p22'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application.inst_function 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+215: '      Comment
+'guard_value' Name.Builtin
+'('           Punctuation
+'p24'         Name
+','           Punctuation
+' '           Text
+'ConstPtr'    Name
+'('           Punctuation
+'ptr25'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard12>'   Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p24'         Name
+','           Punctuation
+' '           Text
+'p22'         Name
+','           Punctuation
+' '           Text
+'p9'          Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'p0'          Name
+','           Punctuation
+' '           Text
+'p12'         Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'+227: '      Comment
+'p27'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc_pure' Name.Builtin
+'('           Punctuation
+'p22'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application1.inst_arg0 12>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+230: '      Comment
+'guard_class' Name.Builtin
+'('           Punctuation
+'p27'         Name
+','           Punctuation
+' '           Text
+'138371648'   Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard13>'   Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p22'         Name
+','           Punctuation
+' '           Text
+'p27'         Name
+','           Punctuation
+' '           Text
+'p9'          Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'p0'          Name
+','           Punctuation
+' '           Text
+'p12'         Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'_'"         Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'+243: '      Comment
+'p30'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc' Name.Builtin
+'('           Punctuation
+'ConstPtr'    Name
+'('           Punctuation
+'ptr29'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.module.CoreMod.inst_qvars 24>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+249: '      Comment
+'i34'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'call'        Name.Builtin
+'('           Punctuation
+'ConstClass'  Name
+'('           Punctuation
+'ll_dict_lookup_trampoline__v64___simple_call__function_ll' Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'p30'         Name
+','           Punctuation
+' '           Text
+'ConstPtr'    Name
+'('           Punctuation
+'ptr32'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'360200661'   Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Calli 4 rri EF=4>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+281: '      Comment
+'guard_no_exception' Name.Builtin
+'('           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard14>'   Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p27'         Name
+','           Punctuation
+' '           Text
+'p20'         Name
+','           Punctuation
+' '           Text
+'p18'         Name
+','           Punctuation
+' '           Text
+'i34'         Name
+','           Punctuation
+' '           Text
+'p30'         Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'p0'          Name
+','           Punctuation
+' '           Text
+'p12'         Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'+294: '      Comment
+'i36'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'int_and'     Name.Builtin
+'('           Punctuation
+'i34'         Name
+','           Punctuation
+' '           Text
+'-2147483648' Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'+302: '      Comment
+'i37'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'int_is_true' Name.Builtin
+'('           Punctuation
+'i36'         Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'guard_false' Name.Builtin
+'('           Punctuation
+'i37'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard15>'   Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p27'         Name
+','           Punctuation
+' '           Text
+'p20'         Name
+','           Punctuation
+' '           Text
+'p18'         Name
+','           Punctuation
+' '           Text
+'i34'         Name
+','           Punctuation
+' '           Text
+'p30'         Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'p0'          Name
+','           Punctuation
+' '           Text
+'p12'         Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'+311: '      Comment
+'p38'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc' Name.Builtin
+'('           Punctuation
+'p30'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP dicttable.entries 12>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+314: '      Comment
+'p39'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getinteriorfield_gc' Name.Builtin
+'('           Punctuation
+'p38'         Name
+','           Punctuation
+' '           Text
+'i34'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<InteriorFieldDescr <FieldP dictentry.value 4>>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+318: '      Comment
+'i40'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'instance_ptr_eq' Name.Builtin
+'('           Punctuation
+'p18'         Name
+','           Punctuation
+' '           Text
+'p39'         Name
+')'           Punctuation
+'\n'          Text
+
+'guard_true'  Name.Builtin
+'('           Punctuation
+'i40'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard16>'   Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p27'         Name
+','           Punctuation
+' '           Text
+'p20'         Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'p0'          Name
+','           Punctuation
+' '           Text
+'p12'         Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'+327: '      Comment
+'i41'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc_pure' Name.Builtin
+'('           Punctuation
+'p20'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldS pyhaskell.interpreter.primtype.Int.inst_value 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+330: '      Comment
+'i42'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc_pure' Name.Builtin
+'('           Punctuation
+'p27'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldS pyhaskell.interpreter.primtype.Int.inst_value 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+333: '      Comment
+'i43'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'int_sub'     Name.Builtin
+'('           Punctuation
+'i41'         Name
+','           Punctuation
+' '           Text
+'i42'         Name
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'+335: '      Comment
+'i45'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'int_eq'      Name.Builtin
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'i43'         Name
+')'           Punctuation
+'\n'          Text
+
+'guard_false' Name.Builtin
+'('           Punctuation
+'i45'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard17>'   Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p0'          Name
+','           Punctuation
+' '           Text
+'i43'         Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'None'        Name
+','           Punctuation
+' '           Text
+'p12'         Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'p47'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'new_with_vtable' Name.Builtin
+'('           Punctuation
+'138371648'   Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+393: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p47'         Name
+','           Punctuation
+' '           Text
+'i43'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldS pyhaskell.interpreter.primtype.Int.inst_value 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p7'          Name
+','           Punctuation
+' '           Text
+'p47'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Thunk.inst_application 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+414: '      Comment
+'p48'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc' Name.Builtin
+'('           Punctuation
+'p12'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Thunk.inst_application 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+420: '      Comment
+'guard_nonnull_class' Name.Builtin
+'('           Punctuation
+'p48'         Name
+','           Punctuation
+' '           Text
+'138371648'   Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard18>'   Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p0'          Name
+','           Punctuation
+' '           Text
+'p48'         Name
+','           Punctuation
+' '           Text
+'p12'         Name
+','           Punctuation
+' '           Text
+'p47'         Name
+','           Punctuation
+' '           Text
+'p7'          Name
+']'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'<PrimFunction object at 0x83f3f6c> 1 <Function object at 0xb710b3b0> 1 <Function object at 0xb710b3c0> <PrimFunction object at 0x83f3f3c> 1 dsdr3 <Function object at 0xb710b210> 1'" Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'_'"         Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'<Function object at 0xb710b3d0> dsdr3 dsdr3'" Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'<Function object at 0xb710b120> ds1dr4 dsdr3 ds1dr4'" Literal.String
+')'           Punctuation
+'\n'          Text
+
+'+438: '      Comment
+'label'       Name.Class
+'('           Punctuation
+'p0'          Name
+','           Punctuation
+' '           Text
+'p48'         Name
+','           Punctuation
+' '           Text
+'p30'         Name
+','           Punctuation
+' '           Text
+'p38'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'TargetToken' Name
+'('           Punctuation
+'-1223434176' Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'<Function object at 0xb710b120> ds1dr4 dsdr3 ds1dr4'" Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'_'"         Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'+438: '      Comment
+'i50'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'call'        Name.Builtin
+'('           Punctuation
+'ConstClass'  Name
+'('           Punctuation
+'ll_dict_lookup_trampoline__v64___simple_call__function_ll' Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'p30'         Name
+','           Punctuation
+' '           Text
+'ConstPtr'    Name
+'('           Punctuation
+'ptr32'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'360200661'   Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Calli 4 rri EF=4>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+464: '      Comment
+'guard_no_exception' Name.Builtin
+'('           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard19>'   Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p48'         Name
+','           Punctuation
+' '           Text
+'i50'         Name
+','           Punctuation
+' '           Text
+'p30'         Name
+','           Punctuation
+' '           Text
+'p0'          Name
+']'           Punctuation
+'\n'          Text
+
+'+477: '      Comment
+'i51'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'int_and'     Name.Builtin
+'('           Punctuation
+'i50'         Name
+','           Punctuation
+' '           Text
+'-2147483648' Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'+485: '      Comment
+'i52'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'int_is_true' Name.Builtin
+'('           Punctuation
+'i51'         Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'guard_false' Name.Builtin
+'('           Punctuation
+'i52'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard20>'   Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p48'         Name
+','           Punctuation
+' '           Text
+'i50'         Name
+','           Punctuation
+' '           Text
+'p30'         Name
+','           Punctuation
+' '           Text
+'p0'          Name
+']'           Punctuation
+'\n'          Text
+
+'+494: '      Comment
+'p53'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getinteriorfield_gc' Name.Builtin
+'('           Punctuation
+'p38'         Name
+','           Punctuation
+' '           Text
+'i50'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<InteriorFieldDescr <FieldP dictentry.value 4>>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+501: '      Comment
+'i55'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'instance_ptr_eq' Name.Builtin
+'('           Punctuation
+'ConstPtr'    Name
+'('           Punctuation
+'ptr54'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'p53'         Name
+')'           Punctuation
+'\n'          Text
+
+'guard_true'  Name.Builtin
+'('           Punctuation
+'i55'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard21>'   Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'p48'         Name
+','           Punctuation
+' '           Text
+'p0'          Name
+']'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'+513: '      Comment
+'i56'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'getfield_gc_pure' Name.Builtin
+'('           Punctuation
+'p48'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldS pyhaskell.interpreter.primtype.Int.inst_value 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+516: '      Comment
+'i58'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'int_sub'     Name.Builtin
+'('           Punctuation
+'i56'         Name
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'+519: '      Comment
+'i59'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'int_eq'      Name.Builtin
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'i58'         Name
+')'           Punctuation
+'\n'          Text
+
+'guard_false' Name.Builtin
+'('           Punctuation
+'i59'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<Guard22>'   Name.Builtin
+')'           Punctuation
+' '           Text
+'['           Punctuation
+'i58'         Name
+','           Punctuation
+' '           Text
+'p48'         Name
+','           Punctuation
+' '           Text
+'p0'          Name
+']'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'<PrimFunction object at 0x83f3f6c> 1 <Function object at 0xb710b3b0> 1 <Function object at 0xb710b3c0> <PrimFunction object at 0x83f3f3c> 1 dsdr3 <Function object at 0xb710b210> 1'" Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'_'"         Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'None'"      Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'<Function object at 0xb710b3d0> dsdr3 dsdr3'" Literal.String
+')'           Punctuation
+'\n'          Text
+
+'debug_merge_point' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+"'<Function object at 0xb710b120> ds1dr4 dsdr3 ds1dr4'" Literal.String
+')'           Punctuation
+'\n'          Text
+
+'p61'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'new_with_vtable' Name.Builtin
+'('           Punctuation
+'138371700'   Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'p63'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'new_with_vtable' Name.Builtin
+'('           Punctuation
+'138373024'   Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'p65'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'new_with_vtable' Name.Builtin
+'('           Punctuation
+'138371936'   Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+606: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p63'         Name
+','           Punctuation
+' '           Text
+'ConstPtr'    Name
+'('           Punctuation
+'ptr66'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application.inst_function 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'p68'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'new_with_vtable' Name.Builtin
+'('           Punctuation
+'138373024'   Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+632: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p65'         Name
+','           Punctuation
+' '           Text
+'ConstPtr'    Name
+'('           Punctuation
+'ptr69'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application.inst_function 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'p71'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'new_with_vtable' Name.Builtin
+'('           Punctuation
+'138371936'   Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+658: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p68'         Name
+','           Punctuation
+' '           Text
+'ConstPtr'    Name
+'('           Punctuation
+'ptr17'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application.inst_function 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+665: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p71'         Name
+','           Punctuation
+' '           Text
+'ConstPtr'    Name
+'('           Punctuation
+'ptr72'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application1.inst_arg0 12>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+672: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p68'         Name
+','           Punctuation
+' '           Text
+'p71'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application3.inst_arg2 20>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+675: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p68'         Name
+','           Punctuation
+' '           Text
+'p48'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application3.inst_arg1 16>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+678: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p68'         Name
+','           Punctuation
+' '           Text
+'ConstPtr'    Name
+'('           Punctuation
+'ptr54'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application3.inst_arg0 12>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'p73'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'new_with_vtable' Name.Builtin
+'('           Punctuation
+'138371648'   Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+701: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p61'         Name
+','           Punctuation
+' '           Text
+'p0'          Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.StackElement.inst_next 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+716: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p61'         Name
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldS pyhaskell.interpreter.haskell.CopyStackElement.inst_index 16>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+723: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p71'         Name
+','           Punctuation
+' '           Text
+'ConstPtr'    Name
+'('           Punctuation
+'ptr25'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application.inst_function 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+730: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p65'         Name
+','           Punctuation
+' '           Text
+'p68'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application1.inst_arg0 12>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+733: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p63'         Name
+','           Punctuation
+' '           Text
+'p65'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application3.inst_arg2 20>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+736: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p63'         Name
+','           Punctuation
+' '           Text
+'ConstPtr'    Name
+'('           Punctuation
+'ptr75'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application3.inst_arg1 16>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+743: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p63'         Name
+','           Punctuation
+' '           Text
+'ConstPtr'    Name
+'('           Punctuation
+'ptr54'       Name.Builtin
+')'           Punctuation
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.Application3.inst_arg0 12>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+750: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p61'         Name
+','           Punctuation
+' '           Text
+'p63'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldP pyhaskell.interpreter.haskell.CopyStackElement.inst_application 12>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+753: '      Comment
+'setfield_gc' Name.Builtin
+'('           Punctuation
+'p73'         Name
+','           Punctuation
+' '           Text
+'i58'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'<FieldS pyhaskell.interpreter.primtype.Int.inst_value 8>' Name.Builtin
+')'           Punctuation
+'\n'          Text
+
+'+762: '      Comment
+'jump'        Name.Class
+'('           Punctuation
+'p61'         Name
+','           Punctuation
+' '           Text
+'p73'         Name
+','           Punctuation
+' '           Text
+'p30'         Name
+','           Punctuation
+' '           Text
+'p38'         Name
+','           Punctuation
+' '           Text
+'descr'       Name
+'='           Punctuation
+'TargetToken' Name
+'('           Punctuation
+'-1223434176' Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'+775: '      Comment
+'--end of the loop--' Comment
+'\n'          Text
+
+'[2f1dd6da3b99] jit-log-opt-loop}' Keyword
+'\n'          Text

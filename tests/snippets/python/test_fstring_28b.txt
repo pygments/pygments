@@ -1,0 +1,11 @@
+---input---
+f"{foo=!s}"
+
+---tokens---
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'{'           Literal.String.Interpol
+'foo'         Name
+'=!s}'        Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text

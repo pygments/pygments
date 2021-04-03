@@ -12,7 +12,6 @@ source code.  Highlights are:
 * a number of output formats is available, among them HTML, RTF, LaTeX and ANSI
   sequences
 * it is usable as a command-line tool and as a library
-* ... and it highlights even Perl 6!
 
 Read more in the :doc:`FAQ list <faq>` or the :doc:`documentation <docs/index>`,
 or `download the latest release <https://pypi.python.org/pypi/Pygments>`_.

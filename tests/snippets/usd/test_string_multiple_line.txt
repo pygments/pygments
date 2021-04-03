@@ -1,0 +1,20 @@
+---input---
+"""
+Some text multiline
+"""
+
+"""Some text multiline
+"""
+
+"""
+Some text multiline"""
+
+---tokens---
+'"""\nSome text multiline\n"""' Literal.String
+'\n\n'        Text.Whitespace
+
+'"""Some text multiline\n"""' Literal.String
+'\n\n'        Text.Whitespace
+
+'"""\nSome text multiline"""' Literal.String
+'\n'          Text.Whitespace

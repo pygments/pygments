@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.automation
     ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for automation scripting languages.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -327,6 +326,7 @@ class AutoItLexer(RegexLexer):
             include('builtInFunctions'),
             include('builtInMarcros'),
             (r'"', String, combined('stringescape', 'dqs')),
+            (r"'", String, 'sqs'),
             include('numbers'),
             (r'[a-zA-Z_#@$][\w#@$]*', Name),
             (r'\\|\'', Text),
@@ -367,6 +367,11 @@ class AutoItLexer(RegexLexer):
         'dqs': [
             (r'"', String, '#pop'),
             include('strings')
+        ],
+        'sqs': [
+            (r'\'\'|\`([,%`abfnrtv])', String.Escape),
+            (r"'", String, '#pop'),
+            (r"[^'\n]+", String)
         ],
         'garbage': [
             (r'[^\S\n]', Text),

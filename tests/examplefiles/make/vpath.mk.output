@@ -1,0 +1,107 @@
+'vpath  %.c src\n' Comment.Preproc
+
+'vpath  %.h header\n' Comment.Preproc
+
+'EXEC'        Name.Variable
+'='           Operator
+'hello'       Text
+'\n'          Text
+
+'SRC'         Name.Variable
+'='           Operator
+' '           Text
+'hello.c'     Text
+' '           Text
+'main.c'      Text
+'\n'          Text
+
+'OBJ'         Name.Variable
+'='           Operator
+' '           Text
+'$('          Keyword
+'SRC:.c'      Text
+'='           Operator
+'.o'          Text
+')'           Keyword
+'\n'          Text
+
+'\n'          Text
+
+'all'         Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'EXEC'        Name.Variable
+')'           Keyword
+'\n'          Text
+
+'\n'          Text
+
+'hello'       Name.Function
+':'           Operator
+' '           Text
+'$('          Keyword
+'OBJ'         Name.Variable
+')'           Keyword
+'\n'          Text
+
+'        '    Text
+'$('          Keyword
+'CC'          Text
+')'           Keyword
+' '           Text
+'-o'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'$'           Text
+'^'           Text
+' '           Text
+'$('          Keyword
+'LDFLAGS'     Text
+')'           Keyword
+'\n\n'        Text
+
+'main.o'      Name.Function
+':'           Operator
+' '           Text
+'hello'       Name
+'.'           Text
+'h'           Name
+'\n'          Text
+
+'\n'          Text
+
+'%.o'         Name.Function
+':'           Operator
+' '           Text
+'%'           Text
+'.'           Text
+'c'           Name
+'\n'          Text
+
+'        '    Text
+'$('          Keyword
+'CC'          Text
+')'           Keyword
+' '           Text
+'-I'          Text
+' '           Text
+'header'      Text
+' '           Text
+'-o'          Text
+' '           Text
+'$@'          Name.Variable
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'        '    Text
+'-c'          Text
+' '           Text
+'$'           Text
+'<'           Text
+' '           Text
+'$('          Keyword
+'CFLAGS'      Text
+')'           Keyword
+'\n'          Text

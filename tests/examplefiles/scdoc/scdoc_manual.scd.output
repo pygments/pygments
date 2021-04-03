@@ -1,0 +1,1621 @@
+'scdoc(5)'    Text
+'\n'          Text
+
+'\n'          Text
+
+'#'           Generic.Heading
+' NAME\n'     Text
+
+'\n'          Text
+
+'scdoc'       Text
+' '           Text
+'-'           Text
+' '           Text
+'document'    Text
+' '           Text
+'format'      Text
+' '           Text
+'for'         Text
+' '           Text
+'writing'     Text
+' '           Text
+'manual'      Text
+' '           Text
+'pages'       Text
+'\n'          Text
+
+'\n'          Text
+
+'#'           Generic.Heading
+' SYNTAX\n'   Text
+
+'\n'          Text
+
+'Input'       Text
+' '           Text
+'files'       Text
+' '           Text
+'must'        Text
+' '           Text
+'use'         Text
+' '           Text
+'the'         Text
+' '           Text
+'UTF-8'       Text
+' '           Text
+'encoding.'   Text
+'\n'          Text
+
+'\n'          Text
+
+'##'          Generic.Subheading
+' PREAMBLE\n' Text
+
+'\n'          Text
+
+'Each'        Text
+' '           Text
+'scdoc'       Text
+' '           Text
+'file'        Text
+' '           Text
+'must'        Text
+' '           Text
+'begin'       Text
+' '           Text
+'with'        Text
+' '           Text
+'the'         Text
+' '           Text
+'following'   Text
+' '           Text
+'preamble:'   Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'*name*'      Generic.Strong
+'('           Text
+'_section_)'  Text
+' '           Text
+'["left'      Text
+'\\_'         Text
+'footer"'     Text
+' '           Text
+'["center'    Text
+'\\_'         Text
+'header"]]'   Text
+'\n'          Text
+
+'\n'          Text
+
+'*name*'      Generic.Strong
+' '           Text
+'is'          Text
+' '           Text
+'the'         Text
+' '           Text
+'name'        Text
+' '           Text
+'of'          Text
+' '           Text
+'the'         Text
+' '           Text
+'man'         Text
+' '           Text
+'page'        Text
+' '           Text
+'you'         Text
+' '           Text
+'are'         Text
+' '           Text
+'writing,'    Text
+' '           Text
+'and'         Text
+' '           Text
+'_section_'   Generic.Emph
+' '           Text
+'is'          Text
+' '           Text
+'the'         Text
+' '           Text
+'section'     Text
+'\n'          Text
+
+"you're"      Text
+' '           Text
+'writing'     Text
+' '           Text
+'for'         Text
+' '           Text
+'(see'        Text
+' '           Text
+'*man*'       Generic.Strong
+'('           Text
+'1)'          Text
+' '           Text
+'for'         Text
+' '           Text
+'information' Text
+' '           Text
+'on'          Text
+' '           Text
+'manual'      Text
+' '           Text
+'sections).'  Text
+'\n'          Text
+
+'\n'          Text
+
+'_left'       Text
+'\\_'         Text
+'footer_'     Text
+' '           Text
+'and'         Text
+' '           Text
+'_center'     Text
+'\\_'         Text
+'header_'     Text
+' '           Text
+'are'         Text
+' '           Text
+'optional'    Text
+' '           Text
+'arguments'   Text
+' '           Text
+'which'       Text
+' '           Text
+'set'         Text
+' '           Text
+'the'         Text
+' '           Text
+'text'        Text
+'\n'          Text
+
+'positioned'  Text
+' '           Text
+'at'          Text
+' '           Text
+'those'       Text
+' '           Text
+'locations'   Text
+' '           Text
+'in'          Text
+' '           Text
+'the'         Text
+' '           Text
+'generated'   Text
+' '           Text
+'man'         Text
+' '           Text
+'page,'       Text
+' '           Text
+'and'         Text
+' '           Text
+'*must*'      Generic.Strong
+' '           Text
+'be'          Text
+'\n'          Text
+
+'surrounded'  Text
+' '           Text
+'with'        Text
+' '           Text
+'double'      Text
+' '           Text
+'quotes.'     Text
+'\n'          Text
+
+'\n'          Text
+
+'##'          Generic.Subheading
+' SECTION HEADERS\n' Text
+
+'\n'          Text
+
+'Each'        Text
+' '           Text
+'section'     Text
+' '           Text
+'of'          Text
+' '           Text
+'your'        Text
+' '           Text
+'man'         Text
+' '           Text
+'page'        Text
+' '           Text
+'should'      Text
+' '           Text
+'begin'       Text
+' '           Text
+'with'        Text
+' '           Text
+'something'   Text
+' '           Text
+'similar'     Text
+' '           Text
+'to'          Text
+' '           Text
+'the'         Text
+'\n'          Text
+
+'following:'  Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'#'           Text
+' '           Text
+'HEADER'      Text
+' '           Text
+'NAME'        Text
+'\n'          Text
+
+'\n'          Text
+
+'Subsection'  Text
+' '           Text
+'headers'     Text
+' '           Text
+'are'         Text
+' '           Text
+'also'        Text
+' '           Text
+'understood'  Text
+' '           Text
+'-'           Text
+' '           Text
+'use'         Text
+' '           Text
+'two'         Text
+' '           Text
+'hashes.'     Text
+' '           Text
+'Each'        Text
+' '           Text
+'header'      Text
+' '           Text
+'must'        Text
+' '           Text
+'have'        Text
+'\n'          Text
+
+'an'          Text
+' '           Text
+'empty'       Text
+' '           Text
+'line'        Text
+' '           Text
+'on'          Text
+' '           Text
+'either'      Text
+' '           Text
+'side.'       Text
+'\n'          Text
+
+'\n'          Text
+
+'##'          Generic.Subheading
+' PARAGRAPHS\n' Text
+
+'\n'          Text
+
+'Begin'       Text
+' '           Text
+'a'           Text
+' '           Text
+'new'         Text
+' '           Text
+'paragraph'   Text
+' '           Text
+'with'        Text
+' '           Text
+'an'          Text
+' '           Text
+'empty'       Text
+' '           Text
+'line.'       Text
+'\n'          Text
+
+'\n'          Text
+
+'##'          Generic.Subheading
+' LINE BREAKS\n' Text
+
+'\n'          Text
+
+'Insert'      Text
+' '           Text
+'a'           Text
+' '           Text
+'line'        Text
+' '           Text
+'break'       Text
+' '           Text
+'by'          Text
+' '           Text
+'ending'      Text
+' '           Text
+'a'           Text
+' '           Text
+'line'        Text
+' '           Text
+'with'        Text
+' '           Text
+'\\+'         Text
+'\\+'         Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'The'         Text
+' '           Text
+'result'      Text
+' '           Text
+'looks++'     Text
+'\n'          Text
+
+'like'        Text
+' '           Text
+'this.'       Text
+'\n'          Text
+
+'\n'          Text
+
+'##'          Generic.Subheading
+' FORMATTING\n' Text
+
+'\n'          Text
+
+'Text'        Text
+' '           Text
+'can'         Text
+' '           Text
+'be'          Text
+' '           Text
+'made'        Text
+' '           Text
+'*bold*'      Generic.Strong
+' '           Text
+'or'          Text
+' '           Text
+'_underlined_' Generic.Emph
+' '           Text
+'with'        Text
+' '           Text
+'asterisks'   Text
+' '           Text
+'and'         Text
+' '           Text
+'underscores:' Text
+' '           Text
+'\\*'         Text
+'bold'        Text
+'\\*'         Text
+'\n'          Text
+
+'or'          Text
+' '           Text
+'\\_'         Text
+'underlined'  Text
+'\\_'         Text
+'.'           Text
+' '           Text
+'Underscores' Text
+' '           Text
+'in'          Text
+' '           Text
+'the_middle_of_words' Text
+' '           Text
+'will'        Text
+' '           Text
+'be'          Text
+' '           Text
+'disregarded.' Text
+'\n'          Text
+
+'\n'          Text
+
+'##'          Generic.Subheading
+' INDENTATION\n' Text
+
+'\n'          Text
+
+'You'         Text
+' '           Text
+'may'         Text
+' '           Text
+'indent'      Text
+' '           Text
+'lines'       Text
+' '           Text
+'with'        Text
+' '           Text
+'tab'         Text
+' '           Text
+'characters'  Text
+' '           Text
+'(*'          Text
+'\\\\'        Text
+'t*)'         Text
+' '           Text
+'to'          Text
+' '           Text
+'indent'      Text
+' '           Text
+'them'        Text
+' '           Text
+'by'          Text
+' '           Text
+'4'           Text
+' '           Text
+'spaces'      Text
+' '           Text
+'in'          Text
+'\n'          Text
+
+'the'         Text
+' '           Text
+'output.'     Text
+' '           Text
+'Indented'    Text
+' '           Text
+'lines'       Text
+' '           Text
+'may'         Text
+' '           Text
+'not'         Text
+' '           Text
+'contain'     Text
+' '           Text
+'headers.'    Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'The'         Text
+' '           Text
+'result'      Text
+' '           Text
+'looks'       Text
+' '           Text
+'something'   Text
+' '           Text
+'like'        Text
+' '           Text
+'this.'       Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'You'         Text
+' '           Text
+'may'         Text
+' '           Text
+'use'         Text
+' '           Text
+'multiple'    Text
+' '           Text
+'lines'       Text
+' '           Text
+'and'         Text
+' '           Text
+'most'        Text
+' '           Text
+'_formatting_' Generic.Emph
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'Deindent'    Text
+' '           Text
+'to'          Text
+' '           Text
+'return'      Text
+' '           Text
+'to'          Text
+' '           Text
+'normal,'     Text
+' '           Text
+'or'          Text
+' '           Text
+'indent'      Text
+' '           Text
+'again'       Text
+' '           Text
+'to'          Text
+' '           Text
+'increase'    Text
+' '           Text
+'your'        Text
+' '           Text
+'indentation' Text
+'\n'          Text
+
+'depth.'      Text
+'\n'          Text
+
+'\n'          Text
+
+'##'          Generic.Subheading
+' LISTS\n'    Text
+
+'\n'          Text
+
+'You'         Text
+' '           Text
+'may'         Text
+' '           Text
+'start'       Text
+' '           Text
+'bulleted'    Text
+' '           Text
+'lists'       Text
+' '           Text
+'with'        Text
+' '           Text
+'dashes'      Text
+' '           Text
+'(-),'        Text
+' '           Text
+'like'        Text
+' '           Text
+'so:'         Text
+'\n'          Text
+
+'\n'          Text
+
+'```\n'       Literal.String
+
+'- Item 1\n- Item 2\n\t- Subitem 1\n\t- Subitem 2\n- Item 3\n' Text
+
+'```'         Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'The'         Text
+' '           Text
+'result'      Text
+' '           Text
+'looks'       Text
+' '           Text
+'like'        Text
+' '           Text
+'this:'       Text
+'\n'          Text
+
+'\n'          Text
+
+'-'           Keyword
+' '           Text
+'Item'        Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'-'           Keyword
+' '           Text
+'Item'        Text
+' '           Text
+'2'           Text
+'\n'          Text
+
+'\t'          Text
+'-'           Keyword
+' '           Text
+'Subitem'     Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'\t'          Text
+'-'           Keyword
+' '           Text
+'Subitem'     Text
+' '           Text
+'2'           Text
+'\n'          Text
+
+'-'           Keyword
+' '           Text
+'Item'        Text
+' '           Text
+'3'           Text
+'\n'          Text
+
+'\n'          Text
+
+'You'         Text
+' '           Text
+'may'         Text
+' '           Text
+'also'        Text
+' '           Text
+'extend'      Text
+' '           Text
+'long'        Text
+' '           Text
+'entries'     Text
+' '           Text
+'onto'        Text
+' '           Text
+'another'     Text
+' '           Text
+'line'        Text
+' '           Text
+'by'          Text
+' '           Text
+'giving'      Text
+' '           Text
+'it'          Text
+' '           Text
+'the'         Text
+' '           Text
+'same'        Text
+' '           Text
+'indent'      Text
+'\n'          Text
+
+'level,'      Text
+' '           Text
+'plus'        Text
+' '           Text
+'two'         Text
+' '           Text
+'spaces.'     Text
+' '           Text
+'They'        Text
+' '           Text
+'will'        Text
+' '           Text
+'be'          Text
+' '           Text
+'rendered'    Text
+' '           Text
+'as'          Text
+' '           Text
+'a'           Text
+' '           Text
+'single'      Text
+' '           Text
+'list'        Text
+' '           Text
+'entry.'      Text
+'\n'          Text
+
+'\n'          Text
+
+'```\n'       Literal.String
+
+"- Item 1 is pretty long so let's\n  break it up onto two lines\n- Item 2 is shorter\n\t- But its children can go on\n\t  for a while\n" Text
+
+'```'         Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'-'           Keyword
+' '           Text
+'Item'        Text
+' '           Text
+'1'           Text
+' '           Text
+'is'          Text
+' '           Text
+'pretty'      Text
+' '           Text
+'long'        Text
+' '           Text
+'so'          Text
+' '           Text
+"let's"       Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'break'       Text
+' '           Text
+'it'          Text
+' '           Text
+'up'          Text
+' '           Text
+'onto'        Text
+' '           Text
+'two'         Text
+' '           Text
+'lines'       Text
+'\n'          Text
+
+'-'           Keyword
+' '           Text
+'Item'        Text
+' '           Text
+'2'           Text
+' '           Text
+'is'          Text
+' '           Text
+'shorter'     Text
+'\n'          Text
+
+'\t'          Text
+'-'           Keyword
+' '           Text
+'But'         Text
+' '           Text
+'its'         Text
+' '           Text
+'children'    Text
+' '           Text
+'can'         Text
+' '           Text
+'go'          Text
+' '           Text
+'on'          Text
+'\n'          Text
+
+'\t'          Text
+' '           Text
+' '           Text
+'for'         Text
+' '           Text
+'a'           Text
+' '           Text
+'while'       Text
+'\n'          Text
+
+'\n'          Text
+
+'##'          Generic.Subheading
+' NUMBERED LISTS\n' Text
+
+'\n'          Text
+
+'Numbered'    Text
+' '           Text
+'lists'       Text
+' '           Text
+'are'         Text
+' '           Text
+'similar'     Text
+' '           Text
+'to'          Text
+' '           Text
+'normal'      Text
+' '           Text
+'lists,'      Text
+' '           Text
+'but'         Text
+' '           Text
+'begin'       Text
+' '           Text
+'with'        Text
+' '           Text
+'periods'     Text
+' '           Text
+'(.)'         Text
+' '           Text
+'instead'     Text
+'\n'          Text
+
+'of'          Text
+' '           Text
+'dashes'      Text
+' '           Text
+'(-),'        Text
+' '           Text
+'like'        Text
+' '           Text
+'so:'         Text
+'\n'          Text
+
+'\n'          Text
+
+'```\n'       Literal.String
+
+'. Item 1\n. Item 2\n. Item 3,\n  with multiple lines\n' Text
+
+'```'         Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'.'           Text
+' '           Text
+'Item'        Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'.'           Text
+' '           Text
+'Item'        Text
+' '           Text
+'2'           Text
+'\n'          Text
+
+'.'           Text
+' '           Text
+'Item'        Text
+' '           Text
+'3,'          Text
+'\n'          Text
+
+' '           Text
+' '           Text
+'with'        Text
+' '           Text
+'multiple'    Text
+' '           Text
+'lines'       Text
+'\n'          Text
+
+'\n'          Text
+
+'##'          Generic.Subheading
+' TABLES\n'   Text
+
+'\n'          Text
+
+'To'          Text
+' '           Text
+'begin'       Text
+' '           Text
+'a'           Text
+' '           Text
+'table,'      Text
+' '           Text
+'add'         Text
+' '           Text
+'an'          Text
+' '           Text
+'empty'       Text
+' '           Text
+'line'        Text
+' '           Text
+'followed'    Text
+' '           Text
+'by'          Text
+' '           Text
+'any'         Text
+' '           Text
+'number'      Text
+' '           Text
+'of'          Text
+' '           Text
+'rows.'       Text
+'\n'          Text
+
+'\n'          Text
+
+'Each'        Text
+' '           Text
+'line'        Text
+' '           Text
+'of'          Text
+' '           Text
+'a'           Text
+' '           Text
+'table'       Text
+' '           Text
+'should'      Text
+' '           Text
+'start'       Text
+' '           Text
+'with'        Text
+' '           Text
+'|'           Text
+' '           Text
+'or'          Text
+' '           Text
+':'           Text
+' '           Text
+'to'          Text
+' '           Text
+'start'       Text
+' '           Text
+'a'           Text
+' '           Text
+'new'         Text
+' '           Text
+'row'         Text
+' '           Text
+'or'          Text
+' '           Text
+'column'      Text
+'\n'          Text
+
+'respectively' Text
+' '           Text
+'(or'         Text
+' '           Text
+'space'       Text
+' '           Text
+'to'          Text
+' '           Text
+'continue'    Text
+' '           Text
+'the'         Text
+' '           Text
+'previous'    Text
+' '           Text
+'cell'        Text
+' '           Text
+'on'          Text
+' '           Text
+'multiple'    Text
+' '           Text
+'lines),'     Text
+'\n'          Text
+
+'followed'    Text
+' '           Text
+'by'          Text
+' '           Text
+'['           Text
+' '           Text
+'or'          Text
+' '           Text
+'-'           Text
+' '           Text
+'or'          Text
+' '           Text
+']'           Text
+' '           Text
+'to'          Text
+' '           Text
+'align'       Text
+' '           Text
+'the'         Text
+' '           Text
+'contents'    Text
+' '           Text
+'to'          Text
+' '           Text
+'the'         Text
+' '           Text
+'left,'       Text
+' '           Text
+'center,'     Text
+' '           Text
+'or'          Text
+' '           Text
+'right,'      Text
+'\n'          Text
+
+'followed'    Text
+' '           Text
+'by'          Text
+' '           Text
+'a'           Text
+' '           Text
+'space'       Text
+' '           Text
+'and'         Text
+' '           Text
+'the'         Text
+' '           Text
+'contents'    Text
+' '           Text
+'of'          Text
+' '           Text
+'that'        Text
+' '           Text
+'cell.'       Text
+' '           Text
+' '           Text
+'You'         Text
+' '           Text
+'may'         Text
+' '           Text
+'use'         Text
+' '           Text
+'a'           Text
+' '           Text
+'space'       Text
+' '           Text
+'instead'     Text
+'\n'          Text
+
+'of'          Text
+' '           Text
+'an'          Text
+' '           Text
+'alignment'   Text
+' '           Text
+'specifier'   Text
+' '           Text
+'to'          Text
+' '           Text
+'inherit'     Text
+' '           Text
+'the'         Text
+' '           Text
+'alignment'   Text
+' '           Text
+'of'          Text
+' '           Text
+'the'         Text
+' '           Text
+'same'        Text
+' '           Text
+'column'      Text
+' '           Text
+'in'          Text
+' '           Text
+'the'         Text
+'\n'          Text
+
+'previous'    Text
+' '           Text
+'row.'        Text
+'\n'          Text
+
+'\n'          Text
+
+'The'         Text
+' '           Text
+'first'       Text
+' '           Text
+'character'   Text
+' '           Text
+'of'          Text
+' '           Text
+'the'         Text
+' '           Text
+'first'       Text
+' '           Text
+'row'         Text
+' '           Text
+'is'          Text
+' '           Text
+'not'         Text
+' '           Text
+'limited'     Text
+' '           Text
+'to'          Text
+' '           Text
+'|'           Text
+' '           Text
+'and'         Text
+' '           Text
+'has'         Text
+' '           Text
+'special'     Text
+'\n'          Text
+
+'meaning.'    Text
+' '           Text
+'['           Text
+' '           Text
+'will'        Text
+' '           Text
+'produce'     Text
+' '           Text
+'a'           Text
+' '           Text
+'table'       Text
+' '           Text
+'with'        Text
+' '           Text
+'borders'     Text
+' '           Text
+'around'      Text
+' '           Text
+'each'        Text
+' '           Text
+'cell.'       Text
+' '           Text
+'|'           Text
+' '           Text
+'will'        Text
+' '           Text
+'produce'     Text
+' '           Text
+'a'           Text
+'\n'          Text
+
+'table'       Text
+' '           Text
+'with'        Text
+' '           Text
+'no'          Text
+' '           Text
+'borders.'    Text
+' '           Text
+']'           Text
+' '           Text
+'will'        Text
+' '           Text
+'produce'     Text
+' '           Text
+'a'           Text
+' '           Text
+'table'       Text
+' '           Text
+'with'        Text
+' '           Text
+'one'         Text
+' '           Text
+'border'      Text
+' '           Text
+'around'      Text
+' '           Text
+'the'         Text
+' '           Text
+'whole'       Text
+'\n'          Text
+
+'table.'      Text
+'\n'          Text
+
+'\n'          Text
+
+'To'          Text
+' '           Text
+'conclude'    Text
+' '           Text
+'your'        Text
+' '           Text
+'table,'      Text
+' '           Text
+'add'         Text
+' '           Text
+'an'          Text
+' '           Text
+'empty'       Text
+' '           Text
+'line'        Text
+' '           Text
+'after'       Text
+' '           Text
+'the'         Text
+' '           Text
+'last'        Text
+' '           Text
+'row.'        Text
+'\n'          Text
+
+'\n'          Text
+
+'```\n'       Literal.String
+
+'[[ *Foo*\n:- _Bar_\n:-\n|  *Row 1*\n:  Hello\n:] world!\n|  *Row 2*\n:  こんにちは\n:  世界\n   !\n' Text
+
+'```'         Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'[['          Text
+' '           Text
+'*Foo*'       Generic.Strong
+'\n'          Text
+
+':-'          Text
+' '           Text
+'_Bar_'       Generic.Emph
+'\n'          Text
+
+':-'          Text
+'\n'          Text
+
+'|'           Text
+' '           Text
+' '           Text
+'*Row 1*'     Generic.Strong
+'\n'          Text
+
+':'           Text
+' '           Text
+' '           Text
+'Hello'       Text
+'\n'          Text
+
+':]'          Text
+' '           Text
+'world!'      Text
+'\n'          Text
+
+'|'           Text
+' '           Text
+' '           Text
+'*Row 2*'     Generic.Strong
+'\n'          Text
+
+':'           Text
+' '           Text
+' '           Text
+'こんにちは'       Text
+'\n'          Text
+
+':'           Text
+' '           Text
+' '           Text
+'世界'          Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+'!'           Text
+'\n'          Text
+
+'\n'          Text
+
+'##'          Generic.Subheading
+' LITERAL TEXT\n' Text
+
+'\n'          Text
+
+'You'         Text
+' '           Text
+'may'         Text
+' '           Text
+'turn'        Text
+' '           Text
+'off'         Text
+' '           Text
+'scdoc'       Text
+' '           Text
+'formatting'  Text
+' '           Text
+'and'         Text
+' '           Text
+'output'      Text
+' '           Text
+'literal'     Text
+' '           Text
+'text'        Text
+' '           Text
+'with'        Text
+' '           Text
+'escape'      Text
+' '           Text
+'codes'       Text
+' '           Text
+'and'         Text
+'\n'          Text
+
+'literal'     Text
+' '           Text
+'blocks.'     Text
+' '           Text
+'Inserting'   Text
+' '           Text
+'a'           Text
+' '           Text
+'\\\\'        Text
+' '           Text
+'into'        Text
+' '           Text
+'your'        Text
+' '           Text
+'source'      Text
+' '           Text
+'will'        Text
+' '           Text
+'cause'       Text
+' '           Text
+'the'         Text
+' '           Text
+'subsequent'  Text
+' '           Text
+'symbol'      Text
+'\n'          Text
+
+'to'          Text
+' '           Text
+'be'          Text
+' '           Text
+'treated'     Text
+' '           Text
+'as'          Text
+' '           Text
+'a'           Text
+' '           Text
+'literal'     Text
+' '           Text
+'and'         Text
+' '           Text
+'copied'      Text
+' '           Text
+'directly'    Text
+' '           Text
+'to'          Text
+' '           Text
+'the'         Text
+' '           Text
+'output.'     Text
+' '           Text
+'You'         Text
+' '           Text
+'may'         Text
+' '           Text
+'also'        Text
+' '           Text
+'make'        Text
+'\n'          Text
+
+'blocks'      Text
+' '           Text
+'of'          Text
+' '           Text
+'literal'     Text
+' '           Text
+'syntax'      Text
+' '           Text
+'like'        Text
+' '           Text
+'so:'         Text
+'\n'          Text
+
+'\n'          Text
+
+'```\n'       Literal.String
+
+'\\```\n_This formatting_ will *not* be interpreted by scdoc.\n\\```\n' Text
+
+'```'         Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'These'       Text
+' '           Text
+'blocks'      Text
+' '           Text
+'will'        Text
+' '           Text
+'be'          Text
+' '           Text
+'indented'    Text
+' '           Text
+'one'         Text
+' '           Text
+'level.'      Text
+' '           Text
+'Note'        Text
+' '           Text
+'that'        Text
+' '           Text
+'literal'     Text
+' '           Text
+'text'        Text
+' '           Text
+'is'          Text
+' '           Text
+'shown'       Text
+'\n'          Text
+
+'literally'   Text
+' '           Text
+'in'          Text
+' '           Text
+'the'         Text
+' '           Text
+'man'         Text
+' '           Text
+'viewer'      Text
+' '           Text
+'-'           Text
+' '           Text
+'that'        Text
+' '           Text
+'is,'         Text
+' '           Text
+"it's"        Text
+' '           Text
+'not'         Text
+' '           Text
+'a'           Text
+' '           Text
+'means'       Text
+' '           Text
+'for'         Text
+' '           Text
+'inserting'   Text
+' '           Text
+'your'        Text
+' '           Text
+'own'         Text
+'\n'          Text
+
+'roff'        Text
+' '           Text
+'macros'      Text
+' '           Text
+'into'        Text
+' '           Text
+'the'         Text
+' '           Text
+'output.'     Text
+' '           Text
+'Note'        Text
+' '           Text
+'that'        Text
+' '           Text
+'\\\\'        Text
+' '           Text
+'is'          Text
+' '           Text
+'still'       Text
+' '           Text
+'interpreted' Text
+' '           Text
+'within'      Text
+' '           Text
+'literal'     Text
+'\n'          Text
+
+'blocks,'     Text
+' '           Text
+'which'       Text
+' '           Text
+'for'         Text
+' '           Text
+'example'     Text
+' '           Text
+'can'         Text
+' '           Text
+'be'          Text
+' '           Text
+'useful'      Text
+' '           Text
+'to'          Text
+' '           Text
+'output'      Text
+' '           Text
+'\\`'         Text
+'``'          Text
+' '           Text
+'inside'      Text
+' '           Text
+'of'          Text
+' '           Text
+'a'           Text
+' '           Text
+'literal'     Text
+'\n'          Text
+
+'block.'      Text
+'\n'          Text
+
+'\n'          Text
+
+'##'          Generic.Subheading
+' COMMENTS\n' Text
+
+'\n'          Text
+
+'Lines'       Text
+' '           Text
+'beginning'   Text
+' '           Text
+'with'        Text
+' '           Text
+';'           Text
+' '           Text
+'and'         Text
+' '           Text
+'a'           Text
+' '           Text
+'space'       Text
+' '           Text
+'are'         Text
+' '           Text
+'ignored.'    Text
+'\n'          Text
+
+'\n'          Text
+
+'```\n'       Literal.String
+
+'; This is a comment\n' Text
+
+'```'         Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'#'           Generic.Heading
+' CONVENTIONS\n' Text
+
+'\n'          Text
+
+'By'          Text
+' '           Text
+'convention,' Text
+' '           Text
+'all'         Text
+' '           Text
+'scdoc'       Text
+' '           Text
+'documents'   Text
+' '           Text
+'should'      Text
+' '           Text
+'be'          Text
+' '           Text
+'hard'        Text
+' '           Text
+'wrapped'     Text
+' '           Text
+'at'          Text
+' '           Text
+'80'          Text
+' '           Text
+'columns.'    Text
+'\n'          Text
+
+'\n'          Text
+
+'#'           Generic.Heading
+' SEE ALSO\n' Text
+
+'\n'          Text
+
+'*scdoc*'     Generic.Strong
+'('           Text
+'1)'          Text
+'\n'          Text
+
+'\n'          Text
+
+'#'           Generic.Heading
+' AUTHORS\n'  Text
+
+'\n'          Text
+
+'Maintained'  Text
+' '           Text
+'by'          Text
+' '           Text
+'Drew'        Text
+' '           Text
+'DeVault'     Text
+' '           Text
+'<sir@cmpwn.com>.' Text
+' '           Text
+'Up-to-date'  Text
+' '           Text
+'sources'     Text
+' '           Text
+'can'         Text
+' '           Text
+'be'          Text
+' '           Text
+'found'       Text
+' '           Text
+'at'          Text
+'\n'          Text
+
+'https://git.sr.ht/~sircmpwn/scdoc' Text
+' '           Text
+'and'         Text
+' '           Text
+'bugs/patches' Text
+' '           Text
+'can'         Text
+' '           Text
+'be'          Text
+' '           Text
+'submitted'   Text
+' '           Text
+'by'          Text
+' '           Text
+'email'       Text
+' '           Text
+'to'          Text
+'\n'          Text
+
+'~sircmpwn/public-inbox@lists.sr.ht.' Text
+'\n'          Text

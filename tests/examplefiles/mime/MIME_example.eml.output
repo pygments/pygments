@@ -1,0 +1,115 @@
+'From: Some One <someone@example.com>\n' Comment
+
+'MIME-Version: 1.0\n' Comment
+
+'Content-Type:' Name.Tag
+' '           Text.Whitespace
+''            Text.Whitespace
+'multipart'   Name.Label
+'/'           Literal.String.Delimiter
+'mixed'       Name.Label
+';'           Text
+'\n        '  Text.Whitespace
+'boundary'    Name.Attribute
+'='           Operator
+'"+Testboundary text"' Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'This is a multipart message in MIME format.\n\n' Text
+
+'--+Testboundary text\n' Literal.String.Delimiter
+
+'Content-Type:' Name.Tag
+' '           Text.Whitespace
+''            Text.Whitespace
+'multipart'   Name.Label
+'/'           Literal.String.Delimiter
+'alternative' Name.Label
+';'           Text
+'\n        '  Text.Whitespace
+'boundary'    Name.Attribute
+'='           Operator
+'"hello, boundary"' Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'--hello, boundary\n' Literal.String.Delimiter
+
+'Content-Type:' Name.Tag
+' '           Text.Whitespace
+''            Text.Whitespace
+'text'        Name.Label
+'/'           Literal.String.Delimiter
+'plain'       Name.Label
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'this is the body text\n\n' Text
+
+'--hello, boundary\n' Literal.String.Delimiter
+
+'Content-Type:' Name.Tag
+' '           Text.Whitespace
+''            Text.Whitespace
+'text'        Name.Label
+'/'           Literal.String.Delimiter
+'html'        Name.Label
+';'           Text
+'\n       '   Text.Whitespace
+'charset'     Name.Attribute
+'='           Operator
+'"utf-8"'     Literal.String
+'\n'          Text.Whitespace
+
+'Content-Transfer-Encoding:' Name.Tag
+' '           Text.Whitespace
+'quoted-printable' Name.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'<'           Punctuation
+'font'        Name.Tag
+' '           Text
+'color'       Name.Attribute
+'='           Operator
+'3D"#FF0000"' Literal.String
+'>'           Punctuation
+'This is the body text' Text
+'<'           Punctuation
+'/'           Punctuation
+'font'        Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'--hello, boundary--\n' Literal.String.Delimiter
+
+'--+Testboundary text\n' Literal.String.Delimiter
+
+'Content-Type:' Name.Tag
+' '           Text.Whitespace
+''            Text.Whitespace
+'text'        Name.Label
+'/'           Literal.String.Delimiter
+'plain'       Name.Label
+';\n'         Text
+
+'Content-Disposition: attachment;\n        filename="test.txt"\n' Comment
+
+'Content-Transfer-Encoding:' Name.Tag
+' '           Text.Whitespace
+'base64'      Name.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'dGhpcyBpcyB0aGUgYXR0YWNobWVudCB0ZXh0\n\n' Other
+
+'--+Testboundary text--\n' Literal.String.Delimiter
+
+'Some additional content here.\n' Text

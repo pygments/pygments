@@ -1,0 +1,293 @@
+'object '     Keyword
+'template '   Keyword
+'pantest'     Text
+';'           Punctuation
+'\n\n'        Text
+
+'# Very simple pan test file' Comment
+'\n'          Text
+
+'"/long/decimal"' Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'123'         Text
+';'           Punctuation
+'\n'          Text
+
+'"/long/octal"' Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'0755'        Text
+';'           Punctuation
+'\n'          Text
+
+'"/long/hexadecimal"' Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'0xFF'        Text
+';'           Punctuation
+'\n\n'        Text
+
+'"/double/simple"' Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'0.01'        Text
+';'           Punctuation
+'\n'          Text
+
+'"/double/pi"' Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'3.14159'     Text
+';'           Punctuation
+'\n'          Text
+
+'"/double/exponent"' Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'1e-8'        Text
+';'           Punctuation
+'\n'          Text
+
+'"/double/scientific"' Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'1.3E10'      Text
+';'           Punctuation
+'\n\n'        Text
+
+'"/string/single"' Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+"'Faster, but escapes like \\t, \\n and \\x3d don'" Literal.String.Single
+"'t work, but '" Literal.String.Single
+"' should work.'" Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'"/string/double"' Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'"Slower, but escapes like \\t, \\n and \\x3d do work"' Literal.String.Double
+';'           Punctuation
+'\n\n'        Text
+
+'variable '   Keyword
+'TEST'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'2'           Text
+';'           Punctuation
+'\n\n'        Text
+
+'"/x2"'       Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'to_string'   Name.Builtin
+'('           Operator
+'TEST'        Text
+')'           Operator
+';'           Punctuation
+'\n'          Text
+
+'"/x2"'       Literal.String.Double
+' '           Text
+'?'           Text
+'='           Operator
+' '           Text
+"'Default value'" Literal.String.Single
+';'           Punctuation
+'\n\n'        Text
+
+'"/x3"'       Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'1'           Text
+' '           Text
+'+'           Text
+' '           Text
+'2'           Text
+' '           Text
+'+'           Text
+' '           Text
+'value'       Name.Builtin
+'('           Operator
+'"/long/decimal"' Literal.String.Double
+')'           Operator
+';'           Punctuation
+'\n\n'        Text
+
+'"/x4"'       Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'undef'       Text
+';'           Punctuation
+'\n\n'        Text
+
+'"/x5"'       Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'null'        Text
+';'           Punctuation
+'\n\n'        Text
+
+'variable '   Keyword
+'e'           Text
+' '           Text
+'?'           Text
+'='           Operator
+' '           Text
+'error'       Name.Builtin
+'('           Operator
+'"Test error message"' Literal.String.Double
+')'           Operator
+';'           Punctuation
+'\n\n'        Text
+
+'# include gmond config for services-monitoring' Comment
+'\n'          Text
+
+'include'     Keyword
+' '           Text
+'{'           Operator
+' '           Text
+"'site/ganglia/gmond/services-monitoring'" Literal.String.Single
+' '           Text
+'}'           Operator
+';'           Punctuation
+'\n\n'        Text
+
+'"/software/packages"' Literal.String.Double
+'='           Operator
+'pkg_repl'    Text
+'('           Operator
+'"httpd"'     Literal.String.Double
+','           Text
+'"2.2.3-43.sl5.3"' Literal.String.Double
+',PKG_ARCH_DEFAULT' Text
+')'           Operator
+';'           Punctuation
+'\n'          Text
+
+'"/software/packages"' Literal.String.Double
+'='           Operator
+'pkg_repl'    Text
+'('           Operator
+'"php"'       Literal.String.Double
+')'           Operator
+';'           Punctuation
+'\n\n'        Text
+
+'# Example function' Comment
+'\n'          Text
+
+'function '   Keyword
+'show_things_view_for_stuff' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'{'           Operator
+'\n    '      Text
+'thing'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'ARGV'        Text
+'['           Operator
+'0'           Text
+']'           Operator
+';'           Punctuation
+'\n    '      Text
+'foreach'     Keyword
+'('           Operator
+' '           Text
+'i'           Text
+';'           Punctuation
+' '           Text
+'mything'     Text
+';'           Punctuation
+' '           Text
+'STUFF'       Text
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'('           Operator
+' '           Text
+'thing'       Name.Variable
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'mything'     Text
+' '           Text
+')'           Operator
+' '           Text
+'{'           Operator
+'\n            ' Text
+'return'      Name.Builtin
+'('           Operator
+' '           Text
+'true'        Text
+' '           Text
+')'           Operator
+';'           Punctuation
+'\n        '  Text
+'}'           Operator
+' '           Text
+'else'        Keyword
+' '           Text
+'{'           Operator
+'\n            ' Text
+'return '     Name.Builtin
+'SELF'        Text
+';'           Punctuation
+'\n        '  Text
+'}'           Operator
+';'           Punctuation
+'\n    '      Text
+'}'           Operator
+';'           Punctuation
+'\n    '      Text
+'false'       Text
+';'           Punctuation
+'\n'          Text
+
+'}'           Operator
+';'           Punctuation
+'\n\n'        Text
+
+'variable '   Keyword
+'HERE'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'<<EOF;\n; This example demonstrates an in-line heredoc style config file\n[main]\nawesome = true\nEOF' Literal.String
+'\n\n'        Text
+
+'variable '   Keyword
+'small'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'false'       Text
+';'           Punctuation
+'#This should be highlighted normally again.' Comment
+'\n'          Text

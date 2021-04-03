@@ -1,0 +1,12 @@
+---input---
+.1e12 .1e+34 .1e-56 .1e12f
+
+---tokens---
+'.1e12'       Literal.Number.Float
+' '           Text
+'.1e+34'      Literal.Number.Float
+' '           Text
+'.1e-56'      Literal.Number.Float
+' '           Text
+'.1e12f'      Literal.Number.Float
+'\n'          Text

@@ -1,0 +1,3236 @@
+'#!/usr/bin/env newlisp' Comment.Preproc
+'\n'          Text
+
+';; @module reversi.lsp' Comment.Single
+'\n'          Text
+
+';; @description a simple version of Reversi: you as white against newLISP as black' Comment.Single
+'\n'          Text
+
+';; @version 0.1 alpha August 2007' Comment.Single
+'\n'          Text
+
+';; @author cormullion' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; 2008-10-08 21:46:54' Comment.Single
+'\n'          Text
+
+';; updated for newLISP version 10. (changed nth-set to setf)' Comment.Single
+'\n'          Text
+
+';; this now does not work with newLISP version 9!' Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; This is my first attempt at writing a simple application using newLISP-GS.' Comment.Single
+'\n'          Text
+
+';; The game algorithms are basically by ' Comment.Single
+'\n'          Text
+
+';; Peter Norvig http://norvig.com/paip/othello.lisp' Comment.Single
+'\n'          Text
+
+";; and all I've done is translate to newLISP and add the interface..." Comment.Single
+'\n'          Text
+
+';;'          Comment.Single
+'\n'          Text
+
+';; To-Do: work out how to handle the end of the game properly...' Comment.Single
+'\n'          Text
+
+';; To-Do: complete newlispdoc for the functions' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'constant'    Keyword
+' '           Text
+"'"           Operator
+'empty'       Literal.String.Symbol
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+' \n'         Text
+
+'('           Punctuation
+'constant'    Keyword
+' '           Text
+"'"           Operator
+'black'       Literal.String.Symbol
+' '           Text
+'1'           Literal.String.Symbol
+')'           Punctuation
+' \n'         Text
+
+'('           Punctuation
+'constant'    Keyword
+' '           Text
+"'"           Operator
+'white'       Literal.String.Symbol
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'constant'    Keyword
+' '           Text
+"'"           Operator
+'outer'       Literal.String.Symbol
+' '           Text
+'3'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'; squares outside the 8x8 board' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+"'"           Operator
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'; the master board is a 100 element list' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'*'           Keyword
+'moves*'      Literal.String.Symbol
+' '           Text
+"'"           Operator
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'; list of moves made' Comment.Single
+'\n\n'        Text
+
+'; these are the 8 different directions from a square on the board' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'all-directions' Literal.String.Symbol
+' '           Text
+"'"           Operator
+'('           Punctuation
+'-'           Keyword
+'11'          Literal.String.Symbol
+' '           Text
+'-'           Keyword
+'10'          Literal.String.Symbol
+' '           Text
+'-'           Keyword
+'9'           Literal.String.Symbol
+' '           Text
+'-'           Keyword
+'1'           Literal.String.Symbol
+' '           Text
+'1'           Literal.String.Symbol
+' '           Text
+'9'           Literal.String.Symbol
+' '           Text
+'10'          Literal.String.Symbol
+' '           Text
+'11'          Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'; return a list of all the playable squares (the 8 by 8 grid inside the 10by10' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'all-squares' Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'local'       Keyword
+' '           Text
+'('           Punctuation
+'result'      Name.Variable
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'square'      Name.Variable
+' '           Text
+'11'          Literal.String.Symbol
+' '           Text
+'88'          Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'<='          Name.Variable
+' '           Text
+'1'           Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'mod'         Keyword
+' '           Text
+'square'      Literal.String.Symbol
+' '           Text
+'10'          Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'8'           Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'push'        Keyword
+' '           Text
+'square'      Literal.String.Symbol
+' '           Text
+'result'      Literal.String.Symbol
+' '           Text
+'-'           Keyword
+'1'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'result'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'; make a board' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'make-board'  Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'dup'         Keyword
+' '           Text
+'outer'       Literal.String.Symbol
+' '           Text
+'100'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'dolist'      Keyword
+' '           Text
+'('           Punctuation
+'s'           Name.Variable
+' '           Text
+'('           Punctuation
+'all-squares' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'s'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'empty'       Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'; for testing and working at a terminal' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'print'       Keyword
+'-'           Keyword
+'board'       Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'print'       Keyword
+' '           Text
+'{'           Literal.String
+' '           Literal.String
+'}'           Literal.String
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'c'           Name.Variable
+' '           Text
+'1'           Literal.String.Symbol
+' '           Text
+'8'           Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'print'       Keyword
+' '           Text
+'c'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'c'           Literal.String.Symbol
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'0'           Literal.String.Symbol
+' '           Text
+'99'          Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'cond'        Keyword
+'\n        '  Text
+'('           Punctuation
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'i'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'print'       Keyword
+' '           Text
+'{'           Literal.String
+'.'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'i'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'1'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'print'       Keyword
+' '           Text
+'{'           Literal.String
+'b'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'i'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'print'       Keyword
+' '           Text
+'{'           Literal.String
+'w'           Literal.String
+'}'           Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'and'         Keyword
+' '           Text
+'('           Punctuation
+'<='          Name.Variable
+' '           Text
+'i'           Literal.String.Symbol
+' '           Text
+'88'          Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'('           Punctuation
+'mod'         Keyword
+' '           Text
+'('           Punctuation
+'+'           Name.Variable
+' '           Text
+'i'           Literal.String.Symbol
+' '           Text
+'1'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'10'          Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'; newline'   Comment.Single
+'\n        '  Text
+'('           Punctuation
+'print'       Keyword
+' '           Text
+'"\\n"'       Literal.String
+' '           Text
+'('           Punctuation
+'inc'         Keyword
+' '           Text
+'c'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'println'     Keyword
+' '           Text
+'"\\n"'       Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'; the initial starting pattern' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'initial-board' Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'make-board'  Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'44'          Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'white'       Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'55'          Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'white'       Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'45'          Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'black'       Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'54'          Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'black'       Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'opponent'    Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+' '           Text
+'black'       Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'white'       Literal.String.Symbol
+' '           Text
+'black'       Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'player-name' Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+' '           Text
+'white'       Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'"white"'     Literal.String
+' '           Text
+'"black"'     Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n  \n'      Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'valid-move?' Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'and'         Keyword
+' \n     '    Text
+'('           Punctuation
+'integer'     Keyword
+'?'           Literal.String.Symbol
+' '           Text
+'move'        Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'<='          Name.Variable
+' '           Text
+'11'          Literal.String.Symbol
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'88'          Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'<='          Name.Variable
+' '           Text
+'1'           Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'mod'         Keyword
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'10'          Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'8'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'empty-square?' Name.Variable
+' '           Text
+'square'      Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'and'         Keyword
+'\n     '     Text
+'('           Punctuation
+'valid-move?' Name.Variable
+' '           Text
+'square'      Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'square'      Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'empty'       Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n     \n'   Text
+
+'; test whether a move is legal. The square must be empty' Comment.Single
+'\n'          Text
+
+"; and it must flip at least one of the opponent's piece" Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'legal-move?' Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'and'         Keyword
+' \n     '    Text
+'('           Punctuation
+'empty-square?' Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'exists'      Keyword
+' '           Text
+'('           Punctuation
+'fn'          Keyword
+' '           Text
+'('           Punctuation
+'dir'         Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'would-flip?' Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+' '           Text
+'dir'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'all-directions' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'; would this move by player result in any flips in the given direction?' Comment.Single
+'\n'          Text
+
+"; if so, return the number of the 'opposite' (bracketing) piece's square" Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'would-flip?' Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+' '           Text
+'dir'         Literal.String.Symbol
+')'           Punctuation
+' \n  '       Text
+'('           Punctuation
+'let'         Keyword
+' \n     '    Text
+'('           Punctuation
+'('           Punctuation
+'c'           Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'dir'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'and'         Keyword
+' \n        ' Text
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'c'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'opponent'    Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'find'        Keyword
+'-'           Keyword
+'bracketing-piece' Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'+'           Name.Variable
+' '           Text
+'c'           Literal.String.Symbol
+' '           Text
+'dir'         Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'player'      Literal.String.Symbol
+' '           Text
+'dir'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  \n'      Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'find'        Keyword
+'-'           Keyword
+'bracketing-piece' Literal.String.Symbol
+' '           Text
+'square'      Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+' '           Text
+'dir'         Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'; return the square of the bracketing piece, if any' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'cond'        Keyword
+'\n     '     Text
+'('           Punctuation
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'square'      Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'square'      Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'square'      Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'opponent'    Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'find'        Keyword
+'-'           Keyword
+'bracketing-piece' Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'+'           Name.Variable
+' '           Text
+'square'      Literal.String.Symbol
+' '           Text
+'dir'         Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'player'      Literal.String.Symbol
+' '           Text
+'dir'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'true'        Keyword
+' '           Text
+'nil'         Keyword
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'make-flips'  Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+' '           Text
+'dir'         Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'let'         Keyword
+' \n     '    Text
+'('           Punctuation
+'('           Punctuation
+'bracketer'   Name.Variable
+' '           Text
+'('           Punctuation
+'would-flip?' Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+' '           Text
+'dir'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n      '    Text
+'('           Punctuation
+'c'           Name.Variable
+' '           Text
+'('           Punctuation
+'+'           Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'dir'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'bracketer'   Literal.String.Symbol
+'\n     '     Text
+'('           Punctuation
+'do-until'    Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'c'           Literal.String.Symbol
+' '           Text
+'bracketer'   Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'c'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'push'        Keyword
+' '           Text
+'c'           Literal.String.Symbol
+' '           Text
+'*'           Keyword
+'flips*'      Literal.String.Symbol
+' '           Text
+'-'           Keyword
+'1'           Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'inc'         Keyword
+' '           Text
+'c'           Literal.String.Symbol
+' '           Text
+'dir'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'; make the move on the master game board, not yet visually' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'make-move'   Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'move'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'push'        Keyword
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'*'           Keyword
+'moves*'      Literal.String.Symbol
+' '           Text
+'-'           Keyword
+'1'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'*'           Keyword
+'flips*'      Literal.String.Symbol
+' '           Text
+"'"           Operator
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+"; we're going to keep a record of the flips made" Comment.Single
+'\n  '        Text
+'('           Punctuation
+'dolist'      Keyword
+' '           Text
+'('           Punctuation
+'dir'         Name.Variable
+' '           Text
+'all-directions' Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'make-flips'  Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+' '           Text
+'dir'         Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'next-to-play' Name.Variable
+' '           Text
+'previous-player' Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'opp'         Name.Variable
+' '           Text
+'('           Punctuation
+'opponent'    Name.Variable
+' '           Text
+'previous-player' Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'cond'        Keyword
+'\n        '  Text
+'('           Punctuation
+'('           Punctuation
+'any-legal-move?' Name.Variable
+' '           Text
+'opp'         Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'opp'         Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'('           Punctuation
+'any-legal-move?' Name.Variable
+' '           Text
+'previous-player' Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'println'     Keyword
+' '           Text
+'('           Punctuation
+'player-name' Name.Variable
+' '           Text
+'opp'         Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'" has no moves"' Literal.String
+')'           Punctuation
+'\n           ' Text
+'previous-player' Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'true'        Keyword
+' '           Text
+'nil'         Keyword
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        \n' Text
+
+'; are there any legal moves (returns first) for this player?' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'any-legal-move?' Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'exists'      Keyword
+' '           Text
+'('           Punctuation
+'fn'          Keyword
+' '           Text
+'('           Punctuation
+'move'        Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'legal-move?' Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' \n     '    Text
+'('           Punctuation
+'all-squares' Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'; a list of all legal moves might be useful' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'legal-moves' Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'result'      Name.Variable
+' '           Text
+"'"           Operator
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'dolist'      Keyword
+' '           Text
+'('           Punctuation
+'move'        Name.Variable
+' '           Text
+'('           Punctuation
+'all-squares' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'legal-move?' Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'push'        Keyword
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'result'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'unique'      Keyword
+' '           Text
+'result'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'; define any number of strategies that can be called on to calculate' Comment.Single
+'\n'          Text
+
+"; the next computer move. This is the only one I've done... - make " Comment.Single
+'\n'          Text
+
+'; any legal move at random!' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'random'      Keyword
+'-'           Keyword
+'strategy'    Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'seed'        Keyword
+' '           Text
+'('           Punctuation
+'date-value'  Keyword
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'apply'       Keyword
+' '           Text
+'amb'         Keyword
+' '           Text
+'('           Punctuation
+'legal-moves' Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'; get the next move using a particular strategy' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'get-move'    Name.Variable
+' '           Text
+'strategy'    Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n '         Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'('           Punctuation
+'('           Punctuation
+'move'        Name.Variable
+' '           Text
+'('           Punctuation
+'apply'       Keyword
+' '           Text
+'strategy'    Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'list'        Keyword
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'cond'        Keyword
+'\n     '     Text
+'('           Punctuation
+'('           Punctuation
+'and'         Keyword
+'\n        '  Text
+'('           Punctuation
+'valid-move?' Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'legal-move?' Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'make-move'   Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'true'        Keyword
+'  \n        ' Text
+'('           Punctuation
+'println'     Keyword
+' '           Text
+'"no valid or legal move for "' Literal.String
+' '           Text
+'('           Punctuation
+'player-name' Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+' '           Text
+')'           Punctuation
+'\n        '  Text
+'nil'         Keyword
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'move'        Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+"; that's about all the game algorithms for now" Comment.Single
+'\n'          Text
+
+'; now for the interface' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'ostype'      Keyword
+' '           Text
+'"Win32"'     Literal.String
+')'           Punctuation
+'\n   '       Text
+'('           Punctuation
+'load'        Keyword
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'('           Punctuation
+'env'         Keyword
+' '           Text
+'"PROGRAMFILES"' Literal.String
+')'           Punctuation
+' '           Text
+'"/newlisp/guiserver.lsp"' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n   '       Text
+'('           Punctuation
+'load'        Keyword
+' '           Text
+'"/usr/share/newlisp/guiserver.lsp"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'init'        Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'map'         Keyword
+' '           Text
+'set'         Keyword
+' '           Text
+"'"           Operator
+'('           Punctuation
+'screen-width' Name.Variable
+' '           Text
+'screen-height' Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'get-screen'  Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'board-width' Literal.String.Symbol
+' '           Text
+'540'         Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+'; center on screen' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'frame'       Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Reversi'     Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'-'           Name.Variable
+' '           Text
+'('           Punctuation
+'/'           Name.Variable
+' '           Text
+'screen-width' Literal.String.Symbol
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'/'           Name.Variable
+' '           Text
+'board-width' Literal.String.Symbol
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'60'          Literal.String.Symbol
+' '           Text
+'board-width' Literal.String.Symbol
+' '           Text
+'660'         Literal.String.Symbol
+' '           Text
+'"Reversi"'   Literal.String
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'set'         Keyword
+'-'           Keyword
+'border-layout' Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Reversi'     Literal.String.Symbol
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'canvas'      Literal.String.Symbol
+' '           Text
+"'"           Operator
+'MyCanvas'    Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Reversi'     Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'set'         Keyword
+'-'           Keyword
+'background'  Literal.String.Symbol
+' '           Text
+"'"           Operator
+'MyCanvas'    Literal.String.Symbol
+' '           Text
+"'"           Operator
+'('           Punctuation
+'.8'          Name.Variable
+' '           Text
+'.9'          Literal.String.Symbol
+' '           Text
+'.7'          Literal.String.Symbol
+' '           Text
+'.8'          Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'mouse-released' Literal.String.Symbol
+' '           Text
+"'"           Operator
+'MyCanvas'    Literal.String.Symbol
+' '           Text
+"'"           Operator
+'mouse-released-action' Literal.String.Symbol
+' '           Text
+'true'        Keyword
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'panel'       Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Controls'    Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'button'      Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Start'       Literal.String.Symbol
+' '           Text
+"'"           Operator
+'start-game'  Literal.String.Symbol
+' '           Text
+'"Start"'     Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'panel'       Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Lower'       Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'label'       Literal.String.Symbol
+' '           Text
+"'"           Operator
+'WhiteScore'  Literal.String.Symbol
+' '           Text
+'""'          Literal.String
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'label'       Literal.String.Symbol
+' '           Text
+"'"           Operator
+'BlackScore'  Literal.String.Symbol
+' '           Text
+'""'          Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'add'         Keyword
+'-'           Keyword
+'to'          Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Controls'    Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Start'       Literal.String.Symbol
+' '           Text
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'add'         Keyword
+'-'           Keyword
+'to'          Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Lower'       Literal.String.Symbol
+' '           Text
+"'"           Operator
+'WhiteScore'  Literal.String.Symbol
+' '           Text
+"'"           Operator
+'BlackScore'  Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'add'         Keyword
+'-'           Keyword
+'to'          Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Reversi'     Literal.String.Symbol
+' '           Text
+"'"           Operator
+'MyCanvas'    Literal.String.Symbol
+' '           Text
+'"center"'    Literal.String
+' '           Text
+"'"           Operator
+'Controls'    Literal.String.Symbol
+' '           Text
+'"north"'     Literal.String
+' '           Text
+"'"           Operator
+'Lower'       Literal.String.Symbol
+' '           Text
+'"south"'     Literal.String
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'set'         Keyword
+'-'           Keyword
+'anti-aliasing' Literal.String.Symbol
+' '           Text
+'true'        Keyword
+')'           Punctuation
+'\n'          Text
+
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'set'         Keyword
+'-'           Keyword
+'visible'     Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Reversi'     Literal.String.Symbol
+' '           Text
+'true'        Keyword
+')'           Punctuation
+'\n\n'        Text
+
+'; size of board square, and radius/width of counter' Comment.Single
+'\n'          Text
+
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'size'        Literal.String.Symbol
+' '           Text
+'60'          Literal.String.Symbol
+' '           Text
+"'"           Operator
+'width'       Literal.String.Symbol
+' '           Text
+'30'          Literal.String.Symbol
+')'           Punctuation
+'\n\n'        Text
+
+'; initialize the master board' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'initial-board' Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'make-board'  Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'44'          Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'white'       Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'55'          Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'white'       Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'45'          Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'black'       Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'setf'        Keyword
+' '           Text
+'('           Punctuation
+'*'           Keyword
+'board*'      Literal.String.Symbol
+' '           Text
+'54'          Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'black'       Literal.String.Symbol
+')'           Punctuation
+'  \n'        Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'; draw a graphical repesentation of the board' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'draw-board'  Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'local'       Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'dolist'      Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'('           Punctuation
+'all-squares' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'map'         Keyword
+' '           Text
+'set'         Keyword
+' '           Text
+"'"           Operator
+'('           Punctuation
+'x'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'square-to-xy' Name.Variable
+' '           Text
+'i'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'draw-rect'   Literal.String.Symbol
+' \n           ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'('           Punctuation
+'-'           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'width'       Literal.String.Symbol
+' '           Text
+')'           Punctuation
+' '           Text
+'; !!!!!!'    Comment.Single
+'\n           ' Text
+'('           Punctuation
+'-'           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'width'       Literal.String.Symbol
+' '           Text
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'width'       Literal.String.Symbol
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'width'       Literal.String.Symbol
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'gs'          Literal.String.Symbol
+':'           Operator
+'white'       Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'draw-first-four-pieces' Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'draw-piece'  Name.Variable
+' '           Text
+'44'          Literal.String.Symbol
+' '           Text
+'"white"'     Literal.String
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'draw-piece'  Name.Variable
+' '           Text
+'55'          Literal.String.Symbol
+' '           Text
+'"white"'     Literal.String
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'draw-piece'  Name.Variable
+' '           Text
+'45'          Literal.String.Symbol
+' '           Text
+'"black"'     Literal.String
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'draw-piece'  Name.Variable
+' '           Text
+'54'          Literal.String.Symbol
+' '           Text
+'"black"'     Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'; this next function can mark the legal moves available to a player' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'show-legal-moves' Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'local'       Keyword
+' '           Text
+'('           Punctuation
+'legal-move-list' Name.Variable
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'legal-move-list' Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'legal-moves' Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'dolist'      Keyword
+' '           Text
+'('           Punctuation
+'m'           Name.Variable
+' '           Text
+'('           Punctuation
+'all-squares' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'map'         Keyword
+' '           Text
+'set'         Keyword
+' '           Text
+"'"           Operator
+'('           Punctuation
+'x'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'square-to-xy' Name.Variable
+' '           Text
+'m'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'draw-rect'   Literal.String.Symbol
+' \n           ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'('           Punctuation
+'-'           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'width'       Literal.String.Symbol
+' '           Text
+')'           Punctuation
+' '           Text
+'; !!!!!!'    Comment.Single
+'\n           ' Text
+'('           Punctuation
+'-'           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'width'       Literal.String.Symbol
+' '           Text
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'width'       Literal.String.Symbol
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'width'       Literal.String.Symbol
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'find'        Keyword
+' '           Text
+'m'           Literal.String.Symbol
+' '           Text
+'legal-move-list' Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'gs'          Literal.String.Symbol
+':'           Operator
+'blue'        Literal.String.Symbol
+' '           Text
+'gs'          Literal.String.Symbol
+':'           Operator
+'white'       Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+')'           Punctuation
+'\n     '     Text
+')'           Punctuation
+'\n  '        Text
+')'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'; convert the number of a square on the master board to coordinates' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'square-to-xy' Name.Variable
+' '           Text
+'square'      Literal.String.Symbol
+')'           Punctuation
+' \n  '       Text
+'('           Punctuation
+'list'        Keyword
+' '           Text
+'('           Punctuation
+'/'           Name.Variable
+' '           Text
+'square'      Literal.String.Symbol
+' '           Text
+'10'          Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'mod'         Keyword
+' '           Text
+'square'      Literal.String.Symbol
+' '           Text
+'10'          Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'; draw one of the pieces' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'draw-piece'  Name.Variable
+' '           Text
+'square'      Literal.String.Symbol
+' '           Text
+'colour'      Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'local'       Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'map'         Keyword
+' '           Text
+'set'         Keyword
+' '           Text
+"'"           Operator
+'('           Punctuation
+'x'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'square-to-xy' Name.Variable
+' '           Text
+'square'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'cond'        Keyword
+' \n     '    Text
+'('           Punctuation
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'colour'      Literal.String.Symbol
+' '           Text
+'"white"'     Literal.String
+')'           Punctuation
+' \n        ' Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'fill-circle' Literal.String.Symbol
+' \n           ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+'  '          Text
+'; !!!!!!! y first, cos y is x ;-)' Comment.Single
+'\n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'width'       Literal.String.Symbol
+'\n           ' Text
+'gs'          Literal.String.Symbol
+':'           Operator
+'white'       Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n     \n     ' Text
+'('           Punctuation
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'colour'      Literal.String.Symbol
+' '           Text
+'"black"'     Literal.String
+')'           Punctuation
+' \n        ' Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'fill-circle' Literal.String.Symbol
+' \n           ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'width'       Literal.String.Symbol
+'\n           ' Text
+'gs'          Literal.String.Symbol
+':'           Operator
+'black'       Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n     \n     ' Text
+'('           Punctuation
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'colour'      Literal.String.Symbol
+' '           Text
+'"empty"'     Literal.String
+')'           Punctuation
+' \n        ' Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'draw-rect'   Literal.String.Symbol
+' \n           ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'('           Punctuation
+'-'           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'width'       Literal.String.Symbol
+' '           Text
+')'           Punctuation
+' \n           ' Text
+'('           Punctuation
+'-'           Name.Variable
+' '           Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'width'       Literal.String.Symbol
+' '           Text
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'width'       Literal.String.Symbol
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'width'       Literal.String.Symbol
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'gs'          Literal.String.Symbol
+':'           Operator
+'white'       Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'; animate the pieces flipping' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'flip-piece'  Name.Variable
+' '           Text
+'square'      Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n'          Text
+
+'; flip by drawing thinner and fatter ellipses ' Comment.Single
+'\n'          Text
+
+'; go from full disk in opposite colour to invisible' Comment.Single
+'\n'          Text
+
+'; then from invisible to full disk in true colour' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'local'       Keyword
+' '           Text
+'('           Punctuation
+'x'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'colour'      Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'map'         Keyword
+' '           Text
+'set'         Keyword
+' '           Text
+"'"           Operator
+'('           Punctuation
+'x'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'square-to-xy' Name.Variable
+' '           Text
+'square'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'; delete original piece' Comment.Single
+'\n     '     Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'delete'      Keyword
+'-'           Keyword
+'tag'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'colour'      Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'gs'          Literal.String.Symbol
+':'           Operator
+'black'       Literal.String.Symbol
+' '           Text
+'gs'          Literal.String.Symbol
+':'           Operator
+'white'       Literal.String.Symbol
+' '           Text
+')'           Punctuation
+')'           Punctuation
+' \n     '    Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'width'       Literal.String.Symbol
+'  '          Text
+'1'           Literal.String.Symbol
+' '           Text
+'-'           Keyword
+'3'           Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'fill-ellipse' Literal.String.Symbol
+' \n           ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'flip'        Literal.String
+'}'           Literal.String
+' '           Text
+'i'           Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'; y first :-) !!! ' Comment.Single
+'\n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'i'           Literal.String.Symbol
+' \n           ' Text
+'width'       Literal.String.Symbol
+'\n           ' Text
+'colour'      Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'sleep'       Keyword
+' '           Text
+'20'          Literal.String.Symbol
+')'           Punctuation
+'  '          Text
+'; this might need adjusting...' Comment.Single
+'\n        '  Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'delete'      Keyword
+'-'           Keyword
+'tag'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'flip'        Literal.String
+'}'           Literal.String
+' '           Text
+'i'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'colour'      Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'='           Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+' '           Text
+'2'           Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'gs'          Literal.String.Symbol
+':'           Operator
+'white'       Literal.String.Symbol
+' '           Text
+'gs'          Literal.String.Symbol
+':'           Operator
+'black'       Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'i'           Name.Variable
+' '           Text
+'1'           Literal.String.Symbol
+' '           Text
+'width'       Literal.String.Symbol
+' '           Text
+'3'           Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'fill-ellipse' Literal.String.Symbol
+' \n           ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'flip'        Literal.String
+'}'           Literal.String
+' '           Text
+'i'           Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'; :-) !!! '  Comment.Single
+'\n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'i'           Literal.String.Symbol
+' \n           ' Text
+'width'       Literal.String.Symbol
+'\n           ' Text
+'colour'      Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'sleep'       Keyword
+' '           Text
+'20'          Literal.String.Symbol
+')'           Punctuation
+'  \n        ' Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'delete'      Keyword
+'-'           Keyword
+'tag'         Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'{'           Literal.String
+'flip'        Literal.String
+'}'           Literal.String
+' '           Text
+'i'           Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n     '     Text
+')'           Punctuation
+'\n     '     Text
+'; draw the piece again' Comment.Single
+'\n     '     Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'fill-circle' Literal.String.Symbol
+' \n           ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'y'           Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'*'           Name.Variable
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'size'        Literal.String.Symbol
+')'           Punctuation
+' \n           ' Text
+'width'       Literal.String.Symbol
+'\n           ' Text
+'colour'      Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+')'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'do-move'     Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'cond'        Keyword
+' \n     '    Text
+'; check if the move is good ...' Comment.Single
+'\n     '     Text
+'('           Punctuation
+'('           Punctuation
+'and'         Keyword
+' '           Text
+'('           Punctuation
+'!='          Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+' '           Text
+'nil'         Keyword
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'valid-move?' Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+')'           Punctuation
+'\n           ' Text
+'('           Punctuation
+'legal-move?' Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n           \n           ' Text
+'; ... play it' Comment.Single
+'\n              ' Text
+'; make move on board' Comment.Single
+'\n              ' Text
+'('           Punctuation
+'make-move'   Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n              ' Text
+'; and on screen' Comment.Single
+'\n              ' Text
+'('           Punctuation
+'draw-piece'  Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'player-name' Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'update'      Literal.String.Symbol
+')'           Punctuation
+'\n              ' Text
+'; do flipping stuff' Comment.Single
+'\n              \n              ' Text
+'; wait for a while' Comment.Single
+'\n              ' Text
+'('           Punctuation
+'sleep'       Keyword
+' '           Text
+'1000'        Literal.String.Symbol
+')'           Punctuation
+'\n  \n              ' Text
+'; then do flipping' Comment.Single
+'\n              ' Text
+'('           Punctuation
+'dolist'      Keyword
+' '           Text
+'('           Punctuation
+'f'           Name.Variable
+' '           Text
+'*'           Keyword
+'flips*'      Literal.String.Symbol
+')'           Punctuation
+'\n                 ' Text
+'('           Punctuation
+'flip-piece'  Name.Variable
+' '           Text
+'f'           Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n              \n              ' Text
+'('           Punctuation
+'inc'         Keyword
+' '           Text
+'*'           Keyword
+'move-number*' Literal.String.Symbol
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'draw-piece'  Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'player-name' Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'update'      Literal.String.Symbol
+')'           Punctuation
+'\n\n              ' Text
+'; update scores' Comment.Single
+'\n              ' Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'set'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+"'"           Operator
+'WhiteScore'  Literal.String.Symbol
+' \n                 ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'"White: "'   Literal.String
+' '           Text
+'('           Punctuation
+'first'       Keyword
+' '           Text
+'('           Punctuation
+'count'       Keyword
+' '           Text
+'('           Punctuation
+'list'        Keyword
+' '           Text
+'white'       Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'*'           Keyword
+'board*'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'set'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+"'"           Operator
+'BlackScore'  Literal.String.Symbol
+'\n                 ' Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'"Black: "'   Literal.String
+' '           Text
+'('           Punctuation
+'first'       Keyword
+' '           Text
+'('           Punctuation
+'count'       Keyword
+' '           Text
+'('           Punctuation
+'list'        Keyword
+' '           Text
+'black'       Literal.String.Symbol
+')'           Punctuation
+' '           Text
+'*'           Keyword
+'board*'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n              ' Text
+')'           Punctuation
+'\n     '     Text
+'; or return nil' Comment.Single
+'\n     '     Text
+'('           Punctuation
+'true'        Keyword
+' \n           ' Text
+'nil'         Keyword
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'; the game is driven by the mouse clicks of the user' Comment.Single
+'\n'          Text
+
+'; in reply, the computer plays a black piece' Comment.Single
+'\n'          Text
+
+'; premature clicking is possible and possibly a bad thing...' Comment.Single
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'mouse-released-action' Name.Variable
+' '           Text
+'x'           Literal.String.Symbol
+' '           Text
+'y'           Literal.String.Symbol
+' '           Text
+'button'      Literal.String.Symbol
+' '           Text
+'modifiers'   Literal.String.Symbol
+' '           Text
+'tags'        Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'; extract the tag of the clicked square' Comment.Single
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'move'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'int'         Keyword
+' '           Text
+'('           Punctuation
+'string'      Keyword
+' '           Text
+'('           Punctuation
+'first'       Keyword
+' '           Text
+'tags'        Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'0'           Literal.String.Symbol
+' '           Text
+'10'          Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'do-move'     Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n     '     Text
+'('           Punctuation
+'begin'       Keyword
+'\n        '  Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'player'      Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'next-to-play' Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'; there is a training mode - legal squares are highlighted' Comment.Single
+'\n        '  Text
+'; you can uncomment the next line...' Comment.Single
+'\n        '  Text
+'; (show-legal-moves player)' Comment.Single
+'\n        '  Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'update'      Literal.String.Symbol
+')'           Punctuation
+'\n        \n        ' Text
+"; wait for black's reply" Comment.Single
+'\n        '  Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'set'         Keyword
+'-'           Keyword
+'cursor'      Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Reversi'     Literal.String.Symbol
+' '           Text
+'"wait"'      Literal.String
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'set'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Start'       Literal.String.Symbol
+' '           Text
+'"black\'s move - thinking..."' Literal.String
+')'           Punctuation
+'\n        '  Text
+'; give the illusion of Deep Thought...' Comment.Single
+'\n        '  Text
+'('           Punctuation
+'sleep'       Keyword
+' '           Text
+'2000'        Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+"; black's reply" Comment.Single
+'\n        '  Text
+'; currently only the random strategy has been defined...' Comment.Single
+'\n        '  Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'strategy'    Literal.String.Symbol
+' '           Text
+'random'      Keyword
+'-'           Keyword
+'strategy'    Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'move'        Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'apply'       Keyword
+' '           Text
+'strategy'    Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'list'        Keyword
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'do-move'     Name.Variable
+' '           Text
+'move'        Literal.String.Symbol
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'player'      Literal.String.Symbol
+' '           Text
+'('           Punctuation
+'next-to-play' Name.Variable
+' '           Text
+'player'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+"; (show-legal-moves player) ; to see black's moves" Comment.Single
+'\n        '  Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'set'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Start'       Literal.String.Symbol
+' '           Text
+'"your move"' Literal.String
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'set'         Keyword
+'-'           Keyword
+'cursor'      Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Reversi'     Literal.String.Symbol
+' '           Text
+'"default"'   Literal.String
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'update'      Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'start-game'  Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'set'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Start'       Literal.String.Symbol
+' '           Text
+'"Click a square to place a piece!"' Literal.String
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'disable'     Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Start'       Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+' '           Text
+"'"           Operator
+'player'      Literal.String.Symbol
+' '           Text
+'white'       Literal.String.Symbol
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'define'      Keyword
+' '           Text
+'('           Punctuation
+'start'       Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'set'         Keyword
+'-'           Keyword
+'text'        Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Start'       Literal.String.Symbol
+' '           Text
+'"Start"'     Literal.String
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'enable'      Literal.String.Symbol
+' '           Text
+"'"           Operator
+'Start'       Literal.String.Symbol
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'set'         Keyword
+'  '          Text
+"'"           Operator
+'*'           Keyword
+'move-number*' Literal.String.Symbol
+' '           Text
+'1'           Literal.String.Symbol
+'\n        '  Text
+"'"           Operator
+'*'           Keyword
+'flips*'      Literal.String.Symbol
+' '           Text
+"'"           Operator
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'initial-board' Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'draw-board'  Name.Variable
+')'           Punctuation
+'\n  '        Text
+'('           Punctuation
+'draw-first-four-pieces' Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'start'       Name.Variable
+')'           Punctuation
+'\n\n'        Text
+
+'('           Punctuation
+'gs'          Name.Variable
+':'           Operator
+'listen'      Literal.String.Symbol
+')'           Punctuation
+'\n'          Text

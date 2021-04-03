@@ -1,0 +1,308 @@
+'#ifdef ARCH_ARM\n' Comment.Preproc
+
+'arch'        Keyword
+' '           Text
+'arm11'       Keyword
+'\n'          Text
+
+'#else\n'     Comment.Preproc
+
+'arch'        Keyword
+' '           Text
+'ia32'        Keyword
+'\n'          Text
+
+'#endif\n'    Comment.Preproc
+
+'\n'          Text
+
+'objects'     Keyword
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'my_ep'       Name
+' '           Text
+'='           Punctuation
+' '           Text
+'ep'          Keyword.Type
+' '           Text
+'/* A synchronous endpoint */' Comment
+'\n\n  '      Text
+'/* Two thread control blocks */' Comment
+'\n  '        Text
+'tcb1'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'tcb'         Keyword.Type
+'\n  '        Text
+'tcb2'        Name
+' '           Text
+'='           Punctuation
+' '           Text
+'tcb'         Keyword.Type
+'\n\n  '      Text
+'/* Four frames of physical memory */' Comment
+'\n  '        Text
+'frame1'      Name
+' '           Text
+'='           Punctuation
+' '           Text
+'frame'       Keyword.Type
+' '           Text
+'('           Punctuation
+'4k'          Literal.Number
+')'           Punctuation
+'\n  '        Text
+'frame2'      Name
+' '           Text
+'='           Punctuation
+' '           Text
+'frame'       Keyword.Type
+' '           Text
+'('           Punctuation
+'4k'          Literal.Number
+')'           Punctuation
+'\n  '        Text
+'frame3'      Name
+' '           Text
+'='           Punctuation
+' '           Text
+'frame'       Keyword.Type
+' '           Text
+'('           Punctuation
+'4k'          Literal.Number
+')'           Punctuation
+'\n  '        Text
+'frame4'      Name
+' '           Text
+'='           Punctuation
+' '           Text
+'frame'       Keyword.Type
+' '           Text
+'('           Punctuation
+'4k'          Literal.Number
+')'           Punctuation
+'\n\n  '      Text
+'/* Two page tables */' Comment
+'\n  '        Text
+'pt1'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'pt'          Keyword.Type
+'\n  '        Text
+'pt2'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'pt'          Keyword.Type
+'\n\n  '      Text
+'/* Two page directories */' Comment
+'\n  '        Text
+'pd1'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'pd'          Keyword.Type
+'\n  '        Text
+'pd2'         Name
+' '           Text
+'='           Punctuation
+' '           Text
+'pd'          Keyword.Type
+'\n\n  '      Text
+'/* Two capability nodes */' Comment
+'\n  '        Text
+'cnode1'      Name
+' '           Text
+'='           Punctuation
+' '           Text
+'cnode'       Keyword.Type
+' '           Text
+'('           Punctuation
+'2'           Literal.Number
+' '           Text
+'bits'        Literal.Number
+')'           Punctuation
+'\n  '        Text
+'cnode2'      Name
+' '           Text
+'='           Punctuation
+' '           Text
+'cnode'       Keyword.Type
+' '           Text
+'('           Punctuation
+'3'           Literal.Number
+' '           Text
+'bits'        Literal.Number
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'caps'        Keyword
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'cnode1'      Name
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'0x1'         Literal.Number.Hex
+':'           Punctuation
+' '           Text
+'frame1'      Name
+' '           Text
+'('           Punctuation
+'RW'          Keyword.Reserved
+')'           Punctuation
+' '           Text
+'/* read/write */' Comment
+'\n    '      Text
+'0x2'         Literal.Number.Hex
+':'           Punctuation
+' '           Text
+'my_ep'       Name
+' '           Text
+'('           Punctuation
+'R'           Keyword.Reserved
+')'           Punctuation
+'   '         Text
+'/* read-only */' Comment
+'\n  '        Text
+'}'           Punctuation
+'\n  '        Text
+'cnode2'      Name
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'0x1'         Literal.Number.Hex
+':'           Punctuation
+' '           Text
+'my_ep'       Name
+' '           Text
+'('           Punctuation
+'W'           Keyword.Reserved
+')'           Punctuation
+'   '         Text
+'/* write-only */' Comment
+'\n  '        Text
+'}'           Punctuation
+'\n  '        Text
+'tcb1'        Name
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'vspace'      Literal.Number
+':'           Punctuation
+' '           Text
+'pd1'         Name
+'\n    '      Text
+'ipc_buffer_slot' Literal.Number
+':'           Punctuation
+' '           Text
+'frame1'      Name
+'\n    '      Text
+'cspace'      Literal.Number
+':'           Punctuation
+' '           Text
+'cnode1'      Name
+'\n  '        Text
+'}'           Punctuation
+'\n  '        Text
+'pd1'         Name
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'0x10'        Literal.Number.Hex
+':'           Punctuation
+' '           Text
+'pt1'         Name
+'\n  '        Text
+'}'           Punctuation
+'\n  '        Text
+'pt1'         Name
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'0x8'         Literal.Number.Hex
+':'           Punctuation
+' '           Text
+'frame1'      Name
+' '           Text
+'('           Punctuation
+'RW'          Keyword.Reserved
+')'           Punctuation
+'\n    '      Text
+'0x9'         Literal.Number.Hex
+':'           Punctuation
+' '           Text
+'frame2'      Name
+' '           Text
+'('           Punctuation
+'R'           Keyword.Reserved
+')'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n  '        Text
+'tcb2'        Name
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'vspace'      Literal.Number
+':'           Punctuation
+' '           Text
+'pd2'         Name
+'\n    '      Text
+'ipc_buffer_slot' Literal.Number
+':'           Punctuation
+' '           Text
+'frame3'      Name
+'\n    '      Text
+'cspace'      Literal.Number
+':'           Punctuation
+' '           Text
+'cnode2'      Name
+'\n  '        Text
+'}'           Punctuation
+'\n  '        Text
+'pd2'         Name
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'0x10'        Literal.Number.Hex
+':'           Punctuation
+' '           Text
+'pt2'         Name
+'\n  '        Text
+'}'           Punctuation
+'\n  '        Text
+'pt2'         Name
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'0x10'        Literal.Number.Hex
+':'           Punctuation
+' '           Text
+'frame3'      Name
+' '           Text
+'('           Punctuation
+'RW'          Keyword.Reserved
+')'           Punctuation
+'\n    '      Text
+'0x12'        Literal.Number.Hex
+':'           Punctuation
+' '           Text
+'frame4'      Name
+' '           Text
+'('           Punctuation
+'R'           Keyword.Reserved
+')'           Punctuation
+'\n  '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

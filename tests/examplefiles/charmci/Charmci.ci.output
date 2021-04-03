@@ -1,0 +1,193 @@
+'module'      Keyword
+' '           Text
+'CkCallback'  Name.Class
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'readonly'    Keyword
+' '           Text
+'CProxy_ckcallback_group' Name
+' '           Text
+'_ckcallbackgroup' Name
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'message'     Keyword
+' '           Text
+'CkCcsRequestMsg' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'char'        Keyword.Type
+' '           Text
+'data'        Name
+'['           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+' \t'         Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'message'     Keyword
+' '           Text
+'CkDataMsg'   Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'char'        Keyword.Type
+' '           Text
+'data'        Name
+'['           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\n\t'      Text
+'mainchare'   Keyword
+' '           Text
+'ckcallback_main' Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'entry'       Keyword
+' '           Text
+'ckcallback_main' Name
+'('           Punctuation
+'CkArgMsg'    Name
+' '           Text
+'*'           Operator
+'m'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'group'       Keyword
+' '           Text
+'['           Punctuation
+'migratable'  Keyword
+']'           Punctuation
+' '           Text
+'ckcallback_group' Name.Label
+' '           Text
+':'           Punctuation
+' '           Text
+'IrrGroup'    Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'entry'       Keyword
+' '           Text
+'ckcallback_group' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'entry'       Keyword
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'registerCcsCallback' Name.Function
+'('           Punctuation
+'char'        Keyword.Type
+' '           Text
+'name'        Name
+'['           Punctuation
+'strlen'      Name
+'('           Punctuation
+'name'        Name
+')'           Punctuation
+'+'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n'          Text
+
+'\t\t\t'      Text
+'CkCallback'  Name
+' '           Text
+'cb'          Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'entry'       Keyword
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'call'        Name.Function
+'('           Punctuation
+'CkCallback'  Name
+' '           Text
+'c'           Name
+','           Punctuation
+'CkMarshalledMessage' Name
+' '           Text
+'msg'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'entry'       Keyword
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'call'        Name.Function
+'('           Punctuation
+'CkCallback'  Name
+' '           Text
+'c'           Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'length'      Name
+','           Punctuation
+' '           Text
+'char'        Keyword.Type
+' '           Text
+'data'        Name
+'['           Punctuation
+'length'      Name
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text

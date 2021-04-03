@@ -1,0 +1,93 @@
+'POST'        Name.Function
+' '           Text
+'/demo/submit/' Name.Namespace
+' '           Text
+'HTTP'        Keyword.Reserved
+'/'           Operator
+'1.1'         Literal.Number
+'\n'          Text
+
+'Host'        Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'pygments.org' Literal
+'\n'          Text
+
+'Connection'  Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'keep-alivk'  Literal
+'\n'          Text
+
+'Cache-Control' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'max-age=0'   Literal
+'\n'          Text
+
+'Origin'      Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'http://pygments.org' Literal
+'\n'          Text
+
+'User-Agent'  Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2)' Literal
+'\n'          Text
+
+'    '        Text
+'AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.63 Safari/535.7' Literal
+'\n'          Text
+
+'Content-Type' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'application/x-www-form-urlencoded' Literal
+'\n'          Text
+
+'Accept'      Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' Literal
+'\n'          Text
+
+'Referer'     Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'http://pygments.org/' Literal
+'\n'          Text
+
+'Accept-Encoding' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'gzip,deflate,sdch' Literal
+'\n'          Text
+
+'Accept-Language' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'en-US,en;q=0.8' Literal
+'\n'          Text
+
+'Accept-Charset' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'windows-949,utf-8;q=0.7,*;q=0.3' Literal
+'\n'          Text
+
+'\n'          Text
+
+'name=test&lang=text&code=asdf&user=\n' Text

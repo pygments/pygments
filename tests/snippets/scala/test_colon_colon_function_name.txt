@@ -1,0 +1,33 @@
+---input---
+def ::(xs: List[T]): List[T] = ::(x, xs)
+
+---tokens---
+'def'         Keyword
+' '           Text
+'::'          Name.Function
+'('           Punctuation
+'xs'          Name
+':'           Punctuation
+' '           Text
+'List'        Name.Class
+'['           Punctuation
+'T'           Name.Class
+']'           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'List'        Name.Class
+'['           Punctuation
+'T'           Name.Class
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'::'          Name
+'('           Punctuation
+'x'           Name
+','           Punctuation
+' '           Text
+'xs'          Name
+')'           Punctuation
+'\n'          Text

@@ -1,0 +1,450 @@
+'/*'          Comment.Multiline
+' REXX example. ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+' Some basic constructs. ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'almost_pi'   Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0.1415'      Literal.Number
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number
+'\n'          Text.Whitespace
+
+'if'          Keyword.Reserved
+' '           Text.Whitespace
+'almost_pi'   Text
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number
+' '           Text.Whitespace
+'then'        Keyword.Reserved
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+'say'         Keyword.Reserved
+' '           Text.Whitespace
+"'"           Literal.String
+'h'           Literal.String
+'u'           Literal.String
+'h'           Literal.String
+'?'           Literal.String
+"'"           Literal.String
+'\n'          Text.Whitespace
+
+'else'        Keyword.Reserved
+' '           Text.Whitespace
+'do'          Keyword.Reserved
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+'say'         Keyword.Reserved
+' '           Text.Whitespace
+"'"           Literal.String
+'a'           Literal.String
+'l'           Literal.String
+'m'           Literal.String
+'o'           Literal.String
+'s'           Literal.String
+'t'           Literal.String
+'_'           Literal.String
+'p'           Literal.String
+'i'           Literal.String
+'='           Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'almost_pi'   Text
+' '           Text.Whitespace
+'||'          Operator
+' '           Text.Whitespace
+'"'           Literal.String
+' - ok'       Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'end'         Keyword.Reserved
+'\n'          Text.Whitespace
+
+'x'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'"'           Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'||'          Operator
+' '           Text.Whitespace
+'"'           Literal.String
+"'"           Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'||'          Operator
+' '           Text.Whitespace
+"'"           Literal.String
+"''"          Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'||'          Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'""'          Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'/*'          Comment.Multiline
+' quotes '    Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+' A comment\n ' Comment.Multiline
+'*'           Comment.Multiline
+' spawning multiple\n   lines. /' Comment.Multiline
+'*'           Comment.Multiline
+' / '         Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+' Built-in functions. ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'line'        Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'l'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'c'           Literal.String
+'o'           Literal.String
+'n'           Literal.String
+'t'           Literal.String
+'a'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'i'           Literal.String
+'n'           Literal.String
+'g'           Literal.String
+' '           Literal.String
+'s'           Literal.String
+'o'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+' '           Literal.String
+'s'           Literal.String
+'h'           Literal.String
+'o'           Literal.String
+'r'           Literal.String
+'t'           Literal.String
+' '           Literal.String
+'t'           Literal.String
+'e'           Literal.String
+'x'           Literal.String
+'t'           Literal.String
+"'"           Literal.String
+'\n'          Text.Whitespace
+
+'say'         Keyword.Reserved
+' '           Text.Whitespace
+'WordPos'     Name.Builtin
+'('           Operator
+'line'        Text
+','           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'s'           Literal.String
+'o'           Literal.String
+'m'           Literal.String
+'e'           Literal.String
+"'"           Literal.String
+')'           Operator
+'\n'          Text.Whitespace
+
+'say'         Keyword.Reserved
+' '           Text.Whitespace
+'Word'        Name.Builtin
+'('           Operator
+'line'        Text
+','           Operator
+' '           Text.Whitespace
+'4'           Literal.Number
+')'           Operator
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+' Labels and procedures. ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'some_label'  Name.Label
+' '           Text.Whitespace
+':'           Operator
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'divide'      Name.Function
+':'           Operator
+' '           Text.Whitespace
+'procedure'   Keyword.Declaration
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+'parse'       Keyword.Reserved
+' '           Text.Whitespace
+'arg'         Keyword.Reserved
+' '           Text.Whitespace
+'some'        Text
+' '           Text.Whitespace
+'other'       Text
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+'return'      Keyword.Reserved
+' '           Text.Whitespace
+'some'        Text
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'other'       Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'call'        Keyword.Reserved
+' '           Text.Whitespace
+'divide'      Text
+'('           Operator
+'5'           Literal.Number
+','           Operator
+' '           Text.Whitespace
+'2'           Literal.Number
+')'           Operator
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+' Loops '     Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'do'          Keyword.Reserved
+' '           Text.Whitespace
+'i'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'to'          Keyword.Reserved
+' '           Text.Whitespace
+'5'           Literal.Number
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+'do'          Keyword.Reserved
+' '           Text.Whitespace
+'j'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'-'           Operator
+'3'           Literal.Number
+' '           Text.Whitespace
+'to'          Keyword.Reserved
+' '           Text.Whitespace
+'-'           Operator
+'9'           Literal.Number
+' '           Text.Whitespace
+'by'          Keyword.Reserved
+' '           Text.Whitespace
+'-'           Operator
+'3'           Literal.Number
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+'say'         Keyword.Reserved
+' '           Text.Whitespace
+'i'           Text
+' '           Text.Whitespace
+"'"           Literal.String
+'+'           Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'j'           Text
+' '           Text.Whitespace
+"'"           Literal.String
+'='           Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'i'           Text
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'j'           Text
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+'end'         Keyword.Reserved
+' '           Text.Whitespace
+'j'           Text
+'\n'          Text.Whitespace
+
+'end'         Keyword.Reserved
+' '           Text.Whitespace
+'i'           Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'do'          Keyword.Reserved
+' '           Text.Whitespace
+'forever'     Keyword.Reserved
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+' '           Text.Whitespace
+'leave'       Keyword.Reserved
+'\n'          Text.Whitespace
+
+'end'         Keyword.Reserved
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+' Print a text file on MVS. ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'ADDRESS'     Keyword.Reserved
+' '           Text.Whitespace
+'TSO'         Text
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+"ALLOC F(TEXTFILE) DSN('some.text.dsn') SHR REU" Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'EXECIO * DISKR TEXTFILE ( FINIS STEM LINES.' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'FREE F(TEXTFILE)' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'I'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n'          Text.Whitespace
+
+'DO'          Keyword.Reserved
+' '           Text.Whitespace
+'WHILE'       Keyword.Reserved
+' '           Text.Whitespace
+'I'           Text
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'LINES'       Text
+'.'           Operator
+'0'           Literal.Number
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+'SAY'         Keyword.Reserved
+' '           Text.Whitespace
+"'"           Literal.String
+' '           Literal.String
+'L'           Literal.String
+'I'           Literal.String
+'N'           Literal.String
+'E'           Literal.String
+' '           Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'I'           Text
+' '           Text.Whitespace
+"'"           Literal.String
+' '           Literal.String
+':'           Literal.String
+' '           Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'LINES'       Text
+'.'           Operator
+'I'           Text
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+'I'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'I'           Text
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n'          Text.Whitespace
+
+'END'         Keyword.Reserved
+'\n'          Text.Whitespace

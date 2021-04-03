@@ -1,0 +1,28 @@
+---input---
+a 0x1AaAF
+a 7777777777777777777777777777777777777777777777777774MSJUVU
+a base32(aB/c23=)
+a b64 aB/c23=
+
+---tokens---
+'a'           Name.Function
+' '           Text
+'0x1AaAF'     Literal.Number.Hex
+'\n'          Text
+
+'a'           Name.Function
+' '           Text
+'7777777777777777777777777777777777777777777777777774MSJUVU' Literal.Number
+'\n'          Text
+
+'a'           Name.Function
+' '           Text
+'base32'      Literal.String.Affix
+'(aB/c23=)'   Literal.String.Other
+'\n'          Text
+
+'a'           Name.Function
+' '           Text
+'b64 '        Literal.String.Affix
+'aB/c23='     Literal.String.Other
+'\n'          Text

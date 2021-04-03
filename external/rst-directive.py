@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     The Pygments reStructuredText directive
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -31,7 +30,7 @@
     .. _directive documentation:
        https://docutils.sourceforge.io/docs/howto/rst-directives.html
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

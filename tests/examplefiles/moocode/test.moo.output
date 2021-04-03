@@ -1,0 +1,609 @@
+'you_lose_msg' Text
+' '           Text
+'='           Operator
+' '           Text
+'"Either that person does not exist, or has a different password."' Literal.String
+';'           Operator
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'(!('         Operator
+'caller'      Name.Variable.Instance
+' '           Text
+'in'          Keyword
+' '           Text
+'{'           Operator
+'#0'          Name.Entity
+','           Operator
+' '           Text
+'this'        Name.Variable.Instance
+'}))'         Operator
+'\n  '        Text
+'return'      Keyword
+' '           Text
+'E_PERM'      Name.Exception
+';'           Operator
+'\n  '        Text
+'"...caller isn\'t :do_login_command..."' Literal.String
+';'           Operator
+'\n'          Text
+
+'elseif'      Keyword
+' '           Text
+'('           Operator
+'args'        Name.Variable.Instance
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Operator
+'args'        Name.Variable.Instance
+'['           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+' '           Text
+'=='          Operator
+' '           Text
+'"test"'      Literal.String
+'))'          Operator
+'\n  '        Text
+'return'      Keyword
+' '           Text
+'this'        Name.Variable.Instance
+':'           Operator
+'test'        Name.Function
+'('           Operator
+'@'           Operator
+'listdelete'  Name.Function
+'('           Operator
+'args'        Name.Variable.Instance
+','           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'));'         Operator
+'\n'          Text
+
+'elseif'      Keyword
+' '           Text
+'(!('         Operator
+'length'      Name.Builtin
+'('           Operator
+'args'        Name.Variable.Instance
+')'           Operator
+' '           Text
+'in'          Keyword
+' '           Text
+'{'           Operator
+'1'           Literal.Number.Integer
+','           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'}))'         Operator
+'\n  '        Text
+'notify'      Name.Function
+'('           Operator
+'player'      Name.Variable.Instance
+','           Operator
+' '           Text
+'tostr'       Name.Function
+'('           Operator
+'"Usage:  "'  Literal.String
+','           Operator
+' '           Text
+'verb'        Text
+','           Operator
+' '           Text
+'" <existing-player-name> <password>"' Literal.String
+'));'         Operator
+'\n'          Text
+
+'elseif'      Keyword
+' '           Text
+'(!'          Operator
+'valid'       Name.Function
+'('           Operator
+'candidate'   Text
+' '           Text
+'='           Operator
+' '           Text
+'this'        Name.Variable.Instance
+':'           Operator
+'_match_player' Name.Function
+'('           Operator
+'name'        Text
+' '           Text
+'='           Operator
+' '           Text
+'strsub'      Name.Function
+'('           Operator
+'args'        Name.Variable.Instance
+'['           Operator
+'1'           Literal.Number.Integer
+'],'          Operator
+' '           Text
+'" "'         Literal.String
+','           Operator
+' '           Text
+'"_"'         Literal.String
+'))))'        Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'name'        Text
+' '           Text
+'=='          Operator
+' '           Text
+'"guest"'     Literal.String
+')'           Operator
+'\n    '      Text
+'"must be no guests"' Literal.String
+';'           Operator
+'\n    '      Text
+'this'        Name.Variable.Instance
+':'           Operator
+'notify_lines' Name.Function
+'('           Operator
+'this'        Name.Variable.Instance
+':'           Operator
+'registration_text' Name.Function
+'('           Operator
+'"guest"'     Literal.String
+'));'         Operator
+'\n  '        Text
+'else'        Keyword
+'\n    '      Text
+'notify'      Name.Function
+'('           Operator
+'player'      Name.Variable.Instance
+','           Operator
+' '           Text
+'you_lose_msg' Text
+');'          Operator
+'\n  '        Text
+'endif'       Keyword
+'\n  '        Text
+'"...unknown player..."' Literal.String
+';'           Operator
+'\n'          Text
+
+'elseif'      Keyword
+' '           Text
+'('           Operator
+'is_clear_property' Name.Function
+'('           Operator
+'candidate'   Text
+','           Operator
+' '           Text
+'"password"'  Literal.String
+')'           Operator
+' '           Text
+'||'          Operator
+' '           Text
+'(('          Operator
+'typeof'      Name.Function
+'('           Operator
+'candidate'   Text
+'.'           Operator
+'password'    Text
+')'           Operator
+' '           Text
+'=='          Operator
+' '           Text
+'STR'         Text
+')'           Operator
+' '           Text
+'&&'          Operator
+' '           Text
+'(('          Operator
+'length'      Name.Builtin
+'('           Operator
+'candidate'   Text
+'.'           Operator
+'password'    Text
+')'           Operator
+' '           Text
+'<'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'||'          Operator
+' '           Text
+'('           Operator
+'crypt'       Name.Function
+'('           Operator
+'{@'          Operator
+'args'        Name.Variable.Instance
+','           Operator
+' '           Text
+'""'          Literal.String
+'}['          Operator
+'2'           Literal.Number.Integer
+'],'          Operator
+' '           Text
+'candidate'   Text
+'.'           Operator
+'password'    Text
+')'           Operator
+' '           Text
+'!='          Operator
+' '           Text
+'candidate'   Text
+'.'           Operator
+'password'    Text
+'))))'        Operator
+'\n  '        Text
+'notify'      Name.Function
+'('           Operator
+'player'      Name.Variable.Instance
+','           Operator
+' '           Text
+'you_lose_msg' Text
+');'          Operator
+'\n  '        Text
+'"...bad password..."' Literal.String
+';'           Operator
+'\n  '        Text
+'server_log'  Name.Function
+'('           Operator
+'tostr'       Name.Function
+'('           Operator
+'"FAILED CONNECT: "' Literal.String
+','           Operator
+' '           Text
+'args'        Name.Variable.Instance
+'['           Operator
+'1'           Literal.Number.Integer
+'],'          Operator
+' '           Text
+'" ("'        Literal.String
+','           Operator
+' '           Text
+'candidate'   Text
+','           Operator
+' '           Text
+'") on "'     Literal.String
+','           Operator
+' '           Text
+'connection_name' Name.Function
+'('           Operator
+'player'      Name.Variable.Instance
+'),'          Operator
+' '           Text
+'('           Operator
+'$string_utils' Name.Entity
+':'           Operator
+'connection_hostname' Name.Function
+'('           Operator
+'connection_name' Name.Function
+'('           Operator
+'player'      Name.Variable.Instance
+'))'          Operator
+' '           Text
+'in'          Keyword
+' '           Text
+'candidate'   Text
+'.'           Operator
+'all_connect_places' Text
+')'           Operator
+' '           Text
+'?'           Operator
+' '           Text
+'""'          Literal.String
+' '           Text
+'|'           Operator
+' '           Text
+'"******"'    Literal.String
+'));'         Operator
+'\n'          Text
+
+'elseif'      Keyword
+' '           Text
+'((('         Operator
+'candidate'   Text
+'.'           Operator
+'name'        Text
+' '           Text
+'=='          Operator
+' '           Text
+'"guest"'     Literal.String
+')'           Operator
+' '           Text
+'&&'          Operator
+' '           Text
+'this'        Name.Variable.Instance
+'.'           Operator
+'sitematch_guests' Text
+')'           Operator
+' '           Text
+'&&'          Operator
+' '           Text
+'valid'       Name.Function
+'('           Operator
+'foreigner'   Text
+' '           Text
+'='           Operator
+' '           Text
+'$country_db' Name.Entity
+':'           Operator
+'get_guest'   Name.Function
+'('           Operator
+')))'         Operator
+'\n  '        Text
+'notify'      Name.Function
+'('           Operator
+'player'      Name.Variable.Instance
+','           Operator
+' '           Text
+'tostr'       Name.Function
+'('           Operator
+'"Okay,...  Logging you in as `"' Literal.String
+','           Operator
+' '           Text
+'foreigner'   Text
+':'           Operator
+'name'        Name.Function
+'('           Operator
+'),'          Operator
+' '           Text
+'"\'"'        Literal.String
+'));'         Operator
+'\n  '        Text
+'this'        Name.Variable.Instance
+':'           Operator
+'record_connection' Name.Function
+'('           Operator
+'foreigner'   Text
+');'          Operator
+'\n  '        Text
+'return'      Keyword
+' '           Text
+'foreigner'   Text
+';'           Operator
+'\n'          Text
+
+'elseif'      Keyword
+' '           Text
+'(('          Operator
+'parent'      Name.Function
+'('           Operator
+'candidate'   Text
+')'           Operator
+' '           Text
+'=='          Operator
+' '           Text
+'$guest'      Name.Entity
+')'           Operator
+' '           Text
+'&&'          Operator
+' '           Text
+'(!'          Operator
+'valid'       Name.Function
+'('           Operator
+'candidate'   Text
+' '           Text
+'='           Operator
+' '           Text
+'candidate'   Text
+':'           Operator
+'defer'       Name.Function
+'('           Operator
+'))))'        Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'candidate'   Text
+' '           Text
+'=='          Operator
+' '           Text
+'#-3'         Name.Entity
+')'           Operator
+'\n    '      Text
+'notify'      Name.Function
+'('           Operator
+'player'      Name.Variable.Instance
+','           Operator
+' '           Text
+'"Sorry, guest characters are not allowed from your site right now."' Literal.String
+');'          Operator
+'\n  '        Text
+'elseif'      Keyword
+' '           Text
+'('           Operator
+'candidate'   Text
+' '           Text
+'=='          Operator
+' '           Text
+'#-2'         Name.Entity
+')'           Operator
+'\n    '      Text
+'this'        Name.Variable.Instance
+':'           Operator
+'notify_lines' Name.Function
+'('           Operator
+'this'        Name.Variable.Instance
+':'           Operator
+'registration_text' Name.Function
+'('           Operator
+'"blacklisted"' Literal.String
+','           Operator
+' '           Text
+'"Sorry, guest characters are not allowed from your site."' Literal.String
+'));'         Operator
+'\n  '        Text
+'elseif'      Keyword
+' '           Text
+'('           Operator
+'candidate'   Text
+' '           Text
+'=='          Operator
+' '           Text
+'#-4'         Name.Entity
+')'           Operator
+'\n    '      Text
+'this'        Name.Variable.Instance
+':'           Operator
+'notify_lines' Name.Function
+'('           Operator
+'this'        Name.Variable.Instance
+':'           Operator
+'registration_text' Name.Function
+'('           Operator
+'"guest"'     Literal.String
+'));'         Operator
+'\n  '        Text
+'else'        Keyword
+'\n    '      Text
+'notify'      Name.Function
+'('           Operator
+'player'      Name.Variable.Instance
+','           Operator
+' '           Text
+'"Sorry, all of our guest characters are in use right now."' Literal.String
+');'          Operator
+'\n  '        Text
+'endif'       Keyword
+'\n'          Text
+
+'else'        Keyword
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'((!('        Operator
+'name'        Text
+' '           Text
+'in'          Keyword
+' '           Text
+'candidate'   Text
+'.'           Operator
+'aliases'     Text
+'))'          Operator
+' '           Text
+'&&'          Operator
+' '           Text
+'('           Operator
+'name'        Text
+' '           Text
+'!='          Operator
+' '           Text
+'tostr'       Name.Function
+'('           Operator
+'candidate'   Text
+')))'         Operator
+'\n    '      Text
+'notify'      Name.Function
+'('           Operator
+'player'      Name.Variable.Instance
+','           Operator
+' '           Text
+'tostr'       Name.Function
+'('           Operator
+'"Okay,... "' Literal.String
+','           Operator
+' '           Text
+'name'        Text
+','           Operator
+' '           Text
+'" is in use.  Logging you in as `"' Literal.String
+','           Operator
+' '           Text
+'candidate'   Text
+':'           Operator
+'name'        Name.Function
+'('           Operator
+'),'          Operator
+' '           Text
+'"\'"'        Literal.String
+'));'         Operator
+'\n  '        Text
+'endif'       Keyword
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'this'        Name.Variable.Instance
+':'           Operator
+'is_newted'   Name.Function
+'('           Operator
+'candidate'   Text
+'))'          Operator
+'\n    '      Text
+'notify'      Name.Function
+'('           Operator
+'player'      Name.Variable.Instance
+','           Operator
+' '           Text
+'""'          Literal.String
+');'          Operator
+'\n    '      Text
+'notify'      Name.Function
+'('           Operator
+'player'      Name.Variable.Instance
+','           Operator
+' '           Text
+'this'        Name.Variable.Instance
+':'           Operator
+'newt_message_for' Name.Function
+'('           Operator
+'candidate'   Text
+'));'         Operator
+'\n    '      Text
+'notify'      Name.Function
+'('           Operator
+'player'      Name.Variable.Instance
+','           Operator
+' '           Text
+'""'          Literal.String
+');'          Operator
+'\n  '        Text
+'else'        Keyword
+'\n    '      Text
+'this'        Name.Variable.Instance
+':'           Operator
+'record_connection' Name.Function
+'('           Operator
+'candidate'   Text
+');'          Operator
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'verb'        Text
+'['           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+' '           Text
+'=='          Operator
+' '           Text
+'"s"'         Literal.String
+')'           Operator
+'\n      '    Text
+'candidate'   Text
+'.'           Operator
+'use_do_command' Text
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n    '      Text
+'endif'       Keyword
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'candidate'   Text
+';'           Operator
+'\n  '        Text
+'endif'       Keyword
+'\n'          Text
+
+'endif'       Keyword
+'\n'          Text
+
+'return'      Keyword
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n'          Text

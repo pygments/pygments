@@ -1,0 +1,20 @@
+---input---
+f"result: {value:{width}.{precision}}"
+
+---tokens---
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'result: '    Literal.String.Double
+'{'           Literal.String.Interpol
+'value'       Name
+':'           Literal.String.Interpol
+'{'           Literal.String.Interpol
+'width'       Name
+'}'           Literal.String.Interpol
+'.'           Literal.String.Double
+'{'           Literal.String.Interpol
+'precision'   Name
+'}'           Literal.String.Interpol
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text
