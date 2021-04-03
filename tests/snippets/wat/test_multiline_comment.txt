@@ -1,0 +1,11 @@
+---input---
+(;
+    comment
+;)
+
+---tokens---
+'(;'          Comment.Multiline
+'\n    comment\n' Comment.Multiline
+
+';)'          Comment.Multiline
+'\n'          Text

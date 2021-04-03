@@ -1,0 +1,9 @@
+---input---
+"\001"
+
+---tokens---
+'"'           Literal.String.Double
+'\\00'        Literal.String.Escape
+'1'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
