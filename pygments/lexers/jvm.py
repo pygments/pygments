@@ -559,7 +559,11 @@ class GroovyLexer(RegexLexer):
              Keyword),
             # method names
             (r'^(\s*(?:[a-zA-Z_][\w.\[\]]*\s+)+?)'  # return arguments
-             r'([a-zA-Z_]\w*)'                      # method name
+             r'('
+             r'[a-zA-Z_]\w*'                        # method name
+             r'|"(?:\\\\|\\[^\\]|[^"\\])*"'         # or double-quoted method name
+             r"|'(?:\\\\|\\[^\\]|[^'\\])*'"         # or single-quoted method name
+             r')'
              r'(\s*)(\()',                          # signature start
              bygroups(using(this), Name.Function, Text, Operator)),
             (r'@[a-zA-Z_][\w.]*', Name.Decorator),
