@@ -1,0 +1,75 @@
+---input---
+123 -11 0 -0 0.5 .5 1. -0.5 +0.5 -.5 -1. 2e1 -2e1 2e -2e +2e e.3 -e.3 11.2e-3 -11.2e-3 5_6 5__6 _5 6_ 5.6_7 5.67_
+
+---tokens---
+'123'       Token.Literal.Number.Integer
+' '         Token.Text
+'-'         Token.Operator
+'11'        Token.Literal.Number.Integer
+' '         Token.Text
+'0'         Token.Literal.Number.Integer
+' '         Token.Text
+'-'         Token.Operator
+'0'         Token.Literal.Number.Integer
+' '         Token.Text
+'0.5'       Token.Literal.Number.Float
+' '         Token.Text
+'.5'        Token.Literal.Number.Float
+' '         Token.Text
+'1.'        Token.Literal.Number.Float
+' '         Token.Text
+'-'         Token.Operator
+'0.5'       Token.Literal.Number.Float
+' '         Token.Text
+'+'         Token.Operator
+'0.5'       Token.Literal.Number.Float
+' '         Token.Text
+'-'         Token.Operator
+'.5'        Token.Literal.Number.Float
+' '         Token.Text
+'-'         Token.Operator
+'1.'        Token.Literal.Number.Float
+' '         Token.Text
+'2e1'       Token.Literal.Number.Float
+' '         Token.Text
+'-'         Token.Operator
+'2e1'       Token.Literal.Number.Float
+' '         Token.Text
+'2'         Token.Literal.Number.Integer
+'e'         Token.Name
+' '         Token.Text
+'-'         Token.Operator
+'2'         Token.Literal.Number.Integer
+'e'         Token.Name
+' '         Token.Text
+'+'         Token.Operator
+'2'         Token.Literal.Number.Integer
+'e'         Token.Name
+' '         Token.Text
+'e'         Token.Name
+'.3'        Token.Literal.Number.Float
+' '         Token.Text
+'-'         Token.Operator
+'e'         Token.Name
+'.3'        Token.Literal.Number.Float
+' '         Token.Text
+'11.2e-3'   Token.Literal.Number.Float
+' '         Token.Text
+'-'         Token.Operator
+'11.2e-3'   Token.Literal.Number.Float
+' '         Token.Text
+'5_6'       Token.Literal.Number.Integer
+' '         Token.Text
+'5'         Token.Literal.Number.Integer
+'__6'       Token.Name
+' '         Token.Text
+'_5'        Token.Name
+' '         Token.Text
+'6'         Token.Literal.Number.Integer
+'_'         Token.Name
+' '         Token.Text
+'5.6_7'     Token.Literal.Number.Float
+' '         Token.Text
+'5.67'      Token.Literal.Number.Float
+'_'         Token.Name
+'\n'        Token.Text
