@@ -219,7 +219,7 @@ Other markup
 * Apache Pig
 * BBCode
 * CapDL
-* `Cap'n Proto <https://capnproto.com>`_
+* `Cap'n Proto <https://capnproto.org>`_
 * `CDDL <https://datatracker.ietf.org/doc/rfc8610/>`_
 * CMake
 * `Csound <https://csound.com>`_ scores
