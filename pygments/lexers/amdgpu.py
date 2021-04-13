@@ -28,6 +28,25 @@ class AMDGPULexer(RegexLexer):
 
     flags = re.IGNORECASE
 
+    modifiers = [
+        'op',
+        'vaddr',
+        'vdata',
+        'soffset',
+        'srsrc',
+        'format',
+        'offset',
+        'offen',
+        'idxen',
+        'glc',
+        'dlc',
+        'slc',
+        'tfe',
+        'lds',
+        'lit',
+        'unorm'        
+    ]
+
     tokens = {
         'root': [
             (r'\s+', Whitespace),
@@ -37,7 +56,8 @@ class AMDGPULexer(RegexLexer):
             (r'([;#]|//).*?\n', Comment.Single),
             (r'((s_)?(ds|buffer|flat|image)_[a-z0-9_]+)', Keyword.Reserved),
             (r'(_lo|_hi)', Name.Variable),
-            (r'(vmcnt|lgkmcnt|expcnt|vmcnt|lit|unorm|glc)', Name.Attribute),
+            (r'(vmcnt|lgkmcnt|expcnt)', Name.Attribute),
+            (r'(' + '|'.join(modifiers) + ')', Name.Attribute),
             (r'(label_[a-z0-9]+)', Keyword),
             (r'(_L[0-9]*)', Name.Variable),
             (r'(s|v)_[a-z0-9_]+', Keyword),
