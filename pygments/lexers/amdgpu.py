@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer
+from pygments.lexer import RegexLexer, words
 from pygments.token import Name, Text, Keyword, Whitespace, Number, Comment
 
 import re
@@ -28,25 +28,6 @@ class AMDGPULexer(RegexLexer):
 
     flags = re.IGNORECASE
 
-    modifiers = [
-        'op',
-        'vaddr',
-        'vdata',
-        'soffset',
-        'srsrc',
-        'format',
-        'offset',
-        'offen',
-        'idxen',
-        'glc',
-        'dlc',
-        'slc',
-        'tfe',
-        'lds',
-        'lit',
-        'unorm'        
-    ]
-
     tokens = {
         'root': [
             (r'\s+', Whitespace),
@@ -57,7 +38,10 @@ class AMDGPULexer(RegexLexer):
             (r'((s_)?(ds|buffer|flat|image)_[a-z0-9_]+)', Keyword.Reserved),
             (r'(_lo|_hi)', Name.Variable),
             (r'(vmcnt|lgkmcnt|expcnt)', Name.Attribute),
-            (r'(' + '|'.join(modifiers) + ')', Name.Attribute),
+            (words((
+                'op', 'vaddr', 'vdata', 'soffset', 'srsrc', 'format',
+                'offset', 'offen', 'idxen', 'glc', 'dlc', 'slc', 'tfe', 'lds',
+                'lit', 'unorm'), suffix=r'\b'), Name.Attribute),
             (r'(label_[a-z0-9]+)', Keyword),
             (r'(_L[0-9]*)', Name.Variable),
             (r'(s|v)_[a-z0-9_]+', Keyword),
