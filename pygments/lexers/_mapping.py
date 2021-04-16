@@ -176,6 +176,7 @@ LEXERS = {
     'GDScriptLexer': ('pygments.lexers.gdscript', 'GDScript', ('gdscript', 'gd'), ('*.gd',), ('text/x-gdscript', 'application/x-gdscript')),
     'GLShaderLexer': ('pygments.lexers.graphics', 'GLSL', ('glsl',), ('*.vert', '*.frag', '*.geo'), ('text/x-glslsrc',)),
     'GasLexer': ('pygments.lexers.asm', 'GAS', ('gas', 'asm'), ('*.s', '*.S'), ('text/x-gas',)),
+    'GcodeLexer': ('pygments.lexers.gcodelexer', 'g-code', ('gcode',), ('*.gcode',), ()),
     'GenshiLexer': ('pygments.lexers.templates', 'Genshi', ('genshi', 'kid', 'xml+genshi', 'xml+kid'), ('*.kid',), ('application/x-genshi', 'application/x-kid')),
     'GenshiTextLexer': ('pygments.lexers.templates', 'Genshi Text', ('genshitext',), (), ('application/x-genshi-text', 'text/x-genshi')),
     'GettextLexer': ('pygments.lexers.textfmts', 'Gettext Catalog', ('pot', 'po'), ('*.pot', '*.po'), ('application/x-gettext', 'text/x-gettext', 'text/gettext')),
@@ -510,7 +511,6 @@ LEXERS = {
     'ZephirLexer': ('pygments.lexers.php', 'Zephir', ('zephir',), ('*.zep',), ()),
     'ZigLexer': ('pygments.lexers.zig', 'Zig', ('zig',), ('*.zig',), ('text/zig',)),
     'apdlexer': ('pygments.lexers.apdlexer', 'ANSYS parametric design language', ('ansys', 'apdl'), ('*.ans',), ()),
-    'gcodeLexer': ('pygments.lexers.gcodelexer', 'g-code', ('gcode',), ('*.gcode',), ()),
 }
 
 if __name__ == '__main__':  # pragma: no cover

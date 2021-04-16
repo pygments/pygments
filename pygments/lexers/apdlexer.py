@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.apdlexer.py
-    ~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.apdlexer
+    ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for ANSYS Parametric Design Language.
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
 from pygments.lexer import RegexLexer, include, words
-from pygments.token import *
+from pygments.token import Comment, Keyword, Name, Text, Number, Operator, \
+    String, Generic, Punctuation
 
 __all__ = ['apdlexer']
 
@@ -29,7 +30,7 @@ class apdlexer(RegexLexer):
     flags = re.IGNORECASE
 
     # list of elements
-    elafunb = ["SURF152", "SURF153", "SURF154", "SURF156", "SHELL157",
+    elafunb = ("SURF152", "SURF153", "SURF154", "SURF156", "SHELL157",
                "SURF159", "LINK160", "BEAM161", "PLANE162",
                "SHELL163", "SOLID164", "COMBI165", "MASS166",
                "LINK167", "SOLID168", "TARGE169", "TARGE170",
@@ -62,9 +63,9 @@ class apdlexer(RegexLexer):
                "SOLID46", "SOLID65", "SOLID69", "SOLID92", "SOLID95",
                "SOLID117", "SOLID127", "SOLID128", "SOLID147",
                "SOLID148", "SOLID191", "VISCO88", "VISCO89",
-               "VISCO106", "VISCO107", "VISCO108", "TRANS109"]
+               "VISCO106", "VISCO107", "VISCO108", "TRANS109")
 
-    elafunc = ["PGRAPH", "/VT", "VTIN", "VTRFIL", "VTTEMP", "PGRSET",
+    elafunc = ("PGRAPH", "/VT", "VTIN", "VTRFIL", "VTTEMP", "PGRSET",
                "VTCLR", "VTMETH", "VTRSLT", "VTVMOD", "PGSELE",
                "VTDISC", "VTMP", "VTSEC", "PGWRITE", "VTEVAL", "VTOP",
                "VTSFE", "POUTRES", "VTFREQ", "VTPOST", "VTSL",
@@ -77,9 +78,9 @@ class apdlexer(RegexLexer):
                "ICELIST", "MSQUAD", "PLTLINE", "SPSWP", "HFEIGOPT",
                "ICVFRC", "MSRELAX", "PLVFRC", "HFEREFINE", "LPRT",
                "MSSOLU", "/PICE", "HFMODPRT", "MSADV", "MSSPEC",
-               "PLWAVE", "HFPA", "MSCAP", "MSTERM", "PRSYZ"]
+               "PLWAVE", "HFPA", "MSCAP", "MSTERM", "PRSYZ")
 
-    elafund = ["*VOPER", "VOVLAP", "*VPLOT", "VPLOT", "VPTN", "*VPUT",
+    elafund = ("*VOPER", "VOVLAP", "*VPLOT", "VPLOT", "VPTN", "*VPUT",
                "VPUT", "*VREAD", "VROTAT", "VSBA", "VSBV", "VSBW",
                "/VSCALE", "*VSCFUN", "VSEL", "VSLA", "*VSTAT", "VSUM",
                "VSWEEP", "VSYMM", "VTRAN", "VTYPE", "/VUP", "*VWRITE",
@@ -114,9 +115,9 @@ class apdlexer(RegexLexer):
                "TOTYPE", "TOVAR", "TOEXE", "TOLOOP", "TOGRAPH",
                "TOLIST", "TOPLOT", "TOPRINT", "TOSTAT", "TZAMESH",
                "TZDELE", "TZEGEN", "XVAROPT", "PGSAVE", "SOLCONTROL",
-               "TOTAL", "VTGEOM", "VTREAL", "VTSTAT"]
+               "TOTAL", "VTGEOM", "VTREAL", "VTSTAT")
 
-    elafune = ["/ANUM", "AOFFST", "AOVLAP", "APLOT", "APPEND", "APTN",
+    elafune = ("/ANUM", "AOFFST", "AOVLAP", "APLOT", "APPEND", "APTN",
                "ARCLEN", "ARCTRM", "AREAS", "AREFINE", "AREMESH",
                "AREVERSE", "AROTAT", "ARSCALE", "ARSYM", "ASBA",
                "ASBL", "ASBV", "ASBW", "ASCRES", "ASEL", "ASIFILE",
@@ -375,10 +376,10 @@ class apdlexer(RegexLexer):
                "*VFACT", "*VFILL", "VFOPT", "VFQUERY", "VFSM",
                "*VFUN", "VGEN", "*VGET", "VGET", "VGLUE", "/VIEW",
                "VIMP", "VINP", "VINV", "*VITRP", "*VLEN", "VLIST",
-               "VLSCALE", "*VMASK", "VMESH", "VOFFST", "VOLUMES"]
+               "VLSCALE", "*VMASK", "VMESH", "VOFFST", "VOLUMES")
 
     # list of in-built () functions
-    elafunf = ["NX()", "NY()", "NZ()", "KX()", "KY()", "KZ()", "LX()",
+    elafunf = ("NX()", "NY()", "NZ()", "KX()", "KY()", "KZ()", "LX()",
                "LY()", "LZ()", "LSX()", "LSY()", "LSZ()", "NODE()",
                "KP()", "DISTND()", "DISTKP()", "DISTEN()", "ANGLEN()",
                "ANGLEK()", "NNEAR()", "KNEAR()", "ENEARN()",
@@ -396,14 +397,14 @@ class apdlexer(RegexLexer):
                "LOG()", "LOG10()", "SQRT()", "NINT()", "MOD()",
                "RAND()", "GDIS()", "SIN()", "COS()", "TAN()",
                "SINH()", "COSH()", "TANH()", "ASIN()", "ACOS()",
-               "ATAN()", "ATAN2()"]
+               "ATAN()", "ATAN2()")
 
-    elafung = ["NSEL()", "ESEL()", "KSEL()", "LSEL()", "ASEL()",
+    elafung = ("NSEL()", "ESEL()", "KSEL()", "LSEL()", "ASEL()",
                "VSEL()", "NDNEXT()", "ELNEXT()", "KPNEXT()",
                "LSNEXT()", "ARNEXT()", "VLNEXT()", "CENTRX()",
-               "CENTRY()", "CENTRZ()"]
+               "CENTRY()", "CENTRZ()")
 
-    elafunh = ["~CAT5IN", "~CATIAIN", "~PARAIN", "~PROEIN", "~SATIN",
+    elafunh = ("~CAT5IN", "~CATIAIN", "~PARAIN", "~PROEIN", "~SATIN",
                "~UGIN", "A", "AADD", "AATT", "ABEXTRACT", "*ABBR",
                "ABBRES", "ABBSAV", "ABS", "ACCAT", "ACCOPTION",
                "ACEL", "ACLEAR", "ADAMS", "ADAPT", "ADD", "ADDAM",
@@ -414,7 +415,7 @@ class apdlexer(RegexLexer):
                "ANDSCL", "ANDYNA", "/ANFILE", "ANFLOW", "/ANGLE",
                "ANHARM", "ANIM", "ANISOS", "ANMODE", "ANMRES",
                "/ANNOT", "ANORM", "ANPRES", "ANSOL", "ANSTOAQWA",
-               "ANSTOASAS", "ANTIME", "ANTYPE"]
+               "ANSTOASAS", "ANTIME", "ANTYPE")
 
     tokens = {
         'root': [
@@ -422,11 +423,12 @@ class apdlexer(RegexLexer):
             include('strings'),
             include('core'),
             include('nums'),
-            (words((elafunb+elafunc+elafund+elafune+elafunh), suffix=r'\b'),Keyword),
+            (words((elafunb+elafunc+elafund+elafune+elafunh), suffix=r'\b'), Keyword),
             (words((elafunf+elafung), suffix=r'\b'), Name.Builtin),
             (r'AR[0-9]+', Name.Variable.Instance),
             (r'[a-z][a-z0-9_]*', Name.Variable),
-            (r'[\s]+', Text),],
+            (r'[\s]+', Text),
+        ],
         'core': [
             # Operators
             (r'(\*\*|\*|\+|-|\/|<|>|<=|>=|==|\/=|=)', Operator),
