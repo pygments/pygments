@@ -267,11 +267,11 @@ class VelocityLexer(RegexLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search(r'#\{?macro\}?\(.*?\).*?#\{?end\}?', text):
+        if re.search(r'#\{?macro\}?\(.*?\).*?#\{?end\}?', text, re.DOTALL):
             rv += 0.25
-        if re.search(r'#\{?if\}?\(.+?\).*?#\{?end\}?', text):
+        if re.search(r'#\{?if\}?\(.+?\).*?#\{?end\}?', text, re.DOTALL):
             rv += 0.15
-        if re.search(r'#\{?foreach\}?\(.+?\).*?#\{?end\}?', text):
+        if re.search(r'#\{?foreach\}?\(.+?\).*?#\{?end\}?', text, re.DOTALL):
             rv += 0.15
         if re.search(r'\$!?\{?[a-zA-Z_]\w*(\([^)]*\))?'
                      r'(\.\w+(\([^)]*\))?)*\}?', text):
