@@ -35,8 +35,8 @@ class JavascriptLexer(RegexLexer):
     """
 
     name = 'JavaScript'
-    aliases = ['js', 'javascript']
-    filenames = ['*.js', '*.jsm', '*.mjs']
+    aliases = ['javascript', 'js']
+    filenames = ['*.js', '*.jsm', '*.mjs', '*.cjs']
     mimetypes = ['application/javascript', 'application/x-javascript',
                  'text/x-javascript', 'text/javascript']
 
@@ -231,13 +231,13 @@ class LiveScriptLexer(RegexLexer):
     """
     For `LiveScript`_ source code.
 
-    .. _LiveScript: http://gkz.github.com/LiveScript/
+    .. _LiveScript: https://livescript.net/
 
     .. versionadded:: 1.6
     """
 
     name = 'LiveScript'
-    aliases = ['live-script', 'livescript']
+    aliases = ['livescript', 'live-script']
     filenames = ['*.ls']
     mimetypes = ['text/livescript']
 
@@ -449,7 +449,7 @@ class TypeScriptLexer(RegexLexer):
     """
 
     name = 'TypeScript'
-    aliases = ['ts', 'typescript']
+    aliases = ['typescript', 'ts']
     filenames = ['*.ts', '*.tsx']
     mimetypes = ['text/x-typescript']
 
@@ -1033,7 +1033,7 @@ class CoffeeScriptLexer(RegexLexer):
     """
 
     name = 'CoffeeScript'
-    aliases = ['coffee-script', 'coffeescript', 'coffee']
+    aliases = ['coffeescript', 'coffee-script', 'coffee']
     filenames = ['*.coffee']
     mimetypes = ['text/coffeescript']
 

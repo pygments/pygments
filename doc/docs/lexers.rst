@@ -63,7 +63,7 @@ module:
     >>> i.next()
     ('Delphi', ('delphi', 'objectpascal', 'pas', 'pascal'), ('*.pas',), ('text/x-pascal',))
     >>> i.next()
-    ('XML+Ruby', ('xml+erb', 'xml+ruby'), (), ())
+    ('XML+Ruby', ('xml+ruby', 'xml+erb'), (), ())
 
 As you can see, the return value is an iterator which yields tuples
 in the form ``(name, aliases, filetypes, mimetypes)``.
