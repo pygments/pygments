@@ -24,7 +24,7 @@ class MonokaiStyle(Style):
 
     styles = {
         # No corresponding class for the following:
-        Text:                      "#f8f8f2", # class:  ''
+        Text:                      "#d6d6d6", # class:  ''
         Whitespace:                "",        # class: 'w'
         Error:                     "#960050 bg:#1e0010", # class: 'err'
         Other:                     "",        # class 'x'
