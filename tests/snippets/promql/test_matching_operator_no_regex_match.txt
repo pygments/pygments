@@ -1,0 +1,16 @@
+---input---
+metric_test_app{status!~'(4|5)..'}[2m]
+
+---tokens---
+'metric_test_app' Name.Variable
+'{'           Punctuation
+'status'      Name.Label
+'!~'          Operator
+"'"           Punctuation
+'(4|5)..'     Literal.String
+"'"           Punctuation
+'}'           Punctuation
+'['           Punctuation
+'2m'          Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
