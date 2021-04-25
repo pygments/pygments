@@ -588,14 +588,14 @@ class HtmlFormatter(Formatter):
 
     @property
     def _linenos_style(self):
-        return 'color: %s; background-color: %s; padding-left: 5px; padding-right: 5px;' % (
+        return 'color: %s; background-color: %s; padding-left: 5px; padding-right: 5px; margin-right: 3px;' % (
             self.style.line_number_color,
             self.style.line_number_background_color
         )
 
     @property
     def _linenos_special_style(self):
-        return 'color: %s; background-color: %s; padding-left: 5px; padding-right: 5px;' % (
+        return 'color: %s; background-color: %s; padding-left: 5px; padding-right: 5px; margin-right: 3px;' % (
             self.style.line_number_special_color,
             self.style.line_number_special_background_color
         )
