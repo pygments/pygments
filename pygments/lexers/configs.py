@@ -509,8 +509,8 @@ class LighttpdConfLexer(RegexLexer):
     .. versionadded:: 0.11
     """
     name = 'Lighttpd configuration file'
-    aliases = ['lighty', 'lighttpd']
-    filenames = []
+    aliases = ['lighttpd', 'lighty']
+    filenames = ['lighttpd.conf']
     mimetypes = ['text/x-lighttpd-conf']
 
     tokens = {
