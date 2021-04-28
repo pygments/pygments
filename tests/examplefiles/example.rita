@@ -1,0 +1,12 @@
+@alias IN_LIST IL
+
+!CONFIG("case_sensitive", "N")
+
+cars = LOAD("examples/cars.txt") # Load items from file
+colors = {"red", "green", "blue", "white", "black"} # Declare items inline
+
+{IL(colors), WORD("car")} -> MARK("CAR_COLOR") # If first token is in list `colors` and second one is word `car`, label it
+
+{IL(cars), WORD+} -> MARK("CAR_MODEL") # If first token is in list `cars` and follows by 1..N words, label it
+
+{ENTITY("PERSON"), LEMMA("like"), WORD} -> MARK("LIKED_ACTION") # If first token is Person, followed by any word which has lemma `like`, label it
