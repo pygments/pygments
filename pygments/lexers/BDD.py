@@ -1,6 +1,9 @@
 from pygments.lexer import RegexLexer
 from pygments.token import *
 
+
+__all__ = ['BDDLexer']
+
 class BDDLexer(RegexLexer):
     name = 'BDD'
     aliases = ['bdd']
@@ -12,14 +15,15 @@ class BDDLexer(RegexLexer):
             (r'\+.*\n', Generic.Inserted),
             (r'-.*\n', Generic.Deleted),
             (r'@.*\n', Generic.Subheading),
-            (r'Index.*\n', Generic.Heading),
+           (r'Index.*\n', Generic.Heading),
             (r'=.*\n', Generic.Heading),
             (r'.*\n', Text),
+            
         ]
         'keywords': [
             (words((
                 'When', 'And', 'Then', 'Given', 'Scenario', 'Background', 'Feature',
-              ), perfix=r'\b'),
+              ), suffix=r'\b'),
              Keyword),
             (words(('True', 'False', 'None'), suffix=r'\b'), Keyword.Constant),
         ],
