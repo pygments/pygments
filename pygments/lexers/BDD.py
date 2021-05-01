@@ -15,16 +15,18 @@ class BDDLexer(RegexLexer):
             (r'\+.*\n', Generic.Inserted),
             (r'-.*\n', Generic.Deleted),
             (r'@.*\n', Generic.Subheading),
-           (r'Index.*\n', Generic.Heading),
+            (r'Index.*\n', Generic.Heading),
             (r'=.*\n', Generic.Heading),
             (r'.*\n', Text),
-            
-        ]
-        'keywords': [
+            #keywords
             (words((
                 'When', 'And', 'Then', 'Given', 'Scenario', 'Background', 'Feature',
               ), suffix=r'\b'),
-             Keyword),
-            (words(('True', 'False', 'None'), suffix=r'\b'), Keyword.Constant),
+            Keyword),
+
+            # (words(('True', 'False', 'None'), suffix=r'\b'), 
+            # Keyword),
+        
         ],
+       
     }
