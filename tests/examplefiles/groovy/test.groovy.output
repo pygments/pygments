@@ -167,7 +167,7 @@
 '\n'          Text
 
 '        '    Text
-'if'          Name.Function
+'if'          Keyword
 ' '           Text
 '('           Operator
 '!'           Operator
@@ -183,7 +183,7 @@
 ' '           Text
 'new'         Keyword
 ' '           Text
-'RuntimeException' Name.Function
+'RuntimeException' Name
 '('           Operator
 '"$activity activity doesn\'t exist"' Literal.String.Double
 ')'           Operator
@@ -273,7 +273,7 @@
 '\n'          Text
 
 '        '    Text
-'switch'      Name.Function
+'switch'      Keyword
 ' '           Text
 '('           Operator
 'activityValue' Name
