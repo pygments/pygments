@@ -890,7 +890,7 @@ class HtmlFormatter(Formatter):
 
     def _lookup_ctag(self, token):
         entry = ctags.TagEntry()
-        if self._ctags.find(entry, token, 0):
+        if self._ctags.find(entry, token.encode(), 0):
             return entry['file'], entry['lineNumber']
         else:
             return None, None
