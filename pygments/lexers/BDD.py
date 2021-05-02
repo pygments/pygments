@@ -1,5 +1,5 @@
 from pygments.lexer import RegexLexer
-from pygments.token import *
+from pygments.token import Token.Text Token.Keyword Token.Punctuation
 
 
 __all__ = ['BDDLexer']
