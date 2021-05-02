@@ -1,0 +1,155 @@
+---input---
+  description = "Some description"
+
+  availability_zones = ["${aws_instance.web.availability_zone}-foobar"]
+  availability_zones = [aws_instance.web.availability_zone]
+  assume_role_policy = data.aws_iam_policy_document.trust.json
+  policy_arn = aws_iam_policy.assume_roles[0].arn
+  
+  value  = file("path.txt")
+  value = jsonencode(element("value"))
+
+  tags = {
+    Name = "something"
+  }
+
+  "ENV_VARIABLE_1" = aws_dynamodb_table.loginsights2metrics.name
+  "ENV_VARIABLE_2" = "Some string"
+
+  ignore_changes = [last_modified, filename]
+
+  variable = "aws:MultiFactorAuthPresent"
+
+---tokens---
+'  '          Text
+'description' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"Some description"' Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'availability_zones' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'"${aws_instance.web.availability_zone}-foobar"' Literal.String.Double
+']'           Punctuation
+'\n'          Text
+
+'  '          Text
+'availability_zones' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'aws_instance.web.availability_zone' Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'  '          Text
+'assume_role_policy' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'data.aws_iam_policy_document.trust.json' Name.Variable
+'\n'          Text
+
+'  '          Text
+'policy_arn'  Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'aws_iam_policy.assume_roles[0].arn' Name.Variable
+'\n'          Text
+
+'  \n  '      Text
+'value'       Name.Attribute
+'  '          Text
+'='           Operator
+' '           Text
+'file'        Name.Function
+'('           Punctuation
+'"path.txt"'  Literal.String.Double
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'value'       Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'jsonencode'  Name.Function
+'('           Punctuation
+'element'     Name.Function
+'('           Punctuation
+'"value"'     Literal.String.Double
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'tags'        Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'Name'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"something"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'"ENV_VARIABLE_1"' Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'aws_dynamodb_table.loginsights2metrics.name' Name.Variable
+'\n'          Text
+
+'  '          Text
+'"ENV_VARIABLE_2"' Literal.String.Double
+' '           Text
+'='           Operator
+' '           Text
+'"Some string"' Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'ignore_changes' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'last_modified, filename' Name.Builtin
+']'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'variable'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"aws:MultiFactorAuthPresent"' Literal.String.Double
+'\n'          Text
