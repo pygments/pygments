@@ -46,15 +46,13 @@ class BddLexer(RegexLexer):
     tokens = {
         'root': [
             # Text /get the Text token 
-            (r' .*\n', Text),
-            (r'.*\n', Text),
-
+            (r'\s+', Text),
+           
             # Keywords /get the Keyword token 
-
-            (words(keywords), Keyword),
+            (words(keywords, suffix=r'(?=[^\w-])'), Keyword),
 
             #Punctuation /get the Punctuation 
-            
+            #(r'[\{\};\+]+', Punctuation),
             (words(Punctuation), Punctuation),
         ],
        
