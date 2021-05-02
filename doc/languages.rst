@@ -260,6 +260,7 @@ Other markup
 * `Nix language <https://nixos.org/nix/>`_
 * NSIS scripts
 * Notmuch
+* `OMG IDL <https://www.omg.org/spec/IDL/About-IDL/>`_
 * `PEG <https://bford.info/packrat/>`_
 * POV-Ray scenes
 * `PromQL <https://prometheus.io/docs/prometheus/latest/querying/basics/>`_
