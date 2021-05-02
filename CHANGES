@@ -16,28 +16,39 @@ Version 2.9.0
   * APDL, gcode (#1714)
   * Kuin (#1300)
   * NestedText (#1578)
+  * OMG IDL (#1595)
   * TEAL (#1671)
   * ThingsDB (#1295)
   * WebAssembly (#1416, #1564)
 
 - Updated lexers:
 
+  * AMDGPU (#1717, #1775)
   * APL (#1747)
   * C/C++: Improve namespace handling (#1722, #1561, #1719, #1746)
   * Chapel (#1743)
   * Coq (#1721)
   * Cython (#853)
   * Groovy (#1765)
+  * JavaScript (#1741)
   * Julia (#1715)
   * Octave: Allow multiline and block-percent comments (#1726)
   * PowerShell: Improve lexing of ``:`` (#1682, #1758)
+  * PromQL (#1783)
+  * Python: Improve float parsing (#1768, #1740)
   * Rust (#1061)
   * Scala: Rewrite to support Scala3 (#1694, #1035, #1121)
+  * Swift (#1767)
+  * Terraform: Support 0.14 syntax (#1756)
+  * Velocity: Detect multi-line patterns (#1776)
 
 - Add Pango formatter (#1727)
-
+- Autopygmentize uses ``file`` first instead of ``pygments -N`` (#1786)
 - Fix links (#1716)
 - Fix issue with LaTeX formatter and ``minted`` (#1734, #1735, #1736, #1737)
+- Improve alias order (#1780)
+- Improve line number colors (#1779, #1778)
+- Fix CTag related issue (#1724)
 
 - Updated `filename` handling in HTML formatter if `linenos='table'` (#1757)
 
