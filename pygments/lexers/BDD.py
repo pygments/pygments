@@ -1,5 +1,5 @@
 from pygments.lexer import RegexLexer
-from pygments.token import Token.Text Token.Keyword Token.Punctuation
+from pygments.token import Text, Keyword, Punctuation
 
 
 __all__ = ['BDDLexer']
@@ -12,16 +12,13 @@ class BDDLexer(RegexLexer):
     tokens = {
         'root': [
             (r' .*\n', Text),
-            (r'\+.*\n', Generic.Inserted),
-            (r'-.*\n', Generic.Deleted),
-            (r'@.*\n', Generic.Subheading),
-            (r'Index.*\n', Generic.Heading),
-            (r'=.*\n', Generic.Heading),
-            (r'.*\n', Text),
+            (r'\|.*\n', Punctuation),
+            : ""
+     
             #keywords
             (words((
                 'When', 'And', 'Then', 'Given', 'Scenario', 'Background', 'Feature',
-              ), suffix=r'\b'),
+              ), prefix=r'\b'),
             Keyword),
 
             # (words(('True', 'False', 'None'), suffix=r'\b'), 
