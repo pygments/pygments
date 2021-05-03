@@ -82,7 +82,7 @@ class check:
             return True
 
     def valid_range(self,rgb):
-        for r, g, b in (rgb1):
+        for r, g, b in (rgb):
             if (not 0.0 <= r <= 1.0) or (not 0.0 <= g <= 1.0) or (not 0.0 <= b <= 1.0):
                 raise ValueError("Invalid range (0.0 - 1.0)")
 
