@@ -95,7 +95,7 @@ class MathematicaLexer(RegexLexer):
     """
     name = 'Mathematica'
     aliases = ['mathematica', 'mma', 'nb']
-    filenames = ['*.nb', '*.cdf', '*.nbp', '*.ma']
+    filenames = ['*.cdf', '*.m', '*.ma', '*.mt', '*.mx', '*.nb', '*.nbp', '*.wl']
     mimetypes = ['application/mathematica',
                  'application/vnd.wolfram.mathematica',
                  'application/vnd.wolfram.mathematica.package',
