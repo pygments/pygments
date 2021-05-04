@@ -101,6 +101,7 @@ Programming languages
 * `Logtalk <https://logtalk.org/>`_
 * `Logos <https://en.wikipedia.org/wiki/Logo_(programming_language)>`_
 * `Lua <https://lua.org>`_
+* `Macaulay2 <http://macaulay2.com/>`_
 * `Mathematica <https://www.wolfram.com/mathematica/>`_
 * `Matlab <https://www.mathworks.com/products/matlab.html>`_
 * `MiniScript <https://miniscript.org>`_
