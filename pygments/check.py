@@ -134,3 +134,11 @@ class check:
             if str(style).find(self.style) != -1:
                 bgcolor = p1.hex_to_rgb(style.background_color)
         return bgcolor
+
+    def get_style_colors(self):
+        colors=[]
+        for style in p1.get_style_arr():
+            if str(style).find("monokai") != -1:
+                for arr in style:
+                    colors.append(arr)
+        return colors
