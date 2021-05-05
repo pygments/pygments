@@ -127,3 +127,10 @@ class check:
         for style_name in pygments.styles.get_all_styles():
             style.append(str(pygments.styles.get_style_by_name(style_name)).split("."))
         return style
+    
+    def get_style_bg_color(self):
+        bgcolor=""
+        for style in p1.get_style_arr():
+            if str(style).find(self.style) != -1:
+                bgcolor = p1.hex_to_rgb(style.background_color)
+        return bgcolor
