@@ -2,7 +2,7 @@ import sys
 import array
 import binascii
 import itertools
-
+import pygments.styles
 
 '''
 Please kindly note that my currently design does not require any external libraries.
@@ -82,7 +82,7 @@ class check:
             return True
 
     def valid_range(self,rgb):
-        for r, g, b in (rgb):
+        for r, g, b in (rgb1):
             if (not 0.0 <= r <= 1.0) or (not 0.0 <= g <= 1.0) or (not 0.0 <= b <= 1.0):
                 raise ValueError("Invalid range (0.0 - 1.0)")
 
@@ -115,3 +115,15 @@ class check:
             for j in range(i+1, r):
                 ind[j] = 1+ind[j-1]
             yield tuple(data[i] for i in ind)
+
+    def get_style_arr(self):
+        style = []
+        for style_name in pygments.styles.get_all_styles():
+            style.append(pygments.styles.get_style_by_name(style_name))
+        return style
+
+    def get_style_2d_arr(self):
+        style = []
+        for style_name in pygments.styles.get_all_styles():
+            style.append(str(pygments.styles.get_style_by_name(style_name)).split("."))
+        return style
