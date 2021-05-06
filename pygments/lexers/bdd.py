@@ -2,58 +2,64 @@
     pygments.lexers.bdd
     ~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for BDD language.
+    Lexers for Bdd (Behaviour Driven Development).
 
-    :copyright: Copyright 2006-2021 by group 4 of SPI project of TUoA.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import RegexLexer
-from pygments.token import Text, Keyword, Punctuation
+from pygments.lexer import RegexLexer, words
+from pygments.token import Token, Text, Keyword, Punctuation, Number, Comment, Whitespace
 
 __all__ = ['BddLexer']
 
-
 class BddLexer(RegexLexer):
+    """
+    Lexer for Bdd.
 
-    name = 'BDD'
+    grammar: https://www.agilealliance.org/glossary/bdd
+    """
+
+    name = 'Bdd'
     aliases = ['bdd']
     filenames = ['*.feature']
-
-    keywords = [
-        'Given'
-        'When',  
-        'Then', 
-        'Add',
-        'Feature', 
-        'Scenario', 
-        'Scenario Outline', 
-        'Background',
-        'Examples',
-        'But',       
-    ]
-
-    Punctuation = [
-        '<',
-        '>',
-        ':',
-        '|',
-
-    ]
+    mimetypes = []
+    
+    structure_keywords = (
+        words(('Feature', 'Scenario', 'Given', 'When', 'Then', 
+               'Examples', 'And', 'But', 'Scenario Outline', 'Background'), suffix=r'\b'),
+        Keyword)
 
     tokens = {
         'root': [
-            # Text /get the Text token 
-            (r'\s+', Text),
-           
-            # Keywords /get the Keyword token 
-            (words(keywords, suffix=r'(?=[^\w-])'), Keyword),
+            # Whitespace
+            (r'\s+', Whitespace), 
+            (r'\n', Whitespace),
+            
+            #Punctuation
+            #(r'[:\|<>"{}()\[\]]', Punctuation),
+            (r'<.*>|".*"|\||:', Token.Punctuation),
 
-            #Punctuation /get the Punctuation 
-            #(r'[\{\};\+]+', Punctuation),
-            (words(Punctuation), Punctuation),
-        ],
-       
+            # Comments
+            (r'//.*', Comment.Single),
+
+            # Keywords
+            structure_keywords,
+
+            # Float numbers
+            (r'0x[0-9a-fA-F]+\.[0-9a-fA-F]+([pP][\-+]?[0-9a-fA-F]+)?', Number.Float),
+            (r'0x[0-9a-fA-F]+\.?[pP][\-+]?[0-9a-fA-F]+', Number.Float),
+            (r'[0-9]+\.[0-9]+([eE][-+]?[0-9]+)?', Number.Float),
+            (r'[-+]?[0-9]*\.?[0-9]+', Number.Float),
+
+            # Integer numbers
+            (r'0b[01]+', Number.Bin),
+            (r'0o[0-7]+', Number.Oct),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+
+            #(r'.', Text), 
+        ],    
     }
