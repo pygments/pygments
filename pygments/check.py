@@ -116,12 +116,6 @@ class check:
         for style_name in pygments.styles.get_all_styles():
             style.append(pygments.styles.get_style_by_name(style_name))
         return style
-
-    def get_style_2d_arr(self):
-        style = []
-        for style_name in pygments.styles.get_all_styles():
-            style.append(str(pygments.styles.get_style_by_name(style_name)).split("."))
-        return style
     
     def get_style_bg_color(self):
         bgcolor=""
