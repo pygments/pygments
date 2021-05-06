@@ -1,9 +1,7 @@
 """
     pygments.styles
     ~~~~~~~~~~~~~~~
-
     Contains built-in styles.
-
     :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
@@ -52,6 +50,8 @@ STYLE_MAP = {
     'stata-dark':  'stata_dark::StataDarkStyle',
     'inkpot':      'inkpot::InkPotStyle',
     'zenburn': 'zenburn::ZenburnStyle',
+    'gruvbox-dark': 'gruvbox::GruvboxDarkStyle',
+    'gruvbox-light': 'gruvbox::GruvboxLightStyle',
 }
 
 
