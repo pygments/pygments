@@ -4,12 +4,7 @@ import binascii
 import itertools
 import pygments.styles
 
-'''
-Please kindly note that my currently design does not require any external libraries.
-For instance, if pygment hasn't used NumPy library. I suggest don't use that library.
-We need to write our own version library or function. 
-So it is earlier to integrate into the existing class and convince the project owner to accept our changes.
-'''
+
 
 
 '''
