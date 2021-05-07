@@ -58,9 +58,9 @@ class BrainfuckLexer(RegexLexer):
         range_to_check = max(256, len(text))
 
         for c in text[:range_to_check]:
-            if c == '+' or c == '-':
+            if c in ('+', '-'):
                 plus_minus_count += 1
-            if c == '<' or c == '>':
+            if c in ('<', '>'):
                 greater_less_count += 1
 
         if plus_minus_count > (0.25 * range_to_check):

@@ -49,7 +49,7 @@ class DylanLexer(RegexLexer):
 
     operators = {
         '~', '+', '-', '*', '|', '^', '=', '==', '~=', '~==', '<', '<=',
-        '>', '>=', '&', '|'}
+        '>', '>=', '&'}
 
     functions = {
         'abort', 'abs', 'add', 'add!', 'add-method', 'add-new', 'add-new!',

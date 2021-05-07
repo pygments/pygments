@@ -740,7 +740,6 @@ COLORS = {
 TOKENS = {
     'normal':           '',
     'string':           'String',
-    'number':           'Number',
     'float':            'Number.Float',
     'constant':         'Name.Constant',
     'number':           'Number',
