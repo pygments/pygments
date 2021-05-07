@@ -11,56 +11,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic
-
-
-class NordStyle(Style):
-    background_color = nord0
-    default = nord4
-
-    styles = {
-        Whitespace: nord4,
-        Comment: f"italic {nord3_bright}",
-        Comment.Preproc: nord10,
-        Keyword: f"bold {nord9}",
-        Keyword.Pseudo: f"nobold {nord9}",
-        Keyword.Type: f"nobold {nord9}",
-        Operator: nord9,
-        Operator.Word: f"bold {nord9}",
-        Name: nord4,
-        Name.Builtin: nord9,
-        Name.Function: nord8,
-        Name.Class: nord7,
-        Name.Namespace: nord7,
-        Name.Exception: nord11,
-        Name.Variable: nord4,
-        Name.Constant: nord7,
-        Name.Label: nord7,
-        Name.Entity: nord12,
-        Name.Attribute: nord7,
-        Name.Tag: nord9,
-        Name.Decorator: nord12,
-        Punctuation: nord6,
-        String: nord14,
-        String.Doc: nord3_bright,
-        String.Interpol: nord14,
-        String.Escape: nord13,
-        String.Regex: nord13,
-        String.Symbol: nord14,
-        String.Other: nord14,
-        Number: nord15,
-        Generic.Heading: f"bold {nord8}",
-        Generic.Subheading: f"bold {nord8}",
-        Generic.Deleted: nord11,
-        Generic.Inserted: nord14,
-        Generic.Error: nord11,
-        Generic.Emph: "italic",
-        Generic.Strong: "bold",
-        Generic.Prompt: f"bold {nord3}",
-        Generic.Output: nord4,
-        Generic.Traceback: nord11,
-        Error: nord11,
-    }
+     Number, Operator, Generic, Whitespace, Punctuation
 
 
 class NordStyle(Style):
@@ -73,6 +24,7 @@ class NordStyle(Style):
 
     styles = {
         Whitespace:                 '#d8dee9',
+        Punctuation:                '#eceff4',
 
         Comment:                    'italic #616e87',
         Comment.Preproc:            '#5e81ac',
