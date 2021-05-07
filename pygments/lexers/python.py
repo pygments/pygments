@@ -160,6 +160,7 @@ class PythonLexer(RegexLexer):
             ("([uUbB]?)(')", bygroups(String.Affix, String.Single),
              combined('stringescape', 'sqs')),
             (r'[^\S\n]+', Text),
+            include('numbers'),
             (r'!=|==|<<|>>|:=|[-~+/*%=<>&^|.]', Operator),
             (r'[]{}:(),;[]', Punctuation),
             (r'(in|is|and|or|not)\b', Operator.Word),
@@ -168,7 +169,6 @@ class PythonLexer(RegexLexer):
             include('magicfuncs'),
             include('magicvars'),
             include('name'),
-            include('numbers'),
         ],
         'expr-inside-fstring': [
             (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),

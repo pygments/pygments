@@ -37,6 +37,7 @@ Pygments documentation
    lexerdevelopment
    formatterdevelopment
    filterdevelopment
+   styledevelopment
    plugins
 
 **Hints and tricks**
