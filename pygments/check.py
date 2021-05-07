@@ -93,7 +93,53 @@ class check:
         else:
             return contrast >= 7.0
 
-    def color_combination(self,color_list, r):
+    def get_style_color_rgb_list(self):
+        colors=[]
+        color_lists=[]
+        for style in p1.get_style_arr():
+            if str(style).find(self.style) != -1:
+                for arr in style:
+                    color_lists.append(arr)
+
+        for i in range(len(color_lists)):
+            color_rgb="000000"
+            obj=color_lists[i][0]
+            n=str(obj).replace('Token.', '')
+            if n!='':
+                if color_lists[i][1]["color"]!=None:
+                    color_rgb=self.hex_to_rgb(color_lists[i][1]["color"])
+                    colors.append([n,color_rgb])
+        return colors
+
+    def get_style_color_list(self):
+        color_names=[]
+        color_rgbs=self.get_style_color_rgb_list()
+        for c in color_rgbs:
+            color_names.append(c[0])
+        return color_names
+
+    def get_style_color_rgb(self,color_name):
+        color_rgb_list=self.get_style_color_rgb_list()
+        for i in color_rgb_list:
+            if i[0]==color_name:
+                return i[1]
+
+    def get_color_similarity(self):
+        similarity_list=[]
+        color_matchs=self.get_color_matchs()
+        color_rgb_list=self.get_style_color_rgb_list()
+        for c in color_matchs:
+            c1=c[0]
+            c2=c[1]
+            c1_rgb=self.get_style_color_rgb(c1)
+            c2_rgb=self.get_style_color_rgb(c2)
+            similarity=self.color_distance(c1_rgb,c2_rgb)
+            similarity_list.append([c1,c2,similarity])
+        return tuple(similarity_list)
+
+    def get_color_matchs(self):
+        r=2
+        color_list=self.get_style_color_list()
         data = tuple(color_list)
         n = len(data)
         if r > n:
