@@ -17,6 +17,7 @@ STYLE_MAP = {
     'default':  'default::DefaultStyle',
     'emacs':    'emacs::EmacsStyle',
     'friendly': 'friendly::FriendlyStyle',
+    'friendly_grayscale': 'friendly_grayscale::FriendlyGrayscaleStyle',
     'colorful': 'colorful::ColorfulStyle',
     'autumn':   'autumn::AutumnStyle',
     'murphy':   'murphy::MurphyStyle',
