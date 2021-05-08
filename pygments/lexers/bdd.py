@@ -13,7 +13,6 @@ from pygments.token import Comment, Keyword, Name, String, Number, Generic, Text
 
 __all__ = ['BddLexer']
 
-
 class BddLexer(RegexLexer):
     name = 'BDD'
     aliases = ['bdd']
