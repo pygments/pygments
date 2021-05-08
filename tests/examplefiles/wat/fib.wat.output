@@ -1,0 +1,234 @@
+'('           Punctuation
+'module'      Keyword
+'\n    '      Text
+'('           Punctuation
+'func'        Keyword
+' '           Text
+'$fib'        Name.Variable
+' '           Text
+'('           Punctuation
+'param'       Keyword
+' '           Text
+'$n'          Name.Variable
+' '           Text
+'i32'         Keyword.Type
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'result'      Keyword
+' '           Text
+'i32'         Keyword.Type
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'local'       Keyword
+' '           Text
+'$a'          Name.Variable
+' '           Text
+'i32'         Keyword.Type
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'local'       Keyword
+' '           Text
+'$b'          Name.Variable
+' '           Text
+'i32'         Keyword.Type
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'local'       Keyword
+' '           Text
+'$result'     Name.Variable
+' '           Text
+'i32'         Keyword.Type
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'if'          Keyword
+'\n            ' Text
+'('           Punctuation
+'i32.eqz'     Name.Builtin
+' '           Text
+'('           Punctuation
+'local.get'   Name.Builtin
+' '           Text
+'$n'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'then'        Keyword
+'\n                ' Text
+'('           Punctuation
+'return'      Name.Builtin
+' '           Text
+'('           Punctuation
+'i32.const'   Name.Builtin
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+')'           Punctuation
+'\n        '  Text
+')'           Punctuation
+'\n        '  Text
+'('           Punctuation
+'local.set'   Name.Builtin
+' '           Text
+'$b'          Name.Variable
+' '           Text
+'('           Punctuation
+'i32.const'   Name.Builtin
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n        '  Text
+'(;'          Comment.Multiline
+' nested '    Comment.Multiline
+'(;'          Comment.Multiline
+' comment '   Comment.Multiline
+';)'          Comment.Multiline
+' '           Comment.Multiline
+';)'          Comment.Multiline
+'\n        '  Text
+'loop'        Keyword
+'\n            ' Text
+'('           Punctuation
+'local.set'   Name.Builtin
+' '           Text
+'$result'     Name.Variable
+' '           Text
+'('           Punctuation
+'i32.add'     Name.Builtin
+' '           Text
+'('           Punctuation
+'local.get'   Name.Builtin
+' '           Text
+'$a'          Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'local.get'   Name.Builtin
+' '           Text
+'$b'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'local.set'   Name.Builtin
+' '           Text
+'$a'          Name.Variable
+' '           Text
+'('           Punctuation
+'local.get'   Name.Builtin
+' '           Text
+'$b'          Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text
+'('           Punctuation
+'local.set'   Name.Builtin
+' '           Text
+'$b'          Name.Variable
+' '           Text
+'('           Punctuation
+'local.get'   Name.Builtin
+' '           Text
+'$result'     Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n\n            ' Text
+';; decrement $n' Comment.Single
+'\n            ' Text
+'('           Punctuation
+'local.tee'   Name.Builtin
+' '           Text
+'$n'          Name.Variable
+' '           Text
+'('           Punctuation
+'i32.sub'     Name.Builtin
+' '           Text
+'('           Punctuation
+'local.get'   Name.Builtin
+' '           Text
+'$n'          Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'i32.const'   Name.Builtin
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n            ' Text
+'(;'          Comment.Multiline
+' test if $n > 0 ' Comment.Multiline
+';)'          Comment.Multiline
+'\n            ' Text
+'('           Punctuation
+'i32.gt_u'    Name.Builtin
+' '           Text
+'('           Punctuation
+'i32.const'   Name.Builtin
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n\n            ' Text
+';; if so, jump to the beginning of the loop' Comment.Single
+'\n            ' Text
+'br_if'       Name.Builtin
+' '           Text
+'0'           Literal.Number.Integer
+'\n        '  Text
+'end'         Keyword
+'\n        '  Text
+'local.get'   Name.Builtin
+' '           Text
+'$result'     Name.Variable
+'\n    '      Text
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'func'        Keyword
+' '           Text
+'$test_memory_store_args' Name.Variable
+'\n        '  Text
+'i32.const'   Name.Builtin
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'f64.store'   Name.Builtin
+' '           Text
+'align'       Keyword
+'='           Operator
+'8'           Literal.Number.Integer
+' '           Text
+'offset'      Keyword
+'='           Operator
+'16'          Literal.Number.Integer
+'\n    '      Text
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'export'      Keyword
+' '           Text
+'"'           Literal.String.Double
+'fib'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'('           Punctuation
+'func'        Keyword
+' '           Text
+'$fib'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+')'           Punctuation
+'\n'          Text

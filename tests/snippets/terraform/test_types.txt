@@ -1,0 +1,70 @@
+---input---
+backend "consul" {
+data "aws_ami" "example" {
+module "consul" {
+output "instance_ip_addr" {
+provider "aws" {
+provisioner "local-exec" {
+resource "aws_internet_gateway" "base_igw" {
+variable "aws_region" {
+
+---tokens---
+'backend'     Keyword.Reserved
+' '           Text
+'"consul"'    Name.Variable
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'data'        Keyword.Reserved
+' '           Text
+'"aws_ami"'   Name.Class
+' '           Text
+'"example"'   Name.Variable
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'module'      Keyword.Reserved
+' '           Text
+'"consul"'    Name.Variable
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'output'      Keyword.Reserved
+' '           Text
+'"instance_ip_addr"' Name.Variable
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'provider'    Keyword.Reserved
+' '           Text
+'"aws"'       Name.Variable
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'provisioner' Keyword.Reserved
+' '           Text
+'"local-exec"' Name.Variable
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'resource'    Keyword.Reserved
+' '           Text
+'"aws_internet_gateway"' Name.Class
+' '           Text
+'"base_igw"'  Name.Variable
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'variable'    Keyword.Reserved
+' '           Text
+'"aws_region"' Name.Variable
+' '           Text
+'{'           Punctuation
+'\n'          Text

@@ -1,0 +1,14 @@
+---input---
+(;
+nested(;;)comment
+;)
+
+---tokens---
+'(;'          Comment.Multiline
+'\nnested'    Comment.Multiline
+'(;'          Comment.Multiline
+';)'          Comment.Multiline
+'comment\n'   Comment.Multiline
+
+';)'          Comment.Multiline
+'\n'          Text

@@ -70,7 +70,6 @@ class BddLexer(RegexLexer):
             #(r'(<[^>]*>)', Name.Variable),
 
             #(r'(<[^>]+>)', Name.Variable),
-
         ],
         'numbers': [
             (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', String),

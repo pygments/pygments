@@ -1,0 +1,41 @@
+---input---
+# Single line comment
+/* multiline
+
+  comment
+
+*/
+
+---tokens---
+'# Single line comment\n' Comment.Single
+
+'/*'          Comment.Multiline
+' '           Comment.Multiline
+'m'           Comment.Multiline
+'u'           Comment.Multiline
+'l'           Comment.Multiline
+'t'           Comment.Multiline
+'i'           Comment.Multiline
+'l'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'e'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+' '           Comment.Multiline
+' '           Comment.Multiline
+'c'           Comment.Multiline
+'o'           Comment.Multiline
+'m'           Comment.Multiline
+'m'           Comment.Multiline
+'e'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'\n'          Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text

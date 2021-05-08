@@ -1,0 +1,9 @@
+---input---
+"string\t"
+
+---tokens---
+'"'           Literal.String.Double
+'string'      Literal.String.Double
+'\\t'         Literal.String.Escape
+'"'           Literal.String.Double
+'\n'          Text
