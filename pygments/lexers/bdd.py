@@ -16,7 +16,7 @@ __all__ = ['BddLexer']
 class BddLexer(RegexLexer):
     name = 'BDD'
     aliases = ['bdd']
-    filenames = ['*.bdd']
+    filenames = ['*.feature']
     mimetypes = ['text/x-bdd']
 
     feature_keywords = '^()(:)(.*)$'
