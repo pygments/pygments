@@ -68,7 +68,6 @@ class BddLexer(RegexLexer):
             (r'((?<=\<)[^\\>]+(?=\>))', Name.Variable),
             #(r'(<|>|\|)', Keyword),
             #(r'(<[^>]*>)', Name.Variable),
-
             #(r'(<[^>]+>)', Name.Variable),
         ],
         'numbers': [
@@ -116,7 +115,7 @@ class BddLexer(RegexLexer):
             #(r'"', Name.Function, "double_string"),
             include('table_vars'),
             include('numbers'),
-            #(r'(\s*)(@[^@\r\n\t ]+)', bygroups(Name.Function, Name.Tag)),
+            (r'(\s*)(@[^@\r\n\t ]+)', bygroups(Name.Function, Name.Label)),
             (step_keywords, bygroups(Name.Function, Keyword),
              'step_content_root'),
             (feature_keywords, bygroups(Keyword, Keyword, Name.Function),
