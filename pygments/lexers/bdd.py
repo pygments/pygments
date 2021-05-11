@@ -66,6 +66,7 @@ class BddLexer(RegexLexer):
             (r'(:)', Keyword.Type),
 
             (r'((?<=\<)[^\\>]+(?=\>))', Name.Variable),
+            (r'(["][\w\s]+["])', Name.Exception),
             #(r'(<|>|\|)', Keyword),
             #(r'(<[^>]*>)', Name.Variable),
             #(r'(<[^>]+>)', Name.Variable),
