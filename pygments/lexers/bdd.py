@@ -14,11 +14,12 @@ from pygments.token import Comment, Keyword, Name, String, Number, Generic, Text
 __all__ = ['BddLexer']
 
 class BddLexer(RegexLexer):
-    name = 'BDD'
+    name = 'Bdd'
     aliases = ['bdd']
     filenames = ['*.feature']
     mimetypes = ['text/x-bdd']
-
+    
+    # pre-defined keywords
     feature_keywords = '^()(:)(.*)$'
     feature_element_keywords = '^(\\s*)()(:)(.*)$'
     examples_keywords = '^(\\s*)()(:)(.*)$'
@@ -43,7 +44,7 @@ class BddLexer(RegexLexer):
             include('comments'),
             (r"(\s|.)", Name.Function),
         ],
-        'examples_table_header': [
+        'examples_table_header': [ # special example tables
             (r"\s+\|\s*$", Keyword, "#pop:2"),
             include('comments'),
             (r"\\\|", Name.Variable),
@@ -55,7 +56,7 @@ class BddLexer(RegexLexer):
              bygroups(Name.Function, Keyword, Keyword, Name.Function),
              "feature_elements_on_stack"),
         ],
-        'narrative': [
+        'narrative': [ # narrative text
             include('scenario_sections_on_stack'),
             include('comments'),
             (r"(\s|.)", Name.Function),
@@ -64,9 +65,7 @@ class BddLexer(RegexLexer):
             (r'(<|>)', Keyword.Type),
             (r'(\|)', Keyword.Type),
             (r'(:)', Keyword.Type),
-
             (r'((?<=\<)[^\\>]+(?=\>))', Name.Variable),
-            #(r'(["][\w\s]+["])', Name.Exception),
             (r'"([^\"]*)"', Name.Exception),
         ],
         'numbers': [
@@ -111,7 +110,7 @@ class BddLexer(RegexLexer):
             (r'"""', Keyword, "py_string"),
             include('table_vars'),
             include('numbers'),
-            (r'(\s*)(@[^@\r\n\t\f\v]+)', bygroups(Name.Function, Name.Label)),
+            (r'(\s*)(@[^@\r\n\t\f\v]+)', bygroups(Name.Function, Name.Label)), # start with @
             (step_keywords, bygroups(Name.Function, Keyword),
              'step_content_root'),
             (feature_keywords, bygroups(Keyword, Keyword, Name.Function),
