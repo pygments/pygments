@@ -1,0 +1,86 @@
+/*
+ * Comment
+ */
+
+/* Comment */
+
+// Comment
+
+#include "local.idl"
+#include <global.idl>
+
+#define MACRO "String that should not be highlighted"
+
+#ifdef MACRO
+#  define something "String that should not be highlighted"
+#  include "local.idl"
+#  include <global.idl>
+#endif
+
+typedef long ArrayType[10];
+
+@annotation the_annotation {
+  unsigned long value default 10;
+};
+
+const unsigned long a = 10;
+const int8 b = -10;
+const uint16 c = 0x10af;
+const int32 d = -0X10AF;
+const long e = 01234;
+const double f = -102.34e+10;
+const double f2 = .34;
+const double f3 = 0.34;
+const double f4 = 102.34;
+const double f5 = 102e+4;
+const double f6 = .1e4;
+const boolean g = TRUE;
+const boolean h = FALSE;
+const char i = 'i';
+const char j = '\n';
+const char k = '\'';
+const string l = "Hello World\n\t\v\b\r\f\a\\\'\"\xff";
+const wchar m = L'i';
+const wchar n = L'\n';
+const wchar o = L'\'';
+const wstring p = L"Hello World\n\t\v\b\r\f\a\\\'\"\xff";
+
+const long expr = (4 * (2 + 6) / 2 - 7) % 6;
+const long expr2 = (~4 >> 8) << 2;
+
+const long id_with_number_4_in_it = 4;
+
+@topic
+struct the_struct {
+  @min(10) long x;
+  @key short t;
+  sequence<long> anon_seq;
+};
+
+module the_module {
+  const long value = 0x30;
+
+  @some_annotation
+  enum EnumType {
+    x_value,
+    @::mod::anno(1) y_value,
+    z_value
+  };
+};
+
+@some_annotation(x=1, y="Hello\n", z=z_value)
+@another_annotation(a=2, b="Goodbye\n", c=y_value)
+union the_union switch(@key long) {
+case 1:
+  short x;
+case 2:
+  long y;
+case 3:
+  float z;
+default:
+  char xyz;
+};
+
+local interface the_interface {
+  the_struct get_struct(in long in_arg, inout long inout_arg, out long out_arg);
+};

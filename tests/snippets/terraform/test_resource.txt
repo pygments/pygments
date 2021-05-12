@@ -1,0 +1,211 @@
+---input---
+resource "aws_internet_gateway" "base_igw" {
+  vpc_id = aws_vpc.something.id
+  tags = {
+    Name = "igw-${var.something}-${var.something}"
+  }
+}
+
+resource "aws_security_group" "allow_tls" {
+  name        = "allow_tls"
+  description = "Allow TLS inbound traffic"
+  vpc_id      = aws_vpc.main.id
+
+  # Ingress rules
+  ingress {
+    description = "TLS from VPC"
+    from_port   = 443
+    to_port     = 443
+  }
+
+  # Egress rules
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "allow_tls"
+  }
+}
+
+---tokens---
+'resource'    Keyword.Reserved
+' '           Text
+'"aws_internet_gateway"' Name.Class
+' '           Text
+'"base_igw"'  Name.Variable
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'vpc_id'      Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'aws_vpc.something.id' Name.Variable
+'\n'          Text
+
+'  '          Text
+'tags'        Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'Name'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"igw-${var.something}-${var.something}"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'resource'    Keyword.Reserved
+' '           Text
+'"aws_security_group"' Name.Class
+' '           Text
+'"allow_tls"' Name.Variable
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'name'        Name.Attribute
+'        '    Text
+'='           Operator
+' '           Text
+'"allow_tls"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'description' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"Allow TLS inbound traffic"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'vpc_id'      Name.Attribute
+'      '      Text
+'='           Operator
+' '           Text
+'aws_vpc.main.id' Name.Variable
+'\n\n  # Ingress rules\n' Comment.Single
+
+'  '          Text
+'ingress'     Name.Builtin
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'description' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"TLS from VPC"' Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'from_port'   Name.Attribute
+'   '         Text
+'='           Operator
+' '           Text
+'443'         Literal.Number
+'\n'          Text
+
+'    '        Text
+'to_port'     Name.Attribute
+'     '       Text
+'='           Operator
+' '           Text
+'443'         Literal.Number
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n\n  # Egress rules\n' Comment.Single
+
+'  '          Text
+'egress'      Name.Builtin
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'from_port'   Name.Attribute
+'   '         Text
+'='           Operator
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'    '        Text
+'to_port'     Name.Attribute
+'     '       Text
+'='           Operator
+' '           Text
+'0'           Literal.Number
+'\n'          Text
+
+'    '        Text
+'protocol'    Name.Attribute
+'    '        Text
+'='           Operator
+' '           Text
+'"-1"'        Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'cidr_blocks' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'"0.0.0.0/0"' Literal.String.Double
+']'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'tags'        Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'Name'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"allow_tls"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
