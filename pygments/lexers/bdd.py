@@ -4,7 +4,7 @@
 
     Lexers for BDD language.
 
-    :copyright: Copyright 2006-2021 by group 4 of SPI project of TUoA.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -66,10 +66,8 @@ class BddLexer(RegexLexer):
             (r'(:)', Keyword.Type),
 
             (r'((?<=\<)[^\\>]+(?=\>))', Name.Variable),
-            (r'(["][\w\s]+["])', Name.Exception),
-            #(r'(<|>|\|)', Keyword),
-            #(r'(<[^>]*>)', Name.Variable),
-            #(r'(<[^>]+>)', Name.Variable),
+            #(r'(["][\w\s]+["])', Name.Exception),
+            (r'"([^\"]*)"', Name.Exception),
         ],
         'numbers': [
             (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', String),
@@ -91,7 +89,6 @@ class BddLexer(RegexLexer):
             include('step_content'),
         ],
         'step_content': [
-            #(r'"', Name.Function, "double_string"),
             include('table_vars'),
             include('numbers'),
             include('comments'),
@@ -112,11 +109,9 @@ class BddLexer(RegexLexer):
             (r'\n', Name.Function),
             include('comments'),
             (r'"""', Keyword, "py_string"),
-            #(r'\s+\|', Keyword, 'table_content'),
-            #(r'"', Name.Function, "double_string"),
             include('table_vars'),
             include('numbers'),
-            (r'(\s*)(@[^@\r\n\t ]+)', bygroups(Name.Function, Name.Label)),
+            (r'(\s*)(@[^@\r\n\t\f\v]+)', bygroups(Name.Function, Name.Label)),
             (step_keywords, bygroups(Name.Function, Keyword),
              'step_content_root'),
             (feature_keywords, bygroups(Keyword, Keyword, Name.Function),
