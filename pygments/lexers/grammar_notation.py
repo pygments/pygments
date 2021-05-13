@@ -117,7 +117,7 @@ class AbnfLexer(RegexLexer):
             (words(_core_rules, suffix=r'\b'), Keyword),
 
             # nonterminals (ALPHA *(ALPHA / DIGIT / "-"))
-            (r'[a-zA-Z][a-zA-Z0-9-]+\b', Name.Class),
+            (r'[a-zA-Z][a-zA-Z0-9-]*\b', Name.Class),
 
             # operators
             (r'(=/|=|/)', Operator),
