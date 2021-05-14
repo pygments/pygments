@@ -28,9 +28,9 @@ class BddLexer(RegexLexer):
     mimetypes = ['text/x-bdd']
     
     # pre-defined keywords
-    feature_keywords = '^(:)$'
-    feature_element_keywords = '^(\\s*)(:)$'
-    examples_keywords = '^(\\s*)(:)$'
+    feature_keywords = '^(:)()$'
+    feature_element_keywords = '^(\\s*)()(:)$'
+    examples_keywords = '^(\\s*)()(:)$'
     step_keywords = '^(\\s*)(Given|When|Then|Add|And|Feature|Scenario Outline|Scenario|Background|Examples|But)'
 
     tokens = {
