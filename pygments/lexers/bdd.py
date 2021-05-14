@@ -10,7 +10,7 @@
 """
 
 from pygments.lexer import RegexLexer, include, bygroups
-from pygments.token import Comment, Keyword, Name, String, Number, Text, Punctuation
+from pygments.token import Comment, Keyword, Name, String, Number, Text, Punctuation, Whitespace
 
 __all__ = ['BddLexer']
 
@@ -113,7 +113,7 @@ class BddLexer(RegexLexer):
             include('string'),
         ],
         'root': [
-            (r'\n', Text),
+            (r'\n', Whitespace),
             include('comments'),
             (r'"""', Keyword, "py_string"),
             include('table_vars'),
@@ -129,6 +129,7 @@ class BddLexer(RegexLexer):
             (examples_keywords,
              bygroups(Text, Keyword),
              'examples_table'),
+            (r'\s', Whitespace),
             (r'(\s|.)', Text),
         ]
     }
