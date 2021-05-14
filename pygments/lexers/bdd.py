@@ -10,7 +10,7 @@
 """
 
 from pygments.lexer import RegexLexer, include, bygroups
-from pygments.token import Comment, Keyword, Name, String, Number, Text, Punctuation
+from pygments.token import Comment, Keyword, Name, String, Number, Text, Punctuation, Whitespace
 
 __all__ = ['BddLexer']
 
@@ -28,9 +28,9 @@ class BddLexer(RegexLexer):
     mimetypes = ['text/x-bdd']
     
     # pre-defined keywords
-    feature_keywords = '^()(:)(.*)$'
-    feature_element_keywords = '^(\\s*)()(:)(.*)$'
-    examples_keywords = '^(\\s*)()(:)(.*)$'
+    feature_keywords = '^(:)$'
+    feature_element_keywords = '^(\\s*)(:)$'
+    examples_keywords = '^(\\s*)(:)$'
     step_keywords = '^(\\s*)(Given|When|Then|Add|And|Feature|Scenario Outline|Scenario|Background|Examples|But)'
 
     tokens = {
@@ -40,17 +40,17 @@ class BddLexer(RegexLexer):
         'feature_elements': [
             (step_keywords, Keyword, "step_content_stack"),
             include('comments'),
-            (r"(\s)", Text),
+            (r"(\s)", Whitespace),
         ],
         'feature_elements_on_stack': [
             (step_keywords, Keyword, "#pop:2"),
             include('comments'),
-            (r"(\s)", Text),
+            (r"(\s)", Whitespace),
         ],
         'examples_table': [
             (r"\s+\|", Keyword, 'examples_table_header'),
             include('comments'),
-            (r"(\s)", Text),
+            (r"(\s)", Whitespace),
         ],
         'examples_table_header': [
             (r"\s+\|\s*$", Keyword, "#pop:2"),
@@ -61,13 +61,13 @@ class BddLexer(RegexLexer):
         ],
         'scenario_sections_on_stack': [
             (feature_element_keywords,
-             bygroups(Text, Keyword, Keyword, Text),
+             bygroups(Whitespace, Keyword),
              "feature_elements_on_stack"),
         ],
         'narrative': [
             include('scenario_sections_on_stack'),
             include('comments'),
-            (r"(\s|.)", Text),
+            (r"(\s)", Whitespace),
         ],
         'table_vars': [
             (r'(<|>)', Punctuation),
@@ -81,7 +81,7 @@ class BddLexer(RegexLexer):
         ],
         'string': [
             include('table_vars'),
-            (r'(\s|.)', Text),
+            (r'(\s)', String),
         ],
         'py_string': [
             (r'"""', Keyword, "#pop"),
@@ -102,33 +102,30 @@ class BddLexer(RegexLexer):
             (r'(\s|.)', Text),
         ],
         'table_content': [
-            (r"\s+\|\s*$", Keyword, "#pop"),
+            (r"\s+\|\s*$", Punctuation, "#pop"),
             include('comments'),
             (r"\\\|", Punctuation),
             (r"\s*\|", Punctuation),
             include('string'),
         ],
-        'double_string': [
-            (r'"', Text, "#pop"),
-            include('string'),
-        ],
         'root': [
-            (r'\n', Text),
+            (r'\n', Whitespace),
             include('comments'),
             (r'"""', Keyword, "py_string"),
             include('table_vars'),
             include('numbers'),
-            (r'(\s*)(@[^@\r\n\t\f\v]+)', bygroups(Text, Name.Label)),
-            (step_keywords, bygroups(Text, Keyword),
+            (r'(\s*)(@[^@\s]+)', bygroups(Text, Name.Label)),
+            (step_keywords, bygroups(Whitespace, Keyword),
              'step_content_root'),
-            (feature_keywords, bygroups(Keyword, Text),
+            (feature_keywords, bygroups(Keyword, Whitespace),
              'narrative'),
             (feature_element_keywords,
-             bygroups(Text, Keyword),
+             bygroups(Keyword, Whitespace),
              'feature_elements'),
             (examples_keywords,
-             bygroups(Text, Keyword),
+             bygroups(Keyword, Whitespace),
              'examples_table'),
+            (r'\s', Whitespace),
             (r'(\s|.)', Text),
         ]
     }
