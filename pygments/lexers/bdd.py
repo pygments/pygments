@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, include, bygroups
+from pygments.lexer import RegexLexer, include
 from pygments.token import Comment, Keyword, Name, String, Number, Text, Punctuation, Whitespace
 
 __all__ = ['BddLexer']
@@ -33,21 +33,21 @@ class BddLexer(RegexLexer):
         'comments': [
             (r'^\s*#.*$', Comment),
         ],
-        'table_vars': [
-            (r'(<|>|\||:|\(|\)|\{|\}|,|\.|;|-|_|\$)', Punctuation),
+        'miscellaneous': [
+            (r'(<|>|\[|\]|=|\||:|\(|\)|\{|\}|,|\.|;|-|_|\$)', Punctuation),
             (r'((?<=\<)[^\\>]+(?=\>))', Name.Variable),
             (r'"([^\"]*)"', String),
+            (r'^@\S+', Name.Label),
         ],
         'numbers': [
             (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number),
         ],
         'root': [
             (r'\n|\s', Whitespace),
-            include('comments'),
-            include('table_vars'),
-            include('numbers'),
-            (r'^@\S+', Name.Label),
             (step_keywords, Keyword),
+            include('comments'),
+            include('miscellaneous'),
+            include('numbers'),            
             (r'.', Text),
         ]
     }
