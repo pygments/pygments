@@ -51,20 +51,19 @@
 
 'Feature'     Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'S'           Text
 'e'           Text
 'r'           Text
 'v'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'o'           Text
 'f'           Text
 'f'           Text
 'e'           Text
 'e'           Text
-''            Keyword
 '\n'          Text.Whitespace
 
 ' '           Text.Whitespace
@@ -246,24 +245,27 @@
 
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'Background'  Keyword
 ':'           Punctuation
-''            Keyword
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'Given'       Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 'g'           Text
 'l'           Text
 'o'           Text
 'b'           Text
 'a'           Text
 'l'           Text
-' '           Text
+' '           Text.Whitespace
 'a'           Text
 'd'           Text
 'm'           Text
@@ -277,42 +279,46 @@
 't'           Text
 'o'           Text
 'r'           Text
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 'a'           Text
 'm'           Text
 'e'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 '"Greg"'      Literal.String
-''            Keyword
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'And'         Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 'b'           Text
 'l'           Text
 'o'           Text
 'g'           Text
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 'a'           Text
 'm'           Text
 'e'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 '"Greg\'s anti-tax rants"' Literal.String
-''            Keyword
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'And'         Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'u'           Text
 's'           Text
@@ -321,87 +327,91 @@
 'm'           Text
 'e'           Text
 'r'           Text
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 'a'           Text
 'm'           Text
 'e'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 '"Dr. Bill"'  Literal.String
-''            Keyword
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'And'         Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 'b'           Text
 'l'           Text
 'o'           Text
 'g'           Text
-' '           Text
+' '           Text.Whitespace
 'n'           Text
 'a'           Text
 'm'           Text
 'e'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 '"Expensive Therapy"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'o'           Text
 'w'           Text
 'n'           Text
 'e'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 'b'           Text
 'y'           Text
-' '           Text
+' '           Text.Whitespace
 '"Dr. Bill"'  Literal.String
-''            Keyword
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'Scenario'    Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'B'           Text
 'u'           Text
 'y'           Text
-' '           Text
+' '           Text.Whitespace
 'l'           Text
 'a'           Text
 's'           Text
 't'           Text
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'o'           Text
 'f'           Text
 'f'           Text
 'e'           Text
 'e'           Text
-''            Keyword
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'Given'       Keyword
-' '           Text
+' '           Text.Whitespace
 't'           Text
 'h'           Text
 'e'           Text
 'r'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 'a'           Text
 'r'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'o'           Text
 'f'           Text
@@ -409,19 +419,19 @@
 'e'           Text
 'e'           Text
 's'           Text
-' '           Text
+' '           Text.Whitespace
 'l'           Text
 'e'           Text
 'f'           Text
 't'           Text
-' '           Text
+' '           Text.Whitespace
 'i'           Text
 'n'           Text
-' '           Text
+' '           Text.Whitespace
 't'           Text
 'h'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 'm'           Text
 'a'           Text
 'c'           Text
@@ -429,19 +439,21 @@
 'i'           Text
 'n'           Text
 'e'           Text
-''            Keyword
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'And'         Keyword
-' '           Text
+' '           Text.Whitespace
 'I'           Text
-' '           Text
+' '           Text.Whitespace
 'h'           Text
 'a'           Text
 'v'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 'd'           Text
 'e'           Text
 'p'           Text
@@ -451,108 +463,114 @@
 't'           Text
 'e'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number
-'$'           Text
-''            Keyword
+'$'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'When'        Keyword
-' '           Text
+' '           Text.Whitespace
 'I'           Text
-' '           Text
+' '           Text.Whitespace
 'p'           Text
 'r'           Text
 'e'           Text
 's'           Text
 's'           Text
-' '           Text
+' '           Text.Whitespace
 't'           Text
 'h'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'o'           Text
 'f'           Text
 'f'           Text
 'e'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 'b'           Text
 'u'           Text
 't'           Text
 't'           Text
 'o'           Text
 'n'           Text
-''            Keyword
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'Then'        Keyword
-' '           Text
+' '           Text.Whitespace
 'I'           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 'h'           Text
 'o'           Text
 'u'           Text
 'l'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 'b'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 'e'           Text
 'r'           Text
 'v'           Text
 'e'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 'a'           Text
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'o'           Text
 'f'           Text
 'f'           Text
 'e'           Text
 'e'           Text
-''            Keyword
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'Scenario Outline' Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'e'           Text
 'a'           Text
 't'           Text
 'i'           Text
 'n'           Text
 'g'           Text
-''            Keyword
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'Given'       Keyword
-' '           Text
+' '           Text.Whitespace
 't'           Text
 'h'           Text
 'e'           Text
 'r'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 'a'           Text
 'r'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 '<'           Punctuation
 'start'       Name.Variable
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'u'           Text
 'c'           Text
@@ -562,22 +580,24 @@
 'e'           Text
 'r'           Text
 's'           Text
-''            Keyword
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'When'        Keyword
-' '           Text
+' '           Text.Whitespace
 'I'           Text
-' '           Text
+' '           Text.Whitespace
 'e'           Text
 'a'           Text
 't'           Text
-' '           Text
+' '           Text.Whitespace
 '<'           Punctuation
 'eat'         Name.Variable
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'u'           Text
 'c'           Text
@@ -587,30 +607,32 @@
 'e'           Text
 'r'           Text
 's'           Text
-''            Keyword
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'Then'        Keyword
-' '           Text
+' '           Text.Whitespace
 'I'           Text
-' '           Text
+' '           Text.Whitespace
 's'           Text
 'h'           Text
 'o'           Text
 'u'           Text
 'l'           Text
 'd'           Text
-' '           Text
+' '           Text.Whitespace
 'h'           Text
 'a'           Text
 'v'           Text
 'e'           Text
-' '           Text
+' '           Text.Whitespace
 '<'           Punctuation
 'left'        Name.Variable
 '>'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Text
 'u'           Text
 'c'           Text
@@ -620,15 +642,16 @@
 'e'           Text
 'r'           Text
 's'           Text
-''            Keyword
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
+' '           Text.Whitespace
 'Examples'    Keyword
 ':'           Punctuation
-''            Keyword
 '\n'          Text.Whitespace
 
 ' '           Text.Whitespace
