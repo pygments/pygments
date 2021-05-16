@@ -34,7 +34,7 @@ class BddLexer(RegexLexer):
             (r'^\s*#.*$', Comment),
         ],
         'table_vars': [
-            (r'(<|>|\||:|\$)', Punctuation),
+            (r'(<|>|\||:|\(|\)|\{|\}|,|\.|;|-|_|\$)', Punctuation),
             (r'((?<=\<)[^\\>]+(?=\>))', Name.Variable),
             (r'"([^\"]*)"', String),
         ],
