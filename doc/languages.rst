@@ -263,6 +263,7 @@ Other markup
 * `OMG IDL <https://www.omg.org/spec/IDL/About-IDL/>`_
 * `PEG <https://bford.info/packrat/>`_
 * POV-Ray scenes
+* `Procfile <https://devcenter.heroku.com/articles/procfile#procfile-format>`_
 * `PromQL <https://prometheus.io/docs/prometheus/latest/querying/basics/>`_
 * `Puppet <https://puppet.com/>`_
 * QML
