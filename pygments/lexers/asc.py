@@ -28,7 +28,7 @@ class AscLexer(RegexLexer):
         '*.pem',  # X.509; *.cer, *.crt, *.csr, and key etc too, but those can be binary
         'id_dsa', 'id_ecdsa', 'id_ecdsa_sk', 'id_ed25519', 'id_ed25519_sk', 'id_rsa',  # SSH private keys
     ]
-    mimetypes = ['application/pgp-keys', 'application/pgp-encrypted', 'application/pgp-signature'],
+    mimetypes = ['application/pgp-keys', 'application/pgp-encrypted', 'application/pgp-signature']
 
     flags = re.MULTILINE
 
