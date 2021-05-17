@@ -18,6 +18,8 @@ __all__ = ['AscLexer']
 class AscLexer(RegexLexer):
     """
     Lexer for ASCII armored files, containing `-----BEGIN/END ...-----` wrapped base64 data.
+
+    .. versionadded:: 2.10
     """
     name = 'ASCII armored'
     aliases = ['asc', 'pem']
