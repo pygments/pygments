@@ -10,7 +10,7 @@
 import re
 
 from pygments.lexer import RegexLexer, bygroups
-from pygments.token import Comment, Generic, Name, Operator, Text, String
+from pygments.token import Comment, Generic, Name, Operator, String, Whitespace
 
 __all__ = ['AscLexer']
 
@@ -34,13 +34,13 @@ class AscLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'^-----BEGIN [^\n]+-----$', Generic.Heading, 'data'),
             (r'\S+', Comment),
         ],
         'data': [
-            (r'\s+', Text),
-            (r'^([^:]+)(:)([ \t]+)(.*)', bygroups(Name.Attribute, Operator, Text, String)),
+            (r'\s+', Whitespace),
+            (r'^([^:]+)(:)([ \t]+)(.*)', bygroups(Name.Attribute, Operator, Whitespace, String)),
             (r'^-----END [^\n]+-----$', Generic.Heading, 'root'),
             (r'\S+', String),
         ],
