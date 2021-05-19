@@ -1,6 +1,6 @@
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, using, this
+from pygments.lexer import RegexLexer, include, bygroups, using, this, words
 from pygments.token import Keyword, Punctuation, Comment, Operator, Name,\
     String, Number, Whitespace
 
@@ -51,12 +51,12 @@ class GSQLLexer(RegexLexer):
              'TRY', 'TUPLE', 'TYPEDEF', 'UINT', 'UNION', 'UPDATE', 'VALUES', 'VERTEX', 'WHEN', 'WHERE', 'WHILE', 'WITH'), prefix=r'(?<!\.)', suffix=r'\b'), Name.Builtin)
         ],
         'clauses': [
-            (r'(accum|having|limit|order|postAccum|sample|where)\b', Keyword),
+            (words(('accum', 'having', 'limit', 'order', 'postAccum', 'sample', 'where')), Name.Builtin)
         ],
         'accums': [
-            (r'(andaccum|arrayaccum|avgaccum|bagaccum|bitwiseandaccum|'
-             r'bitwiseoraccum|groupbyaccum|heapaccum|listaccum|MapAccum|'
-             r'maxaccum|minaccum|oraccum|setaccum|sumaccum)\b', Keyword),
+            (words(('andaccum', 'arrayaccum', 'avgaccum', 'bagaccum', 'bitwiseandaccum', 
+             'bitwiseoraccum', 'groupbyaccum', 'heapaccum', 'listaccum', 'MapAccum', 
+             'maxaccum', 'minaccum', 'oraccum', 'setaccum', 'sumaccum')), Name.Builtin),
         ],
         # 'name': [
         #     (r'(\@\@w+)\b', Name),
