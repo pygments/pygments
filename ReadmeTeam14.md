@@ -1,1 +1,1 @@
- #Pygments/Tracebacks unreadable on dark styles #1526
+ # Pygments/Tracebacks unreadable on dark styles #1526
