@@ -48,6 +48,6 @@ class BddLexer(RegexLexer):
             include('comments'),
             include('miscellaneous'),
             include('numbers'),            
-            (r'.', Text),
+            (r'\S+', Text),
         ]
     }
