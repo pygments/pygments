@@ -1,0 +1,10 @@
+# Comments
+# ...
+
+UsePAM yes
+
+Match user hello
+      PermitTTY no
+      #PrintMotd yes
+
+Banner none

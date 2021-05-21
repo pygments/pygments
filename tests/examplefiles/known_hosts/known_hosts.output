@@ -1,0 +1,24 @@
+'localhost.localdomain,127.0.0.1' Name.Entity
+' '           Text.Whitespace
+'ssh-ed25519' Keyword.Type
+' '           Text.Whitespace
+'AAAAetcetcetc' Literal.String
+' '           Text.Whitespace
+'This is local' Comment.Special
+'\n'          Text
+
+'[hello.example.com]:2222' Name.Entity
+' '           Text.Whitespace
+'ssh-rsa'     Keyword.Type
+' '           Text.Whitespace
+'AAAAetcccc==' Literal.String
+'\n'          Text
+
+'@cert-authority' Name.Class
+' '           Text.Whitespace
+'*.example.com' Name.Entity
+' '           Text.Whitespace
+'ecdsa-sha2-nistp256' Keyword.Type
+' '           Text.Whitespace
+'AAAAetc/etc=' Literal.String
+'\n'          Text.Whitespace
