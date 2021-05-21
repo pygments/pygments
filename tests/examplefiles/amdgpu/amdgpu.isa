@@ -8,3 +8,4 @@ v_addc_u32    v2, vcc, v2, 0, vcc
 v_add_u32     v3, vcc, s0, v0
 v_mov_b32     v4, s1
 v_addc_u32    v4, vcc, v4, 0, vcc
+buffer_load_dword v4, v2, s[8:11], 0 offen

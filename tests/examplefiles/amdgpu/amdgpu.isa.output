@@ -128,3 +128,22 @@
 ' '           Text.Whitespace
 'vcc'         Name.Variable
 '\n'          Text.Whitespace
+
+'buffer_load_dword' Keyword.Reserved
+' '           Text.Whitespace
+'v4'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'v2'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'s'           Name.Variable
+'['           Text
+'8:11'        Name.Attribute
+']'           Text
+','           Text
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'offen'       Name.Attribute
+'\n'          Text.Whitespace

@@ -7,33 +7,73 @@ pull request numbers to the requests at
 <https://github.com/pygments/pygments/pulls>.
 
 
+Version 2.10.0
+--------------
+(not released yet)
+
 Version 2.9.0
 -------------
-(not released yet)
+(released May 3rd, 2021)
 
 - Added lexers:
 
   * APDL, gcode (#1714)
   * Kuin (#1300)
+  * NestedText (#1578)
+  * OMG IDL (#1595)
   * TEAL (#1671)
   * ThingsDB (#1295)
+  * WebAssembly (#1416, #1564)
 
 - Updated lexers:
 
+  * AMDGPU (#1717, #1775)
   * APL (#1747)
-  * C/C++: Improve namespace handling (#1722, #1561, #1719)
+  * C/C++: Improve namespace handling (#1722, #1561, #1719, #1746)
   * Chapel (#1743)
   * Coq (#1721)
   * Cython (#853)
+  * Groovy (#1765)
+  * JavaScript (#1741)
   * Julia (#1715)
   * Octave: Allow multiline and block-percent comments (#1726)
+  * PowerShell: Improve lexing of ``:`` (#1682, #1758)
+  * PromQL (#1783)
+  * Python: Improve float parsing (#1768, #1740)
   * Rust (#1061)
   * Scala: Rewrite to support Scala3 (#1694, #1035, #1121)
+  * Swift (#1767)
+  * Terraform: Support 0.14 syntax (#1756)
+  * Velocity: Detect multi-line patterns (#1776)
 
 - Add Pango formatter (#1727)
-
+- Autopygmentize uses ``file`` first instead of ``pygments -N`` (#1786)
 - Fix links (#1716)
 - Fix issue with LaTeX formatter and ``minted`` (#1734, #1735, #1736, #1737)
+- Improve alias order (#1780)
+- Improve line number colors (#1779, #1778)
+- Fix CTag related issue (#1724)
+- Recognize ``.leex`` as Elixir templates
+
+- Updated `filename` handling in HTML formatter if `linenos='table'` (#1757)
+
+  * Previously the filename would be emitted within the `<td>` holding the
+    code, but outside the `<pre>`. This would invariably break the alignment
+    with line numbers.
+  * Now if `filename` is specified, a separate `<tr>` is emitted before the
+    table content which contains a single `<th>` with `colspan=2` so it
+    spans both the line number and code columns. The filename is still
+    within `<span class="filename">...</span>` so any existing styles
+    should still apply, although the CSS path may need to change.
+  * For an example of the new output format see
+    `table_cls_step_1_start_1_special_0_noanchor_filename.html`
+    in the `tests/html_linenos_expected_output/` directory.
+  * For more details and discussion see the issue
+    https://github.com/pygments/pygments/issues/1757
+
+- Added styles:
+
+  * Gruvbox light+dark (#1763)
 
 Version 2.8.0
 -------------
@@ -49,7 +89,7 @@ Version 2.8.0
 - Updated lexers:
 
   * AutoIt: Support single quoted strings (#1667, #1663)
-  * C/C++ & related: Fix mishandling '*/' (#1695)
+  * C/C++ & related: Fix mishandling ``*/`` (#1695)
   * Cocoa: Add builtin types (#1703)
   * Console (#1672)
   * Eiffel: Fix performance issues (#1658)

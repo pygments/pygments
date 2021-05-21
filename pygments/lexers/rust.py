@@ -135,7 +135,7 @@ class RustLexer(RegexLexer):
             # String literals
             (r'b"', String, 'bytestring'),
             (r'"', String, 'string'),
-            (r'b?r(#*)".*?"\1', String),
+            (r'(?s)b?r(#*)".*?"\1', String),
 
             # Lifetime names
             (r"'", Operator, 'lifetime'),

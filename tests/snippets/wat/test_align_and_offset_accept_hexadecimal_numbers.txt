@@ -1,0 +1,14 @@
+---input---
+i32.store offset=0xdeadbeef align=0x1
+
+---tokens---
+'i32.store'   Name.Builtin
+' '           Text
+'offset'      Keyword
+'='           Operator
+'0xdeadbeef'  Literal.Number.Hex
+' '           Text
+'align'       Keyword
+'='           Operator
+'0x1'         Literal.Number.Hex
+'\n'          Text

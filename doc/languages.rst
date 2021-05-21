@@ -219,7 +219,7 @@ Other markup
 * Apache Pig
 * BBCode
 * CapDL
-* `Cap'n Proto <https://capnproto.com>`_
+* `Cap'n Proto <https://capnproto.org>`_
 * `CDDL <https://datatracker.ietf.org/doc/rfc8610/>`_
 * CMake
 * `Csound <https://csound.com>`_ scores
@@ -255,10 +255,12 @@ Other markup
 * MQL
 * MySQL
 * NCAR command language
+* `NestedText <https://nestedtext.org/>`_
 * Nginx config files
 * `Nix language <https://nixos.org/nix/>`_
 * NSIS scripts
 * Notmuch
+* `OMG IDL <https://www.omg.org/spec/IDL/About-IDL/>`_
 * `PEG <https://bford.info/packrat/>`_
 * POV-Ray scenes
 * `PromQL <https://prometheus.io/docs/prometheus/latest/querying/basics/>`_
