@@ -30,10 +30,7 @@
 'coffee'      Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'Coffee'      Text
 ' '           Text.Whitespace
 'should'      Text
@@ -51,10 +48,7 @@
 'for'         Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'Coffee'      Text
 ' '           Text.Whitespace
 'should'      Text
@@ -78,10 +72,7 @@
 'pressed'     Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'If'          Text
 ' '           Text.Whitespace
 'there'       Text
@@ -107,16 +98,12 @@
 
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 'Background'  Keyword
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'Given'       Keyword
 ' '           Text.Whitespace
 'a'           Text
@@ -130,10 +117,7 @@
 '"Greg"'      Literal.String
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'And'         Keyword
 ' '           Text.Whitespace
 'a'           Text
@@ -145,10 +129,7 @@
 '"Greg\'s anti-tax rants"' Literal.String
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'And'         Keyword
 ' '           Text.Whitespace
 'a'           Text
@@ -160,10 +141,7 @@
 '"Dr. Bill"'  Literal.String
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'And'         Keyword
 ' '           Text.Whitespace
 'a'           Text
@@ -183,8 +161,7 @@
 
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 'Scenario'    Keyword
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -195,10 +172,7 @@
 'coffee'      Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'Given'       Keyword
 ' '           Text.Whitespace
 'there'       Text
@@ -218,10 +192,7 @@
 'machine'     Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'And'         Keyword
 ' '           Text.Whitespace
 'I'           Text
@@ -234,10 +205,7 @@
 '$'           Punctuation
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'When'        Keyword
 ' '           Text.Whitespace
 'I'           Text
@@ -251,10 +219,7 @@
 'button'      Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'Then'        Keyword
 ' '           Text.Whitespace
 'I'           Text
@@ -272,18 +237,14 @@
 
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 'Scenario Outline' Keyword
 ':'           Punctuation
 ' '           Text.Whitespace
 'eating'      Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'Given'       Keyword
 ' '           Text.Whitespace
 'there'       Text
@@ -297,10 +258,7 @@
 'cucumbers'   Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'When'        Keyword
 ' '           Text.Whitespace
 'I'           Text
@@ -314,10 +272,7 @@
 'cucumbers'   Text
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'Then'        Keyword
 ' '           Text.Whitespace
 'I'           Text
@@ -335,20 +290,12 @@
 
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'    '        Text.Whitespace
 'Examples'    Keyword
 ':'           Punctuation
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'      '      Text.Whitespace
 '|'           Punctuation
 ' '           Text.Whitespace
 'start'       Text
@@ -364,59 +311,34 @@
 '|'           Punctuation
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'      '      Text.Whitespace
 '|'           Punctuation
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 '12'          Literal.Number
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'   '         Text.Whitespace
 '|'           Punctuation
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 '5'           Literal.Number
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 '|'           Punctuation
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 '7'           Literal.Number
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'   '         Text.Whitespace
 '|'           Punctuation
 '\n'          Text.Whitespace
 
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'      '      Text.Whitespace
 '|'           Punctuation
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 '20'          Literal.Number
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
+'   '         Text.Whitespace
 '|'           Punctuation
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 '5'           Literal.Number
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 '|'           Punctuation
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 '15'          Literal.Number
-' '           Text.Whitespace
-' '           Text.Whitespace
+'  '          Text.Whitespace
 '|'           Punctuation
 '\n'          Text.Whitespace

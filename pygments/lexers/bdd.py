@@ -43,7 +43,7 @@ class BddLexer(RegexLexer):
             (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number),
         ],
         'root': [
-            (r'\n|\s', Whitespace),
+            (r'\n|\s+', Whitespace),
             (step_keywords, Keyword),
             include('comments'),
             include('miscellaneous'),
