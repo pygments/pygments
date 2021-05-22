@@ -52,7 +52,7 @@ class JavascriptLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuysd]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
             default('#pop')
         ],
@@ -207,7 +207,7 @@ class KalLexer(RegexLexer):
         'root': [
             include('commentsandwhitespace'),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gimuys]+\b|\B)', String.Regex),
+             r'([gimuysd]+\b|\B)', String.Regex),
             (r'\?|:|_(?=\n)|==?|!=|-(?!>)|[<>+*/-]=?',
              Operator),
             (r'\b(and|or|isnt|is|not|but|bitwise|mod|\^|xor|exists|'
@@ -300,7 +300,7 @@ class LiveScriptLexer(RegexLexer):
         ],
         'multilineregex': [
             include('commentsandwhitespace'),
-            (r'//([gimuys]+\b|\B)', String.Regex, '#pop'),
+            (r'//([gimuysd]+\b|\B)', String.Regex, '#pop'),
             (r'/', String.Regex),
             (r'[^/#]+', String.Regex)
         ],
@@ -308,7 +308,7 @@ class LiveScriptLexer(RegexLexer):
             include('commentsandwhitespace'),
             (r'//', String.Regex, ('#pop', 'multilineregex')),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuysd]+\b|\B)', String.Regex, '#pop'),
             (r'/', Operator, '#pop'),
             default('#pop'),
         ],
@@ -999,7 +999,7 @@ class CoffeeScriptLexer(RegexLexer):
         ],
         'multilineregex': [
             (r'[^/#]+', String.Regex),
-            (r'///([gimuys]+\b|\B)', String.Regex, '#pop'),
+            (r'///([gimuysd]+\b|\B)', String.Regex, '#pop'),
             (r'#\{', String.Interpol, 'interpoling_string'),
             (r'[/#]', String.Regex),
         ],
@@ -1007,7 +1007,7 @@ class CoffeeScriptLexer(RegexLexer):
             include('commentsandwhitespace'),
             (r'///', String.Regex, ('#pop', 'multilineregex')),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuysd]+\b|\B)', String.Regex, '#pop'),
             # This isn't really guarding against mishighlighting well-formed
             # code, just the ability to infinite-loop between root and
             # slashstartsregex.
@@ -1441,7 +1441,7 @@ class JuttleLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuysd]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
             default('#pop')
         ],
