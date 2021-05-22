@@ -53,3 +53,20 @@ isFinite();
 isNaN();
 x = new Promise(...a);
 x = new Proxy(...a);
+
+x ??= 1;
+x &&= 2;
+x **= 2;
+x ||= 2;
+
+throw new Error();
+throw new TypeError();
+
+new Uint8ClampedArray();
+new DataView();
+new Map();
+new WeakMap();
+
+Intl.DateTimeFormat();
+
+globalThis = window = global = this;

@@ -75,29 +75,36 @@ class JavascriptLexer(RegexLexer):
             (r'(\.[0-9]+|[0-9]+\.[0-9]*|[0-9]+)([eE][-+]?[0-9]+)?', Number.Float),
 
             (r'\.\.\.|=>', Punctuation),
-            (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
-             r'(<<|>>>?|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
+            (r'\+\+|--|~|\?\?=?|\?|:|\\(?=\n)|'
+             r'(<<|>>>?|==?|!=?|\*\*?|\|\||&&|&&|[-<>+%&|^/])=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
+
+            (r'(typeof|instanceof|in|void|delete|new)\b', Operator.Word, 'slashstartsregex'),
 
             # Match stuff like: constructor
             (r'\b(constructor|from|as)\b', Keyword.Reserved),
 
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
-             r'throw|try|catch|finally|new|delete|typeof|instanceof|void|yield|await|async|'
-             r'this|of|static|export|import|debugger|extends|super)\b', Keyword, 'slashstartsregex'),
+             r'throw|try|catch|finally|yield|await|async|this|of|static|export|'
+             r'import|debugger|extends|super)\b', Keyword, 'slashstartsregex'),
             (r'(var|let|const|with|function|class)\b', Keyword.Declaration, 'slashstartsregex'),
 
-            (r'(abstract|boolean|byte|char|double|enum|final|float|goto'
-             r'implements|int|interface|long|native|package|private|protected'
+            (r'(abstract|boolean|byte|char|double|enum|final|float|goto|'
+             r'implements|int|interface|long|native|package|private|protected|'
              r'public|short|synchronized|throws|transient|volatile)\b', Keyword.Reserved),
             (r'(true|false|null|NaN|Infinity|undefined)\b', Keyword.Constant),
 
-            (r'(Array|Boolean|Date|BigInt|Error|Function|Math|'
+            (r'(Array|Boolean|Date|BigInt|Function|Math|ArrayBuffer|'
              r'Number|Object|RegExp|String|Promise|Proxy|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
-             r'Error|eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|'
-             r'document|window|globalThis|global|Symbol)\b', Name.Builtin),
+             r'eval|isFinite|isNaN|parseFloat|parseInt|DataView|'
+             r'document|window|globalThis|global|Symbol|Intl|'
+             r'WeakSet|WeakMap|Set|Map|Reflect|JSON|Atomics|'
+             r'Int(?:8|16|32)Array|BigInt64Array|Float32Array|Float64Array|'
+             r'Uint8ClampedArray|Uint(?:8|16|32)Array|BigUint64Array)\b', Name.Builtin),
+
+            (r'((?:Eval|Internal|Range|Reference|Syntax|Type|URI)?Error)\b', Name.Exception),
 
             # Match stuff like: super(argument, list)
             (r'(super)(\s*)(\([\w,?.$\s]+\s*\))',

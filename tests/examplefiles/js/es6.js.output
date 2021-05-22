@@ -413,7 +413,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'new'         Keyword
+'new'         Operator.Word
 ' '           Text
 'Promise'     Name.Builtin
 '('           Punctuation
@@ -427,12 +427,120 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'new'         Keyword
+'new'         Operator.Word
 ' '           Text
 'Proxy'       Name.Builtin
 '('           Punctuation
 '...'         Punctuation
 'a'           Name.Other
 ')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'x'           Name.Other
+' '           Text
+'??='         Operator
+' '           Text
+'1'           Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'x'           Name.Other
+' '           Text
+'&&='         Operator
+' '           Text
+'2'           Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'x'           Name.Other
+' '           Text
+'**='         Operator
+' '           Text
+'2'           Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'x'           Name.Other
+' '           Text
+'||='         Operator
+' '           Text
+'2'           Literal.Number.Float
+';'           Punctuation
+'\n\n'        Text
+
+'throw'       Keyword
+' '           Text
+'new'         Operator.Word
+' '           Text
+'Error'       Name.Exception
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'throw'       Keyword
+' '           Text
+'new'         Operator.Word
+' '           Text
+'TypeError'   Name.Exception
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'new'         Operator.Word
+' '           Text
+'Uint8ClampedArray' Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'new'         Operator.Word
+' '           Text
+'DataView'    Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'new'         Operator.Word
+' '           Text
+'Map'         Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'new'         Operator.Word
+' '           Text
+'WeakMap'     Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'Intl'        Name.Builtin
+'.'           Punctuation
+'DateTimeFormat' Name.Other
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'globalThis'  Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'window'      Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'global'      Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'this'        Keyword
 ';'           Punctuation
 '\n'          Text
