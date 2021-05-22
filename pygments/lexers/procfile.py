@@ -22,6 +22,8 @@ class ProcfileLexer(RegexLexer):
     Honcho tools.
     For more information about the definition of the format, see:
     https://devcenter.heroku.com/articles/procfile#procfile-format
+
+    .. versionadded:: 2.10
     """
     name = 'Procfile'
     aliases = ['procfile']
