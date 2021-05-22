@@ -360,6 +360,43 @@
 '}'           Punctuation
 '\n\n'        Text
 
+'class'       Keyword.Declaration
+' '           Text
+'A'           Name.Other
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'constructor' Keyword.Reserved
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'super'       Keyword
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n\n    '    Text
+'constructor' Keyword.Reserved
+'('           Punctuation
+'test'        Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'super'       Keyword
+'('           Punctuation
+'test'        Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
 'isFinite'    Name.Builtin
 '('           Punctuation
 ')'           Punctuation
@@ -367,12 +404,6 @@
 '\n'          Text
 
 'isNaN'       Name.Builtin
-'('           Punctuation
-')'           Punctuation
-';'           Punctuation
-'\n'          Text
-
-'isSafeInteger' Name.Builtin
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation

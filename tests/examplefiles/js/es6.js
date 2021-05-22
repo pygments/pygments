@@ -39,8 +39,17 @@ yield;
 export class Node {
 }
 
+class A {
+    constructor() {
+        super()
+    }
+
+    constructor(test) {
+        super(test);
+    }
+}
+
 isFinite();
 isNaN();
-isSafeInteger();
 x = new Promise(...a);
 x = new Proxy(...a);
