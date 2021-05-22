@@ -1,95 +1,45 @@
 'db'          Name.Label
 ':'           Punctuation
-' '           Text
-'r'           Text
-'u'           Text
-'n'           Text
-'z'           Text
-'e'           Text
-'o'           Text
-' '           Text
-'-'           Text
-'C'           Text
-' '           Text
-'z'           Text
-'e'           Text
-'o'           Text
-'s'           Text
-'e'           Text
-'r'           Text
-'v'           Text
-'e'           Text
-'r'           Text
-'.'           Text
-'c'           Text
-'o'           Text
-'n'           Text
-'f'           Text
-'i'           Text
-'g'           Text
-'\n'          Text
+' '           Text.Whitespace
+'runzeo'      Text
+' '           Text.Whitespace
+'-C'          Text
+' '           Text.Whitespace
+'zeoserver.config' Text
+'\n'          Text.Whitespace
 
 'web'         Name.Label
 ':'           Punctuation
-' '           Text
-'b'           Text
-'u'           Text
-'n'           Text
-'d'           Text
-'l'           Text
-'e'           Text
-' '           Text
-'e'           Text
-'x'           Text
-'e'           Text
-'c'           Text
-' '           Text
-'r'           Text
-'a'           Text
-'i'           Text
-'l'           Text
-'s'           Text
-' '           Text
-'s'           Text
-'e'           Text
-'r'           Text
-'v'           Text
-'e'           Text
-'r'           Text
-' '           Text
-'-'           Text
-'p'           Text
-' '           Text
+' '           Text.Whitespace
+'bundle'      Text
+' '           Text.Whitespace
+'exec'        Text
+' '           Text.Whitespace
+'rails'       Text
+' '           Text.Whitespace
+'server'      Text
+' '           Text.Whitespace
+'-p'          Text
+' '           Text.Whitespace
 '$PORT'       Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stuff'       Name.Label
 ':'           Punctuation
-' '           Text
-'e'           Text
-'n'           Text
-'v'           Text
-' '           Text
+' '           Text.Whitespace
+'env'         Text
+' '           Text.Whitespace
 'FLASK_ENV'   Name.Variable
 '='           Punctuation
 'development' Literal.String
-' '           Text
-'r'           Text
-'u'           Text
-'n'           Text
-' '           Text
-'-'           Text
-'p'           Text
-' '           Text
+' '           Text.Whitespace
+'run'         Text
+' '           Text.Whitespace
+'-p'          Text
+' '           Text.Whitespace
 '9'           Literal.Number.Integer
-' '           Text
-'-'           Text
-'-'           Text
-'s'           Text
-'t'           Text
-'u'           Text
-'f'           Text
-'f'           Text
-' '           Text
+' '           Text.Whitespace
+'--stuff'     Text
+' '           Text.Whitespace
 "'foobar'"    Literal.String
-'\n'          Text
+'\n'          Text.Whitespace

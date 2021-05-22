@@ -32,11 +32,12 @@ class ProcfileLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^([a-z]+)(:)', bygroups(Name.Label, Punctuation)),
+            (r'\s+', Text.Whitespace),
             (r'"[^"]*"', String),
             (r"'[^']*'", String),
             (r'[0-9]+', Number.Integer),
             (r'\$[a-zA-Z_][\w]*', Name.Variable),
             (r'(\w+)(=)(\w+)', bygroups(Name.Variable, Punctuation, String)),
-            (r'([\w\s\-\./])', Text),
+            (r'([\w\-\./]+)', Text),
         ],
     }

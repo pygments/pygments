@@ -29,7 +29,7 @@ def test_basic_line(lexer):
         elif index == 1:
             assert token == (Punctuation, ':')
         else:
-            assert token[0] == Text
+            assert token[0] in (Text, Text.Whitespace)
 
 
 def test_environment_variable(lexer):
