@@ -34,7 +34,7 @@ class ProcfileLexer(RegexLexer):
             (r'^([a-z]+)(:)', bygroups(Name.Label, Punctuation)),
             (r'"[^"]*"', String),
             (r"'[^']*'", String),
-            (r'[0-9.]+', Number),
+            (r'[0-9]+', Number.Integer),
             (r'\$[a-zA-Z_][\w]*', Name.Variable),
             (r'(\w+)(=)(\w+)', bygroups(Name.Variable, Punctuation, String)),
             (r'([\w\s\-\./])', Text),
