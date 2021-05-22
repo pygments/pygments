@@ -18,7 +18,7 @@ class ProcfileLexer(RegexLexer):
     """
     Lexer for Procfile file format.
 
-    The format is used to run processus on Heroku or is used by Foreman or
+    The format is used to run processes on Heroku or is used by Foreman or
     Honcho tools.
     For more information about the definition of the format, see:
     https://devcenter.heroku.com/articles/procfile#procfile-format
