@@ -76,7 +76,7 @@ class JavascriptLexer(RegexLexer):
 
             (r'\.\.\.|=>', Punctuation),
             (r'\+\+|--|~|\?\?=?|\?|:|\\(?=\n)|'
-             r'(<<|>>>?|==?|!=?|\*\*?|\|\||&&|&&|[-<>+%&|^/])=?', Operator, 'slashstartsregex'),
+             r'(<<|>>>?|==?|!=?|(?:\*\*|\|\||&&|[-<>+*%&|^/]))=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
 
