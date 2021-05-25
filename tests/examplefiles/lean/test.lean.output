@@ -3604,4 +3604,11 @@
 'end'         Keyword.Declaration
 ' '           Text
 'zorn'        Name
+'\n\n'        Text
+
+'-- other bits of tricky syntax' Comment.Single
 '\n'          Text
+
+'@[to_additive "See note [foo]' Keyword.Declaration
+'"'           Literal.String.Double
+']\nlemma mul_one : sorry := sorry\n' Literal.String.Double
