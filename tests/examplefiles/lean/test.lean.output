@@ -3609,6 +3609,24 @@
 '-- other bits of tricky syntax' Comment.Single
 '\n'          Text
 
-'@[to_additive "See note [foo]' Keyword.Declaration
+'@['          Keyword.Declaration
+'to_additive' Name
+' '           Text
 '"'           Literal.String.Double
-']\nlemma mul_one : sorry := sorry\n' Literal.String.Double
+'See note [foo]' Literal.String.Double
+'"'           Literal.String.Double
+']'           Keyword.Declaration
+'\n'          Text
+
+'lemma'       Keyword.Declaration
+' '           Text
+'mul_one'     Name
+' '           Text
+':'           Operator
+' '           Text
+'sorry'       Generic.Error
+' '           Text
+':='          Operator
+' '           Text
+'sorry'       Generic.Error
+'\n'          Text
