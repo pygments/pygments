@@ -349,6 +349,12 @@ class HtmlFormatter(Formatter):
 
         .. versionadded:: 2.4
 
+    `tooltips`
+        Add ``title`` attributes to all token ``<span>`` tags that show the
+        name of the token.
+
+        .. versionadded:: 2.10
+
 
     **Subclassing the HTML formatter**
 
@@ -419,6 +425,7 @@ class HtmlFormatter(Formatter):
         self.filename = self._decodeifneeded(options.get('filename', ''))
         self.wrapcode = get_bool_opt(options, 'wrapcode', False)
         self.span_element_openers = {}
+        self.tooltips = get_bool_opt(options, 'tooltips', False)
 
         if self.tagsfile:
             if not ctags:
@@ -835,12 +842,14 @@ class HtmlFormatter(Formatter):
             try:
                 cspan = self.span_element_openers[ttype]
             except KeyError:
+                title = ' title="%s"' % '.'.join(ttype) if self.tooltips else ''
                 if nocls:
                     css_style = self._get_css_inline_styles(ttype)
-                    cspan = css_style and '<span style="%s">' % self.class2style[css_style][0] or ''
+                    args = (self.class2style[css_style][0], title)
+                    cspan = css_style and '<span style="%s"%s>' % args or ''
                 else:
                     css_class = self._get_css_classes(ttype)
-                    cspan = css_class and '<span class="%s">' % css_class or ''
+                    cspan = css_class and '<span class="%s"%s>' % (css_class, title) or ''
                 self.span_element_openers[ttype] = cspan
 
             parts = self._translate_parts(value)

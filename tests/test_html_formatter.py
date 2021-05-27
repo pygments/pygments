@@ -247,3 +247,17 @@ def test_filename():
     fmt.format(tokensource, outfile)
     html = outfile.getvalue()
     assert re.search("<span class=\"filename\">test.py</span><pre>", html)
+
+
+def test_tooltips():
+    fmt_notooltips = HtmlFormatter(tooltips=False)
+    outfile_notooltips = StringIO()
+    fmt_notooltips.format(tokensource, outfile_notooltips)
+    html_notooltips = outfile_notooltips.getvalue()
+    assert '<span class="n" title="Name">TESTDIR</span>' not in html_notooltips
+
+    fmt_tooltips = HtmlFormatter(tooltips=True)
+    outfile_tooltips = StringIO()
+    fmt_tooltips.format(tokensource, outfile_tooltips)
+    html_tooltips = outfile_tooltips.getvalue()
+    assert '<span class="n" title="Name">TESTDIR</span>' in html_tooltips
