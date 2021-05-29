@@ -320,6 +320,7 @@ LEXERS = {
     'NimrodLexer': ('pygments.lexers.nimrod', 'Nimrod', ('nimrod', 'nim'), ('*.nim', '*.nimrod'), ('text/x-nim',)),
     'NitLexer': ('pygments.lexers.nit', 'Nit', ('nit',), ('*.nit',), ()),
     'NixLexer': ('pygments.lexers.nix', 'Nix', ('nixos', 'nix'), ('*.nix',), ('text/x-nix',)),
+    'NodeConsoleLexer': ('pygments.lexers.javascript', 'JavaScript Node.js console session', ('nodecon',), (), ('text/x-nodecon',)),
     'NotmuchLexer': ('pygments.lexers.textfmts', 'Notmuch', ('notmuch',), (), ()),
     'NuSMVLexer': ('pygments.lexers.smv', 'NuSMV', ('nusmv',), ('*.smv',), ()),
     'NumPyLexer': ('pygments.lexers.python', 'NumPy', ('numpy',), (), ()),

@@ -10,16 +10,17 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, default, using, \
-    this, words, combined
+from pygments.lexer import RegexLexer, Lexer, include, bygroups, default, \
+    using, this, words, combined, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Other
+    Number, Punctuation, Other, Generic
 from pygments.util import get_bool_opt
 import pygments.unistring as uni
 
 __all__ = ['JavascriptLexer', 'KalLexer', 'LiveScriptLexer', 'DartLexer',
            'TypeScriptLexer', 'LassoLexer', 'ObjectiveJLexer',
-           'CoffeeScriptLexer', 'MaskLexer', 'EarlGreyLexer', 'JuttleLexer']
+           'CoffeeScriptLexer', 'MaskLexer', 'EarlGreyLexer', 'JuttleLexer',
+           'NodeConsoleLexer']
 
 JS_IDENT_START = ('(?:[$_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') +
                   ']|\\\\u[a-fA-F0-9]{4})')
@@ -28,6 +29,7 @@ JS_IDENT_PART = ('(?:[$' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
                  '\u200c\u200d]|\\\\u[a-fA-F0-9]{4})')
 JS_IDENT = JS_IDENT_START + '(?:' + JS_IDENT_PART + ')*'
 
+line_re = re.compile('.*?\n')
 
 class JavascriptLexer(RegexLexer):
     """
@@ -1534,3 +1536,63 @@ class JuttleLexer(RegexLexer):
         ]
 
     }
+
+
+class NodeConsoleLexer(Lexer):
+    """
+    For parsing JavaScript within an interactive Node.js shell, such as:
+
+    .. sourcecode:: nodejs
+
+        > let a = 3
+        undefined
+        > a
+        3
+        > let b = '4'
+        undefined
+        > b
+        '4'
+        > b == a
+        false
+    """
+    name = 'JavaScript Node.js console session'
+    aliases = ['nodejs', 'nodecon']
+    mimetypes = ['application/javascript', 'application/x-javascript',
+                 'text/x-javascript', 'text/javascript']
+
+    def get_tokens_unprocessed(self, text):
+        jslexer = JavascriptLexer(**self.options)
+
+        curcode = ''
+        insertions = []
+
+        for match in line_re.finditer(text):
+            line = match.group()
+            if line.startswith('> '):
+                insertions.append((len(curcode), 
+                    [(0, Generic.Prompt, line[:2])]))
+
+                curcode += line[2:]
+            elif line.startswith('...'):
+                # node does a nested ... thing depending on depth
+                code = line.lstrip('.')
+                lead = len(line) - len(code)
+
+                insertions.append((len(curcode), 
+                    [(0, Generic.Prompt, line[:lead])]))
+
+                curcode += code
+            else:
+                if curcode:
+                    yield from do_insertions(insertions, 
+                        jslexer.get_tokens_unprocessed(curcode))
+
+                    curcode = ''
+                    insertions = []
+
+                yield from do_insertions([], 
+                    jslexer.get_tokens_unprocessed(line))
+
+        if curcode:
+            yield from do_insertions(insertions, 
+                jslexer.get_tokens_unprocessed(curcode))
