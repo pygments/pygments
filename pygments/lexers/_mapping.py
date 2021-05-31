@@ -182,7 +182,7 @@ LEXERS = {
     'GettextLexer': ('pygments.lexers.textfmts', 'Gettext Catalog', ('pot', 'po'), ('*.pot', '*.po'), ('application/x-gettext', 'text/x-gettext', 'text/gettext')),
     'GherkinLexer': ('pygments.lexers.testing', 'Gherkin', ('gherkin', 'cucumber'), ('*.feature',), ('text/x-gherkin',)),
     'GnuplotLexer': ('pygments.lexers.graphics', 'Gnuplot', ('gnuplot',), ('*.plot', '*.plt'), ('text/x-gnuplot',)),
-    'GoLexer': ('pygments.lexers.go', 'Go', ('go',), ('*.go',), ('text/x-gosrc',)),
+    'GoLexer': ('pygments.lexers.go', 'Go', ('go', 'golang'), ('*.go',), ('text/x-gosrc',)),
     'GoloLexer': ('pygments.lexers.jvm', 'Golo', ('golo',), ('*.golo',), ()),
     'GoodDataCLLexer': ('pygments.lexers.business', 'GoodData-CL', ('gooddata-cl',), ('*.gdc',), ('text/x-gooddata-cl',)),
     'GosuLexer': ('pygments.lexers.jvm', 'Gosu', ('gosu',), ('*.gs', '*.gsx', '*.gsp', '*.vark'), ('text/x-gosu',)),
