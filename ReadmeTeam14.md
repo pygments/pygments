@@ -18,7 +18,14 @@
  
 ## Licence:
    The code is distributed under the BSD 2-clause license. Contributors making pull requests must agree that they are able and willing to put their contributions under that license.
-
+   
+##The work still needs to do
+From the project owner's suggestion, there are four things that need to update.
+Firstly, we need to separate the style update itself from this change.
+Secondly, there is no helper script to actually run the checks.
+Thirdly, there is a script that should warn if a style is below the W3 recommendation.
+Fourthly, we need to add tests to check our code.
+In advance, we still need to add a check function to check whether the words are large enough to match the WCAG Standards.
 
 
  
