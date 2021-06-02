@@ -313,7 +313,10 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-' \n\t'       Text
+' '           Text
+'\n'          Text
+
+'\t'          Text
 'sprintf'     Name
 '('           Punctuation
 'tempString'  Name
@@ -378,7 +381,10 @@
 ';'           Punctuation
 '\n'          Text
 
-'\t\n\t'      Text
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
 'stringBufferAppend' Name
 '('           Punctuation
 'finishedMethodsBuffer' Name
@@ -1155,7 +1161,10 @@
 ';'           Punctuation
 '\n'          Text
 
-'\t\n\t'      Text
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
 'if'          Keyword
 ' '           Text
 '('           Punctuation
@@ -1757,7 +1766,10 @@
 ';'           Punctuation
 '\n'          Text
 
-'\t\n\t'      Text
+'\t'          Text
+'\n'          Text
+
+'\t'          Text
 'stringBufferConcatenate' Name
 '('           Punctuation
 'mainBuffer'  Name
@@ -2981,7 +2993,10 @@
 ';'           Punctuation
 '\n'          Text
 
-'    \n    '  Text
+'    '        Text
+'\n'          Text
+
+'    '        Text
 'ary'         Name
 ' '           Text
 '='           Operator
@@ -7146,7 +7161,10 @@
 ';'           Punctuation
 '\n'          Text
 
-'    \n    '  Text
+'    '        Text
+'\n'          Text
+
+'    '        Text
 'return'      Keyword
 ' '           Text
 'ary'         Name
@@ -11983,7 +12001,10 @@
 ';'           Punctuation
 '\n'          Text
 
-'    \n    '  Text
+'    '        Text
+'\n'          Text
+
+'    '        Text
 'return'      Keyword
 ' '           Text
 'rb_ary_join' Name
@@ -12055,7 +12076,10 @@
 ';'           Punctuation
 '\n'          Text
 
-'    \n    '  Text
+'    '        Text
+'\n'          Text
+
+'    '        Text
 'return'      Keyword
 ' '           Text
 'rb_ary_join' Name

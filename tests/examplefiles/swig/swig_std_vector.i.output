@@ -39,7 +39,10 @@
 ')'           Punctuation
 '\n'          Text
 
-'  \n  '      Text
+'  '          Text
+'\n'          Text
+
+'  '          Text
 'void'        Keyword.Type
 ' '           Text
 'reserve'     Name
@@ -87,7 +90,10 @@
 ')'           Punctuation
 '\n'          Text
 
-'  \n  '      Text
+'  '          Text
+'\n'          Text
+
+'  '          Text
 'void'        Keyword.Type
 ' '           Text
 'reserve'     Name
@@ -179,7 +185,10 @@
 
 '%'           Operator
 '}'           Punctuation
-'    \n\n'    Text
+'    '        Text
+'\n'          Text
+
+'\n'          Text
 
 '// exported classes\n' Comment.Single
 
@@ -530,7 +539,10 @@
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'  \n    '    Text
+'  '          Text
+'\n'          Text
+
+'    '        Text
 '%std_vector_methods' Name.Function
 '('           Punctuation
 'vector'      Name
@@ -600,7 +612,10 @@
 ' '           Text
 'size_type'   Name
 ';'           Punctuation
-'    \n    '  Text
+'    '        Text
+'\n'          Text
+
+'    '        Text
 'typedef'     Keyword
 ' '           Text
 'ptrdiff_t'   Keyword.Type
@@ -953,7 +968,10 @@
 ' '           Text
 'size_type'   Name
 ';'           Punctuation
-'    \n    '  Text
+'    '        Text
+'\n'          Text
+
+'    '        Text
 'typedef'     Keyword
 ' '           Text
 'ptrdiff_t'   Keyword.Type
@@ -1281,7 +1299,10 @@
 '_Alloc'      Name.Class
 ' '           Text
 '>'           Operator
-' \n  '       Text
+' '           Text
+'\n'          Text
+
+'  '          Text
 'class'       Keyword
 ' '           Text
 'vector'      Name.Class
@@ -1307,7 +1328,10 @@
 ' '           Text
 'size_type'   Name
 ';'           Punctuation
-'    \n    '  Text
+'    '        Text
+'\n'          Text
+
+'    '        Text
 'typedef'     Keyword
 ' '           Text
 'ptrdiff_t'   Keyword.Type
