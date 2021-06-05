@@ -85,7 +85,7 @@ class TclLexer(RegexLexer):
             (r'\d+\.\d+', Number.Float),
             (r'\d+', Number.Integer),
             (r'\$([\w.:-]+)', Name.Variable),
-            (r'([\w.:-]+)', Text),
+            (r'([\w.,@:-]+)', Text),
         ],
         'params': [
             (r';', Keyword, '#pop'),
