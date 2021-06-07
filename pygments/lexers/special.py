@@ -44,8 +44,6 @@ class OutputLexer(Lexer):
     """
     name = 'Text output'
     aliases = ['output']
-    filenames = ['*.txt']
-    mimetypes = ['text/plain']
 
     def get_tokens_unprocessed(self, text):
         yield 0, Generic.Output, text
