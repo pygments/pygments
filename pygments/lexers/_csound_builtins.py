@@ -6,7 +6,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-# Opcodes in Csound 6.14.0 using:
+# Opcodes in Csound 6.16.0 using:
 #   python3 -c "
 #   import re
 #   from subprocess import Popen, PIPE
@@ -209,6 +209,7 @@ ampmidicurve
 ampmidid
 apoleparams
 arduinoRead
+arduinoReadF
 arduinoStart
 arduinoStop
 areson
@@ -216,6 +217,7 @@ aresonk
 atone
 atonek
 atonex
+autocorr
 babo
 balance
 balance2
@@ -223,8 +225,6 @@ bamboo
 barmodel
 bbcutm
 bbcuts
-beadsynt
-beosc
 betarand
 bexprnd
 bformdec1
@@ -259,6 +259,7 @@ centroid
 ceps
 cepsinv
 chanctrl
+changed
 changed2
 chani
 chano
@@ -293,6 +294,8 @@ cmp
 cmplxprod
 cntCreate
 cntCycles
+cntDelete
+cntDelete_i
 cntRead
 cntReset
 cntState
@@ -342,6 +345,11 @@ ctrl14
 ctrl21
 ctrl7
 ctrlinit
+ctrlpreset
+ctrlprint
+ctrlprintpresets
+ctrlsave
+ctrlselect
 cuserrnd
 dam
 date
@@ -523,7 +531,6 @@ getcfg
 getcol
 getftargs
 getrow
-getrowlin
 getseed
 gogobel
 grain
@@ -776,6 +783,7 @@ lagud
 lastcycle
 lenarray
 lfo
+lfsr
 limit
 limit1
 lincos
@@ -836,14 +844,6 @@ lpreson
 lpshold
 lpsholdp
 lpslot
-lua_exec
-lua_iaopcall
-lua_iaopcall_off
-lua_ikopcall
-lua_ikopcall_off
-lua_iopcall
-lua_iopcall_off
-lua_opdef
 lufs
 mac
 maca
@@ -920,6 +920,7 @@ mp3scal
 mp3sr
 mpulse
 mrtmsg
+ms2st
 mtof
 mton
 multitap
@@ -929,6 +930,7 @@ mvclpf1
 mvclpf2
 mvclpf3
 mvclpf4
+mvmfilter
 mxadsr
 nchnls_hw
 nestedap
@@ -972,6 +974,7 @@ oscils
 oscilx
 out
 out32
+outall
 outc
 outch
 outh
@@ -1279,11 +1282,13 @@ sc_lagud
 sc_phasor
 sc_trig
 scale
+scale2
 scalearray
 scanhammer
 scans
 scantable
 scanu
+scanu2
 schedkwhen
 schedkwhennamed
 schedule
@@ -1333,6 +1338,7 @@ sin
 sinh
 sininv
 sinsyn
+skf
 sleighbells
 slicearray
 slicearray_i
@@ -1368,12 +1374,14 @@ spat3d
 spat3di
 spat3dt
 spdist
+spf
 splitrig
 sprintf
 sprintfk
 spsend
 sqrt
 squinewave
+st2ms
 statevar
 sterrain
 stix
@@ -1414,6 +1422,7 @@ subinstrinit
 sum
 sumarray
 svfilter
+svn
 syncgrain
 syncloop
 syncphasor
@@ -1454,7 +1463,6 @@ tabmorphak
 tabmorphi
 tabplay
 tabrec
-tabrowlin
 tabsum
 tabw
 tabw_i
@@ -1486,6 +1494,8 @@ transegr
 trcross
 trfilter
 trhighest
+trigExpseg
+trigLinseg
 trigger
 trighold
 trigphasor
@@ -1500,6 +1510,8 @@ trshift
 trsplit
 turnoff
 turnoff2
+turnoff2_i
+turnoff3
 turnon
 tvconv
 unirand
@@ -1523,6 +1535,7 @@ vbapmove
 vbapz
 vbapzmove
 vcella
+vclpf
 vco
 vco2
 vco2ft
@@ -1611,6 +1624,7 @@ window
 wrap
 writescratch
 wterrain
+wterrain2
 xadsr
 xin
 xout
@@ -1647,7 +1661,6 @@ DEPRECATED_OPCODES = set('''
 array
 bformdec
 bformenc
-changed
 copy2ftab
 copy2ttab
 hrtfer
