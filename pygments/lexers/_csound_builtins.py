@@ -6,6 +6,34 @@
     :license: BSD, see LICENSE for details.
 """
 
+REMOVED_OPCODES = set('''
+OSCsendA
+beadsynt
+beosc
+buchla
+getrowlin
+lua_exec
+lua_iaopcall
+lua_iaopcall_off
+lua_ikopcall
+lua_ikopcall_off
+lua_iopcall
+lua_iopcall_off
+lua_opdef
+mp3scal_check
+mp3scal_load
+mp3scal_load2
+mp3scal_play
+mp3scal_play2
+pvsgendy
+socksend_k
+signalflowgraph
+sumTableFilter
+systime
+tabrowlin
+vbap1move
+'''.split())
+
 # Opcodes in Csound 6.16.0 using:
 #   python3 -c "
 #   import re
