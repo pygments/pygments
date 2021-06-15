@@ -95,6 +95,7 @@ Programming languages
 * `Julia <https://julialang.org>`_
 * `Kotlin <https://kotlinlang.org/>`_
 * `Lasso <http://www.lassosoft.com/>`_ (incl. templating)
+* `LilyPond <https://lilypond.org>`_
 * `Limbo <http://www.vitanuova.com/inferno/limbo.html>`_
 * `LiveScript <https://livescript.net/>`_
 * `LLVM MIR <https://llvm.org/docs/MIRLangRef.html>`_
