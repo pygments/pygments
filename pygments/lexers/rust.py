@@ -109,7 +109,7 @@ class RustLexer(RegexLexer):
             # Types in positions.
             (r'(?::|->)', Text, 'typename'),
             # Labels
-            (r'(break|continue)(\s*)(\'[A-Za-z_]\w*)?',
+            (r'(break|continue)(\b\s*)(\'[A-Za-z_]\w*)?',
              bygroups(Keyword, Text.Whitespace, Name.Label)),
 
             # Character literals
