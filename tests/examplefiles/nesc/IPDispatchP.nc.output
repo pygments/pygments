@@ -1297,7 +1297,10 @@
 
 '  '          Text
 '/*\n   *  Receive-side code.\n   */' Comment.Multiline
-' \n  '       Text
+' '           Text
+'\n'          Text
+
+'  '          Text
 'void'        Keyword.Type
 ' '           Text
 'deliver'     Name
@@ -1459,7 +1462,10 @@
 
 '  '          Text
 "/*\n   * Bulletproof recovery logic is very important to make sure we\n   * don't get wedged with no free buffers.\n   * \n   * The table is managed as follows:\n   *  - unused entries are marked T_UNUSED\n   *  - entries which \n   *     o have a buffer allocated\n   *     o have had a fragment reception before we fired\n   *     are marked T_ACTIVE\n   *  - entries which have not had a fragment reception during the last timer period\n   *     and were active are marked T_ZOMBIE\n   *  - zombie receptions are deleted: their buffer is freed and table entry marked unused.\n   *  - when a fragment is dropped, it is entered into the table as T_FAILED1.\n   *     no buffer is allocated\n   *  - when the timer fires, T_FAILED1 entries are aged to T_FAILED2.\n   * - T_FAILED2 entries are deleted.  Incomming fragments with tags\n   *     that are marked either FAILED1 or FAILED2 are dropped; this\n   *     prevents us from allocating a buffer for a packet which we\n   *     have already dropped fragments from.\n   *\n   */" Comment.Multiline
-' \n  '       Text
+' '           Text
+'\n'          Text
+
+'  '          Text
 'void'        Keyword.Type
 ' '           Text
 'reconstruct_age' Name
@@ -1508,7 +1514,10 @@
 ' '           Text
 'T_UNUSED'    Name
 ')'           Punctuation
-' \n      '   Text
+' '           Text
+'\n'          Text
+
+'      '      Text
 'printf'      Name
 '('           Punctuation
 '"'           Literal.String
@@ -1516,7 +1525,10 @@
 '\\n'         Literal.String.Escape
 '"'           Literal.String
 ','           Punctuation
-' \n                 ' Text
+' '           Text
+'\n'          Text
+
+'                 ' Text
 'recon'       Name
 '-'           Operator
 '>'           Operator
@@ -1534,7 +1546,10 @@
 '>'           Operator
 'r_buf'       Name
 ','           Punctuation
-' \n                 ' Text
+' '           Text
+'\n'          Text
+
+'                 ' Text
 'recon'       Name
 '-'           Operator
 '>'           Operator
@@ -1802,7 +1817,10 @@
 '\\n'         Literal.String.Escape
 '"'           Literal.String
 ','           Punctuation
-' \n                  ' Text
+' '           Text
+'\n'          Text
+
+'                  ' Text
 'cur'         Name
 ','           Punctuation
 ' '           Text
@@ -1911,7 +1929,10 @@
 
 '\n'          Text
 
-'    \n    '  Text
+'    '        Text
+'\n'          Text
+
+'    '        Text
 'printf'      Name
 '('           Punctuation
 '"'           Literal.String
@@ -2169,7 +2190,10 @@
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
-'          \n          ' Text
+'          '  Text
+'\n'          Text
+
+'          '  Text
 'recon'       Name
 '-'           Operator
 '>'           Operator
@@ -2264,7 +2288,10 @@
 ' '           Text
 'T_UNUSED'    Name
 ')'           Punctuation
-' \n        ' Text
+' '           Text
+'\n'          Text
+
+'        '    Text
 'ret'         Name
 ' '           Text
 '='           Operator
@@ -2774,7 +2801,10 @@
 '}'           Punctuation
 '\n'          Text
 
-'        \n      ' Text
+'        '    Text
+'\n'          Text
+
+'      '      Text
 'if'          Keyword
 ' '           Text
 '('           Punctuation
@@ -2945,7 +2975,10 @@
 '.'           Punctuation
 'ieee_src'    Name
 ','           Punctuation
-' \n             ' Text
+' '           Text
+'\n'          Text
+
+'             ' Text
 'sizeof'      Keyword
 '('           Punctuation
 'ieee154_addr_t' Name
@@ -3531,7 +3564,12 @@
 '}'           Punctuation
 '\n'          Text
 
-'  \n\n  '    Text
+'  '          Text
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
 '/*\n   *  it will pack the message into the fragment pool and enqueue\n   *  those fragments for sending\n   *\n   * it will set\n   *  - payload length\n   *  - version, traffic class and flow label\n   *\n   * the source and destination IP addresses must be set by higher\n   * layers.\n   */' Comment.Multiline
 '\n'          Text
 
@@ -4364,7 +4402,10 @@
 '}'           Punctuation
 '\n'          Text
 
-'       \n    ' Text
+'       '     Text
+'\n'          Text
+
+'    '        Text
 '// printf("got %i frags\\n", s_info->link_fragments);\n' Comment.Single
 
 '  '          Text
@@ -4524,7 +4565,10 @@
 '}'           Punctuation
 '\n'          Text
 
-'    \n    '  Text
+'    '        Text
+'\n'          Text
+
+'    '        Text
 's_entry'     Name
 '-'           Operator
 '>'           Operator
@@ -4590,7 +4634,10 @@
 '\\n'         Literal.String.Escape
 '"'           Literal.String
 ','           Punctuation
-' \n                 ' Text
+' '           Text
+'\n'          Text
+
+'                 ' Text
 'call'        Keyword
 ' '           Text
 'PacketLink'  Name
@@ -4663,7 +4710,10 @@
 ' '           Text
 '='           Operator
 '='           Operator
-' \n               ' Text
+' '           Text
+'\n'          Text
+
+'               ' Text
 's_entry'     Name
 '-'           Operator
 '>'           Operator

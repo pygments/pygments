@@ -692,7 +692,9 @@
 'emit'        Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t'      Text
+'\n'          Text
+
+'\t\t'        Text
 'escapeXML'   Name
 '('           Punctuation
 ' '           Text
@@ -769,7 +771,9 @@
 "'/*'"        Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -808,7 +812,9 @@
 "'{'"         Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -828,14 +834,19 @@
 ' '           Text
 '1'           Literal.Number.Integer
 ';'           Punctuation
-' \n\t\t'     Text
+' '           Text
+'\n'          Text
+
+'\t\t'        Text
 '}'           Punctuation
 ';'           Punctuation
 '\n\n\t\t'    Text.Whitespace
 "'}'"         Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -868,7 +879,9 @@
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
-'\n\t\t\t\t'  Text
+'\n'          Text
+
+'\t\t\t\t'    Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -890,7 +903,9 @@
 
 '\t\t\t'      Text
 '}'           Punctuation
-'\n\t\t'      Text
+'\n'          Text
+
+'\t\t'        Text
 '}'           Punctuation
 ';'           Punctuation
 '\n\n\t\t'    Text.Whitespace
@@ -934,7 +949,9 @@
 "'}%%'"       Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'if'          Keyword
 ' '           Text
 '('           Punctuation
@@ -945,7 +962,9 @@
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
-'\n\t\t\t\t'  Text
+'\n'          Text
+
+'\t\t\t\t'    Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -967,14 +986,18 @@
 
 '\t\t\t'      Text
 '}'           Punctuation
-'\n\t\t'      Text
+'\n'          Text
+
+'\t\t'        Text
 '}'           Punctuation
 ';'           Punctuation
 '\n\n\t\t'    Text.Whitespace
 "'\\n'"       Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'if'          Keyword
 ' '           Text
 '('           Punctuation
@@ -984,7 +1007,9 @@
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
-'\n\t\t\t\t'  Text
+'\n'          Text
+
+'\t\t\t\t'    Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -1006,7 +1031,9 @@
 
 '\t\t\t'      Text
 '}'           Punctuation
-'\n\t\t'      Text
+'\n'          Text
+
+'\t\t'        Text
 '}'           Punctuation
 ';'           Punctuation
 '\n\n\t\t'    Text.Whitespace
@@ -1015,7 +1042,9 @@
 'word'        Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -1064,7 +1093,9 @@
 'integer'     Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -1113,7 +1144,9 @@
 'hex'         Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -1185,7 +1218,9 @@
 '"\'"'        Literal.String.Double
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -1247,7 +1282,9 @@
 '\'"\''       Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -1309,7 +1346,9 @@
 "']'"         Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -1372,7 +1411,9 @@
 "'/'"         Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -1421,7 +1462,9 @@
 "'{'"         Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'inline_depth' Name
 ' '           Text
 '='           Operator
@@ -1456,7 +1499,9 @@
 'punct'       Keyword
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -1561,7 +1606,9 @@
 "'/*'"        Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'escapeXML'   Name
 '('           Punctuation
 ' '           Text
@@ -1603,7 +1650,10 @@
 "'%%{'"       Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-' \n\t\t\t'   Text
+' '           Text
+'\n'          Text
+
+'\t\t\t'      Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -1639,7 +1689,9 @@
 "'%%'"        Literal.String.Single
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n'          Text
+
+'\t\t\t'      Text
 'write'       Name
 '('           Punctuation
 ' '           Text
@@ -1650,14 +1702,20 @@
 ' '           Text
 ')'           Punctuation
 ';'           Punctuation
-' \n\t\t\t'   Text
+' '           Text
+'\n'          Text
+
+'\t\t\t'      Text
 'single_line' Name
 ' '           Text
 '='           Operator
 ' '           Text
 'true'        Name.Builtin
 ';'           Punctuation
-' \n\t\t\t'   Text
+' '           Text
+'\n'          Text
+
+'\t\t\t'      Text
 'fgoto'       Name
 ' '           Text
 'rlscan'      Name
@@ -1671,7 +1729,10 @@
 'default'     Name.Variable
 ' '           Text.Whitespace
 '{'           Punctuation
-' \n\t\t\t'   Text
+' '           Text
+'\n'          Text
+
+'\t\t\t'      Text
 'escapeXML'   Name
 '('           Punctuation
 ' '           Text
@@ -1697,7 +1758,9 @@
 '\n'          Text.Whitespace
 
 '}%%'         Punctuation
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 '%%'          Punctuation
 ' '           Text.Whitespace
@@ -1817,7 +1880,9 @@
 ';'           Punctuation
 '\n'          Text
 
-'\n\t'        Text
+'\n'          Text
+
+'\t'          Text
 '/* Read in a block. */' Comment.Multiline
 '\n'          Text
 
@@ -1881,7 +1946,9 @@
 ';'           Punctuation
 '\n'          Text
 
-'\n\t'        Text
+'\n'          Text
+
+'\t'          Text
 'if'          Keyword
 ' '           Text
 '('           Punctuation

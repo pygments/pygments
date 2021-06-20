@@ -52,7 +52,10 @@
 ' '           Text
 'percent'     Name
 ';'           Punctuation
-'      \n   ' Text
+'      '      Text
+'\n'          Text
+
+'   '         Text
 '}'           Punctuation
 ';'           Punctuation
 '\n'          Text
@@ -338,7 +341,10 @@
 '0'           Literal.String.Char
 "'"           Literal.String.Char
 ')'           Punctuation
-' \n               ' Text
+' '           Text
+'\n'          Text
+
+'               ' Text
 'last'        Name
 ' '           Text
 '='           Operator
@@ -553,7 +559,10 @@
 ';'           Punctuation
 '\n'          Text
 
-'         \n         ' Text
+'         '   Text
+'\n'          Text
+
+'         '   Text
 'if'          Keyword
 '('           Punctuation
 'end'         Name
@@ -776,7 +785,10 @@
 ' '           Text
 'percent'     Name
 ';'           Punctuation
-'      \n   ' Text
+'      '      Text
+'\n'          Text
+
+'   '         Text
 '}'           Punctuation
 ';'           Punctuation
 '\n'          Text
@@ -1024,7 +1036,10 @@
 '0'           Literal.String.Char
 "'"           Literal.String.Char
 ')'           Punctuation
-' \n               ' Text
+' '           Text
+'\n'          Text
+
+'               ' Text
 'last'        Name
 ' '           Text
 '='           Operator
@@ -1429,7 +1444,12 @@
 ' '           Text
 'bottom'      Name
 ';'           Punctuation
-'      \n\n   ' Text
+'      '      Text
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
 'char'        Keyword.Type
 ' '           Text
 '*'           Operator
@@ -1578,7 +1598,10 @@
 '}'           Punctuation
 '\n'          Text
 
-'      \n      ' Text
+'      '      Text
+'\n'          Text
+
+'      '      Text
 '//if(((!left.type && !right.type) && horz.distance) || horz.type == middleRelative)\n' Comment.Single
 
 '      '      Text
@@ -1718,7 +1741,10 @@
 '}'           Punctuation
 '\n'          Text
 
-'      \n      ' Text
+'      '      Text
+'\n'          Text
+
+'      '      Text
 'tempString'  Name
 '['           Punctuation
 '0'           Literal.Number.Integer
@@ -1806,7 +1832,10 @@
 '}'           Punctuation
 '\n'          Text
 
-'      \n      ' Text
+'      '      Text
+'\n'          Text
+
+'      '      Text
 'tempString'  Name
 '['           Punctuation
 '0'           Literal.Number.Integer
@@ -2036,7 +2065,10 @@
 '}'           Punctuation
 '\n'          Text
 
-'      \n      ' Text
+'      '      Text
+'\n'          Text
+
+'      '      Text
 'tempString'  Name
 '['           Punctuation
 '0'           Literal.Number.Integer
@@ -2124,7 +2156,10 @@
 '}'           Punctuation
 '\n'          Text
 
-'      \n      ' Text
+'      '      Text
+'\n'          Text
+
+'      '      Text
 'return'      Keyword
 ' '           Text
 'stringOutput' Name
@@ -2392,7 +2427,10 @@
 ';'           Punctuation
 '\n'          Text
 
-'      \n      ' Text
+'      '      Text
+'\n'          Text
+
+'      '      Text
 'comboBox'    Name
 '.'           Punctuation
 'Create'      Name
@@ -4170,7 +4208,10 @@
 ';'           Punctuation
 '\n'          Text
 
-'      \n      ' Text
+'      '      Text
+'\n'          Text
+
+'      '      Text
 'if'          Keyword
 '('           Punctuation
 'checked'     Name
@@ -5642,7 +5683,10 @@
 '.'           Punctuation
 'type'        Name
 ')'           Punctuation
-' \n         ' Text
+' '           Text
+'\n'          Text
+
+'         '   Text
 '{'           Punctuation
 '\n'          Text
 
@@ -6184,9 +6228,15 @@
 '='           Operator
 ' '           Text
 'AnchorButton' Name
-' \n         ' Text
+' '           Text
+'\n'          Text
+
+'         '   Text
 '{'           Punctuation
-' \n            ' Text
+' '           Text
+'\n'          Text
+
+'            ' Text
 'anchorEditor' Name
 ','           Punctuation
 ' '           Text
@@ -6367,7 +6417,10 @@
 ';'           Punctuation
 '\n'          Text
 
-'               \n               ' Text
+'               ' Text
+'\n'          Text
+
+'               ' Text
 'button'      Name
 '.'           Punctuation
 'anchor'      Name
@@ -6562,7 +6615,10 @@
 ' '           Text
 '2'           Literal.Number.Integer
 ':'           Operator
-' \n               ' Text
+' '           Text
+'\n'          Text
+
+'               ' Text
 'if'          Keyword
 '('           Punctuation
 'anchorValue' Name
@@ -6635,7 +6691,10 @@
 ';'           Punctuation
 '\n'          Text
 
-'               \n               ' Text
+'               ' Text
+'\n'          Text
+
+'               ' Text
 'button'      Name
 '.'           Punctuation
 'anchor'      Name
@@ -6694,7 +6753,10 @@
 ' '           Text
 '3'           Literal.Number.Integer
 ':'           Operator
-' \n               ' Text
+' '           Text
+'\n'          Text
+
+'               ' Text
 'if'          Keyword
 '('           Punctuation
 'anchorValue' Name
@@ -6851,7 +6913,10 @@
 '}'           Punctuation
 '\n'          Text
 
-'      \n   ' Text
+'      '      Text
+'\n'          Text
+
+'   '         Text
 'void'        Keyword.Type
 ' '           Text
 'OnCloseDropDown' Name.Function

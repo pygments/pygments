@@ -940,7 +940,10 @@
 
 '     '       Text
 '}'           Punctuation
-' \n   '      Text
+' '           Text
+'\n'          Text
+
+'   '         Text
 'FileFlush'   Name.Function
 '('           Punctuation
 'ExtHandle'   Name
@@ -1086,7 +1089,10 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-' \n            ' Text
+' '           Text
+'\n'          Text
+
+'            ' Text
 'if'          Keyword
 '('           Punctuation
 'rate'        Name
@@ -1496,9 +1502,13 @@
 '50'          Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-' \n     '    Text
+' '           Text
+'\n'          Text
+
+'     '       Text
 '}'           Punctuation
-'      \n'    Text
+'      '      Text
+'\n'          Text
 
 '//---\n'     Comment.Single
 

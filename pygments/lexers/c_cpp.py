@@ -56,7 +56,7 @@ class CFamilyLexer(RegexLexer):
             ('^(' + _ws1 + ')(#)',
              bygroups(using(this), Comment.Preproc), 'macro'),
             (r'\n', Text),
-            (r'\s+', Text),
+            (r'[^\S\n]+', Text),
             (r'\\\n', Text),  # line continuation
             (r'//(\n|[\w\W]*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?[*][\w\W]*?[*](\\\n)?/', Comment.Multiline),
