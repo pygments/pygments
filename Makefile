@@ -24,6 +24,8 @@ check:
 	@pyflakes pygments | grep -v 'but unused' || true
 	@$(PYTHON) scripts/check_sources.py -i build -i dist -i pygments/lexers/_mapping.py \
 		   -i docs/build -i pygments/formatters/_mapping.py -i pygments/unistring.py
+	@$(PYTHON) scripts/count_token_references.py --minfiles=1 --maxfiles=1 \
+		   --minlines=1 --maxlines=3 --subtoken
 
 clean: clean-pyc
 	-rm -rf doc/_build build Pygments.egg-info
