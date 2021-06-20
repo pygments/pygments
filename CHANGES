@@ -13,6 +13,8 @@ Version 2.10.0
 
 - Fix assert statements in TNT lexer.
 - Rust: fix lexing of "break" and "continue" (#1843)
+- Token types across all lexers have been unified (using the most common token
+  type name) (#1816, #1819)
 
 
 Version 2.9.0
