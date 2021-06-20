@@ -4,25 +4,25 @@
 
 '//\n'        Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%include'    Name.Function
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 'std_container' Name
 '.'           Punctuation
 'i'           Name
 '>'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Vector\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%define'     Name.Function
-' '           Text
+' '           Text.Whitespace
 '%std_vector_methods' Name.Function
 '('           Punctuation
 'vector'      Name
@@ -30,50 +30,50 @@
 '.'           Punctuation
 '.'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '%std_sequence_methods' Name.Function
 '('           Punctuation
 'vector'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
-'\n'          Text
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'reserve'     Name
 '('           Punctuation
 'size_type'   Name
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'size_type'   Name
-' '           Text
+' '           Text.Whitespace
 'capacity'    Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%enddef'     Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%define'     Name.Function
-' '           Text
+' '           Text.Whitespace
 '%std_vector_methods_val' Name.Function
 '('           Punctuation
 'vector'      Name
@@ -81,47 +81,47 @@
 '.'           Punctuation
 '.'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '%std_sequence_methods_val' Name.Function
 '('           Punctuation
 'vector'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
-'\n'          Text
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'reserve'     Name
 '('           Punctuation
 'size_type'   Name
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'size_type'   Name
-' '           Text
+' '           Text.Whitespace
 'capacity'    Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%enddef'     Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// ------------------------------------------------------------------------\n' Comment.Single
 
@@ -171,178 +171,178 @@
 
 '// ------------------------------------------------------------------------\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%'           Operator
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'include'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '<vector>'    Comment.PreprocFile
 '\n'          Comment.Preproc
 
 '%'           Operator
 '}'           Punctuation
-'    '        Text
-'\n'          Text
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// exported classes\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'std'         Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'template'    Keyword
 '<'           Operator
 'class'       Keyword
 ' '           Text
 '_Tp'         Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'class'       Keyword
 ' '           Text
 '_Alloc'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'allocator'   Name
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '_Tp'         Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'class'       Keyword
 ' '           Text
 'vector'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'public'      Keyword
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'size_t'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'size_type'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'ptrdiff_t'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'difference_type' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 '_Tp'         Name
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'pointer'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'const_pointer' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 '_Tp'         Name
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'reference'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 '_Tp'         Name
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'const_reference' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 'allocator_type' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%traits_swigtype' Name.Function
 '('           Punctuation
 '_Tp'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%traits_enum' Name.Function
 '('           Punctuation
 '_Tp'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%fragment'   Name.Function
 '('           Punctuation
 'SWIG_Traits_frag' Name
@@ -354,20 +354,20 @@
 '<'           Operator
 '_Tp'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'header'      Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t      '    Text
+'\t      '    Text.Whitespace
 'fragment'    Name
 '='           Operator
 'SWIG_Traits_frag' Name
@@ -375,33 +375,33 @@
 '_Tp'         Name
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t      '    Text
+'\t      '    Text.Whitespace
 'fragment'    Name
 '='           Operator
 '"'           Literal.String
 'StdVectorTraits' Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'swig'        Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'template'    Keyword
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '>'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'struct'      Keyword
 ' '           Text
 'traits'      Name.Class
@@ -413,86 +413,86 @@
 '<'           Operator
 '_Tp'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'pointer_category' Name
-' '           Text
+' '           Text.Whitespace
 'category'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'static'      Keyword
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'char'        Keyword.Type
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'type_name'   Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t    '      Text
+'\t    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'std::vector<' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '#_Tp'        Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ','           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '#_Alloc'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ' >'          Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%typemap_traits_ptr' Name.Function
 '('           Punctuation
 'SWIG_TYPECHECK_VECTOR' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'std'         Name
 ':'           Operator
 ':'           Operator
@@ -500,24 +500,24 @@
 '<'           Operator
 '_Tp'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'ifdef %swig_vector_methods' Comment.Preproc
 '\n'          Comment.Preproc
 
-'    '        Text
+'    '        Text.Whitespace
 '// Add swig/language extra methods\n' Comment.Single
 
-'    '        Text
+'    '        Text.Whitespace
 '%swig_vector_methods' Name.Function
 '('           Punctuation
 'std'         Name
@@ -527,64 +527,64 @@
 '<'           Operator
 '_Tp'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'  '          Text
-'\n'          Text
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%std_vector_methods' Name.Function
 '('           Punctuation
 'vector'      Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// ***\n'    Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 '// This specialization should disappear or get simplified when\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 "// a 'const SWIGTYPE*&' can be defined\n" Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 '// ***\n'    Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'template'    Keyword
 '<'           Operator
 'class'       Keyword
 ' '           Text
 '_Tp'         Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'class'       Keyword
 ' '           Text
 '_Alloc'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'class'       Keyword
 ' '           Text
 'vector'      Name.Class
@@ -592,110 +592,110 @@
 '_Tp'         Name
 '*'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'public'      Keyword
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'size_t'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'size_type'   Name
 ';'           Punctuation
-'    '        Text
-'\n'          Text
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'ptrdiff_t'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'difference_type' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 '_Tp'         Name
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'pointer'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'const_pointer' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
-' '           Text
+' '           Text.Whitespace
 'reference'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
-' '           Text
+' '           Text.Whitespace
 'const_reference' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 'allocator_type' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%traits_swigtype' Name.Function
 '('           Punctuation
 '_Tp'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%fragment'   Name.Function
 '('           Punctuation
 'SWIG_Traits_frag' Name
@@ -708,20 +708,20 @@
 '_Tp'         Name
 '*'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'header'      Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t      '    Text
+'\t      '    Text.Whitespace
 'fragment'    Name
 '='           Operator
 'SWIG_Traits_frag' Name
@@ -729,33 +729,33 @@
 '_Tp'         Name
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t      '    Text
+'\t      '    Text.Whitespace
 'fragment'    Name
 '='           Operator
 '"'           Literal.String
 'StdVectorTraits' Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'swig'        Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'template'    Keyword
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '>'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'struct'      Keyword
 ' '           Text
 'traits'      Name.Class
@@ -768,86 +768,86 @@
 '_Tp'         Name
 '*'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'value_category' Name
-' '           Text
+' '           Text.Whitespace
 'category'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'static'      Keyword
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'char'        Keyword.Type
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'type_name'   Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t    '      Text
+'\t    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'std::vector<' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '#_Tp'        Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ' *,'         Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '#_Alloc'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ' >'          Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%typemap_traits_ptr' Name.Function
 '('           Punctuation
 'SWIG_TYPECHECK_VECTOR' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'std'         Name
 ':'           Operator
 ':'           Operator
@@ -856,24 +856,24 @@
 '_Tp'         Name
 '*'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'ifdef %swig_vector_methods_val' Comment.Preproc
 '\n'          Comment.Preproc
 
-'    '        Text
+'    '        Text.Whitespace
 '// Add swig/language extra methods\n' Comment.Single
 
-'    '        Text
+'    '        Text.Whitespace
 '%swig_vector_methods_val' Name.Function
 '('           Punctuation
 'std'         Name
@@ -884,177 +884,177 @@
 '_Tp'         Name
 '*'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%std_vector_methods_val' Name.Function
 '('           Punctuation
 'vector'      Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// ***\n'    Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 '// const pointer specialization\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 '// ***\n'    Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'template'    Keyword
 '<'           Operator
 'class'       Keyword
 ' '           Text
 '_Tp'         Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'class'       Keyword
 ' '           Text
 '_Alloc'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'class'       Keyword
 ' '           Text
 'vector'      Name.Class
 '<'           Operator
 '_Tp'         Name
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'public'      Keyword
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'size_t'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'size_type'   Name
 ';'           Punctuation
-'    '        Text
-'\n'          Text
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'ptrdiff_t'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'difference_type' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 '_Tp'         Name
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'pointer'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'const_pointer' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
-' '           Text
+' '           Text.Whitespace
 'reference'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
-' '           Text
+' '           Text.Whitespace
 'const_reference' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 'allocator_type' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%traits_swigtype' Name.Function
 '('           Punctuation
 '_Tp'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%fragment'   Name.Function
 '('           Punctuation
 'SWIG_Traits_frag' Name
@@ -1065,24 +1065,24 @@
 'vector'      Name
 '<'           Operator
 '_Tp'         Name
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
 '*'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'header'      Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t      '    Text
+'\t      '    Text.Whitespace
 'fragment'    Name
 '='           Operator
 'SWIG_Traits_frag' Name
@@ -1090,33 +1090,33 @@
 '_Tp'         Name
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t      '    Text
+'\t      '    Text.Whitespace
 'fragment'    Name
 '='           Operator
 '"'           Literal.String
 'StdVectorTraits' Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'swig'        Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'template'    Keyword
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '>'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'struct'      Keyword
 ' '           Text
 'traits'      Name.Class
@@ -1127,118 +1127,118 @@
 'vector'      Name
 '<'           Operator
 '_Tp'         Name
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
 '*'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'value_category' Name
-' '           Text
+' '           Text.Whitespace
 'category'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'static'      Keyword
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'char'        Keyword.Type
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'type_name'   Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t    '      Text
+'\t    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'std::vector<' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '#_Tp'        Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ' const*,'    Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '#_Alloc'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 ' >'          Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%typemap_traits_ptr' Name.Function
 '('           Punctuation
 'SWIG_TYPECHECK_VECTOR' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'std'         Name
 ':'           Operator
 ':'           Operator
 'vector'      Name
 '<'           Operator
 '_Tp'         Name
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
 '*'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'ifdef %swig_vector_methods_val' Comment.Preproc
 '\n'          Comment.Preproc
 
-'    '        Text
+'    '        Text.Whitespace
 '// Add swig/language extra methods\n' Comment.Single
 
-'    '        Text
+'    '        Text.Whitespace
 '%swig_vector_methods_val' Name.Function
 '('           Punctuation
 'std'         Name
@@ -1247,62 +1247,62 @@
 'vector'      Name
 '<'           Operator
 '_Tp'         Name
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
 '*'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%std_vector_methods_val' Name.Function
 '('           Punctuation
 'vector'      Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// ***\n'    Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 '// bool specialization\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 '// ***\n'    Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'template'    Keyword
 '<'           Operator
 'class'       Keyword
 ' '           Text
 '_Alloc'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
-'\n'          Text
+' '           Text.Whitespace
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'class'       Keyword
 ' '           Text
 'vector'      Name.Class
@@ -1310,107 +1310,107 @@
 'bool'        Keyword.Type
 ','           Punctuation
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'public'      Keyword
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'size_t'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'size_type'   Name
 ';'           Punctuation
-'    '        Text
-'\n'          Text
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'ptrdiff_t'   Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'difference_type' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'pointer'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'const_pointer' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
-' '           Text
+' '           Text.Whitespace
 'reference'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'value_type'  Name
-' '           Text
+' '           Text.Whitespace
 'const_reference' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 'allocator_type' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%traits_swigtype' Name.Function
 '('           Punctuation
 'bool'        Keyword.Type
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%fragment'   Name.Function
 '('           Punctuation
 'SWIG_Traits_frag' Name
@@ -1422,20 +1422,20 @@
 '<'           Operator
 'bool'        Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'header'      Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t      '    Text
+'\t      '    Text.Whitespace
 'fragment'    Name
 '='           Operator
 'SWIG_Traits_frag' Name
@@ -1443,33 +1443,33 @@
 'bool'        Keyword.Type
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t      '    Text
+'\t      '    Text.Whitespace
 'fragment'    Name
 '='           Operator
 '"'           Literal.String
 'StdVectorTraits' Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'swig'        Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'template'    Keyword
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '>'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'struct'      Keyword
 ' '           Text
 'traits'      Name.Class
@@ -1481,74 +1481,74 @@
 '<'           Operator
 'bool'        Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'value_category' Name
-' '           Text
+' '           Text.Whitespace
 'category'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'static'      Keyword
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'char'        Keyword.Type
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'type_name'   Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t    '      Text
+'\t    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'std::vector<bool, _Alloc >' Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%typemap_traits_ptr' Name.Function
 '('           Punctuation
 'SWIG_TYPECHECK_VECTOR' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'std'         Name
 ':'           Operator
 ':'           Operator
@@ -1556,26 +1556,26 @@
 '<'           Operator
 'bool'        Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'ifdef %swig_vector_methods_val' Comment.Preproc
 '\n'          Comment.Preproc
 
-'    '        Text
+'    '        Text.Whitespace
 '// Add swig/language extra methods\n' Comment.Single
 
-'    '        Text
+'    '        Text.Whitespace
 '%swig_vector_methods_val' Name.Function
 '('           Punctuation
 'std'         Name
@@ -1585,55 +1585,55 @@
 '<'           Operator
 'bool'        Keyword.Type
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '%std_vector_methods_val' Name.Function
 '('           Punctuation
 'vector'      Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'if defined(SWIG_STD_MODERN_STL) && !defined(SWIG_STD_NOMODERN_STL) ' Comment.Preproc
 '\n'          Comment.Preproc
 
-'    '        Text
+'    '        Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'flip'        Name.Function
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

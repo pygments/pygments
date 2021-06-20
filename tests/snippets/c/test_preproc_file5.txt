@@ -9,11 +9,11 @@ foo(); #define FOO 0
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#'           Error
 'define'      Name
-' '           Text
+' '           Text.Whitespace
 'FOO'         Name
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace

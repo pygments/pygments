@@ -7,12 +7,12 @@ enum Enum_t {enum_a, enum_b};
 'enum'        Keyword
 ' '           Text.Whitespace
 'Enum_t'      Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'enum_a'      Name.Constant
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'enum_b'      Name.Constant
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

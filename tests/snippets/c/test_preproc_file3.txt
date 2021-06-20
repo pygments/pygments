@@ -9,10 +9,10 @@ foo();
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
-'\n'          Text
+' '           Text.Whitespace
+'\n'          Text.Whitespace
 
-' '           Text
+' '           Text.Whitespace
 '#'           Comment.Preproc
 'define FOO 0' Comment.Preproc
 '\n'          Comment.Preproc

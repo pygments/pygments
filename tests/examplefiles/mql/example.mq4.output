@@ -30,30 +30,30 @@
 
 '#'           Comment.Preproc
 'include'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '<WinUser32.mqh>' Comment.PreprocFile
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'input'       Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'InpPeriodMultiplier' Name
 '='           Operator
 '3'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '// Period multiplier factor\n' Comment.Single
 
 'int'         Keyword.Type
-'       '     Text
+'       '     Text.Whitespace
 'ExtHandle'   Name
 '='           Operator
 '-1'          Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//+------------------------------------------------------------------+\n' Comment.Single
 
@@ -62,55 +62,55 @@
 '//+------------------------------------------------------------------+\n' Comment.Single
 
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'OnStart'     Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'datetime'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'time0'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'ulong'       Keyword.Type
-'    '        Text
+'    '        Text.Whitespace
 'last_fpos'   Name
 '='           Operator
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'long'        Keyword.Type
-'     '       Text
+'     '       Text.Whitespace
 'last_volume' Name
 '='           Operator
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'      '      Text
+'      '      Text.Whitespace
 'i'           Name
 ','           Punctuation
 'start_pos'   Name
 ','           Punctuation
 'periodseconds' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'      '      Text
+'      '      Text.Whitespace
 'hwnd'        Name
 '='           Operator
 '0'           Literal.Number.Integer
@@ -119,40 +119,40 @@
 '='           Operator
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//---- History header\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'      '      Text
+'      '      Text.Whitespace
 'file_version' Name
 '='           Operator
 '401'         Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'string'      Keyword.Type
-'   '         Text
+'   '         Text.Whitespace
 'c_copyright' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'string'      Keyword.Type
-'   '         Text
+'   '         Text.Whitespace
 'c_symbol'    Name
 '='           Operator
 'Symbol'      Name.Function
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'      '      Text
+'      '      Text.Whitespace
 'i_period'    Name
 '='           Operator
 'Period'      Name.Function
@@ -161,37 +161,37 @@
 '*'           Operator
 'InpPeriodMultiplier' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'      '      Text
+'      '      Text.Whitespace
 'i_digits'    Name
 '='           Operator
 'Digits'      Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'      '      Text
+'      '      Text.Whitespace
 'i_unused'    Name
 '['           Punctuation
 '13'          Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'MqlRates'    Name
-' '           Text
+' '           Text.Whitespace
 'rate'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//---  \n'   Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'ExtHandle'   Name
 '='           Operator
 'FileOpenHistory' Name.Function
@@ -218,32 +218,32 @@
 'FILE_ANSI'   Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'ExtHandle'   Name
 '<'           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'return'      Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'c_copyright' Name
 '='           Operator
 '"'           Literal.String
 '(C)opyright 2003, MetaQuotes Software Corp.' Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'ArrayInitialize' Name.Function
 '('           Punctuation
 'i_unused'    Name
@@ -251,11 +251,11 @@
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//--- write history file header\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'FileWriteInteger' Name.Function
 '('           Punctuation
 'ExtHandle'   Name
@@ -265,9 +265,9 @@
 'LONG_VALUE'  Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'FileWriteString' Name.Function
 '('           Punctuation
 'ExtHandle'   Name
@@ -277,9 +277,9 @@
 '64'          Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'FileWriteString' Name.Function
 '('           Punctuation
 'ExtHandle'   Name
@@ -289,9 +289,9 @@
 '12'          Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'FileWriteInteger' Name.Function
 '('           Punctuation
 'ExtHandle'   Name
@@ -301,9 +301,9 @@
 'LONG_VALUE'  Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'FileWriteInteger' Name.Function
 '('           Punctuation
 'ExtHandle'   Name
@@ -313,9 +313,9 @@
 'LONG_VALUE'  Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'FileWriteInteger' Name.Function
 '('           Punctuation
 'ExtHandle'   Name
@@ -325,9 +325,9 @@
 'LONG_VALUE'  Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'FileWriteInteger' Name.Function
 '('           Punctuation
 'ExtHandle'   Name
@@ -337,9 +337,9 @@
 'LONG_VALUE'  Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'FileWriteArray' Name.Function
 '('           Punctuation
 'ExtHandle'   Name
@@ -351,28 +351,28 @@
 '13'          Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//--- write history file\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'periodseconds' Name
 '='           Operator
 'i_period'    Name
 '*'           Operator
 '60'          Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'start_pos'   Name
 '='           Operator
 'Bars'        Keyword
 '-1'          Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'open'        Name
@@ -382,9 +382,9 @@
 'start_pos'   Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'low'         Name
@@ -394,9 +394,9 @@
 'start_pos'   Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'high'        Name
@@ -406,9 +406,9 @@
 'start_pos'   Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'tick_volume' Name
@@ -421,30 +421,30 @@
 'start_pos'   Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'spread'      Name
 '='           Operator
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'real_volume' Name
 '='           Operator
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 '//--- normalize open time\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'time'        Name
@@ -456,9 +456,9 @@
 '/'           Operator
 'periodseconds' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'time'        Name
@@ -466,9 +466,9 @@
 '='           Operator
 'periodseconds' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'for'         Keyword
 '('           Punctuation
 'i'           Name
@@ -476,38 +476,38 @@
 'start_pos'   Name
 '-1'          Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '>'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '-'           Operator
 '-'           Operator
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'IsStopped'   Name.Function
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'break'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'time0'       Name
 '='           Operator
 'Time'        Keyword
@@ -515,12 +515,12 @@
 'i'           Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '//--- history may be updated\n' Comment.Single
 
-'      '      Text
+'      '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'i'           Name
@@ -528,25 +528,25 @@
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 '//--- modify index if history was updated\n' Comment.Single
 
-'         '   Text
+'         '   Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'RefreshRates' Name.Function
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'i'           Name
 '='           Operator
 'iBarShift'   Name.Function
@@ -558,16 +558,16 @@
 'time0'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '//---\n'     Comment.Single
 
-'      '      Text
+'      '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'time0'       Name
@@ -578,32 +578,32 @@
 'time'        Name
 '+'           Operator
 'periodseconds' Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '='           Operator
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'i'           Name
 '='           Operator
 '='           Operator
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'time0'       Name
 '<'           Operator
 'rate'        Name
@@ -612,13 +612,13 @@
 '+'           Operator
 'periodseconds' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'tick_volume' Name
@@ -632,9 +632,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'rate'        Name
@@ -646,9 +646,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'               ' Text
+'               ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'low'         Name
@@ -658,9 +658,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'rate'        Name
@@ -672,9 +672,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'               ' Text
+'               ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'high'        Name
@@ -684,9 +684,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'close'       Name
@@ -696,13 +696,13 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'last_fpos'   Name
 '='           Operator
 'FileTell'    Name.Function
@@ -710,9 +710,9 @@
 'ExtHandle'   Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'last_volume' Name
 '='           Operator
 '('           Punctuation
@@ -723,9 +723,9 @@
 'i'           Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'FileWriteStruct' Name.Function
 '('           Punctuation
 'ExtHandle'   Name
@@ -733,16 +733,16 @@
 'rate'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'cnt'         Name
 '+'           Operator
 '+'           Operator
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'time0'       Name
@@ -754,13 +754,13 @@
 '+'           Operator
 'periodseconds' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'time'        Name
@@ -769,9 +769,9 @@
 '/'           Operator
 'periodseconds' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'time'        Name
@@ -779,9 +779,9 @@
 '='           Operator
 'periodseconds' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'open'        Name
@@ -791,9 +791,9 @@
 'i'           Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'low'         Name
@@ -803,9 +803,9 @@
 'i'           Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'high'        Name
@@ -815,9 +815,9 @@
 'i'           Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'close'       Name
@@ -827,34 +827,34 @@
 'i'           Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'tick_volume' Name
 '='           Operator
 'last_volume' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'       '     Text
+'       '     Text.Whitespace
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'tick_volume' Name
@@ -868,9 +868,9 @@
 'i'           Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'rate'        Name
@@ -882,9 +882,9 @@
 'i'           Name
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'low'         Name
@@ -894,9 +894,9 @@
 'i'           Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'rate'        Name
@@ -908,9 +908,9 @@
 'i'           Name
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'high'        Name
@@ -920,9 +920,9 @@
 'i'           Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'close'       Name
@@ -932,26 +932,26 @@
 'i'           Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '}'           Punctuation
-' '           Text
-'\n'          Text
+' '           Text.Whitespace
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'FileFlush'   Name.Function
 '('           Punctuation
 'ExtHandle'   Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'Print'       Name.Function
 '('           Punctuation
 'cnt'         Name
@@ -961,13 +961,13 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//--- collect incoming ticks\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'datetime'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'last_time'   Name
 '='           Operator
 'LocalTime'   Name
@@ -975,9 +975,9 @@
 ')'           Punctuation
 '-5'          Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'while'       Keyword
 '('           Punctuation
 '!'           Operator
@@ -985,40 +985,40 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'datetime'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'cur_time'    Name
 '='           Operator
 'LocalTime'   Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '//--- check for new rates\n' Comment.Single
 
-'      '      Text
+'      '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'RefreshRates' Name.Function
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'time0'       Name
 '='           Operator
 'Time'        Keyword
@@ -1026,9 +1026,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'FileSeek'    Name.Function
 '('           Punctuation
 'ExtHandle'   Name
@@ -1038,12 +1038,12 @@
 'SEEK_SET'    Name.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 '//--- is there current bar?\n' Comment.Single
 
-'         '   Text
+'         '   Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'time0'       Name
@@ -1054,13 +1054,13 @@
 '+'           Operator
 'periodseconds' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'tick_volume' Name
@@ -1076,9 +1076,9 @@
 '-'           Operator
 'last_volume' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'last_volume' Name
 '='           Operator
 '('           Punctuation
@@ -1089,10 +1089,10 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-' '           Text
-'\n'          Text
+' '           Text.Whitespace
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'rate'        Name
@@ -1104,9 +1104,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'               ' Text
+'               ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'low'         Name
@@ -1116,9 +1116,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'rate'        Name
@@ -1130,9 +1130,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'               ' Text
+'               ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'high'        Name
@@ -1142,9 +1142,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'close'       Name
@@ -1154,24 +1154,24 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '//--- no, there is new bar\n' Comment.Single
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'tick_volume' Name
@@ -1187,9 +1187,9 @@
 '-'           Operator
 'last_volume' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'rate'        Name
@@ -1201,9 +1201,9 @@
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'               ' Text
+'               ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'low'         Name
@@ -1213,9 +1213,9 @@
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'rate'        Name
@@ -1227,9 +1227,9 @@
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'               ' Text
+'               ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'high'        Name
@@ -1239,12 +1239,12 @@
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '//--- write previous bar remains\n' Comment.Single
 
-'            ' Text
+'            ' Text.Whitespace
 'FileWriteStruct' Name.Function
 '('           Punctuation
 'ExtHandle'   Name
@@ -1252,9 +1252,9 @@
 'rate'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'last_fpos'   Name
 '='           Operator
 'FileTell'    Name.Function
@@ -1262,12 +1262,12 @@
 'ExtHandle'   Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '//----\n'    Comment.Single
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'time'        Name
@@ -1276,9 +1276,9 @@
 '/'           Operator
 'periodseconds' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'time'        Name
@@ -1286,9 +1286,9 @@
 '='           Operator
 'periodseconds' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'open'        Name
@@ -1298,9 +1298,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'low'         Name
@@ -1310,9 +1310,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'high'        Name
@@ -1322,9 +1322,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'close'       Name
@@ -1334,9 +1334,9 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'rate'        Name
 '.'           Punctuation
 'tick_volume' Name
@@ -1349,25 +1349,25 @@
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'last_volume' Name
 '='           Operator
 'rate'        Name
 '.'           Punctuation
 'tick_volume' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 '//----\n'    Comment.Single
 
-'         '   Text
+'         '   Text.Whitespace
 'FileWriteStruct' Name.Function
 '('           Punctuation
 'ExtHandle'   Name
@@ -1375,20 +1375,20 @@
 'rate'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'FileFlush'   Name.Function
 '('           Punctuation
 'ExtHandle'   Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 '//---\n'     Comment.Single
 
-'         '   Text
+'         '   Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'hwnd'        Name
@@ -1396,13 +1396,13 @@
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'hwnd'        Name
 '='           Operator
 'WindowHandle' Name.Function
@@ -1414,9 +1414,9 @@
 'i_period'    Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'hwnd'        Name
@@ -1424,9 +1424,9 @@
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'               ' Text
+'               ' Text.Whitespace
 'Print'       Name.Function
 '('           Punctuation
 '"'           Literal.String
@@ -1434,26 +1434,26 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 '//--- refresh window not frequently than 1 time in 2 seconds\n' Comment.Single
 
-'         '   Text
+'         '   Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'hwnd'        Name
 '!'           Operator
 '='           Operator
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'cur_time'    Name
 '-'           Operator
 'last_time'   Name
@@ -1461,13 +1461,13 @@
 '='           Operator
 '2'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'PostMessageA' Name
 '('           Punctuation
 'hwnd'        Name
@@ -1479,42 +1479,42 @@
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'last_time'   Name
 '='           Operator
 'cur_time'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'           ' Text
+'           ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'Sleep'       Name.Function
 '('           Punctuation
 '50'          Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
-'\n'          Text
+' '           Text.Whitespace
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '}'           Punctuation
-'      '      Text
-'\n'          Text
+'      '      Text.Whitespace
+'\n'          Text.Whitespace
 
 '//---\n'     Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//+------------------------------------------------------------------+\n' Comment.Single
 
@@ -1523,24 +1523,24 @@
 '//+------------------------------------------------------------------+\n' Comment.Single
 
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'OnDeinit'    Name.Function
 '('           Punctuation
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'reason'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//---\n'     Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'ExtHandle'   Name
@@ -1548,35 +1548,35 @@
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'FileClose'   Name.Function
 '('           Punctuation
 'ExtHandle'   Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'ExtHandle'   Name
 '='           Operator
 '-1'          Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//---\n'     Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//+------------------------------------------------------------------+\n' Comment.Single

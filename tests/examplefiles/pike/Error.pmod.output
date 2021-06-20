@@ -2,239 +2,239 @@
 'pike __REAL_VERSION__' Comment.Preproc
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Generic'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '__builtin'   Name
 '.'           Punctuation
 'GenericError' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Index'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '__builtin'   Name
 '.'           Punctuation
 'IndexError'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'BadArgument' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '__builtin'   Name
 '.'           Punctuation
 'BadArgumentError' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Math'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '__builtin'   Name
 '.'           Punctuation
 'MathError'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Resource'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '__builtin'   Name
 '.'           Punctuation
 'ResourceError' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Permission'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '__builtin'   Name
 '.'           Punctuation
 'PermissionError' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Decode'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '__builtin'   Name
 '.'           Punctuation
 'DecodeError' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Cpp'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '__builtin'   Name
 '.'           Punctuation
 'CppError'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'Compilation' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '__builtin'   Name
 '.'           Punctuation
 'CompilationError' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'MasterLoad'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '__builtin'   Name
 '.'           Punctuation
 'MasterLoadError' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'constant'    Keyword
-' '           Text
+' '           Text.Whitespace
 'ModuleLoad'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '__builtin'   Name
 '.'           Punctuation
 'ModuleLoadError' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//! Returns an Error object for any argument it receives. If the\n' Comment.Single
 
 '//! argument already is an Error object or is empty, it does nothing.\n' Comment.Single
 
 'object'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'mkerror'     Name.Function
 '('           Punctuation
 'mixed'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'error'       Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'error'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'UNDEFINED'   Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'error'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'objectp'     Name
 '('           Punctuation
 'error'       Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'error'       Name
 '-'           Operator
 '>'           Operator
 'is_generic_error' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'error'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'arrayp'      Name
 '('           Punctuation
 'error'       Name
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Error'       Name
 '.'           Punctuation
 'Generic'     Name
@@ -243,22 +243,22 @@
 'error'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'stringp'     Name
 '('           Punctuation
 'error'       Name
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Error'       Name
 '.'           Punctuation
 'Generic'     Name
@@ -266,11 +266,11 @@
 'error'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Error'       Name
 '.'           Punctuation
 'Generic'     Name
@@ -281,12 +281,12 @@
 '%O'          Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'error'       Name
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

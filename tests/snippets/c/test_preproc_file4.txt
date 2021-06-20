@@ -5,9 +5,9 @@ Comments can precede preprocessor macros
 
 ---tokens---
 '/* Comment */' Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 '/* Another */' Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 '#'           Comment.Preproc
 'define FOO 0' Comment.Preproc
 '\n'          Comment.Preproc

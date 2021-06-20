@@ -1,108 +1,108 @@
 '/*\n  Blink\n  Turns on an LED on for one second, then off for one second, repeatedly.\n \n  This example code is in the public domain.\n */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
-'\n'          Text
+' '           Text.Whitespace
+'\n'          Text.Whitespace
 
 '// Pin 13 has an LED connected on most Arduino boards.\n' Comment.Single
 
 '// give it a name:\n' Comment.Single
 
 'int'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'led'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '13'          Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// the setup routine runs once when you press reset:\n' Comment.Single
 
 'void'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'setup'       Name.Builtin
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// initialize the digital pin as an output.\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'pinMode'     Name.Function
 '('           Punctuation
 'led'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'OUTPUT'      Keyword.Reserved
 ')'           Punctuation
 ';'           Punctuation
-'     '       Text
-'\n'          Text
+'     '       Text.Whitespace
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// the loop routine runs over and over again forever:\n' Comment.Single
 
 'void'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'loop'        Name.Builtin
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'digitalWrite' Name.Function
 '('           Punctuation
 'led'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'HIGH'        Keyword.Reserved
 ')'           Punctuation
 ';'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '// turn the LED on (HIGH is the voltage level)\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'delay'       Name.Function
 '('           Punctuation
 '1000'        Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'               ' Text
+'               ' Text.Whitespace
 '// wait for a second\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'digitalWrite' Name.Function
 '('           Punctuation
 'led'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'LOW'         Keyword.Reserved
 ')'           Punctuation
 ';'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 '// turn the LED off by making the voltage LOW\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'delay'       Name.Function
 '('           Punctuation
 '1000'        Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'               ' Text
+'               ' Text.Whitespace
 '// wait for a second\n' Comment.Single
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
