@@ -11,8 +11,12 @@ Version 2.10.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * Rust: fix lexing of "break" and "continue" (#1843)
+  * Tcl: Allow ``,`` and ``@`` in strings (#1834, #1742)
+
 - Fix assert statements in TNT lexer.
-- Rust: fix lexing of "break" and "continue" (#1843)
 - Token types across all lexers have been unified (using the most common token
   type name) (#1816, #1819)
 

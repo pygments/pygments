@@ -15,60 +15,60 @@ bind Text <Alt-Down> {
 ' Alt and arrow keys to scroll\n' Comment
 
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'scroll_amount' Text
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 '\n'          Text
 
 'bind'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Text'        Text
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 'Alt-Up'      Text
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 '%'           Operator
 'W'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'yview'       Text
-' '           Text
+' '           Text.Whitespace
 'scroll'      Text
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '$scroll_amount' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'units'       Text
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '%'           Operator
 'W'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mark'        Text
-' '           Text
+' '           Text.Whitespace
 'set'         Text
-' '           Text
+' '           Text.Whitespace
 'insert'      Text
-' '           Text
+' '           Text.Whitespace
 '@0,'         Text
 '['           Keyword
 'expr'        Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Keyword
 'winfo'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'height'      Text
-' '           Text
+' '           Text.Whitespace
 '%'           Operator
 'W'           Text
 ']'           Keyword
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ']'           Keyword
 '\n'          Text
@@ -77,52 +77,52 @@ bind Text <Alt-Down> {
 '\n'          Text
 
 'bind'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Text'        Text
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 'Alt-Down'    Text
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Keyword
-'\n    '      Text
+'\n    '      Text.Whitespace
 '%'           Operator
 'W'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'yview'       Text
-' '           Text
+' '           Text.Whitespace
 'scroll'      Text
-' '           Text
+' '           Text.Whitespace
 '$scroll_amount' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'units'       Text
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '%'           Operator
 'W'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mark'        Text
-' '           Text
+' '           Text.Whitespace
 'set'         Text
-' '           Text
+' '           Text.Whitespace
 'insert'      Text
-' '           Text
+' '           Text.Whitespace
 '@0,'         Text
 '['           Keyword
 'expr'        Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Keyword
 'winfo'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'height'      Text
-' '           Text
+' '           Text.Whitespace
 '%'           Operator
 'W'           Text
 ']'           Keyword
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ']'           Keyword
 '\n'          Text
