@@ -249,15 +249,15 @@ def test_filename():
     assert re.search("<span class=\"filename\">test.py</span><pre>", html)
 
 
-def test_tooltips():
-    fmt_notooltips = HtmlFormatter(tooltips=False)
-    outfile_notooltips = StringIO()
-    fmt_notooltips.format(tokensource, outfile_notooltips)
-    html_notooltips = outfile_notooltips.getvalue()
-    assert '<span class="n" title="Name">TESTDIR</span>' not in html_notooltips
+def test_debug_token_types():
+    fmt_nod_token_types = HtmlFormatter(debug_token_types=False)
+    outfile_nod_token_types = StringIO()
+    fmt_nod_token_types.format(tokensource, outfile_nod_token_types)
+    html_nod_token_types = outfile_nod_token_types.getvalue()
+    assert '<span class="n" title="Name">TESTDIR</span>' not in html_nod_token_types
 
-    fmt_tooltips = HtmlFormatter(tooltips=True)
-    outfile_tooltips = StringIO()
-    fmt_tooltips.format(tokensource, outfile_tooltips)
-    html_tooltips = outfile_tooltips.getvalue()
-    assert '<span class="n" title="Name">TESTDIR</span>' in html_tooltips
+    fmt_debug_token_types = HtmlFormatter(debug_token_types=True)
+    outfile_debug_token_types = StringIO()
+    fmt_debug_token_types.format(tokensource, outfile_debug_token_types)
+    html_debug_token_types = outfile_debug_token_types.getvalue()
+    assert '<span class="n" title="Name">TESTDIR</span>' in html_debug_token_types

@@ -349,7 +349,7 @@ class HtmlFormatter(Formatter):
 
         .. versionadded:: 2.4
 
-    `tooltips`
+    `debug_token_types`
         Add ``title`` attributes to all token ``<span>`` tags that show the
         name of the token.
 
@@ -425,7 +425,7 @@ class HtmlFormatter(Formatter):
         self.filename = self._decodeifneeded(options.get('filename', ''))
         self.wrapcode = get_bool_opt(options, 'wrapcode', False)
         self.span_element_openers = {}
-        self.tooltips = get_bool_opt(options, 'tooltips', False)
+        self.debug_token_types = get_bool_opt(options, 'debug_token_types', False)
 
         if self.tagsfile:
             if not ctags:
@@ -842,7 +842,7 @@ class HtmlFormatter(Formatter):
             try:
                 cspan = self.span_element_openers[ttype]
             except KeyError:
-                title = ' title="%s"' % '.'.join(ttype) if self.tooltips else ''
+                title = ' title="%s"' % '.'.join(ttype) if self.debug_token_types else ''
                 if nocls:
                     css_style = self._get_css_inline_styles(ttype)
                     args = (self.class2style[css_style][0], title)
