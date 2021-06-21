@@ -10,7 +10,7 @@
 
 '#'           Comment.Preproc
 'include'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '<Object.mqh>' Comment.PreprocFile
 '\n'          Comment.Preproc
 
@@ -27,148 +27,148 @@
 'class'       Keyword
 ' '           Text
 'CArray'      Name.Class
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'public'      Keyword
-' '           Text
+' '           Text.Whitespace
 'CObject'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'protected'   Keyword
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'               ' Text
+'               ' Text.Whitespace
 'm_step_resize' Name
 ';'           Punctuation
-'      '      Text
+'      '      Text.Whitespace
 '// increment size of the array\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'               ' Text
+'               ' Text.Whitespace
 'm_data_total' Name
 ';'           Punctuation
-'       '     Text
+'       '     Text.Whitespace
 '// number of elements\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'               ' Text
+'               ' Text.Whitespace
 'm_data_max'  Name
 ';'           Punctuation
-'         '   Text
+'         '   Text.Whitespace
 '// maximmum size of the array without memory reallocation\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'               ' Text
+'               ' Text.Whitespace
 'm_sort_mode' Name
 ';'           Punctuation
-'        '    Text
+'        '    Text.Whitespace
 '// mode of array sorting\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'public'      Keyword
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                     ' Text
+'                     ' Text.Whitespace
 'CArray'      Name
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                    ' Text
+'                    ' Text.Whitespace
 '~'           Operator
 'CArray'      Name
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 '//--- methods of access to protected data\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'               ' Text
+'               ' Text.Whitespace
 'Step'        Name.Function
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
 '('           Punctuation
 'm_step_resize' Name
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'bool'        Keyword.Type
-'              ' Text
+'              ' Text.Whitespace
 'Step'        Name.Function
 '('           Punctuation
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'step'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'               ' Text
+'               ' Text.Whitespace
 'Total'       Name.Function
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
 '('           Punctuation
 'm_data_total' Name
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'               ' Text
+'               ' Text.Whitespace
 'Available'   Name.Function
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
 '('           Punctuation
 'm_data_max'  Name
@@ -176,49 +176,49 @@
 'm_data_total' Name
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'               ' Text
+'               ' Text.Whitespace
 'Max'         Name.Function
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
 '('           Punctuation
 'm_data_max'  Name
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'bool'        Keyword.Type
-'              ' Text
+'              ' Text.Whitespace
 'IsSorted'    Name.Function
 '('           Punctuation
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'mode'        Name
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
 '('           Punctuation
 'm_sort_mode' Name
@@ -227,145 +227,145 @@
 'mode'        Name
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-'               ' Text
+'               ' Text.Whitespace
 'SortMode'    Name.Function
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
 '('           Punctuation
 'm_sort_mode' Name
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 '//--- cleaning method\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'void'        Keyword.Type
-'              ' Text
+'              ' Text.Whitespace
 'Clear'       Name.Function
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'm_data_total' Name
 '='           Operator
 '0'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 '//--- methods for working with files\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'virtual'     Keyword
-' '           Text
+' '           Text.Whitespace
 'bool'        Keyword.Type
-'      '      Text
+'      '      Text.Whitespace
 'Save'        Name.Function
 '('           Punctuation
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'file_handle' Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'virtual'     Keyword
-' '           Text
+' '           Text.Whitespace
 'bool'        Keyword.Type
-'      '      Text
+'      '      Text.Whitespace
 'Load'        Name.Function
 '('           Punctuation
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'file_handle' Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 '//--- sorting method\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'void'        Keyword.Type
-'              ' Text
+'              ' Text.Whitespace
 'Sort'        Name.Function
 '('           Punctuation
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'mode'        Name
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'protected'   Keyword
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'virtual'     Keyword
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-'      '      Text
+'      '      Text.Whitespace
 'QuickSort'   Name
 '('           Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'beg'         Name
 ','           Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'end'         Name
 ','           Punctuation
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'mode'        Name
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//+------------------------------------------------------------------+\n' Comment.Single
 
@@ -380,46 +380,46 @@
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'm_step_resize' Name
 '('           Punctuation
 '16'          Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                       ' Text
+'                       ' Text.Whitespace
 'm_data_total' Name
 '('           Punctuation
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                       ' Text
+'                       ' Text.Whitespace
 'm_data_max'  Name
 '('           Punctuation
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                       ' Text
+'                       ' Text.Whitespace
 'm_sort_mode' Name
 '('           Punctuation
 '-1'          Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//+------------------------------------------------------------------+\n' Comment.Single
 
@@ -435,15 +435,15 @@
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//+------------------------------------------------------------------+\n' Comment.Single
 
@@ -452,71 +452,71 @@
 '//+------------------------------------------------------------------+\n' Comment.Single
 
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'CArray'      Name
 ':'           Operator
 ':'           Operator
 'Step'        Name
 '('           Punctuation
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'step'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//--- check\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'step'        Name
 '>'           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'm_step_resize' Name
 '='           Operator
 'step'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'return'      Keyword
 '('           Punctuation
 'true'        Name.Builtin
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//--- failure\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'return'      Keyword
 '('           Punctuation
 'false'       Name.Builtin
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//+------------------------------------------------------------------+\n' Comment.Single
 
@@ -525,27 +525,27 @@
 '//+------------------------------------------------------------------+\n' Comment.Single
 
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'CArray'      Name
 ':'           Operator
 ':'           Operator
 'Sort'        Name
 '('           Punctuation
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'mode'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//--- check\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'IsSorted'    Name
@@ -553,21 +553,21 @@
 'mode'        Name
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'return'      Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'm_sort_mode' Name
 '='           Operator
 'mode'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'm_data_total' Name
@@ -575,16 +575,16 @@
 '='           Operator
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'return'      Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//--- sort\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'QuickSort'   Name
 '('           Punctuation
 '0'           Literal.Number.Integer
@@ -595,11 +595,11 @@
 'mode'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//+------------------------------------------------------------------+\n' Comment.Single
 
@@ -608,27 +608,27 @@
 '//+------------------------------------------------------------------+\n' Comment.Single
 
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'CArray'      Name
 ':'           Operator
 ':'           Operator
 'Save'        Name
 '('           Punctuation
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'file_handle' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//--- check handle\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'file_handle' Name
@@ -636,16 +636,16 @@
 '='           Operator
 'INVALID_HANDLE' Name.Constant
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '//--- write start marker - 0xFFFFFFFFFFFFFFFF\n' Comment.Single
 
-'      '      Text
+'      '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'FileWriteLong' Name.Function
@@ -661,16 +661,16 @@
 'long'        Keyword.Type
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 '//--- write array type\n' Comment.Single
 
-'         '   Text
+'         '   Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'FileWriteInteger' Name.Function
@@ -687,37 +687,37 @@
 '='           Operator
 'INT_VALUE'   Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'return'      Keyword
 '('           Punctuation
 'true'        Name.Builtin
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//--- failure\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'return'      Keyword
 '('           Punctuation
 'false'       Name.Builtin
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//+------------------------------------------------------------------+\n' Comment.Single
 
@@ -726,27 +726,27 @@
 '//+------------------------------------------------------------------+\n' Comment.Single
 
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'CArray'      Name
 ':'           Operator
 ':'           Operator
 'Load'        Name
 '('           Punctuation
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'file_handle' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//--- check handle\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'file_handle' Name
@@ -754,16 +754,16 @@
 '='           Operator
 'INVALID_HANDLE' Name.Constant
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '//--- read and check start marker - 0xFFFFFFFFFFFFFFFF\n' Comment.Single
 
-'      '      Text
+'      '      Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'FileReadLong' Name.Function
@@ -774,16 +774,16 @@
 '='           Operator
 '-1'          Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 '//--- read and check array type\n' Comment.Single
 
-'         '   Text
+'         '   Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'FileReadInteger' Name.Function
@@ -798,36 +798,36 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'return'      Keyword
 '('           Punctuation
 'true'        Name.Builtin
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//--- failure\n' Comment.Single
 
-'   '         Text
+'   '         Text.Whitespace
 'return'      Keyword
 '('           Punctuation
 'false'       Name.Builtin
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//+------------------------------------------------------------------+\n' Comment.Single

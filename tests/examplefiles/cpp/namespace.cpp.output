@@ -1,13 +1,13 @@
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'std'         Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'std'         Name.Namespace
 ':'           Operator
 ':'           Operator
@@ -15,19 +15,19 @@
 ':'           Operator
 ':'           Operator
 'inner'       Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'std'         Name.Namespace
 ':'           Operator
 ':'           Operator
@@ -35,56 +35,56 @@
 ':'           Operator
 ':'           Operator
 'inline'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'innner'      Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'std'         Name.Namespace
 ':'           Operator
 ':'           Operator
 'inline'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'exprimental' Name.Namespace
 ':'           Operator
 ':'           Operator
 'innner'      Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'other'       Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'std'         Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'other'       Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'std'         Name.Namespace
 ':'           Operator
 ':'           Operator
 'exprimental' Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'std'         Name.Namespace
 ':'           Operator
 ':'           Operator
@@ -92,87 +92,88 @@
 ':'           Operator
 ':'           Operator
 'inner'       Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'class'       Keyword
 ' '           Text
 'QualifiedName' Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'public'      Keyword
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'QualifiedName' Name
 '('           Punctuation
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'FlyString'   Name
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'local_name'  Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 'FlyString'   Name
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'local_name'  Name
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'const'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'm_local_name' Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'private'     Keyword
 ':'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'FlyString'   Name
-' '           Text
+' '           Text.Whitespace
 'm_local_name' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'  \n'        Text
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'ns'          Name.Namespace
 ':'           Operator
 ':'           Operator
@@ -180,97 +181,97 @@
 ':'           Operator
 ':'           Operator
 'inline'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pygments'    Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'outer'       Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'has_value'   Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'other'       Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'std'         Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'user'        Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'has_value'   Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'using'       Keyword
-' '           Text
+' '           Text.Whitespace
 'namespace'   Keyword
-' '           Text
+' '           Text.Whitespace
 'inner'       Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                ' Text
+'                ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

@@ -1,0 +1,18 @@
+Space around line break before macro is valid C, but failed to parse previously.
+
+---input---
+foo(); 
+ #define FOO 0
+
+---tokens---
+'foo'         Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+'#'           Comment.Preproc
+'define FOO 0' Comment.Preproc
+'\n'          Comment.Preproc

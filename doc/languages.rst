@@ -103,6 +103,7 @@ Programming languages
 * `Lua <https://lua.org>`_
 * `Mathematica <https://www.wolfram.com/mathematica/>`_
 * `Matlab <https://www.mathworks.com/products/matlab.html>`_
+* `The Meson Build System <https://mesonbuild.com>`_
 * `MiniScript <https://miniscript.org>`_
 * `Modelica <https://www.modelica.org/>`_
 * `Modula-2 <https://www.modula2.org/>`_
@@ -263,6 +264,7 @@ Other markup
 * `OMG IDL <https://www.omg.org/spec/IDL/About-IDL/>`_
 * `PEG <https://bford.info/packrat/>`_
 * POV-Ray scenes
+* `Procfile <https://devcenter.heroku.com/articles/procfile#procfile-format>`_
 * `PromQL <https://prometheus.io/docs/prometheus/latest/querying/basics/>`_
 * `Puppet <https://puppet.com/>`_
 * QML

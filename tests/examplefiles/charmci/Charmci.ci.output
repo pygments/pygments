@@ -1,123 +1,126 @@
 'module'      Keyword
 ' '           Text
 'CkCallback'  Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'readonly'    Keyword
-' '           Text
+' '           Text.Whitespace
 'CProxy_ckcallback_group' Name
-' '           Text
+' '           Text.Whitespace
 '_ckcallbackgroup' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'message'     Keyword
-' '           Text
+' '           Text.Whitespace
 'CkCcsRequestMsg' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'char'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'data'        Name
 '['           Punctuation
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-' \t'         Text
+' \t'         Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'message'     Keyword
-' '           Text
+' '           Text.Whitespace
 'CkDataMsg'   Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'char'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'data'        Name
 '['           Punctuation
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\n\t'      Text
+'\t'          Text.Whitespace
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
 'mainchare'   Keyword
-' '           Text
+' '           Text.Whitespace
 'ckcallback_main' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'entry'       Keyword
-' '           Text
+' '           Text.Whitespace
 'ckcallback_main' Name
 '('           Punctuation
 'CkArgMsg'    Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'm'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'group'       Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'migratable'  Keyword
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ckcallback_group' Name.Label
 ' '           Text
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'IrrGroup'    Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'entry'       Keyword
-' '           Text
+' '           Text.Whitespace
 'ckcallback_group' Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'entry'       Keyword
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'registerCcsCallback' Name.Function
 '('           Punctuation
 'char'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'name'        Name
 '['           Punctuation
 'strlen'      Name
@@ -128,66 +131,66 @@
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'CkCallback'  Name
-' '           Text
+' '           Text.Whitespace
 'cb'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'entry'       Keyword
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'call'        Name.Function
 '('           Punctuation
 'CkCallback'  Name
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 ','           Punctuation
 'CkMarshalledMessage' Name
-' '           Text
+' '           Text.Whitespace
 'msg'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'entry'       Keyword
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'call'        Name.Function
 '('           Punctuation
 'CkCallback'  Name
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'length'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'char'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'data'        Name
 '['           Punctuation
 'length'      Name
 ']'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
