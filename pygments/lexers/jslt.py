@@ -9,7 +9,7 @@
 """
 
 from pygments.lexer import RegexLexer, combined, words
-from pygments.token import Comment, Error, Keyword, Name, Number, Operator, \
+from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Whitespace
 
 
