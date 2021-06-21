@@ -23,7 +23,7 @@ class JSLTLexer(RegexLexer):
     """
     For `JSLT <https://github.com/schibsted/jslt>`_ source.
 
-    .. versionadded:: 2.10.0
+    .. versionadded:: 2.10
     """
     name = 'JSLT'
     filenames = ['*.jslt']
@@ -62,7 +62,6 @@ class JSLTLexer(RegexLexer):
             (r'[A-Z_a-z][0-9A-Z_a-z-]*:[A-Z_a-z][0-9A-Z_a-z-]*', Name.Function),
             (r'[A-Z_a-z][0-9A-Z_a-z-]*', Name),
             (r'\$[A-Z_a-z][0-9A-Z_a-z-]*', Name.Variable),
-            (r'.', Error),
         ],
         'constant': [
             (r'[A-Z_a-z][0-9A-Z_a-z-]*', Name.Variable, 'root'),
