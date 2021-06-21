@@ -113,9 +113,6 @@ To specify a class name other than CustomLexer, append it with a colon:
 
     $ python -m pygments -x -l your_lexer.py:SomeLexer <inputfile>
 
-Use the ``-f`` flag to select a different output format than terminal
-escape sequences.
-
 Or, using the Python API:
 
 .. code-block:: python
@@ -131,6 +128,17 @@ trusted files; Pygments will perform the equivalent of ``eval`` on them.
 
 If you only want to use your lexer with the Pygments API, you can import and
 instantiate the lexer yourself, then pass it to :func:`pygments.highlight`.
+
+Use the ``-f`` flag to select a different output format than terminal
+escape sequences. The :class:`pygments.formatters.html.HtmlFormatter` helps
+you with debugging your lexer. You can use the ``debug_token_types`` option
+to display the token types assigned to each part of your source:
+
+.. code-block:: console
+
+    $ python -m pygments -x -f html -Ofull,debug_token_types -l your_lexer.py:SomeLexer <inputfile> > <outputfile>
+
+Hover over each token to see the token type displayed as a tooltip.
 
 To prepare your new lexer for inclusion in the Pygments distribution, so that it
 will be found when passing filenames or lexer aliases from the command line, you
