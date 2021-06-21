@@ -132,11 +132,11 @@ instantiate the lexer yourself, then pass it to :func:`pygments.highlight`.
 Use the ``-f`` flag to select a different output format than terminal
 escape sequences. The :class:`pygments.formatters.html.HtmlFormatter` helps
 you with debugging your lexer. You can use the ``debug_token_types`` option
-to display the token types assigned to each part of your source:
+to display the token types assigned to each part of your input file:
 
 .. code-block:: console
 
-    $ python -m pygments -x -f html -Ofull,debug_token_types -l your_lexer.py:SomeLexer <inputfile> > <outputfile>
+    $ python -m pygments -x -f html -Ofull,debug_token_types -l your_lexer.py:SomeLexer <inputfile>
 
 Hover over each token to see the token type displayed as a tooltip.
 
