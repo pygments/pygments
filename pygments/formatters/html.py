@@ -845,8 +845,8 @@ class HtmlFormatter(Formatter):
                 title = ' title="%s"' % '.'.join(ttype) if self.debug_token_types else ''
                 if nocls:
                     css_style = self._get_css_inline_styles(ttype)
-                    css_style = self.class2style[css_style][0]
                     if css_style:
+                        css_style = self.class2style[css_style][0]
                         cspan = '<span style="%s"%s>' % (css_style, title)
                     else:
                         cspan = ''
