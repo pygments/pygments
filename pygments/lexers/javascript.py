@@ -1540,9 +1540,9 @@ class JuttleLexer(RegexLexer):
 
 class NodeConsoleLexer(Lexer):
     """
-    For parsing JavaScript within an interactive Node.js shell, such as:
+    For parsing within an interactive Node.js REPL, such as:
 
-    .. sourcecode:: nodejs
+    .. sourcecode:: nodejsrepl
 
         > let a = 3
         undefined
@@ -1554,11 +1554,12 @@ class NodeConsoleLexer(Lexer):
         '4'
         > b == a
         false
+
+    .. versionadded: 2.10
     """
-    name = 'JavaScript Node.js console session'
-    aliases = ['nodejs', 'nodecon']
-    mimetypes = ['application/javascript', 'application/x-javascript',
-                 'text/x-javascript', 'text/javascript']
+    name = 'Node.js REPL console session'
+    aliases = ['nodejsrepl', ]
+    mimetypes = ['text/x-nodejsrepl', ]
 
     def get_tokens_unprocessed(self, text):
         jslexer = JavascriptLexer(**self.options)
