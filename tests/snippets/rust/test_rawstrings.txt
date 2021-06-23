@@ -17,7 +17,6 @@ fn main() {
     with "# in it. And even "##!"###;
     println!("{}", longer_delimiter);
 }
-#[foo(bar = [baz, qux])]
 
 ---tokens---
 'fn'          Keyword
@@ -115,15 +114,4 @@ fn main() {
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'#['          Comment.Preproc
-'foo'         Comment.Preproc
-'('           Comment.Preproc
-'bar = '      Comment.Preproc
-'['           Comment.Preproc
-'baz, qux'    Comment.Preproc
-']'           Comment.Preproc
-')'           Comment.Preproc
-']'           Comment.Preproc
 '\n'          Text.Whitespace
