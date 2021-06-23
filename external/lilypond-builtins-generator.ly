@@ -38,18 +38,21 @@
 #(define (dump-py-list name vals)
    (let* ((string-vals
             (map symbol->string vals))
-          (sorted-vals
-            (sort string-vals string<?)) ; reproducibility
-          (trimmed-vals
+          (filtered-vals
             (filter
               (lambda (val)
                 (regexp-exec valid-regexp val))
-              sorted-vals))
+              string-vals))
+          (sorted-vals ; reproducibility
+            ; Avoid duplicates (e.g., identical pitches
+            ; in different languages)
+            (uniq-list
+              (sort filtered-vals string<?)))
           (formatted-vals
             (map
               (lambda (val)
                 (format #f "  \"~a\"," val name))
-              trimmed-vals))
+              sorted-vals))
           (joint-vals
             (string-join formatted-vals "\n")))
      (format port
