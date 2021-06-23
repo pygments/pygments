@@ -67,7 +67,7 @@ class LilyPondLexer(SchemeLexer):
 
     .. important::
 
-       This lexer is meant to be used in conjuction with the ``lilypond`` style.
+       This lexer is meant to be used in conjunction with the ``lilypond`` style.
 
     .. versionadded:: 2.10
     """
