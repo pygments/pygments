@@ -33,7 +33,7 @@
 % \= is not included, because accepting ^ in names would cause the =
 % in \set tieWaitForNote=##t to be potentially consumed.
 % So we exclude them here and list them exhaustively in the lexer.
-#(define valid-regexp (make-regexp "^[-:?!>a-zA-Z]+$"))
+#(define valid-regexp (make-regexp "^[-_:?!>a-zA-Z]+$"))
 
 #(define (dump-py-list name vals)
    (let* ((string-vals
