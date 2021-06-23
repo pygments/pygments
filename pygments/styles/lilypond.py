@@ -17,6 +17,8 @@ class LilypondStyle(Style):
     default_style = "#0000ff"
 
     styles = {
+        Token.Whitespace: "",
+        Token.Text: "",
         Token.Keyword: "bold", ## #8E2FCF",
         Token.Comment: "italic #A3AAB2", #4080B0",
         Token.String: "#C7290A",
