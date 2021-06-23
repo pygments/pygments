@@ -218,7 +218,10 @@
 '/// Represents a value (either 16-bit or 32-bit) at runtime.\n' Literal.String.Doc
 
 '#['          Comment.Preproc
-'derive(Clone, PartialEq, Eq, Debug)' Comment.Preproc
+'derive'      Comment.Preproc
+'('           Comment.Preproc
+'Clone, PartialEq, Eq, Debug' Comment.Preproc
+')'           Comment.Preproc
 ']'           Comment.Preproc
 '\n'          Text.Whitespace
 
