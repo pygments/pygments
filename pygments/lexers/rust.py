@@ -213,22 +213,10 @@ class RustLexer(RegexLexer):
         'attribute_common': [
             (r'"', String, 'string'),
             (r'\[', Comment.Preproc, 'attribute['),
-            (r'\(', Comment.Preproc, 'attribute('),
-            (r'\{', Comment.Preproc, 'attribute{'),
         ],
         'attribute[': [
             include('attribute_common'),
             (r'\];?', Comment.Preproc, '#pop'),
-            (r'[^"\]\[({]+', Comment.Preproc),
-        ],
-        'attribute(': [
-            include('attribute_common'),
-            (r'\);?', Comment.Preproc, '#pop'),
-            (r'[^")\[({]+', Comment.Preproc),
-        ],
-        'attribute{': [
-            include('attribute_common'),
-            (r'};?', Comment.Preproc, '#pop'),
-            (r'[^"}\[({]+', Comment.Preproc),
+            (r'[^"\]\[]+', Comment.Preproc),
         ],
     }
