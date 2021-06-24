@@ -84,6 +84,8 @@ class LilyPondLexer(SchemeLexer):
     # lexical modes. Instead, it catches the most frequent pieces
     # of syntax, and, above all, knows about many kinds of builtins.
 
+    # TODO: \lyricmode could be recognized though.
+
     # In order to parse embedded Scheme, this lexer subclasses the SchemeLexer.
     # It redefines the 'root' state entirely, and adds a rule for #{ #}
     # to the 'value' state. The latter is used to parse a Scheme expression
@@ -202,13 +204,7 @@ class LilyPondLexer(SchemeLexer):
             # possibly preceded with a direction specifier. Let
             # get_tokens_unprocessed() recognize builtins. [^\W\d_] with
             # re.UNICODE is a trick to match any Unicode letter or underscore.
-            (r"[\-_^]?\\?(-|[^\W\d])*[^\W\d_]", Token.Name),
-
-            # Note that the support for figured bass is limited. The double
-            # flat -- is taken as a lyric hyphen, and the end of <5-> is
-            # interpreted as -> (an accent with neutral direction). _+ and _!
-            # are also misinterpreted as articulations. Finally, \\ is the voice
-            # separator.
+            (r"([\-_^]?\\)?(-|[^\W\d])*[^\W\d_]", Token.Name),
 
             # Virtually everything can appear in markup mode, so we highlight
             # as text.
