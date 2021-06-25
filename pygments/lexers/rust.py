@@ -216,7 +216,7 @@ class RustLexer(RegexLexer):
         ],
         'attribute[': [
             include('attribute_common'),
-            (r'\];?', Comment.Preproc, '#pop'),
+            (r'\]', Comment.Preproc, '#pop'),
             (r'[^"\]\[]+', Comment.Preproc),
         ],
     }
