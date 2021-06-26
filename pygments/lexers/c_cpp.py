@@ -42,8 +42,8 @@ class CFamilyLexer(RegexLexer):
     _intsuffix = r'(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?'
 
     # Identifier regex with C and C++ Universal Character Name (UCN) support.
-    _ident = r'(?:[a-zA-Z_$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})*'
-    _namespaced_ident = r'(?:[a-zA-Z_$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|::)*'
+    _ident = r'(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})+'
+    _namespaced_ident = r'(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|::)+'
 
     tokens = {
         'whitespace': [
