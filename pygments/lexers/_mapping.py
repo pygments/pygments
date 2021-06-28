@@ -439,7 +439,7 @@ LEXERS = {
     'SqlLexer': ('pygments.lexers.sql', 'SQL', ('sql',), ('*.sql',), ('text/x-sql',)),
     'SqliteConsoleLexer': ('pygments.lexers.sql', 'sqlite3con', ('sqlite3',), ('*.sqlite3-console',), ('text/x-sqlite3-console',)),
     'SquidConfLexer': ('pygments.lexers.configs', 'SquidConf', ('squidconf', 'squid.conf', 'squid'), ('squid.conf',), ('text/x-squidconf',)),
-    'SshConfigLexer': ('pygments.lexers.ssh', 'SSH client config', ('ssh_config',), ('ssh_config', 'config'), ()),
+    'SshConfigLexer': ('pygments.lexers.ssh', 'SSH client config', ('ssh_config',), ('ssh_config',), ()),
     'SshdConfigLexer': ('pygments.lexers.ssh', 'SSH server config', ('sshd_config',), ('sshd_config',), ()),
     'SspLexer': ('pygments.lexers.templates', 'Scalate Server Page', ('ssp',), ('*.ssp',), ('application/x-ssp',)),
     'StanLexer': ('pygments.lexers.modeling', 'Stan', ('stan',), ('*.stan',), ()),

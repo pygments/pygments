@@ -137,7 +137,7 @@ class SshConfigLexer(RegexLexer):
     """
     name = 'SSH client config'
     aliases = ['ssh_config']
-    filenames = ['ssh_config', 'config']
+    filenames = ['ssh_config']
 
     tokens = {
         'root': [
