@@ -31,7 +31,7 @@ class IniLexer(RegexLexer):
 
     name = 'INI'
     aliases = ['ini', 'cfg', 'dosini']
-    filenames = ['*.ini', '*.cfg', '*.inf']
+    filenames = ['*.ini', '*.cfg', '*.inf', '*.service']
     mimetypes = ['text/x-ini', 'text/inf']
 
     tokens = {
