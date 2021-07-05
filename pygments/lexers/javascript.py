@@ -141,8 +141,8 @@ class TypeScriptLexer(JavascriptLexer):
 
     name = 'TypeScript'
     aliases = ['typescript', 'ts']
-    filenames = ['*.ts', '*.tsx']
-    mimetypes = ['text/x-typescript']
+    filenames = ['*.ts']
+    mimetypes = ['application/x-typescript', 'text/x-typescript']
 
     # Higher priority than the TypoScriptLexer, as TypeScript is far more
     # common these days
@@ -152,7 +152,7 @@ class TypeScriptLexer(JavascriptLexer):
         'root': [
             (r'(abstract|implements|private|protected|public|readonly)\b',
                 Keyword, 'slashstartsregex'),
-            (r'(enum|interface)\b', Keyword.Declaration, 'slashstartsregex'),
+            (r'(enum|interface|override)\b', Keyword.Declaration, 'slashstartsregex'),
             (r'\b(declare|type)\b', Keyword.Reserved),
             # Match variable type keywords
             (r'\b(string|boolean|number)\b', Keyword.Type),
