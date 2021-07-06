@@ -84,13 +84,13 @@ class LilyPondLexer(SchemeLexer):
             (r"\s+", Token.Whitespace),
 
             # Multi-line comment. These are non-nestable.
-            (r"%{.*?%}", Token.Comment.Multiline),
+            (r"%\{.*?%\}", Token.Comment.Multiline),
 
             # Simple comment.
             (r"%.*?$", Token.Comment),
 
             # End of embedded LilyPond in Scheme.
-            (r"#}", Token.Punctuation, "#pop"),
+            (r"#\}", Token.Punctuation, "#pop"),
 
             # Embedded Scheme, starting with # ("delayed"),
             # or $ (immediate). #@ and and $@ are the lesser known
@@ -177,7 +177,7 @@ class LilyPondLexer(SchemeLexer):
         "value": [
             # Scan a LilyPond value, then pop back since we had a
             # complete expression.
-            (r"#{", Token.Punctuation, ("#pop", "root")),
+            (r"#\{", Token.Punctuation, ("#pop", "root")),
             inherit,
         ]
     }
