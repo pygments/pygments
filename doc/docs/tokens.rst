@@ -306,6 +306,12 @@ Punctuation
 `Punctuation`
     For any punctuation which is not an operator (e.g. ``[``, ``(``...)
 
+`Punctuation.Marker`
+    For markers that point to a location (e.g., carets in Python
+    tracebacks for syntax errors).
+
+    .. versionadded:: 2.10
+
 
 Comments
 ========
