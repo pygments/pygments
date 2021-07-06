@@ -1,75 +1,80 @@
 '\\version'   Keyword
-' '           Whitespace
+' '           Text
 '"2.23.3"'    Literal.String
-'\n\n'        Whitespace
+'\n\n'        Text
 
 "% This is a test file for Pygments' LilyPond support. To compile" Comment
-'\n'          Whitespace
+'\n'          Text
 
 '% it with Guile 1 (as in official releases as of this writing),' Comment
-'\n'          Whitespace
+'\n'          Text
 
 '% remove the "commented form" below.' Comment
-'\n\n'        Whitespace
+'\n\n'        Text
 
 '%{\n  All supported constructs are covered in\n  this file.  For example, multi-line comments.\n\n  These are non-nested. The following will\n  end the whole comment:\n  %{ %}' Comment.Multiline
-'\n\n'        Whitespace
+'\n\n'        Text
 
 '\\header'    Keyword
-' '           Whitespace
+' '           Text
 '{'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text
 'title'       Name.Builtin.HeaderVariable
-' '           Whitespace
+' '           Text
 '='           Punctuation
-' '           Whitespace
+' '           Text
 '"This is an assignment to a string."' Literal.String
-'\n  '        Whitespace
+'\n  '        Text
 'composer'    Name.Builtin.HeaderVariable
-' '           Whitespace
+' '           Text
 '='           Punctuation
-' '           Whitespace
-'\\markup'    Keyword
-' '           Whitespace
+' '           Text
+'\\markup'    Name.Builtin.MarkupCommand
+' '           Text
 '\\smallCaps' Name.Builtin.MarkupCommand
-' '           Whitespace
+' '           Text
 '"And this is a markup"' Literal.String
-'\n'          Whitespace
+'\n'          Text
 
 '}'           Punctuation
-'\n'          Whitespace
+'\n'          Text
 
 '% The following is just a comment.' Comment
-'\n'          Whitespace
+'\n'          Text
 
 '%}'          Comment
-'\n\n'        Whitespace
+'\n\n'        Text
 
 '\\paper'     Keyword
-' '           Whitespace
+' '           Text
 '{'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text
 'indent'      Name.Builtin.PaperVariable
-' '           Whitespace
+' '           Text
 '='           Punctuation
-' '           Whitespace
+' '           Text
 '30'          Literal.Number
 '\\staff-space' Literal.Number
-'\n  '        Whitespace
+'\n  '        Text
 'page-count'  Name.Builtin.PaperVariable
-' '           Whitespace
+' '           Text
 '='           Punctuation
-' '           Whitespace
+' '           Text
 '1'           Literal.Number
-'\n'          Whitespace
+'\n'          Text
 
 '}'           Punctuation
-'\n\n'        Whitespace
+'\n\n'        Text
 
-'myFunc'      Name
-' '           Whitespace
+'m'           Text
+'y'           Text
+'F'           Text
+'u'           Text
+'n'           Text
+'c'           Pitch
+' '           Text
 '='           Punctuation
-'\n'          Whitespace
+'\n'          Text
 
 '#'           Punctuation
 ' '           Text
@@ -129,12 +134,23 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Whitespace
+'\n\n'        Text
 
-'mySecondFunc' Name
-' '           Whitespace
+'m'           Text
+'y'           Text
+'S'           Text
+'e'           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'d'           Text
+'F'           Text
+'u'           Text
+'n'           Text
+'c'           Pitch
+' '           Text
 '='           Punctuation
-'\n'          Whitespace
+'\n'          Text
 
 '#'           Punctuation
 '('           Punctuation
@@ -149,17 +165,17 @@
 ')'           Punctuation
 '\n   '       Text
 '#{'          Punctuation
-'\n     '     Whitespace
+'\n     '     Text
 '% LilyPond syntax here.' Comment
-'\n     '     Whitespace
+'\n     '     Text
 '\\compressMMRests' Name.Builtin.MusicFunction
-'\n       '   Whitespace
+'\n       '   Text
 '\\shiftDurations' Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text
 '-2'          Literal.Number
-' '           Whitespace
+' '           Text
 '1'           Literal.Number
-'\n        '  Whitespace
+'\n        '  Text
 '#'           Punctuation
 ' '           Text
 '; Scheme syntax again.' Comment.Single
@@ -169,267 +185,296 @@
 ' '           Text
 'music'       Name.Variable
 ')'           Punctuation
-'\n   '       Whitespace
+'\n   '       Text
 '#}'          Punctuation
 ')'           Punctuation
-'\n\n'        Whitespace
+'\n\n'        Text
 
-'myPitch'     Name
-' '           Whitespace
+'m'           Text
+'y'           Text
+'P'           Text
+'i'           Text
+'t'           Text
+'c'           Text
+'h'           Pitch
+' '           Text
 '='           Punctuation
-' '           Whitespace
+' '           Text
 '#'           Punctuation
 '#{'          Punctuation
-' '           Whitespace
+' '           Text
 'c'           Pitch
-' '           Whitespace
+' '           Text
 '#}'          Punctuation
-'\n\n'        Whitespace
+'\n\n'        Text
 
 '% Here we should be back to LilyPond mode. This' Comment
-'\n'          Whitespace
+'\n'          Text
 
 '% is a LilyPond comment.' Comment
-'\n\n'        Whitespace
+'\n\n'        Text
 
 '<'           Punctuation
 '<'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text
 '\\new'       Keyword
-' '           Whitespace
+' '           Text
 'Staff'       Name.Builtin.Context
-' '           Whitespace
+' '           Text
 '\\with'      Keyword
-' '           Whitespace
+' '           Text
 '{'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text
 '\\consists'  Keyword
-' '           Whitespace
+' '           Text
 'Duration_line_engraver' Name.Builtin.Translator
-'\n  '        Whitespace
+'\n  '        Text
 '}'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text
 '\\relative'  Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text
 "c'"          Pitch
-' '           Whitespace
+' '           Text
 '{'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text
 '\\clef'      Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text
 'alto'        Name.Builtin.Clef
-'\n    '      Whitespace
+'\n    '      Text
 '\\time'      Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text
 '6'           Literal.Number
 '/'           Literal.Number
 '8'           Literal.Number
-'\n    '      Whitespace
+'\n    '      Text
 '\\key'       Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text
 'd'           Pitch
-' '           Whitespace
+' '           Text
 '\\major'     Name.Builtin.Scale
-'\n    '      Whitespace
+'\n    '      Text
 '\\cadenzaOn' Name.Builtin.MusicCommand
-'\n    '      Whitespace
+'\n    '      Text
 "deses'!"     Pitch
 '4.'          Literal.Number
 '~'           Name.Builtin.Articulation
 '('           Name.Builtin.Articulation
-'\\tweak'     Keyword
-' '           Whitespace
+'\\tweak'     Name.Builtin.MusicFunction
+' '           Text
 'thickness'   Name.Builtin.GrobProperty
-' '           Whitespace
+' '           Text
 '4'           Literal.Number
 '\\('         Name.Builtin.Articulation
-' '           Whitespace
+' '           Text
 'deses'       Pitch
-'^\\p'        Name.Builtin.Dynamic
-'-\\signumcongruentiae' Name.Builtin.Articulation
+'^\\p'        Name.BackslashReference
+'-\\signumcongruentiae' Name.BackslashReference
 '_1'          Name.Builtin.Articulation
 '\\4'         Name.Builtin.Articulation
-'\n    '      Whitespace
+'\n    '      Text
 'deses'       Pitch
 '\\longa'     Literal.Number
 ')'           Name.Builtin.Articulation
-' '           Whitespace
+' '           Text
 '\\myFunc'    Name.BackslashReference
-' '           Whitespace
+' '           Text
 '{'           Punctuation
-' '           Whitespace
+' '           Text
 'r'           Pitch
-' '           Whitespace
+' '           Text
 '}'           Punctuation
-' '           Whitespace
+' '           Text
 '4'           Literal.Number
-' '           Whitespace
+' '           Text
 'des'         Pitch
 '8'           Literal.Number
-' '           Whitespace
+' '           Text
 '8'           Literal.Number
 '['           Name.Builtin.Articulation
-' '           Whitespace
+' '           Text
 '<'           Punctuation
 'des'         Pitch
-' '           Whitespace
+' '           Text
 'ges'         Pitch
 '>'           Punctuation
 '8'           Literal.Number
 ']'           Name.Builtin.Articulation
 '\\)'         Name.Builtin.Articulation
-'\n    '      Whitespace
+'\n    '      Text
 '\\bar'       Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text
 '"||"'        Literal.String
-'\n    '      Whitespace
+'\n    '      Text
 '\\cadenzaOff' Name.Builtin.MusicCommand
-'\n    '      Whitespace
-'\\once'      Keyword
-' '           Whitespace
+'\n    '      Text
+'\\once'      Name.Builtin.MusicFunction
+' '           Text
 '\\hide'      Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text
 'NoteHead'    Name.Builtin.Grob
-'\n    '      Whitespace
-'\\once'      Keyword
-' '           Whitespace
-'\\override'  Keyword
-' '           Whitespace
+'\n    '      Text
+'\\once'      Name.Builtin.MusicFunction
+' '           Text
+'\\override'  Name.Builtin.MusicFunction
+' '           Text
 'NoteHead'    Name.Builtin.Grob
 '.'           Punctuation
 'no-ledgers'  Name.Builtin.GrobProperty
-' '           Whitespace
+' '           Text
 '='           Punctuation
-' '           Whitespace
+' '           Text
 '#'           Punctuation
 '#t'          Name.Constant
-'\n    '      Whitespace
-'\\once'      Keyword
-' '           Whitespace
+'\n    '      Text
+'\\once'      Name.Builtin.MusicFunction
+' '           Text
 '\\omit'      Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text
 'Dots'        Name.Builtin.Grob
-'\n    '      Whitespace
-'\\once'      Keyword
-' '           Whitespace
-'\\override'  Keyword
-' '           Whitespace
+'\n    '      Text
+'\\once'      Name.Builtin.MusicFunction
+' '           Text
+'\\override'  Name.Builtin.MusicFunction
+' '           Text
 'Staff'       Name.Builtin.Context
 '.'           Punctuation
 'DurationLine' Name.Builtin.Grob
 '.'           Punctuation
 'thickness'   Name.Builtin.GrobProperty
-' '           Whitespace
+' '           Text
 '='           Punctuation
-' '           Whitespace
+' '           Text
 '#'           Punctuation
 '5'           Literal.Number.Integer
-'\n    '      Whitespace
+'\n    '      Text
 "c''?"        Pitch
 '2.'          Literal.Number
 ':'           Punctuation
 '16'          Literal.Number
 '\\-'         Name.Builtin.Articulation
 '^"Some music"' Literal.String
-' '           Whitespace
+' '           Text
 '|'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text
 '\\mySecondFunc' Name.BackslashReference
-'\n      '    Whitespace
+'\n      '    Text
 'R'           Pitch
 '1'           Literal.Number
 '*'           Literal.Number
 '1'           Literal.Number
 '/'           Literal.Number
 '2'           Literal.Number
-'^\\markup'   Keyword
-' '           Whitespace
+'^\\markup'   Name.Builtin.MarkupCommand
+' '           Text
 '\\center-column' Name.Builtin.MarkupCommand
-' '           Whitespace
+' '           Text
 '{'           Punctuation
-'\n               ' Whitespace
-'Some'        Name
-'\n               ' Whitespace
-'Text'        Name
-'\n               ' Whitespace
-'In'          Name
-'\n               ' Whitespace
-'A'           Name
-'\n               ' Whitespace
+'\n               ' Text
+'S'           Text
+'o'           Text
+'m'           Text
+'e'           Pitch
+'\n               ' Text
+'T'           Text
+'e'           Text
+'x'           Text
+'t'           Text
+'\n               ' Text
+'I'           Text
+'n'           Text
+'\n               ' Text
+'A'           Text
+'\n               ' Text
 '\\bold'      Name.Builtin.MarkupCommand
-' '           Whitespace
+' '           Text
 '\\italic'    Name.Builtin.MarkupCommand
-' '           Whitespace
-'Column'      Name
+' '           Text
+'C'           Text
+'o'           Text
+'l'           Text
+'u'           Text
+'m'           Text
+'n'           Text
 '!'           Text
-'\n               ' Whitespace
-'super'       Name
-' '           Whitespace
+'\n               ' Text
+'s'           Text
+'u'           Text
+'p'           Text
+'e'           Text
+'r'           Pitch
+' '           Text
 '% not highlighted as a markup command' Comment
-'\n             ' Whitespace
+'\n             ' Text
 '}'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text
 '\\repeat'    Name.Builtin.MusicFunction
-' '           Whitespace
+' '           Text
 'unfold'      Name.Builtin.RepeatType
-' '           Whitespace
+' '           Text
 '4'           Literal.Number
-' '           Whitespace
+' '           Text
 '{'           Punctuation
-' '           Whitespace
+' '           Text
 'c'           Pitch
 '8'           Literal.Number
 '\\<'         Name.Builtin.Dynamic
-' '           Whitespace
+' '           Text
 'c'           Pitch
 '^\\>'        Name.Builtin.Dynamic
-' '           Whitespace
+' '           Text
 'c'           Pitch
 '\\p'         Name.Builtin.Dynamic
 '\\!'         Name.Builtin.Dynamic
-' '           Whitespace
+' '           Text
 '}'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text
 '}'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text
 '\\addlyrics' Keyword
-' '           Whitespace
+' '           Text
 '{'           Punctuation
-'\n    '      Whitespace
-'\\set'       Keyword
-' '           Whitespace
+'\n    '      Text
+'\\set'       Name.Builtin.MusicFunction
+' '           Text
 'Score'       Name.Builtin.Context
 '.'           Punctuation
 'melismaBusyProperties' Name.Builtin.ContextProperty
-' '           Whitespace
+' '           Text
 '='           Punctuation
-' '           Whitespace
+' '           Text
 '#'           Punctuation
 "'"           Operator
 '('           Punctuation
 ')'           Punctuation
-'\n    '      Whitespace
-'My'          Name
-' '           Whitespace
-'Lily'        Name
-' '           Whitespace
+'\n    '      Text
+'M'           Text
+'y'           Text
+' '           Text
+'L'           Text
+'i'           Text
+'l'           Text
+'y'           Text
+' '           Text
 '--'          Punctuation
-' '           Whitespace
-'Song'        Name
-'\n  '        Whitespace
+' '           Text
+'S'           Text
+'o'           Text
+'n'           Text
+'g'           Pitch
+'\n  '        Text
 '}'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text
 '\\chordmode' Keyword
-' '           Whitespace
+' '           Text
 '{'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text
 'c'           Pitch
-' '           Whitespace
+' '           Text
 'cis'         Pitch
 ':'           Punctuation
 '3'           Literal.Number
 '+'           Literal.Number
-' '           Whitespace
+' '           Text
 'des'         Pitch
 ':'           Punctuation
 'maj'         Literal.Number
@@ -437,44 +482,44 @@
 '/'           Literal.Number
 '+'           Literal.Number
 'e'           Pitch
-'\n  '        Whitespace
+'\n  '        Text
 '}'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text
 '\\new'       Keyword
-' '           Whitespace
+' '           Text
 'TabVoice'    Name.Builtin.Context
-' '           Whitespace
+' '           Text
 '{'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text
 "f'"          Pitch
 '4'           Literal.Number
 '\\^'         Name.Builtin.Articulation
-' '           Whitespace
+' '           Text
 "g'"          Pitch
 '4'           Literal.Number
 '\\^'         Name.Builtin.Articulation
-' '           Whitespace
+' '           Text
 "f'"          Pitch
 '2'           Literal.Number
-'\n  '        Whitespace
+'\n  '        Text
 '}'           Punctuation
-'\n  '        Whitespace
+'\n  '        Text
 '\\drums'     Keyword
-' '           Whitespace
+' '           Text
 '{'           Punctuation
-'\n    '      Whitespace
+'\n    '      Text
 'hihat'       Pitch
 '4'           Literal.Number
-' '           Whitespace
+' '           Text
 'hh'          Pitch
-' '           Whitespace
+' '           Text
 'bassdrum'    Pitch
-' '           Whitespace
+' '           Text
 'bd'          Pitch
-'\n  '        Whitespace
+'\n  '        Text
 '}'           Punctuation
-'\n'          Whitespace
+'\n'          Text
 
 '>'           Punctuation
 '>'           Punctuation
-'\n'          Whitespace
+'\n'          Text
