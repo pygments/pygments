@@ -5,7 +5,7 @@
 
     Lexer for LilyPond.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -26,40 +26,19 @@ from pygments.token import Token
 
 __all__ = ["LilyPondLexer"]
 
-words_token_definitions = [
-    (keywords, Token.Keyword),
-    (clefs, Token.Name.Builtin.Clef),
-    (scales, Token.Name.Builtin.Scale),
-    (repeat_types, Token.Name.Builtin.RepeatType),
-    (music_functions, Token.Name.Builtin.MusicFunction),
-    (dynamics, Token.Name.Builtin.Dynamic),
-    (articulations, Token.Name.Builtin.Articulation),
-    (music_commands, Token.Name.Builtin.MusicCommand),
-    (markup_commands, Token.Name.Builtin.MarkupCommand),
-    (grobs, Token.Name.Builtin.Grob),
-    (translators, Token.Name.Builtin.Translator),
-    (contexts, Token.Name.Builtin.Context),
-    (context_properties, Token.Name.Builtin.ContextProperty),
-    (grob_properties, Token.Name.Builtin.GrobProperty),
-    (paper_variables, Token.Name.Builtin.PaperVariable),
-    (header_variables, Token.Name.Builtin.HeaderVariable),
-]
 
-word_token_dict = {}
-# Walk in reversed order: keywords have priority above everything else.
-for word_list, token in reversed(words_token_definitions):
-    word_token_dict.update({w: token for w in word_list})
+def builtin_words_with_prefix(names, prefix):
+    return words(names, prefix, suffix=r"(?!-|[^\W\d])")
 
-# Avoid highlighting, e.g., "sub" in lyrics as if it were
-# a markup command.
-need_backslash = [
-    Token.Keyword,
-    Token.Name.Builtin.MusicFunction,
-    Token.Name.Builtin.Dynamic,
-    Token.Name.Builtin.Articulation,
-    Token.Name.Builtin.MusicCommand,
-    Token.Name.Builtin.MarkupCommand,
-]
+def builtin_backslashed_words(names):
+    return builtin_words_with_prefix(names, prefix=r"[\-_^]?\\")
+
+def builtin_words(names):
+    # Backslashes are always allowed.  This is because you can often
+    # find a context where the form with the backslash will do something
+    # useful, for example:
+    # \layout { \context { \Score ... } }
+    return builtin_words_with_prefix(names, prefix=r"[\-_^]?\\?")
 
 class LilyPondLexer(SchemeLexer):
     """
@@ -84,35 +63,15 @@ class LilyPondLexer(SchemeLexer):
     # lexical modes. Instead, it catches the most frequent pieces
     # of syntax, and, above all, knows about many kinds of builtins.
 
-    # TODO: \lyricmode could be recognized though.
-
     # In order to parse embedded Scheme, this lexer subclasses the SchemeLexer.
     # It redefines the 'root' state entirely, and adds a rule for #{ #}
     # to the 'value' state. The latter is used to parse a Scheme expression
     # after #.
 
     def get_tokens_unprocessed(self, text):
-        """Resolve all kinds of builtin names."""
+        """Highlight Scheme variables as LilyPond builtins when applicable."""
         for index, token, value in super().get_tokens_unprocessed(text):
-            if token is Token.Name:
-                match = re.match(r"[\-^_]?(\\?)(.*)", value)
-                word = match.group(2)
-                try:
-                    token = word_token_dict[word]
-                except KeyError:
-                    if match.group(1):
-                        # \something, a variable or a call to a function
-                        # of some kind (music, markup, void, etc.).
-                        token = Token.Name.BackslashReference
-                    else:
-                        # Perhaps the left-hand-side of an assignment.
-                        token = Token.Name
-                else:
-                    # Avoid highlighting something like "super" (without backslash)
-                    # in lyrics as a markup command.
-                    if not match.group(1) and token in need_backslash:
-                        token = Token.Name
-            elif token is Token.Name.Function or token is Token.Name.Variable:
+            if token is Token.Name.Function or token is Token.Name.Variable:
                 if value in scheme_functions:
                     token = Token.Name.Builtin.SchemeFunction
             elif token is Token.Name.Builtin:
@@ -177,34 +136,39 @@ class LilyPondLexer(SchemeLexer):
             # respective number, so we highlight as number too.
             (r"((m|dim|aug|maj)(?=\d|\W))|/|[+]", Token.Number),
 
-            # Ties.
-            (r"~", Token.Name.Builtin.Articulation),
-
-            # Other common articulations: slurs, phrasing slurs, manual beams,
-            # ligature brackets.
-            (r"[\-_^]?\\?[()[\]]", Token.Name.Builtin.Articulation),
+            # Ties, slurs, manual beams.
+            (r"[~()[\]]", Token.Name.Builtin.Articulation),
 
             # Predefined articulation shortcuts. A direction specifier is
             # required here.
             (r"[\-_^][>^_!.\-+]", Token.Name.Builtin.Articulation),
 
-            # Other articulations whose name is not alphabetic.
-            (r"[\-_^]?\\[\-^]", Token.Name.Builtin.Articulation),
-
-            # One music function whose name is not alphabetic.
-            (r"\\=", Token.Name.Builtin.MusicFunction),
-
-            # Dynamics whose name is not alphabetic.
-            (r"[\-_^]?\\[<>!]", Token.Name.Builtin.Dynamic),
-
             # Fingering numbers, string numbers.
             (r"[\-_^]?\\?\d+", Token.Name.Builtin.Articulation),
 
-            # Any name or unquoted string, possibly referenced via the backslash,
-            # possibly preceded with a direction specifier. Let
-            # get_tokens_unprocessed() recognize builtins. [^\W\d_] with
-            # re.UNICODE is a trick to match any Unicode letter or underscore.
-            (r"([\-_^]?\\)?(-|[^\W\d])*[^\W\d_]", Token.Name),
+            # Builtins.
+            (builtin_backslashed_words(keywords), Token.Keyword),
+            (builtin_words(clefs), Token.Name.Builtin.Clef),
+            (builtin_words(scales), Token.Name.Builtin.Scale),
+            (builtin_words(repeat_types), Token.Name.Builtin.RepeatType),
+            (builtin_backslashed_words(music_functions), Token.Name.Builtin.MusicFunction),
+            (builtin_backslashed_words(dynamics), Token.Name.Builtin.Dynamic),
+            (builtin_backslashed_words(articulations), Token.Name.Builtin.Articulation),
+            (builtin_backslashed_words(music_commands), Token.Name.Builtin.MusicCommand),
+            (builtin_backslashed_words(markup_commands), Token.Name.Builtin.MarkupCommand),
+            (builtin_words(grobs), Token.Name.Builtin.Grob),
+            (builtin_words(translators), Token.Name.Builtin.Translator),
+            (builtin_words(contexts), Token.Name.Builtin.Context),
+            (builtin_words(context_properties), Token.Name.Builtin.ContextProperty),
+            (builtin_words(grob_properties), Token.Name.Builtin.GrobProperty),
+            (builtin_words(paper_variables), Token.Name.Builtin.PaperVariable),
+            (builtin_words(header_variables), Token.Name.Builtin.HeaderVariable),
+
+            # Other backslashed-escaped names (like dereferencing a
+            # music variable.)  Dashes (as in markup commands) and underscores
+            # (as in engravers) are allowed, but not at the end, to avoid
+            # matching the direction specifier of the next element.
+            (r"[\-_^]?\\(-|[^\W\d])*[^\W\d_]", Token.Name.BackslashReference),
 
             # Virtually everything can appear in markup mode, so we highlight
             # as text.

@@ -28,26 +28,29 @@
 
 #(format port "~a" output-preamble)
 
-% We don't want builtins with special characters in this list since
-% matching them as names in the lexer could cause problems. For example,
-% \= is not included, because accepting ^ in names would cause the =
-% in \set tieWaitForNote=##t to be potentially consumed.
-% So we exclude them here and list them exhaustively in the lexer.
-#(define valid-regexp (make-regexp "^[-_:?!>a-zA-Z]+$"))
-
 #(define (dump-py-list name vals)
    (let* ((string-vals
             (map symbol->string vals))
-          (filtered-vals
-            (filter
-              (lambda (val)
-                (regexp-exec valid-regexp val))
+          (fixed-vals
+            (filter-map
+              (lambda (str)
+                ; To avoid conflicts with Scheme builtins,
+                ; a leading backslash is prepended to \<,
+                ; \= and a few others. The lexer finds it
+                ; itself, so remove it here.
+                (cond
+                  ((equal? str "\\\\")
+                   #f)
+                  ((string-startswith str "\\")
+                   (string-drop str 1))
+                  (else
+                   str)))
               string-vals))
           (sorted-vals ; reproducibility
             ; Avoid duplicates (e.g., identical pitches
             ; in different languages)
             (uniq-list
-              (sort filtered-vals string<?)))
+              (sort fixed-vals string<?)))
           (formatted-vals
             (map
               (lambda (val)
@@ -105,26 +108,12 @@
       book
       bookpart
       score
-      markup
-      markuplist
-      ; Commands setting properties.  Even though some
-      ; are actually music functions, they are important
-      ; enough that we want to view them as keywords.
-      set
-      unset
-      override
-      revert
-      tweak
-      once
-      undo
-      temporary
       ; Other.
       new
       etc
       include
       language
       version))
-
 
 #(dump-py-list 'keywords keywords)
 
@@ -177,7 +166,15 @@
 
 % View these as music functions.
 #(define extra-music-functions
-   '(repeat
+   '(set
+     unset
+     override
+     revert
+     tweak
+     once
+     undo
+     temporary
+     repeat
      alternative
      tempo
      change))
@@ -237,8 +234,11 @@
               (let* ((string-name (symbol->string (car entry)))
                      (match (regexp-exec markup-name-regexp string-name)))
                 (string->symbol (match:substring match 1))))
-            markup-commands)))
-   (dump-py-list 'markup_commands markup-command-names))
+            markup-commands))
+        (markup-words
+          (append '(markup markuplist)
+                  markup-command-names)))
+   (dump-py-list 'markup_commands markup-words))
 
 %% GROBS
 

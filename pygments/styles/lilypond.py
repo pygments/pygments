@@ -22,7 +22,7 @@ class LilypondStyle(Style):
         Token.Keyword: "bold",
         Token.Comment: "italic #A3AAB2",
         Token.String: "#C7290A",
-        Token.Pitch: "#911520",
+        ### Token.Pitch: "#911520",
         Token.Number: "#976806", # also durations and chord modifiers
         Token.ChordModifier: "#C0870E",
         Token.Name.BackslashReference: "bold #08547A",
