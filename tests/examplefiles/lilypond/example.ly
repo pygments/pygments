@@ -12,6 +12,8 @@
   end the whole comment:
   %{ %}
 
+\include "lilypond-book-preamble.ly"
+
 \header {
   title = "This is an assignment to a string."
   composer = \markup \smallCaps "And this is a markup"
@@ -42,10 +44,19 @@ mySecondFunc =
          (ly:music-deep-copy music)
    #})
 
+#(define-markup-command (small-italic layout props arg) (markup?)
+   (interpret-markup layout props
+     (make-small-markup (make-italic-markup arg))))
+
 myPitch = ##{ c #}
 
 % Here we should be back to LilyPond mode. This
 % is a LilyPond comment.
+
+myVariable = c4
+piuPiano = \markup \italic "più piano"
+
+#(symbol->string 'some-symbol)
 
 <<
   \new Staff \with {
@@ -72,9 +83,10 @@ myPitch = ##{ c #}
                In
                A
                \bold \italic Column!
-               super % not highlighted as a markup command
+               \small-italic super
              }
     \repeat unfold 4 { c8\< c^\> c\p\! }
+    c^\piuPiano^\markup dolce
   }
   \addlyrics {
     \set Score.melismaBusyProperties = #'()

@@ -13,22 +13,20 @@ import re
 
 from pygments.lexer import inherit, words
 from pygments.lexers.lisp import SchemeLexer
-from pygments.lexers._lilypond_builtins import (keywords, clefs, scales,
-                                                repeat_types, pitches,
-                                                music_functions,
-                                                dynamics, articulations,
-                                                music_commands, markup_commands,
-                                                grobs, translators, contexts,
-                                                context_properties, grob_properties,
-                                                scheme_functions, paper_variables,
-                                                header_variables)
+from pygments.lexers._lilypond_builtins import (
+    keywords, clefs, scales, repeat_types, units, chord_modifiers, pitches,
+    music_functions, dynamics, articulations, music_commands, markup_commands,
+    grobs, translators, contexts, context_properties, grob_properties,
+    scheme_functions, paper_variables, header_variables
+)
 from pygments.token import Token
 
 __all__ = ["LilyPondLexer"]
 
+NAME_END_RE = r"(?=\d|[^\w\-]|[\-_][\W\d])"
 
 def builtin_words_with_prefix(names, prefix):
-    return words(names, prefix, suffix=r"(?!-|[^\W\d])")
+    return words(names, prefix, suffix=NAME_END_RE)
 
 def builtin_backslashed_words(names):
     return builtin_words_with_prefix(names, prefix=r"[\-_^]?\\")
@@ -118,23 +116,14 @@ class LilyPondLexer(SchemeLexer):
             # String, optionally with direction specifier.
             (r'[\-_^]?"(\\"|[^"])*"', Token.String),
 
+            # Numbers.
+            (r"-?\d+\.\d+", Token.Number.Float), # 5. and .5 are not allowed
+            (r"-?\d+/\d+", Token.Number.Fraction),
             # Integer, or duration with optional augmentation dots. We have no
             # way to distinguish these, so we highlight them all as numbers.
             (r"-?(\d+|\\longa|\\breve)\.*", Token.Number),
-
-            # Other numbers.
-            (r"-?\d+\.\d+", Token.Number.Float), # 5. and .5 are not allowed
-            (r"-?\d+/\d+", Token.Number.Fraction),
-
-            # Units.
-            (r"\\(mm|cm|in|pt|staff-space)", Token.Number),
-
             # Separates duration and duration multiplier highlighted as fraction.
             (r"\*", Token.Number),
-
-            # Chord modifiers. A bare 11 is not distinguishable from the
-            # respective number, so we highlight as number too.
-            (r"((m|dim|aug|maj)(?=\d|\W))|/|[+]", Token.Number),
 
             # Ties, slurs, manual beams.
             (r"[~()[\]]", Token.Name.Builtin.Articulation),
@@ -149,8 +138,10 @@ class LilyPondLexer(SchemeLexer):
             # Builtins.
             (builtin_backslashed_words(keywords), Token.Keyword),
             (builtin_words(clefs), Token.Name.Builtin.Clef),
-            (builtin_words(scales), Token.Name.Builtin.Scale),
+            (builtin_backslashed_words(scales), Token.Name.Builtin.Scale),
             (builtin_words(repeat_types), Token.Name.Builtin.RepeatType),
+            (builtin_backslashed_words(units), Token.Number),
+            (builtin_words(chord_modifiers), Token.ChordModifier),
             (builtin_backslashed_words(music_functions), Token.Name.Builtin.MusicFunction),
             (builtin_backslashed_words(dynamics), Token.Name.Builtin.Dynamic),
             (builtin_backslashed_words(articulations), Token.Name.Builtin.Articulation),
@@ -165,10 +156,12 @@ class LilyPondLexer(SchemeLexer):
             (builtin_words(header_variables), Token.Name.Builtin.HeaderVariable),
 
             # Other backslashed-escaped names (like dereferencing a
-            # music variable.)  Dashes (as in markup commands) and underscores
-            # (as in engravers) are allowed, but not at the end, to avoid
-            # matching the direction specifier of the next element.
-            (r"[\-_^]?\\(-|[^\W\d])*[^\W\d_]", Token.Name.BackslashReference),
+            # music variable), possibly with a direction specifier.
+            (r"[\-_^]?\\.+?" + NAME_END_RE, Token.Name.BackslashReference),
+
+            # Definition of a variable. Support assignments to alist keys
+            # (myAlist.my-key.my-nested-key = \markup \spam \eggs).
+            (r"([^\W\d]|-)+(?=([^\W\d]|[\-.])*\s*=)", Token.Name.Lvalue),
 
             # Virtually everything can appear in markup mode, so we highlight
             # as text.

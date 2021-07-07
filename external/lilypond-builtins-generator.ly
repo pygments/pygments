@@ -1,7 +1,5 @@
 %% Autogenerate a list of LilyPond keywords
 
-%% Usage: lilypond external/lilypond-builtins-generator.ly > pygments/lexers/_lilypond_builtins.py
-
 \version "2.23.3"
 
 #(use-modules (ice-9 receive)
@@ -145,6 +143,20 @@
    '(volta percent unfold))
 
 #(dump-py-list 'repeat_types all-repeat-types)
+
+%% UNITS
+
+#(define all-units
+   '(mm cm in pt staff-space))
+
+#(dump-py-list 'units all-units)
+
+%% CHORD MODIFIERS
+
+#(define all-chord-modifiers
+   '(m dim aug maj))
+
+#(dump-py-list 'chord_modifiers all-chord-modifiers)
 
 %% PITCHES
 
