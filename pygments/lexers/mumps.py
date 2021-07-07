@@ -31,7 +31,7 @@ class MumpsLexer(ExtendedRegexLexer):
     flags = re.IGNORECASE
 
     name_re = '[A-Za-z]+'
-    binaryop_re = '<'
+    binaryop_re = '[<=>]'
     unaryop_re = '[-+]'
 
     ## Regular expressions
@@ -61,20 +61,20 @@ class MumpsLexer(ExtendedRegexLexer):
         # 6.2.2 Formal line 'formalline'
         'formallist': [
             ('\\)', Punctuation, '#pop'),
-	    default('l_name'),
+            default('l_name'),
             ],
         # list of 'name' continuation
         'l_name': [
-	    #('(' + name_re + ')(,)', bygroups(Name.Variable, Punctuation)),
-	    ( name_re, Name.Variable, '#pop')
-	    ],
+            ('(' + name_re + ')(,)', bygroups(Name.Variable, Punctuation)),
+            ( name_re, Name.Variable, '#pop')
+            ],
         # 6.2.3 Label 'label'
         'label': [
             (name_re, Name.Label, '#pop'),
             ],
         # 6.2.5 - Line body 'linebody'
         'linebody': [
-	    (';.*', Comment, '#pop'),
+	        (';.*', Comment, '#pop'),
             default('commands'),
             ],
         'commands': [
