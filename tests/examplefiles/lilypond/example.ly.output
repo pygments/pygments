@@ -15,6 +15,11 @@
 '%{\n  All supported constructs are covered in\n  this file.  For example, multi-line comments.\n\n  These are non-nested. The following will\n  end the whole comment:\n  %{ %}' Comment.Multiline
 '\n\n'        Text
 
+'\\include'   Keyword
+' '           Text
+'"lilypond-book-preamble.ly"' Literal.String
+'\n\n'        Text
+
 '\\header'    Keyword
 ' '           Text
 '{'           Punctuation
@@ -66,12 +71,7 @@
 '}'           Punctuation
 '\n\n'        Text
 
-'m'           Text
-'y'           Text
-'F'           Text
-'u'           Text
-'n'           Text
-'c'           Pitch
+'myFunc'      Name.Lvalue
 ' '           Text
 '='           Punctuation
 '\n'          Text
@@ -136,18 +136,7 @@
 ')'           Punctuation
 '\n\n'        Text
 
-'m'           Text
-'y'           Text
-'S'           Text
-'e'           Text
-'c'           Text
-'o'           Text
-'n'           Text
-'d'           Text
-'F'           Text
-'u'           Text
-'n'           Text
-'c'           Pitch
+'mySecondFunc' Name.Lvalue
 ' '           Text
 '='           Punctuation
 '\n'          Text
@@ -190,13 +179,45 @@
 ')'           Punctuation
 '\n\n'        Text
 
-'m'           Text
-'y'           Text
-'P'           Text
-'i'           Text
-'t'           Text
-'c'           Text
-'h'           Pitch
+'#'           Punctuation
+'('           Punctuation
+'define-markup-command' Name.Builtin.SchemeFunction
+' '           Text
+'('           Punctuation
+'small-italic' Name.Function
+' '           Text
+'layout'      Name.Variable
+' '           Text
+'props'       Name.Variable
+' '           Text
+'arg'         Name.Variable
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'markup?'     Name.Builtin.SchemeFunction
+')'           Punctuation
+'\n   '       Text
+'('           Punctuation
+'interpret-markup' Name.Builtin.SchemeFunction
+' '           Text
+'layout'      Name.Variable
+' '           Text
+'props'       Name.Variable
+'\n     '     Text
+'('           Punctuation
+'make-small-markup' Name.Builtin.SchemeFunction
+' '           Text
+'('           Punctuation
+'make-italic-markup' Name.Builtin.SchemeFunction
+' '           Text
+'arg'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text
+
+'myPitch'     Name.Lvalue
 ' '           Text
 '='           Punctuation
 ' '           Text
@@ -212,6 +233,33 @@
 '\n'          Text
 
 '% is a LilyPond comment.' Comment
+'\n\n'        Text
+
+'myVariable'  Name.Lvalue
+' '           Text
+'='           Punctuation
+' '           Text
+'c'           Pitch
+'4'           Literal.Number
+'\n'          Text
+
+'piuPiano'    Name.Lvalue
+' '           Text
+'='           Punctuation
+' '           Text
+'\\markup'    Name.Builtin.MarkupCommand
+' '           Text
+'\\italic'    Name.Builtin.MarkupCommand
+' '           Text
+'"più piano"' Literal.String
+'\n\n'        Text
+
+'#'           Punctuation
+'('           Punctuation
+'symbol->string' Name.Variable
+' '           Text
+"'some-symbol" Literal.String.Symbol
+')'           Punctuation
 '\n\n'        Text
 
 '<'           Punctuation
@@ -243,9 +291,7 @@
 '\n    '      Text
 '\\time'      Name.Builtin.MusicFunction
 ' '           Text
-'6'           Literal.Number
-'/'           Literal.Number
-'8'           Literal.Number
+'6/8'         Literal.Number.Fraction
 '\n    '      Text
 '\\key'       Name.Builtin.MusicFunction
 ' '           Text
@@ -267,8 +313,8 @@
 '\\('         Name.Builtin.Articulation
 ' '           Text
 'deses'       Pitch
-'^\\p'        Name.BackslashReference
-'-\\signumcongruentiae' Name.BackslashReference
+'^\\p'        Name.Builtin.Dynamic
+'-\\signumcongruentiae' Name.Builtin.Articulation
 '_1'          Name.Builtin.Articulation
 '\\4'         Name.Builtin.Articulation
 '\n    '      Text
@@ -361,9 +407,7 @@
 'R'           Pitch
 '1'           Literal.Number
 '*'           Literal.Number
-'1'           Literal.Number
-'/'           Literal.Number
-'2'           Literal.Number
+'1/2'         Literal.Number.Fraction
 '^\\markup'   Name.Builtin.MarkupCommand
 ' '           Text
 '\\center-column' Name.Builtin.MarkupCommand
@@ -397,13 +441,13 @@
 'n'           Text
 '!'           Text
 '\n               ' Text
+'\\small-italic' Name.BackslashReference
+' '           Text
 's'           Text
 'u'           Text
 'p'           Text
 'e'           Text
 'r'           Pitch
-' '           Text
-'% not highlighted as a markup command' Comment
 '\n             ' Text
 '}'           Punctuation
 '\n    '      Text
@@ -427,6 +471,16 @@
 '\\!'         Name.Builtin.Dynamic
 ' '           Text
 '}'           Punctuation
+'\n    '      Text
+'c'           Pitch
+'^\\piuPiano' Name.BackslashReference
+'^\\markup'   Name.Builtin.MarkupCommand
+' '           Text
+'d'           Text
+'o'           Text
+'l'           Text
+'c'           Text
+'e'           Pitch
 '\n  '        Text
 '}'           Punctuation
 '\n  '        Text
@@ -473,14 +527,14 @@
 'cis'         Pitch
 ':'           Punctuation
 '3'           Literal.Number
-'+'           Literal.Number
+'+'           Text
 ' '           Text
 'des'         Pitch
 ':'           Punctuation
-'maj'         Literal.Number
+'maj'         ChordModifier
 '7'           Literal.Number
-'/'           Literal.Number
-'+'           Literal.Number
+'/'           Text
+'+'           Text
 'e'           Pitch
 '\n  '        Text
 '}'           Punctuation
