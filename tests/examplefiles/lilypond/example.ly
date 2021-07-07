@@ -54,6 +54,7 @@ myPitch = ##{ c #}
 % is a LilyPond comment.
 
 myVariable = c4
+myAlist.keyI.keyII = 55
 piuPiano = \markup \italic "più piano"
 
 #(symbol->string 'some-symbol)
