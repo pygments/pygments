@@ -30,8 +30,12 @@ class MumpsLexer(ExtendedRegexLexer):
     # For example, YottaDB would have the source file for "dmex" in "dmex.m"
     flags = re.IGNORECASE
 
+    # Definitions of groups that we implement as regular expressions
     name_re = '[A-Za-z]+'
-    binaryop_re = '[<=>]'
+    # 7.2.1 - binaryop
+    binaryop_re = '\\*\\*|[-_+*/\\\\#]'
+    # 7.2.2 - truthop
+    relation_re = '[<=>]' # 7.2.2.2 - relation
     unaryop_re = '[-+]'
 
     ## Regular expressions
@@ -121,7 +125,8 @@ class MumpsLexer(ExtendedRegexLexer):
         # 7.2 - exprtail
         'exprtail': [
             # TODO
-	    ( binaryop_re, Operator, 'expratom'),
+	        ( binaryop_re, Operator, 'expratom'),
+	        ( relation_re, Operator, 'expratom'),
             default('#pop')
             ],
         ###

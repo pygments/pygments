@@ -145,5 +145,34 @@ def test_compare(lexer):
             (Text, '\n'),
             ]
     assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_binaryops(lexer):
+    # Operators defined in 7.2.1
+    fragment = ' q 1_1+1/2-1*3#10**2\\3'
+    tokens = [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Number, '1'),
+            (Operator, '_'),
+            (Number, '1'),
+            (Operator, '+'),
+            (Number, '1'),
+            (Operator, '/'),
+            (Number, '2'),
+            (Operator, '-'),
+            (Number, '1'),
+            (Operator, '*'),
+            (Number, '3'),
+            (Operator, '#'),
+            (Number, '10'),
+            (Operator, '**'),
+            (Number, '2'),
+            (Operator, '\\'),
+            (Number, '3'),
+            (Text, '\n')
+            ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
     
 
