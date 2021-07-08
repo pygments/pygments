@@ -232,4 +232,16 @@ def test_stringcomp(lexer):
             ]
     assert list(lexer.get_tokens(fragment)) == tokens
     
+def test_string_contains(lexer):
+    fragment = ' q "ABC123\\-*""[]\'"[b'
+    tokens = [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (String, '"ABC123\\-*""[]\'"'),
+            (Operator, '['),
+            (Name.Variable, 'b'),
+            (Text, '\n')
+            ]
+    assert list(lexer.get_tokens(fragment)) == tokens
 

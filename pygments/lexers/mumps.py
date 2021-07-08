@@ -35,7 +35,7 @@ class MumpsLexer(ExtendedRegexLexer):
     # 7.2.1 - binaryop
     binaryop_re = '\\*\\*|[-_+*/\\\\#]'
     # 7.2.2 - truthop
-    relation_re = '\\]\\]|[<>=]' # 7.2.2.2 - relation
+    relation_re = '\\]\\]|[<>=\\[]' # 7.2.2.2 - relation
     unaryop_re = '[-+]'
 
     # Parsing states
@@ -116,7 +116,7 @@ class MumpsLexer(ExtendedRegexLexer):
             ],
         # 7.1.4.1 - String literal 'strlit'
         'strlit': [
-                ('""', String, '#pop'),
+                ('"(""|[^"])*"', String, '#pop'),
                 ],
 
         # 7.1.4.2 - Numeric literal 'numlit'
