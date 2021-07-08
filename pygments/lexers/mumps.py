@@ -35,7 +35,7 @@ class MumpsLexer(ExtendedRegexLexer):
     # 7.2.1 - binaryop
     binaryop_re = '\\*\\*|[-_+*/\\\\#]'
     # 7.2.2 - truthop
-    relation_re = '[<=>]' # 7.2.2.2 - relation
+    relation_re = '[<>]' # 7.2.2.2 - relation
     unaryop_re = '[-+]'
 
     ## Regular expressions

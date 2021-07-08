@@ -105,7 +105,7 @@ def test_simple_function(lexer):
     assert list(lexer.get_tokens(fragment)) == tokens
 
 def test_compare(lexer):
-    fragment = 'spaceship(left,right) ; Returns -1, 0, or 1 based on whether left is less than, equal to, or greater than the right value\n q:left=right 0\n q:left>right 1\n q -1'
+    fragment = 'spaceship(left,right) ; Returns -1, 0, or 1 based on whether left is less than, equal to, or greater than the right value\n q:left>right 1\n q:left<right -1\n q 0'
     tokens = [
             (Name.Function, 'spaceship'),
             (Punctuation, '('),
@@ -120,15 +120,6 @@ def test_compare(lexer):
             (Keyword, 'q'),
             (Operator, ':'),
             (Name.Variable, 'left'),
-            (Operator, '='),
-            (Name.Variable, 'right'),
-            (Whitespace, ' '),
-            (Number, '0'),
-            (Text, '\n'),
-            (Whitespace, ' '),
-            (Keyword, 'q'),
-            (Operator, ':'),
-            (Name.Variable, 'left'),
             (Operator, '>'),
             (Name.Variable, 'right'),
             (Whitespace, ' '),
@@ -136,12 +127,21 @@ def test_compare(lexer):
             (Text, '\n'),
             (Whitespace, ' '),
             (Keyword, 'q'),
+            (Operator, ':'),
+            (Name.Variable, 'left'),
+            (Operator, '<'),
+            (Name.Variable, 'right'),
             (Whitespace, ' '),
             # Per 7.1.4.2 - numlit - numbers do not start with a sign.
             # Therefore, negative numbers use the '-' operator...
             (Operator, '-'),
             # ...followed by a number
             (Number, '1'),
+            (Text, '\n'),
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Number, '0'),
             (Text, '\n'),
             ]
     assert list(lexer.get_tokens(fragment)) == tokens
