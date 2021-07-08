@@ -9,7 +9,7 @@
 
 import pytest
 
-from pygments.token import Whitespace, Keyword, Number, Operator, Text, Name, Punctuation, Comment
+from pygments.token import Whitespace, Keyword, Number, Operator, Text, Name, Punctuation, Comment, String
 from pygments.lexers import MumpsLexer
 
 @pytest.fixture(scope='module')
@@ -187,5 +187,40 @@ def test_stringcomp(lexer):
     fragment+= ' q:b="" a\n'
     fragment+= ' q:a]]b b\n'
     fragment+= ' q a'
+    tokens = [
+            (Name.Function, 'lowersub'),
+            (Punctuation, '('),
+            (Name.Variable, 'a'),
+            (Punctuation, ','),
+            (Name.Variable, 'b'),
+            (Punctuation, ')'),
+            (Whitespace, ' '),
+            (Comment, '; Gets the $ORDER-wise lower subscript'),
+            (Text, '\n'),
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Operator, ':'),
+            (Name.Variable, 'a'),
+            (Operator, '='),
+            (String, '""'),
+            (Whitespace, ' '),
+            (Name.Variable, 'b'),
+            (Text, '\n'),
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Operator, ':'),
+            (Name.Variable, 'a'),
+            (Operator, ']]'),
+            (Name.Variable, 'b'),
+            (Whitespace, ' '),
+            (Name.Variable, 'b'),
+            (Text, '\n'),
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable, 'a'),
+            (Text, '\n'),
+            ]
+    assert list(lexer.get_tokens(fragment)) == tokens
     
 
