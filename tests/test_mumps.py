@@ -75,8 +75,11 @@ def test_simple_function(lexer):
         ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
-def test_simple_function(lexer):
-    fragment = 'abs(value) ; Returns the absolute value of a value\n q:value<0 -value\n q +value'
+def test_arithmetic_unaryops(lexer):
+    # 7.1.4.11 - unaryop (just + and -)
+    fragment = 'abs(value) ; Returns the absolute value of a value\n'
+    fragment+= ' q:value<0 -value\n'
+    fragment+= ' q +value'
     tokens = [
         (Name.Function, 'abs'),
 	(Punctuation, '('),
@@ -105,7 +108,10 @@ def test_simple_function(lexer):
     assert list(lexer.get_tokens(fragment)) == tokens
 
 def test_compare(lexer):
-    fragment = 'spaceship(left,right) ; Returns -1, 0, or 1 based on whether left is less than, equal to, or greater than the right value\n q:left>right 1\n q:left<right -1\n q 0'
+    fragment = 'spaceship(left,right) ; Returns -1, 0, or 1 based on whether left is less than, equal to, or greater than the right value\n'
+    fragment+= ' q:left>right 1\n'
+    fragment+= ' q:left<right -1\n'
+    fragment+= ' q 0'
     tokens = [
             (Name.Function, 'spaceship'),
             (Punctuation, '('),
@@ -174,5 +180,12 @@ def test_binaryops(lexer):
             ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
+def test_stringcomp(lexer):
+    # Test string comparison operators in 7.2.2.3
+    fragment = 'lowersub(a,b) ; Gets the $ORDER-wise lower subscript\n'
+    fragment+= ' q:a="" b\n'
+    fragment+= ' q:b="" a\n'
+    fragment+= ' q:a]]b b\n'
+    fragment+= ' q a'
     
 
