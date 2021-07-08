@@ -246,3 +246,66 @@ def test_string_contains(lexer):
             ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
+def test_logicops(lexer):
+    assert list(lexer.get_tokens('and(a,b) q a&b')) == [
+            (Name.Function, 'and'),
+            (Punctuation, '('),
+            (Name.Variable, 'a'),
+            (Punctuation, ','),
+            (Name.Variable, 'b'),
+            (Punctuation, ')'),
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable, 'a'),
+            (Operator, '&'),
+            (Name.Variable, 'b'),
+            (Text, '\n')
+            ]
+    assert list(lexer.get_tokens('nand(a,b) q a\'&b')) == [
+            (Name.Function, 'nand'),
+            (Punctuation, '('),
+            (Name.Variable, 'a'),
+            (Punctuation, ','),
+            (Name.Variable, 'b'),
+            (Punctuation, ')'),
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable, 'a'),
+            (Operator, '\''),
+            (Operator, '&'),
+            (Name.Variable, 'b'),
+            (Text, '\n')
+            ]
+    assert list(lexer.get_tokens('or(a,b) q a!b')) == [
+            (Name.Function, 'or'),
+            (Punctuation, '('),
+            (Name.Variable, 'a'),
+            (Punctuation, ','),
+            (Name.Variable, 'b'),
+            (Punctuation, ')'),
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable, 'a'),
+            (Operator, '!'),
+            (Name.Variable, 'b'),
+            (Text, '\n')
+            ]
+    assert list(lexer.get_tokens('nor(a,b) q a&b')) == [
+            (Name.Function, 'nor'),
+            (Punctuation, '('),
+            (Name.Variable, 'a'),
+            (Punctuation, ','),
+            (Name.Variable, 'b'),
+            (Punctuation, ')'),
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable, 'a'),
+            (Operator, '\''),
+            (Operator, '!'),
+            (Name.Variable, 'b'),
+            (Text, '\n')
+            ]
