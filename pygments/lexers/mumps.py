@@ -11,7 +11,7 @@
 
 import re
 from pygments.lexer import ExtendedRegexLexer, words, bygroups, default, include
-from pygments.token import Whitespace, Keyword, Operator, Number, Name, Punctuation, Comment
+from pygments.token import Whitespace, Keyword, Operator, Number, Name, Punctuation, Comment, String
 
 __all__ = ['MumpsLexer']
 
@@ -35,10 +35,10 @@ class MumpsLexer(ExtendedRegexLexer):
     # 7.2.1 - binaryop
     binaryop_re = '\\*\\*|[-_+*/\\\\#]'
     # 7.2.2 - truthop
-    relation_re = '[<>]' # 7.2.2.2 - relation
+    relation_re = '\\]\\]|[<>=]' # 7.2.2.2 - relation
     unaryop_re = '[-+]'
 
-    ## Regular expressions
+    # Parsing states
     tokens = {
         'root': [
             ###
@@ -100,24 +100,29 @@ class MumpsLexer(ExtendedRegexLexer):
             include('glvn'),
             include('expritem'),
             ],
-	# 7.1.2 - Variable name 'glvn'
-	'glvn': [
-	    ( name_re, Name.Variable, '#pop'),
-	    ],
+    	# 7.1.2 - Variable name 'glvn'
+    	'glvn': [
+                ( name_re, Name.Variable, '#pop'),
+    	        ],
         # 7.1.4 - Expression item 'expritem'
         'expritem': [
-            #include('strlit'),
+            include('strlit'),
             include('numlit'),
             #include('exfunc'),
             #include('exvar'),
             include('svn'),
             #include('function'),
-	    ( unaryop_re, Operator, ('#pop', 'expratom')),
+            ( unaryop_re, Operator, ('#pop', 'expratom')),
             ],
+        # 7.1.4.1 - String literal 'strlit'
+        'strlit': [
+                ('""', String, '#pop'),
+                ],
+
         # 7.1.4.2 - Numeric literal 'numlit'
         'numlit': [
-            ('[0-9]+', Number, '#pop'),  
-            ],
+                ('[0-9]+', Number, '#pop'),  
+                ],
         # 7.1.4.10 - Intrinsic special variable names 'svn'
         'svn': [
             ('\\$QUIT', Keyword, '#pop'),
