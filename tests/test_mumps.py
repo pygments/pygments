@@ -183,8 +183,8 @@ def test_binaryops(lexer):
 def test_stringcomp(lexer):
     # Test string comparison operators in 7.2.2.3
     fragment = 'lowersub(a,b) ; Gets the $ORDER-wise lower subscript\n'
-    fragment+= ' q:a="" b\n'
-    fragment+= ' q:b="" a\n'
+    fragment+= ' q:a="" b\n' # Direct equality test against empty string
+    fragment+= ' q:b\']"" a\n' # "Does not follow empty string, i.e. is not the empty string
     fragment+= ' q:a]]b b\n'
     fragment+= ' q a'
     tokens = [
@@ -210,7 +210,8 @@ def test_stringcomp(lexer):
             (Keyword, 'q'),
             (Operator, ':'),
             (Name.Variable, 'b'),
-            (Operator, '='),
+            (Operator, '\''),
+            (Operator, ']'),
             (String, '""'),
             (Whitespace, ' '),
             (Name.Variable, 'a'),
