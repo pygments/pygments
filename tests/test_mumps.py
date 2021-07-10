@@ -293,7 +293,7 @@ def test_logicops(lexer):
             (Name.Variable, 'b'),
             (Text, '\n')
             ]
-    assert list(lexer.get_tokens('nor(a,b) q a&b')) == [
+    assert list(lexer.get_tokens('nor(a,b) q a\'!b')) == [
             (Name.Function, 'nor'),
             (Punctuation, '('),
             (Name.Variable, 'a'),

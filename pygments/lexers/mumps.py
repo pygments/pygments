@@ -35,7 +35,10 @@ class MumpsLexer(ExtendedRegexLexer):
     # 7.2.1 - binaryop
     binaryop_re = '\\*\\*|[-_+*/\\\\#]'
     # 7.2.2 - truthop
-    relation_re = '\\]\\]|[<>=\\[\\]]' # 7.2.2.2 - relation
+    relation_re = '\\]\\]|[<>=\\[\\]]' # 7.2.2.1 - Relational operator 'relation'
+    logicalop_re = '[&!]' # 7.2.2.4 - Logical operator 'logicalop'
+    truthop_re = relation_re + '|' + logicalop_re
+    # 7.1.4.11 - Unary operator 'unaryop'
     unaryop_re = '[-+]'
 
     # Parsing states
@@ -131,8 +134,8 @@ class MumpsLexer(ExtendedRegexLexer):
         'exprtail': [
             # TODO
 	        ( binaryop_re, Operator, 'expratom'),
-            ( '(\')(' + relation_re + ')', bygroups(Operator, Operator), 'expratom'),
-	        ( relation_re, Operator, 'expratom'),
+            ( '(\')(' + truthop_re + ')', bygroups(Operator, Operator), 'expratom'),
+	        ( truthop_re, Operator, 'expratom'),
             default('#pop')
             ],
         ###
