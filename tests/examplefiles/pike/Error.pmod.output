@@ -1,0 +1,292 @@
+'#'           Comment.Preproc
+'pike __REAL_VERSION__' Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'constant'    Keyword
+' '           Text.Whitespace
+'Generic'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'__builtin'   Name
+'.'           Punctuation
+'GenericError' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'constant'    Keyword
+' '           Text.Whitespace
+'Index'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'__builtin'   Name
+'.'           Punctuation
+'IndexError'  Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'constant'    Keyword
+' '           Text.Whitespace
+'BadArgument' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'__builtin'   Name
+'.'           Punctuation
+'BadArgumentError' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'constant'    Keyword
+' '           Text.Whitespace
+'Math'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'__builtin'   Name
+'.'           Punctuation
+'MathError'   Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'constant'    Keyword
+' '           Text.Whitespace
+'Resource'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'__builtin'   Name
+'.'           Punctuation
+'ResourceError' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'constant'    Keyword
+' '           Text.Whitespace
+'Permission'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'__builtin'   Name
+'.'           Punctuation
+'PermissionError' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'constant'    Keyword
+' '           Text.Whitespace
+'Decode'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'__builtin'   Name
+'.'           Punctuation
+'DecodeError' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'constant'    Keyword
+' '           Text.Whitespace
+'Cpp'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'__builtin'   Name
+'.'           Punctuation
+'CppError'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'constant'    Keyword
+' '           Text.Whitespace
+'Compilation' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'__builtin'   Name
+'.'           Punctuation
+'CompilationError' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'constant'    Keyword
+' '           Text.Whitespace
+'MasterLoad'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'__builtin'   Name
+'.'           Punctuation
+'MasterLoadError' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'constant'    Keyword
+' '           Text.Whitespace
+'ModuleLoad'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'__builtin'   Name
+'.'           Punctuation
+'ModuleLoadError' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! Returns an Error object for any argument it receives. If the\n' Comment.Single
+
+'//! argument already is an Error object or is empty, it does nothing.\n' Comment.Single
+
+'object'      Keyword.Type
+' '           Text.Whitespace
+'mkerror'     Name.Function
+'('           Punctuation
+'mixed'       Keyword.Type
+' '           Text.Whitespace
+'error'       Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'error'       Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'UNDEFINED'   Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'error'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'objectp'     Name
+'('           Punctuation
+'error'       Name
+')'           Punctuation
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'error'       Name
+'-'           Operator
+'>'           Operator
+'is_generic_error' Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'error'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'arrayp'      Name
+'('           Punctuation
+'error'       Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'Error'       Name
+'.'           Punctuation
+'Generic'     Name
+'('           Punctuation
+'@'           Operator
+'error'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'stringp'     Name
+'('           Punctuation
+'error'       Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'Error'       Name
+'.'           Punctuation
+'Generic'     Name
+'('           Punctuation
+'error'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'Error'       Name
+'.'           Punctuation
+'Generic'     Name
+'('           Punctuation
+'sprintf'     Name
+'('           Punctuation
+'"'           Literal.String
+'%O'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'error'       Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

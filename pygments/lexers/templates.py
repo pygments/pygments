@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.templates
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for various template engines' markup.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -179,8 +178,8 @@ class SmartyLexer(RegexLexer):
             (r'(true|false|null)\b', Keyword.Constant),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'[a-zA-Z_]\w*', Name.Attribute)
         ]
     }
@@ -252,8 +251,8 @@ class VelocityLexer(RegexLexer):
             (r'\$!?\{?', Punctuation, 'variable'),
             (r'\s+', Text),
             (r'[,:]', Punctuation),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r"0[xX][0-9a-fA-F]+[Ll]?", Number),
             (r"\b[0-9]+\b", Number),
             (r'(true|false|null)\b', Keyword.Constant),
@@ -268,11 +267,11 @@ class VelocityLexer(RegexLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search(r'#\{?macro\}?\(.*?\).*?#\{?end\}?', text):
+        if re.search(r'#\{?macro\}?\(.*?\).*?#\{?end\}?', text, re.DOTALL):
             rv += 0.25
-        if re.search(r'#\{?if\}?\(.+?\).*?#\{?end\}?', text):
+        if re.search(r'#\{?if\}?\(.+?\).*?#\{?end\}?', text, re.DOTALL):
             rv += 0.15
-        if re.search(r'#\{?foreach\}?\(.+?\).*?#\{?end\}?', text):
+        if re.search(r'#\{?foreach\}?\(.+?\).*?#\{?end\}?', text, re.DOTALL):
             rv += 0.15
         if re.search(r'\$!?\{?[a-zA-Z_]\w*(\([^)]*\))?'
                      r'(\.\w+(\([^)]*\))?)*\}?', text):
@@ -338,7 +337,7 @@ class DjangoLexer(RegexLexer):
             (r'[^{]+', Other),
             (r'\{\{', Comment.Preproc, 'var'),
             # jinja/django comments
-            (r'\{[*#].*?[*#]\}', Comment),
+            (r'\{#.*?#\}', Comment),
             # django comments
             (r'(\{%)(-?\s*)(comment)(\s*-?)(%\})(.*?)'
              r'(\{%)(-?\s*)(endcomment)(\s*-?)(%\})',
@@ -371,8 +370,8 @@ class DjangoLexer(RegexLexer):
             (r'(loop|block|super|forloop)\b', Name.Builtin),
             (r'[a-zA-Z_][\w-]*', Name.Variable),
             (r'\.\w+', Name.Variable),
-            (r':?"(\\\\|\\"|[^"])*"', String.Double),
-            (r":?'(\\\\|\\'|[^'])*'", String.Single),
+            (r':?"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r":?'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'([{}()\[\]+\-*/%,:~]|[><=]=?|!=)', Operator),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
@@ -490,7 +489,7 @@ class MyghtyJavascriptLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Myghty'
-    aliases = ['js+myghty', 'javascript+myghty']
+    aliases = ['javascript+myghty', 'js+myghty']
     mimetypes = ['application/x-javascript+myghty',
                  'text/x-javascript+myghty',
                  'text/javascript+mygthy']
@@ -537,9 +536,8 @@ class MasonLexer(RegexLexer):
             (r'(?s)(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Text, Name.Function, Name.Tag,
                       using(this), Name.Tag)),
-            (r'(?s)(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)',
-             bygroups(Name.Tag, Name.Function, Name.Tag,
-                      using(PerlLexer), Name.Tag)),
+            (r'(?s)(<%(\w+)(.*?)(>))(.*?)(</%\2\s*>)',
+             bygroups(Name.Tag, None, None, None, using(PerlLexer), Name.Tag)),
             (r'(?s)(<&[^|])(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PerlLexer), Name.Tag)),
             (r'(?s)(<&\|)(.*?)(,.*?)?(&>)',
@@ -565,7 +563,7 @@ class MasonLexer(RegexLexer):
 
     def analyse_text(text):
         result = 0.0
-        if re.search(r'</%(class|doc|init)%>', text) is not None:
+        if re.search(r'</%(class|doc|init)>', text) is not None:
             result = 1.0
         elif re.search(r'<&.+&>', text, re.DOTALL) is not None:
             result = 0.11
@@ -681,7 +679,7 @@ class MakoJavascriptLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Mako'
-    aliases = ['js+mako', 'javascript+mako']
+    aliases = ['javascript+mako', 'js+mako']
     mimetypes = ['application/x-javascript+mako',
                  'text/x-javascript+mako',
                  'text/javascript+mako']
@@ -800,8 +798,8 @@ class CheetahJavascriptLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Cheetah'
-    aliases = ['js+cheetah', 'javascript+cheetah',
-               'js+spitfire', 'javascript+spitfire']
+    aliases = ['javascript+cheetah', 'js+cheetah',
+               'javascript+spitfire', 'js+spitfire']
     mimetypes = ['application/x-javascript+cheetah',
                  'text/x-javascript+cheetah',
                  'text/javascript+cheetah',
@@ -1028,7 +1026,7 @@ class XmlErbLexer(DelegatingLexer):
     """
 
     name = 'XML+Ruby'
-    aliases = ['xml+erb', 'xml+ruby']
+    aliases = ['xml+ruby', 'xml+erb']
     alias_filenames = ['*.xml']
     mimetypes = ['application/xml+ruby']
 
@@ -1048,7 +1046,7 @@ class CssErbLexer(DelegatingLexer):
     """
 
     name = 'CSS+Ruby'
-    aliases = ['css+erb', 'css+ruby']
+    aliases = ['css+ruby', 'css+erb']
     alias_filenames = ['*.css']
     mimetypes = ['text/css+ruby']
 
@@ -1066,7 +1064,7 @@ class JavascriptErbLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Ruby'
-    aliases = ['js+erb', 'javascript+erb', 'js+ruby', 'javascript+ruby']
+    aliases = ['javascript+ruby', 'js+ruby', 'javascript+erb', 'js+erb']
     alias_filenames = ['*.js']
     mimetypes = ['application/x-javascript+ruby',
                  'text/x-javascript+ruby',
@@ -1149,7 +1147,7 @@ class JavascriptPhpLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+PHP'
-    aliases = ['js+php', 'javascript+php']
+    aliases = ['javascript+php', 'js+php']
     alias_filenames = ['*.js']
     mimetypes = ['application/x-javascript+php',
                  'text/x-javascript+php',
@@ -1231,7 +1229,7 @@ class JavascriptSmartyLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Smarty'
-    aliases = ['js+smarty', 'javascript+smarty']
+    aliases = ['javascript+smarty', 'js+smarty']
     alias_filenames = ['*.js', '*.tpl']
     mimetypes = ['application/x-javascript+smarty',
                  'text/x-javascript+smarty',
@@ -1313,8 +1311,8 @@ class JavascriptDjangoLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Django/Jinja'
-    aliases = ['js+django', 'javascript+django',
-               'js+jinja', 'javascript+jinja']
+    aliases = ['javascript+django', 'js+django',
+               'javascript+jinja', 'js+jinja']
     alias_filenames = ['*.js']
     mimetypes = ['application/x-javascript+django',
                  'application/x-javascript+jinja',
@@ -1406,7 +1404,7 @@ class EvoqueLexer(RegexLexer):
             # see doc for handling first name arg: /directives/evoque/
             # + minor inconsistency: the "name" in e.g. $overlay{name=site_base}
             # should be using(PythonLexer), not passed out as String
-            (r'(\$)(evoque|overlay)(\{(%)?)(\s*[#\w\-"\'.]+[^=,%}]+?)?'
+            (r'(\$)(evoque|overlay)(\{(%)?)(\s*[#\w\-"\'.]+)?'
              r'(.*?)((?(4)%)\})',
              bygroups(Punctuation, Name.Builtin, Punctuation, None,
                       String, using(PythonLexer), Punctuation)),
@@ -1736,7 +1734,7 @@ class LassoCssLexer(DelegatingLexer):
 
     def analyse_text(text):
         rv = LassoLexer.analyse_text(text) - 0.05
-        if re.search(r'\w+:.+?;', text):
+        if re.search(r'\w+:[^;]+;', text):
             rv += 0.1
         if 'padding:' in text:
             rv += 0.1
@@ -1752,7 +1750,7 @@ class LassoJavascriptLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Lasso'
-    aliases = ['js+lasso', 'javascript+lasso']
+    aliases = ['javascript+lasso', 'js+lasso']
     alias_filenames = ['*.js']
     mimetypes = ['application/x-javascript+lasso',
                  'text/x-javascript+lasso',
@@ -1835,8 +1833,8 @@ class HandlebarsLexer(RegexLexer):
             include('variable'),
 
             # borrowed from DjangoLexer
-            (r':?"(\\\\|\\"|[^"])*"', String.Double),
-            (r":?'(\\\\|\\'|[^'])*'", String.Single),
+            (r':?"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r":?'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
         ]
@@ -2148,8 +2146,8 @@ class TwigLexer(RegexLexer):
             (_ident_inner, Name.Variable),
             (r'\.' + _ident_inner, Name.Variable),
             (r'\.[0-9]+', Number),
-            (r':?"(\\\\|\\"|[^"])*"', String.Double),
-            (r":?'(\\\\|\\'|[^'])*'", String.Single),
+            (r':?"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r":?'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'([{}()\[\]+\-*/,:~%]|\.\.|\?|:|\*\*|\/\/|!=|[><=]=?)', Operator),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
@@ -2228,8 +2226,8 @@ class Angular2Lexer(RegexLexer):
 
             # Literals
             (r':?(true|false)', String.Boolean),
-            (r':?"(\\\\|\\"|[^"])*"', String.Double),
-            (r":?'(\\\\|\\'|[^'])*'", String.Single),
+            (r':?"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r":?'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
 

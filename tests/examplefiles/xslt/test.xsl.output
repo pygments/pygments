@@ -1,0 +1,103 @@
+'<?xml version="1.0" encoding="utf-8"?>' Comment.Preproc
+'\n'          Text
+
+'<xsl:stylesheet' Keyword
+' '           Text
+'version='    Name.Attribute
+'"1.0"'       Literal.String
+' '           Text
+'xmlns:xsl='  Name.Attribute
+'"http://www.w3.org/1999/XSL/Transform"' Literal.String
+'>'           Name.Tag
+'\n\t'        Text
+'<xsl:output' Keyword
+' '           Text
+'method='     Name.Attribute
+'"xml"'       Literal.String
+'/>'          Name.Tag
+'\n\t'        Text
+'<xsl:template' Keyword
+' '           Text
+'match='      Name.Attribute
+'"/"'         Literal.String
+'>'           Name.Tag
+'\n\t\t'      Text
+'<customers'  Name.Tag
+'>'           Name.Tag
+'\n\t\t\t'    Text
+'<xsl:apply-templates' Keyword
+' '           Text
+'select='     Name.Attribute
+'"customers/customer[@Country=\'Germany\']"' Literal.String
+'/>'          Name.Tag
+'\n\t\t'      Text
+'</customers>' Name.Tag
+'\n\t'        Text
+'</xsl:template>' Keyword
+'\n\t'        Text
+'<xsl:template' Keyword
+' '           Text
+'match='      Name.Attribute
+'"customers"' Literal.String
+'>'           Name.Tag
+'\n\t\t'      Text
+'<xsl:apply-templates' Keyword
+'/>'          Name.Tag
+'\n\n\t'      Text
+'</xsl:template>' Keyword
+'\n\t'        Text
+'<xsl:template' Keyword
+' '           Text
+'match='      Name.Attribute
+'"customer"'  Literal.String
+'>'           Name.Tag
+'\n\t\t'      Text
+'<customer'   Name.Tag
+'>'           Name.Tag
+'\n\t\t\t'    Text
+'<xsl:attribute' Keyword
+' '           Text
+'name='       Name.Attribute
+'"CompanyName"' Literal.String
+'>'           Name.Tag
+'<xsl:value-of' Keyword
+' '           Text
+'select='     Name.Attribute
+'"@CompanyName"' Literal.String
+'/>'          Name.Tag
+'</xsl:attribute>' Keyword
+'\n\t\t\t'    Text
+'<xsl:attribute' Keyword
+' '           Text
+'name='       Name.Attribute
+'"CustomerID"' Literal.String
+'>'           Name.Tag
+'<xsl:value-of' Keyword
+' '           Text
+'select='     Name.Attribute
+'"@CustomerID"' Literal.String
+'/>'          Name.Tag
+'</xsl:attribute>' Keyword
+'\n\t\t\t'    Text
+'<xsl:attribute' Keyword
+' '           Text
+'name='       Name.Attribute
+'"Country"'   Literal.String
+'>'           Name.Tag
+'<xsl:value-of' Keyword
+' '           Text
+'select='     Name.Attribute
+'"@Country"'  Literal.String
+'/>'          Name.Tag
+'</xsl:attribute>' Keyword
+'\n\t\t'      Text
+'</customer>' Name.Tag
+'\n\t\t'      Text
+'<xsl:apply-templates' Keyword
+'/>'          Name.Tag
+'\n\t'        Text
+'</xsl:template>' Keyword
+'\n\n'        Text
+
+'</xsl:stylesheet>' Keyword
+'\n'          Text

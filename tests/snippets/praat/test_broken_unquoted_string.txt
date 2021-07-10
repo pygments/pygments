@@ -1,0 +1,16 @@
+---input---
+printline string
+... 'interpolated' string
+
+---tokens---
+'printline'   Keyword
+' '           Text
+'string'      Literal.String
+'\n'          Text
+
+'...'         Punctuation
+' '           Text
+"'interpolated'" Literal.String.Interpol
+' '           Text
+'string'      Literal.String
+'\n'          Text

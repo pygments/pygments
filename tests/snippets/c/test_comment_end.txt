@@ -1,0 +1,31 @@
+In the past the "*/" was marked as an error to "helpfully"
+indicate a wrong comment end.
+
+---input---
+int m21=((result_0*0+result_1*/*0<-----*/1)%mod+mod)%mod;
+
+---tokens---
+'int'         Keyword.Type
+' '           Text.Whitespace
+'m21'         Name
+'='           Operator
+'('           Punctuation
+'('           Punctuation
+'result_0'    Name
+'*'           Operator
+'0'           Literal.Number.Integer
+'+'           Operator
+'result_1'    Name
+'*'           Operator
+'/*0<-----*/' Comment.Multiline
+'1'           Literal.Number.Integer
+')'           Punctuation
+'%'           Operator
+'mod'         Name
+'+'           Operator
+'mod'         Name
+')'           Punctuation
+'%'           Operator
+'mod'         Name
+';'           Punctuation
+'\n'          Text.Whitespace

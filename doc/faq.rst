@@ -128,7 +128,7 @@ This is an (incomplete) list of projects and sites known to use the Pygments hig
 * `patx.me <http://patx.me/paste>`_, a pastebin
 * `Fluidic <https://github.com/richsmith/fluidic>`_, an experiment in
   integrating shells with a GUI
-* `pygments.rb <https://github.com/tmm1/pygments.rb>`_, a pygments wrapper for Ruby
+* `pygments.rb <https://github.com/pygments/pygments.rb>`_, a pygments wrapper for Ruby
 * `Clygments <https://github.com/bfontaine/clygments>`_, a pygments wrapper for
   Clojure
 * `PHPygments <https://github.com/capynet/PHPygments>`_, a pygments wrapper for PHP
@@ -136,6 +136,7 @@ This is an (incomplete) list of projects and sites known to use the Pygments hig
   Environment, uses pygments for the multi-language syntax highlighting in its
   `editor <https://docs.spyder-ide.org/editor.html>`_.
 * `snippet.host <https://snippet.host>`_, minimal text and code snippet hosting
+* `sourcehut <https://sourcehut.org>`_, the hacker's forge
 
 If you have a project or web site using Pygments, `open an issue or PR
 <https://github.com/pygments/pygments>`_ and we'll add a line here.

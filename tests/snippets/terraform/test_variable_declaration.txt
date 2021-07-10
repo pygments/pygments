@@ -1,0 +1,41 @@
+---input---
+variable "aws_region" {
+  description = "AWS region to launch servers."
+  default = "us-west-2"
+  somevar = true
+}
+
+---tokens---
+'variable'    Keyword.Reserved
+' '           Text
+'"aws_region"' Name.Variable
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'description' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"AWS region to launch servers."' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'default'     Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'"us-west-2"' Literal.String.Double
+'\n'          Text
+
+'  '          Text
+'somevar'     Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'true'        Name.Constant
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

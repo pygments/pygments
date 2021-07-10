@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.teraterm
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for Tera Term macro files.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -25,7 +24,7 @@ class TeraTermLexer(RegexLexer):
     .. versionadded:: 2.4
     """
     name = 'Tera Term macro'
-    aliases = ['ttl', 'teraterm', 'teratermmacro']
+    aliases = ['teratermmacro', 'teraterm', 'ttl']
     filenames = ['*.ttl']
     mimetypes = ['text/x-teratermmacro']
 

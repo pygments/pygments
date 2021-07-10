@@ -1,0 +1,84 @@
+'/*\n * Some Number Test\n */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'24241424'    Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'float'       Keyword.Type
+' '           Text.Whitespace
+'f1'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'342423423.24234' Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'float'       Keyword.Type
+' '           Text.Whitespace
+'f2'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'25235235.'   Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'float'       Keyword.Type
+' '           Text.Whitespace
+'f3'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'.234234'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'float'       Keyword.Type
+' '           Text.Whitespace
+'f4'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'234243e+34343' Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'float'       Keyword.Type
+' '           Text.Whitespace
+'f5'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'24234e-234'  Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'o'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0234'        Literal.Number.Oct
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'h'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x2342'      Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace

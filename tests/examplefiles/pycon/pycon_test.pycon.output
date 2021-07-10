@@ -1,0 +1,63 @@
+'>>> '        Generic.Prompt
+':'           Punctuation
+'\n'          Text
+
+''            Generic.Traceback
+'  File '     Text
+'"<stdin>"'   Name.Builtin
+', line '     Text
+'1'           Literal.Number
+'\n'          Text
+
+'    '        Text
+':'           Punctuation
+'\n'          Text
+
+'    '        Text
+'^'           Punctuation.Marker
+'\n'          Text
+
+'SyntaxError' Generic.Error
+': '          Text
+'invalid syntax' Name
+'\n'          Text
+
+'>>> '        Generic.Prompt
+'\n'          Text
+
+'KeyboardInterrupt\n' Name.Class
+
+'>>>\n'       Generic.Output
+
+'\n'          Generic.Output
+
+'>>> '        Generic.Prompt
+'1'           Literal.Number.Integer
+'/'           Operator
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'   '         Text
+'...'         Comment
+'\n'          Text
+
+'ZeroDivisionError' Generic.Error
+'\n'          Text
+
+'\n'          Generic.Output
+
+'>>> '        Generic.Prompt
+'1'           Literal.Number.Integer
+'/'           Operator
+'0'           Literal.Number.Integer
+'   '         Text
+'# this used to swallow the traceback' Comment.Single
+'\n'          Text
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'   '         Text
+'...'         Comment
+'\n'          Text

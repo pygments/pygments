@@ -1,0 +1,27 @@
+Asserts that annotation named parameters use Name, which is different from the
+normal "scoped_name =" lexing, which uses Name.Constant.
+
+---input---
+@mod::anno(value = const_a) const short const_b = const_a;
+
+---tokens---
+'@mod::anno'  Name.Decorator
+'('           Punctuation
+'value'       Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'const_a'     Name
+')'           Punctuation
+' '           Text.Whitespace
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'short'       Keyword.Type
+' '           Text.Whitespace
+'const_b'     Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'const_a'     Name
+';'           Punctuation
+'\n'          Text.Whitespace

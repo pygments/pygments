@@ -1,0 +1,35 @@
+---input---
+(sum(rate(metric_test_app{app='turtle',proc='web'}[2m])) by(node))
+
+---tokens---
+'('           Operator
+'sum'         Keyword
+'('           Operator
+'rate'        Keyword.Reserved
+'('           Operator
+'metric_test_app' Name.Variable
+'{'           Punctuation
+'app'         Name.Label
+'='           Operator
+"'"           Punctuation
+'turtle'      Literal.String
+"'"           Punctuation
+','           Punctuation
+'proc'        Name.Label
+'='           Operator
+"'"           Punctuation
+'web'         Literal.String
+"'"           Punctuation
+'}'           Punctuation
+'['           Punctuation
+'2m'          Literal.String
+']'           Punctuation
+')'           Operator
+')'           Operator
+' '           Text.Whitespace
+'by'          Keyword
+'('           Operator
+'node'        Name.Variable
+')'           Operator
+')'           Operator
+'\n'          Text.Whitespace

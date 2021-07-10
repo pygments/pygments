@@ -1,0 +1,1252 @@
+'// A few random snippets of HLSL shader code I gathered...' Comment.Single
+'\n\n'        Text
+
+'['           Punctuation
+'numthreads'  Name.Decorator
+'('           Punctuation
+'256'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'void'        Keyword.Type
+' '           Text
+'cs_main'     Name
+'('           Punctuation
+'uint3'       Keyword.Type
+' '           Text
+'threadId'    Name
+' '           Text
+':'           Operator
+' '           Text
+'SV_DispatchThreadID' Name.Decorator
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n\t'        Text
+'// Seed the PRNG using the thread ID' Comment.Single
+'\n\t'        Text
+'rng_state'   Name
+' '           Text
+'='           Operator
+' '           Text
+'threadId'    Name
+'.'           Punctuation
+'x'           Name
+';'           Punctuation
+'\n\n\t'      Text
+'// Generate a few numbers...' Comment.Single
+'\n\t'        Text
+'uint'        Keyword.Type
+' '           Text
+'r0'          Name
+' '           Text
+'='           Operator
+' '           Text
+'rand_xorshift' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'uint'        Keyword.Type
+' '           Text
+'r1'          Name
+' '           Text
+'='           Operator
+' '           Text
+'rand_xorshift' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'// Do some stuff with them...' Comment.Single
+'\n\n\t'      Text
+'// Generate a random float in [0, 1)...' Comment.Single
+'\n\t'        Text
+'float'       Keyword.Type
+' '           Text
+'f0'          Name
+' '           Text
+'='           Operator
+' '           Text
+'float'       Keyword.Type
+'('           Punctuation
+'rand_xorshift' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'('           Punctuation
+'1.0'         Literal.Number.Float
+' '           Text
+'/'           Operator
+' '           Text
+'4294967296.0' Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n\n\t'      Text
+'// ...etc.'  Comment.Single
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'// Constant buffer of parameters' Comment.Single
+'\n'          Text
+
+'cbuffer'     Keyword
+' '           Text
+'IntegratorParams' Name
+' '           Text
+':'           Operator
+' '           Text
+'register'    Keyword
+'('           Punctuation
+'b0'          Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n\t'        Text
+'float2'      Keyword.Type
+' '           Text
+'specPow'     Name
+';'           Punctuation
+'\t\t'        Text
+'// Spec powers in XY directions (equal for isotropic BRDFs)' Comment.Single
+'\n\t'        Text
+'float3'      Keyword.Type
+' '           Text
+'L'           Name
+';'           Punctuation
+'\t\t\t'      Text
+'// Unit vector toward light ' Comment.Single
+'\n\t'        Text
+'int2'        Keyword.Type
+' '           Text
+'cThread'     Name
+';'           Punctuation
+'\t\t'        Text
+'// Total threads launched in XY dimensions' Comment.Single
+'\n\t'        Text
+'int2'        Keyword.Type
+' '           Text
+'xyOutput'    Name
+';'           Punctuation
+'\t\t'        Text
+'// Where in the output buffer to store the result' Comment.Single
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'static'      Keyword
+' '           Text
+'const'       Keyword
+' '           Text
+'float'       Keyword.Type
+' '           Text
+'pi'          Name
+' '           Text
+'='           Operator
+' '           Text
+'3.141592654' Literal.Number.Float
+';'           Punctuation
+'\n\n'        Text
+
+'float'       Keyword.Type
+' '           Text
+'AshikhminShirleyNDF' Name
+'('           Punctuation
+'float3'      Keyword.Type
+' '           Text
+'H'           Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n\t'        Text
+'float'       Keyword.Type
+' '           Text
+'normFactor'  Name
+' '           Text
+'='           Operator
+' '           Text
+'sqrt'        Name.Builtin
+'('           Punctuation
+'('           Punctuation
+'specPow'     Name
+'.'           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'2.0f'        Literal.Number.Float
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'('           Punctuation
+'specPow'     Name
+'.'           Punctuation
+'y'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'2.0'         Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'('           Punctuation
+'0.5f'        Literal.Number.Float
+' '           Text
+'/'           Operator
+' '           Text
+'pi'          Name
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'float'       Keyword.Type
+' '           Text
+'NdotH'       Name
+' '           Text
+'='           Operator
+' '           Text
+'H'           Name
+'.'           Punctuation
+'z'           Name
+';'           Punctuation
+'\n\t'        Text
+'float2'      Keyword.Type
+' '           Text
+'Hxy'         Name
+' '           Text
+'='           Operator
+' '           Text
+'normalize'   Name.Builtin
+'('           Punctuation
+'H'           Name
+'.'           Punctuation
+'xy'          Name
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'return'      Keyword
+' '           Text
+'normFactor'  Name
+' '           Text
+'*'           Operator
+' '           Text
+'pow'         Name.Builtin
+'('           Punctuation
+'NdotH'       Name
+','           Punctuation
+' '           Text
+'dot'         Name.Builtin
+'('           Punctuation
+'specPow'     Name
+','           Punctuation
+' '           Text
+'Hxy'         Name
+' '           Text
+'*'           Operator
+' '           Text
+'Hxy'         Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'float'       Keyword.Type
+' '           Text
+'BeckmannNDF' Name
+'('           Punctuation
+'float3'      Keyword.Type
+' '           Text
+'H'           Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n\t'        Text
+'float'       Keyword.Type
+' '           Text
+'glossFactor' Name
+' '           Text
+'='           Operator
+' '           Text
+'specPow'     Name
+'.'           Punctuation
+'x'           Name
+' '           Text
+'*'           Operator
+' '           Text
+'0.5f'        Literal.Number.Float
+' '           Text
+'+'           Operator
+' '           Text
+'1.0f'        Literal.Number.Float
+';'           Punctuation
+'\t'          Text
+'// This is 1/m^2 in the usual Beckmann formula' Comment.Single
+'\n\t'        Text
+'float'       Keyword.Type
+' '           Text
+'normFactor'  Name
+' '           Text
+'='           Operator
+' '           Text
+'glossFactor' Name
+' '           Text
+'*'           Operator
+' '           Text
+'('           Punctuation
+'1.0f'        Literal.Number.Float
+' '           Text
+'/'           Operator
+' '           Text
+'pi'          Name
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'float'       Keyword.Type
+' '           Text
+'NdotHSq'     Name
+' '           Text
+'='           Operator
+' '           Text
+'H'           Name
+'.'           Punctuation
+'z'           Name
+' '           Text
+'*'           Operator
+' '           Text
+'H'           Name
+'.'           Punctuation
+'z'           Name
+';'           Punctuation
+'\n\t'        Text
+'return'      Keyword
+' '           Text
+'normFactor'  Name
+' '           Text
+'/'           Operator
+' '           Text
+'('           Punctuation
+'NdotHSq'     Name
+' '           Text
+'*'           Operator
+' '           Text
+'NdotHSq'     Name
+')'           Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'exp'         Name.Builtin
+'('           Punctuation
+'glossFactor' Name
+' '           Text
+'*'           Operator
+' '           Text
+'('           Punctuation
+'1.0f'        Literal.Number.Float
+' '           Text
+'-'           Operator
+' '           Text
+'1.0f'        Literal.Number.Float
+' '           Text
+'/'           Operator
+' '           Text
+'NdotHSq'     Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'// Output buffer for compute shader (actually float, but must be declared as uint' Comment.Single
+'\n'          Text
+
+'// for atomic operations to work)' Comment.Single
+'\n'          Text
+
+'globallycoherent' Keyword
+' '           Text
+'RWTexture2D' Keyword.Type
+'<'           Operator
+'uint'        Keyword.Type
+'>'           Operator
+' '           Text
+'o_data'      Name
+' '           Text
+':'           Operator
+' '           Text
+'register'    Keyword
+'('           Punctuation
+'u0'          Name
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'// Sum up the outputs of all threads and store to the output location' Comment.Single
+'\n'          Text
+
+'static'      Keyword
+' '           Text
+'const'       Keyword
+' '           Text
+'uint'        Keyword.Type
+' '           Text
+'threadGroupSize2D' Name
+' '           Text
+'='           Operator
+' '           Text
+'16'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'static'      Keyword
+' '           Text
+'const'       Keyword
+' '           Text
+'uint'        Keyword.Type
+' '           Text
+'threadGroupSize1D' Name
+' '           Text
+'='           Operator
+' '           Text
+'threadGroupSize2D' Name
+' '           Text
+'*'           Operator
+' '           Text
+'threadGroupSize2D' Name
+';'           Punctuation
+'\n'          Text
+
+'groupshared' Keyword
+' '           Text
+'float'       Keyword.Type
+' '           Text
+'g_partialSums' Name
+'['           Punctuation
+'threadGroupSize1D' Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'void'        Keyword.Type
+' '           Text
+'SumAcrossThreadsAndStore' Name
+'('           Punctuation
+'float'       Keyword.Type
+' '           Text
+'value'       Name
+','           Punctuation
+' '           Text
+'uint'        Keyword.Type
+' '           Text
+'iThreadInGroup' Name
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n\t'        Text
+'// First reduce within the threadgroup: partial sums of 2, 4, 8... elements' Comment.Single
+'\n\t'        Text
+'// are calculated by 1/2, 1/4, 1/8... of the threads, always keeping the' Comment.Single
+'\n\t'        Text
+'// active threads at the front of the group to minimize divergence.' Comment.Single
+'\n\n\t'      Text
+'// NOTE: there are faster ways of doing this...but this is simple to code' Comment.Single
+'\n\t'        Text
+'// and good enough.' Comment.Single
+'\n\n\t'      Text
+'g_partialSums' Name
+'['           Punctuation
+'iThreadInGroup' Name
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'value'       Name
+';'           Punctuation
+'\n\t'        Text
+'GroupMemoryBarrierWithGroupSync' Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\n\t'      Text
+'['           Punctuation
+'unroll'      Name.Decorator
+']'           Punctuation
+' '           Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'uint'        Keyword.Type
+' '           Text
+'i'           Name
+' '           Text
+'='           Operator
+' '           Text
+'threadGroupSize1D' Name
+' '           Text
+'/'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'i'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Oct
+';'           Punctuation
+' '           Text
+'i'           Name
+' '           Text
+'/'           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n\t'        Text
+'{'           Punctuation
+'\n\t\t'      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'iThreadInGroup' Name
+' '           Text
+'<'           Operator
+' '           Text
+'i'           Name
+')'           Punctuation
+'\n\t\t'      Text
+'{'           Punctuation
+'\n\t\t\t'    Text
+'g_partialSums' Name
+'['           Punctuation
+'iThreadInGroup' Name
+']'           Punctuation
+' '           Text
+'+'           Operator
+'='           Operator
+' '           Text
+'g_partialSums' Name
+'['           Punctuation
+'iThreadInGroup' Name
+' '           Text
+'+'           Operator
+' '           Text
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'}'           Punctuation
+'\n\t\t'      Text
+'GroupMemoryBarrierWithGroupSync' Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n\n\t'      Text
+'// Then reduce across threadgroups: one thread from each group adds the group' Comment.Single
+'\n\t'        Text
+'// total to the final output location, using a software transactional memory' Comment.Single
+'\n\t'        Text
+"// style since D3D11 doesn't support atomic add on floats." Comment.Single
+'\n\t'        Text
+'// (Assumes the output value has been cleared to zero beforehand.)' Comment.Single
+'\n\n\t'      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'iThreadInGroup' Name
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Oct
+')'           Punctuation
+'\n\t'        Text
+'{'           Punctuation
+'\n\t\t'      Text
+'float'       Keyword.Type
+' '           Text
+'threadGroupSum' Name
+' '           Text
+'='           Operator
+' '           Text
+'g_partialSums' Name
+'['           Punctuation
+'0'           Literal.Number.Oct
+']'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'uint'        Keyword.Type
+' '           Text
+'outputValueRead' Name
+' '           Text
+'='           Operator
+' '           Text
+'o_data'      Name
+'['           Punctuation
+'xyOutput'    Name
+']'           Punctuation
+';'           Punctuation
+'\n\t\t'      Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'true'        Keyword.Constant
+')'           Punctuation
+'\n\t\t'      Text
+'{'           Punctuation
+'\n\t\t\t'    Text
+'uint'        Keyword.Type
+' '           Text
+'newOutputValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'asuint'      Name.Builtin
+'('           Punctuation
+'asfloat'     Name.Builtin
+'('           Punctuation
+'outputValueRead' Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'threadGroupSum' Name
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'uint'        Keyword.Type
+' '           Text
+'previousOutputValue' Name
+';'           Punctuation
+'\n\t\t\t'    Text
+'InterlockedCompareExchange' Name.Builtin
+'('           Punctuation
+'\n\t\t\t\t'  Text
+'o_data'      Name
+'['           Punctuation
+'xyOutput'    Name
+']'           Punctuation
+','           Punctuation
+' '           Text
+'outputValueRead' Name
+','           Punctuation
+' '           Text
+'newOutputValue' Name
+','           Punctuation
+' '           Text
+'previousOutputValue' Name
+')'           Punctuation
+';'           Punctuation
+'\n\t\t\t'    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'previousOutputValue' Name
+' '           Text
+'=='          Operator
+' '           Text
+'outputValueRead' Name
+')'           Punctuation
+'\n\t\t\t\t'  Text
+'break'       Keyword
+';'           Punctuation
+'\n\t\t\t'    Text
+'outputValueRead' Name
+' '           Text
+'='           Operator
+' '           Text
+'previousOutputValue' Name
+';'           Punctuation
+'\n\t\t'      Text
+'}'           Punctuation
+'\n\t'        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'void'        Keyword.Type
+' '           Text
+'main'        Name
+'('           Punctuation
+'\n\t'        Text
+'in'          Keyword
+' '           Text
+'Vertex'      Name
+' '           Text
+'i_vtx'       Name
+','           Punctuation
+'\n\t'        Text
+'out'         Keyword
+' '           Text
+'Vertex'      Name
+' '           Text
+'o_vtx'       Name
+','           Punctuation
+'\n\t'        Text
+'out'         Keyword
+' '           Text
+'float3'      Keyword.Type
+' '           Text
+'o_vecCamera' Name
+' '           Text
+':'           Operator
+' '           Text
+'CAMERA'      Name
+','           Punctuation
+'\n\t'        Text
+'out'         Keyword
+' '           Text
+'float4'      Keyword.Type
+' '           Text
+'o_uvzwShadow' Name
+' '           Text
+':'           Operator
+' '           Text
+'UVZW_SHADOW' Name
+','           Punctuation
+'\n\t'        Text
+'out'         Keyword
+' '           Text
+'float4'      Keyword.Type
+' '           Text
+'o_posClip'   Name
+' '           Text
+':'           Operator
+' '           Text
+'SV_Position' Name.Decorator
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n\t'        Text
+'o_vtx'       Name
+' '           Text
+'='           Operator
+' '           Text
+'i_vtx'       Name
+';'           Punctuation
+'\n\t'        Text
+'o_vecCamera' Name
+' '           Text
+'='           Operator
+' '           Text
+'g_posCamera' Name
+' '           Text
+'-'           Operator
+' '           Text
+'i_vtx'       Name
+'.'           Punctuation
+'m_pos'       Name
+';'           Punctuation
+'\n\t'        Text
+'o_uvzwShadow' Name
+' '           Text
+'='           Operator
+' '           Text
+'mul'         Name.Builtin
+'('           Punctuation
+'float4'      Keyword.Type
+'('           Punctuation
+'i_vtx'       Name
+'.'           Punctuation
+'m_pos'       Name
+','           Punctuation
+' '           Text
+'1.0'         Literal.Number.Float
+')'           Punctuation
+','           Punctuation
+' '           Text
+'g_matWorldToUvzwShadow' Name
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'o_posClip'   Name
+' '           Text
+'='           Operator
+' '           Text
+'mul'         Name.Builtin
+'('           Punctuation
+'float4'      Keyword.Type
+'('           Punctuation
+'i_vtx'       Name
+'.'           Punctuation
+'m_pos'       Name
+','           Punctuation
+' '           Text
+'1.0'         Literal.Number.Float
+')'           Punctuation
+','           Punctuation
+' '           Text
+'g_matWorldToClip' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'#pragma pack_matrix(row_major)' Comment.Preproc
+'\n\n'        Text
+
+'struct'      Keyword
+' '           Text
+'Vertex'      Name
+'\n'          Text
+
+'{'           Punctuation
+'\n\t'        Text
+'float3'      Keyword.Type
+'\t\t'        Text
+'m_pos'       Name
+'\t\t'        Text
+':'           Operator
+' '           Text
+'POSITION'    Name
+';'           Punctuation
+'\n\t'        Text
+'float3'      Keyword.Type
+'\t\t'        Text
+'m_normal'    Name
+'\t'          Text
+':'           Operator
+' '           Text
+'NORMAL'      Name
+';'           Punctuation
+'\n\t'        Text
+'float2'      Keyword.Type
+'\t\t'        Text
+'m_uv'        Name
+'\t\t'        Text
+':'           Operator
+' '           Text
+'UV'          Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'cbuffer'     Keyword
+' '           Text
+'CBFrame'     Name
+' '           Text
+':'           Operator
+' '           Text
+'CB_FRAME'    Name
+'\t\t\t\t\t'  Text
+'// matches struct CBFrame in test.cpp' Comment.Single
+'\n'          Text
+
+'{'           Punctuation
+'\n\t'        Text
+'float4x4'    Keyword.Type
+'\t'          Text
+'g_matWorldToClip' Name
+';'           Punctuation
+'\n\t'        Text
+'float4x4'    Keyword.Type
+'\t'          Text
+'g_matWorldToUvzwShadow' Name
+';'           Punctuation
+'\n\t'        Text
+'float3x3'    Keyword.Type
+'\t'          Text
+'g_matWorldToUvzShadowNormal' Name
+';'           Punctuation
+'\n\t'        Text
+'float3'      Keyword.Type
+'\t\t'        Text
+'g_posCamera' Name
+';'           Punctuation
+'\n\n\t'      Text
+'float3'      Keyword.Type
+'\t\t'        Text
+'g_vecDirectionalLight' Name
+';'           Punctuation
+'\n\t'        Text
+'float3'      Keyword.Type
+'\t\t'        Text
+'g_rgbDirectionalLight' Name
+';'           Punctuation
+'\n\n\t'      Text
+'float2'      Keyword.Type
+'\t\t'        Text
+'g_dimsShadowMap' Name
+';'           Punctuation
+'\n\t'        Text
+'float'       Keyword.Type
+'\t\t'        Text
+'g_normalOffsetShadow' Name
+';'           Punctuation
+'\n\t'        Text
+'float'       Keyword.Type
+'\t\t'        Text
+'g_shadowSharpening' Name
+';'           Punctuation
+'\n\n\t'      Text
+'float'       Keyword.Type
+'\t\t'        Text
+'g_exposure'  Name
+';'           Punctuation
+'\t\t\t\t\t'  Text
+'// Exposure multiplier' Comment.Single
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'Texture2D'   Keyword.Type
+'<'           Operator
+'float3'      Keyword.Type
+'>'           Operator
+' '           Text
+'g_texDiffuse' Name
+' '           Text
+':'           Operator
+' '           Text
+'register'    Keyword
+'('           Punctuation
+'t0'          Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'SamplerState' Keyword.Type
+' '           Text
+'g_ss'        Name
+' '           Text
+':'           Operator
+' '           Text
+'register'    Keyword
+'('           Punctuation
+'s0'          Name
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text
+
+'void'        Keyword.Type
+' '           Text
+'main'        Name
+'('           Punctuation
+'\n\t'        Text
+'in'          Keyword
+' '           Text
+'Vertex'      Name
+' '           Text
+'i_vtx'       Name
+','           Punctuation
+'\n\t'        Text
+'in'          Keyword
+' '           Text
+'float3'      Keyword.Type
+' '           Text
+'i_vecCamera' Name
+' '           Text
+':'           Operator
+' '           Text
+'CAMERA'      Name
+','           Punctuation
+'\n\t'        Text
+'in'          Keyword
+' '           Text
+'float4'      Keyword.Type
+' '           Text
+'i_uvzwShadow' Name
+' '           Text
+':'           Operator
+' '           Text
+'UVZW_SHADOW' Name
+','           Punctuation
+'\n\t'        Text
+'out'         Keyword
+' '           Text
+'float3'      Keyword.Type
+' '           Text
+'o_rgb'       Name
+' '           Text
+':'           Operator
+' '           Text
+'SV_Target'   Name.Decorator
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n\t'        Text
+'float3'      Keyword.Type
+' '           Text
+'normal'      Name
+' '           Text
+'='           Operator
+' '           Text
+'normalize'   Name.Builtin
+'('           Punctuation
+'i_vtx'       Name
+'.'           Punctuation
+'m_normal'    Name
+')'           Punctuation
+';'           Punctuation
+'\n\n\t'      Text
+'// Sample shadow map' Comment.Single
+'\n\t'        Text
+'float'       Keyword.Type
+' '           Text
+'shadow'      Name
+' '           Text
+'='           Operator
+' '           Text
+'EvaluateShadow' Name
+'('           Punctuation
+'i_uvzwShadow' Name
+','           Punctuation
+' '           Text
+'normal'      Name
+')'           Punctuation
+';'           Punctuation
+'\n\n\t'      Text
+'// Evaluate diffuse lighting' Comment.Single
+'\n\t'        Text
+'float3'      Keyword.Type
+' '           Text
+'diffuseColor' Name
+' '           Text
+'='           Operator
+' '           Text
+'g_texDiffuse' Name
+'.'           Punctuation
+'Sample'      Name
+'('           Punctuation
+'g_ss'        Name
+','           Punctuation
+' '           Text
+'i_vtx'       Name
+'.'           Punctuation
+'m_uv'        Name
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'float3'      Keyword.Type
+' '           Text
+'diffuseLight' Name
+' '           Text
+'='           Operator
+' '           Text
+'g_rgbDirectionalLight' Name
+' '           Text
+'*'           Operator
+' '           Text
+'('           Punctuation
+'shadow'      Name
+' '           Text
+'*'           Operator
+' '           Text
+'saturate'    Name.Builtin
+'('           Punctuation
+'dot'         Name.Builtin
+'('           Punctuation
+'normal'      Name
+','           Punctuation
+' '           Text
+'g_vecDirectionalLight' Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'diffuseLight' Name
+' '           Text
+'+'           Operator
+'='           Operator
+' '           Text
+'SimpleAmbient' Name
+'('           Punctuation
+'normal'      Name
+')'           Punctuation
+';'           Punctuation
+'\n\n\t'      Text
+'o_rgb'       Name
+' '           Text
+'='           Operator
+' '           Text
+'diffuseColor' Name
+' '           Text
+'*'           Operator
+' '           Text
+'diffuseLight' Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'['           Punctuation
+'domain'      Name.Decorator
+'('           Punctuation
+'"'           Literal.String
+'quad'        Literal.String
+'"'           Literal.String
+')'           Punctuation
+']'           Punctuation
+'\n'          Text
+
+'void'        Keyword.Type
+' '           Text
+'ds'          Name
+'('           Punctuation
+'\n\t'        Text
+'in'          Keyword
+' '           Text
+'float'       Keyword.Type
+' '           Text
+'edgeFactors' Name
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+':'           Operator
+' '           Text
+'SV_TessFactor' Name.Decorator
+','           Punctuation
+'\n\t'        Text
+'in'          Keyword
+' '           Text
+'float'       Keyword.Type
+' '           Text
+'insideFactors' Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+':'           Operator
+' '           Text
+'SV_InsideTessFactor' Name.Decorator
+','           Punctuation
+'\n\t'        Text
+'in'          Keyword
+' '           Text
+'OutputPatch' Keyword.Type
+'<'           Operator
+'VData'       Name
+','           Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+'>'           Operator
+' '           Text
+'inp'         Name
+','           Punctuation
+'\n\t'        Text
+'in'          Keyword
+' '           Text
+'float2'      Keyword.Type
+' '           Text
+'uv'          Name
+' '           Text
+':'           Operator
+' '           Text
+'SV_DomainLocation' Name.Decorator
+','           Punctuation
+'\n\t'        Text
+'out'         Keyword
+' '           Text
+'float4'      Keyword.Type
+' '           Text
+'o_pos'       Name
+' '           Text
+':'           Operator
+' '           Text
+'SV_Position' Name.Decorator
+')'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'\n\t'        Text
+'o_pos'       Name
+' '           Text
+'='           Operator
+' '           Text
+'lerp'        Name.Builtin
+'('           Punctuation
+'lerp'        Name.Builtin
+'('           Punctuation
+'inp'         Name
+'['           Punctuation
+'0'           Literal.Number.Oct
+']'           Punctuation
+'.'           Punctuation
+'pos'         Name
+','           Punctuation
+' '           Text
+'inp'         Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'.'           Punctuation
+'pos'         Name
+','           Punctuation
+' '           Text
+'uv'          Name
+'.'           Punctuation
+'x'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'lerp'        Name.Builtin
+'('           Punctuation
+'inp'         Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+'.'           Punctuation
+'pos'         Name
+','           Punctuation
+' '           Text
+'inp'         Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+'.'           Punctuation
+'pos'         Name
+','           Punctuation
+' '           Text
+'uv'          Name
+'.'           Punctuation
+'x'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'uv'          Name
+'.'           Punctuation
+'y'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

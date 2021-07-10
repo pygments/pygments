@@ -1,13 +1,11 @@
-# -*- coding: utf-8 -*-
 """
     Pygments HTML formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import io
 import os
 import re
 import tempfile
@@ -24,7 +22,7 @@ from pygments.style import Style
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_html_formatter.py')
 
-with io.open(TESTFILE, encoding='utf-8') as fp:
+with open(TESTFILE, encoding='utf-8') as fp:
     tokensource = list(PythonLexer().get_tokens(fp.read()))
 
 
@@ -54,7 +52,7 @@ def test_external_css():
     try:
         fmt2.format(tokensource, tfile)
         assert path.isfile(path.join(TESTDIR, 'fmt2.css'))
-    except IOError:
+    except OSError:
         # test directory not writable
         pass
     tfile.close()
@@ -101,7 +99,7 @@ def test_lineanchors():
     fmt = HtmlFormatter(**optdict)
     fmt.format(tokensource, outfile)
     html = outfile.getvalue()
-    assert re.search("<pre><span></span><a name=\"foo-1\">", html)
+    assert re.search("<pre><span></span><a id=\"foo-1\" name=\"foo-1\">", html)
 
 
 def test_lineanchors_with_startnum():
@@ -110,7 +108,7 @@ def test_lineanchors_with_startnum():
     fmt = HtmlFormatter(**optdict)
     fmt.format(tokensource, outfile)
     html = outfile.getvalue()
-    assert re.search("<pre><span></span><a name=\"foo-5\">", html)
+    assert re.search("<pre><span></span><a id=\"foo-5\" name=\"foo-5\">", html)
 
 
 def test_valid_output():
@@ -142,19 +140,19 @@ def test_valid_output():
 
 def test_get_style_defs_contains_pre_style():
     style_defs = HtmlFormatter().get_style_defs().splitlines()
-    assert style_defs[0] == 'pre { line-height: 125%; margin: 0; }'
+    assert style_defs[0] == 'pre { line-height: 125%; }'
 
 
 def test_get_style_defs_contains_default_line_numbers_styles():
     style_defs = HtmlFormatter().get_style_defs().splitlines()
 
     assert style_defs[1] == (
-        'td.linenos pre '
-        '{ color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }'
+        'td.linenos .normal '
+        '{ color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }'
     )
     assert style_defs[2] == (
         'span.linenos '
-        '{ color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }'
+        '{ color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }'
     )
 
 
@@ -168,20 +166,20 @@ def test_get_style_defs_contains_style_specific_line_numbers_styles():
     style_defs = HtmlFormatter(style=TestStyle).get_style_defs().splitlines()
 
     assert style_defs[1] == (
-        'td.linenos pre '
-        '{ color: #ff0000; background-color: #0000ff; padding: 0 5px 0 5px; }'
+        'td.linenos .normal '
+        '{ color: #ff0000; background-color: #0000ff; padding-left: 5px; padding-right: 5px; }'
     )
     assert style_defs[2] == (
         'span.linenos '
-        '{ color: #ff0000; background-color: #0000ff; padding: 0 5px 0 5px; }'
+        '{ color: #ff0000; background-color: #0000ff; padding-left: 5px; padding-right: 5px; }'
     )
     assert style_defs[3] == (
-        'td.linenos pre.special '
-        '{ color: #00ff00; background-color: #ffffff; padding: 0 5px 0 5px; }'
+        'td.linenos .special '
+        '{ color: #00ff00; background-color: #ffffff; padding-left: 5px; padding-right: 5px; }'
     )
     assert style_defs[4] == (
         'span.linenos.special '
-        '{ color: #00ff00; background-color: #ffffff; padding: 0 5px 0 5px; }'
+        '{ color: #00ff00; background-color: #ffffff; padding-left: 5px; padding-right: 5px; }'
     )
 
 

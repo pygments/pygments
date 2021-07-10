@@ -1,0 +1,11 @@
+s_load_dwordx2  s[4:5], s[0:1], 0x10
+s_load_dwordx4  s[0:3], s[0:1], 0x00
+v_lshlrev_b32  v0, 2, v0
+s_waitcnt     lgkmcnt(0)
+v_add_u32     v1, vcc, s2, v0
+v_mov_b32     v2, s3
+v_addc_u32    v2, vcc, v2, 0, vcc
+v_add_u32     v3, vcc, s0, v0
+v_mov_b32     v4, s1
+v_addc_u32    v4, vcc, v4, 0, vcc
+buffer_load_dword v4, v2, s[8:11], 0 offen

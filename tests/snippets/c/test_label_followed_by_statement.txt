@@ -1,0 +1,35 @@
+---input---
+int main()
+{
+foo:return 0;
+  goto foo;
+}
+
+---tokens---
+'int'         Keyword.Type
+' '           Text.Whitespace
+'main'        Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'foo'         Name.Label
+':'           Punctuation
+'return'      Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'goto'        Keyword
+' '           Text.Whitespace
+'foo'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

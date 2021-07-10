@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
     CoffeeScript tests
     ~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -51,35 +50,3 @@ def test_coffee_slashes(lexer, golden):
         if '/' in s:
             is_regex = t is Token.String.Regex
             assert is_regex == slashes_are_regex_here, (t, s)
-
-
-def test_mixed_slashes(lexer):
-    fragment = u'a?/foo/:1/2;\n'
-    tokens = [
-        (Token.Name.Other, u'a'),
-        (Token.Operator, u'?'),
-        (Token.Literal.String.Regex, u'/foo/'),
-        (Token.Operator, u':'),
-        (Token.Literal.Number.Integer, u'1'),
-        (Token.Operator, u'/'),
-        (Token.Literal.Number.Integer, u'2'),
-        (Token.Punctuation, u';'),
-        (Token.Text, u'\n'),
-    ]
-    assert list(lexer.get_tokens(fragment)) == tokens
-
-
-def test_beware_infinite_loop(lexer):
-    # This demonstrates the case that "This isn't really guarding" comment
-    # refers to.
-    fragment = '/a/x;\n'
-    tokens = [
-        (Token.Text, ''),
-        (Token.Operator, '/'),
-        (Token.Name.Other, 'a'),
-        (Token.Operator, '/'),
-        (Token.Name.Other, 'x'),
-        (Token.Punctuation, ';'),
-        (Token.Text, '\n'),
-    ]
-    assert list(lexer.get_tokens(fragment)) == tokens

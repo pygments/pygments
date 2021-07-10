@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.installers
     ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for installer/packager DSLs and formats.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -224,7 +223,7 @@ class SourcesListLexer(RegexLexer):
     """
 
     name = 'Debian Sourcelist'
-    aliases = ['sourceslist', 'sources.list', 'debsources']
+    aliases = ['debsources', 'sourceslist', 'sources.list']
     filenames = ['sources.list']
     mimetype = ['application/x-debian-sourceslist']
 
@@ -271,7 +270,7 @@ class DebianControlLexer(RegexLexer):
     .. versionadded:: 0.9
     """
     name = 'Debian Control file'
-    aliases = ['control', 'debcontrol']
+    aliases = ['debcontrol', 'control']
     filenames = ['control']
 
     tokens = {

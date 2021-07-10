@@ -1,0 +1,178 @@
+'ex'          Text
+'a'           Text
+'mple by D'   Text
+'a'           Text
+'vid Corbett begins here.' Text
+'\n\n'        Text
+
+'"'           Literal.String.Double
+'Implements testable examples.' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'A'           Text
+'n ex'        Text
+'a'           Text
+'mple is '    Text
+'a'           Text
+' kind of thing. ' Text
+'A'           Text
+'n ex'        Text
+'a'           Text
+'mple c'      Text
+'a'           Text
+'n be tested. ' Text
+'A'           Text
+'n ex'        Text
+'a'           Text
+'mple is seldom tested.' Text
+'\n\n'        Text
+
+'ex'          Text
+'a'           Text
+'mple ends here.' Text
+'\n\n'        Text
+
+'----\n'      Text
+
+'['           Comment.Multiline
+'The'         Comment.Multiline
+']'           Comment.Multiline
+' '           Text
+'documentation ' Text
+'['           Comment.Multiline
+'starts here.' Comment.Multiline
+']'           Comment.Multiline
+'\n'          Text
+
+'----\n'      Text
+
+'\n'          Text
+
+'This extension adds examples, which may be tested.' Text
+'\n'          Text
+
+'\nChapter: Usage' Generic.Heading
+'\n'          Text
+
+'\n'          Text
+
+'To add an example to the story, we write:' Text
+'\n'          Text
+
+'\n'          Text
+
+'\tThe foob'  Text
+'a'           Text
+'r is '       Text
+'a'           Text
+'n ex'        Text
+'a'           Text
+'mple.'       Text
+'\n'          Text
+
+'\n'          Text
+
+'To interact with it in Inform 6, we write something like:' Text
+'\n'          Text
+
+'\n'          Text
+
+'\tTo s'      Text
+'a'           Text
+'y '          Text
+'('           Text
+'E - ex'      Text
+'a'           Text
+'mple)'       Text
+':'           Text
+' '           Text
+'(-'          Punctuation
+'\n\t\t'      Text
+'print'       Keyword
+' '           Text
+'('           Punctuation
+'object'      Keyword.Pseudo
+')'           Punctuation
+' '           Text
+''            Text
+'{'           Punctuation
+'E'           Text
+'}'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'-)'          Punctuation
+'.'           Text
+'\n'          Text
+
+'\t'          Text
+'['           Comment.Multiline
+"The IDE's documentation viewer does not display the closing -). I don't know how to fix that." Comment.Multiline
+']'           Comment.Multiline
+'\n'          Text
+
+'\nSection: Testing' Generic.Subheading
+'\n'          Text
+
+'\n'          Text
+
+'We can make an example be tested using:' Text
+'\n'          Text
+
+'\n'          Text
+
+'\tnow the foob' Text
+'a'           Text
+'r is tested;' Text
+'\n'          Text
+
+'\nExample: * Exempli Gratia - A simple example.' Generic.Heading
+'\n'          Text
+
+'\n'          Text
+
+'\t*'         Text
+':'           Text
+' '           Text
+'"'           Literal.String.Double
+'Exempli Gratia' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'\n'          Text
+
+'\tInclude ex' Text
+'a'           Text
+'mple by D'   Text
+'a'           Text
+'vid Corbett.' Text
+'\n'          Text
+
+'\n'          Text
+
+'\tThe Kitchen is ' Text
+'a'           Text
+' room. The egg is ' Text
+'a'           Text
+'n ex'        Text
+'a'           Text
+'mple, here.' Text
+'\n'          Text
+
+'\n'          Text
+
+'\tBefore dropping the egg' Text
+':'           Text
+'\n\t\t'      Text
+'now the egg is tested.' Text
+'\n'          Text
+
+'\t'          Text
+'\n'          Text
+
+'\tTest me with ' Text
+'"'           Literal.String.Double
+'get egg / drop egg' Literal.String.Double
+'"'           Literal.String.Double
+'.'           Text
+'\n'          Text

@@ -1,0 +1,21 @@
+---input---
+**bold** and *italics*
+
+*italics* and **bold**
+
+---tokens---
+'**bold**'    Generic.Strong
+' '           Text
+'and'         Text
+' '           Text
+'*italics*'   Generic.Emph
+'\n'          Text
+
+'\n'          Text
+
+'*italics*'   Generic.Emph
+' '           Text
+'and'         Text
+' '           Text
+'**bold**'    Generic.Strong
+'\n'          Text

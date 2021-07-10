@@ -1,0 +1,93 @@
+'//example teal code taken from https://developer.algorand.org/tutorials/writing-simple-smart-contract/' Comment.Single
+'\n'          Text
+
+'// Check the Fee is resonable ' Comment.Single
+'\n'          Text
+
+'// In this case 10,000 microalgos' Comment.Single
+'\n'          Text
+
+'txn'         Name.Function
+' '           Text
+'Fee'         Keyword
+'\n'          Text
+
+'int'         Name.Function
+' '           Text
+'10000'       Literal.Number.Integer
+'\n'          Text
+
+'<='          Name.Function
+'\n'          Text
+
+'\n'          Text
+
+'// Check the length of the passphrase is correct ' Comment.Single
+'\n'          Text
+
+'arg'         Name.Function
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'len'         Name.Function
+' '           Text
+'\n'          Text
+
+'int'         Name.Function
+' '           Text
+'73'          Literal.Number.Integer
+'\n'          Text
+
+'=='          Name.Function
+'\n'          Text
+
+'&&'          Name.Function
+'\n'          Text
+
+'\n'          Text
+
+'// The sha256 value of the passphrase' Comment.Single
+'\n'          Text
+
+'arg'         Name.Function
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'sha256'      Name.Function
+'\n'          Text
+
+'byte'        Name.Function
+' '           Text
+'base64 '     Literal.String.Affix
+'30AT2gOReDBdJmLBO/DgvjC6hIXgACecTpFDcP1bJHU=' Literal.String.Other
+'\n'          Text
+
+'=='          Name.Function
+'\n'          Text
+
+'&&'          Name.Function
+'\n'          Text
+
+'\n'          Text
+
+'// Make sure the CloseRemainderTo is not set' Comment.Single
+'\n'          Text
+
+'txn'         Name.Function
+' '           Text
+'CloseRemainderTo' Keyword
+'\n'          Text
+
+'txn'         Name.Function
+' '           Text
+'Receiver'    Keyword
+' '           Text
+'\n'          Text
+
+'=='          Name.Function
+'\n'          Text
+
+'&&'          Name.Function
+'\n'          Text

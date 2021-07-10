@@ -1,0 +1,56 @@
+---input---
+int main()
+{
+    switch (0)
+    {
+        case 0:
+        default:
+            ;
+    }
+}
+
+---tokens---
+'int'         Keyword.Type
+' '           Text.Whitespace
+'main'        Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'switch'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+':'           Operator
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'default'     Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

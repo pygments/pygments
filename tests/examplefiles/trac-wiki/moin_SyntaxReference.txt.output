@@ -1,0 +1,1172 @@
+'## Please edit system and help pages ONLY in the moinmaster wiki! For more' Comment
+'\n'          Text
+
+'## information, please see MoinMaster:MoinPagesEditorGroup.' Comment
+'\n'          Text
+
+'##master-page:Unknown-Page' Comment
+'\n'          Text
+
+'##master-date:Unknown-Date' Comment
+'\n'          Text
+
+'#acl MoinPagesEditorGroup:read,write,delete,revert All:read' Comment
+'\n'          Text
+
+'#format wiki' Comment
+'\n'          Text
+
+'#language en' Comment
+'\n'          Text
+
+'\n'          Text
+
+'This page aims to introduce the most important elements of MoinMoin``' Text
+"'"           Text
+'s syntax at a glance' Text
+','           Text
+' showing first the markup verbatim and then how it is rendered by the wiki engine. Additionally' Text
+','           Text
+' you'        Text
+"'"           Text
+'ll find links to the relative help pages. Please note that some of the features depend on your configuration.' Text
+'\n'          Text
+
+'\n'          Text
+
+'='           Generic.Heading
+' Table of Contents ' Text
+'='           Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+"\n'''Contents''' (up to the 2nd level)\n[[TableOfContents(2)]]\n" Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+"'''"         Comment
+'Contents'    Text
+"'''"         Comment
+' (up to the 2nd level)' Text
+'\n'          Text
+
+'[[TableOfContents(2)]]' Keyword
+'\n'          Text
+
+'\n'          Text
+
+'='           Generic.Heading
+' Headings '  Text
+'='           Generic.Heading
+'\n'          Text
+
+"'''"         Comment
+"''"          Comment
+'see:'        Text
+"'''"         Comment
+' HelpOnHeadlines' Text
+"''"          Comment
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n= heading 1st level =\n== heading 2nd level ==\n=== heading 3rd level ===\n==== heading 4th level ====\n===== heading 5th level =====\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+'='           Generic.Heading
+' heading 1st level ' Text
+'='           Generic.Heading
+'\n'          Text
+
+'=='          Generic.Heading
+' heading 2nd level ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'==='         Generic.Heading
+' heading 3rd level ' Text
+'==='         Generic.Heading
+'\n'          Text
+
+'===='        Generic.Heading
+' heading 4th level ' Text
+'===='        Generic.Heading
+'\n'          Text
+
+'====='       Generic.Heading
+' heading 5th level ' Text
+'====='       Generic.Heading
+'\n'          Text
+
+'\n'          Text
+
+'='           Generic.Heading
+' Text Formatting ' Text
+'='           Generic.Heading
+'\n'          Text
+
+"'''"         Comment
+"''"          Comment
+'see:'        Text
+"'''"         Comment
+' HelpOnFormatting' Text
+"''"          Comment
+'\n'          Text
+
+'{{{'         Name.Builtin
+"\n * ''emphasized (italics)''\n * '''boldface'''\n * '''''bold italics'''''\n * `monospace`\n * " Comment.Preproc
+'{{{'         Text
+'source code' Comment.Preproc
+'}}}'         Name.Builtin
+'\n * __underline__\n * ,,sub,,script\n * ^super^script\n * ~-smaller-~\n * ~+larger+~\n * --(strike through)--\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+"''"          Comment
+'emphasized (italics)' Text
+"''"          Comment
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+"'''"         Comment
+'boldface'    Text
+"'''"         Comment
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+"'''"         Comment
+"''"          Comment
+'bold italics' Text
+"'''"         Comment
+"''"          Comment
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'`'           Comment
+'monospace`'  Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'{{{'         Name.Builtin
+'source code' Comment.Preproc
+'}}}'         Name.Builtin
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'__'          Comment
+'underline'   Text
+'__'          Comment
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+',,'          Comment
+'sub'         Text
+',,'          Comment
+'script'      Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'^'           Comment
+'super'       Text
+'^'           Comment
+'script'      Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'~'           Text
+'-smaller-'   Text
+'~'           Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'~'           Text
+'+larger+'    Text
+'~'           Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'--(strike through)--' Text
+'\n'          Text
+
+'\n'          Text
+
+'='           Generic.Heading
+' Hyperlinks ' Text
+'='           Generic.Heading
+'\n'          Text
+
+"'''"         Comment
+"''"          Comment
+'see:'        Text
+"'''"         Comment
+' HelpOnLinking' Text
+"''"          Comment
+'\n'          Text
+
+'=='          Generic.Heading
+' Internal Links ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n * FrontPage\n * ["FrontPage"]\n * HelpOnEditing/SubPages\n * /SubPage\n * ../SiblingPage\n * [:FrontPage:named link]\n * [#anchorname]\n * [#anchorname description]\n * [wiki:Self:PageName#anchorname]\n * [wiki:Self:PageName#anchorname description]\n * attachment:filename.txt\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'FrontPage'   Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'["FrontPage"' Keyword
+']'           Keyword
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'HelpOnEditing/SubPages' Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'/SubPage'    Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'../SiblingPage' Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'[:FrontPage:named' Keyword
+' link'       Literal.String
+']'           Keyword
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'[#anchorname' Keyword
+']'           Keyword
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'[#anchorname' Keyword
+' description' Literal.String
+']'           Keyword
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'[wiki:Self:PageName#anchorname' Keyword
+']'           Keyword
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'[wiki:Self:PageName#anchorname' Keyword
+' description' Literal.String
+']'           Keyword
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'attachment:filename.txt' Text
+'\n'          Text
+
+'\n'          Text
+
+'=='          Generic.Heading
+' External Links ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n * http://moinmoin.wikiwikiweb.de/\n * [http://moinmoin.wikiwikiweb.de/]\n * [http://moinmoin.wikiwikiweb.de/ MoinMoin Wiki]\n * [http://moinmoin.wikiwikiweb.de/wiki/moinmoin.png]\n * http://moinmoin.wikiwikiweb.de/wiki/moinmoin.png\n * [http://moinmoin.wikiwikiweb.de/wiki/moinmoin.png moinmoin.png]\n * MeatBall:InterWiki\n * wiki:MeatBall/InterWiki\n * [wiki:MeatBall/InterWiki]\n * [wiki:MeatBall/InterWiki InterWiki page on MeatBall]\n * [file://///servername/share/full/path/to/file/filename%20with%20spaces.txt link to file filename with spaces.txt]\n * user@example.com\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'http://moinmoin.wikiwikiweb.de/' Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'[http://moinmoin.wikiwikiweb.de/' Keyword
+']'           Keyword
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'[http://moinmoin.wikiwikiweb.de/' Keyword
+' MoinMoin Wiki' Literal.String
+']'           Keyword
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'[http://moinmoin.wikiwikiweb.de/wiki/moinmoin.png' Keyword
+']'           Keyword
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'http://moinmoin.wikiwikiweb.de/wiki/moinmoin.png' Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'[http://moinmoin.wikiwikiweb.de/wiki/moinmoin.png' Keyword
+' moinmoin.png' Literal.String
+']'           Keyword
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'MeatBall:InterWiki' Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'wiki:MeatBall/InterWiki' Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'[wiki:MeatBall/InterWiki' Keyword
+']'           Keyword
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'[wiki:MeatBall/InterWiki' Keyword
+' InterWiki page on MeatBall' Literal.String
+']'           Keyword
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'[file://///servername/share/full/path/to/file/filename%20with%20spaces.txt' Keyword
+' link to file filename with spaces.txt' Literal.String
+']'           Keyword
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'user@example.com' Text
+'\n'          Text
+
+'\n'          Text
+
+'=='          Generic.Heading
+' Avoid or Limit Automatical Linking ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+"\n * Wiki''''''Name\n * Wiki``Name\n * !WikiName\n * WikiName''''''s\n * WikiName``s\n * `http://www.example.com`\n" Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'Wiki'        Text
+"'''"         Comment
+"'''"         Comment
+'Name'        Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'Wiki``Name'  Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'!'           Keyword
+'WikiName'    Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'WikiName'    Text
+"'''"         Comment
+"'''"         Comment
+'s'           Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'WikiName``s' Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'`'           Comment
+'http://www.example.com`' Text
+'\n'          Text
+
+'\n'          Text
+
+'='           Generic.Heading
+' Blockquotes and Indentions ' Text
+'='           Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n indented text\n  text indented to the 2nd level\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+' indented text' Text
+'\n'          Text
+
+'  text indented to the 2nd level' Text
+'\n'          Text
+
+'\n'          Text
+
+'='           Generic.Heading
+' Lists '     Text
+'='           Generic.Heading
+'\n'          Text
+
+"'''"         Comment
+"''"          Comment
+'see:'        Text
+"'''"         Comment
+' HelpOnLists' Text
+"''"          Comment
+'\n'          Text
+
+'=='          Generic.Heading
+' Unordered Lists ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n * item 1\n\n * item 2 (preceding white space)\n  * item 2.1\n   * item 2.1.1\n * item 3\n  . item 3.1 (bulletless)\n . item 4 (bulletless)\n  * item 4.1\n   . item 4.1.1 (bulletless)\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'item 1'      Text
+'\n'          Text
+
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'item 2 (preceding white space)' Text
+'\n'          Text
+
+'  '          Text
+'*'           Name.Builtin
+' '           Text
+'item 2.1'    Text
+'\n'          Text
+
+'   '         Text
+'*'           Name.Builtin
+' '           Text
+'item 2.1.1'  Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'item 3'      Text
+'\n'          Text
+
+'  '          Text
+'.'           Name.Builtin
+' '           Text
+'item 3.1 (bulletless)' Text
+'\n'          Text
+
+' '           Text
+'.'           Name.Builtin
+' '           Text
+'item 4 (bulletless)' Text
+'\n'          Text
+
+'  '          Text
+'*'           Name.Builtin
+' '           Text
+'item 4.1'    Text
+'\n'          Text
+
+'   '         Text
+'.'           Name.Builtin
+' '           Text
+'item 4.1.1 (bulletless)' Text
+'\n'          Text
+
+'\n'          Text
+
+'=='          Generic.Heading
+' Ordered Lists ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'==='         Generic.Heading
+' with Numbers ' Text
+'==='         Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n 1. item 1\n   1. item 1.1\n   1. item 1.2\n 1. item 2\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+' 1. item 1'  Text
+'\n'          Text
+
+'   1. item 1.1' Text
+'\n'          Text
+
+'   1. item 1.2' Text
+'\n'          Text
+
+' 1. item 2'  Text
+'\n'          Text
+
+'\n'          Text
+
+'==='         Generic.Heading
+' with Roman Numbers ' Text
+'==='         Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n I. item 1\n   i. item 1.1\n   i. item 1.2\n I. item 2\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+' '           Text
+'I.'          Name.Builtin
+' '           Text
+'item 1'      Text
+'\n'          Text
+
+'   '         Text
+'i.'          Name.Builtin
+' '           Text
+'item 1.1'    Text
+'\n'          Text
+
+'   '         Text
+'i.'          Name.Builtin
+' '           Text
+'item 1.2'    Text
+'\n'          Text
+
+' '           Text
+'I.'          Name.Builtin
+' '           Text
+'item 2'      Text
+'\n'          Text
+
+'\n'          Text
+
+'==='         Generic.Heading
+' with Letters ' Text
+'==='         Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n A. item A\n   a. item A. a)\n   a. item A. b)\n A. item B\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+' '           Text
+'A.'          Name.Builtin
+' '           Text
+'item A'      Text
+'\n'          Text
+
+'   '         Text
+'a.'          Name.Builtin
+' '           Text
+'item A. a)'  Text
+'\n'          Text
+
+'   '         Text
+'a.'          Name.Builtin
+' '           Text
+'item A. b)'  Text
+'\n'          Text
+
+' '           Text
+'A.'          Name.Builtin
+' '           Text
+'item B'      Text
+'\n'          Text
+
+'\n'          Text
+
+'=='          Generic.Heading
+' Definition Lists ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n term:: definition\n object:: description 1\n :: description 2\n Action Items::\n :: First Item\n :: Second Item\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+' term:: definition' Text
+'\n'          Text
+
+' object:: description 1' Text
+'\n'          Text
+
+' :: description 2' Text
+'\n'          Text
+
+' Action Items::' Text
+'\n'          Text
+
+' :: First Item' Text
+'\n'          Text
+
+' :: Second Item' Text
+'\n'          Text
+
+'\n'          Text
+
+'='           Generic.Heading
+' Horizontal Rules ' Text
+'='           Generic.Heading
+'\n'          Text
+
+"'''"         Comment
+"''"          Comment
+'see:'        Text
+"'''"         Comment
+' HelpOnRules' Text
+"''"          Comment
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n----\n-----\n------\n-------\n--------\n---------\n----------\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+'----'        Keyword
+'\n'          Text
+
+'-----'       Keyword
+'\n'          Text
+
+'------'      Keyword
+'\n'          Text
+
+'-------'     Keyword
+'\n'          Text
+
+'--------'    Keyword
+'\n'          Text
+
+'---------'   Keyword
+'\n'          Text
+
+'----------'  Keyword
+'\n'          Text
+
+'\n'          Text
+
+'='           Generic.Heading
+' Tables '    Text
+'='           Generic.Heading
+'\n'          Text
+
+"'''"         Comment
+"''"          Comment
+'see:'        Text
+"'''"         Comment
+' HelpOnTables' Text
+"''"          Comment
+'\n'          Text
+
+'=='          Generic.Heading
+' Tables '    Text
+'=='          Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+"\n||'''A'''||'''B'''||'''C'''||\n||1      ||2      ||3      ||\n" Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+'||'          Comment
+"'''"         Comment
+'A'           Text
+"'''"         Comment
+'||'          Comment
+"'''"         Comment
+'B'           Text
+"'''"         Comment
+'||'          Comment
+"'''"         Comment
+'C'           Text
+"'''"         Comment
+'||'          Comment
+'\n'          Text
+
+'||'          Comment
+'1      '     Text
+'||'          Comment
+'2      '     Text
+'||'          Comment
+'3      '     Text
+'||'          Comment
+'\n'          Text
+
+'\n'          Text
+
+'=='          Generic.Heading
+' Cell Width ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n||minimal width ||<99%>maximal width ||\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+'||'          Comment
+'minimal width ' Text
+'||'          Comment
+'<99%>maximal width ' Text
+'||'          Comment
+'\n'          Text
+
+'\n'          Text
+
+'=='          Generic.Heading
+' Spanning Rows and Columns  ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n||<|2> cell spanning 2 rows ||cell in the 2nd column ||\n||cell in the 2nd column of the 2nd row ||\n||<-2> cell spanning 2 columns ||\n||||use empty cells as a shorthand ||\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+'||'          Comment
+'<'           Text
+'|'           Text
+'2> cell spanning 2 rows ' Text
+'||'          Comment
+'cell in the 2nd column ' Text
+'||'          Comment
+'\n'          Text
+
+'||'          Comment
+'cell in the 2nd column of the 2nd row ' Text
+'||'          Comment
+'\n'          Text
+
+'||'          Comment
+'<-2> cell spanning 2 columns ' Text
+'||'          Comment
+'\n'          Text
+
+'||'          Comment
+'||'          Comment
+'use empty cells as a shorthand ' Text
+'||'          Comment
+'\n'          Text
+
+'\n'          Text
+
+'=='          Generic.Heading
+' Alignment of Cell Contents ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n||<^|3> top (combined) ||<:99%> center (combined) ||<v|3> bottom (combined) ||\n||<)> right ||\n||<(> left ||\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+'||'          Comment
+'<'           Text
+'^'           Comment
+'|'           Text
+'3> top (combined) ' Text
+'||'          Comment
+'<:99%> center (combined) ' Text
+'||'          Comment
+'<v'          Text
+'|'           Text
+'3> bottom (combined) ' Text
+'||'          Comment
+'\n'          Text
+
+'||'          Comment
+'<)> right '  Text
+'||'          Comment
+'\n'          Text
+
+'||'          Comment
+'<(> left '   Text
+'||'          Comment
+'\n'          Text
+
+'\n'          Text
+
+'=='          Generic.Heading
+' Coulored Table Cells ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n||<#0000FF> blue ||<#00FF00> green    ||<#FF0000> red    ||\n||<#00FFFF> cyan ||<#FF00FF> magenta  ||<#FFFF00> yellow ||\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+'||'          Comment
+'<#0000FF> blue ' Text
+'||'          Comment
+'<#00FF00> green    ' Text
+'||'          Comment
+'<#FF0000> red    ' Text
+'||'          Comment
+'\n'          Text
+
+'||'          Comment
+'<#00FFFF> cyan ' Text
+'||'          Comment
+'<#FF00FF> magenta  ' Text
+'||'          Comment
+'<#FFFF00> yellow ' Text
+'||'          Comment
+'\n'          Text
+
+'\n'          Text
+
+'=='          Generic.Heading
+' HTML-like Options for Tables ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n||A ||<rowspan="2"> like <|2> ||\n||<bgcolor="#00FF00"> like <#00FF00> ||\n||<colspan="2"> like <-2>||\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+'||'          Comment
+'A '          Text
+'||'          Comment
+'<rowspan="2"> like <' Text
+'|'           Text
+'2> '         Text
+'||'          Comment
+'\n'          Text
+
+'||'          Comment
+'<bgcolor="#00FF00"> like <#00FF00> ' Text
+'||'          Comment
+'\n'          Text
+
+'||'          Comment
+'<colspan="2"> like <-2>' Text
+'||'          Comment
+'\n'          Text
+
+'\n'          Text
+
+'='           Generic.Heading
+' Macros and Variables ' Text
+'='           Generic.Heading
+'\n'          Text
+
+'=='          Generic.Heading
+' Macros '    Text
+'=='          Generic.Heading
+'\n'          Text
+
+"'''"         Comment
+"''"          Comment
+'see:'        Text
+"'''"         Comment
+' HelpOnMacros' Text
+"''"          Comment
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'`'           Comment
+'[[Anchor(anchorname)]]' Keyword
+'`'           Comment
+' inserts a link anchor `anchorname`' Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'`'           Comment
+'[[BR]]'      Keyword
+'`'           Comment
+' inserts a hard line break' Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'`'           Comment
+'[[FootNote(Note)]]' Keyword
+'`'           Comment
+' inserts a footnote saying `Note`' Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'`'           Comment
+'[[Include(HelpOnMacros/Include)]]' Keyword
+'`'           Comment
+' inserts the contents of the page `HelpOnMacros/Include` inline' Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'`'           Comment
+'[[MailTo(user AT example DOT com)]]' Keyword
+'`'           Comment
+' obfuscates the email address `user@example.com` to users not logged in' Text
+'\n'          Text
+
+'\n'          Text
+
+'=='          Generic.Heading
+' Variables ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+"'''"         Comment
+"''"          Comment
+'see:'        Text
+"'''"         Comment
+' HelpOnVariables' Text
+"''"          Comment
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'`'           Comment
+'@``SIG``@` inserts your login name and timestamp of modification' Text
+'\n'          Text
+
+' '           Text
+'*'           Name.Builtin
+' '           Text
+'`'           Comment
+'@``TIME``@` inserts date and time of modification' Text
+'\n'          Text
+
+'\n'          Text
+
+'='           Generic.Heading
+' Smileys and Icons ' Text
+'='           Generic.Heading
+'\n'          Text
+
+"'''"         Comment
+"''"          Comment
+'see:'        Text
+"'''"         Comment
+' HelpOnSmileys' Text
+"''"          Comment
+'\n'          Text
+
+'[[ShowSmileys]]' Keyword
+'\n'          Text
+
+'\n'          Text
+
+'='           Generic.Heading
+' Source code ' Text
+'='           Generic.Heading
+'\n'          Text
+
+"'''"         Comment
+"''"          Comment
+'see:'        Text
+"'''"         Comment
+' HelpOnParsers' Text
+"''"          Comment
+'\n'          Text
+
+'=='          Generic.Heading
+' Verbatim Display ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n'          Comment.Preproc
+
+'{'           Comment.Preproc
+' '           Comment.Preproc
+'{'           Comment.Preproc
+' '           Comment.Preproc
+'{'           Comment.Preproc
+'\ndef hello():\n    print "Hello World!"\n' Comment.Preproc
+
+'}'           Comment.Preproc
+' '           Comment.Preproc
+'}'           Comment.Preproc
+' '           Comment.Preproc
+'}'           Comment.Preproc
+'\n'          Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+'/'           Text
+'!'           Keyword
+'\\'          Text
+' Remove spaces between "`' Text
+'{'           Text
+' '           Text
+'{'           Text
+' '           Text
+'{'           Text
+'`'           Comment
+'" and "`} } }`".' Text
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\ndef hello():\n    print "Hello World!"\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+'\n'          Text
+
+'=='          Generic.Heading
+' Syntax Highlighting ' Text
+'=='          Generic.Heading
+'\n'          Text
+
+'{{{'         Name.Builtin
+'\n'          Comment.Preproc
+
+'{'           Comment.Preproc
+' '           Comment.Preproc
+'{'           Comment.Preproc
+' '           Comment.Preproc
+'{'           Comment.Preproc
+'#!python\ndef hello():\n    print "Hello World!"\n' Comment.Preproc
+
+'}'           Comment.Preproc
+' '           Comment.Preproc
+'}'           Comment.Preproc
+' '           Comment.Preproc
+'}'           Comment.Preproc
+'\n'          Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text
+
+'/'           Text
+'!'           Keyword
+'\\'          Text
+' Remove spaces between "`' Text
+'{'           Text
+' '           Text
+'{'           Text
+' '           Text
+'{'           Text
+'`'           Comment
+'" and "`} } }`".' Text
+'\n'          Text
+
+'{{{'         Name.Builtin
+'#!python\ndef hello():\n    print "Hello World!"\n' Comment.Preproc
+
+'}}}'         Name.Builtin
+'\n'          Text

@@ -1,0 +1,76 @@
+/*
+ * Multi-line comment
+ */
+
+// Single line comment
+
+[
+    0b110 & 0b011,
+    0b110 | 0b011,
+    0b110 ^ 0b011,
+];
+
+x = 0;
+[
+    false && x += 1,
+    true || x += 1,
+    x
+];  // expression x += 1 will never be executed
+
+0b101010;
+0xff;
++0.314e+1;
+nan;
+-inf;
+inf;
+42;
+-10;
+
+!false;
+
+true;
+false;
+nil;  // nil
+/.*test/i;
+
+'single quote string';
+"double quote string";
+
+nodes_info();
+id();
+.id();
+.add(#12, #42);
+
+variable;
+.property;
+
+|x, y| x + y;
+
+{
+    nil;  // block
+}
+
+.users.map(|user| {
+    // property, with function and closure
+    user.name;
+});
+
+x.y.z.filter(|| true);
+
+.iris = {
+    name: 'Iris',
+    age: 6,
+};
+
+.arr = [1, 2, 3];
+
+cato = {}
+
+x = {
+    6 * 7;  /* yes, 42 ! */
+};
+
+a == b;
+a += 1;
+
+bool = (a == b || (a == c && c != d));

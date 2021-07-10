@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.bibtex
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for BibTeX bibliography data and styles
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -27,7 +26,7 @@ class BibTeXLexer(ExtendedRegexLexer):
     """
 
     name = 'BibTeX'
-    aliases = ['bib', 'bibtex']
+    aliases = ['bibtex', 'bib']
     filenames = ['*.bib']
     mimetypes = ["text/x-bibtex"]
     flags = re.IGNORECASE
@@ -155,6 +154,6 @@ class BSTLexer(RegexLexer):
         ],
         'whitespace': [
             (r'\s+', Text),
-            ('%.*?$', Comment.SingleLine),
+            ('%.*?$', Comment.Single),
         ],
     }

@@ -1,0 +1,2658 @@
+'#'           Comment.Preproc
+'pike __REAL_VERSION__' Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'//! A string wrapper that pretends to be a @[Stdio.File] object\n' Comment.Single
+
+'//! in addition to some features of a @[Stdio.FILE] object.\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! This constant can be used to distinguish a FakeFile object\n' Comment.Single
+
+'//! from a real @[Stdio.File] object.\n' Comment.Single
+
+'constant'    Keyword
+' '           Text.Whitespace
+'is_fake_file' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'protected'   Keyword
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'data'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'protected'   Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'ptr'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'protected'   Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+'('           Punctuation
+'0.'          Literal.Number.Float
+'.1'          Literal.Number.Float
+')'           Punctuation
+' '           Text.Whitespace
+'r'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'protected'   Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+'('           Punctuation
+'0.'          Literal.Number.Float
+'.1'          Literal.Number.Float
+')'           Punctuation
+' '           Text.Whitespace
+'w'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'protected'   Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'mtime'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'protected'   Keyword
+' '           Text.Whitespace
+'function'    Keyword.Type
+' '           Text.Whitespace
+'read_cb'     Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'protected'   Keyword
+' '           Text.Whitespace
+'function'    Keyword.Type
+' '           Text.Whitespace
+'read_oob_cb' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'protected'   Keyword
+' '           Text.Whitespace
+'function'    Keyword.Type
+' '           Text.Whitespace
+'write_cb'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'protected'   Keyword
+' '           Text.Whitespace
+'function'    Keyword.Type
+' '           Text.Whitespace
+'write_oob_cb' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'protected'   Keyword
+' '           Text.Whitespace
+'function'    Keyword.Type
+' '           Text.Whitespace
+'close_cb'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->close()]\n' Comment.Single
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'close'       Name.Function
+'('           Punctuation
+'void'        Keyword.Type
+'|'           Operator
+'string'      Keyword.Type
+' '           Text.Whitespace
+'direction'   Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'direction'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'lower_case'  Name
+'('           Punctuation
+'direction'   Name
+'|'           Operator
+'|'           Operator
+'"'           Literal.String
+'rw'          Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'cr'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'has_value'   Name
+'('           Punctuation
+'direction'   Name
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'cw'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'has_value'   Name
+'('           Punctuation
+'direction'   Name
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'w'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'cr'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'r'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'cw'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'w'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// FIXME: Close callback\n' Comment.Single
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @decl void create(string data, void|string type, void|int pointer)\n' Comment.Single
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->create()]\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'create'      Name.Function
+'('           Punctuation
+'string'      Keyword.Type
+' '           Text.Whitespace
+'_data'       Name
+','           Punctuation
+' '           Text.Whitespace
+'void'        Keyword.Type
+'|'           Operator
+'string'      Keyword.Type
+' '           Text.Whitespace
+'type'        Name
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+'|'           Operator
+'void'        Keyword.Type
+' '           Text.Whitespace
+'_ptr'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'_data'       Name
+')'           Punctuation
+' '           Text.Whitespace
+'error'       Name
+'('           Punctuation
+'"'           Literal.String
+'No data string given to FakeFile.' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'data'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'_data'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'ptr'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'_ptr'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'mtime'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'time'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'type'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'type'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'lower_case'  Name
+'('           Punctuation
+'type'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'has_value'   Name
+'('           Punctuation
+'type'        Name
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'r'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'has_value'   Name
+'('           Punctuation
+'type'        Name
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'w'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'w'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'else'        Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'r'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'w'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'protected'   Keyword
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'make_type_str' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'type'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'r'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'type'        Name
+' '           Text.Whitespace
+'+'           Operator
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'w'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'type'        Name
+' '           Text.Whitespace
+'+'           Operator
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'w'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'type'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->dup()]\n' Comment.Single
+
+'this_program' Name
+' '           Text.Whitespace
+'dup'         Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'this_program' Name
+'('           Punctuation
+'data'        Name
+','           Punctuation
+' '           Text.Whitespace
+'make_type_str' Name
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'ptr'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! Always returns 0.\n' Comment.Single
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->errno()]\n' Comment.Single
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'errno'       Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! Returns size and the creation time of the string.\n' Comment.Single
+
+'Stdio'       Name
+'.'           Punctuation
+'Stat'        Name
+' '           Text.Whitespace
+'stat'        Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'Stdio'       Name
+'.'           Punctuation
+'Stat'        Name
+' '           Text.Whitespace
+'st'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Stdio'       Name
+'.'           Punctuation
+'Stat'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'st'          Name
+'-'           Operator
+'>'           Operator
+'size'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'sizeof'      Keyword
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'st'          Name
+'-'           Operator
+'>'           Operator
+'mtime'       Name
+'='           Operator
+'st'          Name
+'-'           Operator
+'>'           Operator
+'ctime'       Name
+'='           Operator
+'mtime'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'st'          Name
+'-'           Operator
+'>'           Operator
+'atime'       Name
+'='           Operator
+'time'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'st'          Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->line_iterator()]\n' Comment.Single
+
+'String'      Name
+'.'           Punctuation
+'SplitIterator' Name
+' '           Text.Whitespace
+'line_iterator' Name
+'('           Punctuation
+'int'         Keyword.Type
+'|'           Operator
+'void'        Keyword.Type
+' '           Text.Whitespace
+'trim'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'trim'        Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'String'      Name
+'.'           Punctuation
+'SplitIterator' Name
+'('           Punctuation
+' '           Text.Whitespace
+'data'        Name
+'-'           Operator
+'"'           Literal.String
+'\\r'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\n'         Literal.String.Char
+"'"           Literal.String.Char
+' '           Text.Whitespace
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'String'      Name
+'.'           Punctuation
+'SplitIterator' Name
+'('           Punctuation
+' '           Text.Whitespace
+'data'        Name
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\n'         Literal.String.Char
+"'"           Literal.String.Char
+' '           Text.Whitespace
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'protected'   Keyword
+' '           Text.Whitespace
+'mixed'       Keyword.Type
+' '           Text.Whitespace
+'id'          Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->query_id()]\n' Comment.Single
+
+'mixed'       Keyword.Type
+' '           Text.Whitespace
+'query_id'    Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'id'          Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->set_id()]\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'set_id'      Name.Function
+'('           Punctuation
+'mixed'       Keyword.Type
+' '           Text.Whitespace
+'_id'         Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'_id'         Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->read_function()]\n' Comment.Single
+
+'function'    Keyword.Type
+'('           Punctuation
+':'           Operator
+'string'      Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'read_function' Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'nbytes'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'lambda'      Keyword.Type
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'read'        Name
+'('           Punctuation
+'nbytes'      Name
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->peek()]\n' Comment.Single
+
+'int'         Keyword.Type
+'('           Punctuation
+'-'           Operator
+'1.'          Literal.Number.Float
+'.1'          Literal.Number.Float
+')'           Punctuation
+' '           Text.Whitespace
+'peek'        Name
+'('           Punctuation
+'int'         Keyword.Type
+'|'           Operator
+'float'       Keyword.Type
+'|'           Operator
+'void'        Keyword.Type
+' '           Text.Whitespace
+'timeout'     Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'r'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'ptr'         Name
+' '           Text.Whitespace
+'>'           Operator
+'='           Operator
+' '           Text.Whitespace
+'sizeof'      Keyword
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! Always returns 0.\n' Comment.Single
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->query_address()]\n' Comment.Single
+
+'string'      Keyword.Type
+' '           Text.Whitespace
+'query_address' Name
+'('           Punctuation
+'void'        Keyword.Type
+'|'           Operator
+'int'         Keyword.Type
+'('           Punctuation
+'0.'          Literal.Number.Float
+'.1'          Literal.Number.Float
+')'           Punctuation
+' '           Text.Whitespace
+'is_local'    Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->read()]\n' Comment.Single
+
+'string'      Keyword.Type
+' '           Text.Whitespace
+'read'        Name
+'('           Punctuation
+'void'        Keyword.Type
+'|'           Operator
+'int'         Keyword.Type
+'('           Punctuation
+'0.'          Literal.Number.Float
+'.'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'len'         Name
+','           Punctuation
+' '           Text.Whitespace
+'void'        Keyword.Type
+'|'           Operator
+'int'         Keyword.Type
+'('           Punctuation
+'0.'          Literal.Number.Float
+'.1'          Literal.Number.Float
+')'           Punctuation
+' '           Text.Whitespace
+'not_all'     Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'r'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'len'         Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'error'       Name
+'('           Punctuation
+'"'           Literal.String
+'Cannot read negative number of characters.' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'start'       Name
+'='           Operator
+'ptr'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'ptr'         Name
+' '           Text.Whitespace
+'+'           Operator
+'='           Operator
+' '           Text.Whitespace
+'len'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'zero_type'   Name
+'('           Punctuation
+'len'         Name
+')'           Punctuation
+' '           Text.Whitespace
+'|'           Operator
+'|'           Operator
+' '           Text.Whitespace
+'ptr'         Name
+'>'           Operator
+'sizeof'      Keyword
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ptr'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'sizeof'      Keyword
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// FIXME: read callback\n' Comment.Single
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'data'        Name
+'['           Punctuation
+'start'       Name
+'.'           Punctuation
+'.'           Punctuation
+'ptr'         Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.FILE()->gets()]\n' Comment.Single
+
+'string'      Keyword.Type
+' '           Text.Whitespace
+'gets'        Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'r'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'ret'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'sscanf'      Keyword
+'('           Punctuation
+'data'        Name
+','           Punctuation
+'"'           Literal.String
+'%*'          Literal.String
+'"'           Literal.String
+'+'           Operator
+'('           Punctuation
+'string'      Keyword.Type
+')'           Punctuation
+'ptr'         Name
+'+'           Operator
+'"'           Literal.String
+'s%[^'        Literal.String
+'\\n'         Literal.String.Escape
+']'           Literal.String
+'"'           Literal.String
+','           Punctuation
+'ret'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'ret'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ptr'         Name
+'+'           Operator
+'='           Operator
+'sizeof'      Keyword
+'('           Punctuation
+'ret'         Name
+')'           Punctuation
+'+'           Operator
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'ptr'         Name
+'>'           Operator
+'sizeof'      Keyword
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'ptr'         Name
+'='           Operator
+'sizeof'      Keyword
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'sizeof'      Keyword
+'('           Punctuation
+'ret'         Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'ret'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// FIXME: read callback\n' Comment.Single
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'ret'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.FILE()->getchar()]\n' Comment.Single
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'getchar'     Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'r'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'c'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'catch'       Keyword
+'('           Punctuation
+'c'           Name
+'='           Operator
+'data'        Name
+'['           Punctuation
+'ptr'         Name
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'c'           Name
+'='           Operator
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'else'        Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ptr'         Name
+'+'           Operator
+'+'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// FIXME: read callback\n' Comment.Single
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'c'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.FILE()->unread()]\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'unread'      Name
+'('           Punctuation
+'string'      Keyword.Type
+' '           Text.Whitespace
+'s'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'r'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'data'        Name
+'['           Punctuation
+'ptr'         Name
+'-'           Operator
+'sizeof'      Keyword
+'('           Punctuation
+'s'           Name
+')'           Punctuation
+'.'           Punctuation
+'.'           Punctuation
+'ptr'         Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+'='           Operator
+'='           Operator
+'s'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ptr'         Name
+'-'           Operator
+'='           Operator
+'sizeof'      Keyword
+'('           Punctuation
+'s'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'else'        Keyword
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'data'        Name
+'='           Operator
+'s'           Name
+'+'           Operator
+'data'        Name
+'['           Punctuation
+'ptr'         Name
+'.'           Punctuation
+'.'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ptr'         Name
+'='           Operator
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->seek()]\n' Comment.Single
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'seek'        Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'pos'         Name
+','           Punctuation
+' '           Text.Whitespace
+'void'        Keyword.Type
+'|'           Operator
+'int'         Keyword.Type
+' '           Text.Whitespace
+'mult'        Name
+','           Punctuation
+' '           Text.Whitespace
+'void'        Keyword.Type
+'|'           Operator
+'int'         Keyword.Type
+' '           Text.Whitespace
+'add'         Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'mult'        Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'pos'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'pos'         Name
+'*'           Operator
+'mult'        Name
+'+'           Operator
+'add'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'pos'         Name
+'<'           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'pos'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'sizeof'      Keyword
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+'+'           Operator
+'pos'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+' '           Text.Whitespace
+'pos'         Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'pos'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'ptr'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'pos'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+' '           Text.Whitespace
+'ptr'         Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'strlen'      Name
+'('           Punctuation
+' '           Text.Whitespace
+'data'        Name
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'ptr'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'strlen'      Name
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'ptr'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! Always returns 1.\n' Comment.Single
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->sync()]\n' Comment.Single
+
+'int'         Keyword.Type
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.1'          Literal.Number.Float
+')'           Punctuation
+' '           Text.Whitespace
+'sync'        Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->tell()]\n' Comment.Single
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'tell'        Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'ptr'         Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->truncate()]\n' Comment.Single
+
+'int'         Keyword.Type
+'('           Punctuation
+'0.'          Literal.Number.Float
+'.1'          Literal.Number.Float
+')'           Punctuation
+' '           Text.Whitespace
+'truncate'    Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'length'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'data'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'data'        Name
+'['           Punctuation
+'.'           Punctuation
+'.'           Punctuation
+'length'      Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'sizeof'      Keyword
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+'='           Operator
+'='           Operator
+'length'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->write()]\n' Comment.Single
+
+'int'         Keyword.Type
+'('           Punctuation
+'-'           Operator
+'1.'          Literal.Number.Float
+'.'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'write'       Name
+'('           Punctuation
+'string'      Keyword.Type
+'|'           Operator
+'array'       Keyword.Type
+'('           Punctuation
+'string'      Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'str'         Name
+','           Punctuation
+' '           Text.Whitespace
+'mixed'       Keyword.Type
+' '           Text.Whitespace
+'.'           Punctuation
+'.'           Punctuation
+'.'           Punctuation
+' '           Text.Whitespace
+'extra'       Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'!'           Operator
+'w'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'arrayp'      Name
+'('           Punctuation
+'str'         Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'str'         Name
+'='           Operator
+'str'         Name
+'*'           Operator
+'"'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'sizeof'      Keyword
+'('           Punctuation
+'extra'       Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'str'         Name
+'='           Operator
+'sprintf'     Name
+'('           Punctuation
+'str'         Name
+','           Punctuation
+' '           Text.Whitespace
+'@'           Operator
+'extra'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'ptr'         Name
+'='           Operator
+'='           Operator
+'sizeof'      Keyword
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'data'        Name
+' '           Text.Whitespace
+'+'           Operator
+'='           Operator
+' '           Text.Whitespace
+'str'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ptr'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'sizeof'      Keyword
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'sizeof'      Keyword
+'('           Punctuation
+'str'         Name
+')'           Punctuation
+'='           Operator
+'='           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'data'        Name
+'['           Punctuation
+'ptr'         Name
+'+'           Operator
+'+'           Operator
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'str'         Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'data'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'data'        Name
+'['           Punctuation
+'.'           Punctuation
+'.'           Punctuation
+'ptr'         Name
+'-'           Operator
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'str'         Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'data'        Name
+'['           Punctuation
+'ptr'         Name
+'+'           Operator
+'sizeof'      Keyword
+'('           Punctuation
+'str'         Name
+')'           Punctuation
+'.'           Punctuation
+'.'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ptr'         Name
+' '           Text.Whitespace
+'+'           Operator
+'='           Operator
+' '           Text.Whitespace
+'sizeof'      Keyword
+'('           Punctuation
+'str'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// FIXME: write callback\n' Comment.Single
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'sizeof'      Keyword
+'('           Punctuation
+'str'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->set_blocking]\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'set_blocking' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'close_cb'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'read_cb'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'read_oob_cb' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'write_cb'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'write_oob_cb' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->set_blocking_keep_callbacks]\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'set_blocking_keep_callbacks' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->set_blocking]\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'set_nonblocking' Name
+'('           Punctuation
+'function'    Keyword.Type
+' '           Text.Whitespace
+'rcb'         Name
+','           Punctuation
+' '           Text.Whitespace
+'function'    Keyword.Type
+' '           Text.Whitespace
+'wcb'         Name
+','           Punctuation
+' '           Text.Whitespace
+'function'    Keyword.Type
+' '           Text.Whitespace
+'ccb'         Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t     '   Text.Whitespace
+'function'    Keyword.Type
+' '           Text.Whitespace
+'rocb'        Name
+','           Punctuation
+' '           Text.Whitespace
+'function'    Keyword.Type
+' '           Text.Whitespace
+'wocb'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'read_cb'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'rcb'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'write_cb'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'wcb'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'close_cb'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ccb'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'read_oob_cb' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'rocb'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'write_oob_cb' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'wocb'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->set_blocking_keep_callbacks]\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'set_nonblocking_keep_callbacks' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->set_close_callback]\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'set_close_callback' Name
+'('           Punctuation
+'function'    Keyword.Type
+' '           Text.Whitespace
+'cb'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'close_cb'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cb'          Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->set_read_callback]\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'set_read_callback' Name
+'('           Punctuation
+'function'    Keyword.Type
+' '           Text.Whitespace
+'cb'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'read_cb'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cb'          Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->set_read_oob_callback]\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'set_read_oob_callback' Name
+'('           Punctuation
+'function'    Keyword.Type
+' '           Text.Whitespace
+'cb'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'read_oob_cb' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cb'          Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->set_write_callback]\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'set_write_callback' Name
+'('           Punctuation
+'function'    Keyword.Type
+' '           Text.Whitespace
+'cb'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'write_cb'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cb'          Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->set_write_oob_callback]\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'set_write_oob_callback' Name
+'('           Punctuation
+'function'    Keyword.Type
+' '           Text.Whitespace
+'cb'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'write_oob_cb' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cb'          Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->query_close_callback]\n' Comment.Single
+
+'function'    Keyword.Type
+' '           Text.Whitespace
+'query_close_callback' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'close_cb'    Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->query_read_callback]\n' Comment.Single
+
+'function'    Keyword.Type
+' '           Text.Whitespace
+'query_read_callback' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'read_cb'     Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->query_read_oob_callback]\n' Comment.Single
+
+'function'    Keyword.Type
+' '           Text.Whitespace
+'query_read_oob_callback' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'read_oob_cb' Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->query_write_callback]\n' Comment.Single
+
+'function'    Keyword.Type
+' '           Text.Whitespace
+'query_write_callback' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'write_cb'    Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @seealso\n' Comment.Single
+
+'//!   @[Stdio.File()->query_write_oob_callback]\n' Comment.Single
+
+'function'    Keyword.Type
+' '           Text.Whitespace
+'query_write_oob_callback' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'write_oob_cb' Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'string'      Keyword.Type
+' '           Text.Whitespace
+'_sprintf'    Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'t'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'t'           Name
+'='           Operator
+'='           Operator
+"'"           Literal.String.Char
+'O'           Literal.String.Char
+"'"           Literal.String.Char
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'sprintf'     Name
+'('           Punctuation
+'"'           Literal.String
+'%O(%d,%O)'   Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'this_program' Name
+','           Punctuation
+' '           Text.Whitespace
+'sizeof'      Keyword
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t   '   Text.Whitespace
+'make_type_str' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// FakeFile specials.\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'//! A FakeFile can be casted to a string.\n' Comment.Single
+
+'mixed'       Keyword.Type
+' '           Text.Whitespace
+'cast'        Name
+'('           Punctuation
+'string'      Keyword.Type
+' '           Text.Whitespace
+'to'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'switch'      Keyword
+'('           Punctuation
+'to'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'"'           Literal.String
+'string'      Literal.String
+'"'           Literal.String
+':'           Operator
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'data'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'"'           Literal.String
+'object'      Literal.String
+'"'           Literal.String
+':'           Operator
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'this'        Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'error'       Name
+'('           Punctuation
+'"'           Literal.String
+'Can not cast object to %O.' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'to'          Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! Sizeof on a FakeFile returns the size of its contents.\n' Comment.Single
+
+'int'         Keyword.Type
+'('           Punctuation
+'0.'          Literal.Number.Float
+'.'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'_sizeof'     Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'sizeof'      Keyword
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @ignore\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'define NOPE(X) mixed X (mixed ... args) { error("This is a FakeFile. %s is not available.\\n", #X); }' Comment.Preproc
+'\n'          Comment.Preproc
+
+'NOPE'        Name
+'('           Punctuation
+'assign'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'NOPE'        Name
+'('           Punctuation
+'async_connect' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'NOPE'        Name
+'('           Punctuation
+'connect'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'NOPE'        Name
+'('           Punctuation
+'connect_unix' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'NOPE'        Name
+'('           Punctuation
+'open'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'NOPE'        Name
+'('           Punctuation
+'open_socket' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'NOPE'        Name
+'('           Punctuation
+'pipe'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'NOPE'        Name
+'('           Punctuation
+'tcgetattr'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'NOPE'        Name
+'('           Punctuation
+'tcsetattr'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Stdio.Fd\n' Comment.Single
+
+'NOPE'        Name
+'('           Punctuation
+'dup2'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'NOPE'        Name
+'('           Punctuation
+'lock'        Name
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'// We could implement this\n' Comment.Single
+
+'NOPE'        Name
+'('           Punctuation
+'mode'        Name
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'// We could implement this\n' Comment.Single
+
+'NOPE'        Name
+'('           Punctuation
+'proxy'       Name
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'// We could implement this\n' Comment.Single
+
+'NOPE'        Name
+'('           Punctuation
+'query_fd'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'NOPE'        Name
+'('           Punctuation
+'read_oob'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'NOPE'        Name
+'('           Punctuation
+'set_close_on_exec' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'NOPE'        Name
+'('           Punctuation
+'set_keepalive' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'NOPE'        Name
+'('           Punctuation
+'trylock'     Name
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'// We could implement this\n' Comment.Single
+
+'NOPE'        Name
+'('           Punctuation
+'write_oob'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'//! @endignore\n' Comment.Single

@@ -3,13 +3,21 @@ languagePluginLoader.then(() => {
     pyodide.loadPackage('Pygments').then(() => {
         pyodide.runPython('import pygments.lexers, pygments.formatters.html, pygments.styles');
 
+        let qvars = getQueryVariables();
+
         var lexerlist = pyodide.runPython('list(pygments.lexers.get_all_lexers())');
         var sel = document.getElementById("lang");
         for (lex of lexerlist) {
+            if (lex[1][0] === undefined) {
+                continue;
+            }
             var opt = document.createElement("option");
             opt.text = lex[0];
             opt.value = lex[1][0];
             sel.add(opt);
+            if (lex[1].indexOf(qvars['lexer']) >= 0) {
+                opt.selected = true;
+            }
         }
 
         var stylelist = pyodide.runPython('list(pygments.styles.get_all_styles())');
@@ -25,8 +33,24 @@ languagePluginLoader.then(() => {
 
         document.getElementById("hlbtn").disabled = false;
         document.getElementById("loading").style.display = "none";
+
+        if (qvars['code'] !== undefined) {
+            document.getElementById("code").value = qvars['code'];
+            highlight();
+        }
     });
 });
+
+function getQueryVariables() {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    var var_obj = {};
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+	var_obj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+    }
+    return var_obj;
+}
 
 function new_file() {
     pyodide.globals['fname'] = document.getElementById("file").files[0].name;
@@ -66,10 +90,16 @@ function highlight() {
         file.arrayBuffer().then(function(buf) {
             pyodide.globals['code_mem'] = buf;
             pyodide.runPython('code = bytes(code_mem)');
+            document.getElementById("copy_btn").style.display = "none";
             highlight_now();
         });
     } else {
-        pyodide.globals['code'] = document.getElementById("code").value;
+        var code = document.getElementById("code").value;
+        pyodide.globals['code'] = code;
+        var link = document.location.origin + document.location.pathname +
+            "?lexer=" + encodeURIComponent(alias) + "&code=" + encodeURIComponent(code);
+        document.getElementById("copy_field").value = link;
+        document.getElementById("copy_btn").style.display = "";
         highlight_now();
     }
 }
@@ -79,6 +109,13 @@ function highlight_now() {
     out.innerHTML = pyodide.runPython('pygments.highlight(code, lexer, fmter)');
     document.location.hash = "#try";
     document.getElementById("hlcodedl").style.display = "block";
+}
+
+function copy_link() {
+    var copy_field = document.getElementById("copy_field");
+    copy_field.select();
+    copy_field.setSelectionRange(0, 99999);
+    document.execCommand("copy");
 }
 
 function download_code() {

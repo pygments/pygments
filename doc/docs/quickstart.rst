@@ -201,5 +201,5 @@ it can be created with::
 
 where ``default`` is the style name.
 
-More options and tricks and be found in the :doc:`command line reference
+More options and tricks can be found in the :doc:`command line reference
 <cmdline>`.

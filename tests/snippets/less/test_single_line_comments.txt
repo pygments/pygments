@@ -1,0 +1,21 @@
+---input---
+.font-light {
+    font-weight: 100; // Comment
+}
+
+---tokens---
+'.'           Punctuation
+'font-light'  Name.Class
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'font-weight' Keyword
+':'           Punctuation
+' '           Text
+'100'         Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'// Comment\n' Comment.Single
+
+'}'           Punctuation
+'\n'          Text

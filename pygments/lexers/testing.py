@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.testing
     ~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for testing languages.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,7 +21,7 @@ class GherkinLexer(RegexLexer):
     .. versionadded:: 1.2
     """
     name = 'Gherkin'
-    aliases = ['cucumber', 'gherkin']
+    aliases = ['gherkin', 'cucumber']
     filenames = ['*.feature']
     mimetypes = ['text/x-gherkin']
 

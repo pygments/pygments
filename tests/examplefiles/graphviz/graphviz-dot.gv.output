@@ -1,0 +1,72 @@
+'graph'       Keyword
+' '           Text.Whitespace
+'graphname'   Name.Tag
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'// This attribute applies to the graph itself' Comment.Single
+'\n\t'        Text.Whitespace
+'size'        Name.Attribute
+'='           Punctuation
+'"1,1"'       Literal.String.Double
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'// The label attribute can be used to change the label of a node' Comment.Single
+'\n\t'        Text.Whitespace
+'a'           Name.Tag
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Punctuation
+'"Foo"'       Literal.String.Double
+']'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'// Here, the node shape is changed.' Comment.Single
+'\n\t'        Text.Whitespace
+'b'           Name.Tag
+' '           Text.Whitespace
+'['           Punctuation
+'shape'       Name.Attribute
+'='           Punctuation
+'box'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'// These edges both have different line properties' Comment.Single
+'\n\t'        Text.Whitespace
+'a'           Name.Tag
+' '           Text.Whitespace
+'--'          Operator
+' '           Text.Whitespace
+'b'           Name.Tag
+' '           Text.Whitespace
+'--'          Operator
+' '           Text.Whitespace
+'c'           Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'color'       Name.Attribute
+'='           Punctuation
+'blue'        Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'b'           Name.Tag
+' '           Text.Whitespace
+'--'          Operator
+' '           Text.Whitespace
+'d'           Name.Tag
+' '           Text.Whitespace
+'['           Punctuation
+'style'       Name.Attribute
+'='           Punctuation
+'dotted'      Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'// [style=invis] hides a node.' Comment.Single
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

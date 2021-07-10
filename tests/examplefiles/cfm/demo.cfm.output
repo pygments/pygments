@@ -1,0 +1,405 @@
+'<!---'       Comment.Multiline
+' cfcomment ' Comment.Multiline
+'--->'        Comment.Multiline
+'\n'          Text
+
+'<!---'       Comment.Multiline
+' nested '    Comment.Multiline
+'<!---'       Comment.Multiline
+' cfcomment ' Comment.Multiline
+'--->'        Comment.Multiline
+' '           Comment.Multiline
+'--->'        Comment.Multiline
+'\n'          Text
+
+'<!---'       Comment.Multiline
+' multi-line\nnested\n' Comment.Multiline
+
+'<!---'       Comment.Multiline
+'\ncfcomment\n' Comment.Multiline
+
+'--->'        Comment.Multiline
+'\n'          Comment.Multiline
+
+'--->'        Comment.Multiline
+'\n'          Text
+
+'<!-- html comment -->' Comment
+'\n'          Text
+
+'<'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'head'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'title'       Name.Tag
+'>'           Punctuation
+'Date Functions' Text
+'<'           Punctuation
+'/'           Punctuation
+'title'       Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'head'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'body'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'RightNow'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'Now'         Name.Function
+'('           Punctuation
+')'           Punctuation
+'>'           Name.Builtin
+'\n'          Text
+
+'<cfoutput>'  Name.Builtin
+'\n '         Text
+'#'           Punctuation
+'RightNow'    Name.Variable
+'#'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n '         Text
+'#'           Punctuation
+'DateFormat'  Name.Function
+'('           Punctuation
+'RightNow'    Name.Variable
+')'           Punctuation
+'#'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n '         Text
+'#'           Punctuation
+'DateFormat'  Name.Function
+'('           Punctuation
+'RightNow'    Name.Variable
+','           Punctuation
+'"'           Literal.String.Double
+'mm/dd/yy'    Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'#'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n '         Text
+'#'           Punctuation
+'TimeFormat'  Name.Function
+'('           Punctuation
+'RightNow'    Name.Variable
+')'           Punctuation
+'#'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n '         Text
+'#'           Punctuation
+'TimeFormat'  Name.Function
+'('           Punctuation
+'RightNow'    Name.Variable
+','           Punctuation
+'"'           Literal.String.Double
+'hh:mm tt'    Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'#'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n '         Text
+'#'           Punctuation
+'IsDate'      Name.Function
+'('           Punctuation
+'RightNow'    Name.Variable
+')'           Punctuation
+'#'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n '         Text
+'#'           Punctuation
+'IsDate'      Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'January 31, 2007' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'#'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n '         Text
+'#'           Punctuation
+'IsDate'      Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'foo'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'#'           Punctuation
+'<'           Punctuation
+'br'          Name.Tag
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n '         Text
+'#'           Punctuation
+'DaysInMonth' Name.Function
+'('           Punctuation
+'RightNow'    Name.Variable
+')'           Punctuation
+'#'           Punctuation
+'\n'          Text
+
+'</cfoutput>' Name.Builtin
+'\n'          Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'x'           Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'x'           Literal.String.Double
+'"'           Literal.String.Double
+'>'           Name.Builtin
+'\n'          Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'y'           Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'y'           Literal.String.Double
+'"'           Literal.String.Double
+'>'           Name.Builtin
+'\n'          Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'z'           Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'z'           Literal.String.Double
+'"'           Literal.String.Double
+'>'           Name.Builtin
+'\n'          Text
+
+'<cfoutput group="x">' Name.Builtin
+'\n    '      Text
+'#'           Punctuation
+'x'           Name.Variable
+'#'           Punctuation
+'\n    '      Text
+'<cfoutput>'  Name.Builtin
+'#'           Punctuation
+'y'           Name.Variable
+'#'           Punctuation
+'</cfoutput>' Name.Builtin
+'\n    '      Text
+'#'           Punctuation
+'z'           Name.Variable
+'#'           Punctuation
+'\n'          Text
+
+'</cfoutput>' Name.Builtin
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'body'        Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'html'        Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'person'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'Paul'        Literal.String.Double
+'"'           Literal.String.Double
+'>'           Name.Builtin
+'\n'          Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'greeting'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'Hello '      Literal.String.Double
+'#person#'    Literal.String.Interp
+'"'           Literal.String.Double
+'>'           Name.Builtin
+'\n\n'        Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'greeting'    Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'Hello'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'&'           Operator
+' '           Text
+'"'           Literal.String.Double
+' world!'     Literal.String.Double
+'"'           Literal.String.Double
+'>'           Name.Builtin
+'\n'          Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'a'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'5'           Literal.Number
+'>'           Name.Builtin
+'\n'          Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'b'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'10'          Literal.Number
+'>'           Name.Builtin
+'\n'          Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'c'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'a'           Name.Variable
+'^'           Operator
+'b'           Name.Variable
+'>'           Name.Builtin
+'\n'          Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'c'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'a'           Name.Variable
+' '           Text
+'MOD'         Operator
+' '           Text
+'b'           Name.Variable
+'>'           Name.Builtin
+'\n'          Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'c'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'a'           Name.Variable
+' '           Text
+'/'           Operator
+' '           Text
+'b'           Name.Variable
+'>'           Name.Builtin
+'\n'          Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'c'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'a'           Name.Variable
+' '           Text
+'*'           Operator
+' '           Text
+'b'           Name.Variable
+'>'           Name.Builtin
+'\n'          Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'c'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'a'           Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'b'           Name.Variable
+'>'           Name.Builtin
+'\n'          Text
+
+'<cfset'      Name.Builtin
+' '           Text
+'c'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'a'           Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'b'           Name.Variable
+'>'           Name.Builtin
+'\n'          Text
+
+'<!---'       Comment.Multiline
+' <!-- another ' Comment.Multiline
+'<!---'       Comment.Multiline
+' nested --> ' Comment.Multiline
+'--->'        Comment.Multiline
+' comment '   Comment.Multiline
+'--->'        Comment.Multiline
+'\n'          Text

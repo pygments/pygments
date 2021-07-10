@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.python
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Python and related languages.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -122,13 +121,17 @@ class PythonLexer(RegexLexer):
         'expr': [
             # raw f-strings
             ('(?i)(rf|fr)(""")',
-             bygroups(String.Affix, String.Double), 'tdqf'),
+             bygroups(String.Affix, String.Double),
+             combined('rfstringescape', 'tdqf')),
             ("(?i)(rf|fr)(''')",
-             bygroups(String.Affix, String.Single), 'tsqf'),
+             bygroups(String.Affix, String.Single),
+             combined('rfstringescape', 'tsqf')),
             ('(?i)(rf|fr)(")',
-             bygroups(String.Affix, String.Double), 'dqf'),
+             bygroups(String.Affix, String.Double),
+             combined('rfstringescape', 'dqf')),
             ("(?i)(rf|fr)(')",
-             bygroups(String.Affix, String.Single), 'sqf'),
+             bygroups(String.Affix, String.Single),
+             combined('rfstringescape', 'sqf')),
             # non-raw f-strings
             ('([fF])(""")', bygroups(String.Affix, String.Double),
              combined('fstringescape', 'tdqf')),
@@ -157,6 +160,7 @@ class PythonLexer(RegexLexer):
             ("([uUbB]?)(')", bygroups(String.Affix, String.Single),
              combined('stringescape', 'sqs')),
             (r'[^\S\n]+', Text),
+            include('numbers'),
             (r'!=|==|<<|>>|:=|[-~+/*%=<>&^|.]', Operator),
             (r'[]{}:(),;[]', Punctuation),
             (r'(in|is|and|or|not)\b', Operator.Word),
@@ -165,7 +169,6 @@ class PythonLexer(RegexLexer):
             include('magicfuncs'),
             include('magicvars'),
             include('name'),
-            include('numbers'),
         ],
         'expr-inside-fstring': [
             (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
@@ -316,9 +319,12 @@ class PythonLexer(RegexLexer):
             (uni_name, Name.Namespace),
             default('#pop'),
         ],
-        'fstringescape': [
+        'rfstringescape': [
             (r'\{\{', String.Escape),
             (r'\}\}', String.Escape),
+        ],
+        'fstringescape': [
+            include('rfstringescape'),
             include('stringescape'),
         ],
         'stringescape': [
@@ -372,7 +378,8 @@ class PythonLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return shebang_matches(text, r'pythonw?(3(\.\d)?)?')
+        return shebang_matches(text, r'pythonw?(3(\.\d)?)?') or \
+            'import ' in text[:1000]
 
 
 Python3Lexer = PythonLexer
@@ -596,8 +603,7 @@ class Python2Lexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return shebang_matches(text, r'pythonw?2(\.\d)?') or \
-            'import ' in text[:1000]
+        return shebang_matches(text, r'pythonw?2(\.\d)?')
 
 
 class PythonConsoleLexer(Lexer):
@@ -721,13 +727,22 @@ class PythonTracebackLexer(RegexLexer):
             (r'^(  File )("[^"]+")(, line )(\d+)(\n)',
              bygroups(Text, Name.Builtin, Text, Number, Text)),
             (r'^(    )(.+)(\n)',
-             bygroups(Text, using(PythonLexer), Text)),
+             bygroups(Text, using(PythonLexer), Text), 'markers'),
             (r'^([ \t]*)(\.\.\.)(\n)',
              bygroups(Text, Comment, Text)),  # for doctests...
             (r'^([^:]+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
             (r'^([a-zA-Z_][\w.]*)(:?\n)',
              bygroups(Generic.Error, Text), '#pop')
+        ],
+        'markers': [
+            # Either `PEP 657 <https://www.python.org/dev/peps/pep-0657/>`
+            # error locations in Python 3.11+, or single-caret markers
+            # for syntax errors before that.
+            (r'^( {4,})(\^+)(\n)',
+             bygroups(Text, Punctuation.Marker, Text),
+             '#pop'),
+            default('#pop'),
         ],
     }
 
@@ -767,13 +782,18 @@ class Python2TracebackLexer(RegexLexer):
             (r'^(  File )("[^"]+")(, line )(\d+)(\n)',
              bygroups(Text, Name.Builtin, Text, Number, Text)),
             (r'^(    )(.+)(\n)',
-             bygroups(Text, using(Python2Lexer), Text)),
+             bygroups(Text, using(Python2Lexer), Text), 'marker'),
             (r'^([ \t]*)(\.\.\.)(\n)',
              bygroups(Text, Comment, Text)),  # for doctests...
             (r'^([^:]+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
             (r'^([a-zA-Z_]\w*)(:?\n)',
              bygroups(Generic.Error, Text), '#pop')
+        ],
+        'marker': [
+            # For syntax errors.
+            (r'( {4,})(\^)', bygroups(Text, Punctuation.Marker), '#pop'),
+            default('#pop'),
         ],
     }
 
@@ -839,14 +859,14 @@ class CythonLexer(RegexLexer):
         ],
         'builtins': [
             (words((
-                '__import__', 'abs', 'all', 'any', 'apply', 'basestring', 'bin',
+                '__import__', 'abs', 'all', 'any', 'apply', 'basestring', 'bin', 'bint',
                 'bool', 'buffer', 'bytearray', 'bytes', 'callable', 'chr',
                 'classmethod', 'cmp', 'coerce', 'compile', 'complex', 'delattr',
                 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'execfile', 'exit',
                 'file', 'filter', 'float', 'frozenset', 'getattr', 'globals',
                 'hasattr', 'hash', 'hex', 'id', 'input', 'int', 'intern', 'isinstance',
                 'issubclass', 'iter', 'len', 'list', 'locals', 'long', 'map', 'max',
-                'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'property',
+                'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'property', 'Py_ssize_t',
                 'range', 'raw_input', 'reduce', 'reload', 'repr', 'reversed',
                 'round', 'set', 'setattr', 'slice', 'sorted', 'staticmethod',
                 'str', 'sum', 'super', 'tuple', 'type', 'unichr', 'unicode', 'unsigned',
@@ -1146,6 +1166,7 @@ class NumPyLexer(PythonLexer):
                 yield index, token, value
 
     def analyse_text(text):
+        ltext = text[:1000]
         return (shebang_matches(text, r'pythonw?(3(\.\d)?)?') or
-                'import ' in text[:1000]) \
-            and ('import numpy' in text or 'from numpy import' in text)
+                'import ' in ltext) \
+            and ('import numpy' in ltext or 'from numpy import' in ltext)

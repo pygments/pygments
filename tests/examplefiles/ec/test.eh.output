@@ -1,0 +1,1819 @@
+'/* A Bison parser, made by GNU Bison 2.0.  */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/* Skeleton parser for Yacc-like parsing with Bison,\n   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004 Free Software Foundation, Inc.\n\n   This program is free software; you can redistribute it and/or modify\n   it under the terms of the GNU General Public License as published by\n   the Free Software Foundation; either version 2, or (at your option)\n   any later version.\n\n   This program is distributed in the hope that it will be useful,\n   but WITHOUT ANY WARRANTY; without even the implied warranty of\n   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n   GNU General Public License for more details.\n\n   You should have received a copy of the GNU General Public License\n   along with this program; if not, write to the Free Software\n   Foundation, Inc., 59 Temple Place - Suite 330,\n   Boston, MA 02111-1307, USA.  */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/* As a special exception, when this file is copied by Bison into a\n   Bison output file, you may use that output file without restriction.\n   This special exception was added by the Free Software Foundation\n   in version 1.24 of Bison.  */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/* Tokens.  */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'ifndef YYTOKENTYPE' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' define YYTOKENTYPE' Comment.Preproc
+'\n'          Comment.Preproc
+
+'   '         Text.Whitespace
+'/* Put the tokens into the symbol table, so that GDB and other debuggers\n      know about them.  */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'enum'        Keyword
+' '           Text.Whitespace
+'yytokentype' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'IDENTIFIER'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'258'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'CONSTANT'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'259'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'STRING_LITERAL' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'260'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'SIZEOF'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'261'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'PTR_OP'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'262'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'INC_OP'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'263'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'DEC_OP'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'264'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'LEFT_OP'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'265'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'RIGHT_OP'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'266'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'LE_OP'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'267'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'GE_OP'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'268'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'EQ_OP'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'269'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'NE_OP'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'270'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'AND_OP'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'271'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'OR_OP'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'272'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'MUL_ASSIGN'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'273'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'DIV_ASSIGN'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'274'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'MOD_ASSIGN'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'275'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'ADD_ASSIGN'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'276'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'SUB_ASSIGN'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'277'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'LEFT_ASSIGN' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'278'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'RIGHT_ASSIGN' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'279'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'AND_ASSIGN'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'280'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'XOR_ASSIGN'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'281'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'OR_ASSIGN'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'282'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'TYPE_NAME'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'283'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'TYPEDEF'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'284'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'EXTERN'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'285'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'STATIC'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'286'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'AUTO'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'287'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'REGISTER'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'288'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'CHAR'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'289'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'SHORT'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'290'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'INT'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'291'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'UINT'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'292'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'INT64'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'293'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'LONG'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'294'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'SIGNED'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'295'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'UNSIGNED'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'296'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'FLOAT'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'297'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'DOUBLE'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'298'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'CONST'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'299'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'VOLATILE'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'300'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'VOID'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'301'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'VALIST'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'302'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'STRUCT'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'303'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'UNION'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'304'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'ENUM'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'305'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'ELLIPSIS'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'306'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'CASE'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'307'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'DEFAULT'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'308'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'IF'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'309'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'SWITCH'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'310'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'WHILE'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'311'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'DO'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'312'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'FOR'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'313'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'GOTO'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'314'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'CONTINUE'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'315'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'BREAK'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'316'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'RETURN'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'317'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'IFX'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'318'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'ELSE'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'319'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'CLASS'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'320'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'THISCLASS'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'321'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'CLASS_NAME'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'322'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'PROPERTY'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'323'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'SETPROP'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'324'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'GETPROP'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'325'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'NEWOP'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'326'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'RENEW'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'327'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'DELETE'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'328'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'EXT_DECL'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'329'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'EXT_STORAGE' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'330'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'IMPORT'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'331'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'DEFINE'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'332'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'VIRTUAL'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'333'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'EXT_ATTRIB'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'334'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'PUBLIC'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'335'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'PRIVATE'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'336'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'TYPED_OBJECT' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'337'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'ANY_OBJECT'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'338'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'_INCREF'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'339'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'EXTENSION'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'340'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'ASM'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'341'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'TYPEOF'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'342'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'WATCH'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'343'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'STOPWATCHING' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'344'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'FIREWATCHERS' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'345'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'WATCHABLE'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'346'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'CLASS_DESIGNER' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'347'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'CLASS_NO_EXPANSION' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'348'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'CLASS_FIXED' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'349'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'ISPROPSET'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'350'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'CLASS_DEFAULT_PROPERTY' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'351'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'PROPERTY_CATEGORY' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'352'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'CLASS_DATA'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'353'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'CLASS_PROPERTY' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'354'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'SUBCLASS'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'355'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'NAMESPACE'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'356'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'NEW0OP'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'357'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'RENEW0'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'358'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'VAARG'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'359'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'DBTABLE'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'360'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'DBFIELD'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'361'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'DBINDEX'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'362'         Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'DATABASE_OPEN' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'363'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define IDENTIFIER 258' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define CONSTANT 259' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define STRING_LITERAL 260' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define SIZEOF 261' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define PTR_OP 262' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define INC_OP 263' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define DEC_OP 264' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define LEFT_OP 265' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define RIGHT_OP 266' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define LE_OP 267' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define GE_OP 268' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define EQ_OP 269' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define NE_OP 270' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define AND_OP 271' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define OR_OP 272' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define MUL_ASSIGN 273' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define DIV_ASSIGN 274' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define MOD_ASSIGN 275' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define ADD_ASSIGN 276' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define SUB_ASSIGN 277' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define LEFT_ASSIGN 278' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define RIGHT_ASSIGN 279' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define AND_ASSIGN 280' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define XOR_ASSIGN 281' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define OR_ASSIGN 282' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define TYPE_NAME 283' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define TYPEDEF 284' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define EXTERN 285' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define STATIC 286' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define AUTO 287' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define REGISTER 288' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define CHAR 289' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define SHORT 290' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define INT 291' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define UINT 292' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define INT64 293' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define LONG 294' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define SIGNED 295' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define UNSIGNED 296' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define FLOAT 297' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define DOUBLE 298' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define CONST 299' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define VOLATILE 300' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define VOID 301' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define VALIST 302' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define STRUCT 303' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define UNION 304' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define ENUM 305' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define ELLIPSIS 306' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define CASE 307' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define DEFAULT 308' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define IF 309' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define SWITCH 310' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define WHILE 311' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define DO 312' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define FOR 313' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define GOTO 314' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define CONTINUE 315' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define BREAK 316' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define RETURN 317' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define IFX 318' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define ELSE 319' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define CLASS 320' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define THISCLASS 321' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define CLASS_NAME 322' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define PROPERTY 323' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define SETPROP 324' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define GETPROP 325' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define NEWOP 326' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define RENEW 327' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define DELETE 328' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define EXT_DECL 329' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define EXT_STORAGE 330' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define IMPORT 331' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define DEFINE 332' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define VIRTUAL 333' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define EXT_ATTRIB 334' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define PUBLIC 335' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define PRIVATE 336' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define TYPED_OBJECT 337' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define ANY_OBJECT 338' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define _INCREF 339' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define EXTENSION 340' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define ASM 341' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define TYPEOF 342' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define WATCH 343' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define STOPWATCHING 344' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define FIREWATCHERS 345' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define WATCHABLE 346' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define CLASS_DESIGNER 347' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define CLASS_NO_EXPANSION 348' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define CLASS_FIXED 349' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define ISPROPSET 350' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define CLASS_DEFAULT_PROPERTY 351' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define PROPERTY_CATEGORY 352' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define CLASS_DATA 353' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define CLASS_PROPERTY 354' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define SUBCLASS 355' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define NAMESPACE 356' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define NEW0OP 357' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define RENEW0 358' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define VAARG 359' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define DBTABLE 360' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define DBFIELD 361' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define DBINDEX 362' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'define DATABASE_OPEN 363' Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'if ! defined (YYSTYPE) && ! defined (YYSTYPE_IS_DECLARED)' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'line 42 "grammar.y"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'typedef'     Keyword
+' '           Text.Whitespace
+'union'       Keyword
+' '           Text
+'YYSTYPE'     Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'SpecifierType' Name
+' '           Text.Whitespace
+'specifierType' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'i'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'AccessMode'  Name
+' '           Text.Whitespace
+'declMode'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'Identifier'  Name
+' '           Text.Whitespace
+'id'          Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'Expression'  Name
+' '           Text.Whitespace
+'exp'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'Specifier'   Name
+' '           Text.Whitespace
+'specifier'   Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'OldList'     Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'list'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'Enumerator'  Name
+' '           Text.Whitespace
+'enumerator'  Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'Declarator'  Name
+' '           Text.Whitespace
+'declarator'  Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'Pointer'     Name
+' '           Text.Whitespace
+'pointer'     Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'Initializer' Name
+' '           Text.Whitespace
+'initializer' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'InitDeclarator' Name
+' '           Text.Whitespace
+'initDeclarator' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'TypeName'    Name
+' '           Text.Whitespace
+'typeName'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'Declaration' Name
+' '           Text.Whitespace
+'declaration' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'Statement'   Name
+' '           Text.Whitespace
+'stmt'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'FunctionDefinition' Name
+' '           Text.Whitespace
+'function'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'External'    Name
+' '           Text.Whitespace
+'external'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'Context'     Name
+' '           Text.Whitespace
+'context'     Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'AsmField'    Name
+' '           Text.Whitespace
+'asmField'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'Instantiation' Name
+' '           Text.Whitespace
+'instance'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'MembersInit' Name
+' '           Text.Whitespace
+'membersInit' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'MemberInit'  Name
+' '           Text.Whitespace
+'memberInit'  Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'ClassFunction' Name
+' '           Text.Whitespace
+'classFunction' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'ClassDefinition' Name
+' '           Text.Whitespace
+'_class'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'ClassDef'    Name
+' '           Text.Whitespace
+'classDef'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'PropertyDef' Name
+' '           Text.Whitespace
+'prop'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'string'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'Symbol'      Name
+' '           Text.Whitespace
+'symbol'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'PropertyWatch' Name
+' '           Text.Whitespace
+'propertyWatch' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'TemplateParameter' Name
+' '           Text.Whitespace
+'templateParameter' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'TemplateArgument' Name
+' '           Text.Whitespace
+'templateArgument' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'TemplateDatatype' Name
+' '           Text.Whitespace
+'templateDatatype' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'DBTableEntry' Name
+' '           Text.Whitespace
+'dbtableEntry' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'DBIndexItem' Name
+' '           Text.Whitespace
+'dbindexItem' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'DBTableDef'  Name
+' '           Text.Whitespace
+'dbtableDef'  Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'YYSTYPE'     Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'/* Line 1318 of yacc.c.  */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'line 293 "grammar.eh"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' define yystype YYSTYPE ' Comment.Preproc
+'/* obsolescent; will be withdrawn */' Comment.Multiline
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' define YYSTYPE_IS_DECLARED 1' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' define YYSTYPE_IS_TRIVIAL 1' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'extern'      Keyword
+' '           Text.Whitespace
+'YYSTYPE'     Name
+' '           Text.Whitespace
+'yylval'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'if ! defined (YYLTYPE) && ! defined (YYLTYPE_IS_DECLARED)' Comment.Preproc
+'\n'          Comment.Preproc
+
+'typedef'     Keyword
+' '           Text.Whitespace
+'struct'      Keyword
+' '           Text
+'YYLTYPE'     Name.Class
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'first_line'  Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'first_column' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'last_line'   Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'last_column' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'YYLTYPE'     Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+' define yyltype YYLTYPE ' Comment.Preproc
+'/* obsolescent; will be withdrawn */' Comment.Multiline
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' define YYLTYPE_IS_DECLARED 1' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' define YYLTYPE_IS_TRIVIAL 1' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'extern'      Keyword
+' '           Text.Whitespace
+'YYLTYPE'     Name
+' '           Text.Whitespace
+'yylloc'      Name
+';'           Punctuation
+'\n'          Text.Whitespace

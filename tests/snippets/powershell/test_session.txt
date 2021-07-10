@@ -1,0 +1,28 @@
+---input---
+PS C:\> Get-ChildItem
+
+PS> Get-ChildItem
+
+PS > Get-ChildItem
+
+---tokens---
+'PS '         Name.Builtin
+'C'           Name
+':'           Punctuation
+'\\'          Punctuation
+'>'           Punctuation
+' '           Text
+'Get-ChildItem' Name.Builtin
+'\n\n'        Text
+
+'PS'          Name
+'>'           Punctuation
+' '           Text
+'Get-ChildItem' Name.Builtin
+'\n\n'        Text
+
+'PS '         Name.Builtin
+'>'           Punctuation
+' '           Text
+'Get-ChildItem' Name.Builtin
+'\n'          Text

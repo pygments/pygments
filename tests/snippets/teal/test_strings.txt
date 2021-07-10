@@ -1,0 +1,15 @@
+---input---
+a "abc\x123\n\"de//f"
+
+---tokens---
+'a'           Name.Function
+' '           Text
+'"'           Literal.String
+'abc'         Literal.String
+'\\x12'       Literal.String.Escape
+'3'           Literal.String
+'\\n'         Literal.String.Escape
+'\\"'         Literal.String.Escape
+'de//f'       Literal.String
+'"'           Literal.String
+'\n'          Text

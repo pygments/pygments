@@ -1,0 +1,466 @@
+'function'    Keyword.Reserved
+'\n'          Text
+
+'/-->'        Punctuation
+' '           Text
+'bool'        Keyword.Type
+'[]'          Punctuation
+' '           Text
+'primeSieve'  Name.Function
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'max'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+'| '          Punctuation
+'bool'        Keyword.Type
+'[]'          Punctuation
+' '           Text
+'primes'      Name.Variable
+'['           Punctuation
+'max'         Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'| '          Punctuation
+'primes'      Name.Variable
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+'\n'          Text
+
+'| '          Punctuation
+'primes'      Name.Variable
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+'\n'          Text
+
+'| \n| '      Punctuation
+'int'         Keyword.Type
+' '           Text
+'i'           Name.Variable
+'\n'          Text
+
+'| '          Punctuation
+'i'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'| '          Punctuation
+'/-->'        Punctuation
+'\n'          Text
+
+'| | '        Punctuation
+'primes'      Name.Variable
+'['           Punctuation
+'i'           Name.Variable
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'| | '        Punctuation
+'i'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'i'           Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'| '          Punctuation
+'\\--<'       Punctuation
+' '           Text
+'i'           Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'max'         Name.Variable
+'\n'          Text
+
+'|\n| '       Punctuation
+'int'         Keyword.Type
+' '           Text
+'firstPrime'  Name.Variable
+'\n'          Text
+
+'| '          Punctuation
+'firstPrime'  Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'| '          Punctuation
+'/-->'        Punctuation
+'\n'          Text
+
+'| | '        Punctuation
+'bool'        Keyword.Type
+' '           Text
+'firstIsComposite' Name.Variable
+'\n'          Text
+
+'| | '        Punctuation
+'/-->'        Punctuation
+'\n'          Text
+
+'| | | '      Punctuation
+'firstPrime'  Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'firstPrime'  Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'| | | '      Punctuation
+'firstIsComposite' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+'\n'          Text
+
+'| | | '      Punctuation
+'/--<'        Punctuation
+' '           Text
+'firstPrime'  Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'max'         Name.Variable
+' '           Text
+'or'          Operator.Word
+' '           Text
+'firstPrime'  Name.Variable
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'max'         Name.Variable
+'\n'          Text
+
+'| | | | '    Punctuation
+'firstIsComposite' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'not'         Operator.Word
+' '           Text
+'primes'      Name.Variable
+'['           Punctuation
+'firstPrime'  Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'| | | '      Punctuation
+'\\-->'       Punctuation
+'\n'          Text
+
+'| | '        Punctuation
+'\\--<'       Punctuation
+' '           Text
+'firstIsComposite' Name.Variable
+'\n'          Text
+
+'| | '        Punctuation
+'/--<'        Punctuation
+' '           Text
+'firstPrime'  Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'max'         Name.Variable
+' '           Text
+'or'          Operator.Word
+' '           Text
+'firstPrime'  Name.Variable
+' '           Text
+'='           Operator
+'='           Operator
+' '           Text
+'max'         Name.Variable
+'\n'          Text
+
+'| | | '      Punctuation
+'primes'      Name.Variable
+'['           Punctuation
+'firstPrime'  Name.Variable
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'| | | '      Punctuation
+'int'         Keyword.Type
+' '           Text
+'composite'   Name.Variable
+'\n'          Text
+
+'| | | '      Punctuation
+'composite'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'firstPrime'  Name.Variable
+' '           Text
+'*'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'| | | '      Punctuation
+'/--<'        Punctuation
+' '           Text
+'composite'   Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'max'         Name.Variable
+'\n'          Text
+
+'| | | | '    Punctuation
+'/-->'        Punctuation
+'\n'          Text
+
+'| | | | | '  Punctuation
+'primes'      Name.Variable
+'['           Punctuation
+'composite'   Name.Variable
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'false'       Keyword.Constant
+'\n'          Text
+
+'| | | | | '  Punctuation
+'composite'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'composite'   Name.Variable
+' '           Text
+'+'           Operator
+' '           Text
+'firstPrime'  Name.Variable
+'\n'          Text
+
+'| | | | '    Punctuation
+'\\--<'       Punctuation
+' '           Text
+'composite'   Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'max'         Name.Variable
+'\n'          Text
+
+'| | | '      Punctuation
+'\\-->'       Punctuation
+'\n'          Text
+
+'| | '        Punctuation
+'\\-->'       Punctuation
+'\n'          Text
+
+'| '          Punctuation
+'\\--<'       Punctuation
+' '           Text
+'firstPrime'  Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'max'         Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'^'           Punctuation
+' '           Text
+'primes'      Name.Variable
+'\n\n'        Text
+
+'main'        Keyword.Reserved
+'\n'          Text
+
+'int'         Keyword.Type
+' '           Text
+'max'         Name.Variable
+'\n'          Text
+
+'max'         Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'1000'        Literal.Number.Integer
+'\n'          Text
+
+'bool'        Keyword.Type
+'[]'          Punctuation
+' '           Text
+'primes'      Name.Variable
+'\n'          Text
+
+'primes'      Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'primeSieve'  Name.Function
+'('           Punctuation
+'max'         Name.Variable
+')'           Punctuation
+'\n\n'        Text
+
+'print'       Keyword.Reserved
+' '           Text
+'"'           Literal.String.Double
+"Enter a number and I'll tell you whether or not it's prime!" Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'int'         Name.Variable
+' '           Text
+'testNum'     Name.Variable
+'\n'          Text
+
+'testNum'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'input'       Keyword.Reserved
+' '           Text
+'int'         Keyword.Type
+'\n\n'        Text
+
+'/--<'        Punctuation
+' '           Text
+'testNum'     Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'or'          Operator.Word
+' '           Text
+'testNum'     Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'max'         Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'| '          Punctuation
+'/--<'        Punctuation
+' '           Text
+'not'         Operator.Word
+' '           Text
+'primes'      Name.Variable
+'['           Punctuation
+'testNum'     Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'| | '        Punctuation
+'print'       Keyword.Reserved
+' '           Text
+'"'           Literal.String.Double
+'Prime'       Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'| '          Punctuation
+'\\-->'       Punctuation
+'\n'          Text
+
+'| '          Punctuation
+'/--<'        Punctuation
+' '           Text
+'primes'      Name.Variable
+'['           Punctuation
+'testNum'     Name.Variable
+']'           Punctuation
+'\n'          Text
+
+'| | '        Punctuation
+'print'       Keyword.Reserved
+' '           Text
+'"'           Literal.String.Double
+'Not prime'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'| '          Punctuation
+'\\-->'       Punctuation
+'\n'          Text
+
+'\\-->'       Punctuation
+'\n\n'        Text
+
+'/--<'        Punctuation
+' '           Text
+'not'         Operator.Word
+' '           Text
+'('           Punctuation
+'testNum'     Name.Variable
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'or'          Operator.Word
+' '           Text
+'testNum'     Name.Variable
+' '           Text
+'>'           Operator
+' '           Text
+'max'         Name.Variable
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'| '          Punctuation
+'print'       Keyword.Reserved
+' '           Text
+'"'           Literal.String.Double
+'Out of bounds' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'\\-->'       Punctuation
+'\n'          Text

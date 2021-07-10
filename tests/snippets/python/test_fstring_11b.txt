@@ -1,0 +1,18 @@
+---input---
+f"""abc {a["x"]} def"""
+
+---tokens---
+'f'           Literal.String.Affix
+'"""'         Literal.String.Double
+'abc '        Literal.String.Double
+'{'           Literal.String.Interpol
+'a'           Name
+'['           Punctuation
+'"'           Literal.String.Double
+'x'           Literal.String.Double
+'"'           Literal.String.Double
+']'           Punctuation
+'}'           Literal.String.Interpol
+' def'        Literal.String.Double
+'"""'         Literal.String.Double
+'\n'          Text

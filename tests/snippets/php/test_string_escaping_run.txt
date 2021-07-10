@@ -1,0 +1,16 @@
+---input---
+<?php $x="{\""; ?>
+
+---tokens---
+'<?php'       Comment.Preproc
+' '           Text
+'$x'          Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'{'           Literal.String.Double
+'\\"'         Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text
+'?>'          Comment.Preproc
+'\n'          Other

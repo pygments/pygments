@@ -1,0 +1,309 @@
+'school_schedule' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'    '        Text
+'lesson_times' Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'08:30:00'    Literal.Date
+','           Punctuation
+' '           Text
+'09:30:00'    Literal.Date
+','           Punctuation
+' '           Text
+'10:30:00'    Literal.Date
+','           Punctuation
+' '           Text
+'...'         Punctuation
+'>'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'locations'   Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'under the big plane tree' Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'under the north arch' Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'in a garden' Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'    '        Text
+'>'           Punctuation
+'\n'          Text
+
+'     \n    ' Text
+'subjects'    Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'"'           Literal.String
+'philosophy:plato' Literal.String
+'"'           Literal.String
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+' '           Text
+'-- note construction of key' Comment
+'\n'          Text
+
+'            ' Text
+'name'        Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'philosophy'  Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'teacher'     Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'plato'       Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'topics'      Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'meta-physics' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'natural science' Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'weighting'   Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'76%'         Literal.Number.Integer
+'>'           Punctuation
+'\n'          Text
+
+'        '    Text
+'>'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'"'           Literal.String
+'philosophy:kant' Literal.String
+'"'           Literal.String
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'            ' Text
+'name'        Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'philosophy'  Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'teacher'     Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'kant'        Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'topics'      Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'meaning and reason' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'meta-physics' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'ethics'      Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'weighting'   Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'80%'         Literal.Number.Integer
+'>'           Punctuation
+'\n'          Text
+
+'        '    Text
+'>'           Punctuation
+'\n'          Text
+
+'        '    Text
+'['           Punctuation
+'"'           Literal.String
+'art'         Literal.String
+'"'           Literal.String
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'\n'          Text
+
+'            ' Text
+'name'        Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'art'         Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'teacher'     Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'goya'        Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'topics'      Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'"'           Literal.String
+'technique'   Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'portraiture' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'satire'      Literal.String
+'"'           Literal.String
+'>'           Punctuation
+'\n'          Text
+
+'            ' Text
+'weighting'   Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'<'           Punctuation
+'78%'         Literal.Number.Integer
+'>'           Punctuation
+'\n'          Text
+
+'        '    Text
+'>'           Punctuation
+'\n'          Text
+
+'    '        Text
+'>'           Punctuation
+'\n'          Text
+
+'>'           Punctuation
+'\n'          Text

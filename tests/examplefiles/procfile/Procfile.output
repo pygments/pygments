@@ -1,0 +1,45 @@
+'db'          Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'runzeo'      Text
+' '           Text.Whitespace
+'-C'          Text
+' '           Text.Whitespace
+'zeoserver.config' Text
+'\n'          Text.Whitespace
+
+'web'         Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'bundle'      Text
+' '           Text.Whitespace
+'exec'        Text
+' '           Text.Whitespace
+'rails'       Text
+' '           Text.Whitespace
+'server'      Text
+' '           Text.Whitespace
+'-p'          Text
+' '           Text.Whitespace
+'$PORT'       Name.Variable
+'\n'          Text.Whitespace
+
+'stuff'       Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'env'         Text
+' '           Text.Whitespace
+'FLASK_ENV'   Name.Variable
+'='           Punctuation
+'development' Literal.String
+' '           Text.Whitespace
+'run'         Text
+' '           Text.Whitespace
+'-p'          Text
+' '           Text.Whitespace
+'9'           Literal.Number.Integer
+' '           Text.Whitespace
+'--stuff'     Text
+' '           Text.Whitespace
+"'foobar'"    Literal.String
+'\n'          Text.Whitespace

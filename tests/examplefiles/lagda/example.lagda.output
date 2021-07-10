@@ -1,0 +1,104 @@
+'\\documentclass' Keyword
+'{'           Name.Builtin
+'article'     Text
+'}'           Name.Builtin
+'\n'          Text
+
+'% this is a LaTeX comment\n' Comment
+
+'\\usepackage' Keyword
+'{'           Name.Builtin
+'agda'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'document'    Text
+'}'           Name.Builtin
+"\n\nHere's how you can define " Text
+'\\emph'      Keyword
+'{'           Name.Builtin
+'RGB'         Text
+'}'           Name.Builtin
+' colors in Agda:\n\n' Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n'          Text
+
+'module'      Keyword.Reserved
+' '           Text
+'example'     Name
+' '           Text
+'where'       Keyword.Reserved
+'\n'          Text
+
+'\n'          Text
+
+'open'        Keyword.Reserved
+' '           Text
+'import'      Keyword.Reserved
+' '           Text
+'Data.Fin'    Name
+'\n'          Text
+
+'open'        Keyword.Reserved
+' '           Text
+'import'      Keyword.Reserved
+' '           Text
+'Data.Nat'    Name
+'\n'          Text
+
+'\n'          Text
+
+'data'        Keyword.Reserved
+' '           Text
+'Color'       Text
+' '           Text
+':'           Operator.Word
+' '           Text
+'Set'         Keyword.Type
+' '           Text
+'where'       Keyword.Reserved
+'\n'          Text
+
+'    '        Text
+'RGB'         Name.Function
+' '           Text
+':'           Operator.Word
+' '           Text
+'Fin'         Text
+' '           Text
+'256'         Literal.Number.Integer
+' '           Text
+'→'           Operator.Word
+' '           Text
+'Fin'         Text
+' '           Text
+'256'         Literal.Number.Integer
+' '           Text
+'→'           Operator.Word
+' '           Text
+'Fin'         Text
+' '           Text
+'256'         Literal.Number.Integer
+' '           Text
+'→'           Operator.Word
+' '           Text
+'Color'       Text
+'\n'          Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'code'        Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'document'    Text
+'}'           Name.Builtin
+'\n'          Text

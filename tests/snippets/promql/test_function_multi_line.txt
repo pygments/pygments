@@ -1,0 +1,80 @@
+---input---
+label_replace(
+    sum by (instance) (
+        irate(node_disk_read_bytes_total[2m])
+    ) / 1024 / 1024,
+    "device",
+    'disk',
+    "instance",
+    ".*"
+)
+
+---tokens---
+'label_replace' Keyword.Reserved
+'('           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'sum'         Keyword
+' '           Text.Whitespace
+'by'          Keyword
+' '           Text.Whitespace
+'('           Operator
+'instance'    Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'irate'       Keyword.Reserved
+'('           Operator
+'node_disk_read_bytes_total' Name.Variable
+'['           Punctuation
+'2m'          Literal.String
+']'           Punctuation
+')'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+')'           Operator
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'1024'        Literal.Number.Integer
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'1024'        Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"'           Punctuation
+'device'      Literal.String
+'"'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+"'"           Punctuation
+'disk'        Literal.String
+"'"           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"'           Punctuation
+'instance'    Literal.String
+'"'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"'           Punctuation
+'.*'          Literal.String
+'"'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Operator
+'\n'          Text.Whitespace

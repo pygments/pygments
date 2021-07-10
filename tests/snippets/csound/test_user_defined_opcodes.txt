@@ -1,0 +1,24 @@
+---input---
+opcode/**/aUDO,/**/i[],/**/aik//
+  aUDO
+endop
+
+---tokens---
+'opcode'      Keyword.Declaration
+'/**/'        Comment.Multiline
+'aUDO'        Name.Function
+','           Punctuation
+'/**/'        Comment.Multiline
+'i[]'         Keyword.Type
+','           Punctuation
+'/**/'        Comment.Multiline
+'aik'         Keyword.Type
+'//'          Comment.Single
+'\n'          Text
+
+'  '          Text
+'aUDO'        Name.Function
+'\n'          Text
+
+'endop'       Keyword.Declaration
+'\n'          Text

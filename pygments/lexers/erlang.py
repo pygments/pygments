@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.erlang
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Erlang.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -231,7 +230,7 @@ class ElixirLexer(RegexLexer):
 
     name = 'Elixir'
     aliases = ['elixir', 'ex', 'exs']
-    filenames = ['*.ex', '*.eex', '*.exs']
+    filenames = ['*.ex', '*.eex', '*.exs', '*.leex']
     mimetypes = ['text/x-elixir']
 
     KEYWORD = ('fn', 'do', 'end', 'after', 'else', 'rescue', 'catch')

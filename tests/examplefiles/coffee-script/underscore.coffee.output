@@ -1,0 +1,3988 @@
+'  '          Text
+'# Underscore.coffee\n' Comment.Single
+
+'  '          Text
+'# (c) 2010 Jeremy Ashkenas, DocumentCloud Inc.\n' Comment.Single
+
+'  '          Text
+'# Underscore is freely distributable under the terms of the MIT license.\n' Comment.Single
+
+'  '          Text
+'# Portions of Underscore are inspired by or borrowed from Prototype.js,\n' Comment.Single
+
+'  '          Text
+"# Oliver Steele's Functional, and John Resig's Micro-Templating.\n" Comment.Single
+
+'  '          Text
+'# For all details and documentation:\n' Comment.Single
+
+'  '          Text
+'# http://documentcloud.github.com/underscore/\n' Comment.Single
+
+'\n\n  '      Text
+'# ------------------------- Baseline setup ---------------------------------\n' Comment.Single
+
+'\n  '        Text
+'# Establish the root object, "window" in the browser, or "global" on the server.\n' Comment.Single
+
+'  '          Text
+'root: '      Name.Variable
+'this'        Keyword
+'\n\n\n  '    Text
+'# Save the previous value of the "_" variable.\n' Comment.Single
+
+'  '          Text
+'previousUnderscore: ' Name.Variable
+'root'        Name.Other
+'.'           Punctuation
+'_'           Name.Other
+'\n\n\n  '    Text
+'# If Underscore is called as a function, it returns a wrapped object that\n' Comment.Single
+
+'  '          Text
+'# can be used OO-style. This wrapper holds altered versions of all the\n' Comment.Single
+
+'  '          Text
+'# underscore functions. Wrapped objects may be chained.\n' Comment.Single
+
+'  '          Text
+'wrapper: '   Name.Variable
+'(obj) ->'    Name.Function
+'\n    '      Text
+'this'        Keyword
+'.'           Punctuation
+'_wrapped: '  Name.Variable
+'obj'         Name.Other
+'\n    '      Text
+'this'        Keyword
+'\n\n\n  '    Text
+'# Establish the object that gets thrown to break out of a loop iteration.\n' Comment.Single
+
+'  '          Text
+'breaker: '   Name.Variable
+'if'          Keyword
+' '           Text
+'typeof'      Keyword
+'('           Punctuation
+'StopIteration' Name.Other
+')'           Punctuation
+' '           Text
+'is'          Operator
+' '           Text
+"'"           Literal.String
+'undefined'   Literal.String
+"'"           Literal.String
+' '           Text
+'then'        Keyword
+' '           Text
+"'"           Literal.String
+'__break__'   Literal.String
+"'"           Literal.String
+' '           Text
+'else'        Keyword
+' '           Text
+'StopIteration' Name.Other
+'\n\n\n  '    Text
+'# Create a safe reference to the Underscore object forreference below.\n' Comment.Single
+
+'  '          Text
+'_: '         Name.Variable
+'root._: '    Name.Variable
+'(obj) ->'    Name.Function
+' '           Text
+'new'         Keyword
+' '           Text
+'wrapper'     Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Export the Underscore object for CommonJS.\n' Comment.Single
+
+'  '          Text
+'if'          Keyword
+' '           Text
+'typeof'      Keyword
+'('           Punctuation
+'exports'     Name.Other
+')'           Punctuation
+' '           Text
+'!='          Operator
+' '           Text
+"'"           Literal.String
+'undefined'   Literal.String
+"'"           Literal.String
+' '           Text
+'then'        Keyword
+' '           Text
+'exports._: ' Name.Variable
+'_'           Name.Other
+'\n\n\n  '    Text
+'# Create quick reference variables for speed access to core prototypes.\n' Comment.Single
+
+'  '          Text
+'slice: '     Name.Variable
+'               ' Text
+'Array'       Name.Builtin
+':'           Operator
+':'           Operator
+'slice'       Name.Other
+'\n  '        Text
+'unshift: '   Name.Variable
+'             ' Text
+'Array'       Name.Builtin
+':'           Operator
+':'           Operator
+'unshift'     Name.Other
+'\n  '        Text
+'toString: '  Name.Variable
+'            ' Text
+'Object'      Name.Builtin
+':'           Operator
+':'           Operator
+'toString'    Name.Other
+'\n  '        Text
+'hasOwnProperty: ' Name.Variable
+'      '      Text
+'Object'      Name.Builtin
+':'           Operator
+':'           Operator
+'hasOwnProperty' Name.Other
+'\n  '        Text
+'propertyIsEnumerable: ' Name.Variable
+'Object'      Name.Builtin
+':'           Operator
+':'           Operator
+'propertyIsEnumerable' Name.Other
+'\n\n\n  '    Text
+'# Current version.\n' Comment.Single
+
+'  '          Text
+'_.VERSION: ' Name.Variable
+"'"           Literal.String
+'0.5.7'       Literal.String
+"'"           Literal.String
+'\n\n\n  '    Text
+'# ------------------------ Collection Functions: ---------------------------\n' Comment.Single
+
+'\n  '        Text
+'# The cornerstone, an each implementation.\n' Comment.Single
+
+'  '          Text
+'# Handles objects implementing forEach, arrays, and raw objects.\n' Comment.Single
+
+'  '          Text
+'_.each: '    Name.Variable
+'(obj, iterator, context) ->' Name.Function
+'\n    '      Text
+'index: '     Name.Variable
+'0'           Literal.Number.Integer
+'\n    '      Text
+'try'         Keyword
+'\n      '    Text
+'return'      Keyword
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'forEach'     Name.Other
+'('           Punctuation
+'iterator'    Name.Other
+','           Punctuation
+' '           Text
+'context'     Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'forEach'     Name.Other
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isArray'     Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+' '           Text
+'or'          Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isArguments' Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+'\n        '  Text
+'return'      Keyword
+' '           Text
+'iterator'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'context'     Name.Other
+','           Punctuation
+' '           Text
+'obj'         Name.Other
+'['           Punctuation
+'i'           Name.Other
+']'           Punctuation
+','           Punctuation
+' '           Text
+'i'           Name.Other
+','           Punctuation
+' '           Text
+'obj'         Name.Other
+')'           Punctuation
+' '           Text
+'for'         Keyword
+' '           Text
+'i'           Name.Other
+' '           Text
+'in'          Keyword
+' '           Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+'.'           Punctuation
+'.'           Punctuation
+'.'           Punctuation
+'obj'         Name.Other
+'.'           Punctuation
+'length'      Name.Other
+']'           Punctuation
+'\n      '    Text
+'iterator'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'context'     Name.Other
+','           Punctuation
+' '           Text
+'val'         Name.Other
+','           Punctuation
+' '           Text
+'key'         Name.Other
+','           Punctuation
+' '           Text
+'obj'         Name.Other
+')'           Punctuation
+' '           Text
+'for'         Keyword
+' '           Text
+'key'         Name.Other
+','           Punctuation
+' '           Text
+'val'         Name.Other
+' '           Text
+'of'          Keyword
+' '           Text
+'obj'         Name.Other
+'\n    '      Text
+'catch'       Keyword
+' '           Text
+'e'           Name.Other
+'\n      '    Text
+'throw'       Keyword
+' '           Text
+'e'           Name.Other
+' '           Text
+'if'          Keyword
+' '           Text
+'e'           Name.Other
+' '           Text
+'isnt'        Operator
+' '           Text
+'breaker'     Name.Other
+'\n    '      Text
+'obj'         Name.Other
+'\n\n\n  '    Text
+'# Return the results of applying the iterator to each element. Use JavaScript\n' Comment.Single
+
+'  '          Text
+"# 1.6's version of map, if possible.\n" Comment.Single
+
+'  '          Text
+'_.map: '     Name.Variable
+'(obj, iterator, context) ->' Name.Function
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'map'         Name.Other
+'('           Punctuation
+'iterator'    Name.Other
+','           Punctuation
+' '           Text
+'context'     Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'obj'         Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isFunction'  Name.Other
+'('           Punctuation
+'obj'         Name.Other
+'.'           Punctuation
+'map'         Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'results: '   Name.Variable
+'['           Punctuation
+']'           Punctuation
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+' '           Text
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+'(value, index, list) ->' Name.Function
+'\n      '    Text
+'results'     Name.Other
+'.'           Punctuation
+'push'        Name.Other
+'('           Punctuation
+'iterator'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'context'     Name.Other
+','           Punctuation
+' '           Text
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'index'       Name.Other
+','           Punctuation
+' '           Text
+'list'        Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'results'     Name.Other
+'\n\n\n  '    Text
+'# Reduce builds up a single result from a list of values. Also known as\n' Comment.Single
+
+'  '          Text
+"# inject, or foldl. Uses JavaScript 1.8's version of reduce, if possible.\n" Comment.Single
+
+'  '          Text
+'_.reduce: '  Name.Variable
+'(obj, memo, iterator, context) ->' Name.Function
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'reduce'      Name.Other
+'('           Punctuation
+'_'           Name.Other
+'.'           Punctuation
+'bind'        Name.Other
+'('           Punctuation
+'iterator'    Name.Other
+','           Punctuation
+' '           Text
+'context'     Name.Other
+')'           Punctuation
+','           Punctuation
+' '           Text
+'memo'        Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'obj'         Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isFunction'  Name.Other
+'('           Punctuation
+'obj'         Name.Other
+'.'           Punctuation
+'reduce'      Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+' '           Text
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+'(value, index, list) ->' Name.Function
+'\n      '    Text
+'memo: '      Name.Variable
+'iterator'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'context'     Name.Other
+','           Punctuation
+' '           Text
+'memo'        Name.Other
+','           Punctuation
+' '           Text
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'index'       Name.Other
+','           Punctuation
+' '           Text
+'list'        Name.Other
+')'           Punctuation
+'\n    '      Text
+'memo'        Name.Other
+'\n\n\n  '    Text
+'# The right-associative version of reduce, also known as foldr. Uses\n' Comment.Single
+
+'  '          Text
+"# JavaScript 1.8's version of reduceRight, if available.\n" Comment.Single
+
+'  '          Text
+'_.reduceRight: ' Name.Variable
+'(obj, memo, iterator, context) ->' Name.Function
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'reduceRight' Name.Other
+'('           Punctuation
+'_'           Name.Other
+'.'           Punctuation
+'bind'        Name.Other
+'('           Punctuation
+'iterator'    Name.Other
+','           Punctuation
+' '           Text
+'context'     Name.Other
+')'           Punctuation
+','           Punctuation
+' '           Text
+'memo'        Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'obj'         Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isFunction'  Name.Other
+'('           Punctuation
+'obj'         Name.Other
+'.'           Punctuation
+'reduceRight' Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'clone'       Name.Other
+'('           Punctuation
+'_'           Name.Other
+'.'           Punctuation
+'toArray'     Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'reverse'     Name.Other
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'(value, index) ->' Name.Function
+'\n      '    Text
+'memo: '      Name.Variable
+'iterator'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'context'     Name.Other
+','           Punctuation
+' '           Text
+'memo'        Name.Other
+','           Punctuation
+' '           Text
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'index'       Name.Other
+','           Punctuation
+' '           Text
+'obj'         Name.Other
+')'           Punctuation
+'\n    '      Text
+'memo'        Name.Other
+'\n\n\n  '    Text
+'# Return the first value which passes a truth test.\n' Comment.Single
+
+'  '          Text
+'_.detect: '  Name.Variable
+'(obj, iterator, context) ->' Name.Function
+'\n    '      Text
+'result: '    Name.Variable
+'null'        Keyword.Constant
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+' '           Text
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+'(value, index, list) ->' Name.Function
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'iterator'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'context'     Name.Other
+','           Punctuation
+' '           Text
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'index'       Name.Other
+','           Punctuation
+' '           Text
+'list'        Name.Other
+')'           Punctuation
+'\n        '  Text
+'result: '    Name.Variable
+'value'       Name.Other
+'\n        '  Text
+'_'           Name.Other
+'.'           Punctuation
+'breakLoop'   Name.Other
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text
+'result'      Name.Other
+'\n\n\n  '    Text
+"# Return all the elements that pass a truth test. Use JavaScript 1.6's\n" Comment.Single
+
+'  '          Text
+'# filter(), if it exists.\n' Comment.Single
+
+'  '          Text
+'_.select: '  Name.Variable
+'(obj, iterator, context) ->' Name.Function
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'obj'         Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isFunction'  Name.Other
+'('           Punctuation
+'obj'         Name.Other
+'.'           Punctuation
+'filter'      Name.Other
+')'           Punctuation
+' '           Text
+'then'        Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'filter'      Name.Other
+'('           Punctuation
+'iterator'    Name.Other
+','           Punctuation
+' '           Text
+'context'     Name.Other
+')'           Punctuation
+'\n    '      Text
+'results: '   Name.Variable
+'['           Punctuation
+']'           Punctuation
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+' '           Text
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+'(value, index, list) ->' Name.Function
+'\n      '    Text
+'results'     Name.Other
+'.'           Punctuation
+'push'        Name.Other
+'('           Punctuation
+'value'       Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'iterator'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'context'     Name.Other
+','           Punctuation
+' '           Text
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'index'       Name.Other
+','           Punctuation
+' '           Text
+'list'        Name.Other
+')'           Punctuation
+'\n    '      Text
+'results'     Name.Other
+'\n\n\n  '    Text
+'# Return all the elements for which a truth test fails.\n' Comment.Single
+
+'  '          Text
+'_.reject: '  Name.Variable
+'(obj, iterator, context) ->' Name.Function
+'\n    '      Text
+'results: '   Name.Variable
+'['           Punctuation
+']'           Punctuation
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+' '           Text
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+'(value, index, list) ->' Name.Function
+'\n      '    Text
+'results'     Name.Other
+'.'           Punctuation
+'push'        Name.Other
+'('           Punctuation
+'value'       Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'not'         Operator
+' '           Text
+'iterator'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'context'     Name.Other
+','           Punctuation
+' '           Text
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'index'       Name.Other
+','           Punctuation
+' '           Text
+'list'        Name.Other
+')'           Punctuation
+'\n    '      Text
+'results'     Name.Other
+'\n\n\n  '    Text
+'# Determine whether all of the elements match a truth test. Delegate to\n' Comment.Single
+
+'  '          Text
+"# JavaScript 1.6's every(), if it is present.\n" Comment.Single
+
+'  '          Text
+'_.all: '     Name.Variable
+'(obj, iterator, context) ->' Name.Function
+'\n    '      Text
+'iterator'    Name.Other
+' '           Text
+'||'          Operator
+'='           Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'identity'    Name.Other
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'every'       Name.Other
+'('           Punctuation
+'iterator'    Name.Other
+','           Punctuation
+' '           Text
+'context'     Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'obj'         Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isFunction'  Name.Other
+'('           Punctuation
+'obj'         Name.Other
+'.'           Punctuation
+'every'       Name.Other
+')'           Punctuation
+'\n    '      Text
+'result: '    Name.Variable
+'true'        Keyword.Constant
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+' '           Text
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+'(value, index, list) ->' Name.Function
+'\n      '    Text
+'_'           Name.Other
+'.'           Punctuation
+'breakLoop'   Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'unless'      Keyword
+' '           Text
+'('           Punctuation
+'result: '    Name.Variable
+'result'      Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'iterator'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'context'     Name.Other
+','           Punctuation
+' '           Text
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'index'       Name.Other
+','           Punctuation
+' '           Text
+'list'        Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'result'      Name.Other
+'\n\n\n  '    Text
+'# Determine if at least one element in the object matches a truth test. Use\n' Comment.Single
+
+'  '          Text
+"# JavaScript 1.6's some(), if it exists.\n" Comment.Single
+
+'  '          Text
+'_.any: '     Name.Variable
+'(obj, iterator, context) ->' Name.Function
+'\n    '      Text
+'iterator'    Name.Other
+' '           Text
+'||'          Operator
+'='           Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'identity'    Name.Other
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'some'        Name.Other
+'('           Punctuation
+'iterator'    Name.Other
+','           Punctuation
+' '           Text
+'context'     Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'obj'         Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isFunction'  Name.Other
+'('           Punctuation
+'obj'         Name.Other
+'.'           Punctuation
+'some'        Name.Other
+')'           Punctuation
+'\n    '      Text
+'result: '    Name.Variable
+'false'       Keyword.Constant
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+' '           Text
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+'(value, index, list) ->' Name.Function
+'\n      '    Text
+'_'           Name.Other
+'.'           Punctuation
+'breakLoop'   Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'result: '    Name.Variable
+'iterator'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'context'     Name.Other
+','           Punctuation
+' '           Text
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'index'       Name.Other
+','           Punctuation
+' '           Text
+'list'        Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'result'      Name.Other
+'\n\n\n  '    Text
+'# Determine if a given value is included in the array or object,\n' Comment.Single
+
+'  '          Text
+"# based on '==='.\n" Comment.Single
+
+'  '          Text
+'_.include: ' Name.Variable
+'(obj, target) ->' Name.Function
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'indexOf'     Name.Other
+'('           Punctuation
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+'target'      Name.Other
+')'           Punctuation
+' '           Text
+'isnt'        Operator
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'if'          Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isArray'     Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+'\n    '      Text
+'for'         Keyword
+' '           Text
+'key'         Name.Other
+','           Punctuation
+' '           Text
+'val'         Name.Other
+' '           Text
+'of'          Keyword
+' '           Text
+'obj'         Name.Other
+'\n      '    Text
+'return'      Keyword
+' '           Text
+'true'        Keyword.Constant
+' '           Text
+'if'          Keyword
+' '           Text
+'val'         Name.Other
+' '           Text
+'is'          Operator
+' '           Text
+'target'      Name.Other
+'\n    '      Text
+'false'       Keyword.Constant
+'\n\n\n  '    Text
+'# Invoke a method with arguments on every item in a collection.\n' Comment.Single
+
+'  '          Text
+'_.invoke: '  Name.Variable
+'(obj, method) ->' Name.Function
+'\n    '      Text
+'args: '      Name.Variable
+'_'           Name.Other
+'.'           Punctuation
+'rest'        Name.Other
+'('           Punctuation
+'arguments'   Name.Other
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n    '      Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'method'      Name.Other
+' '           Text
+'then'        Keyword
+' '           Text
+'val'         Name.Other
+'['           Punctuation
+'method'      Name.Other
+']'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'val'         Name.Other
+')'           Punctuation
+'.'           Punctuation
+'apply'       Name.Other
+'('           Punctuation
+'val'         Name.Other
+','           Punctuation
+' '           Text
+'args'        Name.Other
+')'           Punctuation
+' '           Text
+'for'         Keyword
+' '           Text
+'val'         Name.Other
+' '           Text
+'in'          Keyword
+' '           Text
+'obj'         Name.Other
+'\n\n\n  '    Text
+'# Convenience version of a common use case of map: fetching a property.\n' Comment.Single
+
+'  '          Text
+'_.pluck: '   Name.Variable
+'(obj, key) ->' Name.Function
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'map'         Name.Other
+'('           Punctuation
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+'('           Punctuation
+'(val) ->'    Name.Function
+' '           Text
+'val'         Name.Other
+'['           Punctuation
+'key'         Name.Other
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n\n  '    Text
+'# Return the maximum item or (item-based computation).\n' Comment.Single
+
+'  '          Text
+'_.max: '     Name.Variable
+'(obj, iterator, context) ->' Name.Function
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'Math'        Name.Builtin
+'.'           Punctuation
+'max'         Name.Other
+'.'           Punctuation
+'apply'       Name.Other
+'('           Punctuation
+'Math'        Name.Builtin
+','           Punctuation
+' '           Text
+'obj'         Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'not'         Operator
+' '           Text
+'iterator'    Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isArray'     Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+'\n    '      Text
+'result: '    Name.Variable
+'{'           Punctuation
+'computed: '  Name.Variable
+'-'           Operator
+'Infinity'    Keyword.Constant
+'}'           Punctuation
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+' '           Text
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+'(value, index, list) ->' Name.Function
+'\n      '    Text
+'computed: '  Name.Variable
+'if'          Keyword
+' '           Text
+'iterator'    Name.Other
+' '           Text
+'then'        Keyword
+' '           Text
+'iterator'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'context'     Name.Other
+','           Punctuation
+' '           Text
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'index'       Name.Other
+','           Punctuation
+' '           Text
+'list'        Name.Other
+')'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'value'       Name.Other
+'\n      '    Text
+'computed'    Name.Other
+' '           Text
+'>='          Operator
+' '           Text
+'result'      Name.Other
+'.'           Punctuation
+'computed'    Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'('           Punctuation
+'result: '    Name.Variable
+'{'           Punctuation
+'value: '     Name.Variable
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'computed: '  Name.Variable
+'computed'    Name.Other
+'}'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'result'      Name.Other
+'.'           Punctuation
+'value'       Name.Other
+'\n\n\n  '    Text
+'# Return the minimum element (or element-based computation).\n' Comment.Single
+
+'  '          Text
+'_.min: '     Name.Variable
+'(obj, iterator, context) ->' Name.Function
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'Math'        Name.Builtin
+'.'           Punctuation
+'min'         Name.Other
+'.'           Punctuation
+'apply'       Name.Other
+'('           Punctuation
+'Math'        Name.Builtin
+','           Punctuation
+' '           Text
+'obj'         Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'not'         Operator
+' '           Text
+'iterator'    Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isArray'     Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+'\n    '      Text
+'result: '    Name.Variable
+'{'           Punctuation
+'computed: '  Name.Variable
+'Infinity'    Keyword.Constant
+'}'           Punctuation
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+' '           Text
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+'(value, index, list) ->' Name.Function
+'\n      '    Text
+'computed: '  Name.Variable
+'if'          Keyword
+' '           Text
+'iterator'    Name.Other
+' '           Text
+'then'        Keyword
+' '           Text
+'iterator'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'context'     Name.Other
+','           Punctuation
+' '           Text
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'index'       Name.Other
+','           Punctuation
+' '           Text
+'list'        Name.Other
+')'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'value'       Name.Other
+'\n      '    Text
+'computed'    Name.Other
+' '           Text
+'<'           Operator
+' '           Text
+'result'      Name.Other
+'.'           Punctuation
+'computed'    Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'('           Punctuation
+'result: '    Name.Variable
+'{'           Punctuation
+'value: '     Name.Variable
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'computed: '  Name.Variable
+'computed'    Name.Other
+'}'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'result'      Name.Other
+'.'           Punctuation
+'value'       Name.Other
+'\n\n\n  '    Text
+"# Sort the object's values by a criteria produced by an iterator.\n" Comment.Single
+
+'  '          Text
+'_.sortBy: '  Name.Variable
+'(obj, iterator, context) ->' Name.Function
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'pluck'       Name.Other
+'('           Punctuation
+'('           Punctuation
+'('           Punctuation
+'_'           Name.Other
+'.'           Punctuation
+'map'         Name.Other
+' '           Text
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+'(value, index, list) ->' Name.Function
+'\n      '    Text
+'{'           Punctuation
+'value: '     Name.Variable
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'criteria: '  Name.Variable
+'iterator'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'context'     Name.Other
+','           Punctuation
+' '           Text
+'value'       Name.Other
+','           Punctuation
+' '           Text
+'index'       Name.Other
+','           Punctuation
+' '           Text
+'list'        Name.Other
+')'           Punctuation
+'}'           Punctuation
+'\n    '      Text
+')'           Punctuation
+'.'           Punctuation
+'sort'        Name.Other
+'('           Punctuation
+'(left, right) ->' Name.Function
+'\n      '    Text
+'a: '         Name.Variable
+'left'        Name.Other
+'.'           Punctuation
+'criteria'    Name.Other
+';'           Punctuation
+' '           Text
+'b: '         Name.Variable
+'right'       Name.Other
+'.'           Punctuation
+'criteria'    Name.Other
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'a'           Name.Other
+' '           Text
+'<'           Operator
+' '           Text
+'b'           Name.Other
+' '           Text
+'then'        Keyword
+' '           Text
+'-'           Operator
+'1'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'a'           Name.Other
+' '           Text
+'>'           Operator
+' '           Text
+'b'           Name.Other
+' '           Text
+'then'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+'\n    '      Text
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+"'"           Literal.String
+'value'       Literal.String
+"'"           Literal.String
+')'           Punctuation
+'\n\n\n  '    Text
+'# Use a comparator function to figure out at what index an object should\n' Comment.Single
+
+'  '          Text
+'# be inserted so as to maintain order. Uses binary search.\n' Comment.Single
+
+'  '          Text
+'_.sortedIndex: ' Name.Variable
+'(array, obj, iterator) ->' Name.Function
+'\n    '      Text
+'iterator'    Name.Other
+' '           Text
+'||'          Operator
+'='           Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'identity'    Name.Other
+'\n    '      Text
+'low: '       Name.Variable
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'high: '      Name.Variable
+'array'       Name.Other
+'.'           Punctuation
+'length'      Name.Other
+'\n    '      Text
+'while'       Keyword
+' '           Text
+'low'         Name.Other
+' '           Text
+'<'           Operator
+' '           Text
+'high'        Name.Other
+'\n      '    Text
+'mid: '       Name.Variable
+'('           Punctuation
+'low'         Name.Other
+' '           Text
+'+'           Operator
+' '           Text
+'high'        Name.Other
+')'           Punctuation
+' '           Text
+'>>'          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'iterator'    Name.Other
+'('           Punctuation
+'array'       Name.Other
+'['           Punctuation
+'mid'         Name.Other
+']'           Punctuation
+')'           Punctuation
+' '           Text
+'<'           Operator
+' '           Text
+'iterator'    Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+' '           Text
+'then'        Keyword
+' '           Text
+'low: '       Name.Variable
+'mid'         Name.Other
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+' '           Text
+'high: '      Name.Variable
+'mid'         Name.Other
+'\n    '      Text
+'low'         Name.Other
+'\n\n\n  '    Text
+'# Convert anything iterable into a real, live array.\n' Comment.Single
+
+'  '          Text
+'_.toArray: ' Name.Variable
+'(iterable) ->' Name.Function
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'['           Punctuation
+']'           Punctuation
+'                   ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Operator
+'iterable'    Name.Other
+')'           Punctuation
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'iterable'    Name.Other
+'.'           Punctuation
+'toArray'     Name.Other
+'('           Punctuation
+')'           Punctuation
+'   '         Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'iterable'    Name.Other
+'.'           Punctuation
+'toArray'     Name.Other
+')'           Punctuation
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'iterable'    Name.Other
+'             ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'_'           Name.Other
+'.'           Punctuation
+'isArray'     Name.Other
+'('           Punctuation
+'iterable'    Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'slice'       Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'iterable'    Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'_'           Name.Other
+'.'           Punctuation
+'isArguments' Name.Other
+'('           Punctuation
+'iterable'    Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'values'      Name.Other
+'('           Punctuation
+'iterable'    Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Return the number of elements in an object.\n' Comment.Single
+
+'  '          Text
+'_.size: '    Name.Variable
+'(obj) ->'    Name.Function
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'toArray'     Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+'.'           Punctuation
+'length'      Name.Other
+'\n\n\n  '    Text
+'# -------------------------- Array Functions: ------------------------------\n' Comment.Single
+
+'\n  '        Text
+'# Get the first element of an array. Passing "n" will return the first N\n' Comment.Single
+
+'  '          Text
+'# values in the array. Aliased as "head". The "guard" check allows it to work\n' Comment.Single
+
+'  '          Text
+'# with _.map.\n' Comment.Single
+
+'  '          Text
+'_.first: '   Name.Variable
+'(array, n, guard) ->' Name.Function
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'n'           Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'not'         Operator
+' '           Text
+'guard'       Name.Other
+' '           Text
+'then'        Keyword
+' '           Text
+'slice'       Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'array'       Name.Other
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'n'           Name.Other
+')'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'array'       Name.Other
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'\n\n\n  '    Text
+'# Returns everything but the first entry of the array. Aliased as "tail".\n' Comment.Single
+
+'  '          Text
+'# Especially useful on the arguments object. Passing an "index" will return\n' Comment.Single
+
+'  '          Text
+'# the rest of the values in the array from that index onward. The "guard"\n' Comment.Single
+
+'  '          Text
+'# check allows it to work with _.map.\n' Comment.Single
+
+'  '          Text
+'_.rest: '    Name.Variable
+'(array, index, guard) ->' Name.Function
+'\n    '      Text
+'slice'       Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'array'       Name.Other
+','           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isUndefined' Name.Other
+'('           Punctuation
+'index'       Name.Other
+')'           Punctuation
+' '           Text
+'or'          Operator
+' '           Text
+'guard'       Name.Other
+' '           Text
+'then'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+' '           Text
+'index'       Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Get the last element of an array.\n' Comment.Single
+
+'  '          Text
+'_.last: '    Name.Variable
+'(array) ->'  Name.Function
+' '           Text
+'array'       Name.Other
+'['           Punctuation
+'array'       Name.Other
+'.'           Punctuation
+'length'      Name.Other
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+']'           Punctuation
+'\n\n\n  '    Text
+'# Trim out all falsy values from an array.\n' Comment.Single
+
+'  '          Text
+'_.compact: ' Name.Variable
+'(array) ->'  Name.Function
+' '           Text
+'array'       Name.Other
+'['           Punctuation
+'i'           Name.Other
+']'           Punctuation
+' '           Text
+'for'         Keyword
+' '           Text
+'i'           Name.Other
+' '           Text
+'in'          Keyword
+' '           Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+'.'           Punctuation
+'.'           Punctuation
+'.'           Punctuation
+'array'       Name.Other
+'.'           Punctuation
+'length'      Name.Other
+']'           Punctuation
+' '           Text
+'when'        Keyword
+' '           Text
+'array'       Name.Other
+'['           Punctuation
+'i'           Name.Other
+']'           Punctuation
+'\n\n\n  '    Text
+'# Return a completely flattened version of an array.\n' Comment.Single
+
+'  '          Text
+'_.flatten: ' Name.Variable
+'(array) ->'  Name.Function
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'reduce'      Name.Other
+' '           Text
+'array'       Name.Other
+','           Punctuation
+' '           Text
+'['           Punctuation
+']'           Punctuation
+','           Punctuation
+' '           Text
+'(memo, value) ->' Name.Function
+'\n      '    Text
+'return'      Keyword
+' '           Text
+'memo'        Name.Other
+'.'           Punctuation
+'concat'      Name.Other
+'('           Punctuation
+'_'           Name.Other
+'.'           Punctuation
+'flatten'     Name.Other
+'('           Punctuation
+'value'       Name.Other
+')'           Punctuation
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isArray'     Name.Other
+'('           Punctuation
+'value'       Name.Other
+')'           Punctuation
+'\n      '    Text
+'memo'        Name.Other
+'.'           Punctuation
+'push'        Name.Other
+'('           Punctuation
+'value'       Name.Other
+')'           Punctuation
+'\n      '    Text
+'memo'        Name.Other
+'\n\n\n  '    Text
+'# Return a version of the array that does not contain the specified value(s).\n' Comment.Single
+
+'  '          Text
+'_.without: ' Name.Variable
+'(array) ->'  Name.Function
+'\n    '      Text
+'values: '    Name.Variable
+'_'           Name.Other
+'.'           Punctuation
+'rest'        Name.Other
+'('           Punctuation
+'arguments'   Name.Other
+')'           Punctuation
+'\n    '      Text
+'val'         Name.Other
+' '           Text
+'for'         Keyword
+' '           Text
+'val'         Name.Other
+' '           Text
+'in'          Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'toArray'     Name.Other
+'('           Punctuation
+'array'       Name.Other
+')'           Punctuation
+' '           Text
+'when'        Keyword
+' '           Text
+'not'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'include'     Name.Other
+'('           Punctuation
+'values'      Name.Other
+','           Punctuation
+' '           Text
+'val'         Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Produce a duplicate-free version of the array. If the array has already\n' Comment.Single
+
+'  '          Text
+'# been sorted, you have the option of using a faster algorithm.\n' Comment.Single
+
+'  '          Text
+'_.uniq: '    Name.Variable
+'(array, isSorted) ->' Name.Function
+'\n    '      Text
+'memo: '      Name.Variable
+'['           Punctuation
+']'           Punctuation
+'\n    '      Text
+'for'         Keyword
+' '           Text
+'el'          Name.Other
+','           Punctuation
+' '           Text
+'i'           Name.Other
+' '           Text
+'in'          Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'toArray'     Name.Other
+'('           Punctuation
+'array'       Name.Other
+')'           Punctuation
+'\n      '    Text
+'memo'        Name.Other
+'.'           Punctuation
+'push'        Name.Other
+'('           Punctuation
+'el'          Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'i'           Name.Other
+' '           Text
+'is'          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'||'          Operator
+' '           Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'isSorted'    Name.Other
+' '           Text
+'is'          Operator
+' '           Text
+'true'        Keyword.Constant
+' '           Text
+'then'        Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'last'        Name.Other
+'('           Punctuation
+'memo'        Name.Other
+')'           Punctuation
+' '           Text
+'isnt'        Operator
+' '           Text
+'el'          Name.Other
+' '           Text
+'else'        Keyword
+' '           Text
+'not'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'include'     Name.Other
+'('           Punctuation
+'memo'        Name.Other
+','           Punctuation
+' '           Text
+'el'          Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'memo'        Name.Other
+'\n\n\n  '    Text
+'# Produce an array that contains every item shared between all the\n' Comment.Single
+
+'  '          Text
+'# passed-in arrays.\n' Comment.Single
+
+'  '          Text
+'_.intersect: ' Name.Variable
+'(array) ->'  Name.Function
+'\n    '      Text
+'rest: '      Name.Variable
+'_'           Name.Other
+'.'           Punctuation
+'rest'        Name.Other
+'('           Punctuation
+'arguments'   Name.Other
+')'           Punctuation
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'select'      Name.Other
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'uniq'        Name.Other
+'('           Punctuation
+'array'       Name.Other
+')'           Punctuation
+','           Punctuation
+' '           Text
+'(item) ->'   Name.Function
+'\n      '    Text
+'_'           Name.Other
+'.'           Punctuation
+'all'         Name.Other
+' '           Text
+'rest'        Name.Other
+','           Punctuation
+' '           Text
+'(other) ->'  Name.Function
+'\n        '  Text
+'_'           Name.Other
+'.'           Punctuation
+'indexOf'     Name.Other
+'('           Punctuation
+'other'       Name.Other
+','           Punctuation
+' '           Text
+'item'        Name.Other
+')'           Punctuation
+' '           Text
+'>='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n\n\n  '    Text
+'# Zip together multiple lists into a single array -- elements that share\n' Comment.Single
+
+'  '          Text
+'# an index go together.\n' Comment.Single
+
+'  '          Text
+'_.zip: '     Name.Variable
+'->'          Name.Function
+'\n    '      Text
+'length: '    Name.Variable
+'    '        Text
+'_'           Name.Other
+'.'           Punctuation
+'max'         Name.Other
+'('           Punctuation
+'_'           Name.Other
+'.'           Punctuation
+'pluck'       Name.Other
+'('           Punctuation
+'arguments'   Name.Other
+','           Punctuation
+' '           Text
+"'"           Literal.String
+'length'      Literal.String
+"'"           Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'results: '   Name.Variable
+'   '         Text
+'new'         Keyword
+' '           Text
+'Array'       Name.Builtin
+'('           Punctuation
+'length'      Name.Other
+')'           Punctuation
+'\n    '      Text
+'for'         Keyword
+' '           Text
+'i'           Name.Other
+' '           Text
+'in'          Keyword
+' '           Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+'.'           Punctuation
+'.'           Punctuation
+'.'           Punctuation
+'length'      Name.Other
+']'           Punctuation
+'\n      '    Text
+'results'     Name.Other
+'['           Punctuation
+'i'           Name.Other
+']'           Punctuation
+':'           Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'pluck'       Name.Other
+'('           Punctuation
+'arguments'   Name.Other
+','           Punctuation
+' '           Text
+'String'      Name.Builtin
+'('           Punctuation
+'i'           Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'results'     Name.Other
+'\n\n\n  '    Text
+"# If the browser doesn't supply us with indexOf (I'm looking at you, MSIE),\n" Comment.Single
+
+'  '          Text
+'# we need this function. Return the position of the first occurence of an\n' Comment.Single
+
+'  '          Text
+'# item in an array, or -1 if the item is not included in the array.\n' Comment.Single
+
+'  '          Text
+'_.indexOf: ' Name.Variable
+'(array, item) ->' Name.Function
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'array'       Name.Other
+'.'           Punctuation
+'indexOf'     Name.Other
+'('           Punctuation
+'item'        Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'array'       Name.Other
+'.'           Punctuation
+'indexOf'     Name.Other
+'\n    '      Text
+'i: '         Name.Variable
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'l: '         Name.Variable
+'array'       Name.Other
+'.'           Punctuation
+'length'      Name.Other
+'\n    '      Text
+'while'       Keyword
+' '           Text
+'l'           Name.Other
+' '           Text
+'-'           Operator
+' '           Text
+'i'           Name.Other
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'array'       Name.Other
+'['           Punctuation
+'i'           Name.Other
+']'           Punctuation
+' '           Text
+'is'          Operator
+' '           Text
+'item'        Name.Other
+' '           Text
+'then'        Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'i'           Name.Other
+' '           Text
+'else'        Keyword
+' '           Text
+'i'           Name.Other
+'++'          Operator
+'\n    '      Text
+'-'           Operator
+'1'           Literal.Number.Integer
+'\n\n\n  '    Text
+"# Provide JavaScript 1.6's lastIndexOf, delegating to the native function,\n" Comment.Single
+
+'  '          Text
+'# if possible.\n' Comment.Single
+
+'  '          Text
+'_.lastIndexOf: ' Name.Variable
+'(array, item) ->' Name.Function
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'array'       Name.Other
+'.'           Punctuation
+'lastIndexOf' Name.Other
+'('           Punctuation
+'item'        Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'array'       Name.Other
+'.'           Punctuation
+'lastIndexOf' Name.Other
+'\n    '      Text
+'i: '         Name.Variable
+'array'       Name.Other
+'.'           Punctuation
+'length'      Name.Other
+'\n    '      Text
+'while'       Keyword
+' '           Text
+'i'           Name.Other
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'array'       Name.Other
+'['           Punctuation
+'i'           Name.Other
+']'           Punctuation
+' '           Text
+'is'          Operator
+' '           Text
+'item'        Name.Other
+' '           Text
+'then'        Keyword
+' '           Text
+'return'      Keyword
+' '           Text
+'i'           Name.Other
+' '           Text
+'else'        Keyword
+' '           Text
+'i'           Name.Other
+'-'           Operator
+'-'           Operator
+'\n    '      Text
+'-'           Operator
+'1'           Literal.Number.Integer
+'\n\n\n  '    Text
+'# Generate an integer Array containing an arithmetic progression. A port of\n' Comment.Single
+
+'  '          Text
+'# the native Python range() function. See:\n' Comment.Single
+
+'  '          Text
+'# http://docs.python.org/library/functions.html#range\n' Comment.Single
+
+'  '          Text
+'_.range: '   Name.Variable
+'(start, stop, step) ->' Name.Function
+'\n    '      Text
+'a: '         Name.Variable
+'       '     Text
+'arguments'   Name.Other
+'\n    '      Text
+'solo: '      Name.Variable
+'    '        Text
+'a'           Name.Other
+'.'           Punctuation
+'length'      Name.Other
+' '           Text
+'<='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n    '      Text
+'i: '         Name.Variable
+'start: '     Name.Variable
+'if'          Keyword
+' '           Text
+'solo'        Name.Other
+' '           Text
+'then'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'else'        Keyword
+' '           Text
+'a'           Name.Other
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'stop: '      Name.Variable
+'    '        Text
+'if'          Keyword
+' '           Text
+'solo'        Name.Other
+' '           Text
+'then'        Keyword
+' '           Text
+'a'           Name.Other
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'a'           Name.Other
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text
+'step: '      Name.Variable
+'    '        Text
+'a'           Name.Other
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'or'          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n    '      Text
+'len: '       Name.Variable
+'     '       Text
+'Math'        Name.Builtin
+'.'           Punctuation
+'ceil'        Name.Other
+'('           Punctuation
+'('           Punctuation
+'stop'        Name.Other
+' '           Text
+'-'           Operator
+' '           Text
+'start'       Name.Other
+')'           Punctuation
+' '           Text
+'/'           Operator
+' '           Text
+'step'        Name.Other
+')'           Punctuation
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'['           Punctuation
+']'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'len'         Name.Other
+' '           Text
+'<='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n    '      Text
+'range: '     Name.Variable
+'   '         Text
+'new'         Keyword
+' '           Text
+'Array'       Name.Builtin
+'('           Punctuation
+'len'         Name.Other
+')'           Punctuation
+'\n    '      Text
+'idx: '       Name.Variable
+'     '       Text
+'0'           Literal.Number.Integer
+'\n    '      Text
+'while'       Keyword
+' '           Text
+'true'        Keyword.Constant
+'\n      '    Text
+'return'      Keyword
+' '           Text
+'range'       Name.Other
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'if'          Keyword
+' '           Text
+'step'        Name.Other
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'i'           Name.Other
+' '           Text
+'-'           Operator
+' '           Text
+'stop'        Name.Other
+' '           Text
+'else'        Keyword
+' '           Text
+'stop'        Name.Other
+' '           Text
+'-'           Operator
+' '           Text
+'i'           Name.Other
+')'           Punctuation
+' '           Text
+'>='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n      '    Text
+'range'       Name.Other
+'['           Punctuation
+'idx'         Name.Other
+']'           Punctuation
+':'           Operator
+' '           Text
+'i'           Name.Other
+'\n      '    Text
+'idx'         Name.Other
+'++'          Operator
+'\n      '    Text
+'i'           Name.Other
+'+='          Operator
+' '           Text
+'step'        Name.Other
+'\n\n\n  '    Text
+'# ----------------------- Function Functions: -----------------------------\n' Comment.Single
+
+'\n  '        Text
+"# Create a function bound to a given object (assigning 'this', and arguments,\n" Comment.Single
+
+'  '          Text
+"# optionally). Binding with arguments is also known as 'curry'.\n" Comment.Single
+
+'  '          Text
+'_.bind: '    Name.Variable
+'(func, obj) ->' Name.Function
+'\n    '      Text
+'args: '      Name.Variable
+'_'           Name.Other
+'.'           Punctuation
+'rest'        Name.Other
+'(arguments, 2)\n    ->' Name.Function
+' '           Text
+'func'        Name.Other
+'.'           Punctuation
+'apply'       Name.Other
+'('           Punctuation
+'obj'         Name.Other
+' '           Text
+'or'          Operator
+' '           Text
+'root'        Name.Other
+','           Punctuation
+' '           Text
+'args'        Name.Other
+'.'           Punctuation
+'concat'      Name.Other
+'('           Punctuation
+'arguments'   Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n\n\n  '    Text
+"# Bind all of an object's methods to that object. Useful for ensuring that\n" Comment.Single
+
+'  '          Text
+'# all callbacks defined on an object belong to it.\n' Comment.Single
+
+'  '          Text
+'_.bindAll: ' Name.Variable
+'(obj) ->'    Name.Function
+'\n    '      Text
+'funcs: '     Name.Variable
+'if'          Keyword
+' '           Text
+'arguments'   Name.Other
+'.'           Punctuation
+'length'      Name.Other
+' '           Text
+'>'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'rest'        Name.Other
+'('           Punctuation
+'arguments'   Name.Other
+')'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'functions'   Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+'('           Punctuation
+'funcs'       Name.Other
+','           Punctuation
+' '           Text
+'(f) ->'      Name.Function
+' '           Text
+'obj'         Name.Other
+'['           Punctuation
+'f'           Name.Other
+']'           Punctuation
+':'           Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'bind'        Name.Other
+'('           Punctuation
+'obj'         Name.Other
+'['           Punctuation
+'f'           Name.Other
+']'           Punctuation
+','           Punctuation
+' '           Text
+'obj'         Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text
+'obj'         Name.Other
+'\n\n\n  '    Text
+'# Delays a function for the given number of milliseconds, and then calls\n' Comment.Single
+
+'  '          Text
+'# it with the arguments supplied.\n' Comment.Single
+
+'  '          Text
+'_.delay: '   Name.Variable
+'(func, wait) ->' Name.Function
+'\n    '      Text
+'args: '      Name.Variable
+'_'           Name.Other
+'.'           Punctuation
+'rest'        Name.Other
+'('           Punctuation
+'arguments'   Name.Other
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n    '      Text
+'setTimeout'  Name.Other
+'('           Punctuation
+'('           Punctuation
+'->'          Name.Function
+' '           Text
+'func'        Name.Other
+'.'           Punctuation
+'apply'       Name.Other
+'('           Punctuation
+'func'        Name.Other
+','           Punctuation
+' '           Text
+'args'        Name.Other
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'wait'        Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Defers a function, scheduling it to run after the current call stack has\n' Comment.Single
+
+'  '          Text
+'# cleared.\n' Comment.Single
+
+'  '          Text
+'_.defer: '   Name.Variable
+'(func) ->'   Name.Function
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'delay'       Name.Other
+'.'           Punctuation
+'apply'       Name.Other
+'('           Punctuation
+'_'           Name.Other
+','           Punctuation
+' '           Text
+'['           Punctuation
+'func'        Name.Other
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+']'           Punctuation
+'.'           Punctuation
+'concat'      Name.Other
+'('           Punctuation
+'_'           Name.Other
+'.'           Punctuation
+'rest'        Name.Other
+'('           Punctuation
+'arguments'   Name.Other
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n\n\n  '    Text
+'# Returns the first function passed as an argument to the second,\n' Comment.Single
+
+'  '          Text
+'# allowing you to adjust arguments, run code before and after, and\n' Comment.Single
+
+'  '          Text
+'# conditionally execute the original function.\n' Comment.Single
+
+'  '          Text
+'_.wrap: '    Name.Variable
+'(func, wrapper) ->' Name.Function
+'\n    '      Text
+'->'          Name.Function
+' '           Text
+'wrapper'     Name.Other
+'.'           Punctuation
+'apply'       Name.Other
+'('           Punctuation
+'wrapper'     Name.Other
+','           Punctuation
+' '           Text
+'['           Punctuation
+'func'        Name.Other
+']'           Punctuation
+'.'           Punctuation
+'concat'      Name.Other
+'('           Punctuation
+'arguments'   Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n\n\n  '    Text
+'# Returns a function that is the composition of a list of functions, each\n' Comment.Single
+
+'  '          Text
+'# consuming the return value of the function that follows.\n' Comment.Single
+
+'  '          Text
+'_.compose: ' Name.Variable
+'->'          Name.Function
+'\n    '      Text
+'funcs: '     Name.Variable
+'arguments'   Name.Other
+'\n    '      Text
+'->'          Name.Function
+'\n      '    Text
+'args: '      Name.Variable
+'arguments'   Name.Other
+'\n      '    Text
+'for'         Keyword
+' '           Text
+'i'           Name.Other
+' '           Text
+'in'          Keyword
+' '           Text
+'['           Punctuation
+'('           Punctuation
+'funcs'       Name.Other
+'.'           Punctuation
+'length'      Name.Other
+' '           Text
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+'.'           Punctuation
+'.'           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'\n        '  Text
+'args: '      Name.Variable
+'['           Punctuation
+'funcs'       Name.Other
+'['           Punctuation
+'i'           Name.Other
+']'           Punctuation
+'.'           Punctuation
+'apply'       Name.Other
+'('           Punctuation
+'this'        Keyword
+','           Punctuation
+' '           Text
+'args'        Name.Other
+')'           Punctuation
+']'           Punctuation
+'\n      '    Text
+'args'        Name.Other
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'\n\n\n  '    Text
+'# ------------------------- Object Functions: ----------------------------\n' Comment.Single
+
+'\n  '        Text
+"# Retrieve the names of an object's properties.\n" Comment.Single
+
+'  '          Text
+'_.keys: '    Name.Variable
+'(obj) ->'    Name.Function
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'range'       Name.Other
+'('           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'length'      Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isArray'     Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+'\n    '      Text
+'key'         Name.Other
+' '           Text
+'for'         Keyword
+' '           Text
+'key'         Name.Other
+','           Punctuation
+' '           Text
+'val'         Name.Other
+' '           Text
+'of'          Keyword
+' '           Text
+'obj'         Name.Other
+'\n\n\n  '    Text
+"# Retrieve the values of an object's properties.\n" Comment.Single
+
+'  '          Text
+'_.values: '  Name.Variable
+'(obj) ->'    Name.Function
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'map'         Name.Other
+'('           Punctuation
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'identity'    Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Return a sorted list of the function names available in Underscore.\n' Comment.Single
+
+'  '          Text
+'_.functions: ' Name.Variable
+'(obj) ->'    Name.Function
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'select'      Name.Other
+'('           Punctuation
+'_'           Name.Other
+'.'           Punctuation
+'keys'        Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+','           Punctuation
+' '           Text
+'(key) ->'    Name.Function
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isFunction'  Name.Other
+'('           Punctuation
+'obj'         Name.Other
+'['           Punctuation
+'key'         Name.Other
+']'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'sort'        Name.Other
+'('           Punctuation
+')'           Punctuation
+'\n\n\n  '    Text
+'# Extend a given object with all of the properties in a source object.\n' Comment.Single
+
+'  '          Text
+'_.extend: '  Name.Variable
+'(destination, source) ->' Name.Function
+'\n    '      Text
+'for'         Keyword
+' '           Text
+'key'         Name.Other
+','           Punctuation
+' '           Text
+'val'         Name.Other
+' '           Text
+'of'          Keyword
+' '           Text
+'source'      Name.Other
+'\n      '    Text
+'destination' Name.Other
+'['           Punctuation
+'key'         Name.Other
+']'           Punctuation
+':'           Operator
+' '           Text
+'val'         Name.Other
+'\n    '      Text
+'destination' Name.Other
+'\n\n\n  '    Text
+'# Create a (shallow-cloned) duplicate of an object.\n' Comment.Single
+
+'  '          Text
+'_.clone: '   Name.Variable
+'(obj) ->'    Name.Function
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'slice'       Name.Other
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isArray'     Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+'\n    '      Text
+'_'           Name.Other
+'.'           Punctuation
+'extend'      Name.Other
+'('           Punctuation
+'{'           Punctuation
+'}'           Punctuation
+','           Punctuation
+' '           Text
+'obj'         Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Invokes interceptor with the obj, and then returns obj.\n' Comment.Single
+
+'  '          Text
+'# The primary purpose of this method is to "tap into" a method chain, in order to perform operations on intermediate results within the chain.\n' Comment.Single
+
+'  '          Text
+'_.tap: '     Name.Variable
+'(obj, interceptor) ->' Name.Function
+'\n    '      Text
+'interceptor' Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+'\n    '      Text
+'obj'         Name.Other
+'\n\n\n  '    Text
+'# Perform a deep comparison to check if two objects are equal.\n' Comment.Single
+
+'  '          Text
+'_.isEqual: ' Name.Variable
+'(a, b) ->'   Name.Function
+'\n    '      Text
+'# Check object identity.\n' Comment.Single
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'true'        Keyword.Constant
+' '           Text
+'if'          Keyword
+' '           Text
+'a'           Name.Other
+' '           Text
+'is'          Operator
+' '           Text
+'b'           Name.Other
+'\n    '      Text
+'# Different types?\n' Comment.Single
+
+'    '        Text
+'atype: '     Name.Variable
+'typeof'      Keyword
+'('           Punctuation
+'a'           Name.Other
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'btype: '     Name.Variable
+'typeof'      Keyword
+'('           Punctuation
+'b'           Name.Other
+')'           Punctuation
+'\n    '      Text
+'return'      Keyword
+' '           Text
+'false'       Keyword.Constant
+' '           Text
+'if'          Keyword
+' '           Text
+'atype'       Name.Other
+' '           Text
+'isnt'        Operator
+' '           Text
+'btype'       Name.Other
+'\n    '      Text
+'# Basic equality test (watch out for coercions).\n' Comment.Single
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'true'        Keyword.Constant
+' '           Text
+'if'          Keyword
+' '           Text
+'`'           Operator
+'a'           Name.Other
+' '           Text
+'=='          Operator
+' '           Text
+'b'           Name.Other
+'`'           Operator
+'\n    '      Text
+'# One is falsy and the other truthy.\n' Comment.Single
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'false'       Keyword.Constant
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Operator
+'a'           Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'b'           Name.Other
+')'           Punctuation
+' '           Text
+'or'          Operator
+' '           Text
+'('           Punctuation
+'a'           Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'!'           Operator
+'b'           Name.Other
+')'           Punctuation
+'\n    '      Text
+'# One of them implements an isEqual()?\n' Comment.Single
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'a'           Name.Other
+'.'           Punctuation
+'isEqual'     Name.Other
+'('           Punctuation
+'b'           Name.Other
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'a'           Name.Other
+'.'           Punctuation
+'isEqual'     Name.Other
+'\n    '      Text
+"# Check dates' integer values.\n" Comment.Single
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'a'           Name.Other
+'.'           Punctuation
+'getTime'     Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'is'          Operator
+' '           Text
+'b'           Name.Other
+'.'           Punctuation
+'getTime'     Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isDate'      Name.Other
+'('           Punctuation
+'a'           Name.Other
+')'           Punctuation
+' '           Text
+'and'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isDate'      Name.Other
+'('           Punctuation
+'b'           Name.Other
+')'           Punctuation
+'\n    '      Text
+'# Both are NaN?\n' Comment.Single
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'true'        Keyword.Constant
+' '           Text
+'if'          Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isNaN'       Name.Builtin
+'('           Punctuation
+'a'           Name.Other
+')'           Punctuation
+' '           Text
+'and'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isNaN'       Name.Builtin
+'('           Punctuation
+'b'           Name.Other
+')'           Punctuation
+'\n    '      Text
+'# Compare regular expressions.\n' Comment.Single
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isRegExp'    Name.Other
+'('           Punctuation
+'a'           Name.Other
+')'           Punctuation
+' '           Text
+'and'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isRegExp'    Name.Other
+'('           Punctuation
+'b'           Name.Other
+')'           Punctuation
+'\n      '    Text
+'return'      Keyword
+' '           Text
+'a'           Name.Other
+'.'           Punctuation
+'source'      Name.Other
+'     '       Text
+'is'          Operator
+' '           Text
+'b'           Name.Other
+'.'           Punctuation
+'source'      Name.Other
+' '           Text
+'and'         Operator
+'\n             ' Text
+'a'           Name.Other
+'.'           Punctuation
+'global'      Name.Other
+'     '       Text
+'is'          Operator
+' '           Text
+'b'           Name.Other
+'.'           Punctuation
+'global'      Name.Other
+' '           Text
+'and'         Operator
+'\n             ' Text
+'a'           Name.Other
+'.'           Punctuation
+'ignoreCase'  Name.Other
+' '           Text
+'is'          Operator
+' '           Text
+'b'           Name.Other
+'.'           Punctuation
+'ignoreCase'  Name.Other
+' '           Text
+'and'         Operator
+'\n             ' Text
+'a'           Name.Other
+'.'           Punctuation
+'multiline'   Name.Other
+'  '          Text
+'is'          Operator
+' '           Text
+'b'           Name.Other
+'.'           Punctuation
+'multiline'   Name.Other
+'\n    '      Text
+"# If a is not an object by this point, we can't handle it.\n" Comment.Single
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'false'       Keyword.Constant
+' '           Text
+'if'          Keyword
+' '           Text
+'atype'       Name.Other
+' '           Text
+'isnt'        Operator
+' '           Text
+"'"           Literal.String
+'object'      Literal.String
+"'"           Literal.String
+'\n    '      Text
+'# Check for different array lengths before comparing contents.\n' Comment.Single
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'false'       Keyword.Constant
+' '           Text
+'if'          Keyword
+' '           Text
+'a'           Name.Other
+'.'           Punctuation
+'length'      Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'('           Punctuation
+'a'           Name.Other
+'.'           Punctuation
+'length'      Name.Other
+' '           Text
+'isnt'        Operator
+' '           Text
+'b'           Name.Other
+'.'           Punctuation
+'length'      Name.Other
+')'           Punctuation
+'\n    '      Text
+'# Nothing else worked, deep compare the contents.\n' Comment.Single
+
+'    '        Text
+'aKeys: '     Name.Variable
+'_'           Name.Other
+'.'           Punctuation
+'keys'        Name.Other
+'('           Punctuation
+'a'           Name.Other
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'bKeys: '     Name.Variable
+'_'           Name.Other
+'.'           Punctuation
+'keys'        Name.Other
+'('           Punctuation
+'b'           Name.Other
+')'           Punctuation
+'\n    '      Text
+'# Different object sizes?\n' Comment.Single
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'false'       Keyword.Constant
+' '           Text
+'if'          Keyword
+' '           Text
+'aKeys'       Name.Other
+'.'           Punctuation
+'length'      Name.Other
+' '           Text
+'isnt'        Operator
+' '           Text
+'bKeys'       Name.Other
+'.'           Punctuation
+'length'      Name.Other
+'\n    '      Text
+'# Recursive comparison of contents.\n' Comment.Single
+
+'    '        Text
+'# for (var key in a) if (!_.isEqual(a[key], b[key])) return false;\n' Comment.Single
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'true'        Keyword.Constant
+'\n\n\n  '    Text
+'# Is a given array or object empty?\n' Comment.Single
+
+'  '          Text
+'_.isEmpty: ' Name.Variable
+'     '       Text
+'(obj) ->'    Name.Function
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'keys'        Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+'.'           Punctuation
+'length'      Name.Other
+' '           Text
+'is'          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n\n\n  '    Text
+'# Is a given value a DOM element?\n' Comment.Single
+
+'  '          Text
+'_.isElement: ' Name.Variable
+'   '         Text
+'(obj) ->'    Name.Function
+' '           Text
+'obj'         Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'nodeType'    Name.Other
+' '           Text
+'is'          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n\n\n  '    Text
+'# Is a given value an array?\n' Comment.Single
+
+'  '          Text
+'_.isArray: ' Name.Variable
+'     '       Text
+'(obj) ->'    Name.Function
+' '           Text
+'!'           Operator
+'!'           Operator
+'('           Punctuation
+'obj'         Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'concat'      Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'unshift'     Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Is a given variable an arguments object?\n' Comment.Single
+
+'  '          Text
+'_.isArguments: ' Name.Variable
+' '           Text
+'(obj) ->'    Name.Function
+' '           Text
+'obj'         Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isNumber'    Name.Other
+'('           Punctuation
+'obj'         Name.Other
+'.'           Punctuation
+'length'      Name.Other
+')'           Punctuation
+' '           Text
+'and'         Operator
+' '           Text
+'not'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'concat'      Name.Other
+' '           Text
+'and'         Operator
+'\n                           ' Text
+'not'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'substr'      Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'not'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'apply'       Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'not'         Operator
+' '           Text
+'propertyIsEnumerable' Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'obj'         Name.Other
+','           Punctuation
+' '           Text
+"'"           Literal.String
+'length'      Literal.String
+"'"           Literal.String
+')'           Punctuation
+'\n\n\n  '    Text
+'# Is the given value a function?\n' Comment.Single
+
+'  '          Text
+'_.isFunction: ' Name.Variable
+'  '          Text
+'(obj) ->'    Name.Function
+' '           Text
+'!'           Operator
+'!'           Operator
+'('           Punctuation
+'obj'         Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'constructor' Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'call'        Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'apply'       Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Is the given value a string?\n' Comment.Single
+
+'  '          Text
+'_.isString: ' Name.Variable
+'    '        Text
+'(obj) ->'    Name.Function
+' '           Text
+'!'           Operator
+'!'           Operator
+'('           Punctuation
+'obj'         Name.Other
+' '           Text
+'is'          Operator
+' '           Text
+"'"           Literal.String
+"'"           Literal.String
+' '           Text
+'or'          Operator
+' '           Text
+'('           Punctuation
+'obj'         Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'charCodeAt'  Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'substr'      Name.Other
+')'           Punctuation
+')'           Punctuation
+'\n\n\n  '    Text
+'# Is a given value a number?\n' Comment.Single
+
+'  '          Text
+'_.isNumber: ' Name.Variable
+'    '        Text
+'(obj) ->'    Name.Function
+' '           Text
+'('           Punctuation
+'obj'         Name.Other
+' '           Text
+'is'          Operator
+' '           Text
+'+'           Operator
+'obj'         Name.Other
+')'           Punctuation
+' '           Text
+'or'          Operator
+' '           Text
+'toString'    Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+' '           Text
+'is'          Operator
+' '           Text
+"'"           Literal.String
+'[object Number]' Literal.String
+"'"           Literal.String
+'\n\n\n  '    Text
+'# Is a given value a Date?\n' Comment.Single
+
+'  '          Text
+'_.isDate: '  Name.Variable
+'      '      Text
+'(obj) ->'    Name.Function
+' '           Text
+'!'           Operator
+'!'           Operator
+'('           Punctuation
+'obj'         Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'getTimezoneOffset' Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'setUTCFullYear' Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Is the given value a regular expression?\n' Comment.Single
+
+'  '          Text
+'_.isRegExp: ' Name.Variable
+'    '        Text
+'(obj) ->'    Name.Function
+' '           Text
+'!'           Operator
+'!'           Operator
+'('           Punctuation
+'obj'         Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'exec'        Name.Other
+' '           Text
+'and'         Operator
+' '           Text
+'('           Punctuation
+'obj'         Name.Other
+'.'           Punctuation
+'ignoreCase'  Name.Other
+' '           Text
+'or'          Operator
+' '           Text
+'obj'         Name.Other
+'.'           Punctuation
+'ignoreCase'  Name.Other
+' '           Text
+'is'          Operator
+' '           Text
+'false'       Keyword.Constant
+')'           Punctuation
+')'           Punctuation
+'\n\n\n  '    Text
+'# Is the given value NaN -- this one is interesting. NaN != NaN, and\n' Comment.Single
+
+'  '          Text
+"# isNaN(undefined) == true, so we make sure it's a number first.\n" Comment.Single
+
+'  '          Text
+'_.isNaN: '   Name.Variable
+'       '     Text
+'(obj) ->'    Name.Function
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'isNumber'    Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+' '           Text
+'and'         Operator
+' '           Text
+'window'      Name.Builtin
+'.'           Punctuation
+'isNaN'       Name.Builtin
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Is a given value equal to null?\n' Comment.Single
+
+'  '          Text
+'_.isNull: '  Name.Variable
+'      '      Text
+'(obj) ->'    Name.Function
+' '           Text
+'obj'         Name.Other
+' '           Text
+'is'          Operator
+' '           Text
+'null'        Keyword.Constant
+'\n\n\n  '    Text
+'# Is a given variable undefined?\n' Comment.Single
+
+'  '          Text
+'_.isUndefined: ' Name.Variable
+' '           Text
+'(obj) ->'    Name.Function
+' '           Text
+'typeof'      Keyword
+' '           Text
+'obj'         Name.Other
+' '           Text
+'is'          Operator
+' '           Text
+"'"           Literal.String
+'undefined'   Literal.String
+"'"           Literal.String
+'\n\n\n  '    Text
+'# -------------------------- Utility Functions: --------------------------\n' Comment.Single
+
+'\n  '        Text
+"# Run Underscore.js in noConflict mode, returning the '_' variable to its\n" Comment.Single
+
+'  '          Text
+'# previous owner. Returns a reference to the Underscore object.\n' Comment.Single
+
+'  '          Text
+'_.noConflict: ' Name.Variable
+'->'          Name.Function
+'\n    '      Text
+'root._: '    Name.Variable
+'previousUnderscore' Name.Other
+'\n    '      Text
+'this'        Keyword
+'\n\n\n  '    Text
+'# Keep the identity function around for default iterators.\n' Comment.Single
+
+'  '          Text
+'_.identity: ' Name.Variable
+'(value) ->'  Name.Function
+' '           Text
+'value'       Name.Other
+'\n\n\n  '    Text
+'# Break out of the middle of an iteration.\n' Comment.Single
+
+'  '          Text
+'_.breakLoop: ' Name.Variable
+'->'          Name.Function
+' '           Text
+'throw'       Keyword
+' '           Text
+'breaker'     Name.Other
+'\n\n\n  '    Text
+'# Generate a unique integer id (unique within the entire client session).\n' Comment.Single
+
+'  '          Text
+'# Useful for temporary DOM ids.\n' Comment.Single
+
+'  '          Text
+'idCounter: ' Name.Variable
+'0'           Literal.Number.Integer
+'\n  '        Text
+'_.uniqueId: ' Name.Variable
+'(prefix) ->' Name.Function
+'\n    '      Text
+'('           Punctuation
+'prefix'      Name.Other
+' '           Text
+'or'          Operator
+' '           Text
+"'"           Literal.String
+"'"           Literal.String
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'idCounter'   Name.Other
+'++'          Operator
+'\n\n\n  '    Text
+'# By default, Underscore uses ERB-style template delimiters, change the\n' Comment.Single
+
+'  '          Text
+'# following template settings to use alternative delimiters.\n' Comment.Single
+
+'  '          Text
+'_.templateSettings: ' Name.Variable
+'{'           Punctuation
+'\n    '      Text
+'start: '     Name.Variable
+'       '     Text
+"'"           Literal.String
+'<%'          Literal.String
+"'"           Literal.String
+'\n    '      Text
+'end: '       Name.Variable
+'         '   Text
+"'"           Literal.String
+'%>'          Literal.String
+"'"           Literal.String
+'\n    '      Text
+'interpolate: ' Name.Variable
+' '           Text
+'/<%=(.+?)%>/g' Literal.String.Regex
+'\n  '        Text
+'}'           Punctuation
+'\n\n\n  '    Text
+"# JavaScript templating a-la ERB, pilfered from John Resig's\n" Comment.Single
+
+'  '          Text
+'# "Secrets of the JavaScript Ninja", page 83.\n' Comment.Single
+
+'  '          Text
+"# Single-quotea fix from Rick Strahl's version.\n" Comment.Single
+
+'  '          Text
+'_.template: ' Name.Variable
+'(str, data) ->' Name.Function
+'\n    '      Text
+'c: '         Name.Variable
+'_'           Name.Other
+'.'           Punctuation
+'templateSettings' Name.Other
+'\n    '      Text
+'fn: '        Name.Variable
+'new'         Keyword
+' '           Text
+'Function'    Name.Builtin
+' '           Text
+"'"           Literal.String
+'obj'         Literal.String
+"'"           Literal.String
+','           Punctuation
+'\n      '    Text
+"'"           Literal.String
+'var p=[],print=function(){p.push.apply(p,arguments);};' Literal.String
+"'"           Literal.String
+' '           Text
+'+'           Operator
+'\n      '    Text
+"'"           Literal.String
+'with(obj){p.push(' Literal.String
+"\\'"         Literal.String
+"'"           Literal.String
+' '           Text
+'+'           Operator
+'\n      '    Text
+'str'         Name.Other
+'.'           Punctuation
+'replace'     Name.Other
+'('           Punctuation
+'/[\\r\\t\\n]/g' Literal.String.Regex
+','           Punctuation
+' '           Text
+'"'           Literal.String
+' '           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n         ' Text
+'.'           Punctuation
+'replace'     Name.Other
+'('           Punctuation
+'new'         Keyword
+' '           Text
+'RegExp'      Name.Builtin
+'('           Punctuation
+'"'           Literal.String
+"'"           Literal.String
+'(?=[^'       Literal.String
+'"'           Literal.String
+'+'           Operator
+'c'           Name.Other
+'.'           Punctuation
+'end'         Name.Other
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'+'           Operator
+'"'           Literal.String
+']*'          Literal.String
+'"'           Literal.String
+'+'           Operator
+'c'           Name.Other
+'.'           Punctuation
+'end'         Name.Other
+'+'           Operator
+'"'           Literal.String
+')'           Literal.String
+'"'           Literal.String
+','           Punctuation
+'"'           Literal.String
+'g'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+','           Punctuation
+'"'           Literal.String
+'\\t'         Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n         ' Text
+'.'           Punctuation
+'split'       Name.Other
+'('           Punctuation
+'"'           Literal.String
+"'"           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'.'           Punctuation
+'join'        Name.Other
+'('           Punctuation
+'"'           Literal.String
+'\\\\'        Literal.String
+"'"           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n         ' Text
+'.'           Punctuation
+'split'       Name.Other
+'('           Punctuation
+'"'           Literal.String
+'\\t'         Literal.String
+'"'           Literal.String
+')'           Punctuation
+'.'           Punctuation
+'join'        Name.Other
+'('           Punctuation
+'"'           Literal.String
+"'"           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n         ' Text
+'.'           Punctuation
+'replace'     Name.Other
+'('           Punctuation
+'c'           Name.Other
+'.'           Punctuation
+'interpolate' Name.Other
+','           Punctuation
+' '           Text
+'"'           Literal.String
+"'"           Literal.String
+',$1,'        Literal.String
+"'"           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n         ' Text
+'.'           Punctuation
+'split'       Name.Other
+'('           Punctuation
+'c'           Name.Other
+'.'           Punctuation
+'start'       Name.Other
+')'           Punctuation
+'.'           Punctuation
+'join'        Name.Other
+'('           Punctuation
+'"'           Literal.String
+"'"           Literal.String
+');'          Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n         ' Text
+'.'           Punctuation
+'split'       Name.Other
+'('           Punctuation
+'c'           Name.Other
+'.'           Punctuation
+'end'         Name.Other
+')'           Punctuation
+'.'           Punctuation
+'join'        Name.Other
+'('           Punctuation
+'"'           Literal.String
+'p.push('     Literal.String
+"'"           Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text
+'+'           Operator
+'\n         ' Text
+'"'           Literal.String
+"'"           Literal.String
+');}return p.join(' Literal.String
+"'"           Literal.String
+"'"           Literal.String
+');'          Literal.String
+'"'           Literal.String
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'data'        Name.Other
+' '           Text
+'then'        Keyword
+' '           Text
+'fn'          Name.Other
+'('           Punctuation
+'data'        Name.Other
+')'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'fn'          Name.Other
+'\n\n\n  '    Text
+'# ------------------------------- Aliases ----------------------------------\n' Comment.Single
+
+'\n  '        Text
+'_.forEach: ' Name.Variable
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+'\n  '        Text
+'_.foldl: '   Name.Variable
+'  '          Text
+'_.inject: '  Name.Variable
+'     '       Text
+'_'           Name.Other
+'.'           Punctuation
+'reduce'      Name.Other
+'\n  '        Text
+'_.foldr: '   Name.Variable
+'  '          Text
+'_'           Name.Other
+'.'           Punctuation
+'reduceRight' Name.Other
+'\n  '        Text
+'_.filter: '  Name.Variable
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'select'      Name.Other
+'\n  '        Text
+'_.every: '   Name.Variable
+'  '          Text
+'_'           Name.Other
+'.'           Punctuation
+'all'         Name.Other
+'\n  '        Text
+'_.some: '    Name.Variable
+'   '         Text
+'_'           Name.Other
+'.'           Punctuation
+'any'         Name.Other
+'\n  '        Text
+'_.head: '    Name.Variable
+'   '         Text
+'_'           Name.Other
+'.'           Punctuation
+'first'       Name.Other
+'\n  '        Text
+'_.tail: '    Name.Variable
+'   '         Text
+'_'           Name.Other
+'.'           Punctuation
+'rest'        Name.Other
+'\n  '        Text
+'_.methods: ' Name.Variable
+'_'           Name.Other
+'.'           Punctuation
+'functions'   Name.Other
+'\n\n\n  '    Text
+'#   /*------------------------ Setup the OOP Wrapper: --------------------------*/\n' Comment.Single
+
+'\n  '        Text
+'# Helper function to continue chaining intermediate results.\n' Comment.Single
+
+'  '          Text
+'result: '    Name.Variable
+'(obj, chain) ->' Name.Function
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'chain'       Name.Other
+' '           Text
+'then'        Keyword
+' '           Text
+'_'           Name.Other
+'('           Punctuation
+'obj'         Name.Other
+')'           Punctuation
+'.'           Punctuation
+'chain'       Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'else'        Keyword
+' '           Text
+'obj'         Name.Other
+'\n\n\n  '    Text
+'# Add all of the Underscore functions to the wrapper object.\n' Comment.Single
+
+'  '          Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+' '           Text
+'_'           Name.Other
+'.'           Punctuation
+'functions'   Name.Other
+'('           Punctuation
+'_'           Name.Other
+')'           Punctuation
+','           Punctuation
+' '           Text
+'(name) ->'   Name.Function
+'\n    '      Text
+'method: '    Name.Variable
+'_'           Name.Other
+'['           Punctuation
+'name'        Name.Other
+']'           Punctuation
+'\n    '      Text
+'wrapper'     Name.Other
+'.'           Punctuation
+'prototype'   Name.Other
+'['           Punctuation
+'name'        Name.Other
+']'           Punctuation
+':'           Operator
+' '           Text
+'->'          Name.Function
+'\n      '    Text
+'unshift'     Name.Other
+'.'           Punctuation
+'call'        Name.Other
+'('           Punctuation
+'arguments'   Name.Other
+','           Punctuation
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'_wrapped'    Name.Other
+')'           Punctuation
+'\n      '    Text
+'result'      Name.Other
+'('           Punctuation
+'method'      Name.Other
+'.'           Punctuation
+'apply'       Name.Other
+'('           Punctuation
+'_'           Name.Other
+','           Punctuation
+' '           Text
+'arguments'   Name.Other
+')'           Punctuation
+','           Punctuation
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'_chain'      Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Add all mutator Array functions to the wrapper.\n' Comment.Single
+
+'  '          Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+' '           Text
+'['           Punctuation
+"'"           Literal.String
+'pop'         Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text
+"'"           Literal.String
+'push'        Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text
+"'"           Literal.String
+'reverse'     Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text
+"'"           Literal.String
+'shift'       Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text
+"'"           Literal.String
+'sort'        Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text
+"'"           Literal.String
+'splice'      Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text
+"'"           Literal.String
+'unshift'     Literal.String
+"'"           Literal.String
+']'           Punctuation
+','           Punctuation
+' '           Text
+'(name) ->'   Name.Function
+'\n    '      Text
+'method: '    Name.Variable
+'Array'       Name.Builtin
+'.'           Punctuation
+'prototype'   Name.Other
+'['           Punctuation
+'name'        Name.Other
+']'           Punctuation
+'\n    '      Text
+'wrapper'     Name.Other
+'.'           Punctuation
+'prototype'   Name.Other
+'['           Punctuation
+'name'        Name.Other
+']'           Punctuation
+':'           Operator
+' '           Text
+'->'          Name.Function
+'\n      '    Text
+'method'      Name.Other
+'.'           Punctuation
+'apply'       Name.Other
+'('           Punctuation
+'this'        Keyword
+'.'           Punctuation
+'_wrapped'    Name.Other
+','           Punctuation
+' '           Text
+'arguments'   Name.Other
+')'           Punctuation
+'\n      '    Text
+'result'      Name.Other
+'('           Punctuation
+'this'        Keyword
+'.'           Punctuation
+'_wrapped'    Name.Other
+','           Punctuation
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'_chain'      Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Add all accessor Array functions to the wrapper.\n' Comment.Single
+
+'  '          Text
+'_'           Name.Other
+'.'           Punctuation
+'each'        Name.Other
+' '           Text
+'['           Punctuation
+"'"           Literal.String
+'concat'      Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text
+"'"           Literal.String
+'join'        Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text
+"'"           Literal.String
+'slice'       Literal.String
+"'"           Literal.String
+']'           Punctuation
+','           Punctuation
+' '           Text
+'(name) ->'   Name.Function
+'\n    '      Text
+'method: '    Name.Variable
+'Array'       Name.Builtin
+'.'           Punctuation
+'prototype'   Name.Other
+'['           Punctuation
+'name'        Name.Other
+']'           Punctuation
+'\n    '      Text
+'wrapper'     Name.Other
+'.'           Punctuation
+'prototype'   Name.Other
+'['           Punctuation
+'name'        Name.Other
+']'           Punctuation
+':'           Operator
+' '           Text
+'->'          Name.Function
+'\n      '    Text
+'result'      Name.Other
+'('           Punctuation
+'method'      Name.Other
+'.'           Punctuation
+'apply'       Name.Other
+'('           Punctuation
+'this'        Keyword
+'.'           Punctuation
+'_wrapped'    Name.Other
+','           Punctuation
+' '           Text
+'arguments'   Name.Other
+')'           Punctuation
+','           Punctuation
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'_chain'      Name.Other
+')'           Punctuation
+'\n\n\n  '    Text
+'# Start chaining a wrapped Underscore object.\n' Comment.Single
+
+'  '          Text
+'wrapper::chain: ' Name.Variable
+'->'          Name.Function
+'\n    '      Text
+'this'        Keyword
+'.'           Punctuation
+'_chain: '    Name.Variable
+'true'        Keyword.Constant
+'\n    '      Text
+'this'        Keyword
+'\n\n\n  '    Text
+'# Extracts the result from a wrapped and chained object.\n' Comment.Single
+
+'  '          Text
+'wrapper::value: ' Name.Variable
+'->'          Name.Function
+' '           Text
+'this'        Keyword
+'.'           Punctuation
+'_wrapped'    Name.Other
+'\n'          Text

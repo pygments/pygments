@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.csound
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Csound languages.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -14,7 +13,7 @@ import re
 from pygments.lexer import RegexLexer, bygroups, default, include, using, words
 from pygments.token import Comment, Error, Keyword, Name, Number, Operator, Punctuation, \
     String, Text, Whitespace
-from pygments.lexers._csound_builtins import OPCODES, DEPRECATED_OPCODES
+from pygments.lexers._csound_builtins import OPCODES, DEPRECATED_OPCODES, REMOVED_OPCODES
 from pygments.lexers.html import HtmlLexer
 from pygments.lexers.python import PythonLexer
 from pygments.lexers.scripting import LuaLexer
@@ -220,7 +219,7 @@ class CsoundOrchestraLexer(CsoundLexer):
         type_annotation_token = Keyword.Type
 
         name = match.group(1)
-        if name in OPCODES or name in DEPRECATED_OPCODES:
+        if name in OPCODES or name in DEPRECATED_OPCODES or name in REMOVED_OPCODES:
             yield match.start(), Name.Builtin, name
         elif name in lexer.user_defined_opcodes:
             yield match.start(), Name.Function, name

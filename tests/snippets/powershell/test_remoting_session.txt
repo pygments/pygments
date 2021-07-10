@@ -1,0 +1,19 @@
+---input---
+[Long-NetBIOS-Hostname]: PS C:\> Get-ChildItem
+
+---tokens---
+'['           Punctuation
+'Long'        Name
+'-NetBIOS'    Name
+'-Hostname'   Name
+']'           Punctuation
+':'           Punctuation
+' '           Text
+'PS '         Name.Builtin
+'C'           Name
+':'           Punctuation
+'\\'          Punctuation
+'>'           Punctuation
+' '           Text
+'Get-ChildItem' Name.Builtin
+'\n'          Text

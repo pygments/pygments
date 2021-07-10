@@ -1,0 +1,17 @@
+---input---
+f"{{ {4*10} }}"
+
+---tokens---
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'{{'          Literal.String.Escape
+' '           Literal.String.Double
+'{'           Literal.String.Interpol
+'4'           Literal.Number.Integer
+'*'           Operator
+'10'          Literal.Number.Integer
+'}'           Literal.String.Interpol
+' '           Literal.String.Double
+'}}'          Literal.String.Escape
+'"'           Literal.String.Double
+'\n'          Text

@@ -1,0 +1,35 @@
+---input---
+$message = (Test-Path C:\) ? "Path exists" : "Path not found"
+[math]::pi
+
+---tokens---
+'$message'    Name.Variable
+' '           Text
+'='           Punctuation
+' '           Text
+'('           Punctuation
+'Test-Path'   Name.Builtin
+' '           Text
+'C'           Name
+':'           Punctuation
+'\\'          Punctuation
+')'           Punctuation
+' '           Text
+'?'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'Path exists' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+':'           Punctuation
+' '           Text
+'"'           Literal.String.Double
+'Path not found' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text
+
+'[math]'      Name.Constant
+':'           Punctuation
+':'           Punctuation
+'pi'          Name
+'\n'          Text

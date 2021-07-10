@@ -1,0 +1,1995 @@
+'module'      Keyword.Namespace
+' '           Text.Whitespace
+'Treetop'     Name.Namespace
+'\n  '        Text.Whitespace
+'module'      Keyword
+' '           Text.Whitespace
+'Compiler'    Name.Namespace
+'\n    '      Text.Whitespace
+'grammar'     Keyword
+' '           Text.Whitespace
+'Metagrammar' Name
+'\n      '    Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'treetop_file' Name
+'\n        '  Text.Whitespace
+'requires'    Name.Label
+':'           Punctuation
+'('           Punctuation
+'space'       Name
+'?'           Operator
+' '           Text.Whitespace
+'require_statement' Name
+')'           Punctuation
+'*'           Operator
+' '           Text.Whitespace
+'prefix'      Name.Label
+':'           Punctuation
+'space'       Name
+'?'           Operator
+' '           Text.Whitespace
+'module_or_grammar' Name
+' '           Text.Whitespace
+'suffix'      Name.Label
+':'           Punctuation
+'space'       Name
+'?'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'compile'     Name.Function
+'\n            ' Text
+'requires'    Name
+'.'           Operator
+'text_value'  Name
+' '           Text
+'+'           Operator
+' '           Text
+'prefix'      Name
+'.'           Operator
+'text_value'  Name
+' '           Text
+'+'           Operator
+' '           Text
+'module_or_grammar' Name
+'.'           Operator
+'compile'     Name
+' '           Text
+'+'           Operator
+' '           Text
+'suffix'      Name
+'.'           Operator
+'text_value'  Name
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'require_statement' Name
+'\n        '  Text.Whitespace
+'prefix'      Name.Label
+':'           Punctuation
+'space'       Name
+'?'           Operator
+' '           Text.Whitespace
+'"require"'   Literal.String.Double
+' '           Text.Whitespace
+'[ \\t]'      Literal.String.Regex
+'+'           Operator
+' '           Text.Whitespace
+'[^\\n\\r]'   Literal.String.Regex
+'+'           Operator
+' '           Text.Whitespace
+'[\\n\\r]'    Literal.String.Regex
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'module_or_grammar' Name
+'\n\t'        Text.Whitespace
+'module_declaration' Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'grammar'     Name
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'module_declaration' Name
+'\n        '  Text.Whitespace
+'prefix'      Name.Label
+':'           Punctuation
+'('           Punctuation
+"'module'"    Literal.String.Single
+' '           Text.Whitespace
+'space'       Name
+' '           Text.Whitespace
+'name'        Name.Label
+':'           Punctuation
+'('           Punctuation
+'[A-Z]'       Literal.String.Regex
+' '           Text.Whitespace
+'alphanumeric_char' Name
+'*'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+"'::'"        Literal.String.Single
+' '           Text.Whitespace
+'[A-Z]'       Literal.String.Regex
+' '           Text.Whitespace
+'alphanumeric_char' Name
+'*'           Operator
+')'           Punctuation
+'*'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'space'       Name
+')'           Punctuation
+' '           Text.Whitespace
+'module_contents' Name.Label
+':'           Punctuation
+'('           Punctuation
+'module_declaration' Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'grammar'     Name
+')'           Punctuation
+' '           Text.Whitespace
+'suffix'      Name.Label
+':'           Punctuation
+'('           Punctuation
+'space'       Name
+' '           Text.Whitespace
+"'end'"       Literal.String.Single
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'compile'     Name.Function
+'\n            ' Text
+'prefix'      Name
+'.'           Operator
+'text_value'  Name
+' '           Text
+'+'           Operator
+' '           Text
+'module_contents' Name
+'.'           Operator
+'compile'     Name
+' '           Text
+'+'           Operator
+' '           Text
+'suffix'      Name
+'.'           Operator
+'text_value'  Name
+'\n          ' Text
+'end'         Keyword
+'\n\n\t  '    Text
+'def'         Keyword
+' '           Text
+'parser_name' Name.Function
+'\n\t    '    Text
+'prefix'      Name
+'.'           Operator
+'name'        Name
+'.'           Operator
+'text_value'  Name
+'+'           Operator
+"'"           Literal.String.Single
+'::'          Literal.String.Single
+"'"           Literal.String.Single
+'+'           Operator
+'module_contents' Name
+'.'           Operator
+'parser_name' Name
+'\n\t  '      Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'grammar'     Name
+'\n        '  Text.Whitespace
+"'grammar'"   Literal.String.Single
+' '           Text.Whitespace
+'space'       Name
+' '           Text.Whitespace
+'grammar_name' Name
+' '           Text.Whitespace
+'space'       Name
+' '           Text.Whitespace
+'('           Punctuation
+"'do'"        Literal.String.Single
+' '           Text.Whitespace
+'space'       Name
+')'           Punctuation
+'?'           Operator
+' '           Text.Whitespace
+'declaration_sequence' Name
+' '           Text.Whitespace
+'space'       Name
+'?'           Operator
+' '           Text.Whitespace
+"'end'"       Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'Grammar'     Name.Class
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'grammar_name' Name
+'\n        '  Text.Whitespace
+'('           Punctuation
+'[A-Z]'       Literal.String.Regex
+' '           Text.Whitespace
+'alphanumeric_char' Name
+'*'           Operator
+')'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'declaration_sequence' Name
+'\n        '  Text.Whitespace
+'head'        Name.Label
+':'           Punctuation
+'declaration' Name
+' '           Text.Whitespace
+'tail'        Name.Label
+':'           Punctuation
+'('           Punctuation
+'space'       Name
+' '           Text.Whitespace
+'declaration' Name
+')'           Punctuation
+'*'           Operator
+' '           Text.Whitespace
+'<'           Punctuation
+'DeclarationSequence' Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'declarations' Name.Function
+'\n            ' Text
+'['           Operator
+'head'        Name
+']'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'tail'        Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'tail'        Name.Function
+'\n            ' Text
+'super'       Keyword
+'.'           Operator
+'elements'    Name
+'.'           Operator
+'map'         Name
+' '           Text
+'{'           Punctuation
+' '           Text
+'|'           Operator
+'elt'         Name
+'|'           Operator
+' '           Text
+'elt'         Name
+'.'           Operator
+'declaration' Name
+' '           Text
+'}'           Punctuation
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'/'           Operator
+'\n        '  Text.Whitespace
+"''"          Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'compile'     Name.Function
+'('           Punctuation
+'builder'     Name
+')'           Punctuation
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'declaration' Name
+'\n        '  Text.Whitespace
+'parsing_rule' Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'include_declaration' Name
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'include_declaration' Name
+'\n        '  Text.Whitespace
+"'include'"   Literal.String.Single
+' '           Text.Whitespace
+'space'       Name
+' '           Text.Whitespace
+'[A-Z]'       Literal.String.Regex
+' '           Text.Whitespace
+'('           Punctuation
+'alphanumeric_char' Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'::'"        Literal.String.Single
+')'           Punctuation
+'*'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'compile'     Name.Function
+'('           Punctuation
+'builder'     Name
+')'           Punctuation
+'\n            ' Text
+'builder'     Name
+' '           Text
+'<<'          Operator
+' '           Text
+'text_value'  Name
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'parsing_rule' Name
+'\n        '  Text.Whitespace
+"'rule'"      Literal.String.Single
+' '           Text.Whitespace
+'space'       Name
+' '           Text.Whitespace
+'nonterminal' Name
+' '           Text.Whitespace
+'space'       Name
+' '           Text.Whitespace
+'('           Punctuation
+"'do'"        Literal.String.Single
+' '           Text.Whitespace
+'space'       Name
+')'           Punctuation
+'?'           Operator
+' '           Text.Whitespace
+'parsing_expression' Name
+' '           Text.Whitespace
+'space'       Name
+' '           Text.Whitespace
+"'end'"       Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'ParsingRule' Name.Class
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'parsing_expression' Name
+'\n        '  Text.Whitespace
+'choice'      Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'sequence'    Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'primary'     Name
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'choice'      Name
+'\n        '  Text.Whitespace
+'head'        Name.Label
+':'           Punctuation
+'alternative' Name
+' '           Text.Whitespace
+'tail'        Name.Label
+':'           Punctuation
+'('           Punctuation
+'space'       Name
+'?'           Operator
+' '           Text.Whitespace
+"'/'"         Literal.String.Single
+' '           Text.Whitespace
+'space'       Name
+'?'           Operator
+' '           Text.Whitespace
+'alternative' Name
+')'           Punctuation
+'+'           Operator
+' '           Text.Whitespace
+'<'           Punctuation
+'Choice'      Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'alternatives' Name.Function
+'\n            ' Text
+'['           Operator
+'head'        Name
+']'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'tail'        Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'tail'        Name.Function
+'\n            ' Text
+'super'       Keyword
+'.'           Operator
+'elements'    Name
+'.'           Operator
+'map'         Name
+' '           Text
+'{'           Punctuation
+'|'           Operator
+'elt'         Name
+'|'           Operator
+' '           Text
+'elt'         Name
+'.'           Operator
+'alternative' Name
+'}'           Punctuation
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'('           Punctuation
+'alternatives' Name
+'.'           Operator
+'map'         Name
+' '           Text
+'{'           Punctuation
+'|'           Operator
+'alt'         Name
+'|'           Operator
+' '           Text
+'alt'         Name
+'.'           Operator
+'inline_modules' Name
+' '           Text
+'}'           Punctuation
+')'           Punctuation
+'.'           Operator
+'flatten'     Name
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'sequence'    Name
+'\n        '  Text.Whitespace
+'head'        Name.Label
+':'           Punctuation
+'labeled_sequence_primary' Name
+' '           Text.Whitespace
+'tail'        Name.Label
+':'           Punctuation
+'('           Punctuation
+'space'       Name
+' '           Text.Whitespace
+'labeled_sequence_primary' Name
+')'           Punctuation
+'+'           Operator
+' '           Text.Whitespace
+'node_class_declarations' Name
+' '           Text.Whitespace
+'<'           Punctuation
+'Sequence'    Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'sequence_elements' Name.Function
+'\n            ' Text
+'['           Operator
+'head'        Name
+']'           Operator
+' '           Text
+'+'           Operator
+' '           Text
+'tail'        Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'tail'        Name.Function
+'\n            ' Text
+'super'       Keyword
+'.'           Operator
+'elements'    Name
+'.'           Operator
+'map'         Name
+' '           Text
+'{'           Punctuation
+'|'           Operator
+'elt'         Name
+'|'           Operator
+' '           Text
+'elt'         Name
+'.'           Operator
+'labeled_sequence_primary' Name
+' '           Text
+'}'           Punctuation
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'('           Punctuation
+'sequence_elements' Name
+'.'           Operator
+'map'         Name
+' '           Text
+'{'           Punctuation
+'|'           Operator
+'elt'         Name
+'|'           Operator
+' '           Text
+'elt'         Name
+'.'           Operator
+'inline_modules' Name
+'}'           Punctuation
+')'           Punctuation
+'.'           Operator
+'flatten'     Name
+' '           Text
+'+'           Operator
+'\n            ' Text
+'['           Operator
+'sequence_element_accessor_module' Name
+']'           Operator
+' '           Text
+'+'           Operator
+'\n            ' Text
+'node_class_declarations' Name
+'.'           Operator
+'inline_modules' Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_module_name' Name.Function
+'\n            ' Text
+'node_class_declarations' Name
+'.'           Operator
+'inline_module_name' Name
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'alternative' Name
+'\n        '  Text.Whitespace
+'sequence'    Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'primary'     Name
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'primary'     Name
+'\n        '  Text.Whitespace
+'prefix'      Name
+' '           Text.Whitespace
+'atomic'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'compile'     Name.Function
+'('           Punctuation
+'address'     Name
+','           Punctuation
+' '           Text
+'builder'     Name
+','           Punctuation
+' '           Text
+'parent_expression' Name
+'='           Operator
+'nil'         Keyword.Pseudo
+')'           Punctuation
+'\n            ' Text
+'prefix'      Name
+'.'           Operator
+'compile'     Name
+'('           Punctuation
+'address'     Name
+','           Punctuation
+' '           Text
+'builder'     Name
+','           Punctuation
+' '           Text
+'self'        Name.Builtin
+')'           Punctuation
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'prefixed_expression' Name.Function
+'\n            ' Text
+'atomic'      Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'atomic'      Name
+'.'           Operator
+'inline_modules' Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_module_name' Name.Function
+'\n            ' Text
+'nil'         Keyword.Pseudo
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'/'           Operator
+'\n\t'        Text.Whitespace
+'prefix'      Name
+' '           Text.Whitespace
+'space'       Name
+'?'           Operator
+' '           Text.Whitespace
+'predicate_block' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'compile'     Name.Function
+'('           Punctuation
+'address'     Name
+','           Punctuation
+' '           Text
+'builder'     Name
+','           Punctuation
+' '           Text
+'parent_expression' Name
+'='           Operator
+'nil'         Keyword.Pseudo
+')'           Punctuation
+'\n            ' Text
+'prefix'      Name
+'.'           Operator
+'compile'     Name
+'('           Punctuation
+'address'     Name
+','           Punctuation
+' '           Text
+'builder'     Name
+','           Punctuation
+' '           Text
+'self'        Name.Builtin
+')'           Punctuation
+'\n          ' Text
+'end'         Keyword
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'prefixed_expression' Name.Function
+'\n            ' Text
+'predicate_block' Name
+'\n          ' Text
+'end'         Keyword
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'['           Operator
+']'           Operator
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'/'           Operator
+'\n        '  Text.Whitespace
+'atomic'      Name
+' '           Text.Whitespace
+'suffix'      Name
+' '           Text.Whitespace
+'node_class_declarations' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'compile'     Name.Function
+'('           Punctuation
+'address'     Name
+','           Punctuation
+' '           Text
+'builder'     Name
+','           Punctuation
+' '           Text
+'parent_expression' Name
+'='           Operator
+'nil'         Keyword.Pseudo
+')'           Punctuation
+'\n            ' Text
+'suffix'      Name
+'.'           Operator
+'compile'     Name
+'('           Punctuation
+'address'     Name
+','           Punctuation
+' '           Text
+'builder'     Name
+','           Punctuation
+' '           Text
+'self'        Name.Builtin
+')'           Punctuation
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'optional_expression' Name.Function
+'\n            ' Text
+'atomic'      Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'node_class_name' Name.Function
+'\n            ' Text
+'node_class_declarations' Name
+'.'           Operator
+'node_class_name' Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'atomic'      Name
+'.'           Operator
+'inline_modules' Name
+' '           Text
+'+'           Operator
+' '           Text
+'node_class_declarations' Name
+'.'           Operator
+'inline_modules' Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_module_name' Name.Function
+'\n            ' Text
+'node_class_declarations' Name
+'.'           Operator
+'inline_module_name' Name
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'/'           Operator
+'\n        '  Text.Whitespace
+'atomic'      Name
+' '           Text.Whitespace
+'node_class_declarations' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'compile'     Name.Function
+'('           Punctuation
+'address'     Name
+','           Punctuation
+' '           Text
+'builder'     Name
+','           Punctuation
+' '           Text
+'parent_expression' Name
+'='           Operator
+'nil'         Keyword.Pseudo
+')'           Punctuation
+'\n            ' Text
+'atomic'      Name
+'.'           Operator
+'compile'     Name
+'('           Punctuation
+'address'     Name
+','           Punctuation
+' '           Text
+'builder'     Name
+','           Punctuation
+' '           Text
+'self'        Name.Builtin
+')'           Punctuation
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'node_class_name' Name.Function
+'\n            ' Text
+'node_class_declarations' Name
+'.'           Operator
+'node_class_name' Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'atomic'      Name
+'.'           Operator
+'inline_modules' Name
+' '           Text
+'+'           Operator
+' '           Text
+'node_class_declarations' Name
+'.'           Operator
+'inline_modules' Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_module_name' Name.Function
+'\n            ' Text
+'node_class_declarations' Name
+'.'           Operator
+'inline_module_name' Name
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'labeled_sequence_primary' Name
+'\n        '  Text.Whitespace
+'label'       Name
+' '           Text.Whitespace
+'sequence_primary' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'compile'     Name.Function
+'('           Punctuation
+'lexical_address' Name
+','           Punctuation
+' '           Text
+'builder'     Name
+')'           Punctuation
+'\n            ' Text
+'sequence_primary' Name
+'.'           Operator
+'compile'     Name
+'('           Punctuation
+'lexical_address' Name
+','           Punctuation
+' '           Text
+'builder'     Name
+')'           Punctuation
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'sequence_primary' Name
+'.'           Operator
+'inline_modules' Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'label_name'  Name.Function
+'\n            ' Text
+'if'          Keyword
+' '           Text
+'label'       Name
+'.'           Operator
+'name'        Name
+'\n              ' Text
+'label'       Name
+'.'           Operator
+'name'        Name
+'\n            ' Text
+'elsif'       Keyword
+' '           Text
+'sequence_primary' Name
+'.'           Operator
+'instance_of?' Name
+'('           Punctuation
+'Nonterminal' Name.Constant
+')'           Punctuation
+'\n              ' Text
+'sequence_primary' Name
+'.'           Operator
+'text_value'  Name
+'\n            ' Text
+'else'        Keyword
+'\n              ' Text
+'nil'         Keyword.Pseudo
+'\n            ' Text
+'end'         Keyword
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'label'       Name
+'\n        '  Text.Whitespace
+'('           Punctuation
+'alpha_char'  Name
+' '           Text.Whitespace
+'alphanumeric_char' Name
+'*'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+"':'"         Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'name'        Name.Function
+'\n            ' Text
+'elements'    Name
+'['           Operator
+'0'           Literal.Number.Integer
+']'           Operator
+'.'           Operator
+'text_value'  Name
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'/'           Operator
+'\n        '  Text.Whitespace
+"''"          Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'name'        Name.Function
+'\n            ' Text
+'nil'         Keyword.Pseudo
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'sequence_primary' Name
+'\n        '  Text.Whitespace
+'prefix'      Name
+' '           Text.Whitespace
+'atomic'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'compile'     Name.Function
+'('           Punctuation
+'lexical_address' Name
+','           Punctuation
+' '           Text
+'builder'     Name
+')'           Punctuation
+'\n            ' Text
+'prefix'      Name
+'.'           Operator
+'compile'     Name
+'('           Punctuation
+'lexical_address' Name
+','           Punctuation
+' '           Text
+'builder'     Name
+','           Punctuation
+' '           Text
+'self'        Name.Builtin
+')'           Punctuation
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'prefixed_expression' Name.Function
+'\n            ' Text
+'elements'    Name
+'['           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'atomic'      Name
+'.'           Operator
+'inline_modules' Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_module_name' Name.Function
+'\n            ' Text
+'nil'         Keyword.Pseudo
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'/'           Operator
+'\n        '  Text.Whitespace
+'prefix'      Name
+' '           Text.Whitespace
+'space'       Name
+'?'           Operator
+' '           Text.Whitespace
+'predicate_block' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'compile'     Name.Function
+'('           Punctuation
+'address'     Name
+','           Punctuation
+' '           Text
+'builder'     Name
+','           Punctuation
+' '           Text
+'parent_expression' Name
+'='           Operator
+'nil'         Keyword.Pseudo
+')'           Punctuation
+'\n            ' Text
+'prefix'      Name
+'.'           Operator
+'compile'     Name
+'('           Punctuation
+'address'     Name
+','           Punctuation
+' '           Text
+'builder'     Name
+','           Punctuation
+' '           Text
+'self'        Name.Builtin
+')'           Punctuation
+'\n          ' Text
+'end'         Keyword
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'prefixed_expression' Name.Function
+'\n            ' Text
+'predicate_block' Name
+'\n          ' Text
+'end'         Keyword
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'['           Operator
+']'           Operator
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'/'           Operator
+'\n        '  Text.Whitespace
+'atomic'      Name
+' '           Text.Whitespace
+'suffix'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'compile'     Name.Function
+'('           Punctuation
+'lexical_address' Name
+','           Punctuation
+' '           Text
+'builder'     Name
+')'           Punctuation
+'\n            ' Text
+'suffix'      Name
+'.'           Operator
+'compile'     Name
+'('           Punctuation
+'lexical_address' Name
+','           Punctuation
+' '           Text
+'builder'     Name
+','           Punctuation
+' '           Text
+'self'        Name.Builtin
+')'           Punctuation
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'node_class_name' Name.Function
+'\n            ' Text
+'nil'         Keyword.Pseudo
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'atomic'      Name
+'.'           Operator
+'inline_modules' Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_module_name' Name.Function
+'\n            ' Text
+'nil'         Keyword.Pseudo
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'/'           Operator
+'\n        '  Text.Whitespace
+'atomic'      Name
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'suffix'      Name
+'\n        '  Text.Whitespace
+'repetition_suffix' Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'optional_suffix' Name
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'optional_suffix' Name
+'\n        '  Text.Whitespace
+"'?'"         Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'Optional'    Name.Class
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'node_class_declarations' Name
+'\n        '  Text.Whitespace
+'node_class_expression' Name
+' '           Text.Whitespace
+'trailing_inline_module' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'node_class_name' Name.Function
+'\n            ' Text
+'node_class_expression' Name
+'.'           Operator
+'node_class_name' Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'trailing_inline_module' Name
+'.'           Operator
+'inline_modules' Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_module' Name.Function
+'\n            ' Text
+'trailing_inline_module' Name
+'.'           Operator
+'inline_module' Name
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_module_name' Name.Function
+'\n            ' Text
+'inline_module' Name
+'.'           Operator
+'module_name' Name
+' '           Text
+'if'          Keyword
+' '           Text
+'inline_module' Name
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'repetition_suffix' Name
+'\n        '  Text.Whitespace
+"'+'"         Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'OneOrMore'   Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'*'"         Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'ZeroOrMore'  Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'occurrence_range' Name
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'occurrence_range' Name
+'\n\t'        Text.Whitespace
+'space'       Name
+'?'           Operator
+' '           Text.Whitespace
+'min'         Name.Label
+':'           Punctuation
+'('           Punctuation
+'[0-9]'       Literal.String.Regex
+')'           Punctuation
+'*'           Operator
+' '           Text.Whitespace
+"'..'"        Literal.String.Single
+' '           Text.Whitespace
+'max'         Name.Label
+':'           Punctuation
+'('           Punctuation
+'[0-9]'       Literal.String.Regex
+')'           Punctuation
+'*'           Operator
+' '           Text.Whitespace
+'<'           Punctuation
+'OccurrenceRange' Name.Class
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'prefix'      Name
+'\n        '  Text.Whitespace
+"'&'"         Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'AndPredicate' Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'!'"         Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'NotPredicate' Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'~'"         Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'TransientPrefix' Name.Class
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'atomic'      Name
+'\n        '  Text.Whitespace
+'terminal'    Name
+'\n        '  Text.Whitespace
+'/'           Operator
+'\n        '  Text.Whitespace
+'nonterminal' Name
+'\n        '  Text.Whitespace
+'/'           Operator
+'\n        '  Text.Whitespace
+'parenthesized_expression' Name
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'parenthesized_expression' Name
+'\n        '  Text.Whitespace
+"'('"         Literal.String.Single
+' '           Text.Whitespace
+'space'       Name
+'?'           Operator
+' '           Text.Whitespace
+'parsing_expression' Name
+' '           Text.Whitespace
+'space'       Name
+'?'           Operator
+' '           Text.Whitespace
+"')'"         Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'ParenthesizedExpression' Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'parsing_expression' Name
+'.'           Operator
+'inline_modules' Name
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'nonterminal' Name
+'\n        '  Text.Whitespace
+'!'           Operator
+'keyword_inside_grammar' Name
+' '           Text.Whitespace
+'('           Punctuation
+'alpha_char'  Name
+' '           Text.Whitespace
+'alphanumeric_char' Name
+'*'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'Nonterminal' Name.Class
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'terminal'    Name
+'\n        '  Text.Whitespace
+'quoted_string' Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'character_class' Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'anything_symbol' Name
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'quoted_string' Name
+'\n        '  Text.Whitespace
+'('           Punctuation
+'single_quoted_string' Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'double_quoted_string' Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'string'      Name.Function
+'\n            ' Text
+'super'       Keyword
+'.'           Operator
+'text_value'  Name
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'double_quoted_string' Name
+'\n        '  Text.Whitespace
+'\'"\''       Literal.String.Single
+' '           Text.Whitespace
+'string'      Name.Label
+':'           Punctuation
+'('           Punctuation
+'!'           Operator
+'\'"\''       Literal.String.Single
+' '           Text.Whitespace
+'('           Punctuation
+'"\\\\\\\\"'  Literal.String.Double
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'\'\\"\''     Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'.'           Literal.String.Regex
+')'           Punctuation
+')'           Punctuation
+'*'           Operator
+' '           Text.Whitespace
+'\'"\''       Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'Terminal'    Name.Class
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'single_quoted_string' Name
+'\n        '  Text.Whitespace
+'"\'"'        Literal.String.Double
+' '           Text.Whitespace
+'string'      Name.Label
+':'           Punctuation
+'('           Punctuation
+'!'           Operator
+'"\'"'        Literal.String.Double
+' '           Text.Whitespace
+'('           Punctuation
+'"\\\\\\\\"'  Literal.String.Double
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'"\\\\\'"'    Literal.String.Double
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'.'           Literal.String.Regex
+')'           Punctuation
+')'           Punctuation
+'*'           Operator
+' '           Text.Whitespace
+'"\'"'        Literal.String.Double
+' '           Text.Whitespace
+'<'           Punctuation
+'Terminal'    Name.Class
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'character_class' Name
+'\n        '  Text.Whitespace
+"'['"         Literal.String.Single
+' '           Text.Whitespace
+'characters'  Name.Label
+':'           Punctuation
+'('           Punctuation
+'!'           Operator
+"']'"         Literal.String.Single
+' '           Text.Whitespace
+'('           Punctuation
+"'\\\\'"      Literal.String.Single
+' '           Text.Whitespace
+'.'           Literal.String.Regex
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'bracket_expression' Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'!'           Operator
+"'\\\\'"      Literal.String.Single
+' '           Text.Whitespace
+'.'           Literal.String.Regex
+')'           Punctuation
+')'           Punctuation
+'+'           Operator
+' '           Text.Whitespace
+"']'"         Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'CharacterClass' Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'characters'  Name.Function
+'\n            ' Text
+'super'       Keyword
+'.'           Operator
+'text_value'  Name
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'bracket_expression' Name
+'\n         ' Text.Whitespace
+"'[:'"        Literal.String.Single
+' '           Text.Whitespace
+"'^'"         Literal.String.Single
+'?'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'\n           ' Text.Whitespace
+"'alnum'"     Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'alpha'"     Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'blank'"     Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'cntrl'"     Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'digit'"     Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'graph'"     Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'lower'"     Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+'\n           ' Text.Whitespace
+"'print'"     Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'punct'"     Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'space'"     Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'upper'"     Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'xdigit'"    Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'word'"      Literal.String.Single
+'\n         ' Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+"':]'"        Literal.String.Single
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'anything_symbol' Name
+'\n        '  Text.Whitespace
+"'.'"         Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'AnythingSymbol' Name.Class
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'node_class_expression' Name
+'\n        '  Text.Whitespace
+'space'       Name
+' '           Text.Whitespace
+"'<'"         Literal.String.Single
+' '           Text.Whitespace
+'('           Punctuation
+'!'           Operator
+"'>'"         Literal.String.Single
+' '           Text.Whitespace
+'.'           Literal.String.Regex
+')'           Punctuation
+'+'           Operator
+' '           Text.Whitespace
+"'>'"         Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'node_class_name' Name.Function
+'\n            ' Text
+'elements'    Name
+'['           Operator
+'2'           Literal.Number.Integer
+']'           Operator
+'.'           Operator
+'text_value'  Name
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'/'           Operator
+'\n        '  Text.Whitespace
+"''"          Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'node_class_name' Name.Function
+'\n            ' Text
+'nil'         Keyword.Pseudo
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'trailing_inline_module' Name
+'\n        '  Text.Whitespace
+'space'       Name
+' '           Text.Whitespace
+'inline_module' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'['           Operator
+'inline_module' Name
+']'           Operator
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_module_name' Name.Function
+'\n            ' Text
+'inline_module' Name
+'.'           Operator
+'module_name' Name
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'/'           Operator
+'\n        '  Text.Whitespace
+"''"          Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_modules' Name.Function
+'\n            ' Text
+'['           Operator
+']'           Operator
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_module' Name.Function
+'\n            ' Text
+'nil'         Keyword.Pseudo
+'\n          ' Text
+'end'         Keyword
+'\n\n          ' Text
+'def'         Keyword
+' '           Text
+'inline_module_name' Name.Function
+'\n            ' Text
+'nil'         Keyword.Pseudo
+'\n          ' Text
+'end'         Keyword
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'predicate_block' Name
+'\n        '  Text.Whitespace
+"''"          Literal.String.Single
+' '           Text.Whitespace
+'inline_module' Name
+' '           Text.Whitespace
+'<'           Punctuation
+'PredicateBlock' Name.Class
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'inline_module' Name
+'\n        '  Text.Whitespace
+"'{'"         Literal.String.Single
+' '           Text.Whitespace
+'('           Punctuation
+'inline_module' Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'!'           Operator
+'[{}]'        Literal.String.Regex
+' '           Text.Whitespace
+'.'           Literal.String.Regex
+')'           Punctuation
+'*'           Operator
+' '           Text.Whitespace
+"'}'"         Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'InlineModule' Name.Class
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'keyword_inside_grammar' Name
+'\n        '  Text.Whitespace
+'('           Punctuation
+"'rule'"      Literal.String.Single
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+"'end'"       Literal.String.Single
+')'           Punctuation
+' '           Text.Whitespace
+'!'           Operator
+'non_space_char' Name
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'non_space_char' Name
+'\n        '  Text.Whitespace
+'!'           Operator
+'space'       Name
+' '           Text.Whitespace
+'.'           Literal.String.Regex
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'alpha_char'  Name
+'\n        '  Text.Whitespace
+'[A-Za-z_]'   Literal.String.Regex
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'alphanumeric_char' Name
+'\n        '  Text.Whitespace
+'alpha_char'  Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'[0-9]'       Literal.String.Regex
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'space'       Name
+'\n        '  Text.Whitespace
+'('           Punctuation
+'white'       Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'comment_to_eol' Name
+')'           Punctuation
+'+'           Operator
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'comment_to_eol' Name
+'\n        '  Text.Whitespace
+"'#'"         Literal.String.Single
+' '           Text.Whitespace
+'('           Punctuation
+'!'           Operator
+'"\\n"'       Literal.String.Double
+' '           Text.Whitespace
+'.'           Literal.String.Regex
+')'           Punctuation
+'*'           Operator
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n\n      '  Text.Whitespace
+'rule'        Keyword
+' '           Text.Whitespace
+'white'       Name
+'\n        '  Text.Whitespace
+'[ \\t\\n\\r]' Literal.String.Regex
+'\n      '    Text.Whitespace
+'end'         Keyword
+'\n    '      Text.Whitespace
+'end'         Keyword
+'\n  '        Text.Whitespace
+'end'         Keyword
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n'          Text.Whitespace

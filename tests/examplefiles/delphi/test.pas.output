@@ -1,0 +1,5089 @@
+'//'          Comment.Single
+'\n'          Text
+
+'// Sourcecode from http://www.delphi-library.de/topic_47880.html' Comment.Single
+'\n'          Text
+
+'//'          Comment.Single
+'\n'          Text
+
+'uses'        Keyword
+' '           Text
+'Windows'     Name
+','           Operator
+' '           Text
+'Messages'    Name
+';'           Operator
+'\n\n'        Text
+
+'const'       Keyword
+'\n  '        Text
+'FFM_INIT'    Name
+'               ' Text
+'='           Operator
+' '           Text
+'WM_USER'     Name
+' '           Text
+'+'           Operator
+' '           Text
+'1976'        Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'FFM_ONFILEFOUND' Name
+'        '    Text
+'='           Operator
+' '           Text
+'WM_USER'     Name
+' '           Text
+'+'           Operator
+' '           Text
+'1974'        Literal.Number.Integer
+';'           Operator
+' '           Text
+'// wParam: not used, lParam: Filename' Comment.Single
+'\n  '        Text
+'FFM_ONDIRFOUND' Name
+'         '   Text
+'='           Operator
+' '           Text
+'WM_USER'     Name
+' '           Text
+'+'           Operator
+' '           Text
+'1975'        Literal.Number.Integer
+';'           Operator
+' '           Text
+'// wParam: NumFolder, lParam: Directory' Comment.Single
+'\n'          Text
+
+'var'         Keyword
+'\n  '        Text
+'CntFolders'  Name
+'             ' Text
+':'           Operator
+' '           Text
+'Cardinal'    Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'NumFolder'   Name
+'              ' Text
+':'           Operator
+' '           Text
+'Cardinal'    Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n\n\n'      Text
+
+'////////////////////////////////////////////////////////////////////////////////' Comment.Single
+'\n'          Text
+
+'//'          Comment.Single
+'\n'          Text
+
+'//  FindAllFilesInit' Comment.Single
+'\n'          Text
+
+'//'          Comment.Single
+'\n'          Text
+
+'//'          Comment.Single
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'FindAllFilesInit' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'label'       Keyword
+' '           Text
+'foo'         Name.Label
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'CntFolders'  Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'NumFolder'   Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n'          Text
+
+'foo'         Name.Label
+':'           Operator
+'\n  '        Text
+'Blub'        Name
+';'           Operator
+'\n  '        Text
+'goto'        Keyword
+' '           Text
+'foo'         Name.Label
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'////////////////////////////////////////////////////////////////////////////////' Comment.Single
+'\n'          Text
+
+'//'          Comment.Single
+'\n'          Text
+
+'//  CountFolders' Comment.Single
+'\n'          Text
+
+'//'          Comment.Single
+'\n'          Text
+
+'//'          Comment.Single
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'CountFolders' Name.Function
+'('           Punctuation
+'Handle'      Name
+':'           Operator
+' '           Text
+'THandle'     Keyword.Type
+';'           Operator
+' '           Text
+'RootFolder'  Name
+':'           Operator
+' '           Text
+'string'      Keyword
+';'           Operator
+' '           Text
+'Recurse'     Name
+':'           Operator
+' '           Text
+'Boolean'     Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'True'        Keyword
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'var'         Keyword
+'\n  '        Text
+'hFindFile'   Name
+'              ' Text
+':'           Operator
+' '           Text
+'THandle'     Keyword.Type
+';'           Operator
+'\n  '        Text
+'wfd'         Name
+'                    ' Text
+':'           Operator
+' '           Text
+'TWin32FindData' Name
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'SendMessage' Name
+'('           Punctuation
+'Handle'      Name
+','           Operator
+' '           Text
+'FFM_INIT'    Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'RootFolder'  Name
+'['           Punctuation
+'length'      Name.Builtin
+'('           Punctuation
+'RootFolder'  Name
+')]'          Punctuation
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String
+'\\'          Literal.String
+"'"           Literal.String
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'RootFolder'  Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'RootFolder'  Name
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String
+'\\'          Literal.String
+"'"           Literal.String
+';'           Operator
+'\n  '        Text
+'ZeroMemory'  Name
+'('           Punctuation
+'@'           Operator
+'wfd'         Name
+','           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'wfd'         Name
+'))'          Punctuation
+';'           Operator
+'\n  '        Text
+'wfd'         Name
+'.'           Operator
+'dwFileAttributes' Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FILE_ATTRIBUTE_NORMAL' Name
+';'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'Recurse'     Name
+' '           Text
+'then'        Keyword
+'\n  '        Text
+'begin'       Keyword
+'\n    '      Text
+'hFindFile'   Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FindFirstFile' Name
+'('           Punctuation
+'pointer'     Keyword.Type
+'('           Punctuation
+'RootFolder'  Name
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String
+'*.*'         Literal.String
+"'"           Literal.String
+')'           Punctuation
+','           Operator
+' '           Text
+'wfd'         Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'hFindFile'   Name
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'try'         Keyword
+'\n      '    Text
+'repeat'      Keyword
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'wfd'         Name
+'.'           Operator
+'dwFileAttributes' Name
+' '           Text
+'and'         Keyword
+' '           Text
+'FILE_ATTRIBUTE_DIRECTORY' Name
+' '           Text
+'='           Operator
+' '           Text
+'FILE_ATTRIBUTE_DIRECTORY' Name
+' '           Text
+'then'        Keyword
+'\n        '  Text
+'begin'       Keyword
+'\n          ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'string'      Keyword
+'('           Punctuation
+'wfd'         Name
+'.'           Operator
+'cFileName'   Name
+')'           Punctuation
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String
+'.'           Literal.String
+"'"           Literal.String
+')'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'('           Punctuation
+'string'      Keyword
+'('           Punctuation
+'wfd'         Name
+'.'           Operator
+'cFileName'   Name
+')'           Punctuation
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String
+'..'          Literal.String
+"'"           Literal.String
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n          ' Text
+'begin'       Keyword
+'\n            ' Text
+'CountFolders' Name
+'('           Punctuation
+'Handle'      Name
+','           Operator
+' '           Text
+'RootFolder'  Name
+' '           Text
+'+'           Operator
+' '           Text
+'wfd'         Name
+'.'           Operator
+'cFileName'   Name
+','           Operator
+' '           Text
+'Recurse'     Name
+')'           Punctuation
+';'           Operator
+'\n          ' Text
+'end'         Keyword
+';'           Operator
+'\n        '  Text
+'end'         Keyword
+';'           Operator
+'\n      '    Text
+'until'       Keyword
+' '           Text
+'FindNextFile' Name
+'('           Punctuation
+'hFindFile'   Name
+','           Operator
+' '           Text
+'wfd'         Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'False'       Keyword
+';'           Operator
+'\n      '    Text
+'Inc'         Name.Builtin
+'('           Punctuation
+'CntFolders'  Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'finally'     Keyword
+'\n      '    Text
+'Windows'     Name
+'.'           Operator
+'FindClose'   Name
+'('           Punctuation
+'hFindFile'   Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'end'         Keyword
+';'           Operator
+'\n  '        Text
+'end'         Keyword
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'////////////////////////////////////////////////////////////////////////////////' Comment.Single
+'\n'          Text
+
+'//'          Comment.Single
+'\n'          Text
+
+'//  FindAllFiles' Comment.Single
+'\n'          Text
+
+'//'          Comment.Single
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'FindAllFiles' Name.Function
+'('           Punctuation
+'Handle'      Name
+':'           Operator
+' '           Text
+'THandle'     Keyword.Type
+';'           Operator
+' '           Text
+'RootFolder'  Name
+':'           Operator
+' '           Text
+'string'      Keyword
+';'           Operator
+' '           Text
+'Mask'        Name
+':'           Operator
+' '           Text
+'string'      Keyword
+';'           Operator
+' '           Text
+'Recurse'     Name
+':'           Operator
+' '           Text
+'Boolean'     Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'True'        Keyword
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'var'         Keyword
+'\n  '        Text
+'hFindFile'   Name
+'              ' Text
+':'           Operator
+' '           Text
+'THandle'     Keyword.Type
+';'           Operator
+'\n  '        Text
+'wfd'         Name
+'                    ' Text
+':'           Operator
+' '           Text
+'TWin32FindData' Name
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'RootFolder'  Name
+'['           Punctuation
+'length'      Name.Builtin
+'('           Punctuation
+'RootFolder'  Name
+')]'          Punctuation
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String
+'\\'          Literal.String
+"'"           Literal.String
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'RootFolder'  Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'RootFolder'  Name
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String
+'\\'          Literal.String
+"'"           Literal.String
+';'           Operator
+'\n  '        Text
+'ZeroMemory'  Name
+'('           Punctuation
+'@'           Operator
+'wfd'         Name
+','           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'wfd'         Name
+'))'          Punctuation
+';'           Operator
+'\n  '        Text
+'wfd'         Name
+'.'           Operator
+'dwFileAttributes' Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FILE_ATTRIBUTE_NORMAL' Name
+';'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'Recurse'     Name
+' '           Text
+'then'        Keyword
+'\n  '        Text
+'begin'       Keyword
+'\n    '      Text
+'hFindFile'   Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FindFirstFile' Name
+'('           Punctuation
+'pointer'     Keyword.Type
+'('           Punctuation
+'RootFolder'  Name
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String
+'*.*'         Literal.String
+"'"           Literal.String
+')'           Punctuation
+','           Operator
+' '           Text
+'wfd'         Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'hFindFile'   Name
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'try'         Keyword
+'\n      '    Text
+'repeat'      Keyword
+'\n        '  Text
+'if'          Keyword
+' '           Text
+'wfd'         Name
+'.'           Operator
+'dwFileAttributes' Name
+' '           Text
+'and'         Keyword
+' '           Text
+'FILE_ATTRIBUTE_DIRECTORY' Name
+' '           Text
+'='           Operator
+' '           Text
+'FILE_ATTRIBUTE_DIRECTORY' Name
+' '           Text
+'then'        Keyword
+'\n        '  Text
+'begin'       Keyword
+'\n          ' Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'string'      Keyword
+'('           Punctuation
+'wfd'         Name
+'.'           Operator
+'cFileName'   Name
+')'           Punctuation
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String
+'.'           Literal.String
+"'"           Literal.String
+')'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'('           Punctuation
+'string'      Keyword
+'('           Punctuation
+'wfd'         Name
+'.'           Operator
+'cFileName'   Name
+')'           Punctuation
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+"'"           Literal.String
+'..'          Literal.String
+"'"           Literal.String
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n          ' Text
+'begin'       Keyword
+'\n            ' Text
+'FindAllFiles' Name
+'('           Punctuation
+'Handle'      Name
+','           Operator
+' '           Text
+'RootFolder'  Name
+' '           Text
+'+'           Operator
+' '           Text
+'wfd'         Name
+'.'           Operator
+'cFileName'   Name
+','           Operator
+' '           Text
+'Mask'        Name
+','           Operator
+' '           Text
+'Recurse'     Name
+')'           Punctuation
+';'           Operator
+'\n          ' Text
+'end'         Keyword
+';'           Operator
+'\n        '  Text
+'end'         Keyword
+';'           Operator
+'\n      '    Text
+'until'       Keyword
+' '           Text
+'FindNextFile' Name
+'('           Punctuation
+'hFindFile'   Name
+','           Operator
+' '           Text
+'wfd'         Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'False'       Keyword
+';'           Operator
+'\n      '    Text
+'Inc'         Name.Builtin
+'('           Punctuation
+'NumFolder'   Name
+')'           Punctuation
+';'           Operator
+'\n      '    Text
+'SendMessage' Name
+'('           Punctuation
+'Handle'      Name
+','           Operator
+' '           Text
+'FFM_ONDIRFOUND' Name
+','           Operator
+' '           Text
+'NumFolder'   Name
+','           Operator
+' '           Text
+'lParam'      Name
+'('           Punctuation
+'string'      Keyword
+'('           Punctuation
+'RootFolder'  Name
+')))'         Punctuation
+';'           Operator
+'\n    '      Text
+'finally'     Keyword
+'\n      '    Text
+'Windows'     Name
+'.'           Operator
+'FindClose'   Name
+'('           Punctuation
+'hFindFile'   Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'end'         Keyword
+';'           Operator
+'\n  '        Text
+'end'         Keyword
+';'           Operator
+'\n  '        Text
+'hFindFile'   Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FindFirstFile' Name
+'('           Punctuation
+'pointer'     Keyword.Type
+'('           Punctuation
+'RootFolder'  Name
+' '           Text
+'+'           Operator
+' '           Text
+'Mask'        Name
+')'           Punctuation
+','           Operator
+' '           Text
+'wfd'         Name
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'hFindFile'   Name
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'INVALID_HANDLE_VALUE' Name
+' '           Text
+'then'        Keyword
+'\n  '        Text
+'try'         Keyword
+'\n    '      Text
+'repeat'      Keyword
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'wfd'         Name
+'.'           Operator
+'dwFileAttributes' Name
+' '           Text
+'and'         Keyword
+' '           Text
+'FILE_ATTRIBUTE_DIRECTORY' Name
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'FILE_ATTRIBUTE_DIRECTORY' Name
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n      '    Text
+'begin'       Keyword
+'\n        '  Text
+'SendMessage' Name
+'('           Punctuation
+'Handle'      Name
+','           Operator
+' '           Text
+'FFM_ONFILEFOUND' Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'lParam'      Name
+'('           Punctuation
+'string'      Keyword
+'('           Punctuation
+'RootFolder'  Name
+' '           Text
+'+'           Operator
+' '           Text
+'wfd'         Name
+'.'           Operator
+'cFileName'   Name
+')))'         Punctuation
+';'           Operator
+'\n      '    Text
+'end'         Keyword
+';'           Operator
+'\n    '      Text
+'until'       Keyword
+' '           Text
+'FindNextFile' Name
+'('           Punctuation
+'hFindFile'   Name
+','           Operator
+' '           Text
+'wfd'         Name
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'False'       Keyword
+';'           Operator
+'\n  '        Text
+'finally'     Keyword
+'\n    '      Text
+'Windows'     Name
+'.'           Operator
+'FindClose'   Name
+'('           Punctuation
+'hFindFile'   Name
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'end'         Keyword
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n\n'      Text
+
+'property'    Keyword
+' '           Text
+'test'        Name.Property
+':'           Operator
+' '           Text
+'boolean'     Keyword.Type
+' '           Text
+'read'        Keyword.Pseudo
+' '           Text
+'ftest'       Name.Function
+' '           Text
+'write'       Keyword.Pseudo
+' '           Text
+'ftest'       Name.Function
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'test'        Name.Function
+':'           Operator
+' '           Text
+'boolean'     Keyword.Type
+' '           Text
+'read'        Name.Builtin
+' '           Text
+'ftest'       Name
+' '           Text
+'write'       Name.Builtin
+' '           Text
+'ftest'       Name
+';'           Operator
+'\n\n'        Text
+
+'//'          Comment.Single
+'\n'          Text
+
+'// This sourcecode is part of omorphia' Comment.Single
+'\n'          Text
+
+'//'          Comment.Single
+'\n\n'        Text
+
+'Function'    Keyword
+' '           Text
+'IsValidHandle' Name.Function
+'('           Punctuation
+'Const'       Keyword
+' '           Text
+'Handle'      Name
+':'           Operator
+' '           Text
+'THandle'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Boolean'     Keyword.Type
+';'           Operator
+' '           Text
+'{$IFDEF OMORPHIA_FEATURES_USEASM}' Comment.Multiline
+' '           Text
+'Assembler'   Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'Asm'         Keyword
+'\n    '      Text
+'TEST'        Keyword
+'    '        Text
+'EAX'         Name.Builtin
+','           Operator
+' '           Text
+'EAX'         Name.Builtin
+'\n    '      Text
+'JZ'          Keyword
+'      '      Text
+'@@Finish'    Name.Label
+'\n    '      Text
+'NOT'         Keyword
+'     '       Text
+'EAX'         Name.Builtin
+'\n    '      Text
+'TEST'        Keyword
+'    '        Text
+'EAX'         Name.Builtin
+','           Operator
+' '           Text
+'EAX'         Name.Builtin
+'\n    '      Text
+'SETNZ'       Keyword
+'   '         Text
+'AL'          Name.Builtin
+'\n\n    '    Text
+'{$IFDEF WINDOWS}' Comment.Multiline
+'\n    '      Text
+'JZ'          Keyword
+'      '      Text
+'@@Finish'    Name.Label
+'\n\n    '    Text
+'//Save the handle against modifications or loss' Comment.Single
+'\n    '      Text
+'PUSH'        Keyword
+'    '        Text
+'EAX'         Name.Builtin
+'\n\n    '    Text
+'//reserve some space for a later duplicate' Comment.Single
+'\n    '      Text
+'PUSH'        Keyword
+'    '        Text
+'EAX'         Name.Builtin
+'\n\n    '    Text
+'//Check if we are working on NT-Platform' Comment.Single
+'\n    '      Text
+'CALL'        Keyword
+'    '        Text
+'IsWindowsNTSystem' Name
+'\n    '      Text
+'TEST'        Keyword
+'    '        Text
+'EAX'         Name.Builtin
+','           Operator
+' '           Text
+'EAX'         Name.Builtin
+'\n    '      Text
+'JZ'          Keyword
+'      '      Text
+'@@NoNTSystem' Name.Label
+'\n\n    '    Text
+'PUSH'        Keyword
+'    '        Text
+'DWORD'       Name
+' '           Text
+'PTR'         Name
+' '           Text
+'['           Punctuation
+'ESP'         Name.Builtin
+']'           Punctuation
+'\n    '      Text
+'LEA'         Keyword
+'     '       Text
+'EAX'         Name.Builtin
+','           Operator
+' '           Text
+'DWORD'       Name
+' '           Text
+'PTR'         Name
+' '           Text
+'['           Punctuation
+'ESP'         Name.Builtin
+'+'           Operator
+'$04'         Literal.Number.Hex
+']'           Punctuation
+'\n    '      Text
+'PUSH'        Keyword
+'    '        Text
+'EAX'         Name.Builtin
+'\n    '      Text
+'CALL'        Keyword
+'    '        Text
+'GetHandleInformation' Name
+'\n    '      Text
+'TEST'        Keyword
+'    '        Text
+'EAX'         Name.Builtin
+','           Operator
+' '           Text
+'EAX'         Name.Builtin
+'\n    '      Text
+'JNZ'         Keyword
+'     '       Text
+'@@Finish2'   Name.Label
+'\n\n'        Text
+
+'@@NoNTSystem' Name.Label
+':'           Operator
+'\n    '      Text
+'//Result := DuplicateHandle(GetCurrentProcess, Handle, GetCurrentProcess,' Comment.Single
+'\n    '      Text
+'//  @Duplicate, 0, False, DUPLICATE_SAME_ACCESS);' Comment.Single
+'\n    '      Text
+'PUSH'        Keyword
+'    '        Text
+'DUPLICATE_SAME_ACCESS' Name
+'\n    '      Text
+'PUSH'        Keyword
+'    '        Text
+'$00000000'   Literal.Number.Hex
+'\n    '      Text
+'PUSH'        Keyword
+'    '        Text
+'$00000000'   Literal.Number.Hex
+'\n    '      Text
+'LEA'         Keyword
+'     '       Text
+'EAX'         Name.Builtin
+','           Operator
+' '           Text
+'DWORD'       Name
+' '           Text
+'PTR'         Name
+' '           Text
+'['           Punctuation
+'ESP'         Name.Builtin
+'+'           Operator
+'$0C'         Literal.Number.Hex
+']'           Punctuation
+'\n    '      Text
+'PUSH'        Keyword
+'    '        Text
+'EAX'         Name.Builtin
+'\n    '      Text
+'CALL'        Keyword
+'    '        Text
+'GetCurrentProcess' Name
+'\n    '      Text
+'PUSH'        Keyword
+'    '        Text
+'EAX'         Name.Builtin
+'\n    '      Text
+'PUSH'        Keyword
+'    '        Text
+'DWORD'       Name
+' '           Text
+'PTR'         Name
+' '           Text
+'['           Punctuation
+'ESP'         Name.Builtin
+'+'           Operator
+'$18'         Literal.Number.Hex
+']'           Punctuation
+'\n    '      Text
+'PUSH'        Keyword
+'    '        Text
+'EAX'         Name.Builtin
+'\n    '      Text
+'CALL'        Keyword
+'    '        Text
+'DuplicateHandle' Name
+'\n\n    '    Text
+'TEST'        Keyword
+'    '        Text
+'EAX'         Name.Builtin
+','           Operator
+' '           Text
+'EAX'         Name.Builtin
+'\n    '      Text
+'JZ'          Keyword
+'      '      Text
+'@@Finish2'   Name.Label
+'\n\n    '    Text
+'//  Result := CloseHandle(Duplicate);' Comment.Single
+'\n    '      Text
+'PUSH'        Keyword
+'    '        Text
+'DWORD'       Name
+' '           Text
+'PTR'         Name
+' '           Text
+'['           Punctuation
+'ESP'         Name.Builtin
+']'           Punctuation
+'\n    '      Text
+'CALL'        Keyword
+'    '        Text
+'CloseHandle' Name
+'\n\n'        Text
+
+'@@Finish2'   Name.Label
+':'           Operator
+'\n    '      Text
+'POP'         Keyword
+'     '       Text
+'EDX'         Name.Builtin
+'\n    '      Text
+'POP'         Keyword
+'     '       Text
+'EDX'         Name.Builtin
+'\n\n    '    Text
+'PUSH'        Keyword
+'    '        Text
+'EAX'         Name.Builtin
+'\n    '      Text
+'PUSH'        Keyword
+'    '        Text
+'$00000000'   Literal.Number.Hex
+'\n    '      Text
+'CALL'        Keyword
+'    '        Text
+'SetLastError' Name
+'\n    '      Text
+'POP'         Keyword
+'     '       Text
+'EAX'         Name.Builtin
+'\n    '      Text
+'{$ENDIF}'    Comment.Multiline
+'\n\n'        Text
+
+'@@Finish'    Name.Label
+':'           Operator
+'\n'          Text
+
+'End'         Keyword
+';'           Operator
+'\n'          Text
+
+'{$ELSE}'     Comment.Multiline
+'\n'          Text
+
+'Var'         Keyword
+'\n    '      Text
+'Duplicate'   Name
+':'           Operator
+' '           Text
+'THandle'     Keyword.Type
+';'           Operator
+'\n    '      Text
+'Flags'       Name
+':'           Operator
+' '           Text
+'DWORD'       Keyword.Type
+';'           Operator
+'\n'          Text
+
+'Begin'       Keyword
+'\n    '      Text
+'If'          Keyword
+' '           Text
+'IsWinNT'     Name
+' '           Text
+'Then'        Keyword
+'\n        '  Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'GetHandleInformation' Name
+'('           Punctuation
+'Handle'      Name
+','           Operator
+' '           Text
+'Flags'       Name
+')'           Punctuation
+'\n    '      Text
+'Else'        Keyword
+'\n        '  Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'False'       Keyword
+';'           Operator
+'\n    '      Text
+'If'          Keyword
+' '           Text
+'Not'         Keyword
+' '           Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+'Then'        Keyword
+'\n    '      Text
+'Begin'       Keyword
+'\n        '  Text
+'// DuplicateHandle is used as an additional check for those object types not' Comment.Single
+'\n        '  Text
+'// supported by GetHandleInformation (e.g. according to the documentation,' Comment.Single
+'\n        '  Text
+"// GetHandleInformation doesn't support window stations and desktop although" Comment.Single
+'\n        '  Text
+'// tests show that it does). GetHandleInformation is tried first because its' Comment.Single
+'\n        '  Text
+'// much faster. Additionally GetHandleInformation is only supported on NT...' Comment.Single
+'\n        '  Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'DuplicateHandle' Name
+'('           Punctuation
+'GetCurrentProcess' Name
+','           Operator
+' '           Text
+'Handle'      Name
+','           Operator
+' '           Text
+'GetCurrentProcess' Name
+','           Operator
+'\n            ' Text
+'@'           Operator
+'Duplicate'   Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+','           Operator
+' '           Text
+'False'       Keyword
+','           Operator
+' '           Text
+'DUPLICATE_SAME_ACCESS' Name
+')'           Punctuation
+';'           Operator
+'\n        '  Text
+'If'          Keyword
+' '           Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+'Then'        Keyword
+'\n            ' Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'CloseHandle' Name
+'('           Punctuation
+'Duplicate'   Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'End'         Keyword
+';'           Operator
+'\n'          Text
+
+'End'         Keyword
+';'           Operator
+'\n'          Text
+
+'{$ENDIF}'    Comment.Multiline
+'\n\n\n    \t\n\n' Text
+
+'{*******************************************************}' Comment.Multiline
+'\n'          Text
+
+'{                                                       }' Comment.Multiline
+'\n'          Text
+
+'{       Delphi Supplemental Components                  }' Comment.Multiline
+'\n'          Text
+
+'{       ZLIB Data Compression Interface Unit            }' Comment.Multiline
+'\n'          Text
+
+'{                                                       }' Comment.Multiline
+'\n'          Text
+
+'{       Copyright (c) 1997 Borland International        }' Comment.Multiline
+'\n'          Text
+
+'{                                                       }' Comment.Multiline
+'\n'          Text
+
+'{*******************************************************}' Comment.Multiline
+'\n\n'        Text
+
+'{ Modified for zlib 1.1.3 by Davide Moretti <dave@rimini.com }' Comment.Multiline
+'\n\n'        Text
+
+'unit'        Keyword
+' '           Text
+'zlib'        Name
+';'           Operator
+'\n\n'        Text
+
+'interface'   Keyword
+'\n\n'        Text
+
+'uses'        Keyword
+' '           Text
+'Sysutils'    Name
+','           Operator
+' '           Text
+'Classes'     Name
+';'           Operator
+'\n\n'        Text
+
+'type'        Keyword
+'\n  '        Text
+'TAlloc'      Name
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+' '           Text
+'('           Punctuation
+'AppData'     Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+' '           Text
+'Items'       Name
+','           Operator
+' '           Text
+'Size'        Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+'\n  '        Text
+'TFree'       Name
+' '           Text
+'='           Operator
+' '           Text
+'procedure'   Keyword
+' '           Text
+'('           Punctuation
+'AppData'     Name
+','           Operator
+' '           Text
+'Block'       Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+')'           Punctuation
+';'           Operator
+'\n\n  '      Text
+'// Internal structure.  Ignore.' Comment.Single
+'\n  '        Text
+'TZStreamRec' Name
+' '           Text
+'='           Operator
+' '           Text
+'packed'      Keyword
+' '           Text
+'record'      Keyword
+'\n    '      Text
+'next_in'     Name
+':'           Operator
+' '           Text
+'PChar'       Keyword.Type
+';'           Operator
+'       '     Text
+'// next input byte' Comment.Single
+'\n    '      Text
+'avail_in'    Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'    '        Text
+'// number of bytes available at next_in' Comment.Single
+'\n    '      Text
+'total_in'    Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'    '        Text
+'// total nb of input bytes read so far' Comment.Single
+'\n\n    '    Text
+'next_out'    Name
+':'           Operator
+' '           Text
+'PChar'       Keyword.Type
+';'           Operator
+'      '      Text
+'// next output byte should be put here' Comment.Single
+'\n    '      Text
+'avail_out'   Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'   '         Text
+'// remaining free space at next_out' Comment.Single
+'\n    '      Text
+'total_out'   Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'   '         Text
+'// total nb of bytes output so far' Comment.Single
+'\n\n    '    Text
+'msg'         Name
+':'           Operator
+' '           Text
+'PChar'       Keyword.Type
+';'           Operator
+'           ' Text
+'// last error message, NULL if no error' Comment.Single
+'\n    '      Text
+'internal'    Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+'    '        Text
+'// not visible by applications' Comment.Single
+'\n\n    '    Text
+'zalloc'      Name
+':'           Operator
+' '           Text
+'TAlloc'      Name
+';'           Operator
+'       '     Text
+'// used to allocate the internal state' Comment.Single
+'\n    '      Text
+'zfree'       Name
+':'           Operator
+' '           Text
+'TFree'       Name
+';'           Operator
+'         '   Text
+'// used to free the internal state' Comment.Single
+'\n    '      Text
+'AppData'     Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+'     '       Text
+'// private data object passed to zalloc and zfree' Comment.Single
+'\n\n    '    Text
+'data_type'   Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'   '         Text
+'//  best guess about the data type: ascii or binary' Comment.Single
+'\n    '      Text
+'adler'       Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'       '     Text
+'// adler32 value of the uncompressed data' Comment.Single
+'\n    '      Text
+'reserved'    Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'    '        Text
+'// reserved for future use' Comment.Single
+'\n  '        Text
+'end'         Keyword
+';'           Operator
+'\n\n  '      Text
+'// Abstract ancestor class' Comment.Single
+'\n  '        Text
+'TCustomZlibStream' Name
+' '           Text
+'='           Operator
+' '           Text
+'class'       Keyword
+'('           Punctuation
+'TStream'     Name
+')'           Punctuation
+'\n  '        Text
+'private'     Keyword.Pseudo
+'\n    '      Text
+'FStrm'       Name
+':'           Operator
+' '           Text
+'TStream'     Name
+';'           Operator
+'\n    '      Text
+'FStrmPos'    Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'\n    '      Text
+'FOnProgress' Name
+':'           Operator
+' '           Text
+'TNotifyEvent' Name
+';'           Operator
+'\n    '      Text
+'FZRec'       Name
+':'           Operator
+' '           Text
+'TZStreamRec' Name
+';'           Operator
+'\n    '      Text
+'FBuffer'     Name
+':'           Operator
+' '           Text
+'array'       Keyword
+' '           Text
+'['           Punctuation
+'Word'        Keyword.Type
+']'           Punctuation
+' '           Text
+'of'          Keyword
+' '           Text
+'Char'        Keyword.Type
+';'           Operator
+'\n  '        Text
+'protected'   Keyword.Pseudo
+'\n    '      Text
+'procedure'   Keyword
+' '           Text
+'Progress'    Name.Function
+'('           Punctuation
+'Sender'      Name
+':'           Operator
+' '           Text
+'TObject'     Keyword.Type
+')'           Punctuation
+';'           Operator
+' '           Text
+'dynamic'     Keyword.Pseudo
+';'           Operator
+'\n    '      Text
+'property'    Keyword
+' '           Text
+'OnProgress'  Name.Property
+':'           Operator
+' '           Text
+'TNotifyEvent' Name
+' '           Text
+'read'        Keyword.Pseudo
+' '           Text
+'FOnProgress' Name.Function
+' '           Text
+'write'       Keyword.Pseudo
+' '           Text
+'FOnProgress' Name.Function
+';'           Operator
+'\n    '      Text
+'constructor' Keyword
+' '           Text
+'Create'      Name.Function
+'('           Punctuation
+'Strm'        Name
+':'           Operator
+' '           Text
+'TStream'     Name
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'{ TCompressionStream compresses data on the fly as data is written to it, and\n  stores the compressed data to another stream.\n\n  TCompressionStream is write-only and strictly sequential. Reading from the\n  stream will raise an exception. Using Seek to move the stream pointer\n  will raise an exception.\n\n  Output data is cached internally, written to the output stream only when\n  the internal output buffer is full.  All pending output data is flushed\n  when the stream is destroyed.\n\n  The Position property returns the number of uncompressed bytes of\n  data that have been written to the stream so far.\n\n  CompressionRate returns the on-the-fly percentage by which the original\n  data has been compressed:  (1 - (CompressedBytes / UncompressedBytes)) * 100\n  If raw data size = 100 and compressed data size = 25, the CompressionRate\n  is 75%\n\n  The OnProgress event is called each time the output buffer is filled and\n  written to the output stream.  This is useful for updating a progress\n  indicator when you are writing a large chunk of data to the compression\n  stream in a single call.}' Comment.Multiline
+'\n\n\n  '    Text
+'TCompressionLevel' Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'clNone'      Name
+','           Operator
+' '           Text
+'clFastest'   Name
+','           Operator
+' '           Text
+'clDefault'   Name
+','           Operator
+' '           Text
+'clMax'       Name
+')'           Punctuation
+';'           Operator
+'\n\n  '      Text
+'TCompressionStream' Name
+' '           Text
+'='           Operator
+' '           Text
+'class'       Keyword
+'('           Punctuation
+'TCustomZlibStream' Name
+')'           Punctuation
+'\n  '        Text
+'private'     Keyword.Pseudo
+'\n    '      Text
+'function'    Keyword
+' '           Text
+'GetCompressionRate' Name.Function
+':'           Operator
+' '           Text
+'Single'      Keyword.Type
+';'           Operator
+'\n  '        Text
+'public'      Keyword.Pseudo
+'\n    '      Text
+'constructor' Keyword
+' '           Text
+'Create'      Name.Function
+'('           Punctuation
+'CompressionLevel' Name
+':'           Operator
+' '           Text
+'TCompressionLevel' Name
+';'           Operator
+' '           Text
+'Dest'        Name
+':'           Operator
+' '           Text
+'TStream'     Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'destructor'  Keyword
+' '           Text
+'Destroy'     Name.Function
+';'           Operator
+' '           Text
+'override'    Keyword.Pseudo
+';'           Operator
+'\n    '      Text
+'function'    Keyword
+' '           Text
+'Read'        Name.Function
+'('           Punctuation
+'var'         Keyword
+' '           Text
+'Buffer'      Name
+';'           Operator
+' '           Text
+'Count'       Name
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+' '           Text
+'override'    Keyword.Pseudo
+';'           Operator
+'\n    '      Text
+'function'    Keyword
+' '           Text
+'Write'       Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'Buffer'      Name
+';'           Operator
+' '           Text
+'Count'       Name
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+' '           Text
+'override'    Keyword.Pseudo
+';'           Operator
+'\n    '      Text
+'function'    Keyword
+' '           Text
+'Seek'        Name.Function
+'('           Punctuation
+'Offset'      Name
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+' '           Text
+'Origin'      Name
+':'           Operator
+' '           Text
+'Word'        Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+' '           Text
+'override'    Keyword.Pseudo
+';'           Operator
+'\n    '      Text
+'property'    Keyword
+' '           Text
+'CompressionRate' Name.Property
+':'           Operator
+' '           Text
+'Single'      Keyword.Type
+' '           Text
+'read'        Keyword.Pseudo
+' '           Text
+'GetCompressionRate' Name.Function
+';'           Operator
+'\n    '      Text
+'property'    Keyword
+' '           Text
+'OnProgress'  Name.Property
+';'           Operator
+'\n  '        Text
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'{ TDecompressionStream decompresses data on the fly as data is read from it.\n\n  Compressed data comes from a separate source stream.  TDecompressionStream\n  is read-only and unidirectional; you can seek forward in the stream, but not\n  backwards.  The special case of setting the stream position to zero is\n  allowed.  Seeking forward decompresses data until the requested position in\n  the uncompressed data has been reached.  Seeking backwards, seeking relative\n  to the end of the stream, requesting the size of the stream, and writing to\n  the stream will raise an exception.\n\n  The Position property returns the number of bytes of uncompressed data that\n  have been read from the stream so far.\n\n  The OnProgress event is called each time the internal input buffer of\n  compressed data is exhausted and the next block is read from the input stream.\n  This is useful for updating a progress indicator when you are reading a\n  large chunk of data from the decompression stream in a single call.}' Comment.Multiline
+'\n\n  '      Text
+'TDecompressionStream' Name
+' '           Text
+'='           Operator
+' '           Text
+'class'       Keyword
+'('           Punctuation
+'TCustomZlibStream' Name
+')'           Punctuation
+'\n  '        Text
+'public'      Keyword.Pseudo
+'\n    '      Text
+'constructor' Keyword
+' '           Text
+'Create'      Name.Function
+'('           Punctuation
+'Source'      Name
+':'           Operator
+' '           Text
+'TStream'     Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'destructor'  Keyword
+' '           Text
+'Destroy'     Name.Function
+';'           Operator
+' '           Text
+'override'    Keyword.Pseudo
+';'           Operator
+'\n    '      Text
+'function'    Keyword
+' '           Text
+'Read'        Name.Function
+'('           Punctuation
+'var'         Keyword
+' '           Text
+'Buffer'      Name
+';'           Operator
+' '           Text
+'Count'       Name
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+' '           Text
+'override'    Keyword.Pseudo
+';'           Operator
+'\n    '      Text
+'function'    Keyword
+' '           Text
+'Write'       Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'Buffer'      Name
+';'           Operator
+' '           Text
+'Count'       Name
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+' '           Text
+'override'    Keyword.Pseudo
+';'           Operator
+'\n    '      Text
+'function'    Keyword
+' '           Text
+'Seek'        Name.Function
+'('           Punctuation
+'Offset'      Name
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+' '           Text
+'Origin'      Name
+':'           Operator
+' '           Text
+'Word'        Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+' '           Text
+'override'    Keyword.Pseudo
+';'           Operator
+'\n    '      Text
+'property'    Keyword
+' '           Text
+'OnProgress'  Name.Property
+';'           Operator
+'\n  '        Text
+'end'         Keyword
+';'           Operator
+'\n\n\n\n'    Text
+
+'{ CompressBuf compresses data, buffer to buffer, in one call.\n   In: InBuf = ptr to compressed data\n       InBytes = number of bytes in InBuf\n  Out: OutBuf = ptr to newly allocated buffer containing decompressed data\n       OutBytes = number of bytes in OutBuf   }' Comment.Multiline
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'CompressBuf' Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'InBuf'       Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+' '           Text
+'InBytes'     Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'\n                      ' Text
+'out'         Name
+' '           Text
+'OutBuf'      Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+' '           Text
+'out'         Name
+' '           Text
+'OutBytes'    Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+';'           Operator
+'\n\n\n'      Text
+
+'{ DecompressBuf decompresses data, buffer to buffer, in one call.\n   In: InBuf = ptr to compressed data\n       InBytes = number of bytes in InBuf\n       OutEstimate = zero, or est. size of the decompressed data\n  Out: OutBuf = ptr to newly allocated buffer containing decompressed data\n       OutBytes = number of bytes in OutBuf   }' Comment.Multiline
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'DecompressBuf' Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'InBuf'       Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+' '           Text
+'InBytes'     Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'\n '         Text
+'OutEstimate' Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+' '           Text
+'out'         Name
+' '           Text
+'OutBuf'      Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+' '           Text
+'out'         Name
+' '           Text
+'OutBytes'    Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+';'           Operator
+'\n\n'        Text
+
+'const'       Keyword
+'\n  '        Text
+'zlib_version' Name
+' '           Text
+'='           Operator
+' '           Text
+"'"           Literal.String
+'1.1.3'       Literal.String
+"'"           Literal.String
+';'           Operator
+'\n\n'        Text
+
+'type'        Keyword
+'\n  '        Text
+'EZlibError'  Name
+' '           Text
+'='           Operator
+' '           Text
+'class'       Keyword
+'('           Punctuation
+'Exception'   Name
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'ECompressionError' Name
+' '           Text
+'='           Operator
+' '           Text
+'class'       Keyword
+'('           Punctuation
+'EZlibError'  Name
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'EDecompressionError' Name
+' '           Text
+'='           Operator
+' '           Text
+'class'       Keyword
+'('           Punctuation
+'EZlibError'  Name
+')'           Punctuation
+';'           Operator
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'adler32'     Name.Function
+'('           Punctuation
+'adler'       Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+' '           Text
+'buf'         Name
+':'           Operator
+' '           Text
+'PChar'       Keyword.Type
+';'           Operator
+' '           Text
+'len'         Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'\n\n'        Text
+
+'implementation' Keyword
+'\n\n'        Text
+
+'const'       Keyword
+'\n  '        Text
+'Z_NO_FLUSH'  Name
+'      '      Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_PARTIAL_FLUSH' Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_SYNC_FLUSH' Name
+'    '        Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_FULL_FLUSH' Name
+'    '        Text
+'='           Operator
+' '           Text
+'3'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_FINISH'    Name
+'        '    Text
+'='           Operator
+' '           Text
+'4'           Literal.Number.Integer
+';'           Operator
+'\n\n  '      Text
+'Z_OK'        Name
+'            ' Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_STREAM_END' Name
+'    '        Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_NEED_DICT' Name
+'     '       Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_ERRNO'     Name
+'         '   Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'Z_STREAM_ERROR' Name
+'  '          Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'Z_DATA_ERROR' Name
+'    '        Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'3'           Literal.Number.Integer
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'Z_MEM_ERROR' Name
+'     '       Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'4'           Literal.Number.Integer
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'Z_BUF_ERROR' Name
+'     '       Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'5'           Literal.Number.Integer
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'Z_VERSION_ERROR' Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'6'           Literal.Number.Integer
+')'           Punctuation
+';'           Operator
+'\n\n  '      Text
+'Z_NO_COMPRESSION' Name
+'       '     Text
+'='           Operator
+'   '         Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_BEST_SPEED' Name
+'           ' Text
+'='           Operator
+'   '         Text
+'1'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_BEST_COMPRESSION' Name
+'     '       Text
+'='           Operator
+'   '         Text
+'9'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_DEFAULT_COMPRESSION' Name
+'  '          Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Operator
+'\n\n  '      Text
+'Z_FILTERED'  Name
+'            ' Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_HUFFMAN_ONLY' Name
+'        '    Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_DEFAULT_STRATEGY' Name
+'    '        Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n\n  '      Text
+'Z_BINARY'    Name
+'   '         Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_ASCII'     Name
+'    '        Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'Z_UNKNOWN'   Name
+'  '          Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Operator
+'\n\n  '      Text
+'Z_DEFLATED'  Name
+' '           Text
+'='           Operator
+' '           Text
+'8'           Literal.Number.Integer
+';'           Operator
+'\n\n  '      Text
+'_z_errmsg'   Name
+':'           Operator
+' '           Text
+'array'       Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+'.'           Operator
+'.'           Operator
+'9'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'of'          Keyword
+' '           Text
+'PChar'       Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'\n    '      Text
+"'"           Literal.String
+'need dictionary' Literal.String
+"'"           Literal.String
+','           Operator
+'      '      Text
+'// Z_NEED_DICT      (2)' Comment.Single
+'\n    '      Text
+"'"           Literal.String
+'stream end'  Literal.String
+"'"           Literal.String
+','           Operator
+'           ' Text
+'// Z_STREAM_END     (1)' Comment.Single
+'\n    '      Text
+"'"           Literal.String
+"'"           Literal.String
+','           Operator
+'                     ' Text
+'// Z_OK             (0)' Comment.Single
+'\n    '      Text
+"'"           Literal.String
+'file error'  Literal.String
+"'"           Literal.String
+','           Operator
+'           ' Text
+'// Z_ERRNO          (-1)' Comment.Single
+'\n    '      Text
+"'"           Literal.String
+'stream error' Literal.String
+"'"           Literal.String
+','           Operator
+'         '   Text
+'// Z_STREAM_ERROR   (-2)' Comment.Single
+'\n    '      Text
+"'"           Literal.String
+'data error'  Literal.String
+"'"           Literal.String
+','           Operator
+'           ' Text
+'// Z_DATA_ERROR     (-3)' Comment.Single
+'\n    '      Text
+"'"           Literal.String
+'insufficient memory' Literal.String
+"'"           Literal.String
+','           Operator
+'  '          Text
+'// Z_MEM_ERROR      (-4)' Comment.Single
+'\n    '      Text
+"'"           Literal.String
+'buffer error' Literal.String
+"'"           Literal.String
+','           Operator
+'         '   Text
+'// Z_BUF_ERROR      (-5)' Comment.Single
+'\n    '      Text
+"'"           Literal.String
+'incompatible version' Literal.String
+"'"           Literal.String
+','           Operator
+' '           Text
+'// Z_VERSION_ERROR  (-6)' Comment.Single
+'\n    '      Text
+"'"           Literal.String
+"'"           Literal.String
+'\n  '        Text
+')'           Punctuation
+';'           Operator
+'\n\n'        Text
+
+'{$L deflate.obj}' Comment.Multiline
+'\n'          Text
+
+'{$L inflate.obj}' Comment.Multiline
+'\n'          Text
+
+'{$L inftrees.obj}' Comment.Multiline
+'\n'          Text
+
+'{$L trees.obj}' Comment.Multiline
+'\n'          Text
+
+'{$L adler32.obj}' Comment.Multiline
+'\n'          Text
+
+'{$L infblock.obj}' Comment.Multiline
+'\n'          Text
+
+'{$L infcodes.obj}' Comment.Multiline
+'\n'          Text
+
+'{$L infutil.obj}' Comment.Multiline
+'\n'          Text
+
+'{$L inffast.obj}' Comment.Multiline
+'\n\n'        Text
+
+'procedure'   Keyword
+' '           Text
+'_tr_init'    Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'_tr_tally'   Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'_tr_flush_block' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'_tr_align'   Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'_tr_stored_block' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'adler32'     Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'inflate_blocks_new' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'inflate_blocks' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'inflate_blocks_reset' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'inflate_blocks_free' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'inflate_set_dictionary' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'inflate_trees_bits' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'inflate_trees_dynamic' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'inflate_trees_fixed' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'inflate_codes_new' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'inflate_codes' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'inflate_codes_free' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'_inflate_mask' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'inflate_flush' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'procedure'   Keyword
+' '           Text
+'inflate_fast' Name.Function
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n\n'        Text
+
+'procedure'   Keyword
+' '           Text
+'_memset'     Name.Function
+'('           Punctuation
+'P'           Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+' '           Text
+'B'           Name
+':'           Operator
+' '           Text
+'Byte'        Keyword.Type
+';'           Operator
+' '           Text
+'count'       Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+';'           Operator
+'cdecl'       Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'FillChar'    Name.Builtin
+'('           Punctuation
+'P'           Name
+'^'           Operator
+','           Operator
+' '           Text
+'count'       Name
+','           Operator
+' '           Text
+'B'           Name
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'procedure'   Keyword
+' '           Text
+'_memcpy'     Name.Function
+'('           Punctuation
+'dest'        Name
+','           Operator
+' '           Text
+'source'      Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+' '           Text
+'count'       Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+';'           Operator
+'cdecl'       Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'Move'        Name.Builtin
+'('           Punctuation
+'source'      Name
+'^'           Operator
+','           Operator
+' '           Text
+'dest'        Name
+'^'           Operator
+','           Operator
+' '           Text
+'count'       Name
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n\n\n'    Text
+
+'// deflate compresses data' Comment.Single
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'deflateInit_' Name.Function
+'('           Punctuation
+'var'         Keyword
+' '           Text
+'strm'        Name
+':'           Operator
+' '           Text
+'TZStreamRec' Name
+';'           Operator
+' '           Text
+'level'       Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+' '           Text
+'version'     Name
+':'           Operator
+' '           Text
+'PChar'       Keyword.Type
+';'           Operator
+'\n  '        Text
+'recsize'     Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'deflate'     Name.Function
+'('           Punctuation
+'var'         Keyword
+' '           Text
+'strm'        Name
+':'           Operator
+' '           Text
+'TZStreamRec' Name
+';'           Operator
+' '           Text
+'flush'       Name.Builtin
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'deflateEnd'  Name.Function
+'('           Punctuation
+'var'         Keyword
+' '           Text
+'strm'        Name
+':'           Operator
+' '           Text
+'TZStreamRec' Name
+')'           Punctuation
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n\n'        Text
+
+'// inflate decompresses data' Comment.Single
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'inflateInit_' Name.Function
+'('           Punctuation
+'var'         Keyword
+' '           Text
+'strm'        Name
+':'           Operator
+' '           Text
+'TZStreamRec' Name
+';'           Operator
+' '           Text
+'version'     Name
+':'           Operator
+' '           Text
+'PChar'       Keyword.Type
+';'           Operator
+'\n  '        Text
+'recsize'     Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'inflate'     Name.Function
+'('           Punctuation
+'var'         Keyword
+' '           Text
+'strm'        Name
+':'           Operator
+' '           Text
+'TZStreamRec' Name
+';'           Operator
+' '           Text
+'flush'       Name.Builtin
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'inflateEnd'  Name.Function
+'('           Punctuation
+'var'         Keyword
+' '           Text
+'strm'        Name
+':'           Operator
+' '           Text
+'TZStreamRec' Name
+')'           Punctuation
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n'          Text
+
+'function'    Keyword
+' '           Text
+'inflateReset' Name.Function
+'('           Punctuation
+'var'         Keyword
+' '           Text
+'strm'        Name
+':'           Operator
+' '           Text
+'TZStreamRec' Name
+')'           Punctuation
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+' '           Text
+'external'    Keyword.Pseudo
+';'           Operator
+'\n\n\n'      Text
+
+'function'    Keyword
+' '           Text
+'zcalloc'     Name.Function
+'('           Punctuation
+'AppData'     Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+' '           Text
+'Items'       Name
+','           Operator
+' '           Text
+'Size'        Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'GetMem'      Name.Builtin
+'('           Punctuation
+'Result'      Name.Builtin.Pseudo
+','           Operator
+' '           Text
+'Items'       Name
+'*'           Operator
+'Size'        Name
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'procedure'   Keyword
+' '           Text
+'zcfree'      Name.Function
+'('           Punctuation
+'AppData'     Name
+','           Operator
+' '           Text
+'Block'       Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'FreeMem'     Name.Builtin
+'('           Punctuation
+'Block'       Name
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'zlibCheck'   Name.Function
+'('           Punctuation
+'code'        Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'code'        Name
+';'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'code'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'raise'       Keyword
+' '           Text
+'EZlibError'  Name
+'.'           Operator
+'Create'      Name
+'('           Punctuation
+"'"           Literal.String
+'error'       Literal.String
+"'"           Literal.String
+')'           Punctuation
+';'           Operator
+'    '        Text
+'//!!'        Comment.Single
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'CCheck'      Name.Function
+'('           Punctuation
+'code'        Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'code'        Name
+';'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'code'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'raise'       Keyword
+' '           Text
+'ECompressionError' Name
+'.'           Operator
+'Create'      Name
+'('           Punctuation
+"'"           Literal.String
+'error'       Literal.String
+"'"           Literal.String
+')'           Punctuation
+';'           Operator
+' '           Text
+'//!!'        Comment.Single
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'DCheck'      Name.Function
+'('           Punctuation
+'code'        Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'code'        Name
+';'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'code'        Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'raise'       Keyword
+' '           Text
+'EDecompressionError' Name
+'.'           Operator
+'Create'      Name
+'('           Punctuation
+"'"           Literal.String
+'error'       Literal.String
+"'"           Literal.String
+')'           Punctuation
+';'           Operator
+'  '          Text
+'//!!'        Comment.Single
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'procedure'   Keyword
+' '           Text
+'CompressBuf' Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'InBuf'       Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+' '           Text
+'InBytes'     Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'\n                      ' Text
+'out'         Name
+' '           Text
+'OutBuf'      Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+' '           Text
+'out'         Name
+' '           Text
+'OutBytes'    Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'var'         Keyword
+'\n  '        Text
+'strm'        Name
+':'           Operator
+' '           Text
+'TZStreamRec' Name
+';'           Operator
+'\n  '        Text
+'P'           Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'FillChar'    Name.Builtin
+'('           Punctuation
+'strm'        Name
+','           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'strm'        Name
+')'           Punctuation
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'OutBytes'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'(('          Punctuation
+'InBytes'     Name
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'InBytes'     Name
+' '           Text
+'div'         Keyword
+' '           Text
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'12'          Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'255'         Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'255'         Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'GetMem'      Name.Builtin
+'('           Punctuation
+'OutBuf'      Name
+','           Operator
+' '           Text
+'OutBytes'    Name
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'try'         Keyword
+'\n    '      Text
+'strm'        Name
+'.'           Operator
+'next_in'     Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'InBuf'       Name
+';'           Operator
+'\n    '      Text
+'strm'        Name
+'.'           Operator
+'avail_in'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'InBytes'     Name
+';'           Operator
+'\n    '      Text
+'strm'        Name
+'.'           Operator
+'next_out'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'OutBuf'      Name
+';'           Operator
+'\n    '      Text
+'strm'        Name
+'.'           Operator
+'avail_out'   Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'OutBytes'    Name
+';'           Operator
+'\n    '      Text
+'CCheck'      Name
+'('           Punctuation
+'deflateInit_' Name
+'('           Punctuation
+'strm'        Name
+','           Operator
+' '           Text
+'Z_BEST_COMPRESSION' Name
+','           Operator
+' '           Text
+'zlib_version' Name
+','           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'strm'        Name
+')))'         Punctuation
+';'           Operator
+'\n    '      Text
+'try'         Keyword
+'\n      '    Text
+'while'       Keyword
+' '           Text
+'CCheck'      Name
+'('           Punctuation
+'deflate'     Name
+'('           Punctuation
+'strm'        Name
+','           Operator
+' '           Text
+'Z_FINISH'    Name
+'))'          Punctuation
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'Z_STREAM_END' Name
+' '           Text
+'do'          Keyword
+'\n      '    Text
+'begin'       Keyword
+'\n        '  Text
+'P'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'OutBuf'      Name
+';'           Operator
+'\n        '  Text
+'Inc'         Name.Builtin
+'('           Punctuation
+'OutBytes'    Name
+','           Operator
+' '           Text
+'256'         Literal.Number.Integer
+')'           Punctuation
+';'           Operator
+'\n        '  Text
+'ReallocMem'  Name.Builtin
+'('           Punctuation
+'OutBuf'      Name
+','           Operator
+' '           Text
+'OutBytes'    Name
+')'           Punctuation
+';'           Operator
+'\n        '  Text
+'strm'        Name
+'.'           Operator
+'next_out'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'PChar'       Keyword.Type
+'('           Punctuation
+'Integer'     Keyword.Type
+'('           Punctuation
+'OutBuf'      Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'Integer'     Keyword.Type
+'('           Punctuation
+'strm'        Name
+'.'           Operator
+'next_out'    Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'Integer'     Keyword.Type
+'('           Punctuation
+'P'           Name
+')))'         Punctuation
+';'           Operator
+'\n        '  Text
+'strm'        Name
+'.'           Operator
+'avail_out'   Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'256'         Literal.Number.Integer
+';'           Operator
+'\n      '    Text
+'end'         Keyword
+';'           Operator
+'\n    '      Text
+'finally'     Keyword
+'\n      '    Text
+'CCheck'      Name
+'('           Punctuation
+'deflateEnd'  Name
+'('           Punctuation
+'strm'        Name
+'))'          Punctuation
+';'           Operator
+'\n    '      Text
+'end'         Keyword
+';'           Operator
+'\n    '      Text
+'ReallocMem'  Name.Builtin
+'('           Punctuation
+'OutBuf'      Name
+','           Operator
+' '           Text
+'strm'        Name
+'.'           Operator
+'total_out'   Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'OutBytes'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'strm'        Name
+'.'           Operator
+'total_out'   Name
+';'           Operator
+'\n  '        Text
+'except'      Keyword
+'\n    '      Text
+'FreeMem'     Name.Builtin
+'('           Punctuation
+'OutBuf'      Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'raise'       Keyword
+'\n  '        Text
+'end'         Keyword
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n\n'      Text
+
+'procedure'   Keyword
+' '           Text
+'DecompressBuf' Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'InBuf'       Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+' '           Text
+'InBytes'     Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'\n  '        Text
+'OutEstimate' Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+' '           Text
+'out'         Name
+' '           Text
+'OutBuf'      Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+' '           Text
+'out'         Name
+' '           Text
+'OutBytes'    Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'var'         Keyword
+'\n  '        Text
+'strm'        Name
+':'           Operator
+' '           Text
+'TZStreamRec' Name
+';'           Operator
+'\n  '        Text
+'P'           Name
+':'           Operator
+' '           Text
+'Pointer'     Keyword.Type
+';'           Operator
+'\n  '        Text
+'BufInc'      Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'FillChar'    Name.Builtin
+'('           Punctuation
+'strm'        Name
+','           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'strm'        Name
+')'           Punctuation
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'BufInc'      Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'InBytes'     Name
+' '           Text
+'+'           Operator
+' '           Text
+'255'         Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'not'         Keyword
+' '           Text
+'255'         Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'OutEstimate' Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'OutBytes'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'BufInc'      Name
+'\n  '        Text
+'else'        Keyword
+'\n    '      Text
+'OutBytes'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'OutEstimate' Name
+';'           Operator
+'\n  '        Text
+'GetMem'      Name.Builtin
+'('           Punctuation
+'OutBuf'      Name
+','           Operator
+' '           Text
+'OutBytes'    Name
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'try'         Keyword
+'\n    '      Text
+'strm'        Name
+'.'           Operator
+'next_in'     Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'InBuf'       Name
+';'           Operator
+'\n    '      Text
+'strm'        Name
+'.'           Operator
+'avail_in'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'InBytes'     Name
+';'           Operator
+'\n    '      Text
+'strm'        Name
+'.'           Operator
+'next_out'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'OutBuf'      Name
+';'           Operator
+'\n    '      Text
+'strm'        Name
+'.'           Operator
+'avail_out'   Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'OutBytes'    Name
+';'           Operator
+'\n    '      Text
+'DCheck'      Name
+'('           Punctuation
+'inflateInit_' Name
+'('           Punctuation
+'strm'        Name
+','           Operator
+' '           Text
+'zlib_version' Name
+','           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'strm'        Name
+')))'         Punctuation
+';'           Operator
+'\n    '      Text
+'try'         Keyword
+'\n      '    Text
+'while'       Keyword
+' '           Text
+'DCheck'      Name
+'('           Punctuation
+'inflate'     Name
+'('           Punctuation
+'strm'        Name
+','           Operator
+' '           Text
+'Z_FINISH'    Name
+'))'          Punctuation
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'Z_STREAM_END' Name
+' '           Text
+'do'          Keyword
+'\n      '    Text
+'begin'       Keyword
+'\n        '  Text
+'P'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'OutBuf'      Name
+';'           Operator
+'\n        '  Text
+'Inc'         Name.Builtin
+'('           Punctuation
+'OutBytes'    Name
+','           Operator
+' '           Text
+'BufInc'      Name
+')'           Punctuation
+';'           Operator
+'\n        '  Text
+'ReallocMem'  Name.Builtin
+'('           Punctuation
+'OutBuf'      Name
+','           Operator
+' '           Text
+'OutBytes'    Name
+')'           Punctuation
+';'           Operator
+'\n        '  Text
+'strm'        Name
+'.'           Operator
+'next_out'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'PChar'       Keyword.Type
+'('           Punctuation
+'Integer'     Keyword.Type
+'('           Punctuation
+'OutBuf'      Name
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'Integer'     Keyword.Type
+'('           Punctuation
+'strm'        Name
+'.'           Operator
+'next_out'    Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'Integer'     Keyword.Type
+'('           Punctuation
+'P'           Name
+')))'         Punctuation
+';'           Operator
+'\n        '  Text
+'strm'        Name
+'.'           Operator
+'avail_out'   Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'BufInc'      Name
+';'           Operator
+'\n      '    Text
+'end'         Keyword
+';'           Operator
+'\n    '      Text
+'finally'     Keyword
+'\n      '    Text
+'DCheck'      Name
+'('           Punctuation
+'inflateEnd'  Name
+'('           Punctuation
+'strm'        Name
+'))'          Punctuation
+';'           Operator
+'\n    '      Text
+'end'         Keyword
+';'           Operator
+'\n    '      Text
+'ReallocMem'  Name.Builtin
+'('           Punctuation
+'OutBuf'      Name
+','           Operator
+' '           Text
+'strm'        Name
+'.'           Operator
+'total_out'   Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'OutBytes'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'strm'        Name
+'.'           Operator
+'total_out'   Name
+';'           Operator
+'\n  '        Text
+'except'      Keyword
+'\n    '      Text
+'FreeMem'     Name.Builtin
+'('           Punctuation
+'OutBuf'      Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'raise'       Keyword
+'\n  '        Text
+'end'         Keyword
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n\n'      Text
+
+'// TCustomZlibStream' Comment.Single
+'\n\n'        Text
+
+'constructor' Keyword
+' '           Text
+'TCustomZLibStream' Name.Class
+'.'           Operator
+'Create'      Name.Function
+'('           Punctuation
+'Strm'        Name
+':'           Operator
+' '           Text
+'TStream'     Name
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'inherited'   Keyword
+' '           Text
+'Create'      Name
+';'           Operator
+'\n  '        Text
+'FStrm'       Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'Strm'        Name
+';'           Operator
+'\n  '        Text
+'FStrmPos'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'Strm'        Name
+'.'           Operator
+'Position'    Name
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'procedure'   Keyword
+' '           Text
+'TCustomZLibStream' Name.Class
+'.'           Operator
+'Progress'    Name.Function
+'('           Punctuation
+'Sender'      Name
+':'           Operator
+' '           Text
+'TObject'     Keyword.Type
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'Assigned'    Name.Builtin
+'('           Punctuation
+'FOnProgress' Name
+')'           Punctuation
+' '           Text
+'then'        Keyword
+' '           Text
+'FOnProgress' Name
+'('           Punctuation
+'Sender'      Name
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n\n'      Text
+
+'// TCompressionStream' Comment.Single
+'\n\n'        Text
+
+'constructor' Keyword
+' '           Text
+'TCompressionStream' Name.Class
+'.'           Operator
+'Create'      Name.Function
+'('           Punctuation
+'CompressionLevel' Name
+':'           Operator
+' '           Text
+'TCompressionLevel' Name
+';'           Operator
+'\n  '        Text
+'Dest'        Name
+':'           Operator
+' '           Text
+'TStream'     Name
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'const'       Keyword
+'\n  '        Text
+'Levels'      Name
+':'           Operator
+' '           Text
+'array'       Keyword
+' '           Text
+'['           Punctuation
+'TCompressionLevel' Name
+']'           Punctuation
+' '           Text
+'of'          Keyword
+' '           Text
+'ShortInt'    Keyword.Type
+' '           Text
+'='           Operator
+'\n    '      Text
+'('           Punctuation
+'Z_NO_COMPRESSION' Name
+','           Operator
+' '           Text
+'Z_BEST_SPEED' Name
+','           Operator
+' '           Text
+'Z_DEFAULT_COMPRESSION' Name
+','           Operator
+' '           Text
+'Z_BEST_COMPRESSION' Name
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'inherited'   Keyword
+' '           Text
+'Create'      Name
+'('           Punctuation
+'Dest'        Name
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'FZRec'       Name
+'.'           Operator
+'next_out'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FBuffer'     Name
+';'           Operator
+'\n  '        Text
+'FZRec'       Name
+'.'           Operator
+'avail_out'   Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'FBuffer'     Name
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'CCheck'      Name
+'('           Punctuation
+'deflateInit_' Name
+'('           Punctuation
+'FZRec'       Name
+','           Operator
+' '           Text
+'Levels'      Name
+'['           Punctuation
+'CompressionLevel' Name
+']'           Punctuation
+','           Operator
+' '           Text
+'zlib_version' Name
+','           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'FZRec'       Name
+')))'         Punctuation
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'destructor'  Keyword
+' '           Text
+'TCompressionStream' Name.Class
+'.'           Operator
+'Destroy'     Name.Function
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'FZRec'       Name
+'.'           Operator
+'next_in'     Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'nil'         Keyword
+';'           Operator
+'\n  '        Text
+'FZRec'       Name
+'.'           Operator
+'avail_in'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'try'         Keyword
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'FStrm'       Name
+'.'           Operator
+'Position'    Name
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'FStrmPos'    Name
+' '           Text
+'then'        Keyword
+' '           Text
+'FStrm'       Name
+'.'           Operator
+'Position'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FStrmPos'    Name
+';'           Operator
+'\n    '      Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'CCheck'      Name
+'('           Punctuation
+'deflate'     Name
+'('           Punctuation
+'FZRec'       Name
+','           Operator
+' '           Text
+'Z_FINISH'    Name
+'))'          Punctuation
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'Z_STREAM_END' Name
+')'           Punctuation
+'\n      '    Text
+'and'         Keyword
+' '           Text
+'('           Punctuation
+'FZRec'       Name
+'.'           Operator
+'avail_out'   Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'do'          Keyword
+'\n    '      Text
+'begin'       Keyword
+'\n      '    Text
+'FStrm'       Name
+'.'           Operator
+'WriteBuffer' Name
+'('           Punctuation
+'FBuffer'     Name
+','           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'FBuffer'     Name
+'))'          Punctuation
+';'           Operator
+'\n      '    Text
+'FZRec'       Name
+'.'           Operator
+'next_out'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FBuffer'     Name
+';'           Operator
+'\n      '    Text
+'FZRec'       Name
+'.'           Operator
+'avail_out'   Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'FBuffer'     Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'end'         Keyword
+';'           Operator
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'FZRec'       Name
+'.'           Operator
+'avail_out'   Name
+' '           Text
+'<'           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'FBuffer'     Name
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n      '    Text
+'FStrm'       Name
+'.'           Operator
+'WriteBuffer' Name
+'('           Punctuation
+'FBuffer'     Name
+','           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'FBuffer'     Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+' '           Text
+'FZRec'       Name
+'.'           Operator
+'avail_out'   Name
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'finally'     Keyword
+'\n    '      Text
+'deflateEnd'  Name
+'('           Punctuation
+'FZRec'       Name
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'end'         Keyword
+';'           Operator
+'\n  '        Text
+'inherited'   Keyword
+' '           Text
+'Destroy'     Name
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'TCompressionStream' Name.Class
+'.'           Operator
+'Read'        Name.Function
+'('           Punctuation
+'var'         Keyword
+' '           Text
+'Buffer'      Name
+';'           Operator
+' '           Text
+'Count'       Name
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'raise'       Keyword
+' '           Text
+'ECompressionError' Name
+'.'           Operator
+'Create'      Name
+'('           Punctuation
+"'"           Literal.String
+'Invalid stream operation' Literal.String
+"'"           Literal.String
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'TCompressionStream' Name.Class
+'.'           Operator
+'Write'       Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'Buffer'      Name
+';'           Operator
+' '           Text
+'Count'       Name
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'FZRec'       Name
+'.'           Operator
+'next_in'     Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'@'           Operator
+'Buffer'      Name
+';'           Operator
+'\n  '        Text
+'FZRec'       Name
+'.'           Operator
+'avail_in'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'Count'       Name
+';'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'FStrm'       Name
+'.'           Operator
+'Position'    Name
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'FStrmPos'    Name
+' '           Text
+'then'        Keyword
+' '           Text
+'FStrm'       Name
+'.'           Operator
+'Position'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FStrmPos'    Name
+';'           Operator
+'\n  '        Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'FZRec'       Name
+'.'           Operator
+'avail_in'    Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'do'          Keyword
+'\n  '        Text
+'begin'       Keyword
+'\n    '      Text
+'CCheck'      Name
+'('           Punctuation
+'deflate'     Name
+'('           Punctuation
+'FZRec'       Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'))'          Punctuation
+';'           Operator
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'FZRec'       Name
+'.'           Operator
+'avail_out'   Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'begin'       Keyword
+'\n      '    Text
+'FStrm'       Name
+'.'           Operator
+'WriteBuffer' Name
+'('           Punctuation
+'FBuffer'     Name
+','           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'FBuffer'     Name
+'))'          Punctuation
+';'           Operator
+'\n      '    Text
+'FZRec'       Name
+'.'           Operator
+'next_out'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FBuffer'     Name
+';'           Operator
+'\n      '    Text
+'FZRec'       Name
+'.'           Operator
+'avail_out'   Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'FBuffer'     Name
+')'           Punctuation
+';'           Operator
+'\n      '    Text
+'FStrmPos'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FStrm'       Name
+'.'           Operator
+'Position'    Name
+';'           Operator
+'\n      '    Text
+'Progress'    Name
+'('           Punctuation
+'Self'        Keyword
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'end'         Keyword
+';'           Operator
+'\n  '        Text
+'end'         Keyword
+';'           Operator
+'\n  '        Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'Count'       Name
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'TCompressionStream' Name.Class
+'.'           Operator
+'Seek'        Name.Function
+'('           Punctuation
+'Offset'      Name
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+' '           Text
+'Origin'      Name
+':'           Operator
+' '           Text
+'Word'        Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'Offset'      Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'('           Punctuation
+'Origin'      Name
+' '           Text
+'='           Operator
+' '           Text
+'soFromCurrent' Name
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FZRec'       Name
+'.'           Operator
+'total_in'    Name
+'\n  '        Text
+'else'        Keyword
+'\n    '      Text
+'raise'       Keyword
+' '           Text
+'ECompressionError' Name
+'.'           Operator
+'Create'      Name
+'('           Punctuation
+"'"           Literal.String
+'Invalid stream operation' Literal.String
+"'"           Literal.String
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'TCompressionStream' Name.Class
+'.'           Operator
+'GetCompressionRate' Name.Function
+':'           Operator
+' '           Text
+'Single'      Keyword.Type
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'FZRec'       Name
+'.'           Operator
+'total_in'    Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n  '        Text
+'else'        Keyword
+'\n    '      Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'('           Punctuation
+'1.0'         Literal.Number.Float
+' '           Text
+'-'           Operator
+' '           Text
+'('           Punctuation
+'FZRec'       Name
+'.'           Operator
+'total_out'   Name
+' '           Text
+'/'           Operator
+' '           Text
+'FZRec'       Name
+'.'           Operator
+'total_in'    Name
+'))'          Punctuation
+' '           Text
+'*'           Operator
+' '           Text
+'10'          Literal.Number.Integer
+'0.0'         Literal.Number.Float
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n\n'      Text
+
+'// TDecompressionStream' Comment.Single
+'\n\n'        Text
+
+'constructor' Keyword
+' '           Text
+'TDecompressionStream' Name.Class
+'.'           Operator
+'Create'      Name.Function
+'('           Punctuation
+'Source'      Name
+':'           Operator
+' '           Text
+'TStream'     Name
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'inherited'   Keyword
+' '           Text
+'Create'      Name
+'('           Punctuation
+'Source'      Name
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'FZRec'       Name
+'.'           Operator
+'next_in'     Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FBuffer'     Name
+';'           Operator
+'\n  '        Text
+'FZRec'       Name
+'.'           Operator
+'avail_in'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'DCheck'      Name
+'('           Punctuation
+'inflateInit_' Name
+'('           Punctuation
+'FZRec'       Name
+','           Operator
+' '           Text
+'zlib_version' Name
+','           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'FZRec'       Name
+')))'         Punctuation
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'destructor'  Keyword
+' '           Text
+'TDecompressionStream' Name.Class
+'.'           Operator
+'Destroy'     Name.Function
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'inflateEnd'  Name
+'('           Punctuation
+'FZRec'       Name
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'inherited'   Keyword
+' '           Text
+'Destroy'     Name
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'TDecompressionStream' Name.Class
+'.'           Operator
+'Read'        Name.Function
+'('           Punctuation
+'var'         Keyword
+' '           Text
+'Buffer'      Name
+';'           Operator
+' '           Text
+'Count'       Name
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'FZRec'       Name
+'.'           Operator
+'next_out'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'@'           Operator
+'Buffer'      Name
+';'           Operator
+'\n  '        Text
+'FZRec'       Name
+'.'           Operator
+'avail_out'   Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'Count'       Name
+';'           Operator
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'FStrm'       Name
+'.'           Operator
+'Position'    Name
+' '           Text
+'<'           Operator
+'>'           Operator
+' '           Text
+'FStrmPos'    Name
+' '           Text
+'then'        Keyword
+' '           Text
+'FStrm'       Name
+'.'           Operator
+'Position'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FStrmPos'    Name
+';'           Operator
+'\n  '        Text
+'while'       Keyword
+' '           Text
+'('           Punctuation
+'FZRec'       Name
+'.'           Operator
+'avail_out'   Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'do'          Keyword
+'\n  '        Text
+'begin'       Keyword
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'FZRec'       Name
+'.'           Operator
+'avail_in'    Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'begin'       Keyword
+'\n      '    Text
+'FZRec'       Name
+'.'           Operator
+'avail_in'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FStrm'       Name
+'.'           Operator
+'Read'        Name
+'('           Punctuation
+'FBuffer'     Name
+','           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'FBuffer'     Name
+'))'          Punctuation
+';'           Operator
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'FZRec'       Name
+'.'           Operator
+'avail_in'    Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n        '  Text
+'begin'       Keyword
+'\n          ' Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'Count'       Name
+' '           Text
+'-'           Operator
+' '           Text
+'FZRec'       Name
+'.'           Operator
+'avail_out'   Name
+';'           Operator
+'\n          ' Text
+'Exit'        Keyword
+';'           Operator
+'\n        '  Text
+'end'         Keyword
+';'           Operator
+'\n      '    Text
+'FZRec'       Name
+'.'           Operator
+'next_in'     Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FBuffer'     Name
+';'           Operator
+'\n      '    Text
+'FStrmPos'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FStrm'       Name
+'.'           Operator
+'Position'    Name
+';'           Operator
+'\n      '    Text
+'Progress'    Name
+'('           Punctuation
+'Self'        Keyword
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'end'         Keyword
+';'           Operator
+'\n    '      Text
+'DCheck'      Name
+'('           Punctuation
+'inflate'     Name
+'('           Punctuation
+'FZRec'       Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'))'          Punctuation
+';'           Operator
+'\n  '        Text
+'end'         Keyword
+';'           Operator
+'\n  '        Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'Count'       Name
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'TDecompressionStream' Name.Class
+'.'           Operator
+'Write'       Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text
+'Buffer'      Name
+';'           Operator
+' '           Text
+'Count'       Name
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'raise'       Keyword
+' '           Text
+'EDecompressionError' Name
+'.'           Operator
+'Create'      Name
+'('           Punctuation
+"'"           Literal.String
+'Invalid stream operation' Literal.String
+"'"           Literal.String
+')'           Punctuation
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'TDecompressionStream' Name.Class
+'.'           Operator
+'Seek'        Name.Function
+'('           Punctuation
+'Offset'      Name
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+' '           Text
+'Origin'      Name
+':'           Operator
+' '           Text
+'Word'        Keyword.Type
+')'           Punctuation
+':'           Operator
+' '           Text
+'Longint'     Keyword.Type
+';'           Operator
+'\n'          Text
+
+'var'         Keyword
+'\n  '        Text
+'I'           Name
+':'           Operator
+' '           Text
+'Integer'     Keyword.Type
+';'           Operator
+'\n  '        Text
+'Buf'         Name
+':'           Operator
+' '           Text
+'array'       Keyword
+' '           Text
+'['           Punctuation
+'0'           Literal.Number.Integer
+'.'           Operator
+'.'           Operator
+'4095'        Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'of'          Keyword
+' '           Text
+'Char'        Keyword.Type
+';'           Operator
+'\n'          Text
+
+'begin'       Keyword
+'\n  '        Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'Offset'      Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'('           Punctuation
+'Origin'      Name
+' '           Text
+'='           Operator
+' '           Text
+'soFromBeginning' Name
+')'           Punctuation
+' '           Text
+'then'        Keyword
+'\n  '        Text
+'begin'       Keyword
+'\n    '      Text
+'DCheck'      Name
+'('           Punctuation
+'inflateReset' Name
+'('           Punctuation
+'FZRec'       Name
+'))'          Punctuation
+';'           Operator
+'\n    '      Text
+'FZRec'       Name
+'.'           Operator
+'next_in'     Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FBuffer'     Name
+';'           Operator
+'\n    '      Text
+'FZRec'       Name
+'.'           Operator
+'avail_in'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n    '      Text
+'FStrm'       Name
+'.'           Operator
+'Position'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n    '      Text
+'FStrmPos'    Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Operator
+'\n  '        Text
+'end'         Keyword
+'\n  '        Text
+'else'        Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+' '           Text
+'('           Punctuation
+'Offset'      Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'('           Punctuation
+'Origin'      Name
+' '           Text
+'='           Operator
+' '           Text
+'soFromCurrent' Name
+'))'          Punctuation
+' '           Text
+'or'          Keyword
+'\n          ' Text
+'('           Punctuation
+' '           Text
+'(('          Punctuation
+'Offset'      Name
+' '           Text
+'-'           Operator
+' '           Text
+'FZRec'       Name
+'.'           Operator
+'total_out'   Name
+')'           Punctuation
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'and'         Keyword
+' '           Text
+'('           Punctuation
+'Origin'      Name
+' '           Text
+'='           Operator
+' '           Text
+'soFromBeginning' Name
+'))'          Punctuation
+' '           Text
+'then'        Keyword
+'\n  '        Text
+'begin'       Keyword
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'Origin'      Name
+' '           Text
+'='           Operator
+' '           Text
+'soFromBeginning' Name
+' '           Text
+'then'        Keyword
+' '           Text
+'Dec'         Name.Builtin
+'('           Punctuation
+'Offset'      Name
+','           Operator
+' '           Text
+'FZRec'       Name
+'.'           Operator
+'total_out'   Name
+')'           Punctuation
+';'           Operator
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'Offset'      Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n    '      Text
+'begin'       Keyword
+'\n      '    Text
+'for'         Keyword
+' '           Text
+'I'           Name
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'to'          Keyword
+' '           Text
+'Offset'      Name
+' '           Text
+'div'         Keyword
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'Buf'         Name
+')'           Punctuation
+' '           Text
+'do'          Keyword
+'\n        '  Text
+'ReadBuffer'  Name
+'('           Punctuation
+'Buf'         Name
+','           Operator
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'Buf'         Name
+'))'          Punctuation
+';'           Operator
+'\n      '    Text
+'ReadBuffer'  Name
+'('           Punctuation
+'Buf'         Name
+','           Operator
+' '           Text
+'Offset'      Name
+' '           Text
+'mod'         Keyword
+' '           Text
+'sizeof'      Name.Builtin
+'('           Punctuation
+'Buf'         Name
+'))'          Punctuation
+';'           Operator
+'\n    '      Text
+'end'         Keyword
+';'           Operator
+'\n  '        Text
+'end'         Keyword
+'\n  '        Text
+'else'        Keyword
+'\n    '      Text
+'raise'       Keyword
+' '           Text
+'EDecompressionError' Name
+'.'           Operator
+'Create'      Name
+'('           Punctuation
+"'"           Literal.String
+'Invalid stream operation' Literal.String
+"'"           Literal.String
+')'           Punctuation
+';'           Operator
+'\n  '        Text
+'Result'      Name.Builtin.Pseudo
+' '           Text
+':'           Operator
+'='           Operator
+' '           Text
+'FZRec'       Name
+'.'           Operator
+'total_out'   Name
+';'           Operator
+'\n'          Text
+
+'end'         Keyword
+';'           Operator
+'\n\n'        Text
+
+'end'         Keyword
+'.'           Operator
+'\n'          Text

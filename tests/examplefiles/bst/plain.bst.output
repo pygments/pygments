@@ -1,0 +1,5029 @@
+"% BibTeX standard bibliography style `plain'" Comment.Single
+'\n   '       Text
+'% Version 0.99b (8-Dec-10 release) for BibTeX versions 0.99a or later.' Comment.Single
+'\n   '       Text
+'% Copyright (C) 1984, 1985, 1988, 2010 Howard Trickey and Oren Patashnik.' Comment.Single
+'\n   '       Text
+'% Unlimited copying and redistribution of this file are permitted as long as' Comment.Single
+'\n   '       Text
+'% it is unmodified.  Modifications (and redistribution of modified versions)' Comment.Single
+'\n   '       Text
+'% are also permitted, but only if the resulting file is renamed to something' Comment.Single
+'\n   '       Text
+'% besides btxbst.doc, plain.bst, unsrt.bst, alpha.bst, and abbrv.bst.' Comment.Single
+'\n   '       Text
+'% This restriction helps ensure that all standard styles are identical.' Comment.Single
+'\n   '       Text
+'% The file btxbst.doc has the documentation for this style.' Comment.Single
+'\n\n'        Text
+
+'ENTRY'       Keyword
+'\n  '        Text
+'{'           Punctuation
+' '           Text
+'address'     Name.Variable
+'\n    '      Text
+'author'      Name.Variable
+'\n    '      Text
+'booktitle'   Name.Variable
+'\n    '      Text
+'chapter'     Name.Variable
+'\n    '      Text
+'edition'     Name.Variable
+'\n    '      Text
+'editor'      Name.Variable
+'\n    '      Text
+'howpublished' Name.Variable
+'\n    '      Text
+'institution' Name.Variable
+'\n    '      Text
+'journal'     Name.Variable
+'\n    '      Text
+'key'         Name.Variable
+'\n    '      Text
+'month'       Name.Variable
+'\n    '      Text
+'note'        Name.Variable
+'\n    '      Text
+'number'      Name.Variable
+'\n    '      Text
+'organization' Name.Variable
+'\n    '      Text
+'pages'       Name.Variable
+'\n    '      Text
+'publisher'   Name.Variable
+'\n    '      Text
+'school'      Name.Variable
+'\n    '      Text
+'series'      Name.Variable
+'\n    '      Text
+'title'       Name.Variable
+'\n    '      Text
+'type'        Name.Variable
+'\n    '      Text
+'volume'      Name.Variable
+'\n    '      Text
+'year'        Name.Variable
+'\n  '        Text
+'}'           Punctuation
+'\n  '        Text
+'{'           Punctuation
+'}'           Punctuation
+'\n  '        Text
+'{'           Punctuation
+' '           Text
+'label'       Name.Variable
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'INTEGERS'    Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'output.state' Name.Variable
+' '           Text
+'before.all'  Name.Variable
+' '           Text
+'mid.sentence' Name.Variable
+' '           Text
+'after.sentence' Name.Variable
+' '           Text
+'after.block' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'init.state.consts' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'#0'          Literal.Number
+' '           Text
+"'before.all" Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'#1'          Literal.Number
+' '           Text
+"'mid.sentence" Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'#2'          Literal.Number
+' '           Text
+"'after.sentence" Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'#3'          Literal.Number
+' '           Text
+"'after.block" Name.Function
+' '           Text
+':='          Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'STRINGS'     Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'s'           Name.Variable
+' '           Text
+'t'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'output.nonnull' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+"'s"          Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'output.state' Name.Variable
+' '           Text
+'mid.sentence' Name.Variable
+' '           Text
+'='           Name.Variable
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'", "'        Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'write$'      Name.Builtin
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'output.state' Name.Variable
+' '           Text
+'after.block' Name.Variable
+' '           Text
+'='           Name.Variable
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'add.period$' Name.Builtin
+' '           Text
+'write$'      Name.Builtin
+'\n          ' Text
+'newline$'    Name.Builtin
+'\n          ' Text
+'"\\newblock "' Literal.String
+' '           Text
+'write$'      Name.Builtin
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'output.state' Name.Variable
+' '           Text
+'before.all'  Name.Variable
+' '           Text
+'='           Name.Variable
+'\n            ' Text
+"'write$"     Name.Function
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'add.period$' Name.Builtin
+' '           Text
+'" "'         Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'write$'      Name.Builtin
+' '           Text
+'}'           Punctuation
+'\n          ' Text
+'if$'         Name.Builtin
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n      '    Text
+'mid.sentence' Name.Variable
+' '           Text
+"'output.state" Name.Function
+' '           Text
+':='          Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'s'           Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'output'      Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'duplicate$'  Name.Builtin
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+"'pop$"       Name.Function
+'\n    '      Text
+"'output.nonnull" Name.Function
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'output.check' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+"'t"          Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'duplicate$'  Name.Builtin
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'pop$'        Name.Builtin
+' '           Text
+'"empty "'    Literal.String
+' '           Text
+'t'           Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'" in "'      Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'warning$'    Name.Builtin
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+"'output.nonnull" Name.Function
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'output.bibitem' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'newline$'    Name.Builtin
+'\n  '        Text
+'"\\bibitem{"' Literal.String
+' '           Text
+'write$'      Name.Builtin
+'\n  '        Text
+'cite$'       Name.Builtin
+' '           Text
+'write$'      Name.Builtin
+'\n  '        Text
+'"}"'         Literal.String
+' '           Text
+'write$'      Name.Builtin
+'\n  '        Text
+'newline$'    Name.Builtin
+'\n  '        Text
+'""'          Literal.String
+'\n  '        Text
+'before.all'  Name.Variable
+' '           Text
+"'output.state" Name.Function
+' '           Text
+':='          Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'fin.entry'   Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'add.period$' Name.Builtin
+'\n  '        Text
+'write$'      Name.Builtin
+'\n  '        Text
+'newline$'    Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'new.block'   Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.state' Name.Variable
+' '           Text
+'before.all'  Name.Variable
+' '           Text
+'='           Name.Variable
+'\n    '      Text
+"'skip$"      Name.Function
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'after.block' Name.Variable
+' '           Text
+"'output.state" Name.Function
+' '           Text
+':='          Name.Variable
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'new.sentence' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.state' Name.Variable
+' '           Text
+'after.block' Name.Variable
+' '           Text
+'='           Name.Variable
+'\n    '      Text
+"'skip$"      Name.Function
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'output.state' Name.Variable
+' '           Text
+'before.all'  Name.Variable
+' '           Text
+'='           Name.Variable
+'\n        '  Text
+"'skip$"      Name.Function
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'after.sentence' Name.Variable
+' '           Text
+"'output.state" Name.Function
+' '           Text
+':='          Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'not'         Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'   '         Text
+'{'           Punctuation
+' '           Text
+'#0'          Literal.Number
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'and'         Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'   '         Text
+"'skip$"      Name.Function
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'pop$'        Name.Builtin
+' '           Text
+'#0'          Literal.Number
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'or'          Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+'   '         Text
+'{'           Punctuation
+' '           Text
+'pop$'        Name.Builtin
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+"'skip$"      Name.Function
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'new.block.checka' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+"'skip$"      Name.Function
+'\n    '      Text
+"'new.block"  Name.Function
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'new.block.checkb' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'empty$'      Name.Builtin
+'\n  '        Text
+'swap$'       Name.Builtin
+' '           Text
+'empty$'      Name.Builtin
+'\n  '        Text
+'and'         Name.Variable
+'\n    '      Text
+"'skip$"      Name.Function
+'\n    '      Text
+"'new.block"  Name.Function
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'new.sentence.checka' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+"'skip$"      Name.Function
+'\n    '      Text
+"'new.sentence" Name.Function
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'new.sentence.checkb' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'empty$'      Name.Builtin
+'\n  '        Text
+'swap$'       Name.Builtin
+' '           Text
+'empty$'      Name.Builtin
+'\n  '        Text
+'and'         Name.Variable
+'\n    '      Text
+"'skip$"      Name.Function
+'\n    '      Text
+"'new.sentence" Name.Function
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'field.or.null' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'duplicate$'  Name.Builtin
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'pop$'        Name.Builtin
+' '           Text
+'""'          Literal.String
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+"'skip$"      Name.Function
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'emphasize'   Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'duplicate$'  Name.Builtin
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'pop$'        Name.Builtin
+' '           Text
+'""'          Literal.String
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'"{\\em "'    Literal.String
+' '           Text
+'swap$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'"}"'         Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'INTEGERS'    Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'nameptr'     Name.Variable
+' '           Text
+'namesleft'   Name.Variable
+' '           Text
+'numnames'    Name.Variable
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.names' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+"'s"          Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'#1'          Literal.Number
+' '           Text
+"'nameptr"    Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'s'           Name.Variable
+' '           Text
+'num.names$'  Name.Builtin
+' '           Text
+"'numnames"   Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'numnames'    Name.Variable
+' '           Text
+"'namesleft"  Name.Function
+' '           Text
+':='          Name.Variable
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'namesleft'   Name.Variable
+' '           Text
+'#0'          Literal.Number
+' '           Text
+'>'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'s'           Name.Variable
+' '           Text
+'nameptr'     Name.Variable
+' '           Text
+'"{ff~}{vv~}{ll}{, jj}"' Literal.String
+' '           Text
+'format.name$' Name.Builtin
+' '           Text
+"'t"          Name.Function
+' '           Text
+':='          Name.Variable
+'\n      '    Text
+'nameptr'     Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'>'           Name.Variable
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'namesleft'   Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'>'           Name.Variable
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'", "'        Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'t'           Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'numnames'    Name.Variable
+' '           Text
+'#2'          Literal.Number
+' '           Text
+'>'           Name.Variable
+'\n                ' Text
+'{'           Punctuation
+' '           Text
+'","'         Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n                ' Text
+"'skip$"      Name.Function
+'\n              ' Text
+'if$'         Name.Builtin
+'\n              ' Text
+'t'           Name.Variable
+' '           Text
+'"others"'    Literal.String
+' '           Text
+'='           Name.Variable
+'\n                ' Text
+'{'           Punctuation
+' '           Text
+'" et~al."'   Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n                ' Text
+'{'           Punctuation
+' '           Text
+'" and "'     Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'t'           Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n              ' Text
+'if$'         Name.Builtin
+'\n            ' Text
+'}'           Punctuation
+'\n          ' Text
+'if$'         Name.Builtin
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+"'t"          Name.Function
+'\n      '    Text
+'if$'         Name.Builtin
+'\n      '    Text
+'nameptr'     Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'+'           Name.Variable
+' '           Text
+"'nameptr"    Name.Function
+' '           Text
+':='          Name.Variable
+'\n      '    Text
+'namesleft'   Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'-'           Name.Variable
+' '           Text
+"'namesleft"  Name.Function
+' '           Text
+':='          Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'while$'      Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.authors' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'author'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'""'          Literal.String
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'author'      Name.Variable
+' '           Text
+'format.names' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.editors' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'""'          Literal.String
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'format.names' Name.Variable
+'\n      '    Text
+'editor'      Name.Variable
+' '           Text
+'num.names$'  Name.Builtin
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'>'           Name.Variable
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'", editors"' Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'", editor"'  Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.title' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'title'       Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'""'          Literal.String
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'title'       Name.Variable
+' '           Text
+'"t"'         Literal.String
+' '           Text
+'change.case$' Name.Builtin
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'n.dashify'   Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+"'t"          Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'""'          Literal.String
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'t'           Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+' '           Text
+'not'         Name.Variable
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'t'           Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'substring$'  Name.Builtin
+' '           Text
+'"-"'         Literal.String
+' '           Text
+'='           Name.Variable
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'t'           Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'#2'          Literal.Number
+' '           Text
+'substring$'  Name.Builtin
+' '           Text
+'"--"'        Literal.String
+' '           Text
+'='           Name.Variable
+' '           Text
+'not'         Name.Variable
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'"--"'        Literal.String
+' '           Text
+'*'           Name.Variable
+'\n              ' Text
+'t'           Name.Variable
+' '           Text
+'#2'          Literal.Number
+' '           Text
+'global.max$' Name.Builtin
+' '           Text
+'substring$'  Name.Builtin
+' '           Text
+"'t"          Name.Function
+' '           Text
+':='          Name.Variable
+'\n            ' Text
+'}'           Punctuation
+'\n            ' Text
+'{'           Punctuation
+'   '         Text
+'{'           Punctuation
+' '           Text
+'t'           Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'substring$'  Name.Builtin
+' '           Text
+'"-"'         Literal.String
+' '           Text
+'='           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n                ' Text
+'{'           Punctuation
+' '           Text
+'"-"'         Literal.String
+' '           Text
+'*'           Name.Variable
+'\n                  ' Text
+'t'           Name.Variable
+' '           Text
+'#2'          Literal.Number
+' '           Text
+'global.max$' Name.Builtin
+' '           Text
+'substring$'  Name.Builtin
+' '           Text
+"'t"          Name.Function
+' '           Text
+':='          Name.Variable
+'\n                ' Text
+'}'           Punctuation
+'\n              ' Text
+'while$'      Name.Builtin
+'\n            ' Text
+'}'           Punctuation
+'\n          ' Text
+'if$'         Name.Builtin
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'t'           Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'substring$'  Name.Builtin
+' '           Text
+'*'           Name.Variable
+'\n          ' Text
+'t'           Name.Variable
+' '           Text
+'#2'          Literal.Number
+' '           Text
+'global.max$' Name.Builtin
+' '           Text
+'substring$'  Name.Builtin
+' '           Text
+"'t"          Name.Function
+' '           Text
+':='          Name.Variable
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'while$'      Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.date' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'year'        Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'month'       Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'""'          Literal.String
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"there\'s a month but no year in "' Literal.String
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'warning$'    Name.Builtin
+'\n          ' Text
+'month'       Name.Variable
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'month'       Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+"'year"       Name.Function
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'month'       Name.Variable
+' '           Text
+'" "'         Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'year'        Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.btitle' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'title'       Name.Variable
+' '           Text
+'emphasize'   Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'tie.or.space.connect' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'duplicate$'  Name.Builtin
+' '           Text
+'text.length$' Name.Builtin
+' '           Text
+'#3'          Literal.Number
+' '           Text
+'<'           Name.Variable
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'"~"'         Literal.String
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'" "'         Literal.String
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'swap$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'*'           Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'either.or.check' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+"'pop$"       Name.Function
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'"can\'t use both "' Literal.String
+' '           Text
+'swap$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'" fields in "' Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'warning$'    Name.Builtin
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.bvolume' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'volume'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'""'          Literal.String
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'"volume"'    Literal.String
+' '           Text
+'volume'      Name.Variable
+' '           Text
+'tie.or.space.connect' Name.Variable
+'\n      '    Text
+'series'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+"'skip$"      Name.Function
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'" of "'      Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'series'      Name.Variable
+' '           Text
+'emphasize'   Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n      '    Text
+'"volume and number"' Literal.String
+' '           Text
+'number'      Name.Variable
+' '           Text
+'either.or.check' Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.number.series' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'volume'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'number'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'series'      Name.Variable
+' '           Text
+'field.or.null' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'output.state' Name.Variable
+' '           Text
+'mid.sentence' Name.Variable
+' '           Text
+'='           Name.Variable
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'"number"'    Literal.String
+' '           Text
+'}'           Punctuation
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'"Number"'    Literal.String
+' '           Text
+'}'           Punctuation
+'\n          ' Text
+'if$'         Name.Builtin
+'\n          ' Text
+'number'      Name.Variable
+' '           Text
+'tie.or.space.connect' Name.Variable
+'\n          ' Text
+'series'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'"there\'s a number but no series in "' Literal.String
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'warning$'    Name.Builtin
+' '           Text
+'}'           Punctuation
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'" in "'      Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'series'      Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n          ' Text
+'if$'         Name.Builtin
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'""'          Literal.String
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.edition' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'edition'     Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'""'          Literal.String
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'output.state' Name.Variable
+' '           Text
+'mid.sentence' Name.Variable
+' '           Text
+'='           Name.Variable
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'edition'     Name.Variable
+' '           Text
+'"l"'         Literal.String
+' '           Text
+'change.case$' Name.Builtin
+' '           Text
+'" edition"'  Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'edition'     Name.Variable
+' '           Text
+'"t"'         Literal.String
+' '           Text
+'change.case$' Name.Builtin
+' '           Text
+'" edition"'  Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'INTEGERS'    Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'multiresult' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'multi.page.check' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+"'t"          Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'#0'          Literal.Number
+' '           Text
+"'multiresult" Name.Function
+' '           Text
+':='          Name.Variable
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'multiresult' Name.Variable
+' '           Text
+'not'         Name.Variable
+'\n      '    Text
+'t'           Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+' '           Text
+'not'         Name.Variable
+'\n      '    Text
+'and'         Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'t'           Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'substring$'  Name.Builtin
+'\n      '    Text
+'duplicate$'  Name.Builtin
+' '           Text
+'"-"'         Literal.String
+' '           Text
+'='           Name.Variable
+'\n      '    Text
+'swap$'       Name.Builtin
+' '           Text
+'duplicate$'  Name.Builtin
+' '           Text
+'","'         Literal.String
+' '           Text
+'='           Name.Variable
+'\n      '    Text
+'swap$'       Name.Builtin
+' '           Text
+'"+"'         Literal.String
+' '           Text
+'='           Name.Variable
+'\n      '    Text
+'or'          Name.Variable
+' '           Text
+'or'          Name.Variable
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'#1'          Literal.Number
+' '           Text
+"'multiresult" Name.Function
+' '           Text
+':='          Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'t'           Name.Variable
+' '           Text
+'#2'          Literal.Number
+' '           Text
+'global.max$' Name.Builtin
+' '           Text
+'substring$'  Name.Builtin
+' '           Text
+"'t"          Name.Function
+' '           Text
+':='          Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'while$'      Name.Builtin
+'\n  '        Text
+'multiresult' Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.pages' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'pages'       Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'""'          Literal.String
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'pages'       Name.Variable
+' '           Text
+'multi.page.check' Name.Variable
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"pages"'     Literal.String
+' '           Text
+'pages'       Name.Variable
+' '           Text
+'n.dashify'   Name.Variable
+' '           Text
+'tie.or.space.connect' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"page"'      Literal.String
+' '           Text
+'pages'       Name.Variable
+' '           Text
+'tie.or.space.connect' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.vol.num.pages' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'volume'      Name.Variable
+' '           Text
+'field.or.null' Name.Variable
+'\n  '        Text
+'number'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+"'skip$"      Name.Function
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'"("'         Literal.String
+' '           Text
+'number'      Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'")"'         Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'*'           Name.Variable
+'\n      '    Text
+'volume'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"there\'s a number but no volume in "' Literal.String
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'warning$'    Name.Builtin
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+"'skip$"      Name.Function
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'pages'       Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+"'skip$"      Name.Function
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'duplicate$'  Name.Builtin
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'pop$'        Name.Builtin
+' '           Text
+'format.pages' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'":"'         Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'pages'       Name.Variable
+' '           Text
+'n.dashify'   Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.chapter.pages' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'chapter'     Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+"'format.pages" Name.Function
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'type'        Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"chapter"'   Literal.String
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'type'        Name.Variable
+' '           Text
+'"l"'         Literal.String
+' '           Text
+'change.case$' Name.Builtin
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n      '    Text
+'chapter'     Name.Variable
+' '           Text
+'tie.or.space.connect' Name.Variable
+'\n      '    Text
+'pages'       Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+"'skip$"      Name.Function
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'", "'        Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'format.pages' Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.in.ed.booktitle' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'booktitle'   Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'""'          Literal.String
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"In "'       Literal.String
+' '           Text
+'booktitle'   Name.Variable
+' '           Text
+'emphasize'   Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"In "'       Literal.String
+' '           Text
+'format.editors' Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'", "'        Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'booktitle'   Name.Variable
+' '           Text
+'emphasize'   Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'empty.misc.check' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'author'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+' '           Text
+'title'       Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+' '           Text
+'howpublished' Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n  '        Text
+'month'       Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+' '           Text
+'year'        Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+' '           Text
+'note'        Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n  '        Text
+'and'         Name.Variable
+' '           Text
+'and'         Name.Variable
+' '           Text
+'and'         Name.Variable
+' '           Text
+'and'         Name.Variable
+' '           Text
+'and'         Name.Variable
+'\n  '        Text
+'key'         Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+' '           Text
+'not'         Name.Variable
+' '           Text
+'and'         Name.Variable
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'"all relevant fields are empty in "' Literal.String
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'warning$'    Name.Builtin
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+"'skip$"      Name.Function
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.thesis.type' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'type'        Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+"'skip$"      Name.Function
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'pop$'        Name.Builtin
+'\n      '    Text
+'type'        Name.Variable
+' '           Text
+'"t"'         Literal.String
+' '           Text
+'change.case$' Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.tr.number' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'type'        Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'"Technical Report"' Literal.String
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+"'type"       Name.Function
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'number'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'"t"'         Literal.String
+' '           Text
+'change.case$' Name.Builtin
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'number'      Name.Variable
+' '           Text
+'tie.or.space.connect' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.article.crossref' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'key'         Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'journal'     Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"need key or journal for "' Literal.String
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'" to crossref "' Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'crossref'    Name.Variable
+' '           Text
+'*'           Name.Variable
+'\n          ' Text
+'warning$'    Name.Builtin
+'\n          ' Text
+'""'          Literal.String
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"In {\\em "' Literal.String
+' '           Text
+'journal'     Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'"\\/}"'      Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'"In "'       Literal.String
+' '           Text
+'key'         Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'" \\cite{"'  Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'crossref'    Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'"}"'         Literal.String
+' '           Text
+'*'           Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.crossref.editor' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'"{vv~}{ll}"' Literal.String
+' '           Text
+'format.name$' Name.Builtin
+'\n  '        Text
+'editor'      Name.Variable
+' '           Text
+'num.names$'  Name.Builtin
+' '           Text
+'duplicate$'  Name.Builtin
+'\n  '        Text
+'#2'          Literal.Number
+' '           Text
+'>'           Name.Variable
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'pop$'        Name.Builtin
+' '           Text
+'" et~al."'   Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'#2'          Literal.Number
+' '           Text
+'<'           Name.Variable
+'\n        '  Text
+"'skip$"      Name.Function
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'#2'          Literal.Number
+' '           Text
+'"{ff }{vv }{ll}{ jj}"' Literal.String
+' '           Text
+'format.name$' Name.Builtin
+' '           Text
+'"others"'    Literal.String
+' '           Text
+'='           Name.Variable
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'" et~al."'   Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'" and "'     Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'#2'          Literal.Number
+' '           Text
+'"{vv~}{ll}"' Literal.String
+' '           Text
+'format.name$' Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n          ' Text
+'if$'         Name.Builtin
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.book.crossref' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'volume'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'"empty volume in "' Literal.String
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'"\'s crossref of "' Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'crossref'    Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'warning$'    Name.Builtin
+'\n      '    Text
+'"In "'       Literal.String
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'"Volume"'    Literal.String
+' '           Text
+'volume'      Name.Variable
+' '           Text
+'tie.or.space.connect' Name.Variable
+'\n      '    Text
+'" of "'      Literal.String
+' '           Text
+'*'           Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'editor'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n  '        Text
+'editor'      Name.Variable
+' '           Text
+'field.or.null' Name.Variable
+' '           Text
+'author'      Name.Variable
+' '           Text
+'field.or.null' Name.Variable
+' '           Text
+'='           Name.Variable
+'\n  '        Text
+'or'          Name.Variable
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'key'         Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'series'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'"need editor, key, or series for "' Literal.String
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'" to crossref "' Literal.String
+' '           Text
+'*'           Name.Variable
+'\n              ' Text
+'crossref'    Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'warning$'    Name.Builtin
+'\n              ' Text
+'""'          Literal.String
+' '           Text
+'*'           Name.Variable
+'\n            ' Text
+'}'           Punctuation
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'"{\\em "'    Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'series'      Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'"\\/}"'      Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n          ' Text
+'if$'         Name.Builtin
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'key'         Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.crossref.editor' Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'" \\cite{"'  Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'crossref'    Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'"}"'         Literal.String
+' '           Text
+'*'           Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'format.incoll.inproc.crossref' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n  '        Text
+'editor'      Name.Variable
+' '           Text
+'field.or.null' Name.Variable
+' '           Text
+'author'      Name.Variable
+' '           Text
+'field.or.null' Name.Variable
+' '           Text
+'='           Name.Variable
+'\n  '        Text
+'or'          Name.Variable
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'key'         Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'booktitle'   Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'"need editor, key, or booktitle for "' Literal.String
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'" to crossref "' Literal.String
+' '           Text
+'*'           Name.Variable
+'\n              ' Text
+'crossref'    Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'warning$'    Name.Builtin
+'\n              ' Text
+'""'          Literal.String
+'\n            ' Text
+'}'           Punctuation
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'"In {\\em "' Literal.String
+' '           Text
+'booktitle'   Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'"\\/}"'      Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n          ' Text
+'if$'         Name.Builtin
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"In "'       Literal.String
+' '           Text
+'key'         Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'"In "'       Literal.String
+' '           Text
+'format.crossref.editor' Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'" \\cite{"'  Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'crossref'    Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'"}"'         Literal.String
+' '           Text
+'*'           Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'article'     Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.bibitem' Name.Variable
+'\n  '        Text
+'format.authors' Name.Variable
+' '           Text
+'"author"'    Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'format.title' Name.Variable
+' '           Text
+'"title"'     Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'crossref'    Name.Variable
+' '           Text
+'missing$'    Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'journal'     Name.Variable
+' '           Text
+'emphasize'   Name.Variable
+' '           Text
+'"journal"'   Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n      '    Text
+'format.vol.num.pages' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'format.date' Name.Variable
+' '           Text
+'"year"'      Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.article.crossref' Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+'\n      '    Text
+'format.pages' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'note'        Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'fin.entry'   Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'book'        Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.bibitem' Name.Variable
+'\n  '        Text
+'author'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.editors' Name.Variable
+' '           Text
+'"author and editor"' Literal.String
+' '           Text
+'output.check' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.authors' Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+'\n      '    Text
+'crossref'    Name.Variable
+' '           Text
+'missing$'    Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"author and editor"' Literal.String
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'either.or.check' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+"'skip$"      Name.Function
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'format.btitle' Name.Variable
+' '           Text
+'"title"'     Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'crossref'    Name.Variable
+' '           Text
+'missing$'    Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.bvolume' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'new.block'   Name.Variable
+'\n      '    Text
+'format.number.series' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'new.sentence' Name.Variable
+'\n      '    Text
+'publisher'   Name.Variable
+' '           Text
+'"publisher"' Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n      '    Text
+'address'     Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'new.block'   Name.Variable
+'\n      '    Text
+'format.book.crossref' Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'format.edition' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'format.date' Name.Variable
+' '           Text
+'"year"'      Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'note'        Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'fin.entry'   Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'booklet'     Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.bibitem' Name.Variable
+'\n  '        Text
+'format.authors' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'format.title' Name.Variable
+' '           Text
+'"title"'     Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'howpublished' Name.Variable
+' '           Text
+'address'     Name.Variable
+' '           Text
+'new.block.checkb' Name.Variable
+'\n  '        Text
+'howpublished' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'address'     Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'format.date' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'note'        Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'fin.entry'   Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'inbook'      Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.bibitem' Name.Variable
+'\n  '        Text
+'author'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.editors' Name.Variable
+' '           Text
+'"author and editor"' Literal.String
+' '           Text
+'output.check' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.authors' Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+'\n      '    Text
+'crossref'    Name.Variable
+' '           Text
+'missing$'    Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"author and editor"' Literal.String
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'either.or.check' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+"'skip$"      Name.Function
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'format.btitle' Name.Variable
+' '           Text
+'"title"'     Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'crossref'    Name.Variable
+' '           Text
+'missing$'    Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.bvolume' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'format.chapter.pages' Name.Variable
+' '           Text
+'"chapter and pages"' Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n      '    Text
+'new.block'   Name.Variable
+'\n      '    Text
+'format.number.series' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'new.sentence' Name.Variable
+'\n      '    Text
+'publisher'   Name.Variable
+' '           Text
+'"publisher"' Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n      '    Text
+'address'     Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.chapter.pages' Name.Variable
+' '           Text
+'"chapter and pages"' Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n      '    Text
+'new.block'   Name.Variable
+'\n      '    Text
+'format.book.crossref' Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'format.edition' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'format.date' Name.Variable
+' '           Text
+'"year"'      Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'note'        Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'fin.entry'   Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'incollection' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.bibitem' Name.Variable
+'\n  '        Text
+'format.authors' Name.Variable
+' '           Text
+'"author"'    Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'format.title' Name.Variable
+' '           Text
+'"title"'     Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'crossref'    Name.Variable
+' '           Text
+'missing$'    Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.in.ed.booktitle' Name.Variable
+' '           Text
+'"booktitle"' Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n      '    Text
+'format.bvolume' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'format.number.series' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'format.chapter.pages' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'new.sentence' Name.Variable
+'\n      '    Text
+'publisher'   Name.Variable
+' '           Text
+'"publisher"' Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n      '    Text
+'address'     Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'format.edition' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'format.date' Name.Variable
+' '           Text
+'"year"'      Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.incoll.inproc.crossref' Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+'\n      '    Text
+'format.chapter.pages' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'note'        Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'fin.entry'   Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'inproceedings' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.bibitem' Name.Variable
+'\n  '        Text
+'format.authors' Name.Variable
+' '           Text
+'"author"'    Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'format.title' Name.Variable
+' '           Text
+'"title"'     Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'crossref'    Name.Variable
+' '           Text
+'missing$'    Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.in.ed.booktitle' Name.Variable
+' '           Text
+'"booktitle"' Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n      '    Text
+'format.bvolume' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'format.number.series' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'format.pages' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'address'     Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'organization' Name.Variable
+' '           Text
+'publisher'   Name.Variable
+' '           Text
+'new.sentence.checkb' Name.Variable
+'\n          ' Text
+'organization' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n          ' Text
+'publisher'   Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n          ' Text
+'format.date' Name.Variable
+' '           Text
+'"year"'      Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'address'     Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+'\n          ' Text
+'format.date' Name.Variable
+' '           Text
+'"year"'      Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n          ' Text
+'new.sentence' Name.Variable
+'\n          ' Text
+'organization' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n          ' Text
+'publisher'   Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.incoll.inproc.crossref' Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+'\n      '    Text
+'format.pages' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'note'        Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'fin.entry'   Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'conference'  Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'inproceedings' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'manual'      Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.bibitem' Name.Variable
+'\n  '        Text
+'author'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'organization' Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+"'skip$"      Name.Function
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'organization' Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+'\n          ' Text
+'address'     Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.authors' Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'format.btitle' Name.Variable
+' '           Text
+'"title"'     Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'author'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'organization' Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'address'     Name.Variable
+' '           Text
+'new.block.checka' Name.Variable
+'\n          ' Text
+'address'     Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+"'skip$"      Name.Function
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'organization' Name.Variable
+' '           Text
+'address'     Name.Variable
+' '           Text
+'new.block.checkb' Name.Variable
+'\n      '    Text
+'organization' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'address'     Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'format.edition' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'format.date' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'note'        Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'fin.entry'   Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'mastersthesis' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.bibitem' Name.Variable
+'\n  '        Text
+'format.authors' Name.Variable
+' '           Text
+'"author"'    Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'format.title' Name.Variable
+' '           Text
+'"title"'     Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'"Master\'s thesis"' Literal.String
+' '           Text
+'format.thesis.type' Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+'\n  '        Text
+'school'      Name.Variable
+' '           Text
+'"school"'    Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'address'     Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'format.date' Name.Variable
+' '           Text
+'"year"'      Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'note'        Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'fin.entry'   Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'misc'        Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.bibitem' Name.Variable
+'\n  '        Text
+'format.authors' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'title'       Name.Variable
+' '           Text
+'howpublished' Name.Variable
+' '           Text
+'new.block.checkb' Name.Variable
+'\n  '        Text
+'format.title' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'howpublished' Name.Variable
+' '           Text
+'new.block.checka' Name.Variable
+'\n  '        Text
+'howpublished' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'format.date' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'note'        Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'fin.entry'   Name.Variable
+'\n  '        Text
+'empty.misc.check' Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'phdthesis'   Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.bibitem' Name.Variable
+'\n  '        Text
+'format.authors' Name.Variable
+' '           Text
+'"author"'    Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'format.btitle' Name.Variable
+' '           Text
+'"title"'     Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'"PhD thesis"' Literal.String
+' '           Text
+'format.thesis.type' Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+'\n  '        Text
+'school'      Name.Variable
+' '           Text
+'"school"'    Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'address'     Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'format.date' Name.Variable
+' '           Text
+'"year"'      Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'note'        Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'fin.entry'   Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'proceedings' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.bibitem' Name.Variable
+'\n  '        Text
+'editor'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'organization' Name.Variable
+' '           Text
+'output'      Name.Variable
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'format.editors' Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'format.btitle' Name.Variable
+' '           Text
+'"title"'     Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'format.bvolume' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'format.number.series' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'address'     Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'publisher'   Name.Variable
+' '           Text
+'new.sentence.checka' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'organization' Name.Variable
+' '           Text
+'publisher'   Name.Variable
+' '           Text
+'new.sentence.checkb' Name.Variable
+'\n          ' Text
+'organization' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n      '    Text
+'publisher'   Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n      '    Text
+'format.date' Name.Variable
+' '           Text
+'"year"'      Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'address'     Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+'\n      '    Text
+'format.date' Name.Variable
+' '           Text
+'"year"'      Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n      '    Text
+'new.sentence' Name.Variable
+'\n      '    Text
+'editor'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+"'skip$"      Name.Function
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'organization' Name.Variable
+' '           Text
+'output'      Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n      '    Text
+'publisher'   Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'note'        Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'fin.entry'   Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'techreport'  Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.bibitem' Name.Variable
+'\n  '        Text
+'format.authors' Name.Variable
+' '           Text
+'"author"'    Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'format.title' Name.Variable
+' '           Text
+'"title"'     Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'format.tr.number' Name.Variable
+' '           Text
+'output.nonnull' Name.Variable
+'\n  '        Text
+'institution' Name.Variable
+' '           Text
+'"institution"' Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'address'     Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'format.date' Name.Variable
+' '           Text
+'"year"'      Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'note'        Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'fin.entry'   Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'unpublished' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'output.bibitem' Name.Variable
+'\n  '        Text
+'format.authors' Name.Variable
+' '           Text
+'"author"'    Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'format.title' Name.Variable
+' '           Text
+'"title"'     Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'new.block'   Name.Variable
+'\n  '        Text
+'note'        Name.Variable
+' '           Text
+'"note"'      Literal.String
+' '           Text
+'output.check' Name.Variable
+'\n  '        Text
+'format.date' Name.Variable
+' '           Text
+'output'      Name.Variable
+'\n  '        Text
+'fin.entry'   Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'default.type' Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+' '           Text
+'misc'        Name.Variable
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'jan'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"January"'   Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'feb'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"February"'  Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'mar'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"March"'     Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'apr'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"April"'     Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'may'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"May"'       Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'jun'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"June"'      Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'jul'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"July"'      Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'aug'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"August"'    Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'sep'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"September"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'oct'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"October"'   Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'nov'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"November"'  Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'dec'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"December"'  Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'acmcs'       Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"ACM Computing Surveys"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'acta'        Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"Acta Informatica"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'cacm'        Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"Communications of the ACM"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'ibmjrd'      Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"IBM Journal of Research and Development"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'ibmsj'       Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"IBM Systems Journal"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'ieeese'      Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"IEEE Transactions on Software Engineering"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'ieeetc'      Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"IEEE Transactions on Computers"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'ieeetcad'    Name.Variable
+'}'           Punctuation
+'\n '         Text
+'{'           Punctuation
+'"IEEE Transactions on Computer-Aided Design of Integrated Circuits"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'ipl'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"Information Processing Letters"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'jacm'        Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"Journal of the ACM"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'jcss'        Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"Journal of Computer and System Sciences"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'scp'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"Science of Computer Programming"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'sicomp'      Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"SIAM Journal on Computing"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'tocs'        Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"ACM Transactions on Computer Systems"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'tods'        Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"ACM Transactions on Database Systems"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'tog'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"ACM Transactions on Graphics"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'toms'        Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"ACM Transactions on Mathematical Software"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'toois'       Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"ACM Transactions on Office Information Systems"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'toplas'      Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"ACM Transactions on Programming Languages and Systems"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'MACRO'       Keyword
+' '           Text
+'{'           Punctuation
+'tcs'         Name.Variable
+'}'           Punctuation
+' '           Text
+'{'           Punctuation
+'"Theoretical Computer Science"' Literal.String
+'}'           Punctuation
+'\n\n'        Text
+
+'READ'        Keyword
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'sortify'     Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'purify$'     Name.Builtin
+'\n  '        Text
+'"l"'         Literal.String
+' '           Text
+'change.case$' Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'INTEGERS'    Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'len'         Name.Variable
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'chop.word'   Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+"'s"          Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+"'len"        Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'s'           Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'len'         Name.Variable
+' '           Text
+'substring$'  Name.Builtin
+' '           Text
+'='           Name.Variable
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'s'           Name.Variable
+' '           Text
+'len'         Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'+'           Name.Variable
+' '           Text
+'global.max$' Name.Builtin
+' '           Text
+'substring$'  Name.Builtin
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+"'s"          Name.Function
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'sort.format.names' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+"'s"          Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'#1'          Literal.Number
+' '           Text
+"'nameptr"    Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'""'          Literal.String
+'\n  '        Text
+'s'           Name.Variable
+' '           Text
+'num.names$'  Name.Builtin
+' '           Text
+"'numnames"   Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'numnames'    Name.Variable
+' '           Text
+"'namesleft"  Name.Function
+' '           Text
+':='          Name.Variable
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'namesleft'   Name.Variable
+' '           Text
+'#0'          Literal.Number
+' '           Text
+'>'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'nameptr'     Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'>'           Name.Variable
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"   "'       Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+"'skip$"      Name.Function
+'\n      '    Text
+'if$'         Name.Builtin
+'\n      '    Text
+'s'           Name.Variable
+' '           Text
+'nameptr'     Name.Variable
+' '           Text
+'"{vv{ } }{ll{ }}{  ff{ }}{  jj{ }}"' Literal.String
+' '           Text
+'format.name$' Name.Builtin
+' '           Text
+"'t"          Name.Function
+' '           Text
+':='          Name.Variable
+'\n      '    Text
+'nameptr'     Name.Variable
+' '           Text
+'numnames'    Name.Variable
+' '           Text
+'='           Name.Variable
+' '           Text
+'t'           Name.Variable
+' '           Text
+'"others"'    Literal.String
+' '           Text
+'='           Name.Variable
+' '           Text
+'and'         Name.Variable
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"et al"'     Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'t'           Name.Variable
+' '           Text
+'sortify'     Name.Variable
+' '           Text
+'*'           Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n      '    Text
+'nameptr'     Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'+'           Name.Variable
+' '           Text
+"'nameptr"    Name.Function
+' '           Text
+':='          Name.Variable
+'\n      '    Text
+'namesleft'   Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'-'           Name.Variable
+' '           Text
+"'namesleft"  Name.Function
+' '           Text
+':='          Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'while$'      Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'sort.format.title' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+"'t"          Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'"A "'        Literal.String
+' '           Text
+'#2'          Literal.Number
+'\n    '      Text
+'"An "'       Literal.String
+' '           Text
+'#3'          Literal.Number
+'\n      '    Text
+'"The "'      Literal.String
+' '           Text
+'#4'          Literal.Number
+' '           Text
+'t'           Name.Variable
+' '           Text
+'chop.word'   Name.Variable
+'\n    '      Text
+'chop.word'   Name.Variable
+'\n  '        Text
+'chop.word'   Name.Variable
+'\n  '        Text
+'sortify'     Name.Variable
+'\n  '        Text
+'#1'          Literal.Number
+' '           Text
+'global.max$' Name.Builtin
+' '           Text
+'substring$'  Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'author.sort' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'author'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'key'         Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"to sort, need author or key in "' Literal.String
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'warning$'    Name.Builtin
+'\n          ' Text
+'""'          Literal.String
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'key'         Name.Variable
+' '           Text
+'sortify'     Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'author'      Name.Variable
+' '           Text
+'sort.format.names' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'author.editor.sort' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'author'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'key'         Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'"to sort, need author, editor, or key in "' Literal.String
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'warning$'    Name.Builtin
+'\n              ' Text
+'""'          Literal.String
+'\n            ' Text
+'}'           Punctuation
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'key'         Name.Variable
+' '           Text
+'sortify'     Name.Variable
+' '           Text
+'}'           Punctuation
+'\n          ' Text
+'if$'         Name.Builtin
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'sort.format.names' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'author'      Name.Variable
+' '           Text
+'sort.format.names' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'author.organization.sort' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'author'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'organization' Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'key'         Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'"to sort, need author, organization, or key in "' Literal.String
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'warning$'    Name.Builtin
+'\n              ' Text
+'""'          Literal.String
+'\n            ' Text
+'}'           Punctuation
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'key'         Name.Variable
+' '           Text
+'sortify'     Name.Variable
+' '           Text
+'}'           Punctuation
+'\n          ' Text
+'if$'         Name.Builtin
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"The "'      Literal.String
+' '           Text
+'#4'          Literal.Number
+' '           Text
+'organization' Name.Variable
+' '           Text
+'chop.word'   Name.Variable
+' '           Text
+'sortify'     Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'author'      Name.Variable
+' '           Text
+'sort.format.names' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'editor.organization.sort' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'organization' Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'key'         Name.Variable
+' '           Text
+'empty$'      Name.Builtin
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'"to sort, need editor, organization, or key in "' Literal.String
+' '           Text
+'cite$'       Name.Builtin
+' '           Text
+'*'           Name.Variable
+' '           Text
+'warning$'    Name.Builtin
+'\n              ' Text
+'""'          Literal.String
+'\n            ' Text
+'}'           Punctuation
+'\n            ' Text
+'{'           Punctuation
+' '           Text
+'key'         Name.Variable
+' '           Text
+'sortify'     Name.Variable
+' '           Text
+'}'           Punctuation
+'\n          ' Text
+'if$'         Name.Builtin
+'\n        '  Text
+'}'           Punctuation
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'"The "'      Literal.String
+' '           Text
+'#4'          Literal.Number
+' '           Text
+'organization' Name.Variable
+' '           Text
+'chop.word'   Name.Variable
+' '           Text
+'sortify'     Name.Variable
+' '           Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'editor'      Name.Variable
+' '           Text
+'sort.format.names' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'presort'     Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'type$'       Name.Builtin
+' '           Text
+'"book"'      Literal.String
+' '           Text
+'='           Name.Variable
+'\n  '        Text
+'type$'       Name.Builtin
+' '           Text
+'"inbook"'    Literal.String
+' '           Text
+'='           Name.Variable
+'\n  '        Text
+'or'          Name.Variable
+'\n    '      Text
+"'author.editor.sort" Name.Function
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'type$'       Name.Builtin
+' '           Text
+'"proceedings"' Literal.String
+' '           Text
+'='           Name.Variable
+'\n        '  Text
+"'editor.organization.sort" Name.Function
+'\n        '  Text
+'{'           Punctuation
+' '           Text
+'type$'       Name.Builtin
+' '           Text
+'"manual"'    Literal.String
+' '           Text
+'='           Name.Variable
+'\n            ' Text
+"'author.organization.sort" Name.Function
+'\n            ' Text
+"'author.sort" Name.Function
+'\n          ' Text
+'if$'         Name.Builtin
+'\n        '  Text
+'}'           Punctuation
+'\n      '    Text
+'if$'         Name.Builtin
+'\n    '      Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'"    "'      Literal.String
+'\n  '        Text
+'*'           Name.Variable
+'\n  '        Text
+'year'        Name.Variable
+' '           Text
+'field.or.null' Name.Variable
+' '           Text
+'sortify'     Name.Variable
+'\n  '        Text
+'*'           Name.Variable
+'\n  '        Text
+'"    "'      Literal.String
+'\n  '        Text
+'*'           Name.Variable
+'\n  '        Text
+'title'       Name.Variable
+' '           Text
+'field.or.null' Name.Variable
+'\n  '        Text
+'sort.format.title' Name.Variable
+'\n  '        Text
+'*'           Name.Variable
+'\n  '        Text
+'#1'          Literal.Number
+' '           Text
+'entry.max$'  Name.Builtin
+' '           Text
+'substring$'  Name.Builtin
+'\n  '        Text
+"'sort.key$"  Name.Function
+' '           Text
+':='          Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'ITERATE'     Keyword
+' '           Text
+'{'           Punctuation
+'presort'     Name.Variable
+'}'           Punctuation
+'\n\n'        Text
+
+'SORT'        Keyword
+'\n\n'        Text
+
+'STRINGS'     Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'longest.label' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'INTEGERS'    Keyword
+' '           Text
+'{'           Punctuation
+' '           Text
+'number.label' Name.Variable
+' '           Text
+'longest.label.width' Name.Variable
+' '           Text
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'initialize.longest.label' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'""'          Literal.String
+' '           Text
+"'longest.label" Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'#1'          Literal.Number
+' '           Text
+"'number.label" Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'#0'          Literal.Number
+' '           Text
+"'longest.label.width" Name.Function
+' '           Text
+':='          Name.Variable
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'longest.label.pass' Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'number.label' Name.Variable
+' '           Text
+'int.to.str$' Name.Builtin
+' '           Text
+"'label"      Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'number.label' Name.Variable
+' '           Text
+'#1'          Literal.Number
+' '           Text
+'+'           Name.Variable
+' '           Text
+"'number.label" Name.Function
+' '           Text
+':='          Name.Variable
+'\n  '        Text
+'label'       Name.Variable
+' '           Text
+'width$'      Name.Builtin
+' '           Text
+'longest.label.width' Name.Variable
+' '           Text
+'>'           Name.Variable
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'label'       Name.Variable
+' '           Text
+"'longest.label" Name.Function
+' '           Text
+':='          Name.Variable
+'\n      '    Text
+'label'       Name.Variable
+' '           Text
+'width$'      Name.Builtin
+' '           Text
+"'longest.label.width" Name.Function
+' '           Text
+':='          Name.Variable
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+"'skip$"      Name.Function
+'\n  '        Text
+'if$'         Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'EXECUTE'     Keyword
+' '           Text
+'{'           Punctuation
+'initialize.longest.label' Name.Variable
+'}'           Punctuation
+'\n\n'        Text
+
+'ITERATE'     Keyword
+' '           Text
+'{'           Punctuation
+'longest.label.pass' Name.Variable
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'begin.bib'   Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'preamble$'   Name.Builtin
+' '           Text
+'empty$'      Name.Builtin
+'\n    '      Text
+"'skip$"      Name.Function
+'\n    '      Text
+'{'           Punctuation
+' '           Text
+'preamble$'   Name.Builtin
+' '           Text
+'write$'      Name.Builtin
+' '           Text
+'newline$'    Name.Builtin
+' '           Text
+'}'           Punctuation
+'\n  '        Text
+'if$'         Name.Builtin
+'\n  '        Text
+'"\\begin{thebibliography}{"' Literal.String
+'  '          Text
+'longest.label' Name.Variable
+'  '          Text
+'*'           Name.Variable
+' '           Text
+'"}"'         Literal.String
+' '           Text
+'*'           Name.Variable
+' '           Text
+'write$'      Name.Builtin
+' '           Text
+'newline$'    Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'EXECUTE'     Keyword
+' '           Text
+'{'           Punctuation
+'begin.bib'   Name.Variable
+'}'           Punctuation
+'\n\n'        Text
+
+'EXECUTE'     Keyword
+' '           Text
+'{'           Punctuation
+'init.state.consts' Name.Variable
+'}'           Punctuation
+'\n\n'        Text
+
+'ITERATE'     Keyword
+' '           Text
+'{'           Punctuation
+'call.type$'  Name.Builtin
+'}'           Punctuation
+'\n\n'        Text
+
+'FUNCTION'    Keyword
+' '           Text
+'{'           Punctuation
+'end.bib'     Name.Variable
+'}'           Punctuation
+'\n'          Text
+
+'{'           Punctuation
+' '           Text
+'newline$'    Name.Builtin
+'\n  '        Text
+'"\\end{thebibliography}"' Literal.String
+' '           Text
+'write$'      Name.Builtin
+' '           Text
+'newline$'    Name.Builtin
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'EXECUTE'     Keyword
+' '           Text
+'{'           Punctuation
+'end.bib'     Name.Variable
+'}'           Punctuation
+'\n'          Text

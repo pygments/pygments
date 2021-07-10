@@ -1,0 +1,19 @@
+---input---
+sum by (app, proc) (instance_memory_usage_bytes)
+
+---tokens---
+'sum'         Keyword
+' '           Text.Whitespace
+'by'          Keyword
+' '           Text.Whitespace
+'('           Operator
+'app'         Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'proc'        Name.Variable
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'instance_memory_usage_bytes' Name.Variable
+')'           Operator
+'\n'          Text.Whitespace

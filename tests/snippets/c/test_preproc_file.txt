@@ -1,0 +1,17 @@
+---input---
+#include <foo>
+#    include <foo>
+
+---tokens---
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<foo>'       Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'    '        Text.Whitespace
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<foo>'       Comment.PreprocFile
+'\n'          Comment.Preproc

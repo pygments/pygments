@@ -51,6 +51,7 @@ Programming languages
 * `Dart <https://dart.dev/>`_
 * DCPU-16
 * `Delphi <https://www.embarcadero.com/products/delphi>`_
+* `DOT / Graphviz <https://graphviz.org>`_
 * `Devicetree <https://www.devicetree.org/>`_
 * `Dylan <https://opendylan.org/>`_ (incl. console)
 * `Eiffel <https://www.eiffel.org/>`_
@@ -102,6 +103,7 @@ Programming languages
 * `Lua <https://lua.org>`_
 * `Mathematica <https://www.wolfram.com/mathematica/>`_
 * `Matlab <https://www.mathworks.com/products/matlab.html>`_
+* `The Meson Build System <https://mesonbuild.com>`_
 * `MiniScript <https://miniscript.org>`_
 * `Modelica <https://www.modelica.org/>`_
 * `Modula-2 <https://www.modula2.org/>`_
@@ -218,7 +220,8 @@ Other markup
 * Apache Pig
 * BBCode
 * CapDL
-* `Cap'n Proto <https://capnproto.com>`_
+* `Cap'n Proto <https://capnproto.org>`_
+* `CDDL <https://datatracker.ietf.org/doc/rfc8610/>`_
 * CMake
 * `Csound <https://csound.com>`_ scores
 * CSS
@@ -253,12 +256,15 @@ Other markup
 * MQL
 * MySQL
 * NCAR command language
+* `NestedText <https://nestedtext.org/>`_
 * Nginx config files
 * `Nix language <https://nixos.org/nix/>`_
 * NSIS scripts
 * Notmuch
+* `OMG IDL <https://www.omg.org/spec/IDL/About-IDL/>`_
 * `PEG <https://bford.info/packrat/>`_
 * POV-Ray scenes
+* `Procfile <https://devcenter.heroku.com/articles/procfile#procfile-format>`_
 * `PromQL <https://prometheus.io/docs/prometheus/latest/querying/basics/>`_
 * `Puppet <https://puppet.com/>`_
 * QML

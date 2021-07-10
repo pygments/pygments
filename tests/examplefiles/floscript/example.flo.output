@@ -1,0 +1,314 @@
+'#example mission box1.flo' Comment.Single
+'\n'          Text
+
+'#from: https://github.com/ioflo/ioflo' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'house'       Keyword
+' '           Text
+'box1'        Name
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'framer'      Keyword
+' '           Text
+'vehiclesim'  Name
+' '           Text
+'be'          Operator.Word
+' '           Text
+'active'      Name
+' '           Text
+'first'       Name.Builtin
+' '           Text
+'vehicle_run' Name
+'\n'          Text
+
+'      '      Text
+'frame'       Keyword
+' '           Text
+'vehicle_run' Name
+'\n'          Text
+
+'         '   Text
+'do'          Name.Builtin
+' '           Text
+'simulator'   Name
+' '           Text
+'motion'      Name
+' '           Text
+'uuv'         Name
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'framer'      Keyword
+' '           Text
+'mission'     Name
+' '           Text
+'be'          Operator.Word
+' '           Text
+'active'      Name
+' '           Text
+'first'       Name.Builtin
+' '           Text
+'northleg'    Name
+'\n'          Text
+
+'      '      Text
+'frame'       Keyword
+' '           Text
+'northleg'    Name
+'\n'          Text
+
+'         '   Text
+'set'         Name.Builtin
+' '           Text
+'elapsed'     Name
+' '           Text
+'with'        Operator.Word
+' '           Text
+'20.0'        Literal.Number.Float
+'\n'          Text
+
+'         '   Text
+'set'         Name.Builtin
+' '           Text
+'heading'     Name
+' '           Text
+'with'        Operator.Word
+' '           Text
+'0.0'         Literal.Number.Float
+'\n'          Text
+
+'         '   Text
+'set'         Name.Builtin
+' '           Text
+'depth'       Name
+' '           Text
+'with'        Operator.Word
+' '           Text
+'5.0'         Literal.Number.Float
+'\n'          Text
+
+'         '   Text
+'set'         Name.Builtin
+' '           Text
+'speed'       Name
+' '           Text
+'with'        Operator.Word
+' '           Text
+'2.5'         Literal.Number.Float
+'\n'          Text
+
+'         '   Text
+'go'          Name.Builtin
+' '           Text
+'next'        Name.Builtin
+' '           Text
+'if'          Operator.Word
+' '           Text
+'elapsed'     Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'goal'        Name
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'frame'       Keyword
+' '           Text
+'eastleg'     Name
+'\n'          Text
+
+'         '   Text
+'set'         Name.Builtin
+' '           Text
+'heading'     Name
+' '           Text
+'with'        Operator.Word
+' '           Text
+'90.0'        Literal.Number.Float
+'\n'          Text
+
+'         '   Text
+'go'          Name.Builtin
+' '           Text
+'next'        Name.Builtin
+' '           Text
+'if'          Operator.Word
+' '           Text
+'elapsed'     Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'goal'        Name
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'frame'       Keyword
+' '           Text
+'southleg'    Name
+'\n'          Text
+
+'         '   Text
+'set'         Name.Builtin
+' '           Text
+'heading'     Name
+' '           Text
+'with'        Operator.Word
+' '           Text
+'180.0'       Literal.Number.Float
+'\n'          Text
+
+'         '   Text
+'go'          Name.Builtin
+' '           Text
+'next'        Name.Builtin
+' '           Text
+'if'          Operator.Word
+' '           Text
+'elapsed'     Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'goal'        Name
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'frame'       Keyword
+' '           Text
+'westleg'     Name
+'\n'          Text
+
+'         '   Text
+'set'         Name.Builtin
+' '           Text
+'heading'     Name
+' '           Text
+'with'        Operator.Word
+' '           Text
+'270.0'       Literal.Number.Float
+'\n'          Text
+
+'         '   Text
+'go'          Name.Builtin
+' '           Text
+'next'        Name.Builtin
+' '           Text
+'if'          Operator.Word
+' '           Text
+'elapsed'     Name
+' '           Text
+'>'           Operator
+'='           Operator
+' '           Text
+'goal'        Name
+'\n'          Text
+
+'\n'          Text
+
+'      '      Text
+'frame'       Keyword
+' '           Text
+'mission_stop' Name
+'\n'          Text
+
+'         '   Text
+'bid'         Name.Builtin
+' '           Text
+'stop'        Name.Builtin
+' '           Text
+'vehiclesim'  Name
+'\n'          Text
+
+'         '   Text
+'bid'         Name.Builtin
+' '           Text
+'stop'        Name.Builtin
+' '           Text
+'autopilot'   Name
+'\n'          Text
+
+'         '   Text
+'bid'         Name.Builtin
+' '           Text
+'stop'        Name.Builtin
+' '           Text
+'me'          Name
+'\n'          Text
+
+'\n'          Text
+
+'   '         Text
+'framer'      Keyword
+' '           Text
+'autopilot'   Name
+' '           Text
+'be'          Operator.Word
+' '           Text
+'active'      Name
+' '           Text
+'first'       Name.Builtin
+' '           Text
+'autopilot_run' Name
+'\n'          Text
+
+'      '      Text
+'frame'       Keyword
+' '           Text
+'autopilot_run' Name
+'\n'          Text
+
+'         '   Text
+'do'          Name.Builtin
+' '           Text
+'controller'  Name
+' '           Text
+'pid'         Name
+' '           Text
+'speed'       Name
+'\n'          Text
+
+'         '   Text
+'do'          Name.Builtin
+' '           Text
+'controller'  Name
+' '           Text
+'pid'         Name
+' '           Text
+'heading'     Name
+'\n'          Text
+
+'         '   Text
+'do'          Name.Builtin
+' '           Text
+'controller'  Name
+' '           Text
+'pid'         Name
+' '           Text
+'depth'       Name
+'\n'          Text
+
+'         '   Text
+'do'          Name.Builtin
+' '           Text
+'controller'  Name
+' '           Text
+'pid'         Name
+' '           Text
+'pitch'       Name
+'\n'          Text

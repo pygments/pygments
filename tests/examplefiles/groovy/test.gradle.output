@@ -1,0 +1,109 @@
+'apply'       Name
+' '           Text
+'plugin:'     Name.Label
+' '           Text
+"'java'"      Literal.String.Single
+'\n'          Text
+
+'\n'          Text
+
+'repositories' Name
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'mavenCentral' Name
+'('           Operator
+')'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'dependencies' Name
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'testCompile' Name
+' '           Text
+"'junit:junit:4.12'" Literal.String.Single
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'task'        Name
+' '           Text
+'sayHello'    Name
+' '           Text
+'<'           Operator
+'<'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'SomeClass'   Name
+'.'           Operator
+'worldString' Name.Attribute
+'\n'          Text
+
+'    '        Text
+'println'     Name
+' '           Text
+'"Hello ${x}"' Literal.String.Double
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'private'     Keyword.Declaration
+' '           Text
+'class'       Keyword.Declaration
+' '           Text
+'SomeClass'   Name.Class
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'public'      Keyword.Declaration
+' '           Text
+'static'      Keyword.Declaration
+' '           Text
+'String'      Name
+' '           Text
+'getWorldString' Name
+'('           Operator
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'"world"'     Literal.String.Double
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text

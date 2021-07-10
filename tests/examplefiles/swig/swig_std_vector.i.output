@@ -1,0 +1,1639 @@
+'//\n'        Comment.Single
+
+'// std::vector\n' Comment.Single
+
+'//\n'        Comment.Single
+
+'\n'          Text.Whitespace
+
+'%include'    Name.Function
+' '           Text.Whitespace
+'<'           Operator
+'std_container' Name
+'.'           Punctuation
+'i'           Name
+'>'           Operator
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Vector\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'%define'     Name.Function
+' '           Text.Whitespace
+'%std_vector_methods' Name.Function
+'('           Punctuation
+'vector'      Name
+'.'           Punctuation
+'.'           Punctuation
+'.'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'%std_sequence_methods' Name.Function
+'('           Punctuation
+'vector'      Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'reserve'     Name
+'('           Punctuation
+'size_type'   Name
+' '           Text.Whitespace
+'n'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'size_type'   Name
+' '           Text.Whitespace
+'capacity'    Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'const'       Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'%enddef'     Name.Function
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'%define'     Name.Function
+' '           Text.Whitespace
+'%std_vector_methods_val' Name.Function
+'('           Punctuation
+'vector'      Name
+'.'           Punctuation
+'.'           Punctuation
+'.'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'%std_sequence_methods_val' Name.Function
+'('           Punctuation
+'vector'      Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'reserve'     Name
+'('           Punctuation
+'size_type'   Name
+' '           Text.Whitespace
+'n'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'size_type'   Name
+' '           Text.Whitespace
+'capacity'    Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'const'       Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'%enddef'     Name.Function
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// ------------------------------------------------------------------------\n' Comment.Single
+
+'// std::vector\n' Comment.Single
+
+'// \n'       Comment.Single
+
+'// The aim of all that follows would be to integrate std::vector with \n' Comment.Single
+
+'// as much as possible, namely, to allow the user to pass and \n' Comment.Single
+
+'// be returned tuples or lists.\n' Comment.Single
+
+'// const declarations are used to guess the intent of the function being\n' Comment.Single
+
+'// exported; therefore, the following rationale is applied:\n' Comment.Single
+
+'// \n'       Comment.Single
+
+'//   -- f(std::vector<T>), f(const std::vector<T>&):\n' Comment.Single
+
+'//      the parameter being read-only, either a sequence or a\n' Comment.Single
+
+'//      previously wrapped std::vector<T> can be passed.\n' Comment.Single
+
+'//   -- f(std::vector<T>&), f(std::vector<T>*):\n' Comment.Single
+
+'//      the parameter may be modified; therefore, only a wrapped std::vector\n' Comment.Single
+
+'//      can be passed.\n' Comment.Single
+
+'//   -- std::vector<T> f(), const std::vector<T>& f():\n' Comment.Single
+
+'//      the vector is returned by copy; therefore, a sequence of T:s \n' Comment.Single
+
+'//      is returned which is most easily used in other functions\n' Comment.Single
+
+'//   -- std::vector<T>& f(), std::vector<T>* f():\n' Comment.Single
+
+'//      the vector is returned by reference; therefore, a wrapped std::vector\n' Comment.Single
+
+'//      is returned\n' Comment.Single
+
+'//   -- const std::vector<T>* f(), f(const std::vector<T>*):\n' Comment.Single
+
+'//      for consistency, they expect and return a plain vector pointer.\n' Comment.Single
+
+'// ------------------------------------------------------------------------\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'%'           Operator
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<vector>'    Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'%'           Operator
+'}'           Punctuation
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// exported classes\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'namespace'   Keyword
+' '           Text.Whitespace
+'std'         Name.Namespace
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'template'    Keyword
+'<'           Operator
+'class'       Keyword
+' '           Text
+'_Tp'         Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text
+'_Alloc'      Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'allocator'   Name
+'<'           Operator
+' '           Text.Whitespace
+'_Tp'         Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'>'           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'class'       Keyword
+' '           Text
+'vector'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'public'      Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'size_t'      Keyword.Type
+' '           Text.Whitespace
+'size_type'   Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'ptrdiff_t'   Keyword.Type
+' '           Text.Whitespace
+'difference_type' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'_Tp'         Name
+' '           Text.Whitespace
+'value_type'  Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'value_type'  Name
+'*'           Operator
+' '           Text.Whitespace
+'pointer'     Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'value_type'  Name
+'*'           Operator
+' '           Text.Whitespace
+'const_pointer' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'_Tp'         Name
+'&'           Operator
+' '           Text.Whitespace
+'reference'   Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'_Tp'         Name
+'&'           Operator
+' '           Text.Whitespace
+'const_reference' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'allocator_type' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%traits_swigtype' Name.Function
+'('           Punctuation
+'_Tp'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%traits_enum' Name.Function
+'('           Punctuation
+'_Tp'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%fragment'   Name.Function
+'('           Punctuation
+'SWIG_Traits_frag' Name
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'_Tp'         Name
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'header'      Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t      '    Text.Whitespace
+'fragment'    Name
+'='           Operator
+'SWIG_Traits_frag' Name
+'('           Punctuation
+'_Tp'         Name
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t      '    Text.Whitespace
+'fragment'    Name
+'='           Operator
+'"'           Literal.String
+'StdVectorTraits' Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'namespace'   Keyword
+' '           Text.Whitespace
+'swig'        Name.Namespace
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'template'    Keyword
+' '           Text.Whitespace
+'<'           Operator
+'>'           Operator
+'  '          Text.Whitespace
+'struct'      Keyword
+' '           Text
+'traits'      Name.Class
+'<'           Operator
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'_Tp'         Name
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t  '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'pointer_category' Name
+' '           Text.Whitespace
+'category'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t  '        Text.Whitespace
+'static'      Keyword
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'char'        Keyword.Type
+'*'           Operator
+' '           Text.Whitespace
+'type_name'   Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t    '      Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String
+'std::vector<' Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'#_Tp'        Comment.Preproc
+' '           Text.Whitespace
+'"'           Literal.String
+','           Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'#_Alloc'     Comment.Preproc
+' '           Text.Whitespace
+'"'           Literal.String
+' >'          Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%typemap_traits_ptr' Name.Function
+'('           Punctuation
+'SWIG_TYPECHECK_VECTOR' Name
+','           Punctuation
+' '           Text.Whitespace
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'_Tp'         Name
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'ifdef %swig_vector_methods' Comment.Preproc
+'\n'          Comment.Preproc
+
+'    '        Text.Whitespace
+'// Add swig/language extra methods\n' Comment.Single
+
+'    '        Text.Whitespace
+'%swig_vector_methods' Name.Function
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'_Tp'         Name
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%std_vector_methods' Name.Function
+'('           Punctuation
+'vector'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// ***\n'    Comment.Single
+
+'  '          Text.Whitespace
+'// This specialization should disappear or get simplified when\n' Comment.Single
+
+'  '          Text.Whitespace
+"// a 'const SWIGTYPE*&' can be defined\n" Comment.Single
+
+'  '          Text.Whitespace
+'// ***\n'    Comment.Single
+
+'  '          Text.Whitespace
+'template'    Keyword
+'<'           Operator
+'class'       Keyword
+' '           Text
+'_Tp'         Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text
+'_Alloc'      Name.Class
+' '           Text.Whitespace
+'>'           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'class'       Keyword
+' '           Text
+'vector'      Name.Class
+'<'           Operator
+'_Tp'         Name
+'*'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'public'      Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'size_t'      Keyword.Type
+' '           Text.Whitespace
+'size_type'   Name
+';'           Punctuation
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'ptrdiff_t'   Keyword.Type
+' '           Text.Whitespace
+'difference_type' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'_Tp'         Name
+'*'           Operator
+' '           Text.Whitespace
+'value_type'  Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'value_type'  Name
+'*'           Operator
+' '           Text.Whitespace
+'pointer'     Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'value_type'  Name
+'*'           Operator
+' '           Text.Whitespace
+'const_pointer' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'value_type'  Name
+' '           Text.Whitespace
+'reference'   Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'value_type'  Name
+' '           Text.Whitespace
+'const_reference' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'allocator_type' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%traits_swigtype' Name.Function
+'('           Punctuation
+'_Tp'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%fragment'   Name.Function
+'('           Punctuation
+'SWIG_Traits_frag' Name
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'_Tp'         Name
+'*'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'header'      Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t      '    Text.Whitespace
+'fragment'    Name
+'='           Operator
+'SWIG_Traits_frag' Name
+'('           Punctuation
+'_Tp'         Name
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t      '    Text.Whitespace
+'fragment'    Name
+'='           Operator
+'"'           Literal.String
+'StdVectorTraits' Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'namespace'   Keyword
+' '           Text.Whitespace
+'swig'        Name.Namespace
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'template'    Keyword
+' '           Text.Whitespace
+'<'           Operator
+'>'           Operator
+'  '          Text.Whitespace
+'struct'      Keyword
+' '           Text
+'traits'      Name.Class
+'<'           Operator
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'_Tp'         Name
+'*'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t  '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'value_category' Name
+' '           Text.Whitespace
+'category'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t  '        Text.Whitespace
+'static'      Keyword
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'char'        Keyword.Type
+'*'           Operator
+' '           Text.Whitespace
+'type_name'   Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t    '      Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String
+'std::vector<' Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'#_Tp'        Comment.Preproc
+' '           Text.Whitespace
+'"'           Literal.String
+' *,'         Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'#_Alloc'     Comment.Preproc
+' '           Text.Whitespace
+'"'           Literal.String
+' >'          Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%typemap_traits_ptr' Name.Function
+'('           Punctuation
+'SWIG_TYPECHECK_VECTOR' Name
+','           Punctuation
+' '           Text.Whitespace
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'_Tp'         Name
+'*'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'ifdef %swig_vector_methods_val' Comment.Preproc
+'\n'          Comment.Preproc
+
+'    '        Text.Whitespace
+'// Add swig/language extra methods\n' Comment.Single
+
+'    '        Text.Whitespace
+'%swig_vector_methods_val' Name.Function
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'_Tp'         Name
+'*'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%std_vector_methods_val' Name.Function
+'('           Punctuation
+'vector'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// ***\n'    Comment.Single
+
+'  '          Text.Whitespace
+'// const pointer specialization\n' Comment.Single
+
+'  '          Text.Whitespace
+'// ***\n'    Comment.Single
+
+'  '          Text.Whitespace
+'template'    Keyword
+'<'           Operator
+'class'       Keyword
+' '           Text
+'_Tp'         Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text
+'_Alloc'      Name.Class
+' '           Text.Whitespace
+'>'           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'class'       Keyword
+' '           Text
+'vector'      Name.Class
+'<'           Operator
+'_Tp'         Name
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'*'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'public'      Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'size_t'      Keyword.Type
+' '           Text.Whitespace
+'size_type'   Name
+';'           Punctuation
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'ptrdiff_t'   Keyword.Type
+' '           Text.Whitespace
+'difference_type' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'_Tp'         Name
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'value_type'  Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'value_type'  Name
+'*'           Operator
+' '           Text.Whitespace
+'pointer'     Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'value_type'  Name
+'*'           Operator
+' '           Text.Whitespace
+'const_pointer' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'value_type'  Name
+' '           Text.Whitespace
+'reference'   Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'value_type'  Name
+' '           Text.Whitespace
+'const_reference' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'allocator_type' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%traits_swigtype' Name.Function
+'('           Punctuation
+'_Tp'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%fragment'   Name.Function
+'('           Punctuation
+'SWIG_Traits_frag' Name
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'_Tp'         Name
+' '           Text.Whitespace
+'const'       Keyword
+'*'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'header'      Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t      '    Text.Whitespace
+'fragment'    Name
+'='           Operator
+'SWIG_Traits_frag' Name
+'('           Punctuation
+'_Tp'         Name
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t      '    Text.Whitespace
+'fragment'    Name
+'='           Operator
+'"'           Literal.String
+'StdVectorTraits' Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'namespace'   Keyword
+' '           Text.Whitespace
+'swig'        Name.Namespace
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'template'    Keyword
+' '           Text.Whitespace
+'<'           Operator
+'>'           Operator
+'  '          Text.Whitespace
+'struct'      Keyword
+' '           Text
+'traits'      Name.Class
+'<'           Operator
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'_Tp'         Name
+' '           Text.Whitespace
+'const'       Keyword
+'*'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t  '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'value_category' Name
+' '           Text.Whitespace
+'category'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t  '        Text.Whitespace
+'static'      Keyword
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'char'        Keyword.Type
+'*'           Operator
+' '           Text.Whitespace
+'type_name'   Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t    '      Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String
+'std::vector<' Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'#_Tp'        Comment.Preproc
+' '           Text.Whitespace
+'"'           Literal.String
+' const*,'    Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'#_Alloc'     Comment.Preproc
+' '           Text.Whitespace
+'"'           Literal.String
+' >'          Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%typemap_traits_ptr' Name.Function
+'('           Punctuation
+'SWIG_TYPECHECK_VECTOR' Name
+','           Punctuation
+' '           Text.Whitespace
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'_Tp'         Name
+' '           Text.Whitespace
+'const'       Keyword
+'*'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'ifdef %swig_vector_methods_val' Comment.Preproc
+'\n'          Comment.Preproc
+
+'    '        Text.Whitespace
+'// Add swig/language extra methods\n' Comment.Single
+
+'    '        Text.Whitespace
+'%swig_vector_methods_val' Name.Function
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'_Tp'         Name
+' '           Text.Whitespace
+'const'       Keyword
+'*'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%std_vector_methods_val' Name.Function
+'('           Punctuation
+'vector'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// ***\n'    Comment.Single
+
+'  '          Text.Whitespace
+'// bool specialization\n' Comment.Single
+
+'  '          Text.Whitespace
+'// ***\n'    Comment.Single
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'template'    Keyword
+'<'           Operator
+'class'       Keyword
+' '           Text
+'_Alloc'      Name.Class
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'class'       Keyword
+' '           Text
+'vector'      Name.Class
+'<'           Operator
+'bool'        Keyword.Type
+','           Punctuation
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'public'      Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'size_t'      Keyword.Type
+' '           Text.Whitespace
+'size_type'   Name
+';'           Punctuation
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'ptrdiff_t'   Keyword.Type
+' '           Text.Whitespace
+'difference_type' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'bool'        Keyword.Type
+' '           Text.Whitespace
+'value_type'  Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'value_type'  Name
+'*'           Operator
+' '           Text.Whitespace
+'pointer'     Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'value_type'  Name
+'*'           Operator
+' '           Text.Whitespace
+'const_pointer' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'value_type'  Name
+' '           Text.Whitespace
+'reference'   Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'value_type'  Name
+' '           Text.Whitespace
+'const_reference' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'allocator_type' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%traits_swigtype' Name.Function
+'('           Punctuation
+'bool'        Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%fragment'   Name.Function
+'('           Punctuation
+'SWIG_Traits_frag' Name
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'bool'        Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'header'      Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t      '    Text.Whitespace
+'fragment'    Name
+'='           Operator
+'SWIG_Traits_frag' Name
+'('           Punctuation
+'bool'        Keyword.Type
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t      '    Text.Whitespace
+'fragment'    Name
+'='           Operator
+'"'           Literal.String
+'StdVectorTraits' Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'namespace'   Keyword
+' '           Text.Whitespace
+'swig'        Name.Namespace
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'template'    Keyword
+' '           Text.Whitespace
+'<'           Operator
+'>'           Operator
+'  '          Text.Whitespace
+'struct'      Keyword
+' '           Text
+'traits'      Name.Class
+'<'           Operator
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'bool'        Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t  '        Text.Whitespace
+'typedef'     Keyword
+' '           Text.Whitespace
+'value_category' Name
+' '           Text.Whitespace
+'category'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t  '        Text.Whitespace
+'static'      Keyword
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'char'        Keyword.Type
+'*'           Operator
+' '           Text.Whitespace
+'type_name'   Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t    '      Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String
+'std::vector<bool, _Alloc >' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%typemap_traits_ptr' Name.Function
+'('           Punctuation
+'SWIG_TYPECHECK_VECTOR' Name
+','           Punctuation
+' '           Text.Whitespace
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'bool'        Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'ifdef %swig_vector_methods_val' Comment.Preproc
+'\n'          Comment.Preproc
+
+'    '        Text.Whitespace
+'// Add swig/language extra methods\n' Comment.Single
+
+'    '        Text.Whitespace
+'%swig_vector_methods_val' Name.Function
+'('           Punctuation
+'std'         Name
+':'           Operator
+':'           Operator
+'vector'      Name
+'<'           Operator
+'bool'        Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'_Alloc'      Name
+' '           Text.Whitespace
+'>'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'%std_vector_methods_val' Name.Function
+'('           Punctuation
+'vector'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'if defined(SWIG_STD_MODERN_STL) && !defined(SWIG_STD_NOMODERN_STL) ' Comment.Preproc
+'\n'          Comment.Preproc
+
+'    '        Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'flip'        Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

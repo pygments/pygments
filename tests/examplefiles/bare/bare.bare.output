@@ -1,0 +1,213 @@
+'type'        Keyword
+' '           Text
+'PublicRSAKey' Name
+' '           Text
+'data'        Keyword
+'<'           Text
+'128'         Literal
+'>'           Text
+'\n'          Text
+
+'type'        Keyword
+' '           Text
+'PublicED25519Key' Name
+' '           Text
+'data'        Keyword
+'<'           Text
+'32'          Literal
+'>'           Text
+'\n'          Text
+
+'type'        Keyword
+' '           Text
+'Time'        Name
+' '           Text
+'string'      Keyword
+' '           Text
+'# ISO 8601'  Comment
+'\n\n'        Text
+
+'enum'        Keyword
+' '           Text
+'Department'  Name.Class
+' {'          Text
+'\n  '        Text
+'ACCOUNTING'  Name.Attribute
+'\n  '        Text
+'ADMINISTRATION' Name.Attribute
+'\n  '        Text
+'CUSTOMER_SERVICE' Name.Attribute
+'\n  '        Text
+'DEVELOPMENT' Name.Attribute
+' '           Text
+'# IMPORTANT' Comment
+'\n\n  '      Text
+'# Reserved for the CEO' Comment
+'\n  '        Text
+'JSMITH'      Name.Attribute
+' = '         Text
+'99'          Literal
+'\n'          Text
+
+'}'           Text
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'Customer'    Name.Class
+' {'          Text
+'\n  '        Text
+'name'        Name.Attribute
+': '          Text
+'string'      Keyword
+'\n'          Text
+
+'  '          Text
+'email'       Name.Attribute
+': '          Text
+'string'      Keyword
+'\n'          Text
+
+'  '          Text
+'address'     Name.Attribute
+': '          Text
+'Address'     Name.Class
+'\n'          Text
+
+'  '          Text
+'orders'      Name.Attribute
+': '          Text
+'[]'          Text
+'{'           Text
+'\n    '      Text
+'orderId'     Name.Attribute
+': '          Text
+'i64'         Keyword
+'\n'          Text
+
+'    '        Text
+'quantity'    Name.Attribute
+': '          Text
+'i32'         Keyword
+'\n'          Text
+
+'  '          Text
+'}'           Text
+'\n'          Text
+
+'  '          Text
+'metadata'    Name.Attribute
+': '          Text
+'map'         Keyword
+'['           Text
+'string'      Keyword
+']'           Text
+'data'        Keyword
+'\n'          Text
+
+'}'           Text
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'Employee'    Name.Class
+' {'          Text
+'\n  '        Text
+'name'        Name.Attribute
+': '          Text
+'string'      Keyword
+'\n'          Text
+
+'  '          Text
+'email'       Name.Attribute
+': '          Text
+'string'      Keyword
+'\n'          Text
+
+'  '          Text
+'address'     Name.Attribute
+': '          Text
+'Address'     Name.Class
+'\n'          Text
+
+'  '          Text
+'department'  Name.Attribute
+': '          Text
+'Department'  Name.Class
+'\n'          Text
+
+'  '          Text
+'hireDate'    Name.Attribute
+': '          Text
+'Time'        Name.Class
+'\n'          Text
+
+'  '          Text
+'publicKey'   Name.Attribute
+': '          Text
+'optional'    Keyword
+'<'           Text
+'('           Text
+'PublicRSAKey' Name.Class
+' | '         Text
+'PublicED25519Key' Name.Class
+')'           Text
+'>'           Text
+'\n'          Text
+
+'  '          Text
+'metadata'    Name.Attribute
+': '          Text
+'map'         Keyword
+'['           Text
+'string'      Keyword
+']'           Text
+'data'        Keyword
+'\n'          Text
+
+'}'           Text
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'Person'      Name.Class
+' ('          Text
+'Customer'    Name.Class
+' | '         Text
+'Employee'    Name.Class
+')'           Text
+'\n\n'        Text
+
+'type'        Keyword
+' '           Text
+'Address'     Name.Class
+' {'          Text
+'\n  '        Text
+'address'     Name.Attribute
+': '          Text
+'['           Text
+'4'           Literal
+']'           Text
+'string'      Keyword
+'\n'          Text
+
+'  '          Text
+'city'        Name.Attribute
+': '          Text
+'string'      Keyword
+'\n'          Text
+
+'  '          Text
+'state'       Name.Attribute
+': '          Text
+'string'      Keyword
+'\n'          Text
+
+'  '          Text
+'country'     Name.Attribute
+': '          Text
+'string'      Keyword
+'\n'          Text
+
+'}'           Text
+'\n'          Text

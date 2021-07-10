@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.styles.native
     ~~~~~~~~~~~~~~~~~~~~~~
 
     pygments version of my "native" vim theme.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -21,6 +20,7 @@ class NativeStyle(Style):
 
     background_color = '#202020'
     highlight_color = '#404040'
+    line_number_color = '#aaaaaa'
 
     styles = {
         Token:              '#d0d0d0',

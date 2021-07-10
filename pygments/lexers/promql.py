@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.promql
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for Prometheus Query Language.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -167,7 +166,7 @@ class PromQLLexer(RegexLexer):
             (r"\n", Whitespace),
             (r"\s+", Whitespace),
             (r",", Punctuation),
-            (r'([_a-zA-Z][a-zA-Z0-9_]*?)(\s*?)(=~|!=|=|~!)(\s*?)(")(.*?)(")',
+            (r'([_a-zA-Z][a-zA-Z0-9_]*?)(\s*?)(=~|!=|=|!~)(\s*?)("|\')(.*?)("|\')',
              bygroups(Name.Label, Whitespace, Operator, Whitespace,
                       Punctuation, String, Punctuation)),
         ],

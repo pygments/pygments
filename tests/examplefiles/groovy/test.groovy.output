@@ -1,0 +1,775 @@
+'// This source code comes from http://www.odelia-technologies.com/node/200\n' Comment.Single
+
+'\n'          Text
+
+'package'     Keyword.Namespace
+' '           Text
+'com'         Name
+'.'           Operator
+'odelia'      Name.Attribute
+'.'           Operator
+'groovy'      Name.Attribute
+'.'           Operator
+'simpleworkflow' Name.Attribute
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'class'       Keyword.Declaration
+' '           Text
+'SimpleWorkflowEngine' Name.Class
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'workflowMap' Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Operator
+':'           Operator
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'context'     Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Operator
+':'           Operator
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'beforeActivityName' Name
+' '           Text
+'='           Operator
+' '           Text
+"'beforeActivity'" Literal.String.Single
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'afterActivityName' Name
+' '           Text
+'='           Operator
+' '           Text
+"'afterActivity'" Literal.String.Single
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'SimpleWorkflowEngine' Name
+'('           Operator
+'workflow'    Name
+','           Operator
+' '           Text
+'context'     Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Operator
+':'           Operator
+']'           Operator
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'this'        Keyword
+'.'           Operator
+'context'     Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'context'     Name
+'\n'          Text
+
+'        '    Text
+'parseWorkflow' Name
+'('           Operator
+'workflow'    Name
+')'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'parseWorkflow' Name.Function
+'('           Operator
+'workflow'    Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'workflowMap' Name
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'WorkflowParser' Name
+'('           Operator
+')'           Operator
+'.'           Operator
+'parse'       Name.Attribute
+'('           Operator
+'workflow'    Name
+')'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'getActivityValue' Name.Function
+'('           Operator
+'activity'    Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'assert'      Keyword
+' '           Text
+'activity'    Name
+' '           Text
+'instanceof'  Keyword
+' '           Text
+'String'      Name
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'!'           Operator
+'workflowMap' Name
+'['           Operator
+'activity'    Name
+']'           Operator
+')'           Operator
+'\n'          Text
+
+'            ' Text
+'throw'       Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'RuntimeException' Name
+'('           Operator
+'"$activity activity doesn\'t exist"' Literal.String.Double
+')'           Operator
+'\n'          Text
+
+'        '    Text
+'workflowMap' Name
+'['           Operator
+'activity'    Name
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'execute'     Name.Function
+'('           Operator
+'activity'    Name
+','           Operator
+' '           Text
+'pause'       Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'workflowMap' Name
+'['           Operator
+'beforeActivityName' Name
+']'           Operator
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'            ' Text
+'getActivityValue' Name
+'('           Operator
+'beforeActivityName' Name
+')'           Operator
+'('           Operator
+'context'     Name
+','           Operator
+' '           Text
+'activity'    Name
+')'           Operator
+'\n'          Text
+
+'        '    Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'def'         Keyword.Type
+' '           Text
+'activityValue' Name
+' '           Text
+'='           Operator
+' '           Text
+'getActivityValue' Name
+'('           Operator
+'activity'    Name
+')'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'// Determine the next activity to execute\n' Comment.Single
+
+'        '    Text
+'def'         Keyword.Type
+' '           Text
+'nextActivity' Name
+'\n'          Text
+
+'        '    Text
+'switch'      Keyword
+' '           Text
+'('           Operator
+'activityValue' Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'            ' Text
+'case'        Keyword
+' '           Text
+'String:'     Name.Label
+' '           Text
+'nextActivity' Name
+' '           Text
+'='           Operator
+' '           Text
+'activityValue' Name
+';'           Operator
+' '           Text
+'break'       Keyword
+'\n'          Text
+
+'            ' Text
+'case'        Keyword
+' '           Text
+'Closure:'    Name.Label
+' '           Text
+'nextActivity' Name
+' '           Text
+'='           Operator
+' '           Text
+'activityValue' Name
+'('           Operator
+'context'     Name
+')'           Operator
+';'           Operator
+' '           Text
+'break'       Keyword
+'\n'          Text
+
+'            ' Text
+'case'        Keyword
+' '           Text
+'Class:'      Name.Label
+' '           Text
+'nextActivity' Name
+' '           Text
+'='           Operator
+' '           Text
+'activityValue' Name
+'.'           Operator
+'newInstance' Name.Attribute
+'('           Operator
+')'           Operator
+'('           Operator
+'context'     Name
+')'           Operator
+'\n'          Text
+
+'        '    Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'workflowMap' Name
+'['           Operator
+'afterActivityName' Name
+']'           Operator
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'            ' Text
+'getActivityValue' Name
+'('           Operator
+'afterActivityName' Name
+')'           Operator
+'('           Operator
+'context'     Name
+','           Operator
+' '           Text
+'activity'    Name
+','           Operator
+' '           Text
+'nextActivity' Name
+')'           Operator
+'\n'          Text
+
+'        '    Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'!'           Operator
+'pause'       Name
+' '           Text
+'&'           Operator
+'&'           Operator
+' '           Text
+'nextActivity' Name
+')'           Operator
+'\n'          Text
+
+'            ' Text
+'call'        Name
+'('           Operator
+'nextActivity' Name
+')'           Operator
+'\n'          Text
+
+'        '    Text
+'else'        Keyword
+'\n'          Text
+
+'            ' Text
+'nextActivity' Name
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'call'        Name.Function
+'('           Operator
+'activity'    Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'execute'     Name
+'('           Operator
+'activity'    Name
+','           Operator
+' '           Text
+'false'       Keyword.Constant
+')'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'nextActivity' Name.Function
+'('           Operator
+'activity'    Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'execute'     Name
+'('           Operator
+'activity'    Name
+','           Operator
+' '           Text
+'true'        Keyword.Constant
+')'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'static'      Keyword.Declaration
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'main'        Name.Function
+'('           Operator
+'String'      Name
+'['           Operator
+']'           Operator
+' '           Text
+'args'        Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'if'          Keyword
+' '           Text
+'('           Operator
+'args'        Name
+'.'           Operator
+'size'        Name.Attribute
+'('           Operator
+')'           Operator
+' '           Text
+'!'           Operator
+'='           Operator
+' '           Text
+'2'           Literal.Number.Integer
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'            ' Text
+'println'     Name
+' '           Text
+"'Usage: com.odelia.groovy.simpleworkflow.SimpleWorkflowEngine <dsl_filename> <activity_name>'" Literal.String.Single
+'\n'          Text
+
+'            ' Text
+'return'      Keyword
+'\n'          Text
+
+'        '    Text
+'}'           Operator
+'\n'          Text
+
+'        '    Text
+'SimpleWorkflowEngine' Name
+'.'           Operator
+'newInstance' Name.Attribute
+'('           Operator
+'new'         Keyword
+' '           Text
+'File'        Name
+'('           Operator
+'args'        Name
+'['           Operator
+'0'           Literal.Number.Integer
+']'           Operator
+')'           Operator
+')'           Operator
+'('           Operator
+'args'        Name
+'['           Operator
+'1'           Literal.Number.Integer
+']'           Operator
+')'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'private'     Keyword.Declaration
+' '           Text
+'class'       Keyword.Declaration
+' '           Text
+'WorkflowParser' Name.Class
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'map'         Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Operator
+':'           Operator
+']'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'methodMissing' Name.Function
+'('           Operator
+'String'      Name
+' '           Text
+'name'        Name
+','           Operator
+' '           Text
+'args'        Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'map'         Name
+'['           Operator
+'name'        Name
+']'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'args'        Name
+'['           Operator
+'0'           Literal.Number.Integer
+']'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'parse'       Name.Function
+'('           Operator
+'Closure'     Name
+' '           Text
+'wf'          Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'wf'          Name
+'.'           Operator
+'delegate'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'this'        Keyword
+'\n'          Text
+
+'        '    Text
+'wf'          Name
+'.'           Operator
+'resolveStrategy' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'Closure'     Name
+'.'           Operator
+'DELEGATE_FIRST' Name.Attribute
+'\n'          Text
+
+'        '    Text
+'wf'          Name
+'('           Operator
+')'           Operator
+'\n'          Text
+
+'        '    Text
+'map'         Name
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'workflow'    Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Operator
+' '           Text
+'it'          Name
+' '           Text
+'-'           Operator
+'>'           Operator
+'\n'          Text
+
+'        '    Text
+'it'          Name
+'.'           Operator
+'delegate'    Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'this'        Keyword
+'\n'          Text
+
+'        '    Text
+'it'          Name
+'.'           Operator
+'resolveStrategy' Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'Closure'     Name
+'.'           Operator
+'DELEGATE_FIRST' Name.Attribute
+'\n'          Text
+
+'        '    Text
+'it'          Name
+'('           Operator
+')'           Operator
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text
+'def'         Keyword.Type
+' '           Text
+'parse'       Name.Function
+'('           Operator
+'File'        Name
+' '           Text
+'workflowDef' Name
+')'           Operator
+' '           Text
+'{'           Operator
+'\n'          Text
+
+'        '    Text
+'def'         Keyword.Type
+' '           Text
+'binding'     Name
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'Binding'     Name
+'('           Operator
+'['           Operator
+'workflow:'   Name.Label
+' '           Text
+'workflow'    Name
+']'           Operator
+')'           Operator
+'\n'          Text
+
+'        '    Text
+'def'         Keyword.Type
+' '           Text
+'shell'       Name
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'GroovyShell' Name
+'('           Operator
+'binding'     Name
+')'           Operator
+'\n'          Text
+
+'        '    Text
+'shell'       Name
+'.'           Operator
+'evaluate'    Name.Attribute
+'('           Operator
+'workflowDef' Name
+')'           Operator
+'\n'          Text
+
+'        '    Text
+'map'         Name
+'\n'          Text
+
+'    '        Text
+'}'           Operator
+'\n'          Text
+
+'}'           Operator
+'\n'          Text

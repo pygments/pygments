@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.resource
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for resource definition files.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -25,7 +24,7 @@ class ResourceLexer(RegexLexer):
     .. versionadded:: 2.0
     """
     name = 'ResourceBundle'
-    aliases = ['resource', 'resourcebundle']
+    aliases = ['resourcebundle', 'resource']
     filenames = []
 
     _types = (':table', ':array', ':string', ':bin', ':import', ':intvector',

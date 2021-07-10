@@ -1,0 +1,12 @@
+---input---
+var$ = "foo"
+
+---tokens---
+'var$'        Text
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String
+'foo'         Literal.String
+'"'           Literal.String
+'\n'          Text

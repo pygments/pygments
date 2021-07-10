@@ -1,0 +1,14 @@
+# This demonstrates the case that "This isn't really guarding" comment
+# refers to.
+
+---input---
+/a/x;
+
+---tokens---
+''            Text
+'/'           Operator
+'a'           Name.Other
+'/'           Operator
+'x'           Name.Other
+';'           Punctuation
+'\n'          Text

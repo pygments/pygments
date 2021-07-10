@@ -1,0 +1,15 @@
+---input---
+f"a={d[a]}"
+
+---tokens---
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'a='          Literal.String.Double
+'{'           Literal.String.Interpol
+'d'           Name
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text

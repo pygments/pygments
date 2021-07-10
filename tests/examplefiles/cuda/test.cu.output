@@ -1,0 +1,312 @@
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<stdio.h>'   Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'// __device__ function\n' Comment.Single
+
+'__device__'  Keyword.Type
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'func'        Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'short'       Keyword.Type
+'*'           Operator
+' '           Text.Whitespace
+'array0'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'short'       Keyword.Type
+'*'           Operator
+')'           Punctuation
+'array'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'float'       Keyword.Type
+'*'           Operator
+' '           Text.Whitespace
+'array1'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'float'       Keyword.Type
+'*'           Operator
+')'           Punctuation
+'&'           Operator
+'array0'      Name
+'['           Punctuation
+'127'         Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/* __global__ function */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'__global__'  Keyword.Reserved
+' '           Text.Whitespace
+'static'      Keyword
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'reduction'   Name
+'('           Punctuation
+'const'       Keyword
+' '           Text.Whitespace
+'float'       Keyword.Type
+'*'           Operator
+' '           Text.Whitespace
+'__restrict__' Keyword.Type
+' '           Text.Whitespace
+'input'       Name
+','           Punctuation
+' '           Text.Whitespace
+'float'       Keyword.Type
+' '           Text.Whitespace
+'*'           Operator
+'output'      Name
+','           Punctuation
+' '           Text.Whitespace
+'clock_t'     Keyword.Type
+' '           Text.Whitespace
+'*'           Operator
+'timer'       Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// __shared__ float shared[2 * blockDim.x];\n' Comment.Single
+
+'    '        Text.Whitespace
+'extern'      Keyword
+' '           Text.Whitespace
+'__shared__'  Keyword.Type
+' '           Text.Whitespace
+'float'       Keyword.Type
+' '           Text.Whitespace
+'shared'      Name
+'['           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'tid'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'threadIdx'   Name.Builtin
+'.'           Punctuation
+'x'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'bid'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'blockIdx'    Name.Builtin
+'.'           Punctuation
+'x'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'threadIdx'   Name.Builtin
+'.'           Punctuation
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'__threadfence' Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Perform reduction to find minimum.\n' Comment.Single
+
+'    '        Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'d'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'blockDim'    Name.Builtin
+'.'           Punctuation
+'x'           Name
+';'           Punctuation
+' '           Text.Whitespace
+'d'           Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'d'           Name
+' '           Text.Whitespace
+'/'           Operator
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'__syncthreads' Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'main'        Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'argc'        Name
+','           Punctuation
+' '           Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'*'           Operator
+'*'           Operator
+'argv'        Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'dim3'        Keyword.Type
+' '           Text.Whitespace
+'dimBlock'    Name.Function
+'('           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'timedReduction' Name
+'<'           Operator
+'<'           Operator
+'<'           Operator
+'dimBlock'    Name
+','           Punctuation
+' '           Text.Whitespace
+'256'         Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'256'         Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'>'           Operator
+'>'           Operator
+'>'           Operator
+'('           Punctuation
+'dinput'      Name
+','           Punctuation
+' '           Text.Whitespace
+'doutput'     Name
+','           Punctuation
+' '           Text.Whitespace
+'dtimer'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'cudaDeviceReset' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

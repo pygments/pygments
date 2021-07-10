@@ -1,0 +1,149 @@
+'s_load_dwordx2' Keyword
+'  '          Text.Whitespace
+'s'           Name.Variable
+'['           Text
+'4:5'         Name.Attribute
+']'           Text
+','           Text
+' '           Text.Whitespace
+'s'           Name.Variable
+'['           Text
+'0:1'         Name.Attribute
+']'           Text
+','           Text
+' '           Text.Whitespace
+'0x10'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'s_load_dwordx4' Keyword
+'  '          Text.Whitespace
+'s'           Name.Variable
+'['           Text
+'0:3'         Name.Attribute
+']'           Text
+','           Text
+' '           Text.Whitespace
+'s'           Name.Variable
+'['           Text
+'0:1'         Name.Attribute
+']'           Text
+','           Text
+' '           Text.Whitespace
+'0x00'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'v_lshlrev_b32' Keyword
+'  '          Text.Whitespace
+'v0'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Text
+' '           Text.Whitespace
+'v0'          Name.Variable
+'\n'          Text.Whitespace
+
+'s_waitcnt'   Keyword
+'     '       Text.Whitespace
+'lgkmcnt'     Name.Attribute
+'('           Text
+'0'           Literal.Number.Integer
+')'           Text
+'\n'          Text.Whitespace
+
+'v_add_u32'   Keyword
+'     '       Text.Whitespace
+'v1'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'vcc'         Name.Variable
+','           Text
+' '           Text.Whitespace
+'s2'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'v0'          Name.Variable
+'\n'          Text.Whitespace
+
+'v_mov_b32'   Keyword
+'     '       Text.Whitespace
+'v2'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'s3'          Name.Variable
+'\n'          Text.Whitespace
+
+'v_addc_u32'  Keyword
+'    '        Text.Whitespace
+'v2'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'vcc'         Name.Variable
+','           Text
+' '           Text.Whitespace
+'v2'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Text
+' '           Text.Whitespace
+'vcc'         Name.Variable
+'\n'          Text.Whitespace
+
+'v_add_u32'   Keyword
+'     '       Text.Whitespace
+'v3'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'vcc'         Name.Variable
+','           Text
+' '           Text.Whitespace
+'s0'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'v0'          Name.Variable
+'\n'          Text.Whitespace
+
+'v_mov_b32'   Keyword
+'     '       Text.Whitespace
+'v4'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'s1'          Name.Variable
+'\n'          Text.Whitespace
+
+'v_addc_u32'  Keyword
+'    '        Text.Whitespace
+'v4'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'vcc'         Name.Variable
+','           Text
+' '           Text.Whitespace
+'v4'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Text
+' '           Text.Whitespace
+'vcc'         Name.Variable
+'\n'          Text.Whitespace
+
+'buffer_load_dword' Keyword.Reserved
+' '           Text.Whitespace
+'v4'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'v2'          Name.Variable
+','           Text
+' '           Text.Whitespace
+'s'           Name.Variable
+'['           Text
+'8:11'        Name.Attribute
+']'           Text
+','           Text
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'offen'       Name.Attribute
+'\n'          Text.Whitespace

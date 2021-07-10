@@ -1,0 +1,193 @@
+'export'      Keyword
+' '           Text
+'// This is incorrect Scala but can still be highlighted correctly\n' Comment.Single
+
+''            Text
+'export'      Keyword
+' '           Text
+'a'           Name.Namespace
+'.'           Punctuation
+'_'           Name
+'\n'          Text
+
+'export'      Keyword
+' '           Text
+'a'           Name.Namespace
+'.'           Punctuation
+'x'           Name
+' '           Text
+'// Test comment\n' Comment.Single
+
+''            Text
+'export'      Keyword
+' '           Text
+'a'           Name.Namespace
+'.'           Punctuation
+'x'           Name.Namespace
+'.'           Punctuation
+'y'           Name.Namespace
+'.'           Punctuation
+'z'           Name
+' '           Text
+'// Test comment\n' Comment.Single
+
+''            Text
+'export'      Keyword
+' '           Text
+'a'           Name.Namespace
+'.'           Punctuation
+'{'           Punctuation
+'x'           Name
+','           Punctuation
+' '           Text
+'y'           Name
+'}'           Punctuation
+'\n'          Text
+
+'export'      Keyword
+' '           Text
+'a'           Name.Namespace
+'.'           Punctuation
+'{'           Punctuation
+'x'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'y'           Name
+'}'           Punctuation
+'\n'          Text
+
+'export'      Keyword
+' '           Text
+'a'           Name.Namespace
+'.'           Punctuation
+'{'           Punctuation
+'x'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'}'           Punctuation
+' '           Text
+'// This is incorrect Scala but can still be highlighted correctly\n' Comment.Single
+
+''            Text
+'export'      Keyword
+' '           Text
+'a'           Name.Namespace
+'.'           Punctuation
+'{'           Punctuation
+'x'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'`test-name`' Name
+'}'           Punctuation
+' '           Text
+'// Test comment\n' Comment.Single
+
+''            Text
+'export'      Keyword
+' '           Text
+'given'       Keyword
+'\n'          Text
+
+''            Text
+'export'      Keyword
+' '           Text
+'given'       Keyword
+' '           Text
+'a'           Name
+' '           Text
+'// Test comment\n' Comment.Single
+
+''            Text
+'export'      Keyword
+' '           Text
+'given'       Keyword
+' '           Text
+'a'           Name.Namespace
+'.'           Punctuation
+'x'           Name
+' '           Text
+'// Test comment\n' Comment.Single
+
+''            Text
+'export'      Keyword
+' '           Text
+'given'       Keyword
+' '           Text
+'a'           Name.Namespace
+'.'           Punctuation
+'_'           Name
+'\n'          Text
+
+'export'      Keyword
+' '           Text
+'given'       Keyword
+' '           Text
+'a'           Name.Namespace
+'.'           Punctuation
+'{'           Punctuation
+'x'           Name
+','           Punctuation
+' '           Text
+'y'           Name
+'}'           Punctuation
+' '           Text
+'// Test comment\n' Comment.Single
+
+''            Text
+'export'      Keyword
+' '           Text
+'given'       Keyword
+' '           Text
+'a'           Name.Namespace
+'.'           Punctuation
+'{'           Punctuation
+'x'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'y'           Name
+'}'           Punctuation
+'\n'          Text
+
+'export'      Keyword
+' '           Text
+'given'       Keyword
+' '           Text
+'a'           Name.Namespace
+'.'           Punctuation
+'{'           Punctuation
+'x'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'`test-name`' Name
+'}'           Punctuation
+'\n'          Text
+
+'  '          Text
+'export'      Keyword
+' '           Text
+'scanUnit'    Name.Namespace
+'.'           Punctuation
+'scan'        Name
+'\n'          Text
+
+'  '          Text
+'export'      Keyword
+' '           Text
+'printUnit'   Name.Namespace
+'.'           Punctuation
+'{'           Punctuation
+'status'      Name
+' '           Text
+'=>'          Operator
+' '           Text
+'_'           Name
+','           Punctuation
+' '           Text
+'_'           Name
+'}'           Punctuation
+'\n'          Text

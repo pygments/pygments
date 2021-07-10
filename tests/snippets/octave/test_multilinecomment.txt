@@ -1,0 +1,27 @@
+---input---
+%{
+This is a long comment
+   %}
+   #{
+This too
+#}
+This isnt
+
+---tokens---
+'%{\n'        Comment.Multiline
+
+'This is a long comment\n' Comment.Multiline
+
+'   %}'       Comment.Multiline
+'\n   '       Text
+'#{\n'        Comment.Multiline
+
+'This too\n'  Comment.Multiline
+
+'#}'          Comment.Multiline
+'\n'          Text
+
+'This'        Name
+' '           Text
+'isnt'        Name
+'\n'          Text

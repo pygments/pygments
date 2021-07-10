@@ -1,0 +1,571 @@
+'x = r"""\n'  Generic.Output
+
+'>>> '        Generic.Prompt
+'import'      Keyword.Namespace
+' '           Text
+'os'          Name.Namespace
+'\n'          Text
+
+'>>> '        Generic.Prompt
+'print'       Name.Builtin
+' '           Text
+'os'          Name
+'\n'          Text
+
+"<module 'os' from '/file/path.py'>\n" Generic.Output
+
+'>>> '        Generic.Prompt
+'for'         Keyword
+' '           Text
+'x'           Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'range'       Name.Builtin
+'('           Punctuation
+'10'          Literal.Number.Integer
+')'           Punctuation
+':'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'    '        Text
+'y'           Name
+' '           Text
+'='           Operator
+' '           Text
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'... '        Generic.Prompt
+'    '        Text
+'print'       Name.Builtin
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'    '        Text
+'if'          Keyword
+' '           Text
+'x'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'5'           Literal.Number.Integer
+':'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'        '    Text
+'raise'       Keyword
+' '           Text
+'Exception'   Name.Exception
+'\n'          Text
+
+'...'         Generic.Prompt
+'\n'          Text
+
+'0\n'         Generic.Output
+
+'1\n'         Generic.Output
+
+'2\n'         Generic.Output
+
+'3\n'         Generic.Output
+
+'4\n'         Generic.Output
+
+'5\n'         Generic.Output
+
+'6\n'         Generic.Output
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'  File '     Text
+'"<stdin>"'   Name.Builtin
+', line '     Text
+'5'           Literal.Number
+', in '       Text
+'<module>'    Name
+'\n'          Text
+
+'Exception'   Generic.Error
+'\n'          Text
+
+'>>>\n'       Generic.Output
+
+'>>> '        Generic.Prompt
+'while'       Keyword
+' '           Text
+'True'        Keyword.Constant
+':'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'    '        Text
+'pass'        Keyword
+'\n'          Text
+
+'...'         Generic.Prompt
+'\n'          Text
+
+'^CTraceback (most recent call last):\n' Generic.Output
+
+'  File "<stdin>", line 1, in <module>\n' Generic.Output
+
+'KeyboardInterrupt\n' Name.Class
+
+'\n'          Generic.Output
+
+'>>> '        Generic.Prompt
+'class'       Keyword
+' '           Text
+'A'           Name.Class
+'('           Punctuation
+'Exception'   Name.Exception
+')'           Punctuation
+':'           Punctuation
+'pass'        Keyword
+'\n'          Text
+
+'...'         Generic.Prompt
+'\n'          Text
+
+'>>> '        Generic.Prompt
+'class'       Keyword
+' '           Text
+'B'           Name.Class
+'('           Punctuation
+'Exception'   Name.Exception
+')'           Punctuation
+':'           Punctuation
+'pass'        Keyword
+'\n'          Text
+
+'...'         Generic.Prompt
+'\n'          Text
+
+'>>> '        Generic.Prompt
+'try'         Keyword
+':'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'    '        Text
+'try'         Keyword
+':'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'        '    Text
+'raise'       Keyword
+' '           Text
+'A'           Name
+'('           Punctuation
+"'"           Literal.String.Single
+'first'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'    '        Text
+'finally'     Keyword
+':'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'        '    Text
+'raise'       Keyword
+' '           Text
+'B'           Name
+'('           Punctuation
+"'"           Literal.String.Single
+'second'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'except'      Keyword
+' '           Text
+'A'           Name
+' '           Text
+'as'          Keyword
+' '           Text
+'c'           Name
+':'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'    '        Text
+'print'       Name.Builtin
+'('           Punctuation
+'c'           Name
+')'           Punctuation
+'\n'          Text
+
+'...'         Generic.Prompt
+'\n'          Text
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'  File '     Text
+'"<stdin>"'   Name.Builtin
+', line '     Text
+'3'           Literal.Number
+', in '       Text
+'<module>'    Name
+'\n'          Text
+
+'__main__.A'  Generic.Error
+': '          Text
+'first'       Name
+'\n'          Text
+
+'\n'          Generic.Output
+
+'During handling of the above exception, another exception occurred:\n' Generic.Output
+
+'\n'          Generic.Output
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'  File '     Text
+'"<stdin>"'   Name.Builtin
+', line '     Text
+'5'           Literal.Number
+', in '       Text
+'<module>'    Name
+'\n'          Text
+
+'__main__.B'  Generic.Error
+': '          Text
+'second'      Name
+'\n'          Text
+
+'\n'          Generic.Output
+
+'>>> '        Generic.Prompt
+'x'           Name
+' '           Text
+'='           Operator
+'\n'          Text
+
+''            Generic.Traceback
+'  File '     Text
+'"<stdin>"'   Name.Builtin
+', line '     Text
+'1'           Literal.Number
+'\n'          Text
+
+'    '        Text
+'x'           Name
+' '           Text
+'='           Operator
+'\n'          Text
+
+'       '     Text
+'^'           Punctuation.Marker
+'\n'          Text
+
+'SyntaxError' Generic.Error
+': '          Text
+'invalid syntax' Name
+'\n'          Text
+
+'>>>\n'       Generic.Output
+
+'\n'          Generic.Output
+
+'>>> '        Generic.Prompt
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'3'           Literal.Number.Integer
+'\n'          Text
+
+'>>> '        Generic.Prompt
+'with'        Keyword
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+'as'          Keyword
+' '           Text
+'y'           Name
+':'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'   '         Text
+'print'       Name.Builtin
+'('           Punctuation
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'y'           Name
+')'           Punctuation
+'\n'          Text
+
+'...'         Generic.Prompt
+'\n'          Text
+
+'8\n'         Generic.Output
+
+'\n'          Generic.Output
+
+'# TODO\n'    Generic.Output
+
+"#>>> raise ValueError('multi\\n    line\\ndetail')\n" Generic.Output
+
+'#Traceback (most recent call last):\n' Generic.Output
+
+'#........\n' Generic.Output
+
+'#ValueError: multi\n' Generic.Output
+
+'#    line\n' Generic.Output
+
+'#detail\n'   Generic.Output
+
+'\n'          Generic.Output
+
+'>>> '        Generic.Prompt
+'raise'       Keyword
+' '           Text
+'ValueError'  Name.Exception
+'('           Punctuation
+"'"           Literal.String.Single
+'multi'       Literal.String.Single
+'\\n'         Literal.String.Escape
+'    line'    Literal.String.Single
+'\\n'         Literal.String.Escape
+'detail'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+' .123\nValueError' Generic.Error
+': '          Text
+'multi'       Name
+'\n'          Text
+
+'    line\n'  Generic.Output
+
+'detail\n'    Generic.Output
+
+'\n'          Generic.Output
+
+'>>> '        Generic.Prompt
+'raise'       Keyword
+' '           Text
+'ValueError'  Name.Exception
+'('           Punctuation
+"'"           Literal.String.Single
+'multi'       Literal.String.Single
+'\\n'         Literal.String.Escape
+'    line'    Literal.String.Single
+'\\n'         Literal.String.Escape
+'detail'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'    '        Text
+'.'           Operator
+'.'           Operator
+'.'           Operator
+'\n'          Text
+
+'ValueError'  Generic.Error
+': '          Text
+'multi'       Name
+'\n'          Text
+
+'    line\n'  Generic.Output
+
+'detail\n'    Generic.Output
+
+'\n'          Generic.Output
+
+'>>> '        Generic.Prompt
+'raise'       Keyword
+' '           Text
+'ValueError'  Name.Exception
+'('           Punctuation
+"'"           Literal.String.Single
+'multi'       Literal.String.Single
+'\\n'         Literal.String.Escape
+'    line'    Literal.String.Single
+'\\n'         Literal.String.Escape
+'detail'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'    '        Text
+'.'           Operator
+'.'           Operator
+'.'           Operator
+'.'           Operator
+'\n'          Text
+
+'ValueError'  Generic.Error
+': '          Text
+'multi'       Name
+'\n'          Text
+
+'    line\n'  Generic.Output
+
+'detail\n'    Generic.Output
+
+'\n'          Generic.Output
+
+'>>> '        Generic.Prompt
+'raise'       Keyword
+' '           Text
+'ValueError'  Name.Exception
+'('           Punctuation
+"'"           Literal.String.Single
+'multi'       Literal.String.Single
+'\\n'         Literal.String.Escape
+'    line'    Literal.String.Single
+'\\n'         Literal.String.Escape
+'detail'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'    '        Text
+' '           Text
+'.'           Operator
+'.'           Operator
+'.'           Operator
+'.'           Operator
+'\n'          Text
+
+'ValueError'  Generic.Error
+': '          Text
+'multi'       Name
+'\n'          Text
+
+'    line\n'  Generic.Output
+
+'detail\n'    Generic.Output
+
+'\n'          Generic.Output
+
+'>>> '        Generic.Prompt
+'raise'       Keyword
+' '           Text
+'ValueError'  Name.Exception
+'('           Punctuation
+"'"           Literal.String.Single
+'multi'       Literal.String.Single
+'\\n'         Literal.String.Escape
+'    line'    Literal.String.Single
+'\\n'         Literal.String.Escape
+'detail'      Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'  '          Text
+'...'         Comment
+'\n'          Text
+
+'ValueError'  Generic.Error
+': '          Text
+'multi'       Name
+'\n'          Text
+
+'    line\n'  Generic.Output
+
+'detail\n'    Generic.Output
+
+'\n'          Generic.Output
+
+'>>> '        Generic.Prompt
+'raise'       Keyword
+' '           Text
+'Exception'   Name.Exception
+'\n'          Text
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'  File '     Text
+'"<stdin>"'   Name.Builtin
+', line '     Text
+'1'           Literal.Number
+', in '       Text
+'<module>'    Name
+'\n'          Text
+
+'Exception'   Generic.Error
+'\n'          Text
+
+'>>> '        Generic.Prompt
+'import'      Keyword.Namespace
+' '           Text
+'somemodule'  Name.Namespace
+'\n'          Text
+
+'>>> '        Generic.Prompt
+'somemodule'  Name
+'.'           Operator
+'blah'        Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'  File '     Text
+'"<stdin>"'   Name.Builtin
+', line '     Text
+'1'           Literal.Number
+', in '       Text
+'<module>'    Name
+'\n'          Text
+
+'  File '     Text
+'"/path/to/stuff/somemodule/blah.py"' Name.Builtin
+', line '     Text
+'658'         Literal.Number
+', in '       Text
+'blah'        Name
+'\n'          Text
+
+'    '        Text
+'raise'       Keyword
+' '           Text
+'Exception'   Name.Exception
+'('           Punctuation
+"'"           Literal.String.Single
+'Hi.'         Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'Exception'   Generic.Error
+': '          Text
+'Hi.'         Name
+'\n'          Text

@@ -1,0 +1,22 @@
+---input---
+go_gc_duration_seconds{ instance="localhost:9090",  job="alertmanager" }
+
+---tokens---
+'go_gc_duration_seconds' Name.Variable
+'{'           Punctuation
+' '           Text.Whitespace
+'instance'    Name.Label
+'='           Operator
+'"'           Punctuation
+'localhost:9090' Literal.String
+'"'           Punctuation
+','           Punctuation
+'  '          Text.Whitespace
+'job'         Name.Label
+'='           Operator
+'"'           Punctuation
+'alertmanager' Literal.String
+'"'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

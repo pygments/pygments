@@ -1,0 +1,1582 @@
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'//|                                              PeriodConverter.mq4 |\n' Comment.Single
+
+'//|                   Copyright 2006-2014, MetaQuotes Software Corp. |\n' Comment.Single
+
+'//|                                        http://www.metaquotes.net |\n' Comment.Single
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'#'           Comment.Preproc
+'property copyright   "2006-2014, MetaQuotes Software Corp."' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'property link        "http:' Comment.Preproc
+'//www.mql4.com"\n' Comment.Single
+
+'#'           Comment.Preproc
+'property description "Period Converter to updated format of history base"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'property strict' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'property show_inputs' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<WinUser32.mqh>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'input'       Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'InpPeriodMultiplier' Name
+'='           Operator
+'3'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'// Period multiplier factor\n' Comment.Single
+
+'int'         Keyword.Type
+'       '     Text.Whitespace
+'ExtHandle'   Name
+'='           Operator
+'-1'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'//| script program start function                                    |\n' Comment.Single
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'OnStart'     Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'datetime'    Keyword.Type
+' '           Text.Whitespace
+'time0'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'ulong'       Keyword.Type
+'    '        Text.Whitespace
+'last_fpos'   Name
+'='           Operator
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'long'        Keyword.Type
+'     '       Text.Whitespace
+'last_volume' Name
+'='           Operator
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'int'         Keyword.Type
+'      '      Text.Whitespace
+'i'           Name
+','           Punctuation
+'start_pos'   Name
+','           Punctuation
+'periodseconds' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'int'         Keyword.Type
+'      '      Text.Whitespace
+'hwnd'        Name
+'='           Operator
+'0'           Literal.Number.Integer
+','           Punctuation
+'cnt'         Name
+'='           Operator
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'//---- History header\n' Comment.Single
+
+'   '         Text.Whitespace
+'int'         Keyword.Type
+'      '      Text.Whitespace
+'file_version' Name
+'='           Operator
+'401'         Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'string'      Keyword.Type
+'   '         Text.Whitespace
+'c_copyright' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'string'      Keyword.Type
+'   '         Text.Whitespace
+'c_symbol'    Name
+'='           Operator
+'Symbol'      Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'int'         Keyword.Type
+'      '      Text.Whitespace
+'i_period'    Name
+'='           Operator
+'Period'      Name.Function
+'('           Punctuation
+')'           Punctuation
+'*'           Operator
+'InpPeriodMultiplier' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'int'         Keyword.Type
+'      '      Text.Whitespace
+'i_digits'    Name
+'='           Operator
+'Digits'      Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'int'         Keyword.Type
+'      '      Text.Whitespace
+'i_unused'    Name
+'['           Punctuation
+'13'          Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'MqlRates'    Name
+' '           Text.Whitespace
+'rate'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'//---  \n'   Comment.Single
+
+'   '         Text.Whitespace
+'ExtHandle'   Name
+'='           Operator
+'FileOpenHistory' Name.Function
+'('           Punctuation
+'c_symbol'    Name
+'+'           Operator
+'('           Punctuation
+'string'      Keyword.Type
+')'           Punctuation
+'i_period'    Name
+'+'           Operator
+'"'           Literal.String
+'.hst'        Literal.String
+'"'           Literal.String
+','           Punctuation
+'FILE_BIN'    Name.Constant
+'|'           Operator
+'FILE_WRITE'  Name.Constant
+'|'           Operator
+'FILE_SHARE_WRITE' Name.Constant
+'|'           Operator
+'FILE_SHARE_READ' Name.Constant
+'|'           Operator
+'FILE_ANSI'   Name.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'ExtHandle'   Name
+'<'           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'return'      Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'c_copyright' Name
+'='           Operator
+'"'           Literal.String
+'(C)opyright 2003, MetaQuotes Software Corp.' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'ArrayInitialize' Name.Function
+'('           Punctuation
+'i_unused'    Name
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'//--- write history file header\n' Comment.Single
+
+'   '         Text.Whitespace
+'FileWriteInteger' Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+','           Punctuation
+'file_version' Name
+','           Punctuation
+'LONG_VALUE'  Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'FileWriteString' Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+','           Punctuation
+'c_copyright' Name
+','           Punctuation
+'64'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'FileWriteString' Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+','           Punctuation
+'c_symbol'    Name
+','           Punctuation
+'12'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'FileWriteInteger' Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+','           Punctuation
+'i_period'    Name
+','           Punctuation
+'LONG_VALUE'  Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'FileWriteInteger' Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+','           Punctuation
+'i_digits'    Name
+','           Punctuation
+'LONG_VALUE'  Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'FileWriteInteger' Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'LONG_VALUE'  Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'FileWriteInteger' Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'LONG_VALUE'  Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'FileWriteArray' Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+','           Punctuation
+'i_unused'    Name
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'13'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'//--- write history file\n' Comment.Single
+
+'   '         Text.Whitespace
+'periodseconds' Name
+'='           Operator
+'i_period'    Name
+'*'           Operator
+'60'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'start_pos'   Name
+'='           Operator
+'Bars'        Keyword
+'-1'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'open'        Name
+'='           Operator
+'Open'        Keyword
+'['           Punctuation
+'start_pos'   Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'low'         Name
+'='           Operator
+'Low'         Keyword
+'['           Punctuation
+'start_pos'   Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'high'        Name
+'='           Operator
+'High'        Keyword
+'['           Punctuation
+'start_pos'   Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'tick_volume' Name
+'='           Operator
+'('           Punctuation
+'long'        Keyword.Type
+')'           Punctuation
+'Volume'      Keyword
+'['           Punctuation
+'start_pos'   Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'spread'      Name
+'='           Operator
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'real_volume' Name
+'='           Operator
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'//--- normalize open time\n' Comment.Single
+
+'   '         Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'time'        Name
+'='           Operator
+'Time'        Keyword
+'['           Punctuation
+'start_pos'   Name
+']'           Punctuation
+'/'           Operator
+'periodseconds' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'time'        Name
+'*'           Operator
+'='           Operator
+'periodseconds' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'for'         Keyword
+'('           Punctuation
+'i'           Name
+'='           Operator
+'start_pos'   Name
+'-1'          Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'i'           Name
+'>'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'i'           Name
+'-'           Operator
+'-'           Operator
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'IsStopped'   Name.Function
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'break'       Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'time0'       Name
+'='           Operator
+'Time'        Keyword
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'//--- history may be updated\n' Comment.Single
+
+'      '      Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'i'           Name
+'='           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'//--- modify index if history was updated\n' Comment.Single
+
+'         '   Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'RefreshRates' Name.Function
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'i'           Name
+'='           Operator
+'iBarShift'   Name.Function
+'('           Punctuation
+'NULL'        Name.Constant
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'time0'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'//---\n'     Comment.Single
+
+'      '      Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'time0'       Name
+'>'           Operator
+'='           Operator
+'rate'        Name
+'.'           Punctuation
+'time'        Name
+'+'           Operator
+'periodseconds' Name
+' '           Text.Whitespace
+'|'           Operator
+'|'           Operator
+' '           Text.Whitespace
+'i'           Name
+'='           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'i'           Name
+'='           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'time0'       Name
+'<'           Operator
+'rate'        Name
+'.'           Punctuation
+'time'        Name
+'+'           Operator
+'periodseconds' Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'           ' Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'tick_volume' Name
+'+'           Operator
+'='           Operator
+'('           Punctuation
+'long'        Keyword.Type
+')'           Punctuation
+'Volume'      Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'rate'        Name
+'.'           Punctuation
+'low'         Name
+'>'           Operator
+'Low'         Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'               ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'low'         Name
+'='           Operator
+'Low'         Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'rate'        Name
+'.'           Punctuation
+'high'        Name
+'<'           Operator
+'High'        Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'               ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'high'        Name
+'='           Operator
+'High'        Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'close'       Name
+'='           Operator
+'Close'       Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'           ' Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'last_fpos'   Name
+'='           Operator
+'FileTell'    Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'last_volume' Name
+'='           Operator
+'('           Punctuation
+'long'        Keyword.Type
+')'           Punctuation
+'Volume'      Keyword
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'FileWriteStruct' Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+','           Punctuation
+'rate'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'cnt'         Name
+'+'           Operator
+'+'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'time0'       Name
+'>'           Operator
+'='           Operator
+'rate'        Name
+'.'           Punctuation
+'time'        Name
+'+'           Operator
+'periodseconds' Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'           ' Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'time'        Name
+'='           Operator
+'time0'       Name
+'/'           Operator
+'periodseconds' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'time'        Name
+'*'           Operator
+'='           Operator
+'periodseconds' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'open'        Name
+'='           Operator
+'Open'        Keyword
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'low'         Name
+'='           Operator
+'Low'         Keyword
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'high'        Name
+'='           Operator
+'High'        Keyword
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'close'       Name
+'='           Operator
+'Close'       Keyword
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'tick_volume' Name
+'='           Operator
+'last_volume' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'           ' Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'       '     Text.Whitespace
+'else'        Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'tick_volume' Name
+'+'           Operator
+'='           Operator
+'('           Punctuation
+'long'        Keyword.Type
+')'           Punctuation
+'Volume'      Keyword
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'rate'        Name
+'.'           Punctuation
+'low'         Name
+'>'           Operator
+'Low'         Keyword
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'low'         Name
+'='           Operator
+'Low'         Keyword
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'rate'        Name
+'.'           Punctuation
+'high'        Name
+'<'           Operator
+'High'        Keyword
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'high'        Name
+'='           Operator
+'High'        Keyword
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'close'       Name
+'='           Operator
+'Close'       Keyword
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'FileFlush'   Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'Print'       Name.Function
+'('           Punctuation
+'cnt'         Name
+','           Punctuation
+'"'           Literal.String
+' record(s) written' Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'//--- collect incoming ticks\n' Comment.Single
+
+'   '         Text.Whitespace
+'datetime'    Keyword.Type
+' '           Text.Whitespace
+'last_time'   Name
+'='           Operator
+'LocalTime'   Name
+'('           Punctuation
+')'           Punctuation
+'-5'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'while'       Keyword
+'('           Punctuation
+'!'           Operator
+'IsStopped'   Name.Function
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'datetime'    Keyword.Type
+' '           Text.Whitespace
+'cur_time'    Name
+'='           Operator
+'LocalTime'   Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'//--- check for new rates\n' Comment.Single
+
+'      '      Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'RefreshRates' Name.Function
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'time0'       Name
+'='           Operator
+'Time'        Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'FileSeek'    Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+','           Punctuation
+'last_fpos'   Name
+','           Punctuation
+'SEEK_SET'    Name.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'//--- is there current bar?\n' Comment.Single
+
+'         '   Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'time0'       Name
+'<'           Operator
+'rate'        Name
+'.'           Punctuation
+'time'        Name
+'+'           Operator
+'periodseconds' Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'           ' Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'tick_volume' Name
+'+'           Operator
+'='           Operator
+'('           Punctuation
+'long'        Keyword.Type
+')'           Punctuation
+'Volume'      Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'-'           Operator
+'last_volume' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'last_volume' Name
+'='           Operator
+'('           Punctuation
+'long'        Keyword.Type
+')'           Punctuation
+'Volume'      Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'rate'        Name
+'.'           Punctuation
+'low'         Name
+'>'           Operator
+'Low'         Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'               ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'low'         Name
+'='           Operator
+'Low'         Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'rate'        Name
+'.'           Punctuation
+'high'        Name
+'<'           Operator
+'High'        Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'               ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'high'        Name
+'='           Operator
+'High'        Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'close'       Name
+'='           Operator
+'Close'       Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'           ' Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'else'        Keyword
+'\n'          Text.Whitespace
+
+'           ' Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'//--- no, there is new bar\n' Comment.Single
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'tick_volume' Name
+'+'           Operator
+'='           Operator
+'('           Punctuation
+'long'        Keyword.Type
+')'           Punctuation
+'Volume'      Keyword
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'-'           Operator
+'last_volume' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'rate'        Name
+'.'           Punctuation
+'low'         Name
+'>'           Operator
+'Low'         Keyword
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'               ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'low'         Name
+'='           Operator
+'Low'         Keyword
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'rate'        Name
+'.'           Punctuation
+'high'        Name
+'<'           Operator
+'High'        Keyword
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'               ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'high'        Name
+'='           Operator
+'High'        Keyword
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'//--- write previous bar remains\n' Comment.Single
+
+'            ' Text.Whitespace
+'FileWriteStruct' Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+','           Punctuation
+'rate'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'last_fpos'   Name
+'='           Operator
+'FileTell'    Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'//----\n'    Comment.Single
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'time'        Name
+'='           Operator
+'time0'       Name
+'/'           Operator
+'periodseconds' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'time'        Name
+'*'           Operator
+'='           Operator
+'periodseconds' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'open'        Name
+'='           Operator
+'Open'        Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'low'         Name
+'='           Operator
+'Low'         Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'high'        Name
+'='           Operator
+'High'        Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'close'       Name
+'='           Operator
+'Close'       Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'rate'        Name
+'.'           Punctuation
+'tick_volume' Name
+'='           Operator
+'('           Punctuation
+'long'        Keyword.Type
+')'           Punctuation
+'Volume'      Keyword
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'last_volume' Name
+'='           Operator
+'rate'        Name
+'.'           Punctuation
+'tick_volume' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'           ' Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'//----\n'    Comment.Single
+
+'         '   Text.Whitespace
+'FileWriteStruct' Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+','           Punctuation
+'rate'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'FileFlush'   Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'//---\n'     Comment.Single
+
+'         '   Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'hwnd'        Name
+'='           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'           ' Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'hwnd'        Name
+'='           Operator
+'WindowHandle' Name.Function
+'('           Punctuation
+'Symbol'      Name.Function
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+'i_period'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'hwnd'        Name
+'!'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'               ' Text.Whitespace
+'Print'       Name.Function
+'('           Punctuation
+'"'           Literal.String
+'Chart window detected' Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'           ' Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'         '   Text.Whitespace
+'//--- refresh window not frequently than 1 time in 2 seconds\n' Comment.Single
+
+'         '   Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'hwnd'        Name
+'!'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'cur_time'    Name
+'-'           Operator
+'last_time'   Name
+'>'           Operator
+'='           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'           ' Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'PostMessageA' Name
+'('           Punctuation
+'hwnd'        Name
+','           Punctuation
+'WM_COMMAND'  Name
+','           Punctuation
+'33324'       Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'last_time'   Name
+'='           Operator
+'cur_time'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'           ' Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'Sleep'       Name.Function
+'('           Punctuation
+'50'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'}'           Punctuation
+'      '      Text.Whitespace
+'\n'          Text.Whitespace
+
+'//---\n'     Comment.Single
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'//|                                                                  |\n' Comment.Single
+
+'//+------------------------------------------------------------------+\n' Comment.Single
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'OnDeinit'    Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'reason'      Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'//---\n'     Comment.Single
+
+'   '         Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'ExtHandle'   Name
+'>'           Operator
+'='           Operator
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'FileClose'   Name.Function
+'('           Punctuation
+'ExtHandle'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'ExtHandle'   Name
+'='           Operator
+'-1'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'//---\n'     Comment.Single
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'//+------------------------------------------------------------------+\n' Comment.Single

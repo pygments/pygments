@@ -1,0 +1,1076 @@
+'Mime-Version:' Name.Tag
+' '           Text.Whitespace
+'1'           Text
+'.'           Text
+'0'           Text
+' '           Text.Whitespace
+'('           Text
+'A'           Text
+'p'           Text
+'p'           Text
+'l'           Text
+'e'           Text
+' '           Text.Whitespace
+'M'           Text
+'e'           Text
+'s'           Text
+'s'           Text
+'a'           Text
+'g'           Text
+'e'           Text
+' '           Text.Whitespace
+'f'           Text
+'r'           Text
+'a'           Text
+'m'           Text
+'e'           Text
+'w'           Text
+'o'           Text
+'r'           Text
+'k'           Text
+' '           Text.Whitespace
+'v'           Text
+'7'           Text
+'3'           Text
+'0'           Text
+')'           Text
+'\n'          Text.Whitespace
+
+'Content-Type:' Name.Tag
+' '           Text.Whitespace
+''            Text.Whitespace
+'multipart'   Name.Label
+'/'           Literal.String.Delimiter
+'mixed'       Name.Label
+';'           Text
+' '           Text.Whitespace
+'boundary'    Name.Attribute
+'='           Operator
+'Apple-Mail-13-196941151' Literal.String
+'\n'          Text.Whitespace
+
+'Message-Id:' Name.Tag
+' '           Text.Whitespace
+'<9169D984-4E0B-45EF-82D4-8F5E53AD7012@example.com>' Name.Label
+'\n'          Text.Whitespace
+
+'From:'       Name.Tag
+' '           Text.Whitespace
+'foo@example.com' Name.Label
+'\n'          Text.Whitespace
+
+'Subject:'    Name.Tag
+' '           Text.Whitespace
+'t'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+'\n'          Text.Whitespace
+
+'Date:'       Name.Tag
+' '           Text.Whitespace
+'Mon, 6 Jun 2005 22:21:22 +0200' Name.Decorator
+'\n'          Text.Whitespace
+
+'To:'         Name.Tag
+' '           Text.Whitespace
+'blah@example.com' Name.Label
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text
+
+'--Apple-Mail-13-196941151\n' Literal.String.Delimiter
+
+'Content-Transfer-Encoding:' Name.Tag
+' '           Text.Whitespace
+'quoted-printable' Name.Constant
+'\n'          Text.Whitespace
+
+'Content-Type:' Name.Tag
+' '           Text.Whitespace
+''            Text.Whitespace
+'text'        Name.Label
+'/'           Literal.String.Delimiter
+'plain'       Name.Label
+';'           Text
+'\n\t'        Text.Whitespace
+'charset'     Name.Attribute
+'='           Operator
+'ISO-8859-1'  Literal.String
+';'           Text
+'\n\t'        Text.Whitespace
+'delsp'       Name.Attribute
+'='           Operator
+'yes'         Literal.String
+';'           Text
+'\n\t'        Text.Whitespace
+'format'      Name.Attribute
+'='           Operator
+'flowed'      Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'This is the first part.\n\n' Text
+
+'--Apple-Mail-13-196941151\n' Literal.String.Delimiter
+
+'Content-Type:' Name.Tag
+' '           Text.Whitespace
+''            Text.Whitespace
+'message'     Name.Label
+'/'           Literal.String.Delimiter
+'rfc822'      Name.Label
+';'           Text
+'\n  '        Text.Whitespace
+'name'        Name.Attribute
+'='           Operator
+'"ForwardedMessage.eml"' Literal.String
+';\n'         Text
+
+'\n'          Text.Whitespace
+
+'Return-Path:' Name.Tag
+' '           Text.Whitespace
+'<xxxx@xxxx.com>' Name.Label
+'\n'          Text.Whitespace
+
+'X-Original-To:' Comment.Special
+' xxxx@xxxx.com\n' Comment.Multiline
+
+'Delivered-To:' Name.Tag
+' '           Text.Whitespace
+'xxxx@xxxx.com' Name.Label
+'\n'          Text.Whitespace
+
+'Received:'   Name.Tag
+' '           Text.Whitespace
+'f'           Text
+'r'           Text
+'o'           Text
+'m'           Text
+' '           Text.Whitespace
+'l'           Text
+'o'           Text
+'c'           Text
+'a'           Text
+'l'           Text
+'h'           Text
+'o'           Text
+'s'           Text
+'t'           Text
+' '           Text.Whitespace
+'('           Text
+'l'           Text
+'o'           Text
+'c'           Text
+'a'           Text
+'l'           Text
+'h'           Text
+'o'           Text
+'s'           Text
+'t'           Text
+' '           Text.Whitespace
+'['           Text
+'127.0.0.1'   Literal.Number.Integer
+']'           Text
+')'           Text
+'\n\t'        Text.Whitespace
+'b'           Text
+'y'           Text
+' '           Text.Whitespace
+'xxx.xxxxx.com' Name.Function
+' '           Text.Whitespace
+'('           Text
+'P'           Text
+'o'           Text
+'s'           Text
+'t'           Text
+'f'           Text
+'i'           Text
+'x'           Text
+')'           Text
+' '           Text.Whitespace
+'w'           Text
+'i'           Text
+'t'           Text
+'h'           Text
+' '           Text.Whitespace
+'ESMTP'       Keyword
+' '           Text.Whitespace
+'i'           Text
+'d'           Text
+' '           Text.Whitespace
+'5'           Text
+'0'           Text
+'F'           Text
+'D'           Text
+'3'           Text
+'A'           Text
+'9'           Text
+'6'           Text
+'F'           Text
+'\n\t'        Text.Whitespace
+'f'           Text
+'o'           Text
+'r'           Text
+' '           Text.Whitespace
+'<xxxx@xxxx.com>' Name.Label
+';'           Text
+' '           Text.Whitespace
+'Tue, 10 May 2005 17:26:50 +0000' Name.Decorator
+' '           Text.Whitespace
+'('           Text
+'G'           Text
+'M'           Text
+'T'           Text
+')'           Text
+'\n'          Text.Whitespace
+
+'Received:'   Name.Tag
+' '           Text.Whitespace
+'f'           Text
+'r'           Text
+'o'           Text
+'m'           Text
+' '           Text.Whitespace
+'xxx.xxxxx.com' Name.Function
+' '           Text.Whitespace
+'('           Text
+'['           Text
+'127.0.0.1'   Literal.Number.Integer
+']'           Text
+')'           Text
+'\n '         Text.Whitespace
+'b'           Text
+'y'           Text
+' '           Text.Whitespace
+'l'           Text
+'o'           Text
+'c'           Text
+'a'           Text
+'l'           Text
+'h'           Text
+'o'           Text
+'s'           Text
+'t'           Text
+' '           Text.Whitespace
+'('           Text
+'xxx.xxxxx.com' Name.Function
+' '           Text.Whitespace
+'['           Text
+'127.0.0.1'   Literal.Number.Integer
+']'           Text
+')'           Text
+' '           Text.Whitespace
+'('           Text
+'a'           Text
+'m'           Text
+'a'           Text
+'v'           Text
+'i'           Text
+'s'           Text
+'d'           Text
+'-'           Text
+'n'           Text
+'e'           Text
+'w'           Text
+','           Text
+' '           Text.Whitespace
+'p'           Text
+'o'           Text
+'r'           Text
+'t'           Text
+' '           Text.Whitespace
+'1'           Text
+'0'           Text
+'0'           Text
+'2'           Text
+'4'           Text
+')'           Text
+'\n '         Text.Whitespace
+'w'           Text
+'i'           Text
+'t'           Text
+'h'           Text
+' '           Text.Whitespace
+'L'           Text
+'M'           Text
+'T'           Text
+'P'           Text
+' '           Text.Whitespace
+'i'           Text
+'d'           Text
+' '           Text.Whitespace
+'7'           Text
+'0'           Text
+'0'           Text
+'6'           Text
+'0'           Text
+'-'           Text
+'0'           Text
+'3'           Text
+' '           Text.Whitespace
+'f'           Text
+'o'           Text
+'r'           Text
+' '           Text.Whitespace
+'<xxxx@xxxx.com>' Name.Label
+';'           Text
+'\n '         Text.Whitespace
+'Tue, 10 May 2005 17:26:49 +0000' Name.Decorator
+' '           Text.Whitespace
+'('           Text
+'G'           Text
+'M'           Text
+'T'           Text
+')'           Text
+'\n'          Text.Whitespace
+
+'Received:'   Name.Tag
+' '           Text.Whitespace
+'f'           Text
+'r'           Text
+'o'           Text
+'m'           Text
+' '           Text.Whitespace
+'xxx.xxxxx.com' Name.Function
+' '           Text.Whitespace
+'('           Text
+'xxx.xxxxx.com' Name.Function
+' '           Text.Whitespace
+'['           Text
+'69.36.39.150' Literal.Number.Integer
+']'           Text
+')'           Text
+'\n\t'        Text.Whitespace
+'b'           Text
+'y'           Text
+' '           Text.Whitespace
+'xxx.xxxxx.com' Name.Function
+' '           Text.Whitespace
+'('           Text
+'P'           Text
+'o'           Text
+'s'           Text
+'t'           Text
+'f'           Text
+'i'           Text
+'x'           Text
+')'           Text
+' '           Text.Whitespace
+'w'           Text
+'i'           Text
+'t'           Text
+'h'           Text
+' '           Text.Whitespace
+'ESMTP'       Keyword
+' '           Text.Whitespace
+'i'           Text
+'d'           Text
+' '           Text.Whitespace
+'8'           Text
+'B'           Text
+'9'           Text
+'5'           Text
+'7'           Text
+'A'           Text
+'9'           Text
+'4'           Text
+'B'           Text
+'\n\t'        Text.Whitespace
+'f'           Text
+'o'           Text
+'r'           Text
+' '           Text.Whitespace
+'<xxxx@xxxx.com>' Name.Label
+';'           Text
+' '           Text.Whitespace
+'Tue, 10 May 2005 17:26:48 +0000' Name.Decorator
+' '           Text.Whitespace
+'('           Text
+'G'           Text
+'M'           Text
+'T'           Text
+')'           Text
+'\n'          Text.Whitespace
+
+'Received:'   Name.Tag
+' '           Text.Whitespace
+'f'           Text
+'r'           Text
+'o'           Text
+'m'           Text
+' '           Text.Whitespace
+'xxx.xxxxx.com' Name.Function
+' '           Text.Whitespace
+'('           Text
+'xxx.xxxxx.com' Name.Function
+' '           Text.Whitespace
+'['           Text
+'64.233.184.203' Literal.Number.Integer
+']'           Text
+')'           Text
+'\n\t'        Text.Whitespace
+'b'           Text
+'y'           Text
+' '           Text.Whitespace
+'xxx.xxxxx.com' Name.Function
+' '           Text.Whitespace
+'('           Text
+'P'           Text
+'o'           Text
+'s'           Text
+'t'           Text
+'f'           Text
+'i'           Text
+'x'           Text
+')'           Text
+' '           Text.Whitespace
+'w'           Text
+'i'           Text
+'t'           Text
+'h'           Text
+' '           Text.Whitespace
+'ESMTP'       Keyword
+' '           Text.Whitespace
+'i'           Text
+'d'           Text
+' '           Text.Whitespace
+'9'           Text
+'9'           Text
+'7'           Text
+'2'           Text
+'5'           Text
+'1'           Text
+'4'           Text
+'8'           Text
+'2'           Text
+'4'           Text
+'C'           Text
+'\n\t'        Text.Whitespace
+'f'           Text
+'o'           Text
+'r'           Text
+' '           Text.Whitespace
+'<xxxx@xxxx.com>' Name.Label
+';'           Text
+' '           Text.Whitespace
+'Tue, 10 May 2005 12:26:40 -0500' Name.Decorator
+' '           Text.Whitespace
+'('           Text
+'C'           Text
+'D'           Text
+'T'           Text
+')'           Text
+'\n'          Text.Whitespace
+
+'Received:'   Name.Tag
+' '           Text.Whitespace
+'b'           Text
+'y'           Text
+' '           Text.Whitespace
+'xxx.xxxxx.com' Name.Function
+' '           Text.Whitespace
+'w'           Text
+'i'           Text
+'t'           Text
+'h'           Text
+' '           Text.Whitespace
+'SMTP'        Keyword
+' '           Text.Whitespace
+'i'           Text
+'d'           Text
+' '           Text.Whitespace
+'6'           Text
+'8'           Text
+'s'           Text
+'o'           Text
+'1'           Text
+'6'           Text
+'9'           Text
+'4'           Text
+'4'           Text
+'4'           Text
+'8'           Text
+'w'           Text
+'r'           Text
+'i'           Text
+'\n '         Text.Whitespace
+'       '     Text.Whitespace
+'f'           Text
+'o'           Text
+'r'           Text
+' '           Text.Whitespace
+'<xxxx@xxxx.com>' Name.Label
+';'           Text
+' '           Text.Whitespace
+'Tue, 10 May 2005 10:26:40 -0700' Name.Decorator
+' '           Text.Whitespace
+'('           Text
+'P'           Text
+'D'           Text
+'T'           Text
+')'           Text
+'\n'          Text.Whitespace
+
+'DomainKey-Signature:' Name.Tag
+' '           Text.Whitespace
+'a'           Text
+'='           Text
+'r'           Text
+'s'           Text
+'a'           Text
+'-'           Text
+'s'           Text
+'h'           Text
+'a'           Text
+'1'           Text
+';'           Text
+' '           Text.Whitespace
+'q'           Text
+'='           Text
+'d'           Text
+'n'           Text
+'s'           Text
+';'           Text
+' '           Text.Whitespace
+'c'           Text
+'='           Text
+'n'           Text
+'o'           Text
+'f'           Text
+'w'           Text
+'s'           Text
+';'           Text
+'\n '         Text.Whitespace
+'       '     Text.Whitespace
+'s'           Text
+'='           Text
+'b'           Text
+'e'           Text
+'t'           Text
+'a'           Text
+';'           Text
+' '           Text.Whitespace
+'d'           Text
+'='           Text
+'xxxxx.com'   Name.Function
+';'           Text
+'\n '         Text.Whitespace
+'       '     Text.Whitespace
+'h'           Text
+'='           Text
+'r'           Text
+'e'           Text
+'c'           Text
+'e'           Text
+'i'           Text
+'v'           Text
+'e'           Text
+'d'           Text
+':'           Text
+'m'           Text
+'e'           Text
+'s'           Text
+'s'           Text
+'a'           Text
+'g'           Text
+'e'           Text
+'-'           Text
+'i'           Text
+'d'           Text
+':'           Text
+'d'           Text
+'a'           Text
+'t'           Text
+'e'           Text
+':'           Text
+'f'           Text
+'r'           Text
+'o'           Text
+'m'           Text
+':'           Text
+'r'           Text
+'e'           Text
+'p'           Text
+'l'           Text
+'y'           Text
+'-'           Text
+'t'           Text
+'o'           Text
+':'           Text
+'t'           Text
+'o'           Text
+':'           Text
+'s'           Text
+'u'           Text
+'b'           Text
+'j'           Text
+'e'           Text
+'c'           Text
+'t'           Text
+':'           Text
+'m'           Text
+'i'           Text
+'m'           Text
+'e'           Text
+'-'           Text
+'v'           Text
+'e'           Text
+'r'           Text
+'s'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+':'           Text
+'c'           Text
+'o'           Text
+'n'           Text
+'t'           Text
+'e'           Text
+'n'           Text
+'t'           Text
+'-'           Text
+'t'           Text
+'y'           Text
+'p'           Text
+'e'           Text
+';'           Text
+'\n '         Text.Whitespace
+'       '     Text.Whitespace
+'b'           Text
+'='           Text
+'g'           Text
+'8'           Text
+'Z'           Text
+'O'           Text
+'5'           Text
+'t'           Text
+'t'           Text
+'S'           Text
+'6'           Text
+'G'           Text
+'P'           Text
+'E'           Text
+'M'           Text
+'A'           Text
+'z'           Text
+'9'           Text
+'W'           Text
+'x'           Text
+'r'           Text
+'R'           Text
+'k'           Text
+'9'           Text
+'+'           Text
+'9'           Text
+'I'           Text
+'X'           Text
+'B'           Text
+'U'           Text
+'f'           Text
+'Q'           Text
+'I'           Text
+'Y'           Text
+'s'           Text
+'Z'           Text
+'L'           Text
+'L'           Text
+'6'           Text
+'T'           Text
+'8'           Text
+'8'           Text
+'+'           Text
+'E'           Text
+'C'           Text
+'b'           Text
+'s'           Text
+'X'           Text
+'q'           Text
+'G'           Text
+'I'           Text
+'g'           Text
+'f'           Text
+'G'           Text
+'t'           Text
+'z'           Text
+'J'           Text
+'J'           Text
+'F'           Text
+'n'           Text
+'6'           Text
+'o'           Text
+'9'           Text
+'C'           Text
+'E'           Text
+'3'           Text
+'/'           Text
+'H'           Text
+'M'           Text
+'r'           Text
+'r'           Text
+'I'           Text
+'G'           Text
+'k'           Text
+'N'           Text
+'5'           Text
+'A'           Text
+'i'           Text
+'s'           Text
+'x'           Text
+'V'           Text
+'F'           Text
+'T'           Text
+'G'           Text
+'X'           Text
+'W'           Text
+'x'           Text
+'W'           Text
+'c'           Text
+'i'           Text
+'5'           Text
+'Y'           Text
+'A'           Text
+'/'           Text
+'7'           Text
+'P'           Text
+'T'           Text
+'V'           Text
+'W'           Text
+'w'           Text
+'P'           Text
+'O'           Text
+'h'           Text
+'J'           Text
+'f'           Text
+'f'           Text
+'5'           Text
+'B'           Text
+'R'           Text
+'Y'           Text
+'Q'           Text
+'D'           Text
+'V'           Text
+'N'           Text
+'g'           Text
+'R'           Text
+'K'           Text
+'q'           Text
+'M'           Text
+'l'           Text
+'/'           Text
+'S'           Text
+'M'           Text
+'t'           Text
+'t'           Text
+'N'           Text
+'r'           Text
+'r'           Text
+'R'           Text
+'E'           Text
+'l'           Text
+'s'           Text
+'G'           Text
+'J'           Text
+'j'           Text
+'n'           Text
+'D'           Text
+'1'           Text
+'U'           Text
+'y'           Text
+'Q'           Text
+'/'           Text
+'5'           Text
+'k'           Text
+'Q'           Text
+'m'           Text
+'c'           Text
+'B'           Text
+'x'           Text
+'q'           Text
+'2'           Text
+'P'           Text
+'u'           Text
+'Z'           Text
+'I'           Text
+'5'           Text
+'Z'           Text
+'c'           Text
+'4'           Text
+'7'           Text
+'u'           Text
+'6'           Text
+'C'           Text
+'I'           Text
+'L'           Text
+'c'           Text
+'u'           Text
+'o'           Text
+'B'           Text
+'c'           Text
+'M'           Text
+'+'           Text
+'A'           Text
+'='           Text
+'\n'          Text.Whitespace
+
+'Received:'   Name.Tag
+' '           Text.Whitespace
+'b'           Text
+'y'           Text
+' '           Text.Whitespace
+'10.54.96.19' Literal.Number.Integer
+' '           Text.Whitespace
+'w'           Text
+'i'           Text
+'t'           Text
+'h'           Text
+' '           Text.Whitespace
+'SMTP'        Keyword
+' '           Text.Whitespace
+'i'           Text
+'d'           Text
+' '           Text.Whitespace
+'t'           Text
+'1'           Text
+'9'           Text
+'m'           Text
+'r'           Text
+'6'           Text
+'2'           Text
+'1'           Text
+'0'           Text
+'1'           Text
+'7'           Text
+'w'           Text
+'r'           Text
+'b'           Text
+';'           Text
+'\n '         Text.Whitespace
+'       '     Text.Whitespace
+'Tue, 10 May 2005 10:26:39 -0700' Name.Decorator
+' '           Text.Whitespace
+'('           Text
+'P'           Text
+'D'           Text
+'T'           Text
+')'           Text
+'\n'          Text.Whitespace
+
+'Received:'   Name.Tag
+' '           Text.Whitespace
+'b'           Text
+'y'           Text
+' '           Text.Whitespace
+'10.54.110.5' Literal.Number.Integer
+' '           Text.Whitespace
+'w'           Text
+'i'           Text
+'t'           Text
+'h'           Text
+' '           Text.Whitespace
+'H'           Text
+'T'           Text
+'T'           Text
+'P'           Text
+';'           Text
+' '           Text.Whitespace
+'Tue, 10 May 2005 10:26:39 -0700' Name.Decorator
+' '           Text.Whitespace
+'('           Text
+'P'           Text
+'D'           Text
+'T'           Text
+')'           Text
+'\n'          Text.Whitespace
+
+'Message-ID:' Name.Tag
+' '           Text.Whitespace
+'<xxxx@xxxx.com>' Name.Label
+'\n'          Text.Whitespace
+
+'Date:'       Name.Tag
+' '           Text.Whitespace
+'Tue, 10 May 2005 11:26:39 -0600' Name.Decorator
+'\n'          Text.Whitespace
+
+'From:'       Name.Tag
+' '           Text.Whitespace
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+' '           Text.Whitespace
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'e'           Text
+'r'           Text
+' '           Text.Whitespace
+'<xxxx@xxxx.com>' Name.Label
+'\n'          Text.Whitespace
+
+'Reply-To:'   Name.Tag
+' '           Text.Whitespace
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+' '           Text.Whitespace
+'T'           Text
+'e'           Text
+'s'           Text
+'t'           Text
+'e'           Text
+'r'           Text
+' '           Text.Whitespace
+'<xxxx@xxxx.com>' Name.Label
+'\n'          Text.Whitespace
+
+'To:'         Name.Tag
+' '           Text.Whitespace
+'xxxx@xxxx.com' Name.Label
+','           Text
+' '           Text.Whitespace
+'xxxx@xxxx.com' Name.Label
+'\n'          Text.Whitespace
+
+'Subject:'    Name.Tag
+' '           Text.Whitespace
+'A'           Text
+'n'           Text
+'o'           Text
+'t'           Text
+'h'           Text
+'e'           Text
+'r'           Text
+' '           Text.Whitespace
+'P'           Text
+'D'           Text
+'F'           Text
+'\n'          Text.Whitespace
+
+'Mime-Version:' Name.Tag
+' '           Text.Whitespace
+'1'           Text
+'.'           Text
+'0'           Text
+'\n'          Text.Whitespace
+
+'Content-Type:' Name.Tag
+' '           Text.Whitespace
+''            Text.Whitespace
+'multipart'   Name.Label
+'/'           Literal.String.Delimiter
+'mixed'       Name.Label
+';'           Text
+'\n\t'        Text.Whitespace
+'boundary'    Name.Attribute
+'='           Operator
+'"----=_Part_2192_32400445.1115745999735"' Literal.String
+'\n'          Text.Whitespace
+
+'X-Virus-Scanned:' Comment.Special
+' amavisd-new at textdrive.com\n' Comment.Multiline
+
+'\n'          Text.Whitespace
+
+''            Text
+'------=_Part_2192_32400445.1115745999735\n' Literal.String.Delimiter
+
+'Content-Type:' Name.Tag
+' '           Text.Whitespace
+''            Text.Whitespace
+'text'        Name.Label
+'/'           Literal.String.Delimiter
+'plain'       Name.Label
+';'           Text
+' '           Text.Whitespace
+'charset'     Name.Attribute
+'='           Operator
+'ISO-8859-1'  Literal.String
+'\n'          Text.Whitespace
+
+'Content-Transfer-Encoding:' Name.Tag
+' '           Text.Whitespace
+'quoted-printable' Name.Constant
+'\n'          Text.Whitespace
+
+'Content-Disposition:' Name.Tag
+' '           Text.Whitespace
+'i'           Text
+'n'           Text
+'l'           Text
+'i'           Text
+'n'           Text
+'e'           Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Just attaching another PDF, here, to see what the message looks like,\nand to see if I can figure out what is going wrong here.\n\n' Text
+
+'------=_Part_2192_32400445.1115745999735\n' Literal.String.Delimiter
+
+'Content-Type:' Name.Tag
+' '           Text.Whitespace
+''            Text.Whitespace
+'application' Name.Label
+'/'           Literal.String.Delimiter
+'pdf'         Name.Label
+';'           Text
+' '           Text.Whitespace
+'name'        Name.Attribute
+'='           Operator
+'"broken.pdf"' Literal.String
+'\n'          Text.Whitespace
+
+'Content-Transfer-Encoding:' Name.Tag
+' '           Text.Whitespace
+'base64'      Name.Constant
+'\n'          Text.Whitespace
+
+'Content-Disposition:' Name.Tag
+' '           Text.Whitespace
+'a'           Text
+'t'           Text
+'t'           Text
+'a'           Text
+'c'           Text
+'h'           Text
+'m'           Text
+'e'           Text
+'n'           Text
+'t'           Text
+';'           Text
+' '           Text.Whitespace
+'f'           Text
+'i'           Text
+'l'           Text
+'e'           Text
+'n'           Text
+'a'           Text
+'m'           Text
+'e'           Text
+'='           Text
+'"'           Text
+'broken.pdf'  Name.Function
+'"'           Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'JVBERi0xLjQNCiXk9tzfDQoxIDAgb2JqDQo8PCAvTGVuZ3RoIDIgMCBSDQogICAvRmlsdGVyIC9G\nbGF0ZURlY29kZQ0KPj4NCnN0cmVhbQ0KeJy9Wt2KJbkNvm/od6jrhZxYln9hWEh2p+8HBvICySaE\nycLuTV4/1ifJ9qnq09NpSBimu76yLUuy/qzqcPz7+em3Ixx/CDc6CsXxs3b5+fvfjr/8cPz6/BRu\nrbfAx/n3739/fuJylJ5u5fjX81OuDr4deK4Bz3z/aDP+8fz0yw8g0Ofq7ktr1Mn+u28rvhy/jVeD\nQSa+9YNKHP/pxjvDNfVAx/m3MFz54FhvTbaseaxiDoN2LeMVMw+yA7RbHSCDzxZuaYB2E1Yay7QU\nx89vz0+tyFDKMlAHK5yqLmnjF+c4RjEiQIUeKwblXMe+AsZjN1J5yGQL5DHpDHksurM81rF6PKab\ngK6zAarIDzIiUY23rJsN9iorAE816aIu6lsgAdQFsuhhkHOUFgVjp2GjMqSewITXNQ27jrMeamkg\n1rPI3iLWG2CIaSBB+V1245YVRICGbbpYKHc2USFDl6M09acQVQYhlwIrkBNLISvXhGlF1wi5FHCw\nwxZkoGNJlVeJCEsqKA+3YAV5AMb6KkeaqEJQmFKKQU8T1pRi2ihE1Y4CDrqoYFFXYjJJOatsyzuI\n8SIlykuxKTMibWK8H1PgEvqYgs4GmQSrEjJAalgGirIhik+p4ZQN9E3ETFPAHE1b8pp1l/0Rc1gl\nfQs0ABWvyoZZzU8VnPXwVVcO9BEsyjEJaO6eBoZRyKGlrKoYoOygA8BGIzgwN3RQ15ouigG5idZQ\nfx2U4Db2CqiLO0WHAZoylGiCAqhniNQjFjQPSkmjwfNTgQ6M1Ih+eWo36wFmjIxDJZiGUBiWsAyR\nxX3EekGOizkGI96Ol9zVZTAivikURhRsHh2E3JhWMpSTZCnnonrLhMCodgrNcgo4uyJUJc6qnVss\nnrGd1Ptr0YwisCOYyIbUwVjV4xBUNLbguSO2YHujonAMJkMdSI7bIw91Akq2AUlMUWGFTMAOamjU\nOvZQCxIkY2pCpMFo/IwLdVLHs6nddwTRrgoVbvLU9eB0G4EMndV0TNoxHbt3JBWwK6hhv3iHfDtF\nyokB302IpEBTnWICde4uYc/1khDbSIkQopO6lcqamGBu1OSE3N5IPSsZX00CkSHRiiyx6HQIShsS\nHSVNswdVsaOUSAWq9aYhDtGDaoG5a3lBGkYt/lFlBFt1UqrYnzVtUpUQnLiZeouKgf1KhRBViRRk\nExepJCzTwEmFDalIRbLEGtw0gfpESOpIAF/NnpPzcVCG86s0g2DuSyd41uhNGbEgaSrWEXORErbw\n' Other
+
+'------=_Part_2192_32400445.1115745999735--\n' Literal.String.Delimiter
+
+'\n'          Text
+
+'--Apple-Mail-13-196941151--\n' Literal.String.Delimiter

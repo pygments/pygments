@@ -1,0 +1,266 @@
+'>>> '        Generic.Prompt
+'('           Punctuation
+'int'         Name.Other
+')'           Punctuation
+' '           Text
+'10.88'       Literal.Number.Float
+'\n'          Text
+
+'=> 10\n'     Generic.Output
+
+'>>> '        Generic.Prompt
+'('           Punctuation
+'string'      Name.Other
+')'           Punctuation
+' '           Text
+'10.88'       Literal.Number.Float
+'\n'          Text
+
+'=> "10.88"\n' Generic.Output
+
+'>>> '        Generic.Prompt
+'('           Punctuation
+'bool'        Name.Other
+')'           Punctuation
+' '           Text
+'10.88'       Literal.Number.Float
+'\n'          Text
+
+'=> true\n'   Generic.Output
+
+'>>> '        Generic.Prompt
+'('           Punctuation
+'array'       Keyword
+')'           Punctuation
+' '           Text
+'10.88'       Literal.Number.Float
+'\n'          Text
+
+'=> [\n'      Generic.Output
+
+'     10.88,\n' Generic.Output
+
+'   ]\n'      Generic.Output
+
+'>>> '        Generic.Prompt
+'$object'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'object'      Name.Other
+')'           Punctuation
+' '           Text
+'10.88'       Literal.Number.Float
+'\n'          Text
+
+'=> {#2373\n' Generic.Output
+
+'     +"scalar": 10.88,\n' Generic.Output
+
+'   }\n'      Generic.Output
+
+'>>> '        Generic.Prompt
+'$object'     Name.Variable
+'->'          Operator
+'scalar'      Name.Attribute
+'\n'          Text
+
+'=> 10.88\n'  Generic.Output
+
+'>>> '        Generic.Prompt
+'$fileHandle' Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'fopen'       Name.Builtin
+'('           Punctuation
+"'hello.txt'" Literal.String.Single
+','           Punctuation
+' '           Text
+"'w'"         Literal.String.Single
+');'          Punctuation
+'\n'          Text
+
+'=> stream resource #400\n' Generic.Output
+
+'>>> '        Generic.Prompt
+'('           Punctuation
+'int'         Name.Other
+')'           Punctuation
+' '           Text
+'$fileHandle' Name.Variable
+'\n'          Text
+
+'=> 400\n'    Generic.Output
+
+'>>> '        Generic.Prompt
+'('           Punctuation
+'string'      Name.Other
+')'           Punctuation
+' '           Text
+'$fileHandle' Name.Variable
+'\n'          Text
+
+'=> "Resource id #400"\n' Generic.Output
+
+'>>> '        Generic.Prompt
+'$greeting'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'Hello!'"    Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'=> "Hello!"\n' Generic.Output
+
+'>>> '        Generic.Prompt
+'$_greeting'  Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'Hello!'"    Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'=> "Hello!"\n' Generic.Output
+
+'>>> '        Generic.Prompt
+'$gruß'       Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"'Hallo!'"    Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'=> "Hallo!"\n' Generic.Output
+
+'>>> '        Generic.Prompt
+'namespace'   Keyword
+' '           Text
+'Foo\\Bar'    Name.Other
+';'           Punctuation
+'\n'          Text
+
+'>>> '        Generic.Prompt
+'class'       Keyword
+' '           Text
+'Baz'         Name.Class
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'    '        Text
+'public'      Keyword
+' '           Text
+'function'    Keyword
+' '           Text
+'getBaz'      Name.Function
+'()'          Punctuation
+':'           Operator
+' '           Text
+'string'      Name.Other
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'        '    Text
+'return'      Keyword
+' '           Text
+"'baz'"       Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'}'           Punctuation
+'\n'          Text
+
+'>>> '        Generic.Prompt
+'$baz'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'Foo\\Bar\\Baz' Name.Other
+'();'         Punctuation
+'\n'          Text
+
+"PHP Fatal error:  Class 'Foo/Bar/Foo/Bar/Baz' not\n" Generic.Output
+
+'    found in Psy Shell code on line 1\n' Generic.Output
+
+'>>> '        Generic.Prompt
+'$baz'        Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'Baz'         Name.Other
+'();'         Punctuation
+'\n'          Text
+
+'=> Foo\\Bar\\Baz {#2382}\n' Generic.Output
+
+'>>> '        Generic.Prompt
+'$baz'        Name.Variable
+'->'          Operator
+'getBaz'      Name.Attribute
+'();'         Punctuation
+'\n'          Text
+
+'=> "baz"\n'  Generic.Output
+
+'>>> '        Generic.Prompt
+'$greeting'   Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'function'    Keyword
+'('           Punctuation
+'$name'       Name.Variable
+')'           Punctuation
+':'           Operator
+' '           Text
+'string'      Name.Other
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'    '        Text
+'return'      Keyword
+' '           Text
+'"'           Literal.String.Double
+'Hello, '     Literal.String.Double
+'{'           Literal.String.Interpol
+'$name'       Name.Variable
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text
+
+'... '        Generic.Prompt
+'};'          Punctuation
+'\n'          Text
+
+'=> Closure($name): string {#2371 …3}\n' Generic.Output
+
+'>>> '        Generic.Prompt
+'$greeting'   Name.Variable
+'('           Punctuation
+"'World'"     Literal.String.Single
+')'           Punctuation
+'\n'          Text
+
+'=> "Hello, World"\n' Generic.Output

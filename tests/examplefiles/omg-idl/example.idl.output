@@ -1,0 +1,733 @@
+'/*\n * Comment\n */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/* Comment */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Comment\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'"local.idl"' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<global.idl>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'define MACRO "String that should not be highlighted"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'ifdef MACRO' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'  define something "String that should not be highlighted"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'  '          Text.Whitespace
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'"local.idl"' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'  '          Text.Whitespace
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<global.idl>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'typedef'     Keyword.Declaration
+' '           Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'ArrayType'   Name
+'['           Punctuation
+'10'          Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@annotation' Keyword
+' '           Text.Whitespace
+'the_annotation' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'unsigned'    Keyword.Type
+' '           Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'value'       Name
+' '           Text.Whitespace
+'default'     Keyword
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'unsigned'    Keyword.Type
+' '           Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'a'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'int8'        Keyword.Type
+' '           Text.Whitespace
+'b'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'-10'         Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'uint16'      Keyword.Type
+' '           Text.Whitespace
+'c'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x10af'      Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'int32'       Keyword.Type
+' '           Text.Whitespace
+'d'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'-0X10AF'     Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'e'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'01234'       Literal.Number.Oct
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'f'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'-102.34e+10' Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'f2'          Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'.34'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'f3'          Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0.34'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'f4'          Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'102.34'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'f5'          Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'102e+4'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'f6'          Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'.1e4'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'boolean'     Keyword.Type
+' '           Text.Whitespace
+'g'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'TRUE'        Literal.Number
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'boolean'     Keyword.Type
+' '           Text.Whitespace
+'h'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'FALSE'       Literal.Number
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'i'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'i'"         Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'j'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\n'         Literal.String.Escape
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'k'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+"\\'"         Literal.String.Escape
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'l'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Hello World' Literal.String
+'\\n'         Literal.String.Escape
+'\\t'         Literal.String.Escape
+'\\v'         Literal.String.Escape
+'\\b'         Literal.String.Escape
+'\\r'         Literal.String.Escape
+'\\f'         Literal.String.Escape
+'\\a'         Literal.String.Escape
+'\\\\'        Literal.String.Escape
+"\\'"         Literal.String.Escape
+'\\"'         Literal.String.Escape
+'\\xff'       Literal.String.Escape
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'wchar'       Keyword.Type
+' '           Text.Whitespace
+'m'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'L'           Literal.String.Affix
+"'i'"         Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'wchar'       Keyword.Type
+' '           Text.Whitespace
+'n'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'L'           Literal.String.Affix
+"'"           Literal.String.Char
+'\\n'         Literal.String.Escape
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'wchar'       Keyword.Type
+' '           Text.Whitespace
+'o'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'L'           Literal.String.Affix
+"'"           Literal.String.Char
+"\\'"         Literal.String.Escape
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'wstring'     Keyword.Type
+' '           Text.Whitespace
+'p'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'L'           Literal.String.Affix
+'"'           Literal.String.Double
+'Hello World' Literal.String
+'\\n'         Literal.String.Escape
+'\\t'         Literal.String.Escape
+'\\v'         Literal.String.Escape
+'\\b'         Literal.String.Escape
+'\\r'         Literal.String.Escape
+'\\f'         Literal.String.Escape
+'\\a'         Literal.String.Escape
+'\\\\'        Literal.String.Escape
+"\\'"         Literal.String.Escape
+'\\"'         Literal.String.Escape
+'\\xff'       Literal.String.Escape
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'expr'        Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'%'           Operator
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'expr2'       Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'~'           Operator
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'id_with_number_4_in_it' Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@topic'      Name.Decorator
+'\n'          Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'the_struct'  Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'@min'        Name.Decorator
+'('           Punctuation
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'x'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'@key'        Name.Decorator
+' '           Text.Whitespace
+'short'       Keyword.Type
+' '           Text.Whitespace
+'t'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'sequence'    Keyword.Type
+'<'           Punctuation
+'long'        Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'anon_seq'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'module'      Keyword.Namespace
+' '           Text.Whitespace
+'the_module'  Name.Namespace
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'value'       Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x30'        Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'@some_annotation' Name.Decorator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'enum'        Keyword
+' '           Text.Whitespace
+'EnumType'    Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'x_value'     Name.Constant
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'@::mod::anno' Name.Decorator
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'y_value'     Name.Constant
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'z_value'     Name.Constant
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@some_annotation' Name.Decorator
+'('           Punctuation
+'x'           Name
+'='           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'y'           Name
+'='           Punctuation
+'"'           Literal.String.Double
+'Hello'       Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'z'           Name
+'='           Punctuation
+'z_value'     Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'@another_annotation' Name.Decorator
+'('           Punctuation
+'a'           Name
+'='           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name
+'='           Punctuation
+'"'           Literal.String.Double
+'Goodbye'     Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'c'           Name
+'='           Punctuation
+'y_value'     Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'union'       Keyword
+' '           Text.Whitespace
+'the_union'   Name.Class
+' '           Text.Whitespace
+'switch'      Keyword
+'('           Punctuation
+'@key'        Name.Decorator
+' '           Text.Whitespace
+'long'        Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'case'        Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'short'       Keyword.Type
+' '           Text.Whitespace
+'x'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'case'        Keyword
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'y'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'case'        Keyword
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'float'       Keyword.Type
+' '           Text.Whitespace
+'z'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'default'     Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'xyz'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'interface'   Keyword
+' '           Text.Whitespace
+'the_interface' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'the_struct'  Name
+' '           Text.Whitespace
+'get_struct'  Name
+'('           Punctuation
+'in'          Keyword.Declaration
+' '           Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'in_arg'      Name
+','           Punctuation
+' '           Text.Whitespace
+'inout'       Keyword.Declaration
+' '           Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'inout_arg'   Name
+','           Punctuation
+' '           Text.Whitespace
+'out'         Keyword.Declaration
+' '           Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'out_arg'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

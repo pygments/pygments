@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.objective
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Objective-C family languages.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -261,11 +260,11 @@ class LogosLexer(ObjectiveCppLexer):
              'logos_classname'),
             (r'(%hook|%group)(\s+)([a-zA-Z$_][\w$]+)',
              bygroups(Keyword, Text, Name.Class)),
-            (r'(%config)(\s*\(\s*)(\w+)(\s*=\s*)(.*?)(\s*\)\s*)',
+            (r'(%config)(\s*\(\s*)(\w+)(\s*=)(.*?)(\)\s*)',
              bygroups(Keyword, Text, Name.Variable, Text, String, Text)),
             (r'(%ctor)(\s*)(\{)', bygroups(Keyword, Text, Punctuation),
              'function'),
-            (r'(%new)(\s*)(\()(\s*.*?\s*)(\))',
+            (r'(%new)(\s*)(\()(.*?)(\))',
              bygroups(Keyword, Text, Keyword, String, Keyword)),
             (r'(\s*)(%end)(\s*)', bygroups(Text, Keyword, Text)),
             inherit,
@@ -413,7 +412,7 @@ class SwiftLexer(RegexLexer):
         ],
         'keywords': [
             (words((
-                'as', 'break', 'case', 'catch', 'continue', 'default', 'defer',
+                'as', 'async', 'await', 'break', 'case', 'catch', 'continue', 'default', 'defer',
                 'do', 'else', 'fallthrough', 'for', 'guard', 'if', 'in', 'is',
                 'repeat', 'return', '#selector', 'switch', 'throw', 'try',
                 'where', 'while'), suffix=r'\b'),
@@ -441,8 +440,8 @@ class SwiftLexer(RegexLexer):
             (r'(var|let)(\s+)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration,
              Text, Name.Variable)),
             (words((
-                'class', 'deinit', 'enum', 'extension', 'func', 'import', 'init',
-                'internal', 'let', 'operator', 'private', 'protocol', 'public',
+                'actor', 'associatedtype', 'class', 'deinit', 'enum', 'extension', 'func', 'import',
+                'init', 'internal', 'let', 'operator', 'private', 'protocol', 'public',
                 'static', 'struct', 'subscript', 'typealias', 'var'), suffix=r'\b'),
              Keyword.Declaration)
         ],

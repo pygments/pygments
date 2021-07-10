@@ -1,0 +1,2008 @@
+'implementation' Keyword.Namespace
+' '           Text.Whitespace
+'module'      Keyword.Namespace
+' '           Text.Whitespace
+'StdGeneric'  Name.Class
+'\n\n'        Text.Whitespace
+
+'/*'          Comment.Multiline
+'*'           Comment.Multiline
+'\n '         Comment.Multiline
+'*'           Comment.Multiline
+' NOTE: this is a collection of different tricky parts of Clean modules (even\n ' Comment.Multiline
+'*'           Comment.Multiline
+' though the file is simply called StdGeneric.icl). The code is taken from:\n ' Comment.Multiline
+'*'           Comment.Multiline
+'\n '         Comment.Multiline
+'*'           Comment.Multiline
+' - StdGeneric (StdEnv)\n ' Comment.Multiline
+'*'           Comment.Multiline
+' - Graphics.Scalable.Image (Platform)\n ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'import'      Keyword
+' '           Text.Whitespace
+'StdInt'      Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'StdMisc'     Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'StdClass'    Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'StdFunc'     Name.Class
+'\n\n'        Text.Whitespace
+
+'generic'     Name.Class
+' '           Text.Whitespace
+'bimap'       Name.Class
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'Bimap'       Name.Class
+' '           Text.Whitespace
+'.'           Operator
+'a'           Name
+' '           Text.Whitespace
+'.'           Operator
+'b'           Name
+'\n\n'        Text.Whitespace
+
+'bimapId'     Name
+' '           Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'Bimap'       Name.Class
+' '           Text.Whitespace
+'.'           Operator
+'a'           Name
+' '           Text.Whitespace
+'.'           Operator
+'a'           Name
+'\n'          Text.Whitespace
+
+'bimapId'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'map_to'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'id'          Name
+','           Punctuation
+' '           Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'id'          Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'bimap'       Name
+'{'           Punctuation
+'|'           Operator
+'c'           Name
+'|'           Operator
+'}'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'map_to'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'id'          Name
+','           Punctuation
+' '           Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'id'          Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'bimap'       Name
+'{'           Punctuation
+'|'           Operator
+'PAIR'        Name.Class
+'|'           Operator
+'}'           Punctuation
+' '           Text.Whitespace
+'bx'          Name
+' '           Text.Whitespace
+'by'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'map_to'      Name
+'='           Operator
+' '           Text.Whitespace
+'map_to'      Name
+','           Punctuation
+' '           Text.Whitespace
+'map_from'    Name
+'='           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'where'       Keyword
+'\n\t'        Text.Whitespace
+'map_to'      Name
+' '           Text.Whitespace
+'('           Punctuation
+'PAIR'        Name.Class
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'y'           Name
+')'           Punctuation
+' \t'         Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'PAIR'        Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'bx'          Name
+'.'           Operator
+'map_to'      Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'by'          Name
+'.'           Operator
+'map_to'      Name
+' '           Text.Whitespace
+'y'           Name
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'('           Punctuation
+'PAIR'        Name.Class
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'y'           Name
+')'           Punctuation
+' \t'         Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'PAIR'        Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'bx'          Name
+'.'           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'by'          Name
+'.'           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'y'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'bimap'       Name
+'{'           Punctuation
+'|'           Operator
+'EITHER'      Name.Class
+'|'           Operator
+'}'           Punctuation
+' '           Text.Whitespace
+'bl'          Name
+' '           Text.Whitespace
+'br'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'map_to'      Name
+'='           Operator
+' '           Text.Whitespace
+'map_to'      Name
+','           Punctuation
+' '           Text.Whitespace
+'map_from'    Name
+'='           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'where'       Keyword
+'\t\n\t'      Text.Whitespace
+'map_to'      Name
+' '           Text.Whitespace
+'('           Punctuation
+'LEFT'        Name.Class
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+' \t'         Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'LEFT'        Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'bl'          Name
+'.'           Operator
+'map_to'      Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'map_to'      Name
+' '           Text.Whitespace
+'('           Punctuation
+'RIGHT'       Name.Class
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+'\t'          Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'RIGHT'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'br'          Name
+'.'           Operator
+'map_to'      Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'('           Punctuation
+'LEFT'        Name.Class
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+' \t'         Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'LEFT'        Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'bl'          Name
+'.'           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'('           Punctuation
+'RIGHT'       Name.Class
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+' \t'         Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'RIGHT'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'br'          Name
+'.'           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'bimap'       Name
+'{'           Punctuation
+'|'           Operator
+'('           Punctuation
+'->'          Operator
+')'           Punctuation
+'|'           Operator
+'}'           Punctuation
+' '           Text.Whitespace
+'barg'        Name
+' '           Text.Whitespace
+'bres'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'map_to'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'map_to'      Name
+','           Punctuation
+' '           Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'where'       Keyword
+'\n\t'        Text.Whitespace
+'map_to'      Name
+' '           Text.Whitespace
+'f'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'comp3'       Name
+' '           Text.Whitespace
+'bres'        Name
+'.'           Operator
+'map_to'      Name
+' '           Text.Whitespace
+'f'           Name
+' '           Text.Whitespace
+'barg'        Name
+'.'           Operator
+'map_from'    Name
+'\n\t'        Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'f'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'comp3'       Name
+' '           Text.Whitespace
+'bres'        Name
+'.'           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'f'           Name
+' '           Text.Whitespace
+'barg'        Name
+'.'           Operator
+'map_to'      Name
+'\n\n'        Text.Whitespace
+
+'bimap'       Name
+'{'           Punctuation
+'|'           Operator
+'CONS'        Name.Class
+'|'           Operator
+'}'           Punctuation
+' '           Text.Whitespace
+'barg'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'map_to'      Name
+'='           Operator
+' '           Text.Whitespace
+'map_to'      Name
+','           Punctuation
+' '           Text.Whitespace
+'map_from'    Name
+'='           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'where'       Keyword
+'\n\t'        Text.Whitespace
+'map_to'      Name
+'   '         Text.Whitespace
+'('           Punctuation
+'CONS'        Name.Class
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'CONS'        Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'barg'        Name
+'.'           Operator
+'map_to'      Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'('           Punctuation
+'CONS'        Name.Class
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'CONS'        Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'barg'        Name
+'.'           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'bimap'       Name
+'{'           Punctuation
+'|'           Operator
+'FIELD'       Name.Class
+'|'           Operator
+'}'           Punctuation
+' '           Text.Whitespace
+'barg'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'map_to'      Name
+'='           Operator
+' '           Text.Whitespace
+'map_to'      Name
+','           Punctuation
+' '           Text.Whitespace
+'map_from'    Name
+'='           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'where'       Keyword
+'\n\t'        Text.Whitespace
+'map_to'      Name
+'   '         Text.Whitespace
+'('           Punctuation
+'FIELD'       Name.Class
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'FIELD'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'barg'        Name
+'.'           Operator
+'map_to'      Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'('           Punctuation
+'FIELD'       Name.Class
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'FIELD'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'barg'        Name
+'.'           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'bimap'       Name
+'{'           Punctuation
+'|'           Operator
+'OBJECT'      Name.Class
+'|'           Operator
+'}'           Punctuation
+' '           Text.Whitespace
+'barg'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'map_to'      Name
+'='           Operator
+' '           Text.Whitespace
+'map_to'      Name
+','           Punctuation
+' '           Text.Whitespace
+'map_from'    Name
+'='           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'where'       Keyword
+'\n\t'        Text.Whitespace
+'map_to'      Name
+'   '         Text.Whitespace
+'('           Punctuation
+'OBJECT'      Name.Class
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'OBJECT'      Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'barg'        Name
+'.'           Operator
+'map_to'      Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'('           Punctuation
+'OBJECT'      Name.Class
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'OBJECT'      Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'barg'        Name
+'.'           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'bimap'       Name
+'{'           Punctuation
+'|'           Operator
+'Bimap'       Name.Class
+'|'           Operator
+'}'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'map_to'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'map_to'      Name
+','           Punctuation
+' '           Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'map_from'    Name
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'where'       Keyword
+'\n\t'        Text.Whitespace
+'map_to'      Name
+' \t'         Text.Whitespace
+'{'           Punctuation
+'map_to'      Name
+','           Punctuation
+' '           Text.Whitespace
+'map_from'    Name
+'}'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' \n\t\t'     Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'map_to'      Name
+' \t'         Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'comp3'       Name
+' '           Text.Whitespace
+'y'           Name
+'.'           Operator
+'map_to'      Name
+' '           Text.Whitespace
+'map_to'      Name
+' '           Text.Whitespace
+'x'           Name
+'.'           Operator
+'map_from'    Name
+'\n\t\t'      Text.Whitespace
+','           Punctuation
+' '           Text.Whitespace
+'map_from'    Name
+' \t'         Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'comp3'       Name
+' '           Text.Whitespace
+'x'           Name
+'.'           Operator
+'map_to'      Name
+' '           Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'y'           Name
+'.'           Operator
+'map_from'    Name
+'\n\t\t'      Text.Whitespace
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'{'           Punctuation
+'map_to'      Name
+','           Punctuation
+' '           Text.Whitespace
+'map_from'    Name
+'}'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' \n\t\t'     Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'map_to'      Name
+' \t'         Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'comp3'       Name
+' '           Text.Whitespace
+'y'           Name
+'.'           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'map_to'      Name
+' '           Text.Whitespace
+'x'           Name
+'.'           Operator
+'map_to'      Name
+'\n\t\t'      Text.Whitespace
+','           Punctuation
+' '           Text.Whitespace
+'map_from'    Name
+' \t'         Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'comp3'       Name
+' '           Text.Whitespace
+'x'           Name
+'.'           Operator
+'map_from'    Name
+' '           Text.Whitespace
+'map_from'    Name
+' '           Text.Whitespace
+'y'           Name
+'.'           Operator
+'map_to'      Name
+'\n\t\t'      Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'comp3'       Name
+' '           Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'('           Punctuation
+'.'           Operator
+'a'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'.'           Operator
+'b'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'u'           Name
+':'           Operator
+'('           Punctuation
+'.'           Operator
+'c'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'.'           Operator
+'a'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'!'           Operator
+'('           Punctuation
+'.'           Operator
+'d'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'.'           Operator
+'c'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'u'           Name
+':'           Operator
+'('           Punctuation
+'.'           Operator
+'d'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'.'           Operator
+'b'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'comp3'       Name
+' '           Text.Whitespace
+'f'           Name
+' '           Text.Whitespace
+'g'           Name
+' '           Text.Whitespace
+'h'           Name
+'\n\t'        Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'is_id'       Name
+' '           Text.Whitespace
+'f'           Name
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'is_id'       Name
+' '           Text.Whitespace
+'h'           Name
+'\n\t\t\t'    Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cast'        Name
+' '           Text.Whitespace
+'g'           Name
+'\n\t\t\t'    Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cast'        Name
+' '           Text.Whitespace
+'('           Punctuation
+'\\'          Operator
+'x'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'g'           Name
+' '           Text.Whitespace
+'('           Punctuation
+'h'           Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+')'           Punctuation
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'is_id'       Name
+' '           Text.Whitespace
+'h'           Name
+'\n\t\t\t'    Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cast'        Name
+' '           Text.Whitespace
+'('           Punctuation
+'\\'          Operator
+'x'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'f'           Name
+' '           Text.Whitespace
+'('           Punctuation
+'g'           Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+')'           Punctuation
+'\n\t\t\t'    Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'\\'          Operator
+'x'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'f'           Name
+' '           Text.Whitespace
+'('           Punctuation
+'g'           Name
+' '           Text.Whitespace
+'('           Punctuation
+'h'           Name
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'where'       Keyword
+'\n\t'        Text.Whitespace
+'is_id'       Name
+' '           Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!.'          Operator
+'('           Punctuation
+'.'           Operator
+'a'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'.'           Operator
+'b'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Bool'        Name.Class
+'\n\t'        Text.Whitespace
+'is_id'       Name
+' '           Text.Whitespace
+'f'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'code inline' Keyword
+'\n\t'        Text.Whitespace
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'eq_desc'     Name
+' '           Text.Whitespace
+'e_StdFunc_did' Name
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n\t\t'      Text.Whitespace
+'pop_a'       Name
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n\t\n\t'    Text.Whitespace
+'cast'        Name
+' '           Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'u'           Name
+':'           Operator
+'a'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'u'           Name
+':'           Operator
+'b'           Name
+'\n\t'        Text.Whitespace
+'cast'        Name
+' '           Text.Whitespace
+'f'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'code inline' Keyword
+'\n\t'        Text.Whitespace
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'pop_a'       Name
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'getConsPath' Name
+' '           Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'GenericConsDescriptor' Name.Class
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'['           Punctuation
+'ConsPos'     Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'getConsPath' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'gcd_index'   Name
+','           Punctuation
+' '           Text.Whitespace
+'gcd_type_def' Name
+'='           Operator
+'{'           Punctuation
+'gtd_num_conses' Name
+'}'           Punctuation
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'doit'        Name
+' '           Text.Whitespace
+'gcd_index'   Name
+' '           Text.Whitespace
+'gtd_num_conses' Name
+'\n'          Text.Whitespace
+
+'where'       Keyword
+'\n\t'        Text.Whitespace
+'doit'        Name
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'n'           Name
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' \t\n\t\t\t' Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'abort'       Name
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'getConsPath: zero conses' Literal.String.Double
+'\\n'         Literal.String.Double
+'"'           Literal.String.Double
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'n'           Name
+'\t\n\t\t\t'  Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'abort'       Name
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'getConsPath: cons index >= number of conses' Literal.String.Double
+'"'           Literal.String.Double
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n\t\t\t'    Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+']'           Punctuation
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name
+'/'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n\t\t\t'    Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'ConsLeft'    Name.Class
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'doit'        Name
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name
+'/'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+']'           Punctuation
+'\n\t\t'      Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'otherwise'   Keyword
+'\n\t\t\t'    Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'ConsRight'   Name.Class
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'doit'        Name
+' '           Text.Whitespace
+'('           Punctuation
+'i'           Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name
+'/'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name
+'/'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+']'           Punctuation
+'\n\t\t\t  \t \t\t\t\t\t\t\t \t\n' Text.Whitespace
+
+'::'          Operator
+' '           Text.Whitespace
+'NoAttr'      Name.Class
+'          '  Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'NoAttr'      Name.Class
+'\n'          Text.Whitespace
+
+'::'          Operator
+' '           Text.Whitespace
+'DashAttr'    Name.Class
+'        '    Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'dash'        Name
+'        '    Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'['           Punctuation
+'Int'         Name.Class
+']'           Punctuation
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'::'          Operator
+' '           Text.Whitespace
+'FillAttr'    Name.Class
+'        '    Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'fill'        Name
+'        '    Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'SVGColor'    Name.Class
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'::'          Operator
+' '           Text.Whitespace
+'LineEndMarker' Name.Class
+'   '         Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'endmarker'   Name
+'   '         Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'Image'       Name.Class
+' '           Text.Whitespace
+'m'           Name
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'::'          Operator
+' '           Text.Whitespace
+'LineMidMarker' Name.Class
+'   '         Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'midmarker'   Name
+'   '         Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'Image'       Name.Class
+' '           Text.Whitespace
+'m'           Name
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'::'          Operator
+' '           Text.Whitespace
+'LineStartMarker' Name.Class
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'startmarker' Name
+' '           Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'Image'       Name.Class
+' '           Text.Whitespace
+'m'           Name
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'::'          Operator
+' '           Text.Whitespace
+'MaskAttr'    Name.Class
+'        '    Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'mask'        Name
+'        '    Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'Image'       Name.Class
+' '           Text.Whitespace
+'m'           Name
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'::'          Operator
+' '           Text.Whitespace
+'OpacityAttr' Name.Class
+'     '       Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'opacity'     Name
+'     '       Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'Real'        Name.Class
+'     '       Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'::'          Operator
+' '           Text.Whitespace
+'StrokeAttr'  Name.Class
+'      '      Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'stroke'      Name
+'      '      Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'SVGColor'    Name.Class
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'::'          Operator
+' '           Text.Whitespace
+'StrokeWidthAttr' Name.Class
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'strokewidth' Name
+' '           Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'Span'        Name.Class
+'     '       Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'::'          Operator
+' '           Text.Whitespace
+'XRadiusAttr' Name.Class
+'     '       Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'xradius'     Name
+'     '       Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'Span'        Name.Class
+'     '       Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'::'          Operator
+' '           Text.Whitespace
+'YRadiusAttr' Name.Class
+'     '       Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'yradius'     Name
+'     '       Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'Span'        Name.Class
+'     '       Text.Whitespace
+'}'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'NoAttr'      Name.Class
+'          '  Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'_'           Operator
+'    '        Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'DashAttr'    Name.Class
+'        '    Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImageAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImgDashAttr' Name.Class
+' '           Text.Whitespace
+'attr'        Name
+'.'           Operator
+'DashAttr'    Name.Class
+'.'           Operator
+'dash'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'FillAttr'    Name.Class
+'        '    Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImageAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImgFillAttr' Name.Class
+' '           Text.Whitespace
+'attr'        Name
+'.'           Operator
+'FillAttr'    Name.Class
+'.'           Operator
+'fill'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'LineEndMarker' Name.Class
+'   '         Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'LineMarkerAttr`' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'LineMarkerAttr' Name.Class
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'markerImg'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'attr'        Name
+'.'           Operator
+'LineEndMarker' Name.Class
+'.'           Operator
+'endmarker'   Name
+','           Punctuation
+' '           Text.Whitespace
+'markerPos'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'LineMarkerEnd' Name.Class
+'}'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'LineMidMarker' Name.Class
+'   '         Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'LineMarkerAttr`' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'LineMarkerAttr' Name.Class
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'markerImg'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'attr'        Name
+'.'           Operator
+'LineMidMarker' Name.Class
+'.'           Operator
+'midmarker'   Name
+','           Punctuation
+' '           Text.Whitespace
+'markerPos'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'LineMarkerMid' Name.Class
+'}'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'LineStartMarker' Name.Class
+' '           Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'LineMarkerAttr`' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'LineMarkerAttr' Name.Class
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'markerImg'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'attr'        Name
+'.'           Operator
+'LineStartMarker' Name.Class
+'.'           Operator
+'startmarker' Name
+','           Punctuation
+' '           Text.Whitespace
+'markerPos'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'LineMarkerStart' Name.Class
+'}'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'MaskAttr'    Name.Class
+'        '    Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'MaskAttr`'   Name.Class
+' '           Text.Whitespace
+'attr'        Name
+'.'           Operator
+'MaskAttr'    Name.Class
+'.'           Operator
+'mask'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'OpacityAttr' Name.Class
+'     '       Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImageAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImgFillOpacityAttr' Name.Class
+' '           Text.Whitespace
+'attr'        Name
+'.'           Operator
+'OpacityAttr' Name.Class
+'.'           Operator
+'opacity'     Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'StrokeAttr'  Name.Class
+'      '      Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImageAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImgStrokeAttr' Name.Class
+'      '      Text.Whitespace
+'attr'        Name
+'.'           Operator
+'StrokeAttr'  Name.Class
+'.'           Operator
+'stroke'      Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'StrokeWidthAttr' Name.Class
+' '           Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImageAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImgStrokeWidthAttr' Name.Class
+' '           Text.Whitespace
+'attr'        Name
+'.'           Operator
+'StrokeWidthAttr' Name.Class
+'.'           Operator
+'strokewidth' Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'XRadiusAttr' Name.Class
+'     '       Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImageAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImgXRadiusAttr' Name.Class
+'     '       Text.Whitespace
+'attr'        Name
+'.'           Operator
+'XRadiusAttr' Name.Class
+'.'           Operator
+'xradius'     Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'YRadiusAttr' Name.Class
+'     '       Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImageAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'BasicImgYRadiusAttr' Name.Class
+'     '       Text.Whitespace
+'attr'        Name
+'.'           Operator
+'YRadiusAttr' Name.Class
+'.'           Operator
+'yradius'     Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n\n'        Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'DraggableAttr' Name.Class
+'   '         Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'HandlerAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'ImgEventhandlerDraggableAttr' Name.Class
+'   '         Text.Whitespace
+'attr'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'OnClickAttr' Name.Class
+'     '       Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'HandlerAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'ImgEventhandlerOnClickAttr' Name.Class
+'     '       Text.Whitespace
+'attr'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'OnMouseDownAttr' Name.Class
+' '           Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'HandlerAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'ImgEventhandlerOnMouseDownAttr' Name.Class
+' '           Text.Whitespace
+'attr'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'OnMouseMoveAttr' Name.Class
+' '           Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'HandlerAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'ImgEventhandlerOnMouseMoveAttr' Name.Class
+' '           Text.Whitespace
+'attr'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'OnMouseOutAttr' Name.Class
+'  '          Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'HandlerAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'ImgEventhandlerOnMouseOutAttr' Name.Class
+'  '          Text.Whitespace
+'attr'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'OnMouseOverAttr' Name.Class
+' '           Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'HandlerAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'ImgEventhandlerOnMouseOverAttr' Name.Class
+' '           Text.Whitespace
+'attr'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace
+
+'instance'    Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'OnMouseUpAttr' Name.Class
+'   '         Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'tuneImage'   Name
+' '           Text.Whitespace
+'image'       Name
+' '           Text.Whitespace
+'attr'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Attr`'       Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'HandlerAttr`' Name.Class
+' '           Text.Whitespace
+'('           Punctuation
+'ImgEventhandlerOnMouseUpAttr' Name.Class
+'   '         Text.Whitespace
+'attr'        Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'image'       Name
+'\n'          Text.Whitespace

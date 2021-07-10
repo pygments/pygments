@@ -1,0 +1,230 @@
+'[user@linuxbox imx-bootlets-src-10.05.02]$ ' Generic.Prompt
+'make'        Text
+' '           Text
+'CROSS_COMPILE' Name.Variable
+'='           Operator
+'arm-none-eabi-' Text
+'  '          Text
+'clean'       Text
+'\n'          Text
+
+'rm -rf *.sb\n' Generic.Output
+
+'rm -f sd_mmc_bootstream.raw\n' Generic.Output
+
+'rm -f linux_prep/board/*.o\n' Generic.Output
+
+'...\n'       Generic.Output
+
+'Files:\n'    Generic.Output
+
+'rm -f power_prep.o eabi.o\n' Generic.Output
+
+'Build output:\n' Generic.Output
+
+"make[1]: Leaving directory `/home/...'\n" Generic.Output
+
+'[user@linuxbox imx-bootlets-src-10.05.02]$ ' Generic.Prompt
+'make'        Text
+' '           Text
+'CROSS_COMPILE' Name.Variable
+'='           Operator
+'arm-none-eabi-' Text
+'\n'          Text
+
+"make[1]: Entering directory `/home/...'\n" Generic.Output
+
+'...\n'       Generic.Output
+
+'#'           Generic.Prompt
+'@echo'       Text
+' '           Text
+'"generating U-Boot boot stream image"' Literal.String.Double
+'\n'          Text
+
+'#'           Generic.Prompt
+'elftosb2'    Text
+' '           Text
+'-z'          Text
+' '           Text
+'-c'          Text
+' '           Text
+'./uboot_prebuilt.db' Text
+' '           Text
+'-o'          Text
+' '           Text
+'imx23_uboot.sb' Text
+'\n'          Text
+
+'echo "generating kernel bootstream file sd_mmc_bootstream.raw"\n' Generic.Output
+
+'generating kernel bootstream file sd_mmc_bootstream.raw\n' Generic.Output
+
+'#'           Generic.Prompt
+'Please'      Text
+' '           Text
+'use'         Text
+' '           Text
+'cfimager'    Text
+' '           Text
+'to'          Text
+' '           Text
+'burn'        Text
+' '           Text
+'xxx_linux.sb.' Text
+' '           Text
+'The'         Text
+' '           Text
+'below'       Text
+' '           Text
+'way'         Text
+' '           Text
+'will'        Text
+' '           Text
+'no'          Text
+'\n'          Text
+
+'#'           Generic.Prompt
+'work'        Text
+' '           Text
+'at'          Text
+' '           Text
+'imx28'       Text
+' '           Text
+'platform.'   Text
+'\n'          Text
+
+'> test\n'    Generic.Output
+
+'$ '          Generic.Prompt
+'test'        Name.Builtin
+'\n'          Text
+
+'rm -f sd_mmc_bootstream.raw\n' Generic.Output
+
+'[user@linuxbox imx-bootlets-src-10.05.02]$\n' Generic.Prompt
+
+'pi@raspberrypi ~ $ ' Generic.Prompt
+'sudo'        Text
+' '           Text
+'sh'          Text
+' '           Text
+'-c'          Text
+' '           Text
+'"echo 17 > /sys/class/gpio/export"' Literal.String.Double
+'\n'          Text
+
+'pi@raspberrypi ~ $ ' Generic.Prompt
+'sudo'        Text
+' '           Text
+'sh'          Text
+' '           Text
+'-c'          Text
+' '           Text
+'"echo out > /sys/class/gpio/gpio17/direction"' Literal.String.Double
+'\n'          Text
+
+'pi@raspberrypi ~ $ ' Generic.Prompt
+'sudo'        Text
+' '           Text
+'sh'          Text
+' '           Text
+'-c'          Text
+' '           Text
+'"echo 1 > /sys/class/gpio/gpio17/value"' Literal.String.Double
+'\n'          Text
+
+'pi@raspberrypi ~ $ ' Generic.Prompt
+'sudo'        Text
+' '           Text
+'sh'          Text
+' '           Text
+'-c'          Text
+' '           Text
+'"echo 0 > /sys/class/gpio/gpio17/value"' Literal.String.Double
+'\n'          Text
+
+'pi@raspberrypi ~ $\n' Generic.Prompt
+
+'[user@linuxbox ~]$ ' Generic.Prompt
+'# copy other stuff to the SD card\n' Comment.Single
+
+'root@imx233-olinuxino-micro:~# ' Generic.Prompt
+'lsmod'       Text
+'\n'          Text
+
+'  Not tainted\n' Generic.Output
+
+'[user@linuxbox ~]$ ' Generic.Prompt
+'tail'        Text
+' '           Text
+'-n'          Text
+' '           Text
+'2'           Literal.Number
+' '           Text
+'/mnt/rpi/etc/inittab' Text
+'\n'          Text
+
+'#'           Generic.Prompt
+'Spawn'       Text
+' '           Text
+'a'           Text
+' '           Text
+'getty'       Text
+' '           Text
+'on'          Text
+' '           Text
+'Raspberry'   Text
+' '           Text
+'Pi'          Text
+' '           Text
+'serial'      Text
+' '           Text
+'line'        Text
+'\n'          Text
+
+'T0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100\n' Generic.Output
+
+'pi@raspberrypi:~/Adafruit-WebIDE$ ' Generic.Prompt
+'mkdir'       Text
+' '           Text
+'tmp'         Text
+'\n'          Text
+
+'pi@raspberrypi:~/Adafruit-WebIDE$ ' Generic.Prompt
+'npm'         Text
+' '           Text
+'config'      Text
+' '           Text
+'set'         Name.Builtin
+' '           Text
+'tmp'         Text
+' '           Text
+'tmp'         Text
+'\n'          Text
+
+'pi@raspberrypi:~/Adafruit-WebIDE$ ' Generic.Prompt
+'npm'         Text
+' '           Text
+'install'     Text
+'\n'          Text
+
+'pi@raspberrypi ~/Adafruit-WebIDE $ ' Generic.Prompt
+'ifconfig'    Text
+' '           Text
+'eth0'        Text
+'\n'          Text
+
+'eth0      Link encap:Ethernet  HWaddr b5:33:ff:33:ee:aq\n' Generic.Output
+
+'          inet addr:10.42.0.60  Bcast:10.42.0.255  Mask:255.255.255.0\n' Generic.Output
+
+'          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1\n' Generic.Output
+
+'          RX packets:21867 errors:0 dropped:0 overruns:0 frame:0\n' Generic.Output
+
+'          TX packets:8684 errors:0 dropped:0 overruns:0 carrier:0\n' Generic.Output
+
+'          collisions:0 txqueuelen:1000\n' Generic.Output
+
+'          RX bytes:27338495 (26.0 MiB)  TX bytes:1268356 (1.2 MiB)\n' Generic.Output

@@ -1,0 +1,154 @@
+'PREFIX'      Keyword
+' '           Text
+'rdf'         Name.Namespace
+':'           Punctuation
+' '           Text
+'<http://www.w3.org/1999/02/22-rdf-syntax-ns#>' Name.Label
+'\n'          Text
+
+'PREFIX'      Keyword
+' '           Text
+'rdfs'        Name.Namespace
+':'           Punctuation
+' '           Text
+'<http://www.w3.org/2000/01/rdf-schema#>' Name.Label
+'\n'          Text
+
+'PREFIX'      Keyword
+' '           Text
+'schema'      Name.Namespace
+':'           Punctuation
+' '           Text
+'<http://schema.org/>' Name.Label
+'\n'          Text
+
+'PREFIX'      Keyword
+' '           Text
+'skos'        Name.Namespace
+':'           Punctuation
+' '           Text
+'<http://www.w3.org/2004/02/skos/core#>' Name.Label
+'\n'          Text
+
+'PREFIX'      Keyword
+' '           Text
+'xsd'         Name.Namespace
+':'           Punctuation
+' '           Text
+'<http://www.w3.org/2001/XMLSchema#>' Name.Label
+'\n'          Text
+
+'PREFIX'      Keyword
+' '           Text
+'ex'          Name.Namespace
+':'           Punctuation
+' '           Text
+'<http://pygments.example/#>' Name.Label
+'\n\n'        Text
+
+'ex'          Name.Namespace
+':'           Punctuation
+'Lexer'       Name.Tag
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'rdfs'        Name.Namespace
+':'           Punctuation
+'label'       Name.Tag
+' '           Text
+'xsd'         Name.Namespace
+':'           Punctuation
+'string'      Name.Tag
+';'           Punctuation
+'\n  '        Text
+'skos'        Name.Namespace
+':'           Punctuation
+'altLabel'    Name.Tag
+' '           Text
+'xsd'         Name.Namespace
+':'           Punctuation
+'string'      Name.Tag
+'*'           Operator
+';'           Punctuation
+'\n  '        Text
+'ex'          Name.Namespace
+':'           Punctuation
+'filenames'   Name.Tag
+' '           Text
+'xsd'         Name.Namespace
+':'           Punctuation
+'string'      Name.Tag
+'+'           Operator
+';'           Punctuation
+'\n  '        Text
+'ex'          Name.Namespace
+':'           Punctuation
+'mimetypes'   Name.Tag
+' '           Text
+'xsd'         Name.Namespace
+':'           Punctuation
+'string'      Name.Tag
+'+'           Operator
+';'           Punctuation
+'\n  '        Text
+'ex'          Name.Namespace
+':'           Punctuation
+'priority'    Name.Tag
+' '           Text
+'xsd'         Name.Namespace
+':'           Punctuation
+'decimal'     Name.Tag
+' '           Text
+'MinInclusive' Keyword
+' '           Text
+'0.0'         Literal.Number.Float
+' '           Text
+'MaxExclusive' Keyword
+' '           Text
+'1.0'         Literal.Number.Float
+';'           Punctuation
+' '           Text
+'# seems to be the de facto range of currently defined priorities' Comment
+'\n  '        Text
+'ex'          Name.Namespace
+':'           Punctuation
+'lexes'       Name.Tag
+' '           Text
+'@'           Operator
+'ex'          Name.Namespace
+':'           Punctuation
+'Language'    Name.Tag
+'*'           Operator
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'ex'          Name.Namespace
+':'           Punctuation
+'Language'    Name.Tag
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'schema'      Name.Namespace
+':'           Punctuation
+'description' Name.Tag
+' '           Text
+'rdf'         Name.Namespace
+':'           Punctuation
+'langString'  Name.Tag
+'*'           Operator
+';'           Punctuation
+'\n  '        Text
+'schema'      Name.Namespace
+':'           Punctuation
+'url'         Name.Tag
+' '           Text
+'IRI'         Keyword
+'?'           Operator
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

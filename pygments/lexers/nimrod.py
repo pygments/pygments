@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.nimrod
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the Nim language (formerly known as Nimrod).
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -26,7 +25,7 @@ class NimrodLexer(RegexLexer):
     """
 
     name = 'Nimrod'
-    aliases = ['nim', 'nimrod']
+    aliases = ['nimrod', 'nim']
     filenames = ['*.nim', '*.nimrod']
     mimetypes = ['text/x-nim']
 

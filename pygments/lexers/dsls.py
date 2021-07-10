@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.dsls
     ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for various domain-specific languages.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -632,7 +631,7 @@ class AlloyLexer(RegexLexer):
             (iden_rex, Name),
             (r'[:,]', Punctuation),
             (r'[0-9]+', Number.Integer),
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r'\n', Text),
         ]
     }
@@ -827,7 +826,7 @@ class FlatlineLexer(RegexLexer):
             (r'0x-?[a-f\d]+', Number.Hex),
 
             # strings, symbols and characters
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r"\\(.|[a-z]+)", String.Char),
 
             # expression template placeholder

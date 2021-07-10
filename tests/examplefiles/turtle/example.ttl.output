@@ -1,0 +1,346 @@
+'@base'       Keyword
+'  '          Text.Whitespace
+'<http://example.com>' Name.Variable
+' '           Text.Whitespace
+'.'           Punctuation
+'\n'          Text
+
+'@prefix'     Keyword
+' '           Text.Whitespace
+'dcterms:'    Name.Namespace
+' '           Text.Whitespace
+'<http://purl.org/dc/terms/>' Name.Variable
+'.'           Punctuation
+' '           Text
+'@prefix'     Keyword
+' '           Text.Whitespace
+'xs:'         Name.Namespace
+' '           Text.Whitespace
+'<http://www.w3.org/2001/XMLSchema>' Name.Variable
+' '           Text.Whitespace
+'.'           Punctuation
+'\n'          Text
+
+'@prefix'     Keyword
+' '           Text.Whitespace
+'mads:'       Name.Namespace
+' '           Text.Whitespace
+'<http://www.loc.gov/mads/rdf/v1#>' Name.Variable
+' '           Text.Whitespace
+'.'           Punctuation
+'\n'          Text
+
+'@prefix'     Keyword
+' '           Text.Whitespace
+'skos:'       Name.Namespace
+' '           Text.Whitespace
+'<http://www.w3.org/2004/02/skos/core#>' Name.Variable
+' '           Text.Whitespace
+'.'           Punctuation
+'\n'          Text
+
+'PREFIX'      Keyword
+' '           Text.Whitespace
+'dc:'         Name.Namespace
+' '           Text.Whitespace
+'<http://purl.org/dc/elements/1.1/>' Name.Variable
+'  '          Text.Whitespace
+'# SPARQL-like syntax is OK' Comment
+'\n'          Text
+
+'@prefix'     Keyword
+' '           Text.Whitespace
+':'           Name.Namespace
+' '           Text.Whitespace
+'<http://xmlns.com/foaf/0.1/>' Name.Variable
+' '           Text.Whitespace
+'.'           Punctuation
+'  '          Text
+'# empty prefix is OK' Comment
+'\n\n'        Text
+
+'<http://example.org/#spiderman>' Name.Variable
+' '           Text
+'<http://www.perceive.net/schemas/relationship/enemyOf>' Name.Variable
+' '           Text
+'<http://example.org/#green-goblin>' Name.Variable
+' '           Text
+'.'           Punctuation
+'\n\n'        Text
+
+'<#doc1>'     Name.Variable
+' '           Text
+'a'           Keyword.Type
+' '           Text
+'<#document>' Name.Variable
+';'           Punctuation
+'\n\t'        Text
+'dc'          Name.Namespace
+':'           Punctuation
+'creator'     Name.Tag
+' '           Text
+'"'           Literal.String
+'Smith'       Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'Jones'       Literal.String
+'"'           Literal.String
+';'           Punctuation
+' \n\t'       Text
+':'           Punctuation
+'knows'       Name.Tag
+' '           Text
+'<http://getopenid.com/jsmith>' Name.Variable
+';'           Punctuation
+'\n\t'        Text
+'dcterms'     Name.Namespace
+':'           Punctuation
+'hasPart'     Name.Tag
+' '           Text
+'['           Punctuation
+' '           Text
+'# A comment' Comment
+'\n\t\t'      Text
+'dc'          Name.Namespace
+':'           Punctuation
+'title'       Name.Tag
+' '           Text
+'"'           Literal.String
+'Some title'  Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'Some other title' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n\t\t'      Text
+'dc'          Name.Namespace
+':'           Punctuation
+'creator'     Name.Tag
+' '           Text
+'"'           Literal.String
+'برشت، برتولد' Literal.String
+'"'           Literal.String
+'@'           Operator
+'ar'          Generic.Emph
+';'           Punctuation
+'\n\t\t'      Text
+'dc'          Name.Namespace
+':'           Punctuation
+'date'        Name.Tag
+' '           Text
+'"'           Literal.String
+'2009'        Literal.String
+'"'           Literal.String
+'^'           Punctuation
+'^'           Punctuation
+'xs'          Name.Namespace
+':'           Punctuation
+'date'        Name.Tag
+'\n\t'        Text
+']'           Punctuation
+';'           Punctuation
+'\n\t'        Text
+'dc'          Name.Namespace
+':'           Punctuation
+'title'       Name.Tag
+' '           Text
+'"'           Literal.String
+'A sample title' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'23.0'        Literal.Number.Float
+';'           Punctuation
+'\n\t'        Text
+'dcterms'     Name.Namespace
+':'           Punctuation
+'isPartOf'    Name.Tag
+' '           Text
+'['           Punctuation
+'\n\t\t'      Text
+'dc'          Name.Namespace
+':'           Punctuation
+'title'       Name.Tag
+' '           Text
+'"'           Literal.String
+'another'     Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text
+'"'           Literal.String
+'title'       Literal.String
+'"'           Literal.String
+'\n\t'        Text
+']'           Punctuation
+' '           Text
+';'           Punctuation
+'\n\t'        Text
+':'           Punctuation
+'exists'      Name.Tag
+' '           Text
+'true'        Literal
+' '           Text
+'.'           Punctuation
+'\n\n'        Text
+
+'<http://data.ub.uio.no/realfagstermer/006839>' Name.Variable
+' '           Text
+'a'           Keyword.Type
+' '           Text
+'mads'        Name.Namespace
+':'           Punctuation
+'Topic'       Name.Tag
+','           Punctuation
+'\n    '      Text
+'skos'        Name.Namespace
+':'           Punctuation
+'Concept'     Name.Tag
+' '           Text
+';'           Punctuation
+'\n    '      Text
+'dcterms'     Name.Namespace
+':'           Punctuation
+'created'     Name.Tag
+' '           Text
+'"'           Literal.String
+'2014-08-25'  Literal.String
+'"'           Literal.String
+'^'           Punctuation
+'^'           Punctuation
+'xs'          Name.Namespace
+':'           Punctuation
+'date'        Name.Tag
+' '           Text
+';'           Punctuation
+'\n    '      Text
+'dcterms'     Name.Namespace
+':'           Punctuation
+'modified'    Name.Tag
+' '           Text
+'"'           Literal.String
+'2014-11-12'  Literal.String
+'"'           Literal.String
+'^'           Punctuation
+'^'           Punctuation
+'xs'          Name.Namespace
+':'           Punctuation
+'date'        Name.Tag
+' '           Text
+';'           Punctuation
+'\n    '      Text
+'dcterms'     Name.Namespace
+':'           Punctuation
+'identifier'  Name.Tag
+' '           Text
+'"'           Literal.String
+'REAL006839'  Literal.String
+'"'           Literal.String
+' '           Text
+';'           Punctuation
+'\n    '      Text
+'skos'        Name.Namespace
+':'           Punctuation
+'prefLabel'   Name.Tag
+' '           Text
+'"'           Literal.String
+'Flerbørstemarker' Literal.String
+'"'           Literal.String
+'@'           Operator
+'nb'          Generic.Emph
+','           Punctuation
+'\n        '  Text
+'"'           Literal.String
+'Polychaeta'  Literal.String
+'"'           Literal.String
+'@'           Operator
+'la'          Generic.Emph
+' '           Text
+';'           Punctuation
+'\n    '      Text
+'skos'        Name.Namespace
+':'           Punctuation
+'altLabel'    Name.Tag
+' '           Text
+'"'           Literal.String
+'Flerbørsteormer' Literal.String
+'"'           Literal.String
+'@'           Operator
+'nb'          Generic.Emph
+','           Punctuation
+'\n        '  Text
+'"'           Literal.String
+'Mangebørstemark' Literal.String
+'"'           Literal.String
+'@'           Operator
+'nb'          Generic.Emph
+','           Punctuation
+'\n        '  Text
+'"'           Literal.String
+'Mangebørsteormer' Literal.String
+'"'           Literal.String
+'@'           Operator
+'nb'          Generic.Emph
+','           Punctuation
+'\n        '  Text
+'"'           Literal.String
+'Havbørsteormer' Literal.String
+'"'           Literal.String
+'@'           Operator
+'nb'          Generic.Emph
+','           Punctuation
+'\n        '  Text
+'"'           Literal.String
+'Havbørstemarker' Literal.String
+'"'           Literal.String
+'@'           Operator
+'nb'          Generic.Emph
+','           Punctuation
+'\n        '  Text
+'"'           Literal.String
+'Polycheter'  Literal.String
+'"'           Literal.String
+'@'           Operator
+'nb'          Generic.Emph
+' '           Text
+';'           Punctuation
+'\n    '      Text
+'skos'        Name.Namespace
+':'           Punctuation
+'inScheme'    Name.Tag
+' '           Text
+'<http://data.ub.uio.no/realfagstermer/>' Name.Variable
+' '           Text
+';'           Punctuation
+'\n    '      Text
+'skos'        Name.Namespace
+':'           Punctuation
+'narrower'    Name.Tag
+' '           Text
+'<http://data.ub.uio.no/realfagstermer/018529>' Name.Variable
+','           Punctuation
+'\n        '  Text
+'<http://data.ub.uio.no/realfagstermer/024538>' Name.Variable
+','           Punctuation
+'\n        '  Text
+'<http://data.ub.uio.no/realfagstermer/026723>' Name.Variable
+' '           Text
+';'           Punctuation
+'\n    '      Text
+'skos'        Name.Namespace
+':'           Punctuation
+'exactMatch'  Name.Tag
+' '           Text
+'<http://ntnu.no/ub/data/tekord#NTUB17114>' Name.Variable
+','           Punctuation
+'\n        '  Text
+'<http://dewey.info/class/592.62/e23/>' Name.Variable
+','           Punctuation
+'\n        '  Text
+'<http://aims.fao.org/aos/agrovoc/c_29110>' Name.Variable
+' '           Text
+'.'           Punctuation
+'\n'          Text

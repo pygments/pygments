@@ -1,0 +1,13 @@
+---input---
+"it said ""foo"""
+
+---tokens---
+'"'           Literal.String
+'it said '    Literal.String
+'"'           Literal.String
+'"'           Literal.String
+'foo'         Literal.String
+'"'           Literal.String
+'"'           Literal.String
+'"'           Literal.String
+'\n'          Text

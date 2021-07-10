@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.clean
     ~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the Clean language.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -60,15 +59,15 @@ class CleanLexer(ExtendedRegexLexer):
         ],
         'comments': [
             (r'//.*\n', Comment.Single),
-            (r'/\*', Comment.Multi, 'comments.in'),
+            (r'/\*', Comment.Multiline, 'comments.in'),
             (r'/\*\*', Comment.Special, 'comments.in'),
         ],
         'comments.in': [
-            (r'\*\/', Comment.Multi, '#pop'),
-            (r'/\*', Comment.Multi, '#push'),
-            (r'[^*/]+', Comment.Multi),
-            (r'\*(?!/)', Comment.Multi),
-            (r'/', Comment.Multi),
+            (r'\*\/', Comment.Multiline, '#pop'),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'[^*/]+', Comment.Multiline),
+            (r'\*(?!/)', Comment.Multiline),
+            (r'/', Comment.Multiline),
         ],
         'keywords': [
             (words(keywords, prefix=r'\b', suffix=r'\b'), Keyword),

@@ -1,0 +1,117 @@
+---input---
+fn main() {
+    let raw_str = r"Escapes don't work
+
+    here: \x3F \u{211D}";
+    println!("{}", raw_str);
+
+    // If you need quotes in a raw string, add a pair of #s
+    let quotes = r#"And then I said:
+
+    "There is no escape!""#;
+    println!("{}", quotes);
+
+    // If you need "# in your string, just use more #s in the delimiter.
+    // There is no limit for the number of #s you can use.
+    let longer_delimiter = r###"A string
+    with "# in it. And even "##!"###;
+    println!("{}", longer_delimiter);
+}
+
+---tokens---
+'fn'          Keyword
+' '           Text
+'main'        Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'raw_str'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'r"Escapes don\'t work\n\n    here: \\x3F \\u{211D}"' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'println!'    Name.Function.Magic
+'('           Punctuation
+'"'           Literal.String
+'{}'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'raw_str'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// If you need quotes in a raw string, add a pair of #s\n' Comment.Single
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'quotes'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'r#"And then I said:\n\n    "There is no escape!""#' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'println!'    Name.Function.Magic
+'('           Punctuation
+'"'           Literal.String
+'{}'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'quotes'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// If you need "# in your string, just use more #s in the delimiter.\n' Comment.Single
+
+'    '        Text.Whitespace
+'// There is no limit for the number of #s you can use.\n' Comment.Single
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'longer_delimiter' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'r###"A string\n    with "# in it. And even "##!"###' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'println!'    Name.Function.Magic
+'('           Punctuation
+'"'           Literal.String
+'{}'          Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'longer_delimiter' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,31 @@
+---input---
+int main()
+{
+foo:
+  goto foo;
+}
+
+---tokens---
+'int'         Keyword.Type
+' '           Text.Whitespace
+'main'        Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'foo'         Name.Label
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'goto'        Keyword
+' '           Text.Whitespace
+'foo'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

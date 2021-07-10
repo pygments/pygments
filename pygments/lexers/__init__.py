@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers
     ~~~~~~~~~~~~~~~
 
     Pygments lexers.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -146,7 +145,7 @@ def load_lexer_from_file(filename, lexername="CustomLexer", **options):
         lexer_class = custom_namespace[lexername]
         # And finally instantiate it with the options
         return lexer_class(**options)
-    except IOError as err:
+    except OSError as err:
         raise ClassNotFound('cannot read %s: %s' % (filename, err))
     except ClassNotFound:
         raise

@@ -1,0 +1,517 @@
+'#!/usr/bin/mscgen -Tpng\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'# testinput2.msc : Sample msc input file with URLs\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'# This file is PUBLIC DOMAIN and may be freely reproduced,  distributed,\n' Comment.Single
+
+'# transmitted, used, modified, built upon, or otherwise exploited by\n' Comment.Single
+
+'# anyone for any purpose, commercial or non-commercial, and in any way,\n' Comment.Single
+
+'# including by methods that have not yet been invented or conceived.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'# This file is provided "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER\n' Comment.Single
+
+'# EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n' Comment.Single
+
+'# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.\n' Comment.Single
+
+'#\n'         Comment.Single
+
+'\n'          Text.Whitespace
+
+'# Note: This is from mscgen-0.20\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'msc'         Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\n'        Text.Whitespace
+
+'A'           Name.Variable
+','           Punctuation
+'B'           Name.Variable
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'---'         Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"Start"'     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'ID'          Name.Attribute
+'='           Operator
+'"1"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'A'           Name.Variable
+'->'          Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"signal"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'A'           Name.Variable
+'<-'          Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"signal"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'A'           Name.Variable
+'=>'          Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"method"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'A'           Name.Variable
+'<='          Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"method"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'A'           Name.Variable
+'>>'          Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"return"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'A'           Name.Variable
+'<<'          Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"return"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'A'           Name.Variable
+'=>>'         Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"call-back"' Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'A'           Name.Variable
+'<<='         Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"call-back"' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'URL'         Name.Attribute
+'='           Operator
+'"www.google.com"' Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'A'           Name.Variable
+' '           Text.Whitespace
+'x-'          Operator
+' '           Text.Whitespace
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"loss"'      Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'A'           Name.Variable
+' '           Text.Whitespace
+'-x'          Operator
+' '           Text.Whitespace
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"loss"'      Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'---'         Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"Left arcs"' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'ID'          Name.Attribute
+'='           Operator
+'"2"'         Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'IDURL'       Name.Attribute
+'='           Operator
+'"www.google.co.uk"' Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'A'           Name.Variable
+'->'          Operator
+'A'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"signal"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'A'           Name.Variable
+'<-'          Operator
+'A'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"signal"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'A'           Name.Variable
+'=>'          Operator
+'A'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"method"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'A'           Name.Variable
+'<='          Operator
+'A'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"method"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'A'           Name.Variable
+'>>'          Operator
+'A'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"return"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'A'           Name.Variable
+'<<'          Operator
+'A'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"return"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'A'           Name.Variable
+'=>>'         Operator
+'A'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"call-back"' Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'A'           Name.Variable
+'<<='         Operator
+'A'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"call-back"' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'URL'         Name.Attribute
+'='           Operator
+'"www.google.com"' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'ID'          Name.Attribute
+'='           Operator
+'"3"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'A'           Name.Variable
+' '           Text.Whitespace
+'x-'          Operator
+' '           Text.Whitespace
+'A'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"loss"'      Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'A'           Name.Variable
+' '           Text.Whitespace
+'-x'          Operator
+' '           Text.Whitespace
+'A'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"loss"'      Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'---'         Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"Right arcs"' Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'B'           Name.Variable
+'->'          Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"signal"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'B'           Name.Variable
+'<-'          Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"signal"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'B'           Name.Variable
+'=>'          Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"method"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'B'           Name.Variable
+'<='          Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"method"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'B'           Name.Variable
+'>>'          Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"return"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'B'           Name.Variable
+'<<'          Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"return"'    Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'B'           Name.Variable
+'=>>'         Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"call-back"' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'ID'          Name.Attribute
+'='           Operator
+'"4"'         Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'B'           Name.Variable
+'<<='         Operator
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"call-back"' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'URL'         Name.Attribute
+'='           Operator
+'"www.google.com"' Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'B'           Name.Variable
+' '           Text.Whitespace
+'x-'          Operator
+' '           Text.Whitespace
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"loss"'      Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'B'           Name.Variable
+' '           Text.Whitespace
+'-x'          Operator
+' '           Text.Whitespace
+'B'           Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"loss"'      Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'---'         Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"End of arcs"' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'URL'         Name.Attribute
+'='           Operator
+'"www.google.com"' Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'...'         Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'label'       Name.Attribute
+'='           Operator
+'"Some time passes"' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'URL'         Name.Attribute
+'='           Operator
+'"www.google.com"' Literal.String
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
