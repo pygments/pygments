@@ -5,7 +5,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'view-quote'  Name.Variable
 ' '           Text
 '['           Punctuation
@@ -33,7 +33,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'local '      Keyword
+'local '      Keyword.Declaration
 'short-control-char-escapes' Name.Variable
 '\n       '   Text
 '{'           Punctuation
@@ -69,7 +69,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'local '      Keyword
+'local '      Keyword.Declaration
 'long-control-char-escapes' Name.Variable
 '\n       '   Text
 '('           Punctuation
@@ -154,7 +154,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'escape'      Name.Variable
 ' '           Text
 '['           Punctuation
@@ -196,7 +196,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'sequence-key?' Name.Variable
 ' '           Text
 '['           Punctuation
@@ -246,7 +246,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'local '      Keyword
+'local '      Keyword.Declaration
 'type-order'  Name.Variable
 ' '           Text
 '{'           Punctuation
@@ -282,7 +282,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'sort-keys'   Name.Variable
 ' '           Text
 '['           Punctuation
@@ -385,11 +385,11 @@
 '\n              ' Text
 'dta'         Name.Variable
 ' '           Text
-'true'        Name.Variable
+'true'        Name.Constant
 '\n              ' Text
 'dtb'         Name.Variable
 ' '           Text
-'false'       Name.Variable
+'false'       Name.Constant
 '\n              ' Text
 ':else'       Literal.String.Symbol
 ' '           Text
@@ -407,7 +407,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'get-sequence-length' Name.Variable
 ' '           Text
 '['           Punctuation
@@ -415,7 +415,7 @@
 ']'           Punctuation
 '\n  '        Text
 '('           Punctuation
-'var '        Keyword
+'var '        Keyword.Declaration
 'len'         Name.Variable
 ' '           Text
 '1'           Literal.Number.Integer
@@ -445,7 +445,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'get-nonsequential-keys' Name.Variable
 ' '           Text
 '['           Punctuation
@@ -522,7 +522,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'count-table-appearances' Name.Variable
 ' '           Text
 '['           Punctuation
@@ -628,17 +628,17 @@
 '\n\n\x0c\n\n' Text
 
 '('           Punctuation
-'var '        Keyword
+'var '        Keyword.Declaration
 'put-value'   Name.Variable
 ' '           Text
-'nil'         Name.Variable
+'nil'         Name.Constant
 ')'           Punctuation
 ' '           Text
 '; mutual recursion going on; defined below' Comment.Single
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'puts'        Name.Variable
 ' '           Text
 '['           Punctuation
@@ -674,7 +674,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'tabify'      Name.Variable
 ' '           Text
 '['           Punctuation
@@ -701,7 +701,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'already-visited?' Name.Variable
 ' '           Text
 '['           Punctuation
@@ -719,13 +719,13 @@
 'v'           Name.Variable
 ')'           Punctuation
 ' '           Text
-'nil'         Name.Variable
+'nil'         Name.Constant
 ')'           Punctuation
 ')'           Punctuation
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'get-id'      Name.Variable
 ' '           Text
 '['           Punctuation
@@ -735,7 +735,7 @@
 ']'           Punctuation
 '\n  '        Text
 '('           Punctuation
-'var '        Keyword
+'var '        Keyword.Declaration
 'id'          Name.Variable
 ' '           Text
 '('           Punctuation
@@ -814,7 +814,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'put-sequential-table' Name.Variable
 ' '           Text
 '['           Punctuation
@@ -917,7 +917,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'put-key'     Name.Variable
 ' '           Text
 '['           Punctuation
@@ -972,7 +972,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'put-kv-table' Name.Variable
 ' '           Text
 '['           Punctuation
@@ -1149,7 +1149,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'put-table'   Name.Variable
 ' '           Text
 '['           Punctuation
@@ -1396,7 +1396,7 @@
 'put-value'   Name.Variable
 ' '           Text
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 '['           Punctuation
 'self'        Name.Variable
 ' '           Text
@@ -1512,7 +1512,7 @@
 '\n\n\x0c\n\n' Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'one-line'    Name.Variable
 ' '           Text
 '['           Punctuation
@@ -1601,7 +1601,7 @@
 '\n\n'        Text
 
 '('           Punctuation
-'fn '         Keyword
+'fn '         Keyword.Declaration
 'fennelview'  Name.Variable
 ' '           Text
 '['           Punctuation
@@ -1689,7 +1689,8 @@
 'not '        Keyword
 '('           Punctuation
 '= '          Keyword
-'false '      Keyword
+'false'       Name.Constant
+' '           Text
 'options.detect-cycles?' Name.Variable
 ')'           Punctuation
 ')'           Punctuation
@@ -1700,7 +1701,8 @@
 'not '        Keyword
 '('           Punctuation
 '= '          Keyword
-'false '      Keyword
+'false'       Name.Constant
+' '           Text
 'options.metamethod?' Name.Variable
 ')'           Punctuation
 ')'           Punctuation
@@ -1722,7 +1724,7 @@
 'not= '       Keyword
 'options.table-edges' Name.Variable
 ' '           Text
-'false'       Name.Variable
+'false'       Name.Constant
 ')'           Punctuation
 '\n                   ' Text
 ':empty-as-square' Literal.String.Symbol
