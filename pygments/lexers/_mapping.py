@@ -412,6 +412,7 @@ LEXERS = {
     'SMLLexer': ('pygments.lexers.ml', 'Standard ML', ('sml',), ('*.sml', '*.sig', '*.fun'), ('text/x-standardml', 'application/x-standardml')),
     'SarlLexer': ('pygments.lexers.jvm', 'SARL', ('sarl',), ('*.sarl',), ('text/x-sarl',)),
     'SassLexer': ('pygments.lexers.css', 'Sass', ('sass',), ('*.sass',), ('text/x-sass',)),
+    'SaviLexer': ('pygments.lexers.savi', 'Savi', ('savi',), ('*.savi',), ()),
     'ScalaLexer': ('pygments.lexers.jvm', 'Scala', ('scala',), ('*.scala',), ('text/x-scala',)),
     'ScamlLexer': ('pygments.lexers.html', 'Scaml', ('scaml',), ('*.scaml',), ('text/x-scaml',)),
     'ScdocLexer': ('pygments.lexers.scdoc', 'scdoc', ('scdoc', 'scd'), ('*.scd', '*.scdoc'), ()),
