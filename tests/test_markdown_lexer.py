@@ -244,11 +244,14 @@ def test_bold_ita_markup(lexer, fragment, tokens):
 
 QUOTE_MARKUP_TEST_CASES = (
     ('> sometext', [(Token.Keyword, "> "),
-                    (Generic.Emph, "sometext\n")]),
+                    (Token.Text, "sometext"),
+                    (Token.Text, "\n")]),
     ('>> sometext', [(Token.Keyword, ">> "),
-                     (Generic.Emph, "sometext\n")]),
+                     (Token.Text, "sometext"),
+                     (Token.Text, "\n")]),
     ('> > sometext', [(Token.Keyword, "> > "),
-                      (Generic.Emph, "sometext\n")]),
+                      (Token.Text, "sometext"),
+                      (Token.Text, "\n")]),
 )
 
 
