@@ -555,7 +555,7 @@ class MarkdownLexer(RegexLexer):
             (r'^(\s*)([0-9]+\.)( .+\n)',
             bygroups(Text, Keyword, using(this, state='inline'))),
             # quote
-            (r'^(\s*>\s)(.+\n)', bygroups(Keyword, Generic.Emph)),
+            (r'^(\s*[> ]+\s)(.+\n)', bygroups(Keyword, Generic.Emph)),
             # code block fenced by 3 backticks
             (r'^(\s*```\n[\w\W]*?^\s*```$\n)', String.Backtick),
             # code block with language

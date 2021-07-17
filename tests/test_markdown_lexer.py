@@ -240,3 +240,18 @@ BOLD_ITA_MARKUP_TEST_CASES = (
 @pytest.mark.parametrize("fragment,tokens", BOLD_ITA_MARKUP_TEST_CASES)
 def test_bold_ita_markup(lexer, fragment, tokens):
     assert list(lexer.get_tokens(fragment)) == tokens
+
+
+QUOTE_MARKUP_TEST_CASES = (
+    ('> sometext', [(Token.Keyword, "> "),
+                    (Generic.Emph, "sometext\n")]),
+    ('>> sometext', [(Token.Keyword, ">> "),
+                     (Generic.Emph, "sometext\n")]),
+    ('> > sometext', [(Token.Keyword, "> > "),
+                      (Generic.Emph, "sometext\n")]),
+)
+
+
+@pytest.mark.parametrize("fragment,tokens", QUOTE_MARKUP_TEST_CASES)
+def test_quote(lexer, fragment, tokens):
+    assert list(lexer.get_tokens(fragment)) == tokens
