@@ -179,6 +179,8 @@ def test_invalid_code_block(lexer):
 
 
 BOLD_ITA_MARKUP_TEST_CASES = (
+    ('_ita_', [(Generic.Emph, '_ita_'), (Token.Text, '\n')]),
+    ('*ita*', [(Generic.Emph, '*ita*'), (Token.Text, '\n')]),
     ('__bold__', [(Generic.Strong, '__bold__'), (Token.Text, '\n')]),
     ('**bold**', [(Generic.Strong, '**bold**'), (Token.Text, '\n')]),
 
@@ -193,6 +195,17 @@ BOLD_ITA_MARKUP_TEST_CASES = (
                  (Token.Text, 'text_'),
                  (Token.Text, '\n')]),
 
+    ('*italic\nit be*', [(Generic.Emph, '*italic\nit be*'),
+                         (Token.Text, '\n')]),
+    ('*text *', [(Token.Text, '*text'),
+                 (Token.Text, ' '),
+                 (Token.Text, '*'),
+                 (Token.Text, '\n')]),
+    ('* text*', [(Token.Keyword, '*'),
+                 (Token.Text, ' '),
+                 (Token.Text, 'text*'),
+                 (Token.Text, '\n')]),
+
     ('__bold\nit be__', [(Generic.Strong, '__bold\nit be__'),
                          (Token.Text, '\n')]),
     ('__text __', [(Token.Text, '__text'),
@@ -202,6 +215,17 @@ BOLD_ITA_MARKUP_TEST_CASES = (
     ('__ text__', [(Token.Text, '__'),
                    (Token.Text, ' '),
                    (Token.Text, 'text__'),
+                   (Token.Text, '\n')]),
+
+    ('**bold\nit be**', [(Generic.Strong, '**bold\nit be**'),
+                         (Token.Text, '\n')]),
+    ('**text **', [(Token.Text, '**text'),
+                   (Token.Text, ' '),
+                   (Token.Text, '**'),
+                   (Token.Text, '\n')]),
+    ('** text**', [(Token.Text, '**'),
+                   (Token.Text, ' '),
+                   (Token.Text, 'text**'),
                    (Token.Text, '\n')]),
 
     # something for the future: expressions can contain underscores

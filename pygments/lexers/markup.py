@@ -571,12 +571,14 @@ class MarkdownLexer(RegexLexer):
             # warning: the following rules eat outer tags.
             # eg. **foo _bar_ baz** => foo and baz are not recognized as bold
             # bold fenced by '**'
-            (r'([^\*]?)(\*\*[^* \n][^*\n]*\*\*)', bygroups(Text, Generic.Strong)),
+            (r'(?<!\*)(\*\*[^* \n]([^*\n]+\n?)*(?<![ \n])\*\*)(?!\*)',
+             bygroups(Generic.Strong)),
             # bold fenced by '__'
             (r'(?<!_)(__[^_ \n]([^_\n]+\n?)*(?<![ \n])__)(?!_)',
              bygroups(Generic.Strong)),
             # italics fenced by '*'
-            (r'([^\*]?)(\*[^* \n][^*\n]*\*)', bygroups(Text, Generic.Emph)),
+            (r'(?<!\*)(\*[^* \n]([^*\n]+\n?)*(?<![ \n])\*)(?!\*)',
+             bygroups(Generic.Emph)),
             # italics fenced by '_'
             (r'(?<!_)(_[^_ \n]([^_\n]+\n?)*(?<![ \n])_)(?!_)',
              bygroups(Generic.Emph)),
