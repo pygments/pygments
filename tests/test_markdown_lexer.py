@@ -176,3 +176,43 @@ def test_invalid_code_block(lexer):
     for fragment in fragments:
         for token, _ in lexer.get_tokens(fragment):
             assert token != String.Backtick
+
+
+BOLD_ITA_MARKUP_TEST_CASES = (
+    ('__bold__', [(Generic.Strong, '__bold__'), (Token.Text, '\n')]),
+    ('**bold**', [(Generic.Strong, '**bold**'), (Token.Text, '\n')]),
+
+    ('_italic\nit be_', [(Generic.Emph, '_italic\nit be_'),
+                         (Token.Text, '\n')]),
+    ('_text _', [(Token.Text, '_text'),
+                 (Token.Text, ' '),
+                 (Token.Text, '_'),
+                 (Token.Text, '\n')]),
+    ('_ text_', [(Token.Text, '_'),
+                 (Token.Text, ' '),
+                 (Token.Text, 'text_'),
+                 (Token.Text, '\n')]),
+
+    ('__bold\nit be__', [(Generic.Strong, '__bold\nit be__'),
+                         (Token.Text, '\n')]),
+    ('__text __', [(Token.Text, '__text'),
+                   (Token.Text, ' '),
+                   (Token.Text, '__'),
+                   (Token.Text, '\n')]),
+    ('__ text__', [(Token.Text, '__'),
+                   (Token.Text, ' '),
+                   (Token.Text, 'text__'),
+                   (Token.Text, '\n')]),
+
+    # something for the future: expressions can contain underscores
+    # ('_text_text_', [(Generic.Emph, '_text_text_'),
+    #                    (Token.Text, '\n')]),
+    #
+    # ('_text__text__', [(Generic.Emph, '_text__text__'),
+    #                    (Token.Text, '\n')]),
+)
+
+
+@pytest.mark.parametrize("fragment,tokens", BOLD_ITA_MARKUP_TEST_CASES)
+def test_bold_ita_markup(lexer, fragment, tokens):
+    assert list(lexer.get_tokens(fragment)) == tokens

@@ -573,11 +573,13 @@ class MarkdownLexer(RegexLexer):
             # bold fenced by '**'
             (r'([^\*]?)(\*\*[^* \n][^*\n]*\*\*)', bygroups(Text, Generic.Strong)),
             # bold fenced by '__'
-            (r'([^_]?)(__[^_ \n][^_\n]*__)', bygroups(Text, Generic.Strong)),
+            (r'(?<!_)(__[^_ \n]([^_\n]+\n?)*(?<![ \n])__)(?!_)',
+             bygroups(Generic.Strong)),
             # italics fenced by '*'
             (r'([^\*]?)(\*[^* \n][^*\n]*\*)', bygroups(Text, Generic.Emph)),
             # italics fenced by '_'
-            (r'([^_]?)(_[^_ \n][^_\n]*_)', bygroups(Text, Generic.Emph)),
+            (r'(?<!_)(_[^_ \n]([^_\n]+\n?)*(?<![ \n])_)(?!_)',
+             bygroups(Generic.Emph)),
             # strikethrough
             (r'([^~]?)(~~[^~ \n][^~\n]*~~)', bygroups(Text, Generic.Deleted)),
             # mentions and topics (twitter and github stuff)
