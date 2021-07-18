@@ -15,7 +15,9 @@
 \include "lilypond-book-preamble.ly"
 
 \header {
-  title = "This is an assignment to a string."
+  title = "This is an assignment to a string. Escape \" sequences \n are
+recognized.
+"
   composer = \markup \smallCaps "And this is a markup"
 }
 % The following is just a comment.

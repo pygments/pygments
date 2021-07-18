@@ -1,6 +1,8 @@
 '\\version'   Keyword
 ' '           Text
-'"2.23.3"'    Literal.String
+'"'           Literal.String
+'2.23.3'      Literal.String
+'"'           Literal.String
 '\n\n'        Text
 
 "% This is a test file for Pygments' LilyPond support. To compile" Comment
@@ -17,7 +19,9 @@
 
 '\\include'   Keyword
 ' '           Text
-'"lilypond-book-preamble.ly"' Literal.String
+'"'           Literal.String
+'lilypond-book-preamble.ly' Literal.String
+'"'           Literal.String
 '\n\n'        Text
 
 '\\header'    Keyword
@@ -28,7 +32,14 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'"This is an assignment to a string."' Literal.String
+'"'           Literal.String
+'This is an assignment to a string. Escape ' Literal.String
+'\\"'         Literal.String.Escape
+' sequences ' Literal.String
+'\\n'         Literal.String.Escape
+' are\nrecognized.\n' Literal.String
+
+'"'           Literal.String
 '\n  '        Text
 'composer'    Name.Builtin.HeaderVariable
 ' '           Text
@@ -38,7 +49,9 @@
 ' '           Text
 '\\smallCaps' Name.Builtin.MarkupCommand
 ' '           Text
-'"And this is a markup"' Literal.String
+'"'           Literal.String
+'And this is a markup' Literal.String
+'"'           Literal.String
 '\n'          Text
 
 '}'           Punctuation
@@ -262,7 +275,9 @@
 ' '           Text
 '\\italic'    Name.Builtin.MarkupCommand
 ' '           Text
-'"più piano"' Literal.String
+'"'           Literal.String
+'più piano'   Literal.String
+'"'           Literal.String
 '\n\n'        Text
 
 '#'           Punctuation
@@ -360,7 +375,9 @@
 '\n    '      Text
 '\\bar'       Name.Builtin.MusicFunction
 ' '           Text
-'"||"'        Literal.String
+'"'           Literal.String
+'||'          Literal.String
+'"'           Literal.String
 '\n    '      Text
 '\\cadenzaOff' Name.Builtin.MusicCommand
 '\n    '      Text
@@ -409,7 +426,9 @@
 ':'           Punctuation
 '16'          Literal.Number
 '\\-'         Name.Builtin.Articulation
-'^"Some music"' Literal.String
+'^"'          Literal.String
+'Some music'  Literal.String
+'"'           Literal.String
 ' '           Text
 '|'           Punctuation
 '\n    '      Text

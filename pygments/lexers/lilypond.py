@@ -114,7 +114,7 @@ class LilyPondLexer(SchemeLexer):
             (words(pitches, suffix=r"=?[',]*!?\??(?=\d|\W)"), Token.Pitch),
 
             # String, optionally with direction specifier.
-            (r'[\-_^]?"(\\"|[^"])*"', Token.String),
+            (r'[\-_^]?"', Token.String, "string"),
 
             # Numbers.
             (r"-?\d+\.\d+", Token.Number.Float), # 5. and .5 are not allowed
@@ -167,10 +167,15 @@ class LilyPondLexer(SchemeLexer):
             # as text.
             (r".", Token.Text),
         ],
+        "string": [
+            (r'"', Token.String, "#pop"),
+            (r'\\.', Token.String.Escape),
+            (r'[^\\"]+', Token.String),
+        ],
         "value": [
             # Scan a LilyPond value, then pop back since we had a
             # complete expression.
             (r"#\{", Token.Punctuation, ("#pop", "root")),
             inherit,
-        ]
+        ],
     }

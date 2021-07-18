@@ -22,6 +22,7 @@ class LilypondStyle(Style):
         Token.Keyword: "bold",
         Token.Comment: "italic #A3AAB2",
         Token.String: "#AB0909",
+        Token.String.Escape: "#C46C6C",
         Token.String.Symbol: "noinherit",
         Token.Pitch: "", #"#911520",
         Token.Number: "#976806", # includes durations
