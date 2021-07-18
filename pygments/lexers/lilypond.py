@@ -85,7 +85,7 @@ class LilyPondLexer(SchemeLexer):
             (r"%\{.*?%\}", Token.Comment.Multiline),
 
             # Simple comment.
-            (r"%.*?$", Token.Comment),
+            (r"%.*?$", Token.Comment.Single),
 
             # End of embedded LilyPond in Scheme.
             (r"#\}", Token.Punctuation, "#pop"),
