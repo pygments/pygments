@@ -152,6 +152,7 @@ Programming languages
 * `Rust <https://rust-lang.org>`_
 * S, S-Plus, `R <https://www.r-project.org/>`_
 * `Scala <https://scala-lang.org/>`_
+* `Savi <https://github.com/savi-lang/savi/>`_
 * `Scdoc <https://git.sr.ht/~sircmpwn/scdoc>`_
 * `Scheme <http://www.scheme-reports.org/>`_
 * `Scilab <https://www.scilab.org/>`_

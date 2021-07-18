@@ -2,10 +2,7 @@
 'import'      Name.Tag
 ' '           Text
 '"'           Literal.String.Double
-'s'           Literal.String.Double
-'p'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
+'spec'        Literal.String.Double
 '"'           Literal.String.Double
 '\n'          Text
 
@@ -77,21 +74,14 @@
 ':'           Punctuation
 ' '           Text
 '"'           Literal.String.Double
-'A'           Literal.String.Double
-'d'           Literal.String.Double
-'d'           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
+'Addition'    Literal.String.Double
 '"'           Literal.String.Double
 '\n'          Text
 
 '\n'          Text
 
 '  '          Text
-':: Return the number 2 (written in hex, just for fun).' Comment.Singleline
+':: Return the number 2 (written in hex, just for fun).' Comment.Single
 '\n'          Text
 
 '  '          Text
@@ -113,19 +103,7 @@
 'it'          Name.Tag
 ' '           Text
 '"'           Literal.String.Double
-'a'           Literal.String.Double
-'d'           Literal.String.Double
-'d'           Literal.String.Double
-'s'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'w'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'w'           Literal.String.Double
-'o'           Literal.String.Double
-'s'           Literal.String.Double
+'adds two twos' Literal.String.Double
 '"'           Literal.String.Double
 '\n'          Text
 
@@ -152,7 +130,7 @@
 '\n'          Text
 
 '  '          Text
-':: Raise an error if the argument is positive.' Comment.Singleline
+':: Raise an error if the argument is positive.' Comment.Single
 '\n'          Text
 
 '  '          Text
@@ -190,27 +168,7 @@
 'it'          Name.Tag
 ' '           Text
 '"'           Literal.String.Double
-'c'           Literal.String.Double
-'a'           Literal.String.Double
-'n'           Literal.String.Double
-' '           Literal.String.Double
-'e'           Literal.String.Double
-'r'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'r'           Literal.String.Double
-' '           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-' '           Literal.String.Double
-'o'           Literal.String.Double
-'v'           Literal.String.Double
-'e'           Literal.String.Double
-'r'           Literal.String.Double
-'f'           Literal.String.Double
-'l'           Literal.String.Double
-'o'           Literal.String.Double
-'w'           Literal.String.Double
+'can error on overflow' Literal.String.Double
 '"'           Literal.String.Double
 '\n'          Text
 
@@ -240,7 +198,7 @@
 '\n'          Text
 
 '    '        Text
-'// Check addition overflow for various pairs of addends.' Comment.Singleline
+'// Check addition overflow for various pairs of addends.' Comment.Single
 '\n'          Text
 
 '    '        Text
