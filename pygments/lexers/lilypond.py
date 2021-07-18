@@ -79,7 +79,7 @@ class LilyPondLexer(SchemeLexer):
     tokens = {
         "root": [
             # Whitespace.
-            (r"\s+", Token.Text),
+            (r"\s+", Token.Whitespace),
 
             # Multi-line comment. These are non-nestable.
             (r"%\{.*?%\}", Token.Comment.Multiline),
