@@ -1,24 +1,24 @@
-'CREATE'      Name.Builtin
+'CREATE'      Keyword
 ' '           Text.Whitespace
-'QUERY'       Name.Builtin
+'QUERY'       Keyword
 ' '           Text.Whitespace
 'Member_Likeness' Name
 '('           Operator
-'VERTEX'      Name.Builtin
+'VERTEX'      Keyword
 ' '           Text.Whitespace
 '<motionMember>' Name.Constant
 ' '           Text.Whitespace
 'm1'          Name
 ','           Operator
 ' '           Text.Whitespace
-'STRING'      Name.Builtin
+'STRING'      Keyword
 ' '           Text.Whitespace
 'inDate'      Name
 ')'           Operator
 ' '           Text.Whitespace
-'FOR'         Name.Builtin
+'FOR'         Keyword
 ' '           Text.Whitespace
-'GRAPH'       Name.Builtin
+'GRAPH'       Keyword
 ' '           Text.Whitespace
 'motionData'  Name
 ' '           Text.Whitespace
@@ -27,83 +27,83 @@
 '# TYPEDEF TUPLE <x FLOAT, y FLOAT> XYPair;\n' Comment.Single
 
 '\t'          Text.Whitespace
-'MapAccum'    Name.Builtin
+'MapAccum'    Keyword
 '<VERTEX<motionMember>' Name.Constant
 ','           Operator
 ' '           Text.Whitespace
-'MapAccum'    Name.Builtin
+'MapAccum'    Keyword
 '<STRING, FLOAT>>' Name.Constant
 ' '           Text.Whitespace
 '@@likenessAccum' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
-'MapAccum'    Name.Builtin
+'MapAccum'    Keyword
 '<VERTEX<motionMember>, FLOAT>' Name.Constant
 ' '           Text.Whitespace
 '@@BirthYearAccum' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
-'MapAccum'    Name.Builtin
+'MapAccum'    Keyword
 '<VERTEX<motionMember>, FLOAT>' Name.Constant
 ' '           Text.Whitespace
 '@@HeightAccum' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
-'MapAccum'    Name.Builtin
+'MapAccum'    Keyword
 '<VERTEX<motionMember>, FLOAT>' Name.Constant
 ' '           Text.Whitespace
 '@@WeightAccum' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
-'ListAccum'   Name.Builtin
+'ListAccum'   Keyword
 '<VERTEX<location>>' Name.Constant
 ' '           Text.Whitespace
 '@@MemLocAccum' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
-'MapAccum'    Name.Builtin
+'MapAccum'    Keyword
 '<VERTEX<motionMember>, FLOAT>' Name.Constant
 ' '           Text.Whitespace
 '@@LocAccum'  Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
-'MapAccum'    Name.Builtin
+'MapAccum'    Keyword
 '<VERTEX<motionMember>' Name.Constant
 ','           Operator
 ' '           Text.Whitespace
-'BagAccum'    Name.Builtin
+'BagAccum'    Keyword
 '<VERTEX<incentive>>>' Name.Constant
 ' '           Text.Whitespace
 '@@DayIncentives' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
-'MapAccum'    Name.Builtin
+'MapAccum'    Keyword
 '<VERTEX<motionMember>' Name.Constant
 ','           Operator
 ' '           Text.Whitespace
-'MapAccum'    Name.Builtin
+'MapAccum'    Keyword
 '<STRING, FLOAT>>' Name.Constant
 ' '           Text.Whitespace
 '@@MemberStats' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
-'BagAccum'    Name.Builtin
+'BagAccum'    Keyword
 '<VERTEX<incentive>>' Name.Constant
 ' '           Text.Whitespace
 '@MemberIncentives' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
-'AvgAccum'    Name.Builtin
+'AvgAccum'    Keyword
 ' '           Text.Whitespace
 '@@StepsAccum' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
-'AvgAccum'    Name.Builtin
+'AvgAccum'    Keyword
 ' '           Text.Whitespace
 '@@BoutsAccum' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
-'AvgAccum'    Name.Builtin
+'AvgAccum'    Keyword
 ' '           Text.Whitespace
 '@@MilesAccum' Name.Variable
 ';'           Operator
@@ -111,7 +111,7 @@
 '# Universal Vars\n' Comment.Single
 
 '\t'          Text.Whitespace
-'INT'         Name.Builtin
+'INT'         Keyword
 ' '           Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
@@ -120,7 +120,7 @@
 '0'           Literal.Number
 ';'           Operator
 '\n\t'        Text.Whitespace
-'INT'         Name.Builtin
+'INT'         Keyword
 ' '           Text.Whitespace
 'lastMin'     Name
 ' '           Text.Whitespace
@@ -129,7 +129,7 @@
 '1000'        Literal.Number
 ';'           Operator
 '\n\t'        Text.Whitespace
-'FLOAT'       Name.Builtin
+'FLOAT'       Keyword
 ' '           Text.Whitespace
 'mult'        Name
 ';'           Operator
@@ -137,12 +137,12 @@
 '# Age Vars\n' Comment.Single
 
 '\t'          Text.Whitespace
-'INT'         Name.Builtin
+'INT'         Keyword
 ' '           Text.Whitespace
 'ageRange'    Name
 ';'           Operator
 '\n\t'        Text.Whitespace
-'INT'         Name.Builtin
+'INT'         Keyword
 ' '           Text.Whitespace
 'birthYear'   Name
 ';'           Operator
@@ -150,12 +150,12 @@
 '# Height Vars\n' Comment.Single
 
 '\t'          Text.Whitespace
-'INT'         Name.Builtin
+'INT'         Keyword
 ' '           Text.Whitespace
 'heightRange' Name
 ';'           Operator
 '\n\t'        Text.Whitespace
-'INT'         Name.Builtin
+'INT'         Keyword
 ' '           Text.Whitespace
 'height'      Name
 ';'           Operator
@@ -163,12 +163,12 @@
 '# Height Vars\n' Comment.Single
 
 '\t'          Text.Whitespace
-'INT'         Name.Builtin
+'INT'         Keyword
 ' '           Text.Whitespace
 'weightRange' Name
 ';'           Operator
 '\n\t'        Text.Whitespace
-'INT'         Name.Builtin
+'INT'         Keyword
 ' '           Text.Whitespace
 'weight'      Name
 ';'           Operator
@@ -176,12 +176,12 @@
 '# Location Vars\n' Comment.Single
 
 '\t'          Text.Whitespace
-'FLOAT'       Name.Builtin
+'FLOAT'       Keyword
 ' '           Text.Whitespace
 'locRange'    Name
 ';'           Operator
 '\n\t'        Text.Whitespace
-'VERTEX'      Name.Builtin
+'VERTEX'      Keyword
 ' '           Text.Whitespace
 'memLoc'      Name
 ';'           Operator
@@ -189,7 +189,7 @@
 '# Activity Vars\n' Comment.Single
 
 '\t'          Text.Whitespace
-'DATETIME'    Name.Builtin
+'DATETIME'    Keyword
 ' '           Text.Whitespace
 'lastRecording' Name
 ';'           Operator
@@ -201,7 +201,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'to_datetime' Name.Builtin
+'to_datetime' Keyword
 '('           Operator
 'inDate'      Name
 ')'           Operator
@@ -252,11 +252,11 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'SELECT'      Name.Builtin
+'SELECT'      Keyword
 ' '           Text.Whitespace
 'loc'         Name
 ' '           Text.Whitespace
-'FROM'        Name.Builtin
+'FROM'        Keyword
 ' '           Text.Whitespace
 'members'     Name
 ':'           Operator
@@ -274,14 +274,14 @@
 ' '           Text.Whitespace
 'loc'         Name
 '\n\t  '      Text.Whitespace
-'WHERE'       Name.Builtin
+'WHERE'       Keyword
 ' '           Text.Whitespace
 'member'      Name
 ' '           Text.Whitespace
 '== '         Operator
 'm1'          Name
 '\n\t    '    Text.Whitespace
-'ACCUM'       Name.Builtin
+'ACCUM'       Keyword
 ' \n\t      ' Text.Whitespace
 '@@MemLocAccum' Name.Variable
 ' '           Text.Whitespace
@@ -289,15 +289,15 @@
 'loc'         Name
 ';'           Operator
 '\n\t'        Text.Whitespace
-'FOREACH'     Name.Builtin
+'FOREACH'     Keyword
 ' '           Text.Whitespace
 'loc'         Name
 ' '           Text.Whitespace
-'in'          Name.Builtin
+'in'          Keyword
 ' '           Text.Whitespace
 '@@MemLocAccum' Name.Variable
 ' '           Text.Whitespace
-'DO'          Name.Builtin
+'DO'          Keyword
 '\n\t  '      Text.Whitespace
 'memLoc'      Name
 ' '           Text.Whitespace
@@ -306,25 +306,25 @@
 'loc'         Name
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t  \n\t'  Text.Whitespace
-'PRINT'       Name.Builtin
+'PRINT'       Keyword
 ' '           Text.Whitespace
 'memLoc'      Name
 ';'           Operator
 '\n\t'        Text.Whitespace
-'PRINT'       Name.Builtin
+'PRINT'       Keyword
 ' '           Text.Whitespace
 'birthYear'   Name
 ';'           Operator
 '\n\t'        Text.Whitespace
-'PRINT'       Name.Builtin
+'PRINT'       Keyword
 ' '           Text.Whitespace
 'height'      Name
 ';'           Operator
 '\n\t'        Text.Whitespace
-'PRINT'       Name.Builtin
+'PRINT'       Keyword
 ' '           Text.Whitespace
 'weight'      Name
 ';'           Operator
@@ -333,17 +333,17 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'SELECT'      Name.Builtin
+'SELECT'      Keyword
 ' '           Text.Whitespace
 'member'      Name
 ' '           Text.Whitespace
-'FROM'        Name.Builtin
+'FROM'        Keyword
 ' '           Text.Whitespace
 'members'     Name
 ':'           Operator
 'member'      Name
 '\n\t  '      Text.Whitespace
-'ACCUM'       Name.Builtin
+'ACCUM'       Keyword
 ' \n\t    '   Text.Whitespace
 '@@BirthYearAccum' Name.Variable
 ' '           Text.Whitespace
@@ -367,7 +367,7 @@
 ')'           Operator
 ';'           Operator
 '\n\t\n\t'    Text.Whitespace
-'FOREACH'     Name.Builtin
+'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
 'member'      Name
@@ -375,13 +375,13 @@
 'bys'         Name
 ')'           Operator
 ' '           Text.Whitespace
-'in'          Name.Builtin
+'in'          Keyword
 ' '           Text.Whitespace
 '@@BirthYearAccum' Name.Variable
 ' '           Text.Whitespace
-'DO'          Name.Builtin
+'DO'          Keyword
 '\n\t  '      Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'bys'         Name
 ' '           Text.Whitespace
@@ -389,7 +389,7 @@
 ' '           Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t    '    Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
@@ -398,10 +398,10 @@
 'bys'         Name
 ';'           Operator
 '\n\t    '    Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'bys'         Name
 ' '           Text.Whitespace
@@ -409,7 +409,7 @@
 ' '           Text.Whitespace
 'lastMin'     Name
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t    '    Text.Whitespace
 'lastMin'     Name
 ' '           Text.Whitespace
@@ -418,10 +418,10 @@
 'bys'         Name
 ';'           Operator
 '\n\t    '    Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t\n\t'    Text.Whitespace
 'ageRange'    Name
@@ -435,7 +435,7 @@
 'lastMin'     Name
 ';'           Operator
 '\n\t'        Text.Whitespace
-'print'       Name.Builtin
+'print'       Keyword
 ' '           Text.Whitespace
 'ageRange'    Name
 ';'           Operator
@@ -449,7 +449,7 @@
 'ageRange'    Name
 ';'           Operator
 '\n\t\n\t\n\t' Text.Whitespace
-'FOREACH'     Name.Builtin
+'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
 'member'      Name
@@ -457,11 +457,11 @@
 'bys'         Name
 ')'           Operator
 ' '           Text.Whitespace
-'in'          Name.Builtin
+'in'          Keyword
 ' '           Text.Whitespace
 '@@BirthYearAccum' Name.Variable
 ' '           Text.Whitespace
-'DO'          Name.Builtin
+'DO'          Keyword
 '\n\t  '      Text.Whitespace
 'bys'         Name
 ' '           Text.Whitespace
@@ -496,7 +496,7 @@
 ')'           Operator
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t\n\t'    Text.Whitespace
 'lastMax'     Name
@@ -524,17 +524,17 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'SELECT'      Name.Builtin
+'SELECT'      Keyword
 ' '           Text.Whitespace
 'member'      Name
 ' '           Text.Whitespace
-'FROM'        Name.Builtin
+'FROM'        Keyword
 ' '           Text.Whitespace
 'members'     Name
 ':'           Operator
 'member'      Name
 '\n\t  '      Text.Whitespace
-'ACCUM'       Name.Builtin
+'ACCUM'       Keyword
 ' \n\t    '   Text.Whitespace
 '@@HeightAccum' Name.Variable
 ' '           Text.Whitespace
@@ -557,7 +557,7 @@
 ')'           Operator
 ';'           Operator
 '\n\t\n\t'    Text.Whitespace
-'FOREACH'     Name.Builtin
+'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
 'member'      Name
@@ -565,13 +565,13 @@
 'heights'     Name
 ')'           Operator
 ' '           Text.Whitespace
-'in'          Name.Builtin
+'in'          Keyword
 ' '           Text.Whitespace
 '@@HeightAccum' Name.Variable
 ' '           Text.Whitespace
-'DO'          Name.Builtin
+'DO'          Keyword
 '\n\t  '      Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'heights'     Name
 ' '           Text.Whitespace
@@ -579,9 +579,9 @@
 ' '           Text.Whitespace
 'height'      Name
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t    '    Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'heights'     Name
 ' '           Text.Whitespace
@@ -589,7 +589,7 @@
 ' '           Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t      '  Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
@@ -598,10 +598,10 @@
 'heights'     Name
 ';'           Operator
 '\n\t      '  Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t    '    Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'heights'     Name
 ' '           Text.Whitespace
@@ -609,7 +609,7 @@
 ' '           Text.Whitespace
 'lastMin'     Name
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t      '  Text.Whitespace
 'lastMin'     Name
 ' '           Text.Whitespace
@@ -618,13 +618,13 @@
 'heights'     Name
 ';'           Operator
 '\n\t      '  Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t    '    Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t\n\t'    Text.Whitespace
 'heightRange' Name
@@ -638,7 +638,7 @@
 'lastMin'     Name
 ';'           Operator
 '\n\t'        Text.Whitespace
-'print'       Name.Builtin
+'print'       Keyword
 ' '           Text.Whitespace
 'heightRange' Name
 ';'           Operator
@@ -652,7 +652,7 @@
 'heightRange' Name
 ';'           Operator
 '\n\t\n\t\n\t' Text.Whitespace
-'FOREACH'     Name.Builtin
+'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
 'member'      Name
@@ -660,13 +660,13 @@
 'heights'     Name
 ')'           Operator
 ' '           Text.Whitespace
-'in'          Name.Builtin
+'in'          Keyword
 ' '           Text.Whitespace
 '@@HeightAccum' Name.Variable
 ' '           Text.Whitespace
-'DO'          Name.Builtin
+'DO'          Keyword
 '\n\t  '      Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'heights'     Name
 ' '           Text.Whitespace
@@ -674,7 +674,7 @@
 ' '           Text.Whitespace
 'height'      Name
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t    '    Text.Whitespace
 'heights'     Name
 ' '           Text.Whitespace
@@ -691,7 +691,7 @@
 'mult'        Name
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'ELSE'        Name.Builtin
+'ELSE'        Keyword
 '\n\t    '    Text.Whitespace
 'heights'     Name
 ' '           Text.Whitespace
@@ -700,7 +700,7 @@
 '0'           Literal.Number
 ';'           Operator
 '\n\t    '    Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t  '      Text.Whitespace
 '@@likenessAccum' Name.Variable
@@ -721,7 +721,7 @@
 ')'           Operator
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t\n\t'    Text.Whitespace
 'lastMax'     Name
@@ -749,17 +749,17 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'SELECT'      Name.Builtin
+'SELECT'      Keyword
 ' '           Text.Whitespace
 'member'      Name
 ' '           Text.Whitespace
-'FROM'        Name.Builtin
+'FROM'        Keyword
 ' '           Text.Whitespace
 'members'     Name
 ':'           Operator
 'member'      Name
 '\n\t  '      Text.Whitespace
-'ACCUM'       Name.Builtin
+'ACCUM'       Keyword
 ' \n\t    '   Text.Whitespace
 '@@WeightAccum' Name.Variable
 ' '           Text.Whitespace
@@ -782,7 +782,7 @@
 ')'           Operator
 ';'           Operator
 '\n\t\n\t'    Text.Whitespace
-'FOREACH'     Name.Builtin
+'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
 'member'      Name
@@ -790,13 +790,13 @@
 'weights'     Name
 ')'           Operator
 ' '           Text.Whitespace
-'in'          Name.Builtin
+'in'          Keyword
 ' '           Text.Whitespace
 '@@WeightAccum' Name.Variable
 ' '           Text.Whitespace
-'DO'          Name.Builtin
+'DO'          Keyword
 '\n\t  '      Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'weights'     Name
 ' '           Text.Whitespace
@@ -804,9 +804,9 @@
 ' '           Text.Whitespace
 'weight'      Name
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t    '    Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'weights'     Name
 ' '           Text.Whitespace
@@ -814,7 +814,7 @@
 ' '           Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t      '  Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
@@ -823,10 +823,10 @@
 'weights'     Name
 ';'           Operator
 '\n\t      '  Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t    '    Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'weights'     Name
 ' '           Text.Whitespace
@@ -834,7 +834,7 @@
 ' '           Text.Whitespace
 'lastMin'     Name
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t      '  Text.Whitespace
 'lastMin'     Name
 ' '           Text.Whitespace
@@ -843,13 +843,13 @@
 'weights'     Name
 ';'           Operator
 '\n\t      '  Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t    '    Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t\n\t'    Text.Whitespace
 'weightRange' Name
@@ -863,7 +863,7 @@
 'lastMin'     Name
 ';'           Operator
 '\n\t'        Text.Whitespace
-'print'       Name.Builtin
+'print'       Keyword
 ' '           Text.Whitespace
 'weightRange' Name
 ';'           Operator
@@ -877,7 +877,7 @@
 'weightRange' Name
 ';'           Operator
 '\n\t\n\t\n\t' Text.Whitespace
-'FOREACH'     Name.Builtin
+'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
 'member'      Name
@@ -885,13 +885,13 @@
 'weights'     Name
 ')'           Operator
 ' '           Text.Whitespace
-'in'          Name.Builtin
+'in'          Keyword
 ' '           Text.Whitespace
 '@@WeightAccum' Name.Variable
 ' '           Text.Whitespace
-'DO'          Name.Builtin
+'DO'          Keyword
 '\n\t  '      Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'weights'     Name
 ' '           Text.Whitespace
@@ -899,7 +899,7 @@
 ' '           Text.Whitespace
 'weight'      Name
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t    '    Text.Whitespace
 'weights'     Name
 ' '           Text.Whitespace
@@ -916,7 +916,7 @@
 'mult'        Name
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'ELSE'        Name.Builtin
+'ELSE'        Keyword
 '\n\t    '    Text.Whitespace
 'weights'     Name
 ' '           Text.Whitespace
@@ -925,7 +925,7 @@
 '0'           Literal.Number
 ';'           Operator
 '\n\t    '    Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t  '      Text.Whitespace
 '@@likenessAccum' Name.Variable
@@ -946,7 +946,7 @@
 ')'           Operator
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t\n\t'    Text.Whitespace
 'lastMax'     Name
@@ -974,11 +974,11 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'SELECT'      Name.Builtin
+'SELECT'      Keyword
 ' '           Text.Whitespace
 'loc'         Name
 ' '           Text.Whitespace
-'FROM'        Name.Builtin
+'FROM'        Keyword
 ' '           Text.Whitespace
 'members'     Name
 ':'           Operator
@@ -996,7 +996,7 @@
 ' '           Text.Whitespace
 'loc'         Name
 '\n\t  '      Text.Whitespace
-'ACCUM'       Name.Builtin
+'ACCUM'       Keyword
 ' \n\t    '   Text.Whitespace
 '@@LocAccum'  Name.Variable
 ' '           Text.Whitespace
@@ -1015,7 +1015,7 @@
 ')'           Operator
 ';'           Operator
 '\n\t'        Text.Whitespace
-'FOREACH'     Name.Builtin
+'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
 'member'      Name
@@ -1023,13 +1023,13 @@
 'loc'         Name
 ')'           Operator
 ' '           Text.Whitespace
-'in'          Name.Builtin
+'in'          Keyword
 ' '           Text.Whitespace
 '@@LocAccum'  Name.Variable
 ' '           Text.Whitespace
-'DO'          Name.Builtin
+'DO'          Keyword
 '\n\t  '      Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'loc'         Name
 ' '           Text.Whitespace
@@ -1037,9 +1037,9 @@
 ' '           Text.Whitespace
 '5800'        Literal.Number
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t    '    Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'loc'         Name
 ' '           Text.Whitespace
@@ -1047,7 +1047,7 @@
 ' '           Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t      '  Text.Whitespace
 'lastMax'     Name
 ' '           Text.Whitespace
@@ -1059,10 +1059,10 @@
 ')'           Operator
 ';'           Operator
 '\n\t      '  Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t    '    Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'loc'         Name
 ' '           Text.Whitespace
@@ -1070,7 +1070,7 @@
 ' '           Text.Whitespace
 'lastMin'     Name
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t      '  Text.Whitespace
 'lastMin'     Name
 ' '           Text.Whitespace
@@ -1082,21 +1082,21 @@
 ')'           Operator
 ';'           Operator
 '\n\t      '  Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t    '    Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t\n\t'    Text.Whitespace
-'PRINT'       Name.Builtin
+'PRINT'       Keyword
 ' '           Text.Whitespace
 'lastMax'     Name
 ';'           Operator
 '\n\t'        Text.Whitespace
-'PRINT'       Name.Builtin
+'PRINT'       Keyword
 ' '           Text.Whitespace
 'lastMin'     Name
 ';'           Operator
@@ -1112,7 +1112,7 @@
 'lastMin'     Name
 ';'           Operator
 '\n\t'        Text.Whitespace
-'print'       Name.Builtin
+'print'       Keyword
 ' '           Text.Whitespace
 'locRange'    Name
 ';'           Operator
@@ -1126,7 +1126,7 @@
 'locRange'    Name
 ';'           Operator
 '\n\t\n\t'    Text.Whitespace
-'FOREACH'     Name.Builtin
+'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
 'member'      Name
@@ -1134,13 +1134,13 @@
 'loc'         Name
 ')'           Operator
 ' '           Text.Whitespace
-'in'          Name.Builtin
+'in'          Keyword
 ' '           Text.Whitespace
 '@@LocAccum'  Name.Variable
 ' '           Text.Whitespace
-'DO'          Name.Builtin
+'DO'          Keyword
 '\n\t  '      Text.Whitespace
-'IF'          Name.Builtin
+'IF'          Keyword
 ' '           Text.Whitespace
 'loc'         Name
 ' '           Text.Whitespace
@@ -1148,7 +1148,7 @@
 ' '           Text.Whitespace
 '5800'        Literal.Number
 ' '           Text.Whitespace
-'THEN'        Name.Builtin
+'THEN'        Keyword
 '\n\t    '    Text.Whitespace
 'loc'         Name
 ' '           Text.Whitespace
@@ -1158,7 +1158,7 @@
 '1'           Literal.Number
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'ELSE'        Name.Builtin
+'ELSE'        Keyword
 '\n\t    '    Text.Whitespace
 'loc'         Name
 ' '           Text.Whitespace
@@ -1175,7 +1175,7 @@
 'mult'        Name
 ';'           Operator
 '\n\t    '    Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t  '      Text.Whitespace
 '@@likenessAccum' Name.Variable
@@ -1196,7 +1196,7 @@
 ')'           Operator
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t\n\t'    Text.Whitespace
 'lastMax'     Name
@@ -1235,11 +1235,11 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'SELECT'      Name.Builtin
+'SELECT'      Keyword
 ' '           Text.Whitespace
 'incent'      Name
 ' '           Text.Whitespace
-'FROM'        Name.Builtin
+'FROM'        Keyword
 ' '           Text.Whitespace
 'incentives'  Name
 ':'           Operator
@@ -1256,7 +1256,7 @@
 ':'           Operator
 'rule'        Name
 ' '           Text.Whitespace
-'WHERE'       Name.Builtin
+'WHERE'       Keyword
 '\n\t  '      Text.Whitespace
 'rule'        Name
 '.'           Punctuation
@@ -1265,7 +1265,7 @@
 '== '         Operator
 '"Tenacity"'  Literal.String
 ' '           Text.Whitespace
-'AND'         Name.Builtin
+'AND'         Keyword
 ' '           Text.Whitespace
 'incent'      Name
 '.'           Punctuation
@@ -1273,19 +1273,19 @@
 ' '           Text.Whitespace
 '>'           Operator
 ' '           Text.Whitespace
-'datetime_sub' Name.Builtin
+'datetime_sub' Keyword
 '('           Operator
 'lastRecording' Name
 ','           Operator
 ' '           Text.Whitespace
-'INTERVAL'    Name.Builtin
+'INTERVAL'    Keyword
 ' '           Text.Whitespace
 '1'           Literal.Number
 ' '           Text.Whitespace
 'MONTH'       Name
 ')'           Operator
 ' '           Text.Whitespace
-'AND'         Name.Builtin
+'AND'         Keyword
 ' '           Text.Whitespace
 'incent'      Name
 '.'           Punctuation
@@ -1300,11 +1300,11 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'SELECT'      Name.Builtin
+'SELECT'      Keyword
 ' '           Text.Whitespace
 'member'      Name
 ' '           Text.Whitespace
-'FROM'        Name.Builtin
+'FROM'        Keyword
 ' '           Text.Whitespace
 'incentives'  Name
 ':'           Operator
@@ -1321,7 +1321,7 @@
 ':'           Operator
 'member'      Name
 '\n\t  '      Text.Whitespace
-'ACCUM'       Name.Builtin
+'ACCUM'       Keyword
 '\n\t    '    Text.Whitespace
 '@@DayIncentives' Name.Variable
 ' '           Text.Whitespace
@@ -1337,7 +1337,7 @@
 ')'           Operator
 ';'           Operator
 '\n\t\n\t'    Text.Whitespace
-'FOREACH'     Name.Builtin
+'FOREACH'     Keyword
 ' '           Text.Whitespace
 '('           Operator
 'member'      Name
@@ -1346,11 +1346,11 @@
 'incent'      Name
 ')'           Operator
 ' '           Text.Whitespace
-'IN'          Name.Builtin
+'IN'          Keyword
 ' '           Text.Whitespace
 '@@DayIncentives' Name.Variable
 ' '           Text.Whitespace
-'DO'          Name.Builtin
+'DO'          Keyword
 '\n\t  '      Text.Whitespace
 '@@StepsAccum' Name.Variable
 ' '           Text.Whitespace
@@ -1359,15 +1359,15 @@
 '0'           Literal.Number
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'FOREACH'     Name.Builtin
+'FOREACH'     Keyword
 ' '           Text.Whitespace
 'Incentive'   Name
 ' '           Text.Whitespace
-'IN'          Name.Builtin
+'IN'          Keyword
 ' '           Text.Whitespace
 'incent'      Name
 ' '           Text.Whitespace
-'DO'          Name.Builtin
+'DO'          Keyword
 '\n\t      '  Text.Whitespace
 '@@StepsAccum' Name.Variable
 ' '           Text.Whitespace
@@ -1393,7 +1393,7 @@
 'Miles'       Name
 ';'           Operator
 '\n\t    '    Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t  '      Text.Whitespace
 '@@MemberStats' Name.Variable
@@ -1485,15 +1485,15 @@
 ')'           Operator
 ';'           Operator
 '\n\t  '      Text.Whitespace
-'END'         Name.Builtin
+'END'         Keyword
 ';'           Operator
 '\n\t\n\t\n\t' Text.Whitespace
-'PRINT'       Name.Builtin
+'PRINT'       Keyword
 ' '           Text.Whitespace
 '@@MemberStats' Name.Variable
 ';'           Operator
 '\n\t'        Text.Whitespace
-'PRINT'       Name.Builtin
+'PRINT'       Keyword
 ' '           Text.Whitespace
 '@@likenessAccum' Name.Variable
 ';'           Operator
