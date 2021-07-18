@@ -93,6 +93,7 @@ Programming languages
 * `Jasmin <http://jasmin.sourceforge.net/>`_
 * `Jcl <https://en.wikipedia.org/wiki/Job_Control_Language>`_
 * `Julia <https://julialang.org>`_
+* `JSLT <https://github.com/schibsted/jslt>`_
 * `Kotlin <https://kotlinlang.org/>`_
 * `Lasso <http://www.lassosoft.com/>`_ (incl. templating)
 * `LilyPond <https://lilypond.org>`_
