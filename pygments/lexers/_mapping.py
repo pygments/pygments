@@ -471,7 +471,7 @@ LEXERS = {
     'TurtleLexer': ('pygments.lexers.rdf', 'Turtle', ('turtle',), ('*.ttl',), ('text/turtle', 'application/x-turtle')),
     'TwigHtmlLexer': ('pygments.lexers.templates', 'HTML+Twig', ('html+twig',), ('*.twig',), ('text/html+twig',)),
     'TwigLexer': ('pygments.lexers.templates', 'Twig', ('twig',), (), ('application/x-twig',)),
-    'TypeScriptLexer': ('pygments.lexers.javascript', 'TypeScript', ('typescript', 'ts'), ('*.ts', '*.tsx'), ('text/x-typescript',)),
+    'TypeScriptLexer': ('pygments.lexers.javascript', 'TypeScript', ('typescript', 'ts'), ('*.ts',), ('application/x-typescript', 'text/x-typescript')),
     'TypoScriptCssDataLexer': ('pygments.lexers.typoscript', 'TypoScriptCssData', ('typoscriptcssdata',), (), ()),
     'TypoScriptHtmlDataLexer': ('pygments.lexers.typoscript', 'TypoScriptHtmlData', ('typoscripthtmldata',), (), ()),
     'TypoScriptLexer': ('pygments.lexers.typoscript', 'TypoScript', ('typoscript',), ('*.typoscript',), ('text/x-typoscript',)),
