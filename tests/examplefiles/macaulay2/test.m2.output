@@ -1,44 +1,34 @@
 '"this is a string"' Literal.String
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '///this is also\na string///' Literal.String
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '-- this is a comment' Comment.Single
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '-* this is\nalso a comment *-' Comment.Multiline
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Text
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Text
-' '           Text
+' '           Text.Whitespace
 'to'          Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Text
 '0'           Text
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 'print'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'QQ'          Name.Builtin
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'end'         Name.Constant
-'\n'          Text
+'\n'          Text.Whitespace

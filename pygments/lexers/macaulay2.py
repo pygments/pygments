@@ -1656,6 +1656,7 @@ class Macaulay2Lexer(RegexLexer):
             (words(M2DATATYPES, prefix=r'\b', suffix=r'\b'), Name.Builtin),
             (words(M2FUNCTIONS, prefix=r'\b', suffix=r'\b'), Name.Function),
             (words(M2CONSTANTS, prefix=r'\b', suffix=r'\b'), Name.Constant),
+            (r'\s+', Text.Whitespace),
             (r'.', Text)
         ]
     }
