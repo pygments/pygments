@@ -10,7 +10,7 @@
 
 from pygments.lexer import RegexLexer, bygroups, include
 from pygments.token import \
-  Text, Keyword, Name, String, Number, \
+  Whitespace, Keyword, Name, String, Number, \
   Operator, Punctuation, Comment, Generic, Error
 
 __all__ = ['SaviLexer']
@@ -60,7 +60,7 @@ class SaviLexer(RegexLexer):
 
       # Declare
       (r'^(\s*)(:)(\w+)',
-        bygroups(Text, Name.Tag, Name.Tag),
+        bygroups(Whitespace, Name.Tag, Name.Tag),
         "decl"),
 
       # Error-Raising Calls/Names
@@ -122,14 +122,14 @@ class SaviLexer(RegexLexer):
       (r'\b\w+\b', Name),
 
       # Whitespace
-      (r'[ \t\r]+', Text),
+      (r'[ \t\r]+', Whitespace),
     ],
 
     # Declare (nested rules)
     "decl": [
       (r'\b[a-z_]\w*\b(?!\!)', Keyword.Declaration),
       (r':', Punctuation, "#pop"),
-      (r'\n', Text, "#pop"),
+      (r'\n', Whitespace, "#pop"),
       include("root"),
     ],
 
