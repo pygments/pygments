@@ -1649,14 +1649,28 @@ class Macaulay2Lexer(RegexLexer):
     tokens = {
         'root': [
             (r'--.*$', Comment.Single),
-            (r'-\*[\w\W]*?\*-', Comment.Multiline),
-            (r'".*?"', String),
-            (r'///[\w\W]*?///', String),
+            (r'-\*', Comment.Multiline, 'block comment'),
+            (r'"', String, 'quote string'),
+            (r'///', String, 'slash string'),
             (words(M2KEYWORDS, prefix=r'\b', suffix=r'\b'), Keyword),
             (words(M2DATATYPES, prefix=r'\b', suffix=r'\b'), Name.Builtin),
             (words(M2FUNCTIONS, prefix=r'\b', suffix=r'\b'), Name.Function),
             (words(M2CONSTANTS, prefix=r'\b', suffix=r'\b'), Name.Constant),
             (r'\s+', Text.Whitespace),
             (r'.', Text)
+        ],
+        'block comment' : [
+            (r'\*-', Comment.Multiline, '#pop'),
+            (r'[\w\W]', Comment.Multiline)
+        ],
+        'quote string' : [
+            (r'"', String, '#pop'),
+            (r'\\"', String),
+            (r'[\w\W]', String)
+        ],
+        'slash string' : [
+            (r'(//)+(?!/)', String),
+            (r'/(//)+(?!/)', String, '#pop'),
+            (r'[\w\W]', String)
         ]
     }
