@@ -1,3 +1,13 @@
+"""
+    pygments.lexers.gsql
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    Lexers for TigerGraph GSQL graph query language
+
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 import re
 
 from pygments.lexer import RegexLexer, include, bygroups, using, this, words
@@ -58,9 +68,6 @@ class GSQLLexer(RegexLexer):
              'bitwiseoraccum', 'groupbyaccum', 'heapaccum', 'listaccum', 'MapAccum', 
              'maxaccum', 'minaccum', 'oraccum', 'setaccum', 'sumaccum')), Name.Builtin),
         ],
-        # 'name': [
-        #     (r'(\@\@w+)\b', Name),
-        # ],
         'relations': [
             (r'(-\s?)(\(.*\:\w?\))(\s?-)', bygroups(Operator, using(this), Operator)),
             (r'->|<-', Operator),
