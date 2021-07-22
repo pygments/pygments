@@ -32,14 +32,18 @@ class MumpsLexer(ExtendedRegexLexer):
 
     # Definitions of groups that we implement as regular expressions
     name_re = '[A-Za-z]+'
+    # 7.1.4.1 - String literal 'strlit'
+    strlit_re = '"(""|[^"])*"'
+    # 7.1.4.11 - Unary operator 'unaryop'
+    unaryop_re = '[-+]'
     # 7.2.1 - binaryop
     binaryop_re = '\\*\\*|[-_+*/\\\\#]'
     # 7.2.2 - truthop
     relation_re = '\\]\\]|[<>=\\[\\]]' # 7.2.2.1 - Relational operator 'relation'
     logicalop_re = '[&!]' # 7.2.2.4 - Logical operator 'logicalop'
     truthop_re = relation_re + '|' + logicalop_re
-    # 7.1.4.11 - Unary operator 'unaryop'
-    unaryop_re = '[-+]'
+    # 7.2.3 - repcount
+    repcount_re = '([0-9]+)(\\.?)([0-9]*)'
 
     # Parsing states
     tokens = {
@@ -119,7 +123,7 @@ class MumpsLexer(ExtendedRegexLexer):
             ],
         # 7.1.4.1 - String literal 'strlit'
         'strlit': [
-                ('"(""|[^"])*"', String, '#pop'),
+                ( strlit_re , String, '#pop'),
                 ],
 
         # 7.1.4.2 - Numeric literal 'numlit'
@@ -136,8 +140,27 @@ class MumpsLexer(ExtendedRegexLexer):
 	        ( binaryop_re, Operator, 'expratom'),
             ( '(\')(' + truthop_re + ')', bygroups(Operator, Operator), 'expratom'),
 	        ( truthop_re, Operator, 'expratom'),
+            ( '\\?', Operator, 'pattern'),
             default('#pop')
             ],
+        # 7.2.3 - Pattern match 'pattern'
+        'pattern': [
+                default(('#pop', 'more_patatoms', 'patatom')),
+                ],
+        'patatom': [
+                ( repcount_re, bygroups(Number, Punctuation, Number), ('#pop', 'patatom_choice'))
+                ],
+        'more_patatoms': [
+                ( repcount_re, bygroups(Number, Punctuation, Number), 'patatom_choice'),
+                default('#pop')
+                ],
+        'patatom_choice': [
+                include('strlit'),
+                include('patcode'),
+                ],
+        'patcode': [
+                ('[A-Xa-x]+', Name.Entity, '#pop'),
+                ],
         ###
         # 8 - Commands
         ###

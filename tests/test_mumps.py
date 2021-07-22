@@ -309,3 +309,36 @@ def test_logicops(lexer):
             (Name.Variable, 'b'),
             (Text, '\n')
             ]
+
+def testSimplePattern(lexer):
+    assert list(lexer.get_tokens(' Q var?1.AN')) == [
+            (Whitespace, ' '),
+            (Keyword, 'Q'),
+            (Whitespace, ' '),
+            (Name.Variable, 'var'),
+            (Operator, '?'),
+            (Number, '1'),
+            (Punctuation, '.'),
+            (Name.Entity, 'AN'),
+            (Text, '\n')
+            ]
+
+def testSSNPattern(lexer):
+    assert list(lexer.get_tokens(' Q var?3N1"-"2N1"-"4N')) == [
+            (Whitespace, ' '),
+            (Keyword, 'Q'),
+            (Whitespace, ' '),
+            (Name.Variable, 'var'),
+            (Operator, '?'),
+            (Number, '3'),
+            (Name.Entity, 'N'),
+            (Number, '1'),
+            (String, '"-"'),
+            (Number, '2'),
+            (Name.Entity, 'N'),
+            (Number, '1'),
+            (String, '"-"'),
+            (Number, '4'),
+            (Name.Entity, 'N'),
+            (Text, '\n')
+            ]
