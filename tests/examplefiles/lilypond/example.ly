@@ -89,7 +89,7 @@ piuPiano = \markup \italic "più piano"
                \small-italic super
              }
     \repeat unfold 4 { c8\< c^\> c\p\! }
-    c^\piuPiano^\markup dolce
+    c_\piuPiano^\markup dolce
   }
   \addlyrics {
     \set Score.melismaBusyProperties = #'()

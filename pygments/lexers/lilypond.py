@@ -111,7 +111,7 @@ class LilyPondLexer(SchemeLexer):
 
             # Pitch, with optional octavation marks, octave check,
             # and forced or cautionary accidental.
-            (words(pitches, suffix=r"=?[',]*!?\??(?=\d|\W)"), Token.Pitch),
+            (words(pitches, suffix=r"=?[',]*!?\??" + NAME_END_RE), Token.Pitch),
 
             # String, optionally with direction specifier.
             (r'[\-_^]?"', Token.String, "string"),
