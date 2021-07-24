@@ -101,7 +101,7 @@ class LilyPondLexer(SchemeLexer):
             # - voice separator: << \\ >>,
             # - chord: < >,
             # - bar check: |,
-            # - dot in nested assignment: system-system-spacing.basic-distance,
+            # - dot in nested properties: \revert NoteHead.color,
             # - equals sign in assignemnts and lists for various commands:
             #   \override Stem.color = red,
             # - comma as alternative syntax for lists: \time 3,3,2 4/4,
