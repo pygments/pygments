@@ -53,7 +53,7 @@ class LilyPondLexer(SchemeLexer):
     filenames = ['*.ly']
     mimetypes = []
 
-    flags = re.DOTALL | re.MULTILINE | re.UNICODE
+    flags = re.DOTALL | re.MULTILINE
 
     # Because parsing LilyPond input is very tricky (and in fact
     # impossible without executing LilyPond when there is Scheme
