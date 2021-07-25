@@ -176,7 +176,17 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8 - Commands
         ###
         # 8.1 - Command general rules
-        # note - we include each 'commandword' here because each has its own sytax
+        # 8.1.1 - Spaces in commands
+        'argumentsp': [
+                (' ', Whitespace, '#pop'),
+                ],
+        'noargsp': [
+                ('  +', Whitespace, '#pop'),
+                ],
+        'optargsp': [
+                ('  +', Whitespace, '#pop:2'),
+                include('argumentsp'),
+                ],
         # 8.1.4 - postcond
         'postcond': [
             (':', Operator, 'expr'),
@@ -184,20 +194,11 @@ class MumpsLexer(ExtendedRegexLexer):
             ],
         # 8.2 - Command
         'command': [
-                ('break|b', Keyword, ('#pop', 'breakarg', 'postcond')),
-                ('quit|q', Keyword, ('#pop', 'quitarg', 'postcond')),
+                # 8.2.1 - BREAK - no argument syntax
+                ('break|b', Keyword, ('#pop', 'noargsp', 'postcond')),
+                # 8.2.16 - QUIT
+                ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
-        # 8.2.1 - BREAK
-        'breakarg': [
-                ('  ', Whitespace, '#pop'),
-                default('#pop'),
-                ],
-        # 8.2.16 - QUIT
-        'quitarg': [
-            ('  ', Whitespace, '#pop'),
-            (' ', Whitespace, ('#pop', 'expr_or_indirect')),
-            default('#pop')
-            ],
         'expr_or_indirect': [
             ('@', Operator, ('#pop', 'expratom')),
             include('expr')
