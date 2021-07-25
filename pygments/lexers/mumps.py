@@ -42,8 +42,6 @@ class MumpsLexer(ExtendedRegexLexer):
     relation_re = '\\]\\]|[<>=\\[\\]]' # 7.2.2.1 - Relational operator 'relation'
     logicalop_re = '[&!]' # 7.2.2.4 - Logical operator 'logicalop'
     truthop_re = relation_re + '|' + logicalop_re
-    # 7.2.3 - repcount
-    repcount_re = '([0-9]+)(\\.?)([0-9]*)'
 
     # Parsing states
     tokens = {
@@ -148,18 +146,30 @@ class MumpsLexer(ExtendedRegexLexer):
                 default(('#pop', 'more_patatoms', 'patatom')),
                 ],
         'patatom': [
-                ( repcount_re, bygroups(Number, Punctuation, Number), ('#pop', 'patatom_choice'))
+                # Detect the repcount, then jump to detecting the pattern code
+                ( '([0-9]+)(\\.)([0-9]*)', bygroups(Number, Punctuation, Number), ('#pop', 'patatom_choice')),
+                ( '(\\.)([0-9]*)', bygroups(Punctuation, Number), ('#pop', 'patatom_choice')),
+                ( '[0-9]+', Number, ('#pop', 'patatom_choice')),
                 ],
         'more_patatoms': [
-                ( repcount_re, bygroups(Number, Punctuation, Number), 'patatom_choice'),
+                ( '([0-9]+)(\\.?)([0-9]*)', bygroups(Number, Punctuation, Number), 'patatom_choice'),
+                ( '(\\.?)([0-9]*)', bygroups(Punctuation, Number), 'patatom_choice'),
+                ( '[0-9]+', Number, 'patatom_choice'),
                 default('#pop')
                 ],
         'patatom_choice': [
+                ('\\(', Punctuation, ('#pop', 'alternation', 'patatom')),
                 include('strlit'),
                 include('patcode'),
                 ],
         'patcode': [
                 ('[A-Xa-x]+', Name.Entity, '#pop'),
+                ('Y[A-XZa-xz]*Y', Name.Entity, '#pop'),
+                ('Z[A-Ya-y]*Z', Name.Entity, '#pop'),
+                ],
+        'alternation': [
+                (',', Punctuation, 'patatom'),
+                ('\\)', Punctuation, '#pop')
                 ],
         ###
         # 8 - Commands

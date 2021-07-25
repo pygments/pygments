@@ -342,3 +342,47 @@ def testSSNPattern(lexer):
             (Name.Entity, 'N'),
             (Text, '\n')
             ]
+
+def testAlternatorPattern(lexer):
+    assert list(lexer.get_tokens(' quit var?1(1"%",1A).AN')) == [
+            (Whitespace, ' '),
+            (Keyword, 'quit'),
+            (Whitespace, ' '),
+            (Name.Variable, 'var'),
+            (Operator, '?'),
+            (Number, '1'),
+            (Punctuation, '('),
+            (Number, '1'),
+            (String, '"%"'),
+            (Punctuation, ','),
+            (Number, '1'),
+            (Name.Entity, 'A'),
+            (Punctuation, ')'),
+            (Punctuation, '.'),
+            (Name.Entity, 'AN'),
+            (Text, '\n'),
+            ]
+
+def testMProgrammerPatcode(lexer):
+    assert list(lexer.get_tokens(' Q S?1YpizzaY')) == [
+            (Whitespace, ' '),
+            (Keyword, 'Q'),
+            (Whitespace, ' '),
+            (Name.Variable, 'S'),
+            (Operator, '?'),
+            (Number, '1'),
+            (Name.Entity, 'YpizzaY'),
+            (Text, '\n'),
+            ]
+
+def testImplementerPatcodes(lexer):
+    assert list(lexer.get_tokens(' Q S?1ZbicycleZ')) == [
+            (Whitespace, ' '),
+            (Keyword, 'Q'),
+            (Whitespace, ' '),
+            (Name.Variable, 'S'),
+            (Operator, '?'),
+            (Number, '1'),
+            (Name.Entity, 'ZbicycleZ'),
+            (Text, '\n'),
+            ]
