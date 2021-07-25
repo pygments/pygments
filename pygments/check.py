@@ -236,12 +236,3 @@ class check:
                 for arr in style:
                     colors.append(arr)
         return colors
-
-
-
-style_control=check("monokai")
-print(style_control.color_distance([0,0,255],[255,255,255]))
-print(style_control.check_contrast_ratio([0,0,255],[255,255,255]))
-print(style_control.hex_to_rgb("#FF0000"))
-
-print(style_control.get_color_similarity())
