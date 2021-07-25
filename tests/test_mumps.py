@@ -399,4 +399,20 @@ def testIndirectPattern(lexer):
             (Text, '\n'),
             ]
 
+def testBreak(lexer):
+    assert list(lexer.get_tokens(' BREAK')) == [
+            (Whitespace, ' '),
+            (Keyword, 'BREAK'),
+            (Text, '\n'),
+            ]
 
+def testBreakQuit(lexer):
+    assert list(lexer.get_tokens(' b:debug  q')) == [
+            (Whitespace, ' '),
+            (Keyword, 'b'),
+            (Operator, ':'),
+            (Name.Variable, 'debug'),
+            (Whitespace, '  '),
+            (Keyword, 'q'),
+            (Text, '\n'),
+            ]

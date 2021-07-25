@@ -177,14 +177,21 @@ class MumpsLexer(ExtendedRegexLexer):
         ###
         # 8.1 - Command general rules
         # note - we include each 'commandword' here because each has its own sytax
-        'command': [
-            ('quit|q', Keyword, ('#pop', 'quitarg', 'postcond')),
-            ],
         # 8.1.4 - postcond
         'postcond': [
             (':', Operator, 'expr'),
             default('#pop')  
             ],
+        # 8.2 - Command
+        'command': [
+                ('break|b', Keyword, ('#pop', 'breakarg', 'postcond')),
+                ('quit|q', Keyword, ('#pop', 'quitarg', 'postcond')),
+                ],
+        # 8.2.1 - BREAK
+        'breakarg': [
+                ('  ', Whitespace, '#pop'),
+                default('#pop'),
+                ],
         # 8.2.16 - QUIT
         'quitarg': [
             ('  ', Whitespace, '#pop'),
