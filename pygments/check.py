@@ -177,3 +177,4 @@ class check:
                 for arr in style:
                     colors.append(arr)
         return colors
+    
