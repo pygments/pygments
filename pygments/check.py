@@ -76,6 +76,10 @@ For example:
 style_control=check("monokai")
 print(style_control.get_color_similarity())
 
+:copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+:license: BSD, see LICENSE for details.
+
+
 """
 
 class check:
