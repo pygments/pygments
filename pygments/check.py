@@ -7,13 +7,28 @@ import pygments.styles
 
 
 
-'''
+"""
+According the rule of WCAG to design this class
 http://www.w3.org/TR/2008/REC-WCAG20-20081211/
-'''
+"""
+
 class check:
     def __init__(self, style):
         self.style = style
 
+    """
+
+    The color distance metric calculates the Euclidean distance in the color space between each pair of clusters,
+    Ignore their size. The distance between colors A and B (using RGB) is calculated as the following function.
+
+    def color_distance(self,rgb1,rgb2)
+
+    For example:
+    style_control=check("monokai")
+    print(style_control.color_distance([0,0,255],[255,255,255]))
+
+
+    """
     def color_distance(self,rgb1,rgb2):
         rm = (rgb1[0]+rgb2[0])* 0.5
         red_color_code = ((rm+2)*(rgb1[0]-rgb2[0]))**2
@@ -21,30 +36,32 @@ class check:
         blue_color_code = ((3-rm)*(rgb1[2]-rgb2[2]))**2
         return (red_color_code + green_color_code + blue_color_code) ** 0.5
 
-    '''
+
+    """
+
+    The following function is used to find the contrast rato
+    def check_contrast_rato(self,rgb1,rgb2)
+
+    contrast ratio
+    (L1 + 0.05) / (L2 + 0.05), where
+    L1 is the relative luminance of the lighter of the colors, and
+    L2 is the relative luminance of the darker of the colors.
     https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html
-    '''
-    def check_contrast_rato(self,c1,c2):
+
+    For example:
+    style_control=check("monokai")
+    print(style_control.check_contrast_ratio([0,0,255],[255,255,255]))
+    output: 8.592471358428805
+    Which is mean the ratio
+    8.59:1
+
+    """
+    def check_contrast_ratio(self,c1,c2):
         l = c1 if sum(c2) < sum(c1) else c2
         d = c1 if sum(c2) > sum(c1) else c2
 
-        contrast_ratio = ( get_relative_luminance(light) + 0.05 ) / ( get_relative_luminance(dark) + 0.05 )
-
-    def get_hex_code(self,color):
-        reg='^#?([a-f0-9]{3,3}|[a-f0-9]{6,6})$'
-        result = re.match(reg, color)
-        
-        if result is None:
-            raise Exception('Could not extract color')
-            
-        result = list(result.group(1))
-
-        if len(result) == 6:
-            result = [result[i] + result[i+1] for i in range(0, len(result), 2)]
-        else:
-            result = [result[i] + result[i] for i in range(0, len(result))]
-            
-        return [int(hex_code, 16) for hex_code in result]
+        contrast_ratio = ( self.get_relative_luminance(l) + 0.05 ) / ( self.get_relative_luminance(d) + 0.05 )
+        return contrast_ratio
 
     def get_luminace(self,color_code):
         c = float(color_code)/255
@@ -54,10 +71,24 @@ class check:
             return ((0.055+c)/1.055) ** 2.4
 
     def get_relative_luminance(self,color):
-        l1=get_luminace(color[0]) * 0.2126 
-        l2=get_luminace(color[1]) * 0.7152
-        l3=get_luminace(color[2]) * 0.0722
+        l1=self.get_luminace(color[0]) * 0.2126
+        l2=self.get_luminace(color[1]) * 0.7152
+        l3=self.get_luminace(color[2]) * 0.0722
         return l1+l2+l3
+
+    """
+
+    The following function is used to convert the hex to rgb
+    def hex_to_rgb(self,rgb1,rgb2)
+
+    For example:
+    style_control=check("monokai")
+    print(style_control.hex_to_rgb("#FF0000"))
+
+    output:
+    (255, 0, 0)
+
+    """
 
     def hex_to_rgb(self,hex_code):
         hex_code=hex_code.lstrip('#')
@@ -80,6 +111,17 @@ class check:
         for r, g, b in (rgb1):
             if (not 0.0 <= r <= 1.0) or (not 0.0 <= g <= 1.0) or (not 0.0 <= b <= 1.0):
                 raise ValueError("Invalid range (0.0 - 1.0)")
+    """
+    The following function is used to check contrast (Minimum)(Level AA)
+    passes_contrast_AA
+
+    Large Text
+    Large-scale text and images of large-scale text have a contrast ratio of at least 3:1;
+
+    Logotypes
+    Text that is part of a logo or brand name has no contrast requirement.
+
+    """
 
     def passes_contrast_AA(self,large,contrast):
         if large:
@@ -87,6 +129,14 @@ class check:
         else:
             return contrast >= 4.5
 
+    """
+    The following function is used to check contrast Level AAA
+    passes_contrast_AAA
+
+    The contrast ratio of 7:1 was chosen for level AAA because it compensated for the loss in contrast sensitivity
+    usually experienced by users with vision loss equivalent to approximately 20/80 vision.
+
+    """
     def passes_contrast_AAA(self,large,contrast):
         if large:
             return contrast >= 4.5
@@ -96,7 +146,7 @@ class check:
     def get_style_color_rgb_list(self):
         colors=[]
         color_lists=[]
-        for style in p1.get_style_arr():
+        for style in self.get_style_arr():
             if str(style).find(self.style) != -1:
                 for arr in style:
                     color_lists.append(arr)
@@ -124,6 +174,15 @@ class check:
             if i[0]==color_name:
                 return i[1]
 
+    """
+    The "get_color_similarity" function is used to find all the color similarities of a style.
+    It can find out the color difference of all colors of the style.
+
+    For example:
+    style_control=check("monokai")
+    print(style_control.get_color_similarity())
+
+    """
     def get_color_similarity(self):
         similarity_list=[]
         color_matchs=self.get_color_matchs()
@@ -162,18 +221,27 @@ class check:
         for style_name in pygments.styles.get_all_styles():
             style.append(pygments.styles.get_style_by_name(style_name))
         return style
-    
+
     def get_style_bg_color(self):
         bgcolor=""
-        for style in p1.get_style_arr():
+        for style in self.get_style_arr():
             if str(style).find(self.style) != -1:
-                bgcolor = p1.hex_to_rgb(style.background_color)
+                bgcolor = self.hex_to_rgb(style.background_color)
         return bgcolor
 
     def get_style_colors(self):
         colors=[]
-        for style in p1.get_style_arr():
+        for style in self.get_style_arr():
             if str(style).find(self.style) != -1:
                 for arr in style:
                     colors.append(arr)
         return colors
+
+
+
+style_control=check("monokai")
+print(style_control.color_distance([0,0,255],[255,255,255]))
+print(style_control.check_contrast_ratio([0,0,255],[255,255,255]))
+print(style_control.hex_to_rgb("#FF0000"))
+
+print(style_control.get_color_similarity())
