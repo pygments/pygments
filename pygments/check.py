@@ -8,27 +8,88 @@ import pygments.styles
 
 
 """
+
+
 According the rule of WCAG to design this class
 http://www.w3.org/TR/2008/REC-WCAG20-20081211/
+
+
+The color distance metric calculates the Euclidean distance in the color space between each pair of clusters,
+Ignore their size. The distance between colors A and B (using RGB) is calculated as the following function.
+
+def color_distance(self,rgb1,rgb2)
+
+For example:
+style_control=check("monokai")
+print(style_control.color_distance([0,0,255],[255,255,255]))
+
+
+
+The following function is used to find the contrast rato
+def check_contrast_rato(self,rgb1,rgb2)
+
+contrast ratio
+(L1 + 0.05) / (L2 + 0.05), where
+L1 is the relative luminance of the lighter of the colors, and
+L2 is the relative luminance of the darker of the colors.
+https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html
+
+For example:
+style_control=check("monokai")
+print(style_control.check_contrast_ratio([0,0,255],[255,255,255]))
+output: 8.592471358428805
+Which is mean the ratio
+8.59:1
+
+
+The following function is used to convert the hex to rgb
+def hex_to_rgb(self,rgb1,rgb2)
+
+For example:
+style_control=check("monokai")
+print(style_control.hex_to_rgb("#FF0000"))
+
+output:
+(255, 0, 0)
+
+
+The following function is used to check contrast (Minimum)(Level AA)
+passes_contrast_AA
+
+Large Text
+Large-scale text and images of large-scale text have a contrast ratio of at least 3:1;
+
+Logotypes
+Text that is part of a logo or brand name has no contrast requirement.
+
+
+The following function is used to check contrast Level AAA
+passes_contrast_AAA
+
+The contrast ratio of 7:1 was chosen for level AAA because it compensated for the loss in contrast sensitivity
+usually experienced by users with vision loss equivalent to approximately 20/80 vision.
+
+
+
+The "get_color_similarity" function is used to find all the color similarities of a style.
+It can find out the color difference of all colors of the style.
+
+For example:
+style_control=check("monokai")
+print(style_control.get_color_similarity())
+
+
+
+:copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+:license: BSD, see LICENSE for details.
+
 """
 
 class check:
     def __init__(self, style):
         self.style = style
 
-    """
 
-    The color distance metric calculates the Euclidean distance in the color space between each pair of clusters,
-    Ignore their size. The distance between colors A and B (using RGB) is calculated as the following function.
-
-    def color_distance(self,rgb1,rgb2)
-
-    For example:
-    style_control=check("monokai")
-    print(style_control.color_distance([0,0,255],[255,255,255]))
-
-
-    """
     def color_distance(self,rgb1,rgb2):
         rm = (rgb1[0]+rgb2[0])* 0.5
         red_color_code = ((rm+2)*(rgb1[0]-rgb2[0]))**2
@@ -37,25 +98,7 @@ class check:
         return (red_color_code + green_color_code + blue_color_code) ** 0.5
 
 
-    """
 
-    The following function is used to find the contrast rato
-    def check_contrast_rato(self,rgb1,rgb2)
-
-    contrast ratio
-    (L1 + 0.05) / (L2 + 0.05), where
-    L1 is the relative luminance of the lighter of the colors, and
-    L2 is the relative luminance of the darker of the colors.
-    https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html
-
-    For example:
-    style_control=check("monokai")
-    print(style_control.check_contrast_ratio([0,0,255],[255,255,255]))
-    output: 8.592471358428805
-    Which is mean the ratio
-    8.59:1
-
-    """
     def check_contrast_ratio(self,c1,c2):
         l = c1 if sum(c2) < sum(c1) else c2
         d = c1 if sum(c2) > sum(c1) else c2
@@ -76,19 +119,7 @@ class check:
         l3=self.get_luminace(color[2]) * 0.0722
         return l1+l2+l3
 
-    """
 
-    The following function is used to convert the hex to rgb
-    def hex_to_rgb(self,rgb1,rgb2)
-
-    For example:
-    style_control=check("monokai")
-    print(style_control.hex_to_rgb("#FF0000"))
-
-    output:
-    (255, 0, 0)
-
-    """
 
     def hex_to_rgb(self,hex_code):
         hex_code=hex_code.lstrip('#')
@@ -111,17 +142,7 @@ class check:
         for r, g, b in (rgb1):
             if (not 0.0 <= r <= 1.0) or (not 0.0 <= g <= 1.0) or (not 0.0 <= b <= 1.0):
                 raise ValueError("Invalid range (0.0 - 1.0)")
-    """
-    The following function is used to check contrast (Minimum)(Level AA)
-    passes_contrast_AA
 
-    Large Text
-    Large-scale text and images of large-scale text have a contrast ratio of at least 3:1;
-
-    Logotypes
-    Text that is part of a logo or brand name has no contrast requirement.
-
-    """
 
     def passes_contrast_AA(self,large,contrast):
         if large:
@@ -129,14 +150,7 @@ class check:
         else:
             return contrast >= 4.5
 
-    """
-    The following function is used to check contrast Level AAA
-    passes_contrast_AAA
 
-    The contrast ratio of 7:1 was chosen for level AAA because it compensated for the loss in contrast sensitivity
-    usually experienced by users with vision loss equivalent to approximately 20/80 vision.
-
-    """
     def passes_contrast_AAA(self,large,contrast):
         if large:
             return contrast >= 4.5
@@ -174,15 +188,7 @@ class check:
             if i[0]==color_name:
                 return i[1]
 
-    """
-    The "get_color_similarity" function is used to find all the color similarities of a style.
-    It can find out the color difference of all colors of the style.
 
-    For example:
-    style_control=check("monokai")
-    print(style_control.get_color_similarity())
-
-    """
     def get_color_similarity(self):
         similarity_list=[]
         color_matchs=self.get_color_matchs()
