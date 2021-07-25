@@ -143,6 +143,7 @@ class MumpsLexer(ExtendedRegexLexer):
             ],
         # 7.2.3 - Pattern match 'pattern'
         'pattern': [
+                ( '@', Operator, ('#pop', 'expratom')),
                 default(('#pop', 'more_patatoms', 'patatom')),
                 ],
         'patatom': [

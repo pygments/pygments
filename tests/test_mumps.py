@@ -386,3 +386,17 @@ def testImplementerPatcodes(lexer):
             (Name.Entity, 'ZbicycleZ'),
             (Text, '\n'),
             ]
+
+def testIndirectPattern(lexer):
+    assert list(lexer.get_tokens(' Q S?@patvar')) == [
+            (Whitespace, ' '),
+            (Keyword, 'Q'),
+            (Whitespace, ' '),
+            (Name.Variable, 'S'),
+            (Operator, '?'),
+            (Operator, '@'),
+            (Name.Variable, 'patvar'),
+            (Text, '\n'),
+            ]
+
+
