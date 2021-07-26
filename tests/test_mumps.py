@@ -464,3 +464,70 @@ def testComplexClose(lexer):
             (Text, '\n'),
             ]
 
+def testDoLabel(lexer):
+    assert list(lexer.get_tokens(' DO label')) == [
+            (Whitespace, ' '),
+            (Keyword, 'DO'),
+            (Whitespace, ' '),
+            (Name.Label, 'label'),
+            (Text, '\n'),
+            ]
+
+def testDoRoutine(lexer):
+    assert list(lexer.get_tokens(' DO ^ROUTINE')) == [
+            (Whitespace, ' '),
+            (Keyword, 'DO'),
+            (Whitespace, ' '),
+            (Name.Label, '^ROUTINE'),
+            (Text, '\n'),
+            ]
+
+def testDoTagAndRoutine(lexer):
+    assert list(lexer.get_tokens(' d tag^ROUTINE')) == [
+            (Whitespace, ' '),
+            (Keyword, 'd'),
+            (Whitespace, ' '),
+            (Name.Label, 'tag^ROUTINE'),
+            (Text, '\n'),
+            ]
+
+def testDoFunction(lexer):
+    assert list(lexer.get_tokens(' d tag^ROUTINE(arg1,arg2)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'd'),
+            (Whitespace, ' '),
+            (Name.Function, 'tag^ROUTINE'),
+            (Punctuation, '('),
+            (Name.Variable, 'arg1'),
+            (Punctuation, ','),
+            (Name.Variable, 'arg2'),
+            (Punctuation, ')'),
+            (Text, '\n'),
+            ]
+
+def testDoPostcondQuit(lexer):
+    # Testing having multiple spaces between commands, which is allowed
+    assert list(lexer.get_tokens(' d:tvexpr tag^ROUTINE   QUIT')) == [
+            (Whitespace, ' '),
+            (Keyword, 'd'),
+            (Punctuation, ':'),
+            (Name.Variable, 'tvexpr'),
+            (Whitespace, ' '),
+            (Name.Label, 'tag^ROUTINE'),
+            (Whitespace, '   '),
+            (Keyword, 'QUIT'),
+            (Text, '\n'),
+            ]
+
+def testDoBlock(lexer):
+    assert list(lexer.get_tokens(' d  q:done')) == [
+            (Whitespace, ' '),
+            (Keyword, 'd'),
+            (Whitespace, '  '),
+            (Keyword, 'q'),
+            (Punctuation, ':'),
+            (Name.Variable, 'done'),
+            (Text, '\n'),
+            ]
+
+
