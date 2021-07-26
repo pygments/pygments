@@ -545,3 +545,13 @@ def testDoMultipleWPostcont(lexer):
             (Text, '\n'),
             ]
 
+def testDoIndirectArg(lexer):
+    assert list(lexer.get_tokens(' d @doargs')) == [
+            (Whitespace, ' '),
+            (Keyword, 'd'),
+            (Whitespace, ' '),
+            (Operator, '@'),
+            (Name.Variable, 'doargs'),
+            (Text, '\n'),
+            ]
+
