@@ -460,6 +460,7 @@ def testComplexClose(lexer):
             (Name.Variable, 'key2'),
             (Operator, '='),
             (Name.Variable, 'value2'),
+            (Punctuation, ')'),
             (Text, '\n'),
             ]
 
