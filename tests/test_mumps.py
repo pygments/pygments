@@ -426,6 +426,16 @@ def testSimpleClose(lexer):
             (Text, '\n'),
             ]
 
+def testIndirectClose(lexer):
+    assert list(lexer.get_tokens(' close @closeargs')) == [
+            (Whitespace, ' '),
+            (Keyword, 'close'),
+            (Whitespace, ' '),
+            (Operator, '@'),
+            (Name.Variable, 'closeargs'),
+            (Text, '\n'),
+            ]
+
 def testMultipleClose(lexer):
     assert list(lexer.get_tokens(' close DEVICE1,DEVICE2')) == [
             (Whitespace, ' '),
