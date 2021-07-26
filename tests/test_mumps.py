@@ -416,3 +416,40 @@ def testBreakQuit(lexer):
             (Keyword, 'q'),
             (Text, '\n'),
             ]
+
+def testSimpleClose(lexer):
+    assert list(lexer.get_tokens(' close DEVICE')) == [
+            (Whitespace, ' '),
+            (Keyword, 'close'),
+            (Whitespace, ' '),
+            (Name.Variable, 'DEVICE'),
+            (Text, '\n'),
+            ]
+
+def testMultipleClose(lexer):
+    assert list(lexer.get_tokens(' close DEVICE1,DEVICE2')) == [
+            (Whitespace, ' '),
+            (Keyword, 'close'),
+            (Whitespace, ' '),
+            (Name.Variable, 'DEVICE1'),
+            (Punctuation, ','),
+            (Name.Variable, 'DEVICE1'),
+            (Text, '\n'),
+            ]
+    
+def testComplexClose(lexer):
+    assert list(lexer.get_tokens(' c device:(param1:key2=value2)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'c'),
+            (Whitespace, ' '),
+            (Name.Variable, 'device'),
+            (Punctuation, ':'),
+            (Punctuation, '('),
+            (Name.Variable, 'param1'),
+            (Punctuation, ':'),
+            (Name.Variable, 'key2'),
+            (Operator, '='),
+            (Name.Variable, 'value2'),
+            (Text, '\n'),
+            ]
+
