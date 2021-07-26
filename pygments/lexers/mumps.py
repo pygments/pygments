@@ -31,7 +31,7 @@ class MumpsLexer(ExtendedRegexLexer):
     flags = re.IGNORECASE
 
     # Definitions of groups that we implement as regular expressions
-    name_re = '[A-Za-z]+'
+    name_re = '[%A-Za-z][A-Za-z0-9]*'
     # 7.1.4.1 - String literal 'strlit'
     strlit_re = '"(""|[^"])*"'
     # 7.1.4.11 - Unary operator 'unaryop'
@@ -196,9 +196,34 @@ class MumpsLexer(ExtendedRegexLexer):
         'command': [
                 # 8.2.1 - BREAK - no argument syntax
                 ('break|b', Keyword, ('#pop', 'noargsp', 'postcond')),
-                # 8.2.16 - QUIT
+                # 8.2.2 - CLOSE - has specific syntax
+                ('close|c', Keyword, ('#pop', 'l_closearg', 'closearg', 'argumentsp', 'postcond')),
+                # 8.2.16 - QUIT - single expression, or indirect
                 ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
+        # 8.2.2 - CLOSE arguments
+        'closearg': [
+                ('@', Operator, ('#pop', 'expratom')),
+                default(('#pop', 'colon_deviceparameters', 'expr')),
+                ],
+        'colon_deviceparameters': [
+                ('(:)(\\()', bygroups(Punctuation, Punctuation), ('#pop', 'deviceparams_paren', 'deviceparam')),
+                (':', Punctuation, ('#pop', 'deviceparam')),
+                default('#pop'),
+                ],
+        'deviceparam': [
+                #('(' + name_re + ')(=)', bygroups(Name.Variable, Operator),('#pop', 'expr')),
+                include('expr'),
+                ],
+        'deviceparams_paren': [
+                (':', Punctuation, 'deviceparam'),
+                ('\\)', Punctuation, '#pop'),
+                ],
+        'l_closearg': [
+                (',', Punctuation, 'closearg'),
+                default('#pop'),
+                ],
+        # 8.2.16 - QUIT arguments
         'expr_or_indirect': [
             ('@', Operator, ('#pop', 'expratom')),
             include('expr')
