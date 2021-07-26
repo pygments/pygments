@@ -443,7 +443,7 @@ def testMultipleClose(lexer):
             (Whitespace, ' '),
             (Name.Variable, 'DEVICE1'),
             (Punctuation, ','),
-            (Name.Variable, 'DEVICE1'),
+            (Name.Variable, 'DEVICE2'),
             (Text, '\n'),
             ]
     
