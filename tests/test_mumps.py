@@ -530,4 +530,18 @@ def testDoBlock(lexer):
             (Text, '\n'),
             ]
 
+def testDoMultipleWPostcont(lexer):
+    assert list(lexer.get_tokens(' do tag1:one,tag^ROU2:two')) == [
+            (Whitespace, ' '),
+            (Keyword, 'do'),
+            (Whitespace, ' '),
+            (Name.Label, 'tag1'),
+            (Punctuation, ':'),
+            (Name.Variable, 'one'),
+            (Punctuation, ','),
+            (Name.Label, 'tag^ROU2'),
+            (Punctuation, ':'),
+            (Name.Variable, 'two'),
+            (Text, '\n'),
+            ]
 
