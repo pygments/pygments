@@ -980,7 +980,7 @@ class TOMLLexer(RegexLexer):
             (r'(true|false)$', Keyword.Constant),
             (r'[a-zA-Z_][\w\-]*', Name),
 
-            (r'\[.*?\]$', Keyword),
+            (r'^\[.*?\]$', Keyword),
             # Datetime
             # TODO this needs to be expanded, as TOML is rather flexible:
             # https://github.com/toml-lang/toml#offset-date-time
