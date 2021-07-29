@@ -973,6 +973,7 @@ class TOMLLexer(RegexLexer):
 
             # Basics, comments, strings
             (r'[ \t]+', Text),
+            (r'\n', Text),
             (r'#.*?$', Comment.Single),
             # Basic string
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
