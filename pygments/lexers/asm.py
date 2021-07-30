@@ -353,13 +353,14 @@ class LlvmLexer(RegexLexer):
     #: optional Comment or Whitespace
     string = r'"[^"]*?"'
     identifier = r'([-a-zA-Z$._][\w\-$.]*|' + string + ')'
+    block_label = identifier + r'|(\d+)'
 
     tokens = {
         'root': [
             include('whitespace'),
 
             # Before keywords, because keywords are valid label names :(...
-            (identifier + r'\s*:', Name.Label),
+            (block_label + r'\s*:', Name.Label),
 
             include('keyword'),
 
