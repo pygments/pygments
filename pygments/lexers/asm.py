@@ -353,7 +353,7 @@ class LlvmLexer(RegexLexer):
     #: optional Comment or Whitespace
     string = r'"[^"]*?"'
     identifier = r'([-a-zA-Z$._][\w\-$.]*|' + string + ')'
-    block_label = identifier + r'|(\d+)'
+    block_label = r'(' + identifier + r'|(\d+))'
 
     tokens = {
         'root': [
