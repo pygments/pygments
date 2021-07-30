@@ -655,7 +655,7 @@ class PowerShellLexer(RegexLexer):
     .. versionadded:: 1.5
     """
     name = 'PowerShell'
-    aliases = ['powershell', 'posh', 'ps1', 'psm1']
+    aliases = ['powershell', 'pwsh', 'posh', 'ps1', 'psm1']
     filenames = ['*.ps1', '*.psm1']
     mimetypes = ['text/x-powershell']
 
@@ -771,7 +771,7 @@ class PowerShellSessionLexer(ShellSessionBaseLexer):
     """
 
     name = 'PowerShell Session'
-    aliases = ['ps1con']
+    aliases = ['pwsh-session', 'ps1con']
     filenames = []
     mimetypes = []
 
