@@ -968,9 +968,12 @@ class TOMLLexer(RegexLexer):
 
     tokens = {
         'root': [
+            # Table
+            (r'^(\s*)(\[.*?\])$', bygroups(Text, Keyword)),
 
             # Basics, comments, strings
-            (r'\s+', Text),
+            (r'[ \t]+', Text),
+            (r'\n', Text),
             (r'#.*?$', Comment.Single),
             # Basic string
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
@@ -980,7 +983,6 @@ class TOMLLexer(RegexLexer):
             (r'(true|false)$', Keyword.Constant),
             (r'[a-zA-Z_][\w\-]*', Name),
 
-            (r'\[.*?\]$', Keyword),
             # Datetime
             # TODO this needs to be expanded, as TOML is rather flexible:
             # https://github.com/toml-lang/toml#offset-date-time
