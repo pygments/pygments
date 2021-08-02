@@ -49,8 +49,8 @@ class FortranLexer(RegexLexer):
         'core': [
             # Statements
 
-            (r'(DO)(\s+)(CONCURRENT)', bygroups(Keyword, Whitespace, Keyword)),
-            (r'(GO)(\s*)(TO)', bygroups(Keyword, Whitespace, Keyword)),
+            (r'\b(DO)(\s+)(CONCURRENT)\b', bygroups(Keyword, Whitespace, Keyword)),
+            (r'\b(GO)(\s*)(TO)\b', bygroups(Keyword, Whitespace, Keyword)),
 
             (words((
                 'ABSTRACT', 'ACCEPT', 'ALL', 'ALLSTOP', 'ALLOCATABLE', 'ALLOCATE',
