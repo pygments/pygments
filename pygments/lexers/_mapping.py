@@ -431,7 +431,7 @@ LEXERS = {
     'SmalltalkLexer': ('pygments.lexers.smalltalk', 'Smalltalk', ('smalltalk', 'squeak', 'st'), ('*.st',), ('text/x-smalltalk',)),
     'SmartGameFormatLexer': ('pygments.lexers.sgf', 'SmartGameFormat', ('sgf',), ('*.sgf',), ()),
     'SmartyLexer': ('pygments.lexers.templates', 'Smarty', ('smarty',), ('*.tpl',), ('application/x-smarty',)),
-    'SmithyLexer': ('pygments.lexers.smithy', 'Smithy', ('smithy', 'Smithy'), ('*.smithy',), ()),
+    'SmithyLexer': ('pygments.lexers.smithy', 'Smithy', ('smithy',), ('*.smithy',), ()),
     'SnobolLexer': ('pygments.lexers.snobol', 'Snobol', ('snobol',), ('*.snobol',), ('text/x-snobol',)),
     'SnowballLexer': ('pygments.lexers.dsls', 'Snowball', ('snowball',), ('*.sbl',), ()),
     'SolidityLexer': ('pygments.lexers.solidity', 'Solidity', ('solidity',), ('*.sol',), ()),
