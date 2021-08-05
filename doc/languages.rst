@@ -280,6 +280,7 @@ Other markup
 * Scdoc
 * Sieve
 * Singularity
+* `Smithy <https://awslabs.github.io/smithy/>`_
 * SPARQL
 * SQL, also MySQL, SQLite
 * Squid configuration
