@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer, include, bygroups, using, this, words
 from pygments.token import Keyword, Punctuation, Comment, Operator, Name,\
-    String, Number, Whitespace
+    String, Number, Whitespace, Token
 
 
 __all__ = ["GSQLLexer"]
@@ -58,7 +58,7 @@ class GSQLLexer(RegexLexer):
              'NOW', 'NULL', 'OFFSET', 'OR', 'ORDER', 'PATH', 'PER', 'PINNED', 'POST_ACCUM', 'POST-ACCUM', 'PRIMARY_ID', 'PRINT', 
              'QUERY', 'RAISE', 'RANGE', 'REPLACE', 'RESET_COLLECTION_ACCUM', 'RETURN', 'RETURNS', 'RUN', 'SAMPLE', 'SELECT', 'SELECT_VERTEX', 
              'SET', 'SRC', 'STATIC', 'STRING', 'SUM', 'SYNTAX', 'TARGET', 'TAGSTGT', 'THEN', 'TO', 'TO_CSV', 'TO_DATETIME', 'TRAILING', 'TRIM', 'TRUE', 
-             'TRY', 'TUPLE', 'TYPEDEF', 'UINT', 'UNION', 'UPDATE', 'VALUES', 'VERTEX', 'WHEN', 'WHERE', 'WHILE', 'WITH'), prefix=r'(?<!\.)', suffix=r'\b'), Name.Builtin)
+             'TRY', 'TUPLE', 'TYPEDEF', 'UINT', 'UNION', 'UPDATE', 'VALUES', 'VERTEX', 'WHEN', 'WHERE', 'WHILE', 'WITH'), prefix=r'(?<!\.)', suffix=r'\b'), Token.Keyword)
         ],
         'clauses': [
             (words(('accum', 'having', 'limit', 'order', 'postAccum', 'sample', 'where')), Name.Builtin)
