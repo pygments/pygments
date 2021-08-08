@@ -32,6 +32,8 @@ __all__ = ['SaviLexer']
 class SaviLexer(RegexLexer):
   """
   For `Savi <https://github.com/savi-lang/savi>`_ source code.
+
+  .. versionadded: 2.10
   """
 
   name = 'Savi'
