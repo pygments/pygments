@@ -1660,17 +1660,19 @@ class Macaulay2Lexer(RegexLexer):
             (r'.', Text)
         ],
         'block comment' : [
+            (r'[^*-]+', Comment.Multiline),
             (r'\*-', Comment.Multiline, '#pop'),
-            (r'[\w\W]', Comment.Multiline)
+            (r'[*-]', Comment.Multiline)
         ],
         'quote string' : [
+            (r'[^\\"]+', String),
             (r'"', String, '#pop'),
-            (r'\\"', String),
-            (r'[\w\W]', String)
+            (r'\\"?', String),
         ],
         'slash string' : [
+            (r'[^/]+', String),
             (r'(//)+(?!/)', String),
             (r'/(//)+(?!/)', String, '#pop'),
-            (r'[\w\W]', String)
+            (r'/', String)
         ]
     }
