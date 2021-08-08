@@ -28,9 +28,12 @@ Version 2.9.0
 - Added lexers:
 
   * APDL, gcode (#1714)
+  * GSQL (#1809)
   * Kuin (#1300)
   * NestedText (#1578)
   * OMG IDL (#1595)
+  * procfile (#1808)
+  * Smithy (#1879)
   * TEAL (#1671)
   * ThingsDB (#1295)
   * WebAssembly (#1416, #1564)
@@ -39,21 +42,34 @@ Version 2.9.0
 
   * AMDGPU (#1717, #1775)
   * APL (#1747)
-  * C/C++: Improve namespace handling (#1722, #1561, #1719, #1746)
+  * C/C++
+    
+    - Improve namespace handling (#1722, #1561, #1719, #1746)
+    - Fix preprocessor token issues (#1830)
+
+  * C# (#1573, #1869)
   * Chapel (#1743)
+  * CSound (#1837)
   * Coq (#1721)
   * Cython (#853)
+  * Fennel (#1862)
   * Groovy (#1765)
-  * JavaScript (#1741)
+  * JavaScript (#1741, #1814)
   * Julia (#1715)
+  * LLVM (#1824)
   * Octave: Allow multiline and block-percent comments (#1726)
   * PowerShell: Improve lexing of ``:`` (#1682, #1758)
   * PromQL (#1783)
   * Python: Improve float parsing (#1768, #1740)
-  * Rust (#1061)
-  * Scala: Rewrite to support Scala3 (#1694, #1035, #1121)
-  * Swift (#1767)
+  * Rust (#1061, #1813)
+  * Scala
+    
+    - Rewrite to support Scala3 (#1694, #1035, #1121)
+    - Add support for the ``\`` operator (#1857)
+
+  * Swift (#1767, #1842)
   * Terraform: Support 0.14 syntax (#1756)
+  * TCL (#1834)
   * Velocity: Detect multi-line patterns (#1776)
 
 - Add Pango formatter (#1727)
@@ -64,6 +80,12 @@ Version 2.9.0
 - Improve line number colors (#1779, #1778)
 - Fix CTag related issue (#1724)
 - Recognize ``.leex`` as Elixir templates
+- Improve Jasmin min score analysis (#1619)
+- Add new alias for Go files (#1827)
+- Fix multi-line console highlighting (#1833)
+- Add a new trivial lexer which outputs everything as `Text.Generic.Output` (#1835, #1836)
+- Use the ``.ini`` lexer for ``systemd`` files (#1849)
+- Fix a ``FutureWarning`` related to ``words()`` (#1854)
 
 - Updated `filename` handling in HTML formatter if `linenos='table'` (#1757)
 

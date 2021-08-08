@@ -237,6 +237,7 @@ Other markup
 * Gettext catalogs
 * Gnuplot script
 * Groff markup
+* `GSQL <https://docs.tigergraph.com/dev/gsql-ref>`_
 * Hexdumps
 * HTML
 * HTTP sessions
