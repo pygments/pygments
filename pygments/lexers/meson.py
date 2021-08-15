@@ -1,6 +1,6 @@
 """
     pygments.lexers.meson
-    ~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Pygments lexer for the Meson build system
 

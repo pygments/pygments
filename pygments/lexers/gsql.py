@@ -1,6 +1,6 @@
 """
     pygments.lexers.gsql
-    ~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for TigerGraph GSQL graph query language
 

@@ -1,6 +1,6 @@
 """
     pygments.lexers.smithy
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Smithy IDL.
 
