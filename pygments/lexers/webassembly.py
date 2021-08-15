@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.webassembly
-    ~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the WebAssembly text format.
 

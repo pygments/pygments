@@ -59,8 +59,6 @@ def check_syntax(fn, lines):
 @checker('.py')
 def check_style_and_encoding(fn, lines):
     for lno, line in enumerate(lines):
-        if len(line) > 110:
-            yield lno+1, "line too long"
         if is_const_re.search(line):
             yield lno+1, 'using == None/True/False'
 
@@ -79,7 +77,7 @@ def check_fileheader(fn, lines):
         llist.append(line)
         if lno == 0:
             if line != '"""' and line != 'r"""':
-                yield 2, 'missing docstring begin (""")'
+                yield 2, f'missing docstring begin ("""), found {repr(line)}'
             else:
                 docopen = True
         elif docopen:

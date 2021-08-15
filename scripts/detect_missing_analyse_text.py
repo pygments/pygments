@@ -11,13 +11,15 @@ import sys
 from pygments.lexers import get_all_lexers, find_lexer_class
 from pygments.lexer import Lexer
 
+import argparse
 
-def main():
+
+def main(args):
     uses = {}
 
     for name, aliases, filenames, mimetypes in get_all_lexers():
         cls = find_lexer_class(name)
-        if not cls.aliases:
+        if not cls.aliases and not args.skip_no_aliases:
             print(cls, "has no aliases")
         for f in filenames:
             if f not in uses:
@@ -39,4 +41,10 @@ def main():
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--skip-no-aliases',
+        help='Skip checks for a lexer with no aliases',
+        action='store_true',
+        default=False)
+    args = parser.parse_args()
+    sys.exit(main(args))
