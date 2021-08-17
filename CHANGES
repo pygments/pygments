@@ -217,9 +217,9 @@ Version 2.7.4
   - SQL - Fix keywords (#1668)
   - Typescript: Fix incorrect punctuation handling (#1510, #1511)
 
-- Fix infinite loop in SML lexer (#1625)
+- Fix infinite loop in SML lexer (#1625), `CVE-2021-20270 <https://nvd.nist.gov/vuln/detail/CVE-2021-20270>`_
 - Fix backtracking string regexes in JavaScript/TypeScript, Modula2
-  and many other lexers (#1637)
+  and many other lexers (#1637) `CVE-2021-27291 <https://nvd.nist.gov/vuln/detail/CVE-2021-27291>`_
 - Limit recursion with nesting Ruby heredocs (#1638)
 - Fix a few inefficient regexes for guessing lexers
 - Fix the raw token lexer handling of Unicode (#1616)
