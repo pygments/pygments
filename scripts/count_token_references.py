@@ -153,7 +153,7 @@ def find_token_references(lexer_sources, args):
     it searches for the regular expression ``\\bInteger.Long\\b``. This
     won't work reliably for top level token like ``Token.String`` since this
     is often referred to as ``String``, but searching for ``\\bString\\b``
-    yields to many false positives.
+    yields too many false positives.
     """
 
     # Maps token to :class:`TokenCount` objects.
