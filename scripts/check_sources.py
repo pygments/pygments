@@ -77,7 +77,7 @@ def check_fileheader(fn, lines):
         llist.append(line)
         if lno == 0:
             if line != '"""' and line != 'r"""':
-                yield 2, f'missing docstring begin ("""), found {repr(line)}'
+                yield 2, f'missing docstring begin ("""), found {line!r}'
             else:
                 docopen = True
         elif docopen:
