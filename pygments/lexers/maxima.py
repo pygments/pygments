@@ -32,6 +32,7 @@ class MaximaLexer(RegexLexer):
             (r'/\*', Comment.Multiline, 'comment'),
             (r'"(?:[^"\\]|\\.)*"', String),
             (r'\(|\)|\[|\]|\{|\}', Punctuation),
+            (r'[,;$]', Punctuation),
             (r'''(?x)\b(?:
                 if|then|else|elseif|
                 do|while|
