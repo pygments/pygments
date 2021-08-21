@@ -1,50 +1,42 @@
 '/*'          Comment.Multiline
 ' SF bug #3826: "limit returns temp variable expression" ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'kill'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'q'           Name.Variable
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Variable
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Variable
 ')'           Punctuation
 ','           Text
-'\n'          Text
-
-' '           Text
+'\n '         Text.Whitespace
 'ctxt'        Name.Variable
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'newcontext'  Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
 ','           Text
-'\n'          Text
-
-' '           Text
+'\n '         Text.Whitespace
 'assume'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'q'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ','           Text
-'\n'          Text
-
-' '           Text
+'\n '         Text.Whitespace
 'limit'       Name.Function
 '('           Punctuation
 'x'           Name.Variable
@@ -58,7 +50,7 @@
 '^'           Operator
 'q'           Name.Variable
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ','           Text
@@ -68,7 +60,7 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'"           Operator
 'limit'       Name.Function
@@ -78,7 +70,7 @@
 '('           Punctuation
 'a'           Name.Variable
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Text
 '/'           Operator
 'x'           Name.Variable
@@ -91,9 +83,7 @@
 'inf'         Name.Constant
 ')'           Punctuation
 ';'           Text
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'tlimit'      Name.Function
 '('           Punctuation
@@ -108,7 +98,7 @@
 '^'           Operator
 'q'           Name.Variable
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ','           Text
@@ -117,7 +107,7 @@
 'inf'         Name.Constant
 ')'           Punctuation
 ';'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'"           Operator
 'limit'       Name.Function
@@ -127,7 +117,7 @@
 '('           Punctuation
 'a'           Name.Variable
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Text
 '/'           Operator
 'x'           Name.Variable
@@ -140,36 +130,30 @@
 'inf'         Name.Constant
 ')'           Punctuation
 ';'           Text
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'assume'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'a'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ','           Text
-'\n'          Text
-
-' '           Text
+'\n '         Text.Whitespace
 'declare'     Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'q'           Name.Variable
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'integer'     Name.Variable
 ')'           Punctuation
 ','           Text
-'\n'          Text
-
-' '           Text
+'\n '         Text.Whitespace
 'limit'       Name.Function
 '('           Punctuation
 'x'           Name.Variable
@@ -183,7 +167,7 @@
 '^'           Operator
 'q'           Name.Variable
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ','           Text
@@ -193,41 +177,35 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1'           Text
 '/'           Operator
 'a'           Name.Variable
 ';'           Text
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'remove'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'q'           Name.Variable
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'integer'     Name.Variable
 ')'           Punctuation
 ','           Text
-'\n'          Text
-
-' '           Text
+'\n '         Text.Whitespace
 'declare'     Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'q'           Name.Variable
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'noninteger'  Name.Variable
 ')'           Punctuation
 ','           Text
-'\n'          Text
-
-' '           Text
+'\n '         Text.Whitespace
 'limit'       Name.Function
 '('           Punctuation
 'x'           Name.Variable
@@ -241,7 +219,7 @@
 '^'           Operator
 'q'           Name.Variable
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ','           Text
@@ -251,38 +229,34 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1'           Text
 '/'           Operator
 'a'           Name.Variable
 ';'           Text
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'remove'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'q'           Name.Variable
 ','           Text
-' '           Text
+' '           Text.Whitespace
 'noninteger'  Name.Variable
 ')'           Punctuation
 ','           Text
-'\n'          Text
-
-' '           Text
+'\n '         Text.Whitespace
 'killcontext' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ctxt'        Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ';'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'done'        Name.Variable
 ';'           Text
-'\n'          Text
+'\n'          Text.Whitespace
