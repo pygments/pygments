@@ -62,7 +62,7 @@ class MaximaLexer(RegexLexer):
             (r'.', Text)
         ],
         'comment': [
-            (r'[^*/]', Comment.Multiline),
+            (r'[^*/]+', Comment.Multiline),
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline)
