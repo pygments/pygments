@@ -22,3 +22,15 @@ tlimit(x^q/(a*x^q- 1),x,inf);
 (remove (q, noninteger),
  killcontext (ctxt));
 done;
+
+/* additional code to test lexer */
+
+xyz: expand ((u - h*v)^4);
+print ("foo.mac: xyz =", xyz);
+'integrate (xyz, u, minf, inf);
+LL: [1234, 5678, 9012];
+for x:2 thru n - 3
+    do while (L: readline (S)) # false
+           do push (L, LL);
+if abc < 123 and (def > -123 or zyx < 234)
+    then X[k]: Y[j, k]*%pi - gamma;
