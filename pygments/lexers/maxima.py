@@ -59,7 +59,7 @@ class MaximaLexer(RegexLexer):
             (r'''(?x)
               (?:[a-zA-Z_#%][\w#%]*|`[^`]*`)
               (?:::[a-zA-Z_#%][\w#%]*|`[^`]*`)*''', Name.Variable),
-            (r'[-+]?\d+\.?' + terminated, Number.Integer),
+            (r'[-+]?\d+', Number.Integer),
             (r'[-+]?(\d*\.\d+([bdefls][-+]?\d+)?|\d+(\.\d*)?[bdefls][-+]?\d+)'
                 + terminated, Number.Float),
             (r'\s+', Text.Whitespace),

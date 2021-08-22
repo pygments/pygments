@@ -65,13 +65,13 @@
 "'"           Operator
 'limit'       Name.Function
 '('           Punctuation
-'1'           Text
+'1'           Literal.Number.Integer
 '/'           Operator
 '('           Punctuation
 'a'           Name.Variable
 '-'           Operator
 ' '           Text.Whitespace
-'1'           Text
+'1'           Literal.Number.Integer
 '/'           Operator
 'x'           Name.Variable
 '^'           Operator
@@ -112,13 +112,13 @@
 "'"           Operator
 'limit'       Name.Function
 '('           Punctuation
-'1'           Text
+'1'           Literal.Number.Integer
 '/'           Operator
 '('           Punctuation
 'a'           Name.Variable
 '-'           Operator
 ' '           Text.Whitespace
-'1'           Text
+'1'           Literal.Number.Integer
 '/'           Operator
 'x'           Name.Variable
 '^'           Operator
@@ -179,7 +179,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'1'           Text
+'1'           Literal.Number.Integer
 '/'           Operator
 'a'           Name.Variable
 ';'           Punctuation
@@ -231,7 +231,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'1'           Text
+'1'           Literal.Number.Integer
 '/'           Operator
 'a'           Name.Variable
 ';'           Punctuation
@@ -326,10 +326,7 @@
 '5678'        Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
-'9'           Text
-'0'           Text
-'1'           Text
-'2'           Text
+'9012'        Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
