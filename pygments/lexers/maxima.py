@@ -28,29 +28,30 @@ class MaximaLexer(RegexLexer):
 
     terminated = r'(?=[ "()\'\n,;`])'  # whitespace or terminating macro characters
 
+    keywords = ('if', 'then', 'else', 'elseif',
+                'do', 'while', 'repeat', 'until',
+                'for', 'from', 'to', 'downto', 'step', 'thru')
+
+    constants = ('%pi', '%e', '%phi', '%gamma', '%i',
+                 'und', 'ind', 'infinity', 'inf', 'minf',
+                 'true', 'false', 'unknown', 'done')
+
+    operators = (r'.', r':', r'=', r'#',
+                 r'+', r'-', r'*', r'/', r'^',
+                 r'@', r'>', r'<', r'|', r'!', r"'")
+
+    operator_words = ('and', 'or', 'not')
+
     tokens = {
         'root': [
             (r'/\*', Comment.Multiline, 'comment'),
             (r'"(?:[^"\\]|\\.)*"', String),
             (r'\(|\)|\[|\]|\{|\}', Punctuation),
             (r'[,;$]', Punctuation),
-            (r'''(?x)\b(?:
-                if|then|else|elseif|
-                do|while|
-                repeat|until|
-                for|from|to|downto|step|thru
-              )\b''', Keyword),
-            (r'''(?x)\b(?:
-                %pi|%e|%phi|%gamma|%i|
-                und|ind|infinity|inf|minf|
-                true|false|unknown
-              )\b''',
-             Name.Constant),
-            (r'\.|:|=|#|\+|-|\*|/|\^|@|>|<|\||!|\'|~=', Operator),
-            (r'''(?x)\b(?:
-                and|or|not
-              )\b''',
-             Operator.Word),
+            (words (constants), Name.Constant),
+            (words (keywords), Keyword),
+            (words (operators), Operator),
+            (words (operator_words), Operator.Word),
             (r'''(?x)
               ((?:[a-zA-Z_#][\w#]*|`[^`]*`)
               (?:::[a-zA-Z_#][\w#]*|`[^`]*`)*)(\s*)([(])''',
