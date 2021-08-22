@@ -34,3 +34,7 @@ for x:2 thru n - 3
            do push (L, LL);
 if abc < 123 and (def > -123 or zyx < 234)
     then X[k]: Y[j, k]*%pi - gamma;
+
+print ("foo.mac: test different kinds of floats") $
+blurf (a, b, c) :=
+    mumble (a*123.45/b, b*0.12345e6/c, c*1.2345b-8/a)) $

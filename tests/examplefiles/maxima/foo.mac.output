@@ -426,4 +426,56 @@
 ' '           Text.Whitespace
 'gamma'       Name.Variable
 ';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'print'       Name.Function
+' '           Text.Whitespace
+'('           Punctuation
+'"foo.mac: test different kinds of floats"' Literal.String
+')'           Punctuation
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'blurf'       Name.Function
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'c'           Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+':'           Operator
+'='           Operator
+'\n    '      Text.Whitespace
+'mumble'      Name.Function
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name.Variable
+'*'           Operator
+'123.45'      Literal.Number.Float
+'/'           Operator
+'b'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name.Variable
+'*'           Operator
+'0.12345e6'   Literal.Number.Float
+'/'           Operator
+'c'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'c'           Name.Variable
+'*'           Operator
+'1.2345b-8'   Literal.Number.Float
+'/'           Operator
+'a'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'$'           Punctuation
 '\n'          Text.Whitespace

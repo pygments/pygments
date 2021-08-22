@@ -26,8 +26,6 @@ class MaximaLexer(RegexLexer):
     aliases = ['maxima', 'macsyma']
     filenames = ['*.mac', '*.max']
 
-    terminated = r'(?=[ "()\'\n,;`])'  # whitespace or terminating macro characters
-
     keywords = ('if', 'then', 'else', 'elseif',
                 'do', 'while', 'repeat', 'until',
                 'for', 'from', 'to', 'downto', 'step', 'thru')
@@ -59,9 +57,8 @@ class MaximaLexer(RegexLexer):
             (r'''(?x)
               (?:[a-zA-Z_#%][\w#%]*|`[^`]*`)
               (?:::[a-zA-Z_#%][\w#%]*|`[^`]*`)*''', Name.Variable),
+            (r'[-+]?(\d*\.\d+([bdefls][-+]?\d+)?|\d+(\.\d*)?[bdefls][-+]?\d+)', Number.Float),
             (r'[-+]?\d+', Number.Integer),
-            (r'[-+]?(\d*\.\d+([bdefls][-+]?\d+)?|\d+(\.\d*)?[bdefls][-+]?\d+)'
-                + terminated, Number.Float),
             (r'\s+', Text.Whitespace),
             (r'.', Text)
         ],
