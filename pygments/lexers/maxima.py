@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.maxima
     ~~~~~~~~~~~~~~~~~~~~~~~
@@ -6,6 +5,8 @@
     Lexer for the computer algebra system Maxima.
 
     Derived from pygments/lexers/algebra.py.
+
+    :license: BSD, see LICENSE for details.
 """
 
 import re
