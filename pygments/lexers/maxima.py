@@ -69,3 +69,13 @@ class MaximaLexer(RegexLexer):
             (r'[*/]', Comment.Multiline)
         ]
     }
+
+    def analyse_text (text):
+        strength = 0.0
+        # Input expression terminator.
+        if re.search (r'\$\s*$', text, re.MULTILINE):
+            strength += 0.05
+        # Function definition operator.
+        if ':=' in text:
+            strength += 0.02
+        return strength
