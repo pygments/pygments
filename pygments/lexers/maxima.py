@@ -1,11 +1,12 @@
 """
     pygments.lexers.maxima
-    ~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the computer algebra system Maxima.
 
     Derived from pygments/lexers/algebra.py.
 
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
