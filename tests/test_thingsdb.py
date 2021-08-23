@@ -9,7 +9,7 @@
 
 import unittest
 
-from pygments.token import Operator, Number, Text, Token, Comment
+from pygments.token import Number, Text, Comment
 from pygments.lexers import ThingsDBLexer
 
 
