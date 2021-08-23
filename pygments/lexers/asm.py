@@ -15,7 +15,7 @@ from pygments.lexer import RegexLexer, include, bygroups, using, words, \
 from pygments.lexers.c_cpp import CppLexer, CLexer
 from pygments.lexers.d import DLexer
 from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
-    Other, Keyword, Operator, Literal
+    Other, Keyword, Operator
 
 __all__ = ['GasLexer', 'ObjdumpLexer', 'DObjdumpLexer', 'CppObjdumpLexer',
            'CObjdumpLexer', 'HsailLexer', 'LlvmLexer', 'LlvmMirBodyLexer',

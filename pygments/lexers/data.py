@@ -8,10 +8,8 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
-from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, LexerContext, \
-    include, bygroups, inherit
+from pygments.lexer import Lexer, ExtendedRegexLexer, LexerContext, \
+    include, bygroups
 from pygments.token import Text, Comment, Keyword, Name, String, Number, \
     Punctuation, Literal, Error
 
