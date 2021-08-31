@@ -1,0 +1,84 @@
+/** 
+Umple parsing example for Pygments
+This is a simplified version of the Access Control 2 example from UmpleOnline
+It is intended to demonstrate key features of Umple syntax
+ * References:
+ * http://time.sintef9013.com/uml/mainuml.htm
+**/
+
+namespace accessControlSystem;
+
+//User: a person with known identity and authorization "correct access right" to enter specific access zone
+//User Name: a user name
+class User{
+  * mayEnterThrough -- * AccessPoint;
+  1 owns -- 0..1 Card;
+  
+  name;
+  
+  public void insertCard(String cardId){
+    System.out.println("User [" + getName() + "] is inserting his/her card" +getCard().getCardId());
+  }
+
+  public List enterPIN( int no1, int no2, int no3, int no4){
+    getCard().addPin(no1);
+    
+    return Arrays.asList(getCard().getPin());
+  }
+ 
+}
+
+//Access Point: each direction of passage through a door is considered as an access point. 
+class AccessPoint{
+  1 controls -- 1 Door;
+  0..1 Autorizer -> * AccessPoint;
+  
+  lazy String cardIdentification;
+ 
+  AccessPointSm{
+    waitingCardID{
+      cardId(String cardID)  /{setCardIdentification(cardID); if(hasMayEnterThrough()){ for(User user: getMayEnterThrough()){ if(user.getCard().getCardId().toString()==getCardIdentification()){ user.insertCard(cardID);}}}} ->waitingPIN;
+      pin ->waitingCardID;
+    }
+    waitingPIN {
+      pin(int no1, int no2, int no3, int no4) ->waitingPIN;
+      after(5) ->waitingCardID;
+    }
+  }
+}
+
+//Access Zone: a physical zone where a user is present, accessible through doors
+class AccessZone{
+  //1..2 boundedBy -- 1..* AccessPoint;
+  1 accessedThrough -- 1..* Door;
+}
+
+
+
+//Door: controlled passage from one access zone to another 
+class Door{
+  boolean lock=false;
+}
+
+class ACSystem{
+  Integer doorTime=10; 
+  
+}
+
+//Magnetic stripe card holding a card code and a secrete personal identification number PIN entered by users
+class Card{
+  1 -- 1 Code cardId;
+  //PIN: a unique PIN belonging to only one user. A kind of password
+  Integer[] pin;
+}
+
+//Card code: a unique identification of a card stored in a machine-readable form on the card
+class Code{
+  String userID;
+}
+
+association {
+   1 ACSystem -- * Door;
+}
+
+

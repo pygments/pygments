@@ -481,6 +481,7 @@ LEXERS = {
     'TypoScriptHtmlDataLexer': ('pygments.lexers.typoscript', 'TypoScriptHtmlData', ('typoscripthtmldata',), (), ()),
     'TypoScriptLexer': ('pygments.lexers.typoscript', 'TypoScript', ('typoscript',), ('*.typoscript',), ('text/x-typoscript',)),
     'UcodeLexer': ('pygments.lexers.unicon', 'ucode', ('ucode',), ('*.u', '*.u1', '*.u2'), ()),
+    'UmpleLexer': ('pygments.lexers.modeling', 'Umple', ('umple',), ('*.ump', '*.umpt'), ('text/x-java',)),
     'UniconLexer': ('pygments.lexers.unicon', 'Unicon', ('unicon',), ('*.icn',), ('text/unicon',)),
     'UrbiscriptLexer': ('pygments.lexers.urbi', 'UrbiScript', ('urbiscript',), ('*.u',), ('application/x-urbiscript',)),
     'UsdLexer': ('pygments.lexers.usd', 'USD', ('usd', 'usda'), ('*.usd', '*.usda'), ()),
