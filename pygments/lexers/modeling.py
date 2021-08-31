@@ -10,7 +10,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, using, default, this, inherit
+from pygments.lexer import RegexLexer, include, bygroups, using, default, this, inherit, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
@@ -369,7 +369,7 @@ class UmpleLexer(JavaLexer):
   """
     Pygments lexer for Umple <https://cruise.umple.org/umple/> source code
 
-    .. versionadded::1.31 
+    .. versionadded::2.11 
   """
 
 
@@ -379,50 +379,53 @@ class UmpleLexer(JavaLexer):
   
   tokens = {
     'root': [
-      (r'(active|after|all|around|atomic|attr|attribute|before|'
-      r'custom|deactivate|during|emit|entry|execute|exit|generate|generated|hops|'
-      r'include|includeFilter|inner|isA|key|model|[oO]n|[oO]ff|pooled|position|post|prefix|queued|regex|singleton|'
-      r'sorted|sub|subclass|suffix|super|superclass|top|trace|unspecified)\b',
-       Keyword),
+        (words(('activate', 'active', 'after', 'afterEvery', 'all', 'around', 'atomic', 'attr', 'attribute', 'before', 'custom', 'deactivate',
+            'debug', 'displayColor','displayColour', 'during', 'emit','entry', 'execute', 'exit', 'generate', 'generated', 'hops', 'include',
+            'includeFilter','inner','isA', 'isFeature', 'key', 'model', 'off', 'Off', 'on', 'On', 'pooled', 'position','position.association',
+            'post', 'prefix', 'primitive', 'queued', 'regex', 'require', 'singleton', 'sorted', 'sub', 'subclass', 'suffix', 'super', 'superclass',
+            'top', 'trace', 'unspecified'),
+            suffix=r'\b'),
+        Keyword),
       # method names
       (r'((?:(?:[^\W\d]|\$)[\w.\[\]$<>]*\s+)+?)'  # return arguments
       r'((?:[^\W\d]|\$)[\w$]*)'                  # method name
       r'(\s*)(\()',                              # signature start
-      bygroups(using(this), Name.Function, Text, Punctuation)),
-      (r'(activate|afterEvery|around_proceed)',Name.Function),
-      (r'(autounique|const|defaulted|external|filter|[fF]inal|fixml|generic|immutable|internal|ivar|lazy|mixset|'
-      r'pre|settable|statemachine|test|tracer|trait|unique)\b',
+      bygroups(using(this), Name.Function, Text.Whitespace, Punctuation)),
+      
+      (words(('around_proceed', 'assertAttribute', 'assertEqual', 'assertFalse',
+            'assertMethod', 'assertNull', 'assertTrue'), suffix=r'\b'), Name.Function),
+      (words(('autounique', 'const', 'defaulted', 'external', 'filter', 'final', 'Final', 'fixml', 'generic',
+            'immutable', 'inner', 'internal', 'ivar', 'lazy', 'mixset', 'pre', 'settable', 'statemachine',
+            'template', 'test', 'tracer', 'trait', 'unique'), suffix=r'\b'),
        Keyword.Declaration),
       (r'((queued|pooled)?sm)\b', Keyword),
-      (r'(association|associationClass)\b', Keyword.Declaration, 'associations'),
-      (r'(distributable)\b(\s+)(RMI|WS|off|forced)', bygroups(Keyword.Reserved, Text, Keyword.Reserved)),
-      (r'(depend)(\s+)([\w.]+\*?)', bygroups(Keyword.Reserved, Text, Keyword.Namespace)),
+      (words(('association', 'associationClass'), suffix=r'\b'), Keyword.Declaration, 'associations'),
+      (r'(distributable)\b(\s+)(RMI|WS|off|forced)', bygroups(Keyword.Reserved, Text.Whitespace, Keyword.Reserved)),
+      (r'(depend)(\s+)([\w.]+\*?)', bygroups(Keyword.Reserved, Text.Whitespace, Keyword.Namespace)),
       (r'(namespace)\b(\s+)([\w.]+\*?|-)(\s+)?(--redefine)?',
-       bygroups(Keyword.Namespace, Text, Name.Namespace, Text, Keyword)),
-      (r'(strictness)\b(\s+)', bygroups(Keyword.Reserved, Text),'strictness'),
-      (r'(use)\b(\s+)(\w+.ump)\b', bygroups(Keyword.Reserved, Text, Name.Other)),
+       bygroups(Keyword.Namespace, Text.Whitespace, Name.Namespace, Text.Whitespace, Keyword)),
+      (r'(strictness)\b(\s+)', bygroups(Keyword.Reserved, Text.Whitespace),'strictness'),
+      (r'(use)\b(\s+)(\w+.ump)\b', bygroups(Keyword.Reserved, Text.Whitespace, Name.Other)),
       #Attribute types
-      (r'(Boolean|Double|Float|Integer|String)\b', Keyword.Type),
+      (words(('Boolean', 'Double', 'Float', 'Integer', 'String'), suffix=r'\b'), Keyword.Type),
       #Alternate Language
-      (r'(Java|Php|RTCpp|SimpleCpp|Ruby|Cpp|Json|StructureDiagram|Yuml|Violet|Umlet|'
-      r'Simulate|TextUml|Scxml|GvStateDiagram|GvClassDiagram|GvFeatureDiagram|GvClassTrait|'
-       r'GvEntityRelationshipDiagram|Alloy|NuSMV|NuSMVOptimizer|Papyrus|Ecore|Xmi|Xtext|Sql|'
-       r'Umple|UmpleSelf|USE|Test|SimpleMetrics|Uigu2)', Keyword),
+      (words(('Java', 'Php', 'RTCpp', 'SimpleCpp', 'Ruby', 'Cpp', 'Json', 'StructureDiagram', 'Yuml', 'Violet', 'Umlet', 
+            'Simulate', 'TextUml', 'Scxml', 'GvStateDiagram', 'GvClassDiagram', 'GvFeatureDiagram', 'GvClassTrait', 
+            'GvEntityRelationshipDiagram', 'Alloy', 'NuSMV', 'NuSMVOptimizer', 'Papyrus', 'Ecore', 'Xmi', 'Xtext', 'Sql', 
+            'Umple', 'UmpleSelf', 'USE', 'Test', 'SimpleMetrics', 'Uigu2'), suffix=r'\b'), Keyword),
        #operators
-       (r'(and|cardinality|giving|has|not|or|until|where|xor)\b', Operator.Word),
-       #assertion function not attached to instance
-       (r'assertAttribute|assertEqual|assertFalse|assertMethod|assertNull|assertTrue', Name.Function),
+       (words(('and', 'cardinality', 'giving', 'has', 'not', 'or', 'until', 'where', 'xor'), suffix=r'\b'), Operator.Word),
        #association
        (r'([0-9]+[.]+[0-9\*]+)|<@>|->', Operator),
        inherit
      ],
      'associations': [
-       (r'(\s+)([^\W][\w$]+)', bygroups(Text, Name.Class), "#pop"),
-       (r'(\s*[{}])', bygroups(Text), "#pop")
+       (r'(\s+)([^\W][\w$]+)', bygroups(Text.Whitespace, Name.Class), "#pop"),
+       (r'(\s*[{}])', bygroups(Text.Whitespace), "#pop"),
      ],
     'strictness': [
-      (r'(modelOnly|noExtraCode|none)', Keyword.Reserved, "#pop"),
-      (r'(allow|ignore|expect|disallow)(\s\d+)', bygroups(Keyword, Number), '#pop'),
+      (words(('modelOnly', 'noExtraCode', 'none'), suffix=r'\b'), Keyword, "#pop"),
+      (words(('allow', 'ignore', 'expect', 'disallow'), suffix=r'\b'), Keyword, '#pop'),
     ],
 
   }
