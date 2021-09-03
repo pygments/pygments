@@ -1,0 +1,92 @@
+---input---
+kind list type -> type.
+type nil list A.
+type cons A -> list A -> list A.
+kind tm type.
+type fun (tm -> tm) -> tm.
+type app tm -> tm -> tm.
+
+---tokens---
+'kind'        Keyword.Declaration
+' '           Text
+'list'        Name.Function
+' '           Text
+'type'        Keyword.Type
+' '           Text
+'->'          Keyword.Type
+' '           Text
+'type'        Keyword.Type
+'.'           Text
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'nil'         Name.Function
+' '           Text
+'list'        Keyword.Type
+' '           Text
+'A'           Keyword.Type
+'.'           Text
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'cons'        Name.Function
+' '           Text
+'A'           Keyword.Type
+' '           Text
+'->'          Keyword.Type
+' '           Text
+'list'        Keyword.Type
+' '           Text
+'A'           Keyword.Type
+' '           Text
+'->'          Keyword.Type
+' '           Text
+'list'        Keyword.Type
+' '           Text
+'A'           Keyword.Type
+'.'           Text
+'\n'          Text
+
+'kind'        Keyword.Declaration
+' '           Text
+'tm'          Name.Function
+' '           Text
+'type'        Keyword.Type
+'.'           Text
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'fun'         Name.Function
+' '           Text
+'('           Keyword.Type
+'tm'          Keyword.Type
+' '           Text
+'->'          Keyword.Type
+' '           Text
+'tm'          Keyword.Type
+')'           Keyword.Type
+' '           Text
+'->'          Keyword.Type
+' '           Text
+'tm'          Keyword.Type
+'.'           Text
+'\n'          Text
+
+'type'        Keyword.Declaration
+' '           Text
+'app'         Name.Function
+' '           Text
+'tm'          Keyword.Type
+' '           Text
+'->'          Keyword.Type
+' '           Text
+'tm'          Keyword.Type
+' '           Text
+'->'          Keyword.Type
+' '           Text
+'tm'          Keyword.Type
+'.'           Text
+'\n'          Text

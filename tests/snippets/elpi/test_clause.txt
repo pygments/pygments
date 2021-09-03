@@ -1,0 +1,67 @@
+---input---
+true.
+stop :- !.
+of (fun F) :- pi x\ of x => of (F x).
+match (uvar as Y) :- print Y.
+
+---tokens---
+'true'        Text
+'.'           Operator
+'\n'          Text
+
+'stop'        Text
+' '           Text
+':-'          Keyword.Declaration
+' '           Text
+'!'           Keyword.Declaration
+'.'           Operator
+'\n'          Text
+
+'of'          Text
+' '           Text
+'('           Text
+'fun'         Text
+' '           Text
+'F'           Name.Variable
+')'           Operator
+' '           Text
+':-'          Keyword.Declaration
+' '           Text
+'pi'          Keyword.Declaration
+' '           Text
+'x'           Name.Variable
+'\\'          Text
+' '           Text
+'of'          Text
+' '           Text
+'x'           Text
+' '           Text
+'=>'          Keyword.Declaration
+' '           Text
+'of'          Text
+' '           Text
+'('           Text
+'F'           Name.Variable
+' '           Text
+'x'           Text
+')'           Operator
+'.'           Operator
+'\n'          Text
+
+'match'       Text
+' '           Text
+'('           Text
+'uvar'        Keyword.Declaration
+' '           Text
+'as'          Keyword.Declaration
+' '           Text
+'Y'           Name.Variable
+')'           Operator
+' '           Text
+':-'          Keyword.Declaration
+' '           Text
+'print'       Text
+' '           Text
+'Y'           Name.Variable
+'.'           Operator
+'\n'          Text
