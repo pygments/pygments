@@ -22,6 +22,8 @@ class MaximaLexer(RegexLexer):
     """
     A `Maxima <http://maxima.sourceforge.net>`_ lexer.
     Derived from pygments.lexers.MuPADLexer.
+
+    .. versionadded:: 2.11
     """
     name = 'Maxima'
     aliases = ['maxima', 'macsyma']
