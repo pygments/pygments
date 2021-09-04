@@ -198,21 +198,17 @@ def main_inner(parser, argns):
             if v:
                 arg_set.add(k)
 
-        arg_set.remove('L')
+        arg_set.discard('L')
+        arg_set.discard('json')
 
         # json can be only used with L, so we remove L, and check if there is
         # only one option left (which must be JSON).
-        if len(arg_set) == 1 and 'json' not in arg_set:
+        if arg_set:
             parser.print_help(sys.stderr)
             return 2
-        elif len(arg_set) > 1:
-            parser.print_help(sys.stderr)
-            return 2
-
-        json = 'json' in arg_set
 
         # print version
-        if not json:
+        if not argns.json:
             main(['', '-V'])
         allowed_types = {'lexer', 'formatter', 'filter', 'style'}
         largs = [arg.rstrip('s') for arg in argns.L]
@@ -221,7 +217,7 @@ def main_inner(parser, argns):
             return 0
         if not largs:
             largs = allowed_types
-        if not json:
+        if not argns.json:
             for arg in largs:
                 _print_list(arg)
         else:
