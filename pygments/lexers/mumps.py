@@ -23,6 +23,11 @@ class MumpsLexer(ExtendedRegexLexer):
     Section numbers below refer to the sections on that site, most often from the latest (1995) standard.
     """
 
+    """
+    Questions from the author:
+    1. When '.' is used to indicate a pass-by-reference parameter, is that an operator or just punctuation?
+    """
+
     name = 'MUMPS'
     aliases = ['Mumps', 'mumps', 'M']
     filenames = ['*.m', '*.mumps', '*.epc', '*.int']
@@ -42,15 +47,28 @@ class MumpsLexer(ExtendedRegexLexer):
     relation_re = '\\]\\]|[<>=\\[\\]]' # 7.2.2.1 - Relational operator 'relation'
     logicalop_re = '[&!]' # 7.2.2.4 - Logical operator 'logicalop'
     truthop_re = relation_re + '|' + logicalop_re
+    # 8.1.6.2 - Label reference 'labelref'
+    labelref_re = '\\^' + name_re + '|' + name_re + '\\^' + name_re + '|' + name_re
 
     # Parsing states
     tokens = {
         'root': [
-            ###
-            # 6 - Routine
-            ###
             default('routinebody')
             ],
+        ###
+        # 5 - Metalanguage Description
+        ###
+        # Lists of things are at least one element, with ',' between
+        # List states 'l_*' should default on a comma and a single instance
+        'list_comma': [
+            # Pop back into the list that defaults comma and element
+            (',', Punctuation, '#pop'),
+            # Pop over the list state
+            default('#pop:2')
+            ],
+        ###
+        # 6 - Routine
+        ###
         # 6.1 - Routine head 'routinehead'
         'name': [
             (name_re, Name, '#pop'),
@@ -192,12 +210,34 @@ class MumpsLexer(ExtendedRegexLexer):
             (':', Operator, 'expr'),
             default('#pop')  
             ],
+        # 8.1.6 - Line reference lineref
+        # 8.1.7 - Parameter passing
+        'actuallist': [
+                ('\\(', Punctuation, ('#pop', 'actuallist_contents'),)
+                ],
+        'actuallist_contents': [
+                ('\\)', Punctuation, '#pop'),
+                default('l_actual'),
+                ],
+        'l_actual': [
+                default(('list_comma', 'actual')),
+                ],
+        'actual': [
+                ('\\.', Punctuation, ('#pop', 'actualname')),
+                default(('#pop', 'expr')),
+                ],
+        'actualname': [
+                ( name_re, Name.Variable, '#pop'),
+                ( '@', Operator, ('#pop', 'expratom')),
+                ],
         # 8.2 - Command
         'command': [
                 # 8.2.1 - BREAK - no argument syntax
                 ('break|b', Keyword, ('#pop', 'noargsp', 'postcond')),
                 # 8.2.2 - CLOSE - has specific syntax
-                ('close|c', Keyword, ('#pop', 'l_closearg', 'closearg', 'argumentsp', 'postcond')),
+                ('close|c', Keyword, ('#pop', 'l_closearg', 'argumentsp', 'postcond')),
+                # 8.2.3 - DO
+                ('do|d', Keyword, ('#pop', 'l_doargument', 'optargsp', 'postcond')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
@@ -220,8 +260,19 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('\\)', Punctuation, '#pop'),
                 ],
         'l_closearg': [
-                (',', Punctuation, 'closearg'),
-                default('#pop'),
+                default(('list_comma', 'closearg'))
+                ],
+        # 8.2.3 - DO arguments
+        'doargument': [
+                ('@', Operator, ('#pop', 'expratom')),
+                ( '(' + name_re + '\\^' + name_re + ')(\\()', bygroups(Name.Function, Punctuation), ('#pop', 'postcond', 'actuallist_contents')),
+                ( '(\\^' + name_re + ')(\\()', bygroups(Name.Function, Punctuation), ('#pop', 'postcond', 'actuallist_contents')),
+                ( '(' + name_re + ')(\\()', bygroups(Name.Function, Punctuation), ('#pop', 'postcond', 'actuallist_contents')),
+                ( '\\^' + name_re, Name.Label, '#pop'),
+                ( name_re + '(\\^' + name_re + ')?', Name.Label, ('#pop', 'postcond')),
+                ],
+        'l_doargument': [
+                default(('list_comma', 'doargument')),
                 ],
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [

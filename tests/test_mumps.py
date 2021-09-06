@@ -505,12 +505,30 @@ def testDoFunction(lexer):
             (Text, '\n'),
             ]
 
+def testDoFunctionByRefs(lexer):
+    assert list(lexer.get_tokens(' d tag^ROUTINE(.arg1,.@arg2)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'd'),
+            (Whitespace, ' '),
+            (Name.Function, 'tag^ROUTINE'),
+            (Punctuation, '('),
+            (Punctuation, '.'),
+            (Name.Variable, 'arg1'),
+            (Punctuation, ','),
+            # The period '.' denotes that this is pass-by-reference - not sure if this is "punctuation" or "operator"
+            (Punctuation, '.'),
+            (Operator, '@'),
+            (Name.Variable, 'arg2'),
+            (Punctuation, ')'),
+            (Text, '\n'),
+            ]
+
 def testDoPostcondQuit(lexer):
     # Testing having multiple spaces between commands, which is allowed
     assert list(lexer.get_tokens(' d:tvexpr tag^ROUTINE   QUIT')) == [
             (Whitespace, ' '),
             (Keyword, 'd'),
-            (Punctuation, ':'),
+            (Operator, ':'),
             (Name.Variable, 'tvexpr'),
             (Whitespace, ' '),
             (Name.Label, 'tag^ROUTINE'),
@@ -525,7 +543,7 @@ def testDoBlock(lexer):
             (Keyword, 'd'),
             (Whitespace, '  '),
             (Keyword, 'q'),
-            (Punctuation, ':'),
+            (Operator, ':'),
             (Name.Variable, 'done'),
             (Text, '\n'),
             ]
@@ -536,11 +554,11 @@ def testDoMultipleWPostcont(lexer):
             (Keyword, 'do'),
             (Whitespace, ' '),
             (Name.Label, 'tag1'),
-            (Punctuation, ':'),
+            (Operator, ':'),
             (Name.Variable, 'one'),
             (Punctuation, ','),
             (Name.Label, 'tag^ROU2'),
-            (Punctuation, ':'),
+            (Operator, ':'),
             (Name.Variable, 'two'),
             (Text, '\n'),
             ]
