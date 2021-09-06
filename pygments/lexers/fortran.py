@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer, bygroups, include, words, using, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Generic, Whitespace
+    Number, Punctuation, Generic
 
 __all__ = ['FortranLexer', 'FortranFixedLexer']
 
@@ -49,8 +49,8 @@ class FortranLexer(RegexLexer):
         'core': [
             # Statements
 
-            (r'\b(DO)(\s+)(CONCURRENT)\b', bygroups(Keyword, Whitespace, Keyword)),
-            (r'\b(GO)(\s*)(TO)\b', bygroups(Keyword, Whitespace, Keyword)),
+            (r'\b(DO)(\s+)(CONCURRENT)\b', bygroups(Keyword, Text.Whitespace, Keyword)),
+            (r'\b(GO)(\s*)(TO)\b', bygroups(Keyword, Text.Whitespace, Keyword)),
 
             (words((
                 'ABSTRACT', 'ACCEPT', 'ALL', 'ALLSTOP', 'ALLOCATABLE', 'ALLOCATE',
