@@ -140,10 +140,11 @@ def _print_list_as_json(requested_items):
     result = {}
     if 'lexer' in requested_items:
         info = {}
-        for fullname, names, exts, _ in get_all_lexers():
+        for fullname, names, filenames, mimetypes in get_all_lexers():
             info[fullname] = {
-                'names': names,
-                'extensions': exts
+                'aliases': names,
+                'filenames': filenames,
+                'mimetypes': mimetypes
             }
         result['lexers'] = info
 
@@ -201,8 +202,6 @@ def main_inner(parser, argns):
         arg_set.discard('L')
         arg_set.discard('json')
 
-        # json can be only used with L, so we remove L, and check if there is
-        # only one option left (which must be JSON).
         if arg_set:
             parser.print_help(sys.stderr)
             return 2
