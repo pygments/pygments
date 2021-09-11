@@ -177,7 +177,7 @@ def _print_list_as_json(requested_items):
             }
         result['styles'] = info
 
-    json.dump(result, sys.stdout, indent=4)
+    json.dump(result, sys.stdout)
 
 def main_inner(parser, argns):
     if argns.help:
