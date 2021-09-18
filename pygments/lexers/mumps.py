@@ -265,11 +265,12 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8.2.3 - DO arguments
         'doargument': [
                 ('@', Operator, ('#pop', 'expratom')),
-                ( '(' + name_re + '\\^' + name_re + ')(\\()', bygroups(Name.Function, Punctuation), ('#pop', 'postcond', 'actuallist_contents')),
-                ( '(\\^' + name_re + ')(\\()', bygroups(Name.Function, Punctuation), ('#pop', 'postcond', 'actuallist_contents')),
-                ( '(' + name_re + ')(\\()', bygroups(Name.Function, Punctuation), ('#pop', 'postcond', 'actuallist_contents')),
-                ( '\\^' + name_re, Name.Label, '#pop'),
-                ( name_re + '(\\^' + name_re + ')?', Name.Label, ('#pop', 'postcond')),
+                # name_re + '(\\^' + name_re + ')?(?=\\()', Name.Label, ('#pop', 'postcond', 'actuallist')),
+                ( '(' + labelref_re + ')' + '(?=\\()', Name.Label, ('#pop', 'postcond', 'actuallist')),
+                ( labelref_re , Name.Label, ('#pop', 'postcond')),
+                # '\\^' + name_re + '(?=\\()', Name.Label, ('#pop', 'postcond', 'actuallist')),
+                # '\\^' + name_re, Name.Label, '#pop'),
+                # name_re + '(\\^' + name_re + ')?', Name.Label, ('#pop', 'postcond')),
                 ],
         'l_doargument': [
                 default(('list_comma', 'doargument')),

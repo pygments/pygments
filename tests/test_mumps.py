@@ -491,12 +491,12 @@ def testDoTagAndRoutine(lexer):
             (Text, '\n'),
             ]
 
-def testDoFunction(lexer):
+def testDoWithArgs(lexer):
     assert list(lexer.get_tokens(' d tag^ROUTINE(arg1,arg2)')) == [
             (Whitespace, ' '),
             (Keyword, 'd'),
             (Whitespace, ' '),
-            (Name.Function, 'tag^ROUTINE'),
+            (Name.Label, 'tag^ROUTINE'),
             (Punctuation, '('),
             (Name.Variable, 'arg1'),
             (Punctuation, ','),
@@ -505,12 +505,12 @@ def testDoFunction(lexer):
             (Text, '\n'),
             ]
 
-def testDoFunctionByRefs(lexer):
+def testDoArgsByReference(lexer):
     assert list(lexer.get_tokens(' d tag^ROUTINE(.arg1,.@arg2)')) == [
             (Whitespace, ' '),
             (Keyword, 'd'),
             (Whitespace, ' '),
-            (Name.Function, 'tag^ROUTINE'),
+            (Name.Label, 'tag^ROUTINE'),
             (Punctuation, '('),
             (Punctuation, '.'),
             (Name.Variable, 'arg1'),
