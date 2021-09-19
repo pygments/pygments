@@ -478,7 +478,8 @@ def testDoRoutine(lexer):
             (Whitespace, ' '),
             (Keyword, 'DO'),
             (Whitespace, ' '),
-            (Name.Label, '^ROUTINE'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROUTINE'),
             (Text, '\n'),
             ]
 
@@ -487,7 +488,9 @@ def testDoTagAndRoutine(lexer):
             (Whitespace, ' '),
             (Keyword, 'd'),
             (Whitespace, ' '),
-            (Name.Label, 'tag^ROUTINE'),
+            (Name.Label, 'tag'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROUTINE'),
             (Text, '\n'),
             ]
 
@@ -496,7 +499,9 @@ def testDoWithArgs(lexer):
             (Whitespace, ' '),
             (Keyword, 'd'),
             (Whitespace, ' '),
-            (Name.Label, 'tag^ROUTINE'),
+            (Name.Label, 'tag'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROUTINE'),
             (Punctuation, '('),
             (Name.Variable, 'arg1'),
             (Punctuation, ','),
@@ -510,7 +515,9 @@ def testDoArgsByReference(lexer):
             (Whitespace, ' '),
             (Keyword, 'd'),
             (Whitespace, ' '),
-            (Name.Label, 'tag^ROUTINE'),
+            (Name.Label, 'tag'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROUTINE'),
             (Punctuation, '('),
             (Punctuation, '.'),
             (Name.Variable, 'arg1'),
@@ -531,7 +538,9 @@ def testDoPostcondQuit(lexer):
             (Operator, ':'),
             (Name.Variable, 'tvexpr'),
             (Whitespace, ' '),
-            (Name.Label, 'tag^ROUTINE'),
+            (Name.Label, 'tag'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROUTINE'),
             (Whitespace, '   '),
             (Keyword, 'QUIT'),
             (Text, '\n'),
@@ -557,9 +566,25 @@ def testDoMultipleWPostcont(lexer):
             (Operator, ':'),
             (Name.Variable, 'one'),
             (Punctuation, ','),
-            (Name.Label, 'tag^ROU2'),
+            (Name.Label, 'tag'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROU2'),
             (Operator, ':'),
             (Name.Variable, 'two'),
+            (Text, '\n'),
+            ]
+
+def testDoPostcondWParams(lexer):
+    assert list(lexer.get_tokens(' do tag(1):one')) == [
+            (Whitespace, ' '),
+            (Keyword, 'do'),
+            (Whitespace, ' '),
+            (Name.Label, 'tag'),
+            (Punctuation, '('),
+            (Number, '1'),
+            (Punctuation, ')'),
+            (Operator, ':'),
+            (Name.Variable, 'one'),
             (Text, '\n'),
             ]
 
@@ -573,3 +598,19 @@ def testDoIndirectArg(lexer):
             (Text, '\n'),
             ]
 
+def testDoEntryref(lexer):
+    assert list(lexer.get_tokens(' Do tag+7,other+offset^ROUTINE')) == [
+            (Whitespace, ' '),
+            (Keyword, 'Do'),
+            (Whitespace, ' '),
+            (Name.Label, 'tag'),
+            (Operator, '+'),
+            (Number, '7'),
+            (Punctuation, ','),
+            (Name.Label, 'other'),
+            (Operator, '+'),
+            (Name.Variable, 'offset'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROUTINE'),
+            (Text, '\n'),
+            ]

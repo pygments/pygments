@@ -47,8 +47,6 @@ class MumpsLexer(ExtendedRegexLexer):
     relation_re = '\\]\\]|[<>=\\[\\]]' # 7.2.2.1 - Relational operator 'relation'
     logicalop_re = '[&!]' # 7.2.2.4 - Logical operator 'logicalop'
     truthop_re = relation_re + '|' + logicalop_re
-    # 8.1.6.2 - Label reference 'labelref'
-    labelref_re = '\\^' + name_re + '|' + name_re + '\\^' + name_re + '|' + name_re
 
     # Parsing states
     tokens = {
@@ -71,7 +69,7 @@ class MumpsLexer(ExtendedRegexLexer):
         ###
         # 6.1 - Routine head 'routinehead'
         'name': [
-            (name_re, Name, '#pop'),
+            (name_re, Name.Variable, '#pop'),
             ],
         # 6.2 - Routine body 'routinebody'
         'routinebody': [ 
@@ -83,18 +81,21 @@ class MumpsLexer(ExtendedRegexLexer):
             ('(' + name_re + ')( +)', bygroups(Name.Label, Whitespace), ('#pop', 'linebody')), 
             (' ', Whitespace, ('#pop', 'linebody')),
             # 6.2.2 formalline
-            ('(' + name_re + ')(\\()', bygroups(Name.Function, Punctuation), 'formallist'),
+            ( name_re + '(?=\\()', Name.Function, 'formallist'),
             ],
         # 6.2.2 Formal line 'formalline'
         'formallist': [
+            ('(\\()(\\))', bygroups(Punctuation, Punctuation), '#pop'),
+            ('\\(', Punctuation, 'l_name'),
             ('\\)', Punctuation, '#pop'),
-            default('l_name'),
             ],
         # list of 'name' continuation
         'l_name': [
-            ('(' + name_re + ')(,)', bygroups(Name.Variable, Punctuation)),
-            ( name_re, Name.Variable, '#pop')
+            default(('list_comma', 'name')),
             ],
+            #'(' + name_re + ')(,)', bygroups(Name.Variable, Punctuation)),
+            # name_re, Name.Variable, '#pop')
+            #,
         # 6.2.3 Label 'label'
         'label': [
             (name_re, Name.Label, '#pop'),
@@ -211,6 +212,25 @@ class MumpsLexer(ExtendedRegexLexer):
             default('#pop')  
             ],
         # 8.1.6 - Line reference lineref
+        'lineref': [
+                include('entryref'),
+                include('labelref'),
+                ],
+        # 8.1.6.1 - Entry reference entryref
+        'entryref': [
+                ( name_re, Name.Label, ('#pop', 'opt_routineref', 'opt_offset')),
+                ],
+        'opt_offset': [
+                ('\\+', Operator, ('#pop', 'expr')),
+                default('#pop'),
+                ],
+        'opt_routineref': [
+                ('(\\^)(' + name_re + ')', bygroups(Punctuation, Name.Namespace), '#pop'),
+                default('#pop'),
+                ],
+        'labelref': [
+                ('(^)(' + name_re + ')', bygroups(Punctuation, Name.Namespace), '#pop'),
+                ],
         # 8.1.7 - Parameter passing
         'actuallist': [
                 ('\\(', Punctuation, ('#pop', 'actuallist_contents'),)
@@ -265,15 +285,18 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8.2.3 - DO arguments
         'doargument': [
                 ('@', Operator, ('#pop', 'expratom')),
-                # name_re + '(\\^' + name_re + ')?(?=\\()', Name.Label, ('#pop', 'postcond', 'actuallist')),
-                ( '(' + labelref_re + ')' + '(?=\\()', Name.Label, ('#pop', 'postcond', 'actuallist')),
-                ( labelref_re , Name.Label, ('#pop', 'postcond')),
-                # '\\^' + name_re + '(?=\\()', Name.Label, ('#pop', 'postcond', 'actuallist')),
-                # '\\^' + name_re, Name.Label, '#pop'),
-                # name_re + '(\\^' + name_re + ')?', Name.Label, ('#pop', 'postcond')),
+                # Spell out 'labelref' because only they may be followed by actuallist
+                # (Otherwise, parsing would be undecideable because entryref allows indirection which introduces parentheses)
+                ('(' + name_re + ')?(\\^)(' + name_re + ')', bygroups(Name.Label, Punctuation, Name.Namespace), ('#pop', 'postcond', 'opt_actuallist')),
+                ( name_re + '(?=\\()', Name.Label, ('#pop', 'postcond', 'opt_actuallist')),
+                default(('#pop', 'postcond', 'entryref')),
                 ],
         'l_doargument': [
                 default(('list_comma', 'doargument')),
+                ],
+        'opt_actuallist': [
+                include('actuallist'),
+                default('#pop'),
                 ],
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [
