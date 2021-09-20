@@ -614,3 +614,24 @@ def testDoEntryref(lexer):
             (Name.Namespace, 'ROUTINE'),
             (Text, '\n'),
             ]
+
+def testDoEntryrefWIndriects(lexer):
+    assert list(lexer.get_tokens(' Do @tagname+x^@rounames(1):tv')) == [
+            (Whitespace, ' '),
+            (Keyword, 'Do'),
+            (Whitespace, ' '),
+            (Operator, '@'),
+            (Name.Variable, 'tagname'),
+            (Operator, '+'),
+            (Name.Variable, 'x'),
+            (Punctuation, '^'),
+            (Operator, '@'),
+            (Name.Variable, 'rounames'),
+            (Punctuation, '('),
+            (Number, '1'),
+            (Punctuation, ')'),
+            (Operator, ':'),
+            (Name.Variable, 'tv'),
+            (Text, '\n'),
+            ]
+

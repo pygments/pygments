@@ -117,17 +117,32 @@ class MumpsLexer(ExtendedRegexLexer):
         # 7 - Expression 'expr'
         ###
         'expr': [
-            default(('#pop', 'exprtail', 'expratom')) 
-            ],
+                default(('#pop', 'exprtail', 'expratom')) 
+                ],
+        'l_expr': [
+                default(('list_comma', 'expr')),
+                ],
         # 7.1 - expratom
         'expratom': [
-            include('glvn'),
-            include('expritem'),
-            ],
+                include('glvn'),
+                include('expritem'),
+                ],
     	# 7.1.2 - Variable name 'glvn'
     	'glvn': [
+                include('lvn'),
+                ],
+        # 7.1.2.1 - Local variable name lvn
+        'lvn': [
+                include('rlvn'),
+                ],
+        'rlvn': [
+                ( name_re + '(?=\\()', Name.Variable, ('#pop', 'subscripts')),
                 ( name_re, Name.Variable, '#pop'),
     	        ],
+        'subscripts': [  # Parsing structure for "( L expr )"
+                ('\\(', Punctuation, 'l_expr'),
+                ('\\)', Punctuation, '#pop'),
+                ],
         # 7.1.4 - Expression item 'expritem'
         'expritem': [
             include('strlit'),
@@ -219,6 +234,7 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8.1.6.1 - Entry reference entryref
         'entryref': [
                 ( name_re, Name.Label, ('#pop', 'opt_routineref', 'opt_offset')),
+                ( '@', Operator, ('#pop', 'opt_routineref', 'opt_offset', 'expratom')),
                 ],
         'opt_offset': [
                 ('\\+', Operator, ('#pop', 'expr')),
@@ -226,6 +242,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         'opt_routineref': [
                 ('(\\^)(' + name_re + ')', bygroups(Punctuation, Name.Namespace), '#pop'),
+                ('(\\^)(@)', bygroups(Punctuation, Operator), ('#pop', 'expr')),
                 default('#pop'),
                 ],
         'labelref': [
@@ -284,7 +301,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 8.2.3 - DO arguments
         'doargument': [
-                ('@', Operator, ('#pop', 'expratom')),
+                # Don't include indirected doarguments (@doargs) here - entryref includes indirection that looks lexically the same (@tag), only the interpreter cares about the difference
                 # Spell out 'labelref' because only they may be followed by actuallist
                 # (Otherwise, parsing would be undecideable because entryref allows indirection which introduces parentheses)
                 ('(' + name_re + ')?(\\^)(' + name_re + ')', bygroups(Name.Label, Punctuation, Name.Namespace), ('#pop', 'postcond', 'opt_actuallist')),
