@@ -291,7 +291,11 @@ class MumpsLexer(ExtendedRegexLexer):
                 # 8.2.6 - GOTO
                 ('goto|g', Keyword, ('#pop', 'l_gotoargument', 'argumentsp', 'postcond')),
                 # 8.2.7 - HALT
-                ('halt|h', Keyword, ('#pop', 'noargsp')),
+                ('halt', Keyword, ('#pop', 'noargsp')),
+                # 8.2.8 - HANG
+                ('hang', Keyword, ('#pop', 'l_expr', 'argumentsp', 'postcond')),
+                # Combination halt/hang - both abbreviate to h, so the difference is whether there are arguments
+                ('h(?= )', Keyword, ('#pop', 'l_expr', 'optargsp', 'postcond')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
