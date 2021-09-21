@@ -249,6 +249,7 @@ class MumpsLexer(ExtendedRegexLexer):
         'labelref': [
                 ('(' + name_re + ')(\\^)(' + name_re + ')', bygroups(Name.Label, Punctuation, Name.Namespace), '#pop'),
                 ('(\\^)(' + name_re + ')', bygroups(Punctuation, Name.Namespace), '#pop'),
+                #( name_re, Name.Label, '#pop'),
                 ],
         # 8.1.6.3 - External reference externref
         'externref': [
@@ -285,6 +286,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('do|d', Keyword, ('#pop', 'l_doargument', 'optargsp', 'postcond')),
                 # 8.2.4 - ELSE
                 ('else|e', Keyword, ('#pop', 'noargsp')),
+                # 8.2.5 - FOR
+                ('for|f', Keyword, ('#pop', 'forparameter', 'optargsp')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
@@ -314,15 +317,12 @@ class MumpsLexer(ExtendedRegexLexer):
                 default(('#pop', 'postcond', 'opt_actuallist', 'doargs_choice')),
                 ],
         'doargs_choice': [
-                # Don't include indirected doarguments (@doargs) here - entryref includes indirection that looks lexically the same (@tag), only the interpreter cares about the difference
-                # Spell out 'labelref' because only they may be followed by actuallist
-                # (Otherwise, parsing would be undecideable because entryref allows indirection which introduces parentheses)
-                #'(' + name_re + ')?(\\^)(' + name_re + ')', bygroups(Name.Label, Punctuation, Name.Namespace), ('#pop', 'postcond', 'opt_actuallist')),
-                # name_re + '(?=\\()', Name.Label, ('#pop', 'postcond', 'opt_actuallist')),
-                # '(?=&)', Operator, ('#pop', 'postcond', 'opt_actuallist', 'externref')),
-                include('labelref'),
+                # Spell out tag-only 'labelref' with a following parenthesis so entryref can't match it
                 ( name_re + '(?=\\()', Name.Label, '#pop'),
+                include('labelref'),
                 include('externref'),
+                # Don't include indirected doarguments (@doargs) here - entryref includes indirection that looks lexically the same (@tag), only the interpreter cares about the difference
+                # (Otherwise, parsing would be undecideable because entryref allows indirection which introduces parentheses)
                 default(('#pop', '#pop', 'entryref')),
                 ],
         'l_doargument': [
@@ -330,6 +330,17 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         'opt_actuallist': [
                 include('actuallist'),
+                default('#pop'),
+                ],
+        # 8.2.5 - FOR parameters
+        'forparameter': [
+                default(('#pop', 'opt_forparam_numexpr', 'expr', 'equals', 'lvn')),
+                ],
+        'equals': [
+                ('=', Operator, '#pop'),
+                ],
+        'opt_forparam_numexpr': [
+                (':', Punctuation, 'expr'),
                 default('#pop'),
                 ],
         # 8.2.16 - QUIT arguments
