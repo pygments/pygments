@@ -283,6 +283,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('close|c', Keyword, ('#pop', 'l_closearg', 'argumentsp', 'postcond')),
                 # 8.2.3 - DO
                 ('do|d', Keyword, ('#pop', 'l_doargument', 'optargsp', 'postcond')),
+                # 8.2.4 - ELSE
+                ('else|e', Keyword, ('#pop', 'noargsp')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],

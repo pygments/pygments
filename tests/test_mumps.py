@@ -662,3 +662,22 @@ def testDoExternref(lexer):
             (Text, '\n'),
             ]
 
+def testElse(lexer):
+    assert list(lexer.get_tokens(' else  do something')) == [
+            (Whitespace, ' '),
+            (Keyword, 'else'),
+            (Whitespace, '  '),
+            (Keyword, 'do'),
+            (Whitespace, ' '),
+            (Name.Label, 'something'),
+            (Text, '\n'),
+            ]
+
+def testElseAbbr(lexer):
+    assert list(lexer.get_tokens(' e  q')) == [
+            (Whitespace, ' '),
+            (Keyword, 'e'),
+            (Whitespace, '  '),
+            (Keyword, 'q'),
+            (Text, '\n'),
+            ]
