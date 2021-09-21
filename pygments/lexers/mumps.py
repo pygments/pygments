@@ -288,6 +288,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('else|e', Keyword, ('#pop', 'noargsp')),
                 # 8.2.5 - FOR
                 ('for|f', Keyword, ('#pop', 'forparameter', 'optargsp')),
+                # 8.2.6 - GOTO
+                ('goto|g', Keyword, ('#pop', 'l_gotoargument', 'argumentsp', 'postcond')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
@@ -342,6 +344,13 @@ class MumpsLexer(ExtendedRegexLexer):
         'opt_forparam_numexpr': [
                 (':', Punctuation, 'expr'),
                 default('#pop'),
+                ],
+        # 8.2.6 - GOTO parameters
+        'gotoargument': [
+                default(('#pop', 'postcond', 'entryref')),
+                ],
+        'l_gotoargument': [
+                default(('list_comma', 'gotoargument')),
                 ],
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [
