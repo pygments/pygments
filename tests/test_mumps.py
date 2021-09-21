@@ -681,3 +681,58 @@ def testElseAbbr(lexer):
             (Keyword, 'q'),
             (Text, '\n'),
             ]
+
+def testForEver(lexer):
+    assert list(lexer.get_tokens(' for  do')) == [
+            (Whitespace, ' '),
+            (Keyword, 'for'),
+            (Whitespace, '  '),
+            (Keyword, 'do'),
+            (Text, '\n'),
+            ]
+
+def testForOnce(lexer):
+    assert list(lexer.get_tokens(' f x=1 d')) == [
+            (Whitespace, ' '),
+            (Keyword, 'f'),
+            (Whitespace, ' '),
+            (Name.Variable, 'x'),
+            (Operator, '='),
+            (Number, '1'),
+            (Whitespace, ' '),
+            (Keyword, 'd'),
+            (Text, '\n'),
+            ]
+
+def testForBounds(lexer):
+    assert list(lexer.get_tokens(' f x=1:1:5 d')) == [
+            (Whitespace, ' '),
+            (Keyword, 'f'),
+            (Whitespace, ' '),
+            (Name.Variable, 'x'),
+            (Operator, '='),
+            (Number, '1'),
+            (Punctuation, ':'),
+            (Number, '1'),
+            (Punctuation, ':'),
+            (Number, '5'),
+            (Whitespace, ' '),
+            (Keyword, 'd'),
+            (Text, '\n'),
+            ]
+
+def testForEverSteps(lexer):
+    assert list(lexer.get_tokens(' f x=1:1 d')) == [
+            (Whitespace, ' '),
+            (Keyword, 'f'),
+            (Whitespace, ' '),
+            (Name.Variable, 'x'),
+            (Operator, '='),
+            (Number, '1'),
+            (Punctuation, ':'),
+            (Number, '1'),
+            (Whitespace, ' '),
+            (Keyword, 'd'),
+            (Text, '\n'),
+            ]
+
