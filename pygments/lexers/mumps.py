@@ -290,8 +290,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('for|f', Keyword, ('#pop', 'forparameter', 'optargsp')),
                 # 8.2.6 - GOTO
                 ('goto|g', Keyword, ('#pop', 'l_gotoargument', 'argumentsp', 'postcond')),
-                # 8.2.7 - HANG
-                ('hang|h', Keyword, ('#pop', 'noargsp')),
+                # 8.2.7 - HALT
+                ('halt|h', Keyword, ('#pop', 'noargsp')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],

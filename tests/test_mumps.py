@@ -765,18 +765,19 @@ def testGotoIndirected(lexer):
             (Text, '\n'),
             ]
 
-def testHang(lexer):
-    assert list(lexer.get_tokens(' hang')) == [
+def testHalt(lexer):
+    assert list(lexer.get_tokens(' halt')) == [
             (Whitespace, ' '),
-            (Keyword, 'hang'),
+            (Keyword, 'halt'),
             (Text, '\n'),
             ]
 
 def testHangAbbr(lexer):
-    assert list(lexer.get_tokens(' H  ; Hangup')) == [
+    assert list(lexer.get_tokens(' H  ; Halt')) == [
             (Whitespace, ' '),
             (Keyword, 'H'),
             (Whitespace, '  '),
-            (Comment, '; Hangup'),
+            (Comment, '; Halt'),
             (Text, '\n'),
             ]
+
