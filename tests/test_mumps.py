@@ -736,3 +736,32 @@ def testForEverSteps(lexer):
             (Text, '\n'),
             ]
 
+def testGotoEntryrefs(lexer):
+    assert list(lexer.get_tokens(' goto:done abort:fail,tag+3^ROUTINE')) == [
+            (Whitespace, ' '),
+            (Keyword, 'goto'),
+            (Operator, ':'),
+            (Name.Variable, 'done'),
+            (Whitespace, ' '),
+            (Name.Label, 'abort'),
+            (Operator, ':'),
+            (Name.Variable, 'fail'),
+            (Punctuation, ','),
+            (Name.Label, 'tag'),
+            (Operator, '+'),
+            (Number, '3'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROUTINE'),
+            (Text, '\n'),
+            ]
+
+def testGotoIndirected(lexer):
+    assert list(lexer.get_tokens(' g @gotargs')) == [
+            (Whitespace, ' '),
+            (Keyword, 'g'),
+            (Whitespace, ' '),
+            (Operator, '@'),
+            (Name.Variable, 'gotoargs'),
+            (Text, '\n'),
+            ]
+
