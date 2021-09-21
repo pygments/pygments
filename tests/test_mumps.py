@@ -801,6 +801,6 @@ def testHangAbbr(lexer):
             (Whitespace, ' '),
             (Number, '10'),
             (Whitespace, ' '),
-            (Comment, '; Hang ten!')
+            (Comment, '; Hang ten!'),
             (Text, '\n'),
             ]
