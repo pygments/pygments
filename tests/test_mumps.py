@@ -756,7 +756,7 @@ def testGotoEntryrefs(lexer):
             ]
 
 def testGotoIndirected(lexer):
-    assert list(lexer.get_tokens(' g @gotargs')) == [
+    assert list(lexer.get_tokens(' g @gotoargs')) == [
             (Whitespace, ' '),
             (Keyword, 'g'),
             (Whitespace, ' '),
