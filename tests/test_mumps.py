@@ -772,7 +772,7 @@ def testHalt(lexer):
             (Text, '\n'),
             ]
 
-def testHangAbbr(lexer):
+def testHaltAbbr(lexer):
     assert list(lexer.get_tokens(' H  ; Halt')) == [
             (Whitespace, ' '),
             (Keyword, 'H'),
@@ -781,3 +781,26 @@ def testHangAbbr(lexer):
             (Text, '\n'),
             ]
 
+def testHang(lexer):
+    assert list(lexer.get_tokens(' hang:wait 2,extraTime')) == [
+            (Whitespace, ' '),
+            (Keyword, 'hang'),
+            (Operator, ':'),
+            (Name.Variable, 'wait'),
+            (Whitespace, ' '),
+            (Number, '2'),
+            (Punctuation, ','),
+            (Name.Variable, 'extraTime'),
+            (Text, '\n'),
+            ]
+
+def testHangAbbr(lexer):
+    assert list(lexer.get_tokens(' h 10 ; Hang ten!')) == [
+            (Whitespace, ' '),
+            (Keyword, 'h'),
+            (Whitespace, ' '),
+            (Number, '10'),
+            (Whitespace, ' '),
+            (Comment, '; Hang ten!')
+            (Text, '\n'),
+            ]
