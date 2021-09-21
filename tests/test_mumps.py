@@ -635,3 +635,30 @@ def testDoEntryrefWIndriects(lexer):
             (Text, '\n'),
             ]
 
+def testDoExternref(lexer):
+    assert list(lexer.get_tokens(' do &PACKAGE.ROUTINE,&ROUTINE(arg),&PACKAGE.LABEL^ROUTINE(1,"abc")')) == [
+            (Whitespace, ' '),
+            (Keyword, 'do'),
+            (Whitespace, ' '),
+            (Name.Namespace, '&PACKAGE'),
+            (Punctuation, '.'),
+            (Name.Namespace, 'ROUTINE'),
+            (Punctuation, ','),
+            (Name.Namespace, '&ROUTINE'),
+            (Punctuation, '('),
+            (Name.Variable, 'arg'),
+            (Punctuation, ')'),
+            (Punctuation, ','),
+            (Name.Namespace, '&PACKAGE'),
+            (Punctuation, '.'),
+            (Name.Label, 'LABEL'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROUTINE'),
+            (Punctuation, '('),
+            (Number, '1'),
+            (Punctuation, ','),
+            (String, '"abc"'),
+            (Punctuation, ')'),
+            (Text, '\n'),
+            ]
+

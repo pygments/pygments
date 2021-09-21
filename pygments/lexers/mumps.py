@@ -245,8 +245,16 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('(\\^)(@)', bygroups(Punctuation, Operator), ('#pop', 'expr')),
                 default('#pop'),
                 ],
+        # 8.1.6.2 - Label reference labelref
         'labelref': [
-                ('(^)(' + name_re + ')', bygroups(Punctuation, Name.Namespace), '#pop'),
+                ('(' + name_re + ')(\\^)(' + name_re + ')', bygroups(Name.Label, Punctuation, Name.Namespace), '#pop'),
+                ('(\\^)(' + name_re + ')', bygroups(Punctuation, Name.Namespace), '#pop'),
+                ],
+        # 8.1.6.3 - External reference externref
+        'externref': [
+                ('(&' + name_re + ')(\\.)(' + name_re + ')(\\^)(' + name_re + ')', bygroups(Name.Namespace, Punctuation, Name.Label, Punctuation, Name.Namespace), '#pop'),
+                ('(&' + name_re + ')(\\.)(' + name_re + ')', bygroups(Name.Namespace, Punctuation, Name.Namespace), '#pop'),
+                ('&' + name_re, Name.Namespace, '#pop'),
                 ],
         # 8.1.7 - Parameter passing
         'actuallist': [
@@ -301,12 +309,19 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 8.2.3 - DO arguments
         'doargument': [
+                default(('#pop', 'postcond', 'opt_actuallist', 'doargs_choice')),
+                ],
+        'doargs_choice': [
                 # Don't include indirected doarguments (@doargs) here - entryref includes indirection that looks lexically the same (@tag), only the interpreter cares about the difference
                 # Spell out 'labelref' because only they may be followed by actuallist
                 # (Otherwise, parsing would be undecideable because entryref allows indirection which introduces parentheses)
-                ('(' + name_re + ')?(\\^)(' + name_re + ')', bygroups(Name.Label, Punctuation, Name.Namespace), ('#pop', 'postcond', 'opt_actuallist')),
-                ( name_re + '(?=\\()', Name.Label, ('#pop', 'postcond', 'opt_actuallist')),
-                default(('#pop', 'postcond', 'entryref')),
+                #'(' + name_re + ')?(\\^)(' + name_re + ')', bygroups(Name.Label, Punctuation, Name.Namespace), ('#pop', 'postcond', 'opt_actuallist')),
+                # name_re + '(?=\\()', Name.Label, ('#pop', 'postcond', 'opt_actuallist')),
+                # '(?=&)', Operator, ('#pop', 'postcond', 'opt_actuallist', 'externref')),
+                include('labelref'),
+                ( name_re + '(?=\\()', Name.Label, '#pop'),
+                include('externref'),
+                default(('#pop', '#pop', 'entryref')),
                 ],
         'l_doargument': [
                 default(('list_comma', 'doargument')),
