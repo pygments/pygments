@@ -832,3 +832,51 @@ def testIfAbbrEmpty(lexer):
             (Keyword, 'q'),
             (Text, '\n'),
             ]
+
+def testJob(lexer):
+    assert list(lexer.get_tokens(' job tag+4^ROUTINE:foo:5')) == [
+            (Whitespace, ' '),
+            (Keyword, 'job'),
+            (Whitespace, ' '),
+            (Name.Label, 'tag'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROUTINE'),
+            (Punctuation, ':'),
+            (Name.Variable, 'foo'),
+            (Punctuation, ':'),
+            (Number, '5'),
+            (Text, '\n'),
+            ]
+
+def testJobList(lexer):
+    assert list(lexer.get_tokens(
+        ' j:bar tag^ROUTINE(1,"abc"):(startup="/opt/foo/script":err="job-err.txt"):3,@jobargs')) == [
+            (Whitespace, ' '),
+            (Keyword, 'j'),
+            (Operator, ':'),
+            (Name.Variable, 'bar'),
+            (Whitespace, ' '),
+            (Name.Label, 'tag'),
+            (Punctuation, '^'),
+            (Name.Namespace, 'ROUTINE'),
+            (Punctuation, '('),
+            (Number, '1'),
+            (Punctuation, ','),
+            (String, '"abc"'),
+            (Punctuation, ')'),
+            (Punctuation, ':'),
+            (Punctuation, '('),
+            (Name.Variale, 'startup'),
+            (Operator, '='),
+            (String, '"/opt/foo/script"'),
+            (Punctuation, ':'),
+            (Name.Variable, 'err'),
+            (Operator, '='),
+            (String, '"job-err.txt"'),
+            (Punctuation, ')'),
+            (Punctuation, ':'),
+            (Number, '3'),
+            (Operator, '@'),
+            (Name.Variable, 'jobargs'),
+            (Text, '\n'),
+            ]
