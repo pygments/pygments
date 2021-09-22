@@ -830,4 +830,5 @@ def testIfAbbrEmpty(lexer):
             (Keyword, 'd'),
             (Whitespace, '  '),
             (Keyword, 'q'),
+            (Text, '\n'),
             ]

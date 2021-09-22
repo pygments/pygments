@@ -296,6 +296,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('hang', Keyword, ('#pop', 'l_expr', 'argumentsp', 'postcond')),
                 # Combination halt/hang - both abbreviate to h, so the difference is whether there are arguments
                 ('h(?= )', Keyword, ('#pop', 'l_expr', 'optargsp', 'postcond')),
+                # 8.2.9 - IF
+                ('if|i', Keyword, ('#pop', 'l_expr', 'optargsp')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
