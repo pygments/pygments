@@ -804,3 +804,30 @@ def testHangAbbr(lexer):
             (Comment, '; Hang ten!'),
             (Text, '\n'),
             ]
+
+def testIf(lexer):
+    assert list(lexer.get_tokens(' if x=10,y>5 do')) == [
+            (Whitespace, ' '),
+            (Keyword, 'if'),
+            (Whitespace, ' '),
+            (Name.Variable, 'x'),
+            (Operator, '='),
+            (Number, '10'),
+            (Punctuation, ','),
+            (Name.Variable, 'y'),
+            (Operator, '>'),
+            (Number, '5'),
+            (Whitespace, ' '),
+            (Keyword, 'do'),
+            (Text, '\n'),
+            ]
+
+def testIfAbbrEmpty(lexer):
+    assert list(lexer.get_tokens(' i  d  q')) == [
+            (Whitespace, ' '),
+            (Keyword, 'i'),
+            (Whitespace, '  '),
+            (Keyword, 'd'),
+            (Whitespace, '  '),
+            (Keyword, 'q'),
+            ]
