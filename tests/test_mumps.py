@@ -868,7 +868,7 @@ def testJobList(lexer):
             (Punctuation, ')'),
             (Punctuation, ':'),
             (Punctuation, '('),
-            (Name.Variale, 'startup'),
+            (Name.Variable, 'startup'),
             (Operator, '='),
             (String, '"/opt/foo/script"'),
             (Punctuation, ':'),
