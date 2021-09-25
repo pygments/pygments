@@ -901,3 +901,11 @@ def testKill(lexer):
             (Punctuation, ')'),
             (Text, '\n')
             ]
+def testKillAll(lexer):
+    assert list(lexer.get_tokens(' k  q')) == [
+            (Whitespace, ' '),
+            (Keyword, 'k'),
+            (Whitespace, '  '),
+            (Keyword, 'q'),
+            (Text, '\n')
+            ]
