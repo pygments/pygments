@@ -878,6 +878,7 @@ def testJobList(lexer):
             (Punctuation, ')'),
             (Punctuation, ':'),
             (Number, '3'),
+            (Punctuation, ','),
             (Operator, '@'),
             (Name.Variable, 'jobargs'),
             (Text, '\n'),
