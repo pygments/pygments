@@ -308,6 +308,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('if|i', Keyword, ('#pop', 'l_expr', 'optargsp')),
                 # 8.2.10 - JOB
                 ('job|j', Keyword, ('#pop', 'l_jobargument', 'argumentsp', 'postcond')),
+                # 8.2.11 - KILL
+                ('kill', Keyword, ('#pop', 'l_killargument', 'optargsp', 'postcond')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
@@ -388,6 +390,13 @@ class MumpsLexer(ExtendedRegexLexer):
         'more_jobparams': [
                 (':', Punctuation, 'expr'),
                 ('\\)', Punctuation, '#pop'),
+                ],
+        # 8.2.11 - KILL arguments
+        'killargument': [
+                include('glvn'),
+                ],
+        'l_killargument': [
+                default(('list_comma', 'killargument')),
                 ],
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [

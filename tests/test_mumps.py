@@ -883,3 +883,21 @@ def testJobList(lexer):
             (Name.Variable, 'jobargs'),
             (Text, '\n'),
             ]
+
+def testKill(lexer):
+    assert list(lexer.get_tokens(' kill:done a,b,c(d)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'kill'),
+            (Operator, ':'),
+            (Name.Variable, 'done'),
+            (Whitespace, ' '),
+            (Name.Variable, 'a'),
+            (Punctuation, ','),
+            (Name.Variable, 'b'),
+            (Punctuation, ','),
+            (Name.Variable, 'c'),
+            (Punctuation, '('),
+            (Name.Variable, 'd'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
