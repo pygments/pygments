@@ -839,6 +839,8 @@ def testJob(lexer):
             (Keyword, 'job'),
             (Whitespace, ' '),
             (Name.Label, 'tag'),
+            (Operator, '+'),
+            (Number, '4'),
             (Punctuation, '^'),
             (Name.Namespace, 'ROUTINE'),
             (Punctuation, ':'),
