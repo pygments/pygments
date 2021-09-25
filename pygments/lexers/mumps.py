@@ -226,6 +226,14 @@ class MumpsLexer(ExtendedRegexLexer):
             (':', Operator, 'expr'),
             default('#pop')  
             ],
+        # 8.1.5 - Command timeout timeout
+        'timeout': [
+                (':', Punctuation, ('#pop', 'expr')),
+                ],
+        'opt_timeout': [
+                include('timeout'),
+                default('#pop'),
+                ],
         # 8.1.6 - Line reference lineref
         'lineref': [
                 include('entryref'),
@@ -298,6 +306,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('h(?= )', Keyword, ('#pop', 'l_expr', 'optargsp', 'postcond')),
                 # 8.2.9 - IF
                 ('if|i', Keyword, ('#pop', 'l_expr', 'optargsp')),
+                # 8.2.10 - JOB
+                ('job|j', Keyword, ('#pop', 'l_jobargument', 'argumentsp', 'postcond')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
@@ -324,9 +334,9 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 8.2.3 - DO arguments
         'doargument': [
-                default(('#pop', 'postcond', 'opt_actuallist', 'doargs_choice')),
+                default(('#pop', 'postcond', 'opt_actuallist', 'lineref_choice')),
                 ],
-        'doargs_choice': [
+        'lineref_choice': [
                 # Spell out tag-only 'labelref' with a following parenthesis so entryref can't match it
                 ( name_re + '(?=\\()', Name.Label, '#pop'),
                 include('labelref'),
@@ -359,6 +369,25 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         'l_gotoargument': [
                 default(('list_comma', 'gotoargument')),
+                ],
+        # 8.2.10 - JOB arguments
+        'jobargument': [
+                default(('#pop', 'opt_jobparameters', 'opt_actuallist', 'lineref_choice')),
+                ],
+        'l_jobargument': [
+                default(('list_comma', 'jobargument')),
+                ],
+        'opt_jobparameters': [
+                (':', Punctuation, ('#pop', 'opt_timeout', 'jobparameters')),
+                default('#pop'),
+                ],
+        'jobparameters': [
+                ('\\(', Punctuation, ('#pop', 'more_jobparams', 'expr')),
+                include('expr'),
+                ],
+        'more_jobparams': [
+                (':', Punctuation, 'expr'),
+                ('\\)', Punctuation, '#pop'),
                 ],
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [
