@@ -55,7 +55,7 @@ class BibTeXLexer(ExtendedRegexLexer):
     tokens = {
         'root': [
             include('whitespace'),
-            ('@comment', Comment),
+            (r'@comment(?!ary)', Comment),
             ('@preamble', Name.Class, ('closing-brace', 'value', 'opening-brace')),
             ('@string', Name.Class, ('closing-brace', 'field', 'opening-brace')),
             ('@' + IDENTIFIER, Name.Class,
