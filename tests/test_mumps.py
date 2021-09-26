@@ -909,3 +909,28 @@ def testKillAll(lexer):
             (Keyword, 'q'),
             (Text, '\n')
             ]
+
+def testKillExclusive(lexer):
+    assert list(lexer.get_tokens(' k (save,these,variables)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'k'),
+            (Whitespace, ' '),
+            (Punctuation, '('),
+            (Name.Variable, 'save'),
+            (Punctuation, ','),
+            (Name.Variable, 'these'),
+            (Punctuation, ','),
+            (Name.Variable, 'variables'),
+            (Punctuation, ')'),
+            (Text, '\n'),
+            ]
+def testKillIndirect(lexer):
+    assert list(lexer.get_tokens(' k @killargs')) == [
+            (Whitespace, ' '),
+            (Keyword, 'k'),
+            (Whitespace, ' '),
+            (Operator, '@'),
+            (Name.Variable, 'killargs'),
+            (Text, '\n'),
+            ]
+
