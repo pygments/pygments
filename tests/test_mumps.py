@@ -911,7 +911,7 @@ def testKillAll(lexer):
             ]
 
 def testKillExclusive(lexer):
-    assert list(lexer.get_tokens(' k (save,these,variables)')) == [
+    assert list(lexer.get_tokens(' k (save,these,@variables)')) == [
             (Whitespace, ' '),
             (Keyword, 'k'),
             (Whitespace, ' '),
@@ -920,6 +920,7 @@ def testKillExclusive(lexer):
             (Punctuation, ','),
             (Name.Variable, 'these'),
             (Punctuation, ','),
+            (Operator, '@'),
             (Name.Variable, 'variables'),
             (Punctuation, ')'),
             (Text, '\n'),
