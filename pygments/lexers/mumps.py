@@ -393,10 +393,20 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 8.2.11 - KILL arguments
         'killargument': [
+                ('\\(', Punctuation, ('#pop', 'exclusive_killargs', 'lname')),
+                ('@', Operator, ('#pop', 'expratom')),
                 include('glvn'),
                 ],
         'l_killargument': [
                 default(('list_comma', 'killargument')),
+                ],
+        'exclusive_killargs': [
+                ('\\)', Punctuation, '#pop'),
+                (',', Punctuation, 'lname'),
+                ],
+        'lname': [
+                ('@', Operator, ('#pop', 'expratom')),
+                include('name'),
                 ],
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [
