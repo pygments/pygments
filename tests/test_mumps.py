@@ -943,7 +943,7 @@ def testLock(lexer):
             (Name, 'only'),
             (Punctuation, ','),
             (Name, 'these'),
-            (Puncuation, ','),
+            (Punctuation, ','),
             (Name, 'things'),
             (Text, '\n')
             ]
