@@ -987,8 +987,10 @@ def testLockList(lexer):
             ]
 
 def testUnlock(lexer):
-    assert list(lexer.get_tokens(' l')) == [
+    assert list(lexer.get_tokens(' l:done')) == [
             (Whitespace, ' '),
             (Keyword, 'l'),
+            (Operator, ':'),
+            (Name.Variable, 'done'),
             (Text, '\n'),
             ]
