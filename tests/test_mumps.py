@@ -935,3 +935,60 @@ def testKillIndirect(lexer):
             (Text, '\n'),
             ]
 
+def testLock(lexer):
+    assert list(lexer.get_tokens(' lock only,these,things')) == [
+            (Whitespace, ' '),
+            (Keyword, 'lock'),
+            (Whitespace, ' '),
+            (Name, 'only'),
+            (Punctuation, ','),
+            (Name, 'these'),
+            (Puncuation, ','),
+            (Name, 'things'),
+            (Text, '\n')
+            ]
+            
+
+def testLockList(lexer):
+    assert list(lexer.get_tokens(' lock +^GLOBALS("foo",1),-(FISH("red",blue),COWS):3,@lockargs,@glos:2')) == [
+            (Whitespace, ' '),
+            (Keyword, 'lock'),
+            (Whitespace, ' '),
+            (Operator, '+'),
+            (Name, '^GLOBALS'),
+            (Punctuation, '('),
+            (String, '"foo"'),
+            (Punctuation, ','),
+            (Number, '1'),
+            (Punctuation, ')'),
+            (Punctuation, ','),
+            (Operator, '-'),
+            (Punctuation, '('),
+            (Name, 'FISH'),
+            (Punctuation, '('),
+            (String, '"red"'),
+            (Punctuation, ','),
+            (Name.Variable, 'blue'),
+            (Punctuation, ')'),
+            (Punctuation, ','),
+            (Name, 'COWS'),
+            (Punctuation, ')'),
+            (Punctuation, ':'),
+            (Number, '3'),
+            (Punctuation, ','),
+            (Operator, '@'),
+            (Name.Variable, 'lockargs'),
+            (Name.Punctuation, ','),
+            (Name.Operator, '@'),
+            (Name.Variable, 'glos'),
+            (Punctuation, ':'),
+            (Number, '2'),
+            (Text, '\n'),
+            ]
+
+def testUnlock(lexer):
+    assert list(lexer.get_tokens(' l')) == [
+            (Whitespace, ' '),
+            (Keyword, 'l'),
+            (Text, '\n'),
+            ]
