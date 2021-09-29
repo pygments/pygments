@@ -136,11 +136,14 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('rlvn'),
                 ],
         'rlvn': [
-                ( name_re + '(?=\\()', Name.Variable, ('#pop', 'subscripts')),
-                ( name_re, Name.Variable, '#pop'),
+                ( name_re , Name.Variable, ('#pop', 'opt_subscripts')),
     	        ],
-        'subscripts': [  # Parsing structure for "( L expr )"
-                ('\\(', Punctuation, 'l_expr'),
+        # Parsing for '( L expr )'
+        'opt_subscripts': [
+                ('\\(', Punctuation, ('#pop', 'close_paren', 'l_expr')),
+                default('#pop')
+                ],
+        'close_paren': [
                 ('\\)', Punctuation, '#pop'),
                 ],
         # 7.1.4 - Expression item 'expritem'
@@ -425,8 +428,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         'nref': [
                 ('@', Operator, ('#pop', 'expratom')),
-                ('\\^?'+name_re+'(?=\\()', Name, ('#pop', 'subscripts')),
-                ('\\^?'+name_re, Name, ('#pop')),
+                ('\\^?'+name_re, Name, ('#pop', 'opt_subscripts')),
                 ],
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [
