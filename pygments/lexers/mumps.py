@@ -135,24 +135,42 @@ class MumpsLexer(ExtendedRegexLexer):
         # 7.1.2.1 - Local variable name lvn
         'lvn': [
                 include('rlvn'),
+                include('namind')
                 ],
         'rlvn': [
                 ( name_re , Name.Variable, ('#pop', 'opt_subscripts')),
     	        ],
         # 7.1.2.4 - Global variable name gvn
         'gvn': [
-                include('rgvn')
+                include('rgvn'),
+                include('namind')
                 ],
         'rgvn': [
                 ('\\^' + name_re, Name.Variable.Global, ('#pop', 'opt_subscripts')),
                 ],
         # Parsing for '( L expr )'
+        'subscripts': [
+                ('\\(', Punctuation, ('#pop', 'close_paren', 'l_expr'))
+                ],
         'opt_subscripts': [
-                ('\\(', Punctuation, ('#pop', 'close_paren', 'l_expr')),
+                include('subscripts'),
                 default('#pop')
                 ],
         'close_paren': [
                 ('\\)', Punctuation, '#pop'),
+                ],
+        # Name indirection, common syntax for rlvn and rgvn
+        'namind': [
+                ('@', Operator, ('#pop', 'namind_subscripts', 'rexpratom'))
+                ],
+        'namind_subscripts': [
+                ('@', Operator, ('#pop', 'subscripts')),
+                default('#pop'),
+                ],
+        'rexpratom': [
+                include('rlvn'),
+                include('rgvn'),
+                include('expratom')
                 ],
         # 7.1.4 - Expression item 'expritem'
         'expritem': [
