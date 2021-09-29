@@ -130,6 +130,7 @@ class MumpsLexer(ExtendedRegexLexer):
     	# 7.1.2 - Variable name 'glvn'
     	'glvn': [
                 include('lvn'),
+                include('gvn'),
                 ],
         # 7.1.2.1 - Local variable name lvn
         'lvn': [
@@ -138,6 +139,13 @@ class MumpsLexer(ExtendedRegexLexer):
         'rlvn': [
                 ( name_re , Name.Variable, ('#pop', 'opt_subscripts')),
     	        ],
+        # 7.1.2.4 - Global variable name gvn
+        'gvn': [
+                include('rgvn')
+                ],
+        'rgvn': [
+                ('\\^' + name_re, Name.Variable.Global, ('#pop', 'opt_subscripts')),
+                ],
         # Parsing for '( L expr )'
         'opt_subscripts': [
                 ('\\(', Punctuation, ('#pop', 'close_paren', 'l_expr')),
@@ -316,7 +324,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 # 8.2.12 - LOCK
                 ('lock|l', Keyword, ('#pop', 'l_lockargument', 'optargsp', 'postcond')),
                 # 8.2.13 - MERGE
-                #'merge|m', Keyword, ('#pop', 'l_mergeargument', 'argumentsp', 'postcond')),
+                ('merge|m', Keyword, ('#pop', 'l_mergeargument', 'argumentsp', 'postcond')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
@@ -430,6 +438,13 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         'l_nref': [
                 default(('list_comma', 'nref'))
+                ],
+        # 8.2.13 - MERGE arguments
+        'mergeargument': [
+                default(('#pop', 'glvn', 'equals', 'glvn'))
+                ],
+        'l_mergeargument': [
+                default(('list_comma', 'mergeargument'))
                 ],
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [
