@@ -315,6 +315,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('kill|k', Keyword, ('#pop', 'l_killargument', 'optargsp', 'postcond')),
                 # 8.2.12 - LOCK
                 ('lock|l', Keyword, ('#pop', 'l_lockargument', 'optargsp', 'postcond')),
+                # 8.2.13 - MERGE
+                #'merge|m', Keyword, ('#pop', 'l_mergeargument', 'argumentsp', 'postcond')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
@@ -416,19 +418,18 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8.2.12 - LOCK arguments
         'lockargument': [
                 ('[+-]', Operator),
-                ('\\(', Punctuation, ('#pop', 'opt_timeout', 'nrefgroup', 'nref')),
+                ('\\(', Punctuation, ('#pop', 'opt_timeout', 'close_paren', 'l_nref')),
                 default(('#pop', 'opt_timeout', 'nref')),
                 ],
         'l_lockargument': [
                 default(('list_comma', 'lockargument'))
                 ],
-        'nrefgroup': [
-                ('\\)', Punctuation, '#pop'),
-                (',', Punctuation, 'nref'),
-                ],
         'nref': [
                 ('@', Operator, ('#pop', 'expratom')),
                 ('\\^?'+name_re, Name, ('#pop', 'opt_subscripts')),
+                ],
+        'l_nref': [
+                default(('list_comma', 'nref'))
                 ],
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [
