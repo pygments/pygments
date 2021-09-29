@@ -994,3 +994,70 @@ def testUnlock(lexer):
             (Name.Variable, 'done'),
             (Text, '\n'),
             ]
+
+def testMerge(lexer):
+    assert list(lexer.get_tokens(
+        ' merge:ready target(a,b)=^source(c)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'merge'),
+            (Operator, ':'),
+            (Name.Variable, 'ready'),
+            (Whitespace, ' '),
+            (Name.Variable, 'target'),
+            (Punctuation, '('),
+            (Name.Variable, 'a'),
+            (Punctuation, ','),
+            (Name.Variable, 'b'),
+            (Punctuation, ')'),
+            (Operator, '='),
+            (Name.Variable.Global, '^source'),
+            (Punctuation, '('),
+            (Name.Variable, 'c'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testMergeList(lexer):
+    assert list(lexer.get_tokens(
+        ' m a=b,c=@d,@e=f,@g=@h,@mergarg,@i(j)=@k@(l)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'm'),
+            (Whitespace, ' '),
+            (Name.Variable, 'a'),
+            (Operator, '='),
+            (Name.Variable, 'b'),
+            (Punctuation, ','),
+            (Name.Variable, 'c'),
+            (Operator, '='),
+            (Operator, '@'),
+            (Name.Variable, 'd'),
+            (Punctuation, ','),
+            (Operator, '@'),
+            (Name.Variable, 'e'),
+            (Operator, '='),
+            (Name.Variable, 'f'),
+            (Punctuation, ','),
+            (Operator, '@'),
+            (Name.Variable, 'g'),
+            (Operator, '='),
+            (Operator, '@'),
+            (Name.Variable, 'h'),
+            (Punctuation, ','),
+            (Operator, '@'),
+            (Name.Variable, 'mergarg'),
+            (Punctuation, ','),
+            (Operator, '@'),
+            (Name.Variable, 'i'),
+            (Punctuation, '('),
+            (Name.Variable, 'j'),
+            (Punctuation, ')'),
+            (Operator, '='),
+            (Operator, '@'),
+            (Name.Variable, 'k'),
+            (Operator, '@'),
+            (Punctuation, '('),
+            (Name.Variable, 'l'),
+            (Punctuation, ')'),
+            (Text, '\n'),
+            ]
+
