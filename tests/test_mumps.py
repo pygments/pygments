@@ -1061,3 +1061,59 @@ def testMergeList(lexer):
             (Text, '\n'),
             ]
 
+def testNewLocals(lexer):
+    assert list(lexer.get_tokens(
+        ' new a,b,c,d')) == [
+            (Whitespace, ' '),
+            (Keyword, 'new'),
+            (Whitespace, ' '),
+            (Name.Variable, 'a'),
+            (Punctuation, ','),
+            (Name.Variable, 'b'),
+            (Punctuation, ','),
+            (Name.Variable, 'c'),
+            (Punctuation, ','),
+            (Name.Variable, 'd'),
+            (Text, '\n')
+            ]
+
+def testNewAll(lexer):
+    assert list(lexer.get_tokens(' new:all  d')) == [
+            (Whitespace, ' '),
+            (Keyword, 'new'),
+            (Operator, ':'),
+            (Name.Variable, 'all'),
+            (Whitespace, '  '),
+            (Keyword, 'd'),
+            (Text, '\n')
+            ]
+
+def testNewSVNandIndirect(lexer):
+    assert list(lexer.get_tokens(' n $ETRAP,$ES,@newargs')) == [
+            (Whitespace, ' '),
+            (Keyword, 'n'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '$ETRAP'),
+            (Punctuation, ','),
+            (Name.Variable.Magic, '$ES'),
+            (Punctuation, ','),
+            (Operator, '@'),
+            (Name.Variable, 'newargs'),
+            (Text, '\n')
+            ]
+
+def testExclusiveNew(lexer):
+    assert list(lexer.get_tokens(' n (dont,new,these)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'n'),
+            (Whitespace, ' '),
+            (Punctuation, '('),
+            (Name.Variable, 'dont'),
+            (Punctuation, ','),
+            (Name.Variable, 'new'),
+            (Punctuation, ','),
+            (Name.Variable, 'these'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
