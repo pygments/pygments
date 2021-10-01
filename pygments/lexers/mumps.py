@@ -343,6 +343,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('lock|l', Keyword, ('#pop', 'l_lockargument', 'optargsp', 'postcond')),
                 # 8.2.13 - MERGE
                 ('merge|m', Keyword, ('#pop', 'l_mergeargument', 'argumentsp', 'postcond')),
+                # 8.2.14 - NEW
+                ('new|n', Keyword, ('#pop', 'l_newargument', 'optargsp', 'postcond')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
@@ -474,6 +476,20 @@ class MumpsLexer(ExtendedRegexLexer):
                 # Otherwise, assume it was a full argument
                 default('#pop')
                 ],
+        # 8.2.14 - NEW arguments
+        'newargument': [
+                ('\\(', Punctuation, ('#pop', 'close_paren', 'l_lname')),
+                # newsvn, only exists here
+                (words(('$ETRAP', '$ET', '$ESTACK', '$ES'), suffix=r'\b'), Name.Variable.Magic, '#pop'),
+                include('lname')
+                ],
+        'l_newargument': [
+                default(('list_comma', 'newargument'))
+                ],
+        'l_lname': [
+                default(('list_comma', 'lname'))
+                ],
+        # 8.2.15
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [
             ('@', Operator, ('#pop', 'expratom')),
