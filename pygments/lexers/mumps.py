@@ -316,37 +316,37 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8.2 - Command
         'command': [
                 # 8.2.1 - BREAK - no argument syntax
-                ('break|b', Keyword, ('#pop', 'noargsp', 'postcond')),
+                (words(('break', 'b'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
                 # 8.2.2 - CLOSE - has specific syntax
-                ('close|c', Keyword, ('#pop', 'l_closearg', 'argumentsp', 'postcond')),
+                (words(('close', 'c'), suffix=r'\b'), Keyword, ('#pop', 'l_closearg', 'argumentsp', 'postcond')),
                 # 8.2.3 - DO
-                ('do|d', Keyword, ('#pop', 'l_doargument', 'optargsp', 'postcond')),
+                (r'do?\b', Keyword, ('#pop', 'l_doargument', 'optargsp', 'postcond')),
                 # 8.2.4 - ELSE
-                ('else|e', Keyword, ('#pop', 'noargsp')),
+                (words(('else', 'e'), suffix=r'\b'), Keyword, ('#pop', 'noargsp')),
                 # 8.2.5 - FOR
-                ('for|f', Keyword, ('#pop', 'forparameter', 'optargsp')),
+                (words(('for', 'f'), suffix=r'\b'), Keyword, ('#pop', 'forparameter', 'optargsp')),
                 # 8.2.6 - GOTO
-                ('goto|g', Keyword, ('#pop', 'l_gotoargument', 'argumentsp', 'postcond')),
+                (words(('goto', 'g'), suffix=r'\b'), Keyword, ('#pop', 'l_gotoargument', 'argumentsp', 'postcond')),
                 # 8.2.7 - HALT
-                ('halt', Keyword, ('#pop', 'noargsp')),
+                (r'halt\b', Keyword, ('#pop', 'noargsp')),
                 # 8.2.8 - HANG
-                ('hang', Keyword, ('#pop', 'l_expr', 'argumentsp', 'postcond')),
+                (r'hang\b', Keyword, ('#pop', 'l_expr', 'argumentsp', 'postcond')),
                 # Combination halt/hang - both abbreviate to h, so the difference is whether there are arguments
-                ('h(?= )', Keyword, ('#pop', 'l_expr', 'optargsp', 'postcond')),
+                (r'h\b', Keyword, ('#pop', 'l_expr', 'optargsp', 'postcond')),
                 # 8.2.9 - IF
-                ('if|i', Keyword, ('#pop', 'l_expr', 'optargsp')),
+                (r'if?\b', Keyword, ('#pop', 'l_expr', 'optargsp')),
                 # 8.2.10 - JOB
-                ('job|j', Keyword, ('#pop', 'l_jobargument', 'argumentsp', 'postcond')),
+                (words(('job', 'j'), suffix=r'\b'), Keyword, ('#pop', 'l_jobargument', 'argumentsp', 'postcond')),
                 # 8.2.11 - KILL
-                ('kill|k', Keyword, ('#pop', 'l_killargument', 'optargsp', 'postcond')),
+                (words(('kill', 'k'), suffix=r'\b'), Keyword, ('#pop', 'l_killargument', 'optargsp', 'postcond')),
                 # 8.2.12 - LOCK
-                ('lock|l', Keyword, ('#pop', 'l_lockargument', 'optargsp', 'postcond')),
+                (words(('lock', 'l'), suffix=r'\b'), Keyword, ('#pop', 'l_lockargument', 'optargsp', 'postcond')),
                 # 8.2.13 - MERGE
-                ('merge|m', Keyword, ('#pop', 'l_mergeargument', 'argumentsp', 'postcond')),
+                (words(('merge', 'm'), suffix=r'\b'), Keyword, ('#pop', 'l_mergeargument', 'argumentsp', 'postcond')),
                 # 8.2.14 - NEW
-                ('new|n', Keyword, ('#pop', 'l_newargument', 'optargsp', 'postcond')),
+                (words(('new', 'n'), suffix=r'\b'), Keyword, ('#pop', 'l_newargument', 'optargsp', 'postcond')),
                 # 8.2.16 - QUIT - single expression, or indirect
-                ('quit|q', Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
+                (words(('quit', 'q'), suffix=r'\b'), Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
