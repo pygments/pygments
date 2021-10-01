@@ -170,7 +170,7 @@ class MumpsLexer(ExtendedRegexLexer):
         'rexpratom': [
                 include('rlvn'),
                 include('rgvn'),
-                include('expratom')
+                include('expritem')
                 ],
         # 7.1.4 - Expression item 'expritem'
         'expritem': [
@@ -459,10 +459,20 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 8.2.13 - MERGE arguments
         'mergeargument': [
+                # Indirection could be an indirected argument list, or the beginning of a glvn to be set
+                ('@', Operator, ('#pop', 'mergearg_post_indirect', 'expratom')),
                 default(('#pop', 'glvn', 'equals', 'glvn'))
                 ],
         'l_mergeargument': [
                 default(('list_comma', 'mergeargument'))
+                ],
+        'mergearg_post_indirect': [
+                # Was indirected variable name without subscripts
+                ('=', Operator, ('#pop', 'glvn')),
+                # Indirected with subscripts
+                ('@', Operator, ('#pop', 'glvn', 'equals', 'subscripts')),
+                # Otherwise, assume it was a full argument
+                default('#pop')
                 ],
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [
