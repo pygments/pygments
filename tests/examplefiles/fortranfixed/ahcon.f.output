@@ -1,9 +1,9 @@
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'SUBROUTINE ' Keyword
 'AHCON'       Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'SIZE'        Name
 ','           Punctuation
@@ -23,13 +23,13 @@
 ','           Punctuation
 'CLEVI'       Name
 ','           Punctuation
-'         '   Text
+'         '   Text.Whitespace
 'TRUNCATED'   Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 '&'           Generic.Strong
-'                    ' Text
+'                    ' Text.Whitespace
 'SCR1'        Name
 ','           Punctuation
 'SCR2'        Name
@@ -46,10 +46,10 @@
 ','           Punctuation
 'IERR'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '!Test'       Comment
 ' inline comment' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -317,57 +317,57 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'SIZE'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'M'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'IPVT'        Name
 '('           Punctuation
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'JPVT'        Name
 '('           Punctuation
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'IERR'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'A'           Name
 '('           Punctuation
@@ -375,11 +375,11 @@
 ','           Punctuation
 'N'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'B'           Name
 '('           Punctuation
@@ -387,11 +387,11 @@
 ','           Punctuation
 'M'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'WORK'        Name
 '('           Punctuation
@@ -399,79 +399,79 @@
 ','           Punctuation
 'N'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'CLEVR'       Name
 '('           Punctuation
 'N'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'CLEVI'       Name
 '('           Punctuation
 'N'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'OLEVR'       Name
 '('           Punctuation
 'N'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'OLEVI'       Name
 '('           Punctuation
 'N'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'SCR1'        Name
 '('           Punctuation
 'N'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'SCR2'        Name
 '('           Punctuation
 'N'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'LOGICAL                 ' Keyword.Type
 'CON'         Name
 '('           Punctuation
 'N'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -481,140 +481,140 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'ISEED'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'ITEMP'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'K1'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'K2'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'I'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'J'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'K'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'IMAX'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'INTEGER         ' Keyword.Type
 'JMAX'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'VALUE'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'EPS'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'EPS1'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'TEMP'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'CURR'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'ANORM'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'BNORM'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'COLNRM'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE PRECISION        ' Keyword.Type
 'RNDMNO'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DOUBLE COMPLEX\t\t' Keyword.Type
 'DCMPLX'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -624,83 +624,83 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'EPS'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1.D0'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '100  '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'EPS'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'EPS'         Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '2.D0'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'EPS1'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1.D0'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'EPS'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'IF'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'EPS1'        Name
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'NE'          Name
 '.'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1.D0'        Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'GO'          Keyword
-' '           Text
+' '           Text.Whitespace
 'TO'          Keyword
-' '           Text
+' '           Text.Whitespace
 '100'         Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'EPS'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'EPS'         Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '2.D0'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -710,67 +710,67 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'ANORM'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0.0D0'       Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DO '         Keyword
 '120'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'J'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'COLNRM'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0.D0'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'DO '         Keyword
 '110'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'      '      Text
+'      '      Text.Whitespace
 'COLNRM'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'COLNRM'      Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'ABS'         Name.Builtin
 '('           Punctuation
 'A'           Name
@@ -780,41 +780,41 @@
 'J'           Name
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '110  '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'IF'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'COLNRM'      Name
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'GT'          Name
 '.'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ANORM'       Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ANORM'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'COLNRM'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '120  '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -824,67 +824,67 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'BNORM'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0.0D0'       Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DO '         Keyword
 '140'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'J'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'M'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'COLNRM'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0.D0'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'DO '         Keyword
 '130'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'      '      Text
+'      '      Text.Whitespace
 'COLNRM'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'COLNRM'      Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'ABS'         Name.Builtin
 '('           Punctuation
 'B'           Name
@@ -894,41 +894,41 @@
 'J'           Name
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '130  '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'IF'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'COLNRM'      Name
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'GT'          Name
 '.'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'BNORM'       Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'BNORM'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'COLNRM'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '140  '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -938,67 +938,67 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DO '         Keyword
 '160'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'J'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'DO '         Keyword
 '150'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'      '      Text
+'      '      Text.Whitespace
 'WORK'        Name
 '('           Punctuation
 'I'           Name
 ','           Punctuation
 'J'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'A'           Name
 '('           Punctuation
 'I'           Name
 ','           Punctuation
 'J'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '150  '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '160  '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1020,142 +1020,142 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'IF'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ISEED'       Name
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'EQ'          Name
 '.'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ISEED'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '86345823'    Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'IF'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ANORM'       Name
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'EQ'          Name
 '.'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.D0'        Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ANORM'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1.D0'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'IF'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'BNORM'       Name
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'GT'          Name
 '.'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0.D0'        Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'THEN'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'TEMP'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2.D0'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'ANORM'       Name
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 'BNORM'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'ELSE'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'TEMP'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '2.D0'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'END '        Keyword
 'IF'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DO '         Keyword
 '190'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'K'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'M'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'DO '         Keyword
 '180'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'J'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'      '      Text
+'      '      Text.Whitespace
 'CALL '       Keyword
 'RAND'        Name.Builtin
 '('           Punctuation
@@ -1165,65 +1165,65 @@
 ','           Punctuation
 'RNDMNO'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'      '      Text
+'      '      Text.Whitespace
 'VALUE'       Keyword
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'RNDMNO'      Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '0.5D0'       Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'TEMP'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'      '      Text
+'      '      Text.Whitespace
 'DO '         Keyword
 '170'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'        '    Text
+'        '    Text.Whitespace
 'WORK'        Name
 '('           Punctuation
 'I'           Name
 ','           Punctuation
 'J'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'WORK'        Name
 '('           Punctuation
 'I'           Name
 ','           Punctuation
 'J'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'B'           Name
 '('           Punctuation
 'I'           Name
@@ -1232,25 +1232,25 @@
 ')'           Punctuation
 '*'           Operator
 'VALUE'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '170  '       Name.Label
 ' '           Text
-'      '      Text
+'      '      Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '180  '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '190  '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1260,10 +1260,10 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'CALL '       Keyword
 'EIGEN'       Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
@@ -1285,25 +1285,25 @@
 ','           Punctuation
 'IERR'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'IF'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'IERR'        Name
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'NE'          Name
 '.'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'RETURN'      Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1313,67 +1313,67 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DO '         Keyword
 '210'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'J'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'DO '         Keyword
 '200'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'      '      Text
+'      '      Text.Whitespace
 'WORK'        Name
 '('           Punctuation
 'I'           Name
 ','           Punctuation
 'J'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'A'           Name
 '('           Punctuation
 'I'           Name
 ','           Punctuation
 'J'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '200  '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '210  '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1383,10 +1383,10 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'CALL '       Keyword
 'EIGEN'       Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
@@ -1408,25 +1408,25 @@
 ','           Punctuation
 'IERR'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'IF'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'IERR'        Name
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'NE'          Name
 '.'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'RETURN'      Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1438,52 +1438,52 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DO '         Keyword
 '230'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'J'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'DO '         Keyword
 '220'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'      '      Text
+'      '      Text.Whitespace
 'WORK'        Name
 '('           Punctuation
 'I'           Name
 ','           Punctuation
 'J'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 '&'           Generic.Strong
-'        '    Text
+'        '    Text.Whitespace
 'ABS'         Name.Builtin
 '('           Punctuation
 'DCMPLX'      Name
@@ -1512,19 +1512,19 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '220  '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '230  '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1534,51 +1534,51 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DO '         Keyword
 '240'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'IPVT'        Name
 '('           Punctuation
 'I'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'JPVT'        Name
 '('           Punctuation
 'I'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '240  '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1590,21 +1590,21 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DO '         Keyword
 '270'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
 '-'           Operator
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1618,11 +1618,11 @@
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'CURR'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'WORK'        Name
 '('           Punctuation
 'IPVT'        Name
@@ -1635,37 +1635,37 @@
 'I'           Name
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'IMAX'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'JMAX'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'TEMP'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'CURR'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1675,41 +1675,41 @@
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'DO '         Keyword
 '260'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'K1'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'I'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'      '      Text
+'      '      Text.Whitespace
 'DO '         Keyword
 '250'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'K2'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'I'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'        '    Text
+'        '    Text.Whitespace
 'IF'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'WORK'        Name
 '('           Punctuation
@@ -1723,24 +1723,24 @@
 'K2'          Name
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'LT'          Name
 '.'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'TEMP'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'THEN'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'          '  Text
+'          '  Text.Whitespace
 'TEMP'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'WORK'        Name
 '('           Punctuation
 'IPVT'        Name
@@ -1753,46 +1753,46 @@
 'K2'          Name
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'          '  Text
+'          '  Text.Whitespace
 'IMAX'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'K1'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'          '  Text
+'          '  Text.Whitespace
 'JMAX'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'K2'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'        '    Text
+'        '    Text.Whitespace
 'END '        Keyword
 'IF'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '250  '       Name.Label
 ' '           Text
-'      '      Text
+'      '      Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '260  '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1802,89 +1802,89 @@
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'ITEMP'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'IPVT'        Name
 '('           Punctuation
 'I'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'IPVT'        Name
 '('           Punctuation
 'I'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'IPVT'        Name
 '('           Punctuation
 'IMAX'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'IPVT'        Name
 '('           Punctuation
 'IMAX'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'ITEMP'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'ITEMP'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'JPVT'        Name
 '('           Punctuation
 'I'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'JPVT'        Name
 '('           Punctuation
 'I'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'JPVT'        Name
 '('           Punctuation
 'JMAX'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'JPVT'        Name
 '('           Punctuation
 'JMAX'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'ITEMP'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1894,9 +1894,9 @@
 
 '270  '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1910,16 +1910,16 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'EPS1'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'SQRT'        Name.Builtin
 '('           Punctuation
 'EPS'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1929,19 +1929,19 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'DO '         Keyword
 '280'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'I'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -1953,9 +1953,9 @@
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'IF'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'WORK'        Name
 '('           Punctuation
@@ -1971,65 +1971,65 @@
 ')'           Punctuation
 '/'           Operator
 'ANORM'       Name
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'LE'          Name
 '.'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'EPS1'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'THEN'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'      '      Text
+'      '      Text.Whitespace
 'CON'         Name
 '('           Punctuation
 'I'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'FALSE'       Name
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'ELSE'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'      '      Text
+'      '      Text.Whitespace
 'CON'         Name
 '('           Punctuation
 'I'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'TRUE'        Name
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'    '        Text
+'    '        Text.Whitespace
 'END '        Keyword
 'IF'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '280  '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'CONTINUE'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C\n'         Comment
 
@@ -2039,12 +2039,12 @@
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'RETURN'      Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '     '       Name.Label
 ' '           Text
-'  '          Text
+'  '          Text.Whitespace
 'END'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace

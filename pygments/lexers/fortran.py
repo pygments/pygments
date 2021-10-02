@@ -44,13 +44,13 @@ class FortranLexer(RegexLexer):
             include('core'),
             (r'[a-z][\w$]*', Name),
             include('nums'),
-            (r'[\s]+', Text),
+            (r'[\s]+', Text.Whitespace),
         ],
         'core': [
             # Statements
 
-            (r'\b(DO)(\s+)(CONCURRENT)\b', bygroups(Keyword, Text, Keyword)),
-            (r'\b(GO)(\s*)(TO)\b', bygroups(Keyword, Text, Keyword)),
+            (r'\b(DO)(\s+)(CONCURRENT)\b', bygroups(Keyword, Text.Whitespace, Keyword)),
+            (r'\b(GO)(\s*)(TO)\b', bygroups(Keyword, Text.Whitespace, Keyword)),
 
             (words((
                 'ABSTRACT', 'ACCEPT', 'ALL', 'ALLSTOP', 'ALLOCATABLE', 'ALLOCATE',
@@ -205,8 +205,8 @@ class FortranFixedLexer(RegexLexer):
         ],
         'code': [
             (r'(.{66})(.*)(\n)',
-             bygroups(_lex_fortran, Comment, Text), 'root'),
-            (r'(.*)(\n)', bygroups(_lex_fortran, Text), 'root'),
+             bygroups(_lex_fortran, Comment, Text.Whitespace), 'root'),
+            (r'(.*)(\n)', bygroups(_lex_fortran, Text.Whitespace), 'root'),
             default('root'),
         ]
     }
