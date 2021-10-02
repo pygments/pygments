@@ -365,7 +365,7 @@
 'PoolC'       Name
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_entry'  Name.Class
 ','           Punctuation
 ' '           Text.Whitespace
@@ -386,7 +386,7 @@
 'QueueC'      Name
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_entry'  Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -405,7 +405,7 @@
 'PoolC'       Name
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_info'   Name.Class
 ','           Punctuation
 ' '           Text.Whitespace

@@ -18,7 +18,7 @@
 'public'      Keyword
 ' '           Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'AnchorValue' Name.Class
 '\n'          Text.Whitespace
 
@@ -36,7 +36,7 @@
 
 '   '         Text.Whitespace
 'union'       Keyword
-'\n   '       Text
+'\n   '       Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -751,7 +751,7 @@
 'public'      Keyword
 ' '           Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'MiddleAnchorValue' Name.Class
 '\n'          Text.Whitespace
 
@@ -769,7 +769,7 @@
 
 '   '         Text.Whitespace
 'union'       Keyword
-'\n   '       Text
+'\n   '       Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1391,7 +1391,7 @@
 'public'      Keyword
 ' '           Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Anchor'      Name.Class
 '\n'          Text.Whitespace
 
@@ -1400,7 +1400,7 @@
 
 '   '         Text.Whitespace
 'union'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
 'AnchorValue' Name
@@ -1419,7 +1419,7 @@
 
 '   '         Text.Whitespace
 'union'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
 'AnchorValue' Name
@@ -2545,7 +2545,7 @@
 'class'       Keyword
 ' '           Text.Whitespace
 'AnchorButton' Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'Button'      Name
@@ -2898,7 +2898,7 @@
 '?'           Operator
 ' '           Text.Whitespace
 'offset'      Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'none'        Name
@@ -2929,7 +2929,7 @@
 '?'           Operator
 ' '           Text.Whitespace
 'offset'      Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'none'        Name
@@ -2960,7 +2960,7 @@
 '?'           Operator
 ' '           Text.Whitespace
 'offset'      Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'none'        Name
@@ -2991,7 +2991,7 @@
 '?'           Operator
 ' '           Text.Whitespace
 'offset'      Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'none'        Name
@@ -4124,7 +4124,7 @@
 'class'       Keyword
 ' '           Text.Whitespace
 'AnchorRelButton' Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'Button'      Name
@@ -4737,7 +4737,7 @@
 '?'           Operator
 ' '           Text.Whitespace
 'relative'    Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 '('           Punctuation
@@ -4750,7 +4750,7 @@
 '?'           Operator
 ' '           Text.Whitespace
 'offset'      Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'none'        Name
@@ -4782,7 +4782,7 @@
 '?'           Operator
 ' '           Text.Whitespace
 'relative'    Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 '('           Punctuation
@@ -4795,7 +4795,7 @@
 '?'           Operator
 ' '           Text.Whitespace
 'offset'      Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'none'        Name
@@ -4827,7 +4827,7 @@
 '?'           Operator
 ' '           Text.Whitespace
 'relative'    Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 '('           Punctuation
@@ -4840,7 +4840,7 @@
 '?'           Operator
 ' '           Text.Whitespace
 'offset'      Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'none'        Name
@@ -4872,7 +4872,7 @@
 '?'           Operator
 ' '           Text.Whitespace
 'relative'    Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 '('           Punctuation
@@ -4885,7 +4885,7 @@
 '?'           Operator
 ' '           Text.Whitespace
 'offset'      Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'none'        Name
@@ -5912,7 +5912,7 @@
 'class'       Keyword
 ' '           Text.Whitespace
 'AnchorEditor' Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'Window'      Name
@@ -6020,7 +6020,7 @@
 'class'       Keyword
 ' '           Text.Whitespace
 'AnchorDropBox' Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'DropBox'     Name

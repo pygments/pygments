@@ -209,12 +209,12 @@
 'template'    Keyword
 '<'           Operator
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 '_Tp'         Name.Class
 ','           Punctuation
 ' '           Text.Whitespace
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name.Class
 ' '           Text.Whitespace
 '='           Operator
@@ -231,7 +231,7 @@
 
 '  '          Text.Whitespace
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'vector'      Name.Class
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -403,7 +403,7 @@
 '>'           Operator
 '  '          Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'traits'      Name.Class
 '<'           Operator
 'std'         Name
@@ -573,12 +573,12 @@
 'template'    Keyword
 '<'           Operator
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 '_Tp'         Name.Class
 ','           Punctuation
 ' '           Text.Whitespace
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name.Class
 ' '           Text.Whitespace
 '>'           Operator
@@ -586,7 +586,7 @@
 
 '  '          Text.Whitespace
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'vector'      Name.Class
 '<'           Operator
 '_Tp'         Name
@@ -757,7 +757,7 @@
 '>'           Operator
 '  '          Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'traits'      Name.Class
 '<'           Operator
 'std'         Name
@@ -926,12 +926,12 @@
 'template'    Keyword
 '<'           Operator
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 '_Tp'         Name.Class
 ','           Punctuation
 ' '           Text.Whitespace
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name.Class
 ' '           Text.Whitespace
 '>'           Operator
@@ -939,7 +939,7 @@
 
 '  '          Text.Whitespace
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'vector'      Name.Class
 '<'           Operator
 '_Tp'         Name
@@ -1118,7 +1118,7 @@
 '>'           Operator
 '  '          Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'traits'      Name.Class
 '<'           Operator
 'std'         Name
@@ -1295,7 +1295,7 @@
 'template'    Keyword
 '<'           Operator
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 '_Alloc'      Name.Class
 ' '           Text.Whitespace
 '>'           Operator
@@ -1304,7 +1304,7 @@
 
 '  '          Text.Whitespace
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'vector'      Name.Class
 '<'           Operator
 'bool'        Keyword.Type
@@ -1471,7 +1471,7 @@
 '>'           Operator
 '  '          Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'traits'      Name.Class
 '<'           Operator
 'std'         Name
