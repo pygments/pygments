@@ -796,7 +796,7 @@
 '\n'          Text.Whitespace
 
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'AnsiGenerator' Name.Class
 ' '           Text.Whitespace
 ':'           Operator
@@ -16253,7 +16253,7 @@
 
 '  '          Text.Whitespace
 'enum'        Keyword
-' '           Text
+' '           Text.Whitespace
 'BracketMode' Name.Class
 '   '         Text.Whitespace
 '{'           Punctuation
@@ -16275,7 +16275,7 @@
 
 '  '          Text.Whitespace
 'enum'        Keyword
-' '           Text
+' '           Text.Whitespace
 'BracketType' Name.Class
 '   '         Text.Whitespace
 '{'           Punctuation
@@ -16331,7 +16331,7 @@
 
 '  '          Text.Whitespace
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'ASBeautifier' Name.Class
 ' '           Text.Whitespace
 ':'           Operator

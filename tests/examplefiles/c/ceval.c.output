@@ -2210,7 +2210,7 @@
 'static'      Keyword
 ' '           Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -15727,7 +15727,7 @@
 '?'           Operator
 ' '           Text.Whitespace
 'Py_True'     Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'Py_False'    Name
@@ -16008,7 +16008,7 @@
 
 '\t\t\t\t\t\t  ' Text.Whitespace
 'Py_None'     Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'f'           Name
@@ -16073,7 +16073,7 @@
 
 '\t\t\t\t\t\t  ' Text.Whitespace
 'Py_None'     Name.Label
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
 'f'           Name

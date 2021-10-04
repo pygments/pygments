@@ -82,7 +82,7 @@ class CFamilyLexer(RegexLexer):
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
             (r'(true|false|NULL)\b', Name.Builtin),
-            (r'(' + _ident + r')(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
+            (r'(' + _ident + r')(\s*)(:)(?!:)', bygroups(Name.Label, Whitespace, Punctuation)),
             (_ident, Name)
         ],
         'types': [
@@ -92,7 +92,7 @@ class CFamilyLexer(RegexLexer):
                     'unsigned', 'signed', 'void'), suffix=r'\b'), Keyword.Type)
         ],
         'keywords': [
-            (r'(struct|union)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'(struct|union)(\s+)', bygroups(Keyword, Whitespace), 'classname'),
             (words(('asm', 'auto', 'break', 'case', 'const', 'continue',
                     'default', 'do', 'else', 'enum', 'extern', 'for', 'goto',
                     'if', 'register', 'restricted', 'return', 'sizeof', 'struct',
@@ -335,7 +335,7 @@ class CppLexer(CFamilyLexer):
             default('#pop')
         ],
         'keywords': [
-            (r'(class|concept|typename)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'(class|concept|typename)(\s+)', bygroups(Keyword, Whitespace), 'classname'),
             (words((
                 'catch', 'const_cast', 'delete', 'dynamic_cast', 'explicit',
                 'export', 'friend', 'mutable', 'new', 'operator',
@@ -347,7 +347,7 @@ class CppLexer(CFamilyLexer):
                 'typename'),
                suffix=r'\b'), Keyword),
             (r'namespace\b', Keyword, 'namespace'),
-            (r'(enum)(\s+)', bygroups(Keyword, Text), 'enumname'),
+            (r'(enum)(\s+)', bygroups(Keyword, Whitespace), 'enumname'),
             inherit
         ],
         'types': [
