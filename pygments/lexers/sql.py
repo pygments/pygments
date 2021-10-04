@@ -161,7 +161,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
     flags = re.IGNORECASE
     tokens = {
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'--.*\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (r'(' + '|'.join(s.replace(" ", r"\s+")
@@ -254,7 +254,7 @@ class PsqlRegexLexer(PostgresBase, RegexLexer):
         (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'))
     tokens['psql-command'] = [
         (r'\n', Text, 'root'),
-        (r'\s+', Text),
+        (r'\s+', Whitespace),
         (r'\\[^\s]+', Keyword.Pseudo),
         (r""":(['"]?)[a-z]\w*\b\1""", Name.Variable),
         (r"'(''|[^'])*'", String.Single),
@@ -381,7 +381,7 @@ class SqlLexer(RegexLexer):
     flags = re.IGNORECASE
     tokens = {
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'--.*\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (words((
@@ -599,7 +599,7 @@ class MySqlLexer(RegexLexer):
     flags = re.IGNORECASE
     tokens = {
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
 
             # Comments
             (r'(?:#|--\s+).*', Comment.Single),
@@ -655,14 +655,14 @@ class MySqlLexer(RegexLexer):
 
             # Exceptions; these words tokenize differently in different contexts.
             (r'\b(set)(?!\s*\()', Keyword),
-            (r'\b(character)(\s+)(set)\b', bygroups(Keyword, Text, Keyword)),
+            (r'\b(character)(\s+)(set)\b', bygroups(Keyword, Whitespace, Keyword)),
             # In all other known cases, "SET" is tokenized by MYSQL_DATATYPES.
 
             (words(MYSQL_CONSTANTS, prefix=r'\b', suffix=r'\b'), Name.Constant),
             (words(MYSQL_DATATYPES, prefix=r'\b', suffix=r'\b'), Keyword.Type),
             (words(MYSQL_KEYWORDS, prefix=r'\b', suffix=r'\b'), Keyword),
             (words(MYSQL_FUNCTIONS, prefix=r'\b', suffix=r'\b(\s*)(\()'),
-             bygroups(Name.Function, Text, Punctuation)),
+             bygroups(Name.Function, Whitespace, Punctuation)),
 
             # Schema object names
             #
@@ -820,7 +820,7 @@ class RqlLexer(RegexLexer):
     flags = re.IGNORECASE
     tokens = {
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'(DELETE|SET|INSERT|UNION|DISTINCT|WITH|WHERE|BEING|OR'
              r'|AND|NOT|GROUPBY|HAVING|ORDERBY|ASC|DESC|LIMIT|OFFSET'
              r'|TODAY|NOW|TRUE|FALSE|NULL|EXISTS)\b', Keyword),

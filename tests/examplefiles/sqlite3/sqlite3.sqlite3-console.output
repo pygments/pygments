@@ -5,7 +5,7 @@
 'sqlite> '    Generic.Prompt
 '.'           Punctuation
 'schema'      Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'CREATE TABLE paste (paste_id integer, code text, parsed_code text, pub_date\n' Generic.Output
 
@@ -15,61 +15,61 @@
 
 'sqlite> '    Generic.Prompt
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 "'\n"         Literal.String.Single
 
 '   ...> '    Generic.Prompt
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   ...> '    Generic.Prompt
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SQL error: near "a": syntax error\n' Generic.Traceback
 
 'sqlite> '    Generic.Prompt
 '%'           Operator
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SQL error: near "%": syntax error\n' Generic.Traceback
 
 'sqlite> '    Generic.Prompt
 'select'      Keyword
-' '           Text
+' '           Text.Whitespace
 'count'       Keyword
 '('           Punctuation
 'language'    Keyword
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'language'    Keyword
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword
-' '           Text
+' '           Text.Whitespace
 'paste'       Name
-' '           Text
+' '           Text.Whitespace
 'group'       Keyword
-' '           Text
+' '           Text.Whitespace
 'by'          Keyword
-' '           Text
+' '           Text.Whitespace
 'language'    Keyword
-' '           Text
+' '           Text.Whitespace
 'order'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   ...> '    Generic.Prompt
 'by'          Keyword
-' '           Text
+' '           Text.Whitespace
 'count'       Keyword
 '('           Punctuation
 'language'    Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'desc'        Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '144|python\n' Generic.Output
 
@@ -96,4 +96,4 @@
 '1|scheme\n'  Generic.Output
 
 'sqlite> '    Generic.Prompt
-'\n'          Text
+'\n'          Text.Whitespace
