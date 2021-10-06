@@ -2,7 +2,8 @@
 
 'Enter ".help" for instructions\n' Generic.Output
 
-'sqlite> '    Generic.Prompt
+'sqlite>'     Generic.Prompt
+' '           Text.Whitespace
 '.'           Punctuation
 'schema'      Keyword
 '\n'          Text.Whitespace
@@ -13,29 +14,33 @@
 
 'CREATE TABLE vars (key varchar(24), value varchar(128));\n' Generic.Output
 
-'sqlite> '    Generic.Prompt
+'sqlite>'     Generic.Prompt
+' '           Text.Whitespace
 'a'           Name
 ' '           Text.Whitespace
 "'\n"         Literal.String.Single
 
-'   ...> '    Generic.Prompt
-"'"           Literal.String.Single
+'   ...>'     Generic.Prompt
+" '"          Literal.String.Single
 '\n'          Text.Whitespace
 
-'   ...> '    Generic.Prompt
+'   ...>'     Generic.Prompt
+' '           Text.Whitespace
 ';'           Punctuation
 '\n'          Text.Whitespace
 
 'SQL error: near "a": syntax error\n' Generic.Traceback
 
-'sqlite> '    Generic.Prompt
+'sqlite>'     Generic.Prompt
+' '           Text.Whitespace
 '%'           Operator
 ';'           Punctuation
 '\n'          Text.Whitespace
 
 'SQL error: near "%": syntax error\n' Generic.Traceback
 
-'sqlite> '    Generic.Prompt
+'sqlite>'     Generic.Prompt
+' '           Text.Whitespace
 'select'      Keyword
 ' '           Text.Whitespace
 'count'       Keyword
@@ -59,7 +64,8 @@
 'order'       Keyword
 '\n'          Text.Whitespace
 
-'   ...> '    Generic.Prompt
+'   ...>'     Generic.Prompt
+' '           Text.Whitespace
 'by'          Keyword
 ' '           Text.Whitespace
 'count'       Keyword
@@ -95,5 +101,5 @@
 
 '1|scheme\n'  Generic.Output
 
-'sqlite> '    Generic.Prompt
-'\n'          Text.Whitespace
+'sqlite>'     Generic.Prompt
+' \n'         Text.Whitespace

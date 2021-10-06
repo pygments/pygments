@@ -61,6 +61,7 @@ __all__ = ['PostgresLexer', 'PlPgsqlLexer', 'PostgresConsoleLexer',
            'SqliteConsoleLexer', 'RqlLexer']
 
 line_re  = re.compile('.*?\n')
+sqlite_prompt_re = re.compile(r'^(?:sqlite|   ...)>(?= )')
 
 language_re = re.compile(r"\s+LANGUAGE\s+'?(\w+)'?", re.IGNORECASE)
 
@@ -785,10 +786,11 @@ class SqliteConsoleLexer(Lexer):
         insertions = []
         for match in line_re.finditer(data):
             line = match.group()
-            if line.startswith('sqlite> ') or line.startswith('   ...> '):
+            prompt_match = sqlite_prompt_re.match(line)
+            if prompt_match is not None:
                 insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, line[:8])]))
-                curcode += line[8:]
+                                   [(0, Generic.Prompt, line[:7])]))
+                curcode += line[7:]
             else:
                 if curcode:
                     yield from do_insertions(insertions,
