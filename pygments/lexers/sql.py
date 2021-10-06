@@ -790,7 +790,9 @@ class SqliteConsoleLexer(Lexer):
             if prompt_match is not None:
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, line[:7])]))
-                curcode += line[7:]
+                insertions.append((len(curcode)-7,
+                                   [(7, Whitespace, ' ')]))
+                curcode += line[8:]
             else:
                 if curcode:
                     yield from do_insertions(insertions,

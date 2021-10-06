@@ -21,11 +21,14 @@
 "'\n"         Literal.String.Single
 
 '   ...>'     Generic.Prompt
-" '"          Literal.String.Single
+' '           Text.Whitespace
+"'\n'"        Literal.String.Single
 '\n'          Text.Whitespace
 
 '   ...>'     Generic.Prompt
 ' '           Text.Whitespace
+'\n'          Text.Whitespace
+
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -66,6 +69,8 @@
 
 '   ...>'     Generic.Prompt
 ' '           Text.Whitespace
+'\n'          Text.Whitespace
+
 'by'          Keyword
 ' '           Text.Whitespace
 'count'       Keyword
@@ -102,4 +107,5 @@
 '1|scheme\n'  Generic.Output
 
 'sqlite>'     Generic.Prompt
-' \n'         Text.Whitespace
+' '           Text.Whitespace
+'\n'          Text.Whitespace
