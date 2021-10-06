@@ -22,13 +22,11 @@
 
 '   ...>'     Generic.Prompt
 ' '           Text.Whitespace
-"'\n'"        Literal.String.Single
+"'"           Literal.String.Single
 '\n'          Text.Whitespace
 
 '   ...>'     Generic.Prompt
 ' '           Text.Whitespace
-'\n'          Text.Whitespace
-
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -69,8 +67,6 @@
 
 '   ...>'     Generic.Prompt
 ' '           Text.Whitespace
-'\n'          Text.Whitespace
-
 'by'          Keyword
 ' '           Text.Whitespace
 'count'       Keyword
