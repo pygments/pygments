@@ -84,9 +84,9 @@ class BaseMakefileLexer(RegexLexer):
             (r'\$[<@$+%?|*]', Keyword),
             (r'\s+', Text),
             (r'#.*?\n', Comment),
-            (r'(export)(\s+)(?=[\w${}\t -]+\n)',
+            (r'((?:un)?export)(\s+)(?=[\w${}\t -]+\n)',
              bygroups(Keyword, Text), 'export'),
-            (r'export\s+', Keyword),
+            (r'(?:un)?export\s+', Keyword),
             # assignment
             (r'([\w${}().-]+)(\s*)([!?:+]?=)([ \t]*)((?:.*\\\n)+|.*\n)',
              bygroups(Name.Variable, Text, Operator, Text, using(BashLexer))),
