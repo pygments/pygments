@@ -26,18 +26,18 @@
 'examples/quotes/quotes.csv' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'header'      Name.Variable
 '='           Operator
 '"'           Literal.String
 'true'        Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'configFile'  Name.Variable
 '='           Operator
 '"'           Literal.String
