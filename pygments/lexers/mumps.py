@@ -345,26 +345,34 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('merge', 'm'), suffix=r'\b'), Keyword, ('#pop', 'l_mergeargument', 'argumentsp', 'postcond')),
                 # 8.2.14 - NEW
                 (words(('new', 'n'), suffix=r'\b'), Keyword, ('#pop', 'l_newargument', 'optargsp', 'postcond')),
+                # 8.2.15 - OPEN
+                (words(('open', 'o'), suffix=r'\b'), Keyword, ('#pop', 'l_openargument', 'argumentsp', 'postcond')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 (words(('quit', 'q'), suffix=r'\b'), Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
                 ('@', Operator, ('#pop', 'expratom')),
-                default(('#pop', 'colon_deviceparameters', 'expr')),
+                default(('#pop', 'opt_deviceparameters', 'expr')),
                 ],
-        'colon_deviceparameters': [
-                ('(:)(\\()', bygroups(Punctuation, Punctuation), ('#pop', 'deviceparams_paren', 'deviceparam')),
-                (':', Punctuation, ('#pop', 'deviceparam')),
+        'opt_deviceparameters': [
+                (':', Punctuation, ('#pop', 'deviceparameters')),
                 default('#pop'),
+                ],
+        'deviceparameters': [
+                ('\\(', Punctuation, ('#pop', 'deviceparams_group')),
+                include('deviceparam'),
+                ],
+        'deviceparams_group': [
+                default(('colon_group', 'deviceparam'))
                 ],
         'deviceparam': [
                 #('(' + name_re + ')(=)', bygroups(Name.Variable, Operator),('#pop', 'expr')),
                 include('expr'),
                 ],
-        'deviceparams_paren': [
-                (':', Punctuation, 'deviceparam'),
-                ('\\)', Punctuation, '#pop'),
+        'colon_group': [
+                (':', Punctuation, '#pop'),
+                ('\\)', Punctuation, '#pop:2'),
                 ],
         'l_closearg': [
                 default(('list_comma', 'closearg'))
@@ -489,7 +497,24 @@ class MumpsLexer(ExtendedRegexLexer):
         'l_lname': [
                 default(('list_comma', 'lname'))
                 ],
-        # 8.2.15
+        # 8.2.15 - OPEN arguments
+        'openargument': [
+                default(('#pop', 'opt_openparameters', 'expr')),
+                ],
+        'l_openargument': [
+                default(('list_comma', 'openargument')),
+                ],
+        'openparameters': [
+                default(('#pop', 'opt_mnemonicspec', 'timeout', 'deviceparameters')), 
+                ],
+        'opt_openparameters': [
+                (':', Punctuation, ('#pop', 'openparameters')),
+                default('#pop'),
+                ],
+        'opt_mnemonicspec': [
+                (':', Punctuation, ('#pop', 'expr')),
+                default('#pop'),
+                ],
         # 8.2.16 - QUIT arguments
         'expr_or_indirect': [
             ('@', Operator, ('#pop', 'expratom')),
