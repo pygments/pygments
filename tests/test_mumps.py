@@ -1117,3 +1117,20 @@ def testExclusiveNew(lexer):
             (Text, '\n')
             ]
 
+def testOpen(lexer):
+    assert list(lexer.get_tokens(
+        ' open devicefile:foo="bar":5:mnemspace')) == [
+            (Whitespace, ' '),
+            (Keyword, 'open'),
+            (Whitespace, ' '),
+            (Name.Variable, 'devicefile'),
+            (Punctuation, ':'),
+            (Name.Variable, 'foo'),
+            (Operator, '='),
+            (String, '"bar"'),
+            (Punctuation, ':'),
+            (Number, '5'),
+            (Punctuation, ':'),
+            (Name.Variable, 'mnemspace'),
+            (Text, '\n'),
+            ]
