@@ -1134,3 +1134,35 @@ def testOpen(lexer):
             (Name.Variable, 'mnemspace'),
             (Text, '\n'),
             ]
+
+def testOpenList(lexer):
+    assert list(lexer.get_tokens(
+        ' o:ready @openargs,device,dev:foo:1,dev2:::spec,dev3::3' )) == [
+            (Whitespace, ' '),
+            (Keyword, 'o'),
+            (Operator, ':'),
+            (Name.Variable, 'ready'),
+            (Whitespace, ' '),
+            (Operator, '@'),
+            (Name.Variable, 'openargs'),
+            (Punctuation, ','),
+            (Name.Variable, 'device'),
+            (Punctuation, ','),
+            (Name.Variable, 'dev'),
+            (Punctuation, ':'),
+            (Name.Variable, 'foo'),
+            (Punctuation, ':'),
+            (Number, '1'),
+            (Punctuation, ','),
+            (Name.Variable, 'dev2'),
+            (Punctuation, ':'),
+            (Punctuation, ':'),
+            (Punctuation, ':'),
+            (Name.Variable, 'spec'),
+            (Punctuation, ','),
+            (Name.Variable, 'dev3'),
+            (Punctuation, ':'),
+            (Punctuation, ':'),
+            (Number, '3'),
+            (Text, '\n')
+            ]
