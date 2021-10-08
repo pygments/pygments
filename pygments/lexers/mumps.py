@@ -504,11 +504,10 @@ class MumpsLexer(ExtendedRegexLexer):
         'l_openargument': [
                 default(('list_comma', 'openargument')),
                 ],
-        'openparameters': [
-                default(('#pop', 'opt_mnemonicspec', 'timeout', 'deviceparameters')), 
-                ],
         'opt_openparameters': [
-                (':', Punctuation, ('#pop', 'openparameters')),
+                ('(:)(:)(?=:)', bygroups(Punctuation, Punctuation), ('#pop', 'opt_mnemonicspec')),
+                (':(?=:)', Punctuation, ('#pop', 'opt_mnemonicspec', 'timeout', )),
+                (':', Punctuation, ('#pop', 'opt_mnemonicspec', 'timeout', 'deviceparameters')),
                 default('#pop'),
                 ],
         'opt_mnemonicspec': [
