@@ -413,6 +413,18 @@ def testNakedReference(lexer):
             (Text, '\n')
             ]
 
+def testSSVNCharacter(lexer):
+    assert list(lexer.get_tokens(' q ^$Character(expr)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$Character'),
+            (Punctuation, '('),
+            (Name.Variable, 'expr'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
             (Whitespace, ' '),
