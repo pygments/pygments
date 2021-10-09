@@ -131,6 +131,7 @@ class MumpsLexer(ExtendedRegexLexer):
     	'glvn': [
                 include('lvn'),
                 include('gvn'),
+                include('ssvn'),
                 ],
         # 7.1.2.1 - Local variable name lvn
         'lvn': [
@@ -172,6 +173,10 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('rlvn'),
                 include('rgvn'),
                 include('expritem')
+                ],
+        # 7.1.3 - Structure system variable ssvn
+        'ssvn': [
+                ('\\^\\$Character', Name.Variable.Magic, ('#pop', 'subscripts')),
                 ],
         # 7.1.4 - Expression item 'expritem'
         'expritem': [
