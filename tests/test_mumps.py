@@ -399,6 +399,20 @@ def testIndirectPattern(lexer):
             (Text, '\n'),
             ]
 
+def testNakedReference(lexer):
+    assert list(lexer.get_tokens(' q ^(1_"bar")')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Global, '^'),
+            (Punctuation, '('),
+            (Number, '1'),
+            (Operator, '_'),
+            (String, '"bar"'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
             (Whitespace, ' '),

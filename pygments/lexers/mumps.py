@@ -146,6 +146,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('namind')
                 ],
         'rgvn': [
+                ('\\^(?=\\()', Name.Variable.Global, ('#pop', 'opt_subscripts')),
                 ('\\^' + name_re, Name.Variable.Global, ('#pop', 'opt_subscripts')),
                 ],
         # Parsing for '( L expr )'
