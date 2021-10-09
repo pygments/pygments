@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, Generic, \
-    Literal
+    Literal, Whitespace
 
 __all__ = ['DiffLexer', 'DarcsPatchLexer', 'WDiffLexer']
 
@@ -73,15 +73,15 @@ class DarcsPatchLexer(RegexLexer):
             (r'\}', Operator),
             (r'(\[)((?:TAG )?)(.*)(\n)(.*)(\*\*)(\d+)(\s?)(\])',
              bygroups(Operator, Keyword, Name, Text, Name, Operator,
-                      Literal.Date, Text, Operator)),
+                      Literal.Date, Whitespace, Operator)),
             (r'(\[)((?:TAG )?)(.*)(\n)(.*)(\*\*)(\d+)(\s?)',
              bygroups(Operator, Keyword, Name, Text, Name, Operator,
-                      Literal.Date, Text), 'comment'),
+                      Literal.Date, Whitespace), 'comment'),
             (r'New patches:', Generic.Heading),
             (r'Context:', Generic.Heading),
             (r'Patch bundle hash:', Generic.Heading),
             (r'(\s*)(%s)(.*\n)' % '|'.join(DPATCH_KEYWORDS),
-                bygroups(Text, Keyword, Text)),
+                bygroups(Whitespace, Keyword, Text)),
             (r'\+', Generic.Inserted, "insert"),
             (r'-', Generic.Deleted, "delete"),
             (r'.*\n', Text),

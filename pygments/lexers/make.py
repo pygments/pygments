@@ -13,7 +13,7 @@ import re
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, \
     do_insertions, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Punctuation
+    Punctuation, Whitespace
 from pygments.lexers.shell import BashLexer
 
 __all__ = ['MakefileLexer', 'BaseMakefileLexer', 'CMakeLexer']
@@ -82,7 +82,7 @@ class BaseMakefileLexer(RegexLexer):
             (r'^(?:[\t ]+.*\n|\n)+', using(BashLexer)),
             # special variables
             (r'\$[<@$+%?|*]', Keyword),
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'#.*?\n', Comment),
             (r'((?:un)?export)(\s+)(?=[\w${}\t -]+\n)',
              bygroups(Keyword, Text), 'export'),
@@ -109,7 +109,7 @@ class BaseMakefileLexer(RegexLexer):
         'export': [
             (r'[\w${}-]+', Name.Variable),
             (r'\n', Text, '#pop'),
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
         ],
         'block-header': [
             (r'[,|]', Punctuation),
@@ -188,7 +188,7 @@ class CMakeLexer(RegexLexer):
              r'MSVC70|MSVC71|MSVC80|MSVC90)\b', Keyword),
         ],
         'ws': [
-            (r'[ \t]+', Text),
+            (r'[ \t]+', Whitespace),
             (r'#.*\n', Comment),
         ]
     }
