@@ -1,0 +1,29 @@
+---input---
+resource "local_file" "heredoc" {
+  content = <<-DOC
+    heredoc content
+    DOC
+}
+---tokens---
+'resource'    Keyword.Reserved
+' '           Text
+'"local_file"' Name.Class
+' '           Text
+'"heredoc"'   Name.Variable
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'content'     Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'<<-'         Operator
+'DOC'         Literal.String.Delimiter
+'\n    heredoc content\n    ' Text
+'DOC'         Literal.String.Delimiter
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

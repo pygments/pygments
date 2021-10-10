@@ -677,6 +677,12 @@ class TerraformLexer(RegexLexer):
             # e.g. resource "aws_security_group" "allow_tls" {
             # e.g. backend "consul" {
             (classes_re + r'(\s+)', bygroups(Keyword.Reserved, Text), 'blockname'),
+
+            # here-doc style delimited strings
+            (
+                r'(<<-?)\s*(\w+)([\w\W]+?)(\2)',
+                bygroups(Operator, Literal.String.Delimiter, Text, Literal.String.Delimiter)
+            )
         ],
         'blockname': [
             # e.g. resource "aws_security_group" "allow_tls" {
