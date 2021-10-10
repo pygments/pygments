@@ -587,7 +587,7 @@ class TerraformLexer(RegexLexer):
              'provisioner', 'resource', 'variable')
     classes_re = "({})".format(('|').join(classes))
 
-    types = ('string', 'number', 'bool', 'list', 'tuple', 'map', 'object', 'null')
+    types = ('string', 'number', 'bool', 'list', 'tuple', 'map', 'set', 'object', 'null')
 
     numeric_functions = ('abs', 'ceil', 'floor', 'log', 'max',
                          'mix', 'parseint', 'pow', 'signum')

@@ -4,6 +4,7 @@ resource "local_file" "heredoc" {
     heredoc content
     DOC
 }
+
 ---tokens---
 'resource'    Keyword.Reserved
 ' '           Text
