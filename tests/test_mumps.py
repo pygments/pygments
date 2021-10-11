@@ -425,6 +425,22 @@ def testSSVNCharacter(lexer):
             (Text, '\n')
             ]
 
+def testSSVNCharacterSub(lexer):
+    assert list(lexer.get_tokens(' q ^$C(expr,"PATCODE",patcode)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$C'),
+            (Punctuation, '('),
+            (Name.Variable, 'expr'),
+            (Punctuation, ','),
+            (String, '"PATCODE"'),
+            (Punctuation, ','),
+            (Name.Variable, 'patcode'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
             (Whitespace, ' '),
