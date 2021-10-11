@@ -1,6 +1,6 @@
 """
     pygments.styles.dracula
-    ~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~
 
     Pygments version of `Dracula` from https://github.com/dracula/dracula-theme.
 
@@ -13,19 +13,8 @@
 
 from pygments.style import Style
 from pygments.token import (
-    Keyword,
-    Name,
-    Comment,
-    String,
-    Error,
-    Literal,
-    Number,
-    Operator,
-    Other,
-    Punctuation,
-    Text,
-    Generic,
-    Whitespace,
+    Keyword, Name, Comment, String, Error, Literal, Number, Operator, Other,
+    Punctuation, Text, Generic, Whitespace,
 )
 
 
