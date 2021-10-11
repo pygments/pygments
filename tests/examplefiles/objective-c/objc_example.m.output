@@ -40,7 +40,7 @@
 '"stdlib.h" ' Comment.Preproc
 '// line 3\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Commented out code with preprocessor\n' Comment.Single
 
@@ -51,9 +51,9 @@
 
 '#endif\n'    Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-' '           Text
+' '           Text.Whitespace
 '#'           Comment.Preproc
 '\\'          Comment.Preproc
 '\n'          Comment.Preproc
@@ -69,14 +69,14 @@
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Empty preprocessor\n' Comment.Single
 
 '#'           Comment.Preproc
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Class forward declaration\n' Comment.Single
 
@@ -84,19 +84,19 @@
 ' '           Text
 'MyClass'     Name.Builtin.Pseudo
 ';'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Empty classes\n' Comment.Single
 
 '@interface'  Keyword
 ' '           Text
 'EmptyClass'  Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@end'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@interface'  Keyword
 ' '           Text
@@ -104,13 +104,13 @@
 '\n'          Text
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@end'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@interface'  Keyword
 ' '           Text
@@ -120,15 +120,15 @@
 '\n'          Text
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@end'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Custom class inheriting from built-in\n' Comment.Single
 
@@ -140,55 +140,55 @@
 '\n'          Text
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@public'     Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'NSString'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'myString'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '__weak'      Keyword
-' '           Text
+' '           Text.Whitespace
 'NSString'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 '_weakString' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@protected'  Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'NSTextField' Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 '_textField'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@private'    Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'NSDate'      Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'privateDate' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Various property aatributes\n' Comment.Single
 
@@ -196,53 +196,53 @@
 '('           Punctuation
 'copy'        Keyword
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'readwrite'   Keyword
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'nonatomic'   Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NSString'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'myString'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@property'   Keyword
 '('           Punctuation
 'weak'        Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NSString'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'weakString'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@property'   Keyword
 '('           Punctuation
 'retain'      Keyword
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'strong'      Keyword
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'atomic'      Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'IBOutlet'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'NSTextField' Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'textField'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Class methods\n' Comment.Single
 
@@ -254,12 +254,12 @@
 'classMethod1:' Name.Function
 '('           Punctuation
 'NSString'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 ')'           Punctuation
 'arg'         Name.Variable
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+'           Punctuation
 ' '           Text
@@ -269,37 +269,37 @@
 'classMethod2:' Name.Function
 '('           Punctuation
 'NSString'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 ')'           Punctuation
 ' '           Text
 'arg'         Name.Variable
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '// Test space before arg\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@end'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'id'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'B'           Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'pragma mark MyMarker' Comment.Preproc
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// MyClass.m\n' Comment.Single
 
@@ -308,22 +308,22 @@
 '@interface'  Keyword
 ' '           Text
 'MyClass'     Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@property'   Keyword
 '('           Punctuation
 'retain'      Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NSDate'      Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'privateDate' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Punctuation
 ' '           Text
@@ -332,12 +332,12 @@
 ')'           Punctuation
 'hiddenMethod' Name.Function
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@end'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Special category\n' Comment.Single
 
@@ -346,43 +346,43 @@
 'MyClass'     Name.Builtin.Pseudo
 ' '           Text
 '(Special)'   Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@property'   Keyword
 '('           Punctuation
 'retain'      Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NSDate'      Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'specialDate' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@end'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@implementation' Keyword
 ' '           Text
 'MyClass'     Name.Builtin.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@synthesize' Keyword
-' '           Text
+' '           Text.Whitespace
 'myString'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@synthesize' Keyword
-' '           Text
+' '           Text.Whitespace
 'privateDate' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Punctuation
 ' '           Text
@@ -394,673 +394,682 @@
 'B'           Name
 ')'           Punctuation
 'b'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '/**\n   * C-style comment\n   */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// Selector keywords/types\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'SEL'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'someMethod'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@selector'   Keyword
 '('           Punctuation
 'hiddenMethod' Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// Boolean types\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'Boolean'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'b1'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'FALSE'       Name.Builtin
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'BOOL'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'b2'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'NO'          Name.Builtin
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'bool'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'b3'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Name.Builtin
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '/**\n   * Number literals\n   */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// Int Literal\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n1'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@('          Literal
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 ')'           Literal
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// Method call\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n2'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@('          Literal
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 'length'      Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Literal
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// Define variable\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n3'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@('          Literal
-' '           Text
+' '           Text.Whitespace
 'TEST_NUMBER' Name
-' '           Text
+' '           Text.Whitespace
 ')'           Literal
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// Arthimetic expression\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n4'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@('          Literal
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Literal
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// From variable\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'myInt'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n5'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@('          Literal
 'myInt'       Name
 ')'           Literal
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// Nest expression\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n6'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@('          Literal
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '6.0'         Literal.Number.Float
 ')'           Punctuation
 ')'           Literal
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// Bool literal\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n7'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@NO'         Literal.Number
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// Bool expression\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n8'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@('          Literal
 'YES'         Name.Builtin
 ')'           Literal
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// Character\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n9'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "@'a'"        Literal.String.Char
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// int\n'    Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n10'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@123'        Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// unsigned\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n11'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@1234'       Literal.Number.Integer
 'U'           Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// long\n'   Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n12'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@1234567890L' Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// float\n'  Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n13'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@3.14F'      Literal.Number.Float
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// double\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSNumber'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'n14'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@3.14F'      Literal.Number.Float
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  \n  '      Text
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
 '// Array literals\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSArray'     Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'arr'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@['          Literal
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 '1'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 '2'           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 ']'           Literal
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'arr'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@['          Literal
-' '           Text
+' '           Text.Whitespace
 '@['          Literal
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 '1'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 '2'           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 ']'           Literal
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'arr'         Name
-' '           Text
+' '           Text.Whitespace
 'lastObject'  Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ']'           Literal
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '['           Punctuation
 'arr'         Name
-' '           Text
+' '           Text.Whitespace
 'lastObject'  Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '['           Punctuation
 '@['          Literal
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 '1'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 '2'           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 ']'           Literal
-' '           Text
+' '           Text.Whitespace
 'lastObject'  Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  \n  '      Text
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
 '// Dictionary literals\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'NSDictionary' Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'd'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@{'          Literal
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 'key'         Literal.String
 '"'           Literal.String
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 'value'       Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Literal
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 'd'           Name
-' '           Text
+' '           Text.Whitespace
 'allKeys'     Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'lastObject'  Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 '@{'          Literal
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 'key'         Literal.String
 '"'           Literal.String
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 'value'       Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Literal
-' '           Text
+' '           Text.Whitespace
 'allKeys'     Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'lastObject'  Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'd'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@{'          Literal
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 'key'         Literal.String
 '"'           Literal.String
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '@{'          Literal
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 'key'         Literal.String
 '"'           Literal.String
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 'value'       Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Literal
-' '           Text
+' '           Text.Whitespace
 '}'           Literal
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '['           Punctuation
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'hiddenMethod' Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '['           Punctuation
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 'length'      Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '['           Punctuation
 'privateDate' Name
-' '           Text
+' '           Text.Whitespace
 'class'       Keyword
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'NSDictionary' Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'dictionary'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'NSDictionary' Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 'dictionaryWithObjectsAndKeys' Name.Label
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'                              ' Text
+'                              ' Text.Whitespace
 '@"'          Literal.String
 '1'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 'one'         Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 '2'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 'two'         Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 '3'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '@"'          Literal.String
 'three'       Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Builtin
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  \n  '      Text
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
 'NSString'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'key'         Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'key'         Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'dictionary'  Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'NSLog'       Name
 '('           Punctuation
 '@"'          Literal.String
 'Number: %@, Word: %@' Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'dictionary'  Name
-' '           Text
+' '           Text.Whitespace
 'valueForKey' Name.Label
 ':'           Punctuation
 'key'         Name
 ']'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// Blocks\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '^'           Operator
 'myBlock'     Name
 ')'           Punctuation
 '('           Punctuation
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'arg1'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'arg2'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'NSString'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 '('           Punctuation
 '^'           Operator
@@ -1068,48 +1077,48 @@
 ')'           Punctuation
 '('           Punctuation
 'NSString'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '^'           Operator
 '('           Punctuation
 'NSString'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'value'       Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'value'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Builtin
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Punctuation
 ' '           Text
@@ -1117,48 +1126,48 @@
 'void'        Keyword.Type
 ')'           Punctuation
 'hiddenMethod' Name.Function
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// Synchronized block\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 '@synchronized' Keyword
 '('           Punctuation
 'self'        Name.Builtin
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '['           Punctuation
 'myString'    Name
-' '           Text
+' '           Text.Whitespace
 'retain'      Keyword
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '['           Punctuation
 'myString'    Name
-' '           Text
+' '           Text.Whitespace
 'release'     Keyword
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+'           Punctuation
 ' '           Text
@@ -1168,14 +1177,14 @@
 'classMethod1:' Name.Function
 '('           Punctuation
 'NSString'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 ')'           Punctuation
 'arg'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+'           Punctuation
 ' '           Text
@@ -1185,26 +1194,26 @@
 'classMethod2:' Name.Function
 '('           Punctuation
 'NSString'    Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 ')'           Punctuation
 ' '           Text
 'arg'         Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// Autorelease pool block\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 '@autoreleasepool' Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'NSLog'       Name
 '('           Punctuation
 '@"'          Literal.String
@@ -1212,16 +1221,16 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@end'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace

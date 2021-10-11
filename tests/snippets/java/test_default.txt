@@ -1,0 +1,36 @@
+---input---
+switch (x) {
+    case 1: break;
+    default: break;
+}
+
+---tokens---
+'switch'      Keyword
+' '           Text
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'case'        Keyword
+' '           Text
+'1'           Literal.Number.Integer
+':'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'default'     Keyword
+':'           Punctuation
+' '           Text
+'break'       Keyword
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

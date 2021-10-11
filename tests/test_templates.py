@@ -1,7 +1,7 @@
 import pytest
 
 from pygments.lexers.templates import JavascriptDjangoLexer, MasonLexer, VelocityLexer
-from pygments.token import Comment, Token
+from pygments.token import Comment
 
 
 @pytest.fixture(scope="module")

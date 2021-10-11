@@ -1,9 +1,9 @@
 'CMAKE_MINIMUM_REQUIRED' Name.Builtin
 '('           Punctuation
 'VERSION'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '2.6'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'FATAL_ERROR' Literal.String
 ')'           Punctuation
 '\n'          Text
@@ -12,351 +12,351 @@
 
 'SET'         Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'SOURCES'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'back.c'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'io.c'        Literal.String
-' '           Text
+' '           Text.Whitespace
 'main.c'      Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 '\n'          Text
 
 'SET'         Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'PATH'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '$ENV{'       Operator
 'PATH'        Name.Variable
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 '\n'          Text
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '${'          Operator
 'SOURCES'     Name.Variable
 '}'           Operator
-'   '         Text
+'   '         Text.Whitespace
 ')'           Punctuation
-'      '      Text
+'      '      Text.Whitespace
 '# three arguments, prints "back.cio.cmain.c"\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"${SOURCES}"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'      '      Text
+'      '      Text.Whitespace
 '# one argument,    prints "back.c;io.c;main.c"\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'                ' Text
+'                ' Text.Whitespace
 '# one argument,    prints "" an empty line\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"${EMPTY_STRING}"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '# one argument,    prints "" an empty line\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '${'          Operator
 'EMPTY_STRING' Name.Variable
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '# zero arguments,  causes CMake Error\n' Comment
 
-'                             ' Text
+'                             ' Text.Whitespace
 '# "MESSAGE called with incorrect number of arguments"\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\\\\\"\\'   Literal.String
-' '           Text
+' '           Text.Whitespace
 '\\(\\)\\#\\$\\^' Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '# this message contains literal characters\n' Comment
 
 '\n'          Text
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"This is practice."' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '# prints "This is practice."\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"This;is;practice."' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '# prints "This;is;practice."\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"Hi. ) MESSAGE( x )"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '# prints "Hi. ) MESSAGE( x )"\n' Comment
 
 '\n'          Text
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"Welc"'      Literal.String.Double
 'ome'         Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '# rule 1\n'  Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Welc'        Literal.String
 '"ome"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '# rule 3\n'  Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Welc'        Literal.String
 '"ome)"'      Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '# rule 2\n'  Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String.Double
 'Thanks'      Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '# rule 1\n'  Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Thanks'      Literal.String
 '""'          Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '# rule 3\n'  Comment
 
 '\n'          Text
 
 'SET'         Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'y'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'A'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'B'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'C'           Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'              ' Text
+'              ' Text.Whitespace
 '# stores "y;A;B;C" in x (without quote)\n' Comment
 
 'SET'         Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '${'          Operator
 'x'           Name.Variable
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'                   ' Text
+'                   ' Text.Whitespace
 '# => SET( y;A;B;C ) => SET( y A B C)\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '${'          Operator
 'y'           Name.Variable
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'               ' Text
+'               ' Text.Whitespace
 '# prints "ABC" to stdout (without quotes)\n' Comment
 
 'SET'         Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'x'           Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'                    ' Text
+'                    ' Text.Whitespace
 '# stores "x" in y (without quotes)\n' Comment
 
 'SET'         Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '${'          Operator
 'y'           Name.Variable
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 'y'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Literal.String
-' '           Text
+' '           Text.Whitespace
 'x'           Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'             ' Text
+'             ' Text.Whitespace
 '# => SET( x y )\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"\\${x} = \'${x}\'"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '# prints "${x} = \'y;=;x\'" to stdout (without quotes)\n' Comment
 
 'SET'         Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '${'          Operator
 'x'           Name.Variable
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'                 ' Text
+'                 ' Text.Whitespace
 '# => SET( y y = x ) => stores "y;=;x" in y (without quotes)\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '${'          Operator
 'y'           Name.Variable
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'               ' Text
+'               ' Text.Whitespace
 '# prints "y=x" to stdout (without quotes)\n' Comment
 
 '\n'          Text
 
 'SET'         Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'a'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'b'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'c'           Literal.String
-'   '         Text
+'   '         Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '# stores "a;b;c" in x      (without quotes)\n' Comment
 
 'SET'         Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '"a b c"'     Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '# stores "a b c" in y      (without quotes)\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'b'           Literal.String
-' '           Text
+' '           Text.Whitespace
 'c'           Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '# prints "abc"   to stdout (without quotes)\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '${'          Operator
 'x'           Name.Variable
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '# prints "abc"   to stdout (without quotes)\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
 '"${x}"'      Literal.String.Double
 ')'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '# prints "a;b;c" to stdout (without quotes)\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '${'          Operator
 'y'           Name.Variable
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '# prints "a b c" to stdout (without quotes)\n' Comment
 
 'MESSAGE'     Name.Builtin
 '('           Punctuation
 '"${y}"'      Literal.String.Double
 ')'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 '# prints "a b c" to stdout (without quotes)\n' Comment
 
 '\n'          Text
@@ -365,43 +365,43 @@
 
 'COMMAND'     Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'arguments'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'go'          Literal.String
-' '           Text
+' '           Text.Whitespace
 'here'        Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 '\n'          Text
 
 'ANOTHER_COMMAND' Name.Builtin
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '# this command has no arguments\n' Comment
 
 'YET_ANOTHER_COMMAND' Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'these'       Literal.String
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'arguments'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'are'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'spread'      Literal.String
-'         '   Text
+'         '   Text.Whitespace
 '# another comment\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 'over'        Literal.String
-' '           Text
+' '           Text.Whitespace
 'several'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'lines'       Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 '\n'          Text

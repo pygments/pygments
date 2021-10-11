@@ -10,7 +10,7 @@
 
 import re
 
-from pygments.lexers.html import HtmlLexer, XmlLexer
+from pygments.lexers.html import XmlLexer
 from pygments.lexers.javascript import JavascriptLexer
 from pygments.lexers.css import CssLexer
 

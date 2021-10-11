@@ -1,7 +1,7 @@
 '%hook'       Keyword
 ' '           Text
 'ABC'         Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Punctuation
 ' '           Text
@@ -13,27 +13,27 @@
 'B'           Name
 ')'           Punctuation
 'b'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '%log'        Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '%orig'       Keyword
 '('           Punctuation
 'nil'         Name.Builtin
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%end'        Keyword
 '\n\n'        Text
@@ -43,7 +43,7 @@
 'DEF'         Name.Class
 ': '          Text
 'NSObject'    Name.Builtin.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Punctuation
 ' '           Text
@@ -51,31 +51,31 @@
 'id'          Keyword.Type
 ')'           Punctuation
 'init'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '['           Punctuation
 '%c'          Keyword
 '('           Punctuation
 'RuntimeAccessibleClass' Name.Class
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'alloc'       Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Builtin
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%end'        Keyword
 '\n\n'        Text
@@ -83,12 +83,12 @@
 '%group'      Keyword
 ' '           Text
 'OptionalHooks' Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%hook'       Keyword
 ' '           Text
 'ABC'         Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-'           Punctuation
 ' '           Text
@@ -96,26 +96,26 @@
 'void'        Keyword.Type
 ')'           Punctuation
 'release'     Name.Function
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '['           Punctuation
 'self'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'retain'      Keyword
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '%orig'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%end'        Keyword
 '\n'          Text
@@ -126,27 +126,27 @@
 '%ctor'       Keyword
 ' '           Text
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '%init'       Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'if'          Keyword
 '('           Punctuation
 'OptionalCondition' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '%init'       Keyword
 '('           Punctuation
 'OptionalHooks' Name.Class
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

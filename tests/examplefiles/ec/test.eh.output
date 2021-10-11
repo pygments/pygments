@@ -1,20 +1,20 @@
 '/* A Bison parser, made by GNU Bison 2.0.  */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/* Skeleton parser for Yacc-like parsing with Bison,\n   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004 Free Software Foundation, Inc.\n\n   This program is free software; you can redistribute it and/or modify\n   it under the terms of the GNU General Public License as published by\n   the Free Software Foundation; either version 2, or (at your option)\n   any later version.\n\n   This program is distributed in the hope that it will be useful,\n   but WITHOUT ANY WARRANTY; without even the implied warranty of\n   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n   GNU General Public License for more details.\n\n   You should have received a copy of the GNU General Public License\n   along with this program; if not, write to the Free Software\n   Foundation, Inc., 59 Temple Place - Suite 330,\n   Boston, MA 02111-1307, USA.  */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/* As a special exception, when this file is copied by Bison into a\n   Bison output file, you may use that output file without restriction.\n   This special exception was added by the Free Software Foundation\n   in version 1.24 of Bison.  */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/* Tokens.  */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'ifndef YYTOKENTYPE' Comment.Preproc
@@ -24,975 +24,975 @@
 ' define YYTOKENTYPE' Comment.Preproc
 '\n'          Comment.Preproc
 
-'   '         Text
+'   '         Text.Whitespace
 '/* Put the tokens into the symbol table, so that GDB and other debuggers\n      know about them.  */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'enum'        Keyword
-' '           Text
+' '           Text.Whitespace
 'yytokentype' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'IDENTIFIER'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '258'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'CONSTANT'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '259'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'STRING_LITERAL' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '260'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'SIZEOF'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '261'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'PTR_OP'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '262'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'INC_OP'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '263'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'DEC_OP'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '264'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'LEFT_OP'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '265'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'RIGHT_OP'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '266'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'LE_OP'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '267'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'GE_OP'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '268'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'EQ_OP'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '269'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'NE_OP'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '270'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'AND_OP'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '271'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'OR_OP'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '272'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'MUL_ASSIGN'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '273'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'DIV_ASSIGN'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '274'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'MOD_ASSIGN'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '275'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'ADD_ASSIGN'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '276'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'SUB_ASSIGN'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '277'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'LEFT_ASSIGN' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '278'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'RIGHT_ASSIGN' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '279'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'AND_ASSIGN'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '280'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'XOR_ASSIGN'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '281'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'OR_ASSIGN'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '282'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'TYPE_NAME'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '283'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'TYPEDEF'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '284'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'EXTERN'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '285'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'STATIC'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '286'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'AUTO'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '287'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'REGISTER'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '288'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'CHAR'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '289'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'SHORT'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '290'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'INT'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '291'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'UINT'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '292'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'INT64'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '293'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'LONG'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '294'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'SIGNED'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '295'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'UNSIGNED'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '296'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'FLOAT'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '297'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'DOUBLE'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '298'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'CONST'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '299'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'VOLATILE'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '300'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'VOID'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '301'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'VALIST'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '302'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'STRUCT'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '303'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'UNION'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '304'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'ENUM'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '305'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'ELLIPSIS'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '306'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'CASE'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '307'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'DEFAULT'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '308'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'IF'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '309'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'SWITCH'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '310'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'WHILE'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '311'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'DO'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '312'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'FOR'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '313'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'GOTO'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '314'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'CONTINUE'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '315'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'BREAK'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '316'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'RETURN'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '317'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'IFX'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '318'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'ELSE'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '319'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'CLASS'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '320'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'THISCLASS'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '321'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'CLASS_NAME'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '322'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'PROPERTY'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '323'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'SETPROP'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '324'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'GETPROP'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '325'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'NEWOP'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '326'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'RENEW'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '327'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'DELETE'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '328'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'EXT_DECL'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '329'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'EXT_STORAGE' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '330'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'IMPORT'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '331'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'DEFINE'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '332'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'VIRTUAL'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '333'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'EXT_ATTRIB'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '334'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'PUBLIC'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '335'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'PRIVATE'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '336'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'TYPED_OBJECT' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '337'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'ANY_OBJECT'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '338'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 '_INCREF'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '339'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'EXTENSION'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '340'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'ASM'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '341'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'TYPEOF'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '342'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'WATCH'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '343'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'STOPWATCHING' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '344'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'FIREWATCHERS' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '345'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'WATCHABLE'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '346'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'CLASS_DESIGNER' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '347'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'CLASS_NO_EXPANSION' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '348'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'CLASS_FIXED' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '349'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'ISPROPSET'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '350'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'CLASS_DEFAULT_PROPERTY' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '351'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'PROPERTY_CATEGORY' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '352'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'CLASS_DATA'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '353'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'CLASS_PROPERTY' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '354'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'SUBCLASS'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '355'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'NAMESPACE'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '356'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'NEW0OP'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '357'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'RENEW0'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '358'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'VAARG'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '359'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'DBTABLE'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '360'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'DBFIELD'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '361'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'DBINDEX'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '362'         Literal.Number.Integer
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'     '       Text
+'     '       Text.Whitespace
 'DATABASE_OPEN' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '363'         Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'endif'       Comment.Preproc
@@ -1422,13 +1422,13 @@
 'define DATABASE_OPEN 363' Comment.Preproc
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'if ! defined (YYSTYPE) && ! defined (YYSTYPE_IS_DECLARED)' Comment.Preproc
@@ -1439,273 +1439,276 @@
 '\n'          Comment.Preproc
 
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'union'       Keyword
-' '           Text
+' '           Text.Whitespace
 'YYSTYPE'     Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'SpecifierType' Name
-' '           Text
+' '           Text.Whitespace
 'specifierType' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'AccessMode'  Name
-' '           Text
+' '           Text.Whitespace
 'declMode'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'Identifier'  Name
-' '           Text
+' '           Text.Whitespace
 'id'          Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'Expression'  Name
-' '           Text
+' '           Text.Whitespace
 'exp'         Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'Specifier'   Name
-' '           Text
+' '           Text.Whitespace
 'specifier'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'OldList'     Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'list'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'Enumerator'  Name
-' '           Text
+' '           Text.Whitespace
 'enumerator'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'Declarator'  Name
-' '           Text
+' '           Text.Whitespace
 'declarator'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'Pointer'     Name
-' '           Text
+' '           Text.Whitespace
 'pointer'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'Initializer' Name
-' '           Text
+' '           Text.Whitespace
 'initializer' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'InitDeclarator' Name
-' '           Text
+' '           Text.Whitespace
 'initDeclarator' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'TypeName'    Name
-' '           Text
+' '           Text.Whitespace
 'typeName'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'Declaration' Name
-' '           Text
+' '           Text.Whitespace
 'declaration' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'Statement'   Name
-' '           Text
+' '           Text.Whitespace
 'stmt'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'FunctionDefinition' Name
-' '           Text
+' '           Text.Whitespace
 'function'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'External'    Name
-' '           Text
+' '           Text.Whitespace
 'external'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'Context'     Name
-' '           Text
+' '           Text.Whitespace
 'context'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'AsmField'    Name
-' '           Text
+' '           Text.Whitespace
 'asmField'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'Instantiation' Name
-' '           Text
+' '           Text.Whitespace
 'instance'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'MembersInit' Name
-' '           Text
+' '           Text.Whitespace
 'membersInit' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'MemberInit'  Name
-' '           Text
+' '           Text.Whitespace
 'memberInit'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'ClassFunction' Name
-' '           Text
+' '           Text.Whitespace
 'classFunction' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'ClassDefinition' Name
-' '           Text
+' '           Text.Whitespace
 '_class'      Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'ClassDef'    Name
-' '           Text
+' '           Text.Whitespace
 'classDef'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'PropertyDef' Name
-' '           Text
+' '           Text.Whitespace
 'prop'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'char'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'string'      Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'Symbol'      Name
-' '           Text
+' '           Text.Whitespace
 'symbol'      Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'PropertyWatch' Name
-' '           Text
+' '           Text.Whitespace
 'propertyWatch' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'TemplateParameter' Name
-' '           Text
+' '           Text.Whitespace
 'templateParameter' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'TemplateArgument' Name
-' '           Text
+' '           Text.Whitespace
 'templateArgument' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'TemplateDatatype' Name
-' '           Text
+' '           Text.Whitespace
 'templateDatatype' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   \n   '    Text
+'   '         Text.Whitespace
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
 'DBTableEntry' Name
-' '           Text
+' '           Text.Whitespace
 'dbtableEntry' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'DBIndexItem' Name
-' '           Text
+' '           Text.Whitespace
 'dbindexItem' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'DBTableDef'  Name
-' '           Text
+' '           Text.Whitespace
 'dbtableDef'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'YYSTYPE'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/* Line 1318 of yacc.c.  */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'line 293 "grammar.eh"' Comment.Preproc
@@ -1728,65 +1731,65 @@
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'extern'      Keyword
-' '           Text
+' '           Text.Whitespace
 'YYSTYPE'     Name
-' '           Text
+' '           Text.Whitespace
 'yylval'      Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'if ! defined (YYLTYPE) && ! defined (YYLTYPE_IS_DECLARED)' Comment.Preproc
 '\n'          Comment.Preproc
 
 'typedef'     Keyword
-' '           Text
+' '           Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'YYLTYPE'     Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'first_line'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'first_column' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'last_line'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'last_column' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'YYLTYPE'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 ' define yyltype YYLTYPE ' Comment.Preproc
@@ -1805,12 +1808,12 @@
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'extern'      Keyword
-' '           Text
+' '           Text.Whitespace
 'YYLTYPE'     Name
-' '           Text
+' '           Text.Whitespace
 'yylloc'      Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

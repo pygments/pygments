@@ -1,7 +1,7 @@
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'PublicRSAKey' Name
-' '           Text
+' '           Text.Whitespace
 'data'        Keyword
 '<'           Text
 '128'         Literal
@@ -9,9 +9,9 @@
 '\n'          Text
 
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'PublicED25519Key' Name
-' '           Text
+' '           Text.Whitespace
 'data'        Keyword
 '<'           Text
 '32'          Literal
@@ -19,85 +19,93 @@
 '\n'          Text
 
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Time'        Name
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword
-' '           Text
+' '           Text.Whitespace
 '# ISO 8601'  Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'enum'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Department'  Name.Class
-' {'          Text
-'\n  '        Text
+' {'          Text.Whitespace
+'\n  '        Text.Whitespace
 'ACCOUNTING'  Name.Attribute
-'\n  '        Text
+'\n  '        Text.Whitespace
 'ADMINISTRATION' Name.Attribute
-'\n  '        Text
+'\n  '        Text.Whitespace
 'CUSTOMER_SERVICE' Name.Attribute
-'\n  '        Text
+'\n  '        Text.Whitespace
 'DEVELOPMENT' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '# IMPORTANT' Comment
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '# Reserved for the CEO' Comment
-'\n  '        Text
+'\n  '        Text.Whitespace
 'JSMITH'      Name.Attribute
 ' = '         Text
 '99'          Literal
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Customer'    Name.Class
-' {'          Text
-'\n  '        Text
+' '           Text.Whitespace
+'{'           Text
+'\n  '        Text.Whitespace
 'name'        Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'string'      Keyword
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'email'       Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'string'      Keyword
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'address'     Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'Address'     Name.Class
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'orders'      Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 '[]'          Text
 '{'           Text
-'\n    '      Text
+'\n    '      Text.Whitespace
 'orderId'     Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'i64'         Keyword
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'quantity'    Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'i32'         Keyword
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Text
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'metadata'    Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'map'         Keyword
 '['           Text
 'string'      Keyword
@@ -106,58 +114,68 @@
 '\n'          Text
 
 '}'           Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Employee'    Name.Class
-' {'          Text
-'\n  '        Text
+' '           Text.Whitespace
+'{'           Text
+'\n  '        Text.Whitespace
 'name'        Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'string'      Keyword
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'email'       Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'string'      Keyword
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'address'     Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'Address'     Name.Class
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'department'  Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'Department'  Name.Class
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'hireDate'    Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'Time'        Name.Class
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'publicKey'   Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'optional'    Keyword
 '<'           Text
 '('           Text
 'PublicRSAKey' Name.Class
-' | '         Text
+' '           Text.Whitespace
+'|'           Text
+' '           Text.Whitespace
 'PublicED25519Key' Name.Class
 ')'           Text
 '>'           Text
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'metadata'    Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'map'         Keyword
 '['           Text
 'string'      Keyword
@@ -166,48 +184,56 @@
 '\n'          Text
 
 '}'           Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Person'      Name.Class
-' ('          Text
+' '           Text.Whitespace
+'('           Text
 'Customer'    Name.Class
-' | '         Text
+' '           Text.Whitespace
+'|'           Text
+' '           Text.Whitespace
 'Employee'    Name.Class
 ')'           Text
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Address'     Name.Class
-' {'          Text
-'\n  '        Text
+' '           Text.Whitespace
+'{'           Text
+'\n  '        Text.Whitespace
 'address'     Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 '['           Text
 '4'           Literal
 ']'           Text
 'string'      Keyword
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'city'        Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'string'      Keyword
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'state'       Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'string'      Keyword
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'country'     Name.Attribute
-': '          Text
+':'           Text
+' '           Text.Whitespace
 'string'      Keyword
 '\n'          Text
 
 '}'           Text
-'\n'          Text
+'\n'          Text.Whitespace

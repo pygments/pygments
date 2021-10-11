@@ -1,5 +1,7 @@
 '# This is a TOML document comment' Comment.Single
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 'title'       Name
 ' '           Text
@@ -8,7 +10,9 @@
 '"TOML example file"' Literal.String
 ' '           Text
 '# This is an inline comment' Comment.Single
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 '[examples]'  Keyword
 '\n'          Text
@@ -131,7 +135,9 @@
 '='           Operator
 ' '           Text
 '2'           Literal.Number.Integer
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 '[strings]'   Keyword
 '\n'          Text
@@ -164,15 +170,21 @@
 '='           Operator
 ' '           Text
 '"Roses are red\\r\\nViolets are blue"' Literal.String
-'\n\n  '      Text
-'[strings.equivalents]' Keyword
+'\n'          Text
+
 '\n  '        Text
+'[strings.equivalents]' Keyword
+'\n'          Text
+
+'  '          Text
 'str1'        Name
 ' '           Text
 '='           Operator
 ' '           Text
 '"The quick brown fox jumps over the lazy dog."' Literal.String
-'\n  '        Text
+'\n'          Text
+
+'  '          Text
 'str2'        Name
 ' '           Text
 '='           Operator
@@ -180,7 +192,9 @@
 '""'          Literal.String
 '"\nThe quick brown \\\n\n\n    fox jumps over \\\n      the lazy dog."' Literal.String
 '""'          Literal.String
-'\n  '        Text
+'\n'          Text
+
+'  '          Text
 'str3'        Name
 ' '           Text
 '='           Operator
@@ -188,41 +202,57 @@
 '""'          Literal.String
 '"\\\n         The quick brown \\\n         fox jumps over \\\n         the lazy dog.\\\n         "' Literal.String
 '""'          Literal.String
-'\n\n  '      Text
-'[strings.literal]' Keyword
+'\n'          Text
+
 '\n  '        Text
+'[strings.literal]' Keyword
+'\n'          Text
+
+'  '          Text
 'winpath'     Name
 '  '          Text
 '='           Operator
 ' '           Text
 "'C:\\Users\\nodejs\\templates'" Literal.String
-'\n  '        Text
+'\n'          Text
+
+'  '          Text
 'winpath2'    Name
 ' '           Text
 '='           Operator
 ' '           Text
 "'\\\\ServerX\\admin$\\system32\\'" Literal.String
-'\n  '        Text
+'\n'          Text
+
+'  '          Text
 'quoted'      Name
 '   '         Text
 '='           Operator
 ' '           Text
 '\'Tom "Dubs" Preston-Werner\'' Literal.String
-'\n  '        Text
+'\n'          Text
+
+'  '          Text
 'regex'       Name
 '    '        Text
 '='           Operator
 ' '           Text
 "'<\\i\\c*\\s*>'" Literal.String
-'\n\n  '      Text
-'[strings.multiline]' Keyword
+'\n'          Text
+
 '\n  '        Text
+'[strings.multiline]' Keyword
+'\n'          Text
+
+'  '          Text
 'regex2'      Name
 ' '           Text
 '='           Operator
 ' '           Text
 "'''I [dw]on't need \\d{2} apples'''" Literal.String
-'\n  '        Text
+'\n'          Text
+
+'  '          Text
 'lines'       Name
 '  '          Text
 '='           Operator
@@ -230,7 +260,9 @@
 "''"          Literal.String
 "'\nThe first newline is\ntrimmed in raw strings.\n   All other whitespace\n   is preserved.\n'" Literal.String
 "''"          Literal.String
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 '[integers]'  Keyword
 '\n'          Text
@@ -346,7 +378,9 @@
 ' '           Text
 '0'           Literal.Number.Integer
 'b11010110'   Name
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 '[floats]'    Keyword
 '\n'          Text
@@ -502,7 +536,9 @@
 ' '           Text
 '-0'          Literal.Number.Integer
 '.0'          Literal.Number.Float
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 '[booleans]'  Keyword
 '\n'          Text
@@ -519,7 +555,9 @@
 '='           Operator
 ' '           Text
 'false'       Keyword.Constant
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 '[datetime.offset]' Keyword
 '\n'          Text
@@ -560,7 +598,9 @@
 '='           Operator
 ' '           Text
 '1979-05-27 07:32:00Z' Literal.Number.Integer
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 '[datetime.local]' Keyword
 '\n'          Text
@@ -591,7 +631,9 @@
 '32'          Literal.Number.Integer
 ':'           Punctuation
 '00.999999'   Literal.Number.Float
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 '[date.local]' Keyword
 '\n'          Text
@@ -603,7 +645,9 @@
 '1979'        Literal.Number.Integer
 '-05'         Literal.Number.Integer
 '-27'         Literal.Number.Integer
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 '[time.local]' Keyword
 '\n'          Text
@@ -628,7 +672,9 @@
 '32'          Literal.Number.Integer
 ':'           Punctuation
 '00.999999'   Literal.Number.Float
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 '[arrays]'    Keyword
 '\n'          Text
@@ -637,35 +683,113 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'[ 1, 2, 3 ]' Keyword
+'['           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+']'           Punctuation
 '\n'          Text
 
 'arr2'        Name
 ' '           Text
 '='           Operator
 ' '           Text
-'[ "red", "yellow", "green" ]' Keyword
+'['           Punctuation
+' '           Text
+'"red"'       Literal.String
+','           Punctuation
+' '           Text
+'"yellow"'    Literal.String
+','           Punctuation
+' '           Text
+'"green"'     Literal.String
+' '           Text
+']'           Punctuation
 '\n'          Text
 
 'arr3'        Name
 ' '           Text
 '='           Operator
 ' '           Text
-'[ [ 1, 2 ], [3, 4, 5] ]' Keyword
+'['           Punctuation
+' '           Text
+'['           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+']'           Punctuation
+','           Punctuation
+' '           Text
+'['           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+']'           Punctuation
 '\n'          Text
 
 'arr4'        Name
 ' '           Text
 '='           Operator
 ' '           Text
-'[ "all", \'strings\', """are the same""", \'\'\'type\'\'\']' Keyword
+'['           Punctuation
+' '           Text
+'"all"'       Literal.String
+','           Punctuation
+' '           Text
+"'strings'"   Literal.String
+','           Punctuation
+' '           Text
+'""'          Literal.String
+'"are the same"' Literal.String
+'""'          Literal.String
+','           Punctuation
+' '           Text
+"'''type'''"  Literal.String
+']'           Punctuation
 '\n'          Text
 
 'arr5'        Name
 ' '           Text
 '='           Operator
 ' '           Text
-'[ [ 1, 2 ], ["a", "b", "c"] ]' Keyword
+'['           Punctuation
+' '           Text
+'['           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+']'           Punctuation
+','           Punctuation
+' '           Text
+'['           Punctuation
+'"a"'         Literal.String
+','           Punctuation
+' '           Text
+'"b"'         Literal.String
+','           Punctuation
+' '           Text
+'"c"'         Literal.String
+']'           Punctuation
+' '           Text
+']'           Punctuation
 '\n'          Text
 
 'arr6'        Name
@@ -689,7 +813,9 @@
 '='           Operator
 ' '           Text
 '['           Punctuation
-'\n  '        Text
+'\n'          Text
+
+'  '          Text
 '1'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text
@@ -707,10 +833,14 @@
 '='           Operator
 ' '           Text
 '['           Punctuation
-'\n  '        Text
+'\n'          Text
+
+'  '          Text
 '1'           Literal.Number.Integer
 ','           Punctuation
-'\n  '        Text
+'\n'          Text
+
+'  '          Text
 '2'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text
@@ -718,7 +848,9 @@
 '\n'          Text
 
 ']'           Punctuation
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 '["inline tables"]' Keyword
 '\n'          Text
@@ -782,7 +914,9 @@
 '"pug"'       Literal.String
 ' '           Text
 '}'           Punctuation
-'\n\n'        Text
+'\n'          Text
+
+'\n'          Text
 
 '["arrays of tables"]' Keyword
 '\n'          Text
@@ -817,7 +951,9 @@
 ' '           Text
 '}'           Punctuation
 ','           Punctuation
-'\n           ' Text
+'\n'          Text
+
+'           ' Text
 '{'           Punctuation
 ' '           Text
 'x'           Name
@@ -842,7 +978,9 @@
 ' '           Text
 '}'           Punctuation
 ','           Punctuation
-'\n           ' Text
+'\n'          Text
+
+'           ' Text
 '{'           Punctuation
 ' '           Text
 'x'           Name
@@ -868,95 +1006,141 @@
 '}'           Punctuation
 ' '           Text
 ']'           Punctuation
-'\n\n  '      Text
+'\n'          Text
+
+'\n  '        Text
 '[products]'  Keyword
-'\n\n    '    Text
-'[[products]]' Keyword
+'\n'          Text
+
 '\n    '      Text
+'[[products]]' Keyword
+'\n'          Text
+
+'    '        Text
 'name'        Name
 ' '           Text
 '='           Operator
 ' '           Text
 '"Hammer"'    Literal.String
-'\n    '      Text
+'\n'          Text
+
+'    '        Text
 'sku'         Name
 ' '           Text
 '='           Operator
 ' '           Text
 '738594937'   Literal.Number.Integer
-'\n\n    '    Text
-'[[products]]' Keyword
-'\n\n    '    Text
-'[[products]]' Keyword
+'\n'          Text
+
 '\n    '      Text
+'[[products]]' Keyword
+'\n'          Text
+
+'\n    '      Text
+'[[products]]' Keyword
+'\n'          Text
+
+'    '        Text
 'name'        Name
 ' '           Text
 '='           Operator
 ' '           Text
 '"Nail"'      Literal.String
-'\n    '      Text
+'\n'          Text
+
+'    '        Text
 'sku'         Name
 ' '           Text
 '='           Operator
 ' '           Text
 '284758393'   Literal.Number.Integer
-'\n    '      Text
+'\n'          Text
+
+'    '        Text
 'color'       Name
 ' '           Text
 '='           Operator
 ' '           Text
 '"gray"'      Literal.String
-'\n\n  '      Text
+'\n'          Text
+
+'\n  '        Text
 '[fruits]'    Keyword
-'\n\n    '    Text
+'\n'          Text
+
+'\n    '      Text
 '[[fruit]]'   Keyword
-'\n      '    Text
+'\n'          Text
+
+'      '      Text
 'name'        Name
 ' '           Text
 '='           Operator
 ' '           Text
 '"apple"'     Literal.String
-'\n\n      '  Text
+'\n'          Text
+
+'\n      '    Text
 '[fruit.physical]' Keyword
-'\n        '  Text
+'\n'          Text
+
+'        '    Text
 'color'       Name
 ' '           Text
 '='           Operator
 ' '           Text
 '"red"'       Literal.String
-'\n        '  Text
+'\n'          Text
+
+'        '    Text
 'shape'       Name
 ' '           Text
 '='           Operator
 ' '           Text
 '"round"'     Literal.String
-'\n\n      '  Text
+'\n'          Text
+
+'\n      '    Text
 '[[fruit.variety]]' Keyword
-'\n        '  Text
+'\n'          Text
+
+'        '    Text
 'name'        Name
 ' '           Text
 '='           Operator
 ' '           Text
 '"red delicious"' Literal.String
-'\n\n      '  Text
+'\n'          Text
+
+'\n      '    Text
 '[[fruit.variety]]' Keyword
-'\n        '  Text
+'\n'          Text
+
+'        '    Text
 'name'        Name
 ' '           Text
 '='           Operator
 ' '           Text
 '"granny smith"' Literal.String
-'\n\n    '    Text
+'\n'          Text
+
+'\n    '      Text
 '[[fruit]]'   Keyword
-'\n      '    Text
+'\n'          Text
+
+'      '      Text
 'name'        Name
 ' '           Text
 '='           Operator
 ' '           Text
 '"banana"'    Literal.String
-'\n\n      '  Text
+'\n'          Text
+
+'\n      '    Text
 '[[fruit.variety]]' Keyword
-'\n        '  Text
+'\n'          Text
+
+'        '    Text
 'name'        Name
 ' '           Text
 '='           Operator

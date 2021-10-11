@@ -1,544 +1,550 @@
 '/*\n * "Copyright (c) 2008-2011 The Regents of the University  of California.\n * All rights reserved."\n *\n * Permission to use, copy, modify, and distribute this software and its\n * documentation for any purpose, without fee, and without written agreement is\n * hereby granted, provided that the above copyright notice, the following\n * two paragraphs and the author appear in all copies of this software.\n *\n * IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY FOR\n * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT\n * OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF THE UNIVERSITY OF\n * CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n *\n * THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES,\n * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY\n * AND FITNESS FOR A PARTICULAR PURPOSE.  THE SOFTWARE PROVIDED HEREUNDER IS\n * ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO\n * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."\n *\n */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/**\n * \n *\n */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'include'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"IPDispatch.h"' Comment.PreprocFile
 '\n'          Comment.Preproc
 
 '#'           Comment.Preproc
 'include'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"BlipStatistics.h"' Comment.PreprocFile
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'configuration' Keyword
-' '           Text
+' '           Text.Whitespace
 'IPDispatchC' Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'provides'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'interface'   Keyword
-' '           Text
+' '           Text.Whitespace
 'SplitControl' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'interface'   Keyword
-' '           Text
+' '           Text.Whitespace
 'IPLower'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'interface'   Keyword
-' '           Text
+' '           Text.Whitespace
 'BlipStatistics' Name
 '<'           Operator
 'ip_statistics_t' Name
 '>'           Operator
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'implementation' Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  \n  '      Text
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
 'components'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MainC'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'components'  Keyword
-' '           Text
+' '           Text.Whitespace
 'NoLedsC'     Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'LedsC'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '/* IPDispatchP wiring -- fragment rassembly and lib6lowpan bindings */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'components'  Keyword
-' '           Text
+' '           Text.Whitespace
 'IPDispatchP' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'components'  Keyword
-' '           Text
+' '           Text.Whitespace
 'CC2420RadioC' Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'MessageC'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'components'  Keyword
-' '           Text
+' '           Text.Whitespace
 'ReadLqiC'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'components'  Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'TimerMilliC' Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'SplitControl' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'SplitControl' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPLower'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'IPDispatchP' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'BlipStatistics' Name
-'    '        Text
+'    '        Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'IPDispatchP' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'Boot'        Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'MainC'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/* #else */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*   components ResourceSendP; */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*   ResourceSendP.SubSend -> MessageC; */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*   ResourceSendP.Resource -> MessageC.SendResource[unique("RADIO_SEND_RESOURCE")]; */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*   IPDispatchP.Ieee154Send -> ResourceSendP.Ieee154Send; */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/* #endif */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'RadioControl' Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'MessageC'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'BarePacket'  Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'MessageC'    Name
 '.'           Punctuation
 'BarePacket'  Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'Ieee154Send' Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'MessageC'    Name
 '.'           Punctuation
 'BareSend'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'Ieee154Receive' Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'MessageC'    Name
 '.'           Punctuation
 'BareReceive' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'ifdef LOW_POWER_LISTENING' Comment.Preproc
 '\n'          Comment.Preproc
 
-'   '         Text
+'   '         Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'LowPowerListening' Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'MessageC'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'  '          Text
+'  '          Text.Whitespace
 'MainC'       Name
 '.'           Punctuation
 'SoftwareInit' Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'Init'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'PacketLink'  Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'MessageC'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'ReadLqi'     Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'ReadLqiC'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'Leds'        Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'LedsC'       Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'ExpireTimer' Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'TimerMilliC' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'components'  Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PoolC'       Name
 '('           Punctuation
 'message_t'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N_FRAGMENTS' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'FragPool'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'components'  Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PoolC'       Name
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_entry'  Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N_FRAGMENTS' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'SendEntryPool' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'components'  Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'QueueC'      Name
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_entry'  Name.Class
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N_FRAGMENTS' Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'components'  Keyword
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 'PoolC'       Name
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_info'   Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'N_CONCURRENT_SENDS' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'SendInfoPool' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  \n  '      Text
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'FragPool'    Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'FragPool'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'SendEntryPool' Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'SendEntryPool' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'SendInfoPool' Name
-'  '          Text
+'  '          Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'SendInfoPool' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'SendQueue'   Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'QueueC'      Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'components'  Keyword
-' '           Text
+' '           Text.Whitespace
 'IPNeighborDiscoveryP' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'IPDispatchP' Name
 '.'           Punctuation
 'NeighborDiscovery' Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'IPNeighborDiscoveryP' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*   components ICMPResponderC; */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/* #ifdef BLIP_MULTICAST */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*   components MulticastP; */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*   components new TrickleTimerMilliC(2, 30, 2, 1); */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*   IP = MulticastP.IP; */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*   MainC.SoftwareInit -> MulticastP.Init; */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*   MulticastP.MulticastRx -> IPDispatchP.Multicast; */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*   MulticastP.HopHeader -> IPExtensionP.HopByHopExt[0]; */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*   MulticastP.TrickleTimer -> TrickleTimerMilliC.TrickleTimer[0]; */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*   MulticastP.IPExtensions -> IPDispatchP; */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/* #endif */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'ifdef DELUGE' Comment.Preproc
 '\n'          Comment.Preproc
 
-'  '          Text
+'  '          Text.Whitespace
 'components'  Keyword
-' '           Text
+' '           Text.Whitespace
 'NWProgC'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Preproc
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

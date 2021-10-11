@@ -11,7 +11,7 @@
 import re
 
 from pygments.lexer import ExtendedRegexLexer, include, \
-    bygroups, default, LexerContext, words
+    bygroups, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
 

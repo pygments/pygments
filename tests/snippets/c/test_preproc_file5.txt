@@ -1,0 +1,19 @@
+Preprocessor macros should appear only at the beginning of the line.
+Otherwise we should produce an error token.
+
+---input---
+foo(); #define FOO 0
+
+---tokens---
+'foo'         Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'#'           Error
+'define'      Name
+' '           Text.Whitespace
+'FOO'         Name
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace

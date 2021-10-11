@@ -1,0 +1,249 @@
+'project'     Name.Builtin
+'('           Punctuation
+"'pygments'"  Literal.String
+','           Punctuation
+' '           Text.Whitespace
+"'c'"         Literal.String
+','           Punctuation
+'\n  '        Text.Whitespace
+'version'     Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+"'0.1'"       Literal.String
+','           Punctuation
+'\n  '        Text.Whitespace
+'default_options' Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+"'warning_level=3'" Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'import'      Name.Namespace
+'('           Punctuation
+"'fs'"        Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'builder'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'build_machine' Name.Variable.Magic
+'\n'          Text.Whitespace
+
+'target'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'target_machine' Name.Variable.Magic
+'\n'          Text.Whitespace
+
+'host'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'host_machine' Name.Variable.Magic
+'\n\n'        Text.Whitespace
+
+'# This is a comment' Comment
+'\n'          Text.Whitespace
+
+'cc'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'meson'       Name.Variable.Magic
+'.'           Punctuation
+'get_compiler' Name
+'('           Punctuation
+"'c'"         Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'cc'          Name
+'.'           Punctuation
+'compiles'    Name
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'\'\'\'\n/*This\n\'\'\nis a multiline string\n\n# with an embedded line that looks like a comment\n\nand some other elements like\n\ntrue false\n0 1\nproject()\n*/\n#include <stdio.h>\nint main(void) {\n  printf("hello\\n");\n}\n\'\'\'' Literal.String
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'exe'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'executable'  Name.Builtin
+'('           Punctuation
+"'pygments'"  Literal.String
+','           Punctuation
+' '           Text.Whitespace
+"'pygments.c'" Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'install'     Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'true'        Keyword.Constant
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'dep'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cc'          Name
+'.'           Punctuation
+'find_library' Name
+'('           Punctuation
+"'foo'"       Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'disabler'    Name.Builtin
+':'           Punctuation
+' '           Text.Whitespace
+'true'        Keyword.Constant
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'foreach'     Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'42'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0x55000'     Literal.Number.Hex
+','           Punctuation
+' '           Text.Whitespace
+'0o6'         Literal.Number.Oct
+','           Punctuation
+' '           Text.Whitespace
+'exe'         Name
+']'           Punctuation
+'\n  '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'not'         Operator.Word
+' '           Text.Whitespace
+'is_disabler' Name.Builtin
+'('           Punctuation
+'dep'         Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'library'     Name.Builtin
+'('           Punctuation
+"'lib'"       Literal.String
+','           Punctuation
+' '           Text.Whitespace
+"'lib.c'"     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'include_directories' Name.Builtin
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+']'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'dependencies' Name
+':'           Punctuation
+' '           Text.Whitespace
+'dep'         Name
+')'           Punctuation
+'\n  '        Text.Whitespace
+'elif'        Keyword
+' '           Text.Whitespace
+'false'       Keyword.Constant
+'\n    '      Text.Whitespace
+'both_libraries' Name.Builtin
+'('           Punctuation
+"'lib'"       Literal.String
+','           Punctuation
+' '           Text.Whitespace
+"'lib2.c'"    Literal.String
+')'           Punctuation
+'\n  '        Text.Whitespace
+'else'        Keyword
+'\n    '      Text.Whitespace
+'message'     Name.Builtin
+'('           Punctuation
+"'failed'"    Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'continue'    Keyword
+'\n  '        Text.Whitespace
+'endif'       Keyword
+'\n  '        Text.Whitespace
+'break'       Keyword
+'\n'          Text.Whitespace
+
+'endforeach'  Keyword
+'\n\n'        Text.Whitespace
+
+'test'        Name.Builtin
+'('           Punctuation
+"'basic'"     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'exe'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'subdir'      Name.Builtin
+'('           Punctuation
+"'dir'"       Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text.Whitespace
+'not'         Operator.Word
+' '           Text.Whitespace
+'get_option'  Name.Builtin
+'('           Punctuation
+"'build-docs'" Literal.String
+')'           Punctuation
+'\n  '        Text.Whitespace
+'summary'     Name.Builtin
+'('           Punctuation
+'{'           Punctuation
+"'docs'"      Literal.String
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+' '           Text.Whitespace
+"'(disabled by config)'" Literal.String
+']'           Punctuation
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'section'     Name
+':'           Punctuation
+' '           Text.Whitespace
+"'Configuration'" Literal.String
+')'           Punctuation
+'\n  '        Text.Whitespace
+'subdir_done' Name.Builtin
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'endif'       Keyword
+'\n'          Text.Whitespace
