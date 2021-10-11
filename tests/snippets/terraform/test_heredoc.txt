@@ -22,9 +22,11 @@ resource "local_file" "heredoc" {
 ' '           Text
 '<<-'         Operator
 'DOC'         Literal.String.Delimiter
-'\n    heredoc content\n    ' Text
-'DOC'         Literal.String.Delimiter
-'\n'          Text
+'\n'          Literal.String.Heredoc
+
+'    heredoc content\n' Literal.String.Heredoc
+
+'    DOC\n'   Literal.String.Delimiter
 
 '}'           Punctuation
 '\n'          Text
