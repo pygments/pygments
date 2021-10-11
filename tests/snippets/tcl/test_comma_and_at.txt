@@ -1,0 +1,131 @@
+---input---
+# Alt and arrow keys to scroll
+set scroll_amount 2
+bind Text <Alt-Up> {
+    %W yview scroll -$scroll_amount units
+    %W mark set insert @0,[expr [winfo height %W] / 2]
+}
+bind Text <Alt-Down> {
+    %W yview scroll $scroll_amount units
+    %W mark set insert @0,[expr [winfo height %W] / 2]
+}
+
+---tokens---
+'#'           Comment
+' Alt and arrow keys to scroll\n' Comment
+
+'set'         Keyword
+' '           Text.Whitespace
+'scroll_amount' Text
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'bind'        Name.Variable
+' '           Text.Whitespace
+'Text'        Text
+' '           Text.Whitespace
+'<'           Operator
+'Alt-Up'      Text
+'>'           Operator
+' '           Text.Whitespace
+'{'           Keyword
+'\n    '      Text.Whitespace
+'%'           Operator
+'W'           Name.Variable
+' '           Text.Whitespace
+'yview'       Text
+' '           Text.Whitespace
+'scroll'      Text
+' '           Text.Whitespace
+'-'           Operator
+'$scroll_amount' Name.Variable
+' '           Text.Whitespace
+'units'       Text
+'\n'          Text
+
+'    '        Text.Whitespace
+'%'           Operator
+'W'           Name.Variable
+' '           Text.Whitespace
+'mark'        Text
+' '           Text.Whitespace
+'set'         Text
+' '           Text.Whitespace
+'insert'      Text
+' '           Text.Whitespace
+'@0,'         Text
+'['           Keyword
+'expr'        Keyword
+' '           Text.Whitespace
+'['           Keyword
+'winfo'       Name.Variable
+' '           Text.Whitespace
+'height'      Text
+' '           Text.Whitespace
+'%'           Operator
+'W'           Text
+']'           Keyword
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+']'           Keyword
+'\n'          Text
+
+'}'           Keyword
+'\n'          Text
+
+'bind'        Name.Variable
+' '           Text.Whitespace
+'Text'        Text
+' '           Text.Whitespace
+'<'           Operator
+'Alt-Down'    Text
+'>'           Operator
+' '           Text.Whitespace
+'{'           Keyword
+'\n    '      Text.Whitespace
+'%'           Operator
+'W'           Name.Variable
+' '           Text.Whitespace
+'yview'       Text
+' '           Text.Whitespace
+'scroll'      Text
+' '           Text.Whitespace
+'$scroll_amount' Name.Variable
+' '           Text.Whitespace
+'units'       Text
+'\n'          Text
+
+'    '        Text.Whitespace
+'%'           Operator
+'W'           Name.Variable
+' '           Text.Whitespace
+'mark'        Text
+' '           Text.Whitespace
+'set'         Text
+' '           Text.Whitespace
+'insert'      Text
+' '           Text.Whitespace
+'@0,'         Text
+'['           Keyword
+'expr'        Keyword
+' '           Text.Whitespace
+'['           Keyword
+'winfo'       Name.Variable
+' '           Text.Whitespace
+'height'      Text
+' '           Text.Whitespace
+'%'           Operator
+'W'           Text
+']'           Keyword
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+']'           Keyword
+'\n'          Text
+
+'}'           Keyword
+'\n'          Text

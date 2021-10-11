@@ -277,7 +277,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'-123'        Literal.Number.Int
+'-123'        Literal.Number.Integer
 '\n'          Text
 
 'max-float'   Name.Class
@@ -291,9 +291,9 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'0'           Literal.Number.Int
+'0'           Literal.Number.Integer
 '..'          Operator
-'10'          Literal.Number.Int
+'10'          Literal.Number.Integer
 ' '           Text
 '; only integers match' Comment.Single
 '\n'          Text
@@ -313,7 +313,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'0'           Literal.Number.Int
+'0'           Literal.Number.Integer
 '..'          Operator
 'max-byte'    Name.Class
 ' '           Text
@@ -324,14 +324,14 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'256'         Literal.Number.Int
+'256'         Literal.Number.Integer
 '\n'          Text
 
 'byte1'       Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'0'           Literal.Number.Int
+'0'           Literal.Number.Integer
 '...'         Operator
 'first-non-byte' Name.Class
 ' '           Text
@@ -342,7 +342,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'0'           Literal.Number.Int
+'0'           Literal.Number.Integer
 '..'          Operator
 '10.0'        Literal.Number.Float
 ' '           Text
@@ -355,7 +355,7 @@
 ' '           Text
 '0.0'         Literal.Number.Float
 '..'          Operator
-'10'          Literal.Number.Int
+'10'          Literal.Number.Integer
 ' '           Text
 '; NOT DEFINED' Comment.Single
 '\n'          Text
@@ -388,49 +388,49 @@
 'black'       Literal.String
 ':'           Punctuation
 ' '           Text
-'0'           Literal.Number.Int
+'0'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text
 'red'         Literal.String
 ':'           Punctuation
 ' '           Text
-'1'           Literal.Number.Int
+'1'           Literal.Number.Integer
 ','           Punctuation
 '  '          Text
 'green'       Literal.String
 ':'           Punctuation
 ' '           Text
-'2'           Literal.Number.Int
+'2'           Literal.Number.Integer
 ','           Punctuation
 '  '          Text
 'yellow'      Literal.String
 ':'           Punctuation
 ' '           Text
-'3'           Literal.Number.Int
+'3'           Literal.Number.Integer
 ','           Punctuation
 '\n  '        Text
 'blue'        Literal.String
 ':'           Punctuation
 ' '           Text
-'4'           Literal.Number.Int
+'4'           Literal.Number.Integer
 ','           Punctuation
 '  '          Text
 'magenta'     Literal.String
 ':'           Punctuation
 ' '           Text
-'5'           Literal.Number.Int
+'5'           Literal.Number.Integer
 ','           Punctuation
 '  '          Text
 'cyan'        Literal.String
 ':'           Punctuation
 ' '           Text
-'6'           Literal.Number.Int
+'6'           Literal.Number.Integer
 ','           Punctuation
 '  '          Text
 'white'       Literal.String
 ':'           Punctuation
 ' '           Text
-'7'           Literal.Number.Int
+'7'           Literal.Number.Integer
 ','           Punctuation
 '\n'          Text
 
@@ -450,25 +450,25 @@
 'orange'      Literal.String
 ':'           Punctuation
 ' '           Text
-'8'           Literal.Number.Int
+'8'           Literal.Number.Integer
 ','           Punctuation
 '  '          Text
 'pink'        Literal.String
 ':'           Punctuation
 ' '           Text
-'9'           Literal.Number.Int
+'9'           Literal.Number.Integer
 ','           Punctuation
 '  '          Text
 'purple'      Literal.String
 ':'           Punctuation
 ' '           Text
-'10'          Literal.Number.Int
+'10'          Literal.Number.Integer
 ','           Punctuation
 '  '          Text
 'brown'       Literal.String
 ':'           Punctuation
 ' '           Text
-'11'          Literal.Number.Int
+'11'          Literal.Number.Integer
 ','           Punctuation
 '\n'          Text
 
@@ -545,14 +545,14 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'0'           Literal.Number.Int
+'0'           Literal.Number.Integer
 '\n'          Text
 
 'water'       Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'1'           Literal.Number.Int
+'1'           Literal.Number.Integer
 '\n'          Text
 
 'solid'       Name.Class
@@ -773,11 +773,11 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'1'           Literal.Number.Int
+'1'           Literal.Number.Integer
 ' '           Text
 '/'           Operator
 ' '           Text
-'0'           Literal.Number.Int
+'0'           Literal.Number.Integer
 '\n'          Text
 
 ';invalid-int = 01' Comment.Single
@@ -822,7 +822,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'123'         Literal.Number.Int
+'123'         Literal.Number.Integer
 '\n\n'        Text
 
 'located-samples' Name.Class
@@ -1192,7 +1192,7 @@
 ' '           Text
 '.size'       Operator.Word
 ' '           Text
-'4'           Literal.Number.Int
+'4'           Literal.Number.Integer
 '\n'          Text
 
 'ip6'         Name.Class
@@ -1203,7 +1203,7 @@
 ' '           Text
 '.size'       Operator.Word
 ' '           Text
-'16'          Literal.Number.Int
+'16'          Literal.Number.Integer
 '\n'          Text
 
 'label'       Name.Class
@@ -1215,9 +1215,9 @@
 '.size'       Operator.Word
 ' '           Text
 '('           Punctuation
-'1'           Literal.Number.Int
+'1'           Literal.Number.Integer
 '..'          Operator
-'63'          Literal.Number.Int
+'63'          Literal.Number.Integer
 ')'           Punctuation
 '\n\n'        Text
 
@@ -1239,7 +1239,7 @@
 'false'       Name.Builtin
 ','           Punctuation
 '\n  '        Text
-'4711'        Literal.Number.Int
+'4711'        Literal.Number.Integer
 ':'           Punctuation
 ' '           Text
 'number'      Name.Builtin
@@ -1263,7 +1263,7 @@
 ' '           Text
 '.size'       Operator.Word
 ' '           Text
-'3'           Literal.Number.Int
+'3'           Literal.Number.Integer
 ' '           Text
 '; 24-bit, equivalent to 0...16777216' Comment.Single
 '\n\n'        Text
@@ -1289,55 +1289,55 @@
 'fin'         Literal.String
 ':'           Punctuation
 ' '           Text
-'8'           Literal.Number.Int
+'8'           Literal.Number.Integer
 ','           Punctuation
 '\n  '        Text
 'syn'         Literal.String
 ':'           Punctuation
 ' '           Text
-'9'           Literal.Number.Int
+'9'           Literal.Number.Integer
 ','           Punctuation
 '\n  '        Text
 'rst'         Literal.String
 ':'           Punctuation
 ' '           Text
-'10'          Literal.Number.Int
+'10'          Literal.Number.Integer
 ','           Punctuation
 '\n  '        Text
 'psh'         Literal.String
 ':'           Punctuation
 ' '           Text
-'11'          Literal.Number.Int
+'11'          Literal.Number.Integer
 ','           Punctuation
 '\n  '        Text
 'ack'         Literal.String
 ':'           Punctuation
 ' '           Text
-'12'          Literal.Number.Int
+'12'          Literal.Number.Integer
 ','           Punctuation
 '\n  '        Text
 'urg'         Literal.String
 ':'           Punctuation
 ' '           Text
-'13'          Literal.Number.Int
+'13'          Literal.Number.Integer
 ','           Punctuation
 '\n  '        Text
 'ece'         Literal.String
 ':'           Punctuation
 ' '           Text
-'14'          Literal.Number.Int
+'14'          Literal.Number.Integer
 ','           Punctuation
 '\n  '        Text
 'cwr'         Literal.String
 ':'           Punctuation
 ' '           Text
-'15'          Literal.Number.Int
+'15'          Literal.Number.Integer
 ','           Punctuation
 '\n  '        Text
 'ns'          Literal.String
 ':'           Punctuation
 ' '           Text
-'0'           Literal.Number.Int
+'0'           Literal.Number.Integer
 ','           Punctuation
 '\n'          Text
 
@@ -1346,9 +1346,9 @@
 '/'           Operator
 ' '           Text
 '('           Punctuation
-'4'           Literal.Number.Int
+'4'           Literal.Number.Integer
 '..'          Operator
-'7'           Literal.Number.Int
+'7'           Literal.Number.Integer
 ')'           Punctuation
 ' '           Text
 '; data offset bits' Comment.Single
@@ -1374,19 +1374,19 @@
 'r'           Literal.String
 ':'           Punctuation
 ' '           Text
-'2'           Literal.Number.Int
+'2'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text
 'w'           Literal.String
 ':'           Punctuation
 ' '           Text
-'1'           Literal.Number.Int
+'1'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text
 'x'           Literal.String
 ':'           Punctuation
 ' '           Text
-'0'           Literal.Number.Int
+'0'           Literal.Number.Integer
 ')'           Punctuation
 '\n\n'        Text
 
@@ -1429,9 +1429,9 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'0'           Literal.Number.Int
+'0'           Literal.Number.Integer
 '..'          Operator
-'255'         Literal.Number.Int
+'255'         Literal.Number.Integer
 '\n'          Text
 
 'message_option' Name.Class
@@ -1447,7 +1447,7 @@
 '='           Operator
 ' '           Text
 '['           Punctuation
-'3'           Literal.Number.Int
+'3'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text
 'dough'       Literal.String
@@ -1473,7 +1473,7 @@
 '='           Operator
 ' '           Text
 '['           Punctuation
-'4'           Literal.Number.Int
+'4'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text
 'noodles'     Literal.String
@@ -1503,7 +1503,7 @@
 ' '           Text
 '.ge'         Operator.Word
 ' '           Text
-'0'           Literal.Number.Int
+'0'           Literal.Number.Integer
 '  '          Text
 '; unit: m/s' Comment.Single
 '\n\n'        Text
@@ -1530,12 +1530,12 @@
 ' '           Text
 '.gt'         Operator.Word
 ' '           Text
-'0'           Literal.Number.Int
+'0'           Literal.Number.Integer
 ')'           Punctuation
 ' '           Text
 '.default'    Operator.Word
 ' '           Text
-'1'           Literal.Number.Int
+'1'           Literal.Number.Integer
 '\n'          Text
 
 '}'           Punctuation
@@ -1739,9 +1739,9 @@
 '"sleep"'     Literal.String.Double
 ','           Punctuation
 ' '           Text
-'1'           Literal.Number.Int
+'1'           Literal.Number.Integer
 '..'          Operator
-'100'         Literal.Number.Int
+'100'         Literal.Number.Integer
 '>'           Punctuation
 '\n'          Text
 
@@ -1803,25 +1803,25 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'1'           Literal.Number.Int
+'1'           Literal.Number.Integer
 ' '           Text
 'b'           Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'2'           Literal.Number.Int
+'2'           Literal.Number.Integer
 ' '           Text
 'c'           Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'3'           Literal.Number.Int
+'3'           Literal.Number.Integer
 ' '           Text
 'd'           Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'4'           Literal.Number.Int
+'4'           Literal.Number.Integer
 '\n\n'        Text
 
 't'           Name.Class
@@ -1866,25 +1866,25 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'1'           Literal.Number.Int
+'1'           Literal.Number.Integer
 ' '           Text
 'b'           Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'2'           Literal.Number.Int
+'2'           Literal.Number.Integer
 ' '           Text
 'c'           Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'3'           Literal.Number.Int
+'3'           Literal.Number.Integer
 ' '           Text
 'd'           Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'4'           Literal.Number.Int
+'4'           Literal.Number.Integer
 '\n\n'        Text
 
 't'           Name.Class
@@ -1919,19 +1919,19 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'1'           Literal.Number.Int
+'1'           Literal.Number.Integer
 ' '           Text
 'b'           Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'2'           Literal.Number.Int
+'2'           Literal.Number.Integer
 ' '           Text
 'c'           Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'3'           Literal.Number.Int
+'3'           Literal.Number.Integer
 '\n\n'        Text
 
 't'           Name.Class
@@ -1966,19 +1966,19 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'1'           Literal.Number.Int
+'1'           Literal.Number.Integer
 ' '           Text
 'b'           Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'2'           Literal.Number.Int
+'2'           Literal.Number.Integer
 ' '           Text
 'c'           Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'3'           Literal.Number.Int
+'3'           Literal.Number.Integer
 '\n\n'        Text
 
 't'           Name.Class
@@ -2017,19 +2017,19 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'1'           Literal.Number.Int
+'1'           Literal.Number.Integer
 ' '           Text
 'b'           Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'2'           Literal.Number.Int
+'2'           Literal.Number.Integer
 ' '           Text
 'c'           Name.Class
 ' '           Text
 '='           Operator
 ' '           Text
-'3'           Literal.Number.Int
+'3'           Literal.Number.Integer
 '\n\n'        Text
 
 'byte-strings' Name.Class
@@ -2264,7 +2264,7 @@
 '='           Operator
 ' '           Text
 '#'           Keyword.Type
-'0'           Literal.Number.Int
+'0'           Literal.Number.Integer
 '\n'          Text
 
 'nint'        Name.Builtin
@@ -2272,7 +2272,7 @@
 '='           Operator
 ' '           Text
 '#'           Keyword.Type
-'1'           Literal.Number.Int
+'1'           Literal.Number.Integer
 '\n'          Text
 
 'int'         Name.Builtin
@@ -2291,7 +2291,7 @@
 '='           Operator
 ' '           Text
 '#'           Keyword.Type
-'2'           Literal.Number.Int
+'2'           Literal.Number.Integer
 '\n'          Text
 
 'bytes'       Name.Builtin
@@ -2306,7 +2306,7 @@
 '='           Operator
 ' '           Text
 '#'           Keyword.Type
-'3'           Literal.Number.Int
+'3'           Literal.Number.Integer
 '\n'          Text
 
 'text'        Name.Builtin

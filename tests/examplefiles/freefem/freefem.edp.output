@@ -1,6 +1,6 @@
 '// Example of problem solving in parallel\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Usage:\n' Comment.Single
 
@@ -8,19 +8,19 @@
 
 '// Need FreeFem++ with PETSc\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Parallel stuff\n' Comment.Single
 
 'load'        Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'PETSc'       Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'macro'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'partitioner' Name
 '('           Punctuation
 ')'           Punctuation
@@ -28,7 +28,7 @@
 '//\n'        Comment.Single
 
 'macro'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'dimension'   Name
 '('           Punctuation
 ')'           Punctuation
@@ -36,16 +36,16 @@
 '//\n'        Comment.Single
 
 'include'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 './macro_ddm.idp' Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'macro'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'def'         Name
 '('           Punctuation
 'i'           Name
@@ -56,7 +56,7 @@
 '//\n'        Comment.Single
 
 'macro'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'init'        Keyword.Pseudo
 '('           Punctuation
 'i'           Name
@@ -70,77 +70,77 @@
 
 '//macro intN()int2d//\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Parameters\n' Comment.Single
 
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'nn'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '500'         Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'real'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'L'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1.'          Literal.Number.Float
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'real'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'H'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1.'          Literal.Number.Float
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'func'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'f'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1.'          Literal.Number.Float
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'func'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Pk'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'P1'          Name.Class
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Mesh\n'   Comment.Single
 
 'border'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'b1'          Name.Function
 '('           Punctuation
 't'           Keyword.Pseudo
 '='           Operator
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'L'           Name
 ')'           Punctuation
 '{'           Punctuation
@@ -148,28 +148,28 @@
 '='           Operator
 't'           Keyword.Pseudo
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Keyword.Reserved
 '='           Operator
 '0'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'label'       Keyword.Reserved
 '='           Operator
 '1'           Literal.Number.Integer
 ';'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'border'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'b2'          Name.Function
 '('           Punctuation
 't'           Keyword.Pseudo
 '='           Operator
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'H'           Name
 ')'           Punctuation
 '{'           Punctuation
@@ -177,28 +177,28 @@
 '='           Operator
 'L'           Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Keyword.Reserved
 '='           Operator
 't'           Keyword.Pseudo
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'label'       Keyword.Reserved
 '='           Operator
 '2'           Literal.Number.Integer
 ';'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'border'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'b3'          Name.Function
 '('           Punctuation
 't'           Keyword.Pseudo
 '='           Operator
 'L'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 '{'           Punctuation
@@ -206,28 +206,28 @@
 '='           Operator
 't'           Keyword.Pseudo
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Keyword.Reserved
 '='           Operator
 'H'           Name
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'label'       Keyword.Reserved
 '='           Operator
 '3'           Literal.Number.Integer
 ';'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'border'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'b4'          Name.Function
 '('           Punctuation
 't'           Keyword.Pseudo
 '='           Operator
 'H'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 '{'           Punctuation
@@ -235,104 +235,104 @@
 '='           Operator
 '0'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Keyword.Reserved
 '='           Operator
 't'           Keyword.Pseudo
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'label'       Keyword.Reserved
 '='           Operator
 '4'           Literal.Number.Integer
 ';'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'meshN'       Name
-' '           Text
+' '           Text.Whitespace
 'Th'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'buildmesh'   Name.Function
 '('           Punctuation
 'b1'          Name
 '('           Punctuation
 '1'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'b2'          Name
 '('           Punctuation
 '1'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'b3'          Name
 '('           Punctuation
 '1'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'b4'          Name
 '('           Punctuation
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '//build a really coarse mesh (just to build the fespace later)\n' Comment.Single
 
 '//meshN Th = square(1, 1, [L*x, H*y]);\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'int'         Keyword.Type
 '['           Punctuation
 'int'         Keyword.Type
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Wall'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Fespace\n' Comment.Single
 
 'fespace'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Uh'          Name.Function
 '('           Punctuation
 'Th'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Pk'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Mesh partition\n' Comment.Single
 
@@ -340,10 +340,10 @@
 '['           Punctuation
 'int'         Keyword.Type
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ArrayIntersection' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'int'         Keyword.Type
 '['           Punctuation
@@ -352,37 +352,37 @@
 '['           Punctuation
 'int'         Keyword.Type
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'RestrictionIntersection' Name
 '('           Punctuation
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'real'        Keyword.Type
 '['           Punctuation
 'int'         Keyword.Type
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'D'           Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'meshN'       Name
-' '           Text
+' '           Text.Whitespace
 'ThBorder'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'meshN'       Name
-' '           Text
+' '           Text.Whitespace
 'ThGlobal'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'buildmesh'   Name.Function
 '('           Punctuation
 'b1'          Name
@@ -391,27 +391,27 @@
 '*'           Operator
 'L'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'b2'          Name
 '('           Punctuation
 'nn'          Name
 '*'           Operator
 'H'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'b3'          Name
 '('           Punctuation
 'nn'          Name
 '*'           Operator
 'L'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'b4'          Name
 '('           Punctuation
 'nn'          Name
@@ -420,239 +420,239 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '//build the mesh to partition\n' Comment.Single
 
 '//meshN ThGlobal = square(nn*L, nn*H, [L*x, H*y]);\n' Comment.Single
 
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'InterfaceLabel' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Split'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Overlap'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'build'       Name
 '('           Punctuation
 'Th'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ThBorder'    Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ThGlobal'    Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'InterfaceLabel' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Split'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Overlap'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'D'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ArrayIntersection' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'RestrictionIntersection' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Uh'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Pk'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mpiCommWorld' Keyword.Reserved
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword.Reserved
 ')'           Punctuation
 ';'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '//see macro_ddm.idp for detailed parameters\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Macro\n'  Comment.Single
 
 'macro'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '('           Punctuation
 'u'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'dx'          Name.Function
 '('           Punctuation
 'u'           Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'dy'          Name.Function
 '('           Punctuation
 'u'           Name
 ')'           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '//\n'        Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Problem\n' Comment.Single
 
 'varf'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'vLaplacian'  Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'u'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'uh'          Name
 ')'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '//Problem in varf formulation mandatory\n' Comment.Single
 
-'\t'          Text
+'\t'          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'intN'        Name
 '('           Punctuation
 'Th'          Name
 ')'           Punctuation
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t  '      Text
+'\t\t  '      Text.Whitespace
 'grad'        Name
 '('           Punctuation
 'u'           Name
 ')'           Punctuation
 "'"           Operator
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'grad'        Name
 '('           Punctuation
 'uh'          Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'intN'        Name
 '('           Punctuation
 'Th'          Name
 ')'           Punctuation
 '('           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t  '      Text
+'\t\t  '      Text.Whitespace
 'f'           Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'uh'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'on'          Name.Function
 '('           Punctuation
 'Wall'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'u'           Name
 '='           Operator
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'matrix'      Keyword.Type
 '<'           Operator
 'real'        Keyword.Type
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'Laplacian'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'vLaplacian'  Name
 '('           Punctuation
 'Uh'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Uh'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '//build the sequential matrix\n' Comment.Single
 
 'real'        Keyword.Type
 '['           Punctuation
 'int'         Keyword.Type
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'LaplacianBoundary' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'vLaplacian'  Name
 '('           Punctuation
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Uh'          Name
 ')'           Punctuation
 ';'           Punctuation
 '// and right hand side\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//// In sequential, you normally do that:\n' Comment.Single
 
@@ -662,47 +662,47 @@
 
 '//u[] = Laplacian^-1 * LaplacianBoundary;\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//// Plot\n' Comment.Single
 
 '//plot(u);\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// In parallel:\n' Comment.Single
 
 '// Matrix construction\n' Comment.Single
 
 'dmatrix'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'PLaplacian'  Name.Function
 '('           Punctuation
 'Laplacian'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ArrayIntersection' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'RestrictionIntersection' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'D'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bs'          Name
 '='           Operator
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '//build the parallel matrix\n' Comment.Single
 
 'set'         Name.Function
 '('           Punctuation
 'PLaplacian'  Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'sparams'     Keyword.Pseudo
 '='           Operator
 '"'           Literal.String
@@ -710,15 +710,15 @@
 '"'           Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '//preconditioner LU and MUMPS solver (see PETSc doc for detailed parameters)\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Solve\n'  Comment.Single
 
 'Uh'          Name
-' '           Text
+' '           Text.Whitespace
 'def'         Name.Function
 '('           Punctuation
 'u'           Name
@@ -729,91 +729,91 @@
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
-'\t'          Text
+'\t'          Text.Whitespace
 '//define the unknown (must be defined after mesh partitioning)\n' Comment.Single
 
 'u'           Name
 '['           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'PLaplacian'  Name
 '^'           Operator
 '-1'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'LaplacianBoundary' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// Export results to vtk (there is not plot in parallel)\n' Comment.Single
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'fespace'     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'PV'          Name.Function
 '('           Punctuation
 'Th'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'P1'          Name.Class
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'PV'          Name
-' '           Text
+' '           Text.Whitespace
 'uu'          Name
 '='           Operator
 'u'           Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'int'         Keyword.Type
 '['           Punctuation
 'int'         Keyword.Type
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Order'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '1'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'export'      Keyword
 '('           Punctuation
 '"'           Literal.String
 'Result'      Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Th'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'uu'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Order'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mpiCommWorld' Keyword.Reserved
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

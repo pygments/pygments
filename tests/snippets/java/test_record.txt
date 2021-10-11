@@ -1,0 +1,15 @@
+---input---
+public record RecordTest() {}
+
+---tokens---
+'public'      Keyword.Declaration
+' '           Text
+'record'      Keyword.Declaration
+' '           Text
+'RecordTest'  Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text

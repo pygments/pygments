@@ -93,6 +93,7 @@ Programming languages
 * `Jasmin <http://jasmin.sourceforge.net/>`_
 * `Jcl <https://en.wikipedia.org/wiki/Job_Control_Language>`_
 * `Julia <https://julialang.org>`_
+* `JSLT <https://github.com/schibsted/jslt>`_
 * `Kotlin <https://kotlinlang.org/>`_
 * `Lasso <http://www.lassosoft.com/>`_ (incl. templating)
 * `Limbo <http://www.vitanuova.com/inferno/limbo.html>`_
@@ -103,6 +104,7 @@ Programming languages
 * `Lua <https://lua.org>`_
 * `Mathematica <https://www.wolfram.com/mathematica/>`_
 * `Matlab <https://www.mathworks.com/products/matlab.html>`_
+* `The Meson Build System <https://mesonbuild.com>`_
 * `MiniScript <https://miniscript.org>`_
 * `Modelica <https://www.modelica.org/>`_
 * `Modula-2 <https://www.modula2.org/>`_
@@ -235,6 +237,7 @@ Other markup
 * Gettext catalogs
 * Gnuplot script
 * Groff markup
+* `GSQL <https://docs.tigergraph.com/dev/gsql-ref>`_
 * Hexdumps
 * HTML
 * HTTP sessions
@@ -263,6 +266,7 @@ Other markup
 * `OMG IDL <https://www.omg.org/spec/IDL/About-IDL/>`_
 * `PEG <https://bford.info/packrat/>`_
 * POV-Ray scenes
+* `Procfile <https://devcenter.heroku.com/articles/procfile#procfile-format>`_
 * `PromQL <https://prometheus.io/docs/prometheus/latest/querying/basics/>`_
 * `Puppet <https://puppet.com/>`_
 * QML
@@ -277,6 +281,7 @@ Other markup
 * Scdoc
 * Sieve
 * Singularity
+* `Smithy <https://awslabs.github.io/smithy/>`_
 * SPARQL
 * SQL, also MySQL, SQLite
 * Squid configuration

@@ -29,6 +29,31 @@ jobs:
       run: py.test
       if: runner.os == 'Windows' && ! contains(matrix['python-version'], 'pypy')
 
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    - name: Run make check
+      run: make check
+    - name: Fail if the basic checks failed
+      run: make check
+      if: runner.os == 'Linux'
+
+  check-mapfiles:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    - name: Regenerate mapfiles
+      run: make mapfiles
+    - name: Fail if mapfiles changed
+      run: |
+        if git ls-files -m | grep mapping; then
+          echo 'Please run "make mapfiles" and add the changes to a commit.'
+          exit 1
+        fi
+
   lint:
     runs-on: ubuntu-latest
     steps:

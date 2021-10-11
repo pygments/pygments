@@ -23,8 +23,6 @@
 #    black-on-while, so colors like "white background" need to be converted
 #    to "white background, black foreground", etc...
 
-import sys
-
 from pygments.formatter import Formatter
 from pygments.console import codes
 from pygments.style import ansicolors

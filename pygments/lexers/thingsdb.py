@@ -1,15 +1,13 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.thingsdb
-    ~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the ThingsDB language.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import re
 from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Comment, Keyword, Name, Number, String, Text, \
     Operator, Punctuation, Whitespace
@@ -37,7 +35,7 @@ class ThingsDBLexer(RegexLexer):
 
             # numbers
             (r'[-+]?0b[01]+', Number.Bin),
-            (r'[-+]?0o[0-8]+', Number.Octal),
+            (r'[-+]?0o[0-8]+', Number.Oct),
             (r'([-+]?0x[0-9a-fA-F]+)', Number.Hex),
             (r'[-+]?[0-9]+', Number.Integer),
             (r'[-+]?((inf|nan)([^0-9A-Za-z_]|$)|[0-9]*\.[0-9]+(e[+-][0-9]+)?)',

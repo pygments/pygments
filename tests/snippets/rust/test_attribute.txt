@@ -1,0 +1,12 @@
+---input---
+#[foo(bar = [baz, qux])]
+
+---tokens---
+'#['          Comment.Preproc
+'foo(bar = '  Comment.Preproc
+'['           Comment.Preproc
+'baz, qux'    Comment.Preproc
+']'           Comment.Preproc
+')'           Comment.Preproc
+']'           Comment.Preproc
+'\n'          Text.Whitespace

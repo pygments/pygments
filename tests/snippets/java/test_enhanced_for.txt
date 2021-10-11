@@ -3,7 +3,8 @@ label:
 for(String var2: var1) {}
 
 ---tokens---
-'label:'      Name.Label
+'label'       Name.Label
+':'           Punctuation
 '\n'          Text
 
 'for'         Keyword
