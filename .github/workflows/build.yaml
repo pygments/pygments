@@ -26,7 +26,7 @@ jobs:
       run: make test TEST=-v
       if: runner.os == 'Linux'
     - name: Test package
-      run: py.test
+      run: pytest
       if: runner.os == 'Windows' && ! contains(matrix['python-version'], 'pypy')
 
   check:
