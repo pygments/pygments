@@ -177,6 +177,7 @@ class MumpsLexer(ExtendedRegexLexer):
         # 7.1.3 - Structure system variable ssvn
         'ssvn': [
                 ('\\^\\$Character', Name.Variable.Magic, ('#pop', 'subscripts')),
+                ('\\^\\$C', Name.Variable.Magic, ('#pop', 'subscripts')),
                 ],
         # 7.1.4 - Expression item 'expritem'
         'expritem': [
