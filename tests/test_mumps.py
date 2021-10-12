@@ -548,7 +548,7 @@ def testSSVNRoutineChar(lexer):
             (Whitespace, ' '),
             (Keyword, 'q'),
             (Whitespace, ' '),
-            (Name.Variable.Magic, '^$ROUTINE'),
+            (Name.Variable.Magic, '^$R'),
             (Punctuation, '('),
             (Name.Variable, 'routinexpr'),
             (Punctuation, ','),
