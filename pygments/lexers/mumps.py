@@ -174,10 +174,9 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('rgvn'),
                 include('expritem')
                 ],
-        # 7.1.3 - Structure system variable ssvn
+        # 7.1.3 - Structured system variable ssvn
         'ssvn': [
-                ('\\^\\$Character', Name.Variable.Magic, ('#pop', 'subscripts')),
-                ('\\^\\$C', Name.Variable.Magic, ('#pop', 'subscripts')),
+                ('\\^\\$[A-Z]+', Name.Variable.Magic, ('#pop', 'subscripts')),
                 ],
         # 7.1.4 - Expression item 'expritem'
         'expritem': [
