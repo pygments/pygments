@@ -441,6 +441,161 @@ def testSSVNCharacterSub(lexer):
             (Text, '\n')
             ]
 
+def testSSVNDevice(lexer):
+    assert list(lexer.get_tokens(' q ^$Device(dev)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$Device'),
+            (Punctuation, '('),
+            (Name.Variable, 'dev'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testSSVNDeviceChar(lexer):
+    assert list(lexer.get_tokens(' q ^$D(dev,"CHARACTER")')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$D'),
+            (Punctuation, '('),
+            (Name.Variable, 'dev'),
+            (Punctuation, ','),
+            (String, '"CHARACTER"'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testSSVNGlobal(lexer):
+    assert list(lexer.get_tokens(' q ^$Global(gvn)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$Global'),
+            (Punctuation, '('),
+            (Name.Variable, 'gvn'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testSSVNGlobalChar(lexer):
+    assert list(lexer.get_tokens(' q ^$G(gvn,"CHARACTER")')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$G'),
+            (Punctuation, '('),
+            (Name.Variable, 'gvn'),
+            (Punctuation, ','),
+            (String, '"CHARACTER"'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testSSVNJob(lexer):
+    assert list(lexer.get_tokens(' q ^$Job(pid)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$Job'),
+            (Punctuation, '('),
+            (Name.Variable, 'pid'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testSSVNJobChar(lexer):
+    assert list(lexer.get_tokens(' q ^$J(pid,"CHARACTER")')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$J'),
+            (Punctuation, '('),
+            (Name.Variable, 'pid'),
+            (Punctuation, ','),
+            (String, '"CHARACTER"'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testSSVNLock(lexer):
+    assert list(lexer.get_tokens(' q ^$Lock(nref)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$Lock'),
+            (Punctuation, '('),
+            (Name.Variable, 'nref'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testSSVNRoutine(lexer):
+    assert list(lexer.get_tokens(' q ^$ROUTINE(routinexpr)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$ROUTINE'),
+            (Punctuation, '('),
+            (Name.Variable, 'routinexpr'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testSSVNRoutineChar(lexer):
+    assert list(lexer.get_tokens(' q ^$R(routinexpr,"CHARACTER")')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$ROUTINE'),
+            (Punctuation, '('),
+            (Name.Variable, 'routinexpr'),
+            (Punctuation, ','),
+            (String, '"CHARACTER"'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testSSVNSystem(lexer):
+    assert list(lexer.get_tokens(' q ^$SYSTEM(systemexpr)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$SYSTEM'),
+            (Punctuation, '('),
+            (Name.Variable, 'systemexpr'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testSSVNSystemChar(lexer):
+    assert list(lexer.get_tokens(' q ^$S(systemexpr,"CHARACTER")')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$S'),
+            (Punctuation, '('),
+            (Name.Variable, 'systemexpr'),
+            (Punctuation, ','),
+            (String, '"CHARACTER"'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+# 7.1.3.8 - Impelmentation-specific ssvns starting with ^$Z
+def testSSVNZunspecified(lexer):
+    assert list(lexer.get_tokens(' q ^$ZCheese(cheddar)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '^$ZCheese'),
+            (Punctuation, '('),
+            (Name.Variable, 'cheddar'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
 def testBreak(lexer):
     assert list(lexer.get_tokens(' BREAK')) == [
             (Whitespace, ' '),
