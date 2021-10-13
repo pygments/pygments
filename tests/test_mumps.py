@@ -399,6 +399,38 @@ def testIndirectPattern(lexer):
             (Text, '\n'),
             ]
 
+def testGlobal(lexer):
+    assert list(lexer.get_tokens(' q ^A(1,"a")')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Global, '^A'),
+            (Punctuation, '('),
+            (Number, '1'),
+            (Punctuation, ','),
+            (String, '"a"'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
+def testGlobalEnvironment(lexer):
+    assert list(lexer.get_tokens(' q ^|"M.GLD"|A(1,"a")')) == [
+            (Whitespace, ' '),
+            (Keyword, 'q'),
+            (Whitespace, ' '),
+            (Name.Variable.Global, '^'),
+            (Punctuation, '|'),
+            (String, '"M.GLD"'),
+            (Punctuation, '|'),
+            (Name.Variable.Global, 'A'),
+            (Punctuation, '('),
+            (Number, '1'),
+            (Punctuation, ','),
+            (String, '"a"'),
+            (Punctuation, ')'),
+            (Text, '\n')
+            ]
+
 def testNakedReference(lexer):
     assert list(lexer.get_tokens(' q ^(1_"bar")')) == [
             (Whitespace, ' '),
