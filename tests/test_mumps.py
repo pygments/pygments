@@ -723,6 +723,36 @@ def testDoTagAndRoutine(lexer):
             (Text, '\n'),
             ]
 
+def testDoEnvironmentRoutine(lexer):
+    assert list(lexer.get_tokens(' d ^|env|ROUTINE')) == [
+            (Whitespace, ' '),
+            (Keyword, 'd'),
+            (Whitespace, ' '),
+            (Punctuation, '^'),
+            (Punctuation, '|'),
+            (Name.Variable, 'env'),
+            (Punctuation, '|'),
+            (Name.Namespace, 'ROUTINE'),
+            (Text, '\n'),
+            ]
+
+def testDoEnvironmentLabelRoutine(lexer):
+    assert list(lexer.get_tokens(' d label^|"M3.gld"|ROUTINE(1)')) == [
+            (Whitespace, ' '),
+            (Keyword, 'd'),
+            (Whitespace, ' '),
+            (Name.Label, 'label'),
+            (Punctuation, '^'),
+            (Punctuation, '|'),
+            (String, '"M3.gld"'),
+            (Punctuation, '|'),
+            (Name.Namespace, 'ROUTINE'),
+            (Punctuation, '('),
+            (Number, '1'),
+            (Punctuation, ')'),
+            (Text, '\n'),
+            ]
+
 def testDoWithArgs(lexer):
     assert list(lexer.get_tokens(' d tag^ROUTINE(arg1,arg2)')) == [
             (Whitespace, ' '),
