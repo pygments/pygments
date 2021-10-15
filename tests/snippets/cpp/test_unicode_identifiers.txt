@@ -52,7 +52,7 @@ enum class ⅭⅤ { red, green = 15, blue };
 '\n'          Text.Whitespace
 
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 '𝐨𝐩𝐭𝐢𝐨𝐧𝐬'     Name.Class
 ' '           Text.Whitespace
 'final'       Keyword
@@ -122,7 +122,7 @@ enum class ⅭⅤ { red, green = 15, blue };
 '\n'          Text.Whitespace
 
 'enum'        Keyword
-' '           Text
+' '           Text.Whitespace
 'class'       Keyword
 ' '           Text.Whitespace
 'ⅭⅤ'          Name.Class
