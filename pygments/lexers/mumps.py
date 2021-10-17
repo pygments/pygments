@@ -212,17 +212,17 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 7.1.4.10 - Intrinsic special variable names 'svn'
         'svn': [
-            ('\\$QUIT', Keyword, '#pop'),
-            ],
+                ('\\$QUIT', Name.Variable.Magic, '#pop'),
+                ],
         # 7.2 - exprtail
         'exprtail': [
-            # TODO
-	        ( binaryop_re, Operator, 'expratom'),
-            ( '(\')(' + truthop_re + ')', bygroups(Operator, Operator), 'expratom'),
-	        ( truthop_re, Operator, 'expratom'),
-            ( '\\?', Operator, 'pattern'),
-            default('#pop')
-            ],
+                # TODO
+	            ( binaryop_re, Operator, 'expratom'),
+                ( '(\')(' + truthop_re + ')', bygroups(Operator, Operator), 'expratom'),
+	            ( truthop_re, Operator, 'expratom'),
+                ( '\\?', Operator, 'pattern'),
+                default('#pop')
+                ],
         # 7.2.3 - Pattern match 'pattern'
         'pattern': [
                 ( '@', Operator, ('#pop', 'expratom')),

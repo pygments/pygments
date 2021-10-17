@@ -42,7 +42,7 @@ def testQuitMorphLine(lexer):
         (Whitespace, ' '),
         (Keyword, 'q'),
         (Operator, ':'),
-        (Keyword, '$QUIT'),
+        (Name.Variable.Magic, '$QUIT'),
         (Whitespace, ' '),
         (Number, '1'),
         (Whitespace, ' '),
