@@ -71,6 +71,9 @@ class MumpsLexer(ExtendedRegexLexer):
         'name': [
             (name_re, Name.Variable, '#pop'),
             ],
+        'routinename': [
+            (name_re, Name.Namespace, '#pop'),
+            ],
         # 6.2 - Routine body 'routinebody'
         'routinebody': [ 
             # Not handled: EOR, special characters
@@ -282,27 +285,42 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8.1.6 - Line reference lineref
         'lineref': [
                 include('entryref'),
-                include('labelref'),
+                # The standard says that lineref also has labelref, but every labelref is also a valid entryref
                 ],
         # 8.1.6.1 - Entry reference entryref
         'entryref': [
                 ( name_re, Name.Label, ('#pop', 'opt_routineref', 'opt_offset')),
+                ( '\\^', Punctuation, ('#pop', 'routineref')),
                 ( '@', Operator, ('#pop', 'opt_routineref', 'opt_offset', 'expratom')),
                 ],
         'opt_offset': [
                 ('\\+', Operator, ('#pop', 'expr')),
                 default('#pop'),
                 ],
+        'routineref': [
+                ('@', Operator, ('#pop', 'expratom')),
+                include('routineref_strict')
+                ],
+        'routineref_strict': [
+                default(('#pop', 'routinename', 'opt_environment'))
+                ],
         'opt_routineref': [
-                ('(\\^)(' + name_re + ')', bygroups(Punctuation, Name.Namespace), '#pop'),
-                ('(\\^)(@)', bygroups(Punctuation, Operator), ('#pop', 'expr')),
+                ('\\^', Punctuation, ('#pop', 'routineref')),
                 default('#pop'),
                 ],
         # 8.1.6.2 - Label reference labelref
         'labelref': [
-                ('(' + name_re + ')(\\^)(' + name_re + ')', bygroups(Name.Label, Punctuation, Name.Namespace), '#pop'),
-                ('(\\^)(' + name_re + ')', bygroups(Punctuation, Name.Namespace), '#pop'),
+                ( name_re , Name.Label, ('#pop', 'opt_routineref_strict')),
+                ('\\^', Punctuation, ('#pop', 'routineref_strict')),
                 #( name_re, Name.Label, '#pop'),
+                ],
+        'opt_environment': [
+                include('environment'),
+                default('#pop')
+                ],
+        'opt_routineref_strict': [
+                ('\\^', Punctuation, ('#pop', 'routineref_strict')),
+                default('#pop')
                 ],
         # 8.1.6.3 - External reference externref
         'externref': [
@@ -395,16 +413,11 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 8.2.3 - DO arguments
         'doargument': [
-                default(('#pop', 'postcond', 'opt_actuallist', 'lineref_choice')),
+                default(('#pop', 'postcond', 'opt_actuallist', 'lineref_or_externref')),
                 ],
-        'lineref_choice': [
-                # Spell out tag-only 'labelref' with a following parenthesis so entryref can't match it
-                ( name_re + '(?=\\()', Name.Label, '#pop'),
-                include('labelref'),
+        'lineref_or_externref': [
                 include('externref'),
-                # Don't include indirected doarguments (@doargs) here - entryref includes indirection that looks lexically the same (@tag), only the interpreter cares about the difference
-                # (Otherwise, parsing would be undecideable because entryref allows indirection which introduces parentheses)
-                default(('#pop', '#pop', 'entryref')),
+                include('lineref'),
                 ],
         'l_doargument': [
                 default(('list_comma', 'doargument')),
@@ -433,7 +446,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         # 8.2.10 - JOB arguments
         'jobargument': [
-                default(('#pop', 'opt_jobparameters', 'opt_actuallist', 'lineref_choice')),
+                default(('#pop', 'opt_jobparameters', 'opt_actuallist', 'lineref_or_externref')),
                 ],
         'l_jobargument': [
                 default(('list_comma', 'jobargument')),
