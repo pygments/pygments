@@ -16,7 +16,7 @@ from pygments.lexers import MumpsLexer
 def lexer():
     yield MumpsLexer()
 
-def test_quit_line(lexer):
+def testQuitLine(lexer):
     fragment = ' q'
     tokens = [
         (Whitespace, ' '),
@@ -25,7 +25,7 @@ def test_quit_line(lexer):
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
-def test_quit_value_line(lexer):
+def testQuitValueLine(lexer):
     fragment = ' QUIT 1'
     tokens = [
         (Whitespace, ' '),
@@ -36,7 +36,7 @@ def test_quit_value_line(lexer):
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
-def test_quit_morph_line(lexer):
+def testQuitMorphLine(lexer):
     fragment = ' q:$QUIT 1 Q'
     tokens = [
         (Whitespace, ' '),
@@ -51,7 +51,7 @@ def test_quit_morph_line(lexer):
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
-def test_stub_subroutine(lexer):
+def testStubSubroutine(lexer):
     fragment = 'stub q'
     tokens = [
         (Name.Label, 'stub'),
@@ -61,7 +61,7 @@ def test_stub_subroutine(lexer):
         ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
-def test_simple_function(lexer):
+def testSimpleFunction(lexer):
     fragment = 'true() q 1'
     tokens = [
         (Name.Function, 'true'),
@@ -75,7 +75,7 @@ def test_simple_function(lexer):
         ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
-def test_arithmetic_unaryops(lexer):
+def testArithmeticUnaryops(lexer):
     # 7.1.4.11 - unaryop (just + and -)
     fragment = 'abs(value) ; Returns the absolute value of a value\n'
     fragment+= ' q:value<0 -value\n'
@@ -107,7 +107,7 @@ def test_arithmetic_unaryops(lexer):
 	]
     assert list(lexer.get_tokens(fragment)) == tokens
 
-def test_compare(lexer):
+def testCompare(lexer):
     fragment = 'spaceship(left,right) ; Returns -1, 0, or 1 based on whether left is less than, equal to, or greater than the right value\n'
     fragment+= ' q:left>right 1\n'
     fragment+= ' q:left<right -1\n'
@@ -152,7 +152,7 @@ def test_compare(lexer):
             ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
-def test_binaryops(lexer):
+def testBinaryops(lexer):
     # Operators defined in 7.2.1
     fragment = ' q 1_1+1/2-1*3#10**2\\3'
     tokens = [
@@ -180,7 +180,7 @@ def test_binaryops(lexer):
             ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
-def test_stringcomp(lexer):
+def testStringcomp(lexer):
     # Test string comparison operators in 7.2.2.3
     fragment = 'lowersub(a,b) ; Gets the $ORDER-wise lower subscript\n'
     fragment+= ' q:a="" b\n' # Direct equality test against empty string
@@ -233,7 +233,7 @@ def test_stringcomp(lexer):
             ]
     assert list(lexer.get_tokens(fragment)) == tokens
     
-def test_string_contains(lexer):
+def testStringContains(lexer):
     fragment = ' q "ABC123\\-*""[]\'"[b'
     tokens = [
             (Whitespace, ' '),
@@ -246,7 +246,7 @@ def test_string_contains(lexer):
             ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
-def test_logicops(lexer):
+def testLogicops(lexer):
     assert list(lexer.get_tokens('and(a,b) q a&b')) == [
             (Name.Function, 'and'),
             (Punctuation, '('),
