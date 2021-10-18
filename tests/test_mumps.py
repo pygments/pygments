@@ -165,7 +165,7 @@ def testQuitDecimal(lexer):
         (Whitespace, ' '),
         (Keyword, 'q'),
         (Whitespace, ' '),
-        (Number, '0.5')
+        (Number, '.5')
         ]
 
 def testQuitExponent(lexer):
