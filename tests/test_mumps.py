@@ -152,6 +152,30 @@ def testCompare(lexer):
             ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
+def testQuitPi(lexer):
+    assert list(lexer.get_tokens(' q 3.14159265')) == [
+        (Whitespace, ' '),
+        (Keyword, 'q'),
+        (Whitespace, ' '),
+        (Number, '3.14159265')
+        ]
+
+def testQuitDecimal(lexer):
+    assert list(lexer.get_tokens(' q .5')) == [
+        (Whitespace, ' '),
+        (Keyword, 'q'),
+        (Whitespace, ' '),
+        (Number, '0.5')
+        ]
+
+def testQuitExponent(lexer):
+    assert list(lexer.get_tokens(' q 60.2214E22')) == [
+        (Whitespace, ' '),
+        (Keyword, 'q'),
+        (Whitespace, ' '),
+        (Number, '60.2214E22')
+        ]
+
 def testBinaryops(lexer):
     # Operators defined in 7.2.1
     fragment = ' q 1_1+1/2-1*3#10**2\\3'
