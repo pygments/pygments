@@ -180,11 +180,11 @@ def testQuitExponent(lexer):
         ]
 
 def testQuitPosExponent(lexer):
-    assert list(lexer.get_tokens(' q 2.9979E+8')) == [
+    assert list(lexer.get_tokens(' q 3E+8')) == [
         (Whitespace, ' '),
         (Keyword, 'q'),
         (Whitespace, ' '),
-        (Number, '2.9979E+8'),
+        (Number, '3E+8'),
         (Text, '\n')
         ]
 
