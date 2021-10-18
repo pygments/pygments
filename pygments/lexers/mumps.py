@@ -213,9 +213,22 @@ class MumpsLexer(ExtendedRegexLexer):
                 ('[0-9]+E[+-]?[0-9]+', Number, '#pop'),  
                 ('[0-9]+', Number, '#pop'),  
                 ],
+        # 7.1.4.8 - Extrinsic function exfunc
+        'exfunc': [
+                # TODO
+                ],
+        # 7.1.4.9 - Extrinsic special variable exvar
+        'exvar': [
+                # TODO
+                ],
         # 7.1.4.10 - Intrinsic special variable names 'svn'
         'svn': [
+                # Many TODO here
                 ('\\$QUIT', Name.Variable.Magic, '#pop'),
+                ],
+        # 7.1.5 - Intrinsic function function
+        'function': [
+                # TODO
                 ],
         # 7.2 - exprtail
         'exprtail': [
