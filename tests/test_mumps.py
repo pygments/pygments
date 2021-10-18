@@ -157,7 +157,8 @@ def testQuitPi(lexer):
         (Whitespace, ' '),
         (Keyword, 'q'),
         (Whitespace, ' '),
-        (Number, '3.14159265')
+        (Number, '3.14159265'),
+        (Text, '\n')
         ]
 
 def testQuitDecimal(lexer):
@@ -165,7 +166,8 @@ def testQuitDecimal(lexer):
         (Whitespace, ' '),
         (Keyword, 'q'),
         (Whitespace, ' '),
-        (Number, '.5')
+        (Number, '.5'),
+        (Text, '\n')
         ]
 
 def testQuitExponent(lexer):
@@ -173,7 +175,8 @@ def testQuitExponent(lexer):
         (Whitespace, ' '),
         (Keyword, 'q'),
         (Whitespace, ' '),
-        (Number, '60.2214E22')
+        (Number, '60.2214E22'),
+        (Text, '\n')
         ]
 
 def testBinaryops(lexer):
