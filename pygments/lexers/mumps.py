@@ -208,6 +208,9 @@ class MumpsLexer(ExtendedRegexLexer):
 
         # 7.1.4.2 - Numeric literal 'numlit'
         'numlit': [
+                ('[0-9]*\\.[0-9]+E[+-]?[0-9]+', Number, '#pop'),
+                ('[0-9]*\\.[0-9]+', Number, '#pop'),
+                ('[0-9]+E[+-]?[0-9]+', Number, '#pop'),  
                 ('[0-9]+', Number, '#pop'),  
                 ],
         # 7.1.4.10 - Intrinsic special variable names 'svn'
