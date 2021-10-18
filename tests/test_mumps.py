@@ -189,7 +189,7 @@ def testQuitPosExponent(lexer):
         ]
 
 def testQuitNegExponent(lexer):
-    assert list(lexer.get_tokens(' q 6.674E-11'),
+    assert list(lexer.get_tokens(' q 6.674E-11')) == [
         (Whitespace, ' '),
         (Keyword, 'q'),
         (Whitespace, ' '),
