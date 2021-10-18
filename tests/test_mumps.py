@@ -179,6 +179,24 @@ def testQuitExponent(lexer):
         (Text, '\n')
         ]
 
+def testQuitPosExponent(lexer):
+    assert list(lexer.get_tokens(' q 2.9979E+8')) == [
+        (Whitespace, ' '),
+        (Keyword, 'q'),
+        (Whitespace, ' '),
+        (Number, '2.9979E+8'),
+        (Text, '\n')
+        ]
+
+def testQuitNegExponent(lexer):
+    assert list(lexer.get_tokens(' q 6.674E-11'),
+        (Whitespace, ' '),
+        (Keyword, 'q'),
+        (Whitespace, ' '),
+        (Number, '6.674E-11'),
+        (Text, '\n')
+        ]
+
 def testBinaryops(lexer):
     # Operators defined in 7.2.1
     fragment = ' q 1_1+1/2-1*3#10**2\\3'
