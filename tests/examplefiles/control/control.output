@@ -1,0 +1,148 @@
+'Source'      Keyword
+': '          Text.Whitespace
+'terminator'  Literal.String
+'\n'          Text
+
+'Section'     Keyword
+': '          Text.Whitespace
+'misc'        Literal.String
+'\n'          Text
+
+'Priority'    Keyword
+': '          Text.Whitespace
+'optional'    Literal.String
+'\n'          Text
+
+'Maintainer'  Keyword
+': '          Text
+'D'           Text
+'e'           Text
+'b'           Text
+'i'           Text
+'a'           Text
+'n'           Text
+' '           Text
+'P'           Text
+'y'           Text
+'t'           Text
+'h'           Text
+'o'           Text
+'n'           Text
+' '           Text
+'T'           Text
+'e'           Text
+'a'           Text
+'m'           Text
+' '           Text
+'<team+python@domain.tld>' Generic.Strong
+'\n'          Text
+
+'Uploaders'   Keyword
+': '          Text.Whitespace
+'Alice <alice@domain.tld>' Literal.String
+'\n'          Text
+
+'Package'     Keyword
+': '          Text.Whitespace
+'terminator'  Literal.String
+'\n'          Text
+
+'Architecture' Keyword
+': '          Text.Whitespace
+'all'         Literal.String
+'\n'          Text
+
+'Rules-Requires-Root' Keyword
+': '          Text.Whitespace
+'no'          Literal.String
+'\n'          Text
+
+'Standards-Version' Keyword
+': '          Text.Whitespace
+'4.5.1'       Literal.String
+'\n'          Text
+
+'Vcs-Git'     Keyword
+': '          Text.Whitespace
+'https://salsa.debian.org/python-team/packages/terminator.git' Literal.String
+'\n'          Text
+
+'Vcs-Browser' Keyword
+': '          Text.Whitespace
+'https://salsa.debian.org/python-team/packages/terminator' Literal.String
+'\n'          Text
+
+'Homepage'    Keyword
+': '          Text.Whitespace
+'https://github.com/gnome-terminator/terminator' Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'Package'     Keyword
+': '          Text.Whitespace
+'terminator'  Literal.String
+'\n'          Text
+
+'Architecture' Keyword
+': '          Text.Whitespace
+'all'         Literal.String
+'\n'          Text
+
+'Depends'     Keyword
+':\n '        Text
+'p'           Name.Function
+'y'           Name.Function
+'t'           Name.Function
+'h'           Name.Function
+'o'           Name.Function
+'n'           Name.Function
+'3'           Name.Function
+'-'           Name.Function
+'c'           Name.Function
+'a'           Name.Function
+'i'           Name.Function
+'r'           Name.Function
+'o'           Name.Function
+','           Text
+'\n '         Text
+'o'           Name.Function
+'t'           Name.Function
+'h'           Name.Function
+'e'           Name.Function
+'r'           Name.Function
+'d'           Name.Function
+'e'           Name.Function
+'p'           Name.Function
+'e'           Name.Function
+'n'           Name.Function
+'d'           Name.Function
+'a'           Name.Function
+'n'           Name.Function
+'c'           Name.Function
+'i'           Name.Function
+'e'           Name.Function
+'s'           Name.Function
+','           Text
+'\n '         Text
+'$'           Operator
+'{'           Text
+'python3:Depends' Name.Entity
+'}'           Text
+'\n'          Text
+
+'Provides'    Keyword
+': '          Text.Whitespace
+'x-terminal-emulator' Literal.String
+'\n'          Text
+
+'Description' Keyword
+': multiple GNOME terminals in one window\n' Generic.Strong
+
+' Terminator is a little project to produce an efficient way of\n' Text
+
+' filling a large area of screen space with terminals.\n' Text
+
+' .\n'        Text
+
+' Second paragraph\n' Text
