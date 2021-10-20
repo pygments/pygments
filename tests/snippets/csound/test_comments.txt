@@ -7,10 +7,10 @@
 
 ---tokens---
 '/*\n * comment\n */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; comment'   Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// comment'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace

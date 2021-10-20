@@ -7,22 +7,22 @@ body\##
 
 ---tokens---
 '#define'     Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'MACRO'       Comment.Preproc
 '('           Punctuation
 'ARG1'        Comment.Preproc
 '#'           Punctuation
 'ARG2'        Comment.Preproc
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 'macro_body'  Comment.Preproc
 '#'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#define'     Comment.Preproc
 '/**/'        Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'MACRO'       Comment.Preproc
 '('           Punctuation
@@ -30,15 +30,15 @@ body\##
 "'"           Punctuation
 'ARG2'        Comment.Preproc
 "'"           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ARG3'        Comment.Preproc
 ')'           Punctuation
 '/**/'        Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Punctuation
 '\\#'         Comment.Preproc
 'macro\nbody' Comment.Preproc
 '\\#'         Comment.Preproc
 '#'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
