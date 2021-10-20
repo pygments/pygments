@@ -2566,32 +2566,32 @@
 '='           Operator
 '"text/css"'  Literal.String
 '>'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
-'    '        Text
+'    '        Text.Whitespace
 '.'           Punctuation
 'important'   Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
-'      '      Text
+'      '      Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#336699'     Literal.Number.Hex
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
-'  '          Text
+'  '          Text.Whitespace
 '<'           Punctuation
 '/'           Punctuation
 'style'       Name.Tag

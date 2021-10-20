@@ -107,59 +107,59 @@
 '\n'          Literal.String
 
 '/* compensating the cell padding */' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'cell'        Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'margin'      Keyword
 ':'           Punctuation
 '-1'          Literal.Number.Integer
 'px'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '-7'          Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'padding'     Keyword
 ':'           Punctuation
 '1'           Literal.Number.Integer
 'px'          Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
 'px'          Keyword.Type
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'positive'    Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'background-color' Keyword
 ':'           Punctuation
 '#afa'        Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.'           Punctuation
 'negative'    Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'background-color' Keyword
 ':'           Punctuation
 '#faa'        Literal.Number.Hex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '</style>'    Literal.String
 '\n'          Text
