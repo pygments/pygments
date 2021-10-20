@@ -1,50 +1,50 @@
 'foo'         Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'bar'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'foo'         Name.Attribute
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'bar'         Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'foo.oof'     Name.Attribute
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n    bar=baz; \\\n    asdf' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// comment'  Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# comment'   Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; comment'   Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Attribute
 ':'           Operator
 'a\\\nb'      Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Attribute
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'a \\\n  b'   Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String

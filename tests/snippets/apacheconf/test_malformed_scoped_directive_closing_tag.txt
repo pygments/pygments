@@ -5,16 +5,15 @@
 
 ---tokens---
 '<VirtualHost' Name.Tag
-' '           Text
+' '           Text.Whitespace
 '"test"'      Literal.String
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '<'           Error
 '/'           Error
 'VirtualHost' Name.Builtin
-''            Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '>'           Error
-'\n'          Text
+'\n'          Text.Whitespace
