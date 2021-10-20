@@ -27,6 +27,7 @@ from pygments.token import (
     Punctuation,
     String,
     Text,
+    Whitespace,
 )
 
 
@@ -115,7 +116,7 @@ class CddlLexer(RegexLexer):
     flags = re.UNICODE | re.MULTILINE
 
     tokens = {
-        "commentsandwhitespace": [(r"\s+", Text), (r";.+$", Comment.Single)],
+        "commentsandwhitespace": [(r"\s+", Whitespace), (r";.+$", Comment.Single)],
         "root": [
             include("commentsandwhitespace"),
             # tag types
@@ -144,7 +145,7 @@ class CddlLexer(RegexLexer):
             # Token type is String as barewords are always interpreted as such.
             (
                 r"({bareword})(\s*)(:)".format(bareword=_re_id),
-                bygroups(String, Text, Punctuation),
+                bygroups(String, Whitespace, Punctuation),
             ),
             # predefined types
             (
