@@ -39,7 +39,7 @@ class BlitzMaxLexer(RegexLexer):
     bmax_var = (r'(%s)(?:(?:([ \t]*)(%s)|([ \t]*:[ \t]*\b(?:Shl|Shr|Sar|Mod)\b)'
                 r'|([ \t]*)(:)([ \t]*)(?:%s|(%s)))(?:([ \t]*)(Ptr))?)') % \
         (bmax_name, bmax_sktypes, bmax_lktypes, bmax_name)
-    bmax_func = bmax_var + r'?(?:(?:(\s)|(\.\.))*)([(])'
+    bmax_func = bmax_var + r'?((?:[ \t]|\.\.\n)*)([(])'
 
     flags = re.MULTILINE | re.IGNORECASE
     tokens = {
@@ -73,7 +73,7 @@ class BlitzMaxLexer(RegexLexer):
             (bmax_func, bygroups(Name.Function, Whitespace, Keyword.Type,
                                  Operator, Whitespace, Punctuation, Whitespace,
                                  Keyword.Type, Name.Class, Whitespace,
-                                 Keyword.Type, Whitespace, Text, Punctuation)),
+                                 Keyword.Type, Whitespace, Punctuation)),
             (bmax_var, bygroups(Name.Variable, Whitespace, Keyword.Type, Operator,
                                 Whitespace, Punctuation, Whitespace, Keyword.Type,
                                 Name.Class, Whitespace, Keyword.Type)),
