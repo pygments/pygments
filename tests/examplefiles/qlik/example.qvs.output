@@ -1,0 +1,336 @@
+'/*'          Comment.Multiline
+' '           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'T'           Comment.Multiline
+'h'           Comment.Multiline
+'i'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'i'           Comment.Multiline
+'s'           Comment.Multiline
+' '           Comment.Multiline
+'a'           Comment.Multiline
+'n'           Comment.Multiline
+' '           Comment.Multiline
+'e'           Comment.Multiline
+'x'           Comment.Multiline
+'a'           Comment.Multiline
+'m'           Comment.Multiline
+'p'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'f'           Comment.Multiline
+'i'           Comment.Multiline
+'l'           Comment.Multiline
+'e'           Comment.Multiline
+' '           Comment.Multiline
+'c'           Comment.Multiline
+'o'           Comment.Multiline
+'n'           Comment.Multiline
+'t'           Comment.Multiline
+'a'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'i'           Comment.Multiline
+'n'           Comment.Multiline
+'g'           Comment.Multiline
+' '           Comment.Multiline
+'q'           Comment.Multiline
+'l'           Comment.Multiline
+'i'           Comment.Multiline
+'k'           Comment.Multiline
+' '           Comment.Multiline
+'s'           Comment.Multiline
+'c'           Comment.Multiline
+'r'           Comment.Multiline
+'i'           Comment.Multiline
+'p'           Comment.Multiline
+'t'           Comment.Multiline
+'\n'          Comment.Multiline
+
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+' '           Comment.Multiline
+'*/'          Comment.Multiline
+'\n\n'        Text
+
+'LET'         Keyword.Declaration
+' '           Text
+'vFilePath'   Text
+' '           Text
+'='           Operator
+' '           Text
+"'/home'"     Literal.String
+';'           Punctuation
+'\n\n'        Text
+
+'FOR'         Keyword
+' '           Text
+'EACH'        Keyword
+' '           Text
+'vFolder'     Text
+' '           Text
+'IN'          Keyword
+' '           Text
+"'folder_1', 'folder_2'" Literal.String
+'\n\n    '    Text
+'// Check the file exists\n' Comment.Singleline
+
+'    '        Text
+'IF'          Keyword
+' '           Text
+'FILESIZE('   Operator.Word
+"'$(vFilePath)/" Literal.String
+'$('          Keyword
+'vFolder'     Name.Variable
+')'           Keyword
+"/file.qvd'"  Literal.String
+')'           Operator
+' '           Text
+'>'           Operator
+'0'           Literal.Number.Integer
+' '           Text
+'THEN'        Keyword
+'\n\n        ' Text
+'TABLE_NAME:' Keyword.Declaration
+'\n        '  Text
+'NoConcatenate' Operator.Word
+'\n        '  Text
+'LOAD'        Operator.Word
+'\n            ' Text
+'[Field 1]'   Keyword
+'   '         Text
+'AS'          Operator.Word
+' '           Text
+'FIELD_1'     Text
+','           Punctuation
+'\n            ' Text
+'"Field 2"'   Keyword
+'   '         Text
+'AS'          Operator.Word
+' '           Text
+'FIELD_2'     Text
+','           Punctuation
+'\n            ' Text
+'FIELD_3'     Text
+','           Punctuation
+'\n            ' Text
+'FileName('   Operator.Word
+')'           Operator
+'      '      Text
+'AS'          Operator.Word
+' '           Text
+'SOURCE_FILE' Text
+'\n        '  Text
+'FROM'        Operator.Word
+'\n            ' Text
+'[$(vFilePath)/' Literal.String
+'$('          Keyword
+'vFolder'     Name.Variable
+')'           Keyword
+'/file.qvd]'  Literal.String
+' '           Text
+'('           Operator
+'qvd'         Text
+')'           Operator
+';'           Punctuation
+'\n\n        ' Text
+'MAP_FIELD_1:' Keyword.Declaration
+'\n        '  Text
+'MAPPING'     Operator.Word
+' '           Text
+'LOAD'        Operator.Word
+'\n            ' Text
+'FIELD_1'     Text
+','           Punctuation
+'\n            ' Text
+'SUM('        Operator.Word
+'FIELD_2'     Text
+')'           Operator
+'\n        '  Text
+'RESIDENT'    Operator.Word
+'\n            ' Text
+'TABLE_NAME'  Text
+'\n        '  Text
+'GROUP BY'    Operator.Word
+'\n            ' Text
+'FIELD_1'     Text
+';'           Punctuation
+'\n\n        ' Text
+'LEFT JOIN'   Operator.Word
+'('           Operator
+'TABLE_NAME'  Text
+')'           Operator
+'\n        '  Text
+'LOAD'        Operator.Word
+' '           Text
+'DISTINCT'    Operator.Word
+'\n            ' Text
+'FIELD_1'     Text
+','           Punctuation
+'\n            ' Text
+'FIELD_2'     Text
+','           Punctuation
+'\n            ' Text
+'FIELD_3'     Text
+','           Punctuation
+'\n            ' Text
+'applymap('   Operator.Word
+"'MAP_FIELD_1'" Literal.String
+','           Punctuation
+' '           Text
+'FIELD_1'     Text
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Operator
+'     '       Text
+'AS'          Operator.Word
+' '           Text
+'FIELD_2_SUM' Text
+','           Punctuation
+'\n            ' Text
+"'Token String'" Literal.String
+'                          ' Text
+'AS'          Operator.Word
+' '           Text
+'STRING_FIELD' Text
+','           Punctuation
+'\n            ' Text
+'3.14159'     Literal.Number.Float
+'                                 ' Text
+'AS'          Operator.Word
+' '           Text
+'NUMBER_FIELD' Text
+'\n        '  Text
+'RESIDENT'    Operator.Word
+'\n            ' Text
+'TABLE_NAME'  Text
+'\n        '  Text
+'ORDER BY'    Operator.Word
+'\n            ' Text
+'FIELD_3'     Text
+' '           Text
+'DESC'        Operator.Word
+';'           Punctuation
+'\n\n        ' Text
+'STORE'       Text
+' '           Text
+'TABLE_NAME'  Text
+' '           Text
+'INTO'        Text
+' '           Text
+'[$(vFilePath)/' Literal.String
+'$('          Keyword
+'vFolder'     Name.Variable
+')'           Keyword
+'/file_output.qvd]' Literal.String
+' '           Text
+'('           Operator
+'qvd'         Text
+')'           Operator
+';'           Punctuation
+'\n\n        ' Text
+'DROP'        Text
+' '           Text
+'TABLE'       Text
+' '           Text
+'TABLE_NAME'  Text
+';'           Punctuation
+'\n\n    '    Text
+'ELSE'        Keyword
+'\n\n        ' Text
+'TRACE'       Operator.Word
+' '           Text
+'No'          Text
+' '           Text
+'file'        Text
+' '           Text
+'found'       Text
+' '           Text
+'in'          Keyword
+' '           Text
+'$('          Keyword
+'vFilePath'   Name.Variable
+')'           Keyword
+'/'           Operator
+'file'        Text
+'.'           Punctuation
+'qvd'         Text
+';'           Punctuation
+'\n\n    '    Text
+'END'         Keyword
+' '           Text
+'IF'          Keyword
+'\n\n'        Text
+
+'NEXT'        Keyword
+' '           Text
+'vFolder'     Text
+'\n'          Text

@@ -378,6 +378,7 @@ LEXERS = {
     'PythonTracebackLexer': ('pygments.lexers.python', 'Python Traceback', ('pytb', 'py3tb'), ('*.pytb', '*.py3tb'), ('text/x-python-traceback', 'text/x-python3-traceback')),
     'QBasicLexer': ('pygments.lexers.basic', 'QBasic', ('qbasic', 'basic'), ('*.BAS', '*.bas'), ('text/basic',)),
     'QVToLexer': ('pygments.lexers.qvt', 'QVTO', ('qvto', 'qvt'), ('*.qvto',), ()),
+    'QlikLexer': ('pygments.lexers.qlik', 'Qlik', ('qlik', 'qlikview', 'qliksense', 'qlikscript'), ('*.qvs', '*.qvw'), ()),
     'QmlLexer': ('pygments.lexers.webmisc', 'QML', ('qml', 'qbs'), ('*.qml', '*.qbs'), ('application/x-qml', 'application/x-qt.qbs+qml')),
     'RConsoleLexer': ('pygments.lexers.r', 'RConsole', ('rconsole', 'rout'), ('*.Rout',), ()),
     'RNCCompactLexer': ('pygments.lexers.rnc', 'Relax-NG Compact', ('rng-compact', 'rnc'), ('*.rnc',), ()),
