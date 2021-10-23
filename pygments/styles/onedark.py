@@ -1,3 +1,16 @@
+"""
+    pygments.style.onedark
+    ~~~~~~~~~~~~~~~~~~~~~~
+
+    One Dark Theme for Pygments by Tobias Zoghaib (https://github.com/TobiZog)
+
+    Inspired by one-dark-ui for the code editor Atom
+    (https://atom.io/themes/one-dark-ui).
+
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 from pygments.style import Style
 from pygments.token import Token, Punctuation, Keyword, Name, Comment, String, \
      Number, Operator, Generic, Whitespace
