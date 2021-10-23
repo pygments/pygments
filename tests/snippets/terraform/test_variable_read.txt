@@ -5,19 +5,19 @@ provider "aws" {
 
 ---tokens---
 'provider'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"aws"'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'region'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'var.aws_region' Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

@@ -1,5029 +1,5029 @@
 "% BibTeX standard bibliography style `plain'" Comment.Single
-'\n   '       Text
+'\n   '       Text.Whitespace
 '% Version 0.99b (8-Dec-10 release) for BibTeX versions 0.99a or later.' Comment.Single
-'\n   '       Text
+'\n   '       Text.Whitespace
 '% Copyright (C) 1984, 1985, 1988, 2010 Howard Trickey and Oren Patashnik.' Comment.Single
-'\n   '       Text
+'\n   '       Text.Whitespace
 '% Unlimited copying and redistribution of this file are permitted as long as' Comment.Single
-'\n   '       Text
+'\n   '       Text.Whitespace
 '% it is unmodified.  Modifications (and redistribution of modified versions)' Comment.Single
-'\n   '       Text
+'\n   '       Text.Whitespace
 '% are also permitted, but only if the resulting file is renamed to something' Comment.Single
-'\n   '       Text
+'\n   '       Text.Whitespace
 '% besides btxbst.doc, plain.bst, unsrt.bst, alpha.bst, and abbrv.bst.' Comment.Single
-'\n   '       Text
+'\n   '       Text.Whitespace
 '% This restriction helps ensure that all standard styles are identical.' Comment.Single
-'\n   '       Text
+'\n   '       Text.Whitespace
 '% The file btxbst.doc has the documentation for this style.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'ENTRY'       Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'address'     Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'author'      Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'booktitle'   Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'chapter'     Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'edition'     Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'editor'      Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'howpublished' Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'institution' Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'journal'     Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'key'         Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'month'       Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'note'        Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'number'      Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'organization' Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'pages'       Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'publisher'   Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'school'      Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'series'      Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'title'       Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'type'        Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'volume'      Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'year'        Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'label'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'INTEGERS'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.state' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'before.all'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mid.sentence' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'after.sentence' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'after.block' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'init.state.consts' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#0'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'before.all" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'mid.sentence" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#2'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'after.sentence" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#3'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'after.block" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'STRINGS'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 's'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'output.nonnull' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'s"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'output.state' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mid.sentence' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '", "'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'write$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.state' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'after.block' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'add.period$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'write$'      Name.Builtin
-'\n          ' Text
+'\n          ' Text.Whitespace
 'newline$'    Name.Builtin
-'\n          ' Text
+'\n          ' Text.Whitespace
 '"\\newblock "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'write$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.state' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'before.all'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n            ' Text
+'\n            ' Text.Whitespace
 "'write$"     Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'add.period$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '" "'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'write$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if$'         Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n      '    Text
+'\n      '    Text.Whitespace
 'mid.sentence' Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'output.state" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 's'           Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'output'      Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'duplicate$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'pop$"       Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'output.nonnull" Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'output.check' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'t"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'duplicate$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pop$'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"empty "'    Literal.String
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '" in "'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'warning$'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'output.nonnull" Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'output.bibitem' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'newline$'    Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 '"\\bibitem{"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'write$'      Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'write$'      Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 '"}"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'write$'      Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'newline$'    Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 '""'          Literal.String
-'\n  '        Text
+'\n  '        Text.Whitespace
 'before.all'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'output.state" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'fin.entry'   Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'add.period$' Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'write$'      Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'newline$'    Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'new.block'   Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.state' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'before.all'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'after.block' Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'output.state" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'new.sentence' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.state' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'after.block' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.state' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'before.all'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'skip$"      Name.Function
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'after.sentence' Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'output.state" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'not'         Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#0'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'and'         Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 "'skip$"      Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pop$'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '#0'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'or'          Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pop$'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'new.block.checka' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'new.block"  Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'new.block.checkb' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'swap$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'and'         Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'new.block"  Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'new.sentence.checka' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'new.sentence" Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'new.sentence.checkb' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'swap$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'and'         Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'new.sentence" Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'field.or.null' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'duplicate$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pop$'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'emphasize'   Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'duplicate$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pop$'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"{\\em "'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'swap$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"}"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'INTEGERS'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'nameptr'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'namesleft'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'numnames'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.names' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'s"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'nameptr"    Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 's'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'num.names$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'numnames"   Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'numnames'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'namesleft"  Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'namesleft'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#0'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '>'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 's'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nameptr'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"{ff~}{vv~}{ll}{, jj}"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'format.name$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'t"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'nameptr'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '>'           Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'namesleft'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '>'           Name.Variable
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '", "'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'numnames'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#2'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '>'           Name.Variable
-'\n                ' Text
+'\n                ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '","'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 "'skip$"      Name.Function
-'\n              ' Text
+'\n              ' Text.Whitespace
 'if$'         Name.Builtin
-'\n              ' Text
+'\n              ' Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"others"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n                ' Text
+'\n                ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '" et~al."'   Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '" and "'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 'if$'         Name.Builtin
-'\n            ' Text
+'\n            ' Text.Whitespace
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if$'         Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'t"          Name.Function
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n      '    Text
+'\n      '    Text.Whitespace
 'nameptr'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '+'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'nameptr"    Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'namesleft'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '-'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'namesleft"  Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'while$'      Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.authors' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'format.names' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.editors' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'format.names' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'num.names$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '>'           Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '", editors"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '", editor"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.title' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'title'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'title'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"t"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'change.case$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'n.dashify'   Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'t"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '""'          Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'not'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'substring$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"-"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '#2'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'substring$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"--"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'not'         Name.Variable
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"--"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-'\n              ' Text
+'\n              ' Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#2'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'global.max$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'substring$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'t"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n            ' Text
+'\n            ' Text.Whitespace
 '}'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'substring$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"-"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"-"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-'\n                  ' Text
+'\n                  ' Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#2'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'global.max$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'substring$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'t"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n                ' Text
+'\n                ' Text.Whitespace
 '}'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 'while$'      Name.Builtin
-'\n            ' Text
+'\n            ' Text.Whitespace
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if$'         Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'substring$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#2'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'global.max$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'substring$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'t"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'while$'      Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.date' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'year'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'month'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"there\'s a month but no year in "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'warning$'    Name.Builtin
-'\n          ' Text
+'\n          ' Text.Whitespace
 'month'       Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'month'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'year"       Name.Function
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'month'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '" "'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'year'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.btitle' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'title'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'emphasize'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'tie.or.space.connect' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'duplicate$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'text.length$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '#3'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '<'           Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"~"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '" "'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'swap$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'either.or.check' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'pop$"       Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"can\'t use both "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'swap$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '" fields in "' Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'warning$'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.bvolume' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'volume'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"volume"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'volume'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'tie.or.space.connect' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'series'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'skip$"      Name.Function
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '" of "'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'series'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'emphasize'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"volume and number"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'number'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'either.or.check' Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.number.series' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'volume'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'number'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'series'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'field.or.null' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.state' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mid.sentence' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"number"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"Number"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if$'         Name.Builtin
-'\n          ' Text
+'\n          ' Text.Whitespace
 'number'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'tie.or.space.connect' Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 'series'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"there\'s a number but no series in "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'warning$'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '" in "'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'series'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if$'         Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.edition' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'edition'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.state' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mid.sentence' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'edition'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"l"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'change.case$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '" edition"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'edition'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"t"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'change.case$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '" edition"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'INTEGERS'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'multiresult' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'multi.page.check' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'t"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#0'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'multiresult" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'multiresult' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'not'         Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'not'         Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'and'         Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'substring$'  Name.Builtin
-'\n      '    Text
+'\n      '    Text.Whitespace
 'duplicate$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"-"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'swap$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'duplicate$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '","'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'swap$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"+"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'or'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'or'          Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'multiresult" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#2'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'global.max$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'substring$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'t"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'while$'      Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'multiresult' Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.pages' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pages'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pages'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'multi.page.check' Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"pages"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'pages'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'n.dashify'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'tie.or.space.connect' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"page"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'pages'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'tie.or.space.connect' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.vol.num.pages' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'volume'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'field.or.null' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'number'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"("'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'number'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '")"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'volume'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"there\'s a number but no volume in "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'warning$'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'skip$"      Name.Function
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'pages'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'duplicate$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pop$'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'format.pages' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '":"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'pages'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'n.dashify'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.chapter.pages' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'chapter'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'format.pages" Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"chapter"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"l"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'change.case$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n      '    Text
+'\n      '    Text.Whitespace
 'chapter'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'tie.or.space.connect' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'pages'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'skip$"      Name.Function
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '", "'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'format.pages' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.in.ed.booktitle' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'booktitle'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"In "'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'booktitle'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'emphasize'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"In "'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'format.editors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '", "'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'booktitle'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'emphasize'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'empty.misc.check' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'title'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'howpublished' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'month'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'year'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'and'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'and'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'and'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'and'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'and'         Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'not'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'and'         Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"all relevant fields are empty in "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'warning$'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.thesis.type' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pop$'        Name.Builtin
-'\n      '    Text
+'\n      '    Text.Whitespace
 'type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"t"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'change.case$' Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.tr.number' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"Technical Report"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'type"       Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'number'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"t"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'change.case$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'number'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'tie.or.space.connect' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.article.crossref' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'journal'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"need key or journal for "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '" to crossref "' Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 'warning$'    Name.Builtin
-'\n          ' Text
+'\n          ' Text.Whitespace
 '""'          Literal.String
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"In {\\em "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'journal'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"\\/}"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"In "'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 '" \\cite{"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"}"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.crossref.editor' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '"{vv~}{ll}"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'format.name$' Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'num.names$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'duplicate$'  Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#2'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '>'           Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pop$'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '" et~al."'   Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#2'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '<'           Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'skip$"      Name.Function
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#2'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '"{ff }{vv }{ll}{ jj}"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'format.name$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"others"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '" et~al."'   Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '" and "'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#2'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '"{vv~}{ll}"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'format.name$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if$'         Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.book.crossref' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'volume'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"empty volume in "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"\'s crossref of "' Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'warning$'    Name.Builtin
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"In "'       Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"Volume"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'volume'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'tie.or.space.connect' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 '" of "'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'field.or.null' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'field.or.null' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'or'          Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'series'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"need editor, key, or series for "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '" to crossref "' Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-'\n              ' Text
+'\n              ' Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'warning$'    Name.Builtin
-'\n              ' Text
+'\n              ' Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-'\n            ' Text
+'\n            ' Text.Whitespace
 '}'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"{\\em "'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'series'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"\\/}"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if$'         Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.crossref.editor' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 '" \\cite{"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"}"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'format.incoll.inproc.crossref' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'field.or.null' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'field.or.null' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'or'          Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'booktitle'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"need editor, key, or booktitle for "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '" to crossref "' Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-'\n              ' Text
+'\n              ' Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'warning$'    Name.Builtin
-'\n              ' Text
+'\n              ' Text.Whitespace
 '""'          Literal.String
-'\n            ' Text
+'\n            ' Text.Whitespace
 '}'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"In {\\em "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'booktitle'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"\\/}"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if$'         Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"In "'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"In "'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'format.crossref.editor' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 '" \\cite{"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"}"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'article'     Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.bibitem' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.authors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.title' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'missing$'    Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'journal'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'emphasize'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"journal"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.vol.num.pages' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"year"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.article.crossref' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.pages' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'fin.entry'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'book'        Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.bibitem' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.editors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"author and editor"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.authors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'missing$'    Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"author and editor"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'either.or.check' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'skip$"      Name.Function
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.btitle' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'missing$'    Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.bvolume' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'new.block'   Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.number.series' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'new.sentence' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'publisher'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"publisher"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'new.block'   Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.book.crossref' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.edition' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"year"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'fin.entry'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'booklet'     Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.bibitem' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.authors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.title' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'howpublished' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'new.block.checkb' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'howpublished' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'fin.entry'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'inbook'      Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.bibitem' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.editors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"author and editor"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.authors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'missing$'    Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"author and editor"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'either.or.check' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'skip$"      Name.Function
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.btitle' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'missing$'    Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.bvolume' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.chapter.pages' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"chapter and pages"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'new.block'   Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.number.series' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'new.sentence' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'publisher'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"publisher"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.chapter.pages' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"chapter and pages"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'new.block'   Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.book.crossref' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.edition' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"year"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'fin.entry'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'incollection' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.bibitem' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.authors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.title' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'missing$'    Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.in.ed.booktitle' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"booktitle"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.bvolume' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.number.series' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.chapter.pages' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'new.sentence' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'publisher'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"publisher"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.edition' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"year"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.incoll.inproc.crossref' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.chapter.pages' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'fin.entry'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'inproceedings' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.bibitem' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.authors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.title' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'crossref'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'missing$'    Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.in.ed.booktitle' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"booktitle"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.bvolume' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.number.series' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.pages' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'publisher'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'new.sentence.checkb' Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 'publisher'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"year"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"year"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 'new.sentence' Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 'publisher'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.incoll.inproc.crossref' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.pages' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'fin.entry'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'conference'  Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'inproceedings' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'manual'      Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.bibitem' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'skip$"      Name.Function
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.authors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.btitle' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'new.block.checka' Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'skip$"      Name.Function
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'new.block.checkb' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.edition' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'fin.entry'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'mastersthesis' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.bibitem' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.authors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.title' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '"Master\'s thesis"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'format.thesis.type' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'school'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"school"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"year"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'fin.entry'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'misc'        Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.bibitem' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.authors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'title'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'howpublished' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'new.block.checkb' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.title' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'howpublished' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'new.block.checka' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'howpublished' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'fin.entry'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'empty.misc.check' Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'phdthesis'   Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.bibitem' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.authors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.btitle' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '"PhD thesis"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'format.thesis.type' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'school'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"school"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"year"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'fin.entry'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'proceedings' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.bibitem' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'format.editors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.btitle' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.bvolume' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.number.series' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'publisher'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'new.sentence.checka' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'publisher'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'new.sentence.checkb' Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n      '    Text
+'\n      '    Text.Whitespace
 'publisher'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"year"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"year"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'new.sentence' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'skip$"      Name.Function
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n      '    Text
+'\n      '    Text.Whitespace
 'publisher'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'fin.entry'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'techreport'  Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.bibitem' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.authors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.title' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.tr.number' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output.nonnull' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'institution' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"institution"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'address'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"year"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'fin.entry'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'unpublished' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'output.bibitem' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.authors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"author"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.title' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"title"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'new.block'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'note'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"note"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 'output.check' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'format.date' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'output'      Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'fin.entry'   Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'default.type' Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'misc'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'jan'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"January"'   Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'feb'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"February"'  Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'mar'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"March"'     Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'apr'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"April"'     Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'may'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"May"'       Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'jun'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"June"'      Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'jul'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"July"'      Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'aug'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"August"'    Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'sep'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"September"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'oct'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"October"'   Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'nov'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"November"'  Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'dec'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"December"'  Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'acmcs'       Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"ACM Computing Surveys"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'acta'        Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"Acta Informatica"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'cacm'        Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"Communications of the ACM"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'ibmjrd'      Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"IBM Journal of Research and Development"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'ibmsj'       Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"IBM Systems Journal"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'ieeese'      Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"IEEE Transactions on Software Engineering"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'ieeetc'      Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"IEEE Transactions on Computers"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'ieeetcad'    Name.Variable
 '}'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 '{'           Punctuation
 '"IEEE Transactions on Computer-Aided Design of Integrated Circuits"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'ipl'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"Information Processing Letters"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'jacm'        Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"Journal of the ACM"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'jcss'        Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"Journal of Computer and System Sciences"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'scp'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"Science of Computer Programming"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'sicomp'      Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"SIAM Journal on Computing"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'tocs'        Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"ACM Transactions on Computer Systems"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'tods'        Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"ACM Transactions on Database Systems"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'tog'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"ACM Transactions on Graphics"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'toms'        Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"ACM Transactions on Mathematical Software"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'toois'       Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"ACM Transactions on Office Information Systems"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'toplas'      Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"ACM Transactions on Programming Languages and Systems"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'MACRO'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'tcs'         Name.Variable
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"Theoretical Computer Science"' Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'READ'        Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'sortify'     Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'purify$'     Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 '"l"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 'change.case$' Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'INTEGERS'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'len'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'chop.word'   Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'s"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 "'len"        Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 's'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'len'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'substring$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 's'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'len'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '+'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'global.max$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'substring$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'s"          Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'sort.format.names' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'s"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'nameptr"    Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '""'          Literal.String
-'\n  '        Text
+'\n  '        Text.Whitespace
 's'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'num.names$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'numnames"   Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'numnames'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'namesleft"  Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'namesleft'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#0'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '>'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'nameptr'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '>'           Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"   "'       Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'skip$"      Name.Function
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n      '    Text
+'\n      '    Text.Whitespace
 's'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nameptr'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"{vv{ } }{ll{ }}{  ff{ }}{  jj{ }}"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'format.name$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'t"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'nameptr'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'numnames'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"others"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'and'         Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"et al"'     Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sortify'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n      '    Text
+'\n      '    Text.Whitespace
 'nameptr'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '+'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'nameptr"    Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'namesleft'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '-'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'namesleft"  Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'while$'      Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'sort.format.title' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'t"          Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '"A "'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '#2'          Literal.Number
-'\n    '      Text
+'\n    '      Text.Whitespace
 '"An "'       Literal.String
-' '           Text
+' '           Text.Whitespace
 '#3'          Literal.Number
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"The "'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '#4'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'chop.word'   Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 'chop.word'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'chop.word'   Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'sortify'     Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'global.max$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'substring$'  Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'author.sort' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"to sort, need author or key in "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'warning$'    Name.Builtin
-'\n          ' Text
+'\n          ' Text.Whitespace
 '""'          Literal.String
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sortify'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sort.format.names' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'author.editor.sort' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"to sort, need author, editor, or key in "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'warning$'    Name.Builtin
-'\n              ' Text
+'\n              ' Text.Whitespace
 '""'          Literal.String
-'\n            ' Text
+'\n            ' Text.Whitespace
 '}'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sortify'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if$'         Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sort.format.names' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sort.format.names' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'author.organization.sort' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"to sort, need author, organization, or key in "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'warning$'    Name.Builtin
-'\n              ' Text
+'\n              ' Text.Whitespace
 '""'          Literal.String
-'\n            ' Text
+'\n            ' Text.Whitespace
 '}'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sortify'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if$'         Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"The "'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '#4'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'chop.word'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sortify'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'author'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sort.format.names' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'editor.organization.sort' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"to sort, need editor, organization, or key in "' Literal.String
-' '           Text
+' '           Text.Whitespace
 'cite$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'warning$'    Name.Builtin
-'\n              ' Text
+'\n              ' Text.Whitespace
 '""'          Literal.String
-'\n            ' Text
+'\n            ' Text.Whitespace
 '}'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'key'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sortify'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if$'         Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"The "'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '#4'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'organization' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'chop.word'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sortify'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'editor'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sort.format.names' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'presort'     Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'type$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"book"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'type$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"inbook"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'or'          Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'author.editor.sort" Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'type$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"proceedings"' Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'editor.organization.sort" Name.Function
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'type$'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"manual"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '='           Name.Variable
-'\n            ' Text
+'\n            ' Text.Whitespace
 "'author.organization.sort" Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 "'author.sort" Name.Function
-'\n          ' Text
+'\n          ' Text.Whitespace
 'if$'         Name.Builtin
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'if$'         Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 '"    "'      Literal.String
-'\n  '        Text
+'\n  '        Text.Whitespace
 '*'           Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'year'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'field.or.null' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'sortify'     Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '*'           Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '"    "'      Literal.String
-'\n  '        Text
+'\n  '        Text.Whitespace
 '*'           Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'title'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'field.or.null' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'sort.format.title' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '*'           Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'entry.max$'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'substring$'  Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 "'sort.key$"  Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'ITERATE'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'presort'     Name.Variable
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'SORT'        Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'STRINGS'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'longest.label' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'INTEGERS'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'number.label' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'longest.label.width' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'initialize.longest.label' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '""'          Literal.String
-' '           Text
+' '           Text.Whitespace
 "'longest.label" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'number.label" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#0'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'longest.label.width" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'longest.label.pass' Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'number.label' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'int.to.str$' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'label"      Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'number.label' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#1'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '+'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'number.label" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 'label'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'width$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'longest.label.width' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '>'           Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'label'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 "'longest.label" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 'label'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'width$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 "'longest.label.width" Name.Function
-' '           Text
+' '           Text.Whitespace
 ':='          Name.Variable
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'EXECUTE'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'initialize.longest.label' Name.Variable
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'ITERATE'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'longest.label.pass' Name.Variable
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'begin.bib'   Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'preamble$'   Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'empty$'      Name.Builtin
-'\n    '      Text
+'\n    '      Text.Whitespace
 "'skip$"      Name.Function
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'preamble$'   Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'write$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'newline$'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if$'         Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 '"\\begin{thebibliography}{"' Literal.String
-'  '          Text
+'  '          Text.Whitespace
 'longest.label' Name.Variable
-'  '          Text
+'  '          Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"}"'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '*'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'write$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'newline$'    Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'EXECUTE'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'begin.bib'   Name.Variable
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'EXECUTE'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'init.state.consts' Name.Variable
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'ITERATE'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'call.type$'  Name.Builtin
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'end.bib'     Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'newline$'    Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 '"\\end{thebibliography}"' Literal.String
-' '           Text
+' '           Text.Whitespace
 'write$'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'newline$'    Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'EXECUTE'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'end.bib'     Name.Variable
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

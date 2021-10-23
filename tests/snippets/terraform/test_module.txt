@@ -6,27 +6,27 @@ module "consul" {
 
 ---tokens---
 'module'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"consul"'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'source'      Name.Attribute
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"hashicorp/consul/aws"' Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'servers'     Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

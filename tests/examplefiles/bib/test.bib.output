@@ -1,8 +1,8 @@
 'This is an example BibTeX file.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'This text is a comment.' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '@preamble'   Name.Class
 '{'           Punctuation
@@ -10,7 +10,7 @@
 '%%% example BibTeX file' Literal.String
 '"'           Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '@Preamble'   Name.Class
 '{'           Punctuation
@@ -24,7 +24,7 @@
 '}'           Literal.String
 ' '           Literal.String
 '"'           Literal.String
-'\n        '  Text
+'\n        '  Text.Whitespace
 '"'           Literal.String
 '\\newcommand' Literal.String
 '{'           Literal.String
@@ -36,128 +36,128 @@
 ' '           Literal.String
 '"'           Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '@String'     Name.Class
 '{'           Punctuation
 'SCI'         Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Science'     Literal.String
 '"'           Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '@STRING'     Name.Class
 '{'           Punctuation
 'JFernandez'  Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Fernandez, Julio M.' Literal.String
 '"'           Literal.String
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@StRiNg'     Name.Class
 '{'           Punctuation
 'HGaub'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Gaub, Hermann E.' Literal.String
 '"'           Literal.String
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@string'     Name.Class
 '{'           Punctuation
 'MGautel'     Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Gautel, Mathias' Literal.String
 '"'           Literal.String
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@String'     Name.Class
 '{'           Punctuation
 'FOesterhelt' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Oesterhelt, Filipp' Literal.String
 '"'           Literal.String
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@String'     Name.Class
 '{'           Punctuation
 'MRief'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Rief, Matthias' Literal.String
 '"'           Literal.String
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '@Article'    Name.Class
 '{'           Punctuation
 'rief97b'     Name.Label
 ','           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 'author'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-'       '     Text
+'       '     Text.Whitespace
 'MRief'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '"'           Literal.String
 ' and '       Literal.String
 '"'           Literal.String
 '#'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MGautel'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '"'           Literal.String
 ' and '       Literal.String
 '"'           Literal.String
 '#'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FOesterhelt' Name.Variable
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '#'           Punctuation
 '"'           Literal.String
 ' and '       Literal.String
 '"'           Literal.String
 '#'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'JFernandez'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '"'           Literal.String
 ' and '       Literal.String
 '"'           Literal.String
 '#'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'HGaub'       Name.Variable
 ','           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 'title'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-'        '    Text
+'        '    Text.Whitespace
 '"'           Literal.String
 'Reversible Unfolding of Individual Titin\n                          Immunoglobulin Domains by ' Literal.String
 '{'           Literal.String
@@ -165,303 +165,303 @@
 '}'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 'journal'     Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-'      '      Text
+'      '      Text.Whitespace
 'SCI'         Name.Variable
 ','           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 'volume'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-'       '     Text
+'       '     Text.Whitespace
 '276'         Literal.Number
 ','           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 'number'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-'       '     Text
+'       '     Text.Whitespace
 '5315'        Literal.Number
 ','           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 'pages'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-'        '    Text
+'        '    Text.Whitespace
 '"'           Literal.String
 '1109--1112'  Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 'year'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-'         '   Text
+'         '   Text.Whitespace
 '1997'        Literal.Number
 ','           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 'doi'         Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-'          '  Text
+'          '  Text.Whitespace
 '"'           Literal.String
 '10.1126/science.276.5315.1109' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 'URL'         Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-'          '  Text
+'          '  Text.Whitespace
 '"'           Literal.String
 'http://www.sciencemag.org/cgi/content/abstract/276/5315/1109' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n       '   Text
+'\n       '   Text.Whitespace
 'eprint'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-'       '     Text
+'       '     Text.Whitespace
 '"'           Literal.String
 'http://www.sciencemag.org/cgi/reprint/276/5315/1109.pdf' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 'Parens can be used instead of braces:' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '@ARTICLE'    Name.Class
 '('           Punctuation
 'ruckenstein-diffusion' Name.Label
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'author'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Liu, Hongquin and Ruckenstein, Eli' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'language'    Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'english'     Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'title'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Predicting the Diffusion Coefficient in Supercritical Fluids' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'journal'     Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Ind. Eng. Chem. Res.' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'volume'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '36'          Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'year'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '1997'        Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'pages'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '888-895'     Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '@book'       Name.Class
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'viktorov-methods' Name.Label
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'author'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Викторов, Михаил Маркович' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'publisher'   Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Л.: <<Химия>>' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'title'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Методы вычисления физико-химических величин и прикладные расчёты' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'language'    Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'russian'     Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'year'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '1977'        Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'isbn'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 '000-0000000000' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '@comment'    Comment
 '{jackson-commented-out,' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'author = "Jackson, P\\\'eter",' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'publisher = "Some Publisher",' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'language = "english",' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'title = "Some Title",' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'series = "Some series",' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'booktitle = "Commented Out",' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'number = "3",' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'edition = "Second",' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'year = "1933",' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'pages = "44--59"' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '@booklet'    Name.Class
 '{'           Punctuation
 'test-booklet' Name.Label
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'author'      Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'de Last, Jr., First Middle' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'language'    Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'english'     Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'title'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Just a booklet' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'year'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2006'        Literal.Number
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'month'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'jan'         Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'address'     Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Moscow'      Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'howpublished' Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'Published by Foo' Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

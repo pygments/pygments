@@ -4,11 +4,11 @@
 
 ---tokens---
 '<VirtualHost' Name.Tag
-' '           Text
+' '           Text.Whitespace
 '"test"'      Literal.String
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
 '</VirtualHost' Name.Tag
 '>'           Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace

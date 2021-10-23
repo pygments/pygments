@@ -6,9 +6,9 @@
 '#include'    Comment.Preproc
 '/**/'        Comment.Multiline
 '"file.udo"'  Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#include'    Comment.Preproc
 '/**/'        Comment.Multiline
 '|file.udo|'  Literal.String
-'\n'          Text
+'\n'          Text.Whitespace

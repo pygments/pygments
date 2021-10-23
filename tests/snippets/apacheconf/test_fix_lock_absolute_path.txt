@@ -3,7 +3,6 @@ LockFile /var/lock/apache2/accept.lock
 
 ---tokens---
 'LockFile'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '/var/lock/apache2/accept.lock' Literal.String.Other
-''            Text
-'\n'          Text
+'\n'          Text.Whitespace

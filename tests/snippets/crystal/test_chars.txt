@@ -8,18 +8,18 @@
 
 ---tokens---
 "'a'"         Literal.String.Char
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'я'"         Literal.String.Char
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'\\u{1234}'" Literal.String.Char
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'\n'"        Literal.String.Char
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'"           Error
 'abc'         Name
 "'"           Error
-'\n'          Text
+'\n'          Text.Whitespace

@@ -18,37 +18,37 @@ ITERATE {call.type$}
 
 ---tokens---
 "% BibTeX standard bibliography style `plain'" Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'INTEGERS { output.state before.all }' Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FUNCTION {sort.format.title}' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 "{ 't :="     Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"A " #2'     Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 '"An " #3'    Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 '"The " #4 t chop.word' Comment
-'\n    '      Text
+'\n    '      Text.Whitespace
 'chop.word'   Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'chop.word'   Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sortify'     Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#1 global.max$ substring$' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Comment
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'ITERATE {call.type$}' Comment
-'\n'          Text
+'\n'          Text.Whitespace

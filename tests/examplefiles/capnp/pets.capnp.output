@@ -1,0 +1,153 @@
+'@0x0123456789abcdef' Name.Decorator
+';'           Text
+'  '          Text.Whitespace
+'# unique file ID' Comment.Single
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'Pet'         Name
+' '           Text.Whitespace
+'{'           Text
+'\n\t'        Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+'@0'          Name.Decorator
+' '           Text.Whitespace
+':'           Name.Class
+'Text'        Name.Class
+';'           Text
+'\n\t'        Text.Whitespace
+'owner'       Name
+' '           Text.Whitespace
+'@1'          Name.Decorator
+' '           Text.Whitespace
+':'           Name.Class
+'List'        Name.Class
+'('           Name.Class
+'Owner'       Name.Class
+')'           Name.Class
+';'           Text
+'\n\t'        Text.Whitespace
+'birthdate'   Name
+' '           Text.Whitespace
+'@2'          Name.Decorator
+' '           Text.Whitespace
+':'           Name.Class
+'Date'        Name.Class
+';'           Text
+'\n\n\t'      Text.Whitespace
+'struct'      Keyword
+' '           Text.Whitespace
+'Owner'       Name
+' '           Text.Whitespace
+'{'           Text
+'\n\t\t'      Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+'@0'          Name.Decorator
+' '           Text.Whitespace
+':'           Name.Class
+'Text'        Name.Class
+';'           Text
+'\n\t\t'      Text.Whitespace
+'contact'     Name
+' '           Text.Whitespace
+'@1'          Name.Decorator
+' '           Text.Whitespace
+':'           Name.Class
+'List'        Name.Class
+'('           Name.Class
+'Contact'     Name.Class
+')'           Name.Class
+';'           Text
+'\n\t\t\n\t\t' Text.Whitespace
+'struct'      Keyword
+' '           Text.Whitespace
+'Contact'     Name
+' '           Text.Whitespace
+'{'           Text
+'\n\t\t\t'    Text.Whitespace
+'address'     Name
+' '           Text.Whitespace
+'@0'          Name.Decorator
+' '           Text.Whitespace
+':'           Name.Class
+'Text'        Name.Class
+';'           Text
+'\n\t\t\t'    Text.Whitespace
+'type'        Name
+' '           Text.Whitespace
+'@1'          Name.Decorator
+' '           Text.Whitespace
+':'           Name.Class
+'Type'        Name.Class
+';'           Text
+'\n\n\t\t\t'  Text.Whitespace
+'enum'        Keyword
+' '           Text.Whitespace
+'Type'        Name
+' '           Text.Whitespace
+'{'           Text
+'\n\t\t\t\t'  Text.Whitespace
+'email'       Name
+' '           Text.Whitespace
+'@0'          Name.Decorator
+';'           Text
+'\n\t\t\t\t'  Text.Whitespace
+'phone'       Name
+' '           Text.Whitespace
+'@1'          Name.Decorator
+';'           Text
+'\n\t\t\t\t'  Text.Whitespace
+'msgr'        Name
+' '           Text.Whitespace
+'@2'          Name.Decorator
+';'           Text
+'\n\t\t\t'    Text.Whitespace
+'}'           Text
+'\n\t\t'      Text.Whitespace
+'}'           Text
+'\n\t'        Text.Whitespace
+'}'           Text
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'# a comment' Comment.Single
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'Date'        Name
+' '           Text.Whitespace
+'{'           Text
+'\n\t'        Text.Whitespace
+'year'        Name
+' '           Text.Whitespace
+'@0'          Name.Decorator
+' '           Text.Whitespace
+':'           Name.Class
+'Int16'       Name.Class
+';'           Text
+'\n\t'        Text.Whitespace
+'month'       Name
+' '           Text.Whitespace
+'@1'          Name.Decorator
+' '           Text.Whitespace
+':'           Name.Class
+'UInt8'       Name.Class
+';'           Text
+'\n\t'        Text.Whitespace
+'day'         Name
+' '           Text.Whitespace
+'@2'          Name.Decorator
+' '           Text.Whitespace
+':'           Name.Class
+'UInt8'       Name.Class
+';'           Text
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n'          Text.Whitespace
