@@ -5,25 +5,25 @@ lock addq $0, /* comments */ (%rsp) /*
 
 ---tokens---
 'lock'        Name.Attribute
-' '           Text
+' '           Text.Whitespace
 'addq'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '$0'          Name.Constant
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/* comments */' Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '%rsp'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/*\n// comments\n*/' Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 'xorq'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '%rax'        Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%rax'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '// comments\n' Comment.Single

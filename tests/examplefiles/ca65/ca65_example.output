@@ -1,1011 +1,1011 @@
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Lychrel numbers.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "; :author: Marc 'BlackJack' Rintsch" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; :date: 2008-03-07' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; :version: 0.1' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Prints all `Lychrel numbers`_ between 1 and 100000.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; The numbers are stored as array of "digits" in little endian' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; order.  Each digit is a byte with a value between 0 and 9.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Runtime on C64: 00:21:01' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; .. _Lychrel numbers: http://en.wikipedia.org/wiki/Lychrel_number' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; .. cl65 -l -tnone -C simple.cfg lychrel.s -o lychrel.prg' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; External addresses.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'chrout'      Name
-'\t'          Text
+'\t'          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$ffd2'       Literal.Number.Hex
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Constants.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'TO'          Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '100000'      Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'TO_DIGITS'   Name
-'\t'          Text
+'\t'          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'ITERATIONS'  Name
-'\t'          Text
+'\t'          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '100'         Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'MAX_DIGITS'  Name
-'\t'          Text
+'\t'          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'TO_DIGITS'   Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'ITERATIONS'  Name
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Global variables.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.zeropage'   Keyword.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Length of the currently tested `n` in digits.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'n_length:'   Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.res'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Length of the number(s) `xa` and `xb` while testing.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'length:'     Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.res'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.bss'        Keyword.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Number to be tested as digits i.e. bytes with values between' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; 0 and 9.  The length is stored in `n_length`.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'n:'          Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.res'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'TO_DIGITS'   Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Space for calculating the reversed and added values.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; In the `main` code the current number is copied into `xa`' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; and then repeatedly `reverse_add`\\ed to itself with the' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; result of that adding stored in `xb`.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'xa:'         Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.res'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'MAX_DIGITS'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'xb:'         Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.res'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'MAX_DIGITS'  Name
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; BASIC header.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.code'       Keyword.Pseudo
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.word'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '0800h'       Literal.Number.Hex
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; Load address.' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.byte'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.word'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '@line_end'   Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.word'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '2008'        Literal.Number.Integer
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; Line number.' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.byte'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '$9e'         Literal.Number.Hex
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; SYS token.' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.byte'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"2080 "'     Literal.String
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; SYS argument.' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.byte'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"LYCHREL NUMBERS/BJ"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@line_end:'  Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.byte'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; Line and program end marker.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Main program.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.proc'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'main'        Name
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.zeropage'   Keyword.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Three byte counter for `TO` iterations (100000 = $0186a0).' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'i:'          Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.res'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.code'       Keyword.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Clear and set `n` and `i` to 1.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '0'           Literal.Number.Integer
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; n := 0; n := 1; i := 1' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'sta'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '+'           Operator
 '1'           Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'sta'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '+'           Operator
 '2'           Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'ldx'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 'TO_DIGITS'   Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'clear_n:'    Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'sta'         Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '-'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
 'x'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'dex'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'clear_n'     Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'inx'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'stx'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'stx'         Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'stx'         Keyword
-' '           Text
+' '           Text.Whitespace
 'n_length'    Name
-'\n\t\n'      Text
+'\n\t\n'      Text.Whitespace
 
 'mainloop:'   Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'jsr'         Keyword
-' '           Text
+' '           Text.Whitespace
 'is_lychrel'  Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bcc'         Keyword
-' '           Text
+' '           Text.Whitespace
 'no_lychrel'  Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'jsr'         Keyword
-' '           Text
+' '           Text.Whitespace
 'print_n'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'no_lychrel:' Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'jsr'         Keyword
-' '           Text
+' '           Text.Whitespace
 'increase_n'  Name
-'\n\t\n\t'    Text
+'\n\t\n\t'    Text.Whitespace
 'inc'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; INC(i)'    Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'skip'        Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'inc'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '+'           Operator
 '1'           Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'skip'        Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'inc'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '+'           Operator
 '2'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'skip:'       Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'cmp'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '<'           Operator
 'TO'          Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'mainloop'    Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '+'           Operator
 '1'           Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'cmp'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '>'           Operator
 'TO'          Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'mainloop'    Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '+'           Operator
 '2'           Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'cmp'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '^'           Operator
 'TO'          Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'mainloop'    Name
-'\n\t\n\t'    Text
+'\n\t\n\t'    Text.Whitespace
 'rts'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.endproc'    Keyword.Pseudo
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Print `n` and a trailing newline.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; :in: `n_length`, `n`' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.proc'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'print_n'     Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'ldy'         Keyword
-' '           Text
+' '           Text.Whitespace
 'n_length'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'L1:'         Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '-'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
 'y'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'ora'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '%110000'     Literal.Number.Bin
-'    '        Text
+'    '        Text.Whitespace
 "; = '0'"     Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'jsr'         Keyword
-' '           Text
+' '           Text.Whitespace
 'chrout'      Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'dey'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'L1'          Name
-'\n\t\n\t'    Text
+'\n\t\n\t'    Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '13'          Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'jmp'         Keyword
-' '           Text
+' '           Text.Whitespace
 'chrout'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.endproc'    Keyword.Pseudo
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Increase `n` by one.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; This procedure expects n[n_length] == 0 in case the number gets' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; one digit longer.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; :in: `n`, `n_length`' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; :out: `n`, `n_length`' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.proc'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'increase_n'  Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'ldx'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'L1:'         Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'inc'         Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ','           Punctuation
 'x'           Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; Increase digit.' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ','           Punctuation
 'x'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'cmp'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '10'          Literal.Number.Integer
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; If "carry", store 0 and go to next digit.' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'return'      Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '0'           Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'sta'         Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 ','           Punctuation
 'x'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'inx'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'L1'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'return:'     Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'cpx'         Keyword
-' '           Text
+' '           Text.Whitespace
 'n_length'    Name
-'\t'          Text
+'\t'          Text.Whitespace
 '; If "carry" after last digit, increase length.' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bcc'         Keyword
-' '           Text
+' '           Text.Whitespace
 'skip'        Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'inc'         Keyword
-' '           Text
+' '           Text.Whitespace
 'n_length'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'skip:'       Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'rts'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.endproc'    Keyword.Pseudo
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Tests if `n` is a Lychrel number.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; :in: `n`, `n_length`' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; :out: C is set if yes, cleared otherwise.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; :uses: `length`, `xa`, `xb`' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.proc'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'is_lychrel'  Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.zeropage'   Keyword.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
 'i:'          Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '.res'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '.code'       Keyword.Pseudo
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'ldx'         Keyword
-' '           Text
+' '           Text.Whitespace
 'n_length'    Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; xa := n; length := n_length' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'stx'         Keyword
-' '           Text
+' '           Text.Whitespace
 'length'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'L1:'         Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 'n'           Name
 '-'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
 'x'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'sta'         Keyword
-' '           Text
+' '           Text.Whitespace
 'xa'          Name
 '-'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
 'x'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'dex'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'L1'          Name
-'\n\t\n\t'    Text
+'\n\t\n\t'    Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 'ITERATIONS'  Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; i := ITERATIONS' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'sta'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'L2:'         Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'jsr'         Keyword
-' '           Text
+' '           Text.Whitespace
 'reverse_add' Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'jsr'         Keyword
-' '           Text
+' '           Text.Whitespace
 'is_palindrome' Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'no_palindrome' Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'clc'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'rts'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'no_palindrome:' Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'ldx'         Keyword
-' '           Text
+' '           Text.Whitespace
 'length'      Name
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; a := b'    Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'L3:'         Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 'xb'          Name
 '-'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
 'x'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'sta'         Keyword
-' '           Text
+' '           Text.Whitespace
 'xa'          Name
 '-'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
 'x'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'dex'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'L3'          Name
-'\n\t\n\t'    Text
+'\n\t\n\t'    Text.Whitespace
 'dec'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '; Loop body end.' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'L2'          Name
-'\n\t\n\t'    Text
+'\n\t\n\t'    Text.Whitespace
 'sec'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'rts'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.endproc'    Keyword.Pseudo
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Add the reverse to `xa` to itself and store the result in `xb`.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; :in: `length`, `xa`' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; :out: `length`, `xb`' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.proc'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'reverse_add' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.code'       Keyword.Pseudo
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'ldx'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '0'           Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'ldy'         Keyword
-' '           Text
+' '           Text.Whitespace
 'length'      Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'clc'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'L1:'         Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 'xa'          Name
 ','           Punctuation
 'x'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'adc'         Keyword
-' '           Text
+' '           Text.Whitespace
 'xa'          Name
 '-'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
 'y'           Name
-'\n\t\n\t'    Text
+'\n\t\n\t'    Text.Whitespace
 'cmp'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '10'          Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bcc'         Keyword
-' '           Text
+' '           Text.Whitespace
 'no_adjust'   Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'sbc'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '10'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'no_adjust:'  Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'sta'         Keyword
-' '           Text
+' '           Text.Whitespace
 'xb'          Name
 ','           Punctuation
 'x'           Name
-'\n\t\n\t'    Text
+'\n\t\n\t'    Text.Whitespace
 'dey'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'inx'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'txa'         Keyword
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; ``eor`` instead of ``cpx`` to keep the carry flag' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'eor'         Keyword
-' '           Text
+' '           Text.Whitespace
 'length'      Name
-'\t'          Text
+'\t'          Text.Whitespace
 '; of the addition above.' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'L1'          Name
-'\n\t\n\t'    Text
+'\n\t\n\t'    Text.Whitespace
 'bcc'         Keyword
-' '           Text
+' '           Text.Whitespace
 'no_carry'    Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '1'           Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'sta'         Keyword
-' '           Text
+' '           Text.Whitespace
 'xb'          Name
 ','           Punctuation
 'x'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'inc'         Keyword
-' '           Text
+' '           Text.Whitespace
 'length'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'no_carry:'   Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'rts'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.endproc'    Keyword.Pseudo
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Checks if `xb` is a palindrome.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; '          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; :in: `length`, `xb`' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; :out: Z flag set if `xb` is a palindrome, cleared otherwise.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';--------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.proc'       Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 'is_palindrome' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.code'       Keyword.Pseudo
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'ldx'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '0'           Literal.Number.Integer
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 'length'      Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'tay'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lsr'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'sta'         Keyword
-' '           Text
+' '           Text.Whitespace
 'L1'          Name
 '+'           Operator
 '1'           Literal.Number.Integer
-'\t'          Text
+'\t'          Text.Whitespace
 '; Self modifying code!' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'L1:'         Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'cpx'         Keyword
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '0'           Literal.Number.Integer
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '; <<< 0 replaced by (`length` / 2).' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'beq'         Keyword
-' '           Text
+' '           Text.Whitespace
 'return'      Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'lda'         Keyword
-' '           Text
+' '           Text.Whitespace
 'xb'          Name
 ','           Punctuation
 'x'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'cmp'         Keyword
-' '           Text
+' '           Text.Whitespace
 'xb'          Name
 '-'           Operator
 '1'           Literal.Number.Integer
 ','           Punctuation
 'y'           Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'return'      Name
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'dey'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'inx'         Keyword
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'bne'         Keyword
-' '           Text
+' '           Text.Whitespace
 'L1'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'return:'     Name.Label
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'rts'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '.endproc'    Keyword.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
