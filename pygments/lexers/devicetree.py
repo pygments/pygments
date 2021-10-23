@@ -10,7 +10,7 @@
 
 from pygments.lexer import RegexLexer, bygroups, include, default, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
-    Punctuation, String, Text
+    Punctuation, String, Text, Whitespace
 
 __all__ = ['DevicetreeLexer']
 
@@ -46,8 +46,8 @@ class DevicetreeLexer(RegexLexer):
              bygroups(Comment.Preproc, Comment.Multiline, Comment.Preproc, Punctuation)),
         ],
         'whitespace': [
-            (r'\n', Text),
-            (r'\s+', Text),
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
             (r'\\\n', Text),  # line continuation
             (r'//(\n|[\w\W]*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?[*][\w\W]*?[*](\\\n)?/', Comment.Multiline),
