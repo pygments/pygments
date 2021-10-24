@@ -1,5 +1,5 @@
 """
-    pygments.style.onedark
+    pygments.styles.onedark
     ~~~~~~~~~~~~~~~~~~~~~~
 
     One Dark Theme for Pygments by Tobias Zoghaib (https://github.com/TobiZog)
