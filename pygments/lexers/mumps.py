@@ -233,8 +233,8 @@ class MumpsLexer(ExtendedRegexLexer):
         # 7.2 - exprtail
         'exprtail': [
                 # TODO
+                ( '\'', Operator), # The "not" can happen multiple times
 	            ( binaryop_re, Operator, 'expratom'),
-                ( '(\')(' + truthop_re + ')', bygroups(Operator, Operator), 'expratom'),
 	            ( truthop_re, Operator, 'expratom'),
                 ( '\\?', Operator, 'pattern'),
                 default('#pop')
@@ -399,6 +399,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('open', 'o'), suffix=r'\b'), Keyword, ('#pop', 'l_openargument', 'argumentsp', 'postcond')),
                 # 8.2.16 - QUIT - single expression, or indirect
                 (words(('quit', 'q'), suffix=r'\b'), Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
+                # 8.2.17 - READ
+                (words(('read', 'r'), suffix=r'\b'), Keyword, ('#pop', 'l_readargument', 'argumentsp', 'postcond')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
@@ -564,4 +566,17 @@ class MumpsLexer(ExtendedRegexLexer):
             ('@', Operator, ('#pop', 'expratom')),
             include('expr')
             ],
+        # 8.2.17 - READ
+        'readargument': [
+            include('format'),
+            include('strlit'),
+            include('glvn'),
+            ],
+        'l_readargument': [
+            default(('list_comma', 'readargument'))
+            ],
+        'format': [
+            ('[#!]+', Keyword.Pseudo),
+            ('\\?', Keyword.Pseudo, ('#pop', 'expr'))
+        ],
         }
