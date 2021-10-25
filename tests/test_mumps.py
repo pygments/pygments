@@ -1470,3 +1470,26 @@ def testOpenList(lexer):
             (Number, '3'),
             (Text, '\n')
             ]
+
+def testRead(lexer):
+    assert list(lexer.get_tokens(
+        ' read #!!?5,"Hello!",!?5,"What is your name? ",name' )) == [
+            (Whitespace, ' '),
+            (Keyword, 'read'),
+            (Whitespace, ' '),
+            (Keyword.Pseudo, '#!!'),
+            (Keyword.Pseudo, '?'),
+            (Number, '5'),
+            (Punctuation, ','),
+            (String, '"Hello!"'),
+            (Punctuation, ','),
+            (Keyword.Pseudo, '!'),
+            (Keyword.Pseudo, '?'),
+            (Number, '5'),
+            (Punctuation, ','),
+            (String, '"What is your name? "'),
+            (Punctuation, ','),
+            (Name.Variable, 'name'),
+            (Text, '\n')
+            ]
+
