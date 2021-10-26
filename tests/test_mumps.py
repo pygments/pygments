@@ -1493,3 +1493,15 @@ def testRead(lexer):
             (Text, '\n')
             ]
 
+def testReadCond(lexer):
+    assert list(lexer.get_tokens( ' r:\'ready @readargs' )) == [
+            (Whitespace, ' '),
+            (Keyword, 'r'),
+            (Operator, ':'),
+            (Operator, '\''),
+            (Name.Variable, 'ready'),
+            (Whitespace, ' '),
+            (Operator, '@'),
+            (Name.Variable, 'readargs'),
+            (Text, '\n'),
+            ]
