@@ -40,7 +40,7 @@ class MumpsLexer(ExtendedRegexLexer):
     # 7.1.4.1 - String literal 'strlit'
     strlit_re = '"(""|[^"])*"'
     # 7.1.4.11 - Unary operator 'unaryop'
-    unaryop_re = '[-+]'
+    unaryop_re = "[-+']"
     # 7.2.1 - binaryop
     binaryop_re = '\\*\\*|[-_+*/\\\\#]'
     # 7.2.2 - truthop
@@ -120,7 +120,7 @@ class MumpsLexer(ExtendedRegexLexer):
         # 7 - Expression 'expr'
         ###
         'expr': [
-                default(('#pop', 'exprtail', 'expratom')) 
+                default(('#pop', 'exprtail', 'expratom'))
                 ],
         'l_expr': [
                 default(('list_comma', 'expr')),
@@ -130,8 +130,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 include('glvn'),
                 include('expritem'),
                 ],
-    	# 7.1.2 - Variable name 'glvn'
-    	'glvn': [
+        # 7.1.2 - Variable name 'glvn'
+        'glvn': [
                 include('lvn'),
                 include('gvn'),
                 include('ssvn'),
@@ -143,7 +143,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 ],
         'rlvn': [
                 ( name_re , Name.Variable, ('#pop', 'opt_subscripts')),
-    	        ],
+                ],
         # 7.1.2.4 - Global variable name gvn
         'gvn': [
                 include('rgvn'),
@@ -288,7 +288,7 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8.1.4 - postcond
         'postcond': [
             (':', Operator, 'expr'),
-            default('#pop')  
+            default('#pop')
             ],
         # 8.1.5 - Command timeout timeout
         'timeout': [
