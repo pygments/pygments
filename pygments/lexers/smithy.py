@@ -71,8 +71,8 @@ class SmithyLexer(RegexLexer):
             (r'\{', Text, "#push"),
             (r'\}', Text, "#pop"),
             (r'"{3}(\\\\|\n|\\")*"{3}', String.Doc),
+            (r'"""(?:.|\n)*?[^\\]"""', String.Double),
             (r'"(\\\\|\n|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\n|\\'|[^'])*'", String.Single),
             (r'[:,]+', Punctuation),
             (r'\s+', Whitespace),
         ]

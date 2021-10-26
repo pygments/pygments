@@ -7,6 +7,16 @@
 ' test'       Name.Class
 '\n\n'        Text.Whitespace
 
+'@documentation' Name.Decorator
+'('           Text
+'"""\n"Embedded quotes are permitted"\nTriple quotes may be escaped: \\"""\n"""' Literal.String.Double
+')'           Text
+'\n'          Text.Whitespace
+
+'string'      Keyword.Declaration
+' TestTextBlock' Name.Class
+'\n\n'        Text.Whitespace
+
 '/// Define how an HTTP request is serialized given a specific protocol,' Comment.Multiline
 '\n'          Text.Whitespace
 

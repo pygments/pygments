@@ -2,6 +2,12 @@ $version: "1.0"
 
 namespace test
 
+@documentation("""
+"Embedded quotes are permitted"
+Triple quotes may be escaped: \"""
+""")
+string TestTextBlock
+
 /// Define how an HTTP request is serialized given a specific protocol,
 /// authentication scheme, and set of input parameters.
 @trait(selector: "operation")
