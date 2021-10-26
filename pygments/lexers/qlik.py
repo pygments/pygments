@@ -10,10 +10,18 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups
+from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import *
+from pygments.lexers._qlik_builtins import (
+    OPERATORS_LIST,
+    STATEMENT_LIST,
+    SCRIPT_FUNCTIONS,
+    CONSTANT_LIST,
+)
 
 __all__ = ["QlikLexer"]
+
+field_name_options = r"(\w|\[[\w\s]\]|\"[\w\s]\")"
 
 
 class QlikLexer(RegexLexer):
@@ -28,77 +36,104 @@ class QlikLexer(RegexLexer):
     flags = re.IGNORECASE
 
     tokens = {
+        # Handle multi-line comments
         "comment": [
-            (r"[^*/]", Comment.Multiline),
-            (r"/\*", Comment.Multiline, "#push"),
             (r"\*/", Comment.Multiline, "#pop"),
-            (r"[*/]", Comment.Multiline),
+            (r"[^\*/]+", Comment.Multiline),
         ],
+        # Handle numbers
         "numerics": [
             (r"\b[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?\b", Number.Float),
             (r"\b[0-9]+\b", Number.Integer),
         ],
-        "variables": [
+        # Handle variable names in things
+        "interp": [
             (r"(\$\()(\w+)(\))", bygroups(Keyword, Name.Variable, Keyword)),
         ],
+        # Handle strings
+        "string": [
+            (
+                r"(\')",
+                String,
+                "#pop",
+            ),
+            include("interp"),
+            (r"[^\']+", String),
+        ],
+        #
+        "assignment": [
+            (r";", Punctuation, "#pop"),
+            include("root"),
+        ],
+        "field_name_quote": [
+            (
+                r"(\")",
+                Keyword,
+                "#pop",
+            ),
+            include("interp"),
+            (r"[^\"]+", Keyword),
+        ],
+        "field_name_bracket": [
+            (
+                r"(\])",
+                Keyword,
+                "#pop",
+            ),
+            include("interp"),
+            (r"[^\]]+", Keyword),
+        ],
+        "function": [(r"\)", Operator.Word, "#pop"), include("root")],
         "root": [
-            (r"\s+", Text),
+            # Whitespace and comments
+            (r"\s+", Text.Whitespace),
             (r"/\*", Comment.Multiline, "comment"),
             (r"//.*\n", Comment.Singleline),
+            # variable assignment
             (
-                r"\b(and|or|is|not)\b",
+                r"(let|set)(\s+)",
+                bygroups(
+                    Keyword.Declaration,
+                    Text.Whitespace,
+                ),
+                "assignment",
+            ),
+            # Word operators
+            (
+                words(OPERATORS_LIST["words"], prefix=r"\b", suffix=r"\b"),
                 Operator.Word,
             ),
+            # Statements
             (
-                r"(for|in|while|do|break|return|continue|switch|case|default|"
-                r"if|else|endif|then|end|errormode|each|next)\b",
+                words(
+                    STATEMENT_LIST,
+                    suffix=r"\b",
+                ),
                 Keyword,
             ),
-            (r"(set|let|sub)\b", Keyword.Declaration),
-            (r"(num|date|dual|date#|text)\(", Name.Builtin),
+            # Table names
             (r"[a-z]\w*:", Keyword.Declaration),
-            (r"(?<![.$])(true|false|null)\b", Keyword.Constant),
-            (
-                r"(\bas|resident|mapping|distinct|load|join|(left|right|outer|full|"
-                r"inner) join|from|trace|execute|odbc|connect|add|"
-                r"alias|binary|buffer|bundle|concatenate|directory|"
-                r"intervalmatch|trace|unqualify|qualify|include|sql\sselect|"
-                r"inline|autogenerate|group\sby|order\sby|asc|desc|store|into|"
-                r"drop|table|field)\b",
-                Operator.Word,
-            ),
-            (r"(noconcatenate|concatenate)\b", Operator.Word),
-            (
-                r"(ceil|floor|round|rangesum|rangeavg|rangestdev|len|trim|"
-                r"subfield|left|right|replace|exists|fieldindex|fieldvalue|"
-                r"peek|previous|next|lookup|recno|rowno|iterno|autonumberhash128|"
-                r"autonumberhash256|fieldvaluecount|sum|max|maxstring|min|"
-                r"avg|count|second|minute|hour|day|week|month|year|weekyear|"
-                r"weekday|now|today|localtime|makedate|makeweekdate|maketime|"
-                r"yeartodate|setdateyear|setdateyearmonth|yearstart|yearend|"
-                r"inyear|inyeartodate|inquarter|inquartertodate|addmonths|"
-                r"monthstart|monthend|inmonth|inmonthtodate|inmonths|"
-                r"inmonthstodate|inweek|inweektodate|inlunarweek|"
-                r"inlunarweektodate|timezone|gmt|utc|daylightsaving|filesize|"
-                r"documentname|filetime|isnull|crosstable|applymap|if|"
-                r"filename)\(",
-                Operator.Word,
-            ),
-            include("variables"),
-            (r'"(\s|\w)+"', Keyword),
-            (
-                r"(\[.+)(\$\()(\w+)(\))(.+])",
-                bygroups(String, Keyword, Name.Variable, Keyword, String),
-            ),
-            (r"\[[^\]]+\]", Keyword),
+            # Constants
+            (words(CONSTANT_LIST, suffix=r"\b"), Keyword.Constant),
+            # Functions
+            (words(SCRIPT_FUNCTIONS, suffix=r"\s*\("), Operator.Word, "function"),
+            # interpolation - e.g. $(variableName)
+            include("interp"),
+            # Quotes denote a field/file name
+            (r'"', Keyword, "field_name_quote"),
+            # Square brackets denote a field/file name
+            (r"\[", Keyword, "field_name_bracket"),
+            # Strings
+            (r"\'", String, "string"),
+            # Numbers
             include("numerics"),
-            (
-                r"('.+)(\$\()(\w+)(\))(.+')",
-                bygroups(String, Keyword, Name.Variable, Keyword, String),
-            ),
-            (r"<>|[\-\<\>\+\*\%\&\|\^\/=\)\(]", Operator),
+            # Operator symbols
+            (words(OPERATORS_LIST["symbols"]), Operator),
+            # Strings denoted by single quotes
             (r"'.+'", String),
+            # Words as text
             (r"\b\w+\b", Text),
+            # Basic punction
             (r"(\,|\;|\.|\(|\)|\\|\/)", Punctuation),
         ],
     }

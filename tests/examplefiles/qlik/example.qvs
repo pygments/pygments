@@ -15,7 +15,7 @@ FOR EACH vFolder IN 'folder_1', 'folder_2'
             [Field 1]   AS FIELD_1,
             "Field 2"   AS FIELD_2,
             FIELD_3,
-            FileName()      AS SOURCE_FILE
+            FileName()      AS SOURCE_FILE_$(vFilePath)
         FROM
             [$(vFilePath)/$(vFolder)/file.qvd] (qvd);
 
@@ -34,8 +34,9 @@ FOR EACH vFolder IN 'folder_1', 'folder_2'
             FIELD_2,
             FIELD_3,
             applymap('MAP_FIELD_1', FIELD_1, 0)     AS FIELD_2_SUM,
-            'Token String'                          AS STRING_FIELD,
-            3.14159                                 AS NUMBER_FIELD
+            'Token String ''Name'''                 AS [String Field $(vFilePath)],
+            3.14159                                 AS "Number Field $(vFilePath)",
+            3 * 10 + 6 / 2 - 5                      AS OPERATION_FIELD
         RESIDENT
             TABLE_NAME
         ORDER BY

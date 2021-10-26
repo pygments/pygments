@@ -1,321 +1,259 @@
 '/*'          Comment.Multiline
-' '           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'\n'          Comment.Multiline
-
-'T'           Comment.Multiline
-'h'           Comment.Multiline
-'i'           Comment.Multiline
-'s'           Comment.Multiline
-' '           Comment.Multiline
-'i'           Comment.Multiline
-'s'           Comment.Multiline
-' '           Comment.Multiline
-'a'           Comment.Multiline
-'n'           Comment.Multiline
-' '           Comment.Multiline
-'e'           Comment.Multiline
-'x'           Comment.Multiline
-'a'           Comment.Multiline
-'m'           Comment.Multiline
-'p'           Comment.Multiline
-'l'           Comment.Multiline
-'e'           Comment.Multiline
-' '           Comment.Multiline
-'f'           Comment.Multiline
-'i'           Comment.Multiline
-'l'           Comment.Multiline
-'e'           Comment.Multiline
-' '           Comment.Multiline
-'c'           Comment.Multiline
-'o'           Comment.Multiline
-'n'           Comment.Multiline
-'t'           Comment.Multiline
-'a'           Comment.Multiline
-'i'           Comment.Multiline
-'n'           Comment.Multiline
-'i'           Comment.Multiline
-'n'           Comment.Multiline
-'g'           Comment.Multiline
-' '           Comment.Multiline
-'q'           Comment.Multiline
-'l'           Comment.Multiline
-'i'           Comment.Multiline
-'k'           Comment.Multiline
-' '           Comment.Multiline
-'s'           Comment.Multiline
-'c'           Comment.Multiline
-'r'           Comment.Multiline
-'i'           Comment.Multiline
-'p'           Comment.Multiline
-'t'           Comment.Multiline
-'\n'          Comment.Multiline
-
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-'-'           Comment.Multiline
-' '           Comment.Multiline
+' ---------------------------------\nThis is an example file containing qlik script\n--------------------------------- ' Comment.Multiline
 '*/'          Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'LET'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'vFilePath'   Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-"'/home'"     Literal.String
+' '           Text.Whitespace
+"'"           Literal.String
+'/home'       Literal.String
+"'"           Literal.String
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FOR'         Keyword
-' '           Text
+' '           Text.Whitespace
 'EACH'        Keyword
-' '           Text
+' '           Text.Whitespace
 'vFolder'     Text
-' '           Text
+' '           Text.Whitespace
 'IN'          Keyword
-' '           Text
-"'folder_1', 'folder_2'" Literal.String
-'\n\n    '    Text
+' '           Text.Whitespace
+"'"           Literal.String
+'folder_1'    Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+'folder_2'    Literal.String
+"'"           Literal.String
+'\n\n    '    Text.Whitespace
 '// Check the file exists\n' Comment.Singleline
 
-'    '        Text
+'    '        Text.Whitespace
 'IF'          Keyword
-' '           Text
+' '           Text.Whitespace
 'FILESIZE('   Operator.Word
-"'$(vFilePath)/" Literal.String
+"'"           Literal.String
 '$('          Keyword
-'vFolder'     Name.Variable
+'vFilePath'   Name.Variable
 ')'           Keyword
-"/file.qvd'"  Literal.String
-')'           Operator
-' '           Text
+'/$(vFolder)/file.qvd' Literal.String
+"'"           Literal.String
+')'           Operator.Word
+' '           Text.Whitespace
 '>'           Operator
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'THEN'        Keyword
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'TABLE_NAME:' Keyword.Declaration
-'\n        '  Text
-'NoConcatenate' Operator.Word
-'\n        '  Text
-'LOAD'        Operator.Word
-'\n            ' Text
-'[Field 1]'   Keyword
-'   '         Text
-'AS'          Operator.Word
-' '           Text
+'\n        '  Text.Whitespace
+'NoConcatenate' Keyword
+'\n        '  Text.Whitespace
+'LOAD'        Keyword
+'\n            ' Text.Whitespace
+'['           Keyword
+'Field 1'     Keyword
+']'           Keyword
+'   '         Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
 'FIELD_1'     Text
 ','           Punctuation
-'\n            ' Text
-'"Field 2"'   Keyword
-'   '         Text
-'AS'          Operator.Word
-' '           Text
+'\n            ' Text.Whitespace
+'"'           Keyword
+'Field 2'     Keyword
+'"'           Keyword
+'   '         Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
 'FIELD_2'     Text
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'FIELD_3'     Text
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'FileName('   Operator.Word
-')'           Operator
-'      '      Text
-'AS'          Operator.Word
-' '           Text
-'SOURCE_FILE' Text
-'\n        '  Text
-'FROM'        Operator.Word
-'\n            ' Text
-'[$(vFilePath)/' Literal.String
+')'           Operator.Word
+'      '      Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'SOURCE_FILE_' Text
 '$('          Keyword
-'vFolder'     Name.Variable
+'vFilePath'   Name.Variable
 ')'           Keyword
-'/file.qvd]'  Literal.String
-' '           Text
-'('           Operator
+'\n        '  Text.Whitespace
+'FROM'        Keyword
+'\n            ' Text.Whitespace
+'['           Keyword
+'$('          Keyword
+'vFilePath'   Name.Variable
+')'           Keyword
+'/$(vFolder)/file.qvd' Keyword
+']'           Keyword
+' '           Text.Whitespace
+'('           Punctuation
 'qvd'         Text
-')'           Operator
+')'           Punctuation
 ';'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 'MAP_FIELD_1:' Keyword.Declaration
-'\n        '  Text
-'MAPPING'     Operator.Word
-' '           Text
-'LOAD'        Operator.Word
-'\n            ' Text
+'\n        '  Text.Whitespace
+'MAPPING'     Keyword
+' '           Text.Whitespace
+'LOAD'        Keyword
+'\n            ' Text.Whitespace
 'FIELD_1'     Text
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'SUM('        Operator.Word
 'FIELD_2'     Text
-')'           Operator
-'\n        '  Text
-'RESIDENT'    Operator.Word
-'\n            ' Text
+')'           Operator.Word
+'\n        '  Text.Whitespace
+'RESIDENT'    Keyword
+'\n            ' Text.Whitespace
 'TABLE_NAME'  Text
-'\n        '  Text
-'GROUP BY'    Operator.Word
-'\n            ' Text
+'\n        '  Text.Whitespace
+'GROUP BY'    Keyword
+'\n            ' Text.Whitespace
 'FIELD_1'     Text
 ';'           Punctuation
-'\n\n        ' Text
-'LEFT JOIN'   Operator.Word
-'('           Operator
+'\n\n        ' Text.Whitespace
+'LEFT'        Keyword
+' '           Text.Whitespace
+'JOIN'        Keyword
+'('           Punctuation
 'TABLE_NAME'  Text
-')'           Operator
-'\n        '  Text
-'LOAD'        Operator.Word
-' '           Text
-'DISTINCT'    Operator.Word
-'\n            ' Text
+')'           Punctuation
+'\n        '  Text.Whitespace
+'LOAD'        Keyword
+' '           Text.Whitespace
+'DISTINCT'    Keyword
+'\n            ' Text.Whitespace
 'FIELD_1'     Text
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'FIELD_2'     Text
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'FIELD_3'     Text
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'applymap('   Operator.Word
-"'MAP_FIELD_1'" Literal.String
+"'"           Literal.String
+'MAP_FIELD_1' Literal.String
+"'"           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'FIELD_1'     Text
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-')'           Operator
-'     '       Text
-'AS'          Operator.Word
-' '           Text
+')'           Operator.Word
+'     '       Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
 'FIELD_2_SUM' Text
 ','           Punctuation
-'\n            ' Text
-"'Token String'" Literal.String
-'                          ' Text
-'AS'          Operator.Word
-' '           Text
-'STRING_FIELD' Text
+'\n            ' Text.Whitespace
+"'"           Literal.String
+'Token String ' Literal.String
+"'"           Literal.String
+"'"           Literal.String
+'Name'        Literal.String
+"'"           Literal.String
+"'"           Literal.String
+"'"           Literal.String
+'                 ' Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'['           Keyword
+'String Field $(vFilePath)' Keyword
+']'           Keyword
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '3.14159'     Literal.Number.Float
-'                                 ' Text
-'AS'          Operator.Word
-' '           Text
-'NUMBER_FIELD' Text
-'\n        '  Text
-'RESIDENT'    Operator.Word
-'\n            ' Text
+'                                 ' Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'"'           Keyword
+'Number Field $(vFilePath)' Keyword
+'"'           Keyword
+','           Punctuation
+'\n            ' Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'                      ' Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'OPERATION_FIELD' Text
+'\n        '  Text.Whitespace
+'RESIDENT'    Keyword
+'\n            ' Text.Whitespace
 'TABLE_NAME'  Text
-'\n        '  Text
-'ORDER BY'    Operator.Word
-'\n            ' Text
+'\n        '  Text.Whitespace
+'ORDER BY'    Keyword
+'\n            ' Text.Whitespace
 'FIELD_3'     Text
-' '           Text
-'DESC'        Operator.Word
+' '           Text.Whitespace
+'DESC'        Keyword
 ';'           Punctuation
-'\n\n        ' Text
-'STORE'       Text
-' '           Text
+'\n\n        ' Text.Whitespace
+'STORE'       Keyword
+' '           Text.Whitespace
 'TABLE_NAME'  Text
-' '           Text
+' '           Text.Whitespace
 'INTO'        Text
-' '           Text
-'[$(vFilePath)/' Literal.String
+' '           Text.Whitespace
+'['           Keyword
 '$('          Keyword
-'vFolder'     Name.Variable
+'vFilePath'   Name.Variable
 ')'           Keyword
-'/file_output.qvd]' Literal.String
-' '           Text
-'('           Operator
+'/$(vFolder)/file_output.qvd' Keyword
+']'           Keyword
+' '           Text.Whitespace
+'('           Punctuation
 'qvd'         Text
-')'           Operator
+')'           Punctuation
 ';'           Punctuation
-'\n\n        ' Text
-'DROP'        Text
-' '           Text
-'TABLE'       Text
-' '           Text
+'\n\n        ' Text.Whitespace
+'DROP TABLE'  Keyword
+' '           Text.Whitespace
 'TABLE_NAME'  Text
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'ELSE'        Keyword
-'\n\n        ' Text
-'TRACE'       Operator.Word
-' '           Text
+'\n\n        ' Text.Whitespace
+'TRACE'       Keyword
+' '           Text.Whitespace
 'No'          Text
-' '           Text
+' '           Text.Whitespace
 'file'        Text
-' '           Text
+' '           Text.Whitespace
 'found'       Text
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$('          Keyword
 'vFilePath'   Name.Variable
 ')'           Keyword
@@ -324,13 +262,13 @@
 '.'           Punctuation
 'qvd'         Text
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'END'         Keyword
-' '           Text
+' '           Text.Whitespace
 'IF'          Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'NEXT'        Keyword
-' '           Text
+' '           Text.Whitespace
 'vFolder'     Text
-'\n'          Text
+'\n'          Text.Whitespace
