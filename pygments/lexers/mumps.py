@@ -570,7 +570,7 @@ class MumpsLexer(ExtendedRegexLexer):
         'readargument': [
             include('format'),
             include('strlit'),
-            include('glvn'),
+            default(('#pop', 'timeout', 'opt_readcount', 'glvn')),
             ],
         'l_readargument': [
             default(('list_comma', 'readargument'))
@@ -578,5 +578,12 @@ class MumpsLexer(ExtendedRegexLexer):
         'format': [
             ('[#!]+', Keyword.Pseudo),
             ('\\?', Keyword.Pseudo, ('#pop', 'expr'))
-        ],
+            ],
+        'readcount': [
+            ('#', Punctuation, ('#pop', 'expr')),
+            ],
+        'opt_readcount': [
+            include('readcount'),
+            default('#pop')
+            ]
         }
