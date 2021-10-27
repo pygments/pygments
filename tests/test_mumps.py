@@ -1494,7 +1494,7 @@ def testRead(lexer):
             ]
 
 def testReadCond(lexer):
-    assert list(lexer.get_tokens( ' r:\'ready @readargs' )) == [
+    assert list(lexer.get_tokens( " r:'ready @readargs" )) == [
             (Whitespace, ' '),
             (Keyword, 'r'),
             (Operator, ':'),
@@ -1504,4 +1504,40 @@ def testReadCond(lexer):
             (Operator, '@'),
             (Name.Variable, 'readargs'),
             (Text, '\n'),
+            ]
+
+def testReadTimeout(lexer):
+    assert list(lexer.get_tokens( ' r var:60' )) == [
+            (Whitespace, ' '),
+            (Keyword, 'r'),
+            (Whitespace, ' '),
+            (Name.Variable, 'var'),
+            (Punctuation, ':'),
+            (Number, '60'),
+            (Text, '\n')
+            ]
+
+def testReadLength(lexer):
+    assert list(lexer.get_tokens( ' r var#20' )) == [
+            (Whitespace, ' '),
+            (Keyword, 'r'),
+            (Whitespace, ' '),
+            (Name.Variable, 'var'),
+            (Punctuation, '#'),
+            (Number, '20'),
+            (Text, '\n')
+            ]
+
+def testReadLengthTimeout(lexer):
+    assert list(lexer.get_tokens( ' r @varname#10:tmo' )) == [
+            (Whitespace, ' '),
+            (Keyword, 'r'),
+            (Whitespace, ' '),
+            (Operator, '@'),
+            (Name.Variable, 'varname'),
+            (Punctuation, '#'),
+            (Number, '10'),
+            (Punctuation, ':'),
+            (Name.Variable, 'tmo'),
+            (Text, '\n')
             ]
