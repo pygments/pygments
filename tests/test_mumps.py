@@ -1541,3 +1541,19 @@ def testReadLengthTimeout(lexer):
             (Name.Variable, 'tmo'),
             (Text, '\n')
             ]
+
+def testReadChar(lexer):
+    assert list(lexer.get_tokens( ' READ !,"Press a key",*key:15' )) == [
+            (Whitespace, ' '),
+            (Keyword, 'READ'),
+            (Whitespace, ' '),
+            (Keyword.Psuedo, '!'),
+            (Punctuation, ','),
+            (String, '"Press a key"'),
+            (Punctuation, ','),
+            (Keyword.Pseudo, '*'),
+            (Name.Variable, 'key'),
+            (Punctuation, ':'),
+            (Number, '15'),
+            (Text, '\n')
+            ]
