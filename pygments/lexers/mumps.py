@@ -570,13 +570,15 @@ class MumpsLexer(ExtendedRegexLexer):
         'readargument': [
             include('format'),
             include('strlit'),
+            ('\\*', Keyword.Pseudo, ('timeout', 'glvn')),
             default(('#pop', 'timeout', 'opt_readcount', 'glvn')),
             ],
         'l_readargument': [
             default(('list_comma', 'readargument'))
             ],
         'format': [
-            ('[#!]+', Keyword.Pseudo),
+            ('[#!]+(?=\\?)', Keyword.Pseudo),
+            ('[#!]+', Keyword.Pseudo, '#pop'),
             ('\\?', Keyword.Pseudo, ('#pop', 'expr'))
             ],
         'readcount': [

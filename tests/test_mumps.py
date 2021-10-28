@@ -1547,7 +1547,7 @@ def testReadChar(lexer):
             (Whitespace, ' '),
             (Keyword, 'READ'),
             (Whitespace, ' '),
-            (Keyword.Psuedo, '!'),
+            (Keyword.Pseudo, '!'),
             (Punctuation, ','),
             (String, '"Press a key"'),
             (Punctuation, ','),
