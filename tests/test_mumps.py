@@ -1557,3 +1557,14 @@ def testReadChar(lexer):
             (Number, '15'),
             (Text, '\n')
             ]
+
+def testSet(lexer):
+    assert list(lexer.get_tokens( ' SET A=1' )) == [
+            (Whitespace, ' '),
+            (Keyword, 'SET'),
+            (Whitespace, ' '),
+            (Name.Variable, 'A'),
+            (Operator, '='),
+            (Number, '1'),
+            (Text, '\n')
+            ]
