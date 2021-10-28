@@ -234,8 +234,8 @@ class MumpsLexer(ExtendedRegexLexer):
         'exprtail': [
                 # TODO
                 ( '\'', Operator), # The "not" can happen multiple times
-	            ( binaryop_re, Operator, 'expratom'),
-	            ( truthop_re, Operator, 'expratom'),
+                ( binaryop_re, Operator, 'expratom'),
+                ( truthop_re, Operator, 'expratom'),
                 ( '\\?', Operator, 'pattern'),
                 default('#pop')
                 ],
@@ -401,6 +401,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('quit', 'q'), suffix=r'\b'), Keyword, ('#pop', 'expr_or_indirect', 'optargsp', 'postcond')),
                 # 8.2.17 - READ
                 (words(('read', 'r'), suffix=r'\b'), Keyword, ('#pop', 'l_readargument', 'argumentsp', 'postcond')),
+                # 8.2.18 - SET
+                (words(('set', 's'), suffix=r'\b'), Keyword, ('#pop', 'setargument', 'argumentsp')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
@@ -587,5 +589,12 @@ class MumpsLexer(ExtendedRegexLexer):
         'opt_readcount': [
             include('readcount'),
             default('#pop')
-            ]
+            ],
+        # 8.2.18 - SET
+        'setargument': [
+            default(('#pop', 'expr', 'equals', 'setdestination'))
+            ],
+        'setdestination': [
+            include('glvn')
+            ],
         }
