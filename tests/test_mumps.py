@@ -1568,3 +1568,21 @@ def testSet(lexer):
             (Number, '1'),
             (Text, '\n')
             ]
+
+def testSetList(lexer):
+    assert list(lexer.get_tokens( ' s A=2,B(3)=4' )) == [
+            (Whitespace, ' '),
+            (Keyword, 's'),
+            (Whitespace, ' '),
+            (Name.Variable, 'A'),
+            (Operator, '='),
+            (Number, '2'),
+            (Punctuation, ','),
+            (Name.Variable, 'B'),
+            (Punctuation, '('),
+            (Number, '3'),
+            (Punctuation, ')'),
+            (Operator, '='),
+            (Number, '4'),
+            (Text, '\n')
+            ]
