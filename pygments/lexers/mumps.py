@@ -402,7 +402,7 @@ class MumpsLexer(ExtendedRegexLexer):
                 # 8.2.17 - READ
                 (words(('read', 'r'), suffix=r'\b'), Keyword, ('#pop', 'l_readargument', 'argumentsp', 'postcond')),
                 # 8.2.18 - SET
-                (words(('set', 's'), suffix=r'\b'), Keyword, ('#pop', 'setargument', 'argumentsp')),
+                (words(('set', 's'), suffix=r'\b'), Keyword, ('#pop', 'l_setargument', 'argumentsp')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
@@ -593,6 +593,9 @@ class MumpsLexer(ExtendedRegexLexer):
         # 8.2.18 - SET
         'setargument': [
             default(('#pop', 'expr', 'equals', 'setdestination'))
+            ],
+        'l_setargument': [
+            default(('list_comma', 'setargument'))
             ],
         'setdestination': [
             include('glvn')
