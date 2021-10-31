@@ -598,6 +598,13 @@ class MumpsLexer(ExtendedRegexLexer):
             default(('list_comma', 'setargument'))
             ],
         'setdestination': [
+            ('\\(', Punctuation, ('#pop', 'close_paren', 'l_setleft')),
+            default(('#pop', 'setleft'))
+            ],
+        'setleft': [
             include('glvn')
+            ],
+        'l_setleft': [
+            default(('list_comma', 'setleft'))
             ],
         }
