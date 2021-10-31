@@ -1586,3 +1586,25 @@ def testSetList(lexer):
             (Number, '4'),
             (Text, '\n')
             ]
+
+def testSetGroup(lexer):
+    assert list(lexer.get_tokens(' s (a,^b,c(2))=5+1')) == [
+            (Whitespace, ' '),
+            (Keyword, 's'),
+            (Whitespace, ' '),
+            (Punctuation, '('),
+            (Name.Variable, 'a'),
+            (Punctuation, ','),
+            (Name.Variable.Global, '^b'),
+            (Punctuation, ','),
+            (Name.Variable, 'c'),
+            (Punctuation, '('),
+            (Number, '2'),
+            (Punctuation, ')'),
+            (Punctuation, ')'),
+            (Operator, '='),
+            (Number, '5'),
+            (Operator, '+'),
+            (Number, '1'),
+            (Text, '\n')
+            ]
