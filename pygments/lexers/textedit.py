@@ -94,7 +94,7 @@ class SedLexer(RegexLexer):
             (r'\$', Operator),
             (r'[{};,!]', Punctuation),
             (r'[dDFgGhHlnNpPqQxz=]', Keyword),
-	    (r'([berRtTvwW:])([^;\n]*)', bygroups(Keyword, String.Single)),
+            (r'([berRtTvwW:])([^;\n]*)', bygroups(Keyword, String.Single)),
             (r'([aci])((?:.*?\\\n)*(?:.*?[^\\]$))', bygroups(Keyword, String.Double)),
             (r'([qQ])([0-9]*)', bygroups(Keyword, Number.Integer)),
             (r'(/)' + _inside_delims + r'(/)', bygroups(Punctuation, String.Regex, Punctuation)),
