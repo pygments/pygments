@@ -1,331 +1,331 @@
 '@load notice' Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@load utils/thresholds' Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'module'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'SSH'         Name.Namespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'export'      Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'redef'       Keyword
-' '           Text
+' '           Text.Whitespace
 'enum'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Log::ID'     Name.Class
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'SSH'         Name
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'redef'       Keyword
-' '           Text
+' '           Text.Whitespace
 'enum'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'Notice::Type' Name.Class
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Login'       Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Password_Guessing' Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Login_By_Password_Guesser' Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Login_From_Interesting_Hostname' Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'Bytecount_Inconsistency' Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'type'        Keyword
-' '           Text
+' '           Text.Whitespace
 'Info'        Name.Class
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'record'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'ts'          Name
 ':'           Punctuation
-'              ' Text
+'              ' Text.Whitespace
 'time'        Keyword.Type
-'         '   Text
+'         '   Text.Whitespace
 '&log'        Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'uid'         Name
 ':'           Punctuation
-'             ' Text
+'             ' Text.Whitespace
 'string'      Keyword.Type
-'       '     Text
+'       '     Text.Whitespace
 '&log'        Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'id'          Name
 ':'           Punctuation
-'              ' Text
+'              ' Text.Whitespace
 'conn_id'     Name
-'      '      Text
+'      '      Text.Whitespace
 '&log'        Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'status'      Name
 ':'           Punctuation
-'          '  Text
+'          '  Text.Whitespace
 'string'      Keyword.Type
-'       '     Text
+'       '     Text.Whitespace
 '&log'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '&optional'   Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'direction'   Name
 ':'           Punctuation
-'       '     Text
+'       '     Text.Whitespace
 'string'      Keyword.Type
-'       '     Text
+'       '     Text.Whitespace
 '&log'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '&optional'   Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'remote_location' Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'geo_location' Name
-' '           Text
+' '           Text.Whitespace
 '&log'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '&optional'   Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'client'      Name
 ':'           Punctuation
-'          '  Text
+'          '  Text.Whitespace
 'string'      Keyword.Type
-'       '     Text
+'       '     Text.Whitespace
 '&log'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '&optional'   Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'server'      Name
 ':'           Punctuation
-'          '  Text
+'          '  Text.Whitespace
 'string'      Keyword.Type
-'       '     Text
+'       '     Text.Whitespace
 '&log'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '&optional'   Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'resp_size'   Name
 ':'           Punctuation
-'       '     Text
+'       '     Text.Whitespace
 'count'       Keyword.Type
-'        '    Text
+'        '    Text.Whitespace
 '&log'        Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '&default'    Keyword.Pseudo
 '='           Operator
 '0'           Literal.Number.Float
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\n\t\t'  Text
+'\t\t\n\t\t'  Text.Whitespace
 '## Indicate if the SSH session is done being watched.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'done'        Name
 ':'           Punctuation
-'            ' Text
+'            ' Text.Whitespace
 'bool'        Keyword.Type
-'         '   Text
+'         '   Text.Whitespace
 '&default'    Keyword.Pseudo
 '='           Operator
 'F'           Keyword.Constant
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'password_guesses_limit' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '30'          Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '&redef'      Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\n\t'      Text
+'\t\n\t'      Text.Whitespace
 '# The size in bytes at which the SSH connection is presumed to be' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '# successful.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'authentication_data_size' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '5500'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '&redef'      Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\n\t'      Text
+'\t\n\t'      Text.Whitespace
 '# The amount of time to remember presumed non-successful logins to build' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '# model of a password guesser.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'guessing_timeout' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '30 mins'     Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '&redef'      Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 "# The set of countries for which you'd like to throw notices upon successful login" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '#   requires Bro compiled with libGeoIP support' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'watched_countries' Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword.Type
 '['           Punctuation
 'string'      Keyword.Type
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"'           Literal.String
 'R'           Literal.String
 'O'           Literal.String
 '"'           Literal.String
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&redef'      Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '# Strange/bad host names to originate successful SSH logins' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'interesting_hostnames' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '/'           Literal.String.Regex
 '^'           Literal.String.Regex
 'd'           Literal.String.Regex
@@ -340,11 +340,11 @@
 '*'           Literal.String.Regex
 '\\.'         Literal.String.Escape
 '/'           Literal.String.Regex
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '/'           Literal.String.Regex
 '^'           Literal.String.Regex
 's'           Literal.String.Regex
@@ -359,11 +359,11 @@
 '*'           Literal.String.Regex
 '\\.'         Literal.String.Escape
 '/'           Literal.String.Regex
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '/'           Literal.String.Regex
 '^'           Literal.String.Regex
 'm'           Literal.String.Regex
@@ -378,11 +378,11 @@
 '*'           Literal.String.Regex
 '\\.'         Literal.String.Escape
 '/'           Literal.String.Regex
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '/'           Literal.String.Regex
 '^'           Literal.String.Regex
 'p'           Literal.String.Regex
@@ -396,11 +396,11 @@
 '*'           Literal.String.Regex
 '\\.'         Literal.String.Escape
 '/'           Literal.String.Regex
-'  '          Text
+'  '          Text.Whitespace
 '|'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '/'           Literal.String.Regex
 '^'           Literal.String.Regex
 'i'           Literal.String.Regex
@@ -415,11 +415,11 @@
 '*'           Literal.String.Regex
 '\\.'         Literal.String.Escape
 '/'           Literal.String.Regex
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '/'           Literal.String.Regex
 '^'           Literal.String.Regex
 'w'           Literal.String.Regex
@@ -433,11 +433,11 @@
 '*'           Literal.String.Regex
 '\\.'         Literal.String.Escape
 '/'           Literal.String.Regex
-'  '          Text
+'  '          Text.Whitespace
 '|'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '/'           Literal.String.Regex
 '^'           Literal.String.Regex
 'f'           Literal.String.Regex
@@ -451,162 +451,162 @@
 '*'           Literal.String.Regex
 '\\.'         Literal.String.Escape
 '/'           Literal.String.Regex
-'  '          Text
+'  '          Text.Whitespace
 '&redef'      Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '# This is a table with orig subnet as the key, and subnet as the value.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ignore_guessers' Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'table'       Keyword.Type
 '['           Punctuation
 'subnet'      Keyword.Type
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'of'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'subnet'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '&redef'      Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\n\t'      Text
+'\t\n\t'      Text.Whitespace
 '# If true, we tell the event engine to not look at further data' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '# packets after the initial SSH handshake. Helps with performance' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '# (especially with large file transfers) but precludes some' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '# kinds of analyses (e.g., tracking connection size).' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'const'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'skip_processing_after_detection' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'F'           Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '&redef'      Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\n\t'      Text
+'\t\n\t'      Text.Whitespace
 '# Keeps count of how many rejections a host has had' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'password_rejections' Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'table'       Keyword.Type
 '['           Punctuation
 'addr'        Keyword.Type
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'of'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'TrackCount'  Name
-' \n\t\t'     Text
+' \n\t\t'     Text.Whitespace
 '&write_expire' Keyword.Pseudo
 '='           Operator
 'guessing_timeout' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '&synchronized' Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '# Keeps track of hosts identified as guessing passwords' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 "# TODO: guessing_timeout doesn't work correctly here.  If a user redefs" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 "#       the variable, it won't take effect." Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'password_guessers' Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword.Type
 '['           Punctuation
 'addr'        Keyword.Type
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&read_expire' Keyword.Pseudo
 '='           Operator
 'guessing_timeout' Name
 '+'           Operator
 '1hr'         Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '&synchronized' Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\n\t'      Text
+'\t\n\t'      Text.Whitespace
 'global'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'log_ssh'     Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'event'       Keyword.Type
 '('           Punctuation
 'rec'         Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Info'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Configure DPD and the packet filter' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
 'redef'       Keyword
-' '           Text
+' '           Text.Whitespace
 'capture_filters' Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '"'           Literal.String
 's'           Literal.String
@@ -614,9 +614,9 @@
 'h'           Literal.String
 '"'           Literal.String
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 't'           Literal.String
 'c'           Literal.String
@@ -630,95 +630,95 @@
 '2'           Literal.String
 '2'           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'redef'       Keyword
-' '           Text
+' '           Text.Whitespace
 'dpd_config'  Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'ANALYZER_SSH' Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '$'           Operator
 'ports'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword.Type
 '('           Punctuation
 '22/tcp'      Literal.Number
 ')'           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'redef'       Keyword
-' '           Text
+' '           Text.Whitespace
 'record'      Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'connection'  Name.Class
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'ssh'         Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Info'        Name
-' '           Text
+' '           Text.Whitespace
 '&optional'   Keyword.Pseudo
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'event'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'bro_init'    Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'Log::create_stream' Name.Function
 '('           Punctuation
 'SSH'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '$'           Operator
 'columns'     Name
 '='           Operator
 'Info'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Operator
 'ev'          Name
 '='           Operator
@@ -726,57 +726,57 @@
 ']'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'set_session' Name.Function
 '('           Punctuation
 'c'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'connection'  Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '?$'          Operator
 'ssh'         Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'local'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'info'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Info'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'info'        Name
 '$'           Operator
 'ts'          Name
@@ -785,9 +785,9 @@
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'info'        Name
 '$'           Operator
 'uid'         Name
@@ -796,9 +796,9 @@
 '$'           Operator
 'uid'         Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'info'        Name
 '$'           Operator
 'id'          Name
@@ -807,156 +807,156 @@
 '$'           Operator
 'id'          Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'c'           Name
 '$'           Operator
 'ssh'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'info'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function'    Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'check_ssh_connection' Name.Function
 '('           Punctuation
 'c'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'connection'  Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'done'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bool'        Keyword.Type
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '# If done watching this connection, just return.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'ssh'         Name
 '$'           Operator
 'done'        Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'return'      Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\n\t'      Text
+'\t\n\t'      Text.Whitespace
 '# If this is still a live connection and the byte count has not' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '# crossed the threshold, just return and let the resheduled check happen later.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 'done'        Name
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'resp'        Name
 '$'           Operator
 'size'        Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 'authentication_data_size' Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'return'      Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '# Make sure the server has sent back more than 50 bytes to filter out' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '# hosts that are just port scanning.  Nothing is ever logged if the server' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 "# doesn't send back at least 50 bytes." Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'resp'        Name
 '$'           Operator
 'size'        Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '50'          Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'return'      Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'local'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'status'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'f'           Literal.String
 'a'           Literal.String
@@ -967,15 +967,15 @@
 'e'           Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'local'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'direction'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'Site::is_local_addr' Name.Function
 '('           Punctuation
 'c'           Name
@@ -984,16 +984,16 @@
 '$'           Operator
 'orig_h'      Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '?'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 't'           Literal.String
 'o'           Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'f'           Literal.String
 'r'           Literal.String
@@ -1001,37 +1001,37 @@
 'm'           Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'local'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'location'    Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'geo_location' Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'location'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'direction'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 't'           Literal.String
 'o'           Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '?'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'lookup_location' Name.Function
 '('           Punctuation
 'c'           Name
@@ -1040,9 +1040,9 @@
 '$'           Operator
 'resp_h'      Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'lookup_location' Name.Function
 '('           Punctuation
 'c'           Name
@@ -1052,59 +1052,59 @@
 'orig_h'      Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\n\t'      Text
+'\t\n\t'      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'done'        Name
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'resp'        Name
 '$'           Operator
 'size'        Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 'authentication_data_size' Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '# presumed failure' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'id'          Name
 '$'           Operator
 'orig_h'      Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'password_rejections' Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'password_rejections' Name
 '['           Punctuation
 'c'           Name
@@ -1113,24 +1113,24 @@
 '$'           Operator
 'orig_h'      Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new_track_count' Name.Function
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\n\t\t' Text
+'\t\t\t\n\t\t' Text.Whitespace
 '# Track the number of rejections' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 '('           Punctuation
 'c'           Name
@@ -1138,24 +1138,24 @@
 'id'          Name
 '$'           Operator
 'orig_h'      Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ignore_guessers' Name
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
 '&'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t       ' Text
+'\t\t       ' Text.Whitespace
 'c'           Name
 '$'           Operator
 'id'          Name
 '$'           Operator
 'resp_h'      Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'ignore_guessers' Name
 '['           Punctuation
 'c'           Name
@@ -1165,11 +1165,11 @@
 'orig_h'      Name
 ']'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '+'           Operator
 '+'           Operator
 'password_rejections' Name
@@ -1183,13 +1183,13 @@
 '$'           Operator
 'n'           Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\n\t\t' Text
+'\t\t\t\n\t\t' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'default_check_threshold' Name.Function
 '('           Punctuation
 'password_rejections' Name
@@ -1201,17 +1201,17 @@
 'orig_h'      Name
 ']'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'add'         Keyword
-' '           Text
+' '           Text.Whitespace
 'password_guessers' Name
 '['           Punctuation
 'c'           Name
@@ -1221,9 +1221,9 @@
 'orig_h'      Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'NOTICE'      Name.Function
 '('           Punctuation
 '['           Punctuation
@@ -1232,17 +1232,17 @@
 '='           Operator
 'Password_Guessing' Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t        ' Text
+'\t\t\t        ' Text.Whitespace
 '$'           Operator
 'conn'        Name
 '='           Operator
 'c'           Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t        ' Text
+'\t\t\t        ' Text.Whitespace
 '$'           Operator
 'msg'         Name
 '='           Operator
@@ -1277,7 +1277,7 @@
 '%s'          Literal.String.Escape
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'id'          Name
@@ -1285,9 +1285,9 @@
 'orig_h'      Name
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t        ' Text
+'\t\t\t        ' Text.Whitespace
 '$'           Operator
 'sub'         Name
 '='           Operator
@@ -1311,7 +1311,7 @@
 's'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'password_rejections' Name
 '['           Punctuation
 'c'           Name
@@ -1324,9 +1324,9 @@
 'n'           Name
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t        ' Text
+'\t\t\t        ' Text.Whitespace
 '$'           Operator
 'n'           Name
 '='           Operator
@@ -1343,55 +1343,55 @@
 ']'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '}'           Punctuation
-' \n\t'       Text
+' \n\t'       Text.Whitespace
 '# TODO: This is to work around a quasi-bug in Bro which occasionally ' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '#       causes the byte count to be oversized.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '#   Watch for Gregors work that adds an actual counter of bytes transferred.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'resp'        Name
 '$'           Operator
 'size'        Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '20000000'    Literal.Number
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' \n\t\t'     Text
+' \n\t\t'     Text.Whitespace
 '{'           Punctuation
-' \n\t\t'     Text
+' \n\t\t'     Text.Whitespace
 '# presumed successful login' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'status'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 's'           Literal.String
 'u'           Literal.String
@@ -1402,43 +1402,43 @@
 's'           Literal.String
 '"'           Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'c'           Name
 '$'           Operator
 'ssh'         Name
 '$'           Operator
 'done'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'T'           Keyword.Constant
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'id'          Name
 '$'           Operator
 'orig_h'      Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'password_rejections' Name
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
 '&'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t     '   Text
+'\t\t     '   Text.Whitespace
 'password_rejections' Name
 '['           Punctuation
 'c'           Name
@@ -1449,37 +1449,37 @@
 ']'           Punctuation
 '$'           Operator
 'n'           Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'password_guesses_limit' Name
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
 '&'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t     '   Text
+'\t\t     '   Text.Whitespace
 'c'           Name
 '$'           Operator
 'id'          Name
 '$'           Operator
 'orig_h'      Name
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'password_guessers' Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'add'         Keyword
-' '           Text
+' '           Text.Whitespace
 'password_guessers' Name
 '['           Punctuation
 'c'           Name
@@ -1489,9 +1489,9 @@
 'orig_h'      Name
 ']'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'NOTICE'      Name.Function
 '('           Punctuation
 '['           Punctuation
@@ -1500,17 +1500,17 @@
 '='           Operator
 'Login_By_Password_Guesser' Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t        ' Text
+'\t\t\t        ' Text.Whitespace
 '$'           Operator
 'conn'        Name
 '='           Operator
 'c'           Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t        ' Text
+'\t\t\t        ' Text.Whitespace
 '$'           Operator
 'n'           Name
 '='           Operator
@@ -1525,9 +1525,9 @@
 '$'           Operator
 'n'           Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t        ' Text
+'\t\t\t        ' Text.Whitespace
 '$'           Operator
 'msg'         Name
 '='           Operator
@@ -1578,7 +1578,7 @@
 '%s'          Literal.String.Escape
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'id'          Name
@@ -1586,9 +1586,9 @@
 'orig_h'      Name
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t        ' Text
+'\t\t\t        ' Text.Whitespace
 '$'           Operator
 'sub'         Name
 '='           Operator
@@ -1612,7 +1612,7 @@
 's'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'password_rejections' Name
 '['           Punctuation
 'c'           Name
@@ -1627,19 +1627,19 @@
 ']'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\n\t\t'  Text
+'\t\t\n\t\t'  Text.Whitespace
 'local'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'message'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'fmt'         Name.Function
 '('           Punctuation
 '"'           Literal.String
@@ -1697,41 +1697,41 @@
 ')'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t              ' Text
+'\t\t              ' Text.Whitespace
 'direction'   Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'location'    Name
 '$'           Operator
 'country_code' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'location'    Name
 '$'           Operator
 'region'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'location'    Name
 '$'           Operator
 'city'        Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t              ' Text
+'\t\t              ' Text.Whitespace
 'location'    Name
 '$'           Operator
 'latitude'    Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'location'    Name
 '$'           Operator
 'longitude'   Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t              ' Text
+'\t\t              ' Text.Whitespace
 'id_string'   Name.Function
 '('           Punctuation
 'c'           Name
@@ -1739,7 +1739,7 @@
 'id'          Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'resp'        Name
@@ -1747,9 +1747,9 @@
 'size'        Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'NOTICE'      Name.Function
 '('           Punctuation
 '['           Punctuation
@@ -1758,25 +1758,25 @@
 '='           Operator
 'Login'       Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t        ' Text
+'\t\t        ' Text.Whitespace
 '$'           Operator
 'conn'        Name
 '='           Operator
 'c'           Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t        ' Text
+'\t\t        ' Text.Whitespace
 '$'           Operator
 'msg'         Name
 '='           Operator
 'message'     Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t        ' Text
+'\t\t        ' Text.Whitespace
 '$'           Operator
 'sub'         Name
 '='           Operator
@@ -1786,23 +1786,23 @@
 ']'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\n\t\t'  Text
+'\t\t\n\t\t'  Text.Whitespace
 '# Check to see if this login came from an interesting hostname' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'when'        Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'local'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'hostname'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'lookup_addr' Name.Function
 '('           Punctuation
 'c'           Name
@@ -1811,33 +1811,33 @@
 '$'           Operator
 'orig_h'      Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'interesting_hostnames' Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'hostname'    Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'NOTICE'      Name.Function
 '('           Punctuation
 '['           Punctuation
@@ -1846,17 +1846,17 @@
 '='           Operator
 'Login_From_Interesting_Hostname' Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t        ' Text
+'\t\t\t\t        ' Text.Whitespace
 '$'           Operator
 'conn'        Name
 '='           Operator
 'c'           Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t        ' Text
+'\t\t\t\t        ' Text.Whitespace
 '$'           Operator
 'msg'         Name
 '='           Operator
@@ -1885,13 +1885,13 @@
 '%s'          Literal.String.Escape
 '"'           Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'hostname'    Name
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t        ' Text
+'\t\t\t\t        ' Text.Whitespace
 '$'           Operator
 'sub'         Name
 '='           Operator
@@ -1899,68 +1899,68 @@
 ']'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\n\t\t' Text
+'\t\t\t\n\t\t' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'location'    Name
 '$'           Operator
 'country_code' Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'watched_countries' Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\n\t\t\t' Text
+'\t\t\t\n\t\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\n\t\t' Text
+'\t\t\t\n\t\t' Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'resp'        Name
 '$'           Operator
 'size'        Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '200000000'   Literal.Number
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' \n\t\t'     Text
+' \n\t\t'     Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'NOTICE'      Name.Function
 '('           Punctuation
 '['           Punctuation
@@ -1969,17 +1969,17 @@
 '='           Operator
 'Bytecount_Inconsistency' Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t        ' Text
+'\t\t        ' Text.Whitespace
 '$'           Operator
 'conn'        Name
 '='           Operator
 'c'           Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t        ' Text
+'\t\t        ' Text.Whitespace
 '$'           Operator
 'msg'         Name
 '='           Operator
@@ -2055,9 +2055,9 @@
 '.'           Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t        ' Text
+'\t\t        ' Text.Whitespace
 '$'           Operator
 'sub'         Name
 '='           Operator
@@ -2076,119 +2076,119 @@
 ']'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'c'           Name
 '$'           Operator
 'ssh'         Name
 '$'           Operator
 'remote_location' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'location'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'c'           Name
 '$'           Operator
 'ssh'         Name
 '$'           Operator
 'status'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'status'      Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'c'           Name
 '$'           Operator
 'ssh'         Name
 '$'           Operator
 'direction'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'direction'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'c'           Name
 '$'           Operator
 'ssh'         Name
 '$'           Operator
 'resp_size'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'resp'        Name
 '$'           Operator
 'size'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\n\t'      Text
+'\t\n\t'      Text.Whitespace
 'Log::write'  Name.Function
 '('           Punctuation
 'SSH'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'ssh'         Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\n\t'      Text
+'\t\n\t'      Text.Whitespace
 '# Set the "done" flag to prevent the watching event from rescheduling' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '# after detection is done.' Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'c'           Name
 '$'           Operator
 'ssh'         Name
 '$'           Operator
 'done'        Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\n\t'      Text
+'\t\n\t'      Text.Whitespace
 "# Stop watching this connection, we don't care about it anymore." Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'skip_processing_after_detection' Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'skip_further_processing' Name.Function
 '('           Punctuation
 'c'           Name
@@ -2196,298 +2196,298 @@
 'id'          Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'set_record_packets' Name.Function
 '('           Punctuation
 'c'           Name
 '$'           Operator
 'id'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'F'           Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'event'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'connection_state_remove' Name.Function
 '('           Punctuation
 'c'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'connection'  Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&priority'   Keyword.Pseudo
 '='           Operator
 '-'           Operator
 '5'           Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '?$'          Operator
 'ssh'         Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'check_ssh_connection' Name.Function
 '('           Punctuation
 'c'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'T'           Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'event'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'ssh_watcher' Name.Function
 '('           Punctuation
 'c'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'connection'  Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'local'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'id'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'id'          Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 "# don't go any further if this connection is gone already!" Comment
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 'connection_exists' Name.Function
 '('           Punctuation
 'id'          Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'return'      Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'check_ssh_connection' Name.Function
 '('           Punctuation
 'c'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'F'           Keyword.Constant
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
-' '           Text
+' '           Text.Whitespace
 'c'           Name
 '$'           Operator
 'ssh'         Name
 '$'           Operator
 'done'        Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'schedule'    Keyword
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
 '15secs'      Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ssh_watcher' Name.Function
 '('           Punctuation
 'c'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'event'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'ssh_server_version' Name.Function
 '('           Punctuation
 'c'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'connection'  Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'version'     Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&priority'   Keyword.Pseudo
 '='           Operator
 '5'           Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'set_session' Name.Function
 '('           Punctuation
 'c'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'c'           Name
 '$'           Operator
 'ssh'         Name
 '$'           Operator
 'server'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'version'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\n'        Text
+'\t\n'        Text.Whitespace
 
 'event'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'ssh_client_version' Name.Function
 '('           Punctuation
 'c'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'connection'  Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'version'     Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'string'      Keyword.Type
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&priority'   Keyword.Pseudo
 '='           Operator
 '5'           Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'set_session' Name.Function
 '('           Punctuation
 'c'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'c'           Name
 '$'           Operator
 'ssh'         Name
 '$'           Operator
 'client'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'version'     Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'schedule'    Keyword
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
 '15secs'      Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ssh_watcher' Name.Function
 '('           Punctuation
 'c'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
