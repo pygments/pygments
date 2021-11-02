@@ -368,7 +368,7 @@ class PuppetLexer(RegexLexer):
             include('strings'),
 
             (r'[]{}:(),;[]', Punctuation),
-            (r'[^\S]+', Whitespace),
+            (r'\s+', Whitespace),
         ],
 
         'comments': [
@@ -485,7 +485,7 @@ class RslLexer(RegexLexer):
             (r'[0-9]+\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-f]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
-            (r'[\s\n]+', Whitespace),
+            (r'\s+', Whitespace),
             (r'.', Text),
         ],
     }

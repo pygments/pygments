@@ -34,7 +34,7 @@ class DiffLexer(RegexLexer):
             (r'(-.*)(\n)', bygroups(Generic.Deleted, Whitespace)),
             (r'(!.*)(\n)', bygroups(Generic.Strong, Whitespace)),
             (r'(@.*)(\n)', bygroups(Generic.Subheading, Whitespace)),
-            (r'((?:[Ii]ndex|diff).*)\n', bygroups(Generic.Heading, Whitespace)),
+            (r'((?:[Ii]ndex|diff).*)(\n)', bygroups(Generic.Heading, Whitespace)),
             (r'(=.*)(\n)', bygroups(Generic.Heading, Whitespace)),
             (r'(.*)(\n)', Whitespace),
         ]
