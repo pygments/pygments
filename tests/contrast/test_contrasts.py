@@ -14,6 +14,7 @@ import os
 import sys
 
 import pygments.styles
+import pygments.token
 import wcag_contrast_ratio
 
 JSON_FILENAME = os.path.join(os.path.dirname(__file__), "min_contrasts.json")
@@ -42,6 +43,7 @@ def get_style_contrasts(style_cls):
             ttype,
         )
         for ttype, style in style_cls.list_styles()
+        if ttype != pygments.token.Whitespace
     ]
 
 
