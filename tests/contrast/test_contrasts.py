@@ -28,13 +28,12 @@ def hex2rgb(hexstr):
     return (r, g, b)
 
 
-def get_style_contrasts(style):
-    bgcolor = hex2rgb(style.background_color)
+def get_style_contrasts(style_cls):
     return [
         (
             round(
                 wcag_contrast_ratio.rgb(
-                    bgcolor,
+                    hex2rgb(style["bgcolor"] or style_cls.background_color),
                     hex2rgb(style["color"] or "#000000")
                     # we default to black because browsers also do
                 ),
@@ -42,7 +41,7 @@ def get_style_contrasts(style):
             ),
             ttype,
         )
-        for ttype, style in style.list_styles()
+        for ttype, style in style_cls.list_styles()
     ]
 
 
