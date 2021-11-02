@@ -1608,3 +1608,35 @@ def testSetGroup(lexer):
             (Number, '1'),
             (Text, '\n')
             ]
+
+def testSetIndirects(lexer):
+    assert list(lexer.get_tokens(' set @("result="_expr),@glo=@glo+1,@glo@(@glo)=2')) == [
+            (Whitespace, ' '),
+            (Keyword, 'set'),
+            (Whitespace, ' '),
+            (Operator, '@'),
+            (Punctuation, '('),
+            (String, '"result="'),
+            (Operator, '_'),
+            (Name.Variable, 'expr'),
+            (Punctuation, ')'),
+            (Punctuation, ','),
+            (Operator, '@'),
+            (Name.Variable, 'glo'),
+            (Operator, '='),
+            (Operator, '@'),
+            (Name.Variable, 'glo'),
+            (Operator, '+'),
+            (Number, '1'),
+            (Punctuation, ','),
+            (Operator, '@'),
+            (Name.Variable, 'glo'),
+            (Operator, '@'),
+            (Punctuation, '('),
+            (Operator, '@'),
+            (Name.Variable, 'glo'),
+            (Punctuation, ')'),
+            (Operator, '='),
+            (Number, '2'),
+            (Text, '\n')
+            ]

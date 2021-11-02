@@ -200,6 +200,7 @@ class MumpsLexer(ExtendedRegexLexer):
             include('svn'),
             #include('function'),
             ( unaryop_re, Operator, ('#pop', 'expratom')),
+            ( '\\(', Punctuation, ('#pop', 'close_paren', 'expr')),
             ],
         # 7.1.4.1 - String literal 'strlit'
         'strlit': [
@@ -592,7 +593,15 @@ class MumpsLexer(ExtendedRegexLexer):
             ],
         # 8.2.18 - SET
         'setargument': [
+            ('@', Operator, ('#pop', 'setarg_ind', 'expratom')),
             default(('#pop', 'expr', 'equals', 'setdestination'))
+            ],
+        'setarg_ind': [
+            # If followed by @ or =, it's was an indirection from glvn
+            ('@', Operator, ('#pop', 'expr', 'equals', 'subscripts')),
+            ('=', Operator, ('#pop', 'expr')),
+            # Otherwise, it's was a full setargument replacement
+            default('#pop')
             ],
         'l_setargument': [
             default(('list_comma', 'setargument'))
