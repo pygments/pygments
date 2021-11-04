@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block htmltitle %}<title>Styles{{ titlesuffix }}</title>{% endblock %}
+
+{% block body %}
+<style>
+.style-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.style-gallery h2 {
+    margin-bottom: 0.2em;
+}
+</style>
+{{ body }}
+
+<h1>Styles</h1>
+
+<p>Pygments comes with the following builtin styles.
+For more information about styles refer to <a href="{{ pathto('docs/styles') }}">the documentation</a>.
+</p>
+
+<div class=style-gallery>
+{% for style in styles %}
+<div>
+<h2 id="{{style.name}}">{{style.name}}</h2>
+{{style.html|safe}}
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}

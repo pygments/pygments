@@ -10,6 +10,9 @@ import sys, os
 sys.path.insert(0, os.path.abspath('..'))
 
 import pygments
+import pygments.formatters
+import pygments.lexers
+import pygments.styles
 
 # -- General configuration -----------------------------------------------------
 
@@ -128,10 +131,10 @@ html_sidebars = {'index': ['indexsidebar.html', 'searchbox.html']}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
+html_additional_pages = {'styles': 'styles.html'}
+
 if os.environ.get('WEBSITE_BUILD'):
-    html_additional_pages = {
-        'demo': 'demo.html',
-    }
+    html_additional_pages['demo'] = 'demo.html'
 
 # If false, no module index is generated.
 #html_domain_indices = True
@@ -223,6 +226,22 @@ man_pages = [
 
 def pg_context(app, pagename, templatename, ctx, event_arg):
     ctx['demo_active'] = bool(os.environ.get('WEBSITE_BUILD'))
+
+    if pagename == 'styles':
+        with open('examples/example.py') as f:
+            html = f.read()
+        lexer = pygments.lexers.get_lexer_for_filename('example.py')
+        ctx['styles'] = [
+            dict(
+                name=style,
+                html=pygments.highlight(
+                    html,
+                    lexer,
+                    pygments.formatters.HtmlFormatter(noclasses=True, style=style),
+                ),
+            )
+            for style in pygments.styles.get_all_styles()
+        ]
 
 
 def setup(app):
