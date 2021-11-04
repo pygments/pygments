@@ -280,7 +280,8 @@ class DebianControlLexer(RegexLexer):
         'root': [
             (r'^(Description)', Keyword, 'description'),
             (r'^(Maintainer)(:\s*)', bygroups(Keyword, Text), 'maintainer'),
-            (r'^((Build-)?Depends)', Keyword, 'depends'),
+            (r'^((Build-|Pre-)?Depends(-Indep|-Arch)?)', Keyword, 'depends'),
+            (r'^(Recommends|Suggests|Enhances)', Keyword, 'depends'),
             (r'^((?:Python-)?Version)(:\s*)(\S+)$',
              bygroups(Keyword, Text, Number)),
             (r'^((?:Installed-)?Size)(:\s*)(\S+)$',
