@@ -1,6 +1,6 @@
 'Source'      Keyword
 ': '          Text.Whitespace
-'terminator'  Literal.String
+'foo'         Literal.String
 '\n'          Text
 
 'Section'     Keyword
@@ -42,14 +42,86 @@
 'Alice <alice@domain.tld>' Literal.String
 '\n'          Text
 
-'Package'     Keyword
-': '          Text.Whitespace
-'terminator'  Literal.String
+'Build-Depends' Keyword
+': '          Text
+'d'           Name.Function
+'e'           Name.Function
+'b'           Name.Function
+'h'           Name.Function
+'e'           Name.Function
+'l'           Name.Function
+'p'           Name.Function
+'e'           Name.Function
+'r'           Name.Function
+'-'           Name.Function
+'c'           Name.Function
+'o'           Name.Function
+'m'           Name.Function
+'p'           Name.Function
+'a'           Name.Function
+'t'           Name.Function
+' '           Text
+'('           Text
+'='           Operator
+' '           Text
+'13'          Literal.Number
+'),'          Text
+'\n '         Text
+'d'           Name.Function
+'h'           Name.Function
+'-'           Name.Function
+'p'           Name.Function
+'y'           Name.Function
+'t'           Name.Function
+'h'           Name.Function
+'o'           Name.Function
+'n'           Name.Function
+','           Text
+'\n '         Text
+'o'           Name.Function
+'t'           Name.Function
+'h'           Name.Function
+'e'           Name.Function
+'r'           Name.Function
+'b'           Name.Function
+'u'           Name.Function
+'i'           Name.Function
+'l'           Name.Function
+'d'           Name.Function
+'d'           Name.Function
+'e'           Name.Function
+'p'           Name.Function
+'e'           Name.Function
+'n'           Name.Function
+'d'           Name.Function
+'a'           Name.Function
+'n'           Name.Function
+'c'           Name.Function
+'i'           Name.Function
+'e'           Name.Function
+'s'           Name.Function
 '\n'          Text
 
-'Architecture' Keyword
-': '          Text.Whitespace
-'all'         Literal.String
+'Build-Depends-Indep' Keyword
+':\n '        Text
+'p'           Name.Function
+'1'           Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p'           Name.Function
+'2'           Name.Function
+'\n'          Text
+
+'Build-Depends-Arch' Keyword
+':\n '        Text
+'p'           Name.Function
+'1'           Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p'           Name.Function
+'2'           Name.Function
 '\n'          Text
 
 'Rules-Requires-Root' Keyword
@@ -64,29 +136,40 @@
 
 'Vcs-Git'     Keyword
 ': '          Text.Whitespace
-'https://salsa.debian.org/python-team/packages/terminator.git' Literal.String
+'https://salsa.domain.tld/python-team/packages/foo.git' Literal.String
 '\n'          Text
 
 'Vcs-Browser' Keyword
 ': '          Text.Whitespace
-'https://salsa.debian.org/python-team/packages/terminator' Literal.String
+'https://salsa.domain.tld/python-team/packages/foo' Literal.String
 '\n'          Text
 
 'Homepage'    Keyword
 ': '          Text.Whitespace
-'https://github.com/gnome-terminator/terminator' Literal.String
+'https://domain.tld/owner/foo' Literal.String
 '\n'          Text
 
 '\n'          Text
 
 'Package'     Keyword
 ': '          Text.Whitespace
-'terminator'  Literal.String
+'foo'         Literal.String
 '\n'          Text
 
 'Architecture' Keyword
 ': '          Text.Whitespace
 'all'         Literal.String
+'\n'          Text
+
+'Pre-Depends' Keyword
+':\n '        Text
+'p'           Name.Function
+'1'           Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p'           Name.Function
+'2'           Name.Function
 '\n'          Text
 
 'Depends'     Keyword
@@ -99,11 +182,18 @@
 'n'           Name.Function
 '3'           Name.Function
 '-'           Name.Function
-'c'           Name.Function
+'b'           Name.Function
 'a'           Name.Function
-'i'           Name.Function
 'r'           Name.Function
-'o'           Name.Function
+','           Text
+'\n '         Text
+'p'           Name.Function
+'1'           Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p'           Name.Function
+'2'           Name.Function
 ','           Text
 '\n '         Text
 'o'           Name.Function
@@ -136,13 +226,62 @@
 'x-terminal-emulator' Literal.String
 '\n'          Text
 
+'Recommends'  Keyword
+':\n '        Text
+'p'           Name.Function
+'1'           Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p'           Name.Function
+'2'           Name.Function
+','           Text
+'\n '         Text
+'o'           Name.Function
+'t'           Name.Function
+'h'           Name.Function
+'e'           Name.Function
+'r'           Name.Function
+'-'           Name.Function
+'r'           Name.Function
+'e'           Name.Function
+'c'           Name.Function
+'o'           Name.Function
+'m'           Name.Function
+'m'           Name.Function
+'e'           Name.Function
+'n'           Name.Function
+'d'           Name.Function
+'s'           Name.Function
+'\n'          Text
+
+'Suggests'    Keyword
+':\n '        Text
+'p'           Name.Function
+'1'           Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p'           Name.Function
+'2'           Name.Function
+'\n'          Text
+
+'Enhances'    Keyword
+':\n '        Text
+'p'           Name.Function
+'1'           Name.Function
+' '           Text
+'|'           Operator
+' '           Text
+'p'           Name.Function
+'2'           Name.Function
+'\n'          Text
+
 'Description' Keyword
-': multiple GNOME terminals in one window\n' Generic.Strong
+': title for this package\n' Generic.Strong
 
-' Terminator is a little project to produce an efficient way of\n' Text
-
-' filling a large area of screen space with terminals.\n' Text
+' First paragraph describing the packaged software.\n' Text
 
 ' .\n'        Text
 
-' Second paragraph\n' Text
+' And a second paragraph too.\n' Text
