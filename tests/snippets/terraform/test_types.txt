@@ -7,6 +7,9 @@ provider "aws" {
 provisioner "local-exec" {
 resource "aws_internet_gateway" "base_igw" {
 variable "aws_region" {
+variable "set-str" {
+  type = set(string)
+}
 
 ---tokens---
 'backend'     Keyword.Reserved
@@ -68,3 +71,24 @@ variable "aws_region" {
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
+
+'variable'    Keyword.Reserved
+' '           Text.Whitespace
+'"set-str"'   Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text.Whitespace
+'type'        Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'set'         Keyword.Type
+'('           Punctuation
+'string'      Keyword.Type
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

@@ -10,9 +10,10 @@
 
 import re
 
-from pygments.lexer import RegexLexer, default, words, bygroups, include, using
+from pygments.lexer import ExtendedRegexLexer, RegexLexer, default, words, \
+    bygroups, include, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Whitespace, Literal, Generic
+    Number, Punctuation, Whitespace, Literal, Error, Generic
 from pygments.lexers.shell import BashLexer
 from pygments.lexers.data import JsonLexer
 
@@ -571,7 +572,7 @@ class DockerLexer(RegexLexer):
     }
 
 
-class TerraformLexer(RegexLexer):
+class TerraformLexer(ExtendedRegexLexer):
     """
     Lexer for `terraformi .tf files <https://www.terraform.io/>`_.
 
@@ -587,7 +588,7 @@ class TerraformLexer(RegexLexer):
              'provisioner', 'resource', 'variable')
     classes_re = "({})".format(('|').join(classes))
 
-    types = ('string', 'number', 'bool', 'list', 'tuple', 'map', 'object', 'null')
+    types = ('string', 'number', 'bool', 'list', 'tuple', 'map', 'set', 'object', 'null')
 
     numeric_functions = ('abs', 'ceil', 'floor', 'log', 'max',
                          'mix', 'parseint', 'pow', 'signum')
@@ -630,6 +631,44 @@ class TerraformLexer(RegexLexer):
         filesystem_functions + date_time_functions + hash_crypto_functions + ip_network_functions +\
         type_conversion_functions
     builtins_re = "({})".format(('|').join(builtins))
+
+    def heredoc_callback(self, match, ctx):
+        # Parse a terraform heredoc
+        # match: 1 = <<[-]?, 2 = name 3 = rest of line
+
+        start = match.start(1)
+        yield start, Operator, match.group(1)        # <<[-~]?
+        yield match.start(2), String.Delimiter, match.group(2) # heredoc name
+
+        ctx.pos = match.start(3)
+        ctx.end = match.end(3)
+        yield ctx.pos, String.Heredoc, match.group(3)
+        ctx.pos = match.end()
+
+        hdname = match.group(2)
+        tolerant = match.group(1)[-1] == "-"
+
+        lines = []
+        line_re = re.compile('.*?\n')
+
+        for match in line_re.finditer(ctx.text, ctx.pos):
+            if tolerant:
+                check = match.group().strip()
+            else:
+                check = match.group().rstrip()
+            if check == hdname:
+                for amatch in lines:
+                    yield amatch.start(), String.Heredoc, amatch.group()
+                yield match.start(), String.Delimiter, match.group()
+                ctx.pos = match.end()
+                break
+            else:
+                lines.append(match)
+        else:
+            # end of heredoc not found -- error!
+            for amatch in lines:
+                yield amatch.start(), Error, amatch.group()
+        ctx.end = len(ctx.text)
 
     tokens = {
         'root': [
@@ -677,6 +716,12 @@ class TerraformLexer(RegexLexer):
             # e.g. resource "aws_security_group" "allow_tls" {
             # e.g. backend "consul" {
             (classes_re + r'(\s+)', bygroups(Keyword.Reserved, Whitespace), 'blockname'),
+
+            # here-doc style delimited strings
+            (
+                r'(<<-?)\s*([a-zA-Z_]\w*)(.*?\n)',
+                heredoc_callback,
+            )
         ],
         'blockname': [
             # e.g. resource "aws_security_group" "allow_tls" {
