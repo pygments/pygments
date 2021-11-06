@@ -31,7 +31,6 @@ import os
 import sys
 
 
-
 def unpack_file(path):
     """Unpack a file into text, token pairs."""
     from collections import namedtuple
@@ -46,6 +45,7 @@ def unpack_file(path):
             text = text.replace('\\n', '\n')
             text = text.replace('\\t', '\t')
             yield pair(text, token)
+
 
 def check_file(path, threshold, single_only):
     current_token = ''
