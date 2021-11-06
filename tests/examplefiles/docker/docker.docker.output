@@ -1,10 +1,11 @@
 'FROM'        Keyword
-' '           Text
+' '           Text.Whitespace
 'alpine:3.5'  Literal.String
 '\n'          Text
 
 'MAINTAINER'  Keyword
-" First O'Last" Literal.String
+' '           Text.Whitespace
+"First O'Last" Literal.String
 '\n'          Text
 
 '\n'          Text
@@ -13,7 +14,7 @@
 '\n'          Text
 
 'run'         Keyword
-' '           Text
+' '           Text.Whitespace
 'echo'        Name.Builtin
 ' '           Text
 '\\\n'        Literal.String.Escape
@@ -25,7 +26,7 @@
 '\n'          Text
 
 'RUN'         Keyword
-' '           Text
+' '           Text.Whitespace
 'apk'         Text
 ' '           Text
 '--update'    Text
@@ -43,7 +44,7 @@
 '\n'          Text
 
 'ENV'         Keyword
-' '           Text
+' '           Text.Whitespace
 'FOO'         Name.Variable
 ' '           Text
 '='           Operator
@@ -52,7 +53,7 @@
 '\n'          Text
 
 'ENV'         Keyword
-' '           Text
+' '           Text.Whitespace
 'FOO'         Text
 ' '           Text
 '\\\n'        Literal.String.Escape
@@ -64,14 +65,14 @@
 '\n'          Text
 
 'COPY'        Keyword
-' '           Text
+' '           Text.Whitespace
 'foo'         Text
 ' '           Text
 '"bar"'       Literal.String.Double
 '\n'          Text
 
 'COPY'        Keyword
-' '           Text
+' '           Text.Whitespace
 'foo'         Text
 ' '           Text
 '\\\n'        Literal.String.Escape
@@ -83,7 +84,7 @@
 '\n'          Text
 
 'HEALTHCHECK' Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '    '        Text
@@ -99,7 +100,7 @@
 
 '    '        Text
 'CMD'         Keyword
-' '           Text
+' '           Text.Whitespace
 'curl'        Text
 ' '           Text
 '-f'          Text
@@ -119,21 +120,21 @@
 '\n'          Text
 
 'ONBUILD'     Keyword
-' '           Text
+' '           Text.Whitespace
 'ADD'         Keyword
-' '           Text
+' '           Text.Whitespace
 '.'           Text
 ' '           Text
 '/app/src'    Text
 '\n'          Text
 
 'ONBUILD'     Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '\t'          Text
 'RUN'         Keyword
-' '           Text
+' '           Text.Whitespace
 'echo'        Name.Builtin
 ' '           Text
 '123'         Literal.Number
@@ -147,7 +148,8 @@
 '\n'          Text
 
 'VOLUME'      Keyword
-' \\'         Literal.String
+' '           Text.Whitespace
+'\\'          Literal.String
 '\n'          Text
 
 '    '        Text
@@ -155,7 +157,7 @@
 '\n'          Text
 
 'VOLUME'      Keyword
-' '           Text
+' '           Text.Whitespace
 '\\\n'        Literal.String.Escape
 
 '    '        Text
@@ -165,18 +167,19 @@
 '\n'          Text
 
 'VOLUME'      Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '"/bar"'      Literal.String.Double
 ']'           Punctuation
 '\n'          Text
 
 'VOLUME'      Keyword
-' /foo'       Literal.String
+' '           Text.Whitespace
+'/foo'        Literal.String
 '\n'          Text
 
 'CMD'         Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '"foo"'       Literal.String.Double
 ','           Punctuation

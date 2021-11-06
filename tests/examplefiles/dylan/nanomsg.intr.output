@@ -1,267 +1,267 @@
 'module'      Name.Attribute
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'nanomsg'     Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'synopsis'    Name.Attribute
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'generated bindings for the nanomsg library' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'author'      Name.Attribute
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'Bruce Mitchener, Jr.' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'copyright'   Name.Attribute
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'See LICENSE file in this distribution.' Literal.String
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'simple-C-mapped-subtype' Name
-' '           Text
+' '           Text.Whitespace
 '<C-buffer-offset>' Name.Class
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '<C-char*>'   Name.Class
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'export-map'  Name
-' '           Text
+' '           Text.Whitespace
 '<machine-word>' Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'export-function:' Keyword
-' '           Text
+' '           Text.Whitespace
 'identity'    Name.Builtin
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'interface'   Name.Builtin
-'\n  '        Text
+'\n  '        Text.Whitespace
 '#include'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'sp/sp.h'     Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'sp/fanin.h'  Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'sp/inproc.h' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'sp/pair.h'   Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'sp/reqrep.h' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'sp/survey.h' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'sp/fanout.h' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'sp/ipc.h'    Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'sp/pubsub.h' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'sp/tcp.h'    Literal.String
 '"'           Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
 ','           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'exclude:'    Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'SP_HAUSNUMERO' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'SP_PAIR_ID'  Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'SP_PUBSUB_ID' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'SP_REQREP_ID' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'SP_FANIN_ID' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'SP_FANOUT_ID' Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'SP_SURVEY_ID' Literal.String
 '"'           Literal.String
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
 ','           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'equate:'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"'           Literal.String
 'char *'      Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '=>'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<c-string>'  Name.Class
 '}'           Punctuation
 ','           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'rename:'     Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'sp_recv'     Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '=>'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '%sp-recv'    Name
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'sp_send'     Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '=>'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '%sp-send'    Name
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '"'           Literal.String
 'sp_setsockopt' Literal.String
 '"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '=>'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '%sp-setsockopt' Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'function'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'sp_version'  Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'output-argument:' Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'output-argument:' Keyword
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'output-argument:' Keyword
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'function'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'sp_send'     Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'map-argument:' Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '=>'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<C-buffer-offset>' Name.Class
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'function'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'sp_recv'     Literal.String
 '"'           Literal.String
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'map-argument:' Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '=>'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<C-buffer-offset>' Name.Class
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'interface'   Name.Builtin
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '// Function for adding the base address of the repeated slots of a <buffer>\n' Comment.Single
 
@@ -269,53 +269,53 @@
 
 '// necessary for passing <buffer> contents across the FFI.\n' Comment.Single
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'function'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'buffer-offset' Name
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'the-buffer'  Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<buffer>'    Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'data-offset' Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ')'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 '=>'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'result-offset' Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<machine-word>' Name.Class
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'u%+'         Name
 '('           Punctuation
 'data-offset' Name
 ','           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'primitive-wrap-machine-word' Name
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'primitive-repeated-slot-as-raw' Name
-'\n           ' Text
+'\n           ' Text.Whitespace
 '('           Punctuation
 'the-buffer'  Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'primitive-repeated-slot-offset' Name
 '('           Punctuation
 'the-buffer'  Name
@@ -323,347 +323,347 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 'function'    Name.Builtin
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'inline'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'function'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'sp-send'     Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'socket'      Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'data'        Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<buffer>'    Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'flags'       Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=>'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'res'         Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '%sp-send'    Name
 '('           Punctuation
 'socket'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'buffer-offset' Name
 '('           Punctuation
 'data'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'data'        Name
 '.'           Punctuation
 'size'        Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'flags'       Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'inline'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'function'    Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'sp-recv'     Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'socket'      Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'data'        Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<buffer>'    Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'flags'       Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=>'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'res'         Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '%sp-recv'    Name
 '('           Punctuation
 'socket'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'buffer-offset' Name
 '('           Punctuation
 'data'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'data'        Name
 '.'           Punctuation
 'size'        Name.Builtin
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'flags'       Name
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'inline'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'method'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'sp-setsockopt' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'socket'      Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'level'       Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'option'      Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'with-stack-structure' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'int'         Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<C-int*>'    Name.Class
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'pointer-value' Name
 '('           Punctuation
 'int'         Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'value'       Name
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 'setsockopt-result' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'\n      '    Text
+'\n      '    Text.Whitespace
 '%sp-setsockopt' Name
 '('           Punctuation
 'socket'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'level'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'option'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'int'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'size-of'     Name
 '('           Punctuation
 '<C-int*>'    Name.Class
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'setsockopt-result' Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '// Check error!\n' Comment.Single
 
-'    '        Text
+'    '        Text.Whitespace
 'end'         Keyword
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'setsockopt-result' Name
-'\n  '        Text
+'\n  '        Text.Whitespace
 'end'         Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'inline'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'method'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'sp-setsockopt' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'socket'      Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'level'       Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'option'      Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<integer>'   Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'data'        Name
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 '<byte-string>' Name.Class
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 'setsockopt-result' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'\n    '      Text
+'\n    '      Text.Whitespace
 '%sp-setsockopt' Name
 '('           Punctuation
 'socket'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'level'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'option'      Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'as'          Name.Builtin
 '('           Punctuation
 '<c-string>'  Name.Class
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'data'        Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'data'        Name
 '.'           Punctuation
 'size'        Name.Builtin
 ')'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'setsockopt-result' Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '// Check error!\n' Comment.Single
 
-'  '          Text
+'  '          Text.Whitespace
 'end'         Keyword
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'setsockopt-result' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

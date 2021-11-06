@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Generic, Literal
+    Number, Punctuation, Generic, Literal, Whitespace
 
 __all__ = ['DylanLexer', 'DylanConsoleLexer', 'DylanLidLexer']
 
@@ -110,20 +110,20 @@ class DylanLexer(RegexLexer):
     tokens = {
         'root': [
             # Whitespace
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
 
             # single line comment
             (r'//.*?\n', Comment.Single),
 
             # lid header
             (r'([a-z0-9-]+)(:)([ \t]*)(.*(?:\n[ \t].+)*)',
-                bygroups(Name.Attribute, Operator, Text, String)),
+                bygroups(Name.Attribute, Operator, Whitespace, String)),
 
             default('code')  # no header match, switch to code
         ],
         'code': [
             # Whitespace
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
 
             # single line comment
             (r'//.*?\n', Comment.Single),
@@ -190,7 +190,7 @@ class DylanLexer(RegexLexer):
             (valid_name, Name),
         ],
         'comment': [
-            (r'[^*/]', Comment.Multiline),
+            (r'[^*/]+', Comment.Multiline),
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline)

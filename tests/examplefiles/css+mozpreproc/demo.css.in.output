@@ -9,14 +9,14 @@
 
 '.'           Punctuation
 'cls'         Name.Class
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'color'       Keyword
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '#fff'        Literal.Number.Hex
 ';'           Punctuation
 '\n'          Text

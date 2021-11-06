@@ -1,6 +1,6 @@
 'BoOtStRaP'   Keyword
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'l'           Text
 'i'           Text
 'b'           Text
@@ -14,7 +14,7 @@
 
 'MirrorURL'   Keyword
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'h'           Text
 't'           Text
 't'           Text
@@ -88,10 +88,10 @@
 '/'           Text
 '\n'          Text
 
-' '           Text
+' '           Text.Whitespace
 'From'        Keyword
 ':'           Text
-' '           Text
+' '           Text.Whitespace
 'u'           Text
 'b'           Text
 'u'           Text
@@ -105,7 +105,7 @@
 '\n'          Text
 
 '%setup'      Generic.Heading
-'\n    '      Text
+'\n    '      Text.Whitespace
 'touch'       Text
 ' '           Text
 '/file1'      Text
@@ -123,7 +123,7 @@
 '\n'          Text
 
 '%files'      Generic.Heading
-'\n    '      Text
+'\n    '      Text.Whitespace
 '/file1'      Text
 '\n    '      Text
 '/file1'      Text
@@ -134,7 +134,7 @@
 '\n'          Text
 
 '%environment' Generic.Heading
-'\n    '      Text
+'\n    '      Text.Whitespace
 'export'      Name.Builtin
 ' '           Text
 'LISTEN_PORT' Name.Variable
@@ -151,7 +151,7 @@
 '\n'          Text
 
 '%runscript'  Generic.Heading
-'\n    '      Text
+'\n    '      Text.Whitespace
 'echo'        Name.Builtin
 ' '           Text
 '"'           Literal.String.Double
@@ -178,7 +178,7 @@
 '\n'          Text
 
 '%startscript' Generic.Heading
-'\n    '      Text
+'\n    '      Text.Whitespace
 'nc'          Text
 ' '           Text
 '-lp'         Text
@@ -189,7 +189,7 @@
 '\n'          Text
 
 '%test'       Generic.Heading
-'\n    '      Text
+'\n    '      Text.Whitespace
 'grep'        Text
 ' '           Text
 '-q'          Text
@@ -233,7 +233,7 @@
 '\n'          Text
 
 '%labels'     Generic.Heading
-'\n    '      Text
+'\n    '      Text.Whitespace
 'Author'      Text
 ' '           Text
 'd@sylabs.io' Text
@@ -246,7 +246,7 @@
 '\n'          Text
 
 '%help'       Generic.Heading
-'\n    '      Text
+'\n    '      Text.Whitespace
 'This'        Text
 ' '           Text
 'is'          Text
@@ -283,7 +283,7 @@
 '\n'          Text
 
 '%post'       Generic.Heading
-'\n    '      Text
+'\n    '      Text.Whitespace
 'apt-get'     Text
 ' '           Text
 'update'      Text

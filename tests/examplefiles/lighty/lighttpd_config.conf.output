@@ -1,83 +1,83 @@
 'fastcgi.server' Keyword
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '".php"'      Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
-' \n                     ' Text
+' \n                     ' Text.Whitespace
 '"bin-path"'  Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '"/path/to/php-cgi"' Literal.String.Double
 ','           Punctuation
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 '"socket"'    Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '"/tmp/php.socket"' Literal.String.Double
 ','           Punctuation
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 '"max-procs"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number
 ','           Punctuation
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 '"bin-environment"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' \n                       ' Text
+' \n                       ' Text.Whitespace
 '"PHP_FCGI_CHILDREN"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '"16"'        Literal.String.Double
 ','           Punctuation
-'\n                       ' Text
+'\n                       ' Text.Whitespace
 '"PHP_FCGI_MAX_REQUESTS"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '"10000"'     Literal.String.Double
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 ')'           Punctuation
 ','           Punctuation
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 '"bin-copy-environment"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n                       ' Text
+'\n                       ' Text.Whitespace
 '"PATH"'      Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"SHELL"'     Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"USER"'      Literal.String.Double
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 ')'           Punctuation
 ','           Punctuation
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 '"broken-scriptfilename"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '=>'          Operator
-' '           Text
+' '           Text.Whitespace
 '"enable"'    Literal.String.Double
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

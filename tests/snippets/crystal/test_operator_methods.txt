@@ -5,9 +5,9 @@
 '('           Punctuation
 '['           Operator
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'of'          Keyword
-' '           Text
+' '           Text.Whitespace
 'Int32'       Name
 ')'           Punctuation
 '.'           Operator
@@ -15,4 +15,4 @@
 '('           Punctuation
 '5'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

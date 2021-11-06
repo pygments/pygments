@@ -68,6 +68,7 @@
     <li><a href="{{ pathto('demo') }}">Demo</a></li>
     {% endif %}
     <li><a href="{{ pathto('languages') }}">Languages</a></li>
+    <li><a href="{{ pathto('styles') }}">Styles</a></li>
     <li><a href="{{ pathto('faq') }}">FAQ</a></li>
     <li><a href="{{ pathto('download') }}">Get it</a></li>
     <li><a href="{{ pathto('docs/index') }}">Docs</a></li>
@@ -78,9 +79,11 @@
     </a>
   </div>
 </div>
+<div class="flexwrapper">
 {% endblock %}
 
 {% block footer %}
+    </div> {# closes "flexwrapper" div #}
     <div class="footer" role="contentinfo">
       &copy; Copyright 2006-2021, Georg Brandl and Pygments contributors.
       Created using <a href="https://sphinx-doc.org/">Sphinx</a> {{
