@@ -719,7 +719,7 @@ class RexxLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\s', Whitespace),
+            (r'\s+', Whitespace),
             (r'/\*', Comment.Multiline, 'comment'),
             (r'"', String, 'string_double'),
             (r"'", String, 'string_single'),
@@ -766,7 +766,7 @@ class RexxLexer(RegexLexer):
             (r'\n', Text, '#pop'),  # Stray linefeed also terminates strings.
         ],
         'string_single': [
-            (r'[^\'\n]', String),
+            (r'[^\'\n]+', String),
             (r'\'\'', String),
             (r'\'', String, '#pop'),
             (r'\n', Text, '#pop'),  # Stray linefeed also terminates strings.
