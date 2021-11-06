@@ -885,7 +885,7 @@ class CirruLexer(RegexLexer):
 
     tokens = {
         'string': [
-            (r'[^"\\\n]', String),
+            (r'[^"\\\n]+', String),
             (r'\\', String.Escape, 'escape'),
             (r'"', String, '#pop'),
         ],
