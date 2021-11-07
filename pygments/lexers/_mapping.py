@@ -54,7 +54,7 @@ LEXERS = {
     'BSTLexer': ('pygments.lexers.bibtex', 'BST', ('bst', 'bst-pybtex'), ('*.bst',), ()),
     'BareLexer': ('pygments.lexers.bare', 'BARE', ('bare',), ('*.bare',), ()),
     'BaseMakefileLexer': ('pygments.lexers.make', 'Base Makefile', ('basemake',), (), ()),
-    'BashLexer': ('pygments.lexers.shell', 'Bash', ('bash', 'sh', 'ksh', 'zsh', 'shell'), ('*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass', '*.exheres-0', '*.exlib', '*.zsh', '.bashrc', 'bashrc', '.bash_*', 'bash_*', 'zshrc', '.zshrc', 'PKGBUILD'), ('application/x-sh', 'application/x-shellscript', 'text/x-shellscript')),
+    'BashLexer': ('pygments.lexers.shell', 'Bash', ('bash', 'sh', 'ksh', 'zsh', 'shell'), ('*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass', '*.exheres-0', '*.exlib', '*.zsh', '.bashrc', 'bashrc', '.bash_*', 'bash_*', 'zshrc', '.zshrc', '.kshrc', 'kshrc', 'PKGBUILD'), ('application/x-sh', 'application/x-shellscript', 'text/x-shellscript')),
     'BashSessionLexer': ('pygments.lexers.shell', 'Bash Session', ('console', 'shell-session'), ('*.sh-session', '*.shell-session'), ('application/x-shell-session', 'application/x-sh-session')),
     'BatchLexer': ('pygments.lexers.shell', 'Batchfile', ('batch', 'bat', 'dosbatch', 'winbatch'), ('*.bat', '*.cmd'), ('application/x-dos-batch',)),
     'BefungeLexer': ('pygments.lexers.esoteric', 'Befunge', ('befunge',), ('*.befunge',), ('application/x-befunge',)),
