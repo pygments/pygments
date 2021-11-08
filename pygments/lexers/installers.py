@@ -279,7 +279,7 @@ class DebianControlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^(Description)', Keyword, 'description'),
-            (r'^(Maintainer)(:\s*)', bygroups(Keyword, Text), 'maintainer'),
+            (r'^(Maintainer|Uploaders)(:\s*)', bygroups(Keyword, Text), 'maintainer'),
             (r'^((Build-|Pre-)?Depends(-Indep|-Arch)?)', Keyword, 'depends'),
             (r'^(Recommends|Suggests|Enhances)', Keyword, 'depends'),
             (r'^((?:Python-)?Version)(:\s*)(\S+)$',
