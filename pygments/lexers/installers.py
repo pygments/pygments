@@ -292,10 +292,11 @@ class DebianControlLexer(RegexLexer):
              bygroups(Keyword, Whitespace, String)),
         ],
         'maintainer': [
-            (r'<[^>]+>', Generic.Strong),
             (r'<[^>]+>$', Generic.Strong, '#pop'),
+            (r'<[^>]+>', Generic.Strong),
             (r',\n?', Text),
-            (r'.', Text),
+            (r'[^,<]+$', Text, '#pop'),
+            (r'[^,<]+', Text),
         ],
         'description': [
             (r'(.*)(Homepage)(: )(\S+)',
