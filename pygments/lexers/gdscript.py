@@ -149,6 +149,7 @@ class GDScriptLexer(RegexLexer):
                         "for",
                         "pass",
                         "return",
+                        "void",
                         "match",
                         "while",
                         "remote",
