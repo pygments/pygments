@@ -27,84 +27,39 @@
 
 'Build-Depends' Keyword
 ': '          Text
-'d'           Name.Function
-'e'           Name.Function
-'b'           Name.Function
-'h'           Name.Function
-'e'           Name.Function
-'l'           Name.Function
-'p'           Name.Function
-'e'           Name.Function
-'r'           Name.Function
-'-'           Name.Function
-'c'           Name.Function
-'o'           Name.Function
-'m'           Name.Function
-'p'           Name.Function
-'a'           Name.Function
-'t'           Name.Function
+'debhelper-compat' Name.Function
 ' '           Text
 '('           Text
 '='           Operator
 ' '           Text
 '13'          Literal.Number
-'),'          Text
-'\n '         Text
-'d'           Name.Function
-'h'           Name.Function
-'-'           Name.Function
-'p'           Name.Function
-'y'           Name.Function
-'t'           Name.Function
-'h'           Name.Function
-'o'           Name.Function
-'n'           Name.Function
-','           Text
-'\n '         Text
-'o'           Name.Function
-'t'           Name.Function
-'h'           Name.Function
-'e'           Name.Function
-'r'           Name.Function
-'b'           Name.Function
-'u'           Name.Function
-'i'           Name.Function
-'l'           Name.Function
-'d'           Name.Function
-'d'           Name.Function
-'e'           Name.Function
-'p'           Name.Function
-'e'           Name.Function
-'n'           Name.Function
-'d'           Name.Function
-'a'           Name.Function
-'n'           Name.Function
-'c'           Name.Function
-'i'           Name.Function
-'e'           Name.Function
-'s'           Name.Function
+')'           Text
+',\n'         Text
+
+' '           Text
+'dh-python'   Name.Function
+',\n'         Text
+
+' '           Text
+'otherbuilddependancies' Name.Function
 '\n'          Text
 
 'Build-Depends-Indep' Keyword
 ':\n '        Text
-'p'           Name.Function
-'1'           Name.Function
+'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
-'p'           Name.Function
-'2'           Name.Function
+'p2'          Name.Function
 '\n'          Text
 
 'Build-Depends-Arch' Keyword
 ':\n '        Text
-'p'           Name.Function
-'1'           Name.Function
+'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
-'p'           Name.Function
-'2'           Name.Function
+'p2'          Name.Function
 '\n'          Text
 
 'Rules-Requires-Root' Keyword
@@ -146,58 +101,31 @@
 
 'Pre-Depends' Keyword
 ':\n '        Text
-'p'           Name.Function
-'1'           Name.Function
+'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
-'p'           Name.Function
-'2'           Name.Function
+'p2'          Name.Function
 '\n'          Text
 
 'Depends'     Keyword
 ':\n '        Text
-'p'           Name.Function
-'y'           Name.Function
-'t'           Name.Function
-'h'           Name.Function
-'o'           Name.Function
-'n'           Name.Function
-'3'           Name.Function
-'-'           Name.Function
-'b'           Name.Function
-'a'           Name.Function
-'r'           Name.Function
-','           Text
-'\n '         Text
-'p'           Name.Function
-'1'           Name.Function
+'python3-bar' Name.Function
+',\n'         Text
+
+' '           Text
+'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
-'p'           Name.Function
-'2'           Name.Function
-','           Text
-'\n '         Text
-'o'           Name.Function
-'t'           Name.Function
-'h'           Name.Function
-'e'           Name.Function
-'r'           Name.Function
-'d'           Name.Function
-'e'           Name.Function
-'p'           Name.Function
-'e'           Name.Function
-'n'           Name.Function
-'d'           Name.Function
-'a'           Name.Function
-'n'           Name.Function
-'c'           Name.Function
-'i'           Name.Function
-'e'           Name.Function
-'s'           Name.Function
-','           Text
-'\n '         Text
+'p2'          Name.Function
+',\n'         Text
+
+' '           Text
+'otherdependancies' Name.Function
+',\n'         Text
+
+' '           Text
 '$'           Operator
 '{'           Text
 'python3:Depends' Name.Entity
@@ -211,53 +139,33 @@
 
 'Recommends'  Keyword
 ':\n '        Text
-'p'           Name.Function
-'1'           Name.Function
+'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
-'p'           Name.Function
-'2'           Name.Function
-','           Text
-'\n '         Text
-'o'           Name.Function
-'t'           Name.Function
-'h'           Name.Function
-'e'           Name.Function
-'r'           Name.Function
-'-'           Name.Function
-'r'           Name.Function
-'e'           Name.Function
-'c'           Name.Function
-'o'           Name.Function
-'m'           Name.Function
-'m'           Name.Function
-'e'           Name.Function
-'n'           Name.Function
-'d'           Name.Function
-'s'           Name.Function
+'p2'          Name.Function
+',\n'         Text
+
+' '           Text
+'other-recommends' Name.Function
 '\n'          Text
 
 'Suggests'    Keyword
 ':\n '        Text
-'p'           Name.Function
-'1'           Name.Function
+'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
-'p'           Name.Function
-'2'           Name.Function
+'p2'          Name.Function
 '\n'          Text
 
 'Enhances'    Keyword
 ':\n '        Text
-'p'           Name.Function
-'1'           Name.Function
+'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
-'p'           Name.Function
-'2'           Name.Function
+'p2'          Name.Function
 '\n'          Text
 
 'Description' Keyword

@@ -279,9 +279,12 @@ class DebianControlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^(Description)', Keyword, 'description'),
-            (r'^(Maintainer|Uploaders)(:\s*)', bygroups(Keyword, Text), 'maintainer'),
-            (r'^((Build-|Pre-)?Depends(-Indep|-Arch)?)', Keyword, 'depends'),
-            (r'^(Recommends|Suggests|Enhances)', Keyword, 'depends'),
+            (r'^(Maintainer|Uploaders)(:\s*)', bygroups(Keyword, Text),
+             'maintainer'),
+            (r'^((?:Build-|Pre-)?Depends(?:-Indep|-Arch)?)(:\s*)',
+             bygroups(Keyword, Text), 'depends'),
+            (r'^(Recommends|Suggests|Enhances)(:\s*)', bygroups(Keyword, Text),
+             'depends'),
             (r'^((?:Python-)?Version)(:\s*)(\S+)$',
              bygroups(Keyword, Text, Number)),
             (r'^((?:Installed-)?Size)(:\s*)(\S+)$',
@@ -306,21 +309,18 @@ class DebianControlLexer(RegexLexer):
             default('#pop'),
         ],
         'depends': [
-            (r':\s*', Text),
-            (r'(\$)(\{)(\w+\s*:\s*\w+)', bygroups(Operator, Text, Name.Entity)),
+            (r'(\$)(\{)(\w+\s*:\s*\w+)(\})',
+             bygroups(Operator, Text, Name.Entity, Text)),
             (r'\(', Text, 'depend_vers'),
-            (r',', Text),
             (r'\|', Operator),
-            (r'[\s]+', Text),
-            (r'[})]\s*$', Text, '#pop'),
-            (r'\}', Text),
-            (r'[^,]$', Name.Function, '#pop'),
-            (r'([+.a-zA-Z0-9-])(\s*)', bygroups(Name.Function, Text)),
+            (r',\n', Text),
+            (r'\n', Text, '#pop'),
+            (r'[,\s]', Text),
+            (r'[+.a-zA-Z0-9-]+', Name.Function),
             (r'\[.*?\]', Name.Entity),
         ],
         'depend_vers': [
-            (r'\),', Text, '#pop'),
-            (r'\)[^,]', Text, '#pop:2'),
-            (r'([><=]+)(\s*)([^)]+)', bygroups(Operator, Text, Number))
+            (r'\)', Text, '#pop'),
+            (r'([><=]+)(\s*)([^)]+)', bygroups(Operator, Text, Number)),
         ]
     }
