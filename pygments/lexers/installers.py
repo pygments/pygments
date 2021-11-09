@@ -267,6 +267,9 @@ class DebianControlLexer(RegexLexer):
     """
     Lexer for Debian ``control`` files and ``apt-cache show <pkg>`` outputs.
 
+    Specification of `control`` files is available at
+    https://www.debian.org/doc/debian-policy/ch-controlfields.html
+
     .. versionadded:: 0.9
     """
     name = 'Debian Control file'
@@ -276,8 +279,9 @@ class DebianControlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^(Description)', Keyword, 'description'),
-            (r'^(Maintainer)(:\s*)', bygroups(Keyword, Text), 'maintainer'),
-            (r'^((Build-)?Depends)', Keyword, 'depends'),
+            (r'^(Maintainer|Uploaders)(:\s*)', bygroups(Keyword, Text), 'maintainer'),
+            (r'^((Build-|Pre-)?Depends(-Indep|-Arch)?)', Keyword, 'depends'),
+            (r'^(Recommends|Suggests|Enhances)', Keyword, 'depends'),
             (r'^((?:Python-)?Version)(:\s*)(\S+)$',
              bygroups(Keyword, Text, Number)),
             (r'^((?:Installed-)?Size)(:\s*)(\S+)$',
@@ -288,10 +292,11 @@ class DebianControlLexer(RegexLexer):
              bygroups(Keyword, Whitespace, String)),
         ],
         'maintainer': [
-            (r'<[^>]+>', Generic.Strong),
             (r'<[^>]+>$', Generic.Strong, '#pop'),
+            (r'<[^>]+>', Generic.Strong),
             (r',\n?', Text),
-            (r'.', Text),
+            (r'[^,<]+$', Text, '#pop'),
+            (r'[^,<]+', Text),
         ],
         'description': [
             (r'(.*)(Homepage)(: )(\S+)',
