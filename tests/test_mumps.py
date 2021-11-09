@@ -1640,3 +1640,34 @@ def testSetIndirects(lexer):
             (Number, '2'),
             (Text, '\n')
             ]
+
+def testSetPiece(lexer):
+    assert list(lexer.get_tokens(' s $P(foo,",",2)="abc",$PIECE(bar,"^",3,4)="This^That"')) == [
+            (Whitespace, ' '),
+	    (Keyword, 's'),
+            (Whitespace, ' '),
+	    (Name.Function.Magic, '$P'),
+            (Punctuation, '('),
+	    (Name.Variable, 'foo'),
+	    (Punctuation, ','),
+	    (String, '","'),
+	    (Punctuation, ','),
+	    (Number, '2'),
+	    (Punctuation, ')'),
+	    (Operator, '='),
+	    (String, '"abc"'),
+	    (Punctuation, ','),
+	    (Name.Function.Magic, '$PIECE'),
+	    (Punctuation, '('),
+	    (Name.Variable, 'bar'),
+	    (Punctuation, ','),
+	    (String, '"^"'),
+	    (Punctuation, ','),
+	    (Number, '3'),
+	    (Punctuation, ','),
+	    (Number, '4'),
+	    (Punctuation, ')'),
+	    (Operator, '='),
+	    (String, '"This^That"'),
+	    (Text, '\n')
+	    ]

@@ -58,9 +58,12 @@ class MumpsLexer(ExtendedRegexLexer):
         ###
         # Lists of things are at least one element, with ',' between
         # List states 'l_*' should default on a comma and a single instance
+        'comma': [
+            (',', Punctuation, '#pop'),
+            ],
         'list_comma': [
             # Pop back into the list that defaults comma and element
-            (',', Punctuation, '#pop'),
+            include('comma'),
             # Pop over the list state
             default('#pop:2')
             ],
@@ -105,7 +108,7 @@ class MumpsLexer(ExtendedRegexLexer):
             ],
         # 6.2.5 - Line body 'linebody'
         'linebody': [
-	        (';.*', Comment, '#pop'),
+            (';.*', Comment, '#pop'),
             include('commands'),
             ],
         'commands': [
@@ -170,6 +173,9 @@ class MumpsLexer(ExtendedRegexLexer):
         'opt_subscripts': [
                 include('subscripts'),
                 default('#pop')
+                ],
+        'open_paren': [
+                ('\\(', Punctuation, '#pop'),
                 ],
         'close_paren': [
                 ('\\)', Punctuation, '#pop'),
@@ -611,9 +617,13 @@ class MumpsLexer(ExtendedRegexLexer):
             default(('#pop', 'setleft'))
             ],
         'setleft': [
+            include('leftexpr'),
             include('glvn')
             ],
         'l_setleft': [
             default(('list_comma', 'setleft'))
+            ],
+        'leftexpr': [
+            (words(('$PIECE', '$P'), suffix=r'\b'), Name.Function.Magic, ('#pop', 'close_paren', 'l_expr', 'comma', 'glvn', 'open_paren')),
             ],
         }
