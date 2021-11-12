@@ -1,0 +1,127 @@
+'pkgbase'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'compiler-rt' Text
+'\n\t'        Text.Whitespace
+'pkgdesc'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Compiler runtime libraries for clang' Text
+'\n\t'        Text.Whitespace
+'pkgver'      Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'13.0.0'      Text
+'\n\t'        Text.Whitespace
+'pkgrel'      Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Text
+'\n\t'        Text.Whitespace
+'url'         Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'https://compiler-rt.llvm.org/' Text
+'\n\t'        Text.Whitespace
+'arch'        Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'x86_64'      Text
+'\n\t'        Text.Whitespace
+'license'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'custom:Apache 2.0 with LLVM Exception' Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'llvm'        Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cmake'       Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ninja'       Text
+'\n\t'        Text.Whitespace
+'makedepends' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'python'      Text
+'\n\t'        Text.Whitespace
+'depends'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'gcc-libs'    Text
+'\n\t'        Text.Whitespace
+'options'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'staticlibs'  Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/compiler-rt-13.0.0.src.tar.xz' Text
+'\n\t'        Text.Whitespace
+'source'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/compiler-rt-13.0.0.src.tar.xz.sig' Text
+'\n\t'        Text.Whitespace
+'validpgpkeys' Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'B6C8F98282B944E3B0D5C2530FC3042E345AD05D' Text
+'\n\t'        Text.Whitespace
+'validpgpkeys' Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'474E22316ABF4785A88C6E8EA2C794A986419D8A' Text
+'\n\t'        Text.Whitespace
+'sha256sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'4c3602d76c7868a96b30c36165c4b7643e2a20173fced7e071b4baeb2d74db3f' Text
+'\n\t'        Text.Whitespace
+'sha256sums'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SKIP'        Text
+'\n\t'        Text.Whitespace
+'makedepends_x86_64' Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'lib32-gcc-libs' Text
+'\n\n'        Text.Whitespace
+
+'pkgname'     Keyword
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'compiler-rt' Text
+'\n'          Text.Whitespace
