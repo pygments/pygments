@@ -1,6 +1,6 @@
 """
     pygments.lexers.srcinfo
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for .SRCINFO files used by Arch Linux Packages.
 
