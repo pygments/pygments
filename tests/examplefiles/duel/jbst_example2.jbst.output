@@ -320,9 +320,7 @@
 ' '           Text
 '%>'          Name.Tag
 '">\n\n\t\t'  Text
-'<!--'        Comment
-' anonymous inner template ' Comment
-'-->'         Comment
+'<!-- anonymous inner template -->' Comment.Multiline
 '\n\t\t'      Text
 '<'           Punctuation
 'jbst:control' Name.Tag
@@ -341,9 +339,7 @@
 ' '           Text
 '%>'          Name.Tag
 '">\n\t\t\t'  Text
-'<!--'        Comment
-" populate list item for each item of the parent's children property " Comment
-'-->'         Comment
+"<!-- populate list item for each item of the parent's children property -->" Comment.Multiline
 '\n\t\t\t'    Text
 '<'           Punctuation
 'li'          Name.Tag

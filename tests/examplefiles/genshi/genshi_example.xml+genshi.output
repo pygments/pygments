@@ -520,9 +520,7 @@
 '\n                        ' Text
 '<py:otherwise' Name.Tag
 '>'           Name.Tag
-'<!--'        Comment
-'! not the first line of a multiline constraint ' Comment
-'-->'         Comment
+'<!--! not the first line of a multiline constraint -->' Comment.Multiline
 '\n                          ' Text
 '<th'         Name.Tag
 ' '           Text

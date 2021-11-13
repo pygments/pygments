@@ -2514,9 +2514,7 @@
 'div'         Name.Tag
 '>'           Punctuation
 ' '           Text
-'<!--'        Comment
-' #cloud '    Comment
-'-->'         Comment
+'<!-- #cloud -->' Comment.Multiline
 '\n    '      Text
 '<?r end ?>'  Comment.Preproc
 '\n  '        Text
@@ -2525,9 +2523,7 @@
 'div'         Name.Tag
 '>'           Punctuation
 ' '           Text
-'<!--'        Comment
-' #left '     Comment
-'-->'         Comment
+'<!-- #left -->' Comment.Multiline
 '\n  \n  '    Text
 '<'           Punctuation
 'render'      Name.Tag
@@ -2546,9 +2542,5 @@
 '>'           Punctuation
 '\n\n'        Text
 
-'<!--'        Comment
-' Copyright © 2006 Kashia Buch (kashia@vfemail.net), Fabian Buch (fabian@fabian' Comment
-'-'           Comment
-'buch.de). All rights reserved. ' Comment
-'-->'         Comment
+'<!-- Copyright © 2006 Kashia Buch (kashia@vfemail.net), Fabian Buch (fabian@fabian-buch.de). All rights reserved. -->' Comment.Multiline
 '\n'          Text
