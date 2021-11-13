@@ -1,0 +1,39 @@
+Source: foo
+Section: misc
+Priority: optional
+Maintainer: Debian Python Team <team+python@domain.tld>
+Uploaders: Alice <alice@domain.tld>
+Build-Depends: debhelper-compat (= 13),
+ dh-python,
+ otherbuilddependancies
+Build-Depends-Indep:
+ p1 | p2
+Build-Depends-Arch:
+ p1 | p2
+Rules-Requires-Root: no
+Standards-Version: 4.5.1
+Vcs-Git: https://salsa.domain.tld/python-team/packages/foo.git
+Vcs-Browser: https://salsa.domain.tld/python-team/packages/foo
+Homepage: https://domain.tld/owner/foo
+
+Package: foo
+Architecture: all
+Pre-Depends:
+ p1 | p2
+Depends:
+ python3-bar,
+ p1 | p2,
+ otherdependancies,
+ ${python3:Depends}
+Provides: x-terminal-emulator
+Recommends:
+ p1 | p2,
+ other-recommends
+Suggests:
+ p1 | p2
+Enhances:
+ p1 | p2
+Description: title for this package
+ First paragraph describing the packaged software.
+ .
+ And a second paragraph too.
