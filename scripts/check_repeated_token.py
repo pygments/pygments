@@ -38,8 +38,10 @@ def unpack_file(path):
     for line in open(path).readlines():
         line = line.strip()
         if line:
-            quotation_start = line.find('\'')
-            quotation_end = line.rfind('\'')
+            # Line can start with ' or ", so let's check which one it is
+            # and find the matching one
+            quotation_start = 0
+            quotation_end = line.rfind(line[0])
             text = line[quotation_start+1:quotation_end]
             token = line.split()[-1]
             text = text.replace('\\n', '\n')
