@@ -42,7 +42,8 @@ class NSISLexer(RegexLexer):
             include('basic'),
             (r'\$\{[a-z_|][\w|]*\}', Keyword.Pseudo),
             (r'/[a-z_]\w*', Name.Attribute),
-            ('.', Text),
+            (r'\s+', Whitespace),
+            (r'[\w.]+', Text),
         ],
         'basic': [
             (r'(\n)(Function)(\s+)([._a-z][.\w]*)\b',
@@ -128,16 +129,16 @@ class NSISLexer(RegexLexer):
             (r'\$[a-z_]\w*', Name.Variable),
         ],
         'str_double': [
-            (r'"', String, '#pop'),
+            (r'"', String.Double, '#pop'),
             (r'\$(\\[nrt"]|\$)', String.Escape),
             include('interpol'),
-            (r'.', String.Double),
+            (r'[^"]+', String.Double),
         ],
         'str_backtick': [
-            (r'`', String, '#pop'),
+            (r'`', String.Double, '#pop'),
             (r'\$(\\[nrt"]|\$)', String.Escape),
             include('interpol'),
-            (r'.', String.Double),
+            (r'[^`]+', String.Double),
         ],
     }
 

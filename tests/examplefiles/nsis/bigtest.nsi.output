@@ -4,4699 +4,1489 @@
 
 '; This script attempts to test most of the functionality of the NSIS exehead.\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';--------------------------------\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '!ifdef'      Comment.Preproc
-' '           Text
-'H'           Text
-'A'           Text
-'V'           Text
-'E'           Text
-'_'           Text
-'U'           Text
-'P'           Text
-'X'           Text
-'\n'          Text
+' '           Text.Whitespace
+'HAVE_UPX'    Text
+'\n'          Text.Whitespace
 
 '!packhdr'    Comment.Preproc
-' '           Text
-'t'           Text
-'m'           Text
-'p'           Text
-'.'           Text
-'d'           Text
-'a'           Text
-'t'           Text
-' '           Text
+' '           Text.Whitespace
+'tmp.dat'     Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'u'           Literal.String.Double
-'p'           Literal.String.Double
-'x'           Literal.String.Double
-'\\'          Literal.String.Double
-'u'           Literal.String.Double
-'p'           Literal.String.Double
-'x'           Literal.String.Double
-' '           Literal.String.Double
-'-'           Literal.String.Double
-'9'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'m'           Literal.String.Double
-'p'           Literal.String.Double
-'.'           Literal.String.Double
-'d'           Literal.String.Double
-'a'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
+'upx\\upx -9 tmp.dat' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
 
 '!endif'      Comment.Preproc
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '!ifdef'      Comment.Preproc
-' '           Text
-'N'           Text
-'O'           Text
-'C'           Text
-'O'           Text
-'M'           Text
-'P'           Text
-'R'           Text
-'E'           Text
-'S'           Text
-'S'           Text
-'\n'          Text
+' '           Text.Whitespace
+'NOCOMPRESS'  Text
+'\n'          Text.Whitespace
 
 'SetCompress' Keyword
-' '           Text
+' '           Text.Whitespace
 'off'         Name.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 '!endif'      Comment.Preproc
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Name'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
+'BigNSISTest' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
 
 'Caption'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-' '           Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-' '           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
+'NSIS Big Test' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
 
 'Icon'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '${NSISDIR}'  Name.Builtin
-'\\'          Literal.String.Double
-'C'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'t'           Literal.String.Double
-'r'           Literal.String.Double
-'i'           Literal.String.Double
-'b'           Literal.String.Double
-'\\'          Literal.String.Double
-'G'           Literal.String.Double
-'r'           Literal.String.Double
-'a'           Literal.String.Double
-'p'           Literal.String.Double
-'h'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'s'           Literal.String.Double
-'\\'          Literal.String.Double
-'I'           Literal.String.Double
-'c'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'\\'          Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'s'           Literal.String.Double
-'1'           Literal.String.Double
-'-'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-'.'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'o'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
+'\\Contrib\\Graphics\\Icons\\nsis1-install.ico' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
 
 'OutFile'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'b'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'e'           Literal.String.Double
-'x'           Literal.String.Double
-'e'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
+'bigtest.exe' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
 
 'SetDateSave' Keyword
-' '           Text
+' '           Text.Whitespace
 'on'          Name.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SetDatablockOptimize' Keyword
-' '           Text
+' '           Text.Whitespace
 'on'          Name.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 'CRCCheck'    Keyword
-' '           Text
+' '           Text.Whitespace
 'on'          Name.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SilentInstall' Keyword
-' '           Text
+' '           Text.Whitespace
 'normal'      Name.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 'BGGradient'  Keyword
-' '           Text
-'0'           Text
-'0'           Text
-'0'           Text
-'0'           Text
-'0'           Text
-'0'           Text
-' '           Text
-'8'           Text
-'0'           Text
-'0'           Text
-'0'           Text
-'0'           Text
-'0'           Text
-' '           Text
-'F'           Text
-'F'           Text
-'F'           Text
-'F'           Text
-'F'           Text
-'F'           Text
-'\n'          Text
+' '           Text.Whitespace
+'000000'      Text
+' '           Text.Whitespace
+'800000'      Text
+' '           Text.Whitespace
+'FFFFFF'      Text
+'\n'          Text.Whitespace
 
 'InstallColors' Keyword
-' '           Text
-'F'           Text
-'F'           Text
-'8'           Text
-'0'           Text
-'8'           Text
-'0'           Text
-' '           Text
-'0'           Text
-'0'           Text
-'0'           Text
-'0'           Text
-'3'           Text
-'0'           Text
-'\n'          Text
+' '           Text.Whitespace
+'FF8080'      Text
+' '           Text.Whitespace
+'000030'      Text
+'\n'          Text.Whitespace
 
 'XPStyle'     Keyword
-' '           Text
+' '           Text.Whitespace
 'on'          Name.Constant
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'InstallDir'  Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$PROGRAMFILES' Name.Variable
-'\\'          Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'\\'          Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
+'\\NSISTest\\BigNSISTest' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
 
 'InstallDirRegKey' Keyword
-' '           Text
+' '           Text.Whitespace
 'HKLM'        Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'S'           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'w'           Literal.String.Double
-'a'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'\\'          Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'\\'          Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'Software\\NSISTest\\BigNSISTest' Literal.String.Double
 '"'           Literal.String.Double
-'I'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-'_'           Literal.String.Double
-'D'           Literal.String.Double
-'i'           Literal.String.Double
-'r'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Install_Dir' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
 
 'CheckBitmap' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '${NSISDIR}'  Name.Builtin
-'\\'          Literal.String.Double
-'C'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'t'           Literal.String.Double
-'r'           Literal.String.Double
-'i'           Literal.String.Double
-'b'           Literal.String.Double
-'\\'          Literal.String.Double
-'G'           Literal.String.Double
-'r'           Literal.String.Double
-'a'           Literal.String.Double
-'p'           Literal.String.Double
-'h'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'s'           Literal.String.Double
-'\\'          Literal.String.Double
-'C'           Literal.String.Double
-'h'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'k'           Literal.String.Double
-'s'           Literal.String.Double
-'\\'          Literal.String.Double
-'c'           Literal.String.Double
-'l'           Literal.String.Double
-'a'           Literal.String.Double
-'s'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'-'           Literal.String.Double
-'c'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'s'           Literal.String.Double
-'s'           Literal.String.Double
-'.'           Literal.String.Double
-'b'           Literal.String.Double
-'m'           Literal.String.Double
-'p'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
+'\\Contrib\\Graphics\\Checks\\classic-cross.bmp' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
 
 'LicenseText' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'A'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'x'           Literal.String.Double
-'t'           Literal.String.Double
-','           Literal.String.Double
-' '           Literal.String.Double
-'m'           Literal.String.Double
-'a'           Literal.String.Double
-'k'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'s'           Literal.String.Double
-'u'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-"'"           Literal.String.Double
-'s'           Literal.String.Double
-' '           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'e'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
+"A test text, make sure it's all there" Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
 
 'LicenseData' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'b'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
+'bigtest.nsi' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
 
 'RequestExecutionLevel' Keyword
-' '           Text
+' '           Text.Whitespace
 'admin'       Name.Constant
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Page'        Keyword
-' '           Text
-'l'           Text
-'i'           Text
-'c'           Text
-'e'           Text
-'n'           Text
-'s'           Text
-'e'           Text
-'\n'          Text
+' '           Text.Whitespace
+'license'     Text
+'\n'          Text.Whitespace
 
 'Page'        Keyword
-' '           Text
-'c'           Text
-'o'           Text
-'m'           Text
-'p'           Text
-'o'           Text
-'n'           Text
-'e'           Text
-'n'           Text
-'t'           Text
-'s'           Text
-'\n'          Text
+' '           Text.Whitespace
+'components'  Text
+'\n'          Text.Whitespace
 
 'Page'        Keyword
-' '           Text
-'d'           Text
-'i'           Text
-'r'           Text
-'e'           Text
-'c'           Text
-'t'           Text
-'o'           Text
-'r'           Text
-'y'           Text
-'\n'          Text
+' '           Text.Whitespace
+'directory'   Text
+'\n'          Text.Whitespace
 
 'Page'        Keyword
-' '           Text
-'i'           Text
-'n'           Text
-'s'           Text
-'t'           Text
-'f'           Text
-'i'           Text
-'l'           Text
-'e'           Text
-'s'           Text
-'\n'          Text
-
-'\n'          Text
+' '           Text.Whitespace
+'instfiles'   Text
+'\n\n'        Text.Whitespace
 
 'UninstPage'  Keyword
-' '           Text
-'u'           Text
-'n'           Text
-'i'           Text
-'n'           Text
-'s'           Text
-'t'           Text
-'C'           Text
-'o'           Text
-'n'           Text
-'f'           Text
-'i'           Text
-'r'           Text
-'m'           Text
-'\n'          Text
+' '           Text.Whitespace
+'uninstConfirm' Text
+'\n'          Text.Whitespace
 
 'UninstPage'  Keyword
-' '           Text
-'i'           Text
-'n'           Text
-'s'           Text
-'t'           Text
-'f'           Text
-'i'           Text
-'l'           Text
-'e'           Text
-'s'           Text
-'\n'          Text
-
-'\n'          Text
+' '           Text.Whitespace
+'instfiles'   Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '!ifndef'     Comment.Preproc
-' '           Text
-'N'           Text
-'O'           Text
-'I'           Text
-'N'           Text
-'S'           Text
-'T'           Text
-'T'           Text
-'Y'           Text
-'P'           Text
-'E'           Text
-'S'           Text
-' '           Text
+' '           Text.Whitespace
+'NOINSTTYPES' Text
+' '           Text.Whitespace
 '; only if not defined\n' Comment
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'InstType'    Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'M'           Literal.String.Double
-'o'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'Most'        Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'InstType'    Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'F'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'Full'        Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'InstType'    Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'M'           Literal.String.Double
-'o'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'More'        Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'InstType'    Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'B'           Literal.String.Double
-'a'           Literal.String.Double
-'s'           Literal.String.Double
-'e'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'Base'        Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 ';InstType /NOCUSTOM\n' Comment
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 ';InstType /COMPONENTSONLYONCUSTOM\n' Comment
 
 '!endif'      Comment.Preproc
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'AutoCloseWindow' Keyword
-' '           Text
+' '           Text.Whitespace
 'false'       Name.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ShowInstDetails' Keyword
-' '           Text
+' '           Text.Whitespace
 'show'        Name.Constant
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Section'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '; empty string makes it hidden, so would starting with -\n' Comment
 
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 '; write reg info\n' Comment
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'StrCpy'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'P'           Literal.String.Double
-'O'           Literal.String.Double
-'O'           Literal.String.Double
-'O'           Literal.String.Double
-'O'           Literal.String.Double
-'O'           Literal.String.Double
-'O'           Literal.String.Double
-'O'           Literal.String.Double
-'O'           Literal.String.Double
-'O'           Literal.String.Double
-'O'           Literal.String.Double
-'O'           Literal.String.Double
-'P'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'POOOOOOOOOOOP' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'DetailPrint' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'I'           Literal.String.Double
-' '           Literal.String.Double
-'l'           Literal.String.Double
-'i'           Literal.String.Double
-'k'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'b'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'a'           Literal.String.Double
-'b'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'s'           Literal.String.Double
-'e'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'w'           Literal.String.Double
-'h'           Literal.String.Double
-'a'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'i'           Literal.String.Double
-'s'           Literal.String.Double
-' '           Literal.String.Double
-'g'           Literal.String.Double
-'o'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'g'           Literal.String.Double
-' '           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-' '           Literal.String.Double
-'('           Literal.String.Double
-'d'           Literal.String.Double
-'e'           Literal.String.Double
-'b'           Literal.String.Double
-'u'           Literal.String.Double
-'g'           Literal.String.Double
-')'           Literal.String.Double
-' '           Literal.String.Double
-'$1'          Name.Builtin.Pseudo
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'I like to be able to see what is going on (debug) $1' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'WriteRegStr' Keyword
-' '           Text
+' '           Text.Whitespace
 'HKLM'        Name.Constant
-' '           Text
-'S'           Text
-'O'           Text
-'F'           Text
-'T'           Text
-'W'           Text
-'A'           Text
-'R'           Text
-'E'           Text
+' '           Text.Whitespace
+'SOFTWARE'    Text
 '\\'          Punctuation
-'N'           Text
-'S'           Text
-'I'           Text
-'S'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
+'NSISTest'    Text
 '\\'          Punctuation
-'B'           Text
-'i'           Text
-'g'           Text
-'N'           Text
-'S'           Text
-'I'           Text
-'S'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-' '           Text
+'BigNSISTest' Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'I'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-'_'           Literal.String.Double
-'D'           Literal.String.Double
-'i'           Literal.String.Double
-'r'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'Install_Dir' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
 '; write uninstall strings\n' Comment
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'WriteRegStr' Keyword
-' '           Text
+' '           Text.Whitespace
 'HKLM'        Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'S'           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'w'           Literal.String.Double
-'a'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'\\'          Literal.String.Double
-'M'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'s'           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'\\'          Literal.String.Double
-'W'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'d'           Literal.String.Double
-'o'           Literal.String.Double
-'w'           Literal.String.Double
-'s'           Literal.String.Double
-'\\'          Literal.String.Double
-'C'           Literal.String.Double
-'u'           Literal.String.Double
-'r'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'n'           Literal.String.Double
-'t'           Literal.String.Double
-'V'           Literal.String.Double
-'e'           Literal.String.Double
-'r'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'\\'          Literal.String.Double
-'U'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-'\\'          Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\BigNSISTest' Literal.String.Double
 '"'           Literal.String.Double
-'D'           Literal.String.Double
-'i'           Literal.String.Double
-'s'           Literal.String.Double
-'p'           Literal.String.Double
-'l'           Literal.String.Double
-'a'           Literal.String.Double
-'y'           Literal.String.Double
-'N'           Literal.String.Double
-'a'           Literal.String.Double
-'m'           Literal.String.Double
-'e'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'('           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'v'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'l'           Literal.String.Double
-'y'           Literal.String.Double
-')'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'DisplayName' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'BigNSISTest (remove only)' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'WriteRegStr' Keyword
-' '           Text
+' '           Text.Whitespace
 'HKLM'        Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'S'           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'w'           Literal.String.Double
-'a'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'\\'          Literal.String.Double
-'M'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'s'           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'\\'          Literal.String.Double
-'W'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'d'           Literal.String.Double
-'o'           Literal.String.Double
-'w'           Literal.String.Double
-'s'           Literal.String.Double
-'\\'          Literal.String.Double
-'C'           Literal.String.Double
-'u'           Literal.String.Double
-'r'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'n'           Literal.String.Double
-'t'           Literal.String.Double
-'V'           Literal.String.Double
-'e'           Literal.String.Double
-'r'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'\\'          Literal.String.Double
-'U'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-'\\'          Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\BigNSISTest' Literal.String.Double
 '"'           Literal.String.Double
-'U'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-'S'           Literal.String.Double
-'t'           Literal.String.Double
-'r'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'g'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'UninstallString' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '\'"$INSTDIR\\bt-uninst.exe"\'' Literal.String.Single
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 'SetOutPath'  Keyword
-' '           Text
+' '           Text.Whitespace
 '$INSTDIR'    Name.Variable.Global
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'File'        Keyword
-' '           Text
+' '           Text.Whitespace
 '/a'          Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'n'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'silent.nsi'  Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'CreateDirectory' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'P'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'j'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'F'           Literal.String.Double
-'a'           Literal.String.Double
-'m'           Literal.String.Double
-'i'           Literal.String.Double
-'l'           Literal.String.Double
-'y'           Literal.String.Double
-'\\'          Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'P'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'j'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\MyProjectFamily\\MyProject' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '; 2 recursively create a directory for fun.\n' Comment
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'WriteUninstaller' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'b'           Literal.String.Double
-'t'           Literal.String.Double
-'-'           Literal.String.Double
-'u'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'e'           Literal.String.Double
-'x'           Literal.String.Double
-'e'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'bt-uninst.exe' Literal.String.Double
+'"'           Literal.String.Double
+'\n  \n  '    Text.Whitespace
 'Nop'         Keyword
-' '           Text
+' '           Text.Whitespace
 '; for fun\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SectionEnd'  Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'Section'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'m'           Literal.String.Double
-'p'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
+'TempTest'    Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
 
 'SectionIn'   Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Text
-' '           Text
+' '           Text.Whitespace
 '2'           Text
-' '           Text
+' '           Text.Whitespace
 '3'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'Start'       Name.Label
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_OK'       Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'S'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'r'           Literal.String.Double
-'t'           Literal.String.Double
-':'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'Start:'      Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_YESNO'    Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'G'           Literal.String.Double
-'o'           Literal.String.Double
-'t'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'L'           Literal.String.Double
-'a'           Literal.String.Double
-'b'           Literal.String.Double
-'e'           Literal.String.Double
-'l'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'Goto MyLabel' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 'IDYES'       Name.Constant
-' '           Text
-'M'           Text
-'y'           Text
-'L'           Text
-'a'           Text
-'b'           Text
-'e'           Text
-'l'           Text
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'MyLabel'     Text
+'\n\n  '      Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_OK'       Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'R'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'h'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'b'           Literal.String.Double
-'e'           Literal.String.Double
-'f'           Literal.String.Double
-'o'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'L'           Literal.String.Double
-'a'           Literal.String.Double
-'b'           Literal.String.Double
-'e'           Literal.String.Double
-'l'           Literal.String.Double
-':'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'Right before MyLabel:' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
 'MyLabel'     Name.Label
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_OK'       Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'L'           Literal.String.Double
-'a'           Literal.String.Double
-'b'           Literal.String.Double
-'e'           Literal.String.Double
-'l'           Literal.String.Double
-':'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'MyLabel:'    Literal.String.Double
+'"'           Literal.String.Double
+'\n  \n  '    Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_OK'       Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'R'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'h'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'a'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'r'           Literal.String.Double
-' '           Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'L'           Literal.String.Double
-'a'           Literal.String.Double
-'b'           Literal.String.Double
-'e'           Literal.String.Double
-'l'           Literal.String.Double
-':'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'Right after MyLabel:' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_YESNO'    Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'G'           Literal.String.Double
-'o'           Literal.String.Double
-'t'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'S'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'r'           Literal.String.Double
-'t'           Literal.String.Double
-':'           Literal.String.Double
-'?'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'Goto Start:?' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 'IDYES'       Name.Constant
-' '           Text
-'S'           Text
-'t'           Text
-'a'           Text
-'r'           Text
-'t'           Text
-'\n'          Text
-
-'\n'          Text
+' '           Text.Whitespace
+'Start'       Text
+'\n\n'        Text.Whitespace
 
 'SectionEnd'  Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'SectionGroup' Keyword
-' '           Text
+' '           Text.Whitespace
 '/e'          Name.Attribute
-' '           Text
-'S'           Text
-'e'           Text
-'c'           Text
-'t'           Text
-'i'           Text
-'o'           Text
-'n'           Text
-'G'           Text
-'r'           Text
-'o'           Text
-'u'           Text
-'p'           Text
-'1'           Text
-'\n'          Text
-
-'\n'          Text
+' '           Text.Whitespace
+'SectionGroup1' Text
+'\n\n'        Text.Whitespace
 
 'Section'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'R'           Literal.String.Double
-'e'           Literal.String.Double
-'g'           Literal.String.Double
-'i'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'r'           Literal.String.Double
-'y'           Literal.String.Double
-'/'           Literal.String.Double
-'I'           Literal.String.Double
-'N'           Literal.String.Double
-'I'           Literal.String.Double
-' '           Literal.String.Double
-'f'           Literal.String.Double
-'u'           Literal.String.Double
-'n'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
+'Test Registry/INI functions' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
 
 'SectionIn'   Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Text
-' '           Text
+' '           Text.Whitespace
 '4'           Text
-' '           Text
+' '           Text.Whitespace
 '3'           Text
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 'WriteRegStr' Keyword
-' '           Text
+' '           Text.Whitespace
 'HKLM'        Name.Constant
-' '           Text
-'S'           Text
-'O'           Text
-'F'           Text
-'T'           Text
-'W'           Text
-'A'           Text
-'R'           Text
-'E'           Text
+' '           Text.Whitespace
+'SOFTWARE'    Text
 '\\'          Punctuation
-'N'           Text
-'S'           Text
-'I'           Text
-'S'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
+'NSISTest'    Text
 '\\'          Punctuation
-'B'           Text
-'i'           Text
-'g'           Text
-'N'           Text
-'S'           Text
-'I'           Text
-'S'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-' '           Text
+'BigNSISTest' Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'S'           Literal.String.Double
-'t'           Literal.String.Double
-'r'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'_'           Literal.String.Double
-'I'           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'T'           Literal.String.Double
-'D'           Literal.String.Double
-'I'           Literal.String.Double
-'R'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'StrTest_INSTDIR' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
-'WriteRegDword' Keyword
-' '           Text
-'HKLM'        Name.Constant
-' '           Text
-'S'           Text
-'O'           Text
-'F'           Text
-'T'           Text
-'W'           Text
-'A'           Text
-'R'           Text
-'E'           Text
-'\\'          Punctuation
-'N'           Text
-'S'           Text
-'I'           Text
-'S'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-'\\'          Punctuation
-'B'           Text
-'i'           Text
-'g'           Text
-'N'           Text
-'S'           Text
-'I'           Text
-'S'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-' '           Text
 '"'           Literal.String.Double
-'D'           Literal.String.Double
-'w'           Literal.String.Double
-'o'           Literal.String.Double
-'r'           Literal.String.Double
-'d'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'_'           Literal.String.Double
-'0'           Literal.String.Double
-'x'           Literal.String.Double
-'D'           Literal.String.Double
-'E'           Literal.String.Double
-'A'           Literal.String.Double
-'D'           Literal.String.Double
-'B'           Literal.String.Double
-'E'           Literal.String.Double
-'E'           Literal.String.Double
-'F'           Literal.String.Double
-'"'           Literal.String
-' '           Text
-'0'           Text
-'x'           Text
-'d'           Text
-'e'           Text
-'a'           Text
-'d'           Text
-'b'           Text
-'e'           Text
-'e'           Text
-'f'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'WriteRegDword' Keyword
-' '           Text
+' '           Text.Whitespace
 'HKLM'        Name.Constant
-' '           Text
-'S'           Text
-'O'           Text
-'F'           Text
-'T'           Text
-'W'           Text
-'A'           Text
-'R'           Text
-'E'           Text
+' '           Text.Whitespace
+'SOFTWARE'    Text
 '\\'          Punctuation
-'N'           Text
-'S'           Text
-'I'           Text
-'S'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
+'NSISTest'    Text
 '\\'          Punctuation
-'B'           Text
-'i'           Text
-'g'           Text
-'N'           Text
-'S'           Text
-'I'           Text
-'S'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-' '           Text
+'BigNSISTest' Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'D'           Literal.String.Double
-'w'           Literal.String.Double
-'o'           Literal.String.Double
-'r'           Literal.String.Double
-'d'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'_'           Literal.String.Double
-'1'           Literal.String.Double
-'2'           Literal.String.Double
-'3'           Literal.String.Double
-'4'           Literal.String.Double
-'5'           Literal.String.Double
-'6'           Literal.String.Double
-'"'           Literal.String
-' '           Text
-'1'           Text
-'2'           Text
-'3'           Text
-'4'           Text
-'5'           Text
-'6'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'DwordTest_0xDEADBEEF' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'0xdeadbeef'  Text
+'\n  '        Text.Whitespace
 'WriteRegDword' Keyword
-' '           Text
+' '           Text.Whitespace
 'HKLM'        Name.Constant
-' '           Text
-'S'           Text
-'O'           Text
-'F'           Text
-'T'           Text
-'W'           Text
-'A'           Text
-'R'           Text
-'E'           Text
+' '           Text.Whitespace
+'SOFTWARE'    Text
 '\\'          Punctuation
-'N'           Text
-'S'           Text
-'I'           Text
-'S'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
+'NSISTest'    Text
 '\\'          Punctuation
-'B'           Text
-'i'           Text
-'g'           Text
-'N'           Text
-'S'           Text
-'I'           Text
-'S'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-' '           Text
+'BigNSISTest' Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'D'           Literal.String.Double
-'w'           Literal.String.Double
-'o'           Literal.String.Double
-'r'           Literal.String.Double
-'d'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'_'           Literal.String.Double
-'0'           Literal.String.Double
-'1'           Literal.String.Double
-'2'           Literal.String.Double
-'3'           Literal.String.Double
-'"'           Literal.String
-' '           Text
-'0'           Text
-'1'           Text
-'2'           Text
-'3'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'DwordTest_123456' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'123456'      Text
+'\n  '        Text.Whitespace
+'WriteRegDword' Keyword
+' '           Text.Whitespace
+'HKLM'        Name.Constant
+' '           Text.Whitespace
+'SOFTWARE'    Text
+'\\'          Punctuation
+'NSISTest'    Text
+'\\'          Punctuation
+'BigNSISTest' Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'DwordTest_0123' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'0123'        Text
+'\n  '        Text.Whitespace
 'WriteRegBin' Keyword
-' '           Text
+' '           Text.Whitespace
 'HKLM'        Name.Constant
-' '           Text
-'S'           Text
-'O'           Text
-'F'           Text
-'T'           Text
-'W'           Text
-'A'           Text
-'R'           Text
-'E'           Text
+' '           Text.Whitespace
+'SOFTWARE'    Text
 '\\'          Punctuation
-'N'           Text
-'S'           Text
-'I'           Text
-'S'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
+'NSISTest'    Text
 '\\'          Punctuation
-'B'           Text
-'i'           Text
-'g'           Text
-'N'           Text
-'S'           Text
-'I'           Text
-'S'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-' '           Text
+'BigNSISTest' Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'_'           Literal.String.Double
-'d'           Literal.String.Double
-'e'           Literal.String.Double
-'a'           Literal.String.Double
-'d'           Literal.String.Double
-'b'           Literal.String.Double
-'e'           Literal.String.Double
-'e'           Literal.String.Double
-'f'           Literal.String.Double
-'0'           Literal.String.Double
-'1'           Literal.String.Double
-'f'           Literal.String.Double
-'0'           Literal.String.Double
-'0'           Literal.String.Double
-'d'           Literal.String.Double
-'b'           Literal.String.Double
-'e'           Literal.String.Double
-'e'           Literal.String.Double
-'f'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'BinTest_deadbeef01f00dbeef' Literal.String.Double
 '"'           Literal.String.Double
-'D'           Literal.String.Double
-'E'           Literal.String.Double
-'A'           Literal.String.Double
-'D'           Literal.String.Double
-'B'           Literal.String.Double
-'E'           Literal.String.Double
-'E'           Literal.String.Double
-'F'           Literal.String.Double
-'0'           Literal.String.Double
-'1'           Literal.String.Double
-'F'           Literal.String.Double
-'0'           Literal.String.Double
-'0'           Literal.String.Double
-'D'           Literal.String.Double
-'B'           Literal.String.Double
-'E'           Literal.String.Double
-'E'           Literal.String.Double
-'F'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'DEADBEEF01F00DBEEF' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'StrCpy'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$8'          Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$SYSDIR'     Name.Builtin
-'\\'          Literal.String.Double
-'I'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'\\IniTest'   Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'WriteINIStr' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
-' '           Text
+'\\test.ini'  Literal.String.Double
 '"'           Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'S'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'  '          Text.Whitespace
 '"'           Literal.String.Double
-'V'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'u'           Literal.String.Double
-'e'           Literal.String.Double
-'1'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'MySection'   Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Value1'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '$8'          Name.Builtin.Pseudo
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'WriteINIStr' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
-' '           Text
+'\\test.ini'  Literal.String.Double
 '"'           Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'S'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'I'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'  '          Text.Whitespace
 '"'           Literal.String.Double
-'V'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'u'           Literal.String.Double
-'e'           Literal.String.Double
-'1'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'MySectionIni' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Value1'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '$8'          Name.Builtin.Pseudo
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'WriteINIStr' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
-' '           Text
+'\\test.ini'  Literal.String.Double
 '"'           Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'S'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'I'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'  '          Text.Whitespace
 '"'           Literal.String.Double
-'V'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'u'           Literal.String.Double
-'e'           Literal.String.Double
-'2'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'MySectionIni' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Value2'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '$8'          Name.Builtin.Pseudo
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'WriteINIStr' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
-' '           Text
+'\\test.ini'  Literal.String.Double
 '"'           Literal.String.Double
-'I'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'O'           Literal.String.Double
-'n'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'  '          Text.Whitespace
 '"'           Literal.String.Double
-'V'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'u'           Literal.String.Double
-'e'           Literal.String.Double
-'1'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'IniOn'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Value1'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '$8'          Name.Builtin.Pseudo
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 'Call'        Keyword
-' '           Text
-'M'           Text
-'y'           Text
-'F'           Text
-'u'           Text
-'n'           Text
-'c'           Text
-'t'           Text
-'i'           Text
-'o'           Text
-'n'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'MyFunctionTest' Text
+'\n\n  '      Text.Whitespace
 'DeleteINIStr' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\test.ini'  Literal.String.Double
 '"'           Literal.String.Double
-'I'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'O'           Literal.String.Double
-'n'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'V'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'u'           Literal.String.Double
-'e'           Literal.String.Double
-'1'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'IniOn'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Value1'      Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'DeleteINISec' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\test.ini'  Literal.String.Double
 '"'           Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'S'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'I'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'MySectionIni' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
 'ReadINIStr'  Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\test.ini'  Literal.String.Double
 '"'           Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'S'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'I'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'V'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'u'           Literal.String.Double
-'e'           Literal.String.Double
-'1'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'MySectionIni' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Value1'      Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'StrCmp'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'"'           Literal.String
-' '           Text
-'I'           Text
-'N'           Text
-'I'           Text
-'D'           Text
-'e'           Text
-'l'           Text
-'S'           Text
-'u'           Text
-'c'           Text
-'c'           Text
-'e'           Text
-'s'           Text
-'s'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'INIDelSuccess' Text
+'\n    '      Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_OK'       Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'D'           Literal.String.Double
-'e'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'I'           Literal.String.Double
-'N'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-' '           Literal.String.Double
-'f'           Literal.String.Double
-'a'           Literal.String.Double
-'i'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'d'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'DeleteINISec failed' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'INIDelSuccess' Name.Label
 ':'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 'ClearErrors' Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'ReadRegStr'  Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 'HKCR'        Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'s'           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'w'           Literal.String.Double
-'a'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'\\'          Literal.String.Double
-'m'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'s'           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-' '           Text
-'x'           Text
-'y'           Text
-'z'           Text
-'_'           Text
-'c'           Text
-'c'           Text
-'_'           Text
-'d'           Text
-'o'           Text
-'e'           Text
-'s'           Text
-'_'           Text
-'n'           Text
-'o'           Text
-'t'           Text
-'_'           Text
-'e'           Text
-'x'           Text
-'i'           Text
-'s'           Text
-'t'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'software\\microsoft' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'xyz_cc_does_not_exist' Text
+'\n  '        Text.Whitespace
 'IfErrors'    Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Text
-' '           Text
-'N'           Text
-'o'           Text
-'E'           Text
-'r'           Text
-'r'           Text
-'o'           Text
-'r'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'NoError'     Text
+'\n    '      Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_OK'       Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'c'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'d'           Literal.String.Double
-' '           Literal.String.Double
-'n'           Literal.String.Double
-'o'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'a'           Literal.String.Double
-'d'           Literal.String.Double
-' '           Literal.String.Double
-'f'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'m'           Literal.String.Double
-' '           Literal.String.Double
-'H'           Literal.String.Double
-'K'           Literal.String.Double
-'C'           Literal.String.Double
-'R'           Literal.String.Double
-'\\'          Literal.String.Double
-'s'           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'w'           Literal.String.Double
-'a'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'\\'          Literal.String.Double
-'m'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'s'           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'\\'          Literal.String.Double
-'x'           Literal.String.Double
-'y'           Literal.String.Double
-'z'           Literal.String.Double
-'_'           Literal.String.Double
-'c'           Literal.String.Double
-'c'           Literal.String.Double
-'_'           Literal.String.Double
-'d'           Literal.String.Double
-'o'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'_'           Literal.String.Double
-'n'           Literal.String.Double
-'o'           Literal.String.Double
-'t'           Literal.String.Double
-'_'           Literal.String.Double
-'e'           Literal.String.Double
-'x'           Literal.String.Double
-'i'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'could not read from HKCR\\software\\microsoft\\xyz_cc_does_not_exist' Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
 'Goto'        Keyword
-' '           Text
-'E'           Text
-'r'           Text
-'r'           Text
-'o'           Text
-'r'           Text
-'Y'           Text
-'a'           Text
-'y'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'ErrorYay'    Text
+'\n  '        Text.Whitespace
 'NoError'     Name.Label
 ':'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_OK'       Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'a'           Literal.String.Double
-'d'           Literal.String.Double
-' '           Literal.String.Double
-"'"           Literal.String.Double
-'$1'          Name.Builtin.Pseudo
-"'"           Literal.String.Double
-' '           Literal.String.Double
-'f'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'m'           Literal.String.Double
-' '           Literal.String.Double
-'H'           Literal.String.Double
-'K'           Literal.String.Double
-'C'           Literal.String.Double
-'R'           Literal.String.Double
-'\\'          Literal.String.Double
-'s'           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'w'           Literal.String.Double
-'a'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'\\'          Literal.String.Double
-'m'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'s'           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'\\'          Literal.String.Double
-'x'           Literal.String.Double
-'y'           Literal.String.Double
-'z'           Literal.String.Double
-'_'           Literal.String.Double
-'c'           Literal.String.Double
-'c'           Literal.String.Double
-'_'           Literal.String.Double
-'d'           Literal.String.Double
-'o'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'_'           Literal.String.Double
-'n'           Literal.String.Double
-'o'           Literal.String.Double
-'t'           Literal.String.Double
-'_'           Literal.String.Double
-'e'           Literal.String.Double
-'x'           Literal.String.Double
-'i'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+"read '$1' from HKCR\\software\\microsoft\\xyz_cc_does_not_exist" Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'ErrorYay'    Name.Label
 ':'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-'\n'          Text
+'\n  \n'      Text.Whitespace
 
 'SectionEnd'  Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'Section'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'C'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'a'           Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'S'           Literal.String.Double
-'h'           Literal.String.Double
-'o'           Literal.String.Double
-'r'           Literal.String.Double
-'t'           Literal.String.Double
-'C'           Literal.String.Double
-'u'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'Test CreateShortCut' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
 'SectionIn'   Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Text
-' '           Text
+' '           Text.Whitespace
 '2'           Text
-' '           Text
+' '           Text.Whitespace
 '3'           Text
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 'Call'        Keyword
-' '           Text
-'C'           Text
-'S'           Text
-'C'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-'\n'          Text
-
-'\n'          Text
+' '           Text.Whitespace
+'CSCTest'     Text
+'\n\n'        Text.Whitespace
 
 'SectionEnd'  Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'SectionGroup' Keyword
-' '           Text
-'G'           Text
-'r'           Text
-'o'           Text
-'u'           Text
-'p'           Text
-'2'           Text
-'\n'          Text
-
-'\n'          Text
+' '           Text.Whitespace
+'Group2'      Text
+'\n\n'        Text.Whitespace
 
 'Section'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'B'           Literal.String.Double
-'r'           Literal.String.Double
-'a'           Literal.String.Double
-'n'           Literal.String.Double
-'c'           Literal.String.Double
-'h'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'g'           Literal.String.Double
-'"'           Literal.String
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'Test Branching' Literal.String.Double
+'"'           Literal.String.Double
+' \n  \n  '   Text.Whitespace
 'BeginTestSection' Name.Label
 ':'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'SectionIn'   Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Text
-' '           Text
+' '           Text.Whitespace
 '2'           Text
-' '           Text
+' '           Text.Whitespace
 '3'           Text
-'\n'          Text
-
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n \n  '     Text.Whitespace
 'SetOutPath'  Keyword
-' '           Text
+' '           Text.Whitespace
 '$INSTDIR'    Name.Variable.Global
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 'IfFileExists' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'L'           Literal.String.Double
-'o'           Literal.String.Double
-'g'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'L'           Literal.String.Double
-'i'           Literal.String.Double
-'b'           Literal.String.Double
-'.'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\LogicLib.nsi' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '0'           Text
-' '           Text
-'B'           Text
-'r'           Text
-'a'           Text
-'n'           Text
-'c'           Text
-'h'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-'6'           Text
-'9'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'BranchTest69' Text
+'\n    \n    ' Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_YESNO'    Name.Constant
 '|'           Operator
 'MB_ICONQUESTION' Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'W'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'d'           Literal.String.Double
-' '           Literal.String.Double
-'y'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-' '           Literal.String.Double
-'l'           Literal.String.Double
-'i'           Literal.String.Double
-'k'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'o'           Literal.String.Double
-'v'           Literal.String.Double
-'e'           Literal.String.Double
-'r'           Literal.String.Double
-'w'           Literal.String.Double
-'r'           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'L'           Literal.String.Double
-'o'           Literal.String.Double
-'g'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'L'           Literal.String.Double
-'i'           Literal.String.Double
-'b'           Literal.String.Double
-'.'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'?'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'Would you like to overwrite $INSTDIR\\LogicLib.nsi?' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 'IDNO'        Name.Constant
-' '           Text
-'N'           Text
-'o'           Text
-'O'           Text
-'v'           Text
-'e'           Text
-'r'           Text
-'w'           Text
-'r'           Text
-'i'           Text
-'t'           Text
-'e'           Text
-' '           Text
+' '           Text.Whitespace
+'NoOverwrite' Text
+' '           Text.Whitespace
 "; skipped if file doesn't exist\n" Comment
 
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'BranchTest69' Name.Label
 ':'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n  \n    '  Text.Whitespace
 'SetOverwrite' Keyword
-' '           Text
+' '           Text.Whitespace
 'ifnewer'     Name.Constant
-' '           Text
+' '           Text.Whitespace
 '; NOT AN INSTRUCTION, NOT COUNTED IN SKIPPINGS\n' Comment
 
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'NoOverwrite' Name.Label
 ':'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 'File'        Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'L'           Literal.String.Double
-'o'           Literal.String.Double
-'g'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'L'           Literal.String.Double
-'i'           Literal.String.Double
-'b'           Literal.String.Double
-'.'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'LogicLib.nsi' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '; skipped if answered no\n' Comment
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'SetOverwrite' Keyword
-' '           Text
+' '           Text.Whitespace
 'try'         Name.Constant
-' '           Text
+' '           Text.Whitespace
 '; NOT AN INSTRUCTION, NOT COUNTED IN SKIPPINGS\n' Comment
 
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_YESNO'    Name.Constant
 '|'           Operator
 'MB_ICONQUESTION' Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'W'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'d'           Literal.String.Double
-' '           Literal.String.Double
-'y'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-' '           Literal.String.Double
-'l'           Literal.String.Double
-'i'           Literal.String.Double
-'k'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'s'           Literal.String.Double
-'k'           Literal.String.Double
-'i'           Literal.String.Double
-'p'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'i'           Literal.String.Double
-'s'           Literal.String.Double
-' '           Literal.String.Double
-'s'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'?'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'Would you like to skip the rest of this section?' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 'IDYES'       Name.Constant
-' '           Text
-'E'           Text
-'n'           Text
-'d'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-'B'           Text
-'r'           Text
-'a'           Text
-'n'           Text
-'c'           Text
-'h'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'EndTestBranch' Text
+'\n  '        Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_YESNO'    Name.Constant
 '|'           Operator
 'MB_ICONQUESTION' Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'W'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'d'           Literal.String.Double
-' '           Literal.String.Double
-'y'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-' '           Literal.String.Double
-'l'           Literal.String.Double
-'i'           Literal.String.Double
-'k'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'g'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'b'           Literal.String.Double
-'a'           Literal.String.Double
-'c'           Literal.String.Double
-'k'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'b'           Literal.String.Double
-'e'           Literal.String.Double
-'g'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'g'           Literal.String.Double
-' '           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'i'           Literal.String.Double
-'s'           Literal.String.Double
-' '           Literal.String.Double
-'s'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'?'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'Would you like to go back to the beginning of this section?' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 'IDYES'       Name.Constant
-' '           Text
-'B'           Text
-'e'           Text
-'g'           Text
-'i'           Text
-'n'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-'S'           Text
-'e'           Text
-'c'           Text
-'t'           Text
-'i'           Text
-'o'           Text
-'n'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'BeginTestSection' Text
+'\n  '        Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_YESNO'    Name.Constant
 '|'           Operator
 'MB_ICONQUESTION' Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'W'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'d'           Literal.String.Double
-' '           Literal.String.Double
-'y'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-' '           Literal.String.Double
-'l'           Literal.String.Double
-'i'           Literal.String.Double
-'k'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'h'           Literal.String.Double
-'i'           Literal.String.Double
-'d'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'r'           Literal.String.Double
-' '           Literal.String.Double
-'a'           Literal.String.Double
-'n'           Literal.String.Double
-'d'           Literal.String.Double
-' '           Literal.String.Double
-'w'           Literal.String.Double
-'a'           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'f'           Literal.String.Double
-'i'           Literal.String.Double
-'v'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'s'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'d'           Literal.String.Double
-'s'           Literal.String.Double
-'?'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'Would you like to hide the installer and wait five seconds?' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 'IDNO'        Name.Constant
-' '           Text
-'N'           Text
-'o'           Text
-'H'           Text
-'i'           Text
-'d'           Text
-'e'           Text
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'NoHide'      Text
+'\n\n    '    Text.Whitespace
 'HideWindow'  Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'Sleep'       Keyword
-' '           Text
-'5'           Text
-'0'           Text
-'0'           Text
-'0'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'5000'        Text
+'\n    '      Text.Whitespace
 'BringToFront' Keyword
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 'NoHide'      Name.Label
 ':'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_YESNO'    Name.Constant
 '|'           Operator
 'MB_ICONQUESTION' Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'W'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'d'           Literal.String.Double
-' '           Literal.String.Double
-'y'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-' '           Literal.String.Double
-'l'           Literal.String.Double
-'i'           Literal.String.Double
-'k'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'c'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'f'           Literal.String.Double
-'u'           Literal.String.Double
-'n'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-' '           Literal.String.Double
-'5'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'m'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'?'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'Would you like to call the function 5 times?' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 'IDNO'        Name.Constant
-' '           Text
-'N'           Text
-'o'           Text
-'R'           Text
-'e'           Text
-'c'           Text
-'u'           Text
-'r'           Text
-'s'           Text
-'e'           Text
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'NoRecurse'   Text
+'\n\n    '    Text.Whitespace
 'StrCpy'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'x'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
 'LoopTest'    Name.Label
 ':'           Punctuation
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' \n      \n    ' Text.Whitespace
 'Call'        Keyword
-' '           Text
-'m'           Text
-'y'           Text
-'f'           Text
-'u'           Text
-'n'           Text
-'c'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'myfunc'      Text
+'\n    '      Text.Whitespace
 'StrCpy'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'x'           Literal.String.Double
-'$1'          Name.Builtin.Pseudo
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'x$1'         Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
 'StrCmp'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'x'           Literal.String.Double
-'x'           Literal.String.Double
-'x'           Literal.String.Double
-'x'           Literal.String.Double
-'x'           Literal.String.Double
-'x'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'xxxxxx'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '0'           Text
-' '           Text
-'L'           Text
-'o'           Text
-'o'           Text
-'p'           Text
-'T'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'LoopTest'    Text
+'\n      \n  ' Text.Whitespace
 'NoRecurse'   Name.Label
 ':'           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 'EndTestBranch' Name.Label
 ':'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'SectionEnd'  Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'SectionGroupEnd' Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'Section'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'C'           Literal.String.Double
-'o'           Literal.String.Double
-'p'           Literal.String.Double
-'y'           Literal.String.Double
-'F'           Literal.String.Double
-'i'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'Test CopyFiles' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
 'SectionIn'   Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Text
-' '           Text
+' '           Text.Whitespace
 '2'           Text
-' '           Text
+' '           Text.Whitespace
 '3'           Text
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 'SetOutPath'  Keyword
-' '           Text
+' '           Text.Whitespace
 '$INSTDIR'    Name.Variable.Global
 '\\'          Punctuation
-'c'           Text
-'p'           Text
-'d'           Text
-'e'           Text
-'s'           Text
-'t'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'cpdest'      Text
+'\n  '        Text.Whitespace
 'CopyFiles'   Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$WINDIR'     Name.Builtin
-'\\'          Literal.String.Double
-'*'           Literal.String.Double
-'.'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\*.ini'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'c'           Literal.String.Double
-'p'           Literal.String.Double
-'d'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\cpdest'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '0'           Text
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'SectionEnd'  Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'SectionGroupEnd' Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'Section'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'E'           Literal.String.Double
-'x'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-' '           Literal.String.Double
-'f'           Literal.String.Double
-'u'           Literal.String.Double
-'n'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'"'           Literal.String
-' '           Text
-'T'           Text
-'E'           Text
-'S'           Text
-'T'           Text
-'I'           Text
-'D'           Text
-'X'           Text
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'Test Exec functions' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'TESTIDX'     Text
+'\n\n  '      Text.Whitespace
 'SectionIn'   Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Text
-' '           Text
+' '           Text.Whitespace
 '2'           Text
-' '           Text
+' '           Text.Whitespace
 '3'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  \n  '    Text.Whitespace
 'SearchPath'  Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Name.Builtin.Pseudo
-' '           Text
-'n'           Text
-'o'           Text
-'t'           Text
-'e'           Text
-'p'           Text
-'a'           Text
-'d'           Text
-'.'           Text
-'e'           Text
-'x'           Text
-'e'           Text
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'notepad.exe' Text
+'\n\n  '      Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_OK'       Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'n'           Literal.String.Double
-'o'           Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'p'           Literal.String.Double
-'a'           Literal.String.Double
-'d'           Literal.String.Double
-'.'           Literal.String.Double
-'e'           Literal.String.Double
-'x'           Literal.String.Double
-'e'           Literal.String.Double
-'='           Literal.String.Double
-'$1'          Name.Builtin.Pseudo
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'notepad.exe=$1' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'Exec'        Keyword
-' '           Text
+' '           Text.Whitespace
 '\'"$1"\''    Literal.String.Single
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'ExecShell'   Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'o'           Literal.String.Double
-'p'           Literal.String.Double
-'e'           Literal.String.Double
-'n'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'open'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '\'"$INSTDIR"\'' Literal.String.Single
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'Sleep'       Keyword
-' '           Text
-'5'           Text
-'0'           Text
-'0'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'500'         Text
+'\n  '        Text.Whitespace
 'BringToFront' Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'SectionEnd'  Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'Section'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'A'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'v'           Literal.String.Double
-'e'           Literal.String.Double
-'X'           Literal.String.Double
-' '           Literal.String.Double
-'c'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'t'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'l'           Literal.String.Double
-' '           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'g'           Literal.String.Double
-'i'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'r'           Literal.String.Double
-'a'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'Test ActiveX control registration' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
 'SectionIn'   Keyword
-' '           Text
+' '           Text.Whitespace
 '2'           Text
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 'UnRegDLL'    Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$SYSDIR'     Name.Builtin
-'\\'          Literal.String.Double
-'s'           Literal.String.Double
-'p'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'3'           Literal.String.Double
-'2'           Literal.String.Double
-'.'           Literal.String.Double
-'o'           Literal.String.Double
-'c'           Literal.String.Double
-'x'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'\\spin32.ocx' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'Sleep'       Keyword
-' '           Text
-'1'           Text
-'0'           Text
-'0'           Text
-'0'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'1000'        Text
+'\n  '        Text.Whitespace
 'RegDLL'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$SYSDIR'     Name.Builtin
-'\\'          Literal.String.Double
-'s'           Literal.String.Double
-'p'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'3'           Literal.String.Double
-'2'           Literal.String.Double
-'.'           Literal.String.Double
-'o'           Literal.String.Double
-'c'           Literal.String.Double
-'x'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'\\spin32.ocx' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'Sleep'       Keyword
-' '           Text
-'1'           Text
-'0'           Text
-'0'           Text
-'0'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-'\n'          Text
+' '           Text.Whitespace
+'1000'        Text
+'\n  \n'      Text.Whitespace
 
 'SectionEnd'  Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Function'    Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'C'           Literal.String.Double
-'S'           Literal.String.Double
-'C'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'CSCTest'     Literal.String.Double
+'"'           Literal.String.Double
+'\n  \n  '    Text.Whitespace
 'CreateDirectory' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$SMPROGRAMS' Name.Builtin
-'\\'          Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-' '           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-' '           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'\\Big NSIS Test' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'SetOutPath'  Keyword
-' '           Text
+' '           Text.Whitespace
 '$INSTDIR'    Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 '; for working directory\n' Comment
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'CreateShortCut' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$SMPROGRAMS' Name.Builtin
-'\\'          Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-' '           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-' '           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'\\'          Literal.String.Double
-'U'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-' '           Literal.String.Double
-'B'           Literal.String.Double
-'I'           Literal.String.Double
-'G'           Literal.String.Double
-' '           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-' '           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'l'           Literal.String.Double
-'n'           Literal.String.Double
-'k'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\Big NSIS Test\\Uninstall BIG NSIS Test.lnk' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'b'           Literal.String.Double
-'t'           Literal.String.Double
-'-'           Literal.String.Double
-'u'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'e'           Literal.String.Double
-'x'           Literal.String.Double
-'e'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\bt-uninst.exe' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '; use defaults for parameters, icon, etc.\n' Comment
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 "; this one will use notepad's icon, start it minimized, and give it a hotkey (of Ctrl+Shift+Q)\n" Comment
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'CreateShortCut' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$SMPROGRAMS' Name.Builtin
-'\\'          Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-' '           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-' '           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'\\'          Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'n'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'.'           Literal.String.Double
-'l'           Literal.String.Double
-'n'           Literal.String.Double
-'k'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\Big NSIS Test\\silent.nsi.lnk' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'n'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\silent.nsi' Literal.String.Double
 '"'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$WINDIR'     Name.Builtin
-'\\'          Literal.String.Double
-'n'           Literal.String.Double
-'o'           Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'p'           Literal.String.Double
-'a'           Literal.String.Double
-'d'           Literal.String.Double
-'.'           Literal.String.Double
-'e'           Literal.String.Double
-'x'           Literal.String.Double
-'e'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\notepad.exe' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '0'           Text
-' '           Text
+' '           Text.Whitespace
 'SW_SHOWMINIMIZED' Name.Constant
-' '           Text
-'C'           Text
-'O'           Text
-'N'           Text
-'T'           Text
-'R'           Text
-'O'           Text
-'L'           Text
+' '           Text.Whitespace
+'CONTROL'     Text
 '|'           Operator
-'S'           Text
-'H'           Text
-'I'           Text
-'F'           Text
-'T'           Text
+'SHIFT'       Text
 '|'           Operator
 'Q'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'CreateShortCut' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$SMPROGRAMS' Name.Builtin
-'\\'          Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-' '           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-' '           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'\\'          Literal.String.Double
-'T'           Literal.String.Double
-'h'           Literal.String.Double
-'e'           Literal.String.Double
-'D'           Literal.String.Double
-'i'           Literal.String.Double
-'r'           Literal.String.Double
-'.'           Literal.String.Double
-'l'           Literal.String.Double
-'n'           Literal.String.Double
-'k'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\Big NSIS Test\\TheDir.lnk' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
 '\\'          Literal.String.Double
-'"'           Literal.String
-' '           Text
 '"'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '0'           Text
-' '           Text
+' '           Text.Whitespace
 'SW_SHOWMAXIMIZED' Name.Constant
-' '           Text
-'C'           Text
-'O'           Text
-'N'           Text
-'T'           Text
-'R'           Text
-'O'           Text
-'L'           Text
+' '           Text.Whitespace
+'CONTROL'     Text
 '|'           Operator
-'S'           Text
-'H'           Text
-'I'           Text
-'F'           Text
-'T'           Text
+'SHIFT'       Text
 '|'           Operator
 'Z'           Text
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'FunctionEnd' Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'Function'    Keyword
-' '           Text
-'myfunc'      Name.Function
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'myfunc'      Text
+'\n\n  '      Text.Whitespace
 'StrCpy'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$2'          Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'V'           Literal.String.Double
-'a'           Literal.String.Double
-'r'           Literal.String.Double
-'='           Literal.String.Double
-'$1'          Name.Builtin.Pseudo
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'MyTestVar=$1' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_OK'       Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'m'           Literal.String.Double
-'y'           Literal.String.Double
-'f'           Literal.String.Double
-'u'           Literal.String.Double
-'n'           Literal.String.Double
-'c'           Literal.String.Double
-':'           Literal.String.Double
-' '           Literal.String.Double
-'$2'          Name.Builtin.Pseudo
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
+'myfunc: $2'  Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
 
 'FunctionEnd' Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'Function'    Keyword
-' '           Text
-'MyFunctionTest' Name.Function
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'MyFunctionTest' Text
+'\n\n  '      Text.Whitespace
 'ReadINIStr'  Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\test.ini'  Literal.String.Double
 '"'           Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'S'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'I'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'V'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'u'           Literal.String.Double
-'e'           Literal.String.Double
-'1'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'MySectionIni' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Value1'      Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'StrCmp'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$1'          Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '$8'          Name.Builtin.Pseudo
-' '           Text
-'N'           Text
-'o'           Text
-'F'           Text
-'a'           Text
-'i'           Text
-'l'           Text
-'e'           Text
-'d'           Text
-'M'           Text
-'s'           Text
-'g'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'NoFailedMsg' Text
+'\n    '      Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_OK'       Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'W'           Literal.String.Double
-'r'           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'I'           Literal.String.Double
-'N'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-'t'           Literal.String.Double
-'r'           Literal.String.Double
-' '           Literal.String.Double
-'f'           Literal.String.Double
-'a'           Literal.String.Double
-'i'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'d'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'WriteINIStr failed' Literal.String.Double
+'"'           Literal.String.Double
+'\n  \n  '    Text.Whitespace
 'NoFailedMsg' Name.Label
 ':'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'FunctionEnd' Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'Function'    Keyword
-' '           Text
-'.onSelChange' Name.Function
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'.onSelChange' Text
+'\n\n  '      Text.Whitespace
 'SectionGetText' Keyword
-' '           Text
+' '           Text.Whitespace
 '${TESTIDX}'  Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '$0'          Name.Builtin.Pseudo
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'StrCmp'      Keyword
-' '           Text
+' '           Text.Whitespace
 '$0'          Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'"'           Literal.String.Double
+' '           Text.Whitespace
 'e'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'SectionSetText' Keyword
-' '           Text
+' '           Text.Whitespace
 '${TESTIDX}'  Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'Goto'        Keyword
-' '           Text
-'e'           Text
-'2'           Text
-'\n'          Text
+' '           Text.Whitespace
+'e2'          Text
+'\n'          Text.Whitespace
 
 'e'           Name.Label
 ':'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'SectionSetText' Keyword
-' '           Text
+' '           Text.Whitespace
 '${TESTIDX}'  Keyword.Pseudo
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'x'           Literal.String.Double
-'t'           Literal.String.Double
-'I'           Literal.String.Double
-'n'           Literal.String.Double
-'S'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
+'TextInSection' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
 
 'e2'          Name.Label
 ':'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'FunctionEnd' Keyword
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 ';--------------------------------\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; Uninstaller\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'UninstallText' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'T'           Literal.String.Double
-'h'           Literal.String.Double
-'i'           Literal.String.Double
-'s'           Literal.String.Double
-' '           Literal.String.Double
-'w'           Literal.String.Double
-'i'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-' '           Literal.String.Double
-'u'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-' '           Literal.String.Double
-'e'           Literal.String.Double
-'x'           Literal.String.Double
-'a'           Literal.String.Double
-'m'           Literal.String.Double
-'p'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'2'           Literal.String.Double
-'.'           Literal.String.Double
-' '           Literal.String.Double
-'H'           Literal.String.Double
-'i'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'n'           Literal.String.Double
-'e'           Literal.String.Double
-'x'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'c'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'t'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'u'           Literal.String.Double
-'e'           Literal.String.Double
-'.'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
+'This will uninstall example2. Hit next to continue.' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
 
 'UninstallIcon' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '${NSISDIR}'  Name.Builtin
-'\\'          Literal.String.Double
-'C'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'t'           Literal.String.Double
-'r'           Literal.String.Double
-'i'           Literal.String.Double
-'b'           Literal.String.Double
-'\\'          Literal.String.Double
-'G'           Literal.String.Double
-'r'           Literal.String.Double
-'a'           Literal.String.Double
-'p'           Literal.String.Double
-'h'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'s'           Literal.String.Double
-'\\'          Literal.String.Double
-'I'           Literal.String.Double
-'c'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'\\'          Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'s'           Literal.String.Double
-'1'           Literal.String.Double
-'-'           Literal.String.Double
-'u'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-'.'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'o'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
+'\\Contrib\\Graphics\\Icons\\nsis1-uninstall.ico' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
 
 'Section'     Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'U'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'Uninstall'   Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
 'DeleteRegKey' Keyword
-' '           Text
+' '           Text.Whitespace
 'HKLM'        Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'S'           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'w'           Literal.String.Double
-'a'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'\\'          Literal.String.Double
-'M'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'s'           Literal.String.Double
-'o'           Literal.String.Double
-'f'           Literal.String.Double
-'t'           Literal.String.Double
-'\\'          Literal.String.Double
-'W'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'d'           Literal.String.Double
-'o'           Literal.String.Double
-'w'           Literal.String.Double
-'s'           Literal.String.Double
-'\\'          Literal.String.Double
-'C'           Literal.String.Double
-'u'           Literal.String.Double
-'r'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'n'           Literal.String.Double
-'t'           Literal.String.Double
-'V'           Literal.String.Double
-'e'           Literal.String.Double
-'r'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'o'           Literal.String.Double
-'n'           Literal.String.Double
-'\\'          Literal.String.Double
-'U'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'a'           Literal.String.Double
-'l'           Literal.String.Double
-'l'           Literal.String.Double
-'\\'          Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\BigNSISTest' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'DeleteRegKey' Keyword
-' '           Text
+' '           Text.Whitespace
 'HKLM'        Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'S'           Literal.String.Double
-'O'           Literal.String.Double
-'F'           Literal.String.Double
-'T'           Literal.String.Double
-'W'           Literal.String.Double
-'A'           Literal.String.Double
-'R'           Literal.String.Double
-'E'           Literal.String.Double
-'\\'          Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'\\'          Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'SOFTWARE\\NSISTest\\BigNSISTest' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'Delete'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'l'           Literal.String.Double
-'e'           Literal.String.Double
-'n'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'\\silent.nsi' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'Delete'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'L'           Literal.String.Double
-'o'           Literal.String.Double
-'g'           Literal.String.Double
-'i'           Literal.String.Double
-'c'           Literal.String.Double
-'L'           Literal.String.Double
-'i'           Literal.String.Double
-'b'           Literal.String.Double
-'.'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'\\LogicLib.nsi' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'Delete'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'b'           Literal.String.Double
-'t'           Literal.String.Double
-'-'           Literal.String.Double
-'u'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'e'           Literal.String.Double
-'x'           Literal.String.Double
-'e'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'\\bt-uninst.exe' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'Delete'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'.'           Literal.String.Double
-'i'           Literal.String.Double
-'n'           Literal.String.Double
-'i'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'\\test.ini'  Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'Delete'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$SMPROGRAMS' Name.Builtin
-'\\'          Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'g'           Literal.String.Double
-' '           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-' '           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'\\'          Literal.String.Double
-'*'           Literal.String.Double
-'.'           Literal.String.Double
-'*'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'\\Big NSIS Test\\*.*' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'RMDir'       Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$SMPROGRAMS' Name.Builtin
-'\\'          Literal.String.Double
-'B'           Literal.String.Double
-'i'           Literal.String.Double
-'G'           Literal.String.Double
-' '           Literal.String.Double
-'N'           Literal.String.Double
-'S'           Literal.String.Double
-'I'           Literal.String.Double
-'S'           Literal.String.Double
-' '           Literal.String.Double
-'T'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'\\BiG NSIS Test' Literal.String.Double
+'"'           Literal.String.Double
+'\n  \n  '    Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_YESNO'    Name.Constant
 '|'           Operator
 'MB_ICONQUESTION' Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'W'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'d'           Literal.String.Double
-' '           Literal.String.Double
-'y'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-' '           Literal.String.Double
-'l'           Literal.String.Double
-'i'           Literal.String.Double
-'k'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'o'           Literal.String.Double
-' '           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'v'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'t'           Literal.String.Double
-'h'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'d'           Literal.String.Double
-'i'           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'o'           Literal.String.Double
-'r'           Literal.String.Double
-'y'           Literal.String.Double
-' '           Literal.String.Double
-'$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'c'           Literal.String.Double
-'p'           Literal.String.Double
-'d'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'?'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'Would you like to remove the directory $INSTDIR\\cpdest?' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 'IDNO'        Name.Constant
-' '           Text
-'N'           Text
-'o'           Text
-'D'           Text
-'e'           Text
-'l'           Text
-'e'           Text
-'t'           Text
-'e'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'NoDelete'    Text
+'\n    '      Text.Whitespace
 'Delete'      Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'c'           Literal.String.Double
-'p'           Literal.String.Double
-'d'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'\\'          Literal.String.Double
-'*'           Literal.String.Double
-'.'           Literal.String.Double
-'*'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\\cpdest\\*.*' Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
 'RMDir'       Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'c'           Literal.String.Double
-'p'           Literal.String.Double
-'d'           Literal.String.Double
-'e'           Literal.String.Double
-'s'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'\\cpdest'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '; skipped if no\n' Comment
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'NoDelete'    Name.Label
 ':'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  \n  '    Text.Whitespace
 'RMDir'       Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'P'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'j'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'F'           Literal.String.Double
-'a'           Literal.String.Double
-'m'           Literal.String.Double
-'i'           Literal.String.Double
-'l'           Literal.String.Double
-'y'           Literal.String.Double
-'\\'          Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'P'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'j'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'\\MyProjectFamily\\MyProject' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'RMDir'       Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'\\'          Literal.String.Double
-'M'           Literal.String.Double
-'y'           Literal.String.Double
-'P'           Literal.String.Double
-'r'           Literal.String.Double
-'o'           Literal.String.Double
-'j'           Literal.String.Double
-'e'           Literal.String.Double
-'c'           Literal.String.Double
-'t'           Literal.String.Double
-'F'           Literal.String.Double
-'a'           Literal.String.Double
-'m'           Literal.String.Double
-'i'           Literal.String.Double
-'l'           Literal.String.Double
-'y'           Literal.String.Double
-'"'           Literal.String
-'\n'          Text
-
-' '           Text
-' '           Text
+'\\MyProjectFamily' Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
 'RMDir'       Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'"'           Literal.String
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
 'IfFileExists' Keyword
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '$INSTDIR'    Name.Variable.Global
-'"'           Literal.String
-' '           Text
+'"'           Literal.String.Double
+' '           Text.Whitespace
 '0'           Text
-' '           Text
-'N'           Text
-'o'           Text
-'E'           Text
-'r'           Text
-'r'           Text
-'o'           Text
-'r'           Text
-'M'           Text
-'s'           Text
-'g'           Text
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+' '           Text.Whitespace
+'NoErrorMsg'  Text
+'\n    '      Text.Whitespace
 'MessageBox'  Keyword
-' '           Text
+' '           Text.Whitespace
 'MB_OK'       Name.Constant
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
-'N'           Literal.String.Double
-'o'           Literal.String.Double
-'t'           Literal.String.Double
-'e'           Literal.String.Double
-':'           Literal.String.Double
-' '           Literal.String.Double
-'$INSTDIR'    Name.Variable.Global
-' '           Literal.String.Double
-'c'           Literal.String.Double
-'o'           Literal.String.Double
-'u'           Literal.String.Double
-'l'           Literal.String.Double
-'d'           Literal.String.Double
-' '           Literal.String.Double
-'n'           Literal.String.Double
-'o'           Literal.String.Double
-'t'           Literal.String.Double
-' '           Literal.String.Double
-'b'           Literal.String.Double
-'e'           Literal.String.Double
-' '           Literal.String.Double
-'r'           Literal.String.Double
-'e'           Literal.String.Double
-'m'           Literal.String.Double
-'o'           Literal.String.Double
-'v'           Literal.String.Double
-'e'           Literal.String.Double
-'d'           Literal.String.Double
-'!'           Literal.String.Double
-'"'           Literal.String
-' '           Text
+'Note: $INSTDIR could not be removed!' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
 'IDOK'        Name.Constant
-' '           Text
+' '           Text.Whitespace
 '0'           Text
-' '           Text
+' '           Text.Whitespace
 "; skipped if file doesn't exist\n" Comment
 
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 'NoErrorMsg'  Name.Label
 ':'           Punctuation
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'SectionEnd'  Keyword
-'\n'          Text
+'\n'          Text.Whitespace
