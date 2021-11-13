@@ -17,11 +17,24 @@ Version 2.11.0
 
 - Updated lexers:
 
+  * Bibtex: Distinguish between ``comment`` and ``commentary`` (#1899, #1806)
+  * C family: Support unicode identifiers (#1848)
+  * Debian control: Add missing fields (#1946)
+  * HTML, XML: Improve comment handling (#1896)
+  * Java: Add ``yield`` (#1941)
+  * RobotFramework: Improve empty brace handling (#1921, #1922)
   * Terraform: Support heredocs (#1909)
   * Terraform: Add the 'set' type
-  * Debian control: Add missing fields (#1946)
 
+- Added styles:
+
+  * Dracula (#1796)
+
+- There is new infrastructure in place to improve style accessibility. The default style has been updated to conform to WCAG recommendations. All styles are now checked for sufficient contrast by default to prevent regressions. (#1919, #1937, #1938, #1940)
 - Clean up unused imports (#1887)
+- Fix multiple lexers producing repeated single-character tokens
+- Fix multiple lexers marking whitespace as ``Text`` (#1905, #1914, #1911, #1923)
+- Remove duplicated assignments in the Paraiso style (#1934)
 
 
 Version 2.10.0
