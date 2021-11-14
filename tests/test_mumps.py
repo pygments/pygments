@@ -1776,3 +1776,14 @@ def testSetXY(lexer):
             (Number, '4'),
             (Text, '\n'),
             ]
+
+def testTCommit(lexer):
+    assert list(lexer.get_tokens(' tcommit:ready  quit')) == [
+            (Whitespace, ' '),
+            (Keyword, 'tcommit'),
+            (Punctuation, ':'),
+            (Name.Variable, 'ready'),
+            (Whitespace, '  '),
+            (Keyword, 'quit'),
+            (Text, '\n')
+            ]
