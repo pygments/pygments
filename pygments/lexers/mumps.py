@@ -617,11 +617,15 @@ class MumpsLexer(ExtendedRegexLexer):
             default(('#pop', 'setleft'))
             ],
         'setleft': [
+            include('leftrestricted'),
             include('leftexpr'),
             include('glvn')
             ],
         'l_setleft': [
             default(('list_comma', 'setleft'))
+            ],
+        'leftrestricted': [
+            (words(('$DEVICE', '$D', '$KEY', '$K', '$X', '$Y'), suffix=r'\b'), Name.Variable.Magic, '#pop')
             ],
         'leftexpr': [
             include('setpiece'),
