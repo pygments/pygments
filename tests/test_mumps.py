@@ -1738,7 +1738,7 @@ def testSetDevice(lexer):
             (Operator, '='),
             (String, '"1,Connection reset"'),
             (Punctuation, ','),
-            (Name.Variable.Magic, '$DEVICE'),
+            (Name.Variable.Magic, '$D'),
             (Operator, '='),
             (Number, '0'),
             (Text, '\n')
