@@ -2,7 +2,7 @@
 # Pygments documentation build configuration file
 #
 
-import sys, os
+import sys, os, itertools
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -13,6 +13,7 @@ import pygments
 import pygments.formatters
 import pygments.lexers
 import pygments.styles
+import tests.contrast.test_contrasts as test_contrasts
 
 # -- General configuration -----------------------------------------------------
 
@@ -231,17 +232,21 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
         with open('examples/example.py') as f:
             html = f.read()
         lexer = pygments.lexers.get_lexer_for_filename('example.py')
-        ctx['styles'] = [
-            dict(
-                name=style,
-                html=pygments.highlight(
-                    html,
-                    lexer,
-                    pygments.formatters.HtmlFormatter(noclasses=True, style=style),
-                ),
+        min_contrasts = test_contrasts.min_contrasts()
+        ctx['styles_aa'] = []
+        ctx['styles_sub_aa'] = []
+        for style in pygments.styles.get_all_styles():
+            aa = min_contrasts[style] >= test_contrasts.WCAG_AA_CONTRAST
+            ctx['styles_aa' if aa else 'styles_sub_aa'].append(
+                dict(
+                    name=style,
+                    html=pygments.highlight(
+                        html,
+                        lexer,
+                        pygments.formatters.HtmlFormatter(noclasses=True, style=style),
+                    ),
+                )
             )
-            for style in pygments.styles.get_all_styles()
-        ]
 
 
 def setup(app):
