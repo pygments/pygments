@@ -18,7 +18,7 @@ __all__ = ['MumpsLexer']
 class MumpsLexer(ExtendedRegexLexer):
     """
     For MUMPS source code.
-    
+
     Derived from `The Annotated M[UMPS] Standard <http://71.174.62.16/Demo/AnnoStd>`
     Section numbers below refer to the sections on that site, most often from the latest (1995) standard.
     """
@@ -624,6 +624,13 @@ class MumpsLexer(ExtendedRegexLexer):
             default(('list_comma', 'setleft'))
             ],
         'leftexpr': [
+            include('setpiece'),
+            include('setextract'),
+            ],
+        'setpiece': [
             (words(('$PIECE', '$P'), suffix=r'\b'), Name.Function.Magic, ('#pop', 'close_paren', 'l_expr', 'comma', 'glvn', 'open_paren')),
+            ],
+        'setextract': [
+            (words(('$EXTRACT', '$E'), suffix=r'\b'), Name.Function.Magic, ('#pop', 'close_paren', 'l_expr', 'comma', 'glvn', 'open_paren'))
             ],
         }
