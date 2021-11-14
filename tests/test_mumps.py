@@ -1698,3 +1698,34 @@ def testSetExtract(lexer):
             (String, '"abc"'),
             (Text, '\n')
             ]
+
+def testSetEVLong(lexer):
+    assert list(lexer.get_tokens(' set $ECODE=",U01,",$ETRAP="do handle^ERRORS"')) == [
+            (Whitespace, ' '),
+            (Keyword, 'set'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '$ECODE'),
+            (Operator, '='),
+            (String, '",U01,"'),
+            (Punctuation, ','),
+            (Name.Variable.Magic, '$ETRAP'),
+            (Operator, '='),
+            (String, '"do handle^ERRORS"'),
+            (Text, '\n')
+            ]
+
+def testSetEVShort(lexer):
+    assert list(lexer.get_tokens(' s $EC=",U02,",$ET="do handle^ERRORS"')) == [
+            (Whitespace, ' '),
+            (Keyword, 's'),
+            (Whitespace, ' '),
+            (Name.Variable.Magic, '$EC'),
+            (Operator, '='),
+            (String, '",U02,"'),
+            (Punctuation, ','),
+            (Name.Variable.Magic, '$ET'),
+            (Operator, '='),
+            (String, '"do handle^ERRORS"'),
+            (Text, '\n')
+            ]
+

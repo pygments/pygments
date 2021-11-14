@@ -626,11 +626,16 @@ class MumpsLexer(ExtendedRegexLexer):
         'leftexpr': [
             include('setpiece'),
             include('setextract'),
+            include('setev'),
             ],
         'setpiece': [
             (words(('$PIECE', '$P'), suffix=r'\b'), Name.Function.Magic, ('#pop', 'close_paren', 'l_expr', 'comma', 'glvn', 'open_paren')),
             ],
         'setextract': [
             (words(('$EXTRACT', '$E'), suffix=r'\b'), Name.Function.Magic, ('#pop', 'close_paren', 'l_expr', 'comma', 'glvn', 'open_paren'))
+            ],
+        'setev': [
+            (words(('$ECODE', '$EC'), suffix=r'\b'), Name.Variable.Magic, '#pop'),
+            (words(('$ETRAP', '$ET'), suffix=r'\b'), Name.Variable.Magic, '#pop'),
             ],
         }
