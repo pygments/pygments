@@ -52,13 +52,17 @@ def builtin_styles():
         yield (style_name, pygments.styles.get_style_by_name(style_name))
 
 
+def min_contrasts():
+    return {
+        name: min(x[0] for x in get_style_contrasts(style))
+        for name, style in builtin_styles()
+    }
+
+
 def update_json():
     with open(JSON_FILENAME, "w") as f:
         json.dump(
-            {
-                name: min(x[0] for x in get_style_contrasts(style))
-                for name, style in builtin_styles()
-            },
+            min_contrasts(),
             f,
             indent=2,
         )
