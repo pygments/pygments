@@ -15,8 +15,8 @@ jobs:
         python-version: 3.7
     - name: Checkout Pygments
       uses: actions/checkout@v1
-    - name: Install Sphinx
-      run: pip install Sphinx
+    - name: Install Sphinx & WCAG contrast ratio
+      run: pip install Sphinx wcag-contrast-ratio
     - name: Create Pyodide WASM package
       uses: ./.github/actions/pyodide-package
     - name: Sphinx build
