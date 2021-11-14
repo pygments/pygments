@@ -1781,7 +1781,7 @@ def testTCommit(lexer):
     assert list(lexer.get_tokens(' tcommit:ready  quit')) == [
             (Whitespace, ' '),
             (Keyword, 'tcommit'),
-            (Punctuation, ':'),
+            (Operator, ':'),
             (Name.Variable, 'ready'),
             (Whitespace, '  '),
             (Keyword, 'quit'),
