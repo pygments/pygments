@@ -9,8 +9,11 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
-.style-gallery h2 {
-    margin-bottom: 0.2em;
+h2 {
+    margin-top: 2em;
+}
+.style-gallery h3 {
+    margin-bottom: 0.1em;
 }
 .style-gallery pre {
     background-color: inherit;
@@ -25,12 +28,28 @@ For more information about styles refer to <a href="{{ pathto('docs/styles') }}"
 </p>
 
 <div class=style-gallery>
-{% for style in styles %}
-<div>
-<h2 id="{{style.name}}">{{style.name}}</h2>
-{{style.html|safe}}
-</div>
+{% for style in styles_aa %}
+    <div>
+    <h3 id="{{style.name}}">{{style.name}}</h3>
+    {{style.html|safe}}
+    </div>
 {% endfor %}
+</div>
+
+<h2>Styles with a lower contrast</h2>
+<p>
+The following styles do not meet the <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html">WCAG 2.1 AA contrast minimum</a>,
+so they might be difficult to read for people with suboptimal vision.
+If you want your highlighted code to be well readable for other people, you
+should use one of the earlier styles instead.
+</p>
+<div class=style-gallery>
+    {% for style in styles_sub_aa %}
+    <div>
+    <h3 id="{{style.name}}">{{style.name}}</h3>
+    {{style.html|safe}}
+    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}
