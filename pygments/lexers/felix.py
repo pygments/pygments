@@ -186,7 +186,7 @@ class FelixLexer(RegexLexer):
                 bygroups(Whitespace, Comment, Whitespace), '#push'),
             (r'^(\s*)(#endif.*?(?<!\\))(\n)',
                 bygroups(Whitespace, Comment, Whitespace), '#pop'),
-            (r'.*?$', Comment),
+            (r'(.*?)(\n)', bygroups(Comment, Whitespace)),
         ],
         'macro': [
             include('comment'),
