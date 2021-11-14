@@ -414,6 +414,8 @@ class MumpsLexer(ExtendedRegexLexer):
                 (words(('tcommit', 'tc'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
                 # 8.2.20 - TRESTART
                 (words(('trestart', 'tre'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
+                # 8.2.21 - TROLLBACK
+                (words(('trollback', 'tro'), suffix=r'\b'), Keyword, ('#pop', 'noargsp', 'postcond')),
                 ],
         # 8.2.2 - CLOSE arguments
         'closearg': [
