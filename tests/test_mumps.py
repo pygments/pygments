@@ -1796,3 +1796,12 @@ def testTREstart(lexer):
             (Name.Variable, 'foo'),
             (Text, '\n')
             ]
+
+def testTROllback(lexer):
+    assert list(lexer.get_tokens(' tro:abort')) == [
+            (Whitespace, ' '),
+            (Keyword, 'tro'),
+            (Operator, ':'),
+            (Name.Variable, 'abort'),
+            (Text, '\n')
+            ]
